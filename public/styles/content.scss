@@ -1,0 +1,14 @@
+@import 'vars';
+
+#content {
+    background: $light_gray;
+    height: 100%;
+    padding-left: 190px;
+
+    .table {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+    }
+
+}

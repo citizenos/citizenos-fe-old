@@ -1,0 +1,25 @@
+{
+  "name": "citizenos-fe",
+  "version": "0.0.1",
+  "description": "Citizen OS is an e-decisionmaking platform for communities.",
+  "homepage": "https://citizenos.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/citizenos/citizenos-fe"
+  },
+  "scripts": {
+    "start": "node ./index.js",
+    "dev": "npm install && concurrently --kill-others 'npm start' 'gulp'"
+  },
+  "dependencies": {
+    "express": "4.14.0"
+  },
+  "devDependencies": {
+    "concurrently": "2.2.0",
+    "gulp": "3.9.1",
+    "gulp-clean-css": "2.0.12",
+    "gulp-plumber": "1.1.0",
+    "gulp-sass": "2.3.2",
+    "gulp-sourcemaps": "1.6.0"
+  }
+}
