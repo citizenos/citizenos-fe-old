@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node ./index.js",
-    "dev": "npm install && concurrently --kill-others 'npm start' 'gulp'"
+    "dev": "npm install && concurrently --kill-others \"npm start\" \"gulp\""
   },
   "dependencies": {
     "express": "4.14.0"
