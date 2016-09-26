@@ -1,0 +1,10 @@
+.table_cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+@mixin tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}

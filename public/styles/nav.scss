@@ -1,19 +1,15 @@
 @import 'vars';
-@import 'mixins';
+@import 'mixins_n_extends';
 
-nav {
+#logo_area {
     width: 190px;
-    height: 100%;
-    background: $medium_black;
-    color: $transparent_white;
-    font-size: 13px;
+    height: 60px;
+    background: $dark_black;
+    display: table;
     float: left;
 
-    #logo_area {
-        width: 100%;
-        height: 60px;
-        background: $dark_black;
-        display: table;
+    @include tablet {
+         background: none;
     }
 
     #logo {
@@ -22,6 +18,26 @@ nav {
         height: 28px;
         margin: 0 auto;
         margin-top: 16px;
+    }
+}
+
+
+.nav_is_open {
+    right: 0;
+}
+
+nav {
+    width: $nav_d_width;
+    height: 100%;
+    background: $medium_black;
+    color: $transparent_white;
+    font-size: 13px;
+    position: fixed;
+    margin-top: 60px;
+
+    @include tablet {
+        width: $nav_t_width;
+        right: -$nav_t_width;
     }
 
     #nav_inside {
@@ -74,12 +90,8 @@ nav {
 
         .dark_line {
             margin-top: 16px;
-            background: $dark_black;
         }
 
-        .light_line {
-            background: $light_black;
-        }
 
         .section {
 
@@ -87,7 +99,7 @@ nav {
                 margin-top: 16px;
             }
 
-            .seaction_item {
+            .section_item {
                 padding: 4px 0 4px 12px ;
                 height: 20px;
                 display: block;
@@ -101,19 +113,15 @@ nav {
                         float: left;
                         margin-right: 16px;
 
-                        .section_cell {
-                            display: table-cell;
-                            vertical-align: middle;
-
-                            .sprite {
-                                margin: 0 auto;
-                                opacity: .69;
-                            }
+                        .sprite {
+                            margin: 0 auto;
+                            opacity: .69;
                         }
+                        
                     }
                 }
 
-            .seaction_item:not(.section_header):hover {
+            .section_item:not(.section_header):hover {
                 cursor: pointer;
                 font-weight: bold;
                 color: $white;
@@ -135,3 +143,41 @@ nav {
 
 }
 
+#mobile_header {
+    height: 60px;
+    background: $medium_black;
+    width: 100%;
+
+    #menu_button {
+        width: 118px;
+        height: 60px;
+        float: right;
+        color: $white;
+        font-weight: bold;
+        font-size: 14px;
+        display: table;
+        cursor: pointer;
+        padding-right: 1px;
+
+       #line_holder, #menu_button_icon, #menu_button_text {
+            @extend .table_cell;
+            text-align: center;
+        }
+
+        #menu_button_icon {
+            width: 34px;
+        }
+
+        .sprite {
+            float: right;
+        }
+
+        .v_line {
+            height: 30px;
+            width: 1px;
+            float: left;
+        }
+    }
+
+
+}

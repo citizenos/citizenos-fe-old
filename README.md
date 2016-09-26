@@ -9,3 +9,5 @@ CitizenOS front-end web application
 * Open https://dev.citizenos.com:3001 or http://dev.citizenos.com:3000 in your browser.
 
 **NOTE:** When using over HTTPS you need to add `./config/certs/dev.citizenos.com.crt` to your trusted CA certificate store or browsers will complain.
+
+concurrently --kill-others "npm start" "gulp"

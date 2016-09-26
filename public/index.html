@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CitizenOS</title>
+	<base href="/">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/nav.css">
@@ -10,20 +11,41 @@
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="icon" href="imgs/favicon.ico">
     <script src="js/libs/angular.js"></script>
+    <script src="js/libs/angular-route.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/AppCtrl.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body>
+<body resize>
 
-<!-- NAV -->
-<nav>
 
-    <div id="logo_area">
-        <div id="logo">
+<div id="logo_area">
+    <div id="logo">
+    </div>
+</div>
+
+<!-- MOBILE HEADER NAV -->
+<div id="mobile_header"  ng-if="w_width <= 1024">
+    <div id="menu_button" ng-click="nav_open()">
+
+        <div id="line_holder">
+            <div class="v_line light_line"></div>
+            <div class="v_line dark_line"></div>
+        </div>
+
+        <div id="menu_button_icon">
+            <div class="sprite sprite-icon-hamburger2x">
+            </div>
+        </div>
+        <div id="menu_button_text">
+            Menu
         </div>
     </div>
+</div>
+
+<!-- NAV -->
+<nav ng-class="nav_open ? 'nav_is_open' : ''">
 
     <div id="nav_inside">
 
@@ -41,33 +63,33 @@
 
         <!-- Nav section -->
         <div class="section">
-            <div class="seaction_item section_header bold_white">
+            <div class="section_item section_header bold_white">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-menu-icon-topics2x"></div>
                     </div>
                 </div>
                 <div class="section_text">Topics</div>
             </div>
-            <div class="seaction_item bold_blue">
+            <div class="section_item bold_blue">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-bullet-plus2x"></div>
                     </div>
                 </div>
                 <div class="section_text">Create topic</div>
             </div>
-            <a class="seaction_item" href="#">
+            <a class="section_item" href="#">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
                 <div class="section_text">My topics</div>
             </a>
-            <a class="seaction_item" href="#">
+            <a class="section_item" href="#">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
@@ -77,33 +99,33 @@
 
         <!-- Nav section -->
         <div class="section">
-            <div class="seaction_item section_header bold_white">
+            <div class="section_item section_header bold_white">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-menu-icon-groups2x"></div>
                     </div>
                 </div>
                 <div class="section_text">Groups</div>
             </div>
-            <div class="seaction_item bold_blue">
+            <div class="section_item bold_blue">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-bullet-plus2x"></div>
                     </div>
                 </div>
                 <div class="section_text">Create groups</div>
             </div>
-            <a class="seaction_item" href="#">
+            <a class="section_item" href="#">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
                 <div class="section_text">My groups</div>
             </a>
-            <a class="seaction_item" href="#">
+            <a class="section_item" href="#">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
@@ -118,46 +140,46 @@
         <!-- Nav section -->
         <div class="section">
 
-            <a class="seaction_item" href="#">
+            <a class="section_item" href="#">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-menu-icon-connections2x"></div>
                     </div>
                 </div>
                 <div class="section_text">Connections</div>
             </a>
 
-            <a class="seaction_item" href="#">
+            <a class="section_item" href="#">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-menu-icon-about2x"></div>
                     </div>
                 </div>
                 <div class="section_text">About</div>
             </a>
 
-            <a class="seaction_item" href="#">
+            <a class="section_item" href="#">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-menu-icon-faq2x"></div>
                     </div>
                 </div>
                 <div class="section_text">FAQ</div>
             </a>
 
-            <a class="seaction_item" href="#">
+            <a class="section_item" href="#">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-menu-icon-help2x"></div>
                     </div>
                 </div>
                 <div class="section_text">Help</div>
             </a>
 
-            <a class="seaction_item" href="#">
+            <a class="section_item" href="#">
                 <div class="section_icon">
-                    <div class="section_cell">
-                        <div class="sprite sprite-x0-menu-icon-help"></div>
+                    <div class="table_cell">
+                        <div class="sprite sprite-x0-menu-icon-help2x"></div>
                     </div>
                 </div>
                 <div class="section_text">English</div>
@@ -170,9 +192,9 @@
 
         <div class="section">
 
-            <a class="seaction_item" href="#">
+            <a class="section_item" href="#">
                 <div class="section_icon">
-                    <div class="section_cell">
+                    <div class="table_cell">
                         <div class="sprite sprite-menu-icon-logout2x"></div>
                     </div>
                 </div>
@@ -186,17 +208,31 @@
 </nav>
 
 
+
+
 <!-- CONTENT -->
 
-<div id="content">
-    <div class="table">
-        <div class="table_cell">
-            <h1>
-                You have not participated in a topic yet. Try it, it’s really cool!
-            </h1>
-            <h2>
-                You can get involved by
-            </h2>
+    <div id="content">
+
+    <!-- SEARCH -->
+
+    <div id="search_bar" ng-if="w_width > 1024">
+        <div id="search_icon">
+             <div class="table_cell">
+                 <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
+             </div>
+        </div>
+        <input placeholder="Search topics, users, groups…">
+    </div>
+
+    <div id="table_wrap">
+        <div class="table">
+            <div class="table_cell">
+
+                 <!-- ROUTES CONTENT -->
+                <div ng-view></div>
+
+            </div>
         </div>
     </div>
 </div>

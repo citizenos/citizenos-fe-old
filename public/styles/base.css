@@ -1,2 +1,2 @@
-body,h1,html{margin:0;padding:0}body,h1,h2,html{padding:0}body,html{font-family:'Open Sans',sans-serif;height:100%}h1{color:#a1a1a1;font-weight:300;font-size:36px}h2{margin:20px 0 0;color:#0680fc;font-weight:700;font-size:16px}.table{display:table}.table_cell{display:table-cell;vertical-align:middle}
+body,h1,html{margin:0;padding:0}body,h1,h2,html{padding:0}.dark_line{background:#1a1a1a}.light_line{background:#3b3b3b}body,html{font-family:'Open Sans',sans-serif;height:100%;bottom:0;background:#F6F6F6}h1{color:#a1a1a1;font-weight:300;font-size:36px}h2{margin:20px 0 0;color:#0680fc;font-weight:700;font-size:16px}.table{display:table}
 /*# sourceMappingURL=maps/base.css.map */
