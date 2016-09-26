@@ -6,7 +6,7 @@
  *  @see https://angularjs.org/
  */
 
-var app = angular.module('citizenos', ['ngRoute']);
+var app = angular.module('citizenos', ['ngRoute', 'ngTouch']);
 
 app.config(function($routeProvider, $locationProvider) {
 

@@ -7,15 +7,14 @@
     background: $dark_black;
     display: table;
     float: left;
+    position: fixed;
 
     @include tablet {
          background: none;
+         position: initial;
     }
 
     #logo {
-        background: url('../imgs/cos-logo-small.png');
-        width: 150px;
-        height: 28px;
         margin: 0 auto;
         margin-top: 16px;
     }
@@ -33,11 +32,15 @@ nav {
     color: $transparent_white;
     font-size: 13px;
     position: fixed;
-    margin-top: 60px;
+    z-index: 10;
 
     @include tablet {
         width: $nav_t_width;
         right: -$nav_t_width;
+        transition: all 220ms cubic-bezier(.45,.78,0,1);
+        overflow-y: visible;
+        overflow-x: hidden;
+        height: calc(100% - 60px);
     }
 
     #nav_inside {
@@ -46,6 +49,10 @@ nav {
         a:link, a:visited {
             color: $transparent_white;
             text-decoration: none;
+        }
+
+        .sprite, a {
+           -webkit-transform: translateZ(0);
         }
 
         .section_header {
@@ -104,6 +111,11 @@ nav {
                 height: 20px;
                 display: block;
 
+                @include tablet {
+                    padding: 8px 0 27px 12px ;
+                    box-sizing: border-box;
+                }
+
                     /* Use tables to center icons*/
                     .section_icon {
                         width: 21px;
@@ -126,8 +138,29 @@ nav {
                 font-weight: bold;
                 color: $white;
 
+                @include tablet {   
+                    font-weight: initial;
+                    opacity: .69;
+                
+                    &.bold_blue {
+                        font-weight: 700;
+                        color: $sky_blue;
+                        opacity: 1;
+
+                        .sprite {
+                            opacity: .69;
+                        }
+                    }
+                }
+
                 & {
                     background: $black;
+
+                    @include tablet {   
+                        -webkit-tap-highlight-color: rgba(0, 0, 0, .45);
+                        background: initial;
+                    }
+
                 }
 
                 .sprite {
@@ -147,8 +180,9 @@ nav {
     height: 60px;
     background: $medium_black;
     width: 100%;
+    z-index: 10;
 
-    #menu_button {
+    .header_button {
         width: 118px;
         height: 60px;
         float: right;
@@ -158,13 +192,14 @@ nav {
         display: table;
         cursor: pointer;
         padding-right: 1px;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, .45);
 
-       #line_holder, #menu_button_icon, #menu_button_text {
+       #line_holder, .header_button_icon, .header_button_text {
             @extend .table_cell;
             text-align: center;
         }
 
-        #menu_button_icon {
+        .header_button_icon {
             width: 34px;
         }
 

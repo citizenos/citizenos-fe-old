@@ -5,8 +5,18 @@ body, html {
     padding: 0;
     margin: 0;
     height: 100%;
+    min-height: 100%;
     bottom: 0;
     background: $light_gray;
+}
+
+body.body_fixed {
+    position: fixed;
+    overflow: initial;
+}
+
+body.body_not_fixed {
+    position: relative;
 }
 
 h1 {
@@ -29,3 +39,11 @@ h2 {
     display: table;
 }
 
+#close_mobile_menu {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}

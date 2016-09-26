@@ -1,17 +1,20 @@
 @import 'vars';
 @import 'mixins_n_extends';
 
+
+.nav_open {
+    padding-right: $nav_t_width;
+    right: $nav_t_width;
+}
+
+
 #content {
     height: 100%;
     padding-left: $nav_d_width;
+    transition: all 420ms cubic-bezier(.45,.78,0,1);
 
     @include tablet {
         padding-left: 0;
-    }
-
-    .nav_open {
-        padding-right: $nav_t_width;
-        right: $nav_t_width;
     }
 
     #search_bar {
@@ -45,6 +48,7 @@
     #table_wrap {
         margin-top: -60px;
         height: 100%;
+        position: relative;
 
         @include tablet {
             margin-top: 0;
