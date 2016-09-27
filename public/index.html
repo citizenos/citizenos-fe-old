@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CitizenOS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 	<base href="/">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="styles/base.css">
@@ -15,7 +16,6 @@
     <script src="js/libs/angular-touch.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/AppCtrl.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 <body ng-class="$root.nav_open ? 'body_fixed' : 'body_not_fixed'" resize>
@@ -46,7 +46,7 @@
     </div>
 
     
-    <div class="header_button" ng-click="$root.search_open = !$root.search_open" ng-style="{'visibility': $root.search_open ? 'hidden ' : 'visible'}">
+    <div class="header_button" ng-click="$root.search_open = !$root.search_open" ng-style="{'display': $root.search_open ? 'none ' : 'relative'}">
         <div class="header_button_icon">
             <div class="sprite sprite-icon-search2x">
             </div>
@@ -56,15 +56,15 @@
         </div>
     </div>
 
-    <div id="m_search_bar">
-        <div class="m_search_icon">
+    <div id="m_search_bar" ng-style="{'display': $root.search_open ? 'relative' : 'none'}">
+        <div id="m_search_icon">
              <div class="table_cell">
-                 <div class="sprite sprite-icon-search2x"></div>
+                 <div class="sprite sprite-icon-search-b-2x"></div>
              </div>
         </div>
-        <div class="m_search_close">
+        <div id="m_search_close" ng-click="$root.search_open = !$root.search_open">
              <div class="table_cell">
-                 <div class="sprite sprite-icon-search2x"></div>
+                 <div class="sprite sprite-icon-closemenu-b-2x"></div>
              </div>
         </div>
         <div id="m_search_bar_wrap">

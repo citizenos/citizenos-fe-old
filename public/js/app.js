@@ -34,6 +34,9 @@ app.directive('resize', function ($window, $rootScope) {
 		
         scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
 			$rootScope.w_width = newValue.w;
+            if ($rootScope.w_width > 1024) {
+                $rootScope.nav_open = false;
+            }
         }, true);
 
         w.bind('resize', function () {

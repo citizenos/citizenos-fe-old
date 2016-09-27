@@ -14,6 +14,10 @@
          position: initial;
     }
 
+    @include mobile {
+        width: 59px;
+    }
+
     #logo {
         margin: 0 auto;
         margin-top: 16px;
@@ -180,13 +184,19 @@ nav {
 #mobile_header {
     height: 60px;
     background: $medium_black;
-    width: 100%;
     z-index: 10;
+    padding-right: 138px;
+    padding-left: 190px;
+
+    @include mobile {
+        padding-left: 59px;
+    }
 
     .header_button {
         width: 118px;
         height: 60px;
-        float: right;
+        position: absolute;
+        right: 0;
         color: $white;
         font-weight: bold;
         font-size: 14px;
@@ -194,6 +204,10 @@ nav {
         cursor: pointer;
         padding-right: 1px;
         -webkit-tap-highlight-color: rgba(0, 0, 0, .45);
+
+        &:nth-child(2) {
+            right: 118px;
+        }
 
        #line_holder, .header_button_icon, .header_button_text {
             @extend .table_cell;
@@ -215,22 +229,43 @@ nav {
         }
     }
 
+
      #m_search_bar {
         display: table;
         height: 60px;
+        width: 100%;
+        position: relative;
+
+        #m_search_icon, #m_search_close {
+            position: absolute;
+            height: 60px;
+            width: 32px;
+            display: table;
+
+            .sprite {
+                margin: 0 auto;
+            }
+        }
+
+        #m_search_close {
+            right: 0;
+            cursor: pointer;
+        }
 
         #m_search_bar_wrap {
             @extend .table_cell;
-        }
-    
-        input {
-            border-radius: 15px;
-            border: none;
-            height: 30px;
-            padding: 0 30px 0 30px;
+                
+            input {
+                border-radius: 15px;
+                border: none;
+                height: 30px;
+                padding: 0 34px 1px 34px;
+                box-sizing: border-box;
+                width: 100%;
 
-            &:focus, input:focus{
-                outline: none;
+                &:focus, input:focus{
+                    outline: none;
+                }
             }
         }
     }

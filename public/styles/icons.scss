@@ -1,3 +1,5 @@
+@import 'mixins_n_extends';
+
 /* Generated data URIs used for preview purposes only */
 /* Be sure that you replace data URIs with generated images */
 .sprite {
@@ -7,7 +9,7 @@
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
 	.sprite {
 		 background-image: url('../imgs/icons_sprite2x.png');
-		 background-size: 826px 687px;
+		 background-size: 853px 714px;
 	}
 }
 
@@ -71,176 +73,192 @@
 	background-position: -126px -120px;
 }
 
-.sprite-icon-closemenu2x {
+.sprite-icon-closemenu-b-2x {
 	width: 12px;
 	height: 12px;
 	background-position: -140px -134px;
 }
 
+.sprite-icon-closemenu2x {
+	width: 12px;
+	height: 12px;
+	background-position: -152px -146px;
+}
+
 .sprite-icon-favourite2x {
 	width: 22px;
 	height: 22px;
-	background-position: -152px -146px;
+	background-position: -164px -158px;
 }
 
 .sprite-icon-favourite-notfilled2x {
 	width: 22px;
 	height: 22px;
-	background-position: -174px -168px;
+	background-position: -186px -180px;
 }
 
 .sprite-icon-hamburger2x {
 	width: 16px;
 	height: 12px;
-	background-position: -196px -190px;
+	background-position: -208px -202px;
 }
 
 .sprite-icon-list-ordering2x {
 	width: 6px;
 	height: 11px;
-	background-position: -212px -202px;
+	background-position: -224px -214px;
+}
+
+.sprite-icon-search-b-2x {
+	width: 15px;
+	height: 15px;
+	background-position: -230px -225px;
 }
 
 .sprite-icon-search2x {
 	width: 15px;
 	height: 15px;
-	background-position: -218px -213px;
+	background-position: -245px -240px;
 }
 
 .sprite-login-icon-facebook2x {
 	width: 14px;
 	height: 14px;
-	background-position: -233px -228px;
+	background-position: -260px -255px;
 }
 
 .sprite-login-icon-google2x {
 	width: 14px;
 	height: 14px;
-	background-position: -247px -242px;
+	background-position: -274px -269px;
 }
 
 .sprite-login-icon-id2x {
 	width: 18px;
 	height: 13px;
-	background-position: -261px -256px;
+	background-position: -288px -283px;
 }
 
 .sprite-menu-icon-about2x {
 	width: 18px;
 	height: 15px;
-	background-position: -279px -269px;
+	background-position: -306px -296px;
 }
 
 .sprite-menu-icon-connections2x {
 	width: 21px;
 	height: 17px;
-	background-position: -297px -284px;
+	background-position: -324px -311px;
 }
 
 .sprite-menu-icon-faq2x {
 	width: 17px;
 	height: 17px;
-	background-position: -318px -301px;
+	background-position: -345px -328px;
 }
 
 .sprite-menu-icon-groups2x {
 	width: 17px;
 	height: 16px;
-	background-position: -335px -318px;
+	background-position: -362px -345px;
 }
 
 .sprite-menu-icon-help2x {
 	width: 17px;
 	height: 17px;
-	background-position: -352px -334px;
+	background-position: -379px -361px;
 }
 
 .sprite-menu-icon-logout2x {
 	width: 17px;
 	height: 16px;
-	background-position: -369px -351px;
+	background-position: -396px -378px;
 }
 
 .sprite-menu-icon-topics2x {
 	width: 16px;
 	height: 18px;
-	background-position: -386px -367px;
+	background-position: -413px -394px;
 }
 
 .sprite-mytopics-icon-deletetopic02x {
 	width: 11px;
 	height: 13px;
-	background-position: -402px -385px;
+	background-position: -429px -412px;
 }
 
 .sprite-mytopics-icon-deletetopic2x {
 	width: 11px;
 	height: 13px;
-	background-position: -413px -398px;
+	background-position: -440px -425px;
 }
 
 .sprite-mytopics-icon-infollowup2x {
 	width: 12px;
 	height: 12px;
-	background-position: -424px -411px;
+	background-position: -451px -438px;
 }
 
 .sprite-mytopics-icon-invoting2x {
 	width: 12px;
 	height: 12px;
-	background-position: -436px -423px;
+	background-position: -463px -450px;
 }
 
 .sprite-mytopics-icon-progress2x {
 	width: 12px;
 	height: 12px;
-	background-position: -448px -435px;
+	background-position: -475px -462px;
 }
 
 .sprite-voted-check2x {
 	width: 23px;
 	height: 18px;
-	background-position: -460px -447px;
+	background-position: -487px -474px;
 }
 
 .sprite-voted-nocheck2x {
 	width: 16px;
 	height: 16px;
-	background-position: -483px -465px;
+	background-position: -510px -492px;
 }
 
 .sprite-x0-menu-icon-help2x {
 	width: 17px;
 	height: 17px;
-	background-position: -499px -481px;
+	background-position: -526px -508px;
 }
 
 .sprite-x1-mytopics-icon-discuss-big2x {
 	width: 61px;
 	height: 58px;
-	background-position: -516px -498px;
+	background-position: -543px -525px;
 }
 
 .sprite-x2-mytopics-icon-newtopic-big2x {
 	width: 70px;
 	height: 78px;
-	background-position: -577px -556px;
+	background-position: -604px -583px;
 }
 
 .sprite-x3-icon-topbar-earch2x {
 	width: 18px;
 	height: 18px;
-	background-position: -647px -634px;
+	background-position: -674px -661px;
 }
 
 .sprite-x4-icon-language-dropdown2x {
 	width: 11px;
 	height: 7px;
-	background-position: -665px -652px;
+	background-position: -692px -679px;
 }
 
 .sprite-x5-cos-logo-small2x {
 	width: 150px;
 	height: 28px;
-	background-position: -676px -659px;
+	background-position: -703px -686px;
+
+	@include mobile {
+        width: 27px;
+    }
 }

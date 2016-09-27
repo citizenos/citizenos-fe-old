@@ -8,3 +8,9 @@
     @content;
   }
 }
+
+@mixin mobile {
+  @media (max-width: 535px) {
+    @content;
+  }
+}
