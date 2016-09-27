@@ -1,6 +1,8 @@
 # CitizenOS-FE
 CitizenOS front-end web application
 
+**IN DEVELOPMENT - Will replace https://citizenos.com FE application by the end of 2016**
+
 ## Running locally
 
 * Add to dev.citizenos.com to your hosts file - `127.0.0.1 dev.citizenos.com`
@@ -9,5 +11,3 @@ CitizenOS front-end web application
 * Open https://dev.citizenos.com:3001 or http://dev.citizenos.com:3000 in your browser.
 
 **NOTE:** When using over HTTPS you need to add `./config/certs/dev.citizenos.com.crt` to your trusted CA certificate store or browsers will complain.
-
-concurrently --kill-others "npm start" "gulp"

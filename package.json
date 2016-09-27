@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Citizen OS is an e-decisionmaking platform for communities.",
   "homepage": "https://citizenos.com",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/citizenos/citizenos-fe"
