@@ -44,7 +44,8 @@ nav {
         transition: all 220ms cubic-bezier(.45,.78,0,1);
         overflow-y: visible;
         overflow-x: hidden;
-        height: calc(100% - 60px);
+        padding-bottom: 60px;
+        box-sizing: border-box;
     }
 
     #nav_inside {
@@ -173,7 +174,6 @@ nav {
 
             }
         }
-
 
     }
 
