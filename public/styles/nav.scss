@@ -176,6 +176,7 @@ nav {
 
 }
 
+
 #mobile_header {
     height: 60px;
     background: $medium_black;
@@ -211,6 +212,26 @@ nav {
             height: 30px;
             width: 1px;
             float: left;
+        }
+    }
+
+     #m_search_bar {
+        display: table;
+        height: 60px;
+
+        #m_search_bar_wrap {
+            @extend .table_cell;
+        }
+    
+        input {
+            border-radius: 15px;
+            border: none;
+            height: 30px;
+            padding: 0 30px 0 30px;
+
+            &:focus, input:focus{
+                outline: none;
+            }
         }
     }
 

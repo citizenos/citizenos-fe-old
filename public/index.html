@@ -46,13 +46,29 @@
     </div>
 
     
-    <div class="header_button">
+    <div class="header_button" ng-click="$root.search_open = !$root.search_open" ng-style="{'visibility': $root.search_open ? 'hidden ' : 'visible'}">
         <div class="header_button_icon">
             <div class="sprite sprite-icon-search2x">
             </div>
         </div>
         <div class="header_button_text">
             Search
+        </div>
+    </div>
+
+    <div id="m_search_bar">
+        <div class="m_search_icon">
+             <div class="table_cell">
+                 <div class="sprite sprite-icon-search2x"></div>
+             </div>
+        </div>
+        <div class="m_search_close">
+             <div class="table_cell">
+                 <div class="sprite sprite-icon-search2x"></div>
+             </div>
+        </div>
+        <div id="m_search_bar_wrap">
+            <input placeholder="Search">
         </div>
     </div>
 
