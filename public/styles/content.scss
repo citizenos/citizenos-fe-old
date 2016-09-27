@@ -31,7 +31,7 @@
             outline: none;
         } }
 
-        #search_icon {
+        #search_icon, #close_search_icon {
             position: absolute;
             width: 60px;
             height: 60px;
@@ -41,6 +41,15 @@
                 margin: 0 auto;
             }
             
+        }
+
+        #close_search_icon {
+            right: 0;
+            cursor: pointer;
+        }
+
+        #close_search_icon:hover {
+            background: $light_gray;
         }
 
     }
@@ -65,8 +74,9 @@
             padding-top: 0;
         }
 
-        .table_cell {
-
+        .cell {
+            @extend .table_cell;
+            position: relative;
             padding: 30px 20px 30px 20px;
 
             #title_area {
@@ -80,7 +90,7 @@
                     width: 200px;
                     height: 200px;
                     border-radius: 4px;
-                    background: $deep-sky-blue;
+                    background: $deep_sky_blue;
                     color: #fff;
                     font-weight: $bold;
                     display: inline-table;
@@ -113,6 +123,84 @@
                 }
 
             }
+            
+
+            /* SEARCH */
+            
+            .area_opened {
+                height: 100%;
+                overflow: visible;
+            }
+            
+            .area_closed {
+                overflow: hidden;
+                height: 0;
+            }
+
+            #search_area {
+                position: absolute;
+                display: relative;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: $white;
+                text-align: left;
+                font-size: 14px;
+                transition: all 220ms ease-out;
+
+                .search_cat {
+                    width: 100%;
+                    background: $medium_gray;
+                    
+                    .cat_wrap {
+                        @extend .table_cell;
+                        padding: 0 20px 0 20px;
+                        height: 40px;
+                    }
+                }
+
+                .results_area {
+
+                    padding: 5px 20px 5px 20px;
+                    .result_group {
+                        margin-bottom: 5px;
+
+                        .result_link, .result_title, .more_results {
+                            padding: 5px 0 5px 0;
+                        }
+
+                        .result_link, .result_title {
+                            font-weight: bold;
+                        }
+
+                        .result_link {
+                            color: $deep_sky_blue;
+                            display: block;
+                        }
+
+                        .more_results {
+                            color: $deep_sky_blue;
+                            font-size: 13px;
+                            cursor: pointer;
+                        }
+
+                        .more_results:hover, .result_link:hover  {
+                            color: $sky_blue;
+                        }
+                        
+                    }
+                }
+
+            }
+
+
+
+
+
+
+
+
         }
     }
 

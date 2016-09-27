@@ -31,7 +31,7 @@ h1 {
 h2 {
     padding: 0;
     margin: 20px 0 0 0;
-    color: $deep-sky-blue;
+    color: $deep_sky_blue;
     font-weight: $bold;
     font-size: 16px;
 }
@@ -52,4 +52,12 @@ h2 {
 input {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
+}
+
+b {
+    font-weight: $bold;
+}
+
+a:link, a:visited {
+    text-decoration: none;
 }
