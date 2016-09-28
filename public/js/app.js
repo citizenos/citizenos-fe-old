@@ -44,3 +44,33 @@ app.directive('resize', function ($window, $rootScope) {
         });
     }
 });
+
+/* Search dummy data */
+app.controller('search', ['$scope', function($scope) {
+
+    $scope.results = [
+        
+        {"group_name": "My Topics 1",
+            "group_results" : [{
+                    "result_titles" : ["Subjects", "Categories", "Creator"],
+                    "result_links" : [
+                        { "link" : {
+                            "link_name" : "A greener city garden will improve conditions in our neighbourhood",
+                            "link_href" : "#",
+                        }},
+                        { "link" : {
+                            "link_name1" : "A greener city garden will improve conditions in our neighbourhood 2",
+                            "link_href1" : "#",
+                            "link_name2" : "Ecology, Nature, Something else 2",
+                            "link_href2" : "#",
+                            "link_name3" : "John Doe 2",
+                            "link_href3" : "#",
+                        }},
+                    
+                    ]
+            }]
+        },
+    
+    ];
+    
+}]);

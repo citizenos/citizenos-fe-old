@@ -278,99 +278,29 @@
             <div class="cell">
 
                 <!-- SEARCH AREA (don't move to separate view') -->
-                <div id="search_area" ng-class="$root.search_area_open ? 'area_opened' : 'area_closed'">
-                    <div class="search_cat">
-                        <div class="cat_wrap">
-                            Context search results in <b>My Topics</b>
+                <div id="search_area"  ng-style="{'height' : $root.search_area_open ? '100%' : '100%' }" ng-controller="search">
+
+                    <div ng-repeat="result in results">
+                        <div class="search_cat">
+                            <div class="cat_wrap">
+                                Context search results in <b>{{result.group_name}}</b>
+                            </div>
+                        </div>
+                        <div class="results_area">
+                            <div class="result_group" ng-repeat="result_group in result.group_results">
+                                <div class="result_title" ng-repeat="result_title in result_group.result_titles">
+                                    {{result_title}}
+                                </div>
+                                <a href="#" class="result_link">
+                                    A greener city garden will improve conditions in our neighbourhood
+                                </a>
+                                <div class="more_results">
+                                    View more results
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="results_area">
 
-                        <div class="result_group">
-                            <div class="result_title">
-                                Subjects
-                            </div>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <div class="more_results">
-                                View more results
-                            </div>
-                        </div>
-
-                        <div class="result_group">
-                            <div class="result_title">
-                                Users
-                            </div>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <div class="more_results">
-                                View more results
-                            </div>
-                        </div>
-
-                        <div class="result_group">
-                            <div class="result_title">
-                                Users
-                            </div>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <div class="more_results">
-                                View more results
-                            </div>
-                        </div>
-
-                        <div class="result_group">
-                            <div class="result_title">
-                                Users
-                            </div>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <a href="#" class="result_link">
-                                A greener city garden will improve conditions in our neighbourhood
-                            </a>
-                            <div class="more_results">
-                                View more results
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
 
                 <!-- ROUTES CONTENT -->

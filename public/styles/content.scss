@@ -126,24 +126,15 @@
             
 
             /* SEARCH */
-            
-            .area_opened {
-                height: 100%;
-                overflow: visible;
-            }
-            
-            .area_closed {
-                overflow: hidden;
-                height: 0;
-            }
 
             #search_area {
                 position: absolute;
-                display: relative;
+                overflow-y: auto;
                 top: 0;
                 left: 0;
                 right: 0;
                 bottom: 0;
+                height: 0;
                 background: $white;
                 text-align: left;
                 font-size: 14px;
