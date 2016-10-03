@@ -295,16 +295,18 @@
                                     </div>
                                 </div>
 
-                                <div class="result_links" ng-repeat="resultLinks in resultGroup.resultLinks">
-                                    <div class="links_wrap" ng-repeat="linksWrap in resultLinks.linksWrap">
+                                <div class="result_links" ng-repeat="(key, resultLinks) in resultGroup.resultLinks">
+                                    <div ng-if="key < 4 || view_more" class="links_wrap" ng-repeat="linksWrap in resultLinks.linksWrap">
                                         <span ng-repeat="links in linksWrap.links">
                                             <a href="{{links.linkHref}}" class="result_link">
                                                 {{links.linkName}}</a>{{$last ? '' : ', '}}
                                         </span>
                                     </div>
-                                </div>
-                                <div class="more_results">
-                                    View more results
+
+                                    <div ng-if="key == 4 && !view_more" class="more_results" ng-click="$parent.$parent.view_more = true">
+                                        View more results
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
