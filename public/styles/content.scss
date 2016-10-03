@@ -125,7 +125,7 @@
             }
             
 
-            /* SEARCH */
+            /* SEARCH AREA (Search bar styles in nav.scss) */
 
             #search_area {
                 position: absolute;
@@ -152,13 +152,22 @@
                 }
 
                 .results_area {
-
-                    padding: 5px 20px 5px 20px;
+                    padding: 5px;
                     .result_group {
                         margin-bottom: 5px;
+                        display: table;
+                        width: 100%;
 
-                        .result_link, .result_title, .more_results {
-                            padding: 5px 0 5px 0;
+                        .results_header, .result_links {
+                            display: table-row;
+                        }
+
+                        .result_title, .links_wrap {
+                            display: table-cell;
+                        }
+                        
+                        .links_wrap, .result_title, .more_results {
+                            padding: 5px 15px;
                         }
 
                         .result_link, .result_title {
@@ -167,7 +176,6 @@
 
                         .result_link {
                             color: $deep_sky_blue;
-                            display: block;
                         }
 
                         .more_results {

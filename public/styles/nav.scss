@@ -57,6 +57,7 @@ nav {
 
         .sprite, a {
            -webkit-transform: translateZ(0);
+           transform: translateZ(0);
         }
 
         .section_header {
@@ -228,6 +229,8 @@ nav {
         }
     }
 
+
+    /* SEARCH BAR (search area styles in content.scss) */
 
      #m_search_bar {
         display: table;

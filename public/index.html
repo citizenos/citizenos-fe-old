@@ -278,22 +278,31 @@
             <div class="cell">
 
                 <!-- SEARCH AREA (don't move to separate view') -->
-                <div id="search_area"  ng-style="{'height' : $root.search_area_open ? '100%' : '0' }" ng-controller="search">
+                <div id="search_area"  ng-style="{'height' : $root.search_area_open ? '' : '100%' }" ng-controller="search">
 
                     <div ng-repeat="result in results">
                         <div class="search_cat">
                             <div class="cat_wrap">
-                                Context search results in <b>{{result.group_name}}</b>
+                                Context search results in <b>{{result.groupName}}</b>
                             </div>
                         </div>
                         <div class="results_area">
-                            <div class="result_group" ng-repeat="result_group in result.group_results">
-                                <div class="result_title" ng-repeat="result_title in result_group.result_titles">
-                                    {{result_title}}
+                            <div class="result_group" ng-repeat="resultGroup in result.groupResults">
+
+                                <div class="results_header">
+                                    <div class="result_title" ng-repeat="resultTitle in resultGroup.resultTitles">
+                                        {{resultTitle}}
+                                    </div>
                                 </div>
-                                <a href="#" class="result_link">
-                                    A greener city garden will improve conditions in our neighbourhood
-                                </a>
+
+                                <div class="result_links" ng-repeat="resultLinks in resultGroup.resultLinks">
+                                    <div class="links_wrap" ng-repeat="linksWrap in resultLinks.linksWrap">
+                                        <span ng-repeat="links in linksWrap.links">
+                                            <a href="{{links.linkHref}}" class="result_link">
+                                                {{links.linkName}}</a>{{$last ? '' : ', '}}
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="more_results">
                                     View more results
                                 </div>
