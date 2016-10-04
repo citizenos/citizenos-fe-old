@@ -49,6 +49,14 @@ app.directive('resize', function ($window, $rootScope) {
 app.controller('search', ['$scope', function($scope) {
 
     $scope.results = [
+    {
+		"groupName": "My Topics 0",
+		"groupResults": [
+			{
+				"resultTitles": []
+            }
+        ]
+    },
 	{
 		"groupName": "My Topics 1",
 		"groupResults": [

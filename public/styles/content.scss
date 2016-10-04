@@ -135,59 +135,106 @@
                 right: 0;
                 bottom: 0;
                 height: 0;
-                background: $white;
                 text-align: left;
                 font-size: 14px;
                 transition: all 220ms ease-out;
 
-                .search_cat {
-                    width: 100%;
-                    background: $medium_gray;
-                    
-                    .cat_wrap {
-                        @extend .table_cell;
-                        padding: 0 20px 0 20px;
-                        height: 40px;
-                    }
+                #search_area_close {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 1;
                 }
 
-                .results_area {
-                    padding: 5px;
-                    .result_group {
-                        margin-bottom: 5px;
-                        display: table;
+                #search_area_wrap {
+                    background: $white;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    z-index: 2;
+
+                    .search_cat {
                         width: 100%;
-
-                        .results_header, .result_links {
-                            display: table-row;
-                        }
-
-                        .result_title, .links_wrap {
-                            display: table-cell;
-                        }
+                        background: $medium_gray;
                         
-                        .links_wrap, .result_title, .more_results {
-                            padding: 5px 15px;
+                        .cat_wrap {
+                            @extend .table_cell;
+                            padding: 0 20px 0 20px;
+                            height: 40px;
                         }
+                    }
 
-                        .result_link, .result_title {
-                            font-weight: bold;
-                        }
+                    .results_area {
+                        padding: 5px 5px 15px 5px;
+                        .result_group {
+                            margin-bottom: 8px;
+                            display: table;
+                            width: 100%;
 
-                        .result_link {
-                            color: $deep_sky_blue;
-                        }
+                            .no_results {
+                                text-align: center;
+                                padding: 35px 20px 17px 20px;
 
-                        .more_results {
-                            color: $deep_sky_blue;
-                            font-size: 13px;
-                            cursor: pointer;
-                        }
+                                @include mobile {
+                                    padding: 15px 10px 0 10px;
+                                }
 
-                        .more_results:hover, .result_link:hover  {
-                            color: $sky_blue;
+                                .search_msgb {
+                                    display: inline-block;
+                                    margin-bottom: 10px;
+                                }
+                                    
+                                .search_msg {
+                                    display: inline-block;
+                                    width: 560px;
+                                      @media (max-width: 600px) {
+                                         width: 100%;
+                                      }
+                                }
+
+                            }
+
+                            .results_header, .result_links {
+                                display: table-row;
+                            }
+
+                            .result_title, .links_wrap {
+                                display: table-cell;
+                            }
+                            
+                            .links_wrap, .result_title, .more_results {
+                                padding: 5px 15px;
+                            }
+
+                            .links_wrap {
+                                @include mobile {
+                                    padding: 10px 15px; 
+                                }
+                            }
+
+                            .result_link, .result_title {
+                                font-weight: bold;
+                            }
+
+                            .result_link {
+                                color: $deep_sky_blue;
+                            }
+
+                            .more_results {
+                                color: $deep_sky_blue;
+                                font-size: 13px;
+                                cursor: pointer;
+                                display: inline-block;
+                            }
+
+                            .more_results:hover, .result_link:hover  {
+                                color: $sky_blue;
+                            }
+                            
                         }
-                        
                     }
                 }
 

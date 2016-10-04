@@ -46,8 +46,7 @@
         </div>
     </div>
 
-
-    <div class="header_button" ng-click="$root.search_open = !$root.search_open" ng-style="{'display': $root.search_open ? 'none ' : 'relative'}">
+    <div class="header_button" ng-click="$root.search_open = !$root.search_open; $root.search_area_open = true" ng-style="{'display': $root.search_open ? 'none ' : 'relative'}">
         <div class="header_button_icon">
             <div class="sprite sprite-icon-search2x">
             </div>
@@ -63,7 +62,7 @@
                 <div class="sprite sprite-icon-search-b-2x"></div>
             </div>
         </div>
-        <div id="m_search_close" ng-click="$root.search_open = !$root.search_open">
+        <div id="m_search_close" ng-click="$root.search_open = !$root.search_open; $root.search_area_open = false">
             <div class="table_cell">
                 <div class="sprite sprite-icon-closemenu-b-2x"></div>
             </div>
@@ -76,7 +75,7 @@
 </div>
 
 <!-- NAV -->
-<nav ng-class="$root.nav_open ? 'nav_is_open' : ''" ng-swipe-right="$root.nav_open = false">
+<nav ng-class="$root.nav_open ? 'nav_is_open' : ''" ng-click="$root.search_area_open = false" ng-swipe-right="$root.nav_open = false">
 
     <div id="nav_inside">
 
@@ -278,39 +277,57 @@
             <div class="cell">
 
                 <!-- SEARCH AREA (don't move to separate view') -->
-                <div id="search_area"  ng-style="{'height' : $root.search_area_open ? '' : '100%' }" ng-controller="search">
-
-                    <div ng-repeat="result in results">
-                        <div class="search_cat">
-                            <div class="cat_wrap">
-                                Context search results in <b>{{result.groupName}}</b>
-                            </div>
-                        </div>
-                        <div class="results_area">
-                            <div class="result_group" ng-repeat="resultGroup in result.groupResults">
-
-                                <div class="results_header">
-                                    <div class="result_title" ng-repeat="resultTitle in resultGroup.resultTitles">
-                                        {{resultTitle}}
-                                    </div>
+                <div id="search_area"  ng-style="{'height' : $root.search_area_open ? '100%' : '0' }" ng-controller="search">
+                   
+                    <div id="search_area_wrap">
+                        <div ng-repeat="result in results">
+                            <div class="search_cat">
+                                <div class="cat_wrap">
+                                    Context search results in <b>{{result.groupName}}</b>
                                 </div>
+                            </div>
+                            <div class="results_area">
+                                <div class="result_group" ng-repeat="resultGroup in result.groupResults">
 
-                                <div class="result_links" ng-repeat="(key, resultLinks) in resultGroup.resultLinks">
-                                    <div ng-if="key < 4 || view_more" class="links_wrap" ng-repeat="linksWrap in resultLinks.linksWrap">
-                                        <span ng-repeat="links in linksWrap.links">
-                                            <a href="{{links.linkHref}}" class="result_link">
-                                                {{links.linkName}}</a>{{$last ? '' : ', '}}
-                                        </span>
+                                    <div class="no_results" ng-if="resultGroup.resultTitles.length == 0">
+                                        <b class="search_msgb">Oops, we couldn’t find any results matching your search :(</b>
+                                        <br>
+                                        <div class="search_msg">
+                                            Maybe you have a typo in your search?<br>
+                                            We did find some things scattered throughout the CitizenOS platform, so feel free to check them out. We promise it will be worth your while!
+                                        </div>
                                     </div>
 
-                                    <div ng-if="key == 4 && !view_more" class="more_results" ng-click="$parent.$parent.view_more = true">
-                                        View more results
+                                    <div class="results_header">
+                                        <div ng-if="w_width > 568 || key == 0" class="result_title" ng-repeat="(key, resultTitle) in resultGroup.resultTitles">
+                                            {{resultTitle}}
+                                        </div>
                                     </div>
 
+                                    <div class="result_links" ng-repeat="(key, resultLinks) in resultGroup.resultLinks">
+
+                                        <div ng-if="key < 4 || view_more" class="links_wrap" ng-repeat="(sub_key, linksWrap) in resultLinks.linksWrap">
+                                            <!--<span ng-if="w_width > 568 ||sub_key == 0">-->
+                                                <span ng-repeat="links in linksWrap.links">
+                                                    <a ng-click="$root.search_area_open = false" href="{{links.linkHref}}" class="result_link">
+                                                        {{links.linkName}}</a>{{$last ? '' : ', '}}
+                                                </span>
+                                            <!--</span>-->
+                                        </div>
+
+                                        <div ng-if="key == 4 && !view_more" class="more_results" ng-click="$parent.$parent.view_more = true">
+                                            View more results
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <div ng-click="$root.search_area_open = false" id="search_area_close">
+                    </div>
+
 
                 </div>
 
