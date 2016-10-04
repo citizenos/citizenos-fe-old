@@ -8,6 +8,7 @@
     display: table;
     float: left;
     position: fixed;
+    cursor: pointer;
 
     @include tablet {
          background: none;
