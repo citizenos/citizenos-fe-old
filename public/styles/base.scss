@@ -40,6 +40,10 @@ h2 {
     display: table;
 }
 
+.row {
+    display: table-row;
+}
+
 #close_mobile_menu {
     position: absolute;
     z-index: 3;
@@ -52,6 +56,10 @@ h2 {
 input {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
+}
+
+input::-ms-clear { 
+    display: none;
 }
 
 b {

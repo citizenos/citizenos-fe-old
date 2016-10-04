@@ -37,6 +37,7 @@ nav {
     font-size: 13px;
     position: fixed;
     z-index: 10;
+    margin-top: 60px;
 
     @include tablet {
         width: $nav_t_width;
@@ -46,6 +47,7 @@ nav {
         overflow-x: hidden;
         padding-bottom: 60px;
         box-sizing: border-box;
+        margin-top: 0;
     }
 
     #nav_inside {

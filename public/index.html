@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="styles/content.css">
     <link rel="stylesheet" href="styles/icons.css">
+    <link rel="stylesheet" href="styles/no_topics.css">
     <link rel="icon" href="imgs/favicon.ico">
     <script src="js/libs/angular.js"></script>
     <script src="js/libs/angular-route.js"></script>
@@ -19,7 +20,7 @@
     <script src="js/controllers/AppCtrl.js"></script>
 </head>
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="$root.nav_open ? 'body_fixed' : 'body_not_fixed'" resize>
+<body ng-class="$root.navOpen ? 'body_fixed' : 'body_not_fixed'" resize>
 
 
 <div id="logo_area">
@@ -28,9 +29,9 @@
 </div>
 
 <!-- MOBILE HEADER NAV -->
-<div id="mobile_header" ng-if="w_width <= 1024">
+<div id="mobile_header" ng-if="wWidth <= 1024">
 
-    <div class="header_button" ng-click="$root.nav_open = !$root.nav_open">
+    <div class="header_button" ng-click="$root.navOpen = !$root.navOpen">
 
         <div id="line_holder">
             <div class="v_line light_line"></div>
@@ -38,7 +39,7 @@
         </div>
 
         <div class="header_button_icon">
-            <div class="sprite" ng-class="$root.nav_open ? 'sprite-icon-closemenu2x' : 'sprite-icon-hamburger2x'">
+            <div class="sprite" ng-class="$root.navOpen ? 'sprite-icon-closemenu2x' : 'sprite-icon-hamburger2x'">
             </div>
         </div>
         <div class="header_button_text">
@@ -46,7 +47,7 @@
         </div>
     </div>
 
-    <div class="header_button" ng-click="$root.search_open = !$root.search_open; $root.search_area_open = true" ng-style="{'display': $root.search_open ? 'none ' : 'relative'}">
+    <div class="header_button" ng-click="$root.search_open = !$root.search_open;" ng-style="{'display': $root.search_open ? 'none ' : 'relative'}">
         <div class="header_button_icon">
             <div class="sprite sprite-icon-search2x">
             </div>
@@ -62,20 +63,20 @@
                 <div class="sprite sprite-icon-search-b-2x"></div>
             </div>
         </div>
-        <div id="m_search_close" ng-click="$root.search_open = !$root.search_open; $root.search_area_open = false">
+        <div id="m_search_close" ng-click="$root.search_open = !$root.search_open; $root.searchAreaOpen = false">
             <div class="table_cell">
                 <div class="sprite sprite-icon-closemenu-b-2x"></div>
             </div>
         </div>
         <div id="m_search_bar_wrap">
-            <input placeholder="Search">
+            <input ng-controller="searchBar" ng-model="searchInput" ng-focus="checkLAndO()"  placeholder="Search">
         </div>
     </div>
 
 </div>
 
 <!-- NAV -->
-<nav ng-class="$root.nav_open ? 'nav_is_open' : ''" ng-click="$root.search_area_open = false" ng-swipe-right="$root.nav_open = false">
+<nav ng-class="$root.navOpen ? 'nav_is_open' : ''" ng-click="$root.searchAreaOpen = false" ng-swipe-right="$root.navOpen = false">
 
     <div id="nav_inside">
 
@@ -240,44 +241,44 @@
 
 <!-- CONTENT -->
 
-<div id="content" ng-class="$root.nav_open ? 'nav_open' : ''">
+<div id="content_root" ng-class="$root.navOpen ? 'navOpen' : ''">
 
     <!-- SEARCH BAR-->
 
-    <div id="search_bar" ng-if="w_width > 1024">
+    <div id="search_bar" ng-if="wWidth > 1024">
         <div id="search_icon">
             <div class="table_cell">
                 <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
             </div>
         </div>
 
-        <div id="close_search_icon" ng-click="$root.search_area_open = false" ng-style="{'display': $root.search_area_open ? 'relative' : 'none'}">
+        <div id="close_search_icon" ng-click="$root.searchAreaOpen = false" ng-style="{'display': $root.searchAreaOpen ? 'relative' : 'none'}">
              <div class="table_cell">
                  <div class="sprite sprite-icon-closemenu-b-2x"></div>
              </div>
         </div>
 
-        <input placeholder="Search topics, users, groups…" ng-click="$root.search_area_open = true">
-        
+        <input ng-controller="searchBar" ng-model="searchInput" ng-focus="checkLAndO()" placeholder="Search topics, users, groups…" >
+
     </div>
 
     <!-- CONTENT WRAP -->
 
-    <div id="table_wrap">
+    <div id="content_wrap">
 
 
-        <div id="close_mobile_menu" ng-if="$root.nav_open" ng-swipe-right="$root.nav_open = false" ng-click="$root.nav_open = false"   ng-style="{'background' : $root.nav_open ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+        <div id="close_mobile_menu" ng-if="$root.navOpen" ng-swipe-right="$root.navOpen = false" ng-click="$root.navOpen = false"   ng-style="{'background' : $root.navOpen ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
 
 
-        <div id="close_mobile_menu" ng-if="$root.nav_open" ng-swipe-right="$root.nav_open = false" ng-click="$root.nav_open = false"
-             ng-style="{'background' : $root.nav_open ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+        <div id="close_mobile_menu" ng-if="$root.navOpen" ng-swipe-right="$root.navOpen = false" ng-click="$root.navOpen = false"
+             ng-style="{'background' : $root.navOpen ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
              
 
-        <div class="table">
-            <div class="cell">
+        <div id="content">
+            <div id="content_cell">
 
                 <!-- SEARCH AREA (don't move to separate view') -->
-                <div id="search_area"  ng-style="{'height' : $root.search_area_open ? '100%' : '0' }" ng-controller="search">
+                <div id="search_area"  ng-style="{'height' : $root.searchAreaOpen ? '100%' : '0' }" ng-controller="search">
                    
                     <div id="search_area_wrap">
                         <div ng-repeat="result in results">
@@ -299,23 +300,21 @@
                                     </div>
 
                                     <div class="results_header">
-                                        <div ng-if="w_width > 568 || key == 0" class="result_title" ng-repeat="(key, resultTitle) in resultGroup.resultTitles">
+                                        <div ng-if="wWidth > 568 || key == 0" class="result_title" ng-repeat="(key, resultTitle) in resultGroup.resultTitles">
                                             {{resultTitle}}
                                         </div>
                                     </div>
 
                                     <div class="result_links" ng-repeat="(key, resultLinks) in resultGroup.resultLinks">
 
-                                        <div ng-if="key < 4 || view_more" class="links_wrap" ng-repeat="(sub_key, linksWrap) in resultLinks.linksWrap">
-                                            <!--<span ng-if="w_width > 568 ||sub_key == 0">-->
-                                                <span ng-repeat="links in linksWrap.links">
-                                                    <a ng-click="$root.search_area_open = false" href="{{links.linkHref}}" class="result_link">
-                                                        {{links.linkName}}</a>{{$last ? '' : ', '}}
-                                                </span>
-                                            <!--</span>-->
+                                        <div ng-if="(key < 4 || viewMore) && (wWidth > 568 || subKey == 0)" class="links_wrap" ng-repeat="(subKey, linksWrap) in resultLinks.linksWrap">
+                                            <span ng-repeat="links in linksWrap.links">
+                                                <a ng-click="$root.searchAreaOpen = false" href="{{links.linkHref}}" class="result_link">
+                                                    {{links.linkName}}</a>{{$last ? '' : ', '}}
+                                            </span>
                                         </div>
 
-                                        <div ng-if="key == 4 && !view_more" class="more_results" ng-click="$parent.$parent.view_more = true">
+                                        <div ng-if="key == 4 && !viewMore" class="more_results" ng-click="$parent.$parent.viewMore = true">
                                             View more results
                                         </div>
 
@@ -324,15 +323,19 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div ng-click="$root.search_area_open = false" id="search_area_close">
-                    </div>
-
 
                 </div>
 
+                <!-- CLOSE SEARCH AREA -->
+                <div ng-click="$root.searchAreaOpen = false" id="search_area_close" ng-style="{'display' : $root.searchAreaOpen ? 'block' : 'none' }" >
+                </div>
+
                 <!-- ROUTES CONTENT -->
-                <div ng-view></div>
+                <div class="table">
+                    <div class="v_align_cell">
+                        <div ng-view></div>
+                    </div>
+                </div>
 
             </div>
         </div>

@@ -21,7 +21,7 @@ app.config(function ($routeProvider, $locationProvider) {
 
 });
 
-/* Set global w_width variable for responsive dom hiding */
+/* Set global wWidth variable for responsive dom hiding */
 app.directive('resize', function ($window, $rootScope) {
     return function (scope, element) {
 
@@ -33,9 +33,9 @@ app.directive('resize', function ($window, $rootScope) {
         };
 
         scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
-            $rootScope.w_width = newValue.w;
-            if ($rootScope.w_width > 1024) {
-                $rootScope.nav_open = false;
+            $rootScope.wWidth = newValue.w;
+            if ($rootScope.wWidth > 1024) {
+                $rootScope.navOpen = false;
             }
         }, true);
 
@@ -44,6 +44,28 @@ app.directive('resize', function ($window, $rootScope) {
         });
     }
 });
+
+
+app.controller('searchBar', ['$scope', '$rootScope' , function($scope, $rootScope) {
+
+    /* Make search area dissapear when no letters are typed */
+    $scope.searchInput = '';
+    $scope.$watch('searchInput', function (newValue) {
+        if(newValue.length == 0) {
+            $rootScope.searchAreaOpen = false;
+        } else if (newValue.length > 0) {
+            $rootScope.searchAreaOpen = true;
+        }
+    });
+
+    /* Make search area appear when selecting it and letters have been typed */
+    $scope.checkLAndO = function() {
+        if ($scope.searchInput.length > 0) {
+            $rootScope.searchAreaOpen = true;
+        }
+    }
+
+}]);
 
 /* Search dummy data */
 app.controller('search', ['$scope', function($scope) {
