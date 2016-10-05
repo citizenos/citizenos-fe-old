@@ -1,4 +1,5 @@
 @import 'vars';
+@import 'mixins_n_extends';
 
 body, html {
     font-family: 'Open Sans', sans-serif;
@@ -68,4 +69,24 @@ b {
 
 a:link, a:visited {
     text-decoration: none;
+}
+
+//Overall button styles
+.blue_button {
+    background: $deep_sky_blue;
+    border-radius: 2px;
+    font-weight: $bold;
+    cursor: pointer;
+    text-align: center;
+    color: $white;
+    font-size: 14px;
+    padding: 5px 3px 6px;
+    box-sizing: border-box;
+}
+
+.blue_button:hover {
+    background: $sky_blue;
+    @include tablet {
+        background: $deep_sky_blue;
+    }
 }

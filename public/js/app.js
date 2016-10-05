@@ -48,6 +48,7 @@ app.directive('resize', function ($window, $rootScope) {
 
 app.controller('searchBar', ['$scope', '$rootScope' , function($scope, $rootScope) {
 
+    $rootScope.loggedIn = false;
     /* Make search area dissapear when no letters are typed */
     $scope.searchInput = '';
     $scope.$watch('searchInput', function (newValue) {

@@ -1,28 +1,33 @@
 @import 'vars';
 @import 'mixins_n_extends';
 
-#logo_area {
+.logo_area {
     width: 190px;
     height: 60px;
     background: $dark_black;
     display: table;
-    float: left;
-    position: fixed;
     cursor: pointer;
 
     @include tablet {
          background: none;
-         position: initial;
+         position: absolute;
+         left: 0;
     }
-
+    
     @include mobile {
         width: 59px;
     }
 
-    #logo {
-        margin: 0 auto;
+    .logo {
         margin-top: 16px;
+        @include mobile {
+            width: 28px;
+        }
     }
+}
+
+.logo {
+    margin: 0 auto;
 }
 
 
@@ -31,6 +36,11 @@
 }
 
 nav {
+
+    .logo {
+        margin-top: 20px;
+    }
+
     width: $nav_d_width;
     height: 100%;
     background: $medium_black;
@@ -38,7 +48,6 @@ nav {
     font-size: 13px;
     position: fixed;
     z-index: 10;
-    margin-top: 60px;
 
     @include tablet {
         width: $nav_t_width;
@@ -48,11 +57,18 @@ nav {
         overflow-x: hidden;
         padding-bottom: 60px;
         box-sizing: border-box;
-        margin-top: 0;
     }
 
-    #nav_inside {
+    .nav_inside {
         padding: 20px;
+
+        .blue_button {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            @include tablet {
+                margin-top: -10px;
+            }   
+        }
 
         a:link, a:visited {
             color: $transparent_white;
