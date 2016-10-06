@@ -4,6 +4,10 @@
 .navOpen {
     padding-right: $nav_t_width;
     right: $nav_t_width;
+    @include mobile {
+        right: 0;
+        margin-left: -$nav_t_width;
+    }
 }
 
 
@@ -11,6 +15,10 @@
     height: 100%;
     padding-left: $nav_d_width;
     transition: all 420ms cubic-bezier(.45,.78,0,1);
+
+    @include mobile {
+        position: relative;
+    }
 
     @include tablet {
         padding-left: 0;
@@ -206,16 +214,7 @@
                         }
                     }
                 }
-
             }
-
-
-
-
-
-
-
-
         }
     }
 

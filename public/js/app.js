@@ -45,7 +45,6 @@ app.directive('resize', function ($window, $rootScope) {
     }
 });
 
-
 app.controller('searchBar', ['$scope', '$rootScope' , function($scope, $rootScope) {
 
     $rootScope.loggedIn = false;
@@ -56,6 +55,7 @@ app.controller('searchBar', ['$scope', '$rootScope' , function($scope, $rootScop
             $rootScope.searchAreaOpen = false;
         } else if (newValue.length > 0) {
             $rootScope.searchAreaOpen = true;
+            $rootScope.navOpen = false;
         }
     });
 

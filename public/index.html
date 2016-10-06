@@ -32,7 +32,6 @@
         </div>
     </div>
 
-
     <div class="header_button" ng-click="$root.search_open = !$root.search_open;" ng-style="{'display': $root.search_open ? 'none ' : 'relative'}">
         <div class="header_button_icon">
             <div class="sprite sprite-icon-search2x">
@@ -97,7 +96,7 @@
         
 
         <!-- Only show this if the user is NOT logged in -->
-        <div class="blue_button" ng-if="$root.loggedIn != true">
+        <div class="blue_button" ng-click="$root.loggedIn = true; $root.navOpen = false" ng-if="$root.loggedIn != true">
             Log in / Register
         </div>
 
@@ -108,7 +107,7 @@
                 </div>
                 <div id="account_text">
                     <div class="section_header bold_white">Kevin Krepin</div>
-                    <a id="account_action" href="#">My Account</a>
+                    <a ng-click="$root.navOpen = false" id="account_action" href="#">My Account</a>
                 </div>
             </div>
 
@@ -125,7 +124,7 @@
                     </div>
                     <div class="section_text">Topics</div>
                 </div>
-                <a class="section_item bold_blue">
+                <a ng-click="$root.navOpen = false" class="section_item bold_blue">
                     <div class="section_icon">
                         <div class="table_cell">
                             <div class="sprite sprite-bullet-plus2x"></div>
@@ -133,7 +132,7 @@
                     </div>
                     <div class="section_text">Create topic</div>
                 </a>
-                <a class="section_item" href="#">
+                <a ng-click="$root.navOpen = false" class="section_item" href="#">
                     <div class="section_icon">
                         <div class="table_cell">
                             <div class="sprite sprite-bullet-arrow2x"></div>
@@ -141,7 +140,7 @@
                     </div>
                     <div class="section_text">My topics</div>
                 </a>
-                <a class="section_item" href="#">
+                <a ng-click="$root.navOpen = false" class="section_item" href="#">
                     <div class="section_icon">
                         <div class="table_cell">
                             <div class="sprite sprite-bullet-arrow2x"></div>
@@ -161,7 +160,7 @@
                     </div>
                     <div class="section_text">Groups</div>
                 </div>
-                <a class="section_item bold_blue">
+                <a ng-click="$root.navOpen = false" class="section_item bold_blue">
                     <div class="section_icon">
                         <div class="table_cell">
                             <div class="sprite sprite-bullet-plus2x"></div>
@@ -169,7 +168,7 @@
                     </div>
                     <div class="section_text">Create groups</div>
                 </a>
-                <a class="section_item" href="#">
+                <a ng-click="$root.navOpen = false" class="section_item" href="#">
                     <div class="section_icon">
                         <div class="table_cell">
                             <div class="sprite sprite-bullet-arrow2x"></div>
@@ -177,7 +176,7 @@
                     </div>
                     <div class="section_text">My groups</div>
                 </a>
-                <a class="section_item" href="#">
+                <a ng-click="$root.navOpen = false" class="section_item" href="#">
                     <div class="section_icon">
                         <div class="table_cell">
                             <div class="sprite sprite-bullet-arrow2x"></div>
@@ -196,7 +195,7 @@
         <!-- Nav section -->
         <div class="section">
 
-            <a class="section_item" href="#" ng-if="$root.loggedIn == true">
+            <a ng-click="$root.navOpen = false" class="section_item" href="#" ng-if="$root.loggedIn == true">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-menu-icon-connections2x"></div>
@@ -205,7 +204,7 @@
                 <div class="section_text">Connections</div>
             </a>
 
-            <a class="section_item" href="#">
+            <a ng-click="$root.navOpen = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-menu-icon-about2x"></div>
@@ -214,7 +213,7 @@
                 <div class="section_text">About</div>
             </a>
 
-            <a class="section_item" href="#">
+            <a ng-click="$root.navOpen = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-menu-icon-faq2x"></div>
@@ -223,7 +222,7 @@
                 <div class="section_text">FAQ</div>
             </a>
 
-            <a class="section_item" href="#">
+            <a ng-click="$root.navOpen = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-menu-icon-help2x"></div>
@@ -232,7 +231,7 @@
                 <div class="section_text">Help</div>
             </a>
 
-            <a class="section_item" href="#">
+            <a ng-click="$root.navOpen = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-x0-menu-icon-help2x"></div>
@@ -252,7 +251,7 @@
 
             <div class="section">
 
-                <a class="section_item" href="#">
+                <a ng-click="$root.navOpen = false" class="section_item" href="#">
                     <div class="section_icon">
                         <div class="table_cell">
                             <div class="sprite sprite-menu-icon-logout2x"></div>
