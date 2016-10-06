@@ -1,0 +1,56 @@
+@import 'vars';
+@import 'mixins_n_extends';
+
+#root_lightbox_wrap {
+	background-color: rgba(0, 0, 0, 0.6);
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	position: fixed;
+	z-index: 11;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+}
+
+#close_lightbox {
+    top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+    position: absolute;
+	cursor: pointer;
+	z-index: 10;
+}
+
+#root_lightbox {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    display: table;
+}
+
+#lightbox {
+    @extend .table_cell;
+}
+
+#lighbox_content {
+	z-index: 11;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+#lightbox_header {
+    width: 320px;
+    height: 54px;
+    background: $white;
+    border-radius: 4px 4px 0 0;
+}
+

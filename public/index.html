@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles/content.css">
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/no_topics.css">
+    <link rel="stylesheet" href="styles/lightbox.css">
     <link rel="icon" href="imgs/favicon.ico">
     <script src="js/libs/angular.js"></script>
     <script src="js/libs/angular-route.js"></script>
@@ -20,8 +21,23 @@
     <script src="js/controllers/AppCtrl.js"></script>
 </head>
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="$root.navOpen ? 'body_fixed' : 'body_not_fixed'" resize>
+<body ng-class="$root.navOpen || $root.lightbox ? 'body_fixed' : 'body_not_fixed'" resize>
 
+<!-- LOG IN LIGHTBOX -->
+<div id="root_lightbox_wrap" ng-if="$root.lightbox">
+    <div id="root_lightbox">
+        <div id="lightbox">
+            <div id="lighbox_content">
+                <div id="lightbox_header">
+                    Log in / Register to CitizenOS
+                </div>
+            </div>
+          <div ng-if="$root.loginLightbox" ng-include="'views/login.html'"></div>
+        </div>
+    </div>
+    <div id="close_lightbox" ng-click="$root.lightbox = false">
+    </div>
+</div>
 
 
 <!-- MOBILE HEADER NAV -->
@@ -96,7 +112,7 @@
         
 
         <!-- Only show this if the user is NOT logged in -->
-        <div class="blue_button" ng-click="$root.loggedIn = true; $root.navOpen = false" ng-if="$root.loggedIn != true">
+        <div class="blue_button" ng-click="$root.lightbox = true; $root.loginLightbox = true; $root.navOpen = false" ng-if="$root.loggedIn != true">
             Log in / Register
         </div>
 
