@@ -48,9 +48,6 @@ nav {
     font-size: 13px;
     position: fixed;
     z-index: 10;
-    top: 60px;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
 
     @include tablet {
         width: $nav_t_width;
@@ -60,6 +57,9 @@ nav {
         overflow-x: hidden;
         padding-bottom: 60px;
         box-sizing: border-box;
+        top: 60px;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
     }
 
     .nav_inside {
