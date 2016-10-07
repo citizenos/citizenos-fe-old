@@ -72,6 +72,15 @@ a:link, a:visited {
     text-decoration: none;
 }
 
+.line {
+    width: 100%;
+    height: 1px;
+}
+
+.dark_line {
+    margin-top: 16px;
+}
+
 //Overall button styles
 .blue_button {
     background: $deep_sky_blue;

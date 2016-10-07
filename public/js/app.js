@@ -45,9 +45,23 @@ app.directive('resize', function ($window, $rootScope) {
     }
 });
 
+app.controller('lightbox', ['$scope', '$rootScope' , function($scope, $rootScope) {
+
+	$scope.closeAll = function() {
+        $rootScope.lightbox = false;
+		$rootScope.loginLightbox = false;
+    }
+
+}]);
+
 app.controller('searchBar', ['$scope', '$rootScope' , function($scope, $rootScope) {
 
+	/* Temp vars */
     $rootScope.loggedIn = false;
+	$rootScope.lightbox = true;
+	$rootScope.loginLightbox = true;
+	/* --------- */
+
     /* Make search area dissapear when no letters are typed */
     $scope.searchInput = '';
     $scope.$watch('searchInput', function (newValue) {

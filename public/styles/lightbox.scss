@@ -1,7 +1,7 @@
 @import 'vars';
 @import 'mixins_n_extends';
 
-#root_lightbox_wrap {
+#root_lightbox {
     @extend .all_zero;
 	background-color: rgba(0, 0, 0, 0.6);
 	position: fixed;
@@ -10,6 +10,7 @@
 	overflow-x: hidden;
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
+    box-sizing: border-box;
 
     #close_lightbox {
         @extend .all_zero;
@@ -18,19 +19,23 @@
         z-index: 10;
     }
 
-    #lightbox {
-        @extend .all_zero;
         
-        #lighbox_content {
-            z-index: 11;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-right: -50%;
-            -webkit-transform: translate(-50%,-50%);
-            -ms-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);
-            width: 320px;
+    #lighbox {
+        z-index: 11;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        width: 320px;
+        @include mobile {
+            width: 100%;
+        }
+        
+        #lightbox_wrap {
+            padding: 10px;
 
             #lightbox_header {
                 width: 100%;
@@ -39,6 +44,7 @@
                 border-radius: 4px 4px 0 0;
                 display: table;
                 box-sizing: border-box;
+                color: $medium_black;
                 
                 #lightbox_header_text {
                     @extend .table_cell;
@@ -61,11 +67,137 @@
                     }
 
                     .sprite {
-                            margin: 0 auto;
+                        margin: 0 auto;
                     }
 
                 }
             }
+
+            #lightbox_content {
+                background: $light_gray;
+                font-size: 14px;
+                border-radius: 0 0 4px 4px;
+
+                .lightbox_section {
+                    padding: 20px;
+                    
+                    .social_button {
+                        height: 40px;
+                        color: $white;
+                        width: 100%;
+                        border-radius: 2px;
+                        cursor: pointer;
+
+                        &:not(:last-child) {
+                            margin-bottom: 10px;
+                        }
+
+                        .social_icon {
+                            height: 40px;
+                            width: 30px;
+                            display: table;
+                            border-radius: 4px 0 0 4px;
+                            position: absolute;
+
+                            .sprite {
+                                margin: 0 auto;
+                            }
+                        }
+                        .social_text {
+                            padding-left: 30px;
+                            box-sizing: border-box;
+                            width: 100%;
+                            display: table;
+
+                            .table_cell {
+                                width: 100%;
+                                height: 40px;
+                                border-radius: 0 4px 4px 0;
+                                padding-left: 10px;
+                            }
+                        }
+                    }
+
+                    #facebook {
+                        .social_text .table_cell {
+                            background: $facebook_medium;
+                        }
+                        .social_icon {
+                            background: $facebook_dark;
+                        }
+                    }
+
+                    #facebook:hover {
+                        .social_text .table_cell {
+                            background: $facebook_light;
+                            @include tablet {
+                                background: $facebook_medium;
+                            }
+                        }
+                        .social_icon {
+                            background: $facebook_medium;
+                            @include tablet {
+                                background: $facebook_dark;
+                            }
+                        }
+                    }
+                    
+                    #google {
+                        .social_text .table_cell {
+                            background: $google_medium;
+                        }
+                        .social_icon {
+                            background: $google_dark;
+                        }
+                    }
+
+                    #google:hover {
+                        .social_text .table_cell {
+                            background: $google_light;
+                            @include tablet {
+                                background: $google_medium;
+                            }
+                        }
+                        .social_icon {
+                            background: $google_medium;
+                            @include tablet {
+                                background: $google_dark;
+                            }
+                        }
+                    }
+
+                    
+                    #id_card {
+                        .social_text .table_cell {
+                            background: $id_medium;
+                            color: $medium_black;
+                        }
+                        .social_icon {
+                            background: $id_dark;
+                        }
+                    }
+
+                    #id_card:hover {
+                        .social_text .table_cell {
+                            background: $id_light;
+                            @include tablet {
+                                background: $id_medium;
+                            }
+                        }
+                        .social_icon {
+                            background: $id_medium;
+                            @include tablet {
+                                background: $id_dark;
+                            }
+                        }
+                    }
+
+                }
+
+
+
+            }
+
         }
     }
 }

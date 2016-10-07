@@ -1,0 +1,44 @@
+
+<div id="search_area_wrap">
+    <div ng-repeat="result in results">
+        <div class="search_cat">
+            <div class="cat_wrap">
+                Context search results in <b>{{result.groupName}}</b>
+            </div>
+        </div>
+        <div class="results_area">
+            <div class="result_group" ng-repeat="resultGroup in result.groupResults">
+
+                <div class="no_results" ng-if="resultGroup.resultTitles.length == 0">
+                    <b class="search_msgb">Oops, we couldn’t find any results matching your search :(</b>
+                    <br>
+                    <div class="search_msg">
+                        Maybe you have a typo in your search?<br>
+                        We did find some things scattered throughout the CitizenOS platform, so feel free to check them out. We promise it will be worth your while!
+                    </div>
+                </div>
+
+                <div class="results_header">
+                    <div ng-if="wWidth > 568 || key == 0" class="result_title" ng-repeat="(key, resultTitle) in resultGroup.resultTitles">
+                        {{resultTitle}}
+                    </div>
+                </div>
+
+                <div class="result_links" ng-repeat="(key, resultLinks) in resultGroup.resultLinks">
+
+                    <div ng-if="(key < 4 || viewMore) && (wWidth > 568 || subKey == 0)" class="links_wrap" ng-repeat="(subKey, linksWrap) in resultLinks.linksWrap">
+                        <span ng-repeat="links in linksWrap.links">
+                            <a ng-click="$root.searchAreaOpen = false" href="{{links.linkHref}}" class="result_link">
+                                {{links.linkName}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </div>
+
+                    <div ng-if="key == 4 && !viewMore" class="more_results" ng-click="$parent.$parent.viewMore = true">
+                        View more results
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

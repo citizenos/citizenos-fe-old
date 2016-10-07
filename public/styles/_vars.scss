@@ -1,16 +1,17 @@
 $medium_black: #252525;
-$dark_black: #1a1a1a;
-$light_black: #3b3b3b;;
+$dark_black: #1A1A1A;
+$light_black: #3B3B3B;;
 $black: #000;
 
-$white: #fff;
+$white: #FFF;
 $transparent_white: rgba(255, 255, 255, .69);
-$sky_blue: #6fb6ff;
-$deep_sky_blue: #0680fc;
+$sky_blue: #6FB6FF;
+$deep_sky_blue: #0680FC;
 
-$dark_gray: #a1a1a1;
-$medium_gray: #ededed;
+$dark_gray: #A1A1A1;
+$medium_gray: #EDEDED;
 $light_gray: #F6F6F6;
+$lightest_gray: #e5e5e5;
 
 $bold: 700;
 $light: 300;
@@ -18,10 +19,25 @@ $light: 300;
 $nav_d_width: 190px;
 $nav_t_width: 230px;
 
+$facebook_dark: #324a80;
+$facebook_medium: #3b5998;
+$facebook_light: #4366ae;
+$google_dark: #ba3b2d;
+$google_medium: #d44132;
+$google_light: #e64736;
+$id_dark: #cccccc;
+$id_medium: $medium_gray;
+$id_light: $white;
+
+
 .dark_line {
     background: $dark_black;
 }
 
 .light_line {
     background: $light_black;
+}
+
+.lightest_line {
+    background: $lightest_gray;
 }

@@ -1,0 +1,185 @@
+<div ng-if="wWidth > 1024">
+    <!-- Only show this if the user is logged in -->
+    <div class="logo_area" ng-click="$root.searchAreaOpen = false" ng-if="$root.loggedIn == true">
+        <div class="logo sprite sprite-x5-cos-logo-small2x">
+        </div>
+    </div>
+    
+    <!-- Only show this if the user is NOT logged in -->
+    <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="$root.loggedIn != true">
+    </div>
+</div>
+
+
+<div class="nav_inside">
+    
+
+    <!-- Only show this if the user is NOT logged in -->
+    <div class="blue_button" ng-click="$root.lightbox = true; $root.loginLightbox = true; $root.navOpen = false" ng-if="$root.loggedIn != true">
+        Log in / Register
+    </div>
+
+    <!-- Only show this if the user is logged in -->
+    <div ng-if="$root.loggedIn == true">
+        <div id="account_area">
+            <div id="account_picture">
+            </div>
+            <div id="account_text">
+                <div class="section_header bold_white">Kevin Krepin</div>
+                <a ng-click="$root.navOpen = false" id="account_action" href="#">My Account</a>
+            </div>
+        </div>
+
+        <div class="line dark_line"></div>
+        <div class="line light_line"></div>
+
+        <!-- Nav section -->
+        <div class="section">
+            <div class="section_item section_header bold_white">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-menu-icon-topics2x"></div>
+                    </div>
+                </div>
+                <div class="section_text">Topics</div>
+            </div>
+            <a ng-click="$root.navOpen = false" class="section_item bold_blue">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-bullet-plus2x"></div>
+                    </div>
+                </div>
+                <div class="section_text">Create topic</div>
+            </a>
+            <a ng-click="$root.navOpen = false" class="section_item" href="#">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-bullet-arrow2x"></div>
+                    </div>
+                </div>
+                <div class="section_text">My topics</div>
+            </a>
+            <a ng-click="$root.navOpen = false" class="section_item" href="#">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-bullet-arrow2x"></div>
+                    </div>
+                </div>
+                <div class="section_text">Public topics</div>
+            </a>
+        </div>
+
+        <!-- Nav section -->
+        <div class="section">
+            <div class="section_item section_header bold_white">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-menu-icon-groups2x"></div>
+                    </div>
+                </div>
+                <div class="section_text">Groups</div>
+            </div>
+            <a ng-click="$root.navOpen = false" class="section_item bold_blue">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-bullet-plus2x"></div>
+                    </div>
+                </div>
+                <div class="section_text">Create groups</div>
+            </a>
+            <a ng-click="$root.navOpen = false" class="section_item" href="#">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-bullet-arrow2x"></div>
+                    </div>
+                </div>
+                <div class="section_text">My groups</div>
+            </a>
+            <a ng-click="$root.navOpen = false" class="section_item" href="#">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-bullet-arrow2x"></div>
+                    </div>
+                </div>
+                <div class="section_text">Public groups</div>
+            </a>
+        </div>
+    </div>
+
+    
+    <div class="line dark_line"></div>
+    <div class="line light_line"></div>
+
+
+    <!-- Nav section -->
+    <div class="section">
+
+        <a ng-click="$root.navOpen = false" class="section_item" href="#" ng-if="$root.loggedIn == true">
+            <div class="section_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-menu-icon-connections2x"></div>
+                </div>
+            </div>
+            <div class="section_text">Connections</div>
+        </a>
+
+        <a ng-click="$root.navOpen = false" class="section_item" href="#">
+            <div class="section_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-menu-icon-about2x"></div>
+                </div>
+            </div>
+            <div class="section_text">About</div>
+        </a>
+
+        <a ng-click="$root.navOpen = false" class="section_item" href="#">
+            <div class="section_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-menu-icon-faq2x"></div>
+                </div>
+            </div>
+            <div class="section_text">FAQ</div>
+        </a>
+
+        <a ng-click="$root.navOpen = false" class="section_item" href="#">
+            <div class="section_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-menu-icon-help2x"></div>
+                </div>
+            </div>
+            <div class="section_text">Help</div>
+        </a>
+
+        <a ng-click="$root.navOpen = false" class="section_item" href="#">
+            <div class="section_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-x0-menu-icon-help2x"></div>
+                </div>
+            </div>
+            <div class="section_text">English</div>
+        </a>
+    </div>
+
+    
+    <!-- Only show this if the user is logged in -->
+    <div ng-if="$root.loggedIn == true">
+
+        <div class="line dark_line"></div>
+        <div class="line light_line"></div>
+
+
+        <div class="section">
+
+            <a ng-click="$root.navOpen = false" class="section_item" href="#">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-menu-icon-logout2x"></div>
+                    </div>
+                </div>
+                <div class="section_text">Log out</div>
+            </a>
+
+        </div>
+    </div>
+
+</div>

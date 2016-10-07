@@ -23,269 +23,50 @@
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 <body ng-class="$root.navOpen || $root.lightbox ? 'body_fixed' : 'body_not_fixed'" resize>
 
-<!-- LOG IN LIGHTBOX -->
-<div id="root_lightbox_wrap" ng-if="$root.lightbox">
-    <div id="lightbox">
-        <div id="lighbox_content">
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" ng-if="$root.lightbox" ng-controller="lightbox">
+    <div id="lighbox">
+        <div id="lightbox_wrap">
+
             <div id="lightbox_header">
+
                 <div id="lightbox_header_text">
-                    Log in / Register to CitizenOS
+                    <span ng-if="$root.loginLightbox">Log in / Register to CitizenOS</span>
                 </div>
-                <div id="lightbox_close" ng-click="$root.lightbox = false; $root.loginLightbox = false;">
+
+                <div id="lightbox_close" ng-click="closeAll()">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
                         </div>
                     </div>
                 </div>
+
             </div>
+
+            <div id="lightbox_content">
+                <div ng-if="$root.loginLightbox" ng-include="'views/default/login.html'"></div>
+            </div>
+
         </div>
-        <div ng-if="$root.loginLightbox" ng-include="'views/login.html'"></div>
     </div>
+
     <div id="close_lightbox" ng-click="$root.lightbox = false">
     </div>
+
 </div>
 
 
 <!-- MOBILE HEADER NAV -->
 <div id="mobile_header" ng-if="wWidth <= 1024">
+
+    <div ng-include="'views/default/nav_mobile.html'"></div>
     
-    <div class="logo_area" ng-click="$root.searchAreaOpen = false">
-        <div class="logo sprite sprite-x5-cos-logo-small2x">
-        </div>
-    </div>
-
-    <div class="header_button" ng-click="$root.search_open = !$root.search_open;" ng-style="{'display': $root.search_open ? 'none ' : 'relative'}">
-        <div class="header_button_icon">
-            <div class="sprite sprite-icon-search2x">
-            </div>
-        </div>
-        <div class="header_button_text">
-            Search
-        </div>
-    </div>
-    
-    <div class="header_button" ng-click="$root.navOpen = !$root.navOpen">
-
-        <div id="line_holder">
-            <div class="v_line light_line"></div>
-            <div class="v_line dark_line"></div>
-        </div>
-
-        <div class="header_button_icon">
-            <div class="sprite" ng-class="$root.navOpen ? 'sprite-icon-closemenu2x' : 'sprite-icon-hamburger2x'">
-            </div>
-        </div>
-        <div class="header_button_text">
-            Menu
-        </div>
-    </div>
-
-    <div id="m_search_bar" ng-style="{'display': $root.search_open ? 'relative' : 'none'}">
-        <div id="m_search_icon">
-            <div class="table_cell">
-                <div class="sprite sprite-icon-search-b-2x"></div>
-            </div>
-        </div>
-        <div id="m_search_close" ng-click="$root.search_open = !$root.search_open; $root.searchAreaOpen = false">
-            <div class="table_cell">
-                <div class="sprite sprite-icon-closemenu-b-2x"></div>
-            </div>
-        </div>
-        <div id="m_search_bar_wrap">
-            <input ng-controller="searchBar" ng-model="searchInput" ng-focus="checkLAndO()"  placeholder="Search">
-        </div>
-    </div>
-
 </div>
 
 <!-- NAV -->
 <nav ng-class="$root.navOpen ? 'nav_is_open' : ''" ng-click="$root.searchAreaOpen = false" ng-swipe-right="$root.navOpen = false">
 
-    <div ng-if="wWidth > 1024">
-        <!-- Only show this if the user is logged in -->
-        <div class="logo_area" ng-click="$root.searchAreaOpen = false" ng-if="$root.loggedIn == true">
-            <div class="logo sprite sprite-x5-cos-logo-small2x">
-            </div>
-        </div>
-        
-        <!-- Only show this if the user is NOT logged in -->
-        <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="$root.loggedIn != true">
-        </div>
-    </div>
-
-
-    <div class="nav_inside">
-        
-
-        <!-- Only show this if the user is NOT logged in -->
-        <div class="blue_button" ng-click="$root.lightbox = true; $root.loginLightbox = true; $root.navOpen = false" ng-if="$root.loggedIn != true">
-            Log in / Register
-        </div>
-
-        <!-- Only show this if the user is logged in -->
-        <div ng-if="$root.loggedIn == true">
-            <div id="account_area">
-                <div id="account_picture">
-                </div>
-                <div id="account_text">
-                    <div class="section_header bold_white">Kevin Krepin</div>
-                    <a ng-click="$root.navOpen = false" id="account_action" href="#">My Account</a>
-                </div>
-            </div>
-
-            <div class="line dark_line"></div>
-            <div class="line light_line"></div>
-
-            <!-- Nav section -->
-            <div class="section">
-                <div class="section_item section_header bold_white">
-                    <div class="section_icon">
-                        <div class="table_cell">
-                            <div class="sprite sprite-menu-icon-topics2x"></div>
-                        </div>
-                    </div>
-                    <div class="section_text">Topics</div>
-                </div>
-                <a ng-click="$root.navOpen = false" class="section_item bold_blue">
-                    <div class="section_icon">
-                        <div class="table_cell">
-                            <div class="sprite sprite-bullet-plus2x"></div>
-                        </div>
-                    </div>
-                    <div class="section_text">Create topic</div>
-                </a>
-                <a ng-click="$root.navOpen = false" class="section_item" href="#">
-                    <div class="section_icon">
-                        <div class="table_cell">
-                            <div class="sprite sprite-bullet-arrow2x"></div>
-                        </div>
-                    </div>
-                    <div class="section_text">My topics</div>
-                </a>
-                <a ng-click="$root.navOpen = false" class="section_item" href="#">
-                    <div class="section_icon">
-                        <div class="table_cell">
-                            <div class="sprite sprite-bullet-arrow2x"></div>
-                        </div>
-                    </div>
-                    <div class="section_text">Public topics</div>
-                </a>
-            </div>
-
-            <!-- Nav section -->
-            <div class="section">
-                <div class="section_item section_header bold_white">
-                    <div class="section_icon">
-                        <div class="table_cell">
-                            <div class="sprite sprite-menu-icon-groups2x"></div>
-                        </div>
-                    </div>
-                    <div class="section_text">Groups</div>
-                </div>
-                <a ng-click="$root.navOpen = false" class="section_item bold_blue">
-                    <div class="section_icon">
-                        <div class="table_cell">
-                            <div class="sprite sprite-bullet-plus2x"></div>
-                        </div>
-                    </div>
-                    <div class="section_text">Create groups</div>
-                </a>
-                <a ng-click="$root.navOpen = false" class="section_item" href="#">
-                    <div class="section_icon">
-                        <div class="table_cell">
-                            <div class="sprite sprite-bullet-arrow2x"></div>
-                        </div>
-                    </div>
-                    <div class="section_text">My groups</div>
-                </a>
-                <a ng-click="$root.navOpen = false" class="section_item" href="#">
-                    <div class="section_icon">
-                        <div class="table_cell">
-                            <div class="sprite sprite-bullet-arrow2x"></div>
-                        </div>
-                    </div>
-                    <div class="section_text">Public groups</div>
-                </a>
-            </div>
-        </div>
-
-        
-        <div class="line dark_line"></div>
-        <div class="line light_line"></div>
-
-
-        <!-- Nav section -->
-        <div class="section">
-
-            <a ng-click="$root.navOpen = false" class="section_item" href="#" ng-if="$root.loggedIn == true">
-                <div class="section_icon">
-                    <div class="table_cell">
-                        <div class="sprite sprite-menu-icon-connections2x"></div>
-                    </div>
-                </div>
-                <div class="section_text">Connections</div>
-            </a>
-
-            <a ng-click="$root.navOpen = false" class="section_item" href="#">
-                <div class="section_icon">
-                    <div class="table_cell">
-                        <div class="sprite sprite-menu-icon-about2x"></div>
-                    </div>
-                </div>
-                <div class="section_text">About</div>
-            </a>
-
-            <a ng-click="$root.navOpen = false" class="section_item" href="#">
-                <div class="section_icon">
-                    <div class="table_cell">
-                        <div class="sprite sprite-menu-icon-faq2x"></div>
-                    </div>
-                </div>
-                <div class="section_text">FAQ</div>
-            </a>
-
-            <a ng-click="$root.navOpen = false" class="section_item" href="#">
-                <div class="section_icon">
-                    <div class="table_cell">
-                        <div class="sprite sprite-menu-icon-help2x"></div>
-                    </div>
-                </div>
-                <div class="section_text">Help</div>
-            </a>
-
-            <a ng-click="$root.navOpen = false" class="section_item" href="#">
-                <div class="section_icon">
-                    <div class="table_cell">
-                        <div class="sprite sprite-x0-menu-icon-help2x"></div>
-                    </div>
-                </div>
-                <div class="section_text">English</div>
-            </a>
-        </div>
-
-        
-        <!-- Only show this if the user is logged in -->
-        <div ng-if="$root.loggedIn == true">
-
-            <div class="line dark_line"></div>
-            <div class="line light_line"></div>
-
-
-            <div class="section">
-
-                <a ng-click="$root.navOpen = false" class="section_item" href="#">
-                    <div class="section_icon">
-                        <div class="table_cell">
-                            <div class="sprite sprite-menu-icon-logout2x"></div>
-                        </div>
-                    </div>
-                    <div class="section_text">Log out</div>
-                </a>
-
-            </div>
-        </div>
-
-    </div>
+    <div ng-include="'views/default/nav.html'"></div>
 
 </nav>
 
@@ -328,52 +109,10 @@
         <div id="content">
             <div id="content_cell">
 
-                <!-- SEARCH AREA (don't move to separate view') -->
+                <!-- SEARCH AREA  -->
                 <div id="search_area"  ng-style="{'height' : $root.searchAreaOpen ? '100%' : '0' }" ng-controller="search">
                    
-                    <div id="search_area_wrap">
-                        <div ng-repeat="result in results">
-                            <div class="search_cat">
-                                <div class="cat_wrap">
-                                    Context search results in <b>{{result.groupName}}</b>
-                                </div>
-                            </div>
-                            <div class="results_area">
-                                <div class="result_group" ng-repeat="resultGroup in result.groupResults">
-
-                                    <div class="no_results" ng-if="resultGroup.resultTitles.length == 0">
-                                        <b class="search_msgb">Oops, we couldn’t find any results matching your search :(</b>
-                                        <br>
-                                        <div class="search_msg">
-                                            Maybe you have a typo in your search?<br>
-                                            We did find some things scattered throughout the CitizenOS platform, so feel free to check them out. We promise it will be worth your while!
-                                        </div>
-                                    </div>
-
-                                    <div class="results_header">
-                                        <div ng-if="wWidth > 568 || key == 0" class="result_title" ng-repeat="(key, resultTitle) in resultGroup.resultTitles">
-                                            {{resultTitle}}
-                                        </div>
-                                    </div>
-
-                                    <div class="result_links" ng-repeat="(key, resultLinks) in resultGroup.resultLinks">
-
-                                        <div ng-if="(key < 4 || viewMore) && (wWidth > 568 || subKey == 0)" class="links_wrap" ng-repeat="(subKey, linksWrap) in resultLinks.linksWrap">
-                                            <span ng-repeat="links in linksWrap.links">
-                                                <a ng-click="$root.searchAreaOpen = false" href="{{links.linkHref}}" class="result_link">
-                                                    {{links.linkName}}</a>{{$last ? '' : ', '}}
-                                            </span>
-                                        </div>
-
-                                        <div ng-if="key == 4 && !viewMore" class="more_results" ng-click="$parent.$parent.viewMore = true">
-                                            View more results
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                     <div ng-include="'views/default/search.html'"></div>
 
                 </div>
 
