@@ -9,12 +9,13 @@ body, html {
     min-height: 100%;
     width: 100%;
     bottom: 0;
-    background: $light_gray;
+    background: $medium_black;
 }
 
 body.body_fixed {
     position: fixed;
     overflow: initial;
+    z-index: 1;
 }
 
 body.body_not_fixed {

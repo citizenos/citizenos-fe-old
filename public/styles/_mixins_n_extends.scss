@@ -1,6 +1,13 @@
 .table_cell {
-    display: table-cell;
-    vertical-align: middle;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.all_zero {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 @mixin tablet {
