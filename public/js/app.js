@@ -50,6 +50,7 @@ app.controller('lightbox', ['$scope', '$rootScope' , function($scope, $rootScope
 	$scope.closeAll = function() {
         $rootScope.lightbox = false;
 		$rootScope.loginLightbox = false;
+		$rootScope.registerLightbox = false
     }
 
 }]);
@@ -57,9 +58,9 @@ app.controller('lightbox', ['$scope', '$rootScope' , function($scope, $rootScope
 app.controller('searchBar', ['$scope', '$rootScope' , function($scope, $rootScope) {
 
 	/* Temp vars */
-    $rootScope.loggedIn = false;
-	$rootScope.lightbox = true;
-	$rootScope.loginLightbox = true;
+    // $rootScope.loggedIn = false;
+	// $rootScope.lightbox = false;
+	// $rootScope.registerLightbox = false;
 	/* --------- */
 
     /* Make search area dissapear when no letters are typed */

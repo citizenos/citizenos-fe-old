@@ -58,6 +58,9 @@ h2 {
 input {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 input::-ms-clear { 

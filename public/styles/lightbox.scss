@@ -30,12 +30,31 @@
         -ms-transform: translate(-50%,-50%);
         transform: translate(-50%,-50%);
         width: 320px;
+        
+        @media (max-height: 800px) {
+            top: 30px;
+            -webkit-transform: translate(-50%, 0);
+            -ms-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+        }
+        
+        @media (max-width: 800px) {
+            top: 10px;
+            -webkit-transform: translate(-50%, 0);
+            -ms-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+        }
+
         @include mobile {
             width: 100%;
+            top: 0;
         }
         
         #lightbox_wrap {
-            padding: 10px;
+
+            @include mobile {
+                padding: 10px;
+            }
 
             #lightbox_header {
                 width: 100%;
@@ -77,9 +96,14 @@
                 background: $light_gray;
                 font-size: 14px;
                 border-radius: 0 0 4px 4px;
+                @media (max-height: 800px) {
+                    margin-bottom: 30px;
+                }
 
                 .lightbox_section {
                     padding: 20px;
+                    
+                    /* SOCIAL AREA */
                     
                     .social_button {
                         height: 40px;
@@ -191,6 +215,51 @@
                             }
                         }
                     }
+
+                    /* INPUT AREA */
+
+                    input {
+                        margin-bottom: 10px;
+                        width: 100%;
+                        box-sizing: border-box;
+                        border: solid 1px $lightest_gray;
+                        border-radius: 4px;
+                        height: 30px;
+                        font-size: 13px;
+                        padding: 0 10px;
+                        &:focus {
+                            border: 1px solid $sky_blue;
+                            outline: none;
+                        }
+                    }
+                    
+                    button {
+                        height: 30px;
+                        border-radius: 4px;
+                        width: 100%;
+                        outline: none;
+                        border: 2px solid rgba(255, 255, 255, 0);
+                        margin-bottom: 10px;
+                        &:focus {
+                            border: 2px solid $sky_blue;
+                            border-radius: 4px;
+                            outline: none;
+                        }
+                    }
+
+                    .link_section {
+                        text-align: center;
+                        padding-bottom: 1px;
+
+                        .lightbox_link {
+                            color: $deep_sky_blue;
+                            font-size: 13px;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+
 
                 }
 
