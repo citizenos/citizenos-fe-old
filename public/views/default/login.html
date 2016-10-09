@@ -45,8 +45,7 @@
 
     <div class="line lightest_line"></div>
     <div class="lightbox_section">
-        <input name="email" placeholder="E-mail address" ng-if="wWidth > 1024" autofocus>
-        <input name="email" placeholder="E-mail address" ng-if="wWidth <= 1024">
+        <input name="email" placeholder="E-mail address" autofocus="{{ wWidth > 1024 ? 'true' : 'false'}}">
         <input name="psw" type="password" placeholder="Password">
         <button type="submit" ng-click="$root.registerLightbox = true; $root.loginLightbox = false" class="blue_button">Log in / Register</button>
         <div class="link_section">
