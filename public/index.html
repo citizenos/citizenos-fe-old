@@ -12,55 +12,23 @@
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/no_topics.css">
     <link rel="stylesheet" href="styles/lightbox.css">
+    <link rel="stylesheet" href="styles/ng_dialog.css">
     <link rel="icon" href="imgs/favicon.ico">
     <script src="js/libs/angular.js"></script>
     <script src="js/libs/angular-route.js"></script>
     <script src="js/libs/angular-touch.js"></script>
+    <script src="js/libs/ngDialog.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services/sSearch.js"></script>
+    <script src="js/controllers/AppCtrl.js"></script>
     <script src="js/controllers/HomeCtrl.js"></script>
     <script src="js/controllers/SearchCtrl.js"></script>
-    <script src="js/controllers/AppCtrl.js"></script>
+    <script src="js/controllers/forms/LoginFormCtrl.js"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 <body ng-class="app.showNav || $root.lightbox ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" resize>
-
-<!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" ng-if="$root.lightbox" ng-controller="lightbox">
-    <div id="lighbox">
-        <div id="lightbox_wrap">
-
-            <div id="lightbox_header">
-
-                <div id="lightbox_header_text">
-                    <span ng-if="$root.loginLightbox">Log in / Register</span>
-                    <span ng-if="$root.registerLightbox">Register</span>
-                </div>
-
-                <div id="lightbox_close" ng-click="closeAll()">
-                    <div class="table_cell">
-                        <div class="sprite sprite-btn-popup-close2x">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div id="lightbox_content">
-                <div ng-if="$root.loginLightbox" ng-include="'views/default/login.html'"></div>
-                <div ng-if="$root.registerLightbox" ng-include="'views/default/register.html'"></div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="close_lightbox" ng-click="closeAll()">
-    </div>
-
-</div>
-
 
 <!-- MOBILE HEADER NAV -->
 <div id="mobile_header" ng-if="wWidth <= 1024">

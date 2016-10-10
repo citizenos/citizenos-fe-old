@@ -6,7 +6,7 @@
  *  @see https://angularjs.org/
  */
 
-var app = angular.module('citizenos', ['ngRoute', 'ngTouch']);
+var app = angular.module('citizenos', ['ngRoute', 'ngTouch', 'ngDialog']);
 
 app.constant('cosConfig', {
     language: {
@@ -20,7 +20,7 @@ app.constant('cosConfig', {
     }
 });
 
-app.config(function ($routeProvider, $locationProvider) {
+app.config(function ($routeProvider, $locationProvider, ngDialogProvider) {
 
     $locationProvider.html5Mode(true);
 
@@ -30,6 +30,12 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '../views/no_topics.html'
         });
 
+    ngDialogProvider.setDefaults({
+        showClose: false,
+        disableAnimation: true,
+        closeByDocument: true,
+        closeByEscape: true
+    });
 
 });
 

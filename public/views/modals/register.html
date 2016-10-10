@@ -1,0 +1,46 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lighbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <span>Log in / Register NGDIALOG</span>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="lightbox_content">
+                <div id="login_lightbox">
+                    <div class="line lightest_line"></div>
+
+                    <div class="lightbox_section">
+                        <input name="name" placeholder="Full name *" autofocus="{{ wWidth > 1024 ? 'true' : 'false'}}">
+                        <input name="Company" placeholder="Company">
+                        <input name="email" placeholder="E-mail address">
+                        <input name="psw" type="password" placeholder="Password">
+                        <input name="psw_repeat" type="password" placeholder="Repeat password *">
+                        <button type="submit" ng-click="closeAll();  app.user.loggedIn = true;" class="blue_button">Save</button>
+                        <div class="link_section">
+                            <a class="lightbox_link" href="" ng-click="closeThisDialog()">Cancel</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()">
+    </div>
+
+</div>
