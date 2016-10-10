@@ -1,6 +1,6 @@
 
 <div id="search_area_wrap">
-    <div ng-repeat="result in results">
+    <div ng-repeat="result in searchResults">
         <div class="search_cat">
             <div class="cat_wrap">
                 Context search results in <b>{{result.groupName}}</b>
@@ -28,7 +28,7 @@
 
                     <div ng-if="(key < 4 || viewMore) && (wWidth > 568 || subKey == 0)" class="links_wrap" ng-repeat="(subKey, linksWrap) in resultLinks.linksWrap">
                         <span ng-repeat="links in linksWrap.links">
-                            <a ng-click="$root.searchAreaOpen = false" href="{{links.linkHref}}" class="result_link">
+                            <a ng-click="app.showSearchResults = false" href="{{links.linkHref}}" class="result_link">
                                 {{links.linkName}}</a>{{$last ? '' : ', '}}
                         </span>
                     </div>

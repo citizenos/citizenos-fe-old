@@ -1,32 +1,32 @@
 <div ng-if="wWidth > 1024">
     <!-- Only show this if the user is logged in -->
-    <div class="logo_area" ng-click="$root.searchAreaOpen = false" ng-if="$root.loggedIn == true">
+    <div class="logo_area" ng-click="app.showSearchResults = false" ng-if="app.user.loggedIn == true">
         <div class="logo sprite sprite-x5-cos-logo-small2x">
         </div>
     </div>
-    
+
     <!-- Only show this if the user is NOT logged in -->
-    <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="$root.loggedIn != true">
+    <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="app.user.loggedIn != true">
     </div>
 </div>
 
 
 <div class="nav_inside">
-    
+
 
     <!-- Only show this if the user is NOT logged in -->
-    <div class="blue_button" ng-click="$root.lightbox = true; $root.loginLightbox = true; $root.navOpen = false" ng-if="$root.loggedIn != true">
+    <div class="blue_button" ng-click="$root.lightbox = true; $root.loginLightbox = true; app.navOpen = false" ng-if="app.user.loggedIn != true">
         Log in / Register
     </div>
 
     <!-- Only show this if the user is logged in -->
-    <div ng-if="$root.loggedIn == true">
+    <div ng-if="app.user.loggedIn == true">
         <div id="account_area">
             <div id="account_picture">
             </div>
             <div id="account_text">
                 <div class="section_header bold_white">Kevin Krepin</div>
-                <a ng-click="$root.navOpen = false" id="account_action" href="#">My Account</a>
+                <a ng-click="app.navOpen = false" id="account_action" href="#">My Account</a>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                 </div>
                 <div class="section_text">Topics</div>
             </div>
-            <a ng-click="$root.navOpen = false" class="section_item bold_blue">
+            <a ng-click="app.navOpen = false" class="section_item bold_blue">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-plus2x"></div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="section_text">Create topic</div>
             </a>
-            <a ng-click="$root.navOpen = false" class="section_item" href="#">
+            <a ng-click="app.navOpen = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="section_text">My topics</div>
             </a>
-            <a ng-click="$root.navOpen = false" class="section_item" href="#">
+            <a ng-click="app.navOpen = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="section_text">Groups</div>
             </div>
-            <a ng-click="$root.navOpen = false" class="section_item bold_blue">
+            <a ng-click="app.navOpen = false" class="section_item bold_blue">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-plus2x"></div>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="section_text">Create groups</div>
             </a>
-            <a ng-click="$root.navOpen = false" class="section_item" href="#">
+            <a ng-click="app.navOpen = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="section_text">My groups</div>
             </a>
-            <a ng-click="$root.navOpen = false" class="section_item" href="#">
+            <a ng-click="app.navOpen = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    
+
     <div class="line dark_line"></div>
     <div class="line light_line"></div>
 
@@ -114,7 +114,7 @@
     <!-- Nav section -->
     <div class="section">
 
-        <a ng-click="$root.navOpen = false" class="section_item" href="#" ng-if="$root.loggedIn == true">
+        <a ng-click="app.navOpen = false" class="section_item" href="#" ng-if="app.user.loggedIn == true">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-connections2x"></div>
@@ -123,7 +123,7 @@
             <div class="section_text">Connections</div>
         </a>
 
-        <a ng-click="$root.navOpen = false" class="section_item" href="#">
+        <a ng-click="app.navOpen = false" class="section_item" href="#">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-about2x"></div>
@@ -132,7 +132,7 @@
             <div class="section_text">About</div>
         </a>
 
-        <a ng-click="$root.navOpen = false" class="section_item" href="#">
+        <a ng-click="app.navOpen = false" class="section_item" href="#">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-faq2x"></div>
@@ -141,7 +141,7 @@
             <div class="section_text">FAQ</div>
         </a>
 
-        <a ng-click="$root.navOpen = false" class="section_item" href="#">
+        <a ng-click="app.navOpen = false" class="section_item" href="#">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-help2x"></div>
@@ -150,7 +150,7 @@
             <div class="section_text">Help</div>
         </a>
 
-        <a ng-click="$root.navOpen = false" class="section_item" href="#">
+        <a ng-click="app.navOpen = false" class="section_item" href="#">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-x0-menu-icon-help2x"></div>
@@ -160,9 +160,9 @@
         </a>
     </div>
 
-    
+
     <!-- Only show this if the user is logged in -->
-    <div ng-if="$root.loggedIn == true">
+    <div ng-if="app.user.loggedIn == true">
 
         <div class="line dark_line"></div>
         <div class="line light_line"></div>
@@ -170,7 +170,7 @@
 
         <div class="section">
 
-            <a ng-click="$root.navOpen = false; $root.loggedIn = false;" class="section_item" href="#">
+            <a ng-click="app.navOpen = false; app.user.loggedIn = false;" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-menu-icon-logout2x"></div>

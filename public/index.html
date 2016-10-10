@@ -17,13 +17,15 @@
     <script src="js/libs/angular-route.js"></script>
     <script src="js/libs/angular-touch.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/services/sSearch.js"></script>
     <script src="js/controllers/HomeCtrl.js"></script>
+    <script src="js/controllers/SearchCtrl.js"></script>
     <script src="js/controllers/AppCtrl.js"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="$root.navOpen || $root.lightbox ? 'body_fixed' : 'body_not_fixed'" resize>
+<body ng-class="app.showNav || $root.lightbox ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" resize>
 
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox" ng-if="$root.lightbox" ng-controller="lightbox">
@@ -64,11 +66,11 @@
 <div id="mobile_header" ng-if="wWidth <= 1024">
 
     <div ng-include="'views/default/nav_mobile.html'"></div>
-    
+
 </div>
 
 <!-- NAV -->
-<nav ng-class="$root.navOpen ? 'nav_is_open' : ''" ng-click="$root.searchAreaOpen = false" ng-swipe-right="$root.navOpen = false">
+<nav ng-class="app.showNav ? 'nav_is_open' : ''" ng-click="app.showSearchResults = false" ng-swipe-right="app.showNav = false">
 
     <div ng-include="'views/default/nav.html'"></div>
 
@@ -77,7 +79,7 @@
 
 <!-- CONTENT -->
 
-<div id="content_root" ng-class="$root.navOpen ? 'navOpen' : ''">
+<div id="content_root" ng-class="app.showNav ? 'navOpen' : ''">
 
     <!-- SEARCH BAR-->
 
@@ -88,13 +90,13 @@
             </div>
         </div>
 
-        <div id="close_search_icon" ng-click="$root.searchAreaOpen = false" ng-style="{'display': $root.searchAreaOpen ? 'relative' : 'none'}">
-             <div class="table_cell">
-                 <div class="sprite sprite-icon-closemenu-b-2x"></div>
-             </div>
+        <div id="close_search_icon" ng-click="app.showSearchResults = false" ng-style="{'display': app.showSearchResults ? 'relative' : 'none'}">
+            <div class="table_cell">
+                <div class="sprite sprite-icon-closemenu-b-2x"></div>
+            </div>
         </div>
 
-        <input ng-controller="searchBar" ng-model="searchInput" ng-focus="checkLAndO()" placeholder="Search topics, users, groups…" >
+        <input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="Search topics, users, groups…">
 
     </div>
 
@@ -103,25 +105,26 @@
     <div id="content_wrap">
 
 
-        <div id="close_mobile_menu" ng-if="$root.navOpen" ng-swipe-right="$root.navOpen = false" ng-click="$root.navOpen = false"   ng-style="{'background' : $root.navOpen ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+        <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
+             ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
 
 
-        <div id="close_mobile_menu" ng-if="$root.navOpen" ng-swipe-right="$root.navOpen = false" ng-click="$root.navOpen = false"
-             ng-style="{'background' : $root.navOpen ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
-             
+        <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
+             ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+
 
         <div id="content">
             <div id="content_cell">
 
                 <!-- SEARCH AREA  -->
-                <div id="search_area"  ng-style="{'height' : $root.searchAreaOpen ? '100%' : '0' }" ng-controller="search">
-                   
-                     <div ng-include="'views/default/search.html'"></div>
+                <div id="search_area" ng-style="{'height' : app.showSearchResults ? '100%' : '0' }">
+
+                    <div ng-include="'views/default/search.html'"></div>
 
                 </div>
 
                 <!-- CLOSE SEARCH AREA -->
-                <div ng-click="$root.searchAreaOpen = false" id="search_area_close" ng-style="{'display' : $root.searchAreaOpen ? 'block' : 'none' }" >
+                <div ng-click="app.showSearchResults = false" id="search_area_close" ng-style="{'display' : app.showSearchResults ? 'block' : 'none' }">
                 </div>
 
                 <!-- ROUTES CONTENT -->

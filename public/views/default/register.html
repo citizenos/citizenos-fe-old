@@ -7,7 +7,7 @@
         <input name="email" placeholder="E-mail address">
         <input name="psw" type="password" placeholder="Password">
         <input name="psw_repeat" type="password" placeholder="Repeat password *">
-        <button type="submit" ng-click="closeAll();  $root.loggedIn = true;" class="blue_button">Save</button>
+        <button type="submit" ng-click="closeAll();  app.user.loggedIn = true;" class="blue_button">Save</button>
         <div class="link_section">
             <a class="lightbox_link" href="" ng-click="$root.registerLightbox = false; $root.loginLightbox = true">Cancel</a>
         </div>

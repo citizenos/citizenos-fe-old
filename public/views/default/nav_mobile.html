@@ -1,9 +1,9 @@
-<div class="logo_area" ng-click="$root.searchAreaOpen = false">
+<div class="logo_area" ng-click="app.showSearchResults = false">
     <div class="logo sprite sprite-x5-cos-logo-small2x">
     </div>
 </div>
 
-<div class="header_button" ng-click="$root.search_open = !$root.search_open;" ng-style="{'display': $root.search_open ? 'none ' : 'relative'}">
+<div class="header_button" ng-click="app.showSearch = !app.showSearch;" ng-style="{'display': app.showSearch ? 'none ' : 'relative'}">
     <div class="header_button_icon">
         <div class="sprite sprite-icon-search2x">
         </div>
@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<div class="header_button" ng-click="$root.navOpen = !$root.navOpen">
+<div class="header_button" ng-click="app.showNav = !app.showNav">
 
     <div id="line_holder">
         <div class="v_line light_line"></div>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="header_button_icon">
-        <div class="sprite" ng-class="$root.navOpen ? 'sprite-icon-closemenu2x' : 'sprite-icon-hamburger2x'">
+        <div class="sprite" ng-class="app.showNav ? 'sprite-icon-closemenu2x' : 'sprite-icon-hamburger2x'">
         </div>
     </div>
     <div class="header_button_text">
@@ -29,18 +29,18 @@
     </div>
 </div>
 
-<div id="m_search_bar" ng-style="{'display': $root.search_open ? 'relative' : 'none'}">
+<div id="m_search_bar" ng-style="{'display': app.showSearch ? 'relative' : 'none'}">
     <div id="m_search_icon">
         <div class="table_cell">
             <div class="sprite sprite-icon-search-b-2x"></div>
         </div>
     </div>
-    <div id="m_search_close" ng-click="$root.search_open = !$root.search_open; $root.searchAreaOpen = false">
+    <div id="m_search_close" ng-click="app.showSearch = !app.showSearch; app.showSearchResults = false">
         <div class="table_cell">
             <div class="sprite sprite-icon-closemenu-b-2x"></div>
         </div>
     </div>
     <div id="m_search_bar_wrap">
-        <input ng-controller="searchBar" ng-model="searchInput" ng-focus="checkLAndO()"  placeholder="Search">
+        <input ng-model="form.searchInput" ng-focus="checkLAndO()"  placeholder="Search">
     </div>
 </div>
