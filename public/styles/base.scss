@@ -13,7 +13,7 @@ body, html {
 }
 
 body.body_fixed, body.ngdialog-open {
-    position: fixed;
+    position: fixed !important;
     overflow: initial;
     z-index: 1;
 }
