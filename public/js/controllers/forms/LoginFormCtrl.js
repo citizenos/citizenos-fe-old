@@ -11,9 +11,12 @@ app.controller('LoginFormCtrl', ['$scope', '$log', 'ngDialog', function ($scope,
     $scope.doLogin = function () {
         $log.debug('LoginFormCtrl.doLogin()');
         ngDialog.closeAll();
-        ngDialog.open({
-           template: '/views/modals/register.html'
-        });
+        setTimeout(function () {
+            console.log('Open new!');
+            ngDialog.open({
+                template: '/views/modals/register.html'
+            });
+        }, 0);
     };
 
 }]);
