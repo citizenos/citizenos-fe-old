@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('LoginFormCtrl', ['$scope', '$log', 'ngDialog', function ($scope, $log, ngDialog) {
-    $log.debug('LoginFormCtrl', $scope.app);
+    $log.debug('LoginFormCtrl', ngDialog);
 
     $scope.form = {
         email: null,
