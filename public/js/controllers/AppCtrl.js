@@ -20,4 +20,8 @@ app.controller('AppCtrl', ['$scope', '$log', 'cosConfig', 'ngDialog', function (
             scope: $scope
         });
     };
+
+    $scope.app.alert = function (str) {
+        alert(str);
+    };
 }]);
