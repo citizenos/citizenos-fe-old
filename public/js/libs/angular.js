@@ -4,7 +4,6 @@
  * License: MIT
  */
 (function(window) {'use strict';
-
 /**
  * @description
  *
