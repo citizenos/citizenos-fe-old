@@ -15,11 +15,7 @@
 
 
     <!-- Only show this if the user is NOT logged in -->
-    <div class="blue_button" ng-click="$root.lightbox = true; $root.loginLightbox = true; app.navOpen = false" ng-if="app.user.loggedIn != true">
-        Log in / Register
-    </div>
-
-    <div class="blue_button" ng-dialog="/views/modals/login.html">
+    <div class="blue_button" ng-click="doShowLogin()" ng-if="!app.user.loggedIn">
         Log in / Register NGDIALOG
     </div>
 

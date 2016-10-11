@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('LoginFormCtrl', ['$scope', '$log', 'ngDialog', function ($scope, $log, ngDialog) {
-    $log.debug('LoginFormCtrl');
+    $log.debug('LoginFormCtrl', $scope.app);
 
     $scope.form = {
         email: null,
@@ -9,14 +9,11 @@ app.controller('LoginFormCtrl', ['$scope', '$log', 'ngDialog', function ($scope,
     };
 
     $scope.doLogin = function () {
-        $log.debug('LoginFormCtrl.doLogin()');
-        ngDialog.closeAll();
-        setTimeout(function () {
-            console.log('Open new!');
-            ngDialog.open({
-                template: '/views/modals/register.html'
-            });
-        }, 0);
+        $log.debug('LoginFormCtrl.doLogin()', $scope.app);
+        ngDialog.open({
+            template: '/views/modals/register.html',
+            scope: $scope
+        });
     };
 
 }]);
