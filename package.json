@@ -18,9 +18,18 @@
   "devDependencies": {
     "concurrently": "2.2.0",
     "gulp": "3.9.1",
+    "gulp-batch": "1.0.5",
     "gulp-clean-css": "2.0.12",
+    "gulp-concat": "2.6.0",
+    "gulp-jshint": "2.0.1",
     "gulp-plumber": "1.1.0",
     "gulp-sass": "2.3.2",
-    "gulp-sourcemaps": "1.6.0"
+    "gulp-sourcemaps": "1.6.0",
+    "gulp-uglify": "2.0.0",
+    "gulp-uncache": "0.4.0-beta1",
+    "gulp-useref": "3.1.2",
+    "gulp-watch": "4.3.10",
+    "jshint": "2.9.3",
+    "run-sequence": "1.2.2"
   }
 }

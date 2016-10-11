@@ -2,5 +2,4 @@
 
 app.controller('HomeCtrl', ['$rootScope', function ($rootScope) {
 
-
 }]);
