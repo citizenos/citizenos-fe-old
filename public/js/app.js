@@ -31,6 +31,7 @@ app.config(function ($routeProvider, $locationProvider, ngDialogProvider) {
         });
 
     ngDialogProvider.setDefaults({
+        overlay: false,
         showClose: false,
         disableAnimation: true,
         closeByNavigation: true,
