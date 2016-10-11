@@ -32,7 +32,7 @@ app.config(function ($routeProvider, $locationProvider, ngDialogProvider) {
 
     ngDialogProvider.setDefaults({
         showClose: false,
-        disableAnimation: true,
+        closeByNavigation: true,
         closeByDocument: true,
         closeByEscape: true
     });
