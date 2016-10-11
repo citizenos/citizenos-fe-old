@@ -15,6 +15,8 @@ app.controller('AppCtrl', ['$scope', '$log', 'cosConfig', 'ngDialog', function (
     };
 
     $scope.doShowLogin = function () {
+        $log.debug('AppCtrl.doShowLogin()');
+
         ngDialog.open({
             template: '/views/modals/login.html',
             scope: $scope

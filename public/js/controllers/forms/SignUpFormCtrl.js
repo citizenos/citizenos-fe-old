@@ -8,6 +8,7 @@ app.controller('SignUpFormCtrl', ['$scope', '$log', 'ngDialog', function ($scope
 
     $scope.doSignUp = function () {
         $log.debug('SignUpFormCtrl.doSignUp()');
+
         $scope.app.user.loggedIn = true;
         ngDialog.closeAll();
     };
