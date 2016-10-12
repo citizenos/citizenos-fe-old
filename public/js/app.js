@@ -27,6 +27,11 @@ app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             controller: 'HomeCtrl',
+            templateUrl: '../views/home.html'
+        })
+        
+        .when('/topics', {
+            controller: 'HomeCtrl',
             templateUrl: '../views/no_topics.html'
         });
 

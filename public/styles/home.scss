@@ -1,0 +1,41 @@
+@import 'vars';
+@import 'mixins_n_extends';
+
+#home_root {
+    background: $light_gray;
+    width: 100%;
+    height: 100%;
+
+    #topics_bar {
+        padding: 40px 20px;
+        font-weight: $bold;
+        
+        .bar_text {
+            color: $dark_gray;
+            display: inline-block;
+        }
+
+        .bar_select {
+            color: $medium_black;
+            display: inline-block;
+        }
+
+        .bar_section {
+            display: inline-block;
+        }
+
+        .bar_section:first-child {
+            margin-right: 20px;
+        }
+
+        #bar_top {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        #bar_bottom {
+            font-size: 14px;
+        }
+
+    }
+}
