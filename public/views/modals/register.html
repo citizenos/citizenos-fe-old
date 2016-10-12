@@ -6,7 +6,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <span>Log in / Register NGDIALOG</span>
+                    <span>Log in / Register NGDIALOG {{wWidth}}</span>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -24,10 +24,9 @@
 
                     <div class="lightbox_section" ng-controller="SignUpFormCtrl">
                         <input name="name" placeholder="Full name *" autofocus="{{ wWidth > 1024 ? 'true' : 'false'}}">
-                        <input name="Company" placeholder="Company">
+                        <input name="company" placeholder="Company">
                         <input name="email" placeholder="E-mail address">
-                        <input name="psw" type="password" placeholder="Password">
-                        <input name="psw_repeat" type="password" placeholder="Repeat password *">
+                        <input name="password" type="password" placeholder="Password *">
                         <button type="submit" ng-click="doSignUp()" class="blue_button">Save</button>
                         <div class="link_section">
                             <a class="lightbox_link" href="" ng-click="closeThisDialog()">Cancel</a>
