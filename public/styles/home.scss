@@ -41,17 +41,89 @@
 
     #topics_area {
         text-align: left;
+        padding-left: 50px;
+        box-sizing: border-box;
+        
+        @media (max-width: 1350px) {
+            padding-left: 30px;
+        }
+        
+        @media (min-width: 2480px) {
+            padding-left: 90px;
+        }
 
         .topic {
-            width: 300px;
+            width: 25%;
             height: 300px;
-            padding: 19px 20px 0 20px;
             margin: 10px 0 0 10px;
-            box-sizing: border-box;
             cursor: pointer;
             float: left;
-            
 
+            .topic_wrap {
+                padding: 19px 20px 0 20px;
+                box-sizing: border-box;
+            }
+
+            &:nth-child(1) {
+                margin-left: -40px;
+            }
+
+            &:nth-child(4n+4) {
+                margin-left: -40px;
+            }
+
+            @media (max-width: 1350px) {
+                width: 50%;
+                
+                &:nth-child(1) {
+                    margin-left: 0;
+                }
+                
+                &:nth-child(4n+4) {
+                    margin-left: 10px;
+                }
+
+                &:nth-child(2n+1) {
+                    margin-left: -20px;
+                }
+            }
+
+            
+            @media (min-width: 1920px) {
+                
+                &:nth-child(4n+4) {
+                    margin-left: 10px;
+                }
+                
+                &:nth-child(4n+1) {
+                    margin-left: -40px;
+                }
+            }
+
+            
+            @media (min-width: 2480px) {
+                width: 12.5%;
+
+                
+                
+                &:nth-child(4n+1) {
+                    margin-left: 10px;
+                }
+                
+                &:nth-child(1) {
+                    margin-left: -80px;
+                }
+
+                
+                &:nth-child(4n+4) {
+                    margin-left: 10px;
+                }
+
+                &:nth-child(8n+8) {
+                    margin-left: -80px;
+                }
+            }
+            
             .text_area {
                 width: 261px;
             }
@@ -95,12 +167,57 @@
             }
 
         }
-        
+
         .big {
-            width: 610px;
+
+            width: 50%;
+            padding-right: 10px;
             
             & {
                 background-image: url('../imgs/tutorial.png');
+                background-repeat: no-repeat;
+                background-position: 125% 0;
+            }
+            @media (max-width: 1500px) {
+                background-position: 145% 0;
+            }
+            
+            @media (max-width: 1400px) {
+                background-position: 165% 0;
+            }
+            
+            @media (max-width: 1350px) {
+                padding-right: 0;
+                background-position: 165% 0;
+            }
+            
+            @media (max-width: 1300px) {
+                background-position: 175px 0;
+            }
+            
+            @media (min-width: 1350px) {
+                .text_area {
+                    width: 60%;
+                }
+            }
+
+            @media (min-width: 1920px) {
+                width: 25%;
+                padding-right: 0;
+                background-position: 180px 0;
+                .text_area {
+                    width: 261px;
+                }
+            }
+
+            @media (min-width: 2225px) {
+                background-position: 215% 0;
+            }
+
+            @media (min-width: 2480px) {
+                width: 25%;
+                padding-right: 10px;
+                background-position: 165% 0;
             }
 
             @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {

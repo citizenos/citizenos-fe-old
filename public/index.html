@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <base href="/">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="styles/citizenos-fe.bundle.css?v=5454934b6fa1a5d80dc0ab435d1f6120">
+    <link rel="stylesheet" href="styles/citizenos-fe.bundle.css?v=8f110f3493fec7db7903f784eaf1f59b">
     <link rel="icon" href="/imgs/favicon.ico">
     <script src="js/citizenos-fe.bundle.js?v=f077d95fdf3437d1390dff0ed68fd328"></script>
 </head>
@@ -14,6 +14,7 @@
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 <body ng-class="app.showNav || $root.lightbox ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" resize>
+
 
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox" ng-if="$root.lightbox" ng-controller="lightbox">
@@ -48,7 +49,6 @@
     </div>
 
 </div>
-
 
 <!-- MOBILE HEADER NAV -->
 <div id="mobile_header" ng-if="wWidth <= 1024">
