@@ -20,11 +20,10 @@
 
             <div id="lightbox_content">
                 <div id="login_lightbox">
-                    <b>wWidth {{wWidth}} {{wWidth > 1024 ? 'true' : 'false'}}</b>
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section" ng-controller="SignUpFormCtrl">
-                        <input name="name" placeholder="Full name *" ng-attr-autofocus="{{ wWidth > 1024 }}">
+                        <input name="name" placeholder="Full name *" autofocus="{{ wWidth > 1024 }}">
                         <input name="company" placeholder="Company">
                         <input name="email" placeholder="E-mail address">
                         <input name="password" type="password" placeholder="Password *">
