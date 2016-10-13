@@ -88,6 +88,10 @@ a:link, a:visited {
     margin-top: 16px;
 }
 
+.clearer {
+    clear: both;
+}
+
 //Overall button styles
 .blue_button {
     background: $deep_sky_blue;

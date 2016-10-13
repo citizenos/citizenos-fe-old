@@ -29,6 +29,34 @@ $id_dark: #cccccc;
 $id_medium: $medium_gray;
 $id_light: $white;
 
+$orange: #e66700;
+$purpule: #f1d9ff;
+$yellow: #fef78d;
+$red: #e64100;
+
+.orange_background {
+    background: $orange;
+}
+
+.purpule_background {
+    background: $purpule;
+}
+
+.yellow_background {
+    background: $yellow;
+}
+
+.red_background {
+    background: $red;
+}
+
+.white_text {
+    color: $white;
+}
+
+.black_text {
+    color: $medium_black;
+}
 
 .dark_line {
     background: $dark_black;
@@ -36,6 +64,10 @@ $id_light: $white;
 
 .light_line {
     background: $light_black;
+}
+
+.white_line {
+    background: $white;
 }
 
 .lightest_line {

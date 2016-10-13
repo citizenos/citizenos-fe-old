@@ -4,10 +4,10 @@
 #home_root {
     background: $light_gray;
     width: 100%;
-    height: 100%;
+    padding-bottom: 10px;
 
     #topics_bar {
-        padding: 40px 20px;
+        padding: 40px 20px 30px 20px;
         font-weight: $bold;
         
         .bar_text {
@@ -38,4 +38,83 @@
         }
 
     }
+
+    #topics_area {
+        text-align: left;
+
+        .topic {
+            width: 300px;
+            height: 300px;
+            padding: 19px 20px 0 20px;
+            margin: 10px 0 0 10px;
+            box-sizing: border-box;
+            cursor: pointer;
+            float: left;
+            
+
+            .text_area {
+                width: 261px;
+            }
+
+            .top {
+                margin-bottom: 10px;
+                .date {
+                    float: left;
+                }
+                .author {
+                    float: right;
+                }
+            }
+
+            .line {
+                margin: 10px 0 12px 0;
+            }
+
+            .text_small {
+                font-size: 13px;
+            }
+
+            .main_text {
+                height: 197px;
+
+                .text_small {
+                    margin-top: 10px;
+                }
+            }
+
+            .text_big {
+                font-size: 26px;
+                font-weight: $bold;
+                line-height: 1.23;
+            }
+
+            &:hover {
+                .main_text {
+                    text-decoration: underline;
+                }
+            }
+
+        }
+        
+        .big {
+            width: 610px;
+            
+            & {
+                background-image: url('../imgs/tutorial.png');
+            }
+
+            @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+                & {
+                    background-image: url('../imgs/tutorial2x.png');
+                    background-size: 610px 300px;
+                    width: 610px;
+                    height: 300px;
+                    background-position: 0 0;
+                }
+            }
+        }
+
+
+    }
+    
 }

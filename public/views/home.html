@@ -10,7 +10,7 @@
                 <div class="icon_holder"><div class="table_cell"><div class="sprite"></div></div></div>
             </div>
         </div>
-        
+
         <div id="bar_bottom">
 
             <div class="bar_section">
@@ -34,5 +34,57 @@
             </div>
 
         </div>
+    </div>
+
+    <div id="topics_area">
+
+        <div class="big white_text topic">
+            <div class="text_area">
+
+                <div class="top text_small">
+                    A beginner’s guide to CitizenOS.
+                </div>
+                
+                <div class="main_text">
+                    <div class="text_big">
+                        Hi there, welcome to CitizenOS! Read this topic to find out how everything works.
+                    </div>
+                </div>
+
+                <div class="line white_line"></div>
+                
+                <div class="text_small">
+                    Tutorial and explanation
+                </div>
+
+            </div>
+        </div>
+
+        <div class="topic" ng-class="key == 0 ? 'orange_background white_text' : 'purpule_background black_text'" ng-repeat="(key, n) in [1,2,3,4,5.6,7,8,9,10,11]">
+
+                <div class="top text_small">
+                    <div class="date">22.03.2016</div> <div class="author">Margo Loor</div>
+                    <div class="clearer"></div>
+                </div>
+                
+                <div class="main_text">
+                    <div class="text_big">
+                        Open Governance Workshop: Public decision-making in 2025
+                    </div>
+                    <div class="text_small">
+                        Discussions, lectures and a mini-hackathon to change experiences and ideas,  to get inspired and boost ope…
+                    </div>
+                </div>
+
+                <div class="line white_line"></div>
+                
+                <div class="text_small">
+                    Communities and urban development
+                </div>
+
+        </div>
+
+        <div class="clearer"></div>
+
     </div>
 </div>
