@@ -5,11 +5,27 @@
             <div class="bar_text">
                 Show me topics about
             </div>
-            <div class="bar_select">
+            <div class="bar_select" dropdown>
                 Communities and urban development
-                <div class="icon_holder"><div class="table_cell"><div class="sprite"></div></div></div>
+                <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-big2x"></div></div></div>
+                <div class="dropdown big_drop">
+                    <div class="line lightest_line"></div>
+
+                    <div class="dropdown_item" ng-class="key == 2 ? 'bold' : ''" ng-repeat="(key, n) in [1,2,3,4,5.6,7,8,9,10,11,12,13,14,15,16,17,18,19]">
+                        <div class="item_name">
+                            All categories
+                        </div>
+                        <div class="item_props">
+                            404 topics
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                </div>
             </div>
         </div>
+
+			
 
         <div id="bar_bottom">
 
@@ -19,7 +35,7 @@
                 </div>
                 <div class="bar_select">
                     time
-                    <div class="icon_holder"><div class="table_cell"><div class="sprite"></div></div></div>
+                    <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-small2x"></div></div></div>
                 </div>
             </div>
             
@@ -29,7 +45,7 @@
                 </div>
                 <div class="bar_select">
                     only documents in progress
-                    <div class="icon_holder"><div class="table_cell"><div class="sprite"></div></div></div>
+                    <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-small2x"></div></div></div>
                 </div>
             </div>
 

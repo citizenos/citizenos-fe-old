@@ -17,6 +17,14 @@ $lightest_gray: #e5e5e5;
 $bold: 700;
 $light: 300;
 
+.bold {
+    font-weight: $bold !important;
+}
+
+.light {
+    font-weight: $light !important;
+}
+
 $nav_d_width: 190px;
 $nav_t_width: 230px;
 
