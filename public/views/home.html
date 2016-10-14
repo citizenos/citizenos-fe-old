@@ -29,7 +29,7 @@
 
         <div id="bar_bottom">
 
-            <div class="bar_section">
+            <div class="bar_section" dropdown>
                 <div class="bar_text">
                     Order by
                 </div>
@@ -37,9 +37,21 @@
                     time
                     <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-small2x"></div></div></div>
                 </div>
+
+                <div class="dropdown">
+                    <div class="line lightest_line"></div>
+
+                    <div class="dropdown_item" ng-class="key == 0 ? 'bold' : ''" ng-repeat="(key, n) in ['time','popularity','size']">
+                        <div class="item_name">
+                            {{n}}
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+                </div>
+
             </div>
             
-            <div class="bar_section">
+            <div class="bar_section" dropdown>
                 <div class="bar_text">
                     Show
                 </div>
@@ -47,6 +59,18 @@
                     only documents in progress
                     <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-small2x"></div></div></div>
                 </div>
+
+                <div class="dropdown">
+                    <div class="line lightest_line"></div>
+
+                    <div class="dropdown_item" ng-class="key == 0 ? 'bold' : ''" ng-repeat="(key, n) in ['In progress','In voting','In follow-up', 'Closed']">
+                        <div class="item_name">
+                            {{n}}
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+                </div>
+
             </div>
 
         </div>

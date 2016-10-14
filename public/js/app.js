@@ -54,7 +54,6 @@ app.directive('dropdown', function($document) {
 					elem.removeClass('dropdown_active');
 				}
 				elem.removeClass('active_recent');
-                this.unbind('click');
 			});
 			
 		}
