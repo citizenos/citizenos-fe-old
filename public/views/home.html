@@ -1,5 +1,8 @@
 <div id="home_root">
-    <div id="topics_bar">
+
+    
+    <!-- FILTER AREA DESKTOP -->
+    <div ng-if="wWidth > 767" id="filter_bar_desktop">
 
         <div id="bar_top">
             <div class="bar_text">
@@ -25,7 +28,7 @@
             </div>
         </div>
 
-			
+            
 
         <div id="bar_bottom">
 
@@ -76,11 +79,58 @@
         </div>
     </div>
 
+
+    <!-- FILTER AREA MOBILE -->
+    <div ng-if="wWidth <= 767" id="filter_bar_mobile">
+        
+        <div id="open_fi" ng-if="!app.open_mobile_fi" ng-click="app.open_mobile_fi = true">
+            Filter the topics
+        </div>
+
+        <div id="fi_area">
+
+            <div id="fi_top">
+                <div id="fi_header">
+                    <div id="fi_header_text">
+                        Filter the topics
+                    </div>
+                    <div id="close_fi"><div class="table_cell"><div class="sprite sprite-btn-popup-close2x"></div></div></div>
+                </div>
+                <div id="fi_nav">
+
+                    <div class="fi_nav_button" ng-click="app.filter_category = true">
+                        <div class="fi_button_text selected">CATEGORY</div>
+                        <div class="line blue_background selected"></div>
+                    </div>
+
+                    <div class="fi_nav_button" ng-click="app.filter_order = true">
+                        <div class="fi_button_text">ORDER</div>
+                        <div class="line blue_background"></div>
+                    </div>
+
+                    <div class="fi_nav_button">
+                        <div class="fi_button_text" ng-click="app.filter_status = true">STATUS</div>
+                        <div class="line blue_background"></div>
+                    </div>
+
+                </div>
+                <div class="clearer"></div>
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <div id="fi_selection_area">
+                
+            </div>
+        </div>
+    
+    </div>
+
+
+    <!-- TOPICS AREA -->
     <div id="topics_area">
 
-       
-
-        <div class="big white_text blue_background topic">
+        <a href="#" class="big white_text blue_background topic">
             <div class="topic_wrap">
                 <div class="text_area">
 
@@ -96,15 +146,15 @@
 
                     <div class="line white_line"></div>
                     
-                    <div class="text_small">
+                    <div class="text_small"  ng-if="wWidth > 667">
                         Tutorial and explanation
                     </div>
 
                 </div>
             </div>
-        </div>
+        </a>
 
-        <div class="topic" ng-class="key == 0 ? 'orange_background white_text' : 'purpule_background black_text'" ng-repeat="(key, n) in [1,2,3,4,5.6,7,8,9,10,11,12,13,14,15,16,17,18,19]">
+        <a href="#" class="topic" ng-class="key == 0 ? 'orange_background white_text' : 'purpule_background black_text'" ng-repeat="(key, n) in [1,2,3,4,5.6,7,8,9,10,11,12,13,14,15,16,17,18,19]">
                 <div class="topic_wrap">
                     <div class="top text_small">
                         <div class="date">22.03.2016</div> <div class="author">Margo Loor</div>
@@ -115,18 +165,18 @@
                         <div class="text_big">
                             Open Governance Workshop: Public decision-making in 2025
                         </div>
-                        <div class="text_small">
+                        <div class="text_small" ng-if="wWidth > 667">
                             Discussions, lectures and a mini-hackathon to change experiences and ideas,  to get inspired and boost ope…
                         </div>
                     </div>
 
                     <div class="line" ng-class="key == 0 ? 'white_line' : 'black_line'"></div>
                     
-                    <div class="text_small">
+                    <div class="text_small"  ng-if="wWidth > 667">
                         Communities and urban development
                     </div>
                </div>
-        </div>
+        </a>
 
         <div class="clearer"></div>
 
