@@ -65,10 +65,8 @@ gulp.task('uglify', function () {
 
 gulp.task('cachebreaker', function () {
     return gulp.src('public/index.html')
-    .pipe(replace(/\?v=\w+/g, '')) //look for "?v=1474253123732"
     .pipe(cachebust({
-        type: 'MD5',
-     //   basePath: path.resolve('public/')
+        type: 'MD5'
     }))
     .pipe(gulp.dest('public/'));
 });
