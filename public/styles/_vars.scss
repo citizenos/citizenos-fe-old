@@ -1,4 +1,5 @@
 $medium_black: #252525;
+$medium_black_seven: rgba(37, 37, 37, 0.7);
 $dark_black: #1A1A1A;
 $light_black: #3B3B3B;;
 $black: #000;
@@ -7,6 +8,7 @@ $white: #FFF;
 $transparent_white: rgba(255, 255, 255, .69);
 $sky_blue: #6FB6FF;
 $deep_sky_blue: #0680FC;
+$dark_blue: #0574e3;
 
 $dark_gray: #A1A1A1;
 $medium_gray: #EDEDED;
@@ -15,6 +17,14 @@ $lightest_gray: #e5e5e5;
 
 $bold: 700;
 $light: 300;
+
+.bold {
+    font-weight: $bold !important;
+}
+
+.light {
+    font-weight: $light !important;
+}
 
 $nav_d_width: 190px;
 $nav_t_width: 230px;
@@ -29,6 +39,38 @@ $id_dark: #cccccc;
 $id_medium: $medium_gray;
 $id_light: $white;
 
+$orange: #e66700;
+$purpule: #f1d9ff;
+$yellow: #fef78d;
+$red: #e64100;
+
+.orange_background {
+    background: $orange;
+}
+
+.purpule_background {
+    background: $purpule;
+}
+
+.yellow_background {
+    background: $yellow;
+}
+
+.red_background {
+    background: $red;
+}
+
+.blue_background {
+    background: $deep_sky_blue;
+}
+
+.white_text {
+    color: $white;
+}
+
+.black_text {
+    color: $medium_black;
+}
 
 .dark_line {
     background: $dark_black;
@@ -36,6 +78,14 @@ $id_light: $white;
 
 .light_line {
     background: $light_black;
+}
+
+.white_line {
+    background: $white;
+}
+
+.black_line {
+    background: $medium_black;
 }
 
 .lightest_line {

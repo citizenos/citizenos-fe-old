@@ -13,6 +13,8 @@ var gulp = require('gulp'),
     batch = require('gulp-batch'),
     runSequence = require('run-sequence').use(gulp),
     uncache = require('gulp-uncache'),
+    replace = require('gulp-replace'),
+    cachebust = require('gulp-cache-bust'),
     fs = require('fs');
 
 var pkg = JSON.parse(fs.readFileSync('package.json'));
@@ -62,9 +64,11 @@ gulp.task('uglify', function () {
 });
 
 gulp.task('cachebreaker', function () {
-    return gulp.src('public/views/index.html')
-        .pipe(uncache())
-        .pipe(gulp.dest('public'));
+    return gulp.src('public/index.html')
+    .pipe(cachebust({
+        type: 'MD5'
+    }))
+    .pipe(gulp.dest('public/'));
 });
 
 gulp.task('watch', function () {
@@ -74,7 +78,12 @@ gulp.task('watch', function () {
             'cachebreaker'
         );
     });
-    gulp.watch('public/styles/*.scss', ['sass']);
+    gulp.watch('public/styles/*.scss', function () {
+        runSequence(
+            'sass',
+            'cachebreaker'
+        );
+    });
 });
 
 gulp.task('sass', function () {
@@ -83,6 +92,7 @@ gulp.task('sass', function () {
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(cleanCSS())
+        .pipe(concat(pkg.name + '.bundle.css'))
         .pipe(sourcemaps.write('maps'))
         .pipe(gulp.dest('public/styles/'))
 });

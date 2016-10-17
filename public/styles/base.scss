@@ -38,6 +38,10 @@ h2 {
     font-size: 16px;
 }
 
+#view {
+    height: 100%;
+}
+
 .table {
     display: table;
 }
@@ -84,6 +88,10 @@ a:link, a:visited {
     margin-top: 16px;
 }
 
+.clearer {
+    clear: both;
+}
+
 //Overall button styles
 .blue_button {
     background: $deep_sky_blue;
@@ -98,7 +106,7 @@ a:link, a:visited {
 }
 
 .blue_button:hover {
-    background: $sky_blue;
+    background: $dark_blue;
     @include tablet {
         background: $deep_sky_blue;
     }

@@ -13,7 +13,7 @@
          position: absolute;
          left: 0;
     }
-    
+
     @include mobile {
         width: 59px;
     }
@@ -70,7 +70,7 @@ nav {
             margin-bottom: 20px;
             @include tablet {
                 margin-top: -10px;
-            }   
+            }
         }
 
         a:link, a:visited {
@@ -146,7 +146,7 @@ nav {
                             margin: 0 auto;
                             opacity: .69;
                         }
-                        
+
                     }
                 }
 
@@ -155,10 +155,10 @@ nav {
                 font-weight: bold;
                 color: $white;
 
-                @include tablet {   
+                @include tablet {
                     font-weight: initial;
                     opacity: .69;
-                
+
                     &.bold_blue {
                         font-weight: 700;
                         color: $sky_blue;
@@ -173,7 +173,7 @@ nav {
                 & {
                     background: $black;
 
-                    @include tablet {   
+                    @include tablet {
                         -webkit-tap-highlight-color: rgba(0, 0, 0, .45);
                         background: initial;
                     }
@@ -268,7 +268,7 @@ nav {
 
         #m_search_bar_wrap {
             @extend .table_cell;
-                
+
             input {
                 border-radius: 15px;
                 border: none;

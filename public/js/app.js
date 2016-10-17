@@ -27,6 +27,11 @@ app.config(function ($routeProvider, $locationProvider, ngDialogProvider) {
     $routeProvider
         .when('/', {
             controller: 'HomeCtrl',
+            templateUrl: '../views/home.html'
+        })
+        
+        .when('/topics', {
+            controller: 'HomeCtrl',
             templateUrl: '../views/no_topics.html'
         });
 
@@ -40,6 +45,28 @@ app.config(function ($routeProvider, $locationProvider, ngDialogProvider) {
         closeByEscape: true
     });
 
+});
+
+/* Close dropdowns when clicked outside of it */ 
+app.directive('dropdown', function($document) {
+	return {
+		restrict: "A",
+		link: function(scope, elem, attr) {
+			
+			elem.bind('click', function() {
+				elem.toggleClass('dropdown_active');
+				elem.addClass('active_recent');
+			});
+			
+			$document.bind('click', function() {
+				if(!elem.hasClass('active_recent')) {
+					elem.removeClass('dropdown_active');
+				}
+				elem.removeClass('active_recent');
+			});
+			
+		}
+	}
 });
 
 /* Set global wWidth variable for responsive dom hiding */
