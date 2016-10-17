@@ -13,7 +13,6 @@ var gulp = require('gulp'),
     batch = require('gulp-batch'),
     runSequence = require('run-sequence').use(gulp),
     uncache = require('gulp-uncache'),
-    replace = require('gulp-replace'),
     cachebust = require('gulp-cache-bust'),
     fs = require('fs');
 
@@ -41,10 +40,14 @@ gulp.task('jshint', function () {
 gulp.task('uglify', function () {
     return gulp.src([
             'public/js/libs/angular.js',
+            'public/js/libs/angular-touch.js',
+            'public/js/libs/angular-route.js',
+            'public/js/libs/angular-translate.js',
             'public/js/libs/**/*.js',
             'public/js/app.js',
             'public/js/services/**/*.js',
-            'public/js/controllers/**/*.js'
+            'public/js/controllers/**/*.js',
+            'public/js/directives/**/*.js'
         ])
         .pipe(plumber())
         .pipe(sourcemaps.init())
@@ -65,10 +68,8 @@ gulp.task('uglify', function () {
 
 gulp.task('cachebreaker', function () {
     return gulp.src('public/index.html')
-    .pipe(replace(/\?v=\w+/g, '')) //look for "?v=1474253123732"
     .pipe(cachebust({
-        type: 'MD5',
-     //   basePath: path.resolve('public/')
+        type: 'MD5'
     }))
     .pipe(gulp.dest('public/'));
 });
