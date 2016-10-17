@@ -6,7 +6,7 @@
  *  @see https://angularjs.org/
  */
 
-var app = angular.module('citizenos', ['ngRoute', 'ngTouch', 'ngDialog']);
+var app = angular.module('citizenos', ['ngRoute', 'ngTouch', 'ngDialog', 'focus-if']);
 
 app.constant('cosConfig', {
     language: {
@@ -65,13 +65,3 @@ app.directive('resize', function ($window, $rootScope) {
         });
     }
 });
-
-app.controller('lightbox', ['$scope', '$rootScope', function ($scope, $rootScope) {
-
-    $scope.closeAll = function () {
-        $rootScope.lightbox = false;
-        $rootScope.loginLightbox = false;
-        $rootScope.registerLightbox = false
-    }
-
-}]);

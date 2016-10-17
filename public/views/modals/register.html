@@ -6,7 +6,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <span>Log in / Register NGDIALOG</span>
+                    <span>Register</span>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -23,7 +23,7 @@
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section" ng-controller="SignUpFormCtrl">
-                        <input name="name" placeholder="Full name *" ng-attr-autofocus="{{ wWidth > 1024 ? true : undefined}}">
+                        <input name="name" placeholder="Full name *" focus-if="{{wWidth > 1024}}">
                         <input name="company" placeholder="Company">
                         <input name="email" placeholder="E-mail address">
                         <input name="password" type="password" placeholder="Password *">
