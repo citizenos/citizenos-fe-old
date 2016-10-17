@@ -87,14 +87,14 @@
             Filter the topics
         </div>
 
-        <div id="fi_area">
+        <div id="fi_area" ng-if="app.open_mobile_fi">
 
             <div id="fi_top">
                 <div id="fi_header">
                     <div id="fi_header_text">
                         Filter the topics
                     </div>
-                    <div id="close_fi"><div class="table_cell"><div class="sprite sprite-btn-popup-close2x"></div></div></div>
+                    <div id="close_fi" ng-click="app.open_mobile_fi = false"><div class="table_cell"><div class="sprite sprite-btn-popup-close2x"></div></div></div>
                 </div>
                 <div id="fi_nav">
 
@@ -120,8 +120,17 @@
             <div class="line lightest_line"></div>
 
             <div id="fi_selection_area">
-                
+                <a href="#" class="fi_link" ng-class="key == 1 ? 'bold' : ''" ng-repeat="(key, n) in [1,2,3,4,5.6,7,8,9,10,11,12,13,14,15,16,17,18,19]">
+                    All categories
+                </a>
             </div>
+
+            <div class="fi_submit">
+                <div class="blue_button" ng-click="app.open_mobile_fi = false">
+                    Submit filter
+                </div>
+            </div>
+
         </div>
     
     </div>

@@ -146,28 +146,52 @@ nav {
                             margin: 0 auto;
                             opacity: .69;
                         }
+                    }
 
+                    .section_icon.arrow_down {
+                        float: right;
+                        margin-right: 1px;
+                        margin-top: 1px;
+                    }
+
+
+                }
+                
+                .dropdown_active .section_item {
+                    background: $black;
+                }
+                
+                .dropdown_active .dropdown {
+                    display: block;
+                }
+
+                .dropdown {
+                    display: none;
+                    width: 100%;
+                    .section_item {
+                        padding-left: 49px;
+                        padding-right: 5px;
                     }
                 }
 
-            .section_item:not(.section_header):hover {
-                cursor: pointer;
-                font-weight: bold;
-                color: $white;
+                .section_item:not(.section_header):hover {
+                    cursor: pointer;
+                    font-weight: bold;
+                    color: $white;
 
-                @include tablet {
-                    font-weight: initial;
-                    opacity: .69;
+                    @include tablet {
+                        font-weight: initial;
+                        opacity: .69;
 
-                    &.bold_blue {
-                        font-weight: 700;
-                        color: $sky_blue;
-                        opacity: 1;
+                        &.bold_blue {
+                            font-weight: 700;
+                            color: $sky_blue;
+                            opacity: 1;
 
-                        .sprite {
-                            opacity: .69;
+                            .sprite {
+                                opacity: .69;
+                            }
                         }
-                    }
                 }
 
                 & {

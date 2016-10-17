@@ -7,13 +7,13 @@
     <base href="/">
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=57a35a282c2085767d46743ee8e29972" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=4527e91a4aab5ff041fe898662b1b61a"></script>
+    <link href="styles/citizenos-fe.bundle.css?v=5b823f2d9b832d3103a5fdac7d266c2a" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=ac3e7cf218801649323cb1aef95c33ff"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="app.showNav ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" resize>
+<body ng-class="app.showNav || app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" resize>
 
 
 <!-- MOBILE HEADER NAV -->
