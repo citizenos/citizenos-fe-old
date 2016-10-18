@@ -1,4 +1,5 @@
 $medium_black: #252525;
+$medium_black_seven: rgba(37, 37, 37, 0.7);
 $dark_black: #1A1A1A;
 $light_black: #3B3B3B;;
 $black: #000;
@@ -16,6 +17,14 @@ $lightest_gray: #e5e5e5;
 
 $bold: 700;
 $light: 300;
+
+.bold {
+    font-weight: $bold !important;
+}
+
+.light {
+    font-weight: $light !important;
+}
 
 $nav_d_width: 190px;
 $nav_t_width: 230px;

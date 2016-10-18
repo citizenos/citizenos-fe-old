@@ -15,7 +15,7 @@
 
 
     <!-- Only show this if the user is NOT logged in -->
-    <div class="blue_button" ng-click="$root.lightbox = true; $root.loginLightbox = true; app.navOpen = false" ng-if="app.user.loggedIn != true">
+    <div class="blue_button" ng-click="doShowLogin()" ng-if="!app.user.loggedIn">
         Log in / Register
     </div>
 
@@ -26,7 +26,7 @@
             </div>
             <div id="account_text">
                 <div class="section_header bold_white">Kevin Krepin</div>
-                <a ng-click="app.navOpen = false" id="account_action" href="#">My Account</a>
+                <a ng-click="app.navOpen = false; app.open_mobile_fi = false" id="account_action" href="#">My Account</a>
             </div>
         </div>
 
@@ -41,31 +41,31 @@
                         <div class="sprite sprite-menu-icon-topics2x"></div>
                     </div>
                 </div>
-                <div class="section_text">Topics</div>
+                Topics
             </div>
-            <a ng-click="app.navOpen = false" class="section_item bold_blue">
+            <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item bold_blue">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-plus2x"></div>
                     </div>
                 </div>
-                <div class="section_text">Create topic</div>
+                Create topic
             </a>
-            <a ng-click="app.navOpen = false" class="section_item" href="topics">
+            <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item" href="topics">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
-                <div class="section_text">My topics</div>
+                My topics
             </a>
-            <a ng-click="app.navOpen = false" class="section_item" href="#">
+            <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
-                <div class="section_text">Public topics</div>
+                Public topics
             </a>
         </div>
 
@@ -77,31 +77,31 @@
                         <div class="sprite sprite-menu-icon-groups2x"></div>
                     </div>
                 </div>
-                <div class="section_text">Groups</div>
+                Groups
             </div>
-            <a ng-click="app.navOpen = false" class="section_item bold_blue">
+            <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item bold_blue">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-plus2x"></div>
                     </div>
                 </div>
-                <div class="section_text">Create groups</div>
+                Create groups
             </a>
-            <a ng-click="app.navOpen = false" class="section_item" href="#">
+            <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
-                <div class="section_text">My groups</div>
+                My groups
             </a>
-            <a ng-click="app.navOpen = false" class="section_item" href="#">
+            <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
-                <div class="section_text">Public groups</div>
+                Public groups
             </a>
         </div>
     </div>
@@ -114,50 +114,43 @@
     <!-- Nav section -->
     <div class="section">
 
-        <a ng-click="app.navOpen = false" class="section_item" href="#" ng-if="app.user.loggedIn == true">
+        <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item" href="#" ng-if="app.user.loggedIn == true">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-connections2x"></div>
                 </div>
             </div>
-            <div class="section_text">Connections</div>
+            Connections
         </a>
 
-        <a ng-click="app.navOpen = false" class="section_item" href="#">
+        <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item" href="#">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-about2x"></div>
                 </div>
             </div>
-            <div class="section_text">About</div>
+            About
         </a>
 
-        <a ng-click="app.navOpen = false" class="section_item" href="#">
+        <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item" href="#">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-faq2x"></div>
                 </div>
             </div>
-            <div class="section_text">FAQ</div>
+            FAQ
         </a>
 
-        <a ng-click="app.navOpen = false" class="section_item" href="#">
+        <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item" href="#">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-help2x"></div>
                 </div>
             </div>
-            <div class="section_text">Help</div>
+            Help
         </a>
+        <div ng-translate-language-select></div>
 
-        <a ng-click="app.navOpen = false" class="section_item" href="#">
-            <div class="section_icon">
-                <div class="table_cell">
-                    <div class="sprite sprite-x0-menu-icon-help2x"></div>
-                </div>
-            </div>
-            <div class="section_text">English</div>
-        </a>
     </div>
 
 
@@ -170,13 +163,13 @@
 
         <div class="section">
 
-            <a ng-click="app.navOpen = false; app.user.loggedIn = false;" class="section_item" href="#">
+            <a ng-click="app.navOpen = false; app.open_mobile_fi = false; app.user.loggedIn = false;" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-menu-icon-logout2x"></div>
                     </div>
                 </div>
-                <div class="section_text">Log out</div>
+                Log out
             </a>
 
         </div>

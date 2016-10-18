@@ -33,24 +33,29 @@
 
 .nav_is_open {
     right: 0;
+    width: $nav_t_width;
 }
 
 nav {
-
-    .logo {
-        margin-top: 20px;
-    }
 
     width: $nav_d_width;
     height: 100%;
     background: $medium_black;
     color: $transparent_white;
     font-size: 13px;
-    position: fixed;
+    position: absolute;
     z-index: 10;
+    
+    .dark_line {
+        margin-top: 16px;
+    }
+
+    .logo {
+        margin-top: 20px;
+    }
 
     @include tablet {
-        width: $nav_t_width;
+        width: 0;
         right: -$nav_t_width;
         transition: all 220ms cubic-bezier(.45,.78,0,1);
         overflow-y: visible;
@@ -77,7 +82,7 @@ nav {
             color: $transparent_white;
         }
 
-        .sprite, a {
+        .sprite, a, .section_item {
            -webkit-transform: translateZ(0);
            transform: translateZ(0);
         }
@@ -146,45 +151,72 @@ nav {
                             margin: 0 auto;
                             opacity: .69;
                         }
+                    }
 
+                    .section_icon.arrow_down {
+                        float: right;
+                        margin-right: 1px;
+                        margin-top: 1px;
+                    }
+
+
+                }
+                
+                .dropdown_active .section_item {
+                    background: $black !important;
+                }
+                
+                .dropdown_active .dropdown {
+                    visibility: visible;
+                    height: initial;
+                }
+
+                .dropdown {
+                    // display: none;
+                    visibility: hidden;
+                    height: 0;
+                    width: 100%;
+                    .section_item {
+                        padding-left: 49px;
+                        padding-right: 5px;
                     }
                 }
 
-            .section_item:not(.section_header):hover {
-                cursor: pointer;
-                font-weight: bold;
-                color: $white;
-
-                @include tablet {
-                    font-weight: initial;
-                    opacity: .69;
-
-                    &.bold_blue {
-                        font-weight: 700;
-                        color: $sky_blue;
-                        opacity: 1;
-
-                        .sprite {
-                            opacity: .69;
-                        }
-                    }
-                }
-
-                & {
-                    background: $black;
+                .section_item:not(.section_header):hover {
+                    cursor: pointer;
+                    font-weight: bold;
+                    color: $white;
 
                     @include tablet {
-                        -webkit-tap-highlight-color: rgba(0, 0, 0, .45);
-                        background: initial;
+                        font-weight: initial;
+                        opacity: .69;
+
+                        &.bold_blue {
+                            font-weight: 700;
+                            color: $sky_blue;
+                            opacity: 1;
+
+                            .sprite {
+                                opacity: .69;
+                            }
+                        }
+                    }
+
+                    & {
+                        background: $black;
+
+                        @include tablet {
+                            -webkit-tap-highlight-color: rgba(0, 0, 0, .45);
+                            background: initial;
+                        }
+
+                    }
+
+                    .sprite {
+                        opacity: 1;
                     }
 
                 }
-
-                .sprite {
-                    opacity: 1;
-                }
-
-            }
         }
 
     }

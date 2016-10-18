@@ -1,0 +1,86 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lighbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <span>Log in / Register</span>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="lightbox_content">
+                <div id="login_lightbox" ng-controller="LoginFormCtrl">
+                    <div class="line lightest_line"></div>
+                    <div class="lightbox_section">
+
+                        <div id="facebook" class="social_button">
+                            <div class="social_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-login-icon-facebook2x"></div>
+                                </div>
+                            </div>
+                            <div class="social_text">
+                                <div class="table_cell">
+                                    Login with Facebook account
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="google" class="social_button">
+                            <div class="social_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-login-icon-google2x"></div>
+                                </div>
+                            </div>
+                            <div class="social_text">
+                                <div class="table_cell">
+                                    Login with Facebook account
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="id_card" class="social_button">
+                            <div class="social_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-login-icon-id2x"></div>
+                                </div>
+                            </div>
+                            <div class="social_text">
+                                <div class="table_cell">
+                                    Login with Facebook account
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="line lightest_line"></div>
+
+                    <div class="lightbox_section">
+                        <input name="email" placeholder="E-mail address" focus-if="{{wWidth > 1024}}"><!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+                        <input name="password" type="password" placeholder="Password">
+                        <button type="submit" ng-click="doLogin()" class="blue_button">Log in / Register</button>
+                        <div class="link_section">
+                            <a class="lightbox_link" href="">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()">
+    </div>
+
+</div>

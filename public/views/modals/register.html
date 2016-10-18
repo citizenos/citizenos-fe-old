@@ -1,0 +1,45 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lighbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <span>Register</span>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="lightbox_content">
+                <div id="login_lightbox">
+                    <div class="line lightest_line"></div>
+
+                    <div class="lightbox_section" ng-controller="SignUpFormCtrl">
+                        <input name="name" placeholder="Full name *" focus-if="{{wWidth > 1024}}">
+                        <input name="company" placeholder="Company">
+                        <input name="email" placeholder="E-mail address">
+                        <input name="password" type="password" placeholder="Password *">
+                        <button type="submit" ng-click="doSignUp()" class="blue_button">Save</button>
+                        <div class="link_section">
+                            <a class="lightbox_link" href="" ng-click="closeThisDialog()">Cancel</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()">
+    </div>
+
+</div>

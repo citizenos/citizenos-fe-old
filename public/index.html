@@ -1,19 +1,22 @@
 <!doctype html>
-<html ng-app="citizenos" ng-controller="AppCtrl">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="citizenos" ng-controller="AppCtrl"  lang="{{app.language}}">
 <head>
     <meta charset="UTF-8">
-    <title>CitizenOS</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="fragment" content="!" />
     <base href="/">
+    <title translate="META_DEFAULT_TITLE">CitizenOS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="styles/citizenos-fe.bundle.css?v=8f110f3493fec7db7903f784eaf1f59b">
-    <link rel="icon" href="/imgs/favicon.ico">
-    <script src="js/citizenos-fe.bundle.js?v=18e2aed966d12ad2927e586bdfbdd8c7"></script>
+    <link href="styles/citizenos-fe.bundle.css?v=16d5d73c917740c4a4eb2abe2866c567" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=69408be09bf9f86a56b5056d9f3c9222"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="app.showNav || $root.lightbox ? 'body_fixed' : 'body_not_fixed'" ui-view ng-controller="SearchCtrl" resize>
+<body ng-class="app.showNav || app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" ui-view resize>
+
 
 </body>
 </html>

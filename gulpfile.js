@@ -39,6 +39,7 @@ gulp.task('jshint', function () {
 
 gulp.task('uglify', function () {
     return gulp.src([
+            'public/js/libs/jquery.js',
             'public/js/libs/angular.js',
             'public/js/libs/angular-touch.js',
             'public/js/libs/angular-route.js',
