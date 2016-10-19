@@ -1,22 +1,40 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="citizenos" ng-controller="AppCtrl"  lang="{{app.language}}">
+<html ng-app="citizenos" ng-controller="AppCtrl"  lang="{{app.language}}">
 <head>
     <meta charset="UTF-8">
+    <title translate="META_DEFAULT_TITLE">CitizenOS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="fragment" content="!" />
     <base href="/">
-    <title translate="META_DEFAULT_TITLE">CitizenOS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="styles/citizenos-fe.bundle.css?v=16d5d73c917740c4a4eb2abe2866c567" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=69408be09bf9f86a56b5056d9f3c9222"></script>
+    <script src="js/citizenos-fe.bundle.js?v=8139073154030f5b254a22e419778d6a"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="app.showNav || app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" ui-view resize>
+<script>document.write('<script src="https://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+<body ng-class="app.showNav || app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" resize>
 
+    <!-- MOBILE HEADER NAV -->
+    <div id="mobile_header" ng-if="wWidth <= 1024">
+
+        <div ng-include="'views/default/nav_mobile.html'"></div>
+
+    </div>
+
+    <!-- NAV -->
+    <nav ng-class="app.showNav ? 'nav_is_open' : ''" ng-click="app.showSearchResults = false" ng-swipe-right="app.showNav = false">
+
+        <div ng-include="'views/default/nav.html'"></div>
+
+    </nav>
+
+
+    <!-- CONTENT -->
+
+    <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''" ui-view></div>
 
 </body>
 </html>

@@ -55,8 +55,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
             abstract: true,
             url: '/{language:' + langReg + '}',
             templateUrl: '/views/layouts/main.html',
-            controller: function ($scope, $state, $stateParams, $translate, $location) {
+            controller: function ($scope, $state, $stateParams, $translate, $location, sAuth) {
                 console.log('main', $stateParams.language);
+               // console.log(sAuth.status());
+                //console.log(sAuth.user);
                 if ($stateParams.language) {
                     $translate.use($stateParams.language);
                 }
@@ -71,19 +73,37 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $tra
         .state('topics', {
             url: '/topics',
             parent: 'main',
-            controller: 'HomeCtrl',
+            controller: 'TopicCtrl',
             templateUrl: '/views/no_topics.html'
-        });
-    /*$routeProvider
-        .when('/', {
-            controller: 'HomeCtrl',
-            templateUrl: '../views/home.html'
         })
-
-        .when('/topics', {
-            controller: 'HomeCtrl',
-            templateUrl: '../views/no_topics.html'
-        });*/
+        .state('account', {
+            abstract: true,
+            url: '/account',
+            parent: 'main',
+            templateUrl: '/views/home.html'
+        })
+        .state('account.signup', {
+            url: '/signup?email&name&redirectSuccess',
+            controller: function ($scope, $state, $stateParams, $log, ngDialog) {
+                if ($scope.app.user.loggedIn) {
+                    $state.go('home');
+                }
+                ngDialog.open({
+                    template: '/views/modals/register.html',
+                    data: $stateParams,
+                    scope: $scope // Pass on $scope so that I can access AppCtrl
+                });
+            }
+        })
+        .state('account.login', {
+            url: '/login?email&redirectSuccess',
+            controller: function ($scope, $state) {
+                console.log($scope.app.user);
+                if ($scope.app.user.loggedIn) {
+                    $state.go('home');
+                }
+            }
+        });
 
     $translateProvider.useStaticFilesLoader({
       prefix: 'languages/',
