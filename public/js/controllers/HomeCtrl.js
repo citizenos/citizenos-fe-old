@@ -1,4 +1,6 @@
 'use strict';
 
-app.controller('HomeCtrl', ['$rootScope', function ($rootScope) {
-}]);
+angular
+    .module('citizenos')
+    .controller('HomeCtrl', ['$rootScope', function ($rootScope) {
+    }]);

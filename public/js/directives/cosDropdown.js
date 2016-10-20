@@ -1,8 +1,16 @@
 (function () {
     'use strict';
 
-    angular
-        .module('citizenos')
+    // Allow copy-paste use of the directive in 3rd party projects
+    var module = null;
+    try {
+        module = angular.module('citizenos');
+    } catch (e) {
+        // Deliberate, angular.module('modulename') would throw if a non existing module is fetched and we create a new if the namespace did not exist
+        module = angular.module('citizenos', []);
+    }
+
+    module
         .directive('cosDropdown', ['$document', function ($document) {
             return {
                 restrict: 'A',
