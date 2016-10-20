@@ -37,13 +37,3 @@ if (app.get('env') === 'development') {
         console.log('HTTPS server listening on port ' + portHttps);
     });
 }
-
-app.post('/api/auth/logout', function (req, res) {
-        clearSessionCookies(req, res);
-        return res.ok();
-    });
-
-    var clearSessionCookies = function (req, res) {
-   //     res.clearCookie(config.session.name, {path: config.session.cookie.path, domain: config.session.cookie.domain});
-        res.clearCookie('express_sid'); // FIXME: Absolutely hate this solution. This deletes the EP session, so that on logout also EP session is destroyed. - https://trello.com/c/CkkFUz5D/235-ep-api-authorization-the-way-ep-session-is-invalidated-on-logout
-    };

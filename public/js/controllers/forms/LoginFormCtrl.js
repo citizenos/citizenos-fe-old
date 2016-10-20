@@ -77,4 +77,5 @@ app.controller('LoginFormCtrl', ['$scope', '$state', '$log', '$translate', '$win
             scope: $scope
         });
     };
+
 }]);
