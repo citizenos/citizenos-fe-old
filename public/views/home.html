@@ -10,7 +10,11 @@
             </div>
             <div cos-dropdown class="bar_select">
                 Communities and urban development
-                <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-big2x"></div></div></div>
+                <div class="icon_holder">
+                    <div class="table_cell">
+                        <div class="sprite sprite-dropdown-arrowdown-big2x"></div>
+                    </div>
+                </div>
                 <div class="dropdown big_drop">
                     <div class="line lightest_line"></div>
 
@@ -29,7 +33,6 @@
         </div>
 
 
-
         <div id="bar_bottom">
 
             <div cos-dropdown class="bar_section">
@@ -38,7 +41,11 @@
                 </div>
                 <div class="bar_select">
                     time
-                    <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-small2x"></div></div></div>
+                    <div class="icon_holder">
+                        <div class="table_cell">
+                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dropdown">
@@ -60,7 +67,11 @@
                 </div>
                 <div class="bar_select">
                     only documents in progress
-                    <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-small2x"></div></div></div>
+                    <div class="icon_holder">
+                        <div class="table_cell">
+                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dropdown">
@@ -94,7 +105,11 @@
                     <div id="fi_header_text">
                         Filter the topics
                     </div>
-                    <div id="close_fi" ng-click="app.open_mobile_fi = false"><div class="table_cell"><div class="sprite sprite-btn-popup-close2x"></div></div></div>
+                    <div id="close_fi" ng-click="app.open_mobile_fi = false">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x"></div>
+                        </div>
+                    </div>
                 </div>
                 <div id="fi_nav">
 
@@ -155,7 +170,7 @@
 
                     <div class="line white_line"></div>
 
-                    <div class="text_small"  ng-if="wWidth > 667">
+                    <div class="text_small" ng-if="wWidth > 667">
                         Tutorial and explanation
                     </div>
 
@@ -163,28 +178,32 @@
             </div>
         </a>
 
-        <a href="#" class="topic environment" ng-repeat="(key, n) in [1,2,3,4,5.6,7,8,9,10,11,12,13,14,15,16,17,18,19]">
-                <div class="topic_wrap">
-                    <div class="top text_small">
-                        <div class="date">22.03.2016</div> <div class="author">Margo Loor</div>
-                        <div class="clearer"></div>
-                    </div>
+        <a href="#" class="topic" ng-class="topic.categories[0] || 'varia'" ng-repeat="topic in topicList">
+            <div class="topic_wrap">
+                <div class="top text_small">
+                    <div class="date">{{topic.createdAt | amDateFormat : 'L'}}</div>
+                    <div class="author">{{topic.creator.name}}</div>
+                    <div class="clearer"></div>
+                </div>
 
-                    <div class="main_text">
-                        <div class="text_big">
-                            Open Governance Workshop: Public decision-making in 2025
-                        </div>
-                        <div class="text_small" ng-if="wWidth > 667">
-                            Discussions, lectures and a mini-hackathon to change experiences and ideas,  to get inspired and boost ope…
-                        </div>
+                <div class="main_text">
+                    <div class="text_big" ng-bind-html="topic.title">
+                        Open Governance Workshop: Public decision-making in 2025
                     </div>
-
-                    <div class="line"></div>
-
-                    <div class="text_small"  ng-if="wWidth > 667">
-                        Communities and urban development
+                    <div class="text_small" ng-if="wWidth > 667" ng-bind-html="topic.description">
+                        Discussions, lectures and a mini-hackathon to change experiences and ideas, to get inspired and boost ope…
                     </div>
-               </div>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="text_small" ng-if="wWidth > 667">
+                    <!-- FIXME: translate! -->
+                    <span ng-repeat="category in topic.categories">
+                        {{category}}<span ng-show="!$last">, </span>
+                    </span>
+                </div>
+            </div>
         </a>
 
         <div class="clearer"></div>

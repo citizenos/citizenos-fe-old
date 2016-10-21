@@ -7,6 +7,7 @@
     top: 0;
     left: 0;
     bottom: 0;
+    right: 0;
 
     .icon_holder {
         display: inline-block;
@@ -294,6 +295,7 @@
             .topic_wrap {
                 padding: 19px 20px 0 20px;
                 box-sizing: border-box;
+                overflow: hidden;
             }
 
             width: 12.5%;
@@ -402,6 +404,14 @@
 
             .text_small {
                 font-size: 13px;
+                color: inherit;
+                font-weight: inherit;
+
+                * {
+                    font-size: inherit;
+                    color: inherit;
+                    font-weight: inherit;
+                }
             }
 
             .main_text {

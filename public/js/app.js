@@ -1,7 +1,8 @@
 'use strict';
 
 (function () {
-    var module = angular.module('citizenos', ['ngRoute', 'ngTouch', 'ngDialog', 'focus-if']);
+
+    var module = angular.module('citizenos', ['ngRoute', 'ngSanitize', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if']);
 
     module
         .constant('cosConfig', {
@@ -56,4 +57,5 @@
             });
 
         }]);
+
 })();
