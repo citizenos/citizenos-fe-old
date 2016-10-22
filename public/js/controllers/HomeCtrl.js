@@ -28,9 +28,6 @@ angular
          * @param {string} value The new value
          */
         $scope.doSetFilter = function (filter, value) {
-            if (value === $scope.FILTERS_ALL) {
-                value = null;
-            }
             filter.value = value;
 
             $scope.loadTopicList();
@@ -49,7 +46,12 @@ angular
                 loadTopicListPromise.abort();
             }
 
-            loadTopicListPromise = sTopic.listUnauth($scope.filters.statuses.value, $scope.filters.categories.value, $scope.filters.offset, $scope.filters.limit);
+            loadTopicListPromise = sTopic.listUnauth(
+                $scope.filters.statuses.value !== $scope.FILTERS_ALL ? $scope.filters.statuses.value : null,
+                $scope.filters.categories.value !== $scope.FILTERS_ALL ? $scope.filters.categories.value : null,
+                $scope.filters.offset,
+                $scope.filters.limit
+            );
 
             loadTopicListPromise
                 .then(function (res) {
