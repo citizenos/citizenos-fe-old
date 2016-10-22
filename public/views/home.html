@@ -9,7 +9,7 @@
                 Show me topics about
             </div>
             <div cos-dropdown class="bar_select">
-                {{filters.categories.value || FILTERS_ALL}}
+                {{filters.categories.value}}
                 <div class="icon_holder">
                     <div class="table_cell">
                         <div class="sprite sprite-dropdown-arrowdown-big2x"></div>
@@ -68,7 +68,7 @@
                     Show
                 </div>
                 <div class="bar_select">
-                    {{filters.statuses.value || FILTERS_ALL}}
+                    {{filters.statuses.value}}
                     <div class="icon_holder">
                         <div class="table_cell">
                             <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
@@ -154,9 +154,10 @@
 
 
     <!-- TOPICS AREA -->
-    <div id="topics_area">
+    <div id="topics_area" ng-if="!isTopicListLoading">
+        <h1 ng-if="!topicList.length">Sorry, we found 0 results with current filter settings.</h1><!--TODO: Beautiful layout please!-->
 
-        <a href="#" class="big white_text blue_background topic">
+        <a href="" class="big white_text blue_background topic" ng-if="filters.categories.value === FILTERS_ALL && filters.statuses.value === FILTERS_ALL">
             <div class="topic_wrap">
                 <div class="text_area">
 
@@ -180,7 +181,7 @@
             </div>
         </a>
 
-        <a href="#" class="topic" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : topic.categories[0] || 'varia'" ng-repeat="topic in topicList">
+        <a href="" class="topic"  ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : topic.categories[0] || 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
                     <div class="date">{{topic.createdAt | amDateFormat : 'L'}}</div>

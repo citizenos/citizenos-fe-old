@@ -6,14 +6,13 @@ angular
 
         // Constant marking the "clear" or all options will do
         $scope.FILTERS_ALL = 'all';
-
         $scope.filters = {
             categories: {
-                value: null,
+                value: $scope.FILTERS_ALL,
                 options: [$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))
             },
             statuses: {
-                value: null,
+                value: $scope.FILTERS_ALL,
                 options: [$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))
             },
             limit: 50,
@@ -21,8 +20,11 @@ angular
             tabSelected: 'categories' // Mobile view has tabs where the filters are selected, indicates which filter tab is visible
         };
 
+        $scope.topicList = [];
+        $scope.isTopicListLoading = true;
+
         /**
-         * Update topic list
+         * Update topic list by setting relevant filter
          *
          * @param {object} filter The property of filter that changed. For ex filters.statuses, filters.categories
          * @param {string} value The new value
@@ -32,9 +34,6 @@ angular
 
             $scope.loadTopicList();
         };
-
-        $scope.topicList = [];
-        $scope.isTopicListLoading = true;
 
         // Running request, so I can cancel it if needed.
         var loadTopicListPromise = null;
