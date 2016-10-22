@@ -9,7 +9,7 @@
                 Show me topics about
             </div>
             <div cos-dropdown class="bar_select">
-                Communities and urban development
+                {{filters.categories.value || FILTERS_ALL}}
                 <div class="icon_holder">
                     <div class="table_cell">
                         <div class="sprite sprite-dropdown-arrowdown-big2x"></div>
@@ -18,13 +18,13 @@
                 <div class="dropdown big_drop">
                     <div class="line lightest_line"></div>
 
-                    <div class="dropdown_item" ng-class="key == 1 ? 'bold' : ''" ng-repeat="(key, n) in [1,2,3,4,5.6,7,8,9,10,11,12,13,14,15,16,17,18,19]">
+                    <div class="dropdown_item" ng-repeat="category in filters.categories.options" ng-click="doSetFilter(filters.categories, category)" ng-class="category === filters.categories.value ? 'bold' : ''">
                         <div class="item_name">
-                            All categories
+                            {{category}}
                         </div>
-                        <div class="item_props">
+                        <!--div class="item_props">
                             404 topics
-                        </div>
+                        </div-->
                         <div class="clearer"></div>
                     </div>
 
@@ -35,7 +35,8 @@
 
         <div id="bar_bottom">
 
-            <div cos-dropdown class="bar_section">
+            <!-- TODO: Implement orderBy -->
+            <!--div cos-dropdown class="bar_section">
                 <div class="bar_text">
                     Order by
                 </div>
@@ -51,7 +52,7 @@
                 <div class="dropdown">
                     <div class="line lightest_line"></div>
 
-                    <div class="dropdown_item" ng-class="key == 0 ? 'bold' : ''" ng-repeat="(key, n) in ['time','popularity','size']">
+                    <div class="dropdown_item" ng-repeat=ng-class="key == 0 ? 'bold' : ''" ng-repeat="(key, n) in ['time','popularity','size']">
                         <div class="item_name">
                             {{n}}
                         </div>
@@ -59,14 +60,14 @@
                     </div>
                 </div>
 
-            </div>
+            </div-->
 
             <div cos-dropdown class="bar_section">
                 <div class="bar_text">
                     Show
                 </div>
                 <div class="bar_select">
-                    only documents in progress
+                    {{filters.statuses.value || FILTERS_ALL}}
                     <div class="icon_holder">
                         <div class="table_cell">
                             <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
@@ -77,9 +78,9 @@
                 <div class="dropdown">
                     <div class="line lightest_line"></div>
 
-                    <div class="dropdown_item" ng-class="key == 0 ? 'bold' : ''" ng-repeat="(key, n) in ['In progress','In voting','In follow-up', 'Closed']">
+                    <div class="dropdown_item" ng-repeat="status in filters.statuses.options" ng-click="doSetFilter(filters.statuses, status)" ng-class="status === filters.statuses.value ? 'bold' : ''">
                         <div class="item_name">
-                            {{n}}
+                            {{status}}
                         </div>
                         <div class="clearer"></div>
                     </div>
