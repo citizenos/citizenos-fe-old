@@ -8,17 +8,17 @@ angular
         $scope.FILTERS_ALL = 'all';
 
         $scope.filters = {
-            statuses: {
-                value: null,
-                options: [$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))
-            },
             categories: {
                 value: null,
                 options: [$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))
             },
+            statuses: {
+                value: null,
+                options: [$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))
+            },
             limit: 50,
             offset: 0,
-            infiniteScrollDisabled: true
+            tabSelected: 'categories' // Mobile view has tabs where the filters are selected, indicates which filter tab is visible
         };
 
         /**
