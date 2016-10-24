@@ -10,11 +10,10 @@
     }
 }
 
-
 #content_root {
     height: 100%;
     padding-left: $nav_d_width;
-    transition: all 420ms cubic-bezier(.45,.78,0,1);
+    transition: all 420ms cubic-bezier(.45, .78, 0, 1);
 
     @include mobile {
         position: relative;
@@ -34,20 +33,21 @@
             padding: 0 58px;
             box-sizing: border-box;
 
-        &:focus, input:focus{
-            outline: none;
-        } }
+            &:focus, input:focus {
+                outline: none;
+            }
+        }
 
         #search_icon, #close_search_icon {
             position: absolute;
             width: 60px;
             height: 60px;
             display: table;
-            
+
             .sprite {
                 margin: 0 auto;
             }
-            
+
         }
 
         #close_search_icon {
@@ -100,7 +100,7 @@
                     padding: 30px 20px 30px 20px;
                 }
             }
-            
+
             /* SEARCH AREA (Search bar styles in nav.scss) */
             @import 'search';
         }

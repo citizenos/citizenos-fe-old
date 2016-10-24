@@ -5,7 +5,9 @@
  * # LanguageSelectDirective
  * Directive to append language select and set its view and behavior
  */
-app.directive('ngTranslateLanguageSelect', function (LocaleService) {
+angular
+    .module('citizenos')
+    .directive('ngTranslateLanguageSelect', function (LocaleService) {
     'use strict';
 
     return {

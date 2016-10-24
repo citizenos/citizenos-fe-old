@@ -15,7 +15,7 @@
 
 
     <!-- Only show this if the user is NOT logged in -->
-    <div class="blue_button" ng-click="doShowLogin()" ng-if="!app.user.loggedIn">
+    <div class="blue_button" ng-click="app.doShowLogin()" ng-if="!app.user.loggedIn">
         Log in / Register
     </div>
 
@@ -149,7 +149,27 @@
             </div>
             Help
         </a>
-        <div ng-translate-language-select></div>
+
+        <div cos-dropdown id="dropdown_wrap">
+            <div class="section_item">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-x0-menu-icon-help2x"></div>
+                    </div>
+                </div>
+                <div class="section_icon arrow_down">
+                    <div class="table_cell">
+                        <div class="sprite sprite-x4-icon-language-dropdown2x"></div>
+                    </div>
+                </div>
+                {{app.language}}
+            </div>
+            <div class="dropdown">
+                <div class="section_item" ng-repeat="(locale, lang) in app.config.language.list" ng-click='app.switchLanguage(locale)'>
+                    {{lang}}
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -163,7 +183,7 @@
 
         <div class="section">
 
-            <a ng-click="app.navOpen = false; app.open_mobile_fi = false; app.logout();" class="section_item" href="#">
+            <a ng-click="app.navOpen = false; app.open_mobile_fi = false; app.user.loggedIn = false;" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-menu-icon-logout2x"></div>

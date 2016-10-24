@@ -1,13 +1,26 @@
 'use strict';
 
-app.service('sTranslate', ['$translate', '$filter', '$log', function ($translate, $filter, $log) {
+angular
+    .module('citizenos')
+    .service('sTranslate', ['$translate', '$log', 'cosConfig', '$filter', function ($translate, $log,  cosConfig, $filter) {
     var Translate = this;
 
     var GENERAL_ERROR_KEY_PATTERN = 'MSG_ERROR_:statusCode_:model';
     var GENERAL_ERROR_FALLBACK_KEY_PATTERN = 'MSG_ERROR_:statusCode';
     var FIELD_ERROR_KEY_PATTERN = 'MSG_ERROR_:statusCode_:model_:fieldName';
+    var LOCALES = Object.keys(cosConfig.language.list);
+    var currentLocale = $translate.proposedLanguage();
 
+    var services = {
+        setLanguage: setLanguage,
+        translate: translate,
+        errorsToKeys : errorsToKeys,
+        currentLocale: getCurrentLocale,
+        currentLanguage: getCurrentLanguage,
+        checkLocaleIsValid:checkLocaleIsValid
+    };
 
+    return services;
     /**
      * Translate a key
      *
@@ -18,7 +31,7 @@ app.service('sTranslate', ['$translate', '$filter', '$log', function ($translate
      *
      * @see {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.filter:translate}
      */
-    Translate.translate = function (key, interpolateParams) {
+    function translate(key, interpolateParams) {
         if (!key || typeof key !== 'string') throw new Error('Invalid parameter value', arguments);
 
         key = key.toUpperCase();
@@ -36,7 +49,7 @@ app.service('sTranslate', ['$translate', '$filter', '$log', function ($translate
      * @param {{object}} errorResponse Response object
      * @param {{string}} model Model - the context. So that for example Groups API property "name" and User API property "name" could have different messages
      */
-    Translate.errorsToKeys = function (errorResponse, model) {
+    function errorsToKeys (errorResponse, model) {
         if (!errorResponse || !model) throw new Error('Translate.errorsToKeys(errorResponse, model) is missing one or more required parameters', arguments);
 
         var errors = errorResponse.data.errors;
@@ -50,7 +63,27 @@ app.service('sTranslate', ['$translate', '$filter', '$log', function ($translate
         }
     };
 
-    var _fieldErrorsToKeys = function (errorResponse, model) {
+    function setLanguage (locale) {
+        if(checkLocaleIsValid(locale) && $translate.use() !== locale) {
+            $log.debug('setLanguage', locale);
+            currentLocale = locale;
+            return $translate.use(locale);
+        }
+        return $translate.use();
+    }
+
+    function getCurrentLanguage() {
+        return cosConfig.language.list[currentLocale];
+    }
+    function getCurrentLocale() {
+        return currentLocale;
+    }
+
+    function checkLocaleIsValid(locale) {
+        return LOCALES.indexOf(locale) !== -1;
+    };
+
+    function _fieldErrorsToKeys (errorResponse, model) {
         var errors = errorResponse.data.errors;
 
         Object.keys(errors).forEach(function (key) {
@@ -70,7 +103,7 @@ app.service('sTranslate', ['$translate', '$filter', '$log', function ($translate
         });
     };
 
-    var _generalErrorToKey = function (errorResponse, model) {
+    function _generalErrorToKey (errorResponse, model) {
         $log.debug('sTranslate._generalErrorToKey'.arguments);
         var translationKey = GENERAL_ERROR_KEY_PATTERN
             .replace(':statusCode', errorResponse.data.status.code)

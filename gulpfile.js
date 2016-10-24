@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
     jshint = require('gulp-jshint'),
+    stylish = require('jshint-stylish'),
     uglify = require('gulp-uglify'),
     watch = require('gulp-watch'),
     batch = require('gulp-batch'),
@@ -34,12 +35,12 @@ gulp.task('jshint', function () {
             '!public/js/*.bundle.js'
         ])
         .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('uglify', function () {
     return gulp.src([
-            'public/js/libs/jquery.js',
+            'public/js/libs/moment-with-locales.js',
             'public/js/libs/angular.js',
             'public/js/libs/angular-touch.js',
             'public/js/libs/angular-route.js',
@@ -47,8 +48,8 @@ gulp.task('uglify', function () {
             'public/js/libs/**/*.js',
             'public/js/app.js',
             'public/js/services/**/*.js',
-            'public/js/controllers/**/*.js',
-            'public/js/directives/**/*.js'
+            'public/js/directives/**/*.js',
+            'public/js/controllers/**/*.js'
         ])
         .pipe(plumber())
         .pipe(sourcemaps.init())
@@ -69,10 +70,10 @@ gulp.task('uglify', function () {
 
 gulp.task('cachebreaker', function () {
     return gulp.src('public/index.html')
-    .pipe(cachebust({
-        type: 'MD5'
-    }))
-    .pipe(gulp.dest('public/'));
+        .pipe(cachebust({
+            type: 'MD5'
+        }))
+        .pipe(gulp.dest('public/'));
 });
 
 gulp.task('watch', function () {

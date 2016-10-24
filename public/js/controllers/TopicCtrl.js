@@ -1,5 +1,7 @@
 'use strict';
 
-app.controller('TopicCtrl', ['$rootScope' ,'$log' , function ($rootScope, $log) {
+angular
+    .module('citizenos')
+    .controller('TopicCtrl', ['$rootScope' ,'$log' , function ($rootScope, $log) {
     $log.debug('TopicCtrl');
 }]);

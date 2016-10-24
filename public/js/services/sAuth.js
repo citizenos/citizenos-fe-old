@@ -1,6 +1,8 @@
 'use strict';
 
-app.service('sAuth', ['$http', '$q', '$log', function ($http, $q, $log) {
+angular
+    .module('citizenos')
+    .service('sAuth', ['$http', '$q', '$log', function ($http, $q, $log) {
     var Auth = this;
 
     Auth.user = {

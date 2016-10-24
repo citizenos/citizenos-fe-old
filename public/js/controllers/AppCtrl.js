@@ -1,33 +1,51 @@
 'use strict';
 
-app.controller('AppCtrl', ['$scope', '$state', '$rootScope','$log', '$location', 'cosConfig', 'ngDialog', 'LocaleService','sAuth', function ($scope, $state, $rootScope, $log, $location, cosConfig, ngDialog, LocaleService, sAuth) {
-    $log.debug('AppCtrl');
+angular
+    .module('citizenos')
+    .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$log', 'sTranslate', 'cosConfig', 'ngDialog', function ($scope, $rootScope, $state, $log, sTranslate, cosConfig, ngDialog) {
+        $log.debug('AppCtrl');
 
-    $scope.app = {
-        config: cosConfig,
-        showSearch: false,
-        showSearchResults: false,
-        showNav: false
-    };
+        $scope.app = {
+            config: cosConfig,
+            showSearch: false,
+            showSearchResults: false,
+            showNav: false
+        };
 
-    $scope.app.user = sAuth.user;
+        $scope.app.user = {
+            loggedIn: false
+        };
+        $scope.app.locale = sTranslate.currentLocale();
+        $scope.app.language = sTranslate.currentLanguage();
+        $scope.app.doShowLogin = doShowLogin;
+        $scope.app.switchLanguage = switchLanguage;
 
-    sAuth.status();
-    $scope.doShowLogin = function () {
-        $log.debug('AppCtrl.doShowLogin()');
+        function doShowLogin() {
+            $log.debug('AppCtrl.doShowLogin()');
 
-        ngDialog.open({
-            template: '/views/modals/login.html',
-            scope: $scope
-        });
-    };
+            ngDialog.open({
+                template: '/views/modals/login.html',
+                scope: $scope
+            });
+        };
 
-    $scope.app.logout = function () {
-        $state.go('home');
-        sAuth.logout();
-    };
-    $scope.app.alert = function (str) {
-        alert(str);
-    };
+        //FIXME: REMOVE, used for debugging on mobile
+        $scope.app.alert = function (str) {
+            alert(str);
+        };
 
-}]);
+        function switchLanguage(locale) {
+            $log.debug('switch language', locale);
+            if(sTranslate.checkLocaleIsValid(locale)){
+                $state.transitionTo($state.current.name, {language:locale});
+            }
+            sTranslate.setLanguage(locale);
+        }
+
+        $rootScope.$on('$translateChangeSuccess', setLocaleVariables);
+
+        function setLocaleVariables () {
+            $scope.app.locale = sTranslate.currentLocale();
+            $scope.app.language = sTranslate.currentLanguage();
+        }
+    }]);

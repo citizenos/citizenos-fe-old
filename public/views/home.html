@@ -1,6 +1,6 @@
 <div id="home_root">
 
-    
+
     <!-- FILTER AREA DESKTOP -->
     <div ng-if="wWidth > 767" id="filter_bar_desktop">
 
@@ -8,19 +8,24 @@
             <div class="bar_text">
                 Show me topics about
             </div>
-            <div class="bar_select" dropdown>
-                Communities and urban development
-                <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-big2x"></div></div></div>
+            <div cos-dropdown class="bar_select">
+                {{filters.categories.value}}
+                <div class="icon_holder">
+                    <div class="table_cell">
+                        <div class="sprite sprite-dropdown-arrowdown-big2x"></div>
+                    </div>
+                </div>
                 <div class="dropdown big_drop">
                     <div class="line lightest_line"></div>
 
-                    <div class="dropdown_item" ng-class="key == 1 ? 'bold' : ''" ng-repeat="(key, n) in [1,2,3,4,5.6,7,8,9,10,11,12,13,14,15,16,17,18,19]">
+                    <div class="dropdown_item" ng-repeat="category in filters.categories.options" ng-click="doSetFilter(filters.categories, category)"
+                         ng-class="category === filters.categories.value ? 'bold' : ''">
                         <div class="item_name">
-                            All categories
+                            {{category}}
                         </div>
-                        <div class="item_props">
+                        <!--div class="item_props">
                             404 topics
-                        </div>
+                        </div-->
                         <div class="clearer"></div>
                     </div>
 
@@ -28,23 +33,27 @@
             </div>
         </div>
 
-            
 
         <div id="bar_bottom">
 
-            <div class="bar_section" dropdown>
+            <!-- TODO: Implement orderBy -->
+            <!--div cos-dropdown class="bar_section">
                 <div class="bar_text">
                     Order by
                 </div>
                 <div class="bar_select">
                     time
-                    <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-small2x"></div></div></div>
+                    <div class="icon_holder">
+                        <div class="table_cell">
+                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dropdown">
                     <div class="line lightest_line"></div>
 
-                    <div class="dropdown_item" ng-class="key == 0 ? 'bold' : ''" ng-repeat="(key, n) in ['time','popularity','size']">
+                    <div class="dropdown_item" ng-repeat=ng-class="key == 0 ? 'bold' : ''" ng-repeat="(key, n) in ['time','popularity','size']">
                         <div class="item_name">
                             {{n}}
                         </div>
@@ -52,23 +61,28 @@
                     </div>
                 </div>
 
-            </div>
-            
-            <div class="bar_section" dropdown>
+            </div-->
+
+            <div cos-dropdown class="bar_section">
                 <div class="bar_text">
                     Show
                 </div>
                 <div class="bar_select">
-                    only documents in progress
-                    <div class="icon_holder"><div class="table_cell"><div class="sprite sprite-dropdown-arrowdown-small2x"></div></div></div>
+                    {{filters.statuses.value}}
+                    <div class="icon_holder">
+                        <div class="table_cell">
+                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dropdown">
                     <div class="line lightest_line"></div>
 
-                    <div class="dropdown_item" ng-class="key == 0 ? 'bold' : ''" ng-repeat="(key, n) in ['In progress','In voting','In follow-up', 'Closed']">
+                    <div class="dropdown_item" ng-repeat="status in filters.statuses.options" ng-click="doSetFilter(filters.statuses, status)"
+                         ng-class="status === filters.statuses.value ? 'bold' : ''">
                         <div class="item_name">
-                            {{n}}
+                            {{status}}
                         </div>
                         <div class="clearer"></div>
                     </div>
@@ -82,7 +96,7 @@
 
     <!-- FILTER AREA MOBILE -->
     <div ng-if="wWidth <= 767" id="filter_bar_mobile">
-        
+
         <div id="open_fi" ng-if="!app.open_mobile_fi" ng-click="app.open_mobile_fi = true">
             Filter the topics
         </div>
@@ -94,23 +108,27 @@
                     <div id="fi_header_text">
                         Filter the topics
                     </div>
-                    <div id="close_fi" ng-click="app.open_mobile_fi = false"><div class="table_cell"><div class="sprite sprite-btn-popup-close2x"></div></div></div>
+                    <div id="close_fi" ng-click="app.open_mobile_fi = false">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x"></div>
+                        </div>
+                    </div>
                 </div>
                 <div id="fi_nav">
 
-                    <div class="fi_nav_button" ng-click="app.filter_category = true">
-                        <div class="fi_button_text selected">CATEGORY</div>
-                        <div class="line blue_background selected"></div>
+                    <div class="fi_nav_button" ng-click="filters.tabSelected = 'categories'">
+                        <div class="fi_button_text" ng-class="filters.tabSelected === 'categories' ? 'selected' : ''">CATEGORY</div>
+                        <div class="line blue_background" ng-class="filters.tabSelected === 'categories' ? 'selected' :  ''"></div>
                     </div>
 
-                    <div class="fi_nav_button" ng-click="app.filter_order = true">
+                    <!--div class="fi_nav_button" ng-click="app.filterTabOrder = true">
                         <div class="fi_button_text">ORDER</div>
                         <div class="line blue_background"></div>
-                    </div>
+                    </div-->
 
                     <div class="fi_nav_button">
-                        <div class="fi_button_text" ng-click="app.filter_status = true">STATUS</div>
-                        <div class="line blue_background"></div>
+                        <div class="fi_button_text" ng-class="filters.tabSelected === 'statuses' ? 'selected' : ''" ng-click="filters.tabSelected = 'statuses'">STATUS</div>
+                        <div class="line blue_background" ng-class="filters.tabSelected === 'statuses' ? 'selected' : ''"></div>
                     </div>
 
                 </div>
@@ -120,8 +138,9 @@
             <div class="line lightest_line"></div>
 
             <div id="fi_selection_area">
-                <a href="#" class="fi_link" ng-class="key == 1 ? 'bold' : ''" ng-repeat="(key, n) in [1,2,3,4,5.6,7,8,9,10,11,12,13,14,15,16,17,18,19]">
-                    All categories
+                <a href="" class="fi_link" ng-repeat="option in filters[filters.tabSelected].options" ng-click="doSetFilter(filters[filters.tabSelected], option)"
+                   ng-class="option === filters[filters.tabSelected].value ? 'bold' : ''">
+                    {{option}}
                 </a>
             </div>
 
@@ -132,21 +151,22 @@
             </div>
 
         </div>
-    
+
     </div>
 
 
     <!-- TOPICS AREA -->
     <div id="topics_area">
+        <h1 ng-if="!isTopicListLoading && !topicList.length">Sorry, we found 0 results with current filter settings.</h1><!--TODO: Beautiful layout please!-->
 
-        <a href="#" class="big white_text blue_background topic">
+        <a href="" class="big white_text blue_background topic" ng-if="filters.categories.value === FILTERS_ALL && filters.statuses.value === FILTERS_ALL">
             <div class="topic_wrap">
                 <div class="text_area">
 
                     <div class="top text_small">
                         A beginner’s guide to CitizenOS.
                     </div>
-                    
+
                     <div class="main_text">
                         <div class="text_big">
                             Hi there, welcome to CitizenOS! Read this topic to find out how everything works.
@@ -154,8 +174,8 @@
                     </div>
 
                     <div class="line white_line"></div>
-                    
-                    <div class="text_small"  ng-if="wWidth > 667">
+
+                    <div class="text_small" ng-if="wWidth > 667">
                         Tutorial and explanation
                     </div>
 
@@ -163,28 +183,42 @@
             </div>
         </a>
 
-        <a href="#" class="topic" ng-class="key == 0 ? 'orange_background white_text' : 'purpule_background black_text'" ng-repeat="(key, n) in [1,2,3,4,5.6,7,8,9,10,11,12,13,14,15,16,17,18,19]">
-                <div class="topic_wrap">
-                    <div class="top text_small">
-                        <div class="date">22.03.2016</div> <div class="author">Margo Loor</div>
-                        <div class="clearer"></div>
-                    </div>
-                    
-                    <div class="main_text">
-                        <div class="text_big">
-                            Open Governance Workshop: Public decision-making in 2025
-                        </div>
-                        <div class="text_small" ng-if="wWidth > 667">
-                            Discussions, lectures and a mini-hackathon to change experiences and ideas,  to get inspired and boost ope…
-                        </div>
-                    </div>
+        <a href="" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : topic.categories[0] || 'varia'">
+            <div class="topic_wrap">
+                <div class="top text_small">
+                    <div class="date">{{topic.createdAt | amDateFormat : 'L'}}</div>
+                    <div class="author">{{topic.creator.name}}</div>
+                    <div class="clearer"></div>
+                </div>
 
-                    <div class="line" ng-class="key == 0 ? 'white_line' : 'black_line'"></div>
-                    
-                    <div class="text_small"  ng-if="wWidth > 667">
-                        Communities and urban development
+                <div class="main_text">
+                    <div class="text_big" ng-bind-html="topic.title">
+                        Open Governance Workshop: Public decision-making in 2025
                     </div>
-               </div>
+                    <div class="text_small" ng-if="wWidth > 667" ng-bind-html="topic.description">
+                        Discussions, lectures and a mini-hackathon to change experiences and ideas, to get inspired and boost ope…
+                    </div>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="text_small" ng-if="wWidth > 667">
+                    <!-- FIXME: translate! -->
+                    <span ng-repeat="category in topic.categories">
+                        {{category}}<span ng-show="!$last">, </span>
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <a href="" ng-click="loadTopicList()" ng-if="topicCountTotal > topicList.length" class="topic varia">
+            <div class="topic_wrap">
+                <div class="main_text">
+                    <div class="text_big">
+                        Load more...
+                    </div>
+                </div>
+            </div>
         </a>
 
         <div class="clearer"></div>

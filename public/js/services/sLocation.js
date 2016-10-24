@@ -1,6 +1,8 @@
 'use strict';
 
-app.service('sLocation', ['cosConfig',function (cosConfig) {
+angular
+    .module('citizenos')
+    .service('sLocation', ['cosConfig',function (cosConfig) {
     var Location = this;
 
     Location.baseUrl = function () {
