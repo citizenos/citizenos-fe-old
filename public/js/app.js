@@ -20,7 +20,7 @@
             }
         });
 
-module
+    module
         .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
 
             var langReg = Object.keys(cosConfig.language.list).join('|');
@@ -29,18 +29,18 @@ module
                 rewriteLinks: true,
                 requireBase: true
             });
-           $urlRouterProvider.otherwise(function ($injector, $location) {
+            $urlRouterProvider.otherwise(function ($injector, $location) {
           	var langkeys = Object.keys(cosConfig.language.list);
           	var $location = $injector.get('$location');
           	var $translate = $injector.get('$translate');
           	//var sAuth = $injector.get('sAuth');
           	var currentLang = $translate.proposedLanguage() || $translate.use() || cosConfig.language.default;
 
-                     var locationPath = $location.url().split('/');
+            var locationPath = $location.url().split('/');
 
-              	if (langkeys.indexOf(locationPath[1]) > -1) {
+                if (langkeys.indexOf(locationPath[1]) > -1) {
                     return '/' + locationPath[1] + '/';
-              	} else if (locationPath.length > 1) {
+                } else if (locationPath.length > 1) {
                    //     sAuth.user.loadlang = true;
                     return '/' + currentLang + $location.url();
               	} else {
