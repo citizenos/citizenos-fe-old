@@ -25,6 +25,7 @@ angular
             });
         };
 
+        //FIXME: REMOVE, used for debugging on mobile
         $scope.app.alert = function (str) {
             alert(str);
         };

@@ -28,35 +28,15 @@ angular
         };
 
         Topic.listUnauth = function (statuses, categories, offset, limit) {
-            return function () {
-                var path = '/api/topics';
+            var path = '/api/topics';
 
-                var deferredAbort = $q.defer();
-
-                var promise = $http.get(path, {
-                    params: {
-                        statuses: statuses,
-                        categories: categories,
-                        offset: offset,
-                        limit: limit
-                    },
-                    timeout: deferredAbort.promise
-                });
-
-                // Abort the request
-                promise.abort = function () {
-                    deferredAbort.resolve();
-                };
-
-                // Cleanup
-                promise.finally(
-                    function () {
-                        promise.abort = angular.noop;
-                        deferredAbort = promise = null;
-                    }
-                );
-
-                return promise;
-            }();
+            return $http.get(path, {
+                params: {
+                    statuses: statuses,
+                    categories: categories,
+                    offset: offset,
+                    limit: limit
+                }
+            });
         };
     }]);

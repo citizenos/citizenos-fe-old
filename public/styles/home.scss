@@ -399,7 +399,7 @@
             }
 
             .line {
-                margin: 10px 0 12px 0;
+                margin: 0px 0 12px 0;
             }
 
             .text_small {
@@ -415,7 +415,8 @@
             }
 
             .main_text {
-                height: 197px;
+                height: 207px;
+                overflow: hidden;
 
                 .text_small {
                     margin-top: 10px;

@@ -79,7 +79,8 @@
                 <div class="dropdown">
                     <div class="line lightest_line"></div>
 
-                    <div class="dropdown_item" ng-repeat="status in filters.statuses.options" ng-click="doSetFilter(filters.statuses, status)" ng-class="status === filters.statuses.value ? 'bold' : ''">
+                    <div class="dropdown_item" ng-repeat="status in filters.statuses.options" ng-click="doSetFilter(filters.statuses, status)"
+                         ng-class="status === filters.statuses.value ? 'bold' : ''">
                         <div class="item_name">
                             {{status}}
                         </div>
@@ -137,7 +138,8 @@
             <div class="line lightest_line"></div>
 
             <div id="fi_selection_area">
-                <a href="" class="fi_link" ng-repeat="option in filters[filters.tabSelected].options" ng-click="doSetFilter(filters[filters.tabSelected], option)" ng-class="option === filters[filters.tabSelected].value ? 'bold' : ''">
+                <a href="" class="fi_link" ng-repeat="option in filters[filters.tabSelected].options" ng-click="doSetFilter(filters[filters.tabSelected], option)"
+                   ng-class="option === filters[filters.tabSelected].value ? 'bold' : ''">
                     {{option}}
                 </a>
             </div>
@@ -154,8 +156,8 @@
 
 
     <!-- TOPICS AREA -->
-    <div id="topics_area" ng-if="!isTopicListLoading">
-        <h1 ng-if="!topicList.length">Sorry, we found 0 results with current filter settings.</h1><!--TODO: Beautiful layout please!-->
+    <div id="topics_area">
+        <h1 ng-if="!isTopicListLoading && !topicList.length">Sorry, we found 0 results with current filter settings.</h1><!--TODO: Beautiful layout please!-->
 
         <a href="" class="big white_text blue_background topic" ng-if="filters.categories.value === FILTERS_ALL && filters.statuses.value === FILTERS_ALL">
             <div class="topic_wrap">
@@ -181,7 +183,7 @@
             </div>
         </a>
 
-        <a href="" class="topic"  ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : topic.categories[0] || 'varia'">
+        <a href="" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : topic.categories[0] || 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
                     <div class="date">{{topic.createdAt | amDateFormat : 'L'}}</div>
@@ -205,6 +207,16 @@
                     <span ng-repeat="category in topic.categories">
                         {{category}}<span ng-show="!$last">, </span>
                     </span>
+                </div>
+            </div>
+        </a>
+
+        <a href="" ng-click="loadTopicList()" ng-if="topicCountTotal > topicList.length" class="topic varia">
+            <div class="topic_wrap">
+                <div class="main_text">
+                    <div class="text_big">
+                        Load more...
+                    </div>
                 </div>
             </div>
         </a>
