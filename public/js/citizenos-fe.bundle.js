@@ -1,4 +1,620 @@
-/**
+//! moment.js
+//! version : 2.15.1
+//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
+//! license : MIT
+//! momentjs.com
+(function(global,factory){typeof exports==="object"&&typeof module!=="undefined"?module.exports=factory():typeof define==="function"&&define.amd?define(factory):global.moment=factory()})(this,function(){"use strict";var hookCallback;function utils_hooks__hooks(){return hookCallback.apply(null,arguments)}
+// This is done to register the method called with moment()
+// without creating circular dependencies.
+function setHookCallback(callback){hookCallback=callback}function isArray(input){return input instanceof Array||Object.prototype.toString.call(input)==="[object Array]"}function isObject(input){
+// IE8 will treat undefined and null as object if it wasn't for
+// input != null
+return input!=null&&Object.prototype.toString.call(input)==="[object Object]"}function isObjectEmpty(obj){var k;for(k in obj){
+// even if its not own property I'd still call it non-empty
+return false}return true}function isDate(input){return input instanceof Date||Object.prototype.toString.call(input)==="[object Date]"}function map(arr,fn){var res=[],i;for(i=0;i<arr.length;++i){res.push(fn(arr[i],i))}return res}function hasOwnProp(a,b){return Object.prototype.hasOwnProperty.call(a,b)}function extend(a,b){for(var i in b){if(hasOwnProp(b,i)){a[i]=b[i]}}if(hasOwnProp(b,"toString")){a.toString=b.toString}if(hasOwnProp(b,"valueOf")){a.valueOf=b.valueOf}return a}function create_utc__createUTC(input,format,locale,strict){return createLocalOrUTC(input,format,locale,strict,true).utc()}function defaultParsingFlags(){
+// We need to deep clone this object.
+return{empty:false,unusedTokens:[],unusedInput:[],overflow:-2,charsLeftOver:0,nullInput:false,invalidMonth:null,invalidFormat:false,userInvalidated:false,iso:false,parsedDateParts:[],meridiem:null}}function getParsingFlags(m){if(m._pf==null){m._pf=defaultParsingFlags()}return m._pf}var some;if(Array.prototype.some){some=Array.prototype.some}else{some=function(fun){var t=Object(this);var len=t.length>>>0;for(var i=0;i<len;i++){if(i in t&&fun.call(this,t[i],i,t)){return true}}return false}}function valid__isValid(m){if(m._isValid==null){var flags=getParsingFlags(m);var parsedParts=some.call(flags.parsedDateParts,function(i){return i!=null});var isNowValid=!isNaN(m._d.getTime())&&flags.overflow<0&&!flags.empty&&!flags.invalidMonth&&!flags.invalidWeekday&&!flags.nullInput&&!flags.invalidFormat&&!flags.userInvalidated&&(!flags.meridiem||flags.meridiem&&parsedParts);if(m._strict){isNowValid=isNowValid&&flags.charsLeftOver===0&&flags.unusedTokens.length===0&&flags.bigHour===undefined}if(Object.isFrozen==null||!Object.isFrozen(m)){m._isValid=isNowValid}else{return isNowValid}}return m._isValid}function valid__createInvalid(flags){var m=create_utc__createUTC(NaN);if(flags!=null){extend(getParsingFlags(m),flags)}else{getParsingFlags(m).userInvalidated=true}return m}function isUndefined(input){return input===void 0}
+// Plugins that add properties should also add the key here (null value),
+// so we can properly clone ourselves.
+var momentProperties=utils_hooks__hooks.momentProperties=[];function copyConfig(to,from){var i,prop,val;if(!isUndefined(from._isAMomentObject)){to._isAMomentObject=from._isAMomentObject}if(!isUndefined(from._i)){to._i=from._i}if(!isUndefined(from._f)){to._f=from._f}if(!isUndefined(from._l)){to._l=from._l}if(!isUndefined(from._strict)){to._strict=from._strict}if(!isUndefined(from._tzm)){to._tzm=from._tzm}if(!isUndefined(from._isUTC)){to._isUTC=from._isUTC}if(!isUndefined(from._offset)){to._offset=from._offset}if(!isUndefined(from._pf)){to._pf=getParsingFlags(from)}if(!isUndefined(from._locale)){to._locale=from._locale}if(momentProperties.length>0){for(i in momentProperties){prop=momentProperties[i];val=from[prop];if(!isUndefined(val)){to[prop]=val}}}return to}var updateInProgress=false;
+// Moment prototype object
+function Moment(config){copyConfig(this,config);this._d=new Date(config._d!=null?config._d.getTime():NaN);
+// Prevent infinite loop in case updateOffset creates new moment
+// objects.
+if(updateInProgress===false){updateInProgress=true;utils_hooks__hooks.updateOffset(this);updateInProgress=false}}function isMoment(obj){return obj instanceof Moment||obj!=null&&obj._isAMomentObject!=null}function absFloor(number){if(number<0){
+// -0 -> 0
+return Math.ceil(number)||0}else{return Math.floor(number)}}function toInt(argumentForCoercion){var coercedNumber=+argumentForCoercion,value=0;if(coercedNumber!==0&&isFinite(coercedNumber)){value=absFloor(coercedNumber)}return value}
+// compare two arrays, return the number of differences
+function compareArrays(array1,array2,dontConvert){var len=Math.min(array1.length,array2.length),lengthDiff=Math.abs(array1.length-array2.length),diffs=0,i;for(i=0;i<len;i++){if(dontConvert&&array1[i]!==array2[i]||!dontConvert&&toInt(array1[i])!==toInt(array2[i])){diffs++}}return diffs+lengthDiff}function warn(msg){if(utils_hooks__hooks.suppressDeprecationWarnings===false&&typeof console!=="undefined"&&console.warn){console.warn("Deprecation warning: "+msg)}}function deprecate(msg,fn){var firstTime=true;return extend(function(){if(utils_hooks__hooks.deprecationHandler!=null){utils_hooks__hooks.deprecationHandler(null,msg)}if(firstTime){var args=[];var arg;for(var i=0;i<arguments.length;i++){arg="";if(typeof arguments[i]==="object"){arg+="\n["+i+"] ";for(var key in arguments[0]){arg+=key+": "+arguments[0][key]+", "}arg=arg.slice(0,-2)}else{arg=arguments[i]}args.push(arg)}warn(msg+"\nArguments: "+Array.prototype.slice.call(args).join("")+"\n"+(new Error).stack);firstTime=false}return fn.apply(this,arguments)},fn)}var deprecations={};function deprecateSimple(name,msg){if(utils_hooks__hooks.deprecationHandler!=null){utils_hooks__hooks.deprecationHandler(name,msg)}if(!deprecations[name]){warn(msg);deprecations[name]=true}}utils_hooks__hooks.suppressDeprecationWarnings=false;utils_hooks__hooks.deprecationHandler=null;function isFunction(input){return input instanceof Function||Object.prototype.toString.call(input)==="[object Function]"}function locale_set__set(config){var prop,i;for(i in config){prop=config[i];if(isFunction(prop)){this[i]=prop}else{this["_"+i]=prop}}this._config=config;
+// Lenient ordinal parsing accepts just a number in addition to
+// number + (possibly) stuff coming from _ordinalParseLenient.
+this._ordinalParseLenient=new RegExp(this._ordinalParse.source+"|"+/\d{1,2}/.source)}function mergeConfigs(parentConfig,childConfig){var res=extend({},parentConfig),prop;for(prop in childConfig){if(hasOwnProp(childConfig,prop)){if(isObject(parentConfig[prop])&&isObject(childConfig[prop])){res[prop]={};extend(res[prop],parentConfig[prop]);extend(res[prop],childConfig[prop])}else if(childConfig[prop]!=null){res[prop]=childConfig[prop]}else{delete res[prop]}}}for(prop in parentConfig){if(hasOwnProp(parentConfig,prop)&&!hasOwnProp(childConfig,prop)&&isObject(parentConfig[prop])){
+// make sure changes to properties don't modify parent config
+res[prop]=extend({},res[prop])}}return res}function Locale(config){if(config!=null){this.set(config)}}var keys;if(Object.keys){keys=Object.keys}else{keys=function(obj){var i,res=[];for(i in obj){if(hasOwnProp(obj,i)){res.push(i)}}return res}}var defaultCalendar={sameDay:"[Today at] LT",nextDay:"[Tomorrow at] LT",nextWeek:"dddd [at] LT",lastDay:"[Yesterday at] LT",lastWeek:"[Last] dddd [at] LT",sameElse:"L"};function locale_calendar__calendar(key,mom,now){var output=this._calendar[key]||this._calendar["sameElse"];return isFunction(output)?output.call(mom,now):output}var defaultLongDateFormat={LTS:"h:mm:ss A",LT:"h:mm A",L:"MM/DD/YYYY",LL:"MMMM D, YYYY",LLL:"MMMM D, YYYY h:mm A",LLLL:"dddd, MMMM D, YYYY h:mm A"};function longDateFormat(key){var format=this._longDateFormat[key],formatUpper=this._longDateFormat[key.toUpperCase()];if(format||!formatUpper){return format}this._longDateFormat[key]=formatUpper.replace(/MMMM|MM|DD|dddd/g,function(val){return val.slice(1)});return this._longDateFormat[key]}var defaultInvalidDate="Invalid date";function invalidDate(){return this._invalidDate}var defaultOrdinal="%d";var defaultOrdinalParse=/\d{1,2}/;function ordinal(number){return this._ordinal.replace("%d",number)}var defaultRelativeTime={future:"in %s",past:"%s ago",s:"a few seconds",m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"};function relative__relativeTime(number,withoutSuffix,string,isFuture){var output=this._relativeTime[string];return isFunction(output)?output(number,withoutSuffix,string,isFuture):output.replace(/%d/i,number)}function pastFuture(diff,output){var format=this._relativeTime[diff>0?"future":"past"];return isFunction(format)?format(output):format.replace(/%s/i,output)}var aliases={};function addUnitAlias(unit,shorthand){var lowerCase=unit.toLowerCase();aliases[lowerCase]=aliases[lowerCase+"s"]=aliases[shorthand]=unit}function normalizeUnits(units){return typeof units==="string"?aliases[units]||aliases[units.toLowerCase()]:undefined}function normalizeObjectUnits(inputObject){var normalizedInput={},normalizedProp,prop;for(prop in inputObject){if(hasOwnProp(inputObject,prop)){normalizedProp=normalizeUnits(prop);if(normalizedProp){normalizedInput[normalizedProp]=inputObject[prop]}}}return normalizedInput}var priorities={};function addUnitPriority(unit,priority){priorities[unit]=priority}function getPrioritizedUnits(unitsObj){var units=[];for(var u in unitsObj){units.push({unit:u,priority:priorities[u]})}units.sort(function(a,b){return a.priority-b.priority});return units}function makeGetSet(unit,keepTime){return function(value){if(value!=null){get_set__set(this,unit,value);utils_hooks__hooks.updateOffset(this,keepTime);return this}else{return get_set__get(this,unit)}}}function get_set__get(mom,unit){return mom.isValid()?mom._d["get"+(mom._isUTC?"UTC":"")+unit]():NaN}function get_set__set(mom,unit,value){if(mom.isValid()){mom._d["set"+(mom._isUTC?"UTC":"")+unit](value)}}
+// MOMENTS
+function stringGet(units){units=normalizeUnits(units);if(isFunction(this[units])){return this[units]()}return this}function stringSet(units,value){if(typeof units==="object"){units=normalizeObjectUnits(units);var prioritized=getPrioritizedUnits(units);for(var i=0;i<prioritized.length;i++){this[prioritized[i].unit](units[prioritized[i].unit])}}else{units=normalizeUnits(units);if(isFunction(this[units])){return this[units](value)}}return this}function zeroFill(number,targetLength,forceSign){var absNumber=""+Math.abs(number),zerosToFill=targetLength-absNumber.length,sign=number>=0;return(sign?forceSign?"+":"":"-")+Math.pow(10,Math.max(0,zerosToFill)).toString().substr(1)+absNumber}var formattingTokens=/(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;var localFormattingTokens=/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;var formatFunctions={};var formatTokenFunctions={};
+// token:    'M'
+// padded:   ['MM', 2]
+// ordinal:  'Mo'
+// callback: function () { this.month() + 1 }
+function addFormatToken(token,padded,ordinal,callback){var func=callback;if(typeof callback==="string"){func=function(){return this[callback]()}}if(token){formatTokenFunctions[token]=func}if(padded){formatTokenFunctions[padded[0]]=function(){return zeroFill(func.apply(this,arguments),padded[1],padded[2])}}if(ordinal){formatTokenFunctions[ordinal]=function(){return this.localeData().ordinal(func.apply(this,arguments),token)}}}function removeFormattingTokens(input){if(input.match(/\[[\s\S]/)){return input.replace(/^\[|\]$/g,"")}return input.replace(/\\/g,"")}function makeFormatFunction(format){var array=format.match(formattingTokens),i,length;for(i=0,length=array.length;i<length;i++){if(formatTokenFunctions[array[i]]){array[i]=formatTokenFunctions[array[i]]}else{array[i]=removeFormattingTokens(array[i])}}return function(mom){var output="",i;for(i=0;i<length;i++){output+=array[i]instanceof Function?array[i].call(mom,format):array[i]}return output}}
+// format date using native date object
+function formatMoment(m,format){if(!m.isValid()){return m.localeData().invalidDate()}format=expandFormat(format,m.localeData());formatFunctions[format]=formatFunctions[format]||makeFormatFunction(format);return formatFunctions[format](m)}function expandFormat(format,locale){var i=5;function replaceLongDateFormatTokens(input){return locale.longDateFormat(input)||input}localFormattingTokens.lastIndex=0;while(i>=0&&localFormattingTokens.test(format)){format=format.replace(localFormattingTokens,replaceLongDateFormatTokens);localFormattingTokens.lastIndex=0;i-=1}return format}var match1=/\d/;//       0 - 9
+var match2=/\d\d/;//      00 - 99
+var match3=/\d{3}/;//     000 - 999
+var match4=/\d{4}/;//    0000 - 9999
+var match6=/[+-]?\d{6}/;// -999999 - 999999
+var match1to2=/\d\d?/;//       0 - 99
+var match3to4=/\d\d\d\d?/;//     999 - 9999
+var match5to6=/\d\d\d\d\d\d?/;//   99999 - 999999
+var match1to3=/\d{1,3}/;//       0 - 999
+var match1to4=/\d{1,4}/;//       0 - 9999
+var match1to6=/[+-]?\d{1,6}/;// -999999 - 999999
+var matchUnsigned=/\d+/;//       0 - inf
+var matchSigned=/[+-]?\d+/;//    -inf - inf
+var matchOffset=/Z|[+-]\d\d:?\d\d/gi;// +00:00 -00:00 +0000 -0000 or Z
+var matchShortOffset=/Z|[+-]\d\d(?::?\d\d)?/gi;// +00 -00 +00:00 -00:00 +0000 -0000 or Z
+var matchTimestamp=/[+-]?\d+(\.\d{1,3})?/;// 123456789 123456789.123
+// any word (or two) characters or numbers including two/three word month in arabic.
+// includes scottish gaelic two word and hyphenated months
+var matchWord=/[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i;var regexes={};function addRegexToken(token,regex,strictRegex){regexes[token]=isFunction(regex)?regex:function(isStrict,localeData){return isStrict&&strictRegex?strictRegex:regex}}function getParseRegexForToken(token,config){if(!hasOwnProp(regexes,token)){return new RegExp(unescapeFormat(token))}return regexes[token](config._strict,config._locale)}
+// Code from http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
+function unescapeFormat(s){return regexEscape(s.replace("\\","").replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g,function(matched,p1,p2,p3,p4){return p1||p2||p3||p4}))}function regexEscape(s){return s.replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&")}var tokens={};function addParseToken(token,callback){var i,func=callback;if(typeof token==="string"){token=[token]}if(typeof callback==="number"){func=function(input,array){array[callback]=toInt(input)}}for(i=0;i<token.length;i++){tokens[token[i]]=func}}function addWeekParseToken(token,callback){addParseToken(token,function(input,array,config,token){config._w=config._w||{};callback(input,config._w,config,token)})}function addTimeToArrayFromToken(token,input,config){if(input!=null&&hasOwnProp(tokens,token)){tokens[token](input,config._a,config,token)}}var YEAR=0;var MONTH=1;var DATE=2;var HOUR=3;var MINUTE=4;var SECOND=5;var MILLISECOND=6;var WEEK=7;var WEEKDAY=8;var indexOf;if(Array.prototype.indexOf){indexOf=Array.prototype.indexOf}else{indexOf=function(o){
+// I know
+var i;for(i=0;i<this.length;++i){if(this[i]===o){return i}}return-1}}function daysInMonth(year,month){return new Date(Date.UTC(year,month+1,0)).getUTCDate()}
+// FORMATTING
+addFormatToken("M",["MM",2],"Mo",function(){return this.month()+1});addFormatToken("MMM",0,0,function(format){return this.localeData().monthsShort(this,format)});addFormatToken("MMMM",0,0,function(format){return this.localeData().months(this,format)});
+// ALIASES
+addUnitAlias("month","M");
+// PRIORITY
+addUnitPriority("month",8);
+// PARSING
+addRegexToken("M",match1to2);addRegexToken("MM",match1to2,match2);addRegexToken("MMM",function(isStrict,locale){return locale.monthsShortRegex(isStrict)});addRegexToken("MMMM",function(isStrict,locale){return locale.monthsRegex(isStrict)});addParseToken(["M","MM"],function(input,array){array[MONTH]=toInt(input)-1});addParseToken(["MMM","MMMM"],function(input,array,config,token){var month=config._locale.monthsParse(input,token,config._strict);
+// if we didn't find a month name, mark the date as invalid.
+if(month!=null){array[MONTH]=month}else{getParsingFlags(config).invalidMonth=input}});
+// LOCALES
+var MONTHS_IN_FORMAT=/D[oD]?(\[[^\[\]]*\]|\s+)+MMMM?/;var defaultLocaleMonths="January_February_March_April_May_June_July_August_September_October_November_December".split("_");function localeMonths(m,format){if(!m){return this._months}return isArray(this._months)?this._months[m.month()]:this._months[(this._months.isFormat||MONTHS_IN_FORMAT).test(format)?"format":"standalone"][m.month()]}var defaultLocaleMonthsShort="Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_");function localeMonthsShort(m,format){if(!m){return this._monthsShort}return isArray(this._monthsShort)?this._monthsShort[m.month()]:this._monthsShort[MONTHS_IN_FORMAT.test(format)?"format":"standalone"][m.month()]}function units_month__handleStrictParse(monthName,format,strict){var i,ii,mom,llc=monthName.toLocaleLowerCase();if(!this._monthsParse){
+// this is not used
+this._monthsParse=[];this._longMonthsParse=[];this._shortMonthsParse=[];for(i=0;i<12;++i){mom=create_utc__createUTC([2e3,i]);this._shortMonthsParse[i]=this.monthsShort(mom,"").toLocaleLowerCase();this._longMonthsParse[i]=this.months(mom,"").toLocaleLowerCase()}}if(strict){if(format==="MMM"){ii=indexOf.call(this._shortMonthsParse,llc);return ii!==-1?ii:null}else{ii=indexOf.call(this._longMonthsParse,llc);return ii!==-1?ii:null}}else{if(format==="MMM"){ii=indexOf.call(this._shortMonthsParse,llc);if(ii!==-1){return ii}ii=indexOf.call(this._longMonthsParse,llc);return ii!==-1?ii:null}else{ii=indexOf.call(this._longMonthsParse,llc);if(ii!==-1){return ii}ii=indexOf.call(this._shortMonthsParse,llc);return ii!==-1?ii:null}}}function localeMonthsParse(monthName,format,strict){var i,mom,regex;if(this._monthsParseExact){return units_month__handleStrictParse.call(this,monthName,format,strict)}if(!this._monthsParse){this._monthsParse=[];this._longMonthsParse=[];this._shortMonthsParse=[]}
+// TODO: add sorting
+// Sorting makes sure if one month (or abbr) is a prefix of another
+// see sorting in computeMonthsParse
+for(i=0;i<12;i++){
+// make the regex if we don't have it already
+mom=create_utc__createUTC([2e3,i]);if(strict&&!this._longMonthsParse[i]){this._longMonthsParse[i]=new RegExp("^"+this.months(mom,"").replace(".","")+"$","i");this._shortMonthsParse[i]=new RegExp("^"+this.monthsShort(mom,"").replace(".","")+"$","i")}if(!strict&&!this._monthsParse[i]){regex="^"+this.months(mom,"")+"|^"+this.monthsShort(mom,"");this._monthsParse[i]=new RegExp(regex.replace(".",""),"i")}
+// test the regex
+if(strict&&format==="MMMM"&&this._longMonthsParse[i].test(monthName)){return i}else if(strict&&format==="MMM"&&this._shortMonthsParse[i].test(monthName)){return i}else if(!strict&&this._monthsParse[i].test(monthName)){return i}}}
+// MOMENTS
+function setMonth(mom,value){var dayOfMonth;if(!mom.isValid()){
+// No op
+return mom}if(typeof value==="string"){if(/^\d+$/.test(value)){value=toInt(value)}else{value=mom.localeData().monthsParse(value);
+// TODO: Another silent failure?
+if(typeof value!=="number"){return mom}}}dayOfMonth=Math.min(mom.date(),daysInMonth(mom.year(),value));mom._d["set"+(mom._isUTC?"UTC":"")+"Month"](value,dayOfMonth);return mom}function getSetMonth(value){if(value!=null){setMonth(this,value);utils_hooks__hooks.updateOffset(this,true);return this}else{return get_set__get(this,"Month")}}function getDaysInMonth(){return daysInMonth(this.year(),this.month())}var defaultMonthsShortRegex=matchWord;function monthsShortRegex(isStrict){if(this._monthsParseExact){if(!hasOwnProp(this,"_monthsRegex")){computeMonthsParse.call(this)}if(isStrict){return this._monthsShortStrictRegex}else{return this._monthsShortRegex}}else{if(!hasOwnProp(this,"_monthsShortRegex")){this._monthsShortRegex=defaultMonthsShortRegex}return this._monthsShortStrictRegex&&isStrict?this._monthsShortStrictRegex:this._monthsShortRegex}}var defaultMonthsRegex=matchWord;function units_month__monthsRegex(isStrict){if(this._monthsParseExact){if(!hasOwnProp(this,"_monthsRegex")){computeMonthsParse.call(this)}if(isStrict){return this._monthsStrictRegex}else{return this._monthsRegex}}else{if(!hasOwnProp(this,"_monthsRegex")){this._monthsRegex=defaultMonthsRegex}return this._monthsStrictRegex&&isStrict?this._monthsStrictRegex:this._monthsRegex}}function computeMonthsParse(){function cmpLenRev(a,b){return b.length-a.length}var shortPieces=[],longPieces=[],mixedPieces=[],i,mom;for(i=0;i<12;i++){
+// make the regex if we don't have it already
+mom=create_utc__createUTC([2e3,i]);shortPieces.push(this.monthsShort(mom,""));longPieces.push(this.months(mom,""));mixedPieces.push(this.months(mom,""));mixedPieces.push(this.monthsShort(mom,""))}
+// Sorting makes sure if one month (or abbr) is a prefix of another it
+// will match the longer piece.
+shortPieces.sort(cmpLenRev);longPieces.sort(cmpLenRev);mixedPieces.sort(cmpLenRev);for(i=0;i<12;i++){shortPieces[i]=regexEscape(shortPieces[i]);longPieces[i]=regexEscape(longPieces[i])}for(i=0;i<24;i++){mixedPieces[i]=regexEscape(mixedPieces[i])}this._monthsRegex=new RegExp("^("+mixedPieces.join("|")+")","i");this._monthsShortRegex=this._monthsRegex;this._monthsStrictRegex=new RegExp("^("+longPieces.join("|")+")","i");this._monthsShortStrictRegex=new RegExp("^("+shortPieces.join("|")+")","i")}
+// FORMATTING
+addFormatToken("Y",0,0,function(){var y=this.year();return y<=9999?""+y:"+"+y});addFormatToken(0,["YY",2],0,function(){return this.year()%100});addFormatToken(0,["YYYY",4],0,"year");addFormatToken(0,["YYYYY",5],0,"year");addFormatToken(0,["YYYYYY",6,true],0,"year");
+// ALIASES
+addUnitAlias("year","y");
+// PRIORITIES
+addUnitPriority("year",1);
+// PARSING
+addRegexToken("Y",matchSigned);addRegexToken("YY",match1to2,match2);addRegexToken("YYYY",match1to4,match4);addRegexToken("YYYYY",match1to6,match6);addRegexToken("YYYYYY",match1to6,match6);addParseToken(["YYYYY","YYYYYY"],YEAR);addParseToken("YYYY",function(input,array){array[YEAR]=input.length===2?utils_hooks__hooks.parseTwoDigitYear(input):toInt(input)});addParseToken("YY",function(input,array){array[YEAR]=utils_hooks__hooks.parseTwoDigitYear(input)});addParseToken("Y",function(input,array){array[YEAR]=parseInt(input,10)});
+// HELPERS
+function daysInYear(year){return isLeapYear(year)?366:365}function isLeapYear(year){return year%4===0&&year%100!==0||year%400===0}
+// HOOKS
+utils_hooks__hooks.parseTwoDigitYear=function(input){return toInt(input)+(toInt(input)>68?1900:2e3)};
+// MOMENTS
+var getSetYear=makeGetSet("FullYear",true);function getIsLeapYear(){return isLeapYear(this.year())}function createDate(y,m,d,h,M,s,ms){
+//can't just apply() to create a date:
+//http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
+var date=new Date(y,m,d,h,M,s,ms);
+//the date constructor remaps years 0-99 to 1900-1999
+if(y<100&&y>=0&&isFinite(date.getFullYear())){date.setFullYear(y)}return date}function createUTCDate(y){var date=new Date(Date.UTC.apply(null,arguments));
+//the Date.UTC function remaps years 0-99 to 1900-1999
+if(y<100&&y>=0&&isFinite(date.getUTCFullYear())){date.setUTCFullYear(y)}return date}
+// start-of-first-week - start-of-year
+function firstWeekOffset(year,dow,doy){var// first-week day -- which january is always in the first week (4 for iso, 1 for other)
+fwd=7+dow-doy,
+// first-week day local weekday -- which local weekday is fwd
+fwdlw=(7+createUTCDate(year,0,fwd).getUTCDay()-dow)%7;return-fwdlw+fwd-1}
+//http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
+function dayOfYearFromWeeks(year,week,weekday,dow,doy){var localWeekday=(7+weekday-dow)%7,weekOffset=firstWeekOffset(year,dow,doy),dayOfYear=1+7*(week-1)+localWeekday+weekOffset,resYear,resDayOfYear;if(dayOfYear<=0){resYear=year-1;resDayOfYear=daysInYear(resYear)+dayOfYear}else if(dayOfYear>daysInYear(year)){resYear=year+1;resDayOfYear=dayOfYear-daysInYear(year)}else{resYear=year;resDayOfYear=dayOfYear}return{year:resYear,dayOfYear:resDayOfYear}}function weekOfYear(mom,dow,doy){var weekOffset=firstWeekOffset(mom.year(),dow,doy),week=Math.floor((mom.dayOfYear()-weekOffset-1)/7)+1,resWeek,resYear;if(week<1){resYear=mom.year()-1;resWeek=week+weeksInYear(resYear,dow,doy)}else if(week>weeksInYear(mom.year(),dow,doy)){resWeek=week-weeksInYear(mom.year(),dow,doy);resYear=mom.year()+1}else{resYear=mom.year();resWeek=week}return{week:resWeek,year:resYear}}function weeksInYear(year,dow,doy){var weekOffset=firstWeekOffset(year,dow,doy),weekOffsetNext=firstWeekOffset(year+1,dow,doy);return(daysInYear(year)-weekOffset+weekOffsetNext)/7}
+// FORMATTING
+addFormatToken("w",["ww",2],"wo","week");addFormatToken("W",["WW",2],"Wo","isoWeek");
+// ALIASES
+addUnitAlias("week","w");addUnitAlias("isoWeek","W");
+// PRIORITIES
+addUnitPriority("week",5);addUnitPriority("isoWeek",5);
+// PARSING
+addRegexToken("w",match1to2);addRegexToken("ww",match1to2,match2);addRegexToken("W",match1to2);addRegexToken("WW",match1to2,match2);addWeekParseToken(["w","ww","W","WW"],function(input,week,config,token){week[token.substr(0,1)]=toInt(input)});
+// HELPERS
+// LOCALES
+function localeWeek(mom){return weekOfYear(mom,this._week.dow,this._week.doy).week}var defaultLocaleWeek={dow:0,// Sunday is the first day of the week.
+doy:6};function localeFirstDayOfWeek(){return this._week.dow}function localeFirstDayOfYear(){return this._week.doy}
+// MOMENTS
+function getSetWeek(input){var week=this.localeData().week(this);return input==null?week:this.add((input-week)*7,"d")}function getSetISOWeek(input){var week=weekOfYear(this,1,4).week;return input==null?week:this.add((input-week)*7,"d")}
+// FORMATTING
+addFormatToken("d",0,"do","day");addFormatToken("dd",0,0,function(format){return this.localeData().weekdaysMin(this,format)});addFormatToken("ddd",0,0,function(format){return this.localeData().weekdaysShort(this,format)});addFormatToken("dddd",0,0,function(format){return this.localeData().weekdays(this,format)});addFormatToken("e",0,0,"weekday");addFormatToken("E",0,0,"isoWeekday");
+// ALIASES
+addUnitAlias("day","d");addUnitAlias("weekday","e");addUnitAlias("isoWeekday","E");
+// PRIORITY
+addUnitPriority("day",11);addUnitPriority("weekday",11);addUnitPriority("isoWeekday",11);
+// PARSING
+addRegexToken("d",match1to2);addRegexToken("e",match1to2);addRegexToken("E",match1to2);addRegexToken("dd",function(isStrict,locale){return locale.weekdaysMinRegex(isStrict)});addRegexToken("ddd",function(isStrict,locale){return locale.weekdaysShortRegex(isStrict)});addRegexToken("dddd",function(isStrict,locale){return locale.weekdaysRegex(isStrict)});addWeekParseToken(["dd","ddd","dddd"],function(input,week,config,token){var weekday=config._locale.weekdaysParse(input,token,config._strict);
+// if we didn't get a weekday name, mark the date as invalid
+if(weekday!=null){week.d=weekday}else{getParsingFlags(config).invalidWeekday=input}});addWeekParseToken(["d","e","E"],function(input,week,config,token){week[token]=toInt(input)});
+// HELPERS
+function parseWeekday(input,locale){if(typeof input!=="string"){return input}if(!isNaN(input)){return parseInt(input,10)}input=locale.weekdaysParse(input);if(typeof input==="number"){return input}return null}function parseIsoWeekday(input,locale){if(typeof input==="string"){return locale.weekdaysParse(input)%7||7}return isNaN(input)?null:input}
+// LOCALES
+var defaultLocaleWeekdays="Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_");function localeWeekdays(m,format){if(!m){return this._weekdays}return isArray(this._weekdays)?this._weekdays[m.day()]:this._weekdays[this._weekdays.isFormat.test(format)?"format":"standalone"][m.day()]}var defaultLocaleWeekdaysShort="Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_");function localeWeekdaysShort(m){return m?this._weekdaysShort[m.day()]:this._weekdaysShort}var defaultLocaleWeekdaysMin="Su_Mo_Tu_We_Th_Fr_Sa".split("_");function localeWeekdaysMin(m){return m?this._weekdaysMin[m.day()]:this._weekdaysMin}function day_of_week__handleStrictParse(weekdayName,format,strict){var i,ii,mom,llc=weekdayName.toLocaleLowerCase();if(!this._weekdaysParse){this._weekdaysParse=[];this._shortWeekdaysParse=[];this._minWeekdaysParse=[];for(i=0;i<7;++i){mom=create_utc__createUTC([2e3,1]).day(i);this._minWeekdaysParse[i]=this.weekdaysMin(mom,"").toLocaleLowerCase();this._shortWeekdaysParse[i]=this.weekdaysShort(mom,"").toLocaleLowerCase();this._weekdaysParse[i]=this.weekdays(mom,"").toLocaleLowerCase()}}if(strict){if(format==="dddd"){ii=indexOf.call(this._weekdaysParse,llc);return ii!==-1?ii:null}else if(format==="ddd"){ii=indexOf.call(this._shortWeekdaysParse,llc);return ii!==-1?ii:null}else{ii=indexOf.call(this._minWeekdaysParse,llc);return ii!==-1?ii:null}}else{if(format==="dddd"){ii=indexOf.call(this._weekdaysParse,llc);if(ii!==-1){return ii}ii=indexOf.call(this._shortWeekdaysParse,llc);if(ii!==-1){return ii}ii=indexOf.call(this._minWeekdaysParse,llc);return ii!==-1?ii:null}else if(format==="ddd"){ii=indexOf.call(this._shortWeekdaysParse,llc);if(ii!==-1){return ii}ii=indexOf.call(this._weekdaysParse,llc);if(ii!==-1){return ii}ii=indexOf.call(this._minWeekdaysParse,llc);return ii!==-1?ii:null}else{ii=indexOf.call(this._minWeekdaysParse,llc);if(ii!==-1){return ii}ii=indexOf.call(this._weekdaysParse,llc);if(ii!==-1){return ii}ii=indexOf.call(this._shortWeekdaysParse,llc);return ii!==-1?ii:null}}}function localeWeekdaysParse(weekdayName,format,strict){var i,mom,regex;if(this._weekdaysParseExact){return day_of_week__handleStrictParse.call(this,weekdayName,format,strict)}if(!this._weekdaysParse){this._weekdaysParse=[];this._minWeekdaysParse=[];this._shortWeekdaysParse=[];this._fullWeekdaysParse=[]}for(i=0;i<7;i++){
+// make the regex if we don't have it already
+mom=create_utc__createUTC([2e3,1]).day(i);if(strict&&!this._fullWeekdaysParse[i]){this._fullWeekdaysParse[i]=new RegExp("^"+this.weekdays(mom,"").replace(".",".?")+"$","i");this._shortWeekdaysParse[i]=new RegExp("^"+this.weekdaysShort(mom,"").replace(".",".?")+"$","i");this._minWeekdaysParse[i]=new RegExp("^"+this.weekdaysMin(mom,"").replace(".",".?")+"$","i")}if(!this._weekdaysParse[i]){regex="^"+this.weekdays(mom,"")+"|^"+this.weekdaysShort(mom,"")+"|^"+this.weekdaysMin(mom,"");this._weekdaysParse[i]=new RegExp(regex.replace(".",""),"i")}
+// test the regex
+if(strict&&format==="dddd"&&this._fullWeekdaysParse[i].test(weekdayName)){return i}else if(strict&&format==="ddd"&&this._shortWeekdaysParse[i].test(weekdayName)){return i}else if(strict&&format==="dd"&&this._minWeekdaysParse[i].test(weekdayName)){return i}else if(!strict&&this._weekdaysParse[i].test(weekdayName)){return i}}}
+// MOMENTS
+function getSetDayOfWeek(input){if(!this.isValid()){return input!=null?this:NaN}var day=this._isUTC?this._d.getUTCDay():this._d.getDay();if(input!=null){input=parseWeekday(input,this.localeData());return this.add(input-day,"d")}else{return day}}function getSetLocaleDayOfWeek(input){if(!this.isValid()){return input!=null?this:NaN}var weekday=(this.day()+7-this.localeData()._week.dow)%7;return input==null?weekday:this.add(input-weekday,"d")}function getSetISODayOfWeek(input){if(!this.isValid()){return input!=null?this:NaN}
+// behaves the same as moment#day except
+// as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
+// as a setter, sunday should belong to the previous week.
+if(input!=null){var weekday=parseIsoWeekday(input,this.localeData());return this.day(this.day()%7?weekday:weekday-7)}else{return this.day()||7}}var defaultWeekdaysRegex=matchWord;function weekdaysRegex(isStrict){if(this._weekdaysParseExact){if(!hasOwnProp(this,"_weekdaysRegex")){computeWeekdaysParse.call(this)}if(isStrict){return this._weekdaysStrictRegex}else{return this._weekdaysRegex}}else{if(!hasOwnProp(this,"_weekdaysRegex")){this._weekdaysRegex=defaultWeekdaysRegex}return this._weekdaysStrictRegex&&isStrict?this._weekdaysStrictRegex:this._weekdaysRegex}}var defaultWeekdaysShortRegex=matchWord;function weekdaysShortRegex(isStrict){if(this._weekdaysParseExact){if(!hasOwnProp(this,"_weekdaysRegex")){computeWeekdaysParse.call(this)}if(isStrict){return this._weekdaysShortStrictRegex}else{return this._weekdaysShortRegex}}else{if(!hasOwnProp(this,"_weekdaysShortRegex")){this._weekdaysShortRegex=defaultWeekdaysShortRegex}return this._weekdaysShortStrictRegex&&isStrict?this._weekdaysShortStrictRegex:this._weekdaysShortRegex}}var defaultWeekdaysMinRegex=matchWord;function weekdaysMinRegex(isStrict){if(this._weekdaysParseExact){if(!hasOwnProp(this,"_weekdaysRegex")){computeWeekdaysParse.call(this)}if(isStrict){return this._weekdaysMinStrictRegex}else{return this._weekdaysMinRegex}}else{if(!hasOwnProp(this,"_weekdaysMinRegex")){this._weekdaysMinRegex=defaultWeekdaysMinRegex}return this._weekdaysMinStrictRegex&&isStrict?this._weekdaysMinStrictRegex:this._weekdaysMinRegex}}function computeWeekdaysParse(){function cmpLenRev(a,b){return b.length-a.length}var minPieces=[],shortPieces=[],longPieces=[],mixedPieces=[],i,mom,minp,shortp,longp;for(i=0;i<7;i++){
+// make the regex if we don't have it already
+mom=create_utc__createUTC([2e3,1]).day(i);minp=this.weekdaysMin(mom,"");shortp=this.weekdaysShort(mom,"");longp=this.weekdays(mom,"");minPieces.push(minp);shortPieces.push(shortp);longPieces.push(longp);mixedPieces.push(minp);mixedPieces.push(shortp);mixedPieces.push(longp)}
+// Sorting makes sure if one weekday (or abbr) is a prefix of another it
+// will match the longer piece.
+minPieces.sort(cmpLenRev);shortPieces.sort(cmpLenRev);longPieces.sort(cmpLenRev);mixedPieces.sort(cmpLenRev);for(i=0;i<7;i++){shortPieces[i]=regexEscape(shortPieces[i]);longPieces[i]=regexEscape(longPieces[i]);mixedPieces[i]=regexEscape(mixedPieces[i])}this._weekdaysRegex=new RegExp("^("+mixedPieces.join("|")+")","i");this._weekdaysShortRegex=this._weekdaysRegex;this._weekdaysMinRegex=this._weekdaysRegex;this._weekdaysStrictRegex=new RegExp("^("+longPieces.join("|")+")","i");this._weekdaysShortStrictRegex=new RegExp("^("+shortPieces.join("|")+")","i");this._weekdaysMinStrictRegex=new RegExp("^("+minPieces.join("|")+")","i")}
+// FORMATTING
+function hFormat(){return this.hours()%12||12}function kFormat(){return this.hours()||24}addFormatToken("H",["HH",2],0,"hour");addFormatToken("h",["hh",2],0,hFormat);addFormatToken("k",["kk",2],0,kFormat);addFormatToken("hmm",0,0,function(){return""+hFormat.apply(this)+zeroFill(this.minutes(),2)});addFormatToken("hmmss",0,0,function(){return""+hFormat.apply(this)+zeroFill(this.minutes(),2)+zeroFill(this.seconds(),2)});addFormatToken("Hmm",0,0,function(){return""+this.hours()+zeroFill(this.minutes(),2)});addFormatToken("Hmmss",0,0,function(){return""+this.hours()+zeroFill(this.minutes(),2)+zeroFill(this.seconds(),2)});function meridiem(token,lowercase){addFormatToken(token,0,0,function(){return this.localeData().meridiem(this.hours(),this.minutes(),lowercase)})}meridiem("a",true);meridiem("A",false);
+// ALIASES
+addUnitAlias("hour","h");
+// PRIORITY
+addUnitPriority("hour",13);
+// PARSING
+function matchMeridiem(isStrict,locale){return locale._meridiemParse}addRegexToken("a",matchMeridiem);addRegexToken("A",matchMeridiem);addRegexToken("H",match1to2);addRegexToken("h",match1to2);addRegexToken("HH",match1to2,match2);addRegexToken("hh",match1to2,match2);addRegexToken("hmm",match3to4);addRegexToken("hmmss",match5to6);addRegexToken("Hmm",match3to4);addRegexToken("Hmmss",match5to6);addParseToken(["H","HH"],HOUR);addParseToken(["a","A"],function(input,array,config){config._isPm=config._locale.isPM(input);config._meridiem=input});addParseToken(["h","hh"],function(input,array,config){array[HOUR]=toInt(input);getParsingFlags(config).bigHour=true});addParseToken("hmm",function(input,array,config){var pos=input.length-2;array[HOUR]=toInt(input.substr(0,pos));array[MINUTE]=toInt(input.substr(pos));getParsingFlags(config).bigHour=true});addParseToken("hmmss",function(input,array,config){var pos1=input.length-4;var pos2=input.length-2;array[HOUR]=toInt(input.substr(0,pos1));array[MINUTE]=toInt(input.substr(pos1,2));array[SECOND]=toInt(input.substr(pos2));getParsingFlags(config).bigHour=true});addParseToken("Hmm",function(input,array,config){var pos=input.length-2;array[HOUR]=toInt(input.substr(0,pos));array[MINUTE]=toInt(input.substr(pos))});addParseToken("Hmmss",function(input,array,config){var pos1=input.length-4;var pos2=input.length-2;array[HOUR]=toInt(input.substr(0,pos1));array[MINUTE]=toInt(input.substr(pos1,2));array[SECOND]=toInt(input.substr(pos2))});
+// LOCALES
+function localeIsPM(input){
+// IE8 Quirks Mode & IE7 Standards Mode do not allow accessing strings like arrays
+// Using charAt should be more compatible.
+return(input+"").toLowerCase().charAt(0)==="p"}var defaultLocaleMeridiemParse=/[ap]\.?m?\.?/i;function localeMeridiem(hours,minutes,isLower){if(hours>11){return isLower?"pm":"PM"}else{return isLower?"am":"AM"}}
+// MOMENTS
+// Setting the hour should keep the time, because the user explicitly
+// specified which hour he wants. So trying to maintain the same hour (in
+// a new timezone) makes sense. Adding/subtracting hours does not follow
+// this rule.
+var getSetHour=makeGetSet("Hours",true);var baseConfig={calendar:defaultCalendar,longDateFormat:defaultLongDateFormat,invalidDate:defaultInvalidDate,ordinal:defaultOrdinal,ordinalParse:defaultOrdinalParse,relativeTime:defaultRelativeTime,months:defaultLocaleMonths,monthsShort:defaultLocaleMonthsShort,week:defaultLocaleWeek,weekdays:defaultLocaleWeekdays,weekdaysMin:defaultLocaleWeekdaysMin,weekdaysShort:defaultLocaleWeekdaysShort,meridiemParse:defaultLocaleMeridiemParse};
+// internal storage for locale config files
+var locales={};var globalLocale;function normalizeLocale(key){return key?key.toLowerCase().replace("_","-"):key}
+// pick the locale from the array
+// try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the list trying each
+// substring from most specific to least, but move to the next array item if it's a more specific variant than the current root
+function chooseLocale(names){var i=0,j,next,locale,split;while(i<names.length){split=normalizeLocale(names[i]).split("-");j=split.length;next=normalizeLocale(names[i+1]);next=next?next.split("-"):null;while(j>0){locale=loadLocale(split.slice(0,j).join("-"));if(locale){return locale}if(next&&next.length>=j&&compareArrays(split,next,true)>=j-1){
+//the next array item is better than a shallower substring of this one
+break}j--}i++}return null}function loadLocale(name){var oldLocale=null;
+// TODO: Find a better way to register and load all the locales in Node
+if(!locales[name]&&typeof module!=="undefined"&&module&&module.exports){try{oldLocale=globalLocale._abbr;require("./locale/"+name);
+// because defineLocale currently also sets the global locale, we
+// want to undo that for lazy loaded locales
+locale_locales__getSetGlobalLocale(oldLocale)}catch(e){}}return locales[name]}
+// This function will load locale and then set the global locale.  If
+// no arguments are passed in, it will simply return the current global
+// locale key.
+function locale_locales__getSetGlobalLocale(key,values){var data;if(key){if(isUndefined(values)){data=locale_locales__getLocale(key)}else{data=defineLocale(key,values)}if(data){
+// moment.duration._locale = moment._locale = data;
+globalLocale=data}}return globalLocale._abbr}function defineLocale(name,config){if(config!==null){var parentConfig=baseConfig;config.abbr=name;if(locales[name]!=null){deprecateSimple("defineLocaleOverride","use moment.updateLocale(localeName, config) to change "+"an existing locale. moment.defineLocale(localeName, "+"config) should only be used for creating a new locale "+"See http://momentjs.com/guides/#/warnings/define-locale/ for more info.");parentConfig=locales[name]._config}else if(config.parentLocale!=null){if(locales[config.parentLocale]!=null){parentConfig=locales[config.parentLocale]._config}else{
+// treat as if there is no base config
+deprecateSimple("parentLocaleUndefined","specified parentLocale is not defined yet. See http://momentjs.com/guides/#/warnings/parent-locale/")}}locales[name]=new Locale(mergeConfigs(parentConfig,config));
+// backwards compat for now: also set the locale
+locale_locales__getSetGlobalLocale(name);return locales[name]}else{
+// useful for testing
+delete locales[name];return null}}function updateLocale(name,config){if(config!=null){var locale,parentConfig=baseConfig;
+// MERGE
+if(locales[name]!=null){parentConfig=locales[name]._config}config=mergeConfigs(parentConfig,config);locale=new Locale(config);locale.parentLocale=locales[name];locales[name]=locale;
+// backwards compat for now: also set the locale
+locale_locales__getSetGlobalLocale(name)}else{
+// pass null for config to unupdate, useful for tests
+if(locales[name]!=null){if(locales[name].parentLocale!=null){locales[name]=locales[name].parentLocale}else if(locales[name]!=null){delete locales[name]}}}return locales[name]}
+// returns locale data
+function locale_locales__getLocale(key){var locale;if(key&&key._locale&&key._locale._abbr){key=key._locale._abbr}if(!key){return globalLocale}if(!isArray(key)){
+//short-circuit everything else
+locale=loadLocale(key);if(locale){return locale}key=[key]}return chooseLocale(key)}function locale_locales__listLocales(){return keys(locales)}function checkOverflow(m){var overflow;var a=m._a;if(a&&getParsingFlags(m).overflow===-2){overflow=a[MONTH]<0||a[MONTH]>11?MONTH:a[DATE]<1||a[DATE]>daysInMonth(a[YEAR],a[MONTH])?DATE:a[HOUR]<0||a[HOUR]>24||a[HOUR]===24&&(a[MINUTE]!==0||a[SECOND]!==0||a[MILLISECOND]!==0)?HOUR:a[MINUTE]<0||a[MINUTE]>59?MINUTE:a[SECOND]<0||a[SECOND]>59?SECOND:a[MILLISECOND]<0||a[MILLISECOND]>999?MILLISECOND:-1;if(getParsingFlags(m)._overflowDayOfYear&&(overflow<YEAR||overflow>DATE)){overflow=DATE}if(getParsingFlags(m)._overflowWeeks&&overflow===-1){overflow=WEEK}if(getParsingFlags(m)._overflowWeekday&&overflow===-1){overflow=WEEKDAY}getParsingFlags(m).overflow=overflow}return m}
+// iso 8601 regex
+// 0000-00-00 0000-W00 or 0000-W00-0 + T + 00 or 00:00 or 00:00:00 or 00:00:00.000 + +00:00 or +0000 or +00)
+var extendedIsoRegex=/^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?/;var basicIsoRegex=/^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?/;var tzRegex=/Z|[+-]\d\d(?::?\d\d)?/;var isoDates=[["YYYYYY-MM-DD",/[+-]\d{6}-\d\d-\d\d/],["YYYY-MM-DD",/\d{4}-\d\d-\d\d/],["GGGG-[W]WW-E",/\d{4}-W\d\d-\d/],["GGGG-[W]WW",/\d{4}-W\d\d/,false],["YYYY-DDD",/\d{4}-\d{3}/],["YYYY-MM",/\d{4}-\d\d/,false],["YYYYYYMMDD",/[+-]\d{10}/],["YYYYMMDD",/\d{8}/],
+// YYYYMM is NOT allowed by the standard
+["GGGG[W]WWE",/\d{4}W\d{3}/],["GGGG[W]WW",/\d{4}W\d{2}/,false],["YYYYDDD",/\d{7}/]];
+// iso time formats and regexes
+var isoTimes=[["HH:mm:ss.SSSS",/\d\d:\d\d:\d\d\.\d+/],["HH:mm:ss,SSSS",/\d\d:\d\d:\d\d,\d+/],["HH:mm:ss",/\d\d:\d\d:\d\d/],["HH:mm",/\d\d:\d\d/],["HHmmss.SSSS",/\d\d\d\d\d\d\.\d+/],["HHmmss,SSSS",/\d\d\d\d\d\d,\d+/],["HHmmss",/\d\d\d\d\d\d/],["HHmm",/\d\d\d\d/],["HH",/\d\d/]];var aspNetJsonRegex=/^\/?Date\((\-?\d+)/i;
+// date from iso format
+function configFromISO(config){var i,l,string=config._i,match=extendedIsoRegex.exec(string)||basicIsoRegex.exec(string),allowTime,dateFormat,timeFormat,tzFormat;if(match){getParsingFlags(config).iso=true;for(i=0,l=isoDates.length;i<l;i++){if(isoDates[i][1].exec(match[1])){dateFormat=isoDates[i][0];allowTime=isoDates[i][2]!==false;break}}if(dateFormat==null){config._isValid=false;return}if(match[3]){for(i=0,l=isoTimes.length;i<l;i++){if(isoTimes[i][1].exec(match[3])){
+// match[2] should be 'T' or space
+timeFormat=(match[2]||" ")+isoTimes[i][0];break}}if(timeFormat==null){config._isValid=false;return}}if(!allowTime&&timeFormat!=null){config._isValid=false;return}if(match[4]){if(tzRegex.exec(match[4])){tzFormat="Z"}else{config._isValid=false;return}}config._f=dateFormat+(timeFormat||"")+(tzFormat||"");configFromStringAndFormat(config)}else{config._isValid=false}}
+// date from iso format or fallback
+function configFromString(config){var matched=aspNetJsonRegex.exec(config._i);if(matched!==null){config._d=new Date((+matched[1]));return}configFromISO(config);if(config._isValid===false){delete config._isValid;utils_hooks__hooks.createFromInputFallback(config)}}utils_hooks__hooks.createFromInputFallback=deprecate("value provided is not in a recognized ISO format. moment construction falls back to js Date(), "+"which is not reliable across all browsers and versions. Non ISO date formats are "+"discouraged and will be removed in an upcoming major release. Please refer to "+"http://momentjs.com/guides/#/warnings/js-date/ for more info.",function(config){config._d=new Date(config._i+(config._useUTC?" UTC":""))});
+// Pick the first defined of two or three arguments.
+function defaults(a,b,c){if(a!=null){return a}if(b!=null){return b}return c}function currentDateArray(config){
+// hooks is actually the exported moment object
+var nowValue=new Date(utils_hooks__hooks.now());if(config._useUTC){return[nowValue.getUTCFullYear(),nowValue.getUTCMonth(),nowValue.getUTCDate()]}return[nowValue.getFullYear(),nowValue.getMonth(),nowValue.getDate()]}
+// convert an array to a date.
+// the array should mirror the parameters below
+// note: all values past the year are optional and will default to the lowest possible value.
+// [year, month, day , hour, minute, second, millisecond]
+function configFromArray(config){var i,date,input=[],currentDate,yearToUse;if(config._d){return}currentDate=currentDateArray(config);
+//compute day of the year from weeks and weekdays
+if(config._w&&config._a[DATE]==null&&config._a[MONTH]==null){dayOfYearFromWeekInfo(config)}
+//if the day of the year is set, figure out what it is
+if(config._dayOfYear){yearToUse=defaults(config._a[YEAR],currentDate[YEAR]);if(config._dayOfYear>daysInYear(yearToUse)){getParsingFlags(config)._overflowDayOfYear=true}date=createUTCDate(yearToUse,0,config._dayOfYear);config._a[MONTH]=date.getUTCMonth();config._a[DATE]=date.getUTCDate()}
+// Default to current date.
+// * if no year, month, day of month are given, default to today
+// * if day of month is given, default month and year
+// * if month is given, default only year
+// * if year is given, don't default anything
+for(i=0;i<3&&config._a[i]==null;++i){config._a[i]=input[i]=currentDate[i]}
+// Zero out whatever was not defaulted, including time
+for(;i<7;i++){config._a[i]=input[i]=config._a[i]==null?i===2?1:0:config._a[i]}
+// Check for 24:00:00.000
+if(config._a[HOUR]===24&&config._a[MINUTE]===0&&config._a[SECOND]===0&&config._a[MILLISECOND]===0){config._nextDay=true;config._a[HOUR]=0}config._d=(config._useUTC?createUTCDate:createDate).apply(null,input);
+// Apply timezone offset from input. The actual utcOffset can be changed
+// with parseZone.
+if(config._tzm!=null){config._d.setUTCMinutes(config._d.getUTCMinutes()-config._tzm)}if(config._nextDay){config._a[HOUR]=24}}function dayOfYearFromWeekInfo(config){var w,weekYear,week,weekday,dow,doy,temp,weekdayOverflow;w=config._w;if(w.GG!=null||w.W!=null||w.E!=null){dow=1;doy=4;
+// TODO: We need to take the current isoWeekYear, but that depends on
+// how we interpret now (local, utc, fixed offset). So create
+// a now version of current config (take local/utc/offset flags, and
+// create now).
+weekYear=defaults(w.GG,config._a[YEAR],weekOfYear(local__createLocal(),1,4).year);week=defaults(w.W,1);weekday=defaults(w.E,1);if(weekday<1||weekday>7){weekdayOverflow=true}}else{dow=config._locale._week.dow;doy=config._locale._week.doy;weekYear=defaults(w.gg,config._a[YEAR],weekOfYear(local__createLocal(),dow,doy).year);week=defaults(w.w,1);if(w.d!=null){
+// weekday -- low day numbers are considered next week
+weekday=w.d;if(weekday<0||weekday>6){weekdayOverflow=true}}else if(w.e!=null){
+// local weekday -- counting starts from begining of week
+weekday=w.e+dow;if(w.e<0||w.e>6){weekdayOverflow=true}}else{
+// default to begining of week
+weekday=dow}}if(week<1||week>weeksInYear(weekYear,dow,doy)){getParsingFlags(config)._overflowWeeks=true}else if(weekdayOverflow!=null){getParsingFlags(config)._overflowWeekday=true}else{temp=dayOfYearFromWeeks(weekYear,week,weekday,dow,doy);config._a[YEAR]=temp.year;config._dayOfYear=temp.dayOfYear}}
+// constant that refers to the ISO standard
+utils_hooks__hooks.ISO_8601=function(){};
+// date from string and format string
+function configFromStringAndFormat(config){
+// TODO: Move this to another part of the creation flow to prevent circular deps
+if(config._f===utils_hooks__hooks.ISO_8601){configFromISO(config);return}config._a=[];getParsingFlags(config).empty=true;
+// This array is used to make a Date, either with `new Date` or `Date.UTC`
+var string=""+config._i,i,parsedInput,tokens,token,skipped,stringLength=string.length,totalParsedInputLength=0;tokens=expandFormat(config._f,config._locale).match(formattingTokens)||[];for(i=0;i<tokens.length;i++){token=tokens[i];parsedInput=(string.match(getParseRegexForToken(token,config))||[])[0];
+// console.log('token', token, 'parsedInput', parsedInput,
+//         'regex', getParseRegexForToken(token, config));
+if(parsedInput){skipped=string.substr(0,string.indexOf(parsedInput));if(skipped.length>0){getParsingFlags(config).unusedInput.push(skipped)}string=string.slice(string.indexOf(parsedInput)+parsedInput.length);totalParsedInputLength+=parsedInput.length}
+// don't parse if it's not a known token
+if(formatTokenFunctions[token]){if(parsedInput){getParsingFlags(config).empty=false}else{getParsingFlags(config).unusedTokens.push(token)}addTimeToArrayFromToken(token,parsedInput,config)}else if(config._strict&&!parsedInput){getParsingFlags(config).unusedTokens.push(token)}}
+// add remaining unparsed input length to the string
+getParsingFlags(config).charsLeftOver=stringLength-totalParsedInputLength;if(string.length>0){getParsingFlags(config).unusedInput.push(string)}
+// clear _12h flag if hour is <= 12
+if(config._a[HOUR]<=12&&getParsingFlags(config).bigHour===true&&config._a[HOUR]>0){getParsingFlags(config).bigHour=undefined}getParsingFlags(config).parsedDateParts=config._a.slice(0);getParsingFlags(config).meridiem=config._meridiem;
+// handle meridiem
+config._a[HOUR]=meridiemFixWrap(config._locale,config._a[HOUR],config._meridiem);configFromArray(config);checkOverflow(config)}function meridiemFixWrap(locale,hour,meridiem){var isPm;if(meridiem==null){
+// nothing to do
+return hour}if(locale.meridiemHour!=null){return locale.meridiemHour(hour,meridiem)}else if(locale.isPM!=null){
+// Fallback
+isPm=locale.isPM(meridiem);if(isPm&&hour<12){hour+=12}if(!isPm&&hour===12){hour=0}return hour}else{
+// this is not supposed to happen
+return hour}}
+// date from string and array of format strings
+function configFromStringAndArray(config){var tempConfig,bestMoment,scoreToBeat,i,currentScore;if(config._f.length===0){getParsingFlags(config).invalidFormat=true;config._d=new Date(NaN);return}for(i=0;i<config._f.length;i++){currentScore=0;tempConfig=copyConfig({},config);if(config._useUTC!=null){tempConfig._useUTC=config._useUTC}tempConfig._f=config._f[i];configFromStringAndFormat(tempConfig);if(!valid__isValid(tempConfig)){continue}
+// if there is any input that was not parsed add a penalty for that format
+currentScore+=getParsingFlags(tempConfig).charsLeftOver;
+//or tokens
+currentScore+=getParsingFlags(tempConfig).unusedTokens.length*10;getParsingFlags(tempConfig).score=currentScore;if(scoreToBeat==null||currentScore<scoreToBeat){scoreToBeat=currentScore;bestMoment=tempConfig}}extend(config,bestMoment||tempConfig)}function configFromObject(config){if(config._d){return}var i=normalizeObjectUnits(config._i);config._a=map([i.year,i.month,i.day||i.date,i.hour,i.minute,i.second,i.millisecond],function(obj){return obj&&parseInt(obj,10)});configFromArray(config)}function createFromConfig(config){var res=new Moment(checkOverflow(prepareConfig(config)));if(res._nextDay){
+// Adding is smart enough around DST
+res.add(1,"d");res._nextDay=undefined}return res}function prepareConfig(config){var input=config._i,format=config._f;config._locale=config._locale||locale_locales__getLocale(config._l);if(input===null||format===undefined&&input===""){return valid__createInvalid({nullInput:true})}if(typeof input==="string"){config._i=input=config._locale.preparse(input)}if(isMoment(input)){return new Moment(checkOverflow(input))}else if(isArray(format)){configFromStringAndArray(config)}else if(isDate(input)){config._d=input}else if(format){configFromStringAndFormat(config)}else{configFromInput(config)}if(!valid__isValid(config)){config._d=null}return config}function configFromInput(config){var input=config._i;if(input===undefined){config._d=new Date(utils_hooks__hooks.now())}else if(isDate(input)){config._d=new Date(input.valueOf())}else if(typeof input==="string"){configFromString(config)}else if(isArray(input)){config._a=map(input.slice(0),function(obj){return parseInt(obj,10)});configFromArray(config)}else if(typeof input==="object"){configFromObject(config)}else if(typeof input==="number"){
+// from milliseconds
+config._d=new Date(input)}else{utils_hooks__hooks.createFromInputFallback(config)}}function createLocalOrUTC(input,format,locale,strict,isUTC){var c={};if(typeof locale==="boolean"){strict=locale;locale=undefined}if(isObject(input)&&isObjectEmpty(input)||isArray(input)&&input.length===0){input=undefined}
+// object construction must be done this way.
+// https://github.com/moment/moment/issues/1423
+c._isAMomentObject=true;c._useUTC=c._isUTC=isUTC;c._l=locale;c._i=input;c._f=format;c._strict=strict;return createFromConfig(c)}function local__createLocal(input,format,locale,strict){return createLocalOrUTC(input,format,locale,strict,false)}var prototypeMin=deprecate("moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/",function(){var other=local__createLocal.apply(null,arguments);if(this.isValid()&&other.isValid()){return other<this?this:other}else{return valid__createInvalid()}});var prototypeMax=deprecate("moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/",function(){var other=local__createLocal.apply(null,arguments);if(this.isValid()&&other.isValid()){return other>this?this:other}else{return valid__createInvalid()}});
+// Pick a moment m from moments so that m[fn](other) is true for all
+// other. This relies on the function fn to be transitive.
+//
+// moments should either be an array of moment objects or an array, whose
+// first element is an array of moment objects.
+function pickBy(fn,moments){var res,i;if(moments.length===1&&isArray(moments[0])){moments=moments[0]}if(!moments.length){return local__createLocal()}res=moments[0];for(i=1;i<moments.length;++i){if(!moments[i].isValid()||moments[i][fn](res)){res=moments[i]}}return res}
+// TODO: Use [].sort instead?
+function min(){var args=[].slice.call(arguments,0);return pickBy("isBefore",args)}function max(){var args=[].slice.call(arguments,0);return pickBy("isAfter",args)}var now=function(){return Date.now?Date.now():+new Date};function Duration(duration){var normalizedInput=normalizeObjectUnits(duration),years=normalizedInput.year||0,quarters=normalizedInput.quarter||0,months=normalizedInput.month||0,weeks=normalizedInput.week||0,days=normalizedInput.day||0,hours=normalizedInput.hour||0,minutes=normalizedInput.minute||0,seconds=normalizedInput.second||0,milliseconds=normalizedInput.millisecond||0;
+// representation for dateAddRemove
+this._milliseconds=+milliseconds+seconds*1e3+// 1000
+minutes*6e4+// 1000 * 60
+hours*1e3*60*60;//using 1000 * 60 * 60 instead of 36e5 to avoid floating point rounding errors https://github.com/moment/moment/issues/2978
+// Because of dateAddRemove treats 24 hours as different from a
+// day when working around DST, we need to store them separately
+this._days=+days+weeks*7;
+// It is impossible translate months into days without knowing
+// which months you are are talking about, so we have to store
+// it separately.
+this._months=+months+quarters*3+years*12;this._data={};this._locale=locale_locales__getLocale();this._bubble()}function isDuration(obj){return obj instanceof Duration}function absRound(number){if(number<0){return Math.round(-1*number)*-1}else{return Math.round(number)}}
+// FORMATTING
+function offset(token,separator){addFormatToken(token,0,0,function(){var offset=this.utcOffset();var sign="+";if(offset<0){offset=-offset;sign="-"}return sign+zeroFill(~~(offset/60),2)+separator+zeroFill(~~offset%60,2)})}offset("Z",":");offset("ZZ","");
+// PARSING
+addRegexToken("Z",matchShortOffset);addRegexToken("ZZ",matchShortOffset);addParseToken(["Z","ZZ"],function(input,array,config){config._useUTC=true;config._tzm=offsetFromString(matchShortOffset,input)});
+// HELPERS
+// timezone chunker
+// '+10:00' > ['10',  '00']
+// '-1530'  > ['-15', '30']
+var chunkOffset=/([\+\-]|\d\d)/gi;function offsetFromString(matcher,string){var matches=(string||"").match(matcher)||[];var chunk=matches[matches.length-1]||[];var parts=(chunk+"").match(chunkOffset)||["-",0,0];var minutes=+(parts[1]*60)+toInt(parts[2]);return parts[0]==="+"?minutes:-minutes}
+// Return a moment from input, that is local/utc/zone equivalent to model.
+function cloneWithOffset(input,model){var res,diff;if(model._isUTC){res=model.clone();diff=(isMoment(input)||isDate(input)?input.valueOf():local__createLocal(input).valueOf())-res.valueOf();
+// Use low-level api, because this fn is low-level api.
+res._d.setTime(res._d.valueOf()+diff);utils_hooks__hooks.updateOffset(res,false);return res}else{return local__createLocal(input).local()}}function getDateOffset(m){
+// On Firefox.24 Date#getTimezoneOffset returns a floating point.
+// https://github.com/moment/moment/pull/1871
+return-Math.round(m._d.getTimezoneOffset()/15)*15}
+// HOOKS
+// This function will be called whenever a moment is mutated.
+// It is intended to keep the offset in sync with the timezone.
+utils_hooks__hooks.updateOffset=function(){};
+// MOMENTS
+// keepLocalTime = true means only change the timezone, without
+// affecting the local hour. So 5:31:26 +0300 --[utcOffset(2, true)]-->
+// 5:31:26 +0200 It is possible that 5:31:26 doesn't exist with offset
+// +0200, so we adjust the time as needed, to be valid.
+//
+// Keeping the time actually adds/subtracts (one hour)
+// from the actual represented time. That is why we call updateOffset
+// a second time. In case it wants us to change the offset again
+// _changeInProgress == true case, then we have to adjust, because
+// there is no such time in the given timezone.
+function getSetOffset(input,keepLocalTime){var offset=this._offset||0,localAdjust;if(!this.isValid()){return input!=null?this:NaN}if(input!=null){if(typeof input==="string"){input=offsetFromString(matchShortOffset,input)}else if(Math.abs(input)<16){input=input*60}if(!this._isUTC&&keepLocalTime){localAdjust=getDateOffset(this)}this._offset=input;this._isUTC=true;if(localAdjust!=null){this.add(localAdjust,"m")}if(offset!==input){if(!keepLocalTime||this._changeInProgress){add_subtract__addSubtract(this,create__createDuration(input-offset,"m"),1,false)}else if(!this._changeInProgress){this._changeInProgress=true;utils_hooks__hooks.updateOffset(this,true);this._changeInProgress=null}}return this}else{return this._isUTC?offset:getDateOffset(this)}}function getSetZone(input,keepLocalTime){if(input!=null){if(typeof input!=="string"){input=-input}this.utcOffset(input,keepLocalTime);return this}else{return-this.utcOffset()}}function setOffsetToUTC(keepLocalTime){return this.utcOffset(0,keepLocalTime)}function setOffsetToLocal(keepLocalTime){if(this._isUTC){this.utcOffset(0,keepLocalTime);this._isUTC=false;if(keepLocalTime){this.subtract(getDateOffset(this),"m")}}return this}function setOffsetToParsedOffset(){if(this._tzm){this.utcOffset(this._tzm)}else if(typeof this._i==="string"){var tZone=offsetFromString(matchOffset,this._i);if(tZone===0){this.utcOffset(0,true)}else{this.utcOffset(offsetFromString(matchOffset,this._i))}}return this}function hasAlignedHourOffset(input){if(!this.isValid()){return false}input=input?local__createLocal(input).utcOffset():0;return(this.utcOffset()-input)%60===0}function isDaylightSavingTime(){return this.utcOffset()>this.clone().month(0).utcOffset()||this.utcOffset()>this.clone().month(5).utcOffset()}function isDaylightSavingTimeShifted(){if(!isUndefined(this._isDSTShifted)){return this._isDSTShifted}var c={};copyConfig(c,this);c=prepareConfig(c);if(c._a){var other=c._isUTC?create_utc__createUTC(c._a):local__createLocal(c._a);this._isDSTShifted=this.isValid()&&compareArrays(c._a,other.toArray())>0}else{this._isDSTShifted=false}return this._isDSTShifted}function isLocal(){return this.isValid()?!this._isUTC:false}function isUtcOffset(){return this.isValid()?this._isUTC:false}function isUtc(){return this.isValid()?this._isUTC&&this._offset===0:false}
+// ASP.NET json date format regex
+var aspNetRegex=/^(\-)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
+// from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+// somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
+// and further modified to allow for strings containing both week and day
+var isoRegex=/^(-)?P(?:(-?[0-9,.]*)Y)?(?:(-?[0-9,.]*)M)?(?:(-?[0-9,.]*)W)?(?:(-?[0-9,.]*)D)?(?:T(?:(-?[0-9,.]*)H)?(?:(-?[0-9,.]*)M)?(?:(-?[0-9,.]*)S)?)?$/;function create__createDuration(input,key){var duration=input,
+// matching against regexp is expensive, do it on demand
+match=null,sign,ret,diffRes;if(isDuration(input)){duration={ms:input._milliseconds,d:input._days,M:input._months}}else if(typeof input==="number"){duration={};if(key){duration[key]=input}else{duration.milliseconds=input}}else if(!!(match=aspNetRegex.exec(input))){sign=match[1]==="-"?-1:1;duration={y:0,d:toInt(match[DATE])*sign,h:toInt(match[HOUR])*sign,m:toInt(match[MINUTE])*sign,s:toInt(match[SECOND])*sign,ms:toInt(absRound(match[MILLISECOND]*1e3))*sign}}else if(!!(match=isoRegex.exec(input))){sign=match[1]==="-"?-1:1;duration={y:parseIso(match[2],sign),M:parseIso(match[3],sign),w:parseIso(match[4],sign),d:parseIso(match[5],sign),h:parseIso(match[6],sign),m:parseIso(match[7],sign),s:parseIso(match[8],sign)}}else if(duration==null){// checks for null or undefined
+duration={}}else if(typeof duration==="object"&&("from"in duration||"to"in duration)){diffRes=momentsDifference(local__createLocal(duration.from),local__createLocal(duration.to));duration={};duration.ms=diffRes.milliseconds;duration.M=diffRes.months}ret=new Duration(duration);if(isDuration(input)&&hasOwnProp(input,"_locale")){ret._locale=input._locale}return ret}create__createDuration.fn=Duration.prototype;function parseIso(inp,sign){
+// We'd normally use ~~inp for this, but unfortunately it also
+// converts floats to ints.
+// inp may be undefined, so careful calling replace on it.
+var res=inp&&parseFloat(inp.replace(",","."));
+// apply sign while we're at it
+return(isNaN(res)?0:res)*sign}function positiveMomentsDifference(base,other){var res={milliseconds:0,months:0};res.months=other.month()-base.month()+(other.year()-base.year())*12;if(base.clone().add(res.months,"M").isAfter(other)){--res.months}res.milliseconds=+other-+base.clone().add(res.months,"M");return res}function momentsDifference(base,other){var res;if(!(base.isValid()&&other.isValid())){return{milliseconds:0,months:0}}other=cloneWithOffset(other,base);if(base.isBefore(other)){res=positiveMomentsDifference(base,other)}else{res=positiveMomentsDifference(other,base);res.milliseconds=-res.milliseconds;res.months=-res.months}return res}
+// TODO: remove 'name' arg after deprecation is removed
+function createAdder(direction,name){return function(val,period){var dur,tmp;
+//invert the arguments, but complain about it
+if(period!==null&&!isNaN(+period)){deprecateSimple(name,"moment()."+name+"(period, number) is deprecated. Please use moment()."+name+"(number, period). "+"See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.");tmp=val;val=period;period=tmp}val=typeof val==="string"?+val:val;dur=create__createDuration(val,period);add_subtract__addSubtract(this,dur,direction);return this}}function add_subtract__addSubtract(mom,duration,isAdding,updateOffset){var milliseconds=duration._milliseconds,days=absRound(duration._days),months=absRound(duration._months);if(!mom.isValid()){
+// No op
+return}updateOffset=updateOffset==null?true:updateOffset;if(milliseconds){mom._d.setTime(mom._d.valueOf()+milliseconds*isAdding)}if(days){get_set__set(mom,"Date",get_set__get(mom,"Date")+days*isAdding)}if(months){setMonth(mom,get_set__get(mom,"Month")+months*isAdding)}if(updateOffset){utils_hooks__hooks.updateOffset(mom,days||months)}}var add_subtract__add=createAdder(1,"add");var add_subtract__subtract=createAdder(-1,"subtract");function getCalendarFormat(myMoment,now){var diff=myMoment.diff(now,"days",true);return diff<-6?"sameElse":diff<-1?"lastWeek":diff<0?"lastDay":diff<1?"sameDay":diff<2?"nextDay":diff<7?"nextWeek":"sameElse"}function moment_calendar__calendar(time,formats){
+// We want to compare the start of today, vs this.
+// Getting start-of-today depends on whether we're local/utc/offset or not.
+var now=time||local__createLocal(),sod=cloneWithOffset(now,this).startOf("day"),format=utils_hooks__hooks.calendarFormat(this,sod)||"sameElse";var output=formats&&(isFunction(formats[format])?formats[format].call(this,now):formats[format]);return this.format(output||this.localeData().calendar(format,this,local__createLocal(now)))}function clone(){return new Moment(this)}function isAfter(input,units){var localInput=isMoment(input)?input:local__createLocal(input);if(!(this.isValid()&&localInput.isValid())){return false}units=normalizeUnits(!isUndefined(units)?units:"millisecond");if(units==="millisecond"){return this.valueOf()>localInput.valueOf()}else{return localInput.valueOf()<this.clone().startOf(units).valueOf()}}function isBefore(input,units){var localInput=isMoment(input)?input:local__createLocal(input);if(!(this.isValid()&&localInput.isValid())){return false}units=normalizeUnits(!isUndefined(units)?units:"millisecond");if(units==="millisecond"){return this.valueOf()<localInput.valueOf()}else{return this.clone().endOf(units).valueOf()<localInput.valueOf()}}function isBetween(from,to,units,inclusivity){inclusivity=inclusivity||"()";return(inclusivity[0]==="("?this.isAfter(from,units):!this.isBefore(from,units))&&(inclusivity[1]===")"?this.isBefore(to,units):!this.isAfter(to,units))}function isSame(input,units){var localInput=isMoment(input)?input:local__createLocal(input),inputMs;if(!(this.isValid()&&localInput.isValid())){return false}units=normalizeUnits(units||"millisecond");if(units==="millisecond"){return this.valueOf()===localInput.valueOf()}else{inputMs=localInput.valueOf();return this.clone().startOf(units).valueOf()<=inputMs&&inputMs<=this.clone().endOf(units).valueOf()}}function isSameOrAfter(input,units){return this.isSame(input,units)||this.isAfter(input,units)}function isSameOrBefore(input,units){return this.isSame(input,units)||this.isBefore(input,units)}function diff(input,units,asFloat){var that,zoneDelta,delta,output;if(!this.isValid()){return NaN}that=cloneWithOffset(input,this);if(!that.isValid()){return NaN}zoneDelta=(that.utcOffset()-this.utcOffset())*6e4;units=normalizeUnits(units);if(units==="year"||units==="month"||units==="quarter"){output=monthDiff(this,that);if(units==="quarter"){output=output/3}else if(units==="year"){output=output/12}}else{delta=this-that;output=units==="second"?delta/1e3:// 1000
+units==="minute"?delta/6e4:// 1000 * 60
+units==="hour"?delta/36e5:// 1000 * 60 * 60
+units==="day"?(delta-zoneDelta)/864e5:// 1000 * 60 * 60 * 24, negate dst
+units==="week"?(delta-zoneDelta)/6048e5:// 1000 * 60 * 60 * 24 * 7, negate dst
+delta}return asFloat?output:absFloor(output)}function monthDiff(a,b){
+// difference in months
+var wholeMonthDiff=(b.year()-a.year())*12+(b.month()-a.month()),
+// b is in (anchor - 1 month, anchor + 1 month)
+anchor=a.clone().add(wholeMonthDiff,"months"),anchor2,adjust;if(b-anchor<0){anchor2=a.clone().add(wholeMonthDiff-1,"months");
+// linear across the month
+adjust=(b-anchor)/(anchor-anchor2)}else{anchor2=a.clone().add(wholeMonthDiff+1,"months");
+// linear across the month
+adjust=(b-anchor)/(anchor2-anchor)}
+//check for negative zero, return zero if negative zero
+return-(wholeMonthDiff+adjust)||0}utils_hooks__hooks.defaultFormat="YYYY-MM-DDTHH:mm:ssZ";utils_hooks__hooks.defaultFormatUtc="YYYY-MM-DDTHH:mm:ss[Z]";function toString(){return this.clone().locale("en").format("ddd MMM DD YYYY HH:mm:ss [GMT]ZZ")}function moment_format__toISOString(){var m=this.clone().utc();if(0<m.year()&&m.year()<=9999){if(isFunction(Date.prototype.toISOString)){
+// native implementation is ~50x faster, use it when we can
+return this.toDate().toISOString()}else{return formatMoment(m,"YYYY-MM-DD[T]HH:mm:ss.SSS[Z]")}}else{return formatMoment(m,"YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]")}}function moment_format__format(inputString){if(!inputString){inputString=this.isUtc()?utils_hooks__hooks.defaultFormatUtc:utils_hooks__hooks.defaultFormat}var output=formatMoment(this,inputString);return this.localeData().postformat(output)}function from(time,withoutSuffix){if(this.isValid()&&(isMoment(time)&&time.isValid()||local__createLocal(time).isValid())){return create__createDuration({to:this,from:time}).locale(this.locale()).humanize(!withoutSuffix)}else{return this.localeData().invalidDate()}}function fromNow(withoutSuffix){return this.from(local__createLocal(),withoutSuffix)}function to(time,withoutSuffix){if(this.isValid()&&(isMoment(time)&&time.isValid()||local__createLocal(time).isValid())){return create__createDuration({from:this,to:time}).locale(this.locale()).humanize(!withoutSuffix)}else{return this.localeData().invalidDate()}}function toNow(withoutSuffix){return this.to(local__createLocal(),withoutSuffix)}
+// If passed a locale key, it will set the locale for this
+// instance.  Otherwise, it will return the locale configuration
+// variables for this instance.
+function locale(key){var newLocaleData;if(key===undefined){return this._locale._abbr}else{newLocaleData=locale_locales__getLocale(key);if(newLocaleData!=null){this._locale=newLocaleData}return this}}var lang=deprecate("moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.",function(key){if(key===undefined){return this.localeData()}else{return this.locale(key)}});function localeData(){return this._locale}function startOf(units){units=normalizeUnits(units);
+// the following switch intentionally omits break keywords
+// to utilize falling through the cases.
+switch(units){case"year":this.month(0);/* falls through */
+case"quarter":case"month":this.date(1);/* falls through */
+case"week":case"isoWeek":case"day":case"date":this.hours(0);/* falls through */
+case"hour":this.minutes(0);/* falls through */
+case"minute":this.seconds(0);/* falls through */
+case"second":this.milliseconds(0)}
+// weeks are a special case
+if(units==="week"){this.weekday(0)}if(units==="isoWeek"){this.isoWeekday(1)}
+// quarters are also special
+if(units==="quarter"){this.month(Math.floor(this.month()/3)*3)}return this}function endOf(units){units=normalizeUnits(units);if(units===undefined||units==="millisecond"){return this}
+// 'date' is an alias for 'day', so it should be considered as such.
+if(units==="date"){units="day"}return this.startOf(units).add(1,units==="isoWeek"?"week":units).subtract(1,"ms")}function to_type__valueOf(){return this._d.valueOf()-(this._offset||0)*6e4}function unix(){return Math.floor(this.valueOf()/1e3)}function toDate(){return new Date(this.valueOf())}function toArray(){var m=this;return[m.year(),m.month(),m.date(),m.hour(),m.minute(),m.second(),m.millisecond()]}function toObject(){var m=this;return{years:m.year(),months:m.month(),date:m.date(),hours:m.hours(),minutes:m.minutes(),seconds:m.seconds(),milliseconds:m.milliseconds()}}function toJSON(){
+// new Date(NaN).toJSON() === null
+return this.isValid()?this.toISOString():null}function moment_valid__isValid(){return valid__isValid(this)}function parsingFlags(){return extend({},getParsingFlags(this))}function invalidAt(){return getParsingFlags(this).overflow}function creationData(){return{input:this._i,format:this._f,locale:this._locale,isUTC:this._isUTC,strict:this._strict}}
+// FORMATTING
+addFormatToken(0,["gg",2],0,function(){return this.weekYear()%100});addFormatToken(0,["GG",2],0,function(){return this.isoWeekYear()%100});function addWeekYearFormatToken(token,getter){addFormatToken(0,[token,token.length],0,getter)}addWeekYearFormatToken("gggg","weekYear");addWeekYearFormatToken("ggggg","weekYear");addWeekYearFormatToken("GGGG","isoWeekYear");addWeekYearFormatToken("GGGGG","isoWeekYear");
+// ALIASES
+addUnitAlias("weekYear","gg");addUnitAlias("isoWeekYear","GG");
+// PRIORITY
+addUnitPriority("weekYear",1);addUnitPriority("isoWeekYear",1);
+// PARSING
+addRegexToken("G",matchSigned);addRegexToken("g",matchSigned);addRegexToken("GG",match1to2,match2);addRegexToken("gg",match1to2,match2);addRegexToken("GGGG",match1to4,match4);addRegexToken("gggg",match1to4,match4);addRegexToken("GGGGG",match1to6,match6);addRegexToken("ggggg",match1to6,match6);addWeekParseToken(["gggg","ggggg","GGGG","GGGGG"],function(input,week,config,token){week[token.substr(0,2)]=toInt(input)});addWeekParseToken(["gg","GG"],function(input,week,config,token){week[token]=utils_hooks__hooks.parseTwoDigitYear(input)});
+// MOMENTS
+function getSetWeekYear(input){return getSetWeekYearHelper.call(this,input,this.week(),this.weekday(),this.localeData()._week.dow,this.localeData()._week.doy)}function getSetISOWeekYear(input){return getSetWeekYearHelper.call(this,input,this.isoWeek(),this.isoWeekday(),1,4)}function getISOWeeksInYear(){return weeksInYear(this.year(),1,4)}function getWeeksInYear(){var weekInfo=this.localeData()._week;return weeksInYear(this.year(),weekInfo.dow,weekInfo.doy)}function getSetWeekYearHelper(input,week,weekday,dow,doy){var weeksTarget;if(input==null){return weekOfYear(this,dow,doy).year}else{weeksTarget=weeksInYear(input,dow,doy);if(week>weeksTarget){week=weeksTarget}return setWeekAll.call(this,input,week,weekday,dow,doy)}}function setWeekAll(weekYear,week,weekday,dow,doy){var dayOfYearData=dayOfYearFromWeeks(weekYear,week,weekday,dow,doy),date=createUTCDate(dayOfYearData.year,0,dayOfYearData.dayOfYear);this.year(date.getUTCFullYear());this.month(date.getUTCMonth());this.date(date.getUTCDate());return this}
+// FORMATTING
+addFormatToken("Q",0,"Qo","quarter");
+// ALIASES
+addUnitAlias("quarter","Q");
+// PRIORITY
+addUnitPriority("quarter",7);
+// PARSING
+addRegexToken("Q",match1);addParseToken("Q",function(input,array){array[MONTH]=(toInt(input)-1)*3});
+// MOMENTS
+function getSetQuarter(input){return input==null?Math.ceil((this.month()+1)/3):this.month((input-1)*3+this.month()%3)}
+// FORMATTING
+addFormatToken("D",["DD",2],"Do","date");
+// ALIASES
+addUnitAlias("date","D");
+// PRIOROITY
+addUnitPriority("date",9);
+// PARSING
+addRegexToken("D",match1to2);addRegexToken("DD",match1to2,match2);addRegexToken("Do",function(isStrict,locale){return isStrict?locale._ordinalParse:locale._ordinalParseLenient});addParseToken(["D","DD"],DATE);addParseToken("Do",function(input,array){array[DATE]=toInt(input.match(match1to2)[0],10)});
+// MOMENTS
+var getSetDayOfMonth=makeGetSet("Date",true);
+// FORMATTING
+addFormatToken("DDD",["DDDD",3],"DDDo","dayOfYear");
+// ALIASES
+addUnitAlias("dayOfYear","DDD");
+// PRIORITY
+addUnitPriority("dayOfYear",4);
+// PARSING
+addRegexToken("DDD",match1to3);addRegexToken("DDDD",match3);addParseToken(["DDD","DDDD"],function(input,array,config){config._dayOfYear=toInt(input)});
+// HELPERS
+// MOMENTS
+function getSetDayOfYear(input){var dayOfYear=Math.round((this.clone().startOf("day")-this.clone().startOf("year"))/864e5)+1;return input==null?dayOfYear:this.add(input-dayOfYear,"d")}
+// FORMATTING
+addFormatToken("m",["mm",2],0,"minute");
+// ALIASES
+addUnitAlias("minute","m");
+// PRIORITY
+addUnitPriority("minute",14);
+// PARSING
+addRegexToken("m",match1to2);addRegexToken("mm",match1to2,match2);addParseToken(["m","mm"],MINUTE);
+// MOMENTS
+var getSetMinute=makeGetSet("Minutes",false);
+// FORMATTING
+addFormatToken("s",["ss",2],0,"second");
+// ALIASES
+addUnitAlias("second","s");
+// PRIORITY
+addUnitPriority("second",15);
+// PARSING
+addRegexToken("s",match1to2);addRegexToken("ss",match1to2,match2);addParseToken(["s","ss"],SECOND);
+// MOMENTS
+var getSetSecond=makeGetSet("Seconds",false);
+// FORMATTING
+addFormatToken("S",0,0,function(){return~~(this.millisecond()/100)});addFormatToken(0,["SS",2],0,function(){return~~(this.millisecond()/10)});addFormatToken(0,["SSS",3],0,"millisecond");addFormatToken(0,["SSSS",4],0,function(){return this.millisecond()*10});addFormatToken(0,["SSSSS",5],0,function(){return this.millisecond()*100});addFormatToken(0,["SSSSSS",6],0,function(){return this.millisecond()*1e3});addFormatToken(0,["SSSSSSS",7],0,function(){return this.millisecond()*1e4});addFormatToken(0,["SSSSSSSS",8],0,function(){return this.millisecond()*1e5});addFormatToken(0,["SSSSSSSSS",9],0,function(){return this.millisecond()*1e6});
+// ALIASES
+addUnitAlias("millisecond","ms");
+// PRIORITY
+addUnitPriority("millisecond",16);
+// PARSING
+addRegexToken("S",match1to3,match1);addRegexToken("SS",match1to3,match2);addRegexToken("SSS",match1to3,match3);var token;for(token="SSSS";token.length<=9;token+="S"){addRegexToken(token,matchUnsigned)}function parseMs(input,array){array[MILLISECOND]=toInt(("0."+input)*1e3)}for(token="S";token.length<=9;token+="S"){addParseToken(token,parseMs)}
+// MOMENTS
+var getSetMillisecond=makeGetSet("Milliseconds",false);
+// FORMATTING
+addFormatToken("z",0,0,"zoneAbbr");addFormatToken("zz",0,0,"zoneName");
+// MOMENTS
+function getZoneAbbr(){return this._isUTC?"UTC":""}function getZoneName(){return this._isUTC?"Coordinated Universal Time":""}var momentPrototype__proto=Moment.prototype;momentPrototype__proto.add=add_subtract__add;momentPrototype__proto.calendar=moment_calendar__calendar;momentPrototype__proto.clone=clone;momentPrototype__proto.diff=diff;momentPrototype__proto.endOf=endOf;momentPrototype__proto.format=moment_format__format;momentPrototype__proto.from=from;momentPrototype__proto.fromNow=fromNow;momentPrototype__proto.to=to;momentPrototype__proto.toNow=toNow;momentPrototype__proto.get=stringGet;momentPrototype__proto.invalidAt=invalidAt;momentPrototype__proto.isAfter=isAfter;momentPrototype__proto.isBefore=isBefore;momentPrototype__proto.isBetween=isBetween;momentPrototype__proto.isSame=isSame;momentPrototype__proto.isSameOrAfter=isSameOrAfter;momentPrototype__proto.isSameOrBefore=isSameOrBefore;momentPrototype__proto.isValid=moment_valid__isValid;momentPrototype__proto.lang=lang;momentPrototype__proto.locale=locale;momentPrototype__proto.localeData=localeData;momentPrototype__proto.max=prototypeMax;momentPrototype__proto.min=prototypeMin;momentPrototype__proto.parsingFlags=parsingFlags;momentPrototype__proto.set=stringSet;momentPrototype__proto.startOf=startOf;momentPrototype__proto.subtract=add_subtract__subtract;momentPrototype__proto.toArray=toArray;momentPrototype__proto.toObject=toObject;momentPrototype__proto.toDate=toDate;momentPrototype__proto.toISOString=moment_format__toISOString;momentPrototype__proto.toJSON=toJSON;momentPrototype__proto.toString=toString;momentPrototype__proto.unix=unix;momentPrototype__proto.valueOf=to_type__valueOf;momentPrototype__proto.creationData=creationData;
+// Year
+momentPrototype__proto.year=getSetYear;momentPrototype__proto.isLeapYear=getIsLeapYear;
+// Week Year
+momentPrototype__proto.weekYear=getSetWeekYear;momentPrototype__proto.isoWeekYear=getSetISOWeekYear;
+// Quarter
+momentPrototype__proto.quarter=momentPrototype__proto.quarters=getSetQuarter;
+// Month
+momentPrototype__proto.month=getSetMonth;momentPrototype__proto.daysInMonth=getDaysInMonth;
+// Week
+momentPrototype__proto.week=momentPrototype__proto.weeks=getSetWeek;momentPrototype__proto.isoWeek=momentPrototype__proto.isoWeeks=getSetISOWeek;momentPrototype__proto.weeksInYear=getWeeksInYear;momentPrototype__proto.isoWeeksInYear=getISOWeeksInYear;
+// Day
+momentPrototype__proto.date=getSetDayOfMonth;momentPrototype__proto.day=momentPrototype__proto.days=getSetDayOfWeek;momentPrototype__proto.weekday=getSetLocaleDayOfWeek;momentPrototype__proto.isoWeekday=getSetISODayOfWeek;momentPrototype__proto.dayOfYear=getSetDayOfYear;
+// Hour
+momentPrototype__proto.hour=momentPrototype__proto.hours=getSetHour;
+// Minute
+momentPrototype__proto.minute=momentPrototype__proto.minutes=getSetMinute;
+// Second
+momentPrototype__proto.second=momentPrototype__proto.seconds=getSetSecond;
+// Millisecond
+momentPrototype__proto.millisecond=momentPrototype__proto.milliseconds=getSetMillisecond;
+// Offset
+momentPrototype__proto.utcOffset=getSetOffset;momentPrototype__proto.utc=setOffsetToUTC;momentPrototype__proto.local=setOffsetToLocal;momentPrototype__proto.parseZone=setOffsetToParsedOffset;momentPrototype__proto.hasAlignedHourOffset=hasAlignedHourOffset;momentPrototype__proto.isDST=isDaylightSavingTime;momentPrototype__proto.isLocal=isLocal;momentPrototype__proto.isUtcOffset=isUtcOffset;momentPrototype__proto.isUtc=isUtc;momentPrototype__proto.isUTC=isUtc;
+// Timezone
+momentPrototype__proto.zoneAbbr=getZoneAbbr;momentPrototype__proto.zoneName=getZoneName;
+// Deprecations
+momentPrototype__proto.dates=deprecate("dates accessor is deprecated. Use date instead.",getSetDayOfMonth);momentPrototype__proto.months=deprecate("months accessor is deprecated. Use month instead",getSetMonth);momentPrototype__proto.years=deprecate("years accessor is deprecated. Use year instead",getSetYear);momentPrototype__proto.zone=deprecate("moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/",getSetZone);momentPrototype__proto.isDSTShifted=deprecate("isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information",isDaylightSavingTimeShifted);var momentPrototype=momentPrototype__proto;function moment_moment__createUnix(input){return local__createLocal(input*1e3)}function moment_moment__createInZone(){return local__createLocal.apply(null,arguments).parseZone()}function preParsePostFormat(string){return string}var prototype__proto=Locale.prototype;prototype__proto.calendar=locale_calendar__calendar;prototype__proto.longDateFormat=longDateFormat;prototype__proto.invalidDate=invalidDate;prototype__proto.ordinal=ordinal;prototype__proto.preparse=preParsePostFormat;prototype__proto.postformat=preParsePostFormat;prototype__proto.relativeTime=relative__relativeTime;prototype__proto.pastFuture=pastFuture;prototype__proto.set=locale_set__set;
+// Month
+prototype__proto.months=localeMonths;prototype__proto.monthsShort=localeMonthsShort;prototype__proto.monthsParse=localeMonthsParse;prototype__proto.monthsRegex=units_month__monthsRegex;prototype__proto.monthsShortRegex=monthsShortRegex;
+// Week
+prototype__proto.week=localeWeek;prototype__proto.firstDayOfYear=localeFirstDayOfYear;prototype__proto.firstDayOfWeek=localeFirstDayOfWeek;
+// Day of Week
+prototype__proto.weekdays=localeWeekdays;prototype__proto.weekdaysMin=localeWeekdaysMin;prototype__proto.weekdaysShort=localeWeekdaysShort;prototype__proto.weekdaysParse=localeWeekdaysParse;prototype__proto.weekdaysRegex=weekdaysRegex;prototype__proto.weekdaysShortRegex=weekdaysShortRegex;prototype__proto.weekdaysMinRegex=weekdaysMinRegex;
+// Hours
+prototype__proto.isPM=localeIsPM;prototype__proto.meridiem=localeMeridiem;function lists__get(format,index,field,setter){var locale=locale_locales__getLocale();var utc=create_utc__createUTC().set(setter,index);return locale[field](utc,format)}function listMonthsImpl(format,index,field){if(typeof format==="number"){index=format;format=undefined}format=format||"";if(index!=null){return lists__get(format,index,field,"month")}var i;var out=[];for(i=0;i<12;i++){out[i]=lists__get(format,i,field,"month")}return out}
+// ()
+// (5)
+// (fmt, 5)
+// (fmt)
+// (true)
+// (true, 5)
+// (true, fmt, 5)
+// (true, fmt)
+function listWeekdaysImpl(localeSorted,format,index,field){if(typeof localeSorted==="boolean"){if(typeof format==="number"){index=format;format=undefined}format=format||""}else{format=localeSorted;index=format;localeSorted=false;if(typeof format==="number"){index=format;format=undefined}format=format||""}var locale=locale_locales__getLocale(),shift=localeSorted?locale._week.dow:0;if(index!=null){return lists__get(format,(index+shift)%7,field,"day")}var i;var out=[];for(i=0;i<7;i++){out[i]=lists__get(format,(i+shift)%7,field,"day")}return out}function lists__listMonths(format,index){return listMonthsImpl(format,index,"months")}function lists__listMonthsShort(format,index){return listMonthsImpl(format,index,"monthsShort")}function lists__listWeekdays(localeSorted,format,index){return listWeekdaysImpl(localeSorted,format,index,"weekdays")}function lists__listWeekdaysShort(localeSorted,format,index){return listWeekdaysImpl(localeSorted,format,index,"weekdaysShort")}function lists__listWeekdaysMin(localeSorted,format,index){return listWeekdaysImpl(localeSorted,format,index,"weekdaysMin")}locale_locales__getSetGlobalLocale("en",{ordinalParse:/\d{1,2}(th|st|nd|rd)/,ordinal:function(number){var b=number%10,output=toInt(number%100/10)===1?"th":b===1?"st":b===2?"nd":b===3?"rd":"th";return number+output}});
+// Side effect imports
+utils_hooks__hooks.lang=deprecate("moment.lang is deprecated. Use moment.locale instead.",locale_locales__getSetGlobalLocale);utils_hooks__hooks.langData=deprecate("moment.langData is deprecated. Use moment.localeData instead.",locale_locales__getLocale);var mathAbs=Math.abs;function duration_abs__abs(){var data=this._data;this._milliseconds=mathAbs(this._milliseconds);this._days=mathAbs(this._days);this._months=mathAbs(this._months);data.milliseconds=mathAbs(data.milliseconds);data.seconds=mathAbs(data.seconds);data.minutes=mathAbs(data.minutes);data.hours=mathAbs(data.hours);data.months=mathAbs(data.months);data.years=mathAbs(data.years);return this}function duration_add_subtract__addSubtract(duration,input,value,direction){var other=create__createDuration(input,value);duration._milliseconds+=direction*other._milliseconds;duration._days+=direction*other._days;duration._months+=direction*other._months;return duration._bubble()}
+// supports only 2.0-style add(1, 's') or add(duration)
+function duration_add_subtract__add(input,value){return duration_add_subtract__addSubtract(this,input,value,1)}
+// supports only 2.0-style subtract(1, 's') or subtract(duration)
+function duration_add_subtract__subtract(input,value){return duration_add_subtract__addSubtract(this,input,value,-1)}function absCeil(number){if(number<0){return Math.floor(number)}else{return Math.ceil(number)}}function bubble(){var milliseconds=this._milliseconds;var days=this._days;var months=this._months;var data=this._data;var seconds,minutes,hours,years,monthsFromDays;
+// if we have a mix of positive and negative values, bubble down first
+// check: https://github.com/moment/moment/issues/2166
+if(!(milliseconds>=0&&days>=0&&months>=0||milliseconds<=0&&days<=0&&months<=0)){milliseconds+=absCeil(monthsToDays(months)+days)*864e5;days=0;months=0}
+// The following code bubbles up values, see the tests for
+// examples of what that means.
+data.milliseconds=milliseconds%1e3;seconds=absFloor(milliseconds/1e3);data.seconds=seconds%60;minutes=absFloor(seconds/60);data.minutes=minutes%60;hours=absFloor(minutes/60);data.hours=hours%24;days+=absFloor(hours/24);
+// convert days to months
+monthsFromDays=absFloor(daysToMonths(days));months+=monthsFromDays;days-=absCeil(monthsToDays(monthsFromDays));
+// 12 months -> 1 year
+years=absFloor(months/12);months%=12;data.days=days;data.months=months;data.years=years;return this}function daysToMonths(days){
+// 400 years have 146097 days (taking into account leap year rules)
+// 400 years have 12 months === 4800
+return days*4800/146097}function monthsToDays(months){
+// the reverse of daysToMonths
+return months*146097/4800}function as(units){var days;var months;var milliseconds=this._milliseconds;units=normalizeUnits(units);if(units==="month"||units==="year"){days=this._days+milliseconds/864e5;months=this._months+daysToMonths(days);return units==="month"?months:months/12}else{
+// handle milliseconds separately because of floating point math errors (issue #1867)
+days=this._days+Math.round(monthsToDays(this._months));switch(units){case"week":return days/7+milliseconds/6048e5;case"day":return days+milliseconds/864e5;case"hour":return days*24+milliseconds/36e5;case"minute":return days*1440+milliseconds/6e4;case"second":return days*86400+milliseconds/1e3;
+// Math.floor prevents floating point math errors here
+case"millisecond":return Math.floor(days*864e5)+milliseconds;default:throw new Error("Unknown unit "+units)}}}
+// TODO: Use this.as('ms')?
+function duration_as__valueOf(){return this._milliseconds+this._days*864e5+this._months%12*2592e6+toInt(this._months/12)*31536e6}function makeAs(alias){return function(){return this.as(alias)}}var asMilliseconds=makeAs("ms");var asSeconds=makeAs("s");var asMinutes=makeAs("m");var asHours=makeAs("h");var asDays=makeAs("d");var asWeeks=makeAs("w");var asMonths=makeAs("M");var asYears=makeAs("y");function duration_get__get(units){units=normalizeUnits(units);return this[units+"s"]()}function makeGetter(name){return function(){return this._data[name]}}var milliseconds=makeGetter("milliseconds");var seconds=makeGetter("seconds");var minutes=makeGetter("minutes");var hours=makeGetter("hours");var days=makeGetter("days");var duration_get__months=makeGetter("months");var years=makeGetter("years");function weeks(){return absFloor(this.days()/7)}var round=Math.round;var thresholds={s:45,// seconds to minute
+m:45,// minutes to hour
+h:22,// hours to day
+d:26,// days to month
+M:11};
+// helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
+function substituteTimeAgo(string,number,withoutSuffix,isFuture,locale){return locale.relativeTime(number||1,!!withoutSuffix,string,isFuture)}function duration_humanize__relativeTime(posNegDuration,withoutSuffix,locale){var duration=create__createDuration(posNegDuration).abs();var seconds=round(duration.as("s"));var minutes=round(duration.as("m"));var hours=round(duration.as("h"));var days=round(duration.as("d"));var months=round(duration.as("M"));var years=round(duration.as("y"));var a=seconds<thresholds.s&&["s",seconds]||minutes<=1&&["m"]||minutes<thresholds.m&&["mm",minutes]||hours<=1&&["h"]||hours<thresholds.h&&["hh",hours]||days<=1&&["d"]||days<thresholds.d&&["dd",days]||months<=1&&["M"]||months<thresholds.M&&["MM",months]||years<=1&&["y"]||["yy",years];a[2]=withoutSuffix;a[3]=+posNegDuration>0;a[4]=locale;return substituteTimeAgo.apply(null,a)}
+// This function allows you to set the rounding function for relative time strings
+function duration_humanize__getSetRelativeTimeRounding(roundingFunction){if(roundingFunction===undefined){return round}if(typeof roundingFunction==="function"){round=roundingFunction;return true}return false}
+// This function allows you to set a threshold for relative time strings
+function duration_humanize__getSetRelativeTimeThreshold(threshold,limit){if(thresholds[threshold]===undefined){return false}if(limit===undefined){return thresholds[threshold]}thresholds[threshold]=limit;return true}function humanize(withSuffix){var locale=this.localeData();var output=duration_humanize__relativeTime(this,!withSuffix,locale);if(withSuffix){output=locale.pastFuture(+this,output)}return locale.postformat(output)}var iso_string__abs=Math.abs;function iso_string__toISOString(){
+// for ISO strings we do not use the normal bubbling rules:
+//  * milliseconds bubble up until they become hours
+//  * days do not bubble at all
+//  * months bubble up until they become years
+// This is because there is no context-free conversion between hours and days
+// (think of clock changes)
+// and also not between days and months (28-31 days per month)
+var seconds=iso_string__abs(this._milliseconds)/1e3;var days=iso_string__abs(this._days);var months=iso_string__abs(this._months);var minutes,hours,years;
+// 3600 seconds -> 60 minutes -> 1 hour
+minutes=absFloor(seconds/60);hours=absFloor(minutes/60);seconds%=60;minutes%=60;
+// 12 months -> 1 year
+years=absFloor(months/12);months%=12;
+// inspired by https://github.com/dordille/moment-isoduration/blob/master/moment.isoduration.js
+var Y=years;var M=months;var D=days;var h=hours;var m=minutes;var s=seconds;var total=this.asSeconds();if(!total){
+// this is the same as C#'s (Noda) and python (isodate)...
+// but not other JS (goog.date)
+return"P0D"}return(total<0?"-":"")+"P"+(Y?Y+"Y":"")+(M?M+"M":"")+(D?D+"D":"")+(h||m||s?"T":"")+(h?h+"H":"")+(m?m+"M":"")+(s?s+"S":"")}var duration_prototype__proto=Duration.prototype;duration_prototype__proto.abs=duration_abs__abs;duration_prototype__proto.add=duration_add_subtract__add;duration_prototype__proto.subtract=duration_add_subtract__subtract;duration_prototype__proto.as=as;duration_prototype__proto.asMilliseconds=asMilliseconds;duration_prototype__proto.asSeconds=asSeconds;duration_prototype__proto.asMinutes=asMinutes;duration_prototype__proto.asHours=asHours;duration_prototype__proto.asDays=asDays;duration_prototype__proto.asWeeks=asWeeks;duration_prototype__proto.asMonths=asMonths;duration_prototype__proto.asYears=asYears;duration_prototype__proto.valueOf=duration_as__valueOf;duration_prototype__proto._bubble=bubble;duration_prototype__proto.get=duration_get__get;duration_prototype__proto.milliseconds=milliseconds;duration_prototype__proto.seconds=seconds;duration_prototype__proto.minutes=minutes;duration_prototype__proto.hours=hours;duration_prototype__proto.days=days;duration_prototype__proto.weeks=weeks;duration_prototype__proto.months=duration_get__months;duration_prototype__proto.years=years;duration_prototype__proto.humanize=humanize;duration_prototype__proto.toISOString=iso_string__toISOString;duration_prototype__proto.toString=iso_string__toISOString;duration_prototype__proto.toJSON=iso_string__toISOString;duration_prototype__proto.locale=locale;duration_prototype__proto.localeData=localeData;
+// Deprecations
+duration_prototype__proto.toIsoString=deprecate("toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)",iso_string__toISOString);duration_prototype__proto.lang=lang;
+// Side effect imports
+// FORMATTING
+addFormatToken("X",0,0,"unix");addFormatToken("x",0,0,"valueOf");
+// PARSING
+addRegexToken("x",matchSigned);addRegexToken("X",matchTimestamp);addParseToken("X",function(input,array,config){config._d=new Date(parseFloat(input,10)*1e3)});addParseToken("x",function(input,array,config){config._d=new Date(toInt(input))});utils_hooks__hooks.version="2.15.1";setHookCallback(local__createLocal);utils_hooks__hooks.fn=momentPrototype;utils_hooks__hooks.min=min;utils_hooks__hooks.max=max;utils_hooks__hooks.now=now;utils_hooks__hooks.utc=create_utc__createUTC;utils_hooks__hooks.unix=moment_moment__createUnix;utils_hooks__hooks.months=lists__listMonths;utils_hooks__hooks.isDate=isDate;utils_hooks__hooks.locale=locale_locales__getSetGlobalLocale;utils_hooks__hooks.invalid=valid__createInvalid;utils_hooks__hooks.duration=create__createDuration;utils_hooks__hooks.isMoment=isMoment;utils_hooks__hooks.weekdays=lists__listWeekdays;utils_hooks__hooks.parseZone=moment_moment__createInZone;utils_hooks__hooks.localeData=locale_locales__getLocale;utils_hooks__hooks.isDuration=isDuration;utils_hooks__hooks.monthsShort=lists__listMonthsShort;utils_hooks__hooks.weekdaysMin=lists__listWeekdaysMin;utils_hooks__hooks.defineLocale=defineLocale;utils_hooks__hooks.updateLocale=updateLocale;utils_hooks__hooks.locales=locale_locales__listLocales;utils_hooks__hooks.weekdaysShort=lists__listWeekdaysShort;utils_hooks__hooks.normalizeUnits=normalizeUnits;utils_hooks__hooks.relativeTimeRounding=duration_humanize__getSetRelativeTimeRounding;utils_hooks__hooks.relativeTimeThreshold=duration_humanize__getSetRelativeTimeThreshold;utils_hooks__hooks.calendarFormat=getCalendarFormat;utils_hooks__hooks.prototype=momentPrototype;var moment__default=utils_hooks__hooks;function et__processRelativeTime(number,withoutSuffix,key,isFuture){var format={s:["mõne sekundi","mõni sekund","paar sekundit"],m:["ühe minuti","üks minut"],mm:[number+" minuti",number+" minutit"],h:["ühe tunni","tund aega","üks tund"],hh:[number+" tunni",number+" tundi"],d:["ühe päeva","üks päev"],M:["kuu aja","kuu aega","üks kuu"],MM:[number+" kuu",number+" kuud"],y:["ühe aasta","aasta","üks aasta"],yy:[number+" aasta",number+" aastat"]};if(withoutSuffix){return format[key][2]?format[key][2]:format[key][1]}return isFuture?format[key][0]:format[key][1]}var et=moment__default.defineLocale("et",{months:"jaanuar_veebruar_märts_aprill_mai_juuni_juuli_august_september_oktoober_november_detsember".split("_"),monthsShort:"jaan_veebr_märts_apr_mai_juuni_juuli_aug_sept_okt_nov_dets".split("_"),weekdays:"pühapäev_esmaspäev_teisipäev_kolmapäev_neljapäev_reede_laupäev".split("_"),weekdaysShort:"P_E_T_K_N_R_L".split("_"),weekdaysMin:"P_E_T_K_N_R_L".split("_"),longDateFormat:{LT:"H:mm",LTS:"H:mm:ss",L:"DD.MM.YYYY",LL:"D. MMMM YYYY",LLL:"D. MMMM YYYY H:mm",LLLL:"dddd, D. MMMM YYYY H:mm"},calendar:{sameDay:"[Täna,] LT",nextDay:"[Homme,] LT",nextWeek:"[Järgmine] dddd LT",lastDay:"[Eile,] LT",lastWeek:"[Eelmine] dddd LT",sameElse:"L"},relativeTime:{future:"%s pärast",past:"%s tagasi",s:et__processRelativeTime,m:et__processRelativeTime,mm:et__processRelativeTime,h:et__processRelativeTime,hh:et__processRelativeTime,d:et__processRelativeTime,dd:"%d päeva",M:et__processRelativeTime,MM:et__processRelativeTime,y:et__processRelativeTime,yy:et__processRelativeTime},ordinalParse:/\d{1,2}\./,ordinal:"%d.",week:{dow:1,// Monday is the first day of the week.
+doy:4}});function ru__plural(word,num){var forms=word.split("_");return num%10===1&&num%100!==11?forms[0]:num%10>=2&&num%10<=4&&(num%100<10||num%100>=20)?forms[1]:forms[2]}function ru__relativeTimeWithPlural(number,withoutSuffix,key){var format={mm:withoutSuffix?"минута_минуты_минут":"минуту_минуты_минут",hh:"час_часа_часов",dd:"день_дня_дней",MM:"месяц_месяца_месяцев",yy:"год_года_лет"};if(key==="m"){return withoutSuffix?"минута":"минуту"}else{return number+" "+ru__plural(format[key],+number)}}var ru__monthsParse=[/^янв/i,/^фев/i,/^мар/i,/^апр/i,/^ма[йя]/i,/^июн/i,/^июл/i,/^авг/i,/^сен/i,/^окт/i,/^ноя/i,/^дек/i];
+// http://new.gramota.ru/spravka/rules/139-prop : § 103
+// Сокращения месяцев: http://new.gramota.ru/spravka/buro/search-answer?s=242637
+// CLDR data:          http://www.unicode.org/cldr/charts/28/summary/ru.html#1753
+var ru=moment__default.defineLocale("ru",{months:{format:"января_февраля_марта_апреля_мая_июня_июля_августа_сентября_октября_ноября_декабря".split("_"),standalone:"январь_февраль_март_апрель_май_июнь_июль_август_сентябрь_октябрь_ноябрь_декабрь".split("_")},monthsShort:{
+// по CLDR именно "июл." и "июн.", но какой смысл менять букву на точку ?
+format:"янв._февр._мар._апр._мая_июня_июля_авг._сент._окт._нояб._дек.".split("_"),standalone:"янв._февр._март_апр._май_июнь_июль_авг._сент._окт._нояб._дек.".split("_")},weekdays:{standalone:"воскресенье_понедельник_вторник_среда_четверг_пятница_суббота".split("_"),format:"воскресенье_понедельник_вторник_среду_четверг_пятницу_субботу".split("_"),isFormat:/\[ ?[Вв] ?(?:прошлую|следующую|эту)? ?\] ?dddd/},weekdaysShort:"вс_пн_вт_ср_чт_пт_сб".split("_"),weekdaysMin:"вс_пн_вт_ср_чт_пт_сб".split("_"),monthsParse:ru__monthsParse,longMonthsParse:ru__monthsParse,shortMonthsParse:ru__monthsParse,
+// полные названия с падежами, по три буквы, для некоторых, по 4 буквы, сокращения с точкой и без точки
+monthsRegex:/^(январ[ья]|янв\.?|феврал[ья]|февр?\.?|марта?|мар\.?|апрел[ья]|апр\.?|ма[йя]|июн[ья]|июн\.?|июл[ья]|июл\.?|августа?|авг\.?|сентябр[ья]|сент?\.?|октябр[ья]|окт\.?|ноябр[ья]|нояб?\.?|декабр[ья]|дек\.?)/i,
+// копия предыдущего
+monthsShortRegex:/^(январ[ья]|янв\.?|феврал[ья]|февр?\.?|марта?|мар\.?|апрел[ья]|апр\.?|ма[йя]|июн[ья]|июн\.?|июл[ья]|июл\.?|августа?|авг\.?|сентябр[ья]|сент?\.?|октябр[ья]|окт\.?|ноябр[ья]|нояб?\.?|декабр[ья]|дек\.?)/i,
+// полные названия с падежами
+monthsStrictRegex:/^(январ[яь]|феврал[яь]|марта?|апрел[яь]|ма[яй]|июн[яь]|июл[яь]|августа?|сентябр[яь]|октябр[яь]|ноябр[яь]|декабр[яь])/i,
+// Выражение, которое соотвествует только сокращённым формам
+monthsShortStrictRegex:/^(янв\.|февр?\.|мар[т.]|апр\.|ма[яй]|июн[ья.]|июл[ья.]|авг\.|сент?\.|окт\.|нояб?\.|дек\.)/i,longDateFormat:{LT:"HH:mm",LTS:"HH:mm:ss",L:"DD.MM.YYYY",LL:"D MMMM YYYY г.",LLL:"D MMMM YYYY г., HH:mm",LLLL:"dddd, D MMMM YYYY г., HH:mm"},calendar:{sameDay:"[Сегодня в] LT",nextDay:"[Завтра в] LT",lastDay:"[Вчера в] LT",nextWeek:function(now){if(now.week()!==this.week()){switch(this.day()){case 0:return"[В следующее] dddd [в] LT";case 1:case 2:case 4:return"[В следующий] dddd [в] LT";case 3:case 5:case 6:return"[В следующую] dddd [в] LT"}}else{if(this.day()===2){return"[Во] dddd [в] LT"}else{return"[В] dddd [в] LT"}}},lastWeek:function(now){if(now.week()!==this.week()){switch(this.day()){case 0:return"[В прошлое] dddd [в] LT";case 1:case 2:case 4:return"[В прошлый] dddd [в] LT";case 3:case 5:case 6:return"[В прошлую] dddd [в] LT"}}else{if(this.day()===2){return"[Во] dddd [в] LT"}else{return"[В] dddd [в] LT"}}},sameElse:"L"},relativeTime:{future:"через %s",past:"%s назад",s:"несколько секунд",m:ru__relativeTimeWithPlural,mm:ru__relativeTimeWithPlural,h:"час",hh:ru__relativeTimeWithPlural,d:"день",dd:ru__relativeTimeWithPlural,M:"месяц",MM:ru__relativeTimeWithPlural,y:"год",yy:ru__relativeTimeWithPlural},meridiemParse:/ночи|утра|дня|вечера/i,isPM:function(input){return/^(дня|вечера)$/.test(input)},meridiem:function(hour,minute,isLower){if(hour<4){return"ночи"}else if(hour<12){return"утра"}else if(hour<17){return"дня"}else{return"вечера"}},ordinalParse:/\d{1,2}-(й|го|я)/,ordinal:function(number,period){switch(period){case"M":case"d":case"DDD":return number+"-й";case"D":return number+"-го";case"w":case"W":return number+"-я";default:return number}},week:{dow:1,// Monday is the first day of the week.
+doy:7}});var moment_with_locales=moment__default;moment_with_locales.locale("en");return moment_with_locales});/**
  * @license AngularJS v1.5.8
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
@@ -18589,6 +19205,385 @@ ngViewFillContentFactory.$inject=["$compile","$controller","$route"];function ng
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
  */
+(function(window,angular){"use strict";/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *     Any commits to this file should be reviewed with security in mind.  *
+ *   Changes to this file can potentially create security vulnerabilities. *
+ *          An approval from 2 Core members with history of modifying      *
+ *                         this file is required.                          *
+ *                                                                         *
+ *  Does the change somehow allow for arbitrary javascript to be executed? *
+ *    Or allows for someone to change the prototype of built-in objects?   *
+ *     Or gives undesired access to variables likes document or window?    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+var $sanitizeMinErr=angular.$$minErr("$sanitize");var bind;var extend;var forEach;var isDefined;var lowercase;var noop;var htmlParser;var htmlSanitizeWriter;/**
+ * @ngdoc module
+ * @name ngSanitize
+ * @description
+ *
+ * # ngSanitize
+ *
+ * The `ngSanitize` module provides functionality to sanitize HTML.
+ *
+ *
+ * <div doc-module-components="ngSanitize"></div>
+ *
+ * See {@link ngSanitize.$sanitize `$sanitize`} for usage.
+ */
+/**
+ * @ngdoc service
+ * @name $sanitize
+ * @kind function
+ *
+ * @description
+ *   Sanitizes an html string by stripping all potentially dangerous tokens.
+ *
+ *   The input is sanitized by parsing the HTML into tokens. All safe tokens (from a whitelist) are
+ *   then serialized back to properly escaped html string. This means that no unsafe input can make
+ *   it into the returned string.
+ *
+ *   The whitelist for URL sanitization of attribute values is configured using the functions
+ *   `aHrefSanitizationWhitelist` and `imgSrcSanitizationWhitelist` of {@link ng.$compileProvider
+ *   `$compileProvider`}.
+ *
+ *   The input may also contain SVG markup if this is enabled via {@link $sanitizeProvider}.
+ *
+ * @param {string} html HTML input.
+ * @returns {string} Sanitized HTML.
+ *
+ * @example
+   <example module="sanitizeExample" deps="angular-sanitize.js">
+   <file name="index.html">
+     <script>
+         angular.module('sanitizeExample', ['ngSanitize'])
+           .controller('ExampleController', ['$scope', '$sce', function($scope, $sce) {
+             $scope.snippet =
+               '<p style="color:blue">an html\n' +
+               '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
+               'snippet</p>';
+             $scope.deliberatelyTrustDangerousSnippet = function() {
+               return $sce.trustAsHtml($scope.snippet);
+             };
+           }]);
+     </script>
+     <div ng-controller="ExampleController">
+        Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
+       <table>
+         <tr>
+           <td>Directive</td>
+           <td>How</td>
+           <td>Source</td>
+           <td>Rendered</td>
+         </tr>
+         <tr id="bind-html-with-sanitize">
+           <td>ng-bind-html</td>
+           <td>Automatically uses $sanitize</td>
+           <td><pre>&lt;div ng-bind-html="snippet"&gt;<br/>&lt;/div&gt;</pre></td>
+           <td><div ng-bind-html="snippet"></div></td>
+         </tr>
+         <tr id="bind-html-with-trust">
+           <td>ng-bind-html</td>
+           <td>Bypass $sanitize by explicitly trusting the dangerous value</td>
+           <td>
+           <pre>&lt;div ng-bind-html="deliberatelyTrustDangerousSnippet()"&gt;
+&lt;/div&gt;</pre>
+           </td>
+           <td><div ng-bind-html="deliberatelyTrustDangerousSnippet()"></div></td>
+         </tr>
+         <tr id="bind-default">
+           <td>ng-bind</td>
+           <td>Automatically escapes</td>
+           <td><pre>&lt;div ng-bind="snippet"&gt;<br/>&lt;/div&gt;</pre></td>
+           <td><div ng-bind="snippet"></div></td>
+         </tr>
+       </table>
+       </div>
+   </file>
+   <file name="protractor.js" type="protractor">
+     it('should sanitize the html snippet by default', function() {
+       expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
+         toBe('<p>an html\n<em>click here</em>\nsnippet</p>');
+     });
+
+     it('should inline raw snippet if bound to a trusted value', function() {
+       expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).
+         toBe("<p style=\"color:blue\">an html\n" +
+              "<em onmouseover=\"this.textContent='PWN3D!'\">click here</em>\n" +
+              "snippet</p>");
+     });
+
+     it('should escape snippet without any filter', function() {
+       expect(element(by.css('#bind-default div')).getInnerHtml()).
+         toBe("&lt;p style=\"color:blue\"&gt;an html\n" +
+              "&lt;em onmouseover=\"this.textContent='PWN3D!'\"&gt;click here&lt;/em&gt;\n" +
+              "snippet&lt;/p&gt;");
+     });
+
+     it('should update', function() {
+       element(by.model('snippet')).clear();
+       element(by.model('snippet')).sendKeys('new <b onclick="alert(1)">text</b>');
+       expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
+         toBe('new <b>text</b>');
+       expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).toBe(
+         'new <b onclick="alert(1)">text</b>');
+       expect(element(by.css('#bind-default div')).getInnerHtml()).toBe(
+         "new &lt;b onclick=\"alert(1)\"&gt;text&lt;/b&gt;");
+     });
+   </file>
+   </example>
+ */
+/**
+ * @ngdoc provider
+ * @name $sanitizeProvider
+ *
+ * @description
+ * Creates and configures {@link $sanitize} instance.
+ */
+function $SanitizeProvider(){var svgEnabled=false;this.$get=["$$sanitizeUri",function($$sanitizeUri){if(svgEnabled){extend(validElements,svgElements)}return function(html){var buf=[];htmlParser(html,htmlSanitizeWriter(buf,function(uri,isImage){return!/^unsafe:/.test($$sanitizeUri(uri,isImage))}));return buf.join("")}}];/**
+   * @ngdoc method
+   * @name $sanitizeProvider#enableSvg
+   * @kind function
+   *
+   * @description
+   * Enables a subset of svg to be supported by the sanitizer.
+   *
+   * <div class="alert alert-warning">
+   *   <p>By enabling this setting without taking other precautions, you might expose your
+   *   application to click-hijacking attacks. In these attacks, sanitized svg elements could be positioned
+   *   outside of the containing element and be rendered over other elements on the page (e.g. a login
+   *   link). Such behavior can then result in phishing incidents.</p>
+   *
+   *   <p>To protect against these, explicitly setup `overflow: hidden` css rule for all potential svg
+   *   tags within the sanitized content:</p>
+   *
+   *   <br>
+   *
+   *   <pre><code>
+   *   .rootOfTheIncludedContent svg {
+   *     overflow: hidden !important;
+   *   }
+   *   </code></pre>
+   * </div>
+   *
+   * @param {boolean=} flag Enable or disable SVG support in the sanitizer.
+   * @returns {boolean|ng.$sanitizeProvider} Returns the currently configured value if called
+   *    without an argument or self for chaining otherwise.
+   */
+this.enableSvg=function(enableSvg){if(isDefined(enableSvg)){svgEnabled=enableSvg;return this}else{return svgEnabled}};
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Private stuff
+//////////////////////////////////////////////////////////////////////////////////////////////////
+bind=angular.bind;extend=angular.extend;forEach=angular.forEach;isDefined=angular.isDefined;lowercase=angular.lowercase;noop=angular.noop;htmlParser=htmlParserImpl;htmlSanitizeWriter=htmlSanitizeWriterImpl;
+// Regular Expressions for parsing tags and attributes
+var SURROGATE_PAIR_REGEXP=/[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
+// Match everything outside of normal chars and " (quote character)
+NON_ALPHANUMERIC_REGEXP=/([^\#-~ |!])/g;
+// Good source of info about elements and attributes
+// http://dev.w3.org/html5/spec/Overview.html#semantics
+// http://simon.html5.org/html-elements
+// Safe Void Elements - HTML5
+// http://dev.w3.org/html5/spec/Overview.html#void-elements
+var voidElements=toMap("area,br,col,hr,img,wbr");
+// Elements that you can, intentionally, leave open (and which close themselves)
+// http://dev.w3.org/html5/spec/Overview.html#optional-tags
+var optionalEndTagBlockElements=toMap("colgroup,dd,dt,li,p,tbody,td,tfoot,th,thead,tr"),optionalEndTagInlineElements=toMap("rp,rt"),optionalEndTagElements=extend({},optionalEndTagInlineElements,optionalEndTagBlockElements);
+// Safe Block Elements - HTML5
+var blockElements=extend({},optionalEndTagBlockElements,toMap("address,article,"+"aside,blockquote,caption,center,del,dir,div,dl,figure,figcaption,footer,h1,h2,h3,h4,h5,"+"h6,header,hgroup,hr,ins,map,menu,nav,ol,pre,section,table,ul"));
+// Inline Elements - HTML5
+var inlineElements=extend({},optionalEndTagInlineElements,toMap("a,abbr,acronym,b,"+"bdi,bdo,big,br,cite,code,del,dfn,em,font,i,img,ins,kbd,label,map,mark,q,ruby,rp,rt,s,"+"samp,small,span,strike,strong,sub,sup,time,tt,u,var"));
+// SVG Elements
+// https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Elements
+// Note: the elements animate,animateColor,animateMotion,animateTransform,set are intentionally omitted.
+// They can potentially allow for arbitrary javascript to be executed. See #11290
+var svgElements=toMap("circle,defs,desc,ellipse,font-face,font-face-name,font-face-src,g,glyph,"+"hkern,image,linearGradient,line,marker,metadata,missing-glyph,mpath,path,polygon,polyline,"+"radialGradient,rect,stop,svg,switch,text,title,tspan");
+// Blocked Elements (will be stripped)
+var blockedElements=toMap("script,style");var validElements=extend({},voidElements,blockElements,inlineElements,optionalEndTagElements);
+//Attributes that have href and hence need to be sanitized
+var uriAttrs=toMap("background,cite,href,longdesc,src,xlink:href");var htmlAttrs=toMap("abbr,align,alt,axis,bgcolor,border,cellpadding,cellspacing,class,clear,"+"color,cols,colspan,compact,coords,dir,face,headers,height,hreflang,hspace,"+"ismap,lang,language,nohref,nowrap,rel,rev,rows,rowspan,rules,"+"scope,scrolling,shape,size,span,start,summary,tabindex,target,title,type,"+"valign,value,vspace,width");
+// SVG attributes (without "id" and "name" attributes)
+// https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Attributes
+var svgAttrs=toMap("accent-height,accumulate,additive,alphabetic,arabic-form,ascent,"+"baseProfile,bbox,begin,by,calcMode,cap-height,class,color,color-rendering,content,"+"cx,cy,d,dx,dy,descent,display,dur,end,fill,fill-rule,font-family,font-size,font-stretch,"+"font-style,font-variant,font-weight,from,fx,fy,g1,g2,glyph-name,gradientUnits,hanging,"+"height,horiz-adv-x,horiz-origin-x,ideographic,k,keyPoints,keySplines,keyTimes,lang,"+"marker-end,marker-mid,marker-start,markerHeight,markerUnits,markerWidth,mathematical,"+"max,min,offset,opacity,orient,origin,overline-position,overline-thickness,panose-1,"+"path,pathLength,points,preserveAspectRatio,r,refX,refY,repeatCount,repeatDur,"+"requiredExtensions,requiredFeatures,restart,rotate,rx,ry,slope,stemh,stemv,stop-color,"+"stop-opacity,strikethrough-position,strikethrough-thickness,stroke,stroke-dasharray,"+"stroke-dashoffset,stroke-linecap,stroke-linejoin,stroke-miterlimit,stroke-opacity,"+"stroke-width,systemLanguage,target,text-anchor,to,transform,type,u1,u2,underline-position,"+"underline-thickness,unicode,unicode-range,units-per-em,values,version,viewBox,visibility,"+"width,widths,x,x-height,x1,x2,xlink:actuate,xlink:arcrole,xlink:role,xlink:show,xlink:title,"+"xlink:type,xml:base,xml:lang,xml:space,xmlns,xmlns:xlink,y,y1,y2,zoomAndPan",true);var validAttrs=extend({},uriAttrs,svgAttrs,htmlAttrs);function toMap(str,lowercaseKeys){var obj={},items=str.split(","),i;for(i=0;i<items.length;i++){obj[lowercaseKeys?lowercase(items[i]):items[i]]=true}return obj}var inertBodyElement;(function(window){var doc;if(window.document&&window.document.implementation){doc=window.document.implementation.createHTMLDocument("inert")}else{throw $sanitizeMinErr("noinert","Can't create an inert html document")}var docElement=doc.documentElement||doc.getDocumentElement();var bodyElements=docElement.getElementsByTagName("body");
+// usually there should be only one body element in the document, but IE doesn't have any, so we need to create one
+if(bodyElements.length===1){inertBodyElement=bodyElements[0]}else{var html=doc.createElement("html");inertBodyElement=doc.createElement("body");html.appendChild(inertBodyElement);doc.appendChild(html)}})(window);/**
+   * @example
+   * htmlParser(htmlString, {
+   *     start: function(tag, attrs) {},
+   *     end: function(tag) {},
+   *     chars: function(text) {},
+   *     comment: function(text) {}
+   * });
+   *
+   * @param {string} html string
+   * @param {object} handler
+   */
+function htmlParserImpl(html,handler){if(html===null||html===undefined){html=""}else if(typeof html!=="string"){html=""+html}inertBodyElement.innerHTML=html;
+//mXSS protection
+var mXSSAttempts=5;do{if(mXSSAttempts===0){throw $sanitizeMinErr("uinput","Failed to sanitize html because the input is unstable")}mXSSAttempts--;
+// strip custom-namespaced attributes on IE<=11
+if(window.document.documentMode){stripCustomNsAttrs(inertBodyElement)}html=inertBodyElement.innerHTML;//trigger mXSS
+inertBodyElement.innerHTML=html}while(html!==inertBodyElement.innerHTML);var node=inertBodyElement.firstChild;while(node){switch(node.nodeType){case 1:// ELEMENT_NODE
+handler.start(node.nodeName.toLowerCase(),attrToMap(node.attributes));break;case 3:// TEXT NODE
+handler.chars(node.textContent);break}var nextNode;if(!(nextNode=node.firstChild)){if(node.nodeType==1){handler.end(node.nodeName.toLowerCase())}nextNode=node.nextSibling;if(!nextNode){while(nextNode==null){node=node.parentNode;if(node===inertBodyElement)break;nextNode=node.nextSibling;if(node.nodeType==1){handler.end(node.nodeName.toLowerCase())}}}}node=nextNode}while(node=inertBodyElement.firstChild){inertBodyElement.removeChild(node)}}function attrToMap(attrs){var map={};for(var i=0,ii=attrs.length;i<ii;i++){var attr=attrs[i];map[attr.name]=attr.value}return map}/**
+   * Escapes all potentially dangerous characters, so that the
+   * resulting string can be safely inserted into attribute or
+   * element text.
+   * @param value
+   * @returns {string} escaped text
+   */
+function encodeEntities(value){return value.replace(/&/g,"&amp;").replace(SURROGATE_PAIR_REGEXP,function(value){var hi=value.charCodeAt(0);var low=value.charCodeAt(1);return"&#"+((hi-55296)*1024+(low-56320)+65536)+";"}).replace(NON_ALPHANUMERIC_REGEXP,function(value){return"&#"+value.charCodeAt(0)+";"}).replace(/</g,"&lt;").replace(/>/g,"&gt;")}/**
+   * create an HTML/XML writer which writes to buffer
+   * @param {Array} buf use buf.join('') to get out sanitized html string
+   * @returns {object} in the form of {
+   *     start: function(tag, attrs) {},
+   *     end: function(tag) {},
+   *     chars: function(text) {},
+   *     comment: function(text) {}
+   * }
+   */
+function htmlSanitizeWriterImpl(buf,uriValidator){var ignoreCurrentElement=false;var out=bind(buf,buf.push);return{start:function(tag,attrs){tag=lowercase(tag);if(!ignoreCurrentElement&&blockedElements[tag]){ignoreCurrentElement=tag}if(!ignoreCurrentElement&&validElements[tag]===true){out("<");out(tag);forEach(attrs,function(value,key){var lkey=lowercase(key);var isImage=tag==="img"&&lkey==="src"||lkey==="background";if(validAttrs[lkey]===true&&(uriAttrs[lkey]!==true||uriValidator(value,isImage))){out(" ");out(key);out('="');out(encodeEntities(value));out('"')}});out(">")}},end:function(tag){tag=lowercase(tag);if(!ignoreCurrentElement&&validElements[tag]===true&&voidElements[tag]!==true){out("</");out(tag);out(">")}if(tag==ignoreCurrentElement){ignoreCurrentElement=false}},chars:function(chars){if(!ignoreCurrentElement){out(encodeEntities(chars))}}}}/**
+   * When IE9-11 comes across an unknown namespaced attribute e.g. 'xlink:foo' it adds 'xmlns:ns1' attribute to declare
+   * ns1 namespace and prefixes the attribute with 'ns1' (e.g. 'ns1:xlink:foo'). This is undesirable since we don't want
+   * to allow any of these custom attributes. This method strips them all.
+   *
+   * @param node Root element to process
+   */
+function stripCustomNsAttrs(node){if(node.nodeType===window.Node.ELEMENT_NODE){var attrs=node.attributes;for(var i=0,l=attrs.length;i<l;i++){var attrNode=attrs[i];var attrName=attrNode.name.toLowerCase();if(attrName==="xmlns:ns1"||attrName.lastIndexOf("ns1:",0)===0){node.removeAttributeNode(attrNode);i--;l--}}}var nextNode=node.firstChild;if(nextNode){stripCustomNsAttrs(nextNode)}nextNode=node.nextSibling;if(nextNode){stripCustomNsAttrs(nextNode)}}}function sanitizeText(chars){var buf=[];var writer=htmlSanitizeWriter(buf,noop);writer.chars(chars);return buf.join("")}
+// define ngSanitize module and register $sanitize service
+angular.module("ngSanitize",[]).provider("$sanitize",$SanitizeProvider);/**
+ * @ngdoc filter
+ * @name linky
+ * @kind function
+ *
+ * @description
+ * Finds links in text input and turns them into html links. Supports `http/https/ftp/mailto` and
+ * plain email address links.
+ *
+ * Requires the {@link ngSanitize `ngSanitize`} module to be installed.
+ *
+ * @param {string} text Input text.
+ * @param {string} target Window (`_blank|_self|_parent|_top`) or named frame to open links in.
+ * @param {object|function(url)} [attributes] Add custom attributes to the link element.
+ *
+ *    Can be one of:
+ *
+ *    - `object`: A map of attributes
+ *    - `function`: Takes the url as a parameter and returns a map of attributes
+ *
+ *    If the map of attributes contains a value for `target`, it overrides the value of
+ *    the target parameter.
+ *
+ *
+ * @returns {string} Html-linkified and {@link $sanitize sanitized} text.
+ *
+ * @usage
+   <span ng-bind-html="linky_expression | linky"></span>
+ *
+ * @example
+   <example module="linkyExample" deps="angular-sanitize.js">
+     <file name="index.html">
+       <div ng-controller="ExampleController">
+       Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
+       <table>
+         <tr>
+           <th>Filter</th>
+           <th>Source</th>
+           <th>Rendered</th>
+         </tr>
+         <tr id="linky-filter">
+           <td>linky filter</td>
+           <td>
+             <pre>&lt;div ng-bind-html="snippet | linky"&gt;<br>&lt;/div&gt;</pre>
+           </td>
+           <td>
+             <div ng-bind-html="snippet | linky"></div>
+           </td>
+         </tr>
+         <tr id="linky-target">
+          <td>linky target</td>
+          <td>
+            <pre>&lt;div ng-bind-html="snippetWithSingleURL | linky:'_blank'"&gt;<br>&lt;/div&gt;</pre>
+          </td>
+          <td>
+            <div ng-bind-html="snippetWithSingleURL | linky:'_blank'"></div>
+          </td>
+         </tr>
+         <tr id="linky-custom-attributes">
+          <td>linky custom attributes</td>
+          <td>
+            <pre>&lt;div ng-bind-html="snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}"&gt;<br>&lt;/div&gt;</pre>
+          </td>
+          <td>
+            <div ng-bind-html="snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}"></div>
+          </td>
+         </tr>
+         <tr id="escaped-html">
+           <td>no filter</td>
+           <td><pre>&lt;div ng-bind="snippet"&gt;<br>&lt;/div&gt;</pre></td>
+           <td><div ng-bind="snippet"></div></td>
+         </tr>
+       </table>
+     </file>
+     <file name="script.js">
+       angular.module('linkyExample', ['ngSanitize'])
+         .controller('ExampleController', ['$scope', function($scope) {
+           $scope.snippet =
+             'Pretty text with some links:\n'+
+             'http://angularjs.org/,\n'+
+             'mailto:us@somewhere.org,\n'+
+             'another@somewhere.org,\n'+
+             'and one more: ftp://127.0.0.1/.';
+           $scope.snippetWithSingleURL = 'http://angularjs.org/';
+         }]);
+     </file>
+     <file name="protractor.js" type="protractor">
+       it('should linkify the snippet with urls', function() {
+         expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
+             toBe('Pretty text with some links: http://angularjs.org/, us@somewhere.org, ' +
+                  'another@somewhere.org, and one more: ftp://127.0.0.1/.');
+         expect(element.all(by.css('#linky-filter a')).count()).toEqual(4);
+       });
+
+       it('should not linkify snippet without the linky filter', function() {
+         expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText()).
+             toBe('Pretty text with some links: http://angularjs.org/, mailto:us@somewhere.org, ' +
+                  'another@somewhere.org, and one more: ftp://127.0.0.1/.');
+         expect(element.all(by.css('#escaped-html a')).count()).toEqual(0);
+       });
+
+       it('should update', function() {
+         element(by.model('snippet')).clear();
+         element(by.model('snippet')).sendKeys('new http://link.');
+         expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
+             toBe('new http://link.');
+         expect(element.all(by.css('#linky-filter a')).count()).toEqual(1);
+         expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText())
+             .toBe('new http://link.');
+       });
+
+       it('should work with the target property', function() {
+        expect(element(by.id('linky-target')).
+            element(by.binding("snippetWithSingleURL | linky:'_blank'")).getText()).
+            toBe('http://angularjs.org/');
+        expect(element(by.css('#linky-target a')).getAttribute('target')).toEqual('_blank');
+       });
+
+       it('should optionally add custom attributes', function() {
+        expect(element(by.id('linky-custom-attributes')).
+            element(by.binding("snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}")).getText()).
+            toBe('http://angularjs.org/');
+        expect(element(by.css('#linky-custom-attributes a')).getAttribute('rel')).toEqual('nofollow');
+       });
+     </file>
+   </example>
+ */
+angular.module("ngSanitize").filter("linky",["$sanitize",function($sanitize){var LINKY_URL_REGEXP=/((ftp|https?):\/\/|(www\.)|(mailto:)?[A-Za-z0-9._%+-]+@)\S*[^\s.;,(){}<>"\u201d\u2019]/i,MAILTO_REGEXP=/^mailto:/i;var linkyMinErr=angular.$$minErr("linky");var isDefined=angular.isDefined;var isFunction=angular.isFunction;var isObject=angular.isObject;var isString=angular.isString;return function(text,target,attributes){if(text==null||text==="")return text;if(!isString(text))throw linkyMinErr("notstring","Expected string but received: {0}",text);var attributesFn=isFunction(attributes)?attributes:isObject(attributes)?function getAttributesObject(){return attributes}:function getEmptyAttributesObject(){return{}};var match;var raw=text;var html=[];var url;var i;while(match=raw.match(LINKY_URL_REGEXP)){
+// We can not end in these as they are sometimes found at the end of the sentence
+url=match[0];
+// if we did not match ftp/http/www/mailto then assume mailto
+if(!match[2]&&!match[4]){url=(match[3]?"http://":"mailto:")+url}i=match.index;addText(raw.substr(0,i));addLink(url,match[0].replace(MAILTO_REGEXP,""));raw=raw.substring(i+match[0].length)}addText(raw);return $sanitize(html.join(""));function addText(text){if(!text){return}html.push(sanitizeText(text))}function addLink(url,text){var key,linkAttributes=attributesFn(url);html.push("<a ");for(key in linkAttributes){html.push(key+'="'+linkAttributes[key]+'" ')}if(isDefined(target)&&!("target"in linkAttributes)){html.push('target="',target,'" ')}html.push('href="',url.replace(/"/g,"&quot;"),'">');addText(text);html.push("</a>")}}}])})(window,window.angular);/**
+ * @license AngularJS v1.5.8
+ * (c) 2010-2016 Google, Inc. http://angularjs.org
+ * License: MIT
+ */
 (function(window,angular){"use strict";/* global ngTouchClickDirectiveFactory: false,
  */
 /**
@@ -18969,6 +19964,2620 @@ if(!startCoords)return false;var deltaY=Math.abs(coords.y-startCoords.y);var del
 return valid&&deltaY<MAX_VERTICAL_DISTANCE&&deltaX>0&&deltaX>MIN_HORIZONTAL_DISTANCE&&deltaY/deltaX<MAX_VERTICAL_RATIO}var pointerTypes=["touch"];if(!angular.isDefined(attr["ngSwipeDisableMouse"])){pointerTypes.push("mouse")}$swipe.bind(element,{start:function(coords,event){startCoords=coords;valid=true},cancel:function(event){valid=false},end:function(coords,event){if(validSwipe(coords)){scope.$apply(function(){element.triggerHandler(eventName);swipeHandler(scope,{$event:event})})}}},pointerTypes)}}])}
 // Left is negative X-coordinate, right is positive.
 makeSwipeDirective("ngSwipeLeft",-1,"swipeleft");makeSwipeDirective("ngSwipeRight",1,"swiperight")})(window,window.angular);(function(){"use strict";angular.module("focus-if",[]).directive("focusIf",focusIf);focusIf.$inject=["$timeout"];function focusIf($timeout){function link($scope,$element,$attrs){var dom=$element[0];if($attrs.focusIf){$scope.$watch($attrs.focusIf,focus)}else{focus(true)}function focus(condition){if(condition){$timeout(function(){dom.focus()},$scope.$eval($attrs.focusDelay)||0)}}}return{restrict:"A",link:link}}})();/*
+ * angular-loading-bar
+ *
+ * intercepts XHR requests and creates a loading bar.
+ * Based on the excellent nprogress work by rstacruz (more info in readme)
+ *
+ * (c) 2013 Wes Cruver
+ * License: MIT
+ */
+(function(){"use strict";
+// Alias the loading bar for various backwards compatibilities since the project has matured:
+angular.module("angular-loading-bar",["cfp.loadingBarInterceptor"]);angular.module("chieffancypants.loadingBar",["cfp.loadingBarInterceptor"]);/**
+ * loadingBarInterceptor service
+ *
+ * Registers itself as an Angular interceptor and listens for XHR requests.
+ */
+angular.module("cfp.loadingBarInterceptor",["cfp.loadingBar"]).config(["$httpProvider",function($httpProvider){var interceptor=["$q","$cacheFactory","$timeout","$rootScope","$log","cfpLoadingBar",function($q,$cacheFactory,$timeout,$rootScope,$log,cfpLoadingBar){/**
+       * The total number of requests made
+       */
+var reqsTotal=0;/**
+       * The number of requests completed (either successfully or not)
+       */
+var reqsCompleted=0;/**
+       * The amount of time spent fetching before showing the loading bar
+       */
+var latencyThreshold=cfpLoadingBar.latencyThreshold;/**
+       * $timeout handle for latencyThreshold
+       */
+var startTimeout;/**
+       * calls cfpLoadingBar.complete() which removes the
+       * loading bar from the DOM.
+       */
+function setComplete(){$timeout.cancel(startTimeout);cfpLoadingBar.complete();reqsCompleted=0;reqsTotal=0}/**
+       * Determine if the response has already been cached
+       * @param  {Object}  config the config option from the request
+       * @return {Boolean} retrns true if cached, otherwise false
+       */
+function isCached(config){var cache;var defaultCache=$cacheFactory.get("$http");var defaults=$httpProvider.defaults;
+// Choose the proper cache source. Borrowed from angular: $http service
+if((config.cache||defaults.cache)&&config.cache!==false&&(config.method==="GET"||config.method==="JSONP")){cache=angular.isObject(config.cache)?config.cache:angular.isObject(defaults.cache)?defaults.cache:defaultCache}var cached=cache!==undefined?cache.get(config.url)!==undefined:false;if(config.cached!==undefined&&cached!==config.cached){return config.cached}config.cached=cached;return cached}return{request:function(config){
+// Check to make sure this request hasn't already been cached and that
+// the requester didn't explicitly ask us to ignore this request:
+if(!config.ignoreLoadingBar&&!isCached(config)){$rootScope.$broadcast("cfpLoadingBar:loading",{url:config.url});if(reqsTotal===0){startTimeout=$timeout(function(){cfpLoadingBar.start()},latencyThreshold)}reqsTotal++;cfpLoadingBar.set(reqsCompleted/reqsTotal)}return config},response:function(response){if(!response||!response.config){$log.error("Broken interceptor detected: Config object not supplied in response:\n https://github.com/chieffancypants/angular-loading-bar/pull/50");return response}if(!response.config.ignoreLoadingBar&&!isCached(response.config)){reqsCompleted++;$rootScope.$broadcast("cfpLoadingBar:loaded",{url:response.config.url,result:response});if(reqsCompleted>=reqsTotal){setComplete()}else{cfpLoadingBar.set(reqsCompleted/reqsTotal)}}return response},responseError:function(rejection){if(!rejection||!rejection.config){$log.error("Broken interceptor detected: Config object not supplied in rejection:\n https://github.com/chieffancypants/angular-loading-bar/pull/50");return $q.reject(rejection)}if(!rejection.config.ignoreLoadingBar&&!isCached(rejection.config)){reqsCompleted++;$rootScope.$broadcast("cfpLoadingBar:loaded",{url:rejection.config.url,result:rejection});if(reqsCompleted>=reqsTotal){setComplete()}else{cfpLoadingBar.set(reqsCompleted/reqsTotal)}}return $q.reject(rejection)}}}];$httpProvider.interceptors.push(interceptor)}]);/**
+ * Loading Bar
+ *
+ * This service handles adding and removing the actual element in the DOM.
+ * Generally, best practices for DOM manipulation is to take place in a
+ * directive, but because the element itself is injected in the DOM only upon
+ * XHR requests, and it's likely needed on every view, the best option is to
+ * use a service.
+ */
+angular.module("cfp.loadingBar",[]).provider("cfpLoadingBar",function(){this.autoIncrement=true;this.includeSpinner=true;this.includeBar=true;this.latencyThreshold=100;this.startSize=.02;this.parentSelector="body";this.spinnerTemplate='<div id="loading-bar-spinner"><div class="spinner-icon"></div></div>';this.loadingBarTemplate='<div id="loading-bar"><div class="bar"><div class="peg"></div></div></div>';this.$get=["$injector","$document","$timeout","$rootScope",function($injector,$document,$timeout,$rootScope){var $animate;var $parentSelector=this.parentSelector,loadingBarContainer=angular.element(this.loadingBarTemplate),loadingBar=loadingBarContainer.find("div").eq(0),spinner=angular.element(this.spinnerTemplate);var incTimeout,completeTimeout,started=false,status=0;var autoIncrement=this.autoIncrement;var includeSpinner=this.includeSpinner;var includeBar=this.includeBar;var startSize=this.startSize;/**
+       * Inserts the loading bar element into the dom, and sets it to 2%
+       */
+function _start(){if(!$animate){$animate=$injector.get("$animate")}$timeout.cancel(completeTimeout);
+// do not continually broadcast the started event:
+if(started){return}var document=$document[0];var parent=document.querySelector?document.querySelector($parentSelector):$document.find($parentSelector)[0];if(!parent){parent=document.getElementsByTagName("body")[0]}var $parent=angular.element(parent);var $after=parent.lastChild&&angular.element(parent.lastChild);$rootScope.$broadcast("cfpLoadingBar:started");started=true;if(includeBar){$animate.enter(loadingBarContainer,$parent,$after)}if(includeSpinner){$animate.enter(spinner,$parent,loadingBarContainer)}_set(startSize)}/**
+       * Set the loading bar's width to a certain percent.
+       *
+       * @param n any value between 0 and 1
+       */
+function _set(n){if(!started){return}var pct=n*100+"%";loadingBar.css("width",pct);status=n;
+// increment loadingbar to give the illusion that there is always
+// progress but make sure to cancel the previous timeouts so we don't
+// have multiple incs running at the same time.
+if(autoIncrement){$timeout.cancel(incTimeout);incTimeout=$timeout(function(){_inc()},250)}}/**
+       * Increments the loading bar by a random amount
+       * but slows down as it progresses
+       */
+function _inc(){if(_status()>=1){return}var rnd=0;
+// TODO: do this mathmatically instead of through conditions
+var stat=_status();if(stat>=0&&stat<.25){
+// Start out between 3 - 6% increments
+rnd=(Math.random()*(5-3+1)+3)/100}else if(stat>=.25&&stat<.65){
+// increment between 0 - 3%
+rnd=Math.random()*3/100}else if(stat>=.65&&stat<.9){
+// increment between 0 - 2%
+rnd=Math.random()*2/100}else if(stat>=.9&&stat<.99){
+// finally, increment it .5 %
+rnd=.005}else{
+// after 99%, don't increment:
+rnd=0}var pct=_status()+rnd;_set(pct)}function _status(){return status}function _completeAnimation(){status=0;started=false}function _complete(){if(!$animate){$animate=$injector.get("$animate")}$rootScope.$broadcast("cfpLoadingBar:completed");_set(1);$timeout.cancel(completeTimeout);
+// Attempt to aggregate any start/complete calls within 500ms:
+completeTimeout=$timeout(function(){var promise=$animate.leave(loadingBarContainer,_completeAnimation);if(promise&&promise.then){promise.then(_completeAnimation)}$animate.leave(spinner)},500)}return{start:_start,set:_set,status:_status,inc:_inc,complete:_complete,autoIncrement:this.autoIncrement,includeSpinner:this.includeSpinner,latencyThreshold:this.latencyThreshold,parentSelector:this.parentSelector,startSize:this.startSize}}]})})();(function(){/** Used as a safe reference for `undefined` in pre-ES5 environments. */
+var undefined;/** Used as the semantic version number. */
+var VERSION="4.16.4";/** Error message constants. */
+var FUNC_ERROR_TEXT="Expected a function";/** Used to compose bitmasks for function metadata. */
+var BIND_FLAG=1,PARTIAL_FLAG=32;/** Used to compose bitmasks for comparison styles. */
+var UNORDERED_COMPARE_FLAG=1,PARTIAL_COMPARE_FLAG=2;/** Used as references for various `Number` constants. */
+var INFINITY=1/0,MAX_SAFE_INTEGER=9007199254740991;/** `Object#toString` result references. */
+var argsTag="[object Arguments]",arrayTag="[object Array]",boolTag="[object Boolean]",dateTag="[object Date]",errorTag="[object Error]",funcTag="[object Function]",genTag="[object GeneratorFunction]",numberTag="[object Number]",objectTag="[object Object]",proxyTag="[object Proxy]",regexpTag="[object RegExp]",stringTag="[object String]";/** Used to match HTML entities and HTML characters. */
+var reUnescapedHtml=/[&<>"']/g,reHasUnescapedHtml=RegExp(reUnescapedHtml.source);/** Used to map characters to HTML entities. */
+var htmlEscapes={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"};/** Detect free variable `global` from Node.js. */
+var freeGlobal=typeof global=="object"&&global&&global.Object===Object&&global;/** Detect free variable `self`. */
+var freeSelf=typeof self=="object"&&self&&self.Object===Object&&self;/** Used as a reference to the global object. */
+var root=freeGlobal||freeSelf||Function("return this")();/** Detect free variable `exports`. */
+var freeExports=typeof exports=="object"&&exports&&!exports.nodeType&&exports;/** Detect free variable `module`. */
+var freeModule=freeExports&&typeof module=="object"&&module&&!module.nodeType&&module;/*--------------------------------------------------------------------------*/
+/**
+   * Appends the elements of `values` to `array`.
+   *
+   * @private
+   * @param {Array} array The array to modify.
+   * @param {Array} values The values to append.
+   * @returns {Array} Returns `array`.
+   */
+function arrayPush(array,values){array.push.apply(array,values);return array}/**
+   * The base implementation of `_.findIndex` and `_.findLastIndex` without
+   * support for iteratee shorthands.
+   *
+   * @private
+   * @param {Array} array The array to inspect.
+   * @param {Function} predicate The function invoked per iteration.
+   * @param {number} fromIndex The index to search from.
+   * @param {boolean} [fromRight] Specify iterating from right to left.
+   * @returns {number} Returns the index of the matched value, else `-1`.
+   */
+function baseFindIndex(array,predicate,fromIndex,fromRight){var length=array.length,index=fromIndex+(fromRight?1:-1);while(fromRight?index--:++index<length){if(predicate(array[index],index,array)){return index}}return-1}/**
+   * The base implementation of `_.property` without support for deep paths.
+   *
+   * @private
+   * @param {string} key The key of the property to get.
+   * @returns {Function} Returns the new accessor function.
+   */
+function baseProperty(key){return function(object){return object==null?undefined:object[key]}}/**
+   * The base implementation of `_.propertyOf` without support for deep paths.
+   *
+   * @private
+   * @param {Object} object The object to query.
+   * @returns {Function} Returns the new accessor function.
+   */
+function basePropertyOf(object){return function(key){return object==null?undefined:object[key]}}/**
+   * The base implementation of `_.reduce` and `_.reduceRight`, without support
+   * for iteratee shorthands, which iterates over `collection` using `eachFunc`.
+   *
+   * @private
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @param {*} accumulator The initial value.
+   * @param {boolean} initAccum Specify using the first or last element of
+   *  `collection` as the initial value.
+   * @param {Function} eachFunc The function to iterate over `collection`.
+   * @returns {*} Returns the accumulated value.
+   */
+function baseReduce(collection,iteratee,accumulator,initAccum,eachFunc){eachFunc(collection,function(value,index,collection){accumulator=initAccum?(initAccum=false,value):iteratee(accumulator,value,index,collection)});return accumulator}/**
+   * The base implementation of `_.values` and `_.valuesIn` which creates an
+   * array of `object` property values corresponding to the property names
+   * of `props`.
+   *
+   * @private
+   * @param {Object} object The object to query.
+   * @param {Array} props The property names to get values for.
+   * @returns {Object} Returns the array of property values.
+   */
+function baseValues(object,props){return baseMap(props,function(key){return object[key]})}/**
+   * Used by `_.escape` to convert characters to HTML entities.
+   *
+   * @private
+   * @param {string} chr The matched character to escape.
+   * @returns {string} Returns the escaped character.
+   */
+var escapeHtmlChar=basePropertyOf(htmlEscapes);/**
+   * Creates a unary function that invokes `func` with its argument transformed.
+   *
+   * @private
+   * @param {Function} func The function to wrap.
+   * @param {Function} transform The argument transform.
+   * @returns {Function} Returns the new function.
+   */
+function overArg(func,transform){return function(arg){return func(transform(arg))}}/*--------------------------------------------------------------------------*/
+/** Used for built-in method references. */
+var arrayProto=Array.prototype,objectProto=Object.prototype;/** Used to check objects for own properties. */
+var hasOwnProperty=objectProto.hasOwnProperty;/** Used to generate unique IDs. */
+var idCounter=0;/**
+   * Used to resolve the
+   * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+   * of values.
+   */
+var objectToString=objectProto.toString;/** Used to restore the original `_` reference in `_.noConflict`. */
+var oldDash=root._;/** Built-in value references. */
+var objectCreate=Object.create,propertyIsEnumerable=objectProto.propertyIsEnumerable;/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeIsFinite=root.isFinite,nativeKeys=overArg(Object.keys,Object),nativeMax=Math.max;/*------------------------------------------------------------------------*/
+/**
+   * Creates a `lodash` object which wraps `value` to enable implicit method
+   * chain sequences. Methods that operate on and return arrays, collections,
+   * and functions can be chained together. Methods that retrieve a single value
+   * or may return a primitive value will automatically end the chain sequence
+   * and return the unwrapped value. Otherwise, the value must be unwrapped
+   * with `_#value`.
+   *
+   * Explicit chain sequences, which must be unwrapped with `_#value`, may be
+   * enabled using `_.chain`.
+   *
+   * The execution of chained methods is lazy, that is, it's deferred until
+   * `_#value` is implicitly or explicitly called.
+   *
+   * Lazy evaluation allows several methods to support shortcut fusion.
+   * Shortcut fusion is an optimization to merge iteratee calls; this avoids
+   * the creation of intermediate arrays and can greatly reduce the number of
+   * iteratee executions. Sections of a chain sequence qualify for shortcut
+   * fusion if the section is applied to an array of at least `200` elements
+   * and any iteratees accept only one argument. The heuristic for whether a
+   * section qualifies for shortcut fusion is subject to change.
+   *
+   * Chaining is supported in custom builds as long as the `_#value` method is
+   * directly or indirectly included in the build.
+   *
+   * In addition to lodash methods, wrappers have `Array` and `String` methods.
+   *
+   * The wrapper `Array` methods are:
+   * `concat`, `join`, `pop`, `push`, `shift`, `sort`, `splice`, and `unshift`
+   *
+   * The wrapper `String` methods are:
+   * `replace` and `split`
+   *
+   * The wrapper methods that support shortcut fusion are:
+   * `at`, `compact`, `drop`, `dropRight`, `dropWhile`, `filter`, `find`,
+   * `findLast`, `head`, `initial`, `last`, `map`, `reject`, `reverse`, `slice`,
+   * `tail`, `take`, `takeRight`, `takeRightWhile`, `takeWhile`, and `toArray`
+   *
+   * The chainable wrapper methods are:
+   * `after`, `ary`, `assign`, `assignIn`, `assignInWith`, `assignWith`, `at`,
+   * `before`, `bind`, `bindAll`, `bindKey`, `castArray`, `chain`, `chunk`,
+   * `commit`, `compact`, `concat`, `conforms`, `constant`, `countBy`, `create`,
+   * `curry`, `debounce`, `defaults`, `defaultsDeep`, `defer`, `delay`,
+   * `difference`, `differenceBy`, `differenceWith`, `drop`, `dropRight`,
+   * `dropRightWhile`, `dropWhile`, `extend`, `extendWith`, `fill`, `filter`,
+   * `flatMap`, `flatMapDeep`, `flatMapDepth`, `flatten`, `flattenDeep`,
+   * `flattenDepth`, `flip`, `flow`, `flowRight`, `fromPairs`, `functions`,
+   * `functionsIn`, `groupBy`, `initial`, `intersection`, `intersectionBy`,
+   * `intersectionWith`, `invert`, `invertBy`, `invokeMap`, `iteratee`, `keyBy`,
+   * `keys`, `keysIn`, `map`, `mapKeys`, `mapValues`, `matches`, `matchesProperty`,
+   * `memoize`, `merge`, `mergeWith`, `method`, `methodOf`, `mixin`, `negate`,
+   * `nthArg`, `omit`, `omitBy`, `once`, `orderBy`, `over`, `overArgs`,
+   * `overEvery`, `overSome`, `partial`, `partialRight`, `partition`, `pick`,
+   * `pickBy`, `plant`, `property`, `propertyOf`, `pull`, `pullAll`, `pullAllBy`,
+   * `pullAllWith`, `pullAt`, `push`, `range`, `rangeRight`, `rearg`, `reject`,
+   * `remove`, `rest`, `reverse`, `sampleSize`, `set`, `setWith`, `shuffle`,
+   * `slice`, `sort`, `sortBy`, `splice`, `spread`, `tail`, `take`, `takeRight`,
+   * `takeRightWhile`, `takeWhile`, `tap`, `throttle`, `thru`, `toArray`,
+   * `toPairs`, `toPairsIn`, `toPath`, `toPlainObject`, `transform`, `unary`,
+   * `union`, `unionBy`, `unionWith`, `uniq`, `uniqBy`, `uniqWith`, `unset`,
+   * `unshift`, `unzip`, `unzipWith`, `update`, `updateWith`, `values`,
+   * `valuesIn`, `without`, `wrap`, `xor`, `xorBy`, `xorWith`, `zip`,
+   * `zipObject`, `zipObjectDeep`, and `zipWith`
+   *
+   * The wrapper methods that are **not** chainable by default are:
+   * `add`, `attempt`, `camelCase`, `capitalize`, `ceil`, `clamp`, `clone`,
+   * `cloneDeep`, `cloneDeepWith`, `cloneWith`, `conformsTo`, `deburr`,
+   * `defaultTo`, `divide`, `each`, `eachRight`, `endsWith`, `eq`, `escape`,
+   * `escapeRegExp`, `every`, `find`, `findIndex`, `findKey`, `findLast`,
+   * `findLastIndex`, `findLastKey`, `first`, `floor`, `forEach`, `forEachRight`,
+   * `forIn`, `forInRight`, `forOwn`, `forOwnRight`, `get`, `gt`, `gte`, `has`,
+   * `hasIn`, `head`, `identity`, `includes`, `indexOf`, `inRange`, `invoke`,
+   * `isArguments`, `isArray`, `isArrayBuffer`, `isArrayLike`, `isArrayLikeObject`,
+   * `isBoolean`, `isBuffer`, `isDate`, `isElement`, `isEmpty`, `isEqual`,
+   * `isEqualWith`, `isError`, `isFinite`, `isFunction`, `isInteger`, `isLength`,
+   * `isMap`, `isMatch`, `isMatchWith`, `isNaN`, `isNative`, `isNil`, `isNull`,
+   * `isNumber`, `isObject`, `isObjectLike`, `isPlainObject`, `isRegExp`,
+   * `isSafeInteger`, `isSet`, `isString`, `isUndefined`, `isTypedArray`,
+   * `isWeakMap`, `isWeakSet`, `join`, `kebabCase`, `last`, `lastIndexOf`,
+   * `lowerCase`, `lowerFirst`, `lt`, `lte`, `max`, `maxBy`, `mean`, `meanBy`,
+   * `min`, `minBy`, `multiply`, `noConflict`, `noop`, `now`, `nth`, `pad`,
+   * `padEnd`, `padStart`, `parseInt`, `pop`, `random`, `reduce`, `reduceRight`,
+   * `repeat`, `result`, `round`, `runInContext`, `sample`, `shift`, `size`,
+   * `snakeCase`, `some`, `sortedIndex`, `sortedIndexBy`, `sortedLastIndex`,
+   * `sortedLastIndexBy`, `startCase`, `startsWith`, `stubArray`, `stubFalse`,
+   * `stubObject`, `stubString`, `stubTrue`, `subtract`, `sum`, `sumBy`,
+   * `template`, `times`, `toFinite`, `toInteger`, `toJSON`, `toLength`,
+   * `toLower`, `toNumber`, `toSafeInteger`, `toString`, `toUpper`, `trim`,
+   * `trimEnd`, `trimStart`, `truncate`, `unescape`, `uniqueId`, `upperCase`,
+   * `upperFirst`, `value`, and `words`
+   *
+   * @name _
+   * @constructor
+   * @category Seq
+   * @param {*} value The value to wrap in a `lodash` instance.
+   * @returns {Object} Returns the new `lodash` wrapper instance.
+   * @example
+   *
+   * function square(n) {
+   *   return n * n;
+   * }
+   *
+   * var wrapped = _([1, 2, 3]);
+   *
+   * // Returns an unwrapped value.
+   * wrapped.reduce(_.add);
+   * // => 6
+   *
+   * // Returns a wrapped value.
+   * var squares = wrapped.map(square);
+   *
+   * _.isArray(squares);
+   * // => false
+   *
+   * _.isArray(squares.value());
+   * // => true
+   */
+function lodash(value){return value instanceof LodashWrapper?value:new LodashWrapper(value)}/**
+   * The base implementation of `_.create` without support for assigning
+   * properties to the created object.
+   *
+   * @private
+   * @param {Object} proto The object to inherit from.
+   * @returns {Object} Returns the new object.
+   */
+var baseCreate=function(){function object(){}return function(proto){if(!isObject(proto)){return{}}if(objectCreate){return objectCreate(proto)}object.prototype=proto;var result=new object;object.prototype=undefined;return result}}();/**
+   * The base constructor for creating `lodash` wrapper objects.
+   *
+   * @private
+   * @param {*} value The value to wrap.
+   * @param {boolean} [chainAll] Enable explicit method chain sequences.
+   */
+function LodashWrapper(value,chainAll){this.__wrapped__=value;this.__actions__=[];this.__chain__=!!chainAll}LodashWrapper.prototype=baseCreate(lodash.prototype);LodashWrapper.prototype.constructor=LodashWrapper;/*------------------------------------------------------------------------*/
+/**
+   * Used by `_.defaults` to customize its `_.assignIn` use.
+   *
+   * @private
+   * @param {*} objValue The destination value.
+   * @param {*} srcValue The source value.
+   * @param {string} key The key of the property to assign.
+   * @param {Object} object The parent object of `objValue`.
+   * @returns {*} Returns the value to assign.
+   */
+function assignInDefaults(objValue,srcValue,key,object){if(objValue===undefined||eq(objValue,objectProto[key])&&!hasOwnProperty.call(object,key)){return srcValue}return objValue}/**
+   * Assigns `value` to `key` of `object` if the existing value is not equivalent
+   * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+   * for equality comparisons.
+   *
+   * @private
+   * @param {Object} object The object to modify.
+   * @param {string} key The key of the property to assign.
+   * @param {*} value The value to assign.
+   */
+function assignValue(object,key,value){var objValue=object[key];if(!(hasOwnProperty.call(object,key)&&eq(objValue,value))||value===undefined&&!(key in object)){baseAssignValue(object,key,value)}}/**
+   * The base implementation of `assignValue` and `assignMergeValue` without
+   * value checks.
+   *
+   * @private
+   * @param {Object} object The object to modify.
+   * @param {string} key The key of the property to assign.
+   * @param {*} value The value to assign.
+   */
+function baseAssignValue(object,key,value){object[key]=value}/**
+   * The base implementation of `_.delay` and `_.defer` which accepts `args`
+   * to provide to `func`.
+   *
+   * @private
+   * @param {Function} func The function to delay.
+   * @param {number} wait The number of milliseconds to delay invocation.
+   * @param {Array} args The arguments to provide to `func`.
+   * @returns {number|Object} Returns the timer id or timeout object.
+   */
+function baseDelay(func,wait,args){if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}return setTimeout(function(){func.apply(undefined,args)},wait)}/**
+   * The base implementation of `_.forEach` without support for iteratee shorthands.
+   *
+   * @private
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @returns {Array|Object} Returns `collection`.
+   */
+var baseEach=createBaseEach(baseForOwn);/**
+   * The base implementation of `_.every` without support for iteratee shorthands.
+   *
+   * @private
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} predicate The function invoked per iteration.
+   * @returns {boolean} Returns `true` if all elements pass the predicate check,
+   *  else `false`
+   */
+function baseEvery(collection,predicate){var result=true;baseEach(collection,function(value,index,collection){result=!!predicate(value,index,collection);return result});return result}/**
+   * The base implementation of methods like `_.max` and `_.min` which accepts a
+   * `comparator` to determine the extremum value.
+   *
+   * @private
+   * @param {Array} array The array to iterate over.
+   * @param {Function} iteratee The iteratee invoked per iteration.
+   * @param {Function} comparator The comparator used to compare values.
+   * @returns {*} Returns the extremum value.
+   */
+function baseExtremum(array,iteratee,comparator){var index=-1,length=array.length;while(++index<length){var value=array[index],current=iteratee(value);if(current!=null&&(computed===undefined?current===current&&!false:comparator(current,computed))){var computed=current,result=value}}return result}/**
+   * The base implementation of `_.filter` without support for iteratee shorthands.
+   *
+   * @private
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} predicate The function invoked per iteration.
+   * @returns {Array} Returns the new filtered array.
+   */
+function baseFilter(collection,predicate){var result=[];baseEach(collection,function(value,index,collection){if(predicate(value,index,collection)){result.push(value)}});return result}/**
+   * The base implementation of `_.flatten` with support for restricting flattening.
+   *
+   * @private
+   * @param {Array} array The array to flatten.
+   * @param {number} depth The maximum recursion depth.
+   * @param {boolean} [predicate=isFlattenable] The function invoked per iteration.
+   * @param {boolean} [isStrict] Restrict to values that pass `predicate` checks.
+   * @param {Array} [result=[]] The initial result value.
+   * @returns {Array} Returns the new flattened array.
+   */
+function baseFlatten(array,depth,predicate,isStrict,result){var index=-1,length=array.length;predicate||(predicate=isFlattenable);result||(result=[]);while(++index<length){var value=array[index];if(depth>0&&predicate(value)){if(depth>1){
+// Recursively flatten arrays (susceptible to call stack limits).
+baseFlatten(value,depth-1,predicate,isStrict,result)}else{arrayPush(result,value)}}else if(!isStrict){result[result.length]=value}}return result}/**
+   * The base implementation of `baseForOwn` which iterates over `object`
+   * properties returned by `keysFunc` and invokes `iteratee` for each property.
+   * Iteratee functions may exit iteration early by explicitly returning `false`.
+   *
+   * @private
+   * @param {Object} object The object to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @param {Function} keysFunc The function to get the keys of `object`.
+   * @returns {Object} Returns `object`.
+   */
+var baseFor=createBaseFor();/**
+   * The base implementation of `_.forOwn` without support for iteratee shorthands.
+   *
+   * @private
+   * @param {Object} object The object to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @returns {Object} Returns `object`.
+   */
+function baseForOwn(object,iteratee){return object&&baseFor(object,iteratee,keys)}/**
+   * The base implementation of `_.functions` which creates an array of
+   * `object` function property names filtered from `props`.
+   *
+   * @private
+   * @param {Object} object The object to inspect.
+   * @param {Array} props The property names to filter.
+   * @returns {Array} Returns the function names.
+   */
+function baseFunctions(object,props){return baseFilter(props,function(key){return isFunction(object[key])})}/**
+   * The base implementation of `_.gt` which doesn't coerce arguments.
+   *
+   * @private
+   * @param {*} value The value to compare.
+   * @param {*} other The other value to compare.
+   * @returns {boolean} Returns `true` if `value` is greater than `other`,
+   *  else `false`.
+   */
+function baseGt(value,other){return value>other}/**
+   * The base implementation of `_.isArguments`.
+   *
+   * @private
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+   */
+var baseIsArguments=noop;/**
+   * The base implementation of `_.isDate` without Node.js optimizations.
+   *
+   * @private
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is a date object, else `false`.
+   */
+function baseIsDate(value){return isObjectLike(value)&&objectToString.call(value)==dateTag}/**
+   * The base implementation of `_.isEqual` which supports partial comparisons
+   * and tracks traversed objects.
+   *
+   * @private
+   * @param {*} value The value to compare.
+   * @param {*} other The other value to compare.
+   * @param {Function} [customizer] The function to customize comparisons.
+   * @param {boolean} [bitmask] The bitmask of comparison flags.
+   *  The bitmask may be composed of the following flags:
+   *     1 - Unordered comparison
+   *     2 - Partial comparison
+   * @param {Object} [stack] Tracks traversed `value` and `other` objects.
+   * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+   */
+function baseIsEqual(value,other,customizer,bitmask,stack){if(value===other){return true}if(value==null||other==null||!isObject(value)&&!isObjectLike(other)){return value!==value&&other!==other}return baseIsEqualDeep(value,other,baseIsEqual,customizer,bitmask,stack)}/**
+   * A specialized version of `baseIsEqual` for arrays and objects which performs
+   * deep comparisons and tracks traversed objects enabling objects with circular
+   * references to be compared.
+   *
+   * @private
+   * @param {Object} object The object to compare.
+   * @param {Object} other The other object to compare.
+   * @param {Function} equalFunc The function to determine equivalents of values.
+   * @param {Function} [customizer] The function to customize comparisons.
+   * @param {number} [bitmask] The bitmask of comparison flags. See `baseIsEqual`
+   *  for more details.
+   * @param {Object} [stack] Tracks traversed `object` and `other` objects.
+   * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+   */
+function baseIsEqualDeep(object,other,equalFunc,customizer,bitmask,stack){var objIsArr=isArray(object),othIsArr=isArray(other),objTag=arrayTag,othTag=arrayTag;if(!objIsArr){objTag=objectToString.call(object);objTag=objTag==argsTag?objectTag:objTag}if(!othIsArr){othTag=objectToString.call(other);othTag=othTag==argsTag?objectTag:othTag}var objIsObj=objTag==objectTag,othIsObj=othTag==objectTag,isSameTag=objTag==othTag;stack||(stack=[]);var objStack=find(stack,function(entry){return entry[0]==object});var othStack=find(stack,function(entry){return entry[0]==other});if(objStack&&othStack){return objStack[1]==other}stack.push([object,other]);stack.push([other,object]);if(isSameTag&&!objIsObj){var result=objIsArr?equalArrays(object,other,equalFunc,customizer,bitmask,stack):equalByTag(object,other,objTag,equalFunc,customizer,bitmask,stack);stack.pop();return result}if(!(bitmask&PARTIAL_COMPARE_FLAG)){var objIsWrapped=objIsObj&&hasOwnProperty.call(object,"__wrapped__"),othIsWrapped=othIsObj&&hasOwnProperty.call(other,"__wrapped__");if(objIsWrapped||othIsWrapped){var objUnwrapped=objIsWrapped?object.value():object,othUnwrapped=othIsWrapped?other.value():other;var result=equalFunc(objUnwrapped,othUnwrapped,customizer,bitmask,stack);stack.pop();return result}}if(!isSameTag){return false}var result=equalObjects(object,other,equalFunc,customizer,bitmask,stack);stack.pop();return result}/**
+   * The base implementation of `_.isRegExp` without Node.js optimizations.
+   *
+   * @private
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is a regexp, else `false`.
+   */
+function baseIsRegExp(value){return isObject(value)&&objectToString.call(value)==regexpTag}/**
+   * The base implementation of `_.iteratee`.
+   *
+   * @private
+   * @param {*} [value=_.identity] The value to convert to an iteratee.
+   * @returns {Function} Returns the iteratee.
+   */
+function baseIteratee(func){if(typeof func=="function"){return func}if(func==null){return identity}return(typeof func=="object"?baseMatches:baseProperty)(func)}/**
+   * The base implementation of `_.lt` which doesn't coerce arguments.
+   *
+   * @private
+   * @param {*} value The value to compare.
+   * @param {*} other The other value to compare.
+   * @returns {boolean} Returns `true` if `value` is less than `other`,
+   *  else `false`.
+   */
+function baseLt(value,other){return value<other}/**
+   * The base implementation of `_.map` without support for iteratee shorthands.
+   *
+   * @private
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @returns {Array} Returns the new mapped array.
+   */
+function baseMap(collection,iteratee){var index=-1,result=isArrayLike(collection)?Array(collection.length):[];baseEach(collection,function(value,key,collection){result[++index]=iteratee(value,key,collection)});return result}/**
+   * The base implementation of `_.matches` which doesn't clone `source`.
+   *
+   * @private
+   * @param {Object} source The object of property values to match.
+   * @returns {Function} Returns the new spec function.
+   */
+function baseMatches(source){var props=nativeKeys(source);return function(object){var length=props.length;if(object==null){return!length}object=Object(object);while(length--){var key=props[length];if(!(key in object&&baseIsEqual(source[key],object[key],undefined,UNORDERED_COMPARE_FLAG|PARTIAL_COMPARE_FLAG))){return false}}return true}}/**
+   * The base implementation of `_.pick` without support for individual
+   * property identifiers.
+   *
+   * @private
+   * @param {Object} object The source object.
+   * @param {string[]} props The property identifiers to pick.
+   * @returns {Object} Returns the new object.
+   */
+function basePick(object,props){object=Object(object);return reduce(props,function(result,key){if(key in object){result[key]=object[key]}return result},{})}/**
+   * The base implementation of `_.rest` which doesn't validate or coerce arguments.
+   *
+   * @private
+   * @param {Function} func The function to apply a rest parameter to.
+   * @param {number} [start=func.length-1] The start position of the rest parameter.
+   * @returns {Function} Returns the new function.
+   */
+function baseRest(func,start){return setToString(overRest(func,start,identity),func+"")}/**
+   * The base implementation of `_.slice` without an iteratee call guard.
+   *
+   * @private
+   * @param {Array} array The array to slice.
+   * @param {number} [start=0] The start position.
+   * @param {number} [end=array.length] The end position.
+   * @returns {Array} Returns the slice of `array`.
+   */
+function baseSlice(array,start,end){var index=-1,length=array.length;if(start<0){start=-start>length?0:length+start}end=end>length?length:end;if(end<0){end+=length}length=start>end?0:end-start>>>0;start>>>=0;var result=Array(length);while(++index<length){result[index]=array[index+start]}return result}/**
+   * Copies the values of `source` to `array`.
+   *
+   * @private
+   * @param {Array} source The array to copy values from.
+   * @param {Array} [array=[]] The array to copy values to.
+   * @returns {Array} Returns `array`.
+   */
+function copyArray(source){return baseSlice(source,0,source.length)}/**
+   * The base implementation of `_.some` without support for iteratee shorthands.
+   *
+   * @private
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} predicate The function invoked per iteration.
+   * @returns {boolean} Returns `true` if any element passes the predicate check,
+   *  else `false`.
+   */
+function baseSome(collection,predicate){var result;baseEach(collection,function(value,index,collection){result=predicate(value,index,collection);return!result});return!!result}/**
+   * The base implementation of `wrapperValue` which returns the result of
+   * performing a sequence of actions on the unwrapped `value`, where each
+   * successive action is supplied the return value of the previous.
+   *
+   * @private
+   * @param {*} value The unwrapped value.
+   * @param {Array} actions Actions to perform to resolve the unwrapped value.
+   * @returns {*} Returns the resolved value.
+   */
+function baseWrapperValue(value,actions){var result=value;return reduce(actions,function(result,action){return action.func.apply(action.thisArg,arrayPush([result],action.args))},result)}/**
+   * Compares values to sort them in ascending order.
+   *
+   * @private
+   * @param {*} value The value to compare.
+   * @param {*} other The other value to compare.
+   * @returns {number} Returns the sort order indicator for `value`.
+   */
+function compareAscending(value,other){if(value!==other){var valIsDefined=value!==undefined,valIsNull=value===null,valIsReflexive=value===value,valIsSymbol=false;var othIsDefined=other!==undefined,othIsNull=other===null,othIsReflexive=other===other,othIsSymbol=false;if(!othIsNull&&!othIsSymbol&&!valIsSymbol&&value>other||valIsSymbol&&othIsDefined&&othIsReflexive&&!othIsNull&&!othIsSymbol||valIsNull&&othIsDefined&&othIsReflexive||!valIsDefined&&othIsReflexive||!valIsReflexive){return 1}if(!valIsNull&&!valIsSymbol&&!othIsSymbol&&value<other||othIsSymbol&&valIsDefined&&valIsReflexive&&!valIsNull&&!valIsSymbol||othIsNull&&valIsDefined&&valIsReflexive||!othIsDefined&&valIsReflexive||!othIsReflexive){return-1}}return 0}/**
+   * Copies properties of `source` to `object`.
+   *
+   * @private
+   * @param {Object} source The object to copy properties from.
+   * @param {Array} props The property identifiers to copy.
+   * @param {Object} [object={}] The object to copy properties to.
+   * @param {Function} [customizer] The function to customize copied values.
+   * @returns {Object} Returns `object`.
+   */
+function copyObject(source,props,object,customizer){var isNew=!object;object||(object={});var index=-1,length=props.length;while(++index<length){var key=props[index];var newValue=customizer?customizer(object[key],source[key],key,object,source):undefined;if(newValue===undefined){newValue=source[key]}if(isNew){baseAssignValue(object,key,newValue)}else{assignValue(object,key,newValue)}}return object}/**
+   * Creates a function like `_.assign`.
+   *
+   * @private
+   * @param {Function} assigner The function to assign values.
+   * @returns {Function} Returns the new assigner function.
+   */
+function createAssigner(assigner){return baseRest(function(object,sources){var index=-1,length=sources.length,customizer=length>1?sources[length-1]:undefined;customizer=assigner.length>3&&typeof customizer=="function"?(length--,customizer):undefined;object=Object(object);while(++index<length){var source=sources[index];if(source){assigner(object,source,index,customizer)}}return object})}/**
+   * Creates a `baseEach` or `baseEachRight` function.
+   *
+   * @private
+   * @param {Function} eachFunc The function to iterate over a collection.
+   * @param {boolean} [fromRight] Specify iterating from right to left.
+   * @returns {Function} Returns the new base function.
+   */
+function createBaseEach(eachFunc,fromRight){return function(collection,iteratee){if(collection==null){return collection}if(!isArrayLike(collection)){return eachFunc(collection,iteratee)}var length=collection.length,index=fromRight?length:-1,iterable=Object(collection);while(fromRight?index--:++index<length){if(iteratee(iterable[index],index,iterable)===false){break}}return collection}}/**
+   * Creates a base function for methods like `_.forIn` and `_.forOwn`.
+   *
+   * @private
+   * @param {boolean} [fromRight] Specify iterating from right to left.
+   * @returns {Function} Returns the new base function.
+   */
+function createBaseFor(fromRight){return function(object,iteratee,keysFunc){var index=-1,iterable=Object(object),props=keysFunc(object),length=props.length;while(length--){var key=props[fromRight?length:++index];if(iteratee(iterable[key],key,iterable)===false){break}}return object}}/**
+   * Creates a function that produces an instance of `Ctor` regardless of
+   * whether it was invoked as part of a `new` expression or by `call` or `apply`.
+   *
+   * @private
+   * @param {Function} Ctor The constructor to wrap.
+   * @returns {Function} Returns the new wrapped function.
+   */
+function createCtor(Ctor){return function(){
+// Use a `switch` statement to work with class constructors. See
+// http://ecma-international.org/ecma-262/7.0/#sec-ecmascript-function-objects-call-thisargument-argumentslist
+// for more details.
+var args=arguments;var thisBinding=baseCreate(Ctor.prototype),result=Ctor.apply(thisBinding,args);
+// Mimic the constructor's `return` behavior.
+// See https://es5.github.io/#x13.2.2 for more details.
+return isObject(result)?result:thisBinding}}/**
+   * Creates a `_.find` or `_.findLast` function.
+   *
+   * @private
+   * @param {Function} findIndexFunc The function to find the collection index.
+   * @returns {Function} Returns the new find function.
+   */
+function createFind(findIndexFunc){return function(collection,predicate,fromIndex){var iterable=Object(collection);if(!isArrayLike(collection)){var iteratee=baseIteratee(predicate,3);collection=keys(collection);predicate=function(key){return iteratee(iterable[key],key,iterable)}}var index=findIndexFunc(collection,predicate,fromIndex);return index>-1?iterable[iteratee?collection[index]:index]:undefined}}/**
+   * Creates a function that wraps `func` to invoke it with the `this` binding
+   * of `thisArg` and `partials` prepended to the arguments it receives.
+   *
+   * @private
+   * @param {Function} func The function to wrap.
+   * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+   * @param {*} thisArg The `this` binding of `func`.
+   * @param {Array} partials The arguments to prepend to those provided to
+   *  the new function.
+   * @returns {Function} Returns the new wrapped function.
+   */
+function createPartial(func,bitmask,thisArg,partials){if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}var isBind=bitmask&BIND_FLAG,Ctor=createCtor(func);function wrapper(){var argsIndex=-1,argsLength=arguments.length,leftIndex=-1,leftLength=partials.length,args=Array(leftLength+argsLength),fn=this&&this!==root&&this instanceof wrapper?Ctor:func;while(++leftIndex<leftLength){args[leftIndex]=partials[leftIndex]}while(argsLength--){args[leftIndex++]=arguments[++argsIndex]}return fn.apply(isBind?thisArg:this,args)}return wrapper}/**
+   * A specialized version of `baseIsEqualDeep` for arrays with support for
+   * partial deep comparisons.
+   *
+   * @private
+   * @param {Array} array The array to compare.
+   * @param {Array} other The other array to compare.
+   * @param {Function} equalFunc The function to determine equivalents of values.
+   * @param {Function} customizer The function to customize comparisons.
+   * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
+   *  for more details.
+   * @param {Object} stack Tracks traversed `array` and `other` objects.
+   * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+   */
+function equalArrays(array,other,equalFunc,customizer,bitmask,stack){var isPartial=bitmask&PARTIAL_COMPARE_FLAG,arrLength=array.length,othLength=other.length;if(arrLength!=othLength&&!(isPartial&&othLength>arrLength)){return false}var index=-1,result=true,seen=bitmask&UNORDERED_COMPARE_FLAG?[]:undefined;
+// Ignore non-index properties.
+while(++index<arrLength){var arrValue=array[index],othValue=other[index];var compared;if(compared!==undefined){if(compared){continue}result=false;break}
+// Recursively compare arrays (susceptible to call stack limits).
+if(seen){if(!baseSome(other,function(othValue,othIndex){if(!indexOf(seen,othIndex)&&(arrValue===othValue||equalFunc(arrValue,othValue,customizer,bitmask,stack))){return seen.push(othIndex)}})){result=false;break}}else if(!(arrValue===othValue||equalFunc(arrValue,othValue,customizer,bitmask,stack))){result=false;break}}return result}/**
+   * A specialized version of `baseIsEqualDeep` for comparing objects of
+   * the same `toStringTag`.
+   *
+   * **Note:** This function only supports comparing values with tags of
+   * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+   *
+   * @private
+   * @param {Object} object The object to compare.
+   * @param {Object} other The other object to compare.
+   * @param {string} tag The `toStringTag` of the objects to compare.
+   * @param {Function} equalFunc The function to determine equivalents of values.
+   * @param {Function} customizer The function to customize comparisons.
+   * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
+   *  for more details.
+   * @param {Object} stack Tracks traversed `object` and `other` objects.
+   * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+   */
+function equalByTag(object,other,tag,equalFunc,customizer,bitmask,stack){switch(tag){case boolTag:case dateTag:case numberTag:
+// Coerce booleans to `1` or `0` and dates to milliseconds.
+// Invalid dates are coerced to `NaN`.
+return eq(+object,+other);case errorTag:return object.name==other.name&&object.message==other.message;case regexpTag:case stringTag:
+// Coerce regexes to strings and treat strings, primitives and objects,
+// as equal. See http://www.ecma-international.org/ecma-262/7.0/#sec-regexp.prototype.tostring
+// for more details.
+return object==other+""}return false}/**
+   * A specialized version of `baseIsEqualDeep` for objects with support for
+   * partial deep comparisons.
+   *
+   * @private
+   * @param {Object} object The object to compare.
+   * @param {Object} other The other object to compare.
+   * @param {Function} equalFunc The function to determine equivalents of values.
+   * @param {Function} customizer The function to customize comparisons.
+   * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
+   *  for more details.
+   * @param {Object} stack Tracks traversed `object` and `other` objects.
+   * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+   */
+function equalObjects(object,other,equalFunc,customizer,bitmask,stack){var isPartial=bitmask&PARTIAL_COMPARE_FLAG,objProps=keys(object),objLength=objProps.length,othProps=keys(other),othLength=othProps.length;if(objLength!=othLength&&!isPartial){return false}var index=objLength;while(index--){var key=objProps[index];if(!(isPartial?key in other:hasOwnProperty.call(other,key))){return false}}var result=true;var skipCtor=isPartial;while(++index<objLength){key=objProps[index];var objValue=object[key],othValue=other[key];var compared;
+// Recursively compare objects (susceptible to call stack limits).
+if(!(compared===undefined?objValue===othValue||equalFunc(objValue,othValue,customizer,bitmask,stack):compared)){result=false;break}skipCtor||(skipCtor=key=="constructor")}if(result&&!skipCtor){var objCtor=object.constructor,othCtor=other.constructor;
+// Non `Object` object instances with different constructors are not equal.
+if(objCtor!=othCtor&&("constructor"in object&&"constructor"in other)&&!(typeof objCtor=="function"&&objCtor instanceof objCtor&&typeof othCtor=="function"&&othCtor instanceof othCtor)){result=false}}return result}/**
+   * A specialized version of `baseRest` which flattens the rest array.
+   *
+   * @private
+   * @param {Function} func The function to apply a rest parameter to.
+   * @returns {Function} Returns the new function.
+   */
+function flatRest(func){return setToString(overRest(func,undefined,flatten),func+"")}/**
+   * Checks if `value` is a flattenable `arguments` object or array.
+   *
+   * @private
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is flattenable, else `false`.
+   */
+function isFlattenable(value){return isArray(value)||isArguments(value)}/**
+   * This function is like
+   * [`Object.keys`](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+   * except that it includes inherited enumerable properties.
+   *
+   * @private
+   * @param {Object} object The object to query.
+   * @returns {Array} Returns the array of property names.
+   */
+function nativeKeysIn(object){var result=[];if(object!=null){for(var key in Object(object)){result.push(key)}}return result}/**
+   * A specialized version of `baseRest` which transforms the rest array.
+   *
+   * @private
+   * @param {Function} func The function to apply a rest parameter to.
+   * @param {number} [start=func.length-1] The start position of the rest parameter.
+   * @param {Function} transform The rest array transform.
+   * @returns {Function} Returns the new function.
+   */
+function overRest(func,start,transform){start=nativeMax(start===undefined?func.length-1:start,0);return function(){var args=arguments,index=-1,length=nativeMax(args.length-start,0),array=Array(length);while(++index<length){array[index]=args[start+index]}index=-1;var otherArgs=Array(start+1);while(++index<start){otherArgs[index]=args[index]}otherArgs[start]=transform(array);return func.apply(this,otherArgs)}}/**
+   * Sets the `toString` method of `func` to return `string`.
+   *
+   * @private
+   * @param {Function} func The function to modify.
+   * @param {Function} string The `toString` result.
+   * @returns {Function} Returns `func`.
+   */
+var setToString=identity;/**
+   * Converts `value` to a string key if it's not a string or symbol.
+   *
+   * @private
+   * @param {*} value The value to inspect.
+   * @returns {string|symbol} Returns the key.
+   */
+var toKey=String;/*------------------------------------------------------------------------*/
+/**
+   * Creates an array with all falsey values removed. The values `false`, `null`,
+   * `0`, `""`, `undefined`, and `NaN` are falsey.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Array
+   * @param {Array} array The array to compact.
+   * @returns {Array} Returns the new array of filtered values.
+   * @example
+   *
+   * _.compact([0, 1, false, 2, '', 3]);
+   * // => [1, 2, 3]
+   */
+function compact(array){return baseFilter(array,Boolean)}/**
+   * Creates a new array concatenating `array` with any additional arrays
+   * and/or values.
+   *
+   * @static
+   * @memberOf _
+   * @since 4.0.0
+   * @category Array
+   * @param {Array} array The array to concatenate.
+   * @param {...*} [values] The values to concatenate.
+   * @returns {Array} Returns the new concatenated array.
+   * @example
+   *
+   * var array = [1];
+   * var other = _.concat(array, 2, [3], [[4]]);
+   *
+   * console.log(other);
+   * // => [1, 2, 3, [4]]
+   *
+   * console.log(array);
+   * // => [1]
+   */
+function concat(){var length=arguments.length;if(!length){return[]}var args=Array(length-1),array=arguments[0],index=length;while(index--){args[index-1]=arguments[index]}return arrayPush(isArray(array)?copyArray(array):[array],baseFlatten(args,1))}/**
+   * This method is like `_.find` except that it returns the index of the first
+   * element `predicate` returns truthy for instead of the element itself.
+   *
+   * @static
+   * @memberOf _
+   * @since 1.1.0
+   * @category Array
+   * @param {Array} array The array to inspect.
+   * @param {Function} [predicate=_.identity]
+   *  The function invoked per iteration.
+   * @param {number} [fromIndex=0] The index to search from.
+   * @returns {number} Returns the index of the found element, else `-1`.
+   * @example
+   *
+   * var users = [
+   *   { 'user': 'barney',  'active': false },
+   *   { 'user': 'fred',    'active': false },
+   *   { 'user': 'pebbles', 'active': true }
+   * ];
+   *
+   * _.findIndex(users, function(o) { return o.user == 'barney'; });
+   * // => 0
+   *
+   * // The `_.matches` iteratee shorthand.
+   * _.findIndex(users, { 'user': 'fred', 'active': false });
+   * // => 1
+   *
+   * // The `_.matchesProperty` iteratee shorthand.
+   * _.findIndex(users, ['active', false]);
+   * // => 0
+   *
+   * // The `_.property` iteratee shorthand.
+   * _.findIndex(users, 'active');
+   * // => 2
+   */
+function findIndex(array,predicate,fromIndex){var length=array?array.length:0;if(!length){return-1}var index=fromIndex==null?0:toInteger(fromIndex);if(index<0){index=nativeMax(length+index,0)}return baseFindIndex(array,baseIteratee(predicate,3),index)}/**
+   * Flattens `array` a single level deep.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Array
+   * @param {Array} array The array to flatten.
+   * @returns {Array} Returns the new flattened array.
+   * @example
+   *
+   * _.flatten([1, [2, [3, [4]], 5]]);
+   * // => [1, 2, [3, [4]], 5]
+   */
+function flatten(array){var length=array?array.length:0;return length?baseFlatten(array,1):[]}/**
+   * Recursively flattens `array`.
+   *
+   * @static
+   * @memberOf _
+   * @since 3.0.0
+   * @category Array
+   * @param {Array} array The array to flatten.
+   * @returns {Array} Returns the new flattened array.
+   * @example
+   *
+   * _.flattenDeep([1, [2, [3, [4]], 5]]);
+   * // => [1, 2, 3, 4, 5]
+   */
+function flattenDeep(array){var length=array?array.length:0;return length?baseFlatten(array,INFINITY):[]}/**
+   * Gets the first element of `array`.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @alias first
+   * @category Array
+   * @param {Array} array The array to query.
+   * @returns {*} Returns the first element of `array`.
+   * @example
+   *
+   * _.head([1, 2, 3]);
+   * // => 1
+   *
+   * _.head([]);
+   * // => undefined
+   */
+function head(array){return array&&array.length?array[0]:undefined}/**
+   * Gets the index at which the first occurrence of `value` is found in `array`
+   * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+   * for equality comparisons. If `fromIndex` is negative, it's used as the
+   * offset from the end of `array`.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Array
+   * @param {Array} array The array to inspect.
+   * @param {*} value The value to search for.
+   * @param {number} [fromIndex=0] The index to search from.
+   * @returns {number} Returns the index of the matched value, else `-1`.
+   * @example
+   *
+   * _.indexOf([1, 2, 1, 2], 2);
+   * // => 1
+   *
+   * // Search from the `fromIndex`.
+   * _.indexOf([1, 2, 1, 2], 2, 2);
+   * // => 3
+   */
+function indexOf(array,value,fromIndex){var length=array?array.length:0;if(typeof fromIndex=="number"){fromIndex=fromIndex<0?nativeMax(length+fromIndex,0):fromIndex}else{fromIndex=0}var index=(fromIndex||0)-1,isReflexive=value===value;while(++index<length){var other=array[index];if(isReflexive?other===value:other!==other){return index}}return-1}/**
+   * Gets the last element of `array`.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Array
+   * @param {Array} array The array to query.
+   * @returns {*} Returns the last element of `array`.
+   * @example
+   *
+   * _.last([1, 2, 3]);
+   * // => 3
+   */
+function last(array){var length=array?array.length:0;return length?array[length-1]:undefined}/**
+   * Creates a slice of `array` from `start` up to, but not including, `end`.
+   *
+   * **Note:** This method is used instead of
+   * [`Array#slice`](https://mdn.io/Array/slice) to ensure dense arrays are
+   * returned.
+   *
+   * @static
+   * @memberOf _
+   * @since 3.0.0
+   * @category Array
+   * @param {Array} array The array to slice.
+   * @param {number} [start=0] The start position.
+   * @param {number} [end=array.length] The end position.
+   * @returns {Array} Returns the slice of `array`.
+   */
+function slice(array,start,end){var length=array?array.length:0;start=start==null?0:+start;end=end===undefined?length:+end;return length?baseSlice(array,start,end):[]}/*------------------------------------------------------------------------*/
+/**
+   * Creates a `lodash` wrapper instance that wraps `value` with explicit method
+   * chain sequences enabled. The result of such sequences must be unwrapped
+   * with `_#value`.
+   *
+   * @static
+   * @memberOf _
+   * @since 1.3.0
+   * @category Seq
+   * @param {*} value The value to wrap.
+   * @returns {Object} Returns the new `lodash` wrapper instance.
+   * @example
+   *
+   * var users = [
+   *   { 'user': 'barney',  'age': 36 },
+   *   { 'user': 'fred',    'age': 40 },
+   *   { 'user': 'pebbles', 'age': 1 }
+   * ];
+   *
+   * var youngest = _
+   *   .chain(users)
+   *   .sortBy('age')
+   *   .map(function(o) {
+   *     return o.user + ' is ' + o.age;
+   *   })
+   *   .head()
+   *   .value();
+   * // => 'pebbles is 1'
+   */
+function chain(value){var result=lodash(value);result.__chain__=true;return result}/**
+   * This method invokes `interceptor` and returns `value`. The interceptor
+   * is invoked with one argument; (value). The purpose of this method is to
+   * "tap into" a method chain sequence in order to modify intermediate results.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Seq
+   * @param {*} value The value to provide to `interceptor`.
+   * @param {Function} interceptor The function to invoke.
+   * @returns {*} Returns `value`.
+   * @example
+   *
+   * _([1, 2, 3])
+   *  .tap(function(array) {
+   *    // Mutate input array.
+   *    array.pop();
+   *  })
+   *  .reverse()
+   *  .value();
+   * // => [2, 1]
+   */
+function tap(value,interceptor){interceptor(value);return value}/**
+   * This method is like `_.tap` except that it returns the result of `interceptor`.
+   * The purpose of this method is to "pass thru" values replacing intermediate
+   * results in a method chain sequence.
+   *
+   * @static
+   * @memberOf _
+   * @since 3.0.0
+   * @category Seq
+   * @param {*} value The value to provide to `interceptor`.
+   * @param {Function} interceptor The function to invoke.
+   * @returns {*} Returns the result of `interceptor`.
+   * @example
+   *
+   * _('  abc  ')
+   *  .chain()
+   *  .trim()
+   *  .thru(function(value) {
+   *    return [value];
+   *  })
+   *  .value();
+   * // => ['abc']
+   */
+function thru(value,interceptor){return interceptor(value)}/**
+   * Creates a `lodash` wrapper instance with explicit method chain sequences enabled.
+   *
+   * @name chain
+   * @memberOf _
+   * @since 0.1.0
+   * @category Seq
+   * @returns {Object} Returns the new `lodash` wrapper instance.
+   * @example
+   *
+   * var users = [
+   *   { 'user': 'barney', 'age': 36 },
+   *   { 'user': 'fred',   'age': 40 }
+   * ];
+   *
+   * // A sequence without explicit chaining.
+   * _(users).head();
+   * // => { 'user': 'barney', 'age': 36 }
+   *
+   * // A sequence with explicit chaining.
+   * _(users)
+   *   .chain()
+   *   .head()
+   *   .pick('user')
+   *   .value();
+   * // => { 'user': 'barney' }
+   */
+function wrapperChain(){return chain(this)}/**
+   * Executes the chain sequence to resolve the unwrapped value.
+   *
+   * @name value
+   * @memberOf _
+   * @since 0.1.0
+   * @alias toJSON, valueOf
+   * @category Seq
+   * @returns {*} Returns the resolved unwrapped value.
+   * @example
+   *
+   * _([1, 2, 3]).value();
+   * // => [1, 2, 3]
+   */
+function wrapperValue(){return baseWrapperValue(this.__wrapped__,this.__actions__)}/*------------------------------------------------------------------------*/
+/**
+   * Checks if `predicate` returns truthy for **all** elements of `collection`.
+   * Iteration is stopped once `predicate` returns falsey. The predicate is
+   * invoked with three arguments: (value, index|key, collection).
+   *
+   * **Note:** This method returns `true` for
+   * [empty collections](https://en.wikipedia.org/wiki/Empty_set) because
+   * [everything is true](https://en.wikipedia.org/wiki/Vacuous_truth) of
+   * elements of empty collections.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Collection
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} [predicate=_.identity]
+   *  The function invoked per iteration.
+   * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+   * @returns {boolean} Returns `true` if all elements pass the predicate check,
+   *  else `false`.
+   * @example
+   *
+   * _.every([true, 1, null, 'yes'], Boolean);
+   * // => false
+   *
+   * var users = [
+   *   { 'user': 'barney', 'age': 36, 'active': false },
+   *   { 'user': 'fred',   'age': 40, 'active': false }
+   * ];
+   *
+   * // The `_.matches` iteratee shorthand.
+   * _.every(users, { 'user': 'barney', 'active': false });
+   * // => false
+   *
+   * // The `_.matchesProperty` iteratee shorthand.
+   * _.every(users, ['active', false]);
+   * // => true
+   *
+   * // The `_.property` iteratee shorthand.
+   * _.every(users, 'active');
+   * // => false
+   */
+function every(collection,predicate,guard){predicate=guard?undefined:predicate;return baseEvery(collection,baseIteratee(predicate))}/**
+   * Iterates over elements of `collection`, returning an array of all elements
+   * `predicate` returns truthy for. The predicate is invoked with three
+   * arguments: (value, index|key, collection).
+   *
+   * **Note:** Unlike `_.remove`, this method returns a new array.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Collection
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} [predicate=_.identity]
+   *  The function invoked per iteration.
+   * @returns {Array} Returns the new filtered array.
+   * @see _.reject
+   * @example
+   *
+   * var users = [
+   *   { 'user': 'barney', 'age': 36, 'active': true },
+   *   { 'user': 'fred',   'age': 40, 'active': false }
+   * ];
+   *
+   * _.filter(users, function(o) { return !o.active; });
+   * // => objects for ['fred']
+   *
+   * // The `_.matches` iteratee shorthand.
+   * _.filter(users, { 'age': 36, 'active': true });
+   * // => objects for ['barney']
+   *
+   * // The `_.matchesProperty` iteratee shorthand.
+   * _.filter(users, ['active', false]);
+   * // => objects for ['fred']
+   *
+   * // The `_.property` iteratee shorthand.
+   * _.filter(users, 'active');
+   * // => objects for ['barney']
+   */
+function filter(collection,predicate){return baseFilter(collection,baseIteratee(predicate))}/**
+   * Iterates over elements of `collection`, returning the first element
+   * `predicate` returns truthy for. The predicate is invoked with three
+   * arguments: (value, index|key, collection).
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Collection
+   * @param {Array|Object} collection The collection to inspect.
+   * @param {Function} [predicate=_.identity]
+   *  The function invoked per iteration.
+   * @param {number} [fromIndex=0] The index to search from.
+   * @returns {*} Returns the matched element, else `undefined`.
+   * @example
+   *
+   * var users = [
+   *   { 'user': 'barney',  'age': 36, 'active': true },
+   *   { 'user': 'fred',    'age': 40, 'active': false },
+   *   { 'user': 'pebbles', 'age': 1,  'active': true }
+   * ];
+   *
+   * _.find(users, function(o) { return o.age < 40; });
+   * // => object for 'barney'
+   *
+   * // The `_.matches` iteratee shorthand.
+   * _.find(users, { 'age': 1, 'active': true });
+   * // => object for 'pebbles'
+   *
+   * // The `_.matchesProperty` iteratee shorthand.
+   * _.find(users, ['active', false]);
+   * // => object for 'fred'
+   *
+   * // The `_.property` iteratee shorthand.
+   * _.find(users, 'active');
+   * // => object for 'barney'
+   */
+var find=createFind(findIndex);/**
+   * Iterates over elements of `collection` and invokes `iteratee` for each element.
+   * The iteratee is invoked with three arguments: (value, index|key, collection).
+   * Iteratee functions may exit iteration early by explicitly returning `false`.
+   *
+   * **Note:** As with other "Collections" methods, objects with a "length"
+   * property are iterated like arrays. To avoid this behavior use `_.forIn`
+   * or `_.forOwn` for object iteration.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @alias each
+   * @category Collection
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+   * @returns {Array|Object} Returns `collection`.
+   * @see _.forEachRight
+   * @example
+   *
+   * _.forEach([1, 2], function(value) {
+   *   console.log(value);
+   * });
+   * // => Logs `1` then `2`.
+   *
+   * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+   *   console.log(key);
+   * });
+   * // => Logs 'a' then 'b' (iteration order is not guaranteed).
+   */
+function forEach(collection,iteratee){return baseEach(collection,baseIteratee(iteratee))}/**
+   * Creates an array of values by running each element in `collection` thru
+   * `iteratee`. The iteratee is invoked with three arguments:
+   * (value, index|key, collection).
+   *
+   * Many lodash methods are guarded to work as iteratees for methods like
+   * `_.every`, `_.filter`, `_.map`, `_.mapValues`, `_.reject`, and `_.some`.
+   *
+   * The guarded methods are:
+   * `ary`, `chunk`, `curry`, `curryRight`, `drop`, `dropRight`, `every`,
+   * `fill`, `invert`, `parseInt`, `random`, `range`, `rangeRight`, `repeat`,
+   * `sampleSize`, `slice`, `some`, `sortBy`, `split`, `take`, `takeRight`,
+   * `template`, `trim`, `trimEnd`, `trimStart`, and `words`
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Collection
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+   * @returns {Array} Returns the new mapped array.
+   * @example
+   *
+   * function square(n) {
+   *   return n * n;
+   * }
+   *
+   * _.map([4, 8], square);
+   * // => [16, 64]
+   *
+   * _.map({ 'a': 4, 'b': 8 }, square);
+   * // => [16, 64] (iteration order is not guaranteed)
+   *
+   * var users = [
+   *   { 'user': 'barney' },
+   *   { 'user': 'fred' }
+   * ];
+   *
+   * // The `_.property` iteratee shorthand.
+   * _.map(users, 'user');
+   * // => ['barney', 'fred']
+   */
+function map(collection,iteratee){return baseMap(collection,baseIteratee(iteratee))}/**
+   * Reduces `collection` to a value which is the accumulated result of running
+   * each element in `collection` thru `iteratee`, where each successive
+   * invocation is supplied the return value of the previous. If `accumulator`
+   * is not given, the first element of `collection` is used as the initial
+   * value. The iteratee is invoked with four arguments:
+   * (accumulator, value, index|key, collection).
+   *
+   * Many lodash methods are guarded to work as iteratees for methods like
+   * `_.reduce`, `_.reduceRight`, and `_.transform`.
+   *
+   * The guarded methods are:
+   * `assign`, `defaults`, `defaultsDeep`, `includes`, `merge`, `orderBy`,
+   * and `sortBy`
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Collection
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+   * @param {*} [accumulator] The initial value.
+   * @returns {*} Returns the accumulated value.
+   * @see _.reduceRight
+   * @example
+   *
+   * _.reduce([1, 2], function(sum, n) {
+   *   return sum + n;
+   * }, 0);
+   * // => 3
+   *
+   * _.reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
+   *   (result[value] || (result[value] = [])).push(key);
+   *   return result;
+   * }, {});
+   * // => { '1': ['a', 'c'], '2': ['b'] } (iteration order is not guaranteed)
+   */
+function reduce(collection,iteratee,accumulator){return baseReduce(collection,baseIteratee(iteratee),accumulator,arguments.length<3,baseEach)}/**
+   * Gets the size of `collection` by returning its length for array-like
+   * values or the number of own enumerable string keyed properties for objects.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Collection
+   * @param {Array|Object|string} collection The collection to inspect.
+   * @returns {number} Returns the collection size.
+   * @example
+   *
+   * _.size([1, 2, 3]);
+   * // => 3
+   *
+   * _.size({ 'a': 1, 'b': 2 });
+   * // => 2
+   *
+   * _.size('pebbles');
+   * // => 7
+   */
+function size(collection){if(collection==null){return 0}collection=isArrayLike(collection)?collection:nativeKeys(collection);return collection.length}/**
+   * Checks if `predicate` returns truthy for **any** element of `collection`.
+   * Iteration is stopped once `predicate` returns truthy. The predicate is
+   * invoked with three arguments: (value, index|key, collection).
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Collection
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} [predicate=_.identity] The function invoked per iteration.
+   * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+   * @returns {boolean} Returns `true` if any element passes the predicate check,
+   *  else `false`.
+   * @example
+   *
+   * _.some([null, 0, 'yes', false], Boolean);
+   * // => true
+   *
+   * var users = [
+   *   { 'user': 'barney', 'active': true },
+   *   { 'user': 'fred',   'active': false }
+   * ];
+   *
+   * // The `_.matches` iteratee shorthand.
+   * _.some(users, { 'user': 'barney', 'active': false });
+   * // => false
+   *
+   * // The `_.matchesProperty` iteratee shorthand.
+   * _.some(users, ['active', false]);
+   * // => true
+   *
+   * // The `_.property` iteratee shorthand.
+   * _.some(users, 'active');
+   * // => true
+   */
+function some(collection,predicate,guard){predicate=guard?undefined:predicate;return baseSome(collection,baseIteratee(predicate))}/**
+   * Creates an array of elements, sorted in ascending order by the results of
+   * running each element in a collection thru each iteratee. This method
+   * performs a stable sort, that is, it preserves the original sort order of
+   * equal elements. The iteratees are invoked with one argument: (value).
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Collection
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {...(Function|Function[])} [iteratees=[_.identity]]
+   *  The iteratees to sort by.
+   * @returns {Array} Returns the new sorted array.
+   * @example
+   *
+   * var users = [
+   *   { 'user': 'fred',   'age': 48 },
+   *   { 'user': 'barney', 'age': 36 },
+   *   { 'user': 'fred',   'age': 40 },
+   *   { 'user': 'barney', 'age': 34 }
+   * ];
+   *
+   * _.sortBy(users, [function(o) { return o.user; }]);
+   * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+   *
+   * _.sortBy(users, ['user', 'age']);
+   * // => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+   */
+function sortBy(collection,iteratee){var index=0;iteratee=baseIteratee(iteratee);return baseMap(baseMap(collection,function(value,key,collection){return{value:value,index:index++,criteria:iteratee(value,key,collection)}}).sort(function(object,other){return compareAscending(object.criteria,other.criteria)||object.index-other.index}),baseProperty("value"))}/*------------------------------------------------------------------------*/
+/**
+   * Creates a function that invokes `func`, with the `this` binding and arguments
+   * of the created function, while it's called less than `n` times. Subsequent
+   * calls to the created function return the result of the last `func` invocation.
+   *
+   * @static
+   * @memberOf _
+   * @since 3.0.0
+   * @category Function
+   * @param {number} n The number of calls at which `func` is no longer invoked.
+   * @param {Function} func The function to restrict.
+   * @returns {Function} Returns the new restricted function.
+   * @example
+   *
+   * jQuery(element).on('click', _.before(5, addContactToList));
+   * // => Allows adding up to 4 contacts to the list.
+   */
+function before(n,func){var result;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}n=toInteger(n);return function(){if(--n>0){result=func.apply(this,arguments)}if(n<=1){func=undefined}return result}}/**
+   * Creates a function that invokes `func` with the `this` binding of `thisArg`
+   * and `partials` prepended to the arguments it receives.
+   *
+   * The `_.bind.placeholder` value, which defaults to `_` in monolithic builds,
+   * may be used as a placeholder for partially applied arguments.
+   *
+   * **Note:** Unlike native `Function#bind`, this method doesn't set the "length"
+   * property of bound functions.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Function
+   * @param {Function} func The function to bind.
+   * @param {*} thisArg The `this` binding of `func`.
+   * @param {...*} [partials] The arguments to be partially applied.
+   * @returns {Function} Returns the new bound function.
+   * @example
+   *
+   * function greet(greeting, punctuation) {
+   *   return greeting + ' ' + this.user + punctuation;
+   * }
+   *
+   * var object = { 'user': 'fred' };
+   *
+   * var bound = _.bind(greet, object, 'hi');
+   * bound('!');
+   * // => 'hi fred!'
+   *
+   * // Bound with placeholders.
+   * var bound = _.bind(greet, object, _, '!');
+   * bound('hi');
+   * // => 'hi fred!'
+   */
+var bind=baseRest(function(func,thisArg,partials){return createPartial(func,BIND_FLAG|PARTIAL_FLAG,thisArg,partials)});/**
+   * Defers invoking the `func` until the current call stack has cleared. Any
+   * additional arguments are provided to `func` when it's invoked.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Function
+   * @param {Function} func The function to defer.
+   * @param {...*} [args] The arguments to invoke `func` with.
+   * @returns {number} Returns the timer id.
+   * @example
+   *
+   * _.defer(function(text) {
+   *   console.log(text);
+   * }, 'deferred');
+   * // => Logs 'deferred' after one millisecond.
+   */
+var defer=baseRest(function(func,args){return baseDelay(func,1,args)});/**
+   * Invokes `func` after `wait` milliseconds. Any additional arguments are
+   * provided to `func` when it's invoked.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Function
+   * @param {Function} func The function to delay.
+   * @param {number} wait The number of milliseconds to delay invocation.
+   * @param {...*} [args] The arguments to invoke `func` with.
+   * @returns {number} Returns the timer id.
+   * @example
+   *
+   * _.delay(function(text) {
+   *   console.log(text);
+   * }, 1000, 'later');
+   * // => Logs 'later' after one second.
+   */
+var delay=baseRest(function(func,wait,args){return baseDelay(func,toNumber(wait)||0,args)});/**
+   * Creates a function that negates the result of the predicate `func`. The
+   * `func` predicate is invoked with the `this` binding and arguments of the
+   * created function.
+   *
+   * @static
+   * @memberOf _
+   * @since 3.0.0
+   * @category Function
+   * @param {Function} predicate The predicate to negate.
+   * @returns {Function} Returns the new negated function.
+   * @example
+   *
+   * function isEven(n) {
+   *   return n % 2 == 0;
+   * }
+   *
+   * _.filter([1, 2, 3, 4, 5, 6], _.negate(isEven));
+   * // => [1, 3, 5]
+   */
+function negate(predicate){if(typeof predicate!="function"){throw new TypeError(FUNC_ERROR_TEXT)}return function(){var args=arguments;return!predicate.apply(this,args)}}/**
+   * Creates a function that is restricted to invoking `func` once. Repeat calls
+   * to the function return the value of the first invocation. The `func` is
+   * invoked with the `this` binding and arguments of the created function.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Function
+   * @param {Function} func The function to restrict.
+   * @returns {Function} Returns the new restricted function.
+   * @example
+   *
+   * var initialize = _.once(createApplication);
+   * initialize();
+   * initialize();
+   * // => `createApplication` is invoked once
+   */
+function once(func){return before(2,func)}/*------------------------------------------------------------------------*/
+/**
+   * Creates a shallow clone of `value`.
+   *
+   * **Note:** This method is loosely based on the
+   * [structured clone algorithm](https://mdn.io/Structured_clone_algorithm)
+   * and supports cloning arrays, array buffers, booleans, date objects, maps,
+   * numbers, `Object` objects, regexes, sets, strings, symbols, and typed
+   * arrays. The own enumerable properties of `arguments` objects are cloned
+   * as plain objects. An empty object is returned for uncloneable values such
+   * as error objects, functions, DOM nodes, and WeakMaps.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to clone.
+   * @returns {*} Returns the cloned value.
+   * @see _.cloneDeep
+   * @example
+   *
+   * var objects = [{ 'a': 1 }, { 'b': 2 }];
+   *
+   * var shallow = _.clone(objects);
+   * console.log(shallow[0] === objects[0]);
+   * // => true
+   */
+function clone(value){if(!isObject(value)){return value}return isArray(value)?copyArray(value):copyObject(value,nativeKeys(value))}/**
+   * Performs a
+   * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+   * comparison between two values to determine if they are equivalent.
+   *
+   * @static
+   * @memberOf _
+   * @since 4.0.0
+   * @category Lang
+   * @param {*} value The value to compare.
+   * @param {*} other The other value to compare.
+   * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+   * @example
+   *
+   * var object = { 'a': 1 };
+   * var other = { 'a': 1 };
+   *
+   * _.eq(object, object);
+   * // => true
+   *
+   * _.eq(object, other);
+   * // => false
+   *
+   * _.eq('a', 'a');
+   * // => true
+   *
+   * _.eq('a', Object('a'));
+   * // => false
+   *
+   * _.eq(NaN, NaN);
+   * // => true
+   */
+function eq(value,other){return value===other||value!==value&&other!==other}/**
+   * Checks if `value` is likely an `arguments` object.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+   *  else `false`.
+   * @example
+   *
+   * _.isArguments(function() { return arguments; }());
+   * // => true
+   *
+   * _.isArguments([1, 2, 3]);
+   * // => false
+   */
+var isArguments=baseIsArguments(function(){return arguments}())?baseIsArguments:function(value){return isObjectLike(value)&&hasOwnProperty.call(value,"callee")&&!propertyIsEnumerable.call(value,"callee")};/**
+   * Checks if `value` is classified as an `Array` object.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+   * @example
+   *
+   * _.isArray([1, 2, 3]);
+   * // => true
+   *
+   * _.isArray(document.body.children);
+   * // => false
+   *
+   * _.isArray('abc');
+   * // => false
+   *
+   * _.isArray(_.noop);
+   * // => false
+   */
+var isArray=Array.isArray;/**
+   * Checks if `value` is array-like. A value is considered array-like if it's
+   * not a function and has a `value.length` that's an integer greater than or
+   * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+   *
+   * @static
+   * @memberOf _
+   * @since 4.0.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+   * @example
+   *
+   * _.isArrayLike([1, 2, 3]);
+   * // => true
+   *
+   * _.isArrayLike(document.body.children);
+   * // => true
+   *
+   * _.isArrayLike('abc');
+   * // => true
+   *
+   * _.isArrayLike(_.noop);
+   * // => false
+   */
+function isArrayLike(value){return value!=null&&isLength(value.length)&&!isFunction(value)}/**
+   * Checks if `value` is classified as a boolean primitive or object.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is a boolean, else `false`.
+   * @example
+   *
+   * _.isBoolean(false);
+   * // => true
+   *
+   * _.isBoolean(null);
+   * // => false
+   */
+function isBoolean(value){return value===true||value===false||isObjectLike(value)&&objectToString.call(value)==boolTag}/**
+   * Checks if `value` is classified as a `Date` object.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is a date object, else `false`.
+   * @example
+   *
+   * _.isDate(new Date);
+   * // => true
+   *
+   * _.isDate('Mon April 23 2012');
+   * // => false
+   */
+var isDate=baseIsDate;/**
+   * Checks if `value` is an empty object, collection, map, or set.
+   *
+   * Objects are considered empty if they have no own enumerable string keyed
+   * properties.
+   *
+   * Array-like values such as `arguments` objects, arrays, buffers, strings, or
+   * jQuery-like collections are considered empty if they have a `length` of `0`.
+   * Similarly, maps and sets are considered empty if they have a `size` of `0`.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is empty, else `false`.
+   * @example
+   *
+   * _.isEmpty(null);
+   * // => true
+   *
+   * _.isEmpty(true);
+   * // => true
+   *
+   * _.isEmpty(1);
+   * // => true
+   *
+   * _.isEmpty([1, 2, 3]);
+   * // => false
+   *
+   * _.isEmpty({ 'a': 1 });
+   * // => false
+   */
+function isEmpty(value){if(isArrayLike(value)&&(isArray(value)||isString(value)||isFunction(value.splice)||isArguments(value))){return!value.length}return!nativeKeys(value).length}/**
+   * Performs a deep comparison between two values to determine if they are
+   * equivalent.
+   *
+   * **Note:** This method supports comparing arrays, array buffers, booleans,
+   * date objects, error objects, maps, numbers, `Object` objects, regexes,
+   * sets, strings, symbols, and typed arrays. `Object` objects are compared
+   * by their own, not inherited, enumerable properties. Functions and DOM
+   * nodes are **not** supported.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to compare.
+   * @param {*} other The other value to compare.
+   * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+   * @example
+   *
+   * var object = { 'a': 1 };
+   * var other = { 'a': 1 };
+   *
+   * _.isEqual(object, other);
+   * // => true
+   *
+   * object === other;
+   * // => false
+   */
+function isEqual(value,other){return baseIsEqual(value,other)}/**
+   * Checks if `value` is a finite primitive number.
+   *
+   * **Note:** This method is based on
+   * [`Number.isFinite`](https://mdn.io/Number/isFinite).
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is a finite number, else `false`.
+   * @example
+   *
+   * _.isFinite(3);
+   * // => true
+   *
+   * _.isFinite(Number.MIN_VALUE);
+   * // => true
+   *
+   * _.isFinite(Infinity);
+   * // => false
+   *
+   * _.isFinite('3');
+   * // => false
+   */
+function isFinite(value){return typeof value=="number"&&nativeIsFinite(value)}/**
+   * Checks if `value` is classified as a `Function` object.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+   * @example
+   *
+   * _.isFunction(_);
+   * // => true
+   *
+   * _.isFunction(/abc/);
+   * // => false
+   */
+function isFunction(value){
+// The use of `Object#toString` avoids issues with the `typeof` operator
+// in Safari 9 which returns 'object' for typed array and other constructors.
+var tag=isObject(value)?objectToString.call(value):"";return tag==funcTag||tag==genTag||tag==proxyTag}/**
+   * Checks if `value` is a valid array-like length.
+   *
+   * **Note:** This method is loosely based on
+   * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+   *
+   * @static
+   * @memberOf _
+   * @since 4.0.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+   * @example
+   *
+   * _.isLength(3);
+   * // => true
+   *
+   * _.isLength(Number.MIN_VALUE);
+   * // => false
+   *
+   * _.isLength(Infinity);
+   * // => false
+   *
+   * _.isLength('3');
+   * // => false
+   */
+function isLength(value){return typeof value=="number"&&value>-1&&value%1==0&&value<=MAX_SAFE_INTEGER}/**
+   * Checks if `value` is the
+   * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+   * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+   * @example
+   *
+   * _.isObject({});
+   * // => true
+   *
+   * _.isObject([1, 2, 3]);
+   * // => true
+   *
+   * _.isObject(_.noop);
+   * // => true
+   *
+   * _.isObject(null);
+   * // => false
+   */
+function isObject(value){var type=typeof value;return value!=null&&(type=="object"||type=="function")}/**
+   * Checks if `value` is object-like. A value is object-like if it's not `null`
+   * and has a `typeof` result of "object".
+   *
+   * @static
+   * @memberOf _
+   * @since 4.0.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+   * @example
+   *
+   * _.isObjectLike({});
+   * // => true
+   *
+   * _.isObjectLike([1, 2, 3]);
+   * // => true
+   *
+   * _.isObjectLike(_.noop);
+   * // => false
+   *
+   * _.isObjectLike(null);
+   * // => false
+   */
+function isObjectLike(value){return value!=null&&typeof value=="object"}/**
+   * Checks if `value` is `NaN`.
+   *
+   * **Note:** This method is based on
+   * [`Number.isNaN`](https://mdn.io/Number/isNaN) and is not the same as
+   * global [`isNaN`](https://mdn.io/isNaN) which returns `true` for
+   * `undefined` and other non-number values.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
+   * @example
+   *
+   * _.isNaN(NaN);
+   * // => true
+   *
+   * _.isNaN(new Number(NaN));
+   * // => true
+   *
+   * isNaN(undefined);
+   * // => true
+   *
+   * _.isNaN(undefined);
+   * // => false
+   */
+function isNaN(value){
+// An `NaN` primitive is the only value that is not equal to itself.
+// Perform the `toStringTag` check first to avoid errors with some
+// ActiveX objects in IE.
+return isNumber(value)&&value!=+value}/**
+   * Checks if `value` is `null`.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is `null`, else `false`.
+   * @example
+   *
+   * _.isNull(null);
+   * // => true
+   *
+   * _.isNull(void 0);
+   * // => false
+   */
+function isNull(value){return value===null}/**
+   * Checks if `value` is classified as a `Number` primitive or object.
+   *
+   * **Note:** To exclude `Infinity`, `-Infinity`, and `NaN`, which are
+   * classified as numbers, use the `_.isFinite` method.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is a number, else `false`.
+   * @example
+   *
+   * _.isNumber(3);
+   * // => true
+   *
+   * _.isNumber(Number.MIN_VALUE);
+   * // => true
+   *
+   * _.isNumber(Infinity);
+   * // => true
+   *
+   * _.isNumber('3');
+   * // => false
+   */
+function isNumber(value){return typeof value=="number"||isObjectLike(value)&&objectToString.call(value)==numberTag}/**
+   * Checks if `value` is classified as a `RegExp` object.
+   *
+   * @static
+   * @memberOf _
+   * @since 0.1.0
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is a regexp, else `false`.
+   * @example
+   *
+   * _.isRegExp(/abc/);
+   * // => true
+   *
+   * _.isRegExp('/abc/');
+   * // => false
+   */
+var isRegExp=baseIsRegExp;/**
+   * Checks if `value` is classified as a `String` primitive or object.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is a string, else `false`.
+   * @example
+   *
+   * _.isString('abc');
+   * // => true
+   *
+   * _.isString(1);
+   * // => false
+   */
+function isString(value){return typeof value=="string"||!isArray(value)&&isObjectLike(value)&&objectToString.call(value)==stringTag}/**
+   * Checks if `value` is `undefined`.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Lang
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
+   * @example
+   *
+   * _.isUndefined(void 0);
+   * // => true
+   *
+   * _.isUndefined(null);
+   * // => false
+   */
+function isUndefined(value){return value===undefined}/**
+   * Converts `value` to an array.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Lang
+   * @param {*} value The value to convert.
+   * @returns {Array} Returns the converted array.
+   * @example
+   *
+   * _.toArray({ 'a': 1, 'b': 2 });
+   * // => [1, 2]
+   *
+   * _.toArray('abc');
+   * // => ['a', 'b', 'c']
+   *
+   * _.toArray(1);
+   * // => []
+   *
+   * _.toArray(null);
+   * // => []
+   */
+function toArray(value){if(!isArrayLike(value)){return values(value)}return value.length?copyArray(value):[]}/**
+   * Converts `value` to an integer.
+   *
+   * **Note:** This method is loosely based on
+   * [`ToInteger`](http://www.ecma-international.org/ecma-262/7.0/#sec-tointeger).
+   *
+   * @static
+   * @memberOf _
+   * @since 4.0.0
+   * @category Lang
+   * @param {*} value The value to convert.
+   * @returns {number} Returns the converted integer.
+   * @example
+   *
+   * _.toInteger(3.2);
+   * // => 3
+   *
+   * _.toInteger(Number.MIN_VALUE);
+   * // => 0
+   *
+   * _.toInteger(Infinity);
+   * // => 1.7976931348623157e+308
+   *
+   * _.toInteger('3.2');
+   * // => 3
+   */
+var toInteger=Number;/**
+   * Converts `value` to a number.
+   *
+   * @static
+   * @memberOf _
+   * @since 4.0.0
+   * @category Lang
+   * @param {*} value The value to process.
+   * @returns {number} Returns the number.
+   * @example
+   *
+   * _.toNumber(3.2);
+   * // => 3.2
+   *
+   * _.toNumber(Number.MIN_VALUE);
+   * // => 5e-324
+   *
+   * _.toNumber(Infinity);
+   * // => Infinity
+   *
+   * _.toNumber('3.2');
+   * // => 3.2
+   */
+var toNumber=Number;/**
+   * Converts `value` to a string. An empty string is returned for `null`
+   * and `undefined` values. The sign of `-0` is preserved.
+   *
+   * @static
+   * @memberOf _
+   * @since 4.0.0
+   * @category Lang
+   * @param {*} value The value to convert.
+   * @returns {string} Returns the converted string.
+   * @example
+   *
+   * _.toString(null);
+   * // => ''
+   *
+   * _.toString(-0);
+   * // => '-0'
+   *
+   * _.toString([1, 2, 3]);
+   * // => '1,2,3'
+   */
+function toString(value){if(typeof value=="string"){return value}return value==null?"":value+""}/*------------------------------------------------------------------------*/
+/**
+   * Assigns own enumerable string keyed properties of source objects to the
+   * destination object. Source objects are applied from left to right.
+   * Subsequent sources overwrite property assignments of previous sources.
+   *
+   * **Note:** This method mutates `object` and is loosely based on
+   * [`Object.assign`](https://mdn.io/Object/assign).
+   *
+   * @static
+   * @memberOf _
+   * @since 0.10.0
+   * @category Object
+   * @param {Object} object The destination object.
+   * @param {...Object} [sources] The source objects.
+   * @returns {Object} Returns `object`.
+   * @see _.assignIn
+   * @example
+   *
+   * function Foo() {
+   *   this.a = 1;
+   * }
+   *
+   * function Bar() {
+   *   this.c = 3;
+   * }
+   *
+   * Foo.prototype.b = 2;
+   * Bar.prototype.d = 4;
+   *
+   * _.assign({ 'a': 0 }, new Foo, new Bar);
+   * // => { 'a': 1, 'c': 3 }
+   */
+var assign=createAssigner(function(object,source){copyObject(source,nativeKeys(source),object)});/**
+   * This method is like `_.assign` except that it iterates over own and
+   * inherited source properties.
+   *
+   * **Note:** This method mutates `object`.
+   *
+   * @static
+   * @memberOf _
+   * @since 4.0.0
+   * @alias extend
+   * @category Object
+   * @param {Object} object The destination object.
+   * @param {...Object} [sources] The source objects.
+   * @returns {Object} Returns `object`.
+   * @see _.assign
+   * @example
+   *
+   * function Foo() {
+   *   this.a = 1;
+   * }
+   *
+   * function Bar() {
+   *   this.c = 3;
+   * }
+   *
+   * Foo.prototype.b = 2;
+   * Bar.prototype.d = 4;
+   *
+   * _.assignIn({ 'a': 0 }, new Foo, new Bar);
+   * // => { 'a': 1, 'b': 2, 'c': 3, 'd': 4 }
+   */
+var assignIn=createAssigner(function(object,source){copyObject(source,nativeKeysIn(source),object)});/**
+   * This method is like `_.assignIn` except that it accepts `customizer`
+   * which is invoked to produce the assigned values. If `customizer` returns
+   * `undefined`, assignment is handled by the method instead. The `customizer`
+   * is invoked with five arguments: (objValue, srcValue, key, object, source).
+   *
+   * **Note:** This method mutates `object`.
+   *
+   * @static
+   * @memberOf _
+   * @since 4.0.0
+   * @alias extendWith
+   * @category Object
+   * @param {Object} object The destination object.
+   * @param {...Object} sources The source objects.
+   * @param {Function} [customizer] The function to customize assigned values.
+   * @returns {Object} Returns `object`.
+   * @see _.assignWith
+   * @example
+   *
+   * function customizer(objValue, srcValue) {
+   *   return _.isUndefined(objValue) ? srcValue : objValue;
+   * }
+   *
+   * var defaults = _.partialRight(_.assignInWith, customizer);
+   *
+   * defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
+   * // => { 'a': 1, 'b': 2 }
+   */
+var assignInWith=createAssigner(function(object,source,srcIndex,customizer){copyObject(source,keysIn(source),object,customizer)});/**
+   * Creates an object that inherits from the `prototype` object. If a
+   * `properties` object is given, its own enumerable string keyed properties
+   * are assigned to the created object.
+   *
+   * @static
+   * @memberOf _
+   * @since 2.3.0
+   * @category Object
+   * @param {Object} prototype The object to inherit from.
+   * @param {Object} [properties] The properties to assign to the object.
+   * @returns {Object} Returns the new object.
+   * @example
+   *
+   * function Shape() {
+   *   this.x = 0;
+   *   this.y = 0;
+   * }
+   *
+   * function Circle() {
+   *   Shape.call(this);
+   * }
+   *
+   * Circle.prototype = _.create(Shape.prototype, {
+   *   'constructor': Circle
+   * });
+   *
+   * var circle = new Circle;
+   * circle instanceof Circle;
+   * // => true
+   *
+   * circle instanceof Shape;
+   * // => true
+   */
+function create(prototype,properties){var result=baseCreate(prototype);return properties?assign(result,properties):result}/**
+   * Assigns own and inherited enumerable string keyed properties of source
+   * objects to the destination object for all destination properties that
+   * resolve to `undefined`. Source objects are applied from left to right.
+   * Once a property is set, additional values of the same property are ignored.
+   *
+   * **Note:** This method mutates `object`.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Object
+   * @param {Object} object The destination object.
+   * @param {...Object} [sources] The source objects.
+   * @returns {Object} Returns `object`.
+   * @see _.defaultsDeep
+   * @example
+   *
+   * _.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
+   * // => { 'a': 1, 'b': 2 }
+   */
+var defaults=baseRest(function(args){args.push(undefined,assignInDefaults);return assignInWith.apply(undefined,args)});/**
+   * Checks if `path` is a direct property of `object`.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Object
+   * @param {Object} object The object to query.
+   * @param {Array|string} path The path to check.
+   * @returns {boolean} Returns `true` if `path` exists, else `false`.
+   * @example
+   *
+   * var object = { 'a': { 'b': 2 } };
+   * var other = _.create({ 'a': _.create({ 'b': 2 }) });
+   *
+   * _.has(object, 'a');
+   * // => true
+   *
+   * _.has(object, 'a.b');
+   * // => true
+   *
+   * _.has(object, ['a', 'b']);
+   * // => true
+   *
+   * _.has(other, 'a');
+   * // => false
+   */
+function has(object,path){return object!=null&&hasOwnProperty.call(object,path)}/**
+   * Creates an array of the own enumerable property names of `object`.
+   *
+   * **Note:** Non-object values are coerced to objects. See the
+   * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+   * for more details.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Object
+   * @param {Object} object The object to query.
+   * @returns {Array} Returns the array of property names.
+   * @example
+   *
+   * function Foo() {
+   *   this.a = 1;
+   *   this.b = 2;
+   * }
+   *
+   * Foo.prototype.c = 3;
+   *
+   * _.keys(new Foo);
+   * // => ['a', 'b'] (iteration order is not guaranteed)
+   *
+   * _.keys('hi');
+   * // => ['0', '1']
+   */
+var keys=nativeKeys;/**
+   * Creates an array of the own and inherited enumerable property names of `object`.
+   *
+   * **Note:** Non-object values are coerced to objects.
+   *
+   * @static
+   * @memberOf _
+   * @since 3.0.0
+   * @category Object
+   * @param {Object} object The object to query.
+   * @returns {Array} Returns the array of property names.
+   * @example
+   *
+   * function Foo() {
+   *   this.a = 1;
+   *   this.b = 2;
+   * }
+   *
+   * Foo.prototype.c = 3;
+   *
+   * _.keysIn(new Foo);
+   * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+   */
+var keysIn=nativeKeysIn;/**
+   * Creates an object composed of the picked `object` properties.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Object
+   * @param {Object} object The source object.
+   * @param {...(string|string[])} [props] The property identifiers to pick.
+   * @returns {Object} Returns the new object.
+   * @example
+   *
+   * var object = { 'a': 1, 'b': '2', 'c': 3 };
+   *
+   * _.pick(object, ['a', 'c']);
+   * // => { 'a': 1, 'c': 3 }
+   */
+var pick=flatRest(function(object,props){return object==null?{}:basePick(object,baseMap(props,toKey))});/**
+   * This method is like `_.get` except that if the resolved value is a
+   * function it's invoked with the `this` binding of its parent object and
+   * its result is returned.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Object
+   * @param {Object} object The object to query.
+   * @param {Array|string} path The path of the property to resolve.
+   * @param {*} [defaultValue] The value returned for `undefined` resolved values.
+   * @returns {*} Returns the resolved value.
+   * @example
+   *
+   * var object = { 'a': [{ 'b': { 'c1': 3, 'c2': _.constant(4) } }] };
+   *
+   * _.result(object, 'a[0].b.c1');
+   * // => 3
+   *
+   * _.result(object, 'a[0].b.c2');
+   * // => 4
+   *
+   * _.result(object, 'a[0].b.c3', 'default');
+   * // => 'default'
+   *
+   * _.result(object, 'a[0].b.c3', _.constant('default'));
+   * // => 'default'
+   */
+function result(object,path,defaultValue){var value=object==null?undefined:object[path];if(value===undefined){value=defaultValue}return isFunction(value)?value.call(object):value}/**
+   * Creates an array of the own enumerable string keyed property values of `object`.
+   *
+   * **Note:** Non-object values are coerced to objects.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Object
+   * @param {Object} object The object to query.
+   * @returns {Array} Returns the array of property values.
+   * @example
+   *
+   * function Foo() {
+   *   this.a = 1;
+   *   this.b = 2;
+   * }
+   *
+   * Foo.prototype.c = 3;
+   *
+   * _.values(new Foo);
+   * // => [1, 2] (iteration order is not guaranteed)
+   *
+   * _.values('hi');
+   * // => ['h', 'i']
+   */
+function values(object){return object?baseValues(object,keys(object)):[]}/*------------------------------------------------------------------------*/
+/**
+   * Converts the characters "&", "<", ">", '"', and "'" in `string` to their
+   * corresponding HTML entities.
+   *
+   * **Note:** No other characters are escaped. To escape additional
+   * characters use a third-party library like [_he_](https://mths.be/he).
+   *
+   * Though the ">" character is escaped for symmetry, characters like
+   * ">" and "/" don't need escaping in HTML and have no special meaning
+   * unless they're part of a tag or unquoted attribute value. See
+   * [Mathias Bynens's article](https://mathiasbynens.be/notes/ambiguous-ampersands)
+   * (under "semi-related fun fact") for more details.
+   *
+   * When working with HTML you should always
+   * [quote attribute values](http://wonko.com/post/html-escaping) to reduce
+   * XSS vectors.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category String
+   * @param {string} [string=''] The string to escape.
+   * @returns {string} Returns the escaped string.
+   * @example
+   *
+   * _.escape('fred, barney, & pebbles');
+   * // => 'fred, barney, &amp; pebbles'
+   */
+function escape(string){string=toString(string);return string&&reHasUnescapedHtml.test(string)?string.replace(reUnescapedHtml,escapeHtmlChar):string}/*------------------------------------------------------------------------*/
+/**
+   * This method returns the first argument it receives.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Util
+   * @param {*} value Any value.
+   * @returns {*} Returns `value`.
+   * @example
+   *
+   * var object = { 'a': 1 };
+   *
+   * console.log(_.identity(object) === object);
+   * // => true
+   */
+function identity(value){return value}/**
+   * Creates a function that invokes `func` with the arguments of the created
+   * function. If `func` is a property name, the created function returns the
+   * property value for a given element. If `func` is an array or object, the
+   * created function returns `true` for elements that contain the equivalent
+   * source properties, otherwise it returns `false`.
+   *
+   * @static
+   * @since 4.0.0
+   * @memberOf _
+   * @category Util
+   * @param {*} [func=_.identity] The value to convert to a callback.
+   * @returns {Function} Returns the callback.
+   * @example
+   *
+   * var users = [
+   *   { 'user': 'barney', 'age': 36, 'active': true },
+   *   { 'user': 'fred',   'age': 40, 'active': false }
+   * ];
+   *
+   * // The `_.matches` iteratee shorthand.
+   * _.filter(users, _.iteratee({ 'user': 'barney', 'active': true }));
+   * // => [{ 'user': 'barney', 'age': 36, 'active': true }]
+   *
+   * // The `_.matchesProperty` iteratee shorthand.
+   * _.filter(users, _.iteratee(['user', 'fred']));
+   * // => [{ 'user': 'fred', 'age': 40 }]
+   *
+   * // The `_.property` iteratee shorthand.
+   * _.map(users, _.iteratee('user'));
+   * // => ['barney', 'fred']
+   *
+   * // Create custom iteratee shorthands.
+   * _.iteratee = _.wrap(_.iteratee, function(iteratee, func) {
+   *   return !_.isRegExp(func) ? iteratee(func) : function(string) {
+   *     return func.test(string);
+   *   };
+   * });
+   *
+   * _.filter(['abc', 'def'], /ef/);
+   * // => ['def']
+   */
+var iteratee=baseIteratee;/**
+   * Creates a function that performs a partial deep comparison between a given
+   * object and `source`, returning `true` if the given object has equivalent
+   * property values, else `false`.
+   *
+   * **Note:** The created function is equivalent to `_.isMatch` with `source`
+   * partially applied.
+   *
+   * Partial comparisons will match empty array and empty object `source`
+   * values against any array or object value, respectively. See `_.isEqual`
+   * for a list of supported value comparisons.
+   *
+   * @static
+   * @memberOf _
+   * @since 3.0.0
+   * @category Util
+   * @param {Object} source The object of property values to match.
+   * @returns {Function} Returns the new spec function.
+   * @example
+   *
+   * var objects = [
+   *   { 'a': 1, 'b': 2, 'c': 3 },
+   *   { 'a': 4, 'b': 5, 'c': 6 }
+   * ];
+   *
+   * _.filter(objects, _.matches({ 'a': 4, 'c': 6 }));
+   * // => [{ 'a': 4, 'b': 5, 'c': 6 }]
+   */
+function matches(source){return baseMatches(assign({},source))}/**
+   * Adds all own enumerable string keyed function properties of a source
+   * object to the destination object. If `object` is a function, then methods
+   * are added to its prototype as well.
+   *
+   * **Note:** Use `_.runInContext` to create a pristine `lodash` function to
+   * avoid conflicts caused by modifying the original.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Util
+   * @param {Function|Object} [object=lodash] The destination object.
+   * @param {Object} source The object of functions to add.
+   * @param {Object} [options={}] The options object.
+   * @param {boolean} [options.chain=true] Specify whether mixins are chainable.
+   * @returns {Function|Object} Returns `object`.
+   * @example
+   *
+   * function vowels(string) {
+   *   return _.filter(string, function(v) {
+   *     return /[aeiou]/i.test(v);
+   *   });
+   * }
+   *
+   * _.mixin({ 'vowels': vowels });
+   * _.vowels('fred');
+   * // => ['e']
+   *
+   * _('fred').vowels().value();
+   * // => ['e']
+   *
+   * _.mixin({ 'vowels': vowels }, { 'chain': false });
+   * _('fred').vowels();
+   * // => ['e']
+   */
+function mixin(object,source,options){var props=keys(source),methodNames=baseFunctions(source,props);if(options==null&&!(isObject(source)&&(methodNames.length||!props.length))){options=source;source=object;object=this;methodNames=baseFunctions(source,keys(source))}var chain=!(isObject(options)&&"chain"in options)||!!options.chain,isFunc=isFunction(object);baseEach(methodNames,function(methodName){var func=source[methodName];object[methodName]=func;if(isFunc){object.prototype[methodName]=function(){var chainAll=this.__chain__;if(chain||chainAll){var result=object(this.__wrapped__),actions=result.__actions__=copyArray(this.__actions__);actions.push({func:func,args:arguments,thisArg:object});result.__chain__=chainAll;return result}return func.apply(object,arrayPush([this.value()],arguments))}}});return object}/**
+   * Reverts the `_` variable to its previous value and returns a reference to
+   * the `lodash` function.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Util
+   * @returns {Function} Returns the `lodash` function.
+   * @example
+   *
+   * var lodash = _.noConflict();
+   */
+function noConflict(){if(root._===this){root._=oldDash}return this}/**
+   * This method returns `undefined`.
+   *
+   * @static
+   * @memberOf _
+   * @since 2.3.0
+   * @category Util
+   * @example
+   *
+   * _.times(2, _.noop);
+   * // => [undefined, undefined]
+   */
+function noop(){}/**
+   * Generates a unique ID. If `prefix` is given, the ID is appended to it.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Util
+   * @param {string} [prefix=''] The value to prefix the ID with.
+   * @returns {string} Returns the unique ID.
+   * @example
+   *
+   * _.uniqueId('contact_');
+   * // => 'contact_104'
+   *
+   * _.uniqueId();
+   * // => '105'
+   */
+function uniqueId(prefix){var id=++idCounter;return toString(prefix)+id}/*------------------------------------------------------------------------*/
+/**
+   * Computes the maximum value of `array`. If `array` is empty or falsey,
+   * `undefined` is returned.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Math
+   * @param {Array} array The array to iterate over.
+   * @returns {*} Returns the maximum value.
+   * @example
+   *
+   * _.max([4, 2, 8, 6]);
+   * // => 8
+   *
+   * _.max([]);
+   * // => undefined
+   */
+function max(array){return array&&array.length?baseExtremum(array,identity,baseGt):undefined}/**
+   * Computes the minimum value of `array`. If `array` is empty or falsey,
+   * `undefined` is returned.
+   *
+   * @static
+   * @since 0.1.0
+   * @memberOf _
+   * @category Math
+   * @param {Array} array The array to iterate over.
+   * @returns {*} Returns the minimum value.
+   * @example
+   *
+   * _.min([4, 2, 8, 6]);
+   * // => 2
+   *
+   * _.min([]);
+   * // => undefined
+   */
+function min(array){return array&&array.length?baseExtremum(array,identity,baseLt):undefined}/*------------------------------------------------------------------------*/
+// Add methods that return wrapped values in chain sequences.
+lodash.assignIn=assignIn;lodash.before=before;lodash.bind=bind;lodash.chain=chain;lodash.compact=compact;lodash.concat=concat;lodash.create=create;lodash.defaults=defaults;lodash.defer=defer;lodash.delay=delay;lodash.filter=filter;lodash.flatten=flatten;lodash.flattenDeep=flattenDeep;lodash.iteratee=iteratee;lodash.keys=keys;lodash.map=map;lodash.matches=matches;lodash.mixin=mixin;lodash.negate=negate;lodash.once=once;lodash.pick=pick;lodash.slice=slice;lodash.sortBy=sortBy;lodash.tap=tap;lodash.thru=thru;lodash.toArray=toArray;lodash.values=values;
+// Add aliases.
+lodash.extend=assignIn;
+// Add methods to `lodash.prototype`.
+mixin(lodash,lodash);/*------------------------------------------------------------------------*/
+// Add methods that return unwrapped values in chain sequences.
+lodash.clone=clone;lodash.escape=escape;lodash.every=every;lodash.find=find;lodash.forEach=forEach;lodash.has=has;lodash.head=head;lodash.identity=identity;lodash.indexOf=indexOf;lodash.isArguments=isArguments;lodash.isArray=isArray;lodash.isBoolean=isBoolean;lodash.isDate=isDate;lodash.isEmpty=isEmpty;lodash.isEqual=isEqual;lodash.isFinite=isFinite;lodash.isFunction=isFunction;lodash.isNaN=isNaN;lodash.isNull=isNull;lodash.isNumber=isNumber;lodash.isObject=isObject;lodash.isRegExp=isRegExp;lodash.isString=isString;lodash.isUndefined=isUndefined;lodash.last=last;lodash.max=max;lodash.min=min;lodash.noConflict=noConflict;lodash.noop=noop;lodash.reduce=reduce;lodash.result=result;lodash.size=size;lodash.some=some;lodash.uniqueId=uniqueId;
+// Add aliases.
+lodash.each=forEach;lodash.first=head;mixin(lodash,function(){var source={};baseForOwn(lodash,function(func,methodName){if(!hasOwnProperty.call(lodash.prototype,methodName)){source[methodName]=func}});return source}(),{chain:false});/*------------------------------------------------------------------------*/
+/**
+   * The semantic version number.
+   *
+   * @static
+   * @memberOf _
+   * @type {string}
+   */
+lodash.VERSION=VERSION;
+// Add `Array` methods to `lodash.prototype`.
+baseEach(["pop","join","replace","reverse","split","push","shift","sort","splice","unshift"],function(methodName){var func=(/^(?:replace|split)$/.test(methodName)?String.prototype:arrayProto)[methodName],chainName=/^(?:push|sort|unshift)$/.test(methodName)?"tap":"thru",retUnwrapped=/^(?:pop|join|replace|shift)$/.test(methodName);lodash.prototype[methodName]=function(){var args=arguments;if(retUnwrapped&&!this.__chain__){var value=this.value();return func.apply(isArray(value)?value:[],args)}return this[chainName](function(value){return func.apply(isArray(value)?value:[],args)})}});
+// Add chain sequence methods to the `lodash` wrapper.
+lodash.prototype.toJSON=lodash.prototype.valueOf=lodash.prototype.value=wrapperValue;/*--------------------------------------------------------------------------*/
+// Some AMD build optimizers, like r.js, check for condition patterns like:
+if(typeof define=="function"&&typeof define.amd=="object"&&define.amd){
+// Expose Lodash on the global object to prevent errors when Lodash is
+// loaded by a script tag in the presence of an AMD loader.
+// See http://requirejs.org/docs/errors.html#mismatch for more details.
+// Use `_.noConflict` to remove Lodash from the global object.
+root._=lodash;
+// Define as an anonymous module so, through path mapping, it can be
+// referenced as the "underscore" module.
+define(function(){return lodash})}else if(freeModule){
+// Export for Node.js.
+(freeModule.exports=lodash)._=lodash;
+// Export for CommonJS support.
+freeExports._=lodash}else{
+// Export to the global object.
+root._=lodash}}).call(this);/*
  * ngDialog - easy modals and popup windows
  * http://github.com/likeastore/ngDialog
  * (c) 2013-2015 MIT License, https://likeastore.com
@@ -19044,11 +22653,29 @@ ngDialogProvider.setDefaults({overlay:false,showClose:false,trapFocus:false,disa
 // https://github.com/chieffancypants/angular-loading-bar
 cfpLoadingBarProvider.loadingBarTemplate='<div id="loading_bar"><div class="bar"></div></div>';cfpLoadingBarProvider.includeSpinner=false}])})();angular.module("citizenos").service("sSearch",["$log","$q",function($log,$q){var Search=this;Search.search=function(str){$log.debug("sSearch.search()",str);
 //FIXME: Replace with actual search function
-return $q(function(resolve,reject){var result=[{groupName:"My Topics 0",groupResults:[{resultTitles:[]}]},{groupName:"My Topics 1",groupResults:[{resultTitles:["Subjects","Categories","Creator"],resultLinks:[{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 1",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 2",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 3",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 4",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 5",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 6",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]}]},{resultTitles:["Users"],resultLinks:[{linksWrap:[{links:[{linkName:"John Doe 1",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 2",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 3",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 4",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 5",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 6",linkHref:"#11"}]}]}]},{resultTitles:["Groups"],resultLinks:[{linksWrap:[{links:[{linkName:"Greenpeace 1",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"Greenpeace 2",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"Greenpeace 3",linkHref:"#11"}]}]}]}]},{groupName:"My Topics 2",groupResults:[{resultTitles:["Subjects","Categories","Creator"],resultLinks:[{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 1",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 2",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 3",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 4",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 5",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 6",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]}]}]}];setTimeout(function(){resolve(result)},200)})}}]);angular.module("citizenos").directive("cosDropdown",["$document",function($document){return{restrict:"A",link:function(scope,elem,attr){elem.bind("click",function(){elem.toggleClass("dropdown_active");elem.addClass("active_recent")});$document.bind("click",function(){if(!elem.hasClass("active_recent")){elem.removeClass("dropdown_active")}elem.removeClass("active_recent")})}}}]);angular.module("citizenos").directive("cosResize",["$window","$rootScope",function($window,$rootScope){return function(scope,element){var w=angular.element($window);scope.getWindowDimensions=function(){return{w:window.innerWidth}};scope.$watch(scope.getWindowDimensions,function(newValue,oldValue){$rootScope.wWidth=newValue.w;if($rootScope.wWidth>1024){scope.app.showNav=false}},true);w.bind("resize",function(){scope.$apply()})}}]);"use strict";angular.module("citizenos").controller("LoginFormCtrl",["$scope","$log","ngDialog",function($scope,$log,ngDialog){$log.debug("LoginFormCtrl",ngDialog);$scope.form={email:null,password:null};
+return $q(function(resolve,reject){var result=[{groupName:"My Topics 0",groupResults:[{resultTitles:[]}]},{groupName:"My Topics 1",groupResults:[{resultTitles:["Subjects","Categories","Creator"],resultLinks:[{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 1",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 2",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 3",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 4",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 5",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 6",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]}]},{resultTitles:["Users"],resultLinks:[{linksWrap:[{links:[{linkName:"John Doe 1",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 2",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 3",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 4",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 5",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 6",linkHref:"#11"}]}]}]},{resultTitles:["Groups"],resultLinks:[{linksWrap:[{links:[{linkName:"Greenpeace 1",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"Greenpeace 2",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"Greenpeace 3",linkHref:"#11"}]}]}]}]},{groupName:"My Topics 2",groupResults:[{resultTitles:["Subjects","Categories","Creator"],resultLinks:[{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 1",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 2",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 3",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 4",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 5",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 6",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]}]}]}];setTimeout(function(){resolve(result)},200)})}}]);angular.module("citizenos").service("sTopic",["$http","$q","$log",function($http,$q,$log){var Topic=this;Topic.STATUSES={inProgress:"inProgress",// Being worked on
+voting:"voting",// Is being voted which means the Topic is locked and cannot be edited.
+followUp:"followUp",// Done editing Topic and executing on the follow up plan.
+closed:"closed"};Topic.CATEGORIES={business:"business",// Business and industry
+transport:"transport",// Public transport and road safety
+taxes:"taxes",// Taxes and budgeting
+agriculture:"agriculture",// Agriculture
+environment:"environment",// Environment, animal protection
+culture:"culture",// Culture, media and sports
+health:"health",// Health care and social care
+work:"work",// Work and employment
+education:"education",// Education
+politics:"politics",// Politics and public administration
+communities:"communities",// Communities and urban development
+defense:"defense",//  Defense and security
+integration:"integration",// Integration and human rights
+varia:"varia"};Topic.listUnauth=function(statuses,categories,offset,limit){var path="/api/topics";return $http.get(path,{params:{statuses:statuses,categories:categories,offset:offset,limit:limit}})}}]);angular.module("citizenos").directive("cosDropdown",["$document",function($document){return{restrict:"A",link:function(scope,elem,attr){elem.bind("click",function(){elem.toggleClass("dropdown_active");elem.addClass("active_recent")});$document.bind("click",function(){if(!elem.hasClass("active_recent")){elem.removeClass("dropdown_active")}elem.removeClass("active_recent")})}}}]);angular.module("citizenos").directive("cosResize",["$window","$rootScope",function($window,$rootScope){return function(scope,element){var w=angular.element($window);scope.getWindowDimensions=function(){return{w:window.innerWidth}};scope.$watch(scope.getWindowDimensions,function(newValue,oldValue){$rootScope.wWidth=newValue.w;if($rootScope.wWidth>1024){scope.app.showNav=false}},true);w.bind("resize",function(){scope.$apply()})}}]);"use strict";angular.module("citizenos").controller("LoginFormCtrl",["$scope","$log","ngDialog",function($scope,$log,ngDialog){$log.debug("LoginFormCtrl",ngDialog);$scope.form={email:null,password:null};
 // Hide mobile navigation when login flow is started
 $scope.app.showNav=false;$scope.doLogin=function(){$log.debug("LoginFormCtrl.doLogin()");ngDialog.open({template:"/views/modals/register.html",scope:$scope})}}]);"use strict";angular.module("citizenos").controller("SignUpFormCtrl",["$scope","$log","ngDialog",function($scope,$log,ngDialog){$log.debug("SignUpFormCtrl");$scope.form={};$scope.doSignUp=function(){$log.debug("SignUpFormCtrl.doSignUp()");$scope.app.user.loggedIn=true;ngDialog.closeAll()}}]);"use strict";angular.module("citizenos").controller("AppCtrl",["$scope","$log","cosConfig","ngDialog",function($scope,$log,cosConfig,ngDialog){$log.debug("AppCtrl");$scope.app={config:cosConfig,showSearch:false,showSearchResults:false,showNav:false};$scope.app.user={loggedIn:false};$scope.doShowLogin=function(){$log.debug("AppCtrl.doShowLogin()");ngDialog.open({template:"/views/modals/login.html",scope:$scope})};
 //FIXME: REMOVE, used for debugging on mobile
 $scope.app.alert=function(str){alert(str)}}]);"use strict";angular.module("citizenos").controller("HomeCtrl",["$scope","$log","sTopic",function($scope,$log,sTopic){
+//Show tutorial topic or no;
+$scope.noTutorialTopic=true;
 // Constant marking the "clear" or all options will do
 $scope.FILTERS_ALL="all";$scope.filters={categories:{value:$scope.FILTERS_ALL,options:[$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))},statuses:{value:$scope.FILTERS_ALL,options:[$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))},limit:32,offset:0,tabSelected:"categories"};$scope.topicList=[];$scope.topicCountTotal=null;$scope.isTopicListLoading=true;/**
          * Update topic list by setting relevant filter

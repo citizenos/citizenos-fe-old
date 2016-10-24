@@ -30,6 +30,7 @@
             border-radius: 0 0 4px 4px;
             max-height: 500px;
             overflow-y: auto;
+            min-width: 250px;
 
             .dropdown_item {
                 font-weight: initial;
@@ -95,6 +96,7 @@
             position: relative;
             display: inline-block;
             border-radius: 4px;
+            text-align: left;
         }
 
         .bar_section {
@@ -370,6 +372,7 @@
 
             @media (max-width: 667px) {
                 height: 160px;
+                overflow: hidden;
             }
 
             @media (max-width: 500px) {
@@ -603,6 +606,80 @@
 
         }
 
+    }
+
+    #topics_area.no_tutorial_topic {
+
+        .topic {
+            
+            &:nth-child(8n) {
+                margin-left: 10px;
+            }
+
+            &:nth-child(8n+1) {
+                margin-left: -80px;
+            }
+
+            @media (max-width: 2480px) {
+
+                &:nth-child(4n+1) {
+                    margin-left: -40px;
+                }
+
+                &:nth-child(4n) {
+                    margin-left: 10px;
+                }
+            }
+
+            @media (max-width: 1920px) {
+
+                &:nth-child(4n) {
+                    margin-left: 10px;
+                }
+
+                &:nth-child(4n+1) {
+                    margin-left: -40px;
+                }
+
+            }
+
+            @media (max-width: 1350px) {
+
+                &:nth-child(1) {
+                    margin-left: 0;
+                }
+
+                &:nth-child(4n) {
+                    margin-left: 10px;
+                }
+
+                &:nth-child(2n+1) {
+                    margin-left: -20px;
+                }
+            }
+
+            @media (max-width: 880px) {
+
+                &:nth-child(2n) {
+                    margin-left: 10px;
+                }
+
+                &:nth-child(2n+1) {
+                    margin-left: -20px;
+                }
+
+            }
+
+
+            @media (max-width: 500px) {
+
+                &:nth-child(2n+1), &:nth-child(2n), &:nth-child(1) {
+                    margin-left: 0;
+                }
+
+
+            }
+        }
     }
 
 }

@@ -4,6 +4,9 @@ angular
     .module('citizenos')
     .controller('HomeCtrl', ['$scope', '$log', 'sTopic', function ($scope, $log, sTopic) {
 
+        //Show tutorial topic or no;
+        $scope.noTutorialTopic = true;
+
         // Constant marking the "clear" or all options will do
         $scope.FILTERS_ALL = 'all';
         $scope.filters = {
