@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ngRoute', 'ngSanitize', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if']);
+    var module = angular.module('citizenos', ['ngRoute', 'ngSanitize', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar']);
 
     module
         .constant('cosConfig', {
@@ -21,7 +21,7 @@
         });
 
     module
-        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'ngDialogProvider', 'cosConfig', function ($routeProvider, $locationProvider, $httpProvider, ngDialogProvider, cosConfig) {
+        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($routeProvider, $locationProvider, $httpProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
 
             $locationProvider.html5Mode(true);
 
@@ -46,6 +46,7 @@
                 }
             });
 
+            // https://github.com/likeastore/ngDialog
             ngDialogProvider.setDefaults({
                 overlay: false,
                 showClose: false,
@@ -55,6 +56,10 @@
                 closeByDocument: true,
                 closeByEscape: true
             });
+
+            // https://github.com/chieffancypants/angular-loading-bar
+            cfpLoadingBarProvider.loadingBarTemplate = '<div id="loading_bar"><div class="bar"></div></div>';
+            cfpLoadingBarProvider.includeSpinner = false;
 
         }]);
 
