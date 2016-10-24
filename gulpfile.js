@@ -40,10 +40,12 @@ gulp.task('jshint', function () {
 
 gulp.task('uglify', function () {
     return gulp.src([
+            'public/js/libs/moment-with-locales.js',
             'public/js/libs/angular.js',
             'public/js/libs/**/*.js',
             'public/js/app.js',
             'public/js/services/**/*.js',
+            'public/js/directives/**/*.js',
             'public/js/controllers/**/*.js'
         ])
         .pipe(plumber())
@@ -65,10 +67,10 @@ gulp.task('uglify', function () {
 
 gulp.task('cachebreaker', function () {
     return gulp.src('public/index.html')
-    .pipe(cachebust({
-        type: 'MD5'
-    }))
-    .pipe(gulp.dest('public/'));
+        .pipe(cachebust({
+            type: 'MD5'
+        }))
+        .pipe(gulp.dest('public/'));
 });
 
 gulp.task('watch', function () {

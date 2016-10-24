@@ -7,87 +7,91 @@
     <base href="/">
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=50c433d3f84cfdbd16761c3570727a78" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=ac3e7cf218801649323cb1aef95c33ff"></script>
+<<<<<<< HEAD
+    <link href="styles/citizenos-fe.bundle.css?v=5f23da52db75319c3b854344c4850d5c" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=c60e710896f7ddfb58321511649abd97"></script>
+=======
+    <link href="styles/citizenos-fe.bundle.css?v=5f23da52db75319c3b854344c4850d5c" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=c60e710896f7ddfb58321511649abd97"></script>
+>>>>>>> 4cc06041c5325ad1ef033ad27c9e4c46367c6811
 </head>
 
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="app.showNav || app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" resize>
+<body ng-class="app.showNav || app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
 
+    <!-- MOBILE HEADER NAV -->
+    <div id="mobile_header" ng-if="wWidth <= 1024">
 
-<!-- MOBILE HEADER NAV -->
-<div id="mobile_header" ng-if="wWidth <= 1024">
-
-    <div ng-include="'views/default/nav_mobile.html'"></div>
-
-</div>
-
-<!-- NAV -->
-<nav ng-class="app.showNav ? 'nav_is_open' : ''" ng-click="app.showSearchResults = false" ng-swipe-right="app.showNav = false">
-
-    <div ng-include="'views/default/nav.html'"></div>
-
-</nav>
-
-
-<!-- CONTENT -->
-
-<div id="content_root" ng-class="app.showNav ? 'navOpen' : ''">
-
-    <!-- SEARCH BAR-->
-
-    <div id="search_bar" ng-if="wWidth > 1024">
-        <div id="search_icon">
-            <div class="table_cell">
-                <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
-            </div>
-        </div>
-
-        <div id="close_search_icon" ng-click="app.showSearchResults = false" ng-style="{'display': app.showSearchResults ? 'relative' : 'none'}">
-            <div class="table_cell">
-                <div class="sprite sprite-icon-closemenu-b-2x"></div>
-            </div>
-        </div>
-
-        <input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="Search topics, users, groups…">
+        <div ng-include="'views/default/nav_mobile.html'"></div>
 
     </div>
 
-    <!-- CONTENT WRAP -->
+    <!-- NAV -->
+    <nav ng-class="app.showNav ? 'nav_is_open' : ''" ng-click="app.showSearchResults = false" ng-swipe-right="app.showNav = false">
 
-    <div id="content_wrap">
+        <div ng-include="'views/default/nav.html'"></div>
 
-
-        <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
-             ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
-
-
-        <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
-             ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+    </nav>
 
 
-        <div id="content">
-            <div id="content_cell">
+    <!-- CONTENT -->
 
-                <!-- SEARCH AREA  -->
-                <div id="search_area" ng-style="{'height' : app.showSearchResults ? '100%' : '0' }">
+    <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''">
 
-                    <div ng-include="'views/default/search.html'"></div>
+        <!-- SEARCH BAR-->
+
+        <div id="search_bar" ng-if="wWidth > 1024">
+            <div id="search_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
+                </div>
+            </div>
+
+            <div id="close_search_icon" ng-click="app.showSearchResults = false" ng-style="{'display': app.showSearchResults ? 'relative' : 'none'}">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-closemenu-b-2x"></div>
+                </div>
+            </div>
+
+            <input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="Search topics, users, groups…">
+
+        </div>
+
+        <!-- CONTENT WRAP -->
+
+        <div id="content_wrap">
+
+
+            <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
+                ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+
+
+            <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
+                ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+
+
+            <div id="content">
+                <div id="content_cell">
+
+                    <!-- SEARCH AREA  -->
+                    <div id="search_area" ng-style="{'height' : app.showSearchResults ? '100%' : '0' }">
+
+                        <div ng-include="'views/default/search.html'"></div>
+
+                    </div>
+
+                    <!-- CLOSE SEARCH AREA -->
+                    <div ng-click="app.showSearchResults = false" id="search_area_close" ng-style="{'display' : app.showSearchResults ? 'block' : 'none' }">
+                    </div>
+
+                    <!-- ROUTES CONTENT -->
+                    <div ng-view></div>
 
                 </div>
-
-                <!-- CLOSE SEARCH AREA -->
-                <div ng-click="app.showSearchResults = false" id="search_area_close" ng-style="{'display' : app.showSearchResults ? 'block' : 'none' }">
-                </div>
-
-                <!-- ROUTES CONTENT -->
-                <div ng-view></div>
-
             </div>
         </div>
     </div>
-</div>
 
 </body>
 </html>
