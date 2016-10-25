@@ -43,6 +43,7 @@ $orange: #e66700;
 $purpule: #f1d9ff;
 $yellow: #fef78d;
 $red: #e64100;
+$pinky_red: #ff1d42;
 
 .orange_background {
     background: $orange;
@@ -62,6 +63,10 @@ $red: #e64100;
 
 .blue_background {
     background: $deep_sky_blue;
+}
+
+.dark_gray_background {
+    background: $dark_gray;
 }
 
 .white_text {

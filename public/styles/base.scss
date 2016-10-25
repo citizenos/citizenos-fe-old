@@ -1,5 +1,6 @@
 @import 'vars';
 @import 'mixins_n_extends';
+@import 'no_topics';
 
 body, html {
     font-family: 'Open Sans', sans-serif;
@@ -88,7 +89,24 @@ a:link, a:visited {
     clear: both;
 }
 
-//Overall button styles
+//Overall button styles and other general items
+.error_input {
+    border: solid 1px $pinky_red !important;
+}
+
+.error_label {
+    color: $pinky_red;
+    font-size: 13px;
+    display: table;
+    margin-top: 6px;
+
+    .sprite  {
+        float: left;
+        margin-right: 7px;
+        margin-top: 1px;
+    }
+}
+
 .blue_button {
     background: $deep_sky_blue;
     border-radius: 2px;
@@ -99,6 +117,19 @@ a:link, a:visited {
     font-size: 14px;
     padding: 5px 3px 6px;
     box-sizing: border-box;
+}
+
+.blue_link {
+    color: $deep_sky_blue;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.blue_link:hover {
+    text-decoration: underline;
+    @include tablet {
+        text-decoration: none;
+    }
 }
 
 .blue_button:hover {

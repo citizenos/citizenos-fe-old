@@ -219,7 +219,6 @@
                     /* INPUT AREA */
 
                     input {
-                        margin-bottom: 10px;
                         width: 100%;
                         box-sizing: border-box;
                         border: solid 1px $lightest_gray;
@@ -228,8 +227,14 @@
                         font-size: 13px;
                         padding: 0 10px;
                         &:focus {
-                            border: 1px solid $sky_blue;
+                            border: 1px solid $dark_gray;
                             outline: none;
+                        }
+                    }
+                    
+                    input, button {
+                        &:not(:first-child) {
+                            margin-top: 10px;
                         }
                     }
                     

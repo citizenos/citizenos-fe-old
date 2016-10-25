@@ -67,7 +67,9 @@
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section">
-                        <input name="email" placeholder="E-mail address" focus-if="{{wWidth > 1024}}"><!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+                        <input name="email" placeholder="E-mail address" focus-if="{{wWidth > 1024}}" class="error_input"><!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+                        <label for="email" class="error_label"><div class="table_cell"><div class="sprite sprite-icon-inputfield-error2x"></div>Not a correct email address</div>
+                        </label>
                         <input name="password" type="password" placeholder="Password">
                         <button type="submit" ng-click="doLogin()" class="blue_button">Log in / Register</button>
                         <div class="link_section">

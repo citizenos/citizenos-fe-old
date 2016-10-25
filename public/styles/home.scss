@@ -99,13 +99,9 @@
             text-align: left;
         }
 
-        .bar_section {
+        .bar_section, .blue_link, .line_holder {
             display: inline-block;
             position: relative;
-        }
-
-        .bar_section:first-child {
-            margin-right: 20px;
         }
 
         #bar_top {
@@ -141,6 +137,19 @@
                     background: $white;
                 }
             }
+
+            .line_holder {
+                padding: 0 17px 0 7px;
+
+                .v_line {
+                    height: 20px;
+                    width: 1px;
+                    position: absolute;
+                    top: 0;
+                    margin-top: -15px;
+                }
+            }
+
         }
 
     }
@@ -286,6 +295,17 @@
 
         @media (max-width: 500px) {
             padding: 0 10px 0 10px;
+        }
+
+        .table {
+            text-align: center;
+
+            .title_area {
+                h2 {
+                    color: $medium_black;
+                }
+            }
+
         }
 
         .topic {
@@ -680,6 +700,10 @@
 
             }
         }
+    }
+
+    .no_results {
+        padding-left: 0 !important;
     }
 
 }

@@ -90,6 +90,16 @@
 
             </div>
 
+            <div class="line_holder">
+                <div class="v_line dark_gray_background">
+                </div>
+            </div>
+
+            
+            <div class="blue_link">
+                Clear filters
+            </div>
+
         </div>
     </div>
 
@@ -156,8 +166,33 @@
 
 
     <!-- TOPICS AREA -->
-    <div id="topics_area" ng-class="{no_tutorial_topic: noTutorialTopic}">
-        <h1 ng-if="!isTopicListLoading && !topicList.length">Sorry, we found 0 results with current filter settings.</h1><!--TODO: Beautiful layout please!-->
+    <div id="topics_area" ng-class="{no_tutorial_topic: noTutorialTopic, no_results: !topicList.length}">
+
+        <div ng-if="!isTopicListLoading && !topicList.length" class="table">
+            <div class="v_align_cell">
+                <div class="title_area">
+                    <h1>
+                        We’re sorry, but we couldn’t find any results :(
+                    </h1>
+                    <h2>
+                        Maybe you can get the first discussion initiated by
+                    </h2>
+                </div>
+
+                <div class="button_area">
+
+                    <div class="big_button">
+                        <div class="button_cell">
+                            <div class="icon_nudge">
+                            <div class="sprite sprite-x2-mytopics-icon-newtopic-big2x"></div>
+                            </div>
+                            <div class="topic_text">Creating<br> a new topic</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
         <a href="" ng-if="!noTutorialTopic" class="big white_text blue_background topic" ng-if="filters.categories.value === FILTERS_ALL && filters.statuses.value === FILTERS_ALL">
             <div class="topic_wrap">
