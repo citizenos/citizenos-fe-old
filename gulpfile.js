@@ -8,12 +8,12 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
     jshint = require('gulp-jshint'),
+    stylish = require('jshint-stylish'),
     uglify = require('gulp-uglify'),
     watch = require('gulp-watch'),
     batch = require('gulp-batch'),
     runSequence = require('run-sequence').use(gulp),
     uncache = require('gulp-uncache'),
-    replace = require('gulp-replace'),
     cachebust = require('gulp-cache-bust'),
     fs = require('fs');
 
@@ -35,7 +35,7 @@ gulp.task('jshint', function () {
             '!public/js/*.bundle.js'
         ])
         .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('uglify', function () {
