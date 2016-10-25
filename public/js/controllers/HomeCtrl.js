@@ -4,9 +4,6 @@ angular
     .module('citizenos')
     .controller('HomeCtrl', ['$scope', '$log', 'sTopic', function ($scope, $log, sTopic) {
 
-        //Show tutorial topic or no;
-        $scope.noTutorialTopic = true;
-
         // Constant marking the "clear" or all options will do
         $scope.FILTERS_ALL = 'all';
         $scope.filters = {
@@ -35,6 +32,20 @@ angular
          */
         $scope.doSetFilter = function (filter, value) {
             filter.value = value;
+
+            $scope.topicList = [];
+            $scope.topicCountTotal = null;
+            $scope.filters.offset = 0;
+
+            $scope.loadTopicList();
+        };
+
+        /**
+         * Clear all applised filters
+         */
+        $scope.doClearFilters = function () {
+            $scope.filters.categories.value = $scope.FILTERS_ALL;
+            $scope.filters.statuses.value = $scope.FILTERS_ALL;
 
             $scope.topicList = [];
             $scope.topicCountTotal = null;

@@ -90,15 +90,17 @@
 
             </div>
 
-            <div class="line_holder">
-                <div class="v_line dark_gray_background">
+            <span ng-if="filters.categories.value !== FILTERS_ALL || filters.statuses.value !== FILTERS_ALL">
+                <div class="line_holder">
+                    <div class="v_line dark_gray_background">
+                    </div>
                 </div>
-            </div>
 
-            
-            <div class="blue_link">
-                Clear filters
-            </div>
+
+                <div class="blue_link" ng-click="doClearFilters()">
+                    Clear filters
+                </div>
+            </span>
 
         </div>
     </div>
@@ -166,7 +168,7 @@
 
 
     <!-- TOPICS AREA -->
-    <div id="topics_area" ng-class="{no_tutorial_topic: noTutorialTopic, no_results: !topicList.length}">
+    <div id="topics_area" ng-class="{no_tutorial_topic: filters.categories.value !== FILTERS_ALL || filters.statuses.value !== FILTERS_ALL, no_results: !topicList.length}">
 
         <div ng-if="!isTopicListLoading && !topicList.length" class="table">
             <div class="v_align_cell">
@@ -184,7 +186,7 @@
                     <div class="big_button">
                         <div class="button_cell">
                             <div class="icon_nudge">
-                            <div class="sprite sprite-x2-mytopics-icon-newtopic-big2x"></div>
+                                <div class="sprite sprite-x2-mytopics-icon-newtopic-big2x"></div>
                             </div>
                             <div class="topic_text">Creating<br> a new topic</div>
                         </div>
@@ -194,7 +196,7 @@
             </div>
         </div>
 
-        <a href="" ng-if="!noTutorialTopic" class="big white_text blue_background topic" ng-if="filters.categories.value === FILTERS_ALL && filters.statuses.value === FILTERS_ALL">
+        <a href="" class="big white_text blue_background topic" ng-if="filters.categories.value === FILTERS_ALL && filters.statuses.value === FILTERS_ALL">
             <div class="topic_wrap">
                 <div class="text_area">
 
