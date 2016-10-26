@@ -29,24 +29,9 @@
                 rewriteLinks: true,
                 requireBase: true
             });
-            $urlRouterProvider.otherwise(function ($injector, $location) {
-          	var langkeys = Object.keys(cosConfig.language.list);
-          	var $location = $injector.get('$location');
-          	var $translate = $injector.get('$translate');
-          	//var sAuth = $injector.get('sAuth');
-          	var currentLang = $translate.proposedLanguage() || $translate.use() || cosConfig.language.default;
-
-            var locationPath = $location.url().split('/');
-
-                if (langkeys.indexOf(locationPath[1]) > -1) {
-                    return '/' + locationPath[1] + '/';
-                } else if (locationPath.length > 1) {
-                   //     sAuth.user.loadlang = true;
-                    return '/' + currentLang + $location.url();
-              	} else {
-                    //sAuth.user.loadlang = true;
-                    return '/' + currentLang + '/';
-              	}
+            $urlRouterProvider.otherwise(function ($injector) {
+                var sUrlResolver = $injector.get('sUrlResolver');
+                return sUrlResolver.resolve();
             });
 
             $stateProvider
@@ -56,13 +41,15 @@
                     templateUrl: '/views/layouts/main.html',
                     resolve: {
                         /* @ngInject */
-                        sTranslate: function(sTranslate, $stateParams) {
+                        sTranslate: function(sTranslate, $stateParams, sAuth) {
+                            sAuth.status();
+                            console.log('AUTH USER',sAuth.user);
                             this.language = sTranslate.currentLanguage();
                             return sTranslate.setLanguage($stateParams.language);
                         }
                     }
-              	})
-              	.state('home', {
+                })
+                .state('home', {
                     url: '/',
                     parent: 'main',
                     controller: 'HomeCtrl',
@@ -75,22 +62,23 @@
                     templateUrl: '/views/no_topics.html'
                 });
 
-                $httpProvider.interceptors.push(function () {
-                    return {
-                        request: function (config) {
-                            if (config.url.indexOf('api/') > -1) {
-                                config.url = cosConfig.api.baseUrl + config.url; // FIXME: Environment based!
-                            }
-                            return config;
+            $httpProvider.interceptors.push(function () {
+                return {
+                    request: function (config) {
+                        if (config.url.indexOf('api/') > -1) {
+                            config.url = cosConfig.api.baseUrl + config.url; // FIXME: Environment based!
                         }
+                        return config;
                     }
-                });
+                }
+            });
 
             $translateProvider.useStaticFilesLoader({
               prefix: 'languages/',
               suffix: '.json'
             });
 
+            // https://github.com/likeastore/ngDialog
             ngDialogProvider.setDefaults({
                 overlay: false,
                 showClose: false,

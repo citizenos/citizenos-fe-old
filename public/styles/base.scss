@@ -1,5 +1,6 @@
 @import 'vars';
 @import 'mixins_n_extends';
+@import 'no_topics';
 
 body, html {
     font-family: 'Open Sans', sans-serif;
@@ -75,6 +76,8 @@ b {
     font-weight: $bold;
 }
 
+//Overall button styles and other general items
+
 a:link, a:visited {
     text-decoration: none;
 }
@@ -88,7 +91,23 @@ a:link, a:visited {
     clear: both;
 }
 
-//Overall button styles
+.error_input {
+    border: solid 1px $pinky_red !important;
+}
+
+.error_label {
+    color: $pinky_red;
+    font-size: 13px;
+    display: table;
+    margin-top: 6px;
+
+    .sprite  {
+        float: left;
+        margin-right: 7px;
+        margin-top: 1px;
+    }
+}
+
 .blue_button {
     background: $deep_sky_blue;
     border-radius: 2px;
@@ -99,6 +118,19 @@ a:link, a:visited {
     font-size: 14px;
     padding: 5px 3px 6px;
     box-sizing: border-box;
+}
+
+.blue_link {
+    color: $deep_sky_blue;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.blue_link:hover {
+    text-decoration: underline;
+    @include tablet {
+        text-decoration: none;
+    }
 }
 
 .blue_button:hover {
@@ -123,4 +155,46 @@ a:link, a:visited {
         width: 100%;
         height: 4px;
     }
+}
+
+/* INFO BAR */
+
+#info_bar_wrap {
+    position: absolute;
+    width: 100%;
+    z-index: 9999;
+    font-size: 14px;
+    font-weight: $bold;
+
+    .info_bar {
+        height: 40px;
+        width: 100%;
+        display: table;
+
+        .info_bar_text {
+            height: 40px;
+            float: left;
+            display: table;
+        }
+
+        .info_icon {
+            height: 40px;
+            width: 56px;
+            display: table;
+            .sprite {
+                margin: 0 auto;
+            }
+        }
+
+        .info_icon:first-child {
+            float: left;
+        }
+        
+        .info_icon:last-child {
+            float: right;
+            cursor: pointer;
+        }
+
+    }
+
 }

@@ -232,6 +232,10 @@ nav {
     padding-right: 138px;
     padding-left: 190px;
 
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+
     @include mobile {
         padding-left: 59px;
     }

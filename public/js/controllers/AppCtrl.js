@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$log', 'sTranslate', 'cosConfig', 'ngDialog', function ($scope, $rootScope, $state, $log, sTranslate, cosConfig, ngDialog) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$log', 'sTranslate', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $state, $log, sTranslate, cosConfig, ngDialog, sAuth) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -12,9 +12,7 @@ angular
             showNav: false
         };
 
-        $scope.app.user = {
-            loggedIn: false
-        };
+        $scope.app.user = sAuth.user;
         $scope.app.locale = sTranslate.currentLocale();
         $scope.app.language = sTranslate.currentLanguage();
         $scope.app.doShowLogin = doShowLogin;

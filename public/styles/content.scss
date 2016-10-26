@@ -14,6 +14,12 @@
     height: 100%;
     padding-left: $nav_d_width;
     transition: all 420ms cubic-bezier(.45, .78, 0, 1);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    box-sizing: border-box;
+    position: absolute;
 
     @include mobile {
         position: relative;
@@ -21,6 +27,7 @@
 
     @include tablet {
         padding-left: 0;
+        padding-top: 60px;
     }
 
     #search_bar {
@@ -86,7 +93,7 @@
             position: relative;
             height: 100%;
 
-            #title_area {
+            .title_area {
                 margin-bottom: 30px;
             }
 

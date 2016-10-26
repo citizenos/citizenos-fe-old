@@ -9,12 +9,19 @@
                 Show me topics about
             </div>
             <div cos-dropdown class="bar_select">
-                {{filters.categories.value}}
-                <div class="icon_holder">
-                    <div class="table_cell">
-                        <div class="sprite sprite-dropdown-arrowdown-big2x"></div>
+
+                <div class="select_text">
+                    {{filters.categories.value}}
+                    <div class="icon_holder">
+                        <div class="table_cell">
+                            <div class="sprite sprite-dropdown-arrowdown-big2x"></div>
+                        </div>
                     </div>
                 </div>
+
+                <div class="animated_bg_bar">
+                </div>
+
                 <div class="dropdown big_drop">
                     <div class="line lightest_line"></div>
 
@@ -90,6 +97,18 @@
 
             </div>
 
+            <span ng-if="filters.categories.value !== FILTERS_ALL || filters.statuses.value !== FILTERS_ALL">
+                <div class="line_holder">
+                    <div class="v_line dark_gray_background">
+                    </div>
+                </div>
+
+
+                <div class="blue_link" ng-click="doClearFilters()">
+                    Clear filters
+                </div>
+            </span>
+
         </div>
     </div>
 
@@ -156,8 +175,33 @@
 
 
     <!-- TOPICS AREA -->
-    <div id="topics_area">
-        <h1 ng-if="!isTopicListLoading && !topicList.length">Sorry, we found 0 results with current filter settings.</h1><!--TODO: Beautiful layout please!-->
+    <div id="topics_area" ng-class="{no_tutorial_topic: filters.categories.value !== FILTERS_ALL || filters.statuses.value !== FILTERS_ALL, no_results: !topicList.length}">
+
+        <div ng-if="!isTopicListLoading && !topicList.length" class="table">
+            <div class="v_align_cell">
+                <div class="title_area">
+                    <h1>
+                        We’re sorry, but we couldn’t find any results :(
+                    </h1>
+                    <h2>
+                        Maybe you can get the first discussion initiated by
+                    </h2>
+                </div>
+
+                <div class="button_area">
+
+                    <div class="big_button">
+                        <div class="button_cell">
+                            <div class="icon_nudge">
+                                <div class="sprite sprite-x2-mytopics-icon-newtopic-big2x"></div>
+                            </div>
+                            <div class="topic_text">Creating<br> a new topic</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
         <a href="" class="big white_text blue_background topic" ng-if="filters.categories.value === FILTERS_ALL && filters.statuses.value === FILTERS_ALL">
             <div class="topic_wrap">
