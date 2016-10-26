@@ -8,6 +8,10 @@
     left: 0;
     bottom: 0;
     right: 0;
+    padding-top: 156px;
+    @media (max-width: 767px) {
+        padding-top: 50px;
+    }
 
     .icon_holder {
         display: inline-block;
@@ -18,6 +22,10 @@
     #filter_bar_desktop {
         padding: 25px 20px 20px 20px;
         font-weight: $bold;
+        margin-top: -156px;
+        position: absolute;
+        width: 100%;
+        box-sizing: border-box;
 
         .dropdown {
             display: none;
@@ -80,6 +88,9 @@
 
         .dropdown_active {
             background: $white;
+            .animated_bg_bar {
+                width: 250px !important;
+            }
         }
 
         .dropdown_active .dropdown {
@@ -106,7 +117,6 @@
 
         #bar_top {
             font-size: 26px;
-            border-radius: 4px;
 
             .bar_text {
                 margin-right: 2px;
@@ -115,8 +125,28 @@
             .bar_select {
                 padding: 13px;
                 cursor: pointer;
-                &:hover {
+
+                .select_text {
+                    z-index: 2;
+                    position: relative;
+                }
+
+                .animated_bg_bar {
+                    z-index: 1;
                     background: $white;
+                    width: 0;
+                    position: absolute;
+                    height: 62px;
+                    top: 0;
+                    left: 0;
+                    transition: all 220ms cubic-bezier(.45,.78,0,1);
+                    border-radius: 4px;
+                }
+
+                &:hover {
+                    .animated_bg_bar {
+                        width: 250px;
+                    }
                 }
             }
 
@@ -156,6 +186,7 @@
 
     /* FILTER AREA MOBILE */
     #filter_bar_mobile {
+        margin-top: -50px;
 
         #open_fi {
             height: 40px;
@@ -282,7 +313,6 @@
         background: $light_gray;
         text-align: left;
         box-sizing: border-box;
-        margin-top: 10px;
         padding-left: 90px;
 
         @media (max-width: 2480px) {
@@ -293,8 +323,12 @@
             padding-left: 30px;
         }
 
+        @media (max-width: 767px) {
+            margin-top: 10px;
+        }
+
         @media (max-width: 500px) {
-            padding: 0 10px 0 10px;
+            padding: 0 10px 10px 10px;
         }
 
         .table {
@@ -704,6 +738,7 @@
 
     .no_results {
         padding-left: 0 !important;
+        height: 100%;
     }
 
 }

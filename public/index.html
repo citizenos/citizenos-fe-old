@@ -7,7 +7,7 @@
     <base href="/">
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=63131cc6db9fd4d73b53056f95af2e64" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=7c40f5eda5a015caa67e9bd85a405e93" rel="stylesheet">
     <script src="js/citizenos-fe.bundle.js?v=7b34e6a5c948cb777a668aecebad25e9"></script>
 
 </head>
@@ -15,6 +15,75 @@
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 <body ng-class="app.showNav || app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
+
+    <!-- INFO BAR - base.scss -->
+    <div id="info_bar_wrap">
+
+        <!-- RED ERROR -->
+        <!--<div class="info_bar bar_red">
+            <div class="info_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-notification-error2x"></div>
+                </div>
+            </div>
+            
+            <div class="info_bar_text">
+                <div class="table_cell">
+                    Sorry, some error has occured.
+                </div>
+            </div>
+
+            <div class="info_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-closemenu2x"></div>
+                </div>
+            </div>
+        </div>-->
+
+        <!-- BLUE ERROR -->
+        <!--<div class="info_bar bar_blue">
+            <div class="info_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-notification-info2x"></div>
+                </div>
+            </div>
+            
+            <div class="info_bar_text">
+                <div class="table_cell">
+                    Some info which is either positive nor negative.
+                </div>
+            </div>
+
+            <div class="info_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-closemenu2x"></div>
+                </div>
+            </div>
+        </div>-->
+
+        <!-- GREEN ERROR -->
+        <!--<div class="info_bar bar_green">
+            <div class="info_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-btn-popup-close-2x-green"></div>
+                </div>
+            </div>
+            
+            <div class="info_bar_text">
+                <div class="table_cell">
+                    Some info which is either positive nor negative.
+                </div>
+            </div>
+
+            <div class="info_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-closemenu2x"></div>
+                </div>
+            </div>
+        </div>-->
+
+
+    </div>
 
     <!-- MOBILE HEADER NAV -->
     <div id="mobile_header" ng-if="wWidth <= 1024">
@@ -35,7 +104,7 @@
 
     <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''">
 
-        <!-- SEARCH BAR-->
+        <!-- SEARCH BAR -->
 
         <div id="search_bar" ng-if="wWidth > 1024">
             <div id="search_icon">

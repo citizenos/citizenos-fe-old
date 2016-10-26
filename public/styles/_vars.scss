@@ -18,6 +18,10 @@ $lightest_gray: #e5e5e5;
 $bold: 700;
 $light: 300;
 
+$green_light: #2eecb4;
+$green_medium:  #28c798;
+$green_dark:  #0c6449;
+
 .bold {
     font-weight: $bold !important;
 }
@@ -44,6 +48,37 @@ $purpule: #f1d9ff;
 $yellow: #fef78d;
 $red: #e64100;
 $pinky_red: #ff1d42;
+$pinky_red_dark: #e22645;
+
+/* INFO BAR COLORS */
+.bar_red {
+    color: $white;
+    background:  $pinky_red;
+    
+    .info_icon:last-child:hover {
+        background: $pinky_red_dark;
+    }
+}
+
+.bar_blue {
+    color: $white;
+    background:  $deep_sky_blue;
+
+    .info_icon:last-child:hover {
+        background: $dark_blue;
+    }
+}
+
+.bar_green {
+    color: $green_dark;
+    background:  $green_light;
+
+    .info_icon:last-child:hover {
+        background: $green_medium
+    }
+}
+
+
 
 .orange_background {
     background: $orange;
