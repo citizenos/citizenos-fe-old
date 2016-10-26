@@ -22671,7 +22671,24 @@ defense:"defense",//  Defense and security
 integration:"integration",// Integration and human rights
 varia:"varia"};Topic.listUnauth=function(statuses,categories,offset,limit){var path="/api/topics";return $http.get(path,{params:{statuses:statuses,categories:categories,offset:offset,limit:limit}})}}]);angular.module("citizenos").directive("cosDropdown",["$document",function($document){return{restrict:"A",link:function(scope,elem,attr){elem.bind("click",function(){elem.toggleClass("dropdown_active");elem.addClass("active_recent")});$document.bind("click",function(){if(!elem.hasClass("active_recent")){elem.removeClass("dropdown_active")}elem.removeClass("active_recent")})}}}]);angular.module("citizenos").directive("cosResize",["$window","$rootScope",function($window,$rootScope){return function(scope,element){var w=angular.element($window);scope.getWindowDimensions=function(){return{w:window.innerWidth}};scope.$watch(scope.getWindowDimensions,function(newValue,oldValue){$rootScope.wWidth=newValue.w;if($rootScope.wWidth>1024){scope.app.showNav=false}},true);w.bind("resize",function(){scope.$apply()})}}]);"use strict";angular.module("citizenos").controller("LoginFormCtrl",["$scope","$log","ngDialog",function($scope,$log,ngDialog){$log.debug("LoginFormCtrl",ngDialog);$scope.form={email:null,password:null};
 // Hide mobile navigation when login flow is started
-$scope.app.showNav=false;$scope.doLogin=function(){$log.debug("LoginFormCtrl.doLogin()");ngDialog.open({template:"/views/modals/register.html",scope:$scope})}}]);"use strict";angular.module("citizenos").controller("SignUpFormCtrl",["$scope","$log","ngDialog",function($scope,$log,ngDialog){$log.debug("SignUpFormCtrl");$scope.form={};$scope.doSignUp=function(){$log.debug("SignUpFormCtrl.doSignUp()");$scope.app.user.loggedIn=true;ngDialog.closeAll()}}]);"use strict";angular.module("citizenos").controller("AppCtrl",["$scope","$log","cosConfig","ngDialog",function($scope,$log,cosConfig,ngDialog){$log.debug("AppCtrl");$scope.app={config:cosConfig,showSearch:false,showSearchResults:false,showNav:false};$scope.app.user={loggedIn:false};$scope.doShowLogin=function(){$log.debug("AppCtrl.doShowLogin()");ngDialog.open({template:"/views/modals/login.html",scope:$scope})};
+$scope.app.showNav=false;$scope.doLogin=function(){$log.debug("LoginFormCtrl.doLogin()");ngDialog.open({template:"/views/modals/register.html",scope:$scope})}}]);"use strict";angular.module("citizenos").controller("SignUpFormCtrl",["$scope","$log","ngDialog",function($scope,$log,ngDialog){$log.debug("SignUpFormCtrl");$scope.form={};$scope.doSignUp=function(){$log.debug("SignUpFormCtrl.doSignUp()");$scope.app.user.loggedIn=true;ngDialog.closeAll()}}]);"use strict";angular.module("citizenos").controller("AppCtrl",["$scope","$log","cosConfig","ngDialog",function($scope,$log,cosConfig,ngDialog){$log.debug("AppCtrl");$scope.app={config:cosConfig,showSearch:false,showSearchResults:false,showNav:false};
+// Application User info
+$scope.app.user={loggedIn:false};
+// Different global notifications that can be shown in the page header
+$scope.app.notifications={messages:{}};$scope.app.notifications.levels={SUCCESS:"success",INFO:"info",ERROR:"error"};
+// Initially all messages
+Object.keys($scope.app.notifications.levels).forEach(function(key){$scope.app.notifications.messages[$scope.app.notifications.levels[key]]=[]});/**
+         * Show global notification with specified level
+         *
+         * @param {string} level One of $scope.app.notifications.types
+         * @param {string} message Message to show
+         */
+$scope.app.doShowNotification=function(level,message){$scope.app.notifications.messages[level].push(message)};/**
+         * Hide global notification with specified level
+         *
+         * @param {string} level One of $scope.app.notifications.types
+         */
+$scope.app.doHideNotification=function(level){$scope.app.notifications.messages[level]=[]};$scope.doShowLogin=function(){$log.debug("AppCtrl.doShowLogin()");ngDialog.open({template:"/views/modals/login.html",scope:$scope})};
 //FIXME: REMOVE, used for debugging on mobile
 $scope.app.alert=function(str){alert(str)}}]);"use strict";angular.module("citizenos").controller("HomeCtrl",["$scope","$log","sTopic",function($scope,$log,sTopic){
 // Constant marking the "clear" or all options will do

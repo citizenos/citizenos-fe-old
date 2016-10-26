@@ -7,9 +7,8 @@
     <base href="/">
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=7c40f5eda5a015caa67e9bd85a405e93" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=7b34e6a5c948cb777a668aecebad25e9"></script>
-
+    <link href="styles/citizenos-fe.bundle.css?v=696461b24fe96751d88447c841330bf9" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=9f21eaebbc630dc6c33f96dbcb97a0e9"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
@@ -19,63 +18,64 @@
     <!-- INFO BAR - base.scss -->
     <div id="info_bar_wrap">
 
-        <!-- RED ERROR -->
-        <div class="info_bar bar_red">
+        <!-- RED MESSAGE -->
+        <!-- Using ng-hide and ng-show instead of ng-if so that screen flicker would not occur on page load -->
+        <div class="info_bar bar_red ng-hide" ng-show="app.notifications.messages[app.notifications.levels.ERROR].length">
             <div class="info_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-icon-notification-error2x"></div>
                 </div>
             </div>
-            
-            <div class="info_bar_text">
+
+            <div class="info_bar_text" ng-repeat="message in app.notifications.messages[app.notifications.levels.ERROR]">
                 <div class="table_cell">
-                    Sorry, some error has occured.
+                    {{message}}
                 </div>
             </div>
 
-            <div class="info_icon">
+            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.ERROR)">
                 <div class="table_cell">
                     <div class="sprite sprite-icon-closemenu2x"></div>
                 </div>
             </div>
         </div>
 
-        <!-- BLUE ERROR -->
-        <div class="info_bar bar_blue">
+        <!-- BLUE MESSAGE -->
+        <div class="info_bar bar_blue ng-hide" ng-show="app.notifications.messages[app.notifications.levels.INFO].length">
             <div class="info_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-icon-notification-info2x"></div>
                 </div>
             </div>
-            
-            <div class="info_bar_text">
+
+            <div class="info_bar_text" ng-repeat="message in app.notifications.messages[app.notifications.levels.INFO]">
                 <div class="table_cell">
-                    Some info which is either positive nor negative.
+                    {{message}}
                 </div>
             </div>
 
-            <div class="info_icon">
+            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.INFO)">
                 <div class="table_cell">
                     <div class="sprite sprite-icon-closemenu2x"></div>
                 </div>
             </div>
         </div>
 
-        <!-- GREEN ERROR -->
-        <div class="info_bar bar_green">
+        <!-- GREEN MESSAGE -->
+        <div class="info_bar bar_green ng-hide" ng-show="app.notifications.messages[app.notifications.levels.SUCCESS].length">
             <div class="info_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-btn-popup-close-2x-green"></div>
                 </div>
             </div>
-            
-            <div class="info_bar_text">
+
+            <div class="info_bar_text" ng-repeat="message in app.notifications.messages[app.notifications.levels.SUCCESS]">
                 <div class="table_cell">
-                    Some info which is either positive nor negative.
+                    {{message}}
                 </div>
             </div>
 
-            <div class="info_icon">
+            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.SUCCESS)">
                 <div class="table_cell">
                     <div class="sprite sprite-icon-closemenu2x"></div>
                 </div>
