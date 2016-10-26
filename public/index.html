@@ -7,13 +7,13 @@
     <base href="/">
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=bfdcd3014bdbf8c91b790c7157163147" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=e99ff54c90edfa9bdbcc0798243b0a8c" rel="stylesheet">
     <script src="js/citizenos-fe.bundle.js?v=9f21eaebbc630dc6c33f96dbcb97a0e9"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
+<body ng-class="app.open_mobile_fi || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
 
     <!-- INFO BAR - base.scss -->
     <div id="info_bar_wrap">
@@ -22,63 +22,48 @@
         <!-- Using ng-hide and ng-show instead of ng-if so that screen flicker would not occur on page load -->
         <div class="info_bar bar_red ng-hide" ng-show="app.notifications.messages[app.notifications.levels.ERROR].length">
             <div class="info_icon">
-                <div class="table_cell">
-                    <div class="sprite sprite-icon-notification-error2x"></div>
-                </div>
+                <div class="sprite sprite-icon-notification-error2x"></div>
             </div>
 
             <div class="info_bar_text" ng-repeat="message in app.notifications.messages[app.notifications.levels.ERROR]">
-                <div class="table_cell">
-                    {{message}}
-                </div>
+                {{message}}
             </div>
 
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.ERROR)">
-                <div class="table_cell">
-                    <div class="sprite sprite-icon-closemenu2x"></div>
-                </div>
+                <div class="sprite sprite-icon-closemenu2x"></div>
             </div>
+
         </div>
 
         <!-- BLUE MESSAGE -->
         <div class="info_bar bar_blue ng-hide" ng-show="app.notifications.messages[app.notifications.levels.INFO].length">
             <div class="info_icon">
-                <div class="table_cell">
-                    <div class="sprite sprite-icon-notification-info2x"></div>
-                </div>
+                <div class="sprite sprite-icon-notification-info2x"></div>
             </div>
 
             <div class="info_bar_text" ng-repeat="message in app.notifications.messages[app.notifications.levels.INFO]">
-                <div class="table_cell">
-                    {{message}}
-                </div>
+                {{message}}
             </div>
 
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.INFO)">
-                <div class="table_cell">
-                    <div class="sprite sprite-icon-closemenu2x"></div>
-                </div>
+                <div class="sprite sprite-icon-closemenu2x"></div>
             </div>
         </div>
 
         <!-- GREEN MESSAGE -->
         <div class="info_bar bar_green ng-hide" ng-show="app.notifications.messages[app.notifications.levels.SUCCESS].length">
             <div class="info_icon">
-                <div class="table_cell">
-                    <div class="sprite sprite-icon-notification-check2x"></div>
-                </div>
+                <div class="sprite sprite-icon-notification-check2x"></div>
             </div>
 
-            <div class="info_bar_text" ng-repeat="message in app.notifications.messages[app.notifications.levels.SUCCESS]">
-                <div class="table_cell">
+            <div class="info_bar_text">
+                <div class="info_row" ng-repeat="message in app.notifications.messages[app.notifications.levels.SUCCESS]">
                     {{message}}
                 </div>
             </div>
 
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.SUCCESS)">
-                <div class="table_cell">
-                    <div class="sprite sprite-btn-popup-close-2x-green"></div>
-                </div>
+                <div class="sprite sprite-btn-popup-close-2x-green"></div>
             </div>
         </div>
 
