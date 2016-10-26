@@ -6,7 +6,7 @@ angular
     var Translate = this;
 
     Translate.LOCALES = Object.keys(cosConfig.language.list);
-    Translate.currentLocale = $translate.proposedLanguage();
+    Translate.currentLocale = $translate.resolveClientLocale();
 
     var services = {
         setLanguage: setLanguage,

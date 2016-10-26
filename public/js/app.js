@@ -29,9 +29,18 @@
                 rewriteLinks: true,
                 requireBase: true
             });
-            $urlRouterProvider.otherwise(function ($injector) {
+            $urlRouterProvider.otherwise(function ($injector, $location) {
                 var sUrlResolver = $injector.get('sUrlResolver');
-                return sUrlResolver.resolve();
+                var $state = $injector.get('$state');
+                var returnURL = '';
+                sUrlResolver.resolveUrl().then( function (data) {
+                    console.log('resolved', data);
+                    $state.go('home',{language:data});
+                //    $location.path(data);
+                //    return returnURL = data;
+                }, function(reason) {
+                  console.log('Failed: ' + reason);
+                });
             });
 
             $stateProvider
@@ -42,7 +51,6 @@
                     resolve: {
                         /* @ngInject */
                         sTranslate: function(sTranslate, $stateParams, sAuth) {
-                            sAuth.status();
                             console.log('AUTH USER',sAuth.user);
                             this.language = sTranslate.currentLanguage();
                             return sTranslate.setLanguage($stateParams.language);

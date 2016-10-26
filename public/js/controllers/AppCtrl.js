@@ -2,8 +2,9 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$log', 'sTranslate', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $state, $log, sTranslate, cosConfig, ngDialog, sAuth) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$log', 'sTranslate', 'cosConfig', 'ngDialog', 'sAuth', '$location', function ($scope, $rootScope, $state, $log, sTranslate, cosConfig, ngDialog, sAuth, $location) {
         $log.debug('AppCtrl');
+        $log.debug($location.path());
 
         $scope.app = {
             config: cosConfig,

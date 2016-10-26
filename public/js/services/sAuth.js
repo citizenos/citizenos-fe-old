@@ -9,7 +9,8 @@ angular
     };
     var service = {
         login : login,
-        status : status
+        status : status,
+        user: this.user
     };
 
     return service;
@@ -19,20 +20,23 @@ angular
     }
 
     function status (){
-        setTimeout( function () {
-            this.user = {
-            loggedIn: true,
-            loadlang: false,
-            isLoading: true,
-            id: "2eedafda-2f7f-48e7-9220-d951218f0bc1",
-            name: "Ilmar Tyrk",
-            company: "CitizenOS",
-            language: "et",
-            email: "ilmar.tyrk@gmail.com",
-            imageUrl: null
-        };
-        return true;
-        },1000);
+
+        return $q(function(resolve, reject) {
+            setTimeout(function() {
+                this.user = {
+                    loggedIn: true,
+                    loadlang: false,
+                    isLoading: true,
+                    id: "2eedafda-2f7f-48e7-9220-d951218f0bc1",
+                    name: "Ilmar Tyrk",
+                    company: "CitizenOS",
+                    language: "et",
+                    email: "ilmar.tyrk@gmail.com",
+                    imageUrl: null
+                };
+                resolve(this.user);
+            }, 2000);
+          });
     }
 
 }]);

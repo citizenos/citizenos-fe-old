@@ -12,34 +12,47 @@ angular
     var userLang = cosConfig.language.default;
 
     UrlResolver.stateUrls = [];
-    sAuth.status();
 
     var currentLang = sTranslate.currentLocale();
+    var returnLink = '/';
     init();
     UrlResolver.services = {
-        resolve: resolve
+        resolveUrl: resolveUrl
     };
     return UrlResolver.services;
 
-    function resolve () {
+    function resolveUrl () {
+        return sAuth.status().then(function(user) {
+
+            console.log('STATUSLOADED',user);
+            console.log(sAuth.user);
+            if(user){
+                userLang = user.language;
+                return userLang;
+            }
+          //  $state.go('topics',{language:userLang});
+
+            return currentLang;
+           /* return returnLink;
             if (langkeys.indexOf(locationPath[1]) > -1) {
                 console.log('isLang', '/' + locationPath[1] + '/');
-                return '/' + locationPath[1] + '/';
+                return returnLink = '/' + locationPath[1] + '/';
             } else if (locationPath.length > 1) {
                 if(sAuth.user){
                     console.log('HasUser+fullURL','/' + userLang + locationUrl);
-                    return '/' + userLang + locationUrl;
+                    return returnLink = '/' + userLang + locationUrl;
                 }
                 console.log('fullURL','/' + currentLang  + locationUrl);
-                return '/' + currentLang + locationUrl;
+                return returnLink = '/' + currentLang + locationUrl;
             } else {
                 if(sAuth.user){
                     console.log('HasUser+Home','/' + userLang + '/');
-                    return '/' + userLang + '/';
+                    return returnLink = '/' + userLang + '/';
                 }
                 console.log('Home','/' + currentLang + '/');
-                return '/' + currentLang + '/';
-            }
+                return returnLink = '/' + currentLang + '/';
+            }*/
+        });
     }
 
     function matchState () {
