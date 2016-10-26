@@ -43,7 +43,7 @@ nav {
     background: $medium_black;
     color: $transparent_white;
     font-size: 13px;
-    position: absolute;
+    position: fixed;
     z-index: 10;
     
     .dark_line {
@@ -55,7 +55,6 @@ nav {
     }
 
     @include tablet {
-        width: 0;
         right: -$nav_t_width;
         transition: all 220ms cubic-bezier(.45,.78,0,1);
         overflow-y: visible;
@@ -228,11 +227,13 @@ nav {
 #mobile_header {
     height: 60px;
     background: $medium_black;
-    z-index: 10;
+    z-index: 4;
     padding-right: 138px;
     padding-left: 190px;
+    left: 0;
+    right: 0;
 
-    position: absolute;
+    position: fixed;
     width: 100%;
     box-sizing: border-box;
 

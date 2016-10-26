@@ -52,7 +52,7 @@ h2 {
 }
 
 #close_mobile_menu {
-    position: absolute;
+    position: fixed;
     z-index: 3;
     top: 0;
     bottom: 0;
@@ -160,7 +160,7 @@ a:link, a:visited {
 /* INFO BAR */
 
 #info_bar_wrap {
-    position: absolute;
+    position: fixed;
     width: 100%;
     z-index: 9999;
     font-size: 14px;

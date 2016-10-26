@@ -7,13 +7,13 @@
     <base href="/">
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=696461b24fe96751d88447c841330bf9" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=33dc983148d8eb72ed96931b526f3886" rel="stylesheet">
     <script src="js/citizenos-fe.bundle.js?v=9f21eaebbc630dc6c33f96dbcb97a0e9"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="app.showNav || app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
+<body ng-class="app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
 
     <!-- INFO BAR - base.scss -->
     <div id="info_bar_wrap">
@@ -65,7 +65,7 @@
         <div class="info_bar bar_green ng-hide" ng-show="app.notifications.messages[app.notifications.levels.SUCCESS].length">
             <div class="info_icon">
                 <div class="table_cell">
-                    <div class="sprite sprite-btn-popup-close-2x-green"></div>
+                    <div class="sprite sprite-icon-notification-check2x"></div>
                 </div>
             </div>
 
@@ -77,7 +77,7 @@
 
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.SUCCESS)">
                 <div class="table_cell">
-                    <div class="sprite sprite-icon-closemenu2x"></div>
+                    <div class="sprite sprite-btn-popup-close-2x-green"></div>
                 </div>
             </div>
         </div>
