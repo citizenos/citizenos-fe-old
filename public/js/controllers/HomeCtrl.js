@@ -41,7 +41,7 @@ angular
         };
 
         /**
-         * Clear all applised filters
+         * Clear all applied filters
          */
         $scope.doClearFilters = function () {
             $scope.filters.categories.value = $scope.FILTERS_ALL;
@@ -52,6 +52,12 @@ angular
             $scope.filters.offset = 0;
 
             $scope.loadTopicList();
+        };
+
+        $scope.isTutorialVisible = function () {
+            return $scope.filters.categories.value === $scope.FILTERS_ALL
+                && $scope.filters.statuses.value === $scope.FILTERS_ALL
+                && $scope.topicList.length; // Render tutorial only when there are topics, this avoids Android and alignment issues.
         };
 
         $scope.loadTopicList = function () {
@@ -81,12 +87,12 @@ angular
                         $scope.isTopicListLoading = false;
                     },
                     function (err) {
-                        $log.log('List fetch failed or was cancelled', err);
+                        $log.warn('HomeCtrl.loadTopicList()', 'List fetch failed or was cancelled', err);
                         $scope.isTopicListLoading = false;
                     }
                 );
         };
-
         $scope.loadTopicList();
+
 
     }]);
