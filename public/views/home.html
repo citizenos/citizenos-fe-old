@@ -175,7 +175,8 @@
 
 
     <!-- TOPICS AREA -->
-    <div id="topics_area" ng-class="{no_tutorial_topic: filters.categories.value !== FILTERS_ALL || filters.statuses.value !== FILTERS_ALL, no_results: !topicList.length}">
+    <!--<div id="topics_area" ng-class="{no_tutorial_topic: filters.categories.value !== FILTERS_ALL || filters.statuses.value !== FILTERS_ALL, no_results: !topicList.length}">-->
+    <div id="topics_area" ng-class="{filters.statuses.value !== FILTERS_ALL, no_results: !topicList.length}">
 
         <div ng-if="!isTopicListLoading && !topicList.length" class="table">
             <div class="v_align_cell">
