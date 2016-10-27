@@ -96,11 +96,18 @@
                     resolve: {
                         /* @ngInject */
                         sTranslate: function(sTranslate, $stateParams, sAuth) {
-                            return sAuth.status().then(function(user) {
-                                console.log('AUTH USER',sAuth.user);
+                            if(sAuth.user.isLoading === false){
+                                console.log('STATUS is already loaded');
                                 this.language = sTranslate.currentLanguage();
                                 return sTranslate.setLanguage($stateParams.language);
-                            });
+                            }
+                            else{
+                                return sAuth.status().then(function(user) {
+                                    console.log('AUTH USER',sAuth.user);
+                                    this.language = sTranslate.currentLanguage();
+                                    return sTranslate.setLanguage($stateParams.language);
+                                });
+                            }
                         }
                     }
                 })
@@ -113,7 +120,7 @@
                 .state('topics', {
                     url: '/topics',
                     parent: 'main',
-                    controller: 'TopicCtrl',
+                    controller: 'HomeCtrl',
                     templateUrl: '/views/no_topics.html'
                 });
 

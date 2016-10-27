@@ -52,7 +52,7 @@ h2 {
 }
 
 #close_mobile_menu {
-    position: absolute;
+    position: fixed;
     z-index: 3;
     top: 0;
     bottom: 0;
@@ -160,39 +160,42 @@ a:link, a:visited {
 /* INFO BAR */
 
 #info_bar_wrap {
-    position: absolute;
+    position: fixed;
     width: 100%;
     z-index: 9999;
     font-size: 14px;
     font-weight: $bold;
 
+    @include tablet {
+        margin-top: 60px;
+    }
+
     .info_bar {
-        height: 40px;
+        height: 100%;
         width: 100%;
         display: table;
 
+        .info_row {
+            display: table-row;
+        }
+
         .info_bar_text {
-            height: 40px;
-            float: left;
-            display: table;
+            @extend .table_cell;
+            padding: 10px 0 11px 0;
         }
 
         .info_icon {
-            height: 40px;
             width: 56px;
-            display: table;
+            @extend .table_cell;
+            
             .sprite {
                 margin: 0 auto;
             }
         }
-
-        .info_icon:first-child {
-            float: left;
-        }
         
         .info_icon:last-child {
-            float: right;
             cursor: pointer;
+            height: 100%;
         }
 
     }
