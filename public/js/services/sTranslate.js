@@ -7,16 +7,15 @@ angular
 
         sTranslate.LOCALES = Object.keys(cosConfig.language.list);
         sTranslate.currentLocale = cosConfig.language.default;
+        sTranslate.currentLanguage = cosConfig.language.list[sTranslate.currentLocale];
 
-        var clientLang = $translate.resolveClientLocale();
-        if (sTranslate.LOCALES.indexOf(clientLang) > -1) {
-            sTranslate.currentLocale = clientLang;
-        }
+        init();
 
         sTranslate.setLanguage = function (locale) {
             if(checkLocaleIsValid(locale) && $translate.use() !== locale) {
                 $log.debug('setLanguage', locale);
                 sTranslate.currentLocale = locale;
+                setCurrentLanguage();
                 return $translate.use(locale);
             }
             return $translate.use();
@@ -27,19 +26,26 @@ angular
             if(checkLocaleIsValid(locale)){
                 $state.transitionTo($state.current.name, {language:locale});
             }
-
             sTranslate.setLanguage(locale);
-        };
-        sTranslate.getCurrentLanguage = function() {
-            return cosConfig.language.list[sTranslate.currentLocale];
         };
 
         sTranslate.getCurrentLocale = function () {
             return sTranslate.currentLocale;
         };
 
-        var checkLocaleIsValid = function (locale) {
+        function setCurrentLanguage () {
+             sTranslate.currentLanguage = cosConfig.language.list[sTranslate.currentLocale];
+        };
+
+        function checkLocaleIsValid (locale) {
             return sTranslate.LOCALES.indexOf(locale) !== -1;
         };
 
+        function init () {
+            var clientLang = $translate.resolveClientLocale();
+            if (sTranslate.LOCALES.indexOf(clientLang) > -1) {
+                sTranslate.currentLocale = clientLang;
+                setCurrentLanguage();
+            }
+        }
     }]);

@@ -10,7 +10,7 @@ angular
             showSearch: false,
             showSearchResults: false,
             showNav: false,
-            isLoading:true
+            isLoading: true
         };
         $scope.app.user = sAuth.user;
         $scope.app.locale = sTranslate.currentLocale;
@@ -58,12 +58,7 @@ angular
                 template: '/views/modals/login.html',
                 scope: $scope
             });
-        };
-
-        //FIXME: REMOVE, used for debugging on mobile
-        $scope.app.alert = function (str) {
-            alert(str);
-        };
+        }
 
         $scope.app.switchLanguage = function (locale) {
             $log.debug('AppCtrl.switchLanguage()', locale);
