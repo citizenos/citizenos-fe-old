@@ -2,9 +2,8 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$log', 'sTranslate', 'cosConfig', 'ngDialog', 'sAuth', '$location', function ($scope, $rootScope, $state, $log, sTranslate, cosConfig, ngDialog, sAuth, $location) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', 'sTranslate', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $log, sTranslate, cosConfig, ngDialog, sAuth) {
         $log.debug('AppCtrl');
-        $log.debug($location.path());
 
         $scope.app = {
             config: cosConfig,
@@ -14,11 +13,9 @@ angular
             isLoading:true
         };
         $scope.app.user = sAuth.user;
-        $scope.app.locale = sTranslate.currentLocale();
-        $scope.app.language = sTranslate.currentLanguage();
-        $scope.app.doShowLogin = doShowLogin;
-        $scope.app.switchLanguage = switchLanguage;
-        
+        $scope.app.locale = sTranslate.currentLocale;
+        $scope.app.language = sTranslate.currentLanguage;
+
         // Different global notifications that can be shown in the page header
         $scope.app.notifications = {
             messages: {}
@@ -34,7 +31,7 @@ angular
         Object.keys($scope.app.notifications.levels).forEach(function (key) {
             $scope.app.notifications.messages[$scope.app.notifications.levels[key]] = [];
         });
-        
+
         /**
          * Show global notification with specified level
          *
@@ -54,17 +51,7 @@ angular
             $scope.app.notifications.messages[level] = [];
         };
 
-
-        $rootScope.$watch(function () {
-            return !sAuth.user.isLoading;
-        }, function (isLoading) {
-            $log.info('$scope.app.user.isLoading', sAuth.user.isLoading);
-            if(isLoading){
-                $scope.app.user = sAuth.user;
-                $scope.app.isLoading = false;
-            }
-        });
-        function doShowLogin() {
+        $scope.app.doShowLogin = function () {
             $log.debug('AppCtrl.doShowLogin()');
 
             ngDialog.open({
@@ -78,18 +65,26 @@ angular
             alert(str);
         };
 
-        function switchLanguage(locale) {
-            $log.debug('switch language', locale);
-            if(sTranslate.checkLocaleIsValid(locale)){
-                $state.transitionTo($state.current.name, {language:locale});
+        $scope.app.switchLanguage = function (locale) {
+            $log.debug('AppCtrl.switchLanguage()', locale);
+            sTranslate.switchLanguage(locale);
+        };
+        ///Listeners and watchers
+
+        $rootScope.$watch(function () {
+            return !sAuth.user.isLoading;
+        }, function (isLoading) {
+            $log.info('$scope.app.user.isLoading', sAuth.user.isLoading);
+            if (isLoading) {
+                $scope.app.user = sAuth.user;
+                $scope.app.isLoading = false;
             }
-            sTranslate.setLanguage(locale);
-        }
+        });
 
         $rootScope.$on('$translateChangeSuccess', setLocaleVariables);
 
-        function setLocaleVariables () {
-            $scope.app.locale = sTranslate.currentLocale();
-            $scope.app.language = sTranslate.currentLanguage();
+        function setLocaleVariables() {
+            $scope.app.locale = sTranslate.currentLocale;
+            $scope.app.language = sTranslate.currentLanguage;
         }
     }]);

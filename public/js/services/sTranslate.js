@@ -2,39 +2,44 @@
 
 angular
     .module('citizenos')
-    .service('sTranslate', ['$translate', '$log', 'cosConfig', function ($translate, $log,  cosConfig) {
-    var Translate = this;
+    .service('sTranslate', ['$state', '$translate', '$log', 'cosConfig', function ($state, $translate, $log,  cosConfig) {
+        var sTranslate = this;
 
-    Translate.LOCALES = Object.keys(cosConfig.language.list);
-    Translate.currentLocale = $translate.resolveClientLocale();
+        sTranslate.LOCALES = Object.keys(cosConfig.language.list);
+        sTranslate.currentLocale = cosConfig.language.default;
 
-    var services = {
-        setLanguage: setLanguage,
-        currentLocale: getCurrentLocale,
-        currentLanguage: getCurrentLanguage,
-        checkLocaleIsValid:checkLocaleIsValid
-    };
-
-    return services;
-
-    function setLanguage (locale) {
-        if(checkLocaleIsValid(locale) && $translate.use() !== locale) {
-            $log.debug('setLanguage', locale);
-            Translate.currentLocale = locale;
-            return $translate.use(locale);
+        var clientLang = $translate.resolveClientLocale();
+        if (sTranslate.LOCALES.indexOf(clientLang) > -1) {
+            sTranslate.currentLocale = clientLang;
         }
-        return $translate.use();
-    }
 
-    function getCurrentLanguage() {
-        return cosConfig.language.list[Translate.currentLocale];
-    }
-    function getCurrentLocale() {
-        return Translate.currentLocale;
-    }
+        sTranslate.setLanguage = function (locale) {
+            if(checkLocaleIsValid(locale) && $translate.use() !== locale) {
+                $log.debug('setLanguage', locale);
+                sTranslate.currentLocale = locale;
+                return $translate.use(locale);
+            }
+            return $translate.use();
+        };
 
-    function checkLocaleIsValid(locale) {
-        return Translate.LOCALES.indexOf(locale) !== -1;
-    }
+        sTranslate.switchLanguage = function (locale) {
+            $log.debug('switch language', locale);
+            if(checkLocaleIsValid(locale)){
+                $state.transitionTo($state.current.name, {language:locale});
+            }
 
-}]);
+            sTranslate.setLanguage(locale);
+        };
+        sTranslate.getCurrentLanguage = function() {
+            return cosConfig.language.list[sTranslate.currentLocale];
+        };
+
+        sTranslate.getCurrentLocale = function () {
+            return sTranslate.currentLocale;
+        };
+
+        var checkLocaleIsValid = function (locale) {
+            return sTranslate.LOCALES.indexOf(locale) !== -1;
+        };
+
+    }]);
