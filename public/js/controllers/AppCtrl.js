@@ -10,15 +10,23 @@ angular
             config: cosConfig,
             showSearch: false,
             showSearchResults: false,
-            showNav: false
+            showNav: false,
+            isLoading:true
         };
-
         $scope.app.user = sAuth.user;
         $scope.app.locale = sTranslate.currentLocale();
         $scope.app.language = sTranslate.currentLanguage();
         $scope.app.doShowLogin = doShowLogin;
         $scope.app.switchLanguage = switchLanguage;
 
+        $rootScope.$watch(function () {
+            return !sAuth.user.isLoading;
+        }, function (isLoading) {
+            $log.info('$scope.app.user.isLoading', isLoading);
+            if(isLoading){
+                $scope.app.isLoading = false;
+            }
+        });
         function doShowLogin() {
             $log.debug('AppCtrl.doShowLogin()');
 

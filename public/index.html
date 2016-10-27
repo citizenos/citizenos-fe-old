@@ -8,12 +8,12 @@
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="styles/citizenos-fe.bundle.css?v=696461b24fe96751d88447c841330bf9" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=a95a9bcd4899af02444da843ef1fd5f3"></script>
+    <script src="js/citizenos-fe.bundle.js?v=59ad606f7c099501caa41d4b1e46be30"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="https://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="app.showNav || app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
+<body ng-if="!app.isLoading" ng-class="app.showNav || app.open_mobile_fi ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
 
     <!-- INFO BAR - base.scss -->
     <div id="info_bar_wrap">
@@ -25,7 +25,7 @@
                     <div class="sprite sprite-icon-notification-error2x"></div>
                 </div>
             </div>
-            
+
             <div class="info_bar_text">
                 <div class="table_cell">
                     Sorry, some error has occured.
@@ -46,7 +46,7 @@
                     <div class="sprite sprite-icon-notification-info2x"></div>
                 </div>
             </div>
-            
+
             <div class="info_bar_text">
                 <div class="table_cell">
                     Some info which is either positive nor negative.
@@ -67,7 +67,7 @@
                     <div class="sprite sprite-btn-popup-close-2x-green"></div>
                 </div>
             </div>
-            
+
             <div class="info_bar_text">
                 <div class="table_cell">
                     Some info which is either positive nor negative.

@@ -29,17 +29,62 @@
                 rewriteLinks: true,
                 requireBase: true
             });
+
+            $stateProvider.decorator('parent', function (internalStateObj, parentFn) {
+                // This fn is called by StateBuilder each time a state is registered
+
+                // The first arg is the internal state. Capture it and add an accessor to public state object.
+                internalStateObj.self.$$state = function() { return internalStateObj; };
+
+                // pass through to default .parent() function
+                return parentFn(internalStateObj);
+            });
+
             $urlRouterProvider.otherwise(function ($injector, $location) {
-                var sUrlResolver = $injector.get('sUrlResolver');
+                var sAuth = $injector.get('sAuth');
                 var $state = $injector.get('$state');
-                var returnURL = '';
-                sUrlResolver.resolveUrl().then( function (data) {
-                    console.log('resolved', data);
-                    $state.go('home',{language:data});
-                //    $location.path(data);
-                //    return returnURL = data;
-                }, function(reason) {
-                  console.log('Failed: ' + reason);
+                var $translate = $injector.get('$translate');
+                var locationUrl = $location.url();
+                var locationPath = locationUrl.split('/');
+                var langkeys = Object.keys(cosConfig.language.list);
+                var clientLang = $translate.resolveClientLocale();
+                var useLang = cosConfig.language.default;
+                if (langkeys.indexOf(clientLang) > -1){
+                    useLang  = clientLang;
+                }
+                console.log('Use Language', useLang);
+                var returnLink = '/';
+                sAuth.status().then(function(user) {
+                    console.log('STATUSLOADED',sAuth.user);
+                    if(sAuth.user.language){
+                        useLang = sAuth.user.language;
+                    }
+                    returnLink = '/' + useLang + '/';
+                    if (langkeys.indexOf(locationPath[1]) > -1) {
+                        returnLink = '/' + locationPath[1] + '/';
+                        useLang = locationPath[1];
+                    } else if (locationPath.length > 1) {
+                        returnLink = '/' + useLang + locationUrl;
+                    }
+
+                    var statesList = $state.get();
+                    var i = 0;
+                    console.log('Final link to match', returnLink);
+                    angular.forEach(statesList, function(stateObj) {
+                        i++;
+                        if(stateObj.name){
+                            var privatePortion = stateObj.$$state();
+                            var match = privatePortion.url.exec(returnLink, $location.search());
+                            if (match){
+                                console.log("Matched state: " + stateObj.name + " and parameters: ", match);
+                                $state.go(stateObj.name, match);
+                                i = 0;
+                            }
+                        }
+                        if(i == statesList.length){
+                            $state.go('home',{language:useLang});
+                        }
+                    });
                 });
             });
 
@@ -51,9 +96,11 @@
                     resolve: {
                         /* @ngInject */
                         sTranslate: function(sTranslate, $stateParams, sAuth) {
-                            console.log('AUTH USER',sAuth.user);
-                            this.language = sTranslate.currentLanguage();
-                            return sTranslate.setLanguage($stateParams.language);
+                            return sAuth.status().then(function(user) {
+                                console.log('AUTH USER',sAuth.user);
+                                this.language = sTranslate.currentLanguage();
+                                return sTranslate.setLanguage($stateParams.language);
+                            });
                         }
                     }
                 })
