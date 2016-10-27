@@ -54,6 +54,10 @@ angular
             $scope.loadTopicList();
         };
 
+        $scope.isTutorialVisible = function() {
+            return $scope.filters.categories.value === $scope.FILTERS_ALL && $scope.filters.statuses.value === $scope.FILTERS_ALL;
+        };
+
         $scope.loadTopicList = function () {
             $log.debug('HomeCtrl.loadTopicList()');
 
@@ -86,7 +90,7 @@ angular
                     }
                 );
         };
-
         $scope.loadTopicList();
+
 
     }]);

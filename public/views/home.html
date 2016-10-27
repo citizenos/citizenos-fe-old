@@ -175,7 +175,7 @@
 
 
     <!-- TOPICS AREA -->
-    <div id="topics_area" ng-class="{no_tutorial_topic: filters.categories.value !== FILTERS_ALL || filters.statuses.value !== FILTERS_ALL, no_results: !topicList.length}">
+    <div id="topics_area" ng-class="{no_tutorial_topic: !isTutorialVisible(), no_results: !topicList.length}">
 
         <div ng-if="!isTopicListLoading && !topicList.length" class="table">
             <div class="v_align_cell">
@@ -203,7 +203,7 @@
             </div>
         </div>
 
-        <a href="" class="big white_text blue_background topic" ng-if="filters.categories.value === FILTERS_ALL && filters.statuses.value === FILTERS_ALL">
+        <a href="" class="big white_text blue_background topic" ng-if="isTutorialVisible()">
             <div class="topic_wrap">
                 <div class="text_area">
 
