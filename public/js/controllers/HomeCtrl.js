@@ -54,7 +54,7 @@ angular
             $scope.loadTopicList();
         };
 
-        $scope.isTutorialVisible = function() {
+        $scope.isTutorialVisible = function () {
             return $scope.filters.categories.value === $scope.FILTERS_ALL && $scope.filters.statuses.value === $scope.FILTERS_ALL;
         };
 
@@ -85,7 +85,7 @@ angular
                         $scope.isTopicListLoading = false;
                     },
                     function (err) {
-                        $log.log('List fetch failed or was cancelled', err);
+                        $log.warn('HomeCtrl.loadTopicList()', 'List fetch failed or was cancelled', err);
                         $scope.isTopicListLoading = false;
                     }
                 );
