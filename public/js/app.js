@@ -21,7 +21,7 @@
         });
 
     module
-        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($routeProvider, $locationProvider, $httpProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
+        .config(['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($routeProvider, $locationProvider, $httpProvider, $compileProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
 
             $locationProvider.html5Mode(true);
 
@@ -60,6 +60,9 @@
             // https://github.com/chieffancypants/angular-loading-bar
             cfpLoadingBarProvider.loadingBarTemplate = '<div id="loading_bar"><div class="bar"></div></div>';
             cfpLoadingBarProvider.includeSpinner = false;
+
+            // https://code.angularjs.org/1.5.8/docs/guide/production
+            $compileProvider.debugInfoEnabled(false);
 
         }]);
 
