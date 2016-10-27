@@ -41,7 +41,7 @@ angular
         };
 
         /**
-         * Clear all applised filters
+         * Clear all applied filters
          */
         $scope.doClearFilters = function () {
             $scope.filters.categories.value = $scope.FILTERS_ALL;
@@ -55,7 +55,9 @@ angular
         };
 
         $scope.isTutorialVisible = function () {
-            return $scope.filters.categories.value === $scope.FILTERS_ALL && $scope.filters.statuses.value === $scope.FILTERS_ALL;
+            return $scope.filters.categories.value === $scope.FILTERS_ALL
+                && $scope.filters.statuses.value === $scope.FILTERS_ALL
+                && $scope.topicList.length; // Render tutorial only when there are topics, this avoids Android and alignment issues.
         };
 
         $scope.loadTopicList = function () {
