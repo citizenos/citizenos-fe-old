@@ -11,14 +11,14 @@ angular
             showSearch: false,
             showSearchResults: false,
             showNav: false,
-            isLoading:true
+            isLoading: true
         };
         $scope.app.user = sAuth.user;
         $scope.app.locale = sTranslate.currentLocale();
         $scope.app.language = sTranslate.currentLanguage();
         $scope.app.doShowLogin = doShowLogin;
         $scope.app.switchLanguage = switchLanguage;
-        
+
         // Different global notifications that can be shown in the page header
         $scope.app.notifications = {
             messages: {}
@@ -34,7 +34,7 @@ angular
         Object.keys($scope.app.notifications.levels).forEach(function (key) {
             $scope.app.notifications.messages[$scope.app.notifications.levels[key]] = [];
         });
-        
+
         /**
          * Show global notification with specified level
          *
@@ -54,16 +54,16 @@ angular
             $scope.app.notifications.messages[level] = [];
         };
 
-
         $rootScope.$watch(function () {
             return !sAuth.user.isLoading;
         }, function (isLoading) {
             $log.info('$scope.app.user.isLoading', sAuth.user.isLoading);
-            if(isLoading){
+            if (isLoading) {
                 $scope.app.user = sAuth.user;
                 $scope.app.isLoading = false;
             }
         });
+
         function doShowLogin() {
             $log.debug('AppCtrl.doShowLogin()');
 
@@ -71,24 +71,19 @@ angular
                 template: '/views/modals/login.html',
                 scope: $scope
             });
-        };
-
-        //FIXME: REMOVE, used for debugging on mobile
-        $scope.app.alert = function (str) {
-            alert(str);
-        };
+        }
 
         function switchLanguage(locale) {
-            $log.debug('switch language', locale);
-            if(sTranslate.checkLocaleIsValid(locale)){
-                $state.transitionTo($state.current.name, {language:locale});
+            $log.debug('AppCtrl.switchLanguage()', locale);
+            if (sTranslate.checkLocaleIsValid(locale)) {
+                $state.transitionTo($state.current.name, {language: locale});
             }
             sTranslate.setLanguage(locale);
         }
 
         $rootScope.$on('$translateChangeSuccess', setLocaleVariables);
 
-        function setLocaleVariables () {
+        function setLocaleVariables() {
             $scope.app.locale = sTranslate.currentLocale();
             $scope.app.language = sTranslate.currentLanguage();
         }

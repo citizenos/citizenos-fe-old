@@ -30,12 +30,13 @@
                 requireBase: true
             });
 
+            // This is to enable resolving link to state later
             $stateProvider.decorator('parent', function (internalStateObj, parentFn) {
                 // This fn is called by StateBuilder each time a state is registered
-
                 // The first arg is the internal state. Capture it and add an accessor to public state object.
-                internalStateObj.self.$$state = function() { return internalStateObj; };
-
+                internalStateObj.self.$$state = function () {
+                    return internalStateObj;
+                };
                 // pass through to default .parent() function
                 return parentFn(internalStateObj);
             });
@@ -44,48 +45,64 @@
                 var sAuth = $injector.get('sAuth');
                 var $state = $injector.get('$state');
                 var $translate = $injector.get('$translate');
+                var $log = $injector.get('$log');
+
                 var locationUrl = $location.url();
                 var locationPath = locationUrl.split('/');
+
                 var langkeys = Object.keys(cosConfig.language.list);
                 var clientLang = $translate.resolveClientLocale();
                 var useLang = cosConfig.language.default;
-                if (langkeys.indexOf(clientLang) > -1){
-                    useLang  = clientLang;
+                if (langkeys.indexOf(clientLang) > -1) {
+                    useLang = clientLang;
                 }
-                console.log('Use Language', useLang);
-                var returnLink = '/';
-                sAuth.status().then(function(user) {
-                    console.log('STATUSLOADED',sAuth.user);
-                    if(sAuth.user.language){
-                        useLang = sAuth.user.language;
-                    }
-                    returnLink = '/' + useLang + '/';
-                    if (langkeys.indexOf(locationPath[1]) > -1) {
-                        returnLink = '/' + locationPath[1] + '/';
-                        useLang = locationPath[1];
-                    } else if (locationPath.length > 1) {
-                        returnLink = '/' + useLang + locationUrl;
-                    }
+                $log.debug('$urlRouterProvider.otherwise', 'Language detected before status', useLang);
 
-                    var statesList = $state.get();
-                    var i = 0;
-                    console.log('Final link to match', returnLink);
-                    angular.forEach(statesList, function(stateObj) {
-                        i++;
-                        if(stateObj.name){
-                            var privatePortion = stateObj.$$state();
-                            var match = privatePortion.url.exec(returnLink, $location.search());
-                            if (match){
-                                console.log("Matched state: " + stateObj.name + " and parameters: ", match);
-                                $state.go(stateObj.name, match);
-                                i = 0;
+                var returnLink = '/';
+
+                sAuth
+                    .status()
+                    .then(function () {
+                        $log.debug('$urlRouterProvider.otherwise', 'status loaded', sAuth.user);
+
+                        if (sAuth.user.language) {
+                            useLang = sAuth.user.language;
+                        }
+
+                        returnLink = '/' + useLang + '/';
+                        if (langkeys.indexOf(locationPath[1]) > -1) {
+                            returnLink = '/' + locationPath[1] + '/';
+                            useLang = locationPath[1];
+                        } else if (locationPath.length > 1) {
+                            returnLink = '/' + useLang + locationUrl;
+                        }
+
+                        var statesList = $state.get();
+                        var stateNext = null;
+
+                        // Try to resolve the link to a state. We don't wanna use $location.href as it would reload the whole page, call all the API-s again.
+                        for (var i = 0; i < statesList.length; i++) {
+                            var stateObj = statesList[i];
+                            if (stateObj.name) {
+                                var privatePortion = stateObj.$$state();
+                                var params = privatePortion.url.exec(returnLink, $location.search());
+                                if (params) {
+                                    stateNext = {
+                                        name: stateObj.name,
+                                        params: params
+                                    };
+                                    $log.debug('$urlRouterProvider.otherwise', 'Matched state', stateNext);
+                                    break; // Stop the loop, we found our state
+                                }
                             }
                         }
-                        if(i == statesList.length){
-                            $state.go('home',{language:useLang});
+
+                        if (stateNext) {
+                            $state.go(stateNext.name, stateNext.params);
+                        } else {
+                            $state.go('home', {language: useLang});
                         }
                     });
-                });
             });
 
             $stateProvider
@@ -95,18 +112,17 @@
                     templateUrl: '/views/layouts/main.html',
                     resolve: {
                         /* @ngInject */
-                        sTranslate: function(sTranslate, $stateParams, sAuth) {
-                            if(sAuth.user.isLoading === false){
-                                console.log('STATUS is already loaded');
-                                this.language = sTranslate.currentLanguage();
+                        sTranslate: function ($stateParams, $log, sTranslate, sAuth) {
+                            if (sAuth.user.isLoading === false) {
+                                $log.debug('$stateProvider.state("main").resolve', 'Status already loaded');
                                 return sTranslate.setLanguage($stateParams.language);
-                            }
-                            else{
-                                return sAuth.status().then(function(user) {
-                                    console.log('AUTH USER',sAuth.user);
-                                    this.language = sTranslate.currentLanguage();
-                                    return sTranslate.setLanguage($stateParams.language);
-                                });
+                            } else {
+                                return sAuth
+                                    .status()
+                                    .then(function () {
+                                        $log.debug('$stateProvider.state("main").resolve', 'Status loaded', sAuth.user);
+                                        return sTranslate.setLanguage($stateParams.language);
+                                    });
                             }
                         }
                     }
@@ -136,8 +152,8 @@
             });
 
             $translateProvider.useStaticFilesLoader({
-              prefix: 'languages/',
-              suffix: '.json'
+                prefix: 'languages/',
+                suffix: '.json'
             });
 
             // https://github.com/likeastore/ngDialog
@@ -156,14 +172,14 @@
             cfpLoadingBarProvider.includeSpinner = false;
 
 
-       // $translateProvider.preferredLanguage(cosConfig.language.default);
+            // $translateProvider.preferredLanguage(cosConfig.language.default);
             $translateProvider
                 .preferredLanguage(cosConfig.language.default)
                 .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list)) //et
                 .determinePreferredLanguage()
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
                 .useStorage('translateKookieStorage');
-                $translateProvider.useLocalStorage();
-    }]);
+            $translateProvider.useLocalStorage();
+        }]);
 
 })();
