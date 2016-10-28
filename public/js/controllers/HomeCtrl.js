@@ -15,7 +15,7 @@ angular
                 value: $scope.FILTERS_ALL,
                 options: [$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))
             },
-            limit: 32,
+            limit: 30,
             offset: 0,
             tabSelected: 'categories' // Mobile view has tabs where the filters are selected, indicates which filter tab is visible
         };

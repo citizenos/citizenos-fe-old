@@ -22694,7 +22694,7 @@ $scope.app.doHideNotification=function(level){$scope.app.notifications.messages[
 //FIXME: REMOVE, used for debugging on mobile
 $scope.app.alert=function(str){alert(str)}}]);"use strict";angular.module("citizenos").controller("HomeCtrl",["$scope","$log","sTopic",function($scope,$log,sTopic){
 // Constant marking the "clear" or all options will do
-$scope.FILTERS_ALL="all";$scope.filters={categories:{value:$scope.FILTERS_ALL,options:[$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))},statuses:{value:$scope.FILTERS_ALL,options:[$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))},limit:32,offset:0,tabSelected:"categories"};$scope.topicList=[];$scope.topicCountTotal=null;$scope.isTopicListLoading=true;/**
+$scope.FILTERS_ALL="all";$scope.filters={categories:{value:$scope.FILTERS_ALL,options:[$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))},statuses:{value:$scope.FILTERS_ALL,options:[$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))},limit:30,offset:0,tabSelected:"categories"};$scope.topicList=[];$scope.topicCountTotal=null;$scope.isTopicListLoading=true;/**
          * Update topic list by setting relevant filter
          *
          * @param {object} filter The property of filter that changed. For ex filters.statuses, filters.categories

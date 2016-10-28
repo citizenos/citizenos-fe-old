@@ -255,21 +255,11 @@
             </div>
         </a>
 
-        <a href="" ng-click="loadTopicList()" ng-if="topicCountTotal > topicList.length" class="topic varia">
-            <div class="topic_wrap">
-                <div class="main_text">
-                    <div class="text_big">
-                        Load more...
-                    </div>
-                </div>
-            </div>
-        </a>
-
         <div class="clearer"></div>
     </div>
 
-    <div id="blue_button_wrap">
+    <div id="blue_button_wrap" ng-click="loadTopicList()" ng-if="topicCountTotal > topicList.length">
         <div class="blue_button">Load more topics</div>
     </div>
-    
+
 </div>
