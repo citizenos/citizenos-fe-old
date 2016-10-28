@@ -62,48 +62,53 @@
 
                 sAuth
                     .status()
-                    .then(function () {
-                        $log.debug('$urlRouterProvider.otherwise', 'status loaded', sAuth.user);
+                    .then(function (user) {
+                        $log.debug(user);
+                        $log.debug('$urlRouterProvider.otherwise', 'status loaded', user);
 
-                        if (sAuth.user.language) {
-                            useLang = sAuth.user.language;
+                        if (user.language) {
+                            useLang = user.language;
                         }
+                        resolveOtherwise();
+                    }, function (err) {
+                        resolveOtherwise();
+                    });
+                function resolveOtherwise() {
+                    returnLink = '/' + useLang + '/';
+                    if (langkeys.indexOf(locationPath[1]) > -1) {
+                        returnLink = '/' + locationPath[1] + '/';
+                        useLang = locationPath[1];
+                    } else if (locationPath.length > 1) {
+                        returnLink = '/' + useLang + locationUrl;
+                    }
 
-                        returnLink = '/' + useLang + '/';
-                        if (langkeys.indexOf(locationPath[1]) > -1) {
-                            returnLink = '/' + locationPath[1] + '/';
-                            useLang = locationPath[1];
-                        } else if (locationPath.length > 1) {
-                            returnLink = '/' + useLang + locationUrl;
-                        }
+                    var statesList = $state.get();
+                    var stateNext = null;
 
-                        var statesList = $state.get();
-                        var stateNext = null;
-
-                        // Try to resolve the link to a state. We don't wanna use $location.href as it would reload the whole page, call all the API-s again.
-                        // https://github.com/angular-ui/ui-router/issues/1651
-                        for (var i = 0; i < statesList.length; i++) {
-                            var stateObj = statesList[i];
-                            if (stateObj.name) {
-                                var privatePortion = stateObj.$$state();
-                                var params = privatePortion.url.exec(returnLink, $location.search());
-                                if (params) {
-                                    stateNext = {
-                                        name: stateObj.name,
-                                        params: params
-                                    };
-                                    $log.debug('$urlRouterProvider.otherwise', 'Matched state', stateNext);
-                                    break; // Stop the loop, we found our state
-                                }
+                    // Try to resolve the link to a state. We don't wanna use $location.href as it would reload the whole page, call all the API-s again.
+                    // https://github.com/angular-ui/ui-router/issues/1651
+                    for (var i = 0; i < statesList.length; i++) {
+                        var stateObj = statesList[i];
+                        if (stateObj.name) {
+                            var privatePortion = stateObj.$$state();
+                            var params = privatePortion.url.exec(returnLink, $location.search());
+                            if (params) {
+                                stateNext = {
+                                    name: stateObj.name,
+                                    params: params
+                                };
+                                $log.debug('$urlRouterProvider.otherwise', 'Matched state', stateNext);
+                                break; // Stop the loop, we found our state
                             }
                         }
+                    }
 
-                        if (stateNext) {
-                            $state.go(stateNext.name, stateNext.params);
-                        } else {
-                            $state.go('home', {language: useLang});
-                        }
-                    });
+                    if (stateNext) {
+                        $state.go(stateNext.name, stateNext.params);
+                    } else {
+                        $state.go('home', {language: useLang});
+                    }
+                }
             });
 
             $stateProvider

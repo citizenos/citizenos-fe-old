@@ -67,10 +67,10 @@
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section">
-                        <input name="email" placeholder="E-mail address" focus-if="{{wWidth > 1024}}" class="error_input"><!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+                        <input name="email" placeholder="E-mail address" focus-if="{{wWidth > 1024}}" class="error_input" ng-model="form.email"><!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
                         <label for="email" class="error_label"><div class="table_cell"><div class="sprite sprite-icon-inputfield-error2x"></div>Not a correct email address</div>
                         </label>
-                        <input name="password" type="password" placeholder="Password">
+                        <input name="password" type="password" placeholder="Password" ng-model="form.password">
                         <button type="submit" ng-click="doLogin()" class="blue_button">Log in / Register</button>
                         <div class="link_section">
                             <a class="lightbox_link" href="">Forgot password?</a>
