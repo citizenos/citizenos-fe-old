@@ -2,50 +2,40 @@
 
 angular
     .module('citizenos')
-    .service('sTranslate', ['$state', '$translate', '$log', 'cosConfig', function ($state, $translate, $log,  cosConfig) {
+    .service('sTranslate', ['$state', '$translate', '$log', 'cosConfig', function ($state, $translate, $log, cosConfig) {
         var sTranslate = this;
 
-        sTranslate.LOCALES = Object.keys(cosConfig.language.list);
-        sTranslate.currentLocale = cosConfig.language.default;
-        sTranslate.currentLanguage = cosConfig.language.list[sTranslate.currentLocale];
+        var LANGUAGES = Object.keys(cosConfig.language.list);
+        sTranslate.currentLanguage = cosConfig.language.default;
+
+        function init () {
+            var clientLang = $translate.resolveClientLocale();
+            if (LANGUAGES.indexOf(clientLang) > -1) {
+                sTranslate.currentLanguage = clientLang;
+            }
+        }
 
         init();
 
-        sTranslate.setLanguage = function (locale) {
-            if(checkLocaleIsValid(locale) && $translate.use() !== locale) {
-                $log.debug('setLanguage', locale);
-                sTranslate.currentLocale = locale;
-                setCurrentLanguage();
-                return $translate.use(locale);
+        sTranslate.setLanguage = function (language) {
+            if(checkLanguageIsValid(language) && $translate.use() !== language) {
+                $log.debug('setLanguage', language);
+                sTranslate.currentLanguage = language;
+                return $translate.use(language);
             }
             return $translate.use();
         };
 
-        sTranslate.switchLanguage = function (locale) {
-            $log.debug('switch language', locale);
-            if(checkLocaleIsValid(locale)){
-                $state.transitionTo($state.current.name, {language:locale});
+        sTranslate.switchLanguage = function (language) {
+            $log.debug('switch language', language);
+            if(checkLanguageIsValid(language)){
+                $state.transitionTo($state.current.name, {language:language});
             }
-            sTranslate.setLanguage(locale);
+            sTranslate.setLanguage(language);
         };
 
-        sTranslate.getCurrentLocale = function () {
-            return sTranslate.currentLocale;
-        };
-
-        function setCurrentLanguage () {
-             sTranslate.currentLanguage = cosConfig.language.list[sTranslate.currentLocale];
-        };
-
-        function checkLocaleIsValid (locale) {
-            return sTranslate.LOCALES.indexOf(locale) !== -1;
-        };
-
-        function init () {
-            var clientLang = $translate.resolveClientLocale();
-            if (sTranslate.LOCALES.indexOf(clientLang) > -1) {
-                sTranslate.currentLocale = clientLang;
-                setCurrentLanguage();
-            }
+        function checkLanguageIsValid (language) {
+            return LANGUAGES.indexOf(language) !== -1;
         }
+
     }]);

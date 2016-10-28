@@ -162,11 +162,11 @@
                         <div class="sprite sprite-x4-icon-language-dropdown2x"></div>
                     </div>
                 </div>
-                {{app.language}}
+                {{app.config.language.list[app.language]}}
             </div>
             <div class="dropdown">
-                <div class="section_item" ng-repeat="(locale, lang) in app.config.language.list" ng-click='app.switchLanguage(locale)'>
-                    {{lang}}
+                <div class="section_item" ng-repeat="(language, languageText) in app.config.language.list" ng-click='app.doSwitchLanguage(language)'>
+                    {{languageText}}
                 </div>
             </div>
         </div>

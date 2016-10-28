@@ -13,7 +13,6 @@ angular
             isLoading: true
         };
         $scope.app.user = sAuth.user;
-        $scope.app.locale = sTranslate.currentLocale;
         $scope.app.language = sTranslate.currentLanguage;
 
         // Different global notifications that can be shown in the page header
@@ -58,28 +57,14 @@ angular
                 template: '/views/modals/login.html',
                 scope: $scope
             });
-        }
-
-        $scope.app.switchLanguage = function (locale) {
-            $log.debug('AppCtrl.switchLanguage()', locale);
-            sTranslate.switchLanguage(locale);
         };
-        ///Listeners and watchers
 
-        $rootScope.$watch(function () {
-            return !sAuth.user.isLoading;
-        }, function (isLoading) {
-            $log.info('$scope.app.user.isLoading', sAuth.user.isLoading);
-            if (isLoading) {
-                $scope.app.user = sAuth.user;
-                $scope.app.isLoading = false;
-            }
-        });
+        $scope.app.doSwitchLanguage = function (language) {
+            $log.debug('AppCtrl.doSwitchLanguage()', language);
+            sTranslate.switchLanguage(language);
+        };
 
-        $rootScope.$on('$translateChangeSuccess', setLocaleVariables);
-
-        function setLocaleVariables() {
-            $scope.app.locale = sTranslate.currentLocale;
+        $rootScope.$on('$translateChangeSuccess',function () {
             $scope.app.language = sTranslate.currentLanguage;
-        }
+        });
     }]);

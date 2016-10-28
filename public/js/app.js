@@ -63,7 +63,7 @@
                 sAuth
                     .status()
                     .then(function (user) {
-                        $log.debug(user);
+                        $log.debug('sAuth.success',user);
                         $log.debug('$urlRouterProvider.otherwise', 'status loaded', user);
 
                         if (user.language) {
@@ -71,8 +71,10 @@
                         }
                         resolveOtherwise();
                     }, function (err) {
+                        $log.debug('sAuth.err', err);
                         resolveOtherwise();
                     });
+
                 function resolveOtherwise() {
                     returnLink = '/' + useLang + '/';
                     if (langkeys.indexOf(locationPath[1]) > -1) {
@@ -119,15 +121,15 @@
                     resolve: {
                         /* @ngInject */
                         sTranslate: function ($stateParams, $log, sTranslate, sAuth) {
+                            sTranslate.setLanguage($stateParams.language);
                             if (sAuth.user.isLoading === false) {
                                 $log.debug('$stateProvider.state("main").resolve', 'Status already loaded');
-                                return sTranslate.setLanguage($stateParams.language);
+                                return;
                             } else {
                                 return sAuth
                                     .status()
-                                    .then(function () {
-                                        $log.debug('$stateProvider.state("main").resolve', 'Status loaded', sAuth.user);
-                                        return sTranslate.setLanguage($stateParams.language);
+                                    .catch(function () {
+                                        //This to prevent view from loading before there is a response from sAuth
                                     });
                             }
                         }
@@ -178,14 +180,13 @@
             cfpLoadingBarProvider.includeSpinner = false;
 
 
-            // $translateProvider.preferredLanguage(cosConfig.language.default);
+            // https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translateProvider
             $translateProvider
                 .preferredLanguage(cosConfig.language.default)
                 .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list)) //et
                 .determinePreferredLanguage()
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
-                .useStorage('translateKookieStorage');
-            $translateProvider.useLocalStorage();
+                .useLocalStorage();
         }]);
 
 })();
