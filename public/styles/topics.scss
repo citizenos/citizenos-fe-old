@@ -1,0 +1,93 @@
+@import 'vars';
+@import 'mixins_n_extends';
+
+#topics_root {
+    background: $light_gray;
+
+    #topics_left {
+        width: 28%;
+        padding: 10px;
+        text-align: left;
+
+        .small_topic {
+            height: 120px;
+            background: $white;
+            padding: 13px 20px 17px 20px;
+            box-sizing: border-box;
+            cursor: pointer;
+
+            &:not(:first-child) {
+                margin-top: 10px;
+            } 
+
+            .small_topic_small_text {
+                font-size: 13px;
+            }
+
+            .small_topic_left_cont {
+                float: left;
+            }
+
+            .small_topic_right_cont {
+                float: right;
+            }
+
+
+            .small_topic_header {
+                opacity: .69;
+                height: 20px;
+
+                .small_topic_icon, .small_topic_small_text {
+                    float: left;
+                }
+
+                .small_topic_left_cont {
+                    .small_topic_icon {
+                        margin: 4px 8px 0 0;
+                    }
+                }
+
+                .small_topic_right_cont {
+                    .small_topic_icon {
+                        margin: 0 8px 0 0;
+                    } 
+                }
+
+            }
+
+            .small_topic_title {
+                font-size: 16px;
+                color: $deep_sky_blue;
+                font-weight: $bold;
+                margin-top: 8px;
+            }
+
+            .line {
+                margin-top: 8px;
+            }
+
+            .small_topic_footer {
+                color: $medium_black;
+                margin-top: 14px;
+            }
+
+        }
+
+        .small_topic:hover {
+            background: $deep_sky_blue;
+
+            .small_topic_title, .small_topic_small_text {
+                color: $white !important;
+            }
+        }
+
+    }
+
+    .v_line {
+        float: left;
+        width: 1px;
+        height: 100%;
+        background: $medium_gray;
+    }
+
+}
