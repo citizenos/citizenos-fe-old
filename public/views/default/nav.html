@@ -15,7 +15,7 @@
 
 
     <!-- Only show this if the user is NOT logged in -->
-    <div class="blue_button" ng-click="doShowLogin()" ng-if="!app.user.loggedIn">
+    <div class="blue_button" ng-click="app.doShowLogin()" ng-if="!app.user.loggedIn">
         Log in / Register
     </div>
 
@@ -162,11 +162,11 @@
                         <div class="sprite sprite-x4-icon-language-dropdown2x"></div>
                     </div>
                 </div>
-                English
+                {{app.config.language.list[app.language]}}
             </div>
             <div class="dropdown">
-                <div class="section_item" ng-repeat="lang in app.config.language.list">
-                    {{lang}}
+                <div class="section_item" ng-repeat="(language, languageText) in app.config.language.list" ng-click='app.doSwitchLanguage(language)'>
+                    {{languageText}}
                 </div>
             </div>
         </div>

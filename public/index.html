@@ -1,14 +1,14 @@
 <!doctype html>
-<html ng-app="citizenos" ng-strict-di="true" ng-controller="AppCtrl">
+<html ng-app="citizenos" ng-strict-di="true" lang="{{app.language}}" ng-controller="AppCtrl">
 <head>
     <meta charset="UTF-8">
-    <title>CitizenOS</title>
+    <title translate="META_DEFAULT_TITLE">CitizenOS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <base href="/">
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="styles/citizenos-fe.bundle.css?v=1fe7ebcd4715f9ca86af434d19f8cf9a" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=40155db2e08a36522b66086d452c2ee9"></script>
+    <script src="js/citizenos-fe.bundle.js?v=eb54952347c74233c662b218968729b6"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
@@ -87,61 +87,7 @@
 
     <!-- CONTENT -->
 
-    <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''">
-
-        <!-- SEARCH BAR -->
-
-        <div id="search_bar" ng-if="wWidth > 1024">
-            <div id="search_icon">
-                <div class="table_cell">
-                    <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
-                </div>
-            </div>
-
-            <div id="close_search_icon" ng-click="app.showSearchResults = false" ng-style="{'display': app.showSearchResults ? 'relative' : 'none'}">
-                <div class="table_cell">
-                    <div class="sprite sprite-icon-closemenu-b-2x"></div>
-                </div>
-            </div>
-
-            <input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="Search topics, users, groups…">
-
-        </div>
-
-        <!-- CONTENT WRAP -->
-
-        <div id="content_wrap">
-
-
-            <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
-                ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
-
-
-            <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
-                ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
-
-
-            <div id="content">
-                <div id="content_cell">
-
-                    <!-- SEARCH AREA  -->
-                    <div id="search_area" ng-style="{'height' : app.showSearchResults ? '100%' : '0' }">
-
-                        <div ng-include="'views/default/search.html'"></div>
-
-                    </div>
-
-                    <!-- CLOSE SEARCH AREA -->
-                    <div ng-click="app.showSearchResults = false" id="search_area_close" ng-style="{'display' : app.showSearchResults ? 'block' : 'none' }">
-                    </div>
-
-                    <!-- ROUTES CONTENT -->
-                    <div ng-view></div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''" ui-view></div>
 
 </body>
 </html>

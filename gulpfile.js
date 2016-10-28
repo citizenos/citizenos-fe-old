@@ -42,6 +42,9 @@ gulp.task('uglify', function () {
     return gulp.src([
             'public/js/libs/moment-with-locales.js',
             'public/js/libs/angular.js',
+            'public/js/libs/angular-touch.js',
+            'public/js/libs/angular-route.js',
+            'public/js/libs/angular-translate.js',
             'public/js/libs/**/*.js',
             'public/js/app.js',
             'public/js/services/**/*.js',
