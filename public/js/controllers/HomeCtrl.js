@@ -22,7 +22,7 @@ angular
 
         $scope.topicList = [];
         $scope.topicCountTotal = null;
-        $scope.isTopicListLoading = true;
+        $scope.isTopicListLoading = null; // Bool, but for initial load using null.
 
         /**
          * Update topic list by setting relevant filter
@@ -62,6 +62,11 @@ angular
 
         $scope.loadTopicList = function () {
             $log.debug('HomeCtrl.loadTopicList()');
+
+            if ($scope.isTopicListLoading === true) {
+                $log.warn('HomeCtrl.loadTopicList()', 'Topic list already loading, will skip this request.');
+                return;
+            }
 
             if ($scope.topicCountTotal && $scope.topicList.length >= $scope.topicCountTotal) {
                 $log.warn('HomeCtrl.loadTopicList()', 'Maximum count of topics already loaded! Skipping API call.');
