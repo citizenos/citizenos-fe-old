@@ -2,20 +2,18 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$log', 'cosConfig', 'ngDialog', function ($scope, $log, cosConfig, ngDialog) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', 'sTranslate', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $log, sTranslate, cosConfig, ngDialog, sAuth) {
         $log.debug('AppCtrl');
 
         $scope.app = {
             config: cosConfig,
             showSearch: false,
             showSearchResults: false,
-            showNav: false
+            showNav: false,
+            isLoading: true
         };
-
-        // Application User info
-        $scope.app.user = {
-            loggedIn: false
-        };
+        $scope.app.user = sAuth.user;
+        $scope.app.language = sTranslate.currentLanguage;
 
         // Different global notifications that can be shown in the page header
         $scope.app.notifications = {
@@ -52,7 +50,8 @@ angular
             $scope.app.notifications.messages[level] = [];
         };
 
-        $scope.doShowLogin = function () {
+        $scope.app.doShowLogin = function () {
+
             $log.debug('AppCtrl.doShowLogin()');
 
             ngDialog.open({
@@ -61,8 +60,13 @@ angular
             });
         };
 
-        //FIXME: REMOVE, used for debugging on mobile
-        $scope.app.alert = function (str) {
-            alert(str);
+        $scope.app.doSwitchLanguage = function (language) {
+            $log.debug('AppCtrl.doSwitchLanguage()', language);
+            sTranslate.switchLanguage(language);
         };
+
+        $rootScope.$on('$translateChangeSuccess',function () {
+            $scope.app.language = sTranslate.currentLanguage;
+        });
+
     }]);

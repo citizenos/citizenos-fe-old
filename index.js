@@ -8,6 +8,10 @@ var fs = require('fs');
 
 app.use(express.static(__dirname + '/public'));
 
+app.get('/*', function(req, res){
+    res.sendFile(__dirname + '/public/index.html');
+});
+
 var portHttp = process.env.PORT || 3000;
 http.createServer(app).listen(portHttp, function (err, res) {
     if (err) {

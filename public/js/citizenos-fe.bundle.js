@@ -18387,1199 +18387,7 @@ var minlengthDirective=function(){return{restrict:"A",require:"?ngModel",link:fu
 if(window.console){console.log("WARNING: Tried to load angular more than once.")}return}
 //try to bind to jquery now so that one can write jqLite(document).ready()
 //but we will rebind on bootstrap again.
-bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+"";var i=n.indexOf(".");return i==-1?0:n.length-i-1}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3)}var base=Math.pow(10,v);var f=(n*base|0)%base;return{v:v,f:f}}$provide.value("$locale",{DATETIME_FORMATS:{AMPMS:["AM","PM"],DAY:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],ERANAMES:["Before Christ","Anno Domini"],ERAS:["BC","AD"],FIRSTDAYOFWEEK:6,MONTH:["January","February","March","April","May","June","July","August","September","October","November","December"],SHORTDAY:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],SHORTMONTH:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],STANDALONEMONTH:["January","February","March","April","May","June","July","August","September","October","November","December"],WEEKENDRANGE:[5,6],fullDate:"EEEE, MMMM d, y",longDate:"MMMM d, y",medium:"MMM d, y h:mm:ss a",mediumDate:"MMM d, y",mediumTime:"h:mm:ss a",short:"M/d/yy h:mm a",shortDate:"M/d/yy",shortTime:"h:mm a"},NUMBER_FORMATS:{CURRENCY_SYM:"$",DECIMAL_SEP:".",GROUP_SEP:",",PATTERNS:[{gSize:3,lgSize:3,maxFrac:3,minFrac:0,minInt:1,negPre:"-",negSuf:"",posPre:"",posSuf:""},{gSize:3,lgSize:3,maxFrac:2,minFrac:2,minInt:1,negPre:"-¤",negSuf:"",posPre:"¤",posSuf:""}]},id:"en-us",localeID:"en_US",pluralCat:function(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE}return PLURAL_CATEGORY.OTHER}})}]);jqLite(window.document).ready(function(){angularInit(window.document,bootstrap)})})(window);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');/* angular-moment.js / v1.0.0 / (c) 2013, 2014, 2015, 2016 Uri Shaked / MIT Licence */
-"format amd";/* global define */
-(function(){"use strict";function isUndefinedOrNull(val){return angular.isUndefined(val)||val===null}function requireMoment(){try{return require("moment")}catch(e){throw new Error("Please install moment via npm. Please reference to: https://github.com/urish/angular-moment")}}function angularMoment(angular,moment){if(typeof moment==="undefined"){if(typeof require==="function"){moment=requireMoment()}else{throw new Error("Moment cannot be found by angular-moment! Please reference to: https://github.com/urish/angular-moment")}}/**
-         * @ngdoc overview
-         * @name angularMoment
-         *
-         * @description
-         * angularMoment module provides moment.js functionality for angular.js apps.
-         */
-angular.module("angularMoment",[]).constant("angularMomentConfig",{/**
-                 * @ngdoc property
-                 * @name angularMoment.config.angularMomentConfig#preprocess
-                 * @propertyOf angularMoment.config:angularMomentConfig
-                 * @returns {function} A preprocessor function that will be applied on all incoming dates
-                 *
-                 * @description
-                 * Defines a preprocessor function to apply on all input dates (e.g. the input of `am-time-ago`,
-                 * `amCalendar`, etc.). The function must return a `moment` object.
-                 *
-                 * @example
-                 *   // Causes angular-moment to always treat the input values as unix timestamps
-                 *   angularMomentConfig.preprocess = function(value) {
-				 * 	   return moment.unix(value);
-				 *   }
-                 */
-preprocess:null,/**
-                 * @ngdoc property
-                 * @name angularMoment.config.angularMomentConfig#timezone
-                 * @propertyOf angularMoment.config:angularMomentConfig
-                 * @returns {string} The default timezone
-                 *
-                 * @description
-                 * The default timezone (e.g. 'Europe/London'). Empty string by default (does not apply
-                 * any timezone shift).
-                 *
-                 * NOTE: This option requires moment-timezone >= 0.3.0.
-                 */
-timezone:null,/**
-                 * @ngdoc property
-                 * @name angularMoment.config.angularMomentConfig#format
-                 * @propertyOf angularMoment.config:angularMomentConfig
-                 * @returns {string} The pre-conversion format of the date
-                 *
-                 * @description
-                 * Specify the format of the input date. Essentially it's a
-                 * default and saves you from specifying a format in every
-                 * element. Overridden by element attr. Null by default.
-                 */
-format:null,/**
-                 * @ngdoc property
-                 * @name angularMoment.config.angularMomentConfig#statefulFilters
-                 * @propertyOf angularMoment.config:angularMomentConfig
-                 * @returns {boolean} Whether angular-moment filters should be stateless (or not)
-                 *
-                 * @description
-                 * Specifies whether the filters included with angular-moment are stateful.
-                 * Stateful filters will automatically re-evaluate whenever you change the timezone
-                 * or locale settings, but may negatively impact performance. true by default.
-                 */
-statefulFilters:true}).constant("moment",moment).constant("amTimeAgoConfig",{/**
-                 * @ngdoc property
-                 * @name angularMoment.config.amTimeAgoConfig#withoutSuffix
-                 * @propertyOf angularMoment.config:amTimeAgoConfig
-                 * @returns {boolean} Whether to include a suffix in am-time-ago directive
-                 *
-                 * @description
-                 * Defaults to false.
-                 */
-withoutSuffix:false,/**
-                 * @ngdoc property
-                 * @name angularMoment.config.amTimeAgoConfig#serverTime
-                 * @propertyOf angularMoment.config:amTimeAgoConfig
-                 * @returns {number} Server time in milliseconds since the epoch
-                 *
-                 * @description
-                 * If set, time ago will be calculated relative to the given value.
-                 * If null, local time will be used. Defaults to null.
-                 */
-serverTime:null,/**
-                 * @ngdoc property
-                 * @name angularMoment.config.amTimeAgoConfig#titleFormat
-                 * @propertyOf angularMoment.config:amTimeAgoConfig
-                 * @returns {string} The format of the date to be displayed in the title of the element. If null,
-                 *        the directive set the title of the element.
-                 *
-                 * @description
-                 * The format of the date used for the title of the element. null by default.
-                 */
-titleFormat:null,/**
-                 * @ngdoc property
-                 * @name angularMoment.config.amTimeAgoConfig#fullDateThreshold
-                 * @propertyOf angularMoment.config:amTimeAgoConfig
-                 * @returns {number} The minimum number of days for showing a full date instead of relative time
-                 *
-                 * @description
-                 * The threshold for displaying a full date. The default is null, which means the date will always
-                 * be relative, and full date will never be displayed.
-                 */
-fullDateThreshold:null,/**
-                 * @ngdoc property
-                 * @name angularMoment.config.amTimeAgoConfig#fullDateFormat
-                 * @propertyOf angularMoment.config:amTimeAgoConfig
-                 * @returns {string} The format to use when displaying a full date.
-                 *
-                 * @description
-                 * Specify the format of the date when displayed as full date. null by default.
-                 */
-fullDateFormat:null,fullDateThresholdUnit:"day"}).directive("amTimeAgo",["$window","moment","amMoment","amTimeAgoConfig",function($window,moment,amMoment,amTimeAgoConfig){return function(scope,element,attr){var activeTimeout=null;var currentValue;var withoutSuffix=amTimeAgoConfig.withoutSuffix;var titleFormat=amTimeAgoConfig.titleFormat;var fullDateThreshold=amTimeAgoConfig.fullDateThreshold;var fullDateFormat=amTimeAgoConfig.fullDateFormat;var fullDateThresholdUnit=amTimeAgoConfig.fullDateThresholdUnit;var localDate=(new Date).getTime();var modelName=attr.amTimeAgo;var currentFrom;var isTimeElement="TIME"===element[0].nodeName.toUpperCase();var setTitleTime=!element.attr("title");function getNow(){var now;if(currentFrom){now=currentFrom}else if(amTimeAgoConfig.serverTime){var localNow=(new Date).getTime();var nowMillis=localNow-localDate+amTimeAgoConfig.serverTime;now=moment(nowMillis)}else{now=moment()}return now}function cancelTimer(){if(activeTimeout){$window.clearTimeout(activeTimeout);activeTimeout=null}}function updateTime(momentInstance){var timeAgo=getNow().diff(momentInstance,fullDateThresholdUnit);var showFullDate=fullDateThreshold&&timeAgo>=fullDateThreshold;if(showFullDate){element.text(momentInstance.format(fullDateFormat))}else{element.text(momentInstance.from(getNow(),withoutSuffix))}if(titleFormat&&setTitleTime){element.attr("title",momentInstance.format(titleFormat))}if(!showFullDate){var howOld=Math.abs(getNow().diff(momentInstance,"minute"));var secondsUntilUpdate=3600;if(howOld<1){secondsUntilUpdate=1}else if(howOld<60){secondsUntilUpdate=30}else if(howOld<180){secondsUntilUpdate=300}activeTimeout=$window.setTimeout(function(){updateTime(momentInstance)},secondsUntilUpdate*1e3)}}function updateDateTimeAttr(value){if(isTimeElement){element.attr("datetime",value)}}function updateMoment(){cancelTimer();if(currentValue){var momentValue=amMoment.preprocessDate(currentValue);updateTime(momentValue);updateDateTimeAttr(momentValue.toISOString())}}scope.$watch(modelName,function(value){if(isUndefinedOrNull(value)||value===""){cancelTimer();if(currentValue){element.text("");updateDateTimeAttr("");currentValue=null}return}currentValue=value;updateMoment()});if(angular.isDefined(attr.amFrom)){scope.$watch(attr.amFrom,function(value){if(isUndefinedOrNull(value)||value===""){currentFrom=null}else{currentFrom=moment(value)}updateMoment()})}if(angular.isDefined(attr.amWithoutSuffix)){scope.$watch(attr.amWithoutSuffix,function(value){if(typeof value==="boolean"){withoutSuffix=value;updateMoment()}else{withoutSuffix=amTimeAgoConfig.withoutSuffix}})}attr.$observe("amFullDateThreshold",function(newValue){fullDateThreshold=newValue;updateMoment()});attr.$observe("amFullDateFormat",function(newValue){fullDateFormat=newValue;updateMoment()});attr.$observe("amFullDateThresholdUnit",function(newValue){fullDateThresholdUnit=newValue;updateMoment()});scope.$on("$destroy",function(){cancelTimer()});scope.$on("amMoment:localeChanged",function(){updateMoment()})}}]).service("amMoment",["moment","$rootScope","$log","angularMomentConfig",function(moment,$rootScope,$log,angularMomentConfig){var defaultTimezone=null;/**
-                 * @ngdoc function
-                 * @name angularMoment.service.amMoment#changeLocale
-                 * @methodOf angularMoment.service.amMoment
-                 *
-                 * @description
-                 * Changes the locale for moment.js and updates all the am-time-ago directive instances
-                 * with the new locale. Also broadcasts an `amMoment:localeChanged` event on $rootScope.
-                 *
-                 * @param {string} locale Locale code (e.g. en, es, ru, pt-br, etc.)
-                 * @param {object} customization object of locale strings to override
-                 */
-this.changeLocale=function(locale,customization){var result=moment.locale(locale,customization);if(angular.isDefined(locale)){$rootScope.$broadcast("amMoment:localeChanged")}return result};/**
-                 * @ngdoc function
-                 * @name angularMoment.service.amMoment#changeTimezone
-                 * @methodOf angularMoment.service.amMoment
-                 *
-                 * @description
-                 * Changes the default timezone for amCalendar, amDateFormat and amTimeAgo. Also broadcasts an
-                 * `amMoment:timezoneChanged` event on $rootScope.
-                 *
-                 * Note: this method works only if moment-timezone > 0.3.0 is loaded
-                 *
-                 * @param {string} timezone Timezone name (e.g. UTC)
-                 */
-this.changeTimezone=function(timezone){if(moment.tz&&moment.tz.setDefault){moment.tz.setDefault(timezone);$rootScope.$broadcast("amMoment:timezoneChanged")}else{$log.warn("angular-moment: changeTimezone() works only with moment-timezone.js v0.3.0 or greater.")}angularMomentConfig.timezone=timezone;defaultTimezone=timezone};/**
-                 * @ngdoc function
-                 * @name angularMoment.service.amMoment#preprocessDate
-                 * @methodOf angularMoment.service.amMoment
-                 *
-                 * @description
-                 * Preprocess a given value and convert it into a Moment instance appropriate for use in the
-                 * am-time-ago directive and the filters. The behavior of this function can be overriden by
-                 * setting `angularMomentConfig.preprocess`.
-                 *
-                 * @param {*} value The value to be preprocessed
-                 * @return {Moment} A `moment` object
-                 */
-this.preprocessDate=function(value){
-// Configure the default timezone if needed
-if(defaultTimezone!==angularMomentConfig.timezone){this.changeTimezone(angularMomentConfig.timezone)}if(angularMomentConfig.preprocess){return angularMomentConfig.preprocess(value)}if(!isNaN(parseFloat(value))&&isFinite(value)){
-// Milliseconds since the epoch
-return moment(parseInt(value,10))}
-// else just returns the value as-is.
-return moment(value)}}]).filter("amParse",["moment",function(moment){return function(value,format){return moment(value,format)}}]).filter("amFromUnix",["moment",function(moment){return function(value){return moment.unix(value)}}]).filter("amUtc",["moment",function(moment){return function(value){return moment.utc(value)}}]).filter("amUtcOffset",["amMoment",function(amMoment){function amUtcOffset(value,offset){return amMoment.preprocessDate(value).utcOffset(offset)}return amUtcOffset}]).filter("amLocal",["moment",function(moment){return function(value){return moment.isMoment(value)?value.local():null}}]).filter("amTimezone",["amMoment","angularMomentConfig","$log",function(amMoment,angularMomentConfig,$log){function amTimezone(value,timezone){var aMoment=amMoment.preprocessDate(value);if(!timezone){return aMoment}if(aMoment.tz){return aMoment.tz(timezone)}else{$log.warn("angular-moment: named timezone specified but moment.tz() is undefined. Did you forget to include moment-timezone.js ?");return aMoment}}return amTimezone}]).filter("amCalendar",["moment","amMoment","angularMomentConfig",function(moment,amMoment,angularMomentConfig){function amCalendarFilter(value,referenceTime,formats){if(isUndefinedOrNull(value)){return""}var date=amMoment.preprocessDate(value);return date.isValid()?date.calendar(referenceTime,formats):""}
-// Since AngularJS 1.3, filters have to explicitly define being stateful
-// (this is no longer the default).
-amCalendarFilter.$stateful=angularMomentConfig.statefulFilters;return amCalendarFilter}]).filter("amDifference",["moment","amMoment","angularMomentConfig",function(moment,amMoment,angularMomentConfig){function amDifferenceFilter(value,otherValue,unit,usePrecision){if(isUndefinedOrNull(value)){return""}var date=amMoment.preprocessDate(value);var date2=!isUndefinedOrNull(otherValue)?amMoment.preprocessDate(otherValue):moment();if(!date.isValid()||!date2.isValid()){return""}return date.diff(date2,unit,usePrecision)}amDifferenceFilter.$stateful=angularMomentConfig.statefulFilters;return amDifferenceFilter}]).filter("amDateFormat",["moment","amMoment","angularMomentConfig",function(moment,amMoment,angularMomentConfig){function amDateFormatFilter(value,format){if(isUndefinedOrNull(value)){return""}var date=amMoment.preprocessDate(value);if(!date.isValid()){return""}return date.format(format)}amDateFormatFilter.$stateful=angularMomentConfig.statefulFilters;return amDateFormatFilter}]).filter("amDurationFormat",["moment","angularMomentConfig",function(moment,angularMomentConfig){function amDurationFormatFilter(value,format,suffix){if(isUndefinedOrNull(value)){return""}return moment.duration(value,format).humanize(suffix)}amDurationFormatFilter.$stateful=angularMomentConfig.statefulFilters;return amDurationFormatFilter}]).filter("amTimeAgo",["moment","amMoment","angularMomentConfig",function(moment,amMoment,angularMomentConfig){function amTimeAgoFilter(value,suffix,from){var date,dateFrom;if(isUndefinedOrNull(value)){return""}value=amMoment.preprocessDate(value);date=moment(value);if(!date.isValid()){return""}dateFrom=moment(from);if(!isUndefinedOrNull(from)&&dateFrom.isValid()){return date.from(dateFrom,suffix)}return date.fromNow(suffix)}amTimeAgoFilter.$stateful=angularMomentConfig.statefulFilters;return amTimeAgoFilter}]).filter("amSubtract",["moment","angularMomentConfig",function(moment,angularMomentConfig){function amSubtractFilter(value,amount,type){if(isUndefinedOrNull(value)){return""}return moment(value).subtract(parseInt(amount,10),type)}amSubtractFilter.$stateful=angularMomentConfig.statefulFilters;return amSubtractFilter}]).filter("amAdd",["moment","angularMomentConfig",function(moment,angularMomentConfig){function amAddFilter(value,amount,type){if(isUndefinedOrNull(value)){return""}return moment(value).add(parseInt(amount,10),type)}amAddFilter.$stateful=angularMomentConfig.statefulFilters;return amAddFilter}]).filter("amStartOf",["moment","angularMomentConfig",function(moment,angularMomentConfig){function amStartOfFilter(value,type){if(isUndefinedOrNull(value)){return""}return moment(value).startOf(type)}amStartOfFilter.$stateful=angularMomentConfig.statefulFilters;return amStartOfFilter}]).filter("amEndOf",["moment","angularMomentConfig",function(moment,angularMomentConfig){function amEndOfFilter(value,type){if(isUndefinedOrNull(value)){return""}return moment(value).endOf(type)}amEndOfFilter.$stateful=angularMomentConfig.statefulFilters;return amEndOfFilter}]);return"angularMoment"}if(typeof define==="function"&&define.amd){define(["angular","moment"],angularMoment)}else if(typeof module!=="undefined"&&module&&module.exports&&typeof require==="function"){module.exports=angularMoment(require("angular"),require("moment"))}else{angularMoment(angular,(typeof global!=="undefined"?global:window).moment)}})();/**
- * @license AngularJS v1.5.8
- * (c) 2010-2016 Google, Inc. http://angularjs.org
- * License: MIT
- */
-(function(window,angular){"use strict";/* global shallowCopy: true */
-/**
- * Creates a shallow copy of an object, an array or a primitive.
- *
- * Assumes that there are no proto properties for objects.
- */
-function shallowCopy(src,dst){if(isArray(src)){dst=dst||[];for(var i=0,ii=src.length;i<ii;i++){dst[i]=src[i]}}else if(isObject(src)){dst=dst||{};for(var key in src){if(!(key.charAt(0)==="$"&&key.charAt(1)==="$")){dst[key]=src[key]}}}return dst||src}/* global shallowCopy: false */
-// There are necessary for `shallowCopy()` (included via `src/shallowCopy.js`).
-// They are initialized inside the `$RouteProvider`, to ensure `window.angular` is available.
-var isArray;var isObject;/**
- * @ngdoc module
- * @name ngRoute
- * @description
- *
- * # ngRoute
- *
- * The `ngRoute` module provides routing and deeplinking services and directives for angular apps.
- *
- * ## Example
- * See {@link ngRoute.$route#example $route} for an example of configuring and using `ngRoute`.
- *
- *
- * <div doc-module-components="ngRoute"></div>
- */
-/* global -ngRouteModule */
-var ngRouteModule=angular.module("ngRoute",["ng"]).provider("$route",$RouteProvider),$routeMinErr=angular.$$minErr("ngRoute");/**
- * @ngdoc provider
- * @name $routeProvider
- *
- * @description
- *
- * Used for configuring routes.
- *
- * ## Example
- * See {@link ngRoute.$route#example $route} for an example of configuring and using `ngRoute`.
- *
- * ## Dependencies
- * Requires the {@link ngRoute `ngRoute`} module to be installed.
- */
-function $RouteProvider(){isArray=angular.isArray;isObject=angular.isObject;function inherit(parent,extra){return angular.extend(Object.create(parent),extra)}var routes={};/**
-   * @ngdoc method
-   * @name $routeProvider#when
-   *
-   * @param {string} path Route path (matched against `$location.path`). If `$location.path`
-   *    contains redundant trailing slash or is missing one, the route will still match and the
-   *    `$location.path` will be updated to add or drop the trailing slash to exactly match the
-   *    route definition.
-   *
-   *    * `path` can contain named groups starting with a colon: e.g. `:name`. All characters up
-   *        to the next slash are matched and stored in `$routeParams` under the given `name`
-   *        when the route matches.
-   *    * `path` can contain named groups starting with a colon and ending with a star:
-   *        e.g.`:name*`. All characters are eagerly stored in `$routeParams` under the given `name`
-   *        when the route matches.
-   *    * `path` can contain optional named groups with a question mark: e.g.`:name?`.
-   *
-   *    For example, routes like `/color/:color/largecode/:largecode*\/edit` will match
-   *    `/color/brown/largecode/code/with/slashes/edit` and extract:
-   *
-   *    * `color: brown`
-   *    * `largecode: code/with/slashes`.
-   *
-   *
-   * @param {Object} route Mapping information to be assigned to `$route.current` on route
-   *    match.
-   *
-   *    Object properties:
-   *
-   *    - `controller` – `{(string|function()=}` – Controller fn that should be associated with
-   *      newly created scope or the name of a {@link angular.Module#controller registered
-   *      controller} if passed as a string.
-   *    - `controllerAs` – `{string=}` – An identifier name for a reference to the controller.
-   *      If present, the controller will be published to scope under the `controllerAs` name.
-   *    - `template` – `{string=|function()=}` – html template as a string or a function that
-   *      returns an html template as a string which should be used by {@link
-   *      ngRoute.directive:ngView ngView} or {@link ng.directive:ngInclude ngInclude} directives.
-   *      This property takes precedence over `templateUrl`.
-   *
-   *      If `template` is a function, it will be called with the following parameters:
-   *
-   *      - `{Array.<Object>}` - route parameters extracted from the current
-   *        `$location.path()` by applying the current route
-   *
-   *    - `templateUrl` – `{string=|function()=}` – path or function that returns a path to an html
-   *      template that should be used by {@link ngRoute.directive:ngView ngView}.
-   *
-   *      If `templateUrl` is a function, it will be called with the following parameters:
-   *
-   *      - `{Array.<Object>}` - route parameters extracted from the current
-   *        `$location.path()` by applying the current route
-   *
-   *    - `resolve` - `{Object.<string, function>=}` - An optional map of dependencies which should
-   *      be injected into the controller. If any of these dependencies are promises, the router
-   *      will wait for them all to be resolved or one to be rejected before the controller is
-   *      instantiated.
-   *      If all the promises are resolved successfully, the values of the resolved promises are
-   *      injected and {@link ngRoute.$route#$routeChangeSuccess $routeChangeSuccess} event is
-   *      fired. If any of the promises are rejected the
-   *      {@link ngRoute.$route#$routeChangeError $routeChangeError} event is fired.
-   *      For easier access to the resolved dependencies from the template, the `resolve` map will
-   *      be available on the scope of the route, under `$resolve` (by default) or a custom name
-   *      specified by the `resolveAs` property (see below). This can be particularly useful, when
-   *      working with {@link angular.Module#component components} as route templates.<br />
-   *      <div class="alert alert-warning">
-   *        **Note:** If your scope already contains a property with this name, it will be hidden
-   *        or overwritten. Make sure, you specify an appropriate name for this property, that
-   *        does not collide with other properties on the scope.
-   *      </div>
-   *      The map object is:
-   *
-   *      - `key` – `{string}`: a name of a dependency to be injected into the controller.
-   *      - `factory` - `{string|function}`: If `string` then it is an alias for a service.
-   *        Otherwise if function, then it is {@link auto.$injector#invoke injected}
-   *        and the return value is treated as the dependency. If the result is a promise, it is
-   *        resolved before its value is injected into the controller. Be aware that
-   *        `ngRoute.$routeParams` will still refer to the previous route within these resolve
-   *        functions.  Use `$route.current.params` to access the new route parameters, instead.
-   *
-   *    - `resolveAs` - `{string=}` - The name under which the `resolve` map will be available on
-   *      the scope of the route. If omitted, defaults to `$resolve`.
-   *
-   *    - `redirectTo` – `{(string|function())=}` – value to update
-   *      {@link ng.$location $location} path with and trigger route redirection.
-   *
-   *      If `redirectTo` is a function, it will be called with the following parameters:
-   *
-   *      - `{Object.<string>}` - route parameters extracted from the current
-   *        `$location.path()` by applying the current route templateUrl.
-   *      - `{string}` - current `$location.path()`
-   *      - `{Object}` - current `$location.search()`
-   *
-   *      The custom `redirectTo` function is expected to return a string which will be used
-   *      to update `$location.path()` and `$location.search()`.
-   *
-   *    - `[reloadOnSearch=true]` - `{boolean=}` - reload route when only `$location.search()`
-   *      or `$location.hash()` changes.
-   *
-   *      If the option is set to `false` and url in the browser changes, then
-   *      `$routeUpdate` event is broadcasted on the root scope.
-   *
-   *    - `[caseInsensitiveMatch=false]` - `{boolean=}` - match routes without being case sensitive
-   *
-   *      If the option is set to `true`, then the particular route can be matched without being
-   *      case sensitive
-   *
-   * @returns {Object} self
-   *
-   * @description
-   * Adds a new route definition to the `$route` service.
-   */
-this.when=function(path,route){
-//copy original route object to preserve params inherited from proto chain
-var routeCopy=shallowCopy(route);if(angular.isUndefined(routeCopy.reloadOnSearch)){routeCopy.reloadOnSearch=true}if(angular.isUndefined(routeCopy.caseInsensitiveMatch)){routeCopy.caseInsensitiveMatch=this.caseInsensitiveMatch}routes[path]=angular.extend(routeCopy,path&&pathRegExp(path,routeCopy));
-// create redirection for trailing slashes
-if(path){var redirectPath=path[path.length-1]=="/"?path.substr(0,path.length-1):path+"/";routes[redirectPath]=angular.extend({redirectTo:path},pathRegExp(redirectPath,routeCopy))}return this};/**
-   * @ngdoc property
-   * @name $routeProvider#caseInsensitiveMatch
-   * @description
-   *
-   * A boolean property indicating if routes defined
-   * using this provider should be matched using a case insensitive
-   * algorithm. Defaults to `false`.
-   */
-this.caseInsensitiveMatch=false;/**
-    * @param path {string} path
-    * @param opts {Object} options
-    * @return {?Object}
-    *
-    * @description
-    * Normalizes the given path, returning a regular expression
-    * and the original path.
-    *
-    * Inspired by pathRexp in visionmedia/express/lib/utils.js.
-    */
-function pathRegExp(path,opts){var insensitive=opts.caseInsensitiveMatch,ret={originalPath:path,regexp:path},keys=ret.keys=[];path=path.replace(/([().])/g,"\\$1").replace(/(\/)?:(\w+)(\*\?|[\?\*])?/g,function(_,slash,key,option){var optional=option==="?"||option==="*?"?"?":null;var star=option==="*"||option==="*?"?"*":null;keys.push({name:key,optional:!!optional});slash=slash||"";return""+(optional?"":slash)+"(?:"+(optional?slash:"")+(star&&"(.+?)"||"([^/]+)")+(optional||"")+")"+(optional||"")}).replace(/([\/$\*])/g,"\\$1");ret.regexp=new RegExp("^"+path+"$",insensitive?"i":"");return ret}/**
-   * @ngdoc method
-   * @name $routeProvider#otherwise
-   *
-   * @description
-   * Sets route definition that will be used on route change when no other route definition
-   * is matched.
-   *
-   * @param {Object|string} params Mapping information to be assigned to `$route.current`.
-   * If called with a string, the value maps to `redirectTo`.
-   * @returns {Object} self
-   */
-this.otherwise=function(params){if(typeof params==="string"){params={redirectTo:params}}this.when(null,params);return this};this.$get=["$rootScope","$location","$routeParams","$q","$injector","$templateRequest","$sce",function($rootScope,$location,$routeParams,$q,$injector,$templateRequest,$sce){/**
-     * @ngdoc service
-     * @name $route
-     * @requires $location
-     * @requires $routeParams
-     *
-     * @property {Object} current Reference to the current route definition.
-     * The route definition contains:
-     *
-     *   - `controller`: The controller constructor as defined in the route definition.
-     *   - `locals`: A map of locals which is used by {@link ng.$controller $controller} service for
-     *     controller instantiation. The `locals` contain
-     *     the resolved values of the `resolve` map. Additionally the `locals` also contain:
-     *
-     *     - `$scope` - The current route scope.
-     *     - `$template` - The current route template HTML.
-     *
-     *     The `locals` will be assigned to the route scope's `$resolve` property. You can override
-     *     the property name, using `resolveAs` in the route definition. See
-     *     {@link ngRoute.$routeProvider $routeProvider} for more info.
-     *
-     * @property {Object} routes Object with all route configuration Objects as its properties.
-     *
-     * @description
-     * `$route` is used for deep-linking URLs to controllers and views (HTML partials).
-     * It watches `$location.url()` and tries to map the path to an existing route definition.
-     *
-     * Requires the {@link ngRoute `ngRoute`} module to be installed.
-     *
-     * You can define routes through {@link ngRoute.$routeProvider $routeProvider}'s API.
-     *
-     * The `$route` service is typically used in conjunction with the
-     * {@link ngRoute.directive:ngView `ngView`} directive and the
-     * {@link ngRoute.$routeParams `$routeParams`} service.
-     *
-     * @example
-     * This example shows how changing the URL hash causes the `$route` to match a route against the
-     * URL, and the `ngView` pulls in the partial.
-     *
-     * <example name="$route-service" module="ngRouteExample"
-     *          deps="angular-route.js" fixBase="true">
-     *   <file name="index.html">
-     *     <div ng-controller="MainController">
-     *       Choose:
-     *       <a href="Book/Moby">Moby</a> |
-     *       <a href="Book/Moby/ch/1">Moby: Ch1</a> |
-     *       <a href="Book/Gatsby">Gatsby</a> |
-     *       <a href="Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
-     *       <a href="Book/Scarlet">Scarlet Letter</a><br/>
-     *
-     *       <div ng-view></div>
-     *
-     *       <hr />
-     *
-     *       <pre>$location.path() = {{$location.path()}}</pre>
-     *       <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
-     *       <pre>$route.current.params = {{$route.current.params}}</pre>
-     *       <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
-     *       <pre>$routeParams = {{$routeParams}}</pre>
-     *     </div>
-     *   </file>
-     *
-     *   <file name="book.html">
-     *     controller: {{name}}<br />
-     *     Book Id: {{params.bookId}}<br />
-     *   </file>
-     *
-     *   <file name="chapter.html">
-     *     controller: {{name}}<br />
-     *     Book Id: {{params.bookId}}<br />
-     *     Chapter Id: {{params.chapterId}}
-     *   </file>
-     *
-     *   <file name="script.js">
-     *     angular.module('ngRouteExample', ['ngRoute'])
-     *
-     *      .controller('MainController', function($scope, $route, $routeParams, $location) {
-     *          $scope.$route = $route;
-     *          $scope.$location = $location;
-     *          $scope.$routeParams = $routeParams;
-     *      })
-     *
-     *      .controller('BookController', function($scope, $routeParams) {
-     *          $scope.name = "BookController";
-     *          $scope.params = $routeParams;
-     *      })
-     *
-     *      .controller('ChapterController', function($scope, $routeParams) {
-     *          $scope.name = "ChapterController";
-     *          $scope.params = $routeParams;
-     *      })
-     *
-     *     .config(function($routeProvider, $locationProvider) {
-     *       $routeProvider
-     *        .when('/Book/:bookId', {
-     *         templateUrl: 'book.html',
-     *         controller: 'BookController',
-     *         resolve: {
-     *           // I will cause a 1 second delay
-     *           delay: function($q, $timeout) {
-     *             var delay = $q.defer();
-     *             $timeout(delay.resolve, 1000);
-     *             return delay.promise;
-     *           }
-     *         }
-     *       })
-     *       .when('/Book/:bookId/ch/:chapterId', {
-     *         templateUrl: 'chapter.html',
-     *         controller: 'ChapterController'
-     *       });
-     *
-     *       // configure html5 to get links working on jsfiddle
-     *       $locationProvider.html5Mode(true);
-     *     });
-     *
-     *   </file>
-     *
-     *   <file name="protractor.js" type="protractor">
-     *     it('should load and compile correct template', function() {
-     *       element(by.linkText('Moby: Ch1')).click();
-     *       var content = element(by.css('[ng-view]')).getText();
-     *       expect(content).toMatch(/controller\: ChapterController/);
-     *       expect(content).toMatch(/Book Id\: Moby/);
-     *       expect(content).toMatch(/Chapter Id\: 1/);
-     *
-     *       element(by.partialLinkText('Scarlet')).click();
-     *
-     *       content = element(by.css('[ng-view]')).getText();
-     *       expect(content).toMatch(/controller\: BookController/);
-     *       expect(content).toMatch(/Book Id\: Scarlet/);
-     *     });
-     *   </file>
-     * </example>
-     */
-/**
-     * @ngdoc event
-     * @name $route#$routeChangeStart
-     * @eventType broadcast on root scope
-     * @description
-     * Broadcasted before a route change. At this  point the route services starts
-     * resolving all of the dependencies needed for the route change to occur.
-     * Typically this involves fetching the view template as well as any dependencies
-     * defined in `resolve` route property. Once  all of the dependencies are resolved
-     * `$routeChangeSuccess` is fired.
-     *
-     * The route change (and the `$location` change that triggered it) can be prevented
-     * by calling `preventDefault` method of the event. See {@link ng.$rootScope.Scope#$on}
-     * for more details about event object.
-     *
-     * @param {Object} angularEvent Synthetic event object.
-     * @param {Route} next Future route information.
-     * @param {Route} current Current route information.
-     */
-/**
-     * @ngdoc event
-     * @name $route#$routeChangeSuccess
-     * @eventType broadcast on root scope
-     * @description
-     * Broadcasted after a route change has happened successfully.
-     * The `resolve` dependencies are now available in the `current.locals` property.
-     *
-     * {@link ngRoute.directive:ngView ngView} listens for the directive
-     * to instantiate the controller and render the view.
-     *
-     * @param {Object} angularEvent Synthetic event object.
-     * @param {Route} current Current route information.
-     * @param {Route|Undefined} previous Previous route information, or undefined if current is
-     * first route entered.
-     */
-/**
-     * @ngdoc event
-     * @name $route#$routeChangeError
-     * @eventType broadcast on root scope
-     * @description
-     * Broadcasted if any of the resolve promises are rejected.
-     *
-     * @param {Object} angularEvent Synthetic event object
-     * @param {Route} current Current route information.
-     * @param {Route} previous Previous route information.
-     * @param {Route} rejection Rejection of the promise. Usually the error of the failed promise.
-     */
-/**
-     * @ngdoc event
-     * @name $route#$routeUpdate
-     * @eventType broadcast on root scope
-     * @description
-     * The `reloadOnSearch` property has been set to false, and we are reusing the same
-     * instance of the Controller.
-     *
-     * @param {Object} angularEvent Synthetic event object
-     * @param {Route} current Current/previous route information.
-     */
-var forceReload=false,preparedRoute,preparedRouteIsUpdateOnly,$route={routes:routes,/**
-           * @ngdoc method
-           * @name $route#reload
-           *
-           * @description
-           * Causes `$route` service to reload the current route even if
-           * {@link ng.$location $location} hasn't changed.
-           *
-           * As a result of that, {@link ngRoute.directive:ngView ngView}
-           * creates new scope and reinstantiates the controller.
-           */
-reload:function(){forceReload=true;var fakeLocationEvent={defaultPrevented:false,preventDefault:function fakePreventDefault(){this.defaultPrevented=true;forceReload=false}};$rootScope.$evalAsync(function(){prepareRoute(fakeLocationEvent);if(!fakeLocationEvent.defaultPrevented)commitRoute()})},/**
-           * @ngdoc method
-           * @name $route#updateParams
-           *
-           * @description
-           * Causes `$route` service to update the current URL, replacing
-           * current route parameters with those specified in `newParams`.
-           * Provided property names that match the route's path segment
-           * definitions will be interpolated into the location's path, while
-           * remaining properties will be treated as query params.
-           *
-           * @param {!Object<string, string>} newParams mapping of URL parameter names to values
-           */
-updateParams:function(newParams){if(this.current&&this.current.$$route){newParams=angular.extend({},this.current.params,newParams);$location.path(interpolate(this.current.$$route.originalPath,newParams));
-// interpolate modifies newParams, only query params are left
-$location.search(newParams)}else{throw $routeMinErr("norout","Tried updating route when with no current route")}}};$rootScope.$on("$locationChangeStart",prepareRoute);$rootScope.$on("$locationChangeSuccess",commitRoute);return $route;
-/////////////////////////////////////////////////////
-/**
-     * @param on {string} current url
-     * @param route {Object} route regexp to match the url against
-     * @return {?Object}
-     *
-     * @description
-     * Check if the route matches the current url.
-     *
-     * Inspired by match in
-     * visionmedia/express/lib/router/router.js.
-     */
-function switchRouteMatcher(on,route){var keys=route.keys,params={};if(!route.regexp)return null;var m=route.regexp.exec(on);if(!m)return null;for(var i=1,len=m.length;i<len;++i){var key=keys[i-1];var val=m[i];if(key&&val){params[key.name]=val}}return params}function prepareRoute($locationEvent){var lastRoute=$route.current;preparedRoute=parseRoute();preparedRouteIsUpdateOnly=preparedRoute&&lastRoute&&preparedRoute.$$route===lastRoute.$$route&&angular.equals(preparedRoute.pathParams,lastRoute.pathParams)&&!preparedRoute.reloadOnSearch&&!forceReload;if(!preparedRouteIsUpdateOnly&&(lastRoute||preparedRoute)){if($rootScope.$broadcast("$routeChangeStart",preparedRoute,lastRoute).defaultPrevented){if($locationEvent){$locationEvent.preventDefault()}}}}function commitRoute(){var lastRoute=$route.current;var nextRoute=preparedRoute;if(preparedRouteIsUpdateOnly){lastRoute.params=nextRoute.params;angular.copy(lastRoute.params,$routeParams);$rootScope.$broadcast("$routeUpdate",lastRoute)}else if(nextRoute||lastRoute){forceReload=false;$route.current=nextRoute;if(nextRoute){if(nextRoute.redirectTo){if(angular.isString(nextRoute.redirectTo)){$location.path(interpolate(nextRoute.redirectTo,nextRoute.params)).search(nextRoute.params).replace()}else{$location.url(nextRoute.redirectTo(nextRoute.pathParams,$location.path(),$location.search())).replace()}}}$q.when(nextRoute).then(resolveLocals).then(function(locals){
-// after route change
-if(nextRoute==$route.current){if(nextRoute){nextRoute.locals=locals;angular.copy(nextRoute.params,$routeParams)}$rootScope.$broadcast("$routeChangeSuccess",nextRoute,lastRoute)}},function(error){if(nextRoute==$route.current){$rootScope.$broadcast("$routeChangeError",nextRoute,lastRoute,error)}})}}function resolveLocals(route){if(route){var locals=angular.extend({},route.resolve);angular.forEach(locals,function(value,key){locals[key]=angular.isString(value)?$injector.get(value):$injector.invoke(value,null,null,key)});var template=getTemplateFor(route);if(angular.isDefined(template)){locals["$template"]=template}return $q.all(locals)}}function getTemplateFor(route){var template,templateUrl;if(angular.isDefined(template=route.template)){if(angular.isFunction(template)){template=template(route.params)}}else if(angular.isDefined(templateUrl=route.templateUrl)){if(angular.isFunction(templateUrl)){templateUrl=templateUrl(route.params)}if(angular.isDefined(templateUrl)){route.loadedTemplateUrl=$sce.valueOf(templateUrl);template=$templateRequest(templateUrl)}}return template}/**
-     * @returns {Object} the current active route, by matching it against the URL
-     */
-function parseRoute(){
-// Match a route
-var params,match;angular.forEach(routes,function(route,path){if(!match&&(params=switchRouteMatcher($location.path(),route))){match=inherit(route,{params:angular.extend({},$location.search(),params),pathParams:params});match.$$route=route}});
-// No route matched; fallback to "otherwise" route
-return match||routes[null]&&inherit(routes[null],{params:{},pathParams:{}})}/**
-     * @returns {string} interpolation of the redirect path with the parameters
-     */
-function interpolate(string,params){var result=[];angular.forEach((string||"").split(":"),function(segment,i){if(i===0){result.push(segment)}else{var segmentMatch=segment.match(/(\w+)(?:[?*])?(.*)/);var key=segmentMatch[1];result.push(params[key]);result.push(segmentMatch[2]||"");delete params[key]}});return result.join("")}}]}ngRouteModule.provider("$routeParams",$RouteParamsProvider);/**
- * @ngdoc service
- * @name $routeParams
- * @requires $route
- *
- * @description
- * The `$routeParams` service allows you to retrieve the current set of route parameters.
- *
- * Requires the {@link ngRoute `ngRoute`} module to be installed.
- *
- * The route parameters are a combination of {@link ng.$location `$location`}'s
- * {@link ng.$location#search `search()`} and {@link ng.$location#path `path()`}.
- * The `path` parameters are extracted when the {@link ngRoute.$route `$route`} path is matched.
- *
- * In case of parameter name collision, `path` params take precedence over `search` params.
- *
- * The service guarantees that the identity of the `$routeParams` object will remain unchanged
- * (but its properties will likely change) even when a route change occurs.
- *
- * Note that the `$routeParams` are only updated *after* a route change completes successfully.
- * This means that you cannot rely on `$routeParams` being correct in route resolve functions.
- * Instead you can use `$route.current.params` to access the new route's parameters.
- *
- * @example
- * ```js
- *  // Given:
- *  // URL: http://server.com/index.html#/Chapter/1/Section/2?search=moby
- *  // Route: /Chapter/:chapterId/Section/:sectionId
- *  //
- *  // Then
- *  $routeParams ==> {chapterId:'1', sectionId:'2', search:'moby'}
- * ```
- */
-function $RouteParamsProvider(){this.$get=function(){return{}}}ngRouteModule.directive("ngView",ngViewFactory);ngRouteModule.directive("ngView",ngViewFillContentFactory);/**
- * @ngdoc directive
- * @name ngView
- * @restrict ECA
- *
- * @description
- * # Overview
- * `ngView` is a directive that complements the {@link ngRoute.$route $route} service by
- * including the rendered template of the current route into the main layout (`index.html`) file.
- * Every time the current route changes, the included view changes with it according to the
- * configuration of the `$route` service.
- *
- * Requires the {@link ngRoute `ngRoute`} module to be installed.
- *
- * @animations
- * | Animation                        | Occurs                              |
- * |----------------------------------|-------------------------------------|
- * | {@link ng.$animate#enter enter}  | when the new element is inserted to the DOM |
- * | {@link ng.$animate#leave leave}  | when the old element is removed from to the DOM  |
- *
- * The enter and leave animation occur concurrently.
- *
- * @knownIssue If `ngView` is contained in an asynchronously loaded template (e.g. in another
- *             directive's templateUrl or in a template loaded using `ngInclude`), then you need to
- *             make sure that `$route` is instantiated in time to capture the initial
- *             `$locationChangeStart` event and load the appropriate view. One way to achieve this
- *             is to have it as a dependency in a `.run` block:
- *             `myModule.run(['$route', function() {}]);`
- *
- * @scope
- * @priority 400
- * @param {string=} onload Expression to evaluate whenever the view updates.
- *
- * @param {string=} autoscroll Whether `ngView` should call {@link ng.$anchorScroll
- *                  $anchorScroll} to scroll the viewport after the view is updated.
- *
- *                  - If the attribute is not set, disable scrolling.
- *                  - If the attribute is set without value, enable scrolling.
- *                  - Otherwise enable scrolling only if the `autoscroll` attribute value evaluated
- *                    as an expression yields a truthy value.
- * @example
-    <example name="ngView-directive" module="ngViewExample"
-             deps="angular-route.js;angular-animate.js"
-             animations="true" fixBase="true">
-      <file name="index.html">
-        <div ng-controller="MainCtrl as main">
-          Choose:
-          <a href="Book/Moby">Moby</a> |
-          <a href="Book/Moby/ch/1">Moby: Ch1</a> |
-          <a href="Book/Gatsby">Gatsby</a> |
-          <a href="Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
-          <a href="Book/Scarlet">Scarlet Letter</a><br/>
-
-          <div class="view-animate-container">
-            <div ng-view class="view-animate"></div>
-          </div>
-          <hr />
-
-          <pre>$location.path() = {{main.$location.path()}}</pre>
-          <pre>$route.current.templateUrl = {{main.$route.current.templateUrl}}</pre>
-          <pre>$route.current.params = {{main.$route.current.params}}</pre>
-          <pre>$routeParams = {{main.$routeParams}}</pre>
-        </div>
-      </file>
-
-      <file name="book.html">
-        <div>
-          controller: {{book.name}}<br />
-          Book Id: {{book.params.bookId}}<br />
-        </div>
-      </file>
-
-      <file name="chapter.html">
-        <div>
-          controller: {{chapter.name}}<br />
-          Book Id: {{chapter.params.bookId}}<br />
-          Chapter Id: {{chapter.params.chapterId}}
-        </div>
-      </file>
-
-      <file name="animations.css">
-        .view-animate-container {
-          position:relative;
-          height:100px!important;
-          background:white;
-          border:1px solid black;
-          height:40px;
-          overflow:hidden;
-        }
-
-        .view-animate {
-          padding:10px;
-        }
-
-        .view-animate.ng-enter, .view-animate.ng-leave {
-          transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
-
-          display:block;
-          width:100%;
-          border-left:1px solid black;
-
-          position:absolute;
-          top:0;
-          left:0;
-          right:0;
-          bottom:0;
-          padding:10px;
-        }
-
-        .view-animate.ng-enter {
-          left:100%;
-        }
-        .view-animate.ng-enter.ng-enter-active {
-          left:0;
-        }
-        .view-animate.ng-leave.ng-leave-active {
-          left:-100%;
-        }
-      </file>
-
-      <file name="script.js">
-        angular.module('ngViewExample', ['ngRoute', 'ngAnimate'])
-          .config(['$routeProvider', '$locationProvider',
-            function($routeProvider, $locationProvider) {
-              $routeProvider
-                .when('/Book/:bookId', {
-                  templateUrl: 'book.html',
-                  controller: 'BookCtrl',
-                  controllerAs: 'book'
-                })
-                .when('/Book/:bookId/ch/:chapterId', {
-                  templateUrl: 'chapter.html',
-                  controller: 'ChapterCtrl',
-                  controllerAs: 'chapter'
-                });
-
-              $locationProvider.html5Mode(true);
-          }])
-          .controller('MainCtrl', ['$route', '$routeParams', '$location',
-            function($route, $routeParams, $location) {
-              this.$route = $route;
-              this.$location = $location;
-              this.$routeParams = $routeParams;
-          }])
-          .controller('BookCtrl', ['$routeParams', function($routeParams) {
-            this.name = "BookCtrl";
-            this.params = $routeParams;
-          }])
-          .controller('ChapterCtrl', ['$routeParams', function($routeParams) {
-            this.name = "ChapterCtrl";
-            this.params = $routeParams;
-          }]);
-
-      </file>
-
-      <file name="protractor.js" type="protractor">
-        it('should load and compile correct template', function() {
-          element(by.linkText('Moby: Ch1')).click();
-          var content = element(by.css('[ng-view]')).getText();
-          expect(content).toMatch(/controller\: ChapterCtrl/);
-          expect(content).toMatch(/Book Id\: Moby/);
-          expect(content).toMatch(/Chapter Id\: 1/);
-
-          element(by.partialLinkText('Scarlet')).click();
-
-          content = element(by.css('[ng-view]')).getText();
-          expect(content).toMatch(/controller\: BookCtrl/);
-          expect(content).toMatch(/Book Id\: Scarlet/);
-        });
-      </file>
-    </example>
- */
-/**
- * @ngdoc event
- * @name ngView#$viewContentLoaded
- * @eventType emit on the current ngView scope
- * @description
- * Emitted every time the ngView content is reloaded.
- */
-ngViewFactory.$inject=["$route","$anchorScroll","$animate"];function ngViewFactory($route,$anchorScroll,$animate){return{restrict:"ECA",terminal:true,priority:400,transclude:"element",link:function(scope,$element,attr,ctrl,$transclude){var currentScope,currentElement,previousLeaveAnimation,autoScrollExp=attr.autoscroll,onloadExp=attr.onload||"";scope.$on("$routeChangeSuccess",update);update();function cleanupLastView(){if(previousLeaveAnimation){$animate.cancel(previousLeaveAnimation);previousLeaveAnimation=null}if(currentScope){currentScope.$destroy();currentScope=null}if(currentElement){previousLeaveAnimation=$animate.leave(currentElement);previousLeaveAnimation.then(function(){previousLeaveAnimation=null});currentElement=null}}function update(){var locals=$route.current&&$route.current.locals,template=locals&&locals.$template;if(angular.isDefined(template)){var newScope=scope.$new();var current=$route.current;
-// Note: This will also link all children of ng-view that were contained in the original
-// html. If that content contains controllers, ... they could pollute/change the scope.
-// However, using ng-view on an element with additional content does not make sense...
-// Note: We can't remove them in the cloneAttchFn of $transclude as that
-// function is called before linking the content, which would apply child
-// directives to non existing elements.
-var clone=$transclude(newScope,function(clone){$animate.enter(clone,null,currentElement||$element).then(function onNgViewEnter(){if(angular.isDefined(autoScrollExp)&&(!autoScrollExp||scope.$eval(autoScrollExp))){$anchorScroll()}});cleanupLastView()});currentElement=clone;currentScope=current.scope=newScope;currentScope.$emit("$viewContentLoaded");currentScope.$eval(onloadExp)}else{cleanupLastView()}}}}}
-// This directive is called during the $transclude call of the first `ngView` directive.
-// It will replace and compile the content of the element with the loaded template.
-// We need this directive so that the element content is already filled when
-// the link function of another directive on the same element as ngView
-// is called.
-ngViewFillContentFactory.$inject=["$compile","$controller","$route"];function ngViewFillContentFactory($compile,$controller,$route){return{restrict:"ECA",priority:-400,link:function(scope,$element){var current=$route.current,locals=current.locals;$element.html(locals.$template);var link=$compile($element.contents());if(current.controller){locals.$scope=scope;var controller=$controller(current.controller,locals);if(current.controllerAs){scope[current.controllerAs]=controller}$element.data("$ngControllerController",controller);$element.children().data("$ngControllerController",controller)}scope[current.resolveAs||"$resolve"]=locals;link(scope)}}}})(window,window.angular);/**
- * @license AngularJS v1.5.8
- * (c) 2010-2016 Google, Inc. http://angularjs.org
- * License: MIT
- */
-(function(window,angular){"use strict";/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *     Any commits to this file should be reviewed with security in mind.  *
- *   Changes to this file can potentially create security vulnerabilities. *
- *          An approval from 2 Core members with history of modifying      *
- *                         this file is required.                          *
- *                                                                         *
- *  Does the change somehow allow for arbitrary javascript to be executed? *
- *    Or allows for someone to change the prototype of built-in objects?   *
- *     Or gives undesired access to variables likes document or window?    *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-var $sanitizeMinErr=angular.$$minErr("$sanitize");var bind;var extend;var forEach;var isDefined;var lowercase;var noop;var htmlParser;var htmlSanitizeWriter;/**
- * @ngdoc module
- * @name ngSanitize
- * @description
- *
- * # ngSanitize
- *
- * The `ngSanitize` module provides functionality to sanitize HTML.
- *
- *
- * <div doc-module-components="ngSanitize"></div>
- *
- * See {@link ngSanitize.$sanitize `$sanitize`} for usage.
- */
-/**
- * @ngdoc service
- * @name $sanitize
- * @kind function
- *
- * @description
- *   Sanitizes an html string by stripping all potentially dangerous tokens.
- *
- *   The input is sanitized by parsing the HTML into tokens. All safe tokens (from a whitelist) are
- *   then serialized back to properly escaped html string. This means that no unsafe input can make
- *   it into the returned string.
- *
- *   The whitelist for URL sanitization of attribute values is configured using the functions
- *   `aHrefSanitizationWhitelist` and `imgSrcSanitizationWhitelist` of {@link ng.$compileProvider
- *   `$compileProvider`}.
- *
- *   The input may also contain SVG markup if this is enabled via {@link $sanitizeProvider}.
- *
- * @param {string} html HTML input.
- * @returns {string} Sanitized HTML.
- *
- * @example
-   <example module="sanitizeExample" deps="angular-sanitize.js">
-   <file name="index.html">
-     <script>
-         angular.module('sanitizeExample', ['ngSanitize'])
-           .controller('ExampleController', ['$scope', '$sce', function($scope, $sce) {
-             $scope.snippet =
-               '<p style="color:blue">an html\n' +
-               '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
-               'snippet</p>';
-             $scope.deliberatelyTrustDangerousSnippet = function() {
-               return $sce.trustAsHtml($scope.snippet);
-             };
-           }]);
-     </script>
-     <div ng-controller="ExampleController">
-        Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
-       <table>
-         <tr>
-           <td>Directive</td>
-           <td>How</td>
-           <td>Source</td>
-           <td>Rendered</td>
-         </tr>
-         <tr id="bind-html-with-sanitize">
-           <td>ng-bind-html</td>
-           <td>Automatically uses $sanitize</td>
-           <td><pre>&lt;div ng-bind-html="snippet"&gt;<br/>&lt;/div&gt;</pre></td>
-           <td><div ng-bind-html="snippet"></div></td>
-         </tr>
-         <tr id="bind-html-with-trust">
-           <td>ng-bind-html</td>
-           <td>Bypass $sanitize by explicitly trusting the dangerous value</td>
-           <td>
-           <pre>&lt;div ng-bind-html="deliberatelyTrustDangerousSnippet()"&gt;
-&lt;/div&gt;</pre>
-           </td>
-           <td><div ng-bind-html="deliberatelyTrustDangerousSnippet()"></div></td>
-         </tr>
-         <tr id="bind-default">
-           <td>ng-bind</td>
-           <td>Automatically escapes</td>
-           <td><pre>&lt;div ng-bind="snippet"&gt;<br/>&lt;/div&gt;</pre></td>
-           <td><div ng-bind="snippet"></div></td>
-         </tr>
-       </table>
-       </div>
-   </file>
-   <file name="protractor.js" type="protractor">
-     it('should sanitize the html snippet by default', function() {
-       expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
-         toBe('<p>an html\n<em>click here</em>\nsnippet</p>');
-     });
-
-     it('should inline raw snippet if bound to a trusted value', function() {
-       expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).
-         toBe("<p style=\"color:blue\">an html\n" +
-              "<em onmouseover=\"this.textContent='PWN3D!'\">click here</em>\n" +
-              "snippet</p>");
-     });
-
-     it('should escape snippet without any filter', function() {
-       expect(element(by.css('#bind-default div')).getInnerHtml()).
-         toBe("&lt;p style=\"color:blue\"&gt;an html\n" +
-              "&lt;em onmouseover=\"this.textContent='PWN3D!'\"&gt;click here&lt;/em&gt;\n" +
-              "snippet&lt;/p&gt;");
-     });
-
-     it('should update', function() {
-       element(by.model('snippet')).clear();
-       element(by.model('snippet')).sendKeys('new <b onclick="alert(1)">text</b>');
-       expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
-         toBe('new <b>text</b>');
-       expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).toBe(
-         'new <b onclick="alert(1)">text</b>');
-       expect(element(by.css('#bind-default div')).getInnerHtml()).toBe(
-         "new &lt;b onclick=\"alert(1)\"&gt;text&lt;/b&gt;");
-     });
-   </file>
-   </example>
- */
-/**
- * @ngdoc provider
- * @name $sanitizeProvider
- *
- * @description
- * Creates and configures {@link $sanitize} instance.
- */
-function $SanitizeProvider(){var svgEnabled=false;this.$get=["$$sanitizeUri",function($$sanitizeUri){if(svgEnabled){extend(validElements,svgElements)}return function(html){var buf=[];htmlParser(html,htmlSanitizeWriter(buf,function(uri,isImage){return!/^unsafe:/.test($$sanitizeUri(uri,isImage))}));return buf.join("")}}];/**
-   * @ngdoc method
-   * @name $sanitizeProvider#enableSvg
-   * @kind function
-   *
-   * @description
-   * Enables a subset of svg to be supported by the sanitizer.
-   *
-   * <div class="alert alert-warning">
-   *   <p>By enabling this setting without taking other precautions, you might expose your
-   *   application to click-hijacking attacks. In these attacks, sanitized svg elements could be positioned
-   *   outside of the containing element and be rendered over other elements on the page (e.g. a login
-   *   link). Such behavior can then result in phishing incidents.</p>
-   *
-   *   <p>To protect against these, explicitly setup `overflow: hidden` css rule for all potential svg
-   *   tags within the sanitized content:</p>
-   *
-   *   <br>
-   *
-   *   <pre><code>
-   *   .rootOfTheIncludedContent svg {
-   *     overflow: hidden !important;
-   *   }
-   *   </code></pre>
-   * </div>
-   *
-   * @param {boolean=} flag Enable or disable SVG support in the sanitizer.
-   * @returns {boolean|ng.$sanitizeProvider} Returns the currently configured value if called
-   *    without an argument or self for chaining otherwise.
-   */
-this.enableSvg=function(enableSvg){if(isDefined(enableSvg)){svgEnabled=enableSvg;return this}else{return svgEnabled}};
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// Private stuff
-//////////////////////////////////////////////////////////////////////////////////////////////////
-bind=angular.bind;extend=angular.extend;forEach=angular.forEach;isDefined=angular.isDefined;lowercase=angular.lowercase;noop=angular.noop;htmlParser=htmlParserImpl;htmlSanitizeWriter=htmlSanitizeWriterImpl;
-// Regular Expressions for parsing tags and attributes
-var SURROGATE_PAIR_REGEXP=/[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
-// Match everything outside of normal chars and " (quote character)
-NON_ALPHANUMERIC_REGEXP=/([^\#-~ |!])/g;
-// Good source of info about elements and attributes
-// http://dev.w3.org/html5/spec/Overview.html#semantics
-// http://simon.html5.org/html-elements
-// Safe Void Elements - HTML5
-// http://dev.w3.org/html5/spec/Overview.html#void-elements
-var voidElements=toMap("area,br,col,hr,img,wbr");
-// Elements that you can, intentionally, leave open (and which close themselves)
-// http://dev.w3.org/html5/spec/Overview.html#optional-tags
-var optionalEndTagBlockElements=toMap("colgroup,dd,dt,li,p,tbody,td,tfoot,th,thead,tr"),optionalEndTagInlineElements=toMap("rp,rt"),optionalEndTagElements=extend({},optionalEndTagInlineElements,optionalEndTagBlockElements);
-// Safe Block Elements - HTML5
-var blockElements=extend({},optionalEndTagBlockElements,toMap("address,article,"+"aside,blockquote,caption,center,del,dir,div,dl,figure,figcaption,footer,h1,h2,h3,h4,h5,"+"h6,header,hgroup,hr,ins,map,menu,nav,ol,pre,section,table,ul"));
-// Inline Elements - HTML5
-var inlineElements=extend({},optionalEndTagInlineElements,toMap("a,abbr,acronym,b,"+"bdi,bdo,big,br,cite,code,del,dfn,em,font,i,img,ins,kbd,label,map,mark,q,ruby,rp,rt,s,"+"samp,small,span,strike,strong,sub,sup,time,tt,u,var"));
-// SVG Elements
-// https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Elements
-// Note: the elements animate,animateColor,animateMotion,animateTransform,set are intentionally omitted.
-// They can potentially allow for arbitrary javascript to be executed. See #11290
-var svgElements=toMap("circle,defs,desc,ellipse,font-face,font-face-name,font-face-src,g,glyph,"+"hkern,image,linearGradient,line,marker,metadata,missing-glyph,mpath,path,polygon,polyline,"+"radialGradient,rect,stop,svg,switch,text,title,tspan");
-// Blocked Elements (will be stripped)
-var blockedElements=toMap("script,style");var validElements=extend({},voidElements,blockElements,inlineElements,optionalEndTagElements);
-//Attributes that have href and hence need to be sanitized
-var uriAttrs=toMap("background,cite,href,longdesc,src,xlink:href");var htmlAttrs=toMap("abbr,align,alt,axis,bgcolor,border,cellpadding,cellspacing,class,clear,"+"color,cols,colspan,compact,coords,dir,face,headers,height,hreflang,hspace,"+"ismap,lang,language,nohref,nowrap,rel,rev,rows,rowspan,rules,"+"scope,scrolling,shape,size,span,start,summary,tabindex,target,title,type,"+"valign,value,vspace,width");
-// SVG attributes (without "id" and "name" attributes)
-// https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Attributes
-var svgAttrs=toMap("accent-height,accumulate,additive,alphabetic,arabic-form,ascent,"+"baseProfile,bbox,begin,by,calcMode,cap-height,class,color,color-rendering,content,"+"cx,cy,d,dx,dy,descent,display,dur,end,fill,fill-rule,font-family,font-size,font-stretch,"+"font-style,font-variant,font-weight,from,fx,fy,g1,g2,glyph-name,gradientUnits,hanging,"+"height,horiz-adv-x,horiz-origin-x,ideographic,k,keyPoints,keySplines,keyTimes,lang,"+"marker-end,marker-mid,marker-start,markerHeight,markerUnits,markerWidth,mathematical,"+"max,min,offset,opacity,orient,origin,overline-position,overline-thickness,panose-1,"+"path,pathLength,points,preserveAspectRatio,r,refX,refY,repeatCount,repeatDur,"+"requiredExtensions,requiredFeatures,restart,rotate,rx,ry,slope,stemh,stemv,stop-color,"+"stop-opacity,strikethrough-position,strikethrough-thickness,stroke,stroke-dasharray,"+"stroke-dashoffset,stroke-linecap,stroke-linejoin,stroke-miterlimit,stroke-opacity,"+"stroke-width,systemLanguage,target,text-anchor,to,transform,type,u1,u2,underline-position,"+"underline-thickness,unicode,unicode-range,units-per-em,values,version,viewBox,visibility,"+"width,widths,x,x-height,x1,x2,xlink:actuate,xlink:arcrole,xlink:role,xlink:show,xlink:title,"+"xlink:type,xml:base,xml:lang,xml:space,xmlns,xmlns:xlink,y,y1,y2,zoomAndPan",true);var validAttrs=extend({},uriAttrs,svgAttrs,htmlAttrs);function toMap(str,lowercaseKeys){var obj={},items=str.split(","),i;for(i=0;i<items.length;i++){obj[lowercaseKeys?lowercase(items[i]):items[i]]=true}return obj}var inertBodyElement;(function(window){var doc;if(window.document&&window.document.implementation){doc=window.document.implementation.createHTMLDocument("inert")}else{throw $sanitizeMinErr("noinert","Can't create an inert html document")}var docElement=doc.documentElement||doc.getDocumentElement();var bodyElements=docElement.getElementsByTagName("body");
-// usually there should be only one body element in the document, but IE doesn't have any, so we need to create one
-if(bodyElements.length===1){inertBodyElement=bodyElements[0]}else{var html=doc.createElement("html");inertBodyElement=doc.createElement("body");html.appendChild(inertBodyElement);doc.appendChild(html)}})(window);/**
-   * @example
-   * htmlParser(htmlString, {
-   *     start: function(tag, attrs) {},
-   *     end: function(tag) {},
-   *     chars: function(text) {},
-   *     comment: function(text) {}
-   * });
-   *
-   * @param {string} html string
-   * @param {object} handler
-   */
-function htmlParserImpl(html,handler){if(html===null||html===undefined){html=""}else if(typeof html!=="string"){html=""+html}inertBodyElement.innerHTML=html;
-//mXSS protection
-var mXSSAttempts=5;do{if(mXSSAttempts===0){throw $sanitizeMinErr("uinput","Failed to sanitize html because the input is unstable")}mXSSAttempts--;
-// strip custom-namespaced attributes on IE<=11
-if(window.document.documentMode){stripCustomNsAttrs(inertBodyElement)}html=inertBodyElement.innerHTML;//trigger mXSS
-inertBodyElement.innerHTML=html}while(html!==inertBodyElement.innerHTML);var node=inertBodyElement.firstChild;while(node){switch(node.nodeType){case 1:// ELEMENT_NODE
-handler.start(node.nodeName.toLowerCase(),attrToMap(node.attributes));break;case 3:// TEXT NODE
-handler.chars(node.textContent);break}var nextNode;if(!(nextNode=node.firstChild)){if(node.nodeType==1){handler.end(node.nodeName.toLowerCase())}nextNode=node.nextSibling;if(!nextNode){while(nextNode==null){node=node.parentNode;if(node===inertBodyElement)break;nextNode=node.nextSibling;if(node.nodeType==1){handler.end(node.nodeName.toLowerCase())}}}}node=nextNode}while(node=inertBodyElement.firstChild){inertBodyElement.removeChild(node)}}function attrToMap(attrs){var map={};for(var i=0,ii=attrs.length;i<ii;i++){var attr=attrs[i];map[attr.name]=attr.value}return map}/**
-   * Escapes all potentially dangerous characters, so that the
-   * resulting string can be safely inserted into attribute or
-   * element text.
-   * @param value
-   * @returns {string} escaped text
-   */
-function encodeEntities(value){return value.replace(/&/g,"&amp;").replace(SURROGATE_PAIR_REGEXP,function(value){var hi=value.charCodeAt(0);var low=value.charCodeAt(1);return"&#"+((hi-55296)*1024+(low-56320)+65536)+";"}).replace(NON_ALPHANUMERIC_REGEXP,function(value){return"&#"+value.charCodeAt(0)+";"}).replace(/</g,"&lt;").replace(/>/g,"&gt;")}/**
-   * create an HTML/XML writer which writes to buffer
-   * @param {Array} buf use buf.join('') to get out sanitized html string
-   * @returns {object} in the form of {
-   *     start: function(tag, attrs) {},
-   *     end: function(tag) {},
-   *     chars: function(text) {},
-   *     comment: function(text) {}
-   * }
-   */
-function htmlSanitizeWriterImpl(buf,uriValidator){var ignoreCurrentElement=false;var out=bind(buf,buf.push);return{start:function(tag,attrs){tag=lowercase(tag);if(!ignoreCurrentElement&&blockedElements[tag]){ignoreCurrentElement=tag}if(!ignoreCurrentElement&&validElements[tag]===true){out("<");out(tag);forEach(attrs,function(value,key){var lkey=lowercase(key);var isImage=tag==="img"&&lkey==="src"||lkey==="background";if(validAttrs[lkey]===true&&(uriAttrs[lkey]!==true||uriValidator(value,isImage))){out(" ");out(key);out('="');out(encodeEntities(value));out('"')}});out(">")}},end:function(tag){tag=lowercase(tag);if(!ignoreCurrentElement&&validElements[tag]===true&&voidElements[tag]!==true){out("</");out(tag);out(">")}if(tag==ignoreCurrentElement){ignoreCurrentElement=false}},chars:function(chars){if(!ignoreCurrentElement){out(encodeEntities(chars))}}}}/**
-   * When IE9-11 comes across an unknown namespaced attribute e.g. 'xlink:foo' it adds 'xmlns:ns1' attribute to declare
-   * ns1 namespace and prefixes the attribute with 'ns1' (e.g. 'ns1:xlink:foo'). This is undesirable since we don't want
-   * to allow any of these custom attributes. This method strips them all.
-   *
-   * @param node Root element to process
-   */
-function stripCustomNsAttrs(node){if(node.nodeType===window.Node.ELEMENT_NODE){var attrs=node.attributes;for(var i=0,l=attrs.length;i<l;i++){var attrNode=attrs[i];var attrName=attrNode.name.toLowerCase();if(attrName==="xmlns:ns1"||attrName.lastIndexOf("ns1:",0)===0){node.removeAttributeNode(attrNode);i--;l--}}}var nextNode=node.firstChild;if(nextNode){stripCustomNsAttrs(nextNode)}nextNode=node.nextSibling;if(nextNode){stripCustomNsAttrs(nextNode)}}}function sanitizeText(chars){var buf=[];var writer=htmlSanitizeWriter(buf,noop);writer.chars(chars);return buf.join("")}
-// define ngSanitize module and register $sanitize service
-angular.module("ngSanitize",[]).provider("$sanitize",$SanitizeProvider);/**
- * @ngdoc filter
- * @name linky
- * @kind function
- *
- * @description
- * Finds links in text input and turns them into html links. Supports `http/https/ftp/mailto` and
- * plain email address links.
- *
- * Requires the {@link ngSanitize `ngSanitize`} module to be installed.
- *
- * @param {string} text Input text.
- * @param {string} target Window (`_blank|_self|_parent|_top`) or named frame to open links in.
- * @param {object|function(url)} [attributes] Add custom attributes to the link element.
- *
- *    Can be one of:
- *
- *    - `object`: A map of attributes
- *    - `function`: Takes the url as a parameter and returns a map of attributes
- *
- *    If the map of attributes contains a value for `target`, it overrides the value of
- *    the target parameter.
- *
- *
- * @returns {string} Html-linkified and {@link $sanitize sanitized} text.
- *
- * @usage
-   <span ng-bind-html="linky_expression | linky"></span>
- *
- * @example
-   <example module="linkyExample" deps="angular-sanitize.js">
-     <file name="index.html">
-       <div ng-controller="ExampleController">
-       Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
-       <table>
-         <tr>
-           <th>Filter</th>
-           <th>Source</th>
-           <th>Rendered</th>
-         </tr>
-         <tr id="linky-filter">
-           <td>linky filter</td>
-           <td>
-             <pre>&lt;div ng-bind-html="snippet | linky"&gt;<br>&lt;/div&gt;</pre>
-           </td>
-           <td>
-             <div ng-bind-html="snippet | linky"></div>
-           </td>
-         </tr>
-         <tr id="linky-target">
-          <td>linky target</td>
-          <td>
-            <pre>&lt;div ng-bind-html="snippetWithSingleURL | linky:'_blank'"&gt;<br>&lt;/div&gt;</pre>
-          </td>
-          <td>
-            <div ng-bind-html="snippetWithSingleURL | linky:'_blank'"></div>
-          </td>
-         </tr>
-         <tr id="linky-custom-attributes">
-          <td>linky custom attributes</td>
-          <td>
-            <pre>&lt;div ng-bind-html="snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}"&gt;<br>&lt;/div&gt;</pre>
-          </td>
-          <td>
-            <div ng-bind-html="snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}"></div>
-          </td>
-         </tr>
-         <tr id="escaped-html">
-           <td>no filter</td>
-           <td><pre>&lt;div ng-bind="snippet"&gt;<br>&lt;/div&gt;</pre></td>
-           <td><div ng-bind="snippet"></div></td>
-         </tr>
-       </table>
-     </file>
-     <file name="script.js">
-       angular.module('linkyExample', ['ngSanitize'])
-         .controller('ExampleController', ['$scope', function($scope) {
-           $scope.snippet =
-             'Pretty text with some links:\n'+
-             'http://angularjs.org/,\n'+
-             'mailto:us@somewhere.org,\n'+
-             'another@somewhere.org,\n'+
-             'and one more: ftp://127.0.0.1/.';
-           $scope.snippetWithSingleURL = 'http://angularjs.org/';
-         }]);
-     </file>
-     <file name="protractor.js" type="protractor">
-       it('should linkify the snippet with urls', function() {
-         expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
-             toBe('Pretty text with some links: http://angularjs.org/, us@somewhere.org, ' +
-                  'another@somewhere.org, and one more: ftp://127.0.0.1/.');
-         expect(element.all(by.css('#linky-filter a')).count()).toEqual(4);
-       });
-
-       it('should not linkify snippet without the linky filter', function() {
-         expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText()).
-             toBe('Pretty text with some links: http://angularjs.org/, mailto:us@somewhere.org, ' +
-                  'another@somewhere.org, and one more: ftp://127.0.0.1/.');
-         expect(element.all(by.css('#escaped-html a')).count()).toEqual(0);
-       });
-
-       it('should update', function() {
-         element(by.model('snippet')).clear();
-         element(by.model('snippet')).sendKeys('new http://link.');
-         expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
-             toBe('new http://link.');
-         expect(element.all(by.css('#linky-filter a')).count()).toEqual(1);
-         expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText())
-             .toBe('new http://link.');
-       });
-
-       it('should work with the target property', function() {
-        expect(element(by.id('linky-target')).
-            element(by.binding("snippetWithSingleURL | linky:'_blank'")).getText()).
-            toBe('http://angularjs.org/');
-        expect(element(by.css('#linky-target a')).getAttribute('target')).toEqual('_blank');
-       });
-
-       it('should optionally add custom attributes', function() {
-        expect(element(by.id('linky-custom-attributes')).
-            element(by.binding("snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}")).getText()).
-            toBe('http://angularjs.org/');
-        expect(element(by.css('#linky-custom-attributes a')).getAttribute('rel')).toEqual('nofollow');
-       });
-     </file>
-   </example>
- */
-angular.module("ngSanitize").filter("linky",["$sanitize",function($sanitize){var LINKY_URL_REGEXP=/((ftp|https?):\/\/|(www\.)|(mailto:)?[A-Za-z0-9._%+-]+@)\S*[^\s.;,(){}<>"\u201d\u2019]/i,MAILTO_REGEXP=/^mailto:/i;var linkyMinErr=angular.$$minErr("linky");var isDefined=angular.isDefined;var isFunction=angular.isFunction;var isObject=angular.isObject;var isString=angular.isString;return function(text,target,attributes){if(text==null||text==="")return text;if(!isString(text))throw linkyMinErr("notstring","Expected string but received: {0}",text);var attributesFn=isFunction(attributes)?attributes:isObject(attributes)?function getAttributesObject(){return attributes}:function getEmptyAttributesObject(){return{}};var match;var raw=text;var html=[];var url;var i;while(match=raw.match(LINKY_URL_REGEXP)){
-// We can not end in these as they are sometimes found at the end of the sentence
-url=match[0];
-// if we did not match ftp/http/www/mailto then assume mailto
-if(!match[2]&&!match[4]){url=(match[3]?"http://":"mailto:")+url}i=match.index;addText(raw.substr(0,i));addLink(url,match[0].replace(MAILTO_REGEXP,""));raw=raw.substring(i+match[0].length)}addText(raw);return $sanitize(html.join(""));function addText(text){if(!text){return}html.push(sanitizeText(text))}function addLink(url,text){var key,linkAttributes=attributesFn(url);html.push("<a ");for(key in linkAttributes){html.push(key+'="'+linkAttributes[key]+'" ')}if(isDefined(target)&&!("target"in linkAttributes)){html.push('target="',target,'" ')}html.push('href="',url.replace(/"/g,"&quot;"),'">');addText(text);html.push("</a>")}}}])})(window,window.angular);/**
+bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide",function($provide){var PLURAL_CATEGORY={ZERO:"zero",ONE:"one",TWO:"two",FEW:"few",MANY:"many",OTHER:"other"};function getDecimals(n){n=n+"";var i=n.indexOf(".");return i==-1?0:n.length-i-1}function getVF(n,opt_precision){var v=opt_precision;if(undefined===v){v=Math.min(getDecimals(n),3)}var base=Math.pow(10,v);var f=(n*base|0)%base;return{v:v,f:f}}$provide.value("$locale",{DATETIME_FORMATS:{AMPMS:["AM","PM"],DAY:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],ERANAMES:["Before Christ","Anno Domini"],ERAS:["BC","AD"],FIRSTDAYOFWEEK:6,MONTH:["January","February","March","April","May","June","July","August","September","October","November","December"],SHORTDAY:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],SHORTMONTH:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],STANDALONEMONTH:["January","February","March","April","May","June","July","August","September","October","November","December"],WEEKENDRANGE:[5,6],fullDate:"EEEE, MMMM d, y",longDate:"MMMM d, y",medium:"MMM d, y h:mm:ss a",mediumDate:"MMM d, y",mediumTime:"h:mm:ss a",short:"M/d/yy h:mm a",shortDate:"M/d/yy",shortTime:"h:mm a"},NUMBER_FORMATS:{CURRENCY_SYM:"$",DECIMAL_SEP:".",GROUP_SEP:",",PATTERNS:[{gSize:3,lgSize:3,maxFrac:3,minFrac:0,minInt:1,negPre:"-",negSuf:"",posPre:"",posSuf:""},{gSize:3,lgSize:3,maxFrac:2,minFrac:2,minInt:1,negPre:"-¤",negSuf:"",posPre:"¤",posSuf:""}]},id:"en-us",localeID:"en_US",pluralCat:function(n,opt_precision){var i=n|0;var vf=getVF(n,opt_precision);if(i==1&&vf.v==0){return PLURAL_CATEGORY.ONE}return PLURAL_CATEGORY.OTHER}})}]);jqLite(window.document).ready(function(){angularInit(window.document,bootstrap)})})(window);!window.angular.$$csp().noInlineStyle&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');/**
  * @license AngularJS v1.5.8
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
@@ -19963,7 +18771,5016 @@ var MIN_HORIZONTAL_DISTANCE=30;return function(scope,element,attr){var swipeHand
 if(!startCoords)return false;var deltaY=Math.abs(coords.y-startCoords.y);var deltaX=(coords.x-startCoords.x)*direction;// Short circuit for already-invalidated swipes.
 return valid&&deltaY<MAX_VERTICAL_DISTANCE&&deltaX>0&&deltaX>MIN_HORIZONTAL_DISTANCE&&deltaY/deltaX<MAX_VERTICAL_RATIO}var pointerTypes=["touch"];if(!angular.isDefined(attr["ngSwipeDisableMouse"])){pointerTypes.push("mouse")}$swipe.bind(element,{start:function(coords,event){startCoords=coords;valid=true},cancel:function(event){valid=false},end:function(coords,event){if(validSwipe(coords)){scope.$apply(function(){element.triggerHandler(eventName);swipeHandler(scope,{$event:event})})}}},pointerTypes)}}])}
 // Left is negative X-coordinate, right is positive.
-makeSwipeDirective("ngSwipeLeft",-1,"swipeleft");makeSwipeDirective("ngSwipeRight",1,"swiperight")})(window,window.angular);(function(){"use strict";angular.module("focus-if",[]).directive("focusIf",focusIf);focusIf.$inject=["$timeout"];function focusIf($timeout){function link($scope,$element,$attrs){var dom=$element[0];if($attrs.focusIf){$scope.$watch($attrs.focusIf,focus)}else{focus(true)}function focus(condition){if(condition){$timeout(function(){dom.focus()},$scope.$eval($attrs.focusDelay)||0)}}}return{restrict:"A",link:link}}})();/*
+makeSwipeDirective("ngSwipeLeft",-1,"swipeleft");makeSwipeDirective("ngSwipeRight",1,"swiperight")})(window,window.angular);/*!
+ * angular-translate - v2.12.1 - 2016-09-15
+ *
+ * Copyright (c) 2016 The angular-translate team, Pascal Precht; Licensed MIT
+ */
+(function(root,factory){if(typeof define==="function"&&define.amd){
+// AMD. Register as an anonymous module unless amdModuleId is set
+define([],function(){return factory()})}else if(typeof exports==="object"){
+// Node. Does not work with strict CommonJS, but
+// only CommonJS-like environments that support module.exports,
+// like Node.
+module.exports=factory()}else{factory()}})(this,function(){/**
+ * @ngdoc overview
+ * @name pascalprecht.translate
+ *
+ * @description
+ * The main module which holds everything together.
+ */
+runTranslate.$inject=["$translate"];$translate.$inject=["$STORAGE_KEY","$windowProvider","$translateSanitizationProvider","pascalprechtTranslateOverrider"];$translateDefaultInterpolation.$inject=["$interpolate","$translateSanitization"];translateDirective.$inject=["$translate","$interpolate","$compile","$parse","$rootScope"];translateAttrDirective.$inject=["$translate","$rootScope"];translateCloakDirective.$inject=["$translate","$rootScope"];translateFilterFactory.$inject=["$parse","$translate"];$translationCache.$inject=["$cacheFactory"];angular.module("pascalprecht.translate",["ng"]).run(runTranslate);function runTranslate($translate){"use strict";var key=$translate.storageKey(),storage=$translate.storage();var fallbackFromIncorrectStorageValue=function(){var preferred=$translate.preferredLanguage();if(angular.isString(preferred)){$translate.use(preferred)}else{storage.put(key,$translate.use())}};fallbackFromIncorrectStorageValue.displayName="fallbackFromIncorrectStorageValue";if(storage){if(!storage.get(key)){fallbackFromIncorrectStorageValue()}else{$translate.use(storage.get(key))["catch"](fallbackFromIncorrectStorageValue)}}else if(angular.isString($translate.preferredLanguage())){$translate.use($translate.preferredLanguage())}}runTranslate.displayName="runTranslate";/**
+ * @ngdoc object
+ * @name pascalprecht.translate.$translateSanitizationProvider
+ *
+ * @description
+ *
+ * Configurations for $translateSanitization
+ */
+angular.module("pascalprecht.translate").provider("$translateSanitization",$translateSanitizationProvider);function $translateSanitizationProvider(){"use strict";var $sanitize,$sce,currentStrategy=null,// TODO change to either 'sanitize', 'escape' or ['sanitize', 'escapeParameters'] in 3.0.
+hasConfiguredStrategy=false,hasShownNoStrategyConfiguredWarning=false,strategies;/**
+   * Definition of a sanitization strategy function
+   * @callback StrategyFunction
+   * @param {string|object} value - value to be sanitized (either a string or an interpolated value map)
+   * @param {string} mode - either 'text' for a string (translation) or 'params' for the interpolated params
+   * @return {string|object}
+   */
+/**
+   * @ngdoc property
+   * @name strategies
+   * @propertyOf pascalprecht.translate.$translateSanitizationProvider
+   *
+   * @description
+   * Following strategies are built-in:
+   * <dl>
+   *   <dt>sanitize</dt>
+   *   <dd>Sanitizes HTML in the translation text using $sanitize</dd>
+   *   <dt>escape</dt>
+   *   <dd>Escapes HTML in the translation</dd>
+   *   <dt>sanitizeParameters</dt>
+   *   <dd>Sanitizes HTML in the values of the interpolation parameters using $sanitize</dd>
+   *   <dt>escapeParameters</dt>
+   *   <dd>Escapes HTML in the values of the interpolation parameters</dd>
+   *   <dt>escaped</dt>
+   *   <dd>Support legacy strategy name 'escaped' for backwards compatibility (will be removed in 3.0)</dd>
+   * </dl>
+   *
+   */
+strategies={sanitize:function(value,mode){if(mode==="text"){value=htmlSanitizeValue(value)}return value},escape:function(value,mode){if(mode==="text"){value=htmlEscapeValue(value)}return value},sanitizeParameters:function(value,mode){if(mode==="params"){value=mapInterpolationParameters(value,htmlSanitizeValue)}return value},escapeParameters:function(value,mode){if(mode==="params"){value=mapInterpolationParameters(value,htmlEscapeValue)}return value},sce:function(value,mode,context){if(mode==="text"){value=htmlTrustValue(value)}else if(mode==="params"){if(context!=="filter"){
+// do html escape in filter context #1101
+value=mapInterpolationParameters(value,htmlEscapeValue)}}return value},sceParameters:function(value,mode){if(mode==="params"){value=mapInterpolationParameters(value,htmlTrustValue)}return value}};
+// Support legacy strategy name 'escaped' for backwards compatibility.
+// TODO should be removed in 3.0
+strategies.escaped=strategies.escapeParameters;/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateSanitizationProvider#addStrategy
+   * @methodOf pascalprecht.translate.$translateSanitizationProvider
+   *
+   * @description
+   * Adds a sanitization strategy to the list of known strategies.
+   *
+   * @param {string} strategyName - unique key for a strategy
+   * @param {StrategyFunction} strategyFunction - strategy function
+   * @returns {object} this
+   */
+this.addStrategy=function(strategyName,strategyFunction){strategies[strategyName]=strategyFunction;return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateSanitizationProvider#removeStrategy
+   * @methodOf pascalprecht.translate.$translateSanitizationProvider
+   *
+   * @description
+   * Removes a sanitization strategy from the list of known strategies.
+   *
+   * @param {string} strategyName - unique key for a strategy
+   * @returns {object} this
+   */
+this.removeStrategy=function(strategyName){delete strategies[strategyName];return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateSanitizationProvider#useStrategy
+   * @methodOf pascalprecht.translate.$translateSanitizationProvider
+   *
+   * @description
+   * Selects a sanitization strategy. When an array is provided the strategies will be executed in order.
+   *
+   * @param {string|StrategyFunction|array} strategy The sanitization strategy / strategies which should be used. Either a name of an existing strategy, a custom strategy function, or an array consisting of multiple names and / or custom functions.
+   * @returns {object} this
+   */
+this.useStrategy=function(strategy){hasConfiguredStrategy=true;currentStrategy=strategy;return this};/**
+   * @ngdoc object
+   * @name pascalprecht.translate.$translateSanitization
+   * @requires $injector
+   * @requires $log
+   *
+   * @description
+   * Sanitizes interpolation parameters and translated texts.
+   *
+   */
+this.$get=["$injector","$log",function($injector,$log){var cachedStrategyMap={};var applyStrategies=function(value,mode,context,selectedStrategies){angular.forEach(selectedStrategies,function(selectedStrategy){if(angular.isFunction(selectedStrategy)){value=selectedStrategy(value,mode,context)}else if(angular.isFunction(strategies[selectedStrategy])){value=strategies[selectedStrategy](value,mode,context)}else if(angular.isString(strategies[selectedStrategy])){if(!cachedStrategyMap[strategies[selectedStrategy]]){try{cachedStrategyMap[strategies[selectedStrategy]]=$injector.get(strategies[selectedStrategy])}catch(e){cachedStrategyMap[strategies[selectedStrategy]]=function(){};throw new Error("pascalprecht.translate.$translateSanitization: Unknown sanitization strategy: '"+selectedStrategy+"'")}}value=cachedStrategyMap[strategies[selectedStrategy]](value,mode,context)}else{throw new Error("pascalprecht.translate.$translateSanitization: Unknown sanitization strategy: '"+selectedStrategy+"'")}});return value};
+// TODO: should be removed in 3.0
+var showNoStrategyConfiguredWarning=function(){if(!hasConfiguredStrategy&&!hasShownNoStrategyConfiguredWarning){$log.warn("pascalprecht.translate.$translateSanitization: No sanitization strategy has been configured. This can have serious security implications. See http://angular-translate.github.io/docs/#/guide/19_security for details.");hasShownNoStrategyConfiguredWarning=true}};if($injector.has("$sanitize")){$sanitize=$injector.get("$sanitize")}if($injector.has("$sce")){$sce=$injector.get("$sce")}return{/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translateSanitization#useStrategy
+       * @methodOf pascalprecht.translate.$translateSanitization
+       *
+       * @description
+       * Selects a sanitization strategy. When an array is provided the strategies will be executed in order.
+       *
+       * @param {string|StrategyFunction|array} strategy The sanitization strategy / strategies which should be used. Either a name of an existing strategy, a custom strategy function, or an array consisting of multiple names and / or custom functions.
+       */
+useStrategy:function(self){return function(strategy){self.useStrategy(strategy)}}(this),/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translateSanitization#sanitize
+       * @methodOf pascalprecht.translate.$translateSanitization
+       *
+       * @description
+       * Sanitizes a value.
+       *
+       * @param {string|object} value The value which should be sanitized.
+       * @param {string} mode The current sanitization mode, either 'params' or 'text'.
+       * @param {string|StrategyFunction|array} [strategy] Optional custom strategy which should be used instead of the currently selected strategy.
+       * @param {string} [context] The context of this call: filter, service. Default is service
+       * @returns {string|object} sanitized value
+       */
+sanitize:function(value,mode,strategy,context){if(!currentStrategy){showNoStrategyConfiguredWarning()}if(!strategy&&strategy!==null){strategy=currentStrategy}if(!strategy){return value}if(!context){context="service"}var selectedStrategies=angular.isArray(strategy)?strategy:[strategy];return applyStrategies(value,mode,context,selectedStrategies)}}}];var htmlEscapeValue=function(value){var element=angular.element("<div></div>");element.text(value);// not chainable, see #1044
+return element.html()};var htmlSanitizeValue=function(value){if(!$sanitize){throw new Error("pascalprecht.translate.$translateSanitization: Error cannot find $sanitize service. Either include the ngSanitize module (https://docs.angularjs.org/api/ngSanitize) or use a sanitization strategy which does not depend on $sanitize, such as 'escape'.")}return $sanitize(value)};var htmlTrustValue=function(value){if(!$sce){throw new Error("pascalprecht.translate.$translateSanitization: Error cannot find $sce service.")}return $sce.trustAsHtml(value)};var mapInterpolationParameters=function(value,iteratee,stack){if(angular.isDate(value)){return value}else if(angular.isObject(value)){var result=angular.isArray(value)?[]:{};if(!stack){stack=[]}else{if(stack.indexOf(value)>-1){throw new Error("pascalprecht.translate.$translateSanitization: Error cannot interpolate parameter due recursive object")}}stack.push(value);angular.forEach(value,function(propertyValue,propertyKey){/* Skipping function properties. */
+if(angular.isFunction(propertyValue)){return}result[propertyKey]=mapInterpolationParameters(propertyValue,iteratee,stack)});stack.splice(-1,1);// remove last
+return result}else if(angular.isNumber(value)){return value}else{return iteratee(value)}}}/**
+ * @ngdoc object
+ * @name pascalprecht.translate.$translateProvider
+ * @description
+ *
+ * $translateProvider allows developers to register translation-tables, asynchronous loaders
+ * and similar to configure translation behavior directly inside of a module.
+ *
+ */
+angular.module("pascalprecht.translate").constant("pascalprechtTranslateOverrider",{}).provider("$translate",$translate);function $translate($STORAGE_KEY,$windowProvider,$translateSanitizationProvider,pascalprechtTranslateOverrider){"use strict";var $translationTable={},$preferredLanguage,$availableLanguageKeys=[],$languageKeyAliases,$fallbackLanguage,$fallbackWasString,$uses,$nextLang,$storageFactory,$storageKey=$STORAGE_KEY,$storagePrefix,$missingTranslationHandlerFactory,$interpolationFactory,$interpolatorFactories=[],$loaderFactory,$cloakClassName="translate-cloak",$loaderOptions,$notFoundIndicatorLeft,$notFoundIndicatorRight,$postCompilingEnabled=false,$forceAsyncReloadEnabled=false,$nestedObjectDelimeter=".",$isReady=false,$keepContent=false,loaderCache,directivePriority=0,statefulFilter=true,postProcessFn,uniformLanguageTagResolver="default",languageTagResolver={default:function(tag){return(tag||"").split("-").join("_")},java:function(tag){var temp=(tag||"").split("-").join("_");var parts=temp.split("_");return parts.length>1?parts[0].toLowerCase()+"_"+parts[1].toUpperCase():temp},bcp47:function(tag){var temp=(tag||"").split("_").join("-");var parts=temp.split("-");return parts.length>1?parts[0].toLowerCase()+"-"+parts[1].toUpperCase():temp},"iso639-1":function(tag){var temp=(tag||"").split("_").join("-");var parts=temp.split("-");return parts[0].toLowerCase()}};var version="2.12.1";
+// tries to determine the browsers language
+var getFirstBrowserLanguage=function(){
+// internal purpose only
+if(angular.isFunction(pascalprechtTranslateOverrider.getLocale)){return pascalprechtTranslateOverrider.getLocale()}var nav=$windowProvider.$get().navigator,browserLanguagePropertyKeys=["language","browserLanguage","systemLanguage","userLanguage"],i,language;
+// support for HTML 5.1 "navigator.languages"
+if(angular.isArray(nav.languages)){for(i=0;i<nav.languages.length;i++){language=nav.languages[i];if(language&&language.length){return language}}}
+// support for other well known properties in browsers
+for(i=0;i<browserLanguagePropertyKeys.length;i++){language=nav[browserLanguagePropertyKeys[i]];if(language&&language.length){return language}}return null};getFirstBrowserLanguage.displayName="angular-translate/service: getFirstBrowserLanguage";
+// tries to determine the browsers locale
+var getLocale=function(){var locale=getFirstBrowserLanguage()||"";if(languageTagResolver[uniformLanguageTagResolver]){locale=languageTagResolver[uniformLanguageTagResolver](locale)}return locale};getLocale.displayName="angular-translate/service: getLocale";/**
+   * @name indexOf
+   * @private
+   *
+   * @description
+   * indexOf polyfill. Kinda sorta.
+   *
+   * @param {array} array Array to search in.
+   * @param {string} searchElement Element to search for.
+   *
+   * @returns {int} Index of search element.
+   */
+var indexOf=function(array,searchElement){for(var i=0,len=array.length;i<len;i++){if(array[i]===searchElement){return i}}return-1};/**
+   * @name trim
+   * @private
+   *
+   * @description
+   * trim polyfill
+   *
+   * @returns {string} The string stripped of whitespace from both ends
+   */
+var trim=function(){return this.toString().replace(/^\s+|\s+$/g,"")};var negotiateLocale=function(preferred){if(!preferred){return}var avail=[],locale=angular.lowercase(preferred),i=0,n=$availableLanguageKeys.length;for(;i<n;i++){avail.push(angular.lowercase($availableLanguageKeys[i]))}
+// Check for an exact match in our list of available keys
+if(indexOf(avail,locale)>-1){return preferred}if($languageKeyAliases){var alias;for(var langKeyAlias in $languageKeyAliases){if($languageKeyAliases.hasOwnProperty(langKeyAlias)){var hasWildcardKey=false;var hasExactKey=Object.prototype.hasOwnProperty.call($languageKeyAliases,langKeyAlias)&&angular.lowercase(langKeyAlias)===angular.lowercase(preferred);if(langKeyAlias.slice(-1)==="*"){hasWildcardKey=langKeyAlias.slice(0,-1)===preferred.slice(0,langKeyAlias.length-1)}if(hasExactKey||hasWildcardKey){alias=$languageKeyAliases[langKeyAlias];if(indexOf(avail,angular.lowercase(alias))>-1){return alias}}}}}
+// Check for a language code without region
+var parts=preferred.split("_");if(parts.length>1&&indexOf(avail,angular.lowercase(parts[0]))>-1){return parts[0]}
+// If everything fails, return undefined.
+return};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#translations
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Registers a new translation table for specific language key.
+   *
+   * To register a translation table for specific language, pass a defined language
+   * key as first parameter.
+   *
+   * <pre>
+   *  // register translation table for language: 'de_DE'
+   *  $translateProvider.translations('de_DE', {
+   *    'GREETING': 'Hallo Welt!'
+   *  });
+   *
+   *  // register another one
+   *  $translateProvider.translations('en_US', {
+   *    'GREETING': 'Hello world!'
+   *  });
+   * </pre>
+   *
+   * When registering multiple translation tables for for the same language key,
+   * the actual translation table gets extended. This allows you to define module
+   * specific translation which only get added, once a specific module is loaded in
+   * your app.
+   *
+   * Invoking this method with no arguments returns the translation table which was
+   * registered with no language key. Invoking it with a language key returns the
+   * related translation table.
+   *
+   * @param {string} langKey A language key.
+   * @param {object} translationTable A plain old JavaScript object that represents a translation table.
+   *
+   */
+var translations=function(langKey,translationTable){if(!langKey&&!translationTable){return $translationTable}if(langKey&&!translationTable){if(angular.isString(langKey)){return $translationTable[langKey]}}else{if(!angular.isObject($translationTable[langKey])){$translationTable[langKey]={}}angular.extend($translationTable[langKey],flatObject(translationTable))}return this};this.translations=translations;/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#cloakClassName
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   *
+   * Let's you change the class name for `translate-cloak` directive.
+   * Default class name is `translate-cloak`.
+   *
+   * @param {string} name translate-cloak class name
+   */
+this.cloakClassName=function(name){if(!name){return $cloakClassName}$cloakClassName=name;return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#nestedObjectDelimeter
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   *
+   * Let's you change the delimiter for namespaced translations.
+   * Default delimiter is `.`.
+   *
+   * @param {string} delimiter namespace separator
+   */
+this.nestedObjectDelimeter=function(delimiter){if(!delimiter){return $nestedObjectDelimeter}$nestedObjectDelimeter=delimiter;return this};/**
+   * @name flatObject
+   * @private
+   *
+   * @description
+   * Flats an object. This function is used to flatten given translation data with
+   * namespaces, so they are later accessible via dot notation.
+   */
+var flatObject=function(data,path,result,prevKey){var key,keyWithPath,keyWithShortPath,val;if(!path){path=[]}if(!result){result={}}for(key in data){if(!Object.prototype.hasOwnProperty.call(data,key)){continue}val=data[key];if(angular.isObject(val)){flatObject(val,path.concat(key),result,key)}else{keyWithPath=path.length?""+path.join($nestedObjectDelimeter)+$nestedObjectDelimeter+key:key;if(path.length&&key===prevKey){
+// Create shortcut path (foo.bar == foo.bar.bar)
+keyWithShortPath=""+path.join($nestedObjectDelimeter);
+// Link it to original path
+result[keyWithShortPath]="@:"+keyWithPath}result[keyWithPath]=val}}return result};flatObject.displayName="flatObject";/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#addInterpolation
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Adds interpolation services to angular-translate, so it can manage them.
+   *
+   * @param {object} factory Interpolation service factory
+   */
+this.addInterpolation=function(factory){$interpolatorFactories.push(factory);return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useMessageFormatInterpolation
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use interpolation functionality of messageformat.js.
+   * This is useful when having high level pluralization and gender selection.
+   */
+this.useMessageFormatInterpolation=function(){return this.useInterpolation("$translateMessageFormatInterpolation")};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useInterpolation
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate which interpolation style to use as default, application-wide.
+   * Simply pass a factory/service name. The interpolation service has to implement
+   * the correct interface.
+   *
+   * @param {string} factory Interpolation service name.
+   */
+this.useInterpolation=function(factory){$interpolationFactory=factory;return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useSanitizeStrategy
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Simply sets a sanitation strategy type.
+   *
+   * @param {string} value Strategy type.
+   */
+this.useSanitizeValueStrategy=function(value){$translateSanitizationProvider.useStrategy(value);return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#preferredLanguage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells the module which of the registered translation tables to use for translation
+   * at initial startup by passing a language key. Similar to `$translateProvider#use`
+   * only that it says which language to **prefer**.
+   *
+   * @param {string} langKey A language key.
+   */
+this.preferredLanguage=function(langKey){if(langKey){setupPreferredLanguage(langKey);return this}return $preferredLanguage};var setupPreferredLanguage=function(langKey){if(langKey){$preferredLanguage=langKey}return $preferredLanguage};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#translationNotFoundIndicator
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Sets an indicator which is used when a translation isn't found. E.g. when
+   * setting the indicator as 'X' and one tries to translate a translation id
+   * called `NOT_FOUND`, this will result in `X NOT_FOUND X`.
+   *
+   * Internally this methods sets a left indicator and a right indicator using
+   * `$translateProvider.translationNotFoundIndicatorLeft()` and
+   * `$translateProvider.translationNotFoundIndicatorRight()`.
+   *
+   * **Note**: These methods automatically add a whitespace between the indicators
+   * and the translation id.
+   *
+   * @param {string} indicator An indicator, could be any string.
+   */
+this.translationNotFoundIndicator=function(indicator){this.translationNotFoundIndicatorLeft(indicator);this.translationNotFoundIndicatorRight(indicator);return this};/**
+   * ngdoc function
+   * @name pascalprecht.translate.$translateProvider#translationNotFoundIndicatorLeft
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Sets an indicator which is used when a translation isn't found left to the
+   * translation id.
+   *
+   * @param {string} indicator An indicator.
+   */
+this.translationNotFoundIndicatorLeft=function(indicator){if(!indicator){return $notFoundIndicatorLeft}$notFoundIndicatorLeft=indicator;return this};/**
+   * ngdoc function
+   * @name pascalprecht.translate.$translateProvider#translationNotFoundIndicatorLeft
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Sets an indicator which is used when a translation isn't found right to the
+   * translation id.
+   *
+   * @param {string} indicator An indicator.
+   */
+this.translationNotFoundIndicatorRight=function(indicator){if(!indicator){return $notFoundIndicatorRight}$notFoundIndicatorRight=indicator;return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#fallbackLanguage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells the module which of the registered translation tables to use when missing translations
+   * at initial startup by passing a language key. Similar to `$translateProvider#use`
+   * only that it says which language to **fallback**.
+   *
+   * @param {string||array} langKey A language key.
+   *
+   */
+this.fallbackLanguage=function(langKey){fallbackStack(langKey);return this};var fallbackStack=function(langKey){if(langKey){if(angular.isString(langKey)){$fallbackWasString=true;$fallbackLanguage=[langKey]}else if(angular.isArray(langKey)){$fallbackWasString=false;$fallbackLanguage=langKey}if(angular.isString($preferredLanguage)&&indexOf($fallbackLanguage,$preferredLanguage)<0){$fallbackLanguage.push($preferredLanguage)}return this}else{if($fallbackWasString){return $fallbackLanguage[0]}else{return $fallbackLanguage}}};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#use
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Set which translation table to use for translation by given language key. When
+   * trying to 'use' a language which isn't provided, it'll throw an error.
+   *
+   * You actually don't have to use this method since `$translateProvider#preferredLanguage`
+   * does the job too.
+   *
+   * @param {string} langKey A language key.
+   */
+this.use=function(langKey){if(langKey){if(!$translationTable[langKey]&&!$loaderFactory){
+// only throw an error, when not loading translation data asynchronously
+throw new Error("$translateProvider couldn't find translationTable for langKey: '"+langKey+"'")}$uses=langKey;return this}return $uses};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#resolveClientLocale
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * This returns the current browser/client's language key. The result is processed with the configured uniform tag resolver.
+   *
+   * @returns {string} the current client/browser language key
+   */
+this.resolveClientLocale=function(){return getLocale()};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#storageKey
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells the module which key must represent the choosed language by a user in the storage.
+   *
+   * @param {string} key A key for the storage.
+   */
+var storageKey=function(key){if(!key){if($storagePrefix){return $storagePrefix+$storageKey}return $storageKey}$storageKey=key;return this};this.storageKey=storageKey;/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useUrlLoader
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use `$translateUrlLoader` extension service as loader.
+   *
+   * @param {string} url Url
+   * @param {Object=} options Optional configuration object
+   */
+this.useUrlLoader=function(url,options){return this.useLoader("$translateUrlLoader",angular.extend({url:url},options))};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useStaticFilesLoader
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use `$translateStaticFilesLoader` extension service as loader.
+   *
+   * @param {Object=} options Optional configuration object
+   */
+this.useStaticFilesLoader=function(options){return this.useLoader("$translateStaticFilesLoader",options)};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useLoader
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use any other service as loader.
+   *
+   * @param {string} loaderFactory Factory name to use
+   * @param {Object=} options Optional configuration object
+   */
+this.useLoader=function(loaderFactory,options){$loaderFactory=loaderFactory;$loaderOptions=options||{};return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useLocalStorage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use `$translateLocalStorage` service as storage layer.
+   *
+   */
+this.useLocalStorage=function(){return this.useStorage("$translateLocalStorage")};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useCookieStorage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use `$translateCookieStorage` service as storage layer.
+   */
+this.useCookieStorage=function(){return this.useStorage("$translateCookieStorage")};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useStorage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use custom service as storage layer.
+   */
+this.useStorage=function(storageFactory){$storageFactory=storageFactory;return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#storagePrefix
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Sets prefix for storage key.
+   *
+   * @param {string} prefix Storage key prefix
+   */
+this.storagePrefix=function(prefix){if(!prefix){return prefix}$storagePrefix=prefix;return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useMissingTranslationHandlerLog
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to use built-in log handler when trying to translate
+   * a translation Id which doesn't exist.
+   *
+   * This is actually a shortcut method for `useMissingTranslationHandler()`.
+   *
+   */
+this.useMissingTranslationHandlerLog=function(){return this.useMissingTranslationHandler("$translateMissingTranslationHandlerLog")};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useMissingTranslationHandler
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Expects a factory name which later gets instantiated with `$injector`.
+   * This method can be used to tell angular-translate to use a custom
+   * missingTranslationHandler. Just build a factory which returns a function
+   * and expects a translation id as argument.
+   *
+   * Example:
+   * <pre>
+   *  app.config(function ($translateProvider) {
+   *    $translateProvider.useMissingTranslationHandler('customHandler');
+   *  });
+   *
+   *  app.factory('customHandler', function (dep1, dep2) {
+   *    return function (translationId) {
+   *      // something with translationId and dep1 and dep2
+   *    };
+   *  });
+   * </pre>
+   *
+   * @param {string} factory Factory name
+   */
+this.useMissingTranslationHandler=function(factory){$missingTranslationHandlerFactory=factory;return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#usePostCompiling
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * If post compiling is enabled, all translated values will be processed
+   * again with AngularJS' $compile.
+   *
+   * Example:
+   * <pre>
+   *  app.config(function ($translateProvider) {
+   *    $translateProvider.usePostCompiling(true);
+   *  });
+   * </pre>
+   *
+   * @param {string} factory Factory name
+   */
+this.usePostCompiling=function(value){$postCompilingEnabled=!!value;return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#forceAsyncReload
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * If force async reload is enabled, async loader will always be called
+   * even if $translationTable already contains the language key, adding
+   * possible new entries to the $translationTable.
+   *
+   * Example:
+   * <pre>
+   *  app.config(function ($translateProvider) {
+   *    $translateProvider.forceAsyncReload(true);
+   *  });
+   * </pre>
+   *
+   * @param {boolean} value - valid values are true or false
+   */
+this.forceAsyncReload=function(value){$forceAsyncReloadEnabled=!!value;return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#uniformLanguageTag
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate which language tag should be used as a result when determining
+   * the current browser language.
+   *
+   * This setting must be set before invoking {@link pascalprecht.translate.$translateProvider#methods_determinePreferredLanguage determinePreferredLanguage()}.
+   *
+   * <pre>
+   * $translateProvider
+   *   .uniformLanguageTag('bcp47')
+   *   .determinePreferredLanguage()
+   * </pre>
+   *
+   * The resolver currently supports:
+   * * default
+   *     (traditionally: hyphens will be converted into underscores, i.e. en-US => en_US)
+   *     en-US => en_US
+   *     en_US => en_US
+   *     en-us => en_us
+   * * java
+   *     like default, but the second part will be always in uppercase
+   *     en-US => en_US
+   *     en_US => en_US
+   *     en-us => en_US
+   * * BCP 47 (RFC 4646 & 4647)
+   *     en-US => en-US
+   *     en_US => en-US
+   *     en-us => en-US
+   *
+   * See also:
+   * * http://en.wikipedia.org/wiki/IETF_language_tag
+   * * http://www.w3.org/International/core/langtags/
+   * * http://tools.ietf.org/html/bcp47
+   *
+   * @param {string|object} options - options (or standard)
+   * @param {string} options.standard - valid values are 'default', 'bcp47', 'java'
+   */
+this.uniformLanguageTag=function(options){if(!options){options={}}else if(angular.isString(options)){options={standard:options}}uniformLanguageTagResolver=options.standard;return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#determinePreferredLanguage
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Tells angular-translate to try to determine on its own which language key
+   * to set as preferred language. When `fn` is given, angular-translate uses it
+   * to determine a language key, otherwise it uses the built-in `getLocale()`
+   * method.
+   *
+   * The `getLocale()` returns a language key in the format `[lang]_[country]` or
+   * `[lang]` depending on what the browser provides.
+   *
+   * Use this method at your own risk, since not all browsers return a valid
+   * locale (see {@link pascalprecht.translate.$translateProvider#methods_uniformLanguageTag uniformLanguageTag()}).
+   *
+   * @param {Function=} fn Function to determine a browser's locale
+   */
+this.determinePreferredLanguage=function(fn){var locale=fn&&angular.isFunction(fn)?fn():getLocale();if(!$availableLanguageKeys.length){$preferredLanguage=locale}else{$preferredLanguage=negotiateLocale(locale)||locale}return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#registerAvailableLanguageKeys
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Registers a set of language keys the app will work with. Use this method in
+   * combination with
+   * {@link pascalprecht.translate.$translateProvider#determinePreferredLanguage determinePreferredLanguage}.
+   * When available languages keys are registered, angular-translate
+   * tries to find the best fitting language key depending on the browsers locale,
+   * considering your language key convention.
+   *
+   * @param {object} languageKeys Array of language keys the your app will use
+   * @param {object=} aliases Alias map.
+   */
+this.registerAvailableLanguageKeys=function(languageKeys,aliases){if(languageKeys){$availableLanguageKeys=languageKeys;if(aliases){$languageKeyAliases=aliases}return this}return $availableLanguageKeys};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#useLoaderCache
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Registers a cache for internal $http based loaders.
+   * {@link pascalprecht.translate.$translationCache $translationCache}.
+   * When false the cache will be disabled (default). When true or undefined
+   * the cache will be a default (see $cacheFactory). When an object it will
+   * be treat as a cache object itself: the usage is $http({cache: cache})
+   *
+   * @param {object} cache boolean, string or cache-object
+   */
+this.useLoaderCache=function(cache){if(cache===false){
+// disable cache
+loaderCache=undefined}else if(cache===true){
+// enable cache using AJS defaults
+loaderCache=true}else if(typeof cache==="undefined"){
+// enable cache using default
+loaderCache="$translationCache"}else if(cache){
+// enable cache using given one (see $cacheFactory)
+loaderCache=cache}return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#directivePriority
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Sets the default priority of the translate directive. The standard value is `0`.
+   * Calling this function without an argument will return the current value.
+   *
+   * @param {number} priority for the translate-directive
+   */
+this.directivePriority=function(priority){if(priority===undefined){
+// getter
+return directivePriority}else{
+// setter with chaining
+directivePriority=priority;return this}};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#statefulFilter
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * Since AngularJS 1.3, filters which are not stateless (depending at the scope)
+   * have to explicit define this behavior.
+   * Sets whether the translate filter should be stateful or stateless. The standard value is `true`
+   * meaning being stateful.
+   * Calling this function without an argument will return the current value.
+   *
+   * @param {boolean} state - defines the state of the filter
+   */
+this.statefulFilter=function(state){if(state===undefined){
+// getter
+return statefulFilter}else{
+// setter with chaining
+statefulFilter=state;return this}};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#postProcess
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * The post processor will be intercept right after the translation result. It can modify the result.
+   *
+   * @param {object} fn Function or service name (string) to be called after the translation value has been set / resolved. The function itself will enrich every value being processed and then continue the normal resolver process
+   */
+this.postProcess=function(fn){if(fn){postProcessFn=fn}else{postProcessFn=undefined}return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateProvider#keepContent
+   * @methodOf pascalprecht.translate.$translateProvider
+   *
+   * @description
+   * If keepContent is set to true than translate directive will always use innerHTML
+   * as a default translation
+   *
+   * Example:
+   * <pre>
+   *  app.config(function ($translateProvider) {
+   *    $translateProvider.keepContent(true);
+   *  });
+   * </pre>
+   *
+   * @param {boolean} value - valid values are true or false
+   */
+this.keepContent=function(value){$keepContent=!!value;return this};/**
+   * @ngdoc object
+   * @name pascalprecht.translate.$translate
+   * @requires $interpolate
+   * @requires $log
+   * @requires $rootScope
+   * @requires $q
+   *
+   * @description
+   * The `$translate` service is the actual core of angular-translate. It expects a translation id
+   * and optional interpolate parameters to translate contents.
+   *
+   * <pre>
+   *  $translate('HEADLINE_TEXT').then(function (translation) {
+   *    $scope.translatedText = translation;
+   *  });
+   * </pre>
+   *
+   * @param {string|array} translationId A token which represents a translation id
+   *                                     This can be optionally an array of translation ids which
+   *                                     results that the function returns an object where each key
+   *                                     is the translation id and the value the translation.
+   * @param {object=} interpolateParams An object hash for dynamic values
+   * @param {string} interpolationId The id of the interpolation to use
+   * @param {string} defaultTranslationText the optional default translation text that is written as
+   *                                        as default text in case it is not found in any configured language
+   * @param {string} forceLanguage A language to be used instead of the current language
+   * @returns {object} promise
+   */
+this.$get=["$log","$injector","$rootScope","$q",function($log,$injector,$rootScope,$q){var Storage,defaultInterpolator=$injector.get($interpolationFactory||"$translateDefaultInterpolation"),pendingLoader=false,interpolatorHashMap={},langPromises={},fallbackIndex,startFallbackIteration;var $translate=function(translationId,interpolateParams,interpolationId,defaultTranslationText,forceLanguage){if(!$uses&&$preferredLanguage){$uses=$preferredLanguage}var uses=forceLanguage&&forceLanguage!==$uses?// we don't want to re-negotiate $uses
+negotiateLocale(forceLanguage)||forceLanguage:$uses;
+// Check forceLanguage is present
+if(forceLanguage){loadTranslationsIfMissing(forceLanguage)}
+// Duck detection: If the first argument is an array, a bunch of translations was requested.
+// The result is an object.
+if(angular.isArray(translationId)){
+// Inspired by Q.allSettled by Kris Kowal
+// https://github.com/kriskowal/q/blob/b0fa72980717dc202ffc3cbf03b936e10ebbb9d7/q.js#L1553-1563
+// This transforms all promises regardless resolved or rejected
+var translateAll=function(translationIds){var results={};// storing the actual results
+var promises=[];// promises to wait for
+// Wraps the promise a) being always resolved and b) storing the link id->value
+var translate=function(translationId){var deferred=$q.defer();var regardless=function(value){results[translationId]=value;deferred.resolve([translationId,value])};
+// we don't care whether the promise was resolved or rejected; just store the values
+$translate(translationId,interpolateParams,interpolationId,defaultTranslationText,forceLanguage).then(regardless,regardless);return deferred.promise};for(var i=0,c=translationIds.length;i<c;i++){promises.push(translate(translationIds[i]))}
+// wait for all (including storing to results)
+return $q.all(promises).then(function(){
+// return the results
+return results})};return translateAll(translationId)}var deferred=$q.defer();
+// trim off any whitespace
+if(translationId){translationId=trim.apply(translationId)}var promiseToWaitFor=function(){var promise=$preferredLanguage?langPromises[$preferredLanguage]:langPromises[uses];fallbackIndex=0;if($storageFactory&&!promise){
+// looks like there's no pending promise for $preferredLanguage or
+// $uses. Maybe there's one pending for a language that comes from
+// storage.
+var langKey=Storage.get($storageKey);promise=langPromises[langKey];if($fallbackLanguage&&$fallbackLanguage.length){var index=indexOf($fallbackLanguage,langKey);
+// maybe the language from storage is also defined as fallback language
+// we increase the fallback language index to not search in that language
+// as fallback, since it's probably the first used language
+// in that case the index starts after the first element
+fallbackIndex=index===0?1:0;
+// but we can make sure to ALWAYS fallback to preferred language at least
+if(indexOf($fallbackLanguage,$preferredLanguage)<0){$fallbackLanguage.push($preferredLanguage)}}}return promise}();if(!promiseToWaitFor){
+// no promise to wait for? okay. Then there's no loader registered
+// nor is a one pending for language that comes from storage.
+// We can just translate.
+determineTranslation(translationId,interpolateParams,interpolationId,defaultTranslationText,uses).then(deferred.resolve,deferred.reject)}else{var promiseResolved=function(){
+// $uses may have changed while waiting
+if(!forceLanguage){uses=$uses}determineTranslation(translationId,interpolateParams,interpolationId,defaultTranslationText,uses).then(deferred.resolve,deferred.reject)};promiseResolved.displayName="promiseResolved";promiseToWaitFor["finally"](promiseResolved)}return deferred.promise};/**
+       * @name applyNotFoundIndicators
+       * @private
+       *
+       * @description
+       * Applies not fount indicators to given translation id, if needed.
+       * This function gets only executed, if a translation id doesn't exist,
+       * which is why a translation id is expected as argument.
+       *
+       * @param {string} translationId Translation id.
+       * @returns {string} Same as given translation id but applied with not found
+       * indicators.
+       */
+var applyNotFoundIndicators=function(translationId){
+// applying notFoundIndicators
+if($notFoundIndicatorLeft){translationId=[$notFoundIndicatorLeft,translationId].join(" ")}if($notFoundIndicatorRight){translationId=[translationId,$notFoundIndicatorRight].join(" ")}return translationId};/**
+       * @name useLanguage
+       * @private
+       *
+       * @description
+       * Makes actual use of a language by setting a given language key as used
+       * language and informs registered interpolators to also use the given
+       * key as locale.
+       *
+       * @param {string} key Locale key.
+       */
+var useLanguage=function(key){$uses=key;
+// make sure to store new language key before triggering success event
+if($storageFactory){Storage.put($translate.storageKey(),$uses)}$rootScope.$emit("$translateChangeSuccess",{language:key});
+// inform default interpolator
+defaultInterpolator.setLocale($uses);var eachInterpolator=function(interpolator,id){interpolatorHashMap[id].setLocale($uses)};eachInterpolator.displayName="eachInterpolatorLocaleSetter";
+// inform all others too!
+angular.forEach(interpolatorHashMap,eachInterpolator);$rootScope.$emit("$translateChangeEnd",{language:key})};/**
+       * @name loadAsync
+       * @private
+       *
+       * @description
+       * Kicks of registered async loader using `$injector` and applies existing
+       * loader options. When resolved, it updates translation tables accordingly
+       * or rejects with given language key.
+       *
+       * @param {string} key Language key.
+       * @return {Promise} A promise.
+       */
+var loadAsync=function(key){if(!key){throw"No language key specified for loading."}var deferred=$q.defer();$rootScope.$emit("$translateLoadingStart",{language:key});pendingLoader=true;var cache=loaderCache;if(typeof cache==="string"){
+// getting on-demand instance of loader
+cache=$injector.get(cache)}var loaderOptions=angular.extend({},$loaderOptions,{key:key,$http:angular.extend({},{cache:cache},$loaderOptions.$http)});var onLoaderSuccess=function(data){var translationTable={};$rootScope.$emit("$translateLoadingSuccess",{language:key});if(angular.isArray(data)){angular.forEach(data,function(table){angular.extend(translationTable,flatObject(table))})}else{angular.extend(translationTable,flatObject(data))}pendingLoader=false;deferred.resolve({key:key,table:translationTable});$rootScope.$emit("$translateLoadingEnd",{language:key})};onLoaderSuccess.displayName="onLoaderSuccess";var onLoaderError=function(key){$rootScope.$emit("$translateLoadingError",{language:key});deferred.reject(key);$rootScope.$emit("$translateLoadingEnd",{language:key})};onLoaderError.displayName="onLoaderError";$injector.get($loaderFactory)(loaderOptions).then(onLoaderSuccess,onLoaderError);return deferred.promise};if($storageFactory){Storage=$injector.get($storageFactory);if(!Storage.get||!Storage.put){throw new Error("Couldn't use storage '"+$storageFactory+"', missing get() or put() method!")}}
+// if we have additional interpolations that were added via
+// $translateProvider.addInterpolation(), we have to map'em
+if($interpolatorFactories.length){var eachInterpolationFactory=function(interpolatorFactory){var interpolator=$injector.get(interpolatorFactory);
+// setting initial locale for each interpolation service
+interpolator.setLocale($preferredLanguage||$uses);
+// make'em recognizable through id
+interpolatorHashMap[interpolator.getInterpolationIdentifier()]=interpolator};eachInterpolationFactory.displayName="interpolationFactoryAdder";angular.forEach($interpolatorFactories,eachInterpolationFactory)}/**
+       * @name getTranslationTable
+       * @private
+       *
+       * @description
+       * Returns a promise that resolves to the translation table
+       * or is rejected if an error occurred.
+       *
+       * @param langKey
+       * @returns {Q.promise}
+       */
+var getTranslationTable=function(langKey){var deferred=$q.defer();if(Object.prototype.hasOwnProperty.call($translationTable,langKey)){deferred.resolve($translationTable[langKey])}else if(langPromises[langKey]){var onResolve=function(data){translations(data.key,data.table);deferred.resolve(data.table)};onResolve.displayName="translationTableResolver";langPromises[langKey].then(onResolve,deferred.reject)}else{deferred.reject()}return deferred.promise};/**
+       * @name getFallbackTranslation
+       * @private
+       *
+       * @description
+       * Returns a promise that will resolve to the translation
+       * or be rejected if no translation was found for the language.
+       * This function is currently only used for fallback language translation.
+       *
+       * @param langKey The language to translate to.
+       * @param translationId
+       * @param interpolateParams
+       * @param Interpolator
+       * @returns {Q.promise}
+       */
+var getFallbackTranslation=function(langKey,translationId,interpolateParams,Interpolator){var deferred=$q.defer();var onResolve=function(translationTable){if(Object.prototype.hasOwnProperty.call(translationTable,translationId)){Interpolator.setLocale(langKey);var translation=translationTable[translationId];if(translation.substr(0,2)==="@:"){getFallbackTranslation(langKey,translation.substr(2),interpolateParams,Interpolator).then(deferred.resolve,deferred.reject)}else{var interpolatedValue=Interpolator.interpolate(translationTable[translationId],interpolateParams,"service");interpolatedValue=applyPostProcessing(translationId,translationTable[translationId],interpolatedValue,interpolateParams,langKey);deferred.resolve(interpolatedValue)}Interpolator.setLocale($uses)}else{deferred.reject()}};onResolve.displayName="fallbackTranslationResolver";getTranslationTable(langKey).then(onResolve,deferred.reject);return deferred.promise};/**
+       * @name getFallbackTranslationInstant
+       * @private
+       *
+       * @description
+       * Returns a translation
+       * This function is currently only used for fallback language translation.
+       *
+       * @param langKey The language to translate to.
+       * @param translationId
+       * @param interpolateParams
+       * @param Interpolator
+       * @returns {string} translation
+       */
+var getFallbackTranslationInstant=function(langKey,translationId,interpolateParams,Interpolator){var result,translationTable=$translationTable[langKey];if(translationTable&&Object.prototype.hasOwnProperty.call(translationTable,translationId)){Interpolator.setLocale(langKey);result=Interpolator.interpolate(translationTable[translationId],interpolateParams,"filter");result=applyPostProcessing(translationId,translationTable[translationId],result,interpolateParams,langKey);if(result.substr(0,2)==="@:"){return getFallbackTranslationInstant(langKey,result.substr(2),interpolateParams,Interpolator)}Interpolator.setLocale($uses)}return result};/**
+       * @name translateByHandler
+       * @private
+       *
+       * Translate by missing translation handler.
+       *
+       * @param translationId
+       * @param interpolateParams
+       * @param defaultTranslationText
+       * @returns translation created by $missingTranslationHandler or translationId is $missingTranslationHandler is
+       * absent
+       */
+var translateByHandler=function(translationId,interpolateParams,defaultTranslationText){
+// If we have a handler factory - we might also call it here to determine if it provides
+// a default text for a translationid that can't be found anywhere in our tables
+if($missingTranslationHandlerFactory){var resultString=$injector.get($missingTranslationHandlerFactory)(translationId,$uses,interpolateParams,defaultTranslationText);if(resultString!==undefined){return resultString}else{return translationId}}else{return translationId}};/**
+       * @name resolveForFallbackLanguage
+       * @private
+       *
+       * Recursive helper function for fallbackTranslation that will sequentially look
+       * for a translation in the fallbackLanguages starting with fallbackLanguageIndex.
+       *
+       * @param fallbackLanguageIndex
+       * @param translationId
+       * @param interpolateParams
+       * @param Interpolator
+       * @returns {Q.promise} Promise that will resolve to the translation.
+       */
+var resolveForFallbackLanguage=function(fallbackLanguageIndex,translationId,interpolateParams,Interpolator,defaultTranslationText){var deferred=$q.defer();if(fallbackLanguageIndex<$fallbackLanguage.length){var langKey=$fallbackLanguage[fallbackLanguageIndex];getFallbackTranslation(langKey,translationId,interpolateParams,Interpolator).then(function(data){deferred.resolve(data)},function(){
+// Look in the next fallback language for a translation.
+// It delays the resolving by passing another promise to resolve.
+return resolveForFallbackLanguage(fallbackLanguageIndex+1,translationId,interpolateParams,Interpolator,defaultTranslationText).then(deferred.resolve,deferred.reject)})}else{
+// No translation found in any fallback language
+// if a default translation text is set in the directive, then return this as a result
+if(defaultTranslationText){deferred.resolve(defaultTranslationText)}else{
+// if no default translation is set and an error handler is defined, send it to the handler
+// and then return the result
+if($missingTranslationHandlerFactory){deferred.resolve(translateByHandler(translationId,interpolateParams))}else{deferred.reject(translateByHandler(translationId,interpolateParams))}}}return deferred.promise};/**
+       * @name resolveForFallbackLanguageInstant
+       * @private
+       *
+       * Recursive helper function for fallbackTranslation that will sequentially look
+       * for a translation in the fallbackLanguages starting with fallbackLanguageIndex.
+       *
+       * @param fallbackLanguageIndex
+       * @param translationId
+       * @param interpolateParams
+       * @param Interpolator
+       * @returns {string} translation
+       */
+var resolveForFallbackLanguageInstant=function(fallbackLanguageIndex,translationId,interpolateParams,Interpolator){var result;if(fallbackLanguageIndex<$fallbackLanguage.length){var langKey=$fallbackLanguage[fallbackLanguageIndex];result=getFallbackTranslationInstant(langKey,translationId,interpolateParams,Interpolator);if(!result){result=resolveForFallbackLanguageInstant(fallbackLanguageIndex+1,translationId,interpolateParams,Interpolator)}}return result};/**
+       * Translates with the usage of the fallback languages.
+       *
+       * @param translationId
+       * @param interpolateParams
+       * @param Interpolator
+       * @returns {Q.promise} Promise, that resolves to the translation.
+       */
+var fallbackTranslation=function(translationId,interpolateParams,Interpolator,defaultTranslationText){
+// Start with the fallbackLanguage with index 0
+return resolveForFallbackLanguage(startFallbackIteration>0?startFallbackIteration:fallbackIndex,translationId,interpolateParams,Interpolator,defaultTranslationText)};/**
+       * Translates with the usage of the fallback languages.
+       *
+       * @param translationId
+       * @param interpolateParams
+       * @param Interpolator
+       * @returns {String} translation
+       */
+var fallbackTranslationInstant=function(translationId,interpolateParams,Interpolator){
+// Start with the fallbackLanguage with index 0
+return resolveForFallbackLanguageInstant(startFallbackIteration>0?startFallbackIteration:fallbackIndex,translationId,interpolateParams,Interpolator)};var determineTranslation=function(translationId,interpolateParams,interpolationId,defaultTranslationText,uses){var deferred=$q.defer();var table=uses?$translationTable[uses]:$translationTable,Interpolator=interpolationId?interpolatorHashMap[interpolationId]:defaultInterpolator;
+// if the translation id exists, we can just interpolate it
+if(table&&Object.prototype.hasOwnProperty.call(table,translationId)){var translation=table[translationId];
+// If using link, rerun $translate with linked translationId and return it
+if(translation.substr(0,2)==="@:"){$translate(translation.substr(2),interpolateParams,interpolationId,defaultTranslationText,uses).then(deferred.resolve,deferred.reject)}else{
+//
+var resolvedTranslation=Interpolator.interpolate(translation,interpolateParams,"service");resolvedTranslation=applyPostProcessing(translationId,translation,resolvedTranslation,interpolateParams,uses);deferred.resolve(resolvedTranslation)}}else{var missingTranslationHandlerTranslation;
+// for logging purposes only (as in $translateMissingTranslationHandlerLog), value is not returned to promise
+if($missingTranslationHandlerFactory&&!pendingLoader){missingTranslationHandlerTranslation=translateByHandler(translationId,interpolateParams,defaultTranslationText)}
+// since we couldn't translate the inital requested translation id,
+// we try it now with one or more fallback languages, if fallback language(s) is
+// configured.
+if(uses&&$fallbackLanguage&&$fallbackLanguage.length){fallbackTranslation(translationId,interpolateParams,Interpolator,defaultTranslationText).then(function(translation){deferred.resolve(translation)},function(_translationId){deferred.reject(applyNotFoundIndicators(_translationId))})}else if($missingTranslationHandlerFactory&&!pendingLoader&&missingTranslationHandlerTranslation){
+// looks like the requested translation id doesn't exists.
+// Now, if there is a registered handler for missing translations and no
+// asyncLoader is pending, we execute the handler
+if(defaultTranslationText){deferred.resolve(defaultTranslationText)}else{deferred.resolve(missingTranslationHandlerTranslation)}}else{if(defaultTranslationText){deferred.resolve(defaultTranslationText)}else{deferred.reject(applyNotFoundIndicators(translationId))}}}return deferred.promise};var determineTranslationInstant=function(translationId,interpolateParams,interpolationId,uses){var result,table=uses?$translationTable[uses]:$translationTable,Interpolator=defaultInterpolator;
+// if the interpolation id exists use custom interpolator
+if(interpolatorHashMap&&Object.prototype.hasOwnProperty.call(interpolatorHashMap,interpolationId)){Interpolator=interpolatorHashMap[interpolationId]}
+// if the translation id exists, we can just interpolate it
+if(table&&Object.prototype.hasOwnProperty.call(table,translationId)){var translation=table[translationId];
+// If using link, rerun $translate with linked translationId and return it
+if(translation.substr(0,2)==="@:"){result=determineTranslationInstant(translation.substr(2),interpolateParams,interpolationId,uses)}else{result=Interpolator.interpolate(translation,interpolateParams,"filter");result=applyPostProcessing(translationId,translation,result,interpolateParams,uses)}}else{var missingTranslationHandlerTranslation;
+// for logging purposes only (as in $translateMissingTranslationHandlerLog), value is not returned to promise
+if($missingTranslationHandlerFactory&&!pendingLoader){missingTranslationHandlerTranslation=translateByHandler(translationId,interpolateParams)}
+// since we couldn't translate the inital requested translation id,
+// we try it now with one or more fallback languages, if fallback language(s) is
+// configured.
+if(uses&&$fallbackLanguage&&$fallbackLanguage.length){fallbackIndex=0;result=fallbackTranslationInstant(translationId,interpolateParams,Interpolator)}else if($missingTranslationHandlerFactory&&!pendingLoader&&missingTranslationHandlerTranslation){
+// looks like the requested translation id doesn't exists.
+// Now, if there is a registered handler for missing translations and no
+// asyncLoader is pending, we execute the handler
+result=missingTranslationHandlerTranslation}else{result=applyNotFoundIndicators(translationId)}}return result};var clearNextLangAndPromise=function(key){if($nextLang===key){$nextLang=undefined}langPromises[key]=undefined};var applyPostProcessing=function(translationId,translation,resolvedTranslation,interpolateParams,uses){var fn=postProcessFn;if(fn){if(typeof fn==="string"){
+// getting on-demand instance
+fn=$injector.get(fn)}if(fn){return fn(translationId,translation,resolvedTranslation,interpolateParams,uses)}}return resolvedTranslation};var loadTranslationsIfMissing=function(key){if(!$translationTable[key]&&$loaderFactory&&!langPromises[key]){langPromises[key]=loadAsync(key).then(function(translation){translations(translation.key,translation.table);return translation})}};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#preferredLanguage
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the language key for the preferred language.
+       *
+       * @param {string} langKey language String or Array to be used as preferredLanguage (changing at runtime)
+       *
+       * @return {string} preferred language key
+       */
+$translate.preferredLanguage=function(langKey){if(langKey){setupPreferredLanguage(langKey)}return $preferredLanguage};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#cloakClassName
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the configured class name for `translate-cloak` directive.
+       *
+       * @return {string} cloakClassName
+       */
+$translate.cloakClassName=function(){return $cloakClassName};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#nestedObjectDelimeter
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the configured delimiter for nested namespaces.
+       *
+       * @return {string} nestedObjectDelimeter
+       */
+$translate.nestedObjectDelimeter=function(){return $nestedObjectDelimeter};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#fallbackLanguage
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the language key for the fallback languages or sets a new fallback stack.
+       *
+       * @param {string=} langKey language String or Array of fallback languages to be used (to change stack at runtime)
+       *
+       * @return {string||array} fallback language key
+       */
+$translate.fallbackLanguage=function(langKey){if(langKey!==undefined&&langKey!==null){fallbackStack(langKey);
+// as we might have an async loader initiated and a new translation language might have been defined
+// we need to add the promise to the stack also. So - iterate.
+if($loaderFactory){if($fallbackLanguage&&$fallbackLanguage.length){for(var i=0,len=$fallbackLanguage.length;i<len;i++){if(!langPromises[$fallbackLanguage[i]]){langPromises[$fallbackLanguage[i]]=loadAsync($fallbackLanguage[i])}}}}$translate.use($translate.use())}if($fallbackWasString){return $fallbackLanguage[0]}else{return $fallbackLanguage}};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#useFallbackLanguage
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Sets the first key of the fallback language stack to be used for translation.
+       * Therefore all languages in the fallback array BEFORE this key will be skipped!
+       *
+       * @param {string=} langKey Contains the langKey the iteration shall start with. Set to false if you want to
+       * get back to the whole stack
+       */
+$translate.useFallbackLanguage=function(langKey){if(langKey!==undefined&&langKey!==null){if(!langKey){startFallbackIteration=0}else{var langKeyPosition=indexOf($fallbackLanguage,langKey);if(langKeyPosition>-1){startFallbackIteration=langKeyPosition}}}};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#proposedLanguage
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the language key of language that is currently loaded asynchronously.
+       *
+       * @return {string} language key
+       */
+$translate.proposedLanguage=function(){return $nextLang};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#storage
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns registered storage.
+       *
+       * @return {object} Storage
+       */
+$translate.storage=function(){return Storage};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#negotiateLocale
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns a language key based on available languages and language aliases. If a
+       * language key cannot be resolved, returns undefined.
+       *
+       * If no or a falsy key is given, returns undefined.
+       *
+       * @param {string} [key] Language key
+       * @return {string|undefined} Language key or undefined if no language key is found.
+       */
+$translate.negotiateLocale=negotiateLocale;/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#use
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Tells angular-translate which language to use by given language key. This method is
+       * used to change language at runtime. It also takes care of storing the language
+       * key in a configured store to let your app remember the choosed language.
+       *
+       * When trying to 'use' a language which isn't available it tries to load it
+       * asynchronously with registered loaders.
+       *
+       * Returns promise object with loaded language file data or string of the currently used language.
+       *
+       * If no or a falsy key is given it returns the currently used language key.
+       * The returned string will be ```undefined``` if setting up $translate hasn't finished.
+       * @example
+       * $translate.use("en_US").then(function(data){
+       *   $scope.text = $translate("HELLO");
+       * });
+       *
+       * @param {string} [key] Language key
+       * @return {object|string} Promise with loaded language data or the language key if a falsy param was given.
+       */
+$translate.use=function(key){if(!key){return $uses}var deferred=$q.defer();$rootScope.$emit("$translateChangeStart",{language:key});
+// Try to get the aliased language key
+var aliasedKey=negotiateLocale(key);
+// Ensure only registered language keys will be loaded
+if($availableLanguageKeys.length>0&&!aliasedKey){return $q.reject(key)}if(aliasedKey){key=aliasedKey}
+// if there isn't a translation table for the language we've requested,
+// we load it asynchronously
+$nextLang=key;if(($forceAsyncReloadEnabled||!$translationTable[key])&&$loaderFactory&&!langPromises[key]){langPromises[key]=loadAsync(key).then(function(translation){translations(translation.key,translation.table);deferred.resolve(translation.key);if($nextLang===key){useLanguage(translation.key)}return translation},function(key){$rootScope.$emit("$translateChangeError",{language:key});deferred.reject(key);$rootScope.$emit("$translateChangeEnd",{language:key});return $q.reject(key)});langPromises[key]["finally"](function(){clearNextLangAndPromise(key)})}else if(langPromises[key]){
+// we are already loading this asynchronously
+// resolve our new deferred when the old langPromise is resolved
+langPromises[key].then(function(translation){if($nextLang===translation.key){useLanguage(translation.key)}deferred.resolve(translation.key);return translation},function(key){
+// find first available fallback language if that request has failed
+if(!$uses&&$fallbackLanguage&&$fallbackLanguage.length>0&&$fallbackLanguage[0]!==key){return $translate.use($fallbackLanguage[0]).then(deferred.resolve,deferred.reject)}else{return deferred.reject(key)}})}else{deferred.resolve(key);useLanguage(key)}return deferred.promise};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#resolveClientLocale
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * This returns the current browser/client's language key. The result is processed with the configured uniform tag resolver.
+       *
+       * @returns {string} the current client/browser language key
+       */
+$translate.resolveClientLocale=function(){return getLocale()};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#storageKey
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the key for the storage.
+       *
+       * @return {string} storage key
+       */
+$translate.storageKey=function(){return storageKey()};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#isPostCompilingEnabled
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns whether post compiling is enabled or not
+       *
+       * @return {bool} storage key
+       */
+$translate.isPostCompilingEnabled=function(){return $postCompilingEnabled};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#isForceAsyncReloadEnabled
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns whether force async reload is enabled or not
+       *
+       * @return {boolean} forceAsyncReload value
+       */
+$translate.isForceAsyncReloadEnabled=function(){return $forceAsyncReloadEnabled};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#isKeepContent
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns whether keepContent or not
+       *
+       * @return {boolean} keepContent value
+       */
+$translate.isKeepContent=function(){return $keepContent};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#refresh
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Refreshes a translation table pointed by the given langKey. If langKey is not specified,
+       * the module will drop all existent translation tables and load new version of those which
+       * are currently in use.
+       *
+       * Refresh means that the module will drop target translation table and try to load it again.
+       *
+       * In case there are no loaders registered the refresh() method will throw an Error.
+       *
+       * If the module is able to refresh translation tables refresh() method will broadcast
+       * $translateRefreshStart and $translateRefreshEnd events.
+       *
+       * @example
+       * // this will drop all currently existent translation tables and reload those which are
+       * // currently in use
+       * $translate.refresh();
+       * // this will refresh a translation table for the en_US language
+       * $translate.refresh('en_US');
+       *
+       * @param {string} langKey A language key of the table, which has to be refreshed
+       *
+       * @return {promise} Promise, which will be resolved in case a translation tables refreshing
+       * process is finished successfully, and reject if not.
+       */
+$translate.refresh=function(langKey){if(!$loaderFactory){throw new Error("Couldn't refresh translation table, no loader registered!")}var deferred=$q.defer();function resolve(){deferred.resolve();$rootScope.$emit("$translateRefreshEnd",{language:langKey})}function reject(){deferred.reject();$rootScope.$emit("$translateRefreshEnd",{language:langKey})}$rootScope.$emit("$translateRefreshStart",{language:langKey});if(!langKey){
+// if there's no language key specified we refresh ALL THE THINGS!
+var tables=[],loadingKeys={};
+// reload registered fallback languages
+if($fallbackLanguage&&$fallbackLanguage.length){for(var i=0,len=$fallbackLanguage.length;i<len;i++){tables.push(loadAsync($fallbackLanguage[i]));loadingKeys[$fallbackLanguage[i]]=true}}
+// reload currently used language
+if($uses&&!loadingKeys[$uses]){tables.push(loadAsync($uses))}var allTranslationsLoaded=function(tableData){$translationTable={};angular.forEach(tableData,function(data){translations(data.key,data.table)});if($uses){useLanguage($uses)}resolve()};allTranslationsLoaded.displayName="refreshPostProcessor";$q.all(tables).then(allTranslationsLoaded,reject)}else if($translationTable[langKey]){var oneTranslationsLoaded=function(data){translations(data.key,data.table);if(langKey===$uses){useLanguage($uses)}resolve();return data};oneTranslationsLoaded.displayName="refreshPostProcessor";loadAsync(langKey).then(oneTranslationsLoaded,reject)}else{reject()}return deferred.promise};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#instant
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns a translation instantly from the internal state of loaded translation. All rules
+       * regarding the current language, the preferred language of even fallback languages will be
+       * used except any promise handling. If a language was not found, an asynchronous loading
+       * will be invoked in the background.
+       *
+       * @param {string|array} translationId A token which represents a translation id
+       *                                     This can be optionally an array of translation ids which
+       *                                     results that the function's promise returns an object where
+       *                                     each key is the translation id and the value the translation.
+       * @param {object} interpolateParams Params
+       * @param {string} interpolationId The id of the interpolation to use
+       * @param {string} forceLanguage A language to be used instead of the current language
+       *
+       * @return {string|object} translation
+       */
+$translate.instant=function(translationId,interpolateParams,interpolationId,forceLanguage){
+// we don't want to re-negotiate $uses
+var uses=forceLanguage&&forceLanguage!==$uses?// we don't want to re-negotiate $uses
+negotiateLocale(forceLanguage)||forceLanguage:$uses;
+// Detect undefined and null values to shorten the execution and prevent exceptions
+if(translationId===null||angular.isUndefined(translationId)){return translationId}
+// Check forceLanguage is present
+if(forceLanguage){loadTranslationsIfMissing(forceLanguage)}
+// Duck detection: If the first argument is an array, a bunch of translations was requested.
+// The result is an object.
+if(angular.isArray(translationId)){var results={};for(var i=0,c=translationId.length;i<c;i++){results[translationId[i]]=$translate.instant(translationId[i],interpolateParams,interpolationId,forceLanguage)}return results}
+// We discarded unacceptable values. So we just need to verify if translationId is empty String
+if(angular.isString(translationId)&&translationId.length<1){return translationId}
+// trim off any whitespace
+if(translationId){translationId=trim.apply(translationId)}var result,possibleLangKeys=[];if($preferredLanguage){possibleLangKeys.push($preferredLanguage)}if(uses){possibleLangKeys.push(uses)}if($fallbackLanguage&&$fallbackLanguage.length){possibleLangKeys=possibleLangKeys.concat($fallbackLanguage)}for(var j=0,d=possibleLangKeys.length;j<d;j++){var possibleLangKey=possibleLangKeys[j];if($translationTable[possibleLangKey]){if(typeof $translationTable[possibleLangKey][translationId]!=="undefined"){result=determineTranslationInstant(translationId,interpolateParams,interpolationId,uses)}}if(typeof result!=="undefined"){break}}if(!result&&result!==""){if($notFoundIndicatorLeft||$notFoundIndicatorRight){result=applyNotFoundIndicators(translationId)}else{
+// Return translation of default interpolator if not found anything.
+result=defaultInterpolator.interpolate(translationId,interpolateParams,"filter");if($missingTranslationHandlerFactory&&!pendingLoader){result=translateByHandler(translationId,interpolateParams)}}}return result};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#versionInfo
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the current version information for the angular-translate library
+       *
+       * @return {string} angular-translate version
+       */
+$translate.versionInfo=function(){return version};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#loaderCache
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns the defined loaderCache.
+       *
+       * @return {boolean|string|object} current value of loaderCache
+       */
+$translate.loaderCache=function(){return loaderCache};
+// internal purpose only
+$translate.directivePriority=function(){return directivePriority};
+// internal purpose only
+$translate.statefulFilter=function(){return statefulFilter};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#isReady
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns whether the service is "ready" to translate (i.e. loading 1st language).
+       *
+       * See also {@link pascalprecht.translate.$translate#methods_onReady onReady()}.
+       *
+       * @return {boolean} current value of ready
+       */
+$translate.isReady=function(){return $isReady};var $onReadyDeferred=$q.defer();$onReadyDeferred.promise.then(function(){$isReady=true});/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#onReady
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * Returns whether the service is "ready" to translate (i.e. loading 1st language).
+       *
+       * See also {@link pascalprecht.translate.$translate#methods_isReady isReady()}.
+       *
+       * @param {Function=} fn Function to invoke when service is ready
+       * @return {object} Promise resolved when service is ready
+       */
+$translate.onReady=function(fn){var deferred=$q.defer();if(angular.isFunction(fn)){deferred.promise.then(fn)}if($isReady){deferred.resolve()}else{$onReadyDeferred.promise.then(deferred.resolve)}return deferred.promise};/**
+       * @ngdoc function
+       * @name pascalprecht.translate.$translate#getAvailableLanguageKeys
+       * @methodOf pascalprecht.translate.$translate
+       *
+       * @description
+       * This function simply returns the registered language keys being defined before in the config phase
+       * With this, an application can use the array to provide a language selection dropdown or similar
+       * without any additional effort
+       *
+       * @returns {object} returns the list of possibly registered language keys and mapping or null if not defined
+       */
+$translate.getAvailableLanguageKeys=function(){if($availableLanguageKeys.length>0){return $availableLanguageKeys}return null};
+// Whenever $translateReady is being fired, this will ensure the state of $isReady
+var globalOnReadyListener=$rootScope.$on("$translateReady",function(){$onReadyDeferred.resolve();globalOnReadyListener();// one time only
+globalOnReadyListener=null});var globalOnChangeListener=$rootScope.$on("$translateChangeEnd",function(){$onReadyDeferred.resolve();globalOnChangeListener();// one time only
+globalOnChangeListener=null});if($loaderFactory){
+// If at least one async loader is defined and there are no
+// (default) translations available we should try to load them.
+if(angular.equals($translationTable,{})){if($translate.use()){$translate.use($translate.use())}}
+// Also, if there are any fallback language registered, we start
+// loading them asynchronously as soon as we can.
+if($fallbackLanguage&&$fallbackLanguage.length){var processAsyncResult=function(translation){translations(translation.key,translation.table);$rootScope.$emit("$translateChangeEnd",{language:translation.key});return translation};for(var i=0,len=$fallbackLanguage.length;i<len;i++){var fallbackLanguageId=$fallbackLanguage[i];if($forceAsyncReloadEnabled||!$translationTable[fallbackLanguageId]){langPromises[fallbackLanguageId]=loadAsync(fallbackLanguageId).then(processAsyncResult)}}}}else{$rootScope.$emit("$translateReady",{language:$translate.use()})}return $translate}]}$translate.displayName="displayName";/**
+ * @ngdoc object
+ * @name pascalprecht.translate.$translateDefaultInterpolation
+ * @requires $interpolate
+ *
+ * @description
+ * Uses angular's `$interpolate` services to interpolate strings against some values.
+ *
+ * Be aware to configure a proper sanitization strategy.
+ *
+ * See also:
+ * * {@link pascalprecht.translate.$translateSanitization}
+ *
+ * @return {object} $translateDefaultInterpolation Interpolator service
+ */
+angular.module("pascalprecht.translate").factory("$translateDefaultInterpolation",$translateDefaultInterpolation);function $translateDefaultInterpolation($interpolate,$translateSanitization){"use strict";var $translateInterpolator={},$locale,$identifier="default";/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateDefaultInterpolation#setLocale
+   * @methodOf pascalprecht.translate.$translateDefaultInterpolation
+   *
+   * @description
+   * Sets current locale (this is currently not use in this interpolation).
+   *
+   * @param {string} locale Language key or locale.
+   */
+$translateInterpolator.setLocale=function(locale){$locale=locale};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateDefaultInterpolation#getInterpolationIdentifier
+   * @methodOf pascalprecht.translate.$translateDefaultInterpolation
+   *
+   * @description
+   * Returns an identifier for this interpolation service.
+   *
+   * @returns {string} $identifier
+   */
+$translateInterpolator.getInterpolationIdentifier=function(){return $identifier};/**
+   * @deprecated will be removed in 3.0
+   * @see {@link pascalprecht.translate.$translateSanitization}
+   */
+$translateInterpolator.useSanitizeValueStrategy=function(value){$translateSanitization.useStrategy(value);return this};/**
+   * @ngdoc function
+   * @name pascalprecht.translate.$translateDefaultInterpolation#interpolate
+   * @methodOf pascalprecht.translate.$translateDefaultInterpolation
+   *
+   * @description
+   * Interpolates given value agains given interpolate params using angulars
+   * `$interpolate` service.
+   *
+   * Since AngularJS 1.5, `value` must not be a string but can be anything input.
+   *
+   * @returns {string} interpolated string.
+   */
+$translateInterpolator.interpolate=function(value,interpolationParams,context){interpolationParams=interpolationParams||{};interpolationParams=$translateSanitization.sanitize(interpolationParams,"params",undefined,context);var interpolatedText;if(angular.isNumber(value)){
+// numbers are safe
+interpolatedText=""+value}else if(angular.isString(value)){
+// strings must be interpolated (that's the job here)
+interpolatedText=$interpolate(value)(interpolationParams);interpolatedText=$translateSanitization.sanitize(interpolatedText,"text",undefined,context)}else{
+// neither a number or a string, cant interpolate => empty string
+interpolatedText=""}return interpolatedText};return $translateInterpolator}$translateDefaultInterpolation.displayName="$translateDefaultInterpolation";angular.module("pascalprecht.translate").constant("$STORAGE_KEY","NG_TRANSLATE_LANG_KEY");angular.module("pascalprecht.translate").directive("translate",translateDirective);function translateDirective($translate,$interpolate,$compile,$parse,$rootScope){"use strict";/**
+   * @name trim
+   * @private
+   *
+   * @description
+   * trim polyfill
+   *
+   * @returns {string} The string stripped of whitespace from both ends
+   */
+var trim=function(){return this.toString().replace(/^\s+|\s+$/g,"")};return{restrict:"AE",scope:true,priority:$translate.directivePriority(),compile:function(tElement,tAttr){var translateValuesExist=tAttr.translateValues?tAttr.translateValues:undefined;var translateInterpolation=tAttr.translateInterpolation?tAttr.translateInterpolation:undefined;var translateValueExist=tElement[0].outerHTML.match(/translate-value-+/i);var interpolateRegExp="^(.*)("+$interpolate.startSymbol()+".*"+$interpolate.endSymbol()+")(.*)",watcherRegExp="^(.*)"+$interpolate.startSymbol()+"(.*)"+$interpolate.endSymbol()+"(.*)";return function linkFn(scope,iElement,iAttr){scope.interpolateParams={};scope.preText="";scope.postText="";scope.translateNamespace=getTranslateNamespace(scope);var translationIds={};var initInterpolationParams=function(interpolateParams,iAttr,tAttr){
+// initial setup
+if(iAttr.translateValues){angular.extend(interpolateParams,$parse(iAttr.translateValues)(scope.$parent))}
+// initially fetch all attributes if existing and fill the params
+if(translateValueExist){for(var attr in tAttr){if(Object.prototype.hasOwnProperty.call(iAttr,attr)&&attr.substr(0,14)==="translateValue"&&attr!=="translateValues"){var attributeName=angular.lowercase(attr.substr(14,1))+attr.substr(15);interpolateParams[attributeName]=tAttr[attr]}}}};
+// Ensures any change of the attribute "translate" containing the id will
+// be re-stored to the scope's "translationId".
+// If the attribute has no content, the element's text value (white spaces trimmed off) will be used.
+var observeElementTranslation=function(translationId){
+// Remove any old watcher
+if(angular.isFunction(observeElementTranslation._unwatchOld)){observeElementTranslation._unwatchOld();observeElementTranslation._unwatchOld=undefined}if(angular.equals(translationId,"")||!angular.isDefined(translationId)){var iElementText=trim.apply(iElement.text());
+// Resolve translation id by inner html if required
+var interpolateMatches=iElementText.match(interpolateRegExp);
+// Interpolate translation id if required
+if(angular.isArray(interpolateMatches)){scope.preText=interpolateMatches[1];scope.postText=interpolateMatches[3];translationIds.translate=$interpolate(interpolateMatches[2])(scope.$parent);var watcherMatches=iElementText.match(watcherRegExp);if(angular.isArray(watcherMatches)&&watcherMatches[2]&&watcherMatches[2].length){observeElementTranslation._unwatchOld=scope.$watch(watcherMatches[2],function(newValue){translationIds.translate=newValue;updateTranslations()})}}else{
+// do not assigne the translation id if it is empty.
+translationIds.translate=!iElementText?undefined:iElementText}}else{translationIds.translate=translationId}updateTranslations()};var observeAttributeTranslation=function(translateAttr){iAttr.$observe(translateAttr,function(translationId){translationIds[translateAttr]=translationId;updateTranslations()})};
+// initial setup with values
+initInterpolationParams(scope.interpolateParams,iAttr,tAttr);var firstAttributeChangedEvent=true;iAttr.$observe("translate",function(translationId){if(typeof translationId==="undefined"){
+// case of element "<translate>xyz</translate>"
+observeElementTranslation("")}else{
+// case of regular attribute
+if(translationId!==""||!firstAttributeChangedEvent){translationIds.translate=translationId;updateTranslations()}}firstAttributeChangedEvent=false});for(var translateAttr in iAttr){if(iAttr.hasOwnProperty(translateAttr)&&translateAttr.substr(0,13)==="translateAttr"&&translateAttr.length>13){observeAttributeTranslation(translateAttr)}}iAttr.$observe("translateDefault",function(value){scope.defaultText=value;updateTranslations()});if(translateValuesExist){iAttr.$observe("translateValues",function(interpolateParams){if(interpolateParams){scope.$parent.$watch(function(){angular.extend(scope.interpolateParams,$parse(interpolateParams)(scope.$parent))})}})}if(translateValueExist){var observeValueAttribute=function(attrName){iAttr.$observe(attrName,function(value){var attributeName=angular.lowercase(attrName.substr(14,1))+attrName.substr(15);scope.interpolateParams[attributeName]=value})};for(var attr in iAttr){if(Object.prototype.hasOwnProperty.call(iAttr,attr)&&attr.substr(0,14)==="translateValue"&&attr!=="translateValues"){observeValueAttribute(attr)}}}
+// Master update function
+var updateTranslations=function(){for(var key in translationIds){if(translationIds.hasOwnProperty(key)&&translationIds[key]!==undefined){updateTranslation(key,translationIds[key],scope,scope.interpolateParams,scope.defaultText,scope.translateNamespace)}}};
+// Put translation processing function outside loop
+var updateTranslation=function(translateAttr,translationId,scope,interpolateParams,defaultTranslationText,translateNamespace){if(translationId){
+// if translation id starts with '.' and translateNamespace given, prepend namespace
+if(translateNamespace&&translationId.charAt(0)==="."){translationId=translateNamespace+translationId}$translate(translationId,interpolateParams,translateInterpolation,defaultTranslationText,scope.translateLanguage).then(function(translation){applyTranslation(translation,scope,true,translateAttr)},function(translationId){applyTranslation(translationId,scope,false,translateAttr)})}else{
+// as an empty string cannot be translated, we can solve this using successful=false
+applyTranslation(translationId,scope,false,translateAttr)}};var applyTranslation=function(value,scope,successful,translateAttr){if(!successful){if(typeof scope.defaultText!=="undefined"){value=scope.defaultText}}if(translateAttr==="translate"){
+// default translate into innerHTML
+if(successful||!successful&&!$translate.isKeepContent()&&typeof iAttr.translateKeepContent==="undefined"){iElement.empty().append(scope.preText+value+scope.postText)}var globallyEnabled=$translate.isPostCompilingEnabled();var locallyDefined=typeof tAttr.translateCompile!=="undefined";var locallyEnabled=locallyDefined&&tAttr.translateCompile!=="false";if(globallyEnabled&&!locallyDefined||locallyEnabled){$compile(iElement.contents())(scope)}}else{
+// translate attribute
+var attributeName=iAttr.$attr[translateAttr];if(attributeName.substr(0,5)==="data-"){
+// ensure html5 data prefix is stripped
+attributeName=attributeName.substr(5)}attributeName=attributeName.substr(15);iElement.attr(attributeName,value)}};if(translateValuesExist||translateValueExist||iAttr.translateDefault){scope.$watch("interpolateParams",updateTranslations,true)}
+// Replaced watcher on translateLanguage with event listener
+scope.$on("translateLanguageChanged",updateTranslations);
+// Ensures the text will be refreshed after the current language was changed
+// w/ $translate.use(...)
+var unbind=$rootScope.$on("$translateChangeSuccess",updateTranslations);
+// ensure translation will be looked up at least one
+if(iElement.text().length){if(iAttr.translate){observeElementTranslation(iAttr.translate)}else{observeElementTranslation("")}}else if(iAttr.translate){
+// ensure attribute will be not skipped
+observeElementTranslation(iAttr.translate)}updateTranslations();scope.$on("$destroy",unbind)}}}}/**
+ * Returns the scope's namespace.
+ * @private
+ * @param scope
+ * @returns {string}
+ */
+function getTranslateNamespace(scope){"use strict";if(scope.translateNamespace){return scope.translateNamespace}if(scope.$parent){return getTranslateNamespace(scope.$parent)}}translateDirective.displayName="translateDirective";angular.module("pascalprecht.translate").directive("translateAttr",translateAttrDirective);function translateAttrDirective($translate,$rootScope){"use strict";return{restrict:"A",priority:$translate.directivePriority(),link:function linkFn(scope,element,attr){var translateAttr,translateValues,previousAttributes={};
+// Main update translations function
+var updateTranslations=function(){angular.forEach(translateAttr,function(translationId,attributeName){if(!translationId){return}previousAttributes[attributeName]=true;
+// if translation id starts with '.' and translateNamespace given, prepend namespace
+if(scope.translateNamespace&&translationId.charAt(0)==="."){translationId=scope.translateNamespace+translationId}$translate(translationId,translateValues,attr.translateInterpolation,undefined,scope.translateLanguage).then(function(translation){element.attr(attributeName,translation)},function(translationId){element.attr(attributeName,translationId)})});
+// Removing unused attributes that were previously used
+angular.forEach(previousAttributes,function(flag,attributeName){if(!translateAttr[attributeName]){element.removeAttr(attributeName);delete previousAttributes[attributeName]}})};
+// Watch for attribute changes
+watchAttribute(scope,attr.translateAttr,function(newValue){translateAttr=newValue},updateTranslations);
+// Watch for value changes
+watchAttribute(scope,attr.translateValues,function(newValue){translateValues=newValue},updateTranslations);if(attr.translateValues){scope.$watch(attr.translateValues,updateTranslations,true)}
+// Replaced watcher on translateLanguage with event listener
+scope.$on("translateLanguageChanged",updateTranslations);
+// Ensures the text will be refreshed after the current language was changed
+// w/ $translate.use(...)
+var unbind=$rootScope.$on("$translateChangeSuccess",updateTranslations);updateTranslations();scope.$on("$destroy",unbind)}}}function watchAttribute(scope,attribute,valueCallback,changeCallback){"use strict";if(!attribute){return}if(attribute.substr(0,2)==="::"){attribute=attribute.substr(2)}else{scope.$watch(attribute,function(newValue){valueCallback(newValue);changeCallback()},true)}valueCallback(scope.$eval(attribute))}translateAttrDirective.displayName="translateAttrDirective";angular.module("pascalprecht.translate").directive("translateCloak",translateCloakDirective);function translateCloakDirective($translate,$rootScope){"use strict";return{compile:function(tElement){var applyCloak=function(){tElement.addClass($translate.cloakClassName())},removeCloak=function(){tElement.removeClass($translate.cloakClassName())};$translate.onReady(function(){removeCloak()});applyCloak();return function linkFn(scope,iElement,iAttr){if(iAttr.translateCloak&&iAttr.translateCloak.length){
+// Register a watcher for the defined translation allowing a fine tuned cloak
+iAttr.$observe("translateCloak",function(translationId){$translate(translationId).then(removeCloak,applyCloak)});
+// Register for change events as this is being another indicicator revalidating the cloak)
+$rootScope.$on("$translateChangeSuccess",function(){$translate(iAttr.translateCloak).then(removeCloak,applyCloak)})}}}}}translateCloakDirective.displayName="translateCloakDirective";angular.module("pascalprecht.translate").directive("translateNamespace",translateNamespaceDirective);function translateNamespaceDirective(){"use strict";return{restrict:"A",scope:true,compile:function(){return{pre:function(scope,iElement,iAttrs){scope.translateNamespace=getTranslateNamespace(scope);if(scope.translateNamespace&&iAttrs.translateNamespace.charAt(0)==="."){scope.translateNamespace+=iAttrs.translateNamespace}else{scope.translateNamespace=iAttrs.translateNamespace}}}}}}/**
+ * Returns the scope's namespace.
+ * @private
+ * @param scope
+ * @returns {string}
+ */
+function getTranslateNamespace(scope){"use strict";if(scope.translateNamespace){return scope.translateNamespace}if(scope.$parent){return getTranslateNamespace(scope.$parent)}}translateNamespaceDirective.displayName="translateNamespaceDirective";angular.module("pascalprecht.translate").directive("translateLanguage",translateLanguageDirective);function translateLanguageDirective(){"use strict";return{restrict:"A",scope:true,compile:function(){return function linkFn(scope,iElement,iAttrs){iAttrs.$observe("translateLanguage",function(newTranslateLanguage){scope.translateLanguage=newTranslateLanguage});scope.$watch("translateLanguage",function(){scope.$broadcast("translateLanguageChanged")})}}}}translateLanguageDirective.displayName="translateLanguageDirective";angular.module("pascalprecht.translate").filter("translate",translateFilterFactory);function translateFilterFactory($parse,$translate){"use strict";var translateFilter=function(translationId,interpolateParams,interpolation,forceLanguage){if(!angular.isObject(interpolateParams)){interpolateParams=$parse(interpolateParams)(this)}return $translate.instant(translationId,interpolateParams,interpolation,forceLanguage)};if($translate.statefulFilter()){translateFilter.$stateful=true}return translateFilter}translateFilterFactory.displayName="translateFilterFactory";angular.module("pascalprecht.translate").factory("$translationCache",$translationCache);function $translationCache($cacheFactory){"use strict";return $cacheFactory("translations")}$translationCache.displayName="$translationCache";return"pascalprecht.translate"});/**
+ * @license AngularJS v1.5.9-build.5062+sha.c22615c
+ * (c) 2010-2016 Google, Inc. http://angularjs.org
+ * License: MIT
+ */
+(function(window,angular){"use strict";/**
+ * @ngdoc module
+ * @name ngCookies
+ * @description
+ *
+ * # ngCookies
+ *
+ * The `ngCookies` module provides a convenient wrapper for reading and writing browser cookies.
+ *
+ *
+ * <div doc-module-components="ngCookies"></div>
+ *
+ * See {@link ngCookies.$cookies `$cookies`} for usage.
+ */
+angular.module("ngCookies",["ng"]).provider("$cookies",[/** @this */function $CookiesProvider(){/**
+     * @ngdoc property
+     * @name $cookiesProvider#defaults
+     * @description
+     *
+     * Object containing default options to pass when setting cookies.
+     *
+     * The object may have following properties:
+     *
+     * - **path** - `{string}` - The cookie will be available only for this path and its
+     *   sub-paths. By default, this is the URL that appears in your `<base>` tag.
+     * - **domain** - `{string}` - The cookie will be available only for this domain and
+     *   its sub-domains. For security reasons the user agent will not accept the cookie
+     *   if the current domain is not a sub-domain of this domain or equal to it.
+     * - **expires** - `{string|Date}` - String of the form "Wdy, DD Mon YYYY HH:MM:SS GMT"
+     *   or a Date object indicating the exact date/time this cookie will expire.
+     * - **secure** - `{boolean}` - If `true`, then the cookie will only be available through a
+     *   secured connection.
+     *
+     * Note: By default, the address that appears in your `<base>` tag will be used as the path.
+     * This is important so that cookies will be visible for all routes when html5mode is enabled.
+     *
+     **/
+var defaults=this.defaults={};function calcOptions(options){return options?angular.extend({},defaults,options):defaults}/**
+     * @ngdoc service
+     * @name $cookies
+     *
+     * @description
+     * Provides read/write access to browser's cookies.
+     *
+     * <div class="alert alert-info">
+     * Up until Angular 1.3, `$cookies` exposed properties that represented the
+     * current browser cookie values. In version 1.4, this behavior has changed, and
+     * `$cookies` now provides a standard api of getters, setters etc.
+     * </div>
+     *
+     * Requires the {@link ngCookies `ngCookies`} module to be installed.
+     *
+     * @example
+     *
+     * ```js
+     * angular.module('cookiesExample', ['ngCookies'])
+     *   .controller('ExampleController', ['$cookies', function($cookies) {
+     *     // Retrieving a cookie
+     *     var favoriteCookie = $cookies.get('myFavorite');
+     *     // Setting a cookie
+     *     $cookies.put('myFavorite', 'oatmeal');
+     *   }]);
+     * ```
+     */
+this.$get=["$$cookieReader","$$cookieWriter",function($$cookieReader,$$cookieWriter){return{/**
+         * @ngdoc method
+         * @name $cookies#get
+         *
+         * @description
+         * Returns the value of given cookie key
+         *
+         * @param {string} key Id to use for lookup.
+         * @returns {string} Raw cookie value.
+         */
+get:function(key){return $$cookieReader()[key]},/**
+         * @ngdoc method
+         * @name $cookies#getObject
+         *
+         * @description
+         * Returns the deserialized value of given cookie key
+         *
+         * @param {string} key Id to use for lookup.
+         * @returns {Object} Deserialized cookie value.
+         */
+getObject:function(key){var value=this.get(key);return value?angular.fromJson(value):value},/**
+         * @ngdoc method
+         * @name $cookies#getAll
+         *
+         * @description
+         * Returns a key value object with all the cookies
+         *
+         * @returns {Object} All cookies
+         */
+getAll:function(){return $$cookieReader()},/**
+         * @ngdoc method
+         * @name $cookies#put
+         *
+         * @description
+         * Sets a value for given cookie key
+         *
+         * @param {string} key Id for the `value`.
+         * @param {string} value Raw value to be stored.
+         * @param {Object=} options Options object.
+         *    See {@link ngCookies.$cookiesProvider#defaults $cookiesProvider.defaults}
+         */
+put:function(key,value,options){$$cookieWriter(key,value,calcOptions(options))},/**
+         * @ngdoc method
+         * @name $cookies#putObject
+         *
+         * @description
+         * Serializes and sets a value for given cookie key
+         *
+         * @param {string} key Id for the `value`.
+         * @param {Object} value Value to be stored.
+         * @param {Object=} options Options object.
+         *    See {@link ngCookies.$cookiesProvider#defaults $cookiesProvider.defaults}
+         */
+putObject:function(key,value,options){this.put(key,angular.toJson(value),options)},/**
+         * @ngdoc method
+         * @name $cookies#remove
+         *
+         * @description
+         * Remove given cookie
+         *
+         * @param {string} key Id of the key-value pair to delete.
+         * @param {Object=} options Options object.
+         *    See {@link ngCookies.$cookiesProvider#defaults $cookiesProvider.defaults}
+         */
+remove:function(key,options){$$cookieWriter(key,undefined,calcOptions(options))}}}]}]);angular.module("ngCookies").factory("$cookieStore",["$cookies",function($cookies){return{/**
+       * @ngdoc method
+       * @name $cookieStore#get
+       *
+       * @description
+       * Returns the value of given cookie key
+       *
+       * @param {string} key Id to use for lookup.
+       * @returns {Object} Deserialized cookie value, undefined if the cookie does not exist.
+       */
+get:function(key){return $cookies.getObject(key)},/**
+       * @ngdoc method
+       * @name $cookieStore#put
+       *
+       * @description
+       * Sets a value for given cookie key
+       *
+       * @param {string} key Id for the `value`.
+       * @param {Object} value Value to be stored.
+       */
+put:function(key,value){$cookies.putObject(key,value)},/**
+       * @ngdoc method
+       * @name $cookieStore#remove
+       *
+       * @description
+       * Remove given cookie
+       *
+       * @param {string} key Id of the key-value pair to delete.
+       */
+remove:function(key){$cookies.remove(key)}}}]);/**
+ * @name $$cookieWriter
+ * @requires $document
+ *
+ * @description
+ * This is a private service for writing cookies
+ *
+ * @param {string} name Cookie name
+ * @param {string=} value Cookie value (if undefined, cookie will be deleted)
+ * @param {Object=} options Object with options that need to be stored for the cookie.
+ */
+function $$CookieWriter($document,$log,$browser){var cookiePath=$browser.baseHref();var rawDocument=$document[0];function buildCookieString(name,value,options){var path,expires;options=options||{};expires=options.expires;path=angular.isDefined(options.path)?options.path:cookiePath;if(angular.isUndefined(value)){expires="Thu, 01 Jan 1970 00:00:00 GMT";value=""}if(angular.isString(expires)){expires=new Date(expires)}var str=encodeURIComponent(name)+"="+encodeURIComponent(value);str+=path?";path="+path:"";str+=options.domain?";domain="+options.domain:"";str+=expires?";expires="+expires.toUTCString():"";str+=options.secure?";secure":"";
+// per http://www.ietf.org/rfc/rfc2109.txt browser must allow at minimum:
+// - 300 cookies
+// - 20 cookies per unique domain
+// - 4096 bytes per cookie
+var cookieLength=str.length+1;if(cookieLength>4096){$log.warn("Cookie '"+name+"' possibly not set or overflowed because it was too large ("+cookieLength+" > 4096 bytes)!")}return str}return function(name,value,options){rawDocument.cookie=buildCookieString(name,value,options)}}$$CookieWriter.$inject=["$document","$log","$browser"];angular.module("ngCookies").provider("$$cookieWriter",/** @this */function $$CookieWriterProvider(){this.$get=$$CookieWriter})})(window,window.angular);/* angular-moment.js / v1.0.0 / (c) 2013, 2014, 2015, 2016 Uri Shaked / MIT Licence */
+"format amd";/* global define */
+(function(){"use strict";function isUndefinedOrNull(val){return angular.isUndefined(val)||val===null}function requireMoment(){try{return require("moment")}catch(e){throw new Error("Please install moment via npm. Please reference to: https://github.com/urish/angular-moment")}}function angularMoment(angular,moment){if(typeof moment==="undefined"){if(typeof require==="function"){moment=requireMoment()}else{throw new Error("Moment cannot be found by angular-moment! Please reference to: https://github.com/urish/angular-moment")}}/**
+         * @ngdoc overview
+         * @name angularMoment
+         *
+         * @description
+         * angularMoment module provides moment.js functionality for angular.js apps.
+         */
+angular.module("angularMoment",[]).constant("angularMomentConfig",{/**
+                 * @ngdoc property
+                 * @name angularMoment.config.angularMomentConfig#preprocess
+                 * @propertyOf angularMoment.config:angularMomentConfig
+                 * @returns {function} A preprocessor function that will be applied on all incoming dates
+                 *
+                 * @description
+                 * Defines a preprocessor function to apply on all input dates (e.g. the input of `am-time-ago`,
+                 * `amCalendar`, etc.). The function must return a `moment` object.
+                 *
+                 * @example
+                 *   // Causes angular-moment to always treat the input values as unix timestamps
+                 *   angularMomentConfig.preprocess = function(value) {
+				 * 	   return moment.unix(value);
+				 *   }
+                 */
+preprocess:null,/**
+                 * @ngdoc property
+                 * @name angularMoment.config.angularMomentConfig#timezone
+                 * @propertyOf angularMoment.config:angularMomentConfig
+                 * @returns {string} The default timezone
+                 *
+                 * @description
+                 * The default timezone (e.g. 'Europe/London'). Empty string by default (does not apply
+                 * any timezone shift).
+                 *
+                 * NOTE: This option requires moment-timezone >= 0.3.0.
+                 */
+timezone:null,/**
+                 * @ngdoc property
+                 * @name angularMoment.config.angularMomentConfig#format
+                 * @propertyOf angularMoment.config:angularMomentConfig
+                 * @returns {string} The pre-conversion format of the date
+                 *
+                 * @description
+                 * Specify the format of the input date. Essentially it's a
+                 * default and saves you from specifying a format in every
+                 * element. Overridden by element attr. Null by default.
+                 */
+format:null,/**
+                 * @ngdoc property
+                 * @name angularMoment.config.angularMomentConfig#statefulFilters
+                 * @propertyOf angularMoment.config:angularMomentConfig
+                 * @returns {boolean} Whether angular-moment filters should be stateless (or not)
+                 *
+                 * @description
+                 * Specifies whether the filters included with angular-moment are stateful.
+                 * Stateful filters will automatically re-evaluate whenever you change the timezone
+                 * or locale settings, but may negatively impact performance. true by default.
+                 */
+statefulFilters:true}).constant("moment",moment).constant("amTimeAgoConfig",{/**
+                 * @ngdoc property
+                 * @name angularMoment.config.amTimeAgoConfig#withoutSuffix
+                 * @propertyOf angularMoment.config:amTimeAgoConfig
+                 * @returns {boolean} Whether to include a suffix in am-time-ago directive
+                 *
+                 * @description
+                 * Defaults to false.
+                 */
+withoutSuffix:false,/**
+                 * @ngdoc property
+                 * @name angularMoment.config.amTimeAgoConfig#serverTime
+                 * @propertyOf angularMoment.config:amTimeAgoConfig
+                 * @returns {number} Server time in milliseconds since the epoch
+                 *
+                 * @description
+                 * If set, time ago will be calculated relative to the given value.
+                 * If null, local time will be used. Defaults to null.
+                 */
+serverTime:null,/**
+                 * @ngdoc property
+                 * @name angularMoment.config.amTimeAgoConfig#titleFormat
+                 * @propertyOf angularMoment.config:amTimeAgoConfig
+                 * @returns {string} The format of the date to be displayed in the title of the element. If null,
+                 *        the directive set the title of the element.
+                 *
+                 * @description
+                 * The format of the date used for the title of the element. null by default.
+                 */
+titleFormat:null,/**
+                 * @ngdoc property
+                 * @name angularMoment.config.amTimeAgoConfig#fullDateThreshold
+                 * @propertyOf angularMoment.config:amTimeAgoConfig
+                 * @returns {number} The minimum number of days for showing a full date instead of relative time
+                 *
+                 * @description
+                 * The threshold for displaying a full date. The default is null, which means the date will always
+                 * be relative, and full date will never be displayed.
+                 */
+fullDateThreshold:null,/**
+                 * @ngdoc property
+                 * @name angularMoment.config.amTimeAgoConfig#fullDateFormat
+                 * @propertyOf angularMoment.config:amTimeAgoConfig
+                 * @returns {string} The format to use when displaying a full date.
+                 *
+                 * @description
+                 * Specify the format of the date when displayed as full date. null by default.
+                 */
+fullDateFormat:null,fullDateThresholdUnit:"day"}).directive("amTimeAgo",["$window","moment","amMoment","amTimeAgoConfig",function($window,moment,amMoment,amTimeAgoConfig){return function(scope,element,attr){var activeTimeout=null;var currentValue;var withoutSuffix=amTimeAgoConfig.withoutSuffix;var titleFormat=amTimeAgoConfig.titleFormat;var fullDateThreshold=amTimeAgoConfig.fullDateThreshold;var fullDateFormat=amTimeAgoConfig.fullDateFormat;var fullDateThresholdUnit=amTimeAgoConfig.fullDateThresholdUnit;var localDate=(new Date).getTime();var modelName=attr.amTimeAgo;var currentFrom;var isTimeElement="TIME"===element[0].nodeName.toUpperCase();var setTitleTime=!element.attr("title");function getNow(){var now;if(currentFrom){now=currentFrom}else if(amTimeAgoConfig.serverTime){var localNow=(new Date).getTime();var nowMillis=localNow-localDate+amTimeAgoConfig.serverTime;now=moment(nowMillis)}else{now=moment()}return now}function cancelTimer(){if(activeTimeout){$window.clearTimeout(activeTimeout);activeTimeout=null}}function updateTime(momentInstance){var timeAgo=getNow().diff(momentInstance,fullDateThresholdUnit);var showFullDate=fullDateThreshold&&timeAgo>=fullDateThreshold;if(showFullDate){element.text(momentInstance.format(fullDateFormat))}else{element.text(momentInstance.from(getNow(),withoutSuffix))}if(titleFormat&&setTitleTime){element.attr("title",momentInstance.format(titleFormat))}if(!showFullDate){var howOld=Math.abs(getNow().diff(momentInstance,"minute"));var secondsUntilUpdate=3600;if(howOld<1){secondsUntilUpdate=1}else if(howOld<60){secondsUntilUpdate=30}else if(howOld<180){secondsUntilUpdate=300}activeTimeout=$window.setTimeout(function(){updateTime(momentInstance)},secondsUntilUpdate*1e3)}}function updateDateTimeAttr(value){if(isTimeElement){element.attr("datetime",value)}}function updateMoment(){cancelTimer();if(currentValue){var momentValue=amMoment.preprocessDate(currentValue);updateTime(momentValue);updateDateTimeAttr(momentValue.toISOString())}}scope.$watch(modelName,function(value){if(isUndefinedOrNull(value)||value===""){cancelTimer();if(currentValue){element.text("");updateDateTimeAttr("");currentValue=null}return}currentValue=value;updateMoment()});if(angular.isDefined(attr.amFrom)){scope.$watch(attr.amFrom,function(value){if(isUndefinedOrNull(value)||value===""){currentFrom=null}else{currentFrom=moment(value)}updateMoment()})}if(angular.isDefined(attr.amWithoutSuffix)){scope.$watch(attr.amWithoutSuffix,function(value){if(typeof value==="boolean"){withoutSuffix=value;updateMoment()}else{withoutSuffix=amTimeAgoConfig.withoutSuffix}})}attr.$observe("amFullDateThreshold",function(newValue){fullDateThreshold=newValue;updateMoment()});attr.$observe("amFullDateFormat",function(newValue){fullDateFormat=newValue;updateMoment()});attr.$observe("amFullDateThresholdUnit",function(newValue){fullDateThresholdUnit=newValue;updateMoment()});scope.$on("$destroy",function(){cancelTimer()});scope.$on("amMoment:localeChanged",function(){updateMoment()})}}]).service("amMoment",["moment","$rootScope","$log","angularMomentConfig",function(moment,$rootScope,$log,angularMomentConfig){var defaultTimezone=null;/**
+                 * @ngdoc function
+                 * @name angularMoment.service.amMoment#changeLocale
+                 * @methodOf angularMoment.service.amMoment
+                 *
+                 * @description
+                 * Changes the locale for moment.js and updates all the am-time-ago directive instances
+                 * with the new locale. Also broadcasts an `amMoment:localeChanged` event on $rootScope.
+                 *
+                 * @param {string} locale Locale code (e.g. en, es, ru, pt-br, etc.)
+                 * @param {object} customization object of locale strings to override
+                 */
+this.changeLocale=function(locale,customization){var result=moment.locale(locale,customization);if(angular.isDefined(locale)){$rootScope.$broadcast("amMoment:localeChanged")}return result};/**
+                 * @ngdoc function
+                 * @name angularMoment.service.amMoment#changeTimezone
+                 * @methodOf angularMoment.service.amMoment
+                 *
+                 * @description
+                 * Changes the default timezone for amCalendar, amDateFormat and amTimeAgo. Also broadcasts an
+                 * `amMoment:timezoneChanged` event on $rootScope.
+                 *
+                 * Note: this method works only if moment-timezone > 0.3.0 is loaded
+                 *
+                 * @param {string} timezone Timezone name (e.g. UTC)
+                 */
+this.changeTimezone=function(timezone){if(moment.tz&&moment.tz.setDefault){moment.tz.setDefault(timezone);$rootScope.$broadcast("amMoment:timezoneChanged")}else{$log.warn("angular-moment: changeTimezone() works only with moment-timezone.js v0.3.0 or greater.")}angularMomentConfig.timezone=timezone;defaultTimezone=timezone};/**
+                 * @ngdoc function
+                 * @name angularMoment.service.amMoment#preprocessDate
+                 * @methodOf angularMoment.service.amMoment
+                 *
+                 * @description
+                 * Preprocess a given value and convert it into a Moment instance appropriate for use in the
+                 * am-time-ago directive and the filters. The behavior of this function can be overriden by
+                 * setting `angularMomentConfig.preprocess`.
+                 *
+                 * @param {*} value The value to be preprocessed
+                 * @return {Moment} A `moment` object
+                 */
+this.preprocessDate=function(value){
+// Configure the default timezone if needed
+if(defaultTimezone!==angularMomentConfig.timezone){this.changeTimezone(angularMomentConfig.timezone)}if(angularMomentConfig.preprocess){return angularMomentConfig.preprocess(value)}if(!isNaN(parseFloat(value))&&isFinite(value)){
+// Milliseconds since the epoch
+return moment(parseInt(value,10))}
+// else just returns the value as-is.
+return moment(value)}}]).filter("amParse",["moment",function(moment){return function(value,format){return moment(value,format)}}]).filter("amFromUnix",["moment",function(moment){return function(value){return moment.unix(value)}}]).filter("amUtc",["moment",function(moment){return function(value){return moment.utc(value)}}]).filter("amUtcOffset",["amMoment",function(amMoment){function amUtcOffset(value,offset){return amMoment.preprocessDate(value).utcOffset(offset)}return amUtcOffset}]).filter("amLocal",["moment",function(moment){return function(value){return moment.isMoment(value)?value.local():null}}]).filter("amTimezone",["amMoment","angularMomentConfig","$log",function(amMoment,angularMomentConfig,$log){function amTimezone(value,timezone){var aMoment=amMoment.preprocessDate(value);if(!timezone){return aMoment}if(aMoment.tz){return aMoment.tz(timezone)}else{$log.warn("angular-moment: named timezone specified but moment.tz() is undefined. Did you forget to include moment-timezone.js ?");return aMoment}}return amTimezone}]).filter("amCalendar",["moment","amMoment","angularMomentConfig",function(moment,amMoment,angularMomentConfig){function amCalendarFilter(value,referenceTime,formats){if(isUndefinedOrNull(value)){return""}var date=amMoment.preprocessDate(value);return date.isValid()?date.calendar(referenceTime,formats):""}
+// Since AngularJS 1.3, filters have to explicitly define being stateful
+// (this is no longer the default).
+amCalendarFilter.$stateful=angularMomentConfig.statefulFilters;return amCalendarFilter}]).filter("amDifference",["moment","amMoment","angularMomentConfig",function(moment,amMoment,angularMomentConfig){function amDifferenceFilter(value,otherValue,unit,usePrecision){if(isUndefinedOrNull(value)){return""}var date=amMoment.preprocessDate(value);var date2=!isUndefinedOrNull(otherValue)?amMoment.preprocessDate(otherValue):moment();if(!date.isValid()||!date2.isValid()){return""}return date.diff(date2,unit,usePrecision)}amDifferenceFilter.$stateful=angularMomentConfig.statefulFilters;return amDifferenceFilter}]).filter("amDateFormat",["moment","amMoment","angularMomentConfig",function(moment,amMoment,angularMomentConfig){function amDateFormatFilter(value,format){if(isUndefinedOrNull(value)){return""}var date=amMoment.preprocessDate(value);if(!date.isValid()){return""}return date.format(format)}amDateFormatFilter.$stateful=angularMomentConfig.statefulFilters;return amDateFormatFilter}]).filter("amDurationFormat",["moment","angularMomentConfig",function(moment,angularMomentConfig){function amDurationFormatFilter(value,format,suffix){if(isUndefinedOrNull(value)){return""}return moment.duration(value,format).humanize(suffix)}amDurationFormatFilter.$stateful=angularMomentConfig.statefulFilters;return amDurationFormatFilter}]).filter("amTimeAgo",["moment","amMoment","angularMomentConfig",function(moment,amMoment,angularMomentConfig){function amTimeAgoFilter(value,suffix,from){var date,dateFrom;if(isUndefinedOrNull(value)){return""}value=amMoment.preprocessDate(value);date=moment(value);if(!date.isValid()){return""}dateFrom=moment(from);if(!isUndefinedOrNull(from)&&dateFrom.isValid()){return date.from(dateFrom,suffix)}return date.fromNow(suffix)}amTimeAgoFilter.$stateful=angularMomentConfig.statefulFilters;return amTimeAgoFilter}]).filter("amSubtract",["moment","angularMomentConfig",function(moment,angularMomentConfig){function amSubtractFilter(value,amount,type){if(isUndefinedOrNull(value)){return""}return moment(value).subtract(parseInt(amount,10),type)}amSubtractFilter.$stateful=angularMomentConfig.statefulFilters;return amSubtractFilter}]).filter("amAdd",["moment","angularMomentConfig",function(moment,angularMomentConfig){function amAddFilter(value,amount,type){if(isUndefinedOrNull(value)){return""}return moment(value).add(parseInt(amount,10),type)}amAddFilter.$stateful=angularMomentConfig.statefulFilters;return amAddFilter}]).filter("amStartOf",["moment","angularMomentConfig",function(moment,angularMomentConfig){function amStartOfFilter(value,type){if(isUndefinedOrNull(value)){return""}return moment(value).startOf(type)}amStartOfFilter.$stateful=angularMomentConfig.statefulFilters;return amStartOfFilter}]).filter("amEndOf",["moment","angularMomentConfig",function(moment,angularMomentConfig){function amEndOfFilter(value,type){if(isUndefinedOrNull(value)){return""}return moment(value).endOf(type)}amEndOfFilter.$stateful=angularMomentConfig.statefulFilters;return amEndOfFilter}]);return"angularMoment"}if(typeof define==="function"&&define.amd){define(["angular","moment"],angularMoment)}else if(typeof module!=="undefined"&&module&&module.exports&&typeof require==="function"){module.exports=angularMoment(require("angular"),require("moment"))}else{angularMoment(angular,(typeof global!=="undefined"?global:window).moment)}})();/**
+ * @license AngularJS v1.3.0
+ * (c) 2010-2014 Google, Inc. http://angularjs.org
+ * License: MIT
+ */
+(function(window,angular,undefined){"use strict";var $resourceMinErr=angular.$$minErr("$resource");
+// Helper functions and regex to lookup a dotted path on an object
+// stopping at undefined/null.  The path must be composed of ASCII
+// identifiers (just like $parse)
+var MEMBER_NAME_REGEX=/^(\.[a-zA-Z_$][0-9a-zA-Z_$]*)+$/;function isValidDottedPath(path){return path!=null&&path!==""&&path!=="hasOwnProperty"&&MEMBER_NAME_REGEX.test("."+path)}function lookupDottedPath(obj,path){if(!isValidDottedPath(path)){throw $resourceMinErr("badmember",'Dotted member path "@{0}" is invalid.',path)}var keys=path.split(".");for(var i=0,ii=keys.length;i<ii&&obj!==undefined;i++){var key=keys[i];obj=obj!==null?obj[key]:undefined}return obj}/**
+ * Create a shallow copy of an object and clear other fields from the destination
+ */
+function shallowClearAndCopy(src,dst){dst=dst||{};angular.forEach(dst,function(value,key){delete dst[key]});for(var key in src){if(src.hasOwnProperty(key)&&!(key.charAt(0)==="$"&&key.charAt(1)==="$")){dst[key]=src[key]}}return dst}/**
+ * @ngdoc module
+ * @name ngResource
+ * @description
+ *
+ * # ngResource
+ *
+ * The `ngResource` module provides interaction support with RESTful services
+ * via the $resource service.
+ *
+ *
+ * <div doc-module-components="ngResource"></div>
+ *
+ * See {@link ngResource.$resource `$resource`} for usage.
+ */
+/**
+ * @ngdoc service
+ * @name $resource
+ * @requires $http
+ *
+ * @description
+ * A factory which creates a resource object that lets you interact with
+ * [RESTful](http://en.wikipedia.org/wiki/Representational_State_Transfer) server-side data sources.
+ *
+ * The returned resource object has action methods which provide high-level behaviors without
+ * the need to interact with the low level {@link ng.$http $http} service.
+ *
+ * Requires the {@link ngResource `ngResource`} module to be installed.
+ *
+ * By default, trailing slashes will be stripped from the calculated URLs,
+ * which can pose problems with server backends that do not expect that
+ * behavior.  This can be disabled by configuring the `$resourceProvider` like
+ * this:
+ *
+ * ```js
+     app.config(['$resourceProvider', function ($resourceProvider) {
+       // Don't strip trailing slashes from calculated URLs
+       $resourceProvider.defaults.stripTrailingSlashes = false;
+     }]);
+ * ```
+ *
+ * @param {string} url A parametrized URL template with parameters prefixed by `:` as in
+ *   `/user/:username`. If you are using a URL with a port number (e.g.
+ *   `http://example.com:8080/api`), it will be respected.
+ *
+ *   If you are using a url with a suffix, just add the suffix, like this:
+ *   `$resource('http://example.com/resource.json')` or `$resource('http://example.com/:id.json')`
+ *   or even `$resource('http://example.com/resource/:resource_id.:format')`
+ *   If the parameter before the suffix is empty, :resource_id in this case, then the `/.` will be
+ *   collapsed down to a single `.`.  If you need this sequence to appear and not collapse then you
+ *   can escape it with `/\.`.
+ *
+ * @param {Object=} paramDefaults Default values for `url` parameters. These can be overridden in
+ *   `actions` methods. If any of the parameter value is a function, it will be executed every time
+ *   when a param value needs to be obtained for a request (unless the param was overridden).
+ *
+ *   Each key value in the parameter object is first bound to url template if present and then any
+ *   excess keys are appended to the url search query after the `?`.
+ *
+ *   Given a template `/path/:verb` and parameter `{verb:'greet', salutation:'Hello'}` results in
+ *   URL `/path/greet?salutation=Hello`.
+ *
+ *   If the parameter value is prefixed with `@` then the value for that parameter will be extracted
+ *   from the corresponding property on the `data` object (provided when calling an action method).  For
+ *   example, if the `defaultParam` object is `{someParam: '@someProp'}` then the value of `someParam`
+ *   will be `data.someProp`.
+ *
+ * @param {Object.<Object>=} actions Hash with declaration of custom action that should extend
+ *   the default set of resource actions. The declaration should be created in the format of {@link
+ *   ng.$http#usage $http.config}:
+ *
+ *       {action1: {method:?, params:?, isArray:?, headers:?, ...},
+ *        action2: {method:?, params:?, isArray:?, headers:?, ...},
+ *        ...}
+ *
+ *   Where:
+ *
+ *   - **`action`** – {string} – The name of action. This name becomes the name of the method on
+ *     your resource object.
+ *   - **`method`** – {string} – Case insensitive HTTP method (e.g. `GET`, `POST`, `PUT`,
+ *     `DELETE`, `JSONP`, etc).
+ *   - **`params`** – {Object=} – Optional set of pre-bound parameters for this action. If any of
+ *     the parameter value is a function, it will be executed every time when a param value needs to
+ *     be obtained for a request (unless the param was overridden).
+ *   - **`url`** – {string} – action specific `url` override. The url templating is supported just
+ *     like for the resource-level urls.
+ *   - **`isArray`** – {boolean=} – If true then the returned object for this action is an array,
+ *     see `returns` section.
+ *   - **`transformRequest`** –
+ *     `{function(data, headersGetter)|Array.<function(data, headersGetter)>}` –
+ *     transform function or an array of such functions. The transform function takes the http
+ *     request body and headers and returns its transformed (typically serialized) version.
+ *     By default, transformRequest will contain one function that checks if the request data is
+ *     an object and serializes to using `angular.toJson`. To prevent this behavior, set
+ *     `transformRequest` to an empty array: `transformRequest: []`
+ *   - **`transformResponse`** –
+ *     `{function(data, headersGetter)|Array.<function(data, headersGetter)>}` –
+ *     transform function or an array of such functions. The transform function takes the http
+ *     response body and headers and returns its transformed (typically deserialized) version.
+ *     By default, transformResponse will contain one function that checks if the response looks like
+ *     a JSON string and deserializes it using `angular.fromJson`. To prevent this behavior, set
+ *     `transformResponse` to an empty array: `transformResponse: []`
+ *   - **`cache`** – `{boolean|Cache}` – If true, a default $http cache will be used to cache the
+ *     GET request, otherwise if a cache instance built with
+ *     {@link ng.$cacheFactory $cacheFactory}, this cache will be used for
+ *     caching.
+ *   - **`timeout`** – `{number|Promise}` – timeout in milliseconds, or {@link ng.$q promise} that
+ *     should abort the request when resolved.
+ *   - **`withCredentials`** - `{boolean}` - whether to set the `withCredentials` flag on the
+ *     XHR object. See
+ *     [requests with credentials](https://developer.mozilla.org/en/http_access_control#section_5)
+ *     for more information.
+ *   - **`responseType`** - `{string}` - see
+ *     [requestType](https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest#responseType).
+ *   - **`interceptor`** - `{Object=}` - The interceptor object has two optional methods -
+ *     `response` and `responseError`. Both `response` and `responseError` interceptors get called
+ *     with `http response` object. See {@link ng.$http $http interceptors}.
+ *
+ * @param {Object} options Hash with custom settings that should extend the
+ *   default `$resourceProvider` behavior.  The only supported option is
+ *
+ *   Where:
+ *
+ *   - **`stripTrailingSlashes`** – {boolean} – If true then the trailing
+ *   slashes from any calculated URL will be stripped. (Defaults to true.)
+ *
+ * @returns {Object} A resource "class" object with methods for the default set of resource actions
+ *   optionally extended with custom `actions`. The default set contains these actions:
+ *   ```js
+ *   { 'get':    {method:'GET'},
+ *     'save':   {method:'POST'},
+ *     'query':  {method:'GET', isArray:true},
+ *     'remove': {method:'DELETE'},
+ *     'delete': {method:'DELETE'} };
+ *   ```
+ *
+ *   Calling these methods invoke an {@link ng.$http} with the specified http method,
+ *   destination and parameters. When the data is returned from the server then the object is an
+ *   instance of the resource class. The actions `save`, `remove` and `delete` are available on it
+ *   as  methods with the `$` prefix. This allows you to easily perform CRUD operations (create,
+ *   read, update, delete) on server-side data like this:
+ *   ```js
+ *   var User = $resource('/user/:userId', {userId:'@id'});
+ *   var user = User.get({userId:123}, function() {
+ *     user.abc = true;
+ *     user.$save();
+ *   });
+ *   ```
+ *
+ *   It is important to realize that invoking a $resource object method immediately returns an
+ *   empty reference (object or array depending on `isArray`). Once the data is returned from the
+ *   server the existing reference is populated with the actual data. This is a useful trick since
+ *   usually the resource is assigned to a model which is then rendered by the view. Having an empty
+ *   object results in no rendering, once the data arrives from the server then the object is
+ *   populated with the data and the view automatically re-renders itself showing the new data. This
+ *   means that in most cases one never has to write a callback function for the action methods.
+ *
+ *   The action methods on the class object or instance object can be invoked with the following
+ *   parameters:
+ *
+ *   - HTTP GET "class" actions: `Resource.action([parameters], [success], [error])`
+ *   - non-GET "class" actions: `Resource.action([parameters], postData, [success], [error])`
+ *   - non-GET instance actions:  `instance.$action([parameters], [success], [error])`
+ *
+ *   Success callback is called with (value, responseHeaders) arguments. Error callback is called
+ *   with (httpResponse) argument.
+ *
+ *   Class actions return empty instance (with additional properties below).
+ *   Instance actions return promise of the action.
+ *
+ *   The Resource instances and collection have these additional properties:
+ *
+ *   - `$promise`: the {@link ng.$q promise} of the original server interaction that created this
+ *     instance or collection.
+ *
+ *     On success, the promise is resolved with the same resource instance or collection object,
+ *     updated with data from server. This makes it easy to use in
+ *     {@link ngRoute.$routeProvider resolve section of $routeProvider.when()} to defer view
+ *     rendering until the resource(s) are loaded.
+ *
+ *     On failure, the promise is resolved with the {@link ng.$http http response} object, without
+ *     the `resource` property.
+ *
+ *     If an interceptor object was provided, the promise will instead be resolved with the value
+ *     returned by the interceptor.
+ *
+ *   - `$resolved`: `true` after first server interaction is completed (either with success or
+ *      rejection), `false` before that. Knowing if the Resource has been resolved is useful in
+ *      data-binding.
+ *
+ * @example
+ *
+ * # Credit card resource
+ *
+ * ```js
+     // Define CreditCard class
+     var CreditCard = $resource('/user/:userId/card/:cardId',
+      {userId:123, cardId:'@id'}, {
+       charge: {method:'POST', params:{charge:true}}
+      });
+
+     // We can retrieve a collection from the server
+     var cards = CreditCard.query(function() {
+       // GET: /user/123/card
+       // server returns: [ {id:456, number:'1234', name:'Smith'} ];
+
+       var card = cards[0];
+       // each item is an instance of CreditCard
+       expect(card instanceof CreditCard).toEqual(true);
+       card.name = "J. Smith";
+       // non GET methods are mapped onto the instances
+       card.$save();
+       // POST: /user/123/card/456 {id:456, number:'1234', name:'J. Smith'}
+       // server returns: {id:456, number:'1234', name: 'J. Smith'};
+
+       // our custom method is mapped as well.
+       card.$charge({amount:9.99});
+       // POST: /user/123/card/456?amount=9.99&charge=true {id:456, number:'1234', name:'J. Smith'}
+     });
+
+     // we can create an instance as well
+     var newCard = new CreditCard({number:'0123'});
+     newCard.name = "Mike Smith";
+     newCard.$save();
+     // POST: /user/123/card {number:'0123', name:'Mike Smith'}
+     // server returns: {id:789, number:'0123', name: 'Mike Smith'};
+     expect(newCard.id).toEqual(789);
+ * ```
+ *
+ * The object returned from this function execution is a resource "class" which has "static" method
+ * for each action in the definition.
+ *
+ * Calling these methods invoke `$http` on the `url` template with the given `method`, `params` and
+ * `headers`.
+ * When the data is returned from the server then the object is an instance of the resource type and
+ * all of the non-GET methods are available with `$` prefix. This allows you to easily support CRUD
+ * operations (create, read, update, delete) on server-side data.
+
+   ```js
+     var User = $resource('/user/:userId', {userId:'@id'});
+     User.get({userId:123}, function(user) {
+       user.abc = true;
+       user.$save();
+     });
+   ```
+ *
+ * It's worth noting that the success callback for `get`, `query` and other methods gets passed
+ * in the response that came from the server as well as $http header getter function, so one
+ * could rewrite the above example and get access to http headers as:
+ *
+   ```js
+     var User = $resource('/user/:userId', {userId:'@id'});
+     User.get({userId:123}, function(u, getResponseHeaders){
+       u.abc = true;
+       u.$save(function(u, putResponseHeaders) {
+         //u => saved user object
+         //putResponseHeaders => $http header getter
+       });
+     });
+   ```
+ *
+ * You can also access the raw `$http` promise via the `$promise` property on the object returned
+ *
+   ```
+     var User = $resource('/user/:userId', {userId:'@id'});
+     User.get({userId:123})
+         .$promise.then(function(user) {
+           $scope.user = user;
+         });
+   ```
+
+ * # Creating a custom 'PUT' request
+ * In this example we create a custom method on our resource to make a PUT request
+ * ```js
+ *    var app = angular.module('app', ['ngResource', 'ngRoute']);
+ *
+ *    // Some APIs expect a PUT request in the format URL/object/ID
+ *    // Here we are creating an 'update' method
+ *    app.factory('Notes', ['$resource', function($resource) {
+ *    return $resource('/notes/:id', null,
+ *        {
+ *            'update': { method:'PUT' }
+ *        });
+ *    }]);
+ *
+ *    // In our controller we get the ID from the URL using ngRoute and $routeParams
+ *    // We pass in $routeParams and our Notes factory along with $scope
+ *    app.controller('NotesCtrl', ['$scope', '$routeParams', 'Notes',
+                                      function($scope, $routeParams, Notes) {
+ *    // First get a note object from the factory
+ *    var note = Notes.get({ id:$routeParams.id });
+ *    $id = note.id;
+ *
+ *    // Now call update passing in the ID first then the object you are updating
+ *    Notes.update({ id:$id }, note);
+ *
+ *    // This will PUT /notes/ID with the note object in the request payload
+ *    }]);
+ * ```
+ */
+angular.module("ngResource",["ng"]).provider("$resource",function(){var provider=this;this.defaults={
+// Strip slashes by default
+stripTrailingSlashes:true,
+// Default actions configuration
+actions:{get:{method:"GET"},save:{method:"POST"},query:{method:"GET",isArray:true},remove:{method:"DELETE"},delete:{method:"DELETE"}}};this.$get=["$http","$q",function($http,$q){var noop=angular.noop,forEach=angular.forEach,extend=angular.extend,copy=angular.copy,isFunction=angular.isFunction;/**
+       * We need our custom method because encodeURIComponent is too aggressive and doesn't follow
+       * http://www.ietf.org/rfc/rfc3986.txt with regards to the character set
+       * (pchar) allowed in path segments:
+       *    segment       = *pchar
+       *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
+       *    pct-encoded   = "%" HEXDIG HEXDIG
+       *    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
+       *    sub-delims    = "!" / "$" / "&" / "'" / "(" / ")"
+       *                     / "*" / "+" / "," / ";" / "="
+       */
+function encodeUriSegment(val){return encodeUriQuery(val,true).replace(/%26/gi,"&").replace(/%3D/gi,"=").replace(/%2B/gi,"+")}/**
+       * This method is intended for encoding *key* or *value* parts of query component. We need a
+       * custom method because encodeURIComponent is too aggressive and encodes stuff that doesn't
+       * have to be encoded per http://tools.ietf.org/html/rfc3986:
+       *    query       = *( pchar / "/" / "?" )
+       *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
+       *    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
+       *    pct-encoded   = "%" HEXDIG HEXDIG
+       *    sub-delims    = "!" / "$" / "&" / "'" / "(" / ")"
+       *                     / "*" / "+" / "," / ";" / "="
+       */
+function encodeUriQuery(val,pctEncodeSpaces){return encodeURIComponent(val).replace(/%40/gi,"@").replace(/%3A/gi,":").replace(/%24/g,"$").replace(/%2C/gi,",").replace(/%20/g,pctEncodeSpaces?"%20":"+")}function Route(template,defaults){this.template=template;this.defaults=extend({},provider.defaults,defaults);this.urlParams={}}Route.prototype={setUrlParams:function(config,params,actionUrl){var self=this,url=actionUrl||self.template,val,encodedVal;var urlParams=self.urlParams={};forEach(url.split(/\W/),function(param){if(param==="hasOwnProperty"){throw $resourceMinErr("badname","hasOwnProperty is not a valid parameter name.")}if(!new RegExp("^\\d+$").test(param)&&param&&new RegExp("(^|[^\\\\]):"+param+"(\\W|$)").test(url)){urlParams[param]=true}});url=url.replace(/\\:/g,":");params=params||{};forEach(self.urlParams,function(_,urlParam){val=params.hasOwnProperty(urlParam)?params[urlParam]:self.defaults[urlParam];if(angular.isDefined(val)&&val!==null){encodedVal=encodeUriSegment(val);url=url.replace(new RegExp(":"+urlParam+"(\\W|$)","g"),function(match,p1){return encodedVal+p1})}else{url=url.replace(new RegExp("(/?):"+urlParam+"(\\W|$)","g"),function(match,leadingSlashes,tail){if(tail.charAt(0)=="/"){return tail}else{return leadingSlashes+tail}})}});
+// strip trailing slashes and set the url (unless this behavior is specifically disabled)
+if(self.defaults.stripTrailingSlashes){url=url.replace(/\/+$/,"")||"/"}
+// then replace collapse `/.` if found in the last URL path segment before the query
+// E.g. `http://url.com/id./format?q=x` becomes `http://url.com/id.format?q=x`
+url=url.replace(/\/\.(?=\w+($|\?))/,".");
+// replace escaped `/\.` with `/.`
+config.url=url.replace(/\/\\\./,"/.");
+// set params - delegate param encoding to $http
+forEach(params,function(value,key){if(!self.urlParams[key]){config.params=config.params||{};config.params[key]=value}})}};function resourceFactory(url,paramDefaults,actions,options){var route=new Route(url,options);actions=extend({},provider.defaults.actions,actions);function extractParams(data,actionParams){var ids={};actionParams=extend({},paramDefaults,actionParams);forEach(actionParams,function(value,key){if(isFunction(value)){value=value()}ids[key]=value&&value.charAt&&value.charAt(0)=="@"?lookupDottedPath(data,value.substr(1)):value});return ids}function defaultResponseInterceptor(response){return response.resource}function Resource(value){shallowClearAndCopy(value||{},this)}Resource.prototype.toJSON=function(){var data=extend({},this);delete data.$promise;delete data.$resolved;return data};forEach(actions,function(action,name){var hasBody=/^(POST|PUT|PATCH)$/i.test(action.method);Resource[name]=function(a1,a2,a3,a4){var params={},data,success,error;/* jshint -W086 */
+/* (purposefully fall through case statements) */
+switch(arguments.length){case 4:error=a4;success=a3;
+//fallthrough
+case 3:case 2:if(isFunction(a2)){if(isFunction(a1)){success=a1;error=a2;break}success=a2;error=a3}else{params=a1;data=a2;success=a3;break}case 1:if(isFunction(a1))success=a1;else if(hasBody)data=a1;else params=a1;break;case 0:break;default:throw $resourceMinErr("badargs","Expected up to 4 arguments [params, data, success, error], got {0} arguments",arguments.length)}/* jshint +W086 */
+/* (purposefully fall through case statements) */
+var isInstanceCall=this instanceof Resource;var value=isInstanceCall?data:action.isArray?[]:new Resource(data);var httpConfig={};var responseInterceptor=action.interceptor&&action.interceptor.response||defaultResponseInterceptor;var responseErrorInterceptor=action.interceptor&&action.interceptor.responseError||undefined;forEach(action,function(value,key){if(key!="params"&&key!="isArray"&&key!="interceptor"){httpConfig[key]=copy(value)}});if(hasBody)httpConfig.data=data;route.setUrlParams(httpConfig,extend({},extractParams(data,action.params||{}),params),action.url);var promise=$http(httpConfig).then(function(response){var data=response.data,promise=value.$promise;if(data){
+// Need to convert action.isArray to boolean in case it is undefined
+// jshint -W018
+if(angular.isArray(data)!==!!action.isArray){throw $resourceMinErr("badcfg","Error in resource configuration for action `{0}`. Expected response to "+"contain an {1} but got an {2}",name,action.isArray?"array":"object",angular.isArray(data)?"array":"object")}
+// jshint +W018
+if(action.isArray){value.length=0;forEach(data,function(item){if(typeof item==="object"){value.push(new Resource(item))}else{
+// Valid JSON values may be string literals, and these should not be converted
+// into objects. These items will not have access to the Resource prototype
+// methods, but unfortunately there
+value.push(item)}})}else{shallowClearAndCopy(data,value);value.$promise=promise}}value.$resolved=true;response.resource=value;return response},function(response){value.$resolved=true;(error||noop)(response);return $q.reject(response)});promise=promise.then(function(response){var value=responseInterceptor(response);(success||noop)(value,response.headers);return value},responseErrorInterceptor);if(!isInstanceCall){
+// we are creating instance / collection
+// - set the initial promise
+// - return the instance / collection
+value.$promise=promise;value.$resolved=false;return value}
+// instance call
+return promise};Resource.prototype["$"+name]=function(params,success,error){if(isFunction(params)){error=success;success=params;params={}}var result=Resource[name].call(this,params,this,success,error);return result.$promise||result}});Resource.bind=function(additionalParamDefaults){return resourceFactory(url,extend({},paramDefaults,additionalParamDefaults),actions)};return Resource}return resourceFactory}]})})(window,window.angular);/**
+ * @license AngularJS v1.5.8
+ * (c) 2010-2016 Google, Inc. http://angularjs.org
+ * License: MIT
+ */
+(function(window,angular){"use strict";/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *     Any commits to this file should be reviewed with security in mind.  *
+ *   Changes to this file can potentially create security vulnerabilities. *
+ *          An approval from 2 Core members with history of modifying      *
+ *                         this file is required.                          *
+ *                                                                         *
+ *  Does the change somehow allow for arbitrary javascript to be executed? *
+ *    Or allows for someone to change the prototype of built-in objects?   *
+ *     Or gives undesired access to variables likes document or window?    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+var $sanitizeMinErr=angular.$$minErr("$sanitize");var bind;var extend;var forEach;var isDefined;var lowercase;var noop;var htmlParser;var htmlSanitizeWriter;/**
+ * @ngdoc module
+ * @name ngSanitize
+ * @description
+ *
+ * # ngSanitize
+ *
+ * The `ngSanitize` module provides functionality to sanitize HTML.
+ *
+ *
+ * <div doc-module-components="ngSanitize"></div>
+ *
+ * See {@link ngSanitize.$sanitize `$sanitize`} for usage.
+ */
+/**
+ * @ngdoc service
+ * @name $sanitize
+ * @kind function
+ *
+ * @description
+ *   Sanitizes an html string by stripping all potentially dangerous tokens.
+ *
+ *   The input is sanitized by parsing the HTML into tokens. All safe tokens (from a whitelist) are
+ *   then serialized back to properly escaped html string. This means that no unsafe input can make
+ *   it into the returned string.
+ *
+ *   The whitelist for URL sanitization of attribute values is configured using the functions
+ *   `aHrefSanitizationWhitelist` and `imgSrcSanitizationWhitelist` of {@link ng.$compileProvider
+ *   `$compileProvider`}.
+ *
+ *   The input may also contain SVG markup if this is enabled via {@link $sanitizeProvider}.
+ *
+ * @param {string} html HTML input.
+ * @returns {string} Sanitized HTML.
+ *
+ * @example
+   <example module="sanitizeExample" deps="angular-sanitize.js">
+   <file name="index.html">
+     <script>
+         angular.module('sanitizeExample', ['ngSanitize'])
+           .controller('ExampleController', ['$scope', '$sce', function($scope, $sce) {
+             $scope.snippet =
+               '<p style="color:blue">an html\n' +
+               '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
+               'snippet</p>';
+             $scope.deliberatelyTrustDangerousSnippet = function() {
+               return $sce.trustAsHtml($scope.snippet);
+             };
+           }]);
+     </script>
+     <div ng-controller="ExampleController">
+        Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
+       <table>
+         <tr>
+           <td>Directive</td>
+           <td>How</td>
+           <td>Source</td>
+           <td>Rendered</td>
+         </tr>
+         <tr id="bind-html-with-sanitize">
+           <td>ng-bind-html</td>
+           <td>Automatically uses $sanitize</td>
+           <td><pre>&lt;div ng-bind-html="snippet"&gt;<br/>&lt;/div&gt;</pre></td>
+           <td><div ng-bind-html="snippet"></div></td>
+         </tr>
+         <tr id="bind-html-with-trust">
+           <td>ng-bind-html</td>
+           <td>Bypass $sanitize by explicitly trusting the dangerous value</td>
+           <td>
+           <pre>&lt;div ng-bind-html="deliberatelyTrustDangerousSnippet()"&gt;
+&lt;/div&gt;</pre>
+           </td>
+           <td><div ng-bind-html="deliberatelyTrustDangerousSnippet()"></div></td>
+         </tr>
+         <tr id="bind-default">
+           <td>ng-bind</td>
+           <td>Automatically escapes</td>
+           <td><pre>&lt;div ng-bind="snippet"&gt;<br/>&lt;/div&gt;</pre></td>
+           <td><div ng-bind="snippet"></div></td>
+         </tr>
+       </table>
+       </div>
+   </file>
+   <file name="protractor.js" type="protractor">
+     it('should sanitize the html snippet by default', function() {
+       expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
+         toBe('<p>an html\n<em>click here</em>\nsnippet</p>');
+     });
+
+     it('should inline raw snippet if bound to a trusted value', function() {
+       expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).
+         toBe("<p style=\"color:blue\">an html\n" +
+              "<em onmouseover=\"this.textContent='PWN3D!'\">click here</em>\n" +
+              "snippet</p>");
+     });
+
+     it('should escape snippet without any filter', function() {
+       expect(element(by.css('#bind-default div')).getInnerHtml()).
+         toBe("&lt;p style=\"color:blue\"&gt;an html\n" +
+              "&lt;em onmouseover=\"this.textContent='PWN3D!'\"&gt;click here&lt;/em&gt;\n" +
+              "snippet&lt;/p&gt;");
+     });
+
+     it('should update', function() {
+       element(by.model('snippet')).clear();
+       element(by.model('snippet')).sendKeys('new <b onclick="alert(1)">text</b>');
+       expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
+         toBe('new <b>text</b>');
+       expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).toBe(
+         'new <b onclick="alert(1)">text</b>');
+       expect(element(by.css('#bind-default div')).getInnerHtml()).toBe(
+         "new &lt;b onclick=\"alert(1)\"&gt;text&lt;/b&gt;");
+     });
+   </file>
+   </example>
+ */
+/**
+ * @ngdoc provider
+ * @name $sanitizeProvider
+ *
+ * @description
+ * Creates and configures {@link $sanitize} instance.
+ */
+function $SanitizeProvider(){var svgEnabled=false;this.$get=["$$sanitizeUri",function($$sanitizeUri){if(svgEnabled){extend(validElements,svgElements)}return function(html){var buf=[];htmlParser(html,htmlSanitizeWriter(buf,function(uri,isImage){return!/^unsafe:/.test($$sanitizeUri(uri,isImage))}));return buf.join("")}}];/**
+   * @ngdoc method
+   * @name $sanitizeProvider#enableSvg
+   * @kind function
+   *
+   * @description
+   * Enables a subset of svg to be supported by the sanitizer.
+   *
+   * <div class="alert alert-warning">
+   *   <p>By enabling this setting without taking other precautions, you might expose your
+   *   application to click-hijacking attacks. In these attacks, sanitized svg elements could be positioned
+   *   outside of the containing element and be rendered over other elements on the page (e.g. a login
+   *   link). Such behavior can then result in phishing incidents.</p>
+   *
+   *   <p>To protect against these, explicitly setup `overflow: hidden` css rule for all potential svg
+   *   tags within the sanitized content:</p>
+   *
+   *   <br>
+   *
+   *   <pre><code>
+   *   .rootOfTheIncludedContent svg {
+   *     overflow: hidden !important;
+   *   }
+   *   </code></pre>
+   * </div>
+   *
+   * @param {boolean=} flag Enable or disable SVG support in the sanitizer.
+   * @returns {boolean|ng.$sanitizeProvider} Returns the currently configured value if called
+   *    without an argument or self for chaining otherwise.
+   */
+this.enableSvg=function(enableSvg){if(isDefined(enableSvg)){svgEnabled=enableSvg;return this}else{return svgEnabled}};
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Private stuff
+//////////////////////////////////////////////////////////////////////////////////////////////////
+bind=angular.bind;extend=angular.extend;forEach=angular.forEach;isDefined=angular.isDefined;lowercase=angular.lowercase;noop=angular.noop;htmlParser=htmlParserImpl;htmlSanitizeWriter=htmlSanitizeWriterImpl;
+// Regular Expressions for parsing tags and attributes
+var SURROGATE_PAIR_REGEXP=/[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
+// Match everything outside of normal chars and " (quote character)
+NON_ALPHANUMERIC_REGEXP=/([^\#-~ |!])/g;
+// Good source of info about elements and attributes
+// http://dev.w3.org/html5/spec/Overview.html#semantics
+// http://simon.html5.org/html-elements
+// Safe Void Elements - HTML5
+// http://dev.w3.org/html5/spec/Overview.html#void-elements
+var voidElements=toMap("area,br,col,hr,img,wbr");
+// Elements that you can, intentionally, leave open (and which close themselves)
+// http://dev.w3.org/html5/spec/Overview.html#optional-tags
+var optionalEndTagBlockElements=toMap("colgroup,dd,dt,li,p,tbody,td,tfoot,th,thead,tr"),optionalEndTagInlineElements=toMap("rp,rt"),optionalEndTagElements=extend({},optionalEndTagInlineElements,optionalEndTagBlockElements);
+// Safe Block Elements - HTML5
+var blockElements=extend({},optionalEndTagBlockElements,toMap("address,article,"+"aside,blockquote,caption,center,del,dir,div,dl,figure,figcaption,footer,h1,h2,h3,h4,h5,"+"h6,header,hgroup,hr,ins,map,menu,nav,ol,pre,section,table,ul"));
+// Inline Elements - HTML5
+var inlineElements=extend({},optionalEndTagInlineElements,toMap("a,abbr,acronym,b,"+"bdi,bdo,big,br,cite,code,del,dfn,em,font,i,img,ins,kbd,label,map,mark,q,ruby,rp,rt,s,"+"samp,small,span,strike,strong,sub,sup,time,tt,u,var"));
+// SVG Elements
+// https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Elements
+// Note: the elements animate,animateColor,animateMotion,animateTransform,set are intentionally omitted.
+// They can potentially allow for arbitrary javascript to be executed. See #11290
+var svgElements=toMap("circle,defs,desc,ellipse,font-face,font-face-name,font-face-src,g,glyph,"+"hkern,image,linearGradient,line,marker,metadata,missing-glyph,mpath,path,polygon,polyline,"+"radialGradient,rect,stop,svg,switch,text,title,tspan");
+// Blocked Elements (will be stripped)
+var blockedElements=toMap("script,style");var validElements=extend({},voidElements,blockElements,inlineElements,optionalEndTagElements);
+//Attributes that have href and hence need to be sanitized
+var uriAttrs=toMap("background,cite,href,longdesc,src,xlink:href");var htmlAttrs=toMap("abbr,align,alt,axis,bgcolor,border,cellpadding,cellspacing,class,clear,"+"color,cols,colspan,compact,coords,dir,face,headers,height,hreflang,hspace,"+"ismap,lang,language,nohref,nowrap,rel,rev,rows,rowspan,rules,"+"scope,scrolling,shape,size,span,start,summary,tabindex,target,title,type,"+"valign,value,vspace,width");
+// SVG attributes (without "id" and "name" attributes)
+// https://wiki.whatwg.org/wiki/Sanitization_rules#svg_Attributes
+var svgAttrs=toMap("accent-height,accumulate,additive,alphabetic,arabic-form,ascent,"+"baseProfile,bbox,begin,by,calcMode,cap-height,class,color,color-rendering,content,"+"cx,cy,d,dx,dy,descent,display,dur,end,fill,fill-rule,font-family,font-size,font-stretch,"+"font-style,font-variant,font-weight,from,fx,fy,g1,g2,glyph-name,gradientUnits,hanging,"+"height,horiz-adv-x,horiz-origin-x,ideographic,k,keyPoints,keySplines,keyTimes,lang,"+"marker-end,marker-mid,marker-start,markerHeight,markerUnits,markerWidth,mathematical,"+"max,min,offset,opacity,orient,origin,overline-position,overline-thickness,panose-1,"+"path,pathLength,points,preserveAspectRatio,r,refX,refY,repeatCount,repeatDur,"+"requiredExtensions,requiredFeatures,restart,rotate,rx,ry,slope,stemh,stemv,stop-color,"+"stop-opacity,strikethrough-position,strikethrough-thickness,stroke,stroke-dasharray,"+"stroke-dashoffset,stroke-linecap,stroke-linejoin,stroke-miterlimit,stroke-opacity,"+"stroke-width,systemLanguage,target,text-anchor,to,transform,type,u1,u2,underline-position,"+"underline-thickness,unicode,unicode-range,units-per-em,values,version,viewBox,visibility,"+"width,widths,x,x-height,x1,x2,xlink:actuate,xlink:arcrole,xlink:role,xlink:show,xlink:title,"+"xlink:type,xml:base,xml:lang,xml:space,xmlns,xmlns:xlink,y,y1,y2,zoomAndPan",true);var validAttrs=extend({},uriAttrs,svgAttrs,htmlAttrs);function toMap(str,lowercaseKeys){var obj={},items=str.split(","),i;for(i=0;i<items.length;i++){obj[lowercaseKeys?lowercase(items[i]):items[i]]=true}return obj}var inertBodyElement;(function(window){var doc;if(window.document&&window.document.implementation){doc=window.document.implementation.createHTMLDocument("inert")}else{throw $sanitizeMinErr("noinert","Can't create an inert html document")}var docElement=doc.documentElement||doc.getDocumentElement();var bodyElements=docElement.getElementsByTagName("body");
+// usually there should be only one body element in the document, but IE doesn't have any, so we need to create one
+if(bodyElements.length===1){inertBodyElement=bodyElements[0]}else{var html=doc.createElement("html");inertBodyElement=doc.createElement("body");html.appendChild(inertBodyElement);doc.appendChild(html)}})(window);/**
+   * @example
+   * htmlParser(htmlString, {
+   *     start: function(tag, attrs) {},
+   *     end: function(tag) {},
+   *     chars: function(text) {},
+   *     comment: function(text) {}
+   * });
+   *
+   * @param {string} html string
+   * @param {object} handler
+   */
+function htmlParserImpl(html,handler){if(html===null||html===undefined){html=""}else if(typeof html!=="string"){html=""+html}inertBodyElement.innerHTML=html;
+//mXSS protection
+var mXSSAttempts=5;do{if(mXSSAttempts===0){throw $sanitizeMinErr("uinput","Failed to sanitize html because the input is unstable")}mXSSAttempts--;
+// strip custom-namespaced attributes on IE<=11
+if(window.document.documentMode){stripCustomNsAttrs(inertBodyElement)}html=inertBodyElement.innerHTML;//trigger mXSS
+inertBodyElement.innerHTML=html}while(html!==inertBodyElement.innerHTML);var node=inertBodyElement.firstChild;while(node){switch(node.nodeType){case 1:// ELEMENT_NODE
+handler.start(node.nodeName.toLowerCase(),attrToMap(node.attributes));break;case 3:// TEXT NODE
+handler.chars(node.textContent);break}var nextNode;if(!(nextNode=node.firstChild)){if(node.nodeType==1){handler.end(node.nodeName.toLowerCase())}nextNode=node.nextSibling;if(!nextNode){while(nextNode==null){node=node.parentNode;if(node===inertBodyElement)break;nextNode=node.nextSibling;if(node.nodeType==1){handler.end(node.nodeName.toLowerCase())}}}}node=nextNode}while(node=inertBodyElement.firstChild){inertBodyElement.removeChild(node)}}function attrToMap(attrs){var map={};for(var i=0,ii=attrs.length;i<ii;i++){var attr=attrs[i];map[attr.name]=attr.value}return map}/**
+   * Escapes all potentially dangerous characters, so that the
+   * resulting string can be safely inserted into attribute or
+   * element text.
+   * @param value
+   * @returns {string} escaped text
+   */
+function encodeEntities(value){return value.replace(/&/g,"&amp;").replace(SURROGATE_PAIR_REGEXP,function(value){var hi=value.charCodeAt(0);var low=value.charCodeAt(1);return"&#"+((hi-55296)*1024+(low-56320)+65536)+";"}).replace(NON_ALPHANUMERIC_REGEXP,function(value){return"&#"+value.charCodeAt(0)+";"}).replace(/</g,"&lt;").replace(/>/g,"&gt;")}/**
+   * create an HTML/XML writer which writes to buffer
+   * @param {Array} buf use buf.join('') to get out sanitized html string
+   * @returns {object} in the form of {
+   *     start: function(tag, attrs) {},
+   *     end: function(tag) {},
+   *     chars: function(text) {},
+   *     comment: function(text) {}
+   * }
+   */
+function htmlSanitizeWriterImpl(buf,uriValidator){var ignoreCurrentElement=false;var out=bind(buf,buf.push);return{start:function(tag,attrs){tag=lowercase(tag);if(!ignoreCurrentElement&&blockedElements[tag]){ignoreCurrentElement=tag}if(!ignoreCurrentElement&&validElements[tag]===true){out("<");out(tag);forEach(attrs,function(value,key){var lkey=lowercase(key);var isImage=tag==="img"&&lkey==="src"||lkey==="background";if(validAttrs[lkey]===true&&(uriAttrs[lkey]!==true||uriValidator(value,isImage))){out(" ");out(key);out('="');out(encodeEntities(value));out('"')}});out(">")}},end:function(tag){tag=lowercase(tag);if(!ignoreCurrentElement&&validElements[tag]===true&&voidElements[tag]!==true){out("</");out(tag);out(">")}if(tag==ignoreCurrentElement){ignoreCurrentElement=false}},chars:function(chars){if(!ignoreCurrentElement){out(encodeEntities(chars))}}}}/**
+   * When IE9-11 comes across an unknown namespaced attribute e.g. 'xlink:foo' it adds 'xmlns:ns1' attribute to declare
+   * ns1 namespace and prefixes the attribute with 'ns1' (e.g. 'ns1:xlink:foo'). This is undesirable since we don't want
+   * to allow any of these custom attributes. This method strips them all.
+   *
+   * @param node Root element to process
+   */
+function stripCustomNsAttrs(node){if(node.nodeType===window.Node.ELEMENT_NODE){var attrs=node.attributes;for(var i=0,l=attrs.length;i<l;i++){var attrNode=attrs[i];var attrName=attrNode.name.toLowerCase();if(attrName==="xmlns:ns1"||attrName.lastIndexOf("ns1:",0)===0){node.removeAttributeNode(attrNode);i--;l--}}}var nextNode=node.firstChild;if(nextNode){stripCustomNsAttrs(nextNode)}nextNode=node.nextSibling;if(nextNode){stripCustomNsAttrs(nextNode)}}}function sanitizeText(chars){var buf=[];var writer=htmlSanitizeWriter(buf,noop);writer.chars(chars);return buf.join("")}
+// define ngSanitize module and register $sanitize service
+angular.module("ngSanitize",[]).provider("$sanitize",$SanitizeProvider);/**
+ * @ngdoc filter
+ * @name linky
+ * @kind function
+ *
+ * @description
+ * Finds links in text input and turns them into html links. Supports `http/https/ftp/mailto` and
+ * plain email address links.
+ *
+ * Requires the {@link ngSanitize `ngSanitize`} module to be installed.
+ *
+ * @param {string} text Input text.
+ * @param {string} target Window (`_blank|_self|_parent|_top`) or named frame to open links in.
+ * @param {object|function(url)} [attributes] Add custom attributes to the link element.
+ *
+ *    Can be one of:
+ *
+ *    - `object`: A map of attributes
+ *    - `function`: Takes the url as a parameter and returns a map of attributes
+ *
+ *    If the map of attributes contains a value for `target`, it overrides the value of
+ *    the target parameter.
+ *
+ *
+ * @returns {string} Html-linkified and {@link $sanitize sanitized} text.
+ *
+ * @usage
+   <span ng-bind-html="linky_expression | linky"></span>
+ *
+ * @example
+   <example module="linkyExample" deps="angular-sanitize.js">
+     <file name="index.html">
+       <div ng-controller="ExampleController">
+       Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
+       <table>
+         <tr>
+           <th>Filter</th>
+           <th>Source</th>
+           <th>Rendered</th>
+         </tr>
+         <tr id="linky-filter">
+           <td>linky filter</td>
+           <td>
+             <pre>&lt;div ng-bind-html="snippet | linky"&gt;<br>&lt;/div&gt;</pre>
+           </td>
+           <td>
+             <div ng-bind-html="snippet | linky"></div>
+           </td>
+         </tr>
+         <tr id="linky-target">
+          <td>linky target</td>
+          <td>
+            <pre>&lt;div ng-bind-html="snippetWithSingleURL | linky:'_blank'"&gt;<br>&lt;/div&gt;</pre>
+          </td>
+          <td>
+            <div ng-bind-html="snippetWithSingleURL | linky:'_blank'"></div>
+          </td>
+         </tr>
+         <tr id="linky-custom-attributes">
+          <td>linky custom attributes</td>
+          <td>
+            <pre>&lt;div ng-bind-html="snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}"&gt;<br>&lt;/div&gt;</pre>
+          </td>
+          <td>
+            <div ng-bind-html="snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}"></div>
+          </td>
+         </tr>
+         <tr id="escaped-html">
+           <td>no filter</td>
+           <td><pre>&lt;div ng-bind="snippet"&gt;<br>&lt;/div&gt;</pre></td>
+           <td><div ng-bind="snippet"></div></td>
+         </tr>
+       </table>
+     </file>
+     <file name="script.js">
+       angular.module('linkyExample', ['ngSanitize'])
+         .controller('ExampleController', ['$scope', function($scope) {
+           $scope.snippet =
+             'Pretty text with some links:\n'+
+             'http://angularjs.org/,\n'+
+             'mailto:us@somewhere.org,\n'+
+             'another@somewhere.org,\n'+
+             'and one more: ftp://127.0.0.1/.';
+           $scope.snippetWithSingleURL = 'http://angularjs.org/';
+         }]);
+     </file>
+     <file name="protractor.js" type="protractor">
+       it('should linkify the snippet with urls', function() {
+         expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
+             toBe('Pretty text with some links: http://angularjs.org/, us@somewhere.org, ' +
+                  'another@somewhere.org, and one more: ftp://127.0.0.1/.');
+         expect(element.all(by.css('#linky-filter a')).count()).toEqual(4);
+       });
+
+       it('should not linkify snippet without the linky filter', function() {
+         expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText()).
+             toBe('Pretty text with some links: http://angularjs.org/, mailto:us@somewhere.org, ' +
+                  'another@somewhere.org, and one more: ftp://127.0.0.1/.');
+         expect(element.all(by.css('#escaped-html a')).count()).toEqual(0);
+       });
+
+       it('should update', function() {
+         element(by.model('snippet')).clear();
+         element(by.model('snippet')).sendKeys('new http://link.');
+         expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
+             toBe('new http://link.');
+         expect(element.all(by.css('#linky-filter a')).count()).toEqual(1);
+         expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText())
+             .toBe('new http://link.');
+       });
+
+       it('should work with the target property', function() {
+        expect(element(by.id('linky-target')).
+            element(by.binding("snippetWithSingleURL | linky:'_blank'")).getText()).
+            toBe('http://angularjs.org/');
+        expect(element(by.css('#linky-target a')).getAttribute('target')).toEqual('_blank');
+       });
+
+       it('should optionally add custom attributes', function() {
+        expect(element(by.id('linky-custom-attributes')).
+            element(by.binding("snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}")).getText()).
+            toBe('http://angularjs.org/');
+        expect(element(by.css('#linky-custom-attributes a')).getAttribute('rel')).toEqual('nofollow');
+       });
+     </file>
+   </example>
+ */
+angular.module("ngSanitize").filter("linky",["$sanitize",function($sanitize){var LINKY_URL_REGEXP=/((ftp|https?):\/\/|(www\.)|(mailto:)?[A-Za-z0-9._%+-]+@)\S*[^\s.;,(){}<>"\u201d\u2019]/i,MAILTO_REGEXP=/^mailto:/i;var linkyMinErr=angular.$$minErr("linky");var isDefined=angular.isDefined;var isFunction=angular.isFunction;var isObject=angular.isObject;var isString=angular.isString;return function(text,target,attributes){if(text==null||text==="")return text;if(!isString(text))throw linkyMinErr("notstring","Expected string but received: {0}",text);var attributesFn=isFunction(attributes)?attributes:isObject(attributes)?function getAttributesObject(){return attributes}:function getEmptyAttributesObject(){return{}};var match;var raw=text;var html=[];var url;var i;while(match=raw.match(LINKY_URL_REGEXP)){
+// We can not end in these as they are sometimes found at the end of the sentence
+url=match[0];
+// if we did not match ftp/http/www/mailto then assume mailto
+if(!match[2]&&!match[4]){url=(match[3]?"http://":"mailto:")+url}i=match.index;addText(raw.substr(0,i));addLink(url,match[0].replace(MAILTO_REGEXP,""));raw=raw.substring(i+match[0].length)}addText(raw);return $sanitize(html.join(""));function addText(text){if(!text){return}html.push(sanitizeText(text))}function addLink(url,text){var key,linkAttributes=attributesFn(url);html.push("<a ");for(key in linkAttributes){html.push(key+'="'+linkAttributes[key]+'" ')}if(isDefined(target)&&!("target"in linkAttributes)){html.push('target="',target,'" ')}html.push('href="',url.replace(/"/g,"&quot;"),'">');addText(text);html.push("</a>")}}}])})(window,window.angular);/*!
+ * angular-translate - v2.5.0 - 2014-12-07
+ * http://github.com/angular-translate/angular-translate
+ * Copyright (c) 2014 ; Licensed MIT
+ */
+angular.module("pascalprecht.translate").factory("$translateStaticFilesLoader",["$q","$http",function($q,$http){return function(options){if(!options||(!angular.isString(options.prefix)||!angular.isString(options.suffix))){throw new Error("Couldn't load static files, no prefix or suffix specified!")}var deferred=$q.defer();$http(angular.extend({url:[options.prefix,options.key,options.suffix].join(""),method:"GET",params:""},options.$http)).success(function(data){deferred.resolve(data)}).error(function(data){deferred.reject(options.key)});return deferred.promise}}]);/*!
+ * angular-translate - v2.5.2 - 2014-12-10
+ * http://github.com/angular-translate/angular-translate
+ * Copyright (c) 2014 ; Licensed MIT
+ */
+angular.module("pascalprecht.translate").factory("$translateCookieStorage",["$cookieStore",function($cookieStore){var $translateCookieStorage={/**
+     * @ngdoc function
+     * @name pascalprecht.translate.$translateCookieStorage#get
+     * @methodOf pascalprecht.translate.$translateCookieStorage
+     *
+     * @description
+     * Returns an item from cookieStorage by given name.
+     *
+     * @param {string} name Item name
+     * @return {string} Value of item name
+     */
+get:function(name){return $cookieStore.get(name)},/**
+     * @ngdoc function
+     * @name pascalprecht.translate.$translateCookieStorage#set
+     * @methodOf pascalprecht.translate.$translateCookieStorage
+     *
+     * @description
+     * Sets an item in cookieStorage by given name.
+     *
+     * @deprecated use #put
+     *
+     * @param {string} name Item name
+     * @param {string} value Item value
+     */
+set:function(name,value){$cookieStore.put(name,value)},/**
+     * @ngdoc function
+     * @name pascalprecht.translate.$translateCookieStorage#put
+     * @methodOf pascalprecht.translate.$translateCookieStorage
+     *
+     * @description
+     * Sets an item in cookieStorage by given name.
+     *
+     * @param {string} name Item name
+     * @param {string} value Item value
+     */
+put:function(name,value){$cookieStore.put(name,value)}};return $translateCookieStorage}]);/*!
+ * angular-translate - v2.5.0 - 2014-12-07
+ * http://github.com/angular-translate/angular-translate
+ * Copyright (c) 2014 ; Licensed MIT
+ */
+angular.module("pascalprecht.translate").factory("$translateLocalStorage",["$window","$translateCookieStorage",function($window,$translateCookieStorage){var localStorageAdapter=function(){var langKey;return{get:function(name){if(!langKey){langKey=$window.localStorage.getItem(name)}return langKey},set:function(name,value){langKey=value;$window.localStorage.setItem(name,value)},put:function(name,value){langKey=value;$window.localStorage.setItem(name,value)}}}();var hasLocalStorageSupport="localStorage"in $window;if(hasLocalStorageSupport){var testKey="pascalprecht.translate.storageTest";try{if($window.localStorage!==null){$window.localStorage.setItem(testKey,"foo");$window.localStorage.removeItem(testKey);hasLocalStorageSupport=true}else{hasLocalStorageSupport=false}}catch(e){hasLocalStorageSupport=false}}var $translateLocalStorage=hasLocalStorageSupport?localStorageAdapter:$translateCookieStorage;return $translateLocalStorage}]);/**
+ * State-based routing for AngularJS
+ * @version v0.3.1
+ * @link http://angular-ui.github.com/
+ * @license MIT License, http://www.opensource.org/licenses/MIT
+ */
+/* commonjs package manager support (eg componentjs) */
+if(typeof module!=="undefined"&&typeof exports!=="undefined"&&module.exports===exports){module.exports="ui.router"}(function(window,angular,undefined){/*jshint globalstrict:true*/
+/*global angular:false*/
+"use strict";var isDefined=angular.isDefined,isFunction=angular.isFunction,isString=angular.isString,isObject=angular.isObject,isArray=angular.isArray,forEach=angular.forEach,extend=angular.extend,copy=angular.copy,toJson=angular.toJson;function inherit(parent,extra){return extend(new(extend(function(){},{prototype:parent})),extra)}function merge(dst){forEach(arguments,function(obj){if(obj!==dst){forEach(obj,function(value,key){if(!dst.hasOwnProperty(key))dst[key]=value})}});return dst}/**
+ * Finds the common ancestor path between two states.
+ *
+ * @param {Object} first The first state.
+ * @param {Object} second The second state.
+ * @return {Array} Returns an array of state names in descending order, not including the root.
+ */
+function ancestors(first,second){var path=[];for(var n in first.path){if(first.path[n]!==second.path[n])break;path.push(first.path[n])}return path}/**
+ * IE8-safe wrapper for `Object.keys()`.
+ *
+ * @param {Object} object A JavaScript object.
+ * @return {Array} Returns the keys of the object as an array.
+ */
+function objectKeys(object){if(Object.keys){return Object.keys(object)}var result=[];forEach(object,function(val,key){result.push(key)});return result}/**
+ * IE8-safe wrapper for `Array.prototype.indexOf()`.
+ *
+ * @param {Array} array A JavaScript array.
+ * @param {*} value A value to search the array for.
+ * @return {Number} Returns the array index value of `value`, or `-1` if not present.
+ */
+function indexOf(array,value){if(Array.prototype.indexOf){return array.indexOf(value,Number(arguments[2])||0)}var len=array.length>>>0,from=Number(arguments[2])||0;from=from<0?Math.ceil(from):Math.floor(from);if(from<0)from+=len;for(;from<len;from++){if(from in array&&array[from]===value)return from}return-1}/**
+ * Merges a set of parameters with all parameters inherited between the common parents of the
+ * current state and a given destination state.
+ *
+ * @param {Object} currentParams The value of the current state parameters ($stateParams).
+ * @param {Object} newParams The set of parameters which will be composited with inherited params.
+ * @param {Object} $current Internal definition of object representing the current state.
+ * @param {Object} $to Internal definition of object representing state to transition to.
+ */
+function inheritParams(currentParams,newParams,$current,$to){var parents=ancestors($current,$to),parentParams,inherited={},inheritList=[];for(var i in parents){if(!parents[i]||!parents[i].params)continue;parentParams=objectKeys(parents[i].params);if(!parentParams.length)continue;for(var j in parentParams){if(indexOf(inheritList,parentParams[j])>=0)continue;inheritList.push(parentParams[j]);inherited[parentParams[j]]=currentParams[parentParams[j]]}}return extend({},inherited,newParams)}/**
+ * Performs a non-strict comparison of the subset of two objects, defined by a list of keys.
+ *
+ * @param {Object} a The first object.
+ * @param {Object} b The second object.
+ * @param {Array} keys The list of keys within each object to compare. If the list is empty or not specified,
+ *                     it defaults to the list of keys in `a`.
+ * @return {Boolean} Returns `true` if the keys match, otherwise `false`.
+ */
+function equalForKeys(a,b,keys){if(!keys){keys=[];for(var n in a)keys.push(n)}for(var i=0;i<keys.length;i++){var k=keys[i];if(a[k]!=b[k])return false}return true}/**
+ * Returns the subset of an object, based on a list of keys.
+ *
+ * @param {Array} keys
+ * @param {Object} values
+ * @return {Boolean} Returns a subset of `values`.
+ */
+function filterByKeys(keys,values){var filtered={};forEach(keys,function(name){filtered[name]=values[name]});return filtered}
+// like _.indexBy
+// when you know that your index values will be unique, or you want last-one-in to win
+function indexBy(array,propName){var result={};forEach(array,function(item){result[item[propName]]=item});return result}
+// extracted from underscore.js
+// Return a copy of the object only containing the whitelisted properties.
+function pick(obj){var copy={};var keys=Array.prototype.concat.apply(Array.prototype,Array.prototype.slice.call(arguments,1));forEach(keys,function(key){if(key in obj)copy[key]=obj[key]});return copy}
+// extracted from underscore.js
+// Return a copy of the object omitting the blacklisted properties.
+function omit(obj){var copy={};var keys=Array.prototype.concat.apply(Array.prototype,Array.prototype.slice.call(arguments,1));for(var key in obj){if(indexOf(keys,key)==-1)copy[key]=obj[key]}return copy}function pluck(collection,key){var result=isArray(collection)?[]:{};forEach(collection,function(val,i){result[i]=isFunction(key)?key(val):val[key]});return result}function filter(collection,callback){var array=isArray(collection);var result=array?[]:{};forEach(collection,function(val,i){if(callback(val,i)){result[array?result.length:i]=val}});return result}function map(collection,callback){var result=isArray(collection)?[]:{};forEach(collection,function(val,i){result[i]=callback(val,i)});return result}/**
+ * @ngdoc overview
+ * @name ui.router.util
+ *
+ * @description
+ * # ui.router.util sub-module
+ *
+ * This module is a dependency of other sub-modules. Do not include this module as a dependency
+ * in your angular app (use {@link ui.router} module instead).
+ *
+ */
+angular.module("ui.router.util",["ng"]);/**
+ * @ngdoc overview
+ * @name ui.router.router
+ * 
+ * @requires ui.router.util
+ *
+ * @description
+ * # ui.router.router sub-module
+ *
+ * This module is a dependency of other sub-modules. Do not include this module as a dependency
+ * in your angular app (use {@link ui.router} module instead).
+ */
+angular.module("ui.router.router",["ui.router.util"]);/**
+ * @ngdoc overview
+ * @name ui.router.state
+ * 
+ * @requires ui.router.router
+ * @requires ui.router.util
+ *
+ * @description
+ * # ui.router.state sub-module
+ *
+ * This module is a dependency of the main ui.router module. Do not include this module as a dependency
+ * in your angular app (use {@link ui.router} module instead).
+ * 
+ */
+angular.module("ui.router.state",["ui.router.router","ui.router.util"]);/**
+ * @ngdoc overview
+ * @name ui.router
+ *
+ * @requires ui.router.state
+ *
+ * @description
+ * # ui.router
+ * 
+ * ## The main module for ui.router 
+ * There are several sub-modules included with the ui.router module, however only this module is needed
+ * as a dependency within your angular app. The other modules are for organization purposes. 
+ *
+ * The modules are:
+ * * ui.router - the main "umbrella" module
+ * * ui.router.router - 
+ * 
+ * *You'll need to include **only** this module as the dependency within your angular app.*
+ * 
+ * <pre>
+ * <!doctype html>
+ * <html ng-app="myApp">
+ * <head>
+ *   <script src="js/angular.js"></script>
+ *   <!-- Include the ui-router script -->
+ *   <script src="js/angular-ui-router.min.js"></script>
+ *   <script>
+ *     // ...and add 'ui.router' as a dependency
+ *     var myApp = angular.module('myApp', ['ui.router']);
+ *   </script>
+ * </head>
+ * <body>
+ * </body>
+ * </html>
+ * </pre>
+ */
+angular.module("ui.router",["ui.router.state"]);angular.module("ui.router.compat",["ui.router"]);/**
+ * @ngdoc object
+ * @name ui.router.util.$resolve
+ *
+ * @requires $q
+ * @requires $injector
+ *
+ * @description
+ * Manages resolution of (acyclic) graphs of promises.
+ */
+$Resolve.$inject=["$q","$injector"];function $Resolve($q,$injector){var VISIT_IN_PROGRESS=1,VISIT_DONE=2,NOTHING={},NO_DEPENDENCIES=[],NO_LOCALS=NOTHING,NO_PARENT=extend($q.when(NOTHING),{$$promises:NOTHING,$$values:NOTHING});/**
+   * @ngdoc function
+   * @name ui.router.util.$resolve#study
+   * @methodOf ui.router.util.$resolve
+   *
+   * @description
+   * Studies a set of invocables that are likely to be used multiple times.
+   * <pre>
+   * $resolve.study(invocables)(locals, parent, self)
+   * </pre>
+   * is equivalent to
+   * <pre>
+   * $resolve.resolve(invocables, locals, parent, self)
+   * </pre>
+   * but the former is more efficient (in fact `resolve` just calls `study` 
+   * internally).
+   *
+   * @param {object} invocables Invocable objects
+   * @return {function} a function to pass in locals, parent and self
+   */
+this.study=function(invocables){if(!isObject(invocables))throw new Error("'invocables' must be an object");var invocableKeys=objectKeys(invocables||{});
+// Perform a topological sort of invocables to build an ordered plan
+var plan=[],cycle=[],visited={};function visit(value,key){if(visited[key]===VISIT_DONE)return;cycle.push(key);if(visited[key]===VISIT_IN_PROGRESS){cycle.splice(0,indexOf(cycle,key));throw new Error("Cyclic dependency: "+cycle.join(" -> "))}visited[key]=VISIT_IN_PROGRESS;if(isString(value)){plan.push(key,[function(){return $injector.get(value)}],NO_DEPENDENCIES)}else{var params=$injector.annotate(value);forEach(params,function(param){if(param!==key&&invocables.hasOwnProperty(param))visit(invocables[param],param)});plan.push(key,value,params)}cycle.pop();visited[key]=VISIT_DONE}forEach(invocables,visit);invocables=cycle=visited=null;// plan is all that's required
+function isResolve(value){return isObject(value)&&value.then&&value.$$promises}return function(locals,parent,self){if(isResolve(locals)&&self===undefined){self=parent;parent=locals;locals=null}if(!locals)locals=NO_LOCALS;else if(!isObject(locals)){throw new Error("'locals' must be an object")}if(!parent)parent=NO_PARENT;else if(!isResolve(parent)){throw new Error("'parent' must be a promise returned by $resolve.resolve()")}
+// To complete the overall resolution, we have to wait for the parent
+// promise and for the promise for each invokable in our plan.
+var resolution=$q.defer(),result=resolution.promise,promises=result.$$promises={},values=extend({},locals),wait=1+plan.length/3,merged=false;function done(){
+// Merge parent values we haven't got yet and publish our own $$values
+if(!--wait){if(!merged)merge(values,parent.$$values);result.$$values=values;result.$$promises=result.$$promises||true;// keep for isResolve()
+delete result.$$inheritedValues;resolution.resolve(values)}}function fail(reason){result.$$failure=reason;resolution.reject(reason)}
+// Short-circuit if parent has already failed
+if(isDefined(parent.$$failure)){fail(parent.$$failure);return result}if(parent.$$inheritedValues){merge(values,omit(parent.$$inheritedValues,invocableKeys))}
+// Merge parent values if the parent has already resolved, or merge
+// parent promises and wait if the parent resolve is still in progress.
+extend(promises,parent.$$promises);if(parent.$$values){merged=merge(values,omit(parent.$$values,invocableKeys));result.$$inheritedValues=omit(parent.$$values,invocableKeys);done()}else{if(parent.$$inheritedValues){result.$$inheritedValues=omit(parent.$$inheritedValues,invocableKeys)}parent.then(done,fail)}
+// Process each invocable in the plan, but ignore any where a local of the same name exists.
+for(var i=0,ii=plan.length;i<ii;i+=3){if(locals.hasOwnProperty(plan[i]))done();else invoke(plan[i],plan[i+1],plan[i+2])}function invoke(key,invocable,params){
+// Create a deferred for this invocation. Failures will propagate to the resolution as well.
+var invocation=$q.defer(),waitParams=0;function onfailure(reason){invocation.reject(reason);fail(reason)}
+// Wait for any parameter that we have a promise for (either from parent or from this
+// resolve; in that case study() will have made sure it's ordered before us in the plan).
+forEach(params,function(dep){if(promises.hasOwnProperty(dep)&&!locals.hasOwnProperty(dep)){waitParams++;promises[dep].then(function(result){values[dep]=result;if(!--waitParams)proceed()},onfailure)}});if(!waitParams)proceed();function proceed(){if(isDefined(result.$$failure))return;try{invocation.resolve($injector.invoke(invocable,self,values));invocation.promise.then(function(result){values[key]=result;done()},onfailure)}catch(e){onfailure(e)}}
+// Publish promise synchronously; invocations further down in the plan may depend on it.
+promises[key]=invocation.promise}return result}};/**
+   * @ngdoc function
+   * @name ui.router.util.$resolve#resolve
+   * @methodOf ui.router.util.$resolve
+   *
+   * @description
+   * Resolves a set of invocables. An invocable is a function to be invoked via 
+   * `$injector.invoke()`, and can have an arbitrary number of dependencies. 
+   * An invocable can either return a value directly,
+   * or a `$q` promise. If a promise is returned it will be resolved and the 
+   * resulting value will be used instead. Dependencies of invocables are resolved 
+   * (in this order of precedence)
+   *
+   * - from the specified `locals`
+   * - from another invocable that is part of this `$resolve` call
+   * - from an invocable that is inherited from a `parent` call to `$resolve` 
+   *   (or recursively
+   * - from any ancestor `$resolve` of that parent).
+   *
+   * The return value of `$resolve` is a promise for an object that contains 
+   * (in this order of precedence)
+   *
+   * - any `locals` (if specified)
+   * - the resolved return values of all injectables
+   * - any values inherited from a `parent` call to `$resolve` (if specified)
+   *
+   * The promise will resolve after the `parent` promise (if any) and all promises 
+   * returned by injectables have been resolved. If any invocable 
+   * (or `$injector.invoke`) throws an exception, or if a promise returned by an 
+   * invocable is rejected, the `$resolve` promise is immediately rejected with the 
+   * same error. A rejection of a `parent` promise (if specified) will likewise be 
+   * propagated immediately. Once the `$resolve` promise has been rejected, no 
+   * further invocables will be called.
+   * 
+   * Cyclic dependencies between invocables are not permitted and will cause `$resolve`
+   * to throw an error. As a special case, an injectable can depend on a parameter 
+   * with the same name as the injectable, which will be fulfilled from the `parent` 
+   * injectable of the same name. This allows inherited values to be decorated. 
+   * Note that in this case any other injectable in the same `$resolve` with the same
+   * dependency would see the decorated value, not the inherited value.
+   *
+   * Note that missing dependencies -- unlike cyclic dependencies -- will cause an 
+   * (asynchronous) rejection of the `$resolve` promise rather than a (synchronous) 
+   * exception.
+   *
+   * Invocables are invoked eagerly as soon as all dependencies are available. 
+   * This is true even for dependencies inherited from a `parent` call to `$resolve`.
+   *
+   * As a special case, an invocable can be a string, in which case it is taken to 
+   * be a service name to be passed to `$injector.get()`. This is supported primarily 
+   * for backwards-compatibility with the `resolve` property of `$routeProvider` 
+   * routes.
+   *
+   * @param {object} invocables functions to invoke or 
+   * `$injector` services to fetch.
+   * @param {object} locals  values to make available to the injectables
+   * @param {object} parent  a promise returned by another call to `$resolve`.
+   * @param {object} self  the `this` for the invoked methods
+   * @return {object} Promise for an object that contains the resolved return value
+   * of all invocables, as well as any inherited and local values.
+   */
+this.resolve=function(invocables,locals,parent,self){return this.study(invocables)(locals,parent,self)}}angular.module("ui.router.util").service("$resolve",$Resolve);/**
+ * @ngdoc object
+ * @name ui.router.util.$templateFactory
+ *
+ * @requires $http
+ * @requires $templateCache
+ * @requires $injector
+ *
+ * @description
+ * Service. Manages loading of templates.
+ */
+$TemplateFactory.$inject=["$http","$templateCache","$injector"];function $TemplateFactory($http,$templateCache,$injector){/**
+   * @ngdoc function
+   * @name ui.router.util.$templateFactory#fromConfig
+   * @methodOf ui.router.util.$templateFactory
+   *
+   * @description
+   * Creates a template from a configuration object. 
+   *
+   * @param {object} config Configuration object for which to load a template. 
+   * The following properties are search in the specified order, and the first one 
+   * that is defined is used to create the template:
+   *
+   * @param {string|object} config.template html string template or function to 
+   * load via {@link ui.router.util.$templateFactory#fromString fromString}.
+   * @param {string|object} config.templateUrl url to load or a function returning 
+   * the url to load via {@link ui.router.util.$templateFactory#fromUrl fromUrl}.
+   * @param {Function} config.templateProvider function to invoke via 
+   * {@link ui.router.util.$templateFactory#fromProvider fromProvider}.
+   * @param {object} params  Parameters to pass to the template function.
+   * @param {object} locals Locals to pass to `invoke` if the template is loaded 
+   * via a `templateProvider`. Defaults to `{ params: params }`.
+   *
+   * @return {string|object}  The template html as a string, or a promise for 
+   * that string,or `null` if no template is configured.
+   */
+this.fromConfig=function(config,params,locals){return isDefined(config.template)?this.fromString(config.template,params):isDefined(config.templateUrl)?this.fromUrl(config.templateUrl,params):isDefined(config.templateProvider)?this.fromProvider(config.templateProvider,params,locals):null};/**
+   * @ngdoc function
+   * @name ui.router.util.$templateFactory#fromString
+   * @methodOf ui.router.util.$templateFactory
+   *
+   * @description
+   * Creates a template from a string or a function returning a string.
+   *
+   * @param {string|object} template html template as a string or function that 
+   * returns an html template as a string.
+   * @param {object} params Parameters to pass to the template function.
+   *
+   * @return {string|object} The template html as a string, or a promise for that 
+   * string.
+   */
+this.fromString=function(template,params){return isFunction(template)?template(params):template};/**
+   * @ngdoc function
+   * @name ui.router.util.$templateFactory#fromUrl
+   * @methodOf ui.router.util.$templateFactory
+   * 
+   * @description
+   * Loads a template from the a URL via `$http` and `$templateCache`.
+   *
+   * @param {string|Function} url url of the template to load, or a function 
+   * that returns a url.
+   * @param {Object} params Parameters to pass to the url function.
+   * @return {string|Promise.<string>} The template html as a string, or a promise 
+   * for that string.
+   */
+this.fromUrl=function(url,params){if(isFunction(url))url=url(params);if(url==null)return null;else return $http.get(url,{cache:$templateCache,headers:{Accept:"text/html"}}).then(function(response){return response.data})};/**
+   * @ngdoc function
+   * @name ui.router.util.$templateFactory#fromProvider
+   * @methodOf ui.router.util.$templateFactory
+   *
+   * @description
+   * Creates a template by invoking an injectable provider function.
+   *
+   * @param {Function} provider Function to invoke via `$injector.invoke`
+   * @param {Object} params Parameters for the template.
+   * @param {Object} locals Locals to pass to `invoke`. Defaults to 
+   * `{ params: params }`.
+   * @return {string|Promise.<string>} The template html as a string, or a promise 
+   * for that string.
+   */
+this.fromProvider=function(provider,params,locals){return $injector.invoke(provider,null,locals||{params:params})}}angular.module("ui.router.util").service("$templateFactory",$TemplateFactory);var $$UMFP;// reference to $UrlMatcherFactoryProvider
+/**
+ * @ngdoc object
+ * @name ui.router.util.type:UrlMatcher
+ *
+ * @description
+ * Matches URLs against patterns and extracts named parameters from the path or the search
+ * part of the URL. A URL pattern consists of a path pattern, optionally followed by '?' and a list
+ * of search parameters. Multiple search parameter names are separated by '&'. Search parameters
+ * do not influence whether or not a URL is matched, but their values are passed through into
+ * the matched parameters returned by {@link ui.router.util.type:UrlMatcher#methods_exec exec}.
+ *
+ * Path parameter placeholders can be specified using simple colon/catch-all syntax or curly brace
+ * syntax, which optionally allows a regular expression for the parameter to be specified:
+ *
+ * * `':'` name - colon placeholder
+ * * `'*'` name - catch-all placeholder
+ * * `'{' name '}'` - curly placeholder
+ * * `'{' name ':' regexp|type '}'` - curly placeholder with regexp or type name. Should the
+ *   regexp itself contain curly braces, they must be in matched pairs or escaped with a backslash.
+ *
+ * Parameter names may contain only word characters (latin letters, digits, and underscore) and
+ * must be unique within the pattern (across both path and search parameters). For colon
+ * placeholders or curly placeholders without an explicit regexp, a path parameter matches any
+ * number of characters other than '/'. For catch-all placeholders the path parameter matches
+ * any number of characters.
+ *
+ * Examples:
+ *
+ * * `'/hello/'` - Matches only if the path is exactly '/hello/'. There is no special treatment for
+ *   trailing slashes, and patterns have to match the entire path, not just a prefix.
+ * * `'/user/:id'` - Matches '/user/bob' or '/user/1234!!!' or even '/user/' but not '/user' or
+ *   '/user/bob/details'. The second path segment will be captured as the parameter 'id'.
+ * * `'/user/{id}'` - Same as the previous example, but using curly brace syntax.
+ * * `'/user/{id:[^/]*}'` - Same as the previous example.
+ * * `'/user/{id:[0-9a-fA-F]{1,8}}'` - Similar to the previous example, but only matches if the id
+ *   parameter consists of 1 to 8 hex digits.
+ * * `'/files/{path:.*}'` - Matches any URL starting with '/files/' and captures the rest of the
+ *   path into the parameter 'path'.
+ * * `'/files/*path'` - ditto.
+ * * `'/calendar/{start:date}'` - Matches "/calendar/2014-11-12" (because the pattern defined
+ *   in the built-in  `date` Type matches `2014-11-12`) and provides a Date object in $stateParams.start
+ *
+ * @param {string} pattern  The pattern to compile into a matcher.
+ * @param {Object} config  A configuration object hash:
+ * @param {Object=} parentMatcher Used to concatenate the pattern/config onto
+ *   an existing UrlMatcher
+ *
+ * * `caseInsensitive` - `true` if URL matching should be case insensitive, otherwise `false`, the default value (for backward compatibility) is `false`.
+ * * `strict` - `false` if matching against a URL with a trailing slash should be treated as equivalent to a URL without a trailing slash, the default value is `true`.
+ *
+ * @property {string} prefix  A static prefix of this pattern. The matcher guarantees that any
+ *   URL matching this matcher (i.e. any string for which {@link ui.router.util.type:UrlMatcher#methods_exec exec()} returns
+ *   non-null) will start with this prefix.
+ *
+ * @property {string} source  The pattern that was passed into the constructor
+ *
+ * @property {string} sourcePath  The path portion of the source property
+ *
+ * @property {string} sourceSearch  The search portion of the source property
+ *
+ * @property {string} regex  The constructed regex that will be used to match against the url when
+ *   it is time to determine which url will match.
+ *
+ * @returns {Object}  New `UrlMatcher` object
+ */
+function UrlMatcher(pattern,config,parentMatcher){config=extend({params:{}},isObject(config)?config:{});
+// Find all placeholders and create a compiled pattern, using either classic or curly syntax:
+//   '*' name
+//   ':' name
+//   '{' name '}'
+//   '{' name ':' regexp '}'
+// The regular expression is somewhat complicated due to the need to allow curly braces
+// inside the regular expression. The placeholder regexp breaks down as follows:
+//    ([:*])([\w\[\]]+)              - classic placeholder ($1 / $2) (search version has - for snake-case)
+//    \{([\w\[\]]+)(?:\:\s*( ... ))?\}  - curly brace placeholder ($3) with optional regexp/type ... ($4) (search version has - for snake-case
+//    (?: ... | ... | ... )+         - the regexp consists of any number of atoms, an atom being either
+//    [^{}\\]+                       - anything other than curly braces or backslash
+//    \\.                            - a backslash escape
+//    \{(?:[^{}\\]+|\\.)*\}          - a matched set of curly braces containing other atoms
+var placeholder=/([:*])([\w\[\]]+)|\{([\w\[\]]+)(?:\:\s*((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g,searchPlaceholder=/([:]?)([\w\[\].-]+)|\{([\w\[\].-]+)(?:\:\s*((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g,compiled="^",last=0,m,segments=this.segments=[],parentParams=parentMatcher?parentMatcher.params:{},params=this.params=parentMatcher?parentMatcher.params.$$new():new $$UMFP.ParamSet,paramNames=[];function addParameter(id,type,config,location){paramNames.push(id);if(parentParams[id])return parentParams[id];if(!/^\w+([-.]+\w+)*(?:\[\])?$/.test(id))throw new Error("Invalid parameter name '"+id+"' in pattern '"+pattern+"'");if(params[id])throw new Error("Duplicate parameter name '"+id+"' in pattern '"+pattern+"'");params[id]=new $$UMFP.Param(id,type,config,location);return params[id]}function quoteRegExp(string,pattern,squash,optional){var surroundPattern=["",""],result=string.replace(/[\\\[\]\^$*+?.()|{}]/g,"\\$&");if(!pattern)return result;switch(squash){case false:surroundPattern=["(",")"+(optional?"?":"")];break;case true:result=result.replace(/\/$/,"");surroundPattern=["(?:/(",")|/)?"];break;default:surroundPattern=["("+squash+"|",")?"];break}return result+surroundPattern[0]+pattern+surroundPattern[1]}this.source=pattern;
+// Split into static segments separated by path parameter placeholders.
+// The number of segments is always 1 more than the number of parameters.
+function matchDetails(m,isSearch){var id,regexp,segment,type,cfg,arrayMode;id=m[2]||m[3];// IE[78] returns '' for unmatched groups instead of null
+cfg=config.params[id];segment=pattern.substring(last,m.index);regexp=isSearch?m[4]:m[4]||(m[1]=="*"?".*":null);if(regexp){type=$$UMFP.type(regexp)||inherit($$UMFP.type("string"),{pattern:new RegExp(regexp,config.caseInsensitive?"i":undefined)})}return{id:id,regexp:regexp,segment:segment,type:type,cfg:cfg}}var p,param,segment;while(m=placeholder.exec(pattern)){p=matchDetails(m,false);if(p.segment.indexOf("?")>=0)break;// we're into the search part
+param=addParameter(p.id,p.type,p.cfg,"path");compiled+=quoteRegExp(p.segment,param.type.pattern.source,param.squash,param.isOptional);segments.push(p.segment);last=placeholder.lastIndex}segment=pattern.substring(last);
+// Find any search parameter names and remove them from the last segment
+var i=segment.indexOf("?");if(i>=0){var search=this.sourceSearch=segment.substring(i);segment=segment.substring(0,i);this.sourcePath=pattern.substring(0,last+i);if(search.length>0){last=0;while(m=searchPlaceholder.exec(search)){p=matchDetails(m,true);param=addParameter(p.id,p.type,p.cfg,"search");last=placeholder.lastIndex}}}else{this.sourcePath=pattern;this.sourceSearch=""}compiled+=quoteRegExp(segment)+(config.strict===false?"/?":"")+"$";segments.push(segment);this.regexp=new RegExp(compiled,config.caseInsensitive?"i":undefined);this.prefix=segments[0];this.$$paramNames=paramNames}/**
+ * @ngdoc function
+ * @name ui.router.util.type:UrlMatcher#concat
+ * @methodOf ui.router.util.type:UrlMatcher
+ *
+ * @description
+ * Returns a new matcher for a pattern constructed by appending the path part and adding the
+ * search parameters of the specified pattern to this pattern. The current pattern is not
+ * modified. This can be understood as creating a pattern for URLs that are relative to (or
+ * suffixes of) the current pattern.
+ *
+ * @example
+ * The following two matchers are equivalent:
+ * <pre>
+ * new UrlMatcher('/user/{id}?q').concat('/details?date');
+ * new UrlMatcher('/user/{id}/details?q&date');
+ * </pre>
+ *
+ * @param {string} pattern  The pattern to append.
+ * @param {Object} config  An object hash of the configuration for the matcher.
+ * @returns {UrlMatcher}  A matcher for the concatenated pattern.
+ */
+UrlMatcher.prototype.concat=function(pattern,config){
+// Because order of search parameters is irrelevant, we can add our own search
+// parameters to the end of the new pattern. Parse the new pattern by itself
+// and then join the bits together, but it's much easier to do this on a string level.
+var defaultConfig={caseInsensitive:$$UMFP.caseInsensitive(),strict:$$UMFP.strictMode(),squash:$$UMFP.defaultSquashPolicy()};return new UrlMatcher(this.sourcePath+pattern+this.sourceSearch,extend(defaultConfig,config),this)};UrlMatcher.prototype.toString=function(){return this.source};/**
+ * @ngdoc function
+ * @name ui.router.util.type:UrlMatcher#exec
+ * @methodOf ui.router.util.type:UrlMatcher
+ *
+ * @description
+ * Tests the specified path against this matcher, and returns an object containing the captured
+ * parameter values, or null if the path does not match. The returned object contains the values
+ * of any search parameters that are mentioned in the pattern, but their value may be null if
+ * they are not present in `searchParams`. This means that search parameters are always treated
+ * as optional.
+ *
+ * @example
+ * <pre>
+ * new UrlMatcher('/user/{id}?q&r').exec('/user/bob', {
+ *   x: '1', q: 'hello'
+ * });
+ * // returns { id: 'bob', q: 'hello', r: null }
+ * </pre>
+ *
+ * @param {string} path  The URL path to match, e.g. `$location.path()`.
+ * @param {Object} searchParams  URL search parameters, e.g. `$location.search()`.
+ * @returns {Object}  The captured parameter values.
+ */
+UrlMatcher.prototype.exec=function(path,searchParams){var m=this.regexp.exec(path);if(!m)return null;searchParams=searchParams||{};var paramNames=this.parameters(),nTotal=paramNames.length,nPath=this.segments.length-1,values={},i,j,cfg,paramName;if(nPath!==m.length-1)throw new Error("Unbalanced capture group in route '"+this.source+"'");function decodePathArray(string){function reverseString(str){return str.split("").reverse().join("")}function unquoteDashes(str){return str.replace(/\\-/g,"-")}var split=reverseString(string).split(/-(?!\\)/);var allReversed=map(split,reverseString);return map(allReversed,unquoteDashes).reverse()}var param,paramVal;for(i=0;i<nPath;i++){paramName=paramNames[i];param=this.params[paramName];paramVal=m[i+1];
+// if the param value matches a pre-replace pair, replace the value before decoding.
+for(j=0;j<param.replace.length;j++){if(param.replace[j].from===paramVal)paramVal=param.replace[j].to}if(paramVal&&param.array===true)paramVal=decodePathArray(paramVal);if(isDefined(paramVal))paramVal=param.type.decode(paramVal);values[paramName]=param.value(paramVal)}for(;i<nTotal;i++){paramName=paramNames[i];values[paramName]=this.params[paramName].value(searchParams[paramName]);param=this.params[paramName];paramVal=searchParams[paramName];for(j=0;j<param.replace.length;j++){if(param.replace[j].from===paramVal)paramVal=param.replace[j].to}if(isDefined(paramVal))paramVal=param.type.decode(paramVal);values[paramName]=param.value(paramVal)}return values};/**
+ * @ngdoc function
+ * @name ui.router.util.type:UrlMatcher#parameters
+ * @methodOf ui.router.util.type:UrlMatcher
+ *
+ * @description
+ * Returns the names of all path and search parameters of this pattern in an unspecified order.
+ *
+ * @returns {Array.<string>}  An array of parameter names. Must be treated as read-only. If the
+ *    pattern has no parameters, an empty array is returned.
+ */
+UrlMatcher.prototype.parameters=function(param){if(!isDefined(param))return this.$$paramNames;return this.params[param]||null};/**
+ * @ngdoc function
+ * @name ui.router.util.type:UrlMatcher#validates
+ * @methodOf ui.router.util.type:UrlMatcher
+ *
+ * @description
+ * Checks an object hash of parameters to validate their correctness according to the parameter
+ * types of this `UrlMatcher`.
+ *
+ * @param {Object} params The object hash of parameters to validate.
+ * @returns {boolean} Returns `true` if `params` validates, otherwise `false`.
+ */
+UrlMatcher.prototype.validates=function(params){return this.params.$$validates(params)};/**
+ * @ngdoc function
+ * @name ui.router.util.type:UrlMatcher#format
+ * @methodOf ui.router.util.type:UrlMatcher
+ *
+ * @description
+ * Creates a URL that matches this pattern by substituting the specified values
+ * for the path and search parameters. Null values for path parameters are
+ * treated as empty strings.
+ *
+ * @example
+ * <pre>
+ * new UrlMatcher('/user/{id}?q').format({ id:'bob', q:'yes' });
+ * // returns '/user/bob?q=yes'
+ * </pre>
+ *
+ * @param {Object} values  the values to substitute for the parameters in this pattern.
+ * @returns {string}  the formatted URL (path and optionally search part).
+ */
+UrlMatcher.prototype.format=function(values){values=values||{};var segments=this.segments,params=this.parameters(),paramset=this.params;if(!this.validates(values))return null;var i,search=false,nPath=segments.length-1,nTotal=params.length,result=segments[0];function encodeDashes(str){// Replace dashes with encoded "\-"
+return encodeURIComponent(str).replace(/-/g,function(c){return"%5C%"+c.charCodeAt(0).toString(16).toUpperCase()})}for(i=0;i<nTotal;i++){var isPathParam=i<nPath;var name=params[i],param=paramset[name],value=param.value(values[name]);var isDefaultValue=param.isOptional&&param.type.equals(param.value(),value);var squash=isDefaultValue?param.squash:false;var encoded=param.type.encode(value);if(isPathParam){var nextSegment=segments[i+1];var isFinalPathParam=i+1===nPath;if(squash===false){if(encoded!=null){if(isArray(encoded)){result+=map(encoded,encodeDashes).join("-")}else{result+=encodeURIComponent(encoded)}}result+=nextSegment}else if(squash===true){var capture=result.match(/\/$/)?/\/?(.*)/:/(.*)/;result+=nextSegment.match(capture)[1]}else if(isString(squash)){result+=squash+nextSegment}if(isFinalPathParam&&param.squash===true&&result.slice(-1)==="/")result=result.slice(0,-1)}else{if(encoded==null||isDefaultValue&&squash!==false)continue;if(!isArray(encoded))encoded=[encoded];if(encoded.length===0)continue;encoded=map(encoded,encodeURIComponent).join("&"+name+"=");result+=(search?"&":"?")+(name+"="+encoded);search=true}}return result};/**
+ * @ngdoc object
+ * @name ui.router.util.type:Type
+ *
+ * @description
+ * Implements an interface to define custom parameter types that can be decoded from and encoded to
+ * string parameters matched in a URL. Used by {@link ui.router.util.type:UrlMatcher `UrlMatcher`}
+ * objects when matching or formatting URLs, or comparing or validating parameter values.
+ *
+ * See {@link ui.router.util.$urlMatcherFactory#methods_type `$urlMatcherFactory#type()`} for more
+ * information on registering custom types.
+ *
+ * @param {Object} config  A configuration object which contains the custom type definition.  The object's
+ *        properties will override the default methods and/or pattern in `Type`'s public interface.
+ * @example
+ * <pre>
+ * {
+ *   decode: function(val) { return parseInt(val, 10); },
+ *   encode: function(val) { return val && val.toString(); },
+ *   equals: function(a, b) { return this.is(a) && a === b; },
+ *   is: function(val) { return angular.isNumber(val) isFinite(val) && val % 1 === 0; },
+ *   pattern: /\d+/
+ * }
+ * </pre>
+ *
+ * @property {RegExp} pattern The regular expression pattern used to match values of this type when
+ *           coming from a substring of a URL.
+ *
+ * @returns {Object}  Returns a new `Type` object.
+ */
+function Type(config){extend(this,config)}/**
+ * @ngdoc function
+ * @name ui.router.util.type:Type#is
+ * @methodOf ui.router.util.type:Type
+ *
+ * @description
+ * Detects whether a value is of a particular type. Accepts a native (decoded) value
+ * and determines whether it matches the current `Type` object.
+ *
+ * @param {*} val  The value to check.
+ * @param {string} key  Optional. If the type check is happening in the context of a specific
+ *        {@link ui.router.util.type:UrlMatcher `UrlMatcher`} object, this is the name of the
+ *        parameter in which `val` is stored. Can be used for meta-programming of `Type` objects.
+ * @returns {Boolean}  Returns `true` if the value matches the type, otherwise `false`.
+ */
+Type.prototype.is=function(val,key){return true};/**
+ * @ngdoc function
+ * @name ui.router.util.type:Type#encode
+ * @methodOf ui.router.util.type:Type
+ *
+ * @description
+ * Encodes a custom/native type value to a string that can be embedded in a URL. Note that the
+ * return value does *not* need to be URL-safe (i.e. passed through `encodeURIComponent()`), it
+ * only needs to be a representation of `val` that has been coerced to a string.
+ *
+ * @param {*} val  The value to encode.
+ * @param {string} key  The name of the parameter in which `val` is stored. Can be used for
+ *        meta-programming of `Type` objects.
+ * @returns {string}  Returns a string representation of `val` that can be encoded in a URL.
+ */
+Type.prototype.encode=function(val,key){return val};/**
+ * @ngdoc function
+ * @name ui.router.util.type:Type#decode
+ * @methodOf ui.router.util.type:Type
+ *
+ * @description
+ * Converts a parameter value (from URL string or transition param) to a custom/native value.
+ *
+ * @param {string} val  The URL parameter value to decode.
+ * @param {string} key  The name of the parameter in which `val` is stored. Can be used for
+ *        meta-programming of `Type` objects.
+ * @returns {*}  Returns a custom representation of the URL parameter value.
+ */
+Type.prototype.decode=function(val,key){return val};/**
+ * @ngdoc function
+ * @name ui.router.util.type:Type#equals
+ * @methodOf ui.router.util.type:Type
+ *
+ * @description
+ * Determines whether two decoded values are equivalent.
+ *
+ * @param {*} a  A value to compare against.
+ * @param {*} b  A value to compare against.
+ * @returns {Boolean}  Returns `true` if the values are equivalent/equal, otherwise `false`.
+ */
+Type.prototype.equals=function(a,b){return a==b};Type.prototype.$subPattern=function(){var sub=this.pattern.toString();return sub.substr(1,sub.length-2)};Type.prototype.pattern=/.*/;Type.prototype.toString=function(){return"{Type:"+this.name+"}"};/** Given an encoded string, or a decoded object, returns a decoded object */
+Type.prototype.$normalize=function(val){return this.is(val)?val:this.decode(val)};/*
+ * Wraps an existing custom Type as an array of Type, depending on 'mode'.
+ * e.g.:
+ * - urlmatcher pattern "/path?{queryParam[]:int}"
+ * - url: "/path?queryParam=1&queryParam=2
+ * - $stateParams.queryParam will be [1, 2]
+ * if `mode` is "auto", then
+ * - url: "/path?queryParam=1 will create $stateParams.queryParam: 1
+ * - url: "/path?queryParam=1&queryParam=2 will create $stateParams.queryParam: [1, 2]
+ */
+Type.prototype.$asArray=function(mode,isSearch){if(!mode)return this;if(mode==="auto"&&!isSearch)throw new Error("'auto' array mode is for query parameters only");function ArrayType(type,mode){function bindTo(type,callbackName){return function(){return type[callbackName].apply(type,arguments)}}
+// Wrap non-array value as array
+function arrayWrap(val){return isArray(val)?val:isDefined(val)?[val]:[]}
+// Unwrap array value for "auto" mode. Return undefined for empty array.
+function arrayUnwrap(val){switch(val.length){case 0:return undefined;case 1:return mode==="auto"?val[0]:val;default:return val}}function falsey(val){return!val}
+// Wraps type (.is/.encode/.decode) functions to operate on each value of an array
+function arrayHandler(callback,allTruthyMode){return function handleArray(val){if(isArray(val)&&val.length===0)return val;val=arrayWrap(val);var result=map(val,callback);if(allTruthyMode===true)return filter(result,falsey).length===0;return arrayUnwrap(result)}}
+// Wraps type (.equals) functions to operate on each value of an array
+function arrayEqualsHandler(callback){return function handleArray(val1,val2){var left=arrayWrap(val1),right=arrayWrap(val2);if(left.length!==right.length)return false;for(var i=0;i<left.length;i++){if(!callback(left[i],right[i]))return false}return true}}this.encode=arrayHandler(bindTo(type,"encode"));this.decode=arrayHandler(bindTo(type,"decode"));this.is=arrayHandler(bindTo(type,"is"),true);this.equals=arrayEqualsHandler(bindTo(type,"equals"));this.pattern=type.pattern;this.$normalize=arrayHandler(bindTo(type,"$normalize"));this.name=type.name;this.$arrayMode=mode}return new ArrayType(this,mode)};/**
+ * @ngdoc object
+ * @name ui.router.util.$urlMatcherFactory
+ *
+ * @description
+ * Factory for {@link ui.router.util.type:UrlMatcher `UrlMatcher`} instances. The factory
+ * is also available to providers under the name `$urlMatcherFactoryProvider`.
+ */
+function $UrlMatcherFactory(){$$UMFP=this;var isCaseInsensitive=false,isStrictMode=true,defaultSquashPolicy=false;
+// Use tildes to pre-encode slashes.
+// If the slashes are simply URLEncoded, the browser can choose to pre-decode them,
+// and bidirectional encoding/decoding fails.
+// Tilde was chosen because it's not a RFC 3986 section 2.2 Reserved Character
+function valToString(val){return val!=null?val.toString().replace(/~/g,"~~").replace(/\//g,"~2F"):val}function valFromString(val){return val!=null?val.toString().replace(/~2F/g,"/").replace(/~~/g,"~"):val}var $types={},enqueue=true,typeQueue=[],injector,defaultTypes={string:{encode:valToString,decode:valFromString,
+// TODO: in 1.0, make string .is() return false if value is undefined/null by default.
+// In 0.2.x, string params are optional by default for backwards compat
+is:function(val){return val==null||!isDefined(val)||typeof val==="string"},pattern:/[^\/]*/},int:{encode:valToString,decode:function(val){return parseInt(val,10)},is:function(val){return isDefined(val)&&this.decode(val.toString())===val},pattern:/\d+/},bool:{encode:function(val){return val?1:0},decode:function(val){return parseInt(val,10)!==0},is:function(val){return val===true||val===false},pattern:/0|1/},date:{encode:function(val){if(!this.is(val))return undefined;return[val.getFullYear(),("0"+(val.getMonth()+1)).slice(-2),("0"+val.getDate()).slice(-2)].join("-")},decode:function(val){if(this.is(val))return val;var match=this.capture.exec(val);return match?new Date(match[1],match[2]-1,match[3]):undefined},is:function(val){return val instanceof Date&&!isNaN(val.valueOf())},equals:function(a,b){return this.is(a)&&this.is(b)&&a.toISOString()===b.toISOString()},pattern:/[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[1-2][0-9]|3[0-1])/,capture:/([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/},json:{encode:angular.toJson,decode:angular.fromJson,is:angular.isObject,equals:angular.equals,pattern:/[^\/]*/},any:{// does not encode/decode
+encode:angular.identity,decode:angular.identity,equals:angular.equals,pattern:/.*/}};function getDefaultConfig(){return{strict:isStrictMode,caseInsensitive:isCaseInsensitive}}function isInjectable(value){return isFunction(value)||isArray(value)&&isFunction(value[value.length-1])}/**
+   * [Internal] Get the default value of a parameter, which may be an injectable function.
+   */
+$UrlMatcherFactory.$$getDefaultValue=function(config){if(!isInjectable(config.value))return config.value;if(!injector)throw new Error("Injectable functions cannot be called at configuration time");return injector.invoke(config.value)};/**
+   * @ngdoc function
+   * @name ui.router.util.$urlMatcherFactory#caseInsensitive
+   * @methodOf ui.router.util.$urlMatcherFactory
+   *
+   * @description
+   * Defines whether URL matching should be case sensitive (the default behavior), or not.
+   *
+   * @param {boolean} value `false` to match URL in a case sensitive manner; otherwise `true`;
+   * @returns {boolean} the current value of caseInsensitive
+   */
+this.caseInsensitive=function(value){if(isDefined(value))isCaseInsensitive=value;return isCaseInsensitive};/**
+   * @ngdoc function
+   * @name ui.router.util.$urlMatcherFactory#strictMode
+   * @methodOf ui.router.util.$urlMatcherFactory
+   *
+   * @description
+   * Defines whether URLs should match trailing slashes, or not (the default behavior).
+   *
+   * @param {boolean=} value `false` to match trailing slashes in URLs, otherwise `true`.
+   * @returns {boolean} the current value of strictMode
+   */
+this.strictMode=function(value){if(isDefined(value))isStrictMode=value;return isStrictMode};/**
+   * @ngdoc function
+   * @name ui.router.util.$urlMatcherFactory#defaultSquashPolicy
+   * @methodOf ui.router.util.$urlMatcherFactory
+   *
+   * @description
+   * Sets the default behavior when generating or matching URLs with default parameter values.
+   *
+   * @param {string} value A string that defines the default parameter URL squashing behavior.
+   *    `nosquash`: When generating an href with a default parameter value, do not squash the parameter value from the URL
+   *    `slash`: When generating an href with a default parameter value, squash (remove) the parameter value, and, if the
+   *             parameter is surrounded by slashes, squash (remove) one slash from the URL
+   *    any other string, e.g. "~": When generating an href with a default parameter value, squash (remove)
+   *             the parameter value from the URL and replace it with this string.
+   */
+this.defaultSquashPolicy=function(value){if(!isDefined(value))return defaultSquashPolicy;if(value!==true&&value!==false&&!isString(value))throw new Error("Invalid squash policy: "+value+". Valid policies: false, true, arbitrary-string");defaultSquashPolicy=value;return value};/**
+   * @ngdoc function
+   * @name ui.router.util.$urlMatcherFactory#compile
+   * @methodOf ui.router.util.$urlMatcherFactory
+   *
+   * @description
+   * Creates a {@link ui.router.util.type:UrlMatcher `UrlMatcher`} for the specified pattern.
+   *
+   * @param {string} pattern  The URL pattern.
+   * @param {Object} config  The config object hash.
+   * @returns {UrlMatcher}  The UrlMatcher.
+   */
+this.compile=function(pattern,config){return new UrlMatcher(pattern,extend(getDefaultConfig(),config))};/**
+   * @ngdoc function
+   * @name ui.router.util.$urlMatcherFactory#isMatcher
+   * @methodOf ui.router.util.$urlMatcherFactory
+   *
+   * @description
+   * Returns true if the specified object is a `UrlMatcher`, or false otherwise.
+   *
+   * @param {Object} object  The object to perform the type check against.
+   * @returns {Boolean}  Returns `true` if the object matches the `UrlMatcher` interface, by
+   *          implementing all the same methods.
+   */
+this.isMatcher=function(o){if(!isObject(o))return false;var result=true;forEach(UrlMatcher.prototype,function(val,name){if(isFunction(val)){result=result&&(isDefined(o[name])&&isFunction(o[name]))}});return result};/**
+   * @ngdoc function
+   * @name ui.router.util.$urlMatcherFactory#type
+   * @methodOf ui.router.util.$urlMatcherFactory
+   *
+   * @description
+   * Registers a custom {@link ui.router.util.type:Type `Type`} object that can be used to
+   * generate URLs with typed parameters.
+   *
+   * @param {string} name  The type name.
+   * @param {Object|Function} definition   The type definition. See
+   *        {@link ui.router.util.type:Type `Type`} for information on the values accepted.
+   * @param {Object|Function} definitionFn (optional) A function that is injected before the app
+   *        runtime starts.  The result of this function is merged into the existing `definition`.
+   *        See {@link ui.router.util.type:Type `Type`} for information on the values accepted.
+   *
+   * @returns {Object}  Returns `$urlMatcherFactoryProvider`.
+   *
+   * @example
+   * This is a simple example of a custom type that encodes and decodes items from an
+   * array, using the array index as the URL-encoded value:
+   *
+   * <pre>
+   * var list = ['John', 'Paul', 'George', 'Ringo'];
+   *
+   * $urlMatcherFactoryProvider.type('listItem', {
+   *   encode: function(item) {
+   *     // Represent the list item in the URL using its corresponding index
+   *     return list.indexOf(item);
+   *   },
+   *   decode: function(item) {
+   *     // Look up the list item by index
+   *     return list[parseInt(item, 10)];
+   *   },
+   *   is: function(item) {
+   *     // Ensure the item is valid by checking to see that it appears
+   *     // in the list
+   *     return list.indexOf(item) > -1;
+   *   }
+   * });
+   *
+   * $stateProvider.state('list', {
+   *   url: "/list/{item:listItem}",
+   *   controller: function($scope, $stateParams) {
+   *     console.log($stateParams.item);
+   *   }
+   * });
+   *
+   * // ...
+   *
+   * // Changes URL to '/list/3', logs "Ringo" to the console
+   * $state.go('list', { item: "Ringo" });
+   * </pre>
+   *
+   * This is a more complex example of a type that relies on dependency injection to
+   * interact with services, and uses the parameter name from the URL to infer how to
+   * handle encoding and decoding parameter values:
+   *
+   * <pre>
+   * // Defines a custom type that gets a value from a service,
+   * // where each service gets different types of values from
+   * // a backend API:
+   * $urlMatcherFactoryProvider.type('dbObject', {}, function(Users, Posts) {
+   *
+   *   // Matches up services to URL parameter names
+   *   var services = {
+   *     user: Users,
+   *     post: Posts
+   *   };
+   *
+   *   return {
+   *     encode: function(object) {
+   *       // Represent the object in the URL using its unique ID
+   *       return object.id;
+   *     },
+   *     decode: function(value, key) {
+   *       // Look up the object by ID, using the parameter
+   *       // name (key) to call the correct service
+   *       return services[key].findById(value);
+   *     },
+   *     is: function(object, key) {
+   *       // Check that object is a valid dbObject
+   *       return angular.isObject(object) && object.id && services[key];
+   *     }
+   *     equals: function(a, b) {
+   *       // Check the equality of decoded objects by comparing
+   *       // their unique IDs
+   *       return a.id === b.id;
+   *     }
+   *   };
+   * });
+   *
+   * // In a config() block, you can then attach URLs with
+   * // type-annotated parameters:
+   * $stateProvider.state('users', {
+   *   url: "/users",
+   *   // ...
+   * }).state('users.item', {
+   *   url: "/{user:dbObject}",
+   *   controller: function($scope, $stateParams) {
+   *     // $stateParams.user will now be an object returned from
+   *     // the Users service
+   *   },
+   *   // ...
+   * });
+   * </pre>
+   */
+this.type=function(name,definition,definitionFn){if(!isDefined(definition))return $types[name];if($types.hasOwnProperty(name))throw new Error("A type named '"+name+"' has already been defined.");$types[name]=new Type(extend({name:name},definition));if(definitionFn){typeQueue.push({name:name,def:definitionFn});if(!enqueue)flushTypeQueue()}return this};
+// `flushTypeQueue()` waits until `$urlMatcherFactory` is injected before invoking the queued `definitionFn`s
+function flushTypeQueue(){while(typeQueue.length){var type=typeQueue.shift();if(type.pattern)throw new Error("You cannot override a type's .pattern at runtime.");angular.extend($types[type.name],injector.invoke(type.def))}}
+// Register default types. Store them in the prototype of $types.
+forEach(defaultTypes,function(type,name){$types[name]=new Type(extend({name:name},type))});$types=inherit($types,{});/* No need to document $get, since it returns this */
+this.$get=["$injector",function($injector){injector=$injector;enqueue=false;flushTypeQueue();forEach(defaultTypes,function(type,name){if(!$types[name])$types[name]=new Type(type)});return this}];this.Param=function Param(id,type,config,location){var self=this;config=unwrapShorthand(config);type=getType(config,type,location);var arrayMode=getArrayMode();type=arrayMode?type.$asArray(arrayMode,location==="search"):type;if(type.name==="string"&&!arrayMode&&location==="path"&&config.value===undefined)config.value="";// for 0.2.x; in 0.3.0+ do not automatically default to ""
+var isOptional=config.value!==undefined;var squash=getSquashPolicy(config,isOptional);var replace=getReplace(config,arrayMode,isOptional,squash);function unwrapShorthand(config){var keys=isObject(config)?objectKeys(config):[];var isShorthand=indexOf(keys,"value")===-1&&indexOf(keys,"type")===-1&&indexOf(keys,"squash")===-1&&indexOf(keys,"array")===-1;if(isShorthand)config={value:config};config.$$fn=isInjectable(config.value)?config.value:function(){return config.value};return config}function getType(config,urlType,location){if(config.type&&urlType)throw new Error("Param '"+id+"' has two type configurations.");if(urlType)return urlType;if(!config.type)return location==="config"?$types.any:$types.string;if(angular.isString(config.type))return $types[config.type];if(config.type instanceof Type)return config.type;return new Type(config.type)}
+// array config: param name (param[]) overrides default settings.  explicit config overrides param name.
+function getArrayMode(){var arrayDefaults={array:location==="search"?"auto":false};var arrayParamNomenclature=id.match(/\[\]$/)?{array:true}:{};return extend(arrayDefaults,arrayParamNomenclature,config).array}/**
+     * returns false, true, or the squash value to indicate the "default parameter url squash policy".
+     */
+function getSquashPolicy(config,isOptional){var squash=config.squash;if(!isOptional||squash===false)return false;if(!isDefined(squash)||squash==null)return defaultSquashPolicy;if(squash===true||isString(squash))return squash;throw new Error("Invalid squash policy: '"+squash+"'. Valid policies: false, true, or arbitrary string")}function getReplace(config,arrayMode,isOptional,squash){var replace,configuredKeys,defaultPolicy=[{from:"",to:isOptional||arrayMode?undefined:""},{from:null,to:isOptional||arrayMode?undefined:""}];replace=isArray(config.replace)?config.replace:[];if(isString(squash))replace.push({from:squash,to:undefined});configuredKeys=map(replace,function(item){return item.from});return filter(defaultPolicy,function(item){return indexOf(configuredKeys,item.from)===-1}).concat(replace)}/**
+     * [Internal] Get the default value of a parameter, which may be an injectable function.
+     */
+function $$getDefaultValue(){if(!injector)throw new Error("Injectable functions cannot be called at configuration time");var defaultValue=injector.invoke(config.$$fn);if(defaultValue!==null&&defaultValue!==undefined&&!self.type.is(defaultValue))throw new Error("Default value ("+defaultValue+") for parameter '"+self.id+"' is not an instance of Type ("+self.type.name+")");return defaultValue}/**
+     * [Internal] Gets the decoded representation of a value if the value is defined, otherwise, returns the
+     * default value, which may be the result of an injectable function.
+     */
+function $value(value){function hasReplaceVal(val){return function(obj){return obj.from===val}}function $replace(value){var replacement=map(filter(self.replace,hasReplaceVal(value)),function(obj){return obj.to});return replacement.length?replacement[0]:value}value=$replace(value);return!isDefined(value)?$$getDefaultValue():self.type.$normalize(value)}function toString(){return"{Param:"+id+" "+type+" squash: '"+squash+"' optional: "+isOptional+"}"}extend(this,{id:id,type:type,location:location,array:arrayMode,squash:squash,replace:replace,isOptional:isOptional,value:$value,dynamic:undefined,config:config,toString:toString})};function ParamSet(params){extend(this,params||{})}ParamSet.prototype={$$new:function(){return inherit(this,extend(new ParamSet,{$$parent:this}))},$$keys:function(){var keys=[],chain=[],parent=this,ignore=objectKeys(ParamSet.prototype);while(parent){chain.push(parent);parent=parent.$$parent}chain.reverse();forEach(chain,function(paramset){forEach(objectKeys(paramset),function(key){if(indexOf(keys,key)===-1&&indexOf(ignore,key)===-1)keys.push(key)})});return keys},$$values:function(paramValues){var values={},self=this;forEach(self.$$keys(),function(key){values[key]=self[key].value(paramValues&&paramValues[key])});return values},$$equals:function(paramValues1,paramValues2){var equal=true,self=this;forEach(self.$$keys(),function(key){var left=paramValues1&&paramValues1[key],right=paramValues2&&paramValues2[key];if(!self[key].type.equals(left,right))equal=false});return equal},$$validates:function $$validate(paramValues){var keys=this.$$keys(),i,param,rawVal,normalized,encoded;for(i=0;i<keys.length;i++){param=this[keys[i]];rawVal=paramValues[keys[i]];if((rawVal===undefined||rawVal===null)&&param.isOptional)break;// There was no parameter value, but the param is optional
+normalized=param.type.$normalize(rawVal);if(!param.type.is(normalized))return false;// The value was not of the correct Type, and could not be decoded to the correct Type
+encoded=param.type.encode(normalized);if(angular.isString(encoded)&&!param.type.pattern.exec(encoded))return false}return true},$$parent:undefined};this.ParamSet=ParamSet}
+// Register as a provider so it's available to other providers
+angular.module("ui.router.util").provider("$urlMatcherFactory",$UrlMatcherFactory);angular.module("ui.router.util").run(["$urlMatcherFactory",function($urlMatcherFactory){}]);/**
+ * @ngdoc object
+ * @name ui.router.router.$urlRouterProvider
+ *
+ * @requires ui.router.util.$urlMatcherFactoryProvider
+ * @requires $locationProvider
+ *
+ * @description
+ * `$urlRouterProvider` has the responsibility of watching `$location`. 
+ * When `$location` changes it runs through a list of rules one by one until a 
+ * match is found. `$urlRouterProvider` is used behind the scenes anytime you specify 
+ * a url in a state configuration. All urls are compiled into a UrlMatcher object.
+ *
+ * There are several methods on `$urlRouterProvider` that make it useful to use directly
+ * in your module config.
+ */
+$UrlRouterProvider.$inject=["$locationProvider","$urlMatcherFactoryProvider"];function $UrlRouterProvider($locationProvider,$urlMatcherFactory){var rules=[],otherwise=null,interceptDeferred=false,listener;
+// Returns a string that is a prefix of all strings matching the RegExp
+function regExpPrefix(re){var prefix=/^\^((?:\\[^a-zA-Z0-9]|[^\\\[\]\^$*+?.()|{}]+)*)/.exec(re.source);return prefix!=null?prefix[1].replace(/\\(.)/g,"$1"):""}
+// Interpolates matched values into a String.replace()-style pattern
+function interpolate(pattern,match){return pattern.replace(/\$(\$|\d{1,2})/,function(m,what){return match[what==="$"?0:Number(what)]})}/**
+   * @ngdoc function
+   * @name ui.router.router.$urlRouterProvider#rule
+   * @methodOf ui.router.router.$urlRouterProvider
+   *
+   * @description
+   * Defines rules that are used by `$urlRouterProvider` to find matches for
+   * specific URLs.
+   *
+   * @example
+   * <pre>
+   * var app = angular.module('app', ['ui.router.router']);
+   *
+   * app.config(function ($urlRouterProvider) {
+   *   // Here's an example of how you might allow case insensitive urls
+   *   $urlRouterProvider.rule(function ($injector, $location) {
+   *     var path = $location.path(),
+   *         normalized = path.toLowerCase();
+   *
+   *     if (path !== normalized) {
+   *       return normalized;
+   *     }
+   *   });
+   * });
+   * </pre>
+   *
+   * @param {function} rule Handler function that takes `$injector` and `$location`
+   * services as arguments. You can use them to return a valid path as a string.
+   *
+   * @return {object} `$urlRouterProvider` - `$urlRouterProvider` instance
+   */
+this.rule=function(rule){if(!isFunction(rule))throw new Error("'rule' must be a function");rules.push(rule);return this};/**
+   * @ngdoc object
+   * @name ui.router.router.$urlRouterProvider#otherwise
+   * @methodOf ui.router.router.$urlRouterProvider
+   *
+   * @description
+   * Defines a path that is used when an invalid route is requested.
+   *
+   * @example
+   * <pre>
+   * var app = angular.module('app', ['ui.router.router']);
+   *
+   * app.config(function ($urlRouterProvider) {
+   *   // if the path doesn't match any of the urls you configured
+   *   // otherwise will take care of routing the user to the
+   *   // specified url
+   *   $urlRouterProvider.otherwise('/index');
+   *
+   *   // Example of using function rule as param
+   *   $urlRouterProvider.otherwise(function ($injector, $location) {
+   *     return '/a/valid/url';
+   *   });
+   * });
+   * </pre>
+   *
+   * @param {string|function} rule The url path you want to redirect to or a function 
+   * rule that returns the url path. The function version is passed two params: 
+   * `$injector` and `$location` services, and must return a url string.
+   *
+   * @return {object} `$urlRouterProvider` - `$urlRouterProvider` instance
+   */
+this.otherwise=function(rule){if(isString(rule)){var redirect=rule;rule=function(){return redirect}}else if(!isFunction(rule))throw new Error("'rule' must be a function");otherwise=rule;return this};function handleIfMatch($injector,handler,match){if(!match)return false;var result=$injector.invoke(handler,handler,{$match:match});return isDefined(result)?result:true}/**
+   * @ngdoc function
+   * @name ui.router.router.$urlRouterProvider#when
+   * @methodOf ui.router.router.$urlRouterProvider
+   *
+   * @description
+   * Registers a handler for a given url matching. 
+   * 
+   * If the handler is a string, it is
+   * treated as a redirect, and is interpolated according to the syntax of match
+   * (i.e. like `String.replace()` for `RegExp`, or like a `UrlMatcher` pattern otherwise).
+   *
+   * If the handler is a function, it is injectable. It gets invoked if `$location`
+   * matches. You have the option of inject the match object as `$match`.
+   *
+   * The handler can return
+   *
+   * - **falsy** to indicate that the rule didn't match after all, then `$urlRouter`
+   *   will continue trying to find another one that matches.
+   * - **string** which is treated as a redirect and passed to `$location.url()`
+   * - **void** or any **truthy** value tells `$urlRouter` that the url was handled.
+   *
+   * @example
+   * <pre>
+   * var app = angular.module('app', ['ui.router.router']);
+   *
+   * app.config(function ($urlRouterProvider) {
+   *   $urlRouterProvider.when($state.url, function ($match, $stateParams) {
+   *     if ($state.$current.navigable !== state ||
+   *         !equalForKeys($match, $stateParams) {
+   *      $state.transitionTo(state, $match, false);
+   *     }
+   *   });
+   * });
+   * </pre>
+   *
+   * @param {string|object} what The incoming path that you want to redirect.
+   * @param {string|function} handler The path you want to redirect your user to.
+   */
+this.when=function(what,handler){var redirect,handlerIsString=isString(handler);if(isString(what))what=$urlMatcherFactory.compile(what);if(!handlerIsString&&!isFunction(handler)&&!isArray(handler))throw new Error("invalid 'handler' in when()");var strategies={matcher:function(what,handler){if(handlerIsString){redirect=$urlMatcherFactory.compile(handler);handler=["$match",function($match){return redirect.format($match)}]}return extend(function($injector,$location){return handleIfMatch($injector,handler,what.exec($location.path(),$location.search()))},{prefix:isString(what.prefix)?what.prefix:""})},regex:function(what,handler){if(what.global||what.sticky)throw new Error("when() RegExp must not be global or sticky");if(handlerIsString){redirect=handler;handler=["$match",function($match){return interpolate(redirect,$match)}]}return extend(function($injector,$location){return handleIfMatch($injector,handler,what.exec($location.path()))},{prefix:regExpPrefix(what)})}};var check={matcher:$urlMatcherFactory.isMatcher(what),regex:what instanceof RegExp};for(var n in check){if(check[n])return this.rule(strategies[n](what,handler))}throw new Error("invalid 'what' in when()")};/**
+   * @ngdoc function
+   * @name ui.router.router.$urlRouterProvider#deferIntercept
+   * @methodOf ui.router.router.$urlRouterProvider
+   *
+   * @description
+   * Disables (or enables) deferring location change interception.
+   *
+   * If you wish to customize the behavior of syncing the URL (for example, if you wish to
+   * defer a transition but maintain the current URL), call this method at configuration time.
+   * Then, at run time, call `$urlRouter.listen()` after you have configured your own
+   * `$locationChangeSuccess` event handler.
+   *
+   * @example
+   * <pre>
+   * var app = angular.module('app', ['ui.router.router']);
+   *
+   * app.config(function ($urlRouterProvider) {
+   *
+   *   // Prevent $urlRouter from automatically intercepting URL changes;
+   *   // this allows you to configure custom behavior in between
+   *   // location changes and route synchronization:
+   *   $urlRouterProvider.deferIntercept();
+   *
+   * }).run(function ($rootScope, $urlRouter, UserService) {
+   *
+   *   $rootScope.$on('$locationChangeSuccess', function(e) {
+   *     // UserService is an example service for managing user state
+   *     if (UserService.isLoggedIn()) return;
+   *
+   *     // Prevent $urlRouter's default handler from firing
+   *     e.preventDefault();
+   *
+   *     UserService.handleLogin().then(function() {
+   *       // Once the user has logged in, sync the current URL
+   *       // to the router:
+   *       $urlRouter.sync();
+   *     });
+   *   });
+   *
+   *   // Configures $urlRouter's listener *after* your custom listener
+   *   $urlRouter.listen();
+   * });
+   * </pre>
+   *
+   * @param {boolean} defer Indicates whether to defer location change interception. Passing
+            no parameter is equivalent to `true`.
+   */
+this.deferIntercept=function(defer){if(defer===undefined)defer=true;interceptDeferred=defer};/**
+   * @ngdoc object
+   * @name ui.router.router.$urlRouter
+   *
+   * @requires $location
+   * @requires $rootScope
+   * @requires $injector
+   * @requires $browser
+   *
+   * @description
+   *
+   */
+this.$get=$get;$get.$inject=["$location","$rootScope","$injector","$browser","$sniffer"];function $get($location,$rootScope,$injector,$browser,$sniffer){var baseHref=$browser.baseHref(),location=$location.url(),lastPushedUrl;function appendBasePath(url,isHtml5,absolute){if(baseHref==="/")return url;if(isHtml5)return baseHref.slice(0,-1)+url;if(absolute)return baseHref.slice(1)+url;return url}
+// TODO: Optimize groups of rules with non-empty prefix into some sort of decision tree
+function update(evt){if(evt&&evt.defaultPrevented)return;var ignoreUpdate=lastPushedUrl&&$location.url()===lastPushedUrl;lastPushedUrl=undefined;
+// TODO: Re-implement this in 1.0 for https://github.com/angular-ui/ui-router/issues/1573
+//if (ignoreUpdate) return true;
+function check(rule){var handled=rule($injector,$location);if(!handled)return false;if(isString(handled))$location.replace().url(handled);return true}var n=rules.length,i;for(i=0;i<n;i++){if(check(rules[i]))return}
+// always check otherwise last to allow dynamic updates to the set of rules
+if(otherwise)check(otherwise)}function listen(){listener=listener||$rootScope.$on("$locationChangeSuccess",update);return listener}if(!interceptDeferred)listen();return{/**
+       * @ngdoc function
+       * @name ui.router.router.$urlRouter#sync
+       * @methodOf ui.router.router.$urlRouter
+       *
+       * @description
+       * Triggers an update; the same update that happens when the address bar url changes, aka `$locationChangeSuccess`.
+       * This method is useful when you need to use `preventDefault()` on the `$locationChangeSuccess` event,
+       * perform some custom logic (route protection, auth, config, redirection, etc) and then finally proceed
+       * with the transition by calling `$urlRouter.sync()`.
+       *
+       * @example
+       * <pre>
+       * angular.module('app', ['ui.router'])
+       *   .run(function($rootScope, $urlRouter) {
+       *     $rootScope.$on('$locationChangeSuccess', function(evt) {
+       *       // Halt state change from even starting
+       *       evt.preventDefault();
+       *       // Perform custom logic
+       *       var meetsRequirement = ...
+       *       // Continue with the update and state transition if logic allows
+       *       if (meetsRequirement) $urlRouter.sync();
+       *     });
+       * });
+       * </pre>
+       */
+sync:function(){update()},listen:function(){return listen()},update:function(read){if(read){location=$location.url();return}if($location.url()===location)return;$location.url(location);$location.replace()},push:function(urlMatcher,params,options){var url=urlMatcher.format(params||{});
+// Handle the special hash param, if needed
+if(url!==null&&params&&params["#"]){url+="#"+params["#"]}$location.url(url);lastPushedUrl=options&&options.$$avoidResync?$location.url():undefined;if(options&&options.replace)$location.replace()},/**
+       * @ngdoc function
+       * @name ui.router.router.$urlRouter#href
+       * @methodOf ui.router.router.$urlRouter
+       *
+       * @description
+       * A URL generation method that returns the compiled URL for a given
+       * {@link ui.router.util.type:UrlMatcher `UrlMatcher`}, populated with the provided parameters.
+       *
+       * @example
+       * <pre>
+       * $bob = $urlRouter.href(new UrlMatcher("/about/:person"), {
+       *   person: "bob"
+       * });
+       * // $bob == "/about/bob";
+       * </pre>
+       *
+       * @param {UrlMatcher} urlMatcher The `UrlMatcher` object which is used as the template of the URL to generate.
+       * @param {object=} params An object of parameter values to fill the matcher's required parameters.
+       * @param {object=} options Options object. The options are:
+       *
+       * - **`absolute`** - {boolean=false},  If true will generate an absolute url, e.g. "http://www.example.com/fullurl".
+       *
+       * @returns {string} Returns the fully compiled URL, or `null` if `params` fail validation against `urlMatcher`
+       */
+href:function(urlMatcher,params,options){if(!urlMatcher.validates(params))return null;var isHtml5=$locationProvider.html5Mode();if(angular.isObject(isHtml5)){isHtml5=isHtml5.enabled}isHtml5=isHtml5&&$sniffer.history;var url=urlMatcher.format(params);options=options||{};if(!isHtml5&&url!==null){url="#"+$locationProvider.hashPrefix()+url}
+// Handle special hash param, if needed
+if(url!==null&&params&&params["#"]){url+="#"+params["#"]}url=appendBasePath(url,isHtml5,options.absolute);if(!options.absolute||!url){return url}var slash=!isHtml5&&url?"/":"",port=$location.port();port=port===80||port===443?"":":"+port;return[$location.protocol(),"://",$location.host(),port,slash,url].join("")}}}}angular.module("ui.router.router").provider("$urlRouter",$UrlRouterProvider);/**
+ * @ngdoc object
+ * @name ui.router.state.$stateProvider
+ *
+ * @requires ui.router.router.$urlRouterProvider
+ * @requires ui.router.util.$urlMatcherFactoryProvider
+ *
+ * @description
+ * The new `$stateProvider` works similar to Angular's v1 router, but it focuses purely
+ * on state.
+ *
+ * A state corresponds to a "place" in the application in terms of the overall UI and
+ * navigation. A state describes (via the controller / template / view properties) what
+ * the UI looks like and does at that place.
+ *
+ * States often have things in common, and the primary way of factoring out these
+ * commonalities in this model is via the state hierarchy, i.e. parent/child states aka
+ * nested states.
+ *
+ * The `$stateProvider` provides interfaces to declare these states for your app.
+ */
+$StateProvider.$inject=["$urlRouterProvider","$urlMatcherFactoryProvider"];function $StateProvider($urlRouterProvider,$urlMatcherFactory){var root,states={},$state,queue={},abstractKey="abstract";
+// Builds state properties from definition passed to registerState()
+var stateBuilder={
+// Derive parent state from a hierarchical name only if 'parent' is not explicitly defined.
+// state.children = [];
+// if (parent) parent.children.push(state);
+parent:function(state){if(isDefined(state.parent)&&state.parent)return findState(state.parent);
+// regex matches any valid composite state name
+// would match "contact.list" but not "contacts"
+var compositeName=/^(.+)\.[^.]+$/.exec(state.name);return compositeName?findState(compositeName[1]):root},
+// inherit 'data' from parent and override by own values (if any)
+data:function(state){if(state.parent&&state.parent.data){state.data=state.self.data=inherit(state.parent.data,state.data)}return state.data},
+// Build a URLMatcher if necessary, either via a relative or absolute URL
+url:function(state){var url=state.url,config={params:state.params||{}};if(isString(url)){if(url.charAt(0)=="^")return $urlMatcherFactory.compile(url.substring(1),config);return(state.parent.navigable||root).url.concat(url,config)}if(!url||$urlMatcherFactory.isMatcher(url))return url;throw new Error("Invalid url '"+url+"' in state '"+state+"'")},
+// Keep track of the closest ancestor state that has a URL (i.e. is navigable)
+navigable:function(state){return state.url?state:state.parent?state.parent.navigable:null},
+// Own parameters for this state. state.url.params is already built at this point. Create and add non-url params
+ownParams:function(state){var params=state.url&&state.url.params||new $$UMFP.ParamSet;forEach(state.params||{},function(config,id){if(!params[id])params[id]=new $$UMFP.Param(id,null,config,"config")});return params},
+// Derive parameters for this state and ensure they're a super-set of parent's parameters
+params:function(state){var ownParams=pick(state.ownParams,state.ownParams.$$keys());return state.parent&&state.parent.params?extend(state.parent.params.$$new(),ownParams):new $$UMFP.ParamSet},
+// If there is no explicit multi-view configuration, make one up so we don't have
+// to handle both cases in the view directive later. Note that having an explicit
+// 'views' property will mean the default unnamed view properties are ignored. This
+// is also a good time to resolve view names to absolute names, so everything is a
+// straight lookup at link time.
+views:function(state){var views={};forEach(isDefined(state.views)?state.views:{"":state},function(view,name){if(name.indexOf("@")<0)name+="@"+state.parent.name;view.resolveAs=view.resolveAs||state.resolveAs||"$resolve";views[name]=view});return views},
+// Keep a full path from the root down to this state as this is needed for state activation.
+path:function(state){return state.parent?state.parent.path.concat(state):[]},
+// Speed up $state.contains() as it's used a lot
+includes:function(state){var includes=state.parent?extend({},state.parent.includes):{};includes[state.name]=true;return includes},$delegates:{}};function isRelative(stateName){return stateName.indexOf(".")===0||stateName.indexOf("^")===0}function findState(stateOrName,base){if(!stateOrName)return undefined;var isStr=isString(stateOrName),name=isStr?stateOrName:stateOrName.name,path=isRelative(name);if(path){if(!base)throw new Error("No reference point given for path '"+name+"'");base=findState(base);var rel=name.split("."),i=0,pathLength=rel.length,current=base;for(;i<pathLength;i++){if(rel[i]===""&&i===0){current=base;continue}if(rel[i]==="^"){if(!current.parent)throw new Error("Path '"+name+"' not valid for state '"+base.name+"'");current=current.parent;continue}break}rel=rel.slice(i).join(".");name=current.name+(current.name&&rel?".":"")+rel}var state=states[name];if(state&&(isStr||!isStr&&(state===stateOrName||state.self===stateOrName))){return state}return undefined}function queueState(parentName,state){if(!queue[parentName]){queue[parentName]=[]}queue[parentName].push(state)}function flushQueuedChildren(parentName){var queued=queue[parentName]||[];while(queued.length){registerState(queued.shift())}}function registerState(state){
+// Wrap a new object around the state so we can store our private details easily.
+state=inherit(state,{self:state,resolve:state.resolve||{},toString:function(){return this.name}});var name=state.name;if(!isString(name)||name.indexOf("@")>=0)throw new Error("State must have a valid name");if(states.hasOwnProperty(name))throw new Error("State '"+name+"' is already defined");
+// Get parent name
+var parentName=name.indexOf(".")!==-1?name.substring(0,name.lastIndexOf(".")):isString(state.parent)?state.parent:isObject(state.parent)&&isString(state.parent.name)?state.parent.name:"";
+// If parent is not registered yet, add state to queue and register later
+if(parentName&&!states[parentName]){return queueState(parentName,state.self)}for(var key in stateBuilder){if(isFunction(stateBuilder[key]))state[key]=stateBuilder[key](state,stateBuilder.$delegates[key])}states[name]=state;
+// Register the state in the global state list and with $urlRouter if necessary.
+if(!state[abstractKey]&&state.url){$urlRouterProvider.when(state.url,["$match","$stateParams",function($match,$stateParams){if($state.$current.navigable!=state||!equalForKeys($match,$stateParams)){$state.transitionTo(state,$match,{inherit:true,location:false})}}])}
+// Register any queued children
+flushQueuedChildren(name);return state}
+// Checks text to see if it looks like a glob.
+function isGlob(text){return text.indexOf("*")>-1}
+// Returns true if glob matches current $state name.
+function doesStateMatchGlob(glob){var globSegments=glob.split("."),segments=$state.$current.name.split(".");
+//match single stars
+for(var i=0,l=globSegments.length;i<l;i++){if(globSegments[i]==="*"){segments[i]="*"}}
+//match greedy starts
+if(globSegments[0]==="**"){segments=segments.slice(indexOf(segments,globSegments[1]));segments.unshift("**")}
+//match greedy ends
+if(globSegments[globSegments.length-1]==="**"){segments.splice(indexOf(segments,globSegments[globSegments.length-2])+1,Number.MAX_VALUE);segments.push("**")}if(globSegments.length!=segments.length){return false}return segments.join("")===globSegments.join("")}
+// Implicit root state that is always active
+root=registerState({name:"",url:"^",views:null,abstract:true});root.navigable=null;/**
+   * @ngdoc function
+   * @name ui.router.state.$stateProvider#decorator
+   * @methodOf ui.router.state.$stateProvider
+   *
+   * @description
+   * Allows you to extend (carefully) or override (at your own peril) the 
+   * `stateBuilder` object used internally by `$stateProvider`. This can be used 
+   * to add custom functionality to ui-router, for example inferring templateUrl 
+   * based on the state name.
+   *
+   * When passing only a name, it returns the current (original or decorated) builder
+   * function that matches `name`.
+   *
+   * The builder functions that can be decorated are listed below. Though not all
+   * necessarily have a good use case for decoration, that is up to you to decide.
+   *
+   * In addition, users can attach custom decorators, which will generate new 
+   * properties within the state's internal definition. There is currently no clear 
+   * use-case for this beyond accessing internal states (i.e. $state.$current), 
+   * however, expect this to become increasingly relevant as we introduce additional 
+   * meta-programming features.
+   *
+   * **Warning**: Decorators should not be interdependent because the order of 
+   * execution of the builder functions in non-deterministic. Builder functions 
+   * should only be dependent on the state definition object and super function.
+   *
+   *
+   * Existing builder functions and current return values:
+   *
+   * - **parent** `{object}` - returns the parent state object.
+   * - **data** `{object}` - returns state data, including any inherited data that is not
+   *   overridden by own values (if any).
+   * - **url** `{object}` - returns a {@link ui.router.util.type:UrlMatcher UrlMatcher}
+   *   or `null`.
+   * - **navigable** `{object}` - returns closest ancestor state that has a URL (aka is 
+   *   navigable).
+   * - **params** `{object}` - returns an array of state params that are ensured to 
+   *   be a super-set of parent's params.
+   * - **views** `{object}` - returns a views object where each key is an absolute view 
+   *   name (i.e. "viewName@stateName") and each value is the config object 
+   *   (template, controller) for the view. Even when you don't use the views object 
+   *   explicitly on a state config, one is still created for you internally.
+   *   So by decorating this builder function you have access to decorating template 
+   *   and controller properties.
+   * - **ownParams** `{object}` - returns an array of params that belong to the state, 
+   *   not including any params defined by ancestor states.
+   * - **path** `{string}` - returns the full path from the root down to this state. 
+   *   Needed for state activation.
+   * - **includes** `{object}` - returns an object that includes every state that 
+   *   would pass a `$state.includes()` test.
+   *
+   * @example
+   * <pre>
+   * // Override the internal 'views' builder with a function that takes the state
+   * // definition, and a reference to the internal function being overridden:
+   * $stateProvider.decorator('views', function (state, parent) {
+   *   var result = {},
+   *       views = parent(state);
+   *
+   *   angular.forEach(views, function (config, name) {
+   *     var autoName = (state.name + '.' + name).replace('.', '/');
+   *     config.templateUrl = config.templateUrl || '/partials/' + autoName + '.html';
+   *     result[name] = config;
+   *   });
+   *   return result;
+   * });
+   *
+   * $stateProvider.state('home', {
+   *   views: {
+   *     'contact.list': { controller: 'ListController' },
+   *     'contact.item': { controller: 'ItemController' }
+   *   }
+   * });
+   *
+   * // ...
+   *
+   * $state.go('home');
+   * // Auto-populates list and item views with /partials/home/contact/list.html,
+   * // and /partials/home/contact/item.html, respectively.
+   * </pre>
+   *
+   * @param {string} name The name of the builder function to decorate. 
+   * @param {object} func A function that is responsible for decorating the original 
+   * builder function. The function receives two parameters:
+   *
+   *   - `{object}` - state - The state config object.
+   *   - `{object}` - super - The original builder function.
+   *
+   * @return {object} $stateProvider - $stateProvider instance
+   */
+this.decorator=decorator;function decorator(name,func){/*jshint validthis: true */
+if(isString(name)&&!isDefined(func)){return stateBuilder[name]}if(!isFunction(func)||!isString(name)){return this}if(stateBuilder[name]&&!stateBuilder.$delegates[name]){stateBuilder.$delegates[name]=stateBuilder[name]}stateBuilder[name]=func;return this}/**
+   * @ngdoc function
+   * @name ui.router.state.$stateProvider#state
+   * @methodOf ui.router.state.$stateProvider
+   *
+   * @description
+   * Registers a state configuration under a given state name. The stateConfig object
+   * has the following acceptable properties.
+   *
+   * @param {string} name A unique state name, e.g. "home", "about", "contacts".
+   * To create a parent/child state use a dot, e.g. "about.sales", "home.newest".
+   * @param {object} stateConfig State configuration object.
+   * @param {string|function=} stateConfig.template
+   * <a id='template'></a>
+   *   html template as a string or a function that returns
+   *   an html template as a string which should be used by the uiView directives. This property 
+   *   takes precedence over templateUrl.
+   *   
+   *   If `template` is a function, it will be called with the following parameters:
+   *
+   *   - {array.&lt;object&gt;} - state parameters extracted from the current $location.path() by
+   *     applying the current state
+   *
+   * <pre>template:
+   *   "<h1>inline template definition</h1>" +
+   *   "<div ui-view></div>"</pre>
+   * <pre>template: function(params) {
+   *       return "<h1>generated template</h1>"; }</pre>
+   * </div>
+   *
+   * @param {string|function=} stateConfig.templateUrl
+   * <a id='templateUrl'></a>
+   *
+   *   path or function that returns a path to an html
+   *   template that should be used by uiView.
+   *   
+   *   If `templateUrl` is a function, it will be called with the following parameters:
+   *
+   *   - {array.&lt;object&gt;} - state parameters extracted from the current $location.path() by 
+   *     applying the current state
+   *
+   * <pre>templateUrl: "home.html"</pre>
+   * <pre>templateUrl: function(params) {
+   *     return myTemplates[params.pageId]; }</pre>
+   *
+   * @param {function=} stateConfig.templateProvider
+   * <a id='templateProvider'></a>
+   *    Provider function that returns HTML content string.
+   * <pre> templateProvider:
+   *       function(MyTemplateService, params) {
+   *         return MyTemplateService.getTemplate(params.pageId);
+   *       }</pre>
+   *
+   * @param {string|function=} stateConfig.controller
+   * <a id='controller'></a>
+   *
+   *  Controller fn that should be associated with newly
+   *   related scope or the name of a registered controller if passed as a string.
+   *   Optionally, the ControllerAs may be declared here.
+   * <pre>controller: "MyRegisteredController"</pre>
+   * <pre>controller:
+   *     "MyRegisteredController as fooCtrl"}</pre>
+   * <pre>controller: function($scope, MyService) {
+   *     $scope.data = MyService.getData(); }</pre>
+   *
+   * @param {function=} stateConfig.controllerProvider
+   * <a id='controllerProvider'></a>
+   *
+   * Injectable provider function that returns the actual controller or string.
+   * <pre>controllerProvider:
+   *   function(MyResolveData) {
+   *     if (MyResolveData.foo)
+   *       return "FooCtrl"
+   *     else if (MyResolveData.bar)
+   *       return "BarCtrl";
+   *     else return function($scope) {
+   *       $scope.baz = "Qux";
+   *     }
+   *   }</pre>
+   *
+   * @param {string=} stateConfig.controllerAs
+   * <a id='controllerAs'></a>
+   * 
+   * A controller alias name. If present the controller will be
+   *   published to scope under the controllerAs name.
+   * <pre>controllerAs: "myCtrl"</pre>
+   *
+   * @param {string|object=} stateConfig.parent
+   * <a id='parent'></a>
+   * Optionally specifies the parent state of this state.
+   *
+   * <pre>parent: 'parentState'</pre>
+   * <pre>parent: parentState // JS variable</pre>
+   *
+   * @param {object=} stateConfig.resolve
+   * <a id='resolve'></a>
+   *
+   * An optional map&lt;string, function&gt; of dependencies which
+   *   should be injected into the controller. If any of these dependencies are promises, 
+   *   the router will wait for them all to be resolved before the controller is instantiated.
+   *   If all the promises are resolved successfully, the $stateChangeSuccess event is fired
+   *   and the values of the resolved promises are injected into any controllers that reference them.
+   *   If any  of the promises are rejected the $stateChangeError event is fired.
+   *
+   *   The map object is:
+   *   
+   *   - key - {string}: name of dependency to be injected into controller
+   *   - factory - {string|function}: If string then it is alias for service. Otherwise if function, 
+   *     it is injected and return value it treated as dependency. If result is a promise, it is 
+   *     resolved before its value is injected into controller.
+   *
+   * <pre>resolve: {
+   *     myResolve1:
+   *       function($http, $stateParams) {
+   *         return $http.get("/api/foos/"+stateParams.fooID);
+   *       }
+   *     }</pre>
+   *
+   * @param {string=} stateConfig.url
+   * <a id='url'></a>
+   *
+   *   A url fragment with optional parameters. When a state is navigated or
+   *   transitioned to, the `$stateParams` service will be populated with any 
+   *   parameters that were passed.
+   *
+   *   (See {@link ui.router.util.type:UrlMatcher UrlMatcher} `UrlMatcher`} for
+   *   more details on acceptable patterns )
+   *
+   * examples:
+   * <pre>url: "/home"
+   * url: "/users/:userid"
+   * url: "/books/{bookid:[a-zA-Z_-]}"
+   * url: "/books/{categoryid:int}"
+   * url: "/books/{publishername:string}/{categoryid:int}"
+   * url: "/messages?before&after"
+   * url: "/messages?{before:date}&{after:date}"
+   * url: "/messages/:mailboxid?{before:date}&{after:date}"
+   * </pre>
+   *
+   * @param {object=} stateConfig.views
+   * <a id='views'></a>
+   * an optional map&lt;string, object&gt; which defined multiple views, or targets views
+   * manually/explicitly.
+   *
+   * Examples:
+   *
+   * Targets three named `ui-view`s in the parent state's template
+   * <pre>views: {
+   *     header: {
+   *       controller: "headerCtrl",
+   *       templateUrl: "header.html"
+   *     }, body: {
+   *       controller: "bodyCtrl",
+   *       templateUrl: "body.html"
+   *     }, footer: {
+   *       controller: "footCtrl",
+   *       templateUrl: "footer.html"
+   *     }
+   *   }</pre>
+   *
+   * Targets named `ui-view="header"` from grandparent state 'top''s template, and named `ui-view="body" from parent state's template.
+   * <pre>views: {
+   *     'header@top': {
+   *       controller: "msgHeaderCtrl",
+   *       templateUrl: "msgHeader.html"
+   *     }, 'body': {
+   *       controller: "messagesCtrl",
+   *       templateUrl: "messages.html"
+   *     }
+   *   }</pre>
+   *
+   * @param {boolean=} [stateConfig.abstract=false]
+   * <a id='abstract'></a>
+   * An abstract state will never be directly activated,
+   *   but can provide inherited properties to its common children states.
+   * <pre>abstract: true</pre>
+   *
+   * @param {function=} stateConfig.onEnter
+   * <a id='onEnter'></a>
+   *
+   * Callback function for when a state is entered. Good way
+   *   to trigger an action or dispatch an event, such as opening a dialog.
+   * If minifying your scripts, make sure to explicitly annotate this function,
+   * because it won't be automatically annotated by your build tools.
+   *
+   * <pre>onEnter: function(MyService, $stateParams) {
+   *     MyService.foo($stateParams.myParam);
+   * }</pre>
+   *
+   * @param {function=} stateConfig.onExit
+   * <a id='onExit'></a>
+   *
+   * Callback function for when a state is exited. Good way to
+   *   trigger an action or dispatch an event, such as opening a dialog.
+   * If minifying your scripts, make sure to explicitly annotate this function,
+   * because it won't be automatically annotated by your build tools.
+   *
+   * <pre>onExit: function(MyService, $stateParams) {
+   *     MyService.cleanup($stateParams.myParam);
+   * }</pre>
+   *
+   * @param {boolean=} [stateConfig.reloadOnSearch=true]
+   * <a id='reloadOnSearch'></a>
+   *
+   * If `false`, will not retrigger the same state
+   *   just because a search/query parameter has changed (via $location.search() or $location.hash()). 
+   *   Useful for when you'd like to modify $location.search() without triggering a reload.
+   * <pre>reloadOnSearch: false</pre>
+   *
+   * @param {object=} stateConfig.data
+   * <a id='data'></a>
+   *
+   * Arbitrary data object, useful for custom configuration.  The parent state's `data` is
+   *   prototypally inherited.  In other words, adding a data property to a state adds it to
+   *   the entire subtree via prototypal inheritance.
+   *
+   * <pre>data: {
+   *     requiredRole: 'foo'
+   * } </pre>
+   *
+   * @param {object=} stateConfig.params
+   * <a id='params'></a>
+   *
+   * A map which optionally configures parameters declared in the `url`, or
+   *   defines additional non-url parameters.  For each parameter being
+   *   configured, add a configuration object keyed to the name of the parameter.
+   *
+   *   Each parameter configuration object may contain the following properties:
+   *
+   *   - ** value ** - {object|function=}: specifies the default value for this
+   *     parameter.  This implicitly sets this parameter as optional.
+   *
+   *     When UI-Router routes to a state and no value is
+   *     specified for this parameter in the URL or transition, the
+   *     default value will be used instead.  If `value` is a function,
+   *     it will be injected and invoked, and the return value used.
+   *
+   *     *Note*: `undefined` is treated as "no default value" while `null`
+   *     is treated as "the default value is `null`".
+   *
+   *     *Shorthand*: If you only need to configure the default value of the
+   *     parameter, you may use a shorthand syntax.   In the **`params`**
+   *     map, instead mapping the param name to a full parameter configuration
+   *     object, simply set map it to the default parameter value, e.g.:
+   *
+   * <pre>// define a parameter's default value
+   * params: {
+   *     param1: { value: "defaultValue" }
+   * }
+   * // shorthand default values
+   * params: {
+   *     param1: "defaultValue",
+   *     param2: "param2Default"
+   * }</pre>
+   *
+   *   - ** array ** - {boolean=}: *(default: false)* If true, the param value will be
+   *     treated as an array of values.  If you specified a Type, the value will be
+   *     treated as an array of the specified Type.  Note: query parameter values
+   *     default to a special `"auto"` mode.
+   *
+   *     For query parameters in `"auto"` mode, if multiple  values for a single parameter
+   *     are present in the URL (e.g.: `/foo?bar=1&bar=2&bar=3`) then the values
+   *     are mapped to an array (e.g.: `{ foo: [ '1', '2', '3' ] }`).  However, if
+   *     only one value is present (e.g.: `/foo?bar=1`) then the value is treated as single
+   *     value (e.g.: `{ foo: '1' }`).
+   *
+   * <pre>params: {
+   *     param1: { array: true }
+   * }</pre>
+   *
+   *   - ** squash ** - {bool|string=}: `squash` configures how a default parameter value is represented in the URL when
+   *     the current parameter value is the same as the default value. If `squash` is not set, it uses the
+   *     configured default squash policy.
+   *     (See {@link ui.router.util.$urlMatcherFactory#methods_defaultSquashPolicy `defaultSquashPolicy()`})
+   *
+   *   There are three squash settings:
+   *
+   *     - false: The parameter's default value is not squashed.  It is encoded and included in the URL
+   *     - true: The parameter's default value is omitted from the URL.  If the parameter is preceeded and followed
+   *       by slashes in the state's `url` declaration, then one of those slashes are omitted.
+   *       This can allow for cleaner looking URLs.
+   *     - `"<arbitrary string>"`: The parameter's default value is replaced with an arbitrary placeholder of  your choice.
+   *
+   * <pre>params: {
+   *     param1: {
+   *       value: "defaultId",
+   *       squash: true
+   * } }
+   * // squash "defaultValue" to "~"
+   * params: {
+   *     param1: {
+   *       value: "defaultValue",
+   *       squash: "~"
+   * } }
+   * </pre>
+   *
+   *
+   * @example
+   * <pre>
+   * // Some state name examples
+   *
+   * // stateName can be a single top-level name (must be unique).
+   * $stateProvider.state("home", {});
+   *
+   * // Or it can be a nested state name. This state is a child of the
+   * // above "home" state.
+   * $stateProvider.state("home.newest", {});
+   *
+   * // Nest states as deeply as needed.
+   * $stateProvider.state("home.newest.abc.xyz.inception", {});
+   *
+   * // state() returns $stateProvider, so you can chain state declarations.
+   * $stateProvider
+   *   .state("home", {})
+   *   .state("about", {})
+   *   .state("contacts", {});
+   * </pre>
+   *
+   */
+this.state=state;function state(name,definition){/*jshint validthis: true */
+if(isObject(name))definition=name;else definition.name=name;registerState(definition);return this}/**
+   * @ngdoc object
+   * @name ui.router.state.$state
+   *
+   * @requires $rootScope
+   * @requires $q
+   * @requires ui.router.state.$view
+   * @requires $injector
+   * @requires ui.router.util.$resolve
+   * @requires ui.router.state.$stateParams
+   * @requires ui.router.router.$urlRouter
+   *
+   * @property {object} params A param object, e.g. {sectionId: section.id)}, that 
+   * you'd like to test against the current active state.
+   * @property {object} current A reference to the state's config object. However 
+   * you passed it in. Useful for accessing custom data.
+   * @property {object} transition Currently pending transition. A promise that'll 
+   * resolve or reject.
+   *
+   * @description
+   * `$state` service is responsible for representing states as well as transitioning
+   * between them. It also provides interfaces to ask for current state or even states
+   * you're coming from.
+   */
+this.$get=$get;$get.$inject=["$rootScope","$q","$view","$injector","$resolve","$stateParams","$urlRouter","$location","$urlMatcherFactory"];function $get($rootScope,$q,$view,$injector,$resolve,$stateParams,$urlRouter,$location,$urlMatcherFactory){var TransitionSuperseded=$q.reject(new Error("transition superseded"));var TransitionPrevented=$q.reject(new Error("transition prevented"));var TransitionAborted=$q.reject(new Error("transition aborted"));var TransitionFailed=$q.reject(new Error("transition failed"));
+// Handles the case where a state which is the target of a transition is not found, and the user
+// can optionally retry or defer the transition
+function handleRedirect(redirect,state,params,options){/**
+       * @ngdoc event
+       * @name ui.router.state.$state#$stateNotFound
+       * @eventOf ui.router.state.$state
+       * @eventType broadcast on root scope
+       * @description
+       * Fired when a requested state **cannot be found** using the provided state name during transition.
+       * The event is broadcast allowing any handlers a single chance to deal with the error (usually by
+       * lazy-loading the unfound state). A special `unfoundState` object is passed to the listener handler,
+       * you can see its three properties in the example. You can use `event.preventDefault()` to abort the
+       * transition and the promise returned from `go` will be rejected with a `'transition aborted'` value.
+       *
+       * @param {Object} event Event object.
+       * @param {Object} unfoundState Unfound State information. Contains: `to, toParams, options` properties.
+       * @param {State} fromState Current state object.
+       * @param {Object} fromParams Current state params.
+       *
+       * @example
+       *
+       * <pre>
+       * // somewhere, assume lazy.state has not been defined
+       * $state.go("lazy.state", {a:1, b:2}, {inherit:false});
+       *
+       * // somewhere else
+       * $scope.$on('$stateNotFound',
+       * function(event, unfoundState, fromState, fromParams){
+       *     console.log(unfoundState.to); // "lazy.state"
+       *     console.log(unfoundState.toParams); // {a:1, b:2}
+       *     console.log(unfoundState.options); // {inherit:false} + default options
+       * })
+       * </pre>
+       */
+var evt=$rootScope.$broadcast("$stateNotFound",redirect,state,params);if(evt.defaultPrevented){$urlRouter.update();return TransitionAborted}if(!evt.retry){return null}
+// Allow the handler to return a promise to defer state lookup retry
+if(options.$retry){$urlRouter.update();return TransitionFailed}var retryTransition=$state.transition=$q.when(evt.retry);retryTransition.then(function(){if(retryTransition!==$state.transition)return TransitionSuperseded;redirect.options.$retry=true;return $state.transitionTo(redirect.to,redirect.toParams,redirect.options)},function(){return TransitionAborted});$urlRouter.update();return retryTransition}root.locals={resolve:null,globals:{$stateParams:{}}};$state={params:{},current:root.self,$current:root,transition:null};/**
+     * @ngdoc function
+     * @name ui.router.state.$state#reload
+     * @methodOf ui.router.state.$state
+     *
+     * @description
+     * A method that force reloads the current state. All resolves are re-resolved,
+     * controllers reinstantiated, and events re-fired.
+     *
+     * @example
+     * <pre>
+     * var app angular.module('app', ['ui.router']);
+     *
+     * app.controller('ctrl', function ($scope, $state) {
+     *   $scope.reload = function(){
+     *     $state.reload();
+     *   }
+     * });
+     * </pre>
+     *
+     * `reload()` is just an alias for:
+     * <pre>
+     * $state.transitionTo($state.current, $stateParams, { 
+     *   reload: true, inherit: false, notify: true
+     * });
+     * </pre>
+     *
+     * @param {string=|object=} state - A state name or a state object, which is the root of the resolves to be re-resolved.
+     * @example
+     * <pre>
+     * //assuming app application consists of 3 states: 'contacts', 'contacts.detail', 'contacts.detail.item' 
+     * //and current state is 'contacts.detail.item'
+     * var app angular.module('app', ['ui.router']);
+     *
+     * app.controller('ctrl', function ($scope, $state) {
+     *   $scope.reload = function(){
+     *     //will reload 'contact.detail' and 'contact.detail.item' states
+     *     $state.reload('contact.detail');
+     *   }
+     * });
+     * </pre>
+     *
+     * `reload()` is just an alias for:
+     * <pre>
+     * $state.transitionTo($state.current, $stateParams, { 
+     *   reload: true, inherit: false, notify: true
+     * });
+     * </pre>
+
+     * @returns {promise} A promise representing the state of the new transition. See
+     * {@link ui.router.state.$state#methods_go $state.go}.
+     */
+$state.reload=function reload(state){return $state.transitionTo($state.current,$stateParams,{reload:state||true,inherit:false,notify:true})};/**
+     * @ngdoc function
+     * @name ui.router.state.$state#go
+     * @methodOf ui.router.state.$state
+     *
+     * @description
+     * Convenience method for transitioning to a new state. `$state.go` calls 
+     * `$state.transitionTo` internally but automatically sets options to 
+     * `{ location: true, inherit: true, relative: $state.$current, notify: true }`. 
+     * This allows you to easily use an absolute or relative to path and specify 
+     * only the parameters you'd like to update (while letting unspecified parameters 
+     * inherit from the currently active ancestor states).
+     *
+     * @example
+     * <pre>
+     * var app = angular.module('app', ['ui.router']);
+     *
+     * app.controller('ctrl', function ($scope, $state) {
+     *   $scope.changeState = function () {
+     *     $state.go('contact.detail');
+     *   };
+     * });
+     * </pre>
+     * <img src='../ngdoc_assets/StateGoExamples.png'/>
+     *
+     * @param {string} to Absolute state name or relative state path. Some examples:
+     *
+     * - `$state.go('contact.detail')` - will go to the `contact.detail` state
+     * - `$state.go('^')` - will go to a parent state
+     * - `$state.go('^.sibling')` - will go to a sibling state
+     * - `$state.go('.child.grandchild')` - will go to grandchild state
+     *
+     * @param {object=} params A map of the parameters that will be sent to the state, 
+     * will populate $stateParams. Any parameters that are not specified will be inherited from currently 
+     * defined parameters. Only parameters specified in the state definition can be overridden, new 
+     * parameters will be ignored. This allows, for example, going to a sibling state that shares parameters
+     * specified in a parent state. Parameter inheritance only works between common ancestor states, I.e.
+     * transitioning to a sibling will get you the parameters for all parents, transitioning to a child
+     * will get you all current parameters, etc.
+     * @param {object=} options Options object. The options are:
+     *
+     * - **`location`** - {boolean=true|string=} - If `true` will update the url in the location bar, if `false`
+     *    will not. If string, must be `"replace"`, which will update url and also replace last history record.
+     * - **`inherit`** - {boolean=true}, If `true` will inherit url parameters from current url.
+     * - **`relative`** - {object=$state.$current}, When transitioning with relative path (e.g '^'), 
+     *    defines which state to be relative from.
+     * - **`notify`** - {boolean=true}, If `true` will broadcast $stateChangeStart and $stateChangeSuccess events.
+     * - **`reload`** (v0.2.5) - {boolean=false|string|object}, If `true` will force transition even if no state or params
+     *    have changed.  It will reload the resolves and views of the current state and parent states.
+     *    If `reload` is a string (or state object), the state object is fetched (by name, or object reference); and \
+     *    the transition reloads the resolves and views for that matched state, and all its children states.
+     *
+     * @returns {promise} A promise representing the state of the new transition.
+     *
+     * Possible success values:
+     *
+     * - $state.current
+     *
+     * <br/>Possible rejection values:
+     *
+     * - 'transition superseded' - when a newer transition has been started after this one
+     * - 'transition prevented' - when `event.preventDefault()` has been called in a `$stateChangeStart` listener
+     * - 'transition aborted' - when `event.preventDefault()` has been called in a `$stateNotFound` listener or
+     *   when a `$stateNotFound` `event.retry` promise errors.
+     * - 'transition failed' - when a state has been unsuccessfully found after 2 tries.
+     * - *resolve error* - when an error has occurred with a `resolve`
+     *
+     */
+$state.go=function go(to,params,options){return $state.transitionTo(to,params,extend({inherit:true,relative:$state.$current},options))};/**
+     * @ngdoc function
+     * @name ui.router.state.$state#transitionTo
+     * @methodOf ui.router.state.$state
+     *
+     * @description
+     * Low-level method for transitioning to a new state. {@link ui.router.state.$state#methods_go $state.go}
+     * uses `transitionTo` internally. `$state.go` is recommended in most situations.
+     *
+     * @example
+     * <pre>
+     * var app = angular.module('app', ['ui.router']);
+     *
+     * app.controller('ctrl', function ($scope, $state) {
+     *   $scope.changeState = function () {
+     *     $state.transitionTo('contact.detail');
+     *   };
+     * });
+     * </pre>
+     *
+     * @param {string} to State name.
+     * @param {object=} toParams A map of the parameters that will be sent to the state,
+     * will populate $stateParams.
+     * @param {object=} options Options object. The options are:
+     *
+     * - **`location`** - {boolean=true|string=} - If `true` will update the url in the location bar, if `false`
+     *    will not. If string, must be `"replace"`, which will update url and also replace last history record.
+     * - **`inherit`** - {boolean=false}, If `true` will inherit url parameters from current url.
+     * - **`relative`** - {object=}, When transitioning with relative path (e.g '^'), 
+     *    defines which state to be relative from.
+     * - **`notify`** - {boolean=true}, If `true` will broadcast $stateChangeStart and $stateChangeSuccess events.
+     * - **`reload`** (v0.2.5) - {boolean=false|string=|object=}, If `true` will force transition even if the state or params 
+     *    have not changed, aka a reload of the same state. It differs from reloadOnSearch because you'd
+     *    use this when you want to force a reload when *everything* is the same, including search params.
+     *    if String, then will reload the state with the name given in reload, and any children.
+     *    if Object, then a stateObj is expected, will reload the state found in stateObj, and any children.
+     *
+     * @returns {promise} A promise representing the state of the new transition. See
+     * {@link ui.router.state.$state#methods_go $state.go}.
+     */
+$state.transitionTo=function transitionTo(to,toParams,options){toParams=toParams||{};options=extend({location:true,inherit:false,relative:null,notify:true,reload:false,$retry:false},options||{});var from=$state.$current,fromParams=$state.params,fromPath=from.path;var evt,toState=findState(to,options.relative);
+// Store the hash param for later (since it will be stripped out by various methods)
+var hash=toParams["#"];if(!isDefined(toState)){var redirect={to:to,toParams:toParams,options:options};var redirectResult=handleRedirect(redirect,from.self,fromParams,options);if(redirectResult){return redirectResult}
+// Always retry once if the $stateNotFound was not prevented
+// (handles either redirect changed or state lazy-definition)
+to=redirect.to;toParams=redirect.toParams;options=redirect.options;toState=findState(to,options.relative);if(!isDefined(toState)){if(!options.relative)throw new Error("No such state '"+to+"'");throw new Error("Could not resolve '"+to+"' from state '"+options.relative+"'")}}if(toState[abstractKey])throw new Error("Cannot transition to abstract state '"+to+"'");if(options.inherit)toParams=inheritParams($stateParams,toParams||{},$state.$current,toState);if(!toState.params.$$validates(toParams))return TransitionFailed;toParams=toState.params.$$values(toParams);to=toState;var toPath=to.path;
+// Starting from the root of the path, keep all levels that haven't changed
+var keep=0,state=toPath[keep],locals=root.locals,toLocals=[];if(!options.reload){while(state&&state===fromPath[keep]&&state.ownParams.$$equals(toParams,fromParams)){locals=toLocals[keep]=state.locals;keep++;state=toPath[keep]}}else if(isString(options.reload)||isObject(options.reload)){if(isObject(options.reload)&&!options.reload.name){throw new Error("Invalid reload state object")}var reloadState=options.reload===true?fromPath[0]:findState(options.reload);if(options.reload&&!reloadState){throw new Error("No such reload state '"+(isString(options.reload)?options.reload:options.reload.name)+"'")}while(state&&state===fromPath[keep]&&state!==reloadState){locals=toLocals[keep]=state.locals;keep++;state=toPath[keep]}}
+// If we're going to the same state and all locals are kept, we've got nothing to do.
+// But clear 'transition', as we still want to cancel any other pending transitions.
+// TODO: We may not want to bump 'transition' if we're called from a location change
+// that we've initiated ourselves, because we might accidentally abort a legitimate
+// transition initiated from code?
+if(shouldSkipReload(to,toParams,from,fromParams,locals,options)){if(hash)toParams["#"]=hash;$state.params=toParams;copy($state.params,$stateParams);copy(filterByKeys(to.params.$$keys(),$stateParams),to.locals.globals.$stateParams);if(options.location&&to.navigable&&to.navigable.url){$urlRouter.push(to.navigable.url,toParams,{$$avoidResync:true,replace:options.location==="replace"});$urlRouter.update(true)}$state.transition=null;return $q.when($state.current)}
+// Filter parameters before we pass them to event handlers etc.
+toParams=filterByKeys(to.params.$$keys(),toParams||{});
+// Re-add the saved hash before we start returning things or broadcasting $stateChangeStart
+if(hash)toParams["#"]=hash;
+// Broadcast start event and cancel the transition if requested
+if(options.notify){/**
+         * @ngdoc event
+         * @name ui.router.state.$state#$stateChangeStart
+         * @eventOf ui.router.state.$state
+         * @eventType broadcast on root scope
+         * @description
+         * Fired when the state transition **begins**. You can use `event.preventDefault()`
+         * to prevent the transition from happening and then the transition promise will be
+         * rejected with a `'transition prevented'` value.
+         *
+         * @param {Object} event Event object.
+         * @param {State} toState The state being transitioned to.
+         * @param {Object} toParams The params supplied to the `toState`.
+         * @param {State} fromState The current state, pre-transition.
+         * @param {Object} fromParams The params supplied to the `fromState`.
+         *
+         * @example
+         *
+         * <pre>
+         * $rootScope.$on('$stateChangeStart',
+         * function(event, toState, toParams, fromState, fromParams){
+         *     event.preventDefault();
+         *     // transitionTo() promise will be rejected with
+         *     // a 'transition prevented' error
+         * })
+         * </pre>
+         */
+if($rootScope.$broadcast("$stateChangeStart",to.self,toParams,from.self,fromParams,options).defaultPrevented){$rootScope.$broadcast("$stateChangeCancel",to.self,toParams,from.self,fromParams);
+//Don't update and resync url if there's been a new transition started. see issue #2238, #600
+if($state.transition==null)$urlRouter.update();return TransitionPrevented}}
+// Resolve locals for the remaining states, but don't update any global state just
+// yet -- if anything fails to resolve the current state needs to remain untouched.
+// We also set up an inheritance chain for the locals here. This allows the view directive
+// to quickly look up the correct definition for each view in the current state. Even
+// though we create the locals object itself outside resolveState(), it is initially
+// empty and gets filled asynchronously. We need to keep track of the promise for the
+// (fully resolved) current locals, and pass this down the chain.
+var resolved=$q.when(locals);for(var l=keep;l<toPath.length;l++,state=toPath[l]){locals=toLocals[l]=inherit(locals);resolved=resolveState(state,toParams,state===to,resolved,locals,options)}
+// Once everything is resolved, we are ready to perform the actual transition
+// and return a promise for the new state. We also keep track of what the
+// current promise is, so that we can detect overlapping transitions and
+// keep only the outcome of the last transition.
+var transition=$state.transition=resolved.then(function(){var l,entering,exiting;if($state.transition!==transition)return TransitionSuperseded;
+// Exit 'from' states not kept
+for(l=fromPath.length-1;l>=keep;l--){exiting=fromPath[l];if(exiting.self.onExit){$injector.invoke(exiting.self.onExit,exiting.self,exiting.locals.globals)}exiting.locals=null}
+// Enter 'to' states not kept
+for(l=keep;l<toPath.length;l++){entering=toPath[l];entering.locals=toLocals[l];if(entering.self.onEnter){$injector.invoke(entering.self.onEnter,entering.self,entering.locals.globals)}}
+// Run it again, to catch any transitions in callbacks
+if($state.transition!==transition)return TransitionSuperseded;
+// Update globals in $state
+$state.$current=to;$state.current=to.self;$state.params=toParams;copy($state.params,$stateParams);$state.transition=null;if(options.location&&to.navigable){$urlRouter.push(to.navigable.url,to.navigable.locals.globals.$stateParams,{$$avoidResync:true,replace:options.location==="replace"})}if(options.notify){/**
+         * @ngdoc event
+         * @name ui.router.state.$state#$stateChangeSuccess
+         * @eventOf ui.router.state.$state
+         * @eventType broadcast on root scope
+         * @description
+         * Fired once the state transition is **complete**.
+         *
+         * @param {Object} event Event object.
+         * @param {State} toState The state being transitioned to.
+         * @param {Object} toParams The params supplied to the `toState`.
+         * @param {State} fromState The current state, pre-transition.
+         * @param {Object} fromParams The params supplied to the `fromState`.
+         */
+$rootScope.$broadcast("$stateChangeSuccess",to.self,toParams,from.self,fromParams)}$urlRouter.update(true);return $state.current}).then(null,function(error){if($state.transition!==transition)return TransitionSuperseded;$state.transition=null;/**
+         * @ngdoc event
+         * @name ui.router.state.$state#$stateChangeError
+         * @eventOf ui.router.state.$state
+         * @eventType broadcast on root scope
+         * @description
+         * Fired when an **error occurs** during transition. It's important to note that if you
+         * have any errors in your resolve functions (javascript errors, non-existent services, etc)
+         * they will not throw traditionally. You must listen for this $stateChangeError event to
+         * catch **ALL** errors.
+         *
+         * @param {Object} event Event object.
+         * @param {State} toState The state being transitioned to.
+         * @param {Object} toParams The params supplied to the `toState`.
+         * @param {State} fromState The current state, pre-transition.
+         * @param {Object} fromParams The params supplied to the `fromState`.
+         * @param {Error} error The resolve error object.
+         */
+evt=$rootScope.$broadcast("$stateChangeError",to.self,toParams,from.self,fromParams,error);if(!evt.defaultPrevented){$urlRouter.update()}return $q.reject(error)});return transition};/**
+     * @ngdoc function
+     * @name ui.router.state.$state#is
+     * @methodOf ui.router.state.$state
+     *
+     * @description
+     * Similar to {@link ui.router.state.$state#methods_includes $state.includes},
+     * but only checks for the full state name. If params is supplied then it will be
+     * tested for strict equality against the current active params object, so all params
+     * must match with none missing and no extras.
+     *
+     * @example
+     * <pre>
+     * $state.$current.name = 'contacts.details.item';
+     *
+     * // absolute name
+     * $state.is('contact.details.item'); // returns true
+     * $state.is(contactDetailItemStateObject); // returns true
+     *
+     * // relative name (. and ^), typically from a template
+     * // E.g. from the 'contacts.details' template
+     * <div ng-class="{highlighted: $state.is('.item')}">Item</div>
+     * </pre>
+     *
+     * @param {string|object} stateOrName The state name (absolute or relative) or state object you'd like to check.
+     * @param {object=} params A param object, e.g. `{sectionId: section.id}`, that you'd like
+     * to test against the current active state.
+     * @param {object=} options An options object.  The options are:
+     *
+     * - **`relative`** - {string|object} -  If `stateOrName` is a relative state name and `options.relative` is set, .is will
+     * test relative to `options.relative` state (or name).
+     *
+     * @returns {boolean} Returns true if it is the state.
+     */
+$state.is=function is(stateOrName,params,options){options=extend({relative:$state.$current},options||{});var state=findState(stateOrName,options.relative);if(!isDefined(state)){return undefined}if($state.$current!==state){return false}return params?equalForKeys(state.params.$$values(params),$stateParams):true};/**
+     * @ngdoc function
+     * @name ui.router.state.$state#includes
+     * @methodOf ui.router.state.$state
+     *
+     * @description
+     * A method to determine if the current active state is equal to or is the child of the
+     * state stateName. If any params are passed then they will be tested for a match as well.
+     * Not all the parameters need to be passed, just the ones you'd like to test for equality.
+     *
+     * @example
+     * Partial and relative names
+     * <pre>
+     * $state.$current.name = 'contacts.details.item';
+     *
+     * // Using partial names
+     * $state.includes("contacts"); // returns true
+     * $state.includes("contacts.details"); // returns true
+     * $state.includes("contacts.details.item"); // returns true
+     * $state.includes("contacts.list"); // returns false
+     * $state.includes("about"); // returns false
+     *
+     * // Using relative names (. and ^), typically from a template
+     * // E.g. from the 'contacts.details' template
+     * <div ng-class="{highlighted: $state.includes('.item')}">Item</div>
+     * </pre>
+     *
+     * Basic globbing patterns
+     * <pre>
+     * $state.$current.name = 'contacts.details.item.url';
+     *
+     * $state.includes("*.details.*.*"); // returns true
+     * $state.includes("*.details.**"); // returns true
+     * $state.includes("**.item.**"); // returns true
+     * $state.includes("*.details.item.url"); // returns true
+     * $state.includes("*.details.*.url"); // returns true
+     * $state.includes("*.details.*"); // returns false
+     * $state.includes("item.**"); // returns false
+     * </pre>
+     *
+     * @param {string} stateOrName A partial name, relative name, or glob pattern
+     * to be searched for within the current state name.
+     * @param {object=} params A param object, e.g. `{sectionId: section.id}`,
+     * that you'd like to test against the current active state.
+     * @param {object=} options An options object.  The options are:
+     *
+     * - **`relative`** - {string|object=} -  If `stateOrName` is a relative state reference and `options.relative` is set,
+     * .includes will test relative to `options.relative` state (or name).
+     *
+     * @returns {boolean} Returns true if it does include the state
+     */
+$state.includes=function includes(stateOrName,params,options){options=extend({relative:$state.$current},options||{});if(isString(stateOrName)&&isGlob(stateOrName)){if(!doesStateMatchGlob(stateOrName)){return false}stateOrName=$state.$current.name}var state=findState(stateOrName,options.relative);if(!isDefined(state)){return undefined}if(!isDefined($state.$current.includes[state.name])){return false}return params?equalForKeys(state.params.$$values(params),$stateParams,objectKeys(params)):true};/**
+     * @ngdoc function
+     * @name ui.router.state.$state#href
+     * @methodOf ui.router.state.$state
+     *
+     * @description
+     * A url generation method that returns the compiled url for the given state populated with the given params.
+     *
+     * @example
+     * <pre>
+     * expect($state.href("about.person", { person: "bob" })).toEqual("/about/bob");
+     * </pre>
+     *
+     * @param {string|object} stateOrName The state name or state object you'd like to generate a url from.
+     * @param {object=} params An object of parameter values to fill the state's required parameters.
+     * @param {object=} options Options object. The options are:
+     *
+     * - **`lossy`** - {boolean=true} -  If true, and if there is no url associated with the state provided in the
+     *    first parameter, then the constructed href url will be built from the first navigable ancestor (aka
+     *    ancestor with a valid url).
+     * - **`inherit`** - {boolean=true}, If `true` will inherit url parameters from current url.
+     * - **`relative`** - {object=$state.$current}, When transitioning with relative path (e.g '^'), 
+     *    defines which state to be relative from.
+     * - **`absolute`** - {boolean=false},  If true will generate an absolute url, e.g. "http://www.example.com/fullurl".
+     * 
+     * @returns {string} compiled state url
+     */
+$state.href=function href(stateOrName,params,options){options=extend({lossy:true,inherit:true,absolute:false,relative:$state.$current},options||{});var state=findState(stateOrName,options.relative);if(!isDefined(state))return null;if(options.inherit)params=inheritParams($stateParams,params||{},$state.$current,state);var nav=state&&options.lossy?state.navigable:state;if(!nav||nav.url===undefined||nav.url===null){return null}return $urlRouter.href(nav.url,filterByKeys(state.params.$$keys().concat("#"),params||{}),{absolute:options.absolute})};/**
+     * @ngdoc function
+     * @name ui.router.state.$state#get
+     * @methodOf ui.router.state.$state
+     *
+     * @description
+     * Returns the state configuration object for any specific state or all states.
+     *
+     * @param {string|object=} stateOrName (absolute or relative) If provided, will only get the config for
+     * the requested state. If not provided, returns an array of ALL state configs.
+     * @param {string|object=} context When stateOrName is a relative state reference, the state will be retrieved relative to context.
+     * @returns {Object|Array} State configuration object or array of all objects.
+     */
+$state.get=function(stateOrName,context){if(arguments.length===0)return map(objectKeys(states),function(name){return states[name].self});var state=findState(stateOrName,context||$state.$current);return state&&state.self?state.self:null};function resolveState(state,params,paramsAreFiltered,inherited,dst,options){
+// Make a restricted $stateParams with only the parameters that apply to this state if
+// necessary. In addition to being available to the controller and onEnter/onExit callbacks,
+// we also need $stateParams to be available for any $injector calls we make during the
+// dependency resolution process.
+var $stateParams=paramsAreFiltered?params:filterByKeys(state.params.$$keys(),params);var locals={$stateParams:$stateParams};
+// Resolve 'global' dependencies for the state, i.e. those not specific to a view.
+// We're also including $stateParams in this; that way the parameters are restricted
+// to the set that should be visible to the state, and are independent of when we update
+// the global $state and $stateParams values.
+dst.resolve=$resolve.resolve(state.resolve,locals,dst.resolve,state);var promises=[dst.resolve.then(function(globals){dst.globals=globals})];if(inherited)promises.push(inherited);function resolveViews(){var viewsPromises=[];
+// Resolve template and dependencies for all views.
+forEach(state.views,function(view,name){var injectables=view.resolve&&view.resolve!==state.resolve?view.resolve:{};injectables.$template=[function(){return $view.load(name,{view:view,locals:dst.globals,params:$stateParams,notify:options.notify})||""}];viewsPromises.push($resolve.resolve(injectables,dst.globals,dst.resolve,state).then(function(result){
+// References to the controller (only instantiated at link time)
+if(isFunction(view.controllerProvider)||isArray(view.controllerProvider)){var injectLocals=angular.extend({},injectables,dst.globals);result.$$controller=$injector.invoke(view.controllerProvider,null,injectLocals)}else{result.$$controller=view.controller}
+// Provide access to the state itself for internal use
+result.$$state=state;result.$$controllerAs=view.controllerAs;result.$$resolveAs=view.resolveAs;dst[name]=result}))});return $q.all(viewsPromises).then(function(){return dst.globals})}
+// Wait for all the promises and then return the activation object
+return $q.all(promises).then(resolveViews).then(function(values){return dst})}return $state}function shouldSkipReload(to,toParams,from,fromParams,locals,options){
+// Return true if there are no differences in non-search (path/object) params, false if there are differences
+function nonSearchParamsEqual(fromAndToState,fromParams,toParams){
+// Identify whether all the parameters that differ between `fromParams` and `toParams` were search params.
+function notSearchParam(key){return fromAndToState.params[key].location!="search"}var nonQueryParamKeys=fromAndToState.params.$$keys().filter(notSearchParam);var nonQueryParams=pick.apply({},[fromAndToState.params].concat(nonQueryParamKeys));var nonQueryParamSet=new $$UMFP.ParamSet(nonQueryParams);return nonQueryParamSet.$$equals(fromParams,toParams)}
+// If reload was not explicitly requested
+// and we're transitioning to the same state we're already in
+// and    the locals didn't change
+//     or they changed in a way that doesn't merit reloading
+//        (reloadOnParams:false, or reloadOnSearch.false and only search params changed)
+// Then return true.
+if(!options.reload&&to===from&&(locals===from.locals||to.self.reloadOnSearch===false&&nonSearchParamsEqual(from,fromParams,toParams))){return true}}}angular.module("ui.router.state").factory("$stateParams",function(){return{}}).constant("$state.runtime",{autoinject:true}).provider("$state",$StateProvider).run(["$injector",function($injector){
+// Allow tests (stateSpec.js) to turn this off by defining this constant
+if($injector.get("$state.runtime").autoinject){$injector.get("$state")}}]);$ViewProvider.$inject=[];function $ViewProvider(){this.$get=$get;/**
+   * @ngdoc object
+   * @name ui.router.state.$view
+   *
+   * @requires ui.router.util.$templateFactory
+   * @requires $rootScope
+   *
+   * @description
+   *
+   */
+$get.$inject=["$rootScope","$templateFactory"];function $get($rootScope,$templateFactory){return{
+// $view.load('full.viewName', { template: ..., controller: ..., resolve: ..., async: false, params: ... })
+/**
+       * @ngdoc function
+       * @name ui.router.state.$view#load
+       * @methodOf ui.router.state.$view
+       *
+       * @description
+       *
+       * @param {string} name name
+       * @param {object} options option object.
+       */
+load:function load(name,options){var result,defaults={template:null,controller:null,view:null,locals:null,notify:true,async:true,params:{}};options=extend(defaults,options);if(options.view){result=$templateFactory.fromConfig(options.view,options.params,options.locals)}return result}}}}angular.module("ui.router.state").provider("$view",$ViewProvider);/**
+ * @ngdoc object
+ * @name ui.router.state.$uiViewScrollProvider
+ *
+ * @description
+ * Provider that returns the {@link ui.router.state.$uiViewScroll} service function.
+ */
+function $ViewScrollProvider(){var useAnchorScroll=false;/**
+   * @ngdoc function
+   * @name ui.router.state.$uiViewScrollProvider#useAnchorScroll
+   * @methodOf ui.router.state.$uiViewScrollProvider
+   *
+   * @description
+   * Reverts back to using the core [`$anchorScroll`](http://docs.angularjs.org/api/ng.$anchorScroll) service for
+   * scrolling based on the url anchor.
+   */
+this.useAnchorScroll=function(){useAnchorScroll=true};/**
+   * @ngdoc object
+   * @name ui.router.state.$uiViewScroll
+   *
+   * @requires $anchorScroll
+   * @requires $timeout
+   *
+   * @description
+   * When called with a jqLite element, it scrolls the element into view (after a
+   * `$timeout` so the DOM has time to refresh).
+   *
+   * If you prefer to rely on `$anchorScroll` to scroll the view to the anchor,
+   * this can be enabled by calling {@link ui.router.state.$uiViewScrollProvider#methods_useAnchorScroll `$uiViewScrollProvider.useAnchorScroll()`}.
+   */
+this.$get=["$anchorScroll","$timeout",function($anchorScroll,$timeout){if(useAnchorScroll){return $anchorScroll}return function($element){return $timeout(function(){$element[0].scrollIntoView()},0,false)}}]}angular.module("ui.router.state").provider("$uiViewScroll",$ViewScrollProvider);/**
+ * @ngdoc directive
+ * @name ui.router.state.directive:ui-view
+ *
+ * @requires ui.router.state.$state
+ * @requires $compile
+ * @requires $controller
+ * @requires $injector
+ * @requires ui.router.state.$uiViewScroll
+ * @requires $document
+ *
+ * @restrict ECA
+ *
+ * @description
+ * The ui-view directive tells $state where to place your templates.
+ *
+ * @param {string=} name A view name. The name should be unique amongst the other views in the
+ * same state. You can have views of the same name that live in different states.
+ *
+ * @param {string=} autoscroll It allows you to set the scroll behavior of the browser window
+ * when a view is populated. By default, $anchorScroll is overridden by ui-router's custom scroll
+ * service, {@link ui.router.state.$uiViewScroll}. This custom service let's you
+ * scroll ui-view elements into view when they are populated during a state activation.
+ *
+ * *Note: To revert back to old [`$anchorScroll`](http://docs.angularjs.org/api/ng.$anchorScroll)
+ * functionality, call `$uiViewScrollProvider.useAnchorScroll()`.*
+ *
+ * @param {string=} onload Expression to evaluate whenever the view updates.
+ *
+ * @example
+ * A view can be unnamed or named.
+ * <pre>
+ * <!-- Unnamed -->
+ * <div ui-view></div>
+ *
+ * <!-- Named -->
+ * <div ui-view="viewName"></div>
+ * </pre>
+ *
+ * You can only have one unnamed view within any template (or root html). If you are only using a
+ * single view and it is unnamed then you can populate it like so:
+ * <pre>
+ * <div ui-view></div>
+ * $stateProvider.state("home", {
+ *   template: "<h1>HELLO!</h1>"
+ * })
+ * </pre>
+ *
+ * The above is a convenient shortcut equivalent to specifying your view explicitly with the {@link ui.router.state.$stateProvider#methods_state `views`}
+ * config property, by name, in this case an empty name:
+ * <pre>
+ * $stateProvider.state("home", {
+ *   views: {
+ *     "": {
+ *       template: "<h1>HELLO!</h1>"
+ *     }
+ *   }    
+ * })
+ * </pre>
+ *
+ * But typically you'll only use the views property if you name your view or have more than one view
+ * in the same template. There's not really a compelling reason to name a view if its the only one,
+ * but you could if you wanted, like so:
+ * <pre>
+ * <div ui-view="main"></div>
+ * </pre>
+ * <pre>
+ * $stateProvider.state("home", {
+ *   views: {
+ *     "main": {
+ *       template: "<h1>HELLO!</h1>"
+ *     }
+ *   }    
+ * })
+ * </pre>
+ *
+ * Really though, you'll use views to set up multiple views:
+ * <pre>
+ * <div ui-view></div>
+ * <div ui-view="chart"></div>
+ * <div ui-view="data"></div>
+ * </pre>
+ *
+ * <pre>
+ * $stateProvider.state("home", {
+ *   views: {
+ *     "": {
+ *       template: "<h1>HELLO!</h1>"
+ *     },
+ *     "chart": {
+ *       template: "<chart_thing/>"
+ *     },
+ *     "data": {
+ *       template: "<data_thing/>"
+ *     }
+ *   }    
+ * })
+ * </pre>
+ *
+ * Examples for `autoscroll`:
+ *
+ * <pre>
+ * <!-- If autoscroll present with no expression,
+ *      then scroll ui-view into view -->
+ * <ui-view autoscroll/>
+ *
+ * <!-- If autoscroll present with valid expression,
+ *      then scroll ui-view into view if expression evaluates to true -->
+ * <ui-view autoscroll='true'/>
+ * <ui-view autoscroll='false'/>
+ * <ui-view autoscroll='scopeVariable'/>
+ * </pre>
+ *
+ * Resolve data:
+ *
+ * The resolved data from the state's `resolve` block is placed on the scope as `$resolve` (this
+ * can be customized using [[ViewDeclaration.resolveAs]]).  This can be then accessed from the template.
+ *
+ * Note that when `controllerAs` is being used, `$resolve` is set on the controller instance *after* the
+ * controller is instantiated.  The `$onInit()` hook can be used to perform initialization code which
+ * depends on `$resolve` data.
+ *
+ * Example usage of $resolve in a view template
+ * <pre>
+ * $stateProvider.state('home', {
+ *   template: '<my-component user="$resolve.user"></my-component>',
+ *   resolve: {
+ *     user: function(UserService) { return UserService.fetchUser(); }
+ *   }
+ * });
+ * </pre>
+ */
+$ViewDirective.$inject=["$state","$injector","$uiViewScroll","$interpolate","$q"];function $ViewDirective($state,$injector,$uiViewScroll,$interpolate,$q){function getService(){return $injector.has?function(service){return $injector.has(service)?$injector.get(service):null}:function(service){try{return $injector.get(service)}catch(e){return null}}}var service=getService(),$animator=service("$animator"),$animate=service("$animate");
+// Returns a set of DOM manipulation functions based on which Angular version
+// it should use
+function getRenderer(attrs,scope){var statics=function(){return{enter:function(element,target,cb){target.after(element);cb()},leave:function(element,cb){element.remove();cb()}}};if($animate){return{enter:function(element,target,cb){if(angular.version.minor>2){$animate.enter(element,null,target).then(cb)}else{$animate.enter(element,null,target,cb)}},leave:function(element,cb){if(angular.version.minor>2){$animate.leave(element).then(cb)}else{$animate.leave(element,cb)}}}}if($animator){var animate=$animator&&$animator(scope,attrs);return{enter:function(element,target,cb){animate.enter(element,null,target);cb()},leave:function(element,cb){animate.leave(element);cb()}}}return statics()}var directive={restrict:"ECA",terminal:true,priority:400,transclude:"element",compile:function(tElement,tAttrs,$transclude){return function(scope,$element,attrs){var previousEl,currentEl,currentScope,latestLocals,onloadExp=attrs.onload||"",autoScrollExp=attrs.autoscroll,renderer=getRenderer(attrs,scope),inherited=$element.inheritedData("$uiView");scope.$on("$stateChangeSuccess",function(){updateView(false)});updateView(true);function cleanupLastView(){if(previousEl){previousEl.remove();previousEl=null}if(currentScope){currentScope.$destroy();currentScope=null}if(currentEl){var $uiViewData=currentEl.data("$uiViewAnim");renderer.leave(currentEl,function(){$uiViewData.$$animLeave.resolve();previousEl=null});previousEl=currentEl;currentEl=null}}function updateView(firstTime){var newScope,name=getUiViewName(scope,attrs,$element,$interpolate),previousLocals=name&&$state.$current&&$state.$current.locals[name];if(!firstTime&&previousLocals===latestLocals)return;// nothing to do
+newScope=scope.$new();latestLocals=$state.$current.locals[name];/**
+           * @ngdoc event
+           * @name ui.router.state.directive:ui-view#$viewContentLoading
+           * @eventOf ui.router.state.directive:ui-view
+           * @eventType emits on ui-view directive scope
+           * @description
+           *
+           * Fired once the view **begins loading**, *before* the DOM is rendered.
+           *
+           * @param {Object} event Event object.
+           * @param {string} viewName Name of the view.
+           */
+newScope.$emit("$viewContentLoading",name);var clone=$transclude(newScope,function(clone){var animEnter=$q.defer(),animLeave=$q.defer();var viewAnimData={$animEnter:animEnter.promise,$animLeave:animLeave.promise,$$animLeave:animLeave};clone.data("$uiViewAnim",viewAnimData);renderer.enter(clone,$element,function onUiViewEnter(){animEnter.resolve();if(currentScope){currentScope.$emit("$viewContentAnimationEnded")}if(angular.isDefined(autoScrollExp)&&!autoScrollExp||scope.$eval(autoScrollExp)){$uiViewScroll(clone)}});cleanupLastView()});currentEl=clone;currentScope=newScope;/**
+           * @ngdoc event
+           * @name ui.router.state.directive:ui-view#$viewContentLoaded
+           * @eventOf ui.router.state.directive:ui-view
+           * @eventType emits on ui-view directive scope
+           * @description
+           * Fired once the view is **loaded**, *after* the DOM is rendered.
+           *
+           * @param {Object} event Event object.
+           * @param {string} viewName Name of the view.
+           */
+currentScope.$emit("$viewContentLoaded",name);currentScope.$eval(onloadExp)}}}};return directive}$ViewDirectiveFill.$inject=["$compile","$controller","$state","$interpolate"];function $ViewDirectiveFill($compile,$controller,$state,$interpolate){return{restrict:"ECA",priority:-400,compile:function(tElement){var initial=tElement.html();return function(scope,$element,attrs){var current=$state.$current,name=getUiViewName(scope,attrs,$element,$interpolate),locals=current&&current.locals[name];if(!locals){return}$element.data("$uiView",{name:name,state:locals.$$state});$element.html(locals.$template?locals.$template:initial);var resolveData=angular.extend({},locals);scope[locals.$$resolveAs]=resolveData;var link=$compile($element.contents());if(locals.$$controller){locals.$scope=scope;locals.$element=$element;var controller=$controller(locals.$$controller,locals);if(locals.$$controllerAs){scope[locals.$$controllerAs]=controller;scope[locals.$$controllerAs][locals.$$resolveAs]=resolveData}if(isFunction(controller.$onInit))controller.$onInit();$element.data("$ngControllerController",controller);$element.children().data("$ngControllerController",controller)}link(scope)}}}}/**
+ * Shared ui-view code for both directives:
+ * Given scope, element, and its attributes, return the view's name
+ */
+function getUiViewName(scope,attrs,element,$interpolate){var name=$interpolate(attrs.uiView||attrs.name||"")(scope);var uiViewCreatedBy=element.inheritedData("$uiView");return name.indexOf("@")>=0?name:name+"@"+(uiViewCreatedBy?uiViewCreatedBy.state.name:"")}angular.module("ui.router.state").directive("uiView",$ViewDirective);angular.module("ui.router.state").directive("uiView",$ViewDirectiveFill);function parseStateRef(ref,current){var preparsed=ref.match(/^\s*({[^}]*})\s*$/),parsed;if(preparsed)ref=current+"("+preparsed[1]+")";parsed=ref.replace(/\n/g," ").match(/^([^(]+?)\s*(\((.*)\))?$/);if(!parsed||parsed.length!==4)throw new Error("Invalid state ref '"+ref+"'");return{state:parsed[1],paramExpr:parsed[3]||null}}function stateContext(el){var stateData=el.parent().inheritedData("$uiView");if(stateData&&stateData.state&&stateData.state.name){return stateData.state}}function getTypeInfo(el){
+// SVGAElement does not use the href attribute, but rather the 'xlinkHref' attribute.
+var isSvg=Object.prototype.toString.call(el.prop("href"))==="[object SVGAnimatedString]";var isForm=el[0].nodeName==="FORM";return{attr:isForm?"action":isSvg?"xlink:href":"href",isAnchor:el.prop("tagName").toUpperCase()==="A",clickable:!isForm}}function clickHook(el,$state,$timeout,type,current){return function(e){var button=e.which||e.button,target=current();if(!(button>1||e.ctrlKey||e.metaKey||e.shiftKey||el.attr("target"))){
+// HACK: This is to allow ng-clicks to be processed before the transition is initiated:
+var transition=$timeout(function(){$state.go(target.state,target.params,target.options)});e.preventDefault();
+// if the state has no URL, ignore one preventDefault from the <a> directive.
+var ignorePreventDefaultCount=type.isAnchor&&!target.href?1:0;e.preventDefault=function(){if(ignorePreventDefaultCount--<=0)$timeout.cancel(transition)}}}}function defaultOpts(el,$state){return{relative:stateContext(el)||$state.$current,inherit:true}}/**
+ * @ngdoc directive
+ * @name ui.router.state.directive:ui-sref
+ *
+ * @requires ui.router.state.$state
+ * @requires $timeout
+ *
+ * @restrict A
+ *
+ * @description
+ * A directive that binds a link (`<a>` tag) to a state. If the state has an associated
+ * URL, the directive will automatically generate & update the `href` attribute via
+ * the {@link ui.router.state.$state#methods_href $state.href()} method. Clicking
+ * the link will trigger a state transition with optional parameters.
+ *
+ * Also middle-clicking, right-clicking, and ctrl-clicking on the link will be
+ * handled natively by the browser.
+ *
+ * You can also use relative state paths within ui-sref, just like the relative
+ * paths passed to `$state.go()`. You just need to be aware that the path is relative
+ * to the state that the link lives in, in other words the state that loaded the
+ * template containing the link.
+ *
+ * You can specify options to pass to {@link ui.router.state.$state#methods_go $state.go()}
+ * using the `ui-sref-opts` attribute. Options are restricted to `location`, `inherit`,
+ * and `reload`.
+ *
+ * @example
+ * Here's an example of how you'd use ui-sref and how it would compile. If you have the
+ * following template:
+ * <pre>
+ * <a ui-sref="home">Home</a> | <a ui-sref="about">About</a> | <a ui-sref="{page: 2}">Next page</a>
+ *
+ * <ul>
+ *     <li ng-repeat="contact in contacts">
+ *         <a ui-sref="contacts.detail({ id: contact.id })">{{ contact.name }}</a>
+ *     </li>
+ * </ul>
+ * </pre>
+ *
+ * Then the compiled html would be (assuming Html5Mode is off and current state is contacts):
+ * <pre>
+ * <a href="#/home" ui-sref="home">Home</a> | <a href="#/about" ui-sref="about">About</a> | <a href="#/contacts?page=2" ui-sref="{page: 2}">Next page</a>
+ *
+ * <ul>
+ *     <li ng-repeat="contact in contacts">
+ *         <a href="#/contacts/1" ui-sref="contacts.detail({ id: contact.id })">Joe</a>
+ *     </li>
+ *     <li ng-repeat="contact in contacts">
+ *         <a href="#/contacts/2" ui-sref="contacts.detail({ id: contact.id })">Alice</a>
+ *     </li>
+ *     <li ng-repeat="contact in contacts">
+ *         <a href="#/contacts/3" ui-sref="contacts.detail({ id: contact.id })">Bob</a>
+ *     </li>
+ * </ul>
+ *
+ * <a ui-sref="home" ui-sref-opts="{reload: true}">Home</a>
+ * </pre>
+ *
+ * @param {string} ui-sref 'stateName' can be any valid absolute or relative state
+ * @param {Object} ui-sref-opts options to pass to {@link ui.router.state.$state#methods_go $state.go()}
+ */
+$StateRefDirective.$inject=["$state","$timeout"];function $StateRefDirective($state,$timeout){return{restrict:"A",require:["?^uiSrefActive","?^uiSrefActiveEq"],link:function(scope,element,attrs,uiSrefActive){var ref=parseStateRef(attrs.uiSref,$state.current.name);var def={state:ref.state,href:null,params:null};var type=getTypeInfo(element);var active=uiSrefActive[1]||uiSrefActive[0];var unlinkInfoFn=null;var hookFn;def.options=extend(defaultOpts(element,$state),attrs.uiSrefOpts?scope.$eval(attrs.uiSrefOpts):{});var update=function(val){if(val)def.params=angular.copy(val);def.href=$state.href(ref.state,def.params,def.options);if(unlinkInfoFn)unlinkInfoFn();if(active)unlinkInfoFn=active.$$addStateInfo(ref.state,def.params);if(def.href!==null)attrs.$set(type.attr,def.href)};if(ref.paramExpr){scope.$watch(ref.paramExpr,function(val){if(val!==def.params)update(val)},true);def.params=angular.copy(scope.$eval(ref.paramExpr))}update();if(!type.clickable)return;hookFn=clickHook(element,$state,$timeout,type,function(){return def});element.bind("click",hookFn);scope.$on("$destroy",function(){element.unbind("click",hookFn)})}}}/**
+ * @ngdoc directive
+ * @name ui.router.state.directive:ui-state
+ *
+ * @requires ui.router.state.uiSref
+ *
+ * @restrict A
+ *
+ * @description
+ * Much like ui-sref, but will accept named $scope properties to evaluate for a state definition,
+ * params and override options.
+ *
+ * @param {string} ui-state 'stateName' can be any valid absolute or relative state
+ * @param {Object} ui-state-params params to pass to {@link ui.router.state.$state#methods_href $state.href()}
+ * @param {Object} ui-state-opts options to pass to {@link ui.router.state.$state#methods_go $state.go()}
+ */
+$StateRefDynamicDirective.$inject=["$state","$timeout"];function $StateRefDynamicDirective($state,$timeout){return{restrict:"A",require:["?^uiSrefActive","?^uiSrefActiveEq"],link:function(scope,element,attrs,uiSrefActive){var type=getTypeInfo(element);var active=uiSrefActive[1]||uiSrefActive[0];var group=[attrs.uiState,attrs.uiStateParams||null,attrs.uiStateOpts||null];var watch="["+group.map(function(val){return val||"null"}).join(", ")+"]";var def={state:null,params:null,options:null,href:null};var unlinkInfoFn=null;var hookFn;function runStateRefLink(group){def.state=group[0];def.params=group[1];def.options=group[2];def.href=$state.href(def.state,def.params,def.options);if(unlinkInfoFn)unlinkInfoFn();if(active)unlinkInfoFn=active.$$addStateInfo(def.state,def.params);if(def.href)attrs.$set(type.attr,def.href)}scope.$watch(watch,runStateRefLink,true);runStateRefLink(scope.$eval(watch));if(!type.clickable)return;hookFn=clickHook(element,$state,$timeout,type,function(){return def});element.bind("click",hookFn);scope.$on("$destroy",function(){element.unbind("click",hookFn)})}}}/**
+ * @ngdoc directive
+ * @name ui.router.state.directive:ui-sref-active
+ *
+ * @requires ui.router.state.$state
+ * @requires ui.router.state.$stateParams
+ * @requires $interpolate
+ *
+ * @restrict A
+ *
+ * @description
+ * A directive working alongside ui-sref to add classes to an element when the
+ * related ui-sref directive's state is active, and removing them when it is inactive.
+ * The primary use-case is to simplify the special appearance of navigation menus
+ * relying on `ui-sref`, by having the "active" state's menu button appear different,
+ * distinguishing it from the inactive menu items.
+ *
+ * ui-sref-active can live on the same element as ui-sref or on a parent element. The first
+ * ui-sref-active found at the same level or above the ui-sref will be used.
+ *
+ * Will activate when the ui-sref's target state or any child state is active. If you
+ * need to activate only when the ui-sref target state is active and *not* any of
+ * it's children, then you will use
+ * {@link ui.router.state.directive:ui-sref-active-eq ui-sref-active-eq}
+ *
+ * @example
+ * Given the following template:
+ * <pre>
+ * <ul>
+ *   <li ui-sref-active="active" class="item">
+ *     <a href ui-sref="app.user({user: 'bilbobaggins'})">@bilbobaggins</a>
+ *   </li>
+ * </ul>
+ * </pre>
+ *
+ *
+ * When the app state is "app.user" (or any children states), and contains the state parameter "user" with value "bilbobaggins",
+ * the resulting HTML will appear as (note the 'active' class):
+ * <pre>
+ * <ul>
+ *   <li ui-sref-active="active" class="item active">
+ *     <a ui-sref="app.user({user: 'bilbobaggins'})" href="/users/bilbobaggins">@bilbobaggins</a>
+ *   </li>
+ * </ul>
+ * </pre>
+ *
+ * The class name is interpolated **once** during the directives link time (any further changes to the
+ * interpolated value are ignored).
+ *
+ * Multiple classes may be specified in a space-separated format:
+ * <pre>
+ * <ul>
+ *   <li ui-sref-active='class1 class2 class3'>
+ *     <a ui-sref="app.user">link</a>
+ *   </li>
+ * </ul>
+ * </pre>
+ *
+ * It is also possible to pass ui-sref-active an expression that evaluates
+ * to an object hash, whose keys represent active class names and whose
+ * values represent the respective state names/globs.
+ * ui-sref-active will match if the current active state **includes** any of
+ * the specified state names/globs, even the abstract ones.
+ *
+ * @Example
+ * Given the following template, with "admin" being an abstract state:
+ * <pre>
+ * <div ui-sref-active="{'active': 'admin.*'}">
+ *   <a ui-sref-active="active" ui-sref="admin.roles">Roles</a>
+ * </div>
+ * </pre>
+ *
+ * When the current state is "admin.roles" the "active" class will be applied
+ * to both the <div> and <a> elements. It is important to note that the state
+ * names/globs passed to ui-sref-active shadow the state provided by ui-sref.
+ */
+/**
+ * @ngdoc directive
+ * @name ui.router.state.directive:ui-sref-active-eq
+ *
+ * @requires ui.router.state.$state
+ * @requires ui.router.state.$stateParams
+ * @requires $interpolate
+ *
+ * @restrict A
+ *
+ * @description
+ * The same as {@link ui.router.state.directive:ui-sref-active ui-sref-active} but will only activate
+ * when the exact target state used in the `ui-sref` is active; no child states.
+ *
+ */
+$StateRefActiveDirective.$inject=["$state","$stateParams","$interpolate"];function $StateRefActiveDirective($state,$stateParams,$interpolate){return{restrict:"A",controller:["$scope","$element","$attrs","$timeout",function($scope,$element,$attrs,$timeout){var states=[],activeClasses={},activeEqClass,uiSrefActive;
+// There probably isn't much point in $observing this
+// uiSrefActive and uiSrefActiveEq share the same directive object with some
+// slight difference in logic routing
+activeEqClass=$interpolate($attrs.uiSrefActiveEq||"",false)($scope);try{uiSrefActive=$scope.$eval($attrs.uiSrefActive)}catch(e){}uiSrefActive=uiSrefActive||$interpolate($attrs.uiSrefActive||"",false)($scope);if(isObject(uiSrefActive)){forEach(uiSrefActive,function(stateOrName,activeClass){if(isString(stateOrName)){var ref=parseStateRef(stateOrName,$state.current.name);addState(ref.state,$scope.$eval(ref.paramExpr),activeClass)}})}
+// Allow uiSref to communicate with uiSrefActive[Equals]
+this.$$addStateInfo=function(newState,newParams){
+// we already got an explicit state provided by ui-sref-active, so we
+// shadow the one that comes from ui-sref
+if(isObject(uiSrefActive)&&states.length>0){return}var deregister=addState(newState,newParams,uiSrefActive);update();return deregister};$scope.$on("$stateChangeSuccess",update);function addState(stateName,stateParams,activeClass){var state=$state.get(stateName,stateContext($element));var stateHash=createStateHash(stateName,stateParams);var stateInfo={state:state||{name:stateName},params:stateParams,hash:stateHash};states.push(stateInfo);activeClasses[stateHash]=activeClass;return function removeState(){var idx=states.indexOf(stateInfo);if(idx!==-1)states.splice(idx,1)}}/**
+       * @param {string} state
+       * @param {Object|string} [params]
+       * @return {string}
+       */
+function createStateHash(state,params){if(!isString(state)){throw new Error("state should be a string")}if(isObject(params)){return state+toJson(params)}params=$scope.$eval(params);if(isObject(params)){return state+toJson(params)}return state}
+// Update route state
+function update(){for(var i=0;i<states.length;i++){if(anyMatch(states[i].state,states[i].params)){addClass($element,activeClasses[states[i].hash])}else{removeClass($element,activeClasses[states[i].hash])}if(exactMatch(states[i].state,states[i].params)){addClass($element,activeEqClass)}else{removeClass($element,activeEqClass)}}}function addClass(el,className){$timeout(function(){el.addClass(className)})}function removeClass(el,className){el.removeClass(className)}function anyMatch(state,params){return $state.includes(state.name,params)}function exactMatch(state,params){return $state.is(state.name,params)}update()}]}}angular.module("ui.router.state").directive("uiSref",$StateRefDirective).directive("uiSrefActive",$StateRefActiveDirective).directive("uiSrefActiveEq",$StateRefActiveDirective).directive("uiState",$StateRefDynamicDirective);/**
+ * @ngdoc filter
+ * @name ui.router.state.filter:isState
+ *
+ * @requires ui.router.state.$state
+ *
+ * @description
+ * Translates to {@link ui.router.state.$state#methods_is $state.is("stateName")}.
+ */
+$IsStateFilter.$inject=["$state"];function $IsStateFilter($state){var isFilter=function(state,params){return $state.is(state,params)};isFilter.$stateful=true;return isFilter}/**
+ * @ngdoc filter
+ * @name ui.router.state.filter:includedByState
+ *
+ * @requires ui.router.state.$state
+ *
+ * @description
+ * Translates to {@link ui.router.state.$state#methods_includes $state.includes('fullOrPartialStateName')}.
+ */
+$IncludedByStateFilter.$inject=["$state"];function $IncludedByStateFilter($state){var includesFilter=function(state,params,options){return $state.includes(state,params,options)};includesFilter.$stateful=true;return includesFilter}angular.module("ui.router.state").filter("isState",$IsStateFilter).filter("includedByState",$IncludedByStateFilter)})(window,window.angular);(function(){"use strict";angular.module("focus-if",[]).directive("focusIf",focusIf);focusIf.$inject=["$timeout"];function focusIf($timeout){function link($scope,$element,$attrs){var dom=$element[0];if($attrs.focusIf){$scope.$watch($attrs.focusIf,focus)}else{focus(true)}function focus(condition){if(condition){$timeout(function(){dom.focus()},$scope.$eval($attrs.focusDelay)||0)}}}return{restrict:"A",link:link}}})();/*
  * angular-loading-bar
  *
  * intercepts XHR requests and creates a loading bar.
@@ -22647,13 +26464,24 @@ if(typeof options.data!=="undefined"){if(typeof opts.data==="undefined"){opts.da
                      */
 close:function(id,value){var $dialog=$el(document.getElementById(id));if($dialog.length){privateMethods.closeDialog($dialog,value)}else{if(id==="$escape"){var topDialogId=openIdStack[openIdStack.length-1];$dialog=$el(document.getElementById(topDialogId));if($dialog.data("$ngDialogOptions").closeByEscape){privateMethods.closeDialog($dialog,"$escape")}}else{publicMethods.closeAll(value)}}return publicMethods},closeAll:function(value){var $all=document.querySelectorAll(".ngdialog");
 // Reverse order to ensure focus restoration works as expected
-for(var i=$all.length-1;i>=0;i--){var dialog=$all[i];privateMethods.closeDialog($el(dialog),value)}},getOpenDialogs:function(){return openIdStack},getDefaults:function(){return defaults}};angular.forEach(["html","body"],function(elementName){$elements[elementName]=$document.find(elementName);if(forceElementsReload[elementName]){var eventName=privateMethods.getRouterLocationEventName();$rootScope.$on(eventName,function(){$elements[elementName]=$document.find(elementName)})}});return publicMethods}]});m.directive("ngDialog",["ngDialog",function(ngDialog){return{restrict:"A",scope:{ngDialogScope:"="},link:function(scope,elem,attrs){elem.on("click",function(e){e.preventDefault();var ngDialogScope=angular.isDefined(scope.ngDialogScope)?scope.ngDialogScope:"noScope";angular.isDefined(attrs.ngDialogClosePrevious)&&ngDialog.close(attrs.ngDialogClosePrevious);var defaults=ngDialog.getDefaults();ngDialog.open({template:attrs.ngDialog,className:attrs.ngDialogClass||defaults.className,appendClassName:attrs.ngDialogAppendClass,controller:attrs.ngDialogController,controllerAs:attrs.ngDialogControllerAs,bindToController:attrs.ngDialogBindToController,disableAnimation:attrs.ngDialogDisableAnimation,scope:ngDialogScope,data:attrs.ngDialogData,showClose:attrs.ngDialogShowClose==="false"?false:attrs.ngDialogShowClose==="true"?true:defaults.showClose,closeByDocument:attrs.ngDialogCloseByDocument==="false"?false:attrs.ngDialogCloseByDocument==="true"?true:defaults.closeByDocument,closeByEscape:attrs.ngDialogCloseByEscape==="false"?false:attrs.ngDialogCloseByEscape==="true"?true:defaults.closeByEscape,overlay:attrs.ngDialogOverlay==="false"?false:attrs.ngDialogOverlay==="true"?true:defaults.overlay,preCloseCallback:attrs.ngDialogPreCloseCallback||defaults.preCloseCallback,bodyClassName:attrs.ngDialogBodyClass||defaults.bodyClassName})})}}}]);return m});"use strict";(function(){var module=angular.module("citizenos",["ngRoute","ngSanitize","ngTouch","ngDialog","angularMoment","focus-if","angular-loading-bar"]);module.constant("cosConfig",{api:{baseUrl:"https://citizenos-citizenos-web-test.herokuapp.com"},language:{default:"en",list:{en:"English",et:"Eesti",ru:"Pусский"},debug:"dbg"}});module.config(["$routeProvider","$locationProvider","$httpProvider","$compileProvider","ngDialogProvider","cfpLoadingBarProvider","cosConfig",function($routeProvider,$locationProvider,$httpProvider,$compileProvider,ngDialogProvider,cfpLoadingBarProvider,cosConfig){$locationProvider.html5Mode(true);$routeProvider.when("/",{controller:"HomeCtrl",templateUrl:"../views/home.html"}).when("/topics",{controller:"HomeCtrl",templateUrl:"../views/no_topics.html"});$httpProvider.interceptors.push(function(){return{request:function(config){if(config.url.indexOf("api/")>-1){config.url=cosConfig.api.baseUrl+config.url}return config}}});
+for(var i=$all.length-1;i>=0;i--){var dialog=$all[i];privateMethods.closeDialog($el(dialog),value)}},getOpenDialogs:function(){return openIdStack},getDefaults:function(){return defaults}};angular.forEach(["html","body"],function(elementName){$elements[elementName]=$document.find(elementName);if(forceElementsReload[elementName]){var eventName=privateMethods.getRouterLocationEventName();$rootScope.$on(eventName,function(){$elements[elementName]=$document.find(elementName)})}});return publicMethods}]});m.directive("ngDialog",["ngDialog",function(ngDialog){return{restrict:"A",scope:{ngDialogScope:"="},link:function(scope,elem,attrs){elem.on("click",function(e){e.preventDefault();var ngDialogScope=angular.isDefined(scope.ngDialogScope)?scope.ngDialogScope:"noScope";angular.isDefined(attrs.ngDialogClosePrevious)&&ngDialog.close(attrs.ngDialogClosePrevious);var defaults=ngDialog.getDefaults();ngDialog.open({template:attrs.ngDialog,className:attrs.ngDialogClass||defaults.className,appendClassName:attrs.ngDialogAppendClass,controller:attrs.ngDialogController,controllerAs:attrs.ngDialogControllerAs,bindToController:attrs.ngDialogBindToController,disableAnimation:attrs.ngDialogDisableAnimation,scope:ngDialogScope,data:attrs.ngDialogData,showClose:attrs.ngDialogShowClose==="false"?false:attrs.ngDialogShowClose==="true"?true:defaults.showClose,closeByDocument:attrs.ngDialogCloseByDocument==="false"?false:attrs.ngDialogCloseByDocument==="true"?true:defaults.closeByDocument,closeByEscape:attrs.ngDialogCloseByEscape==="false"?false:attrs.ngDialogCloseByEscape==="true"?true:defaults.closeByEscape,overlay:attrs.ngDialogOverlay==="false"?false:attrs.ngDialogOverlay==="true"?true:defaults.overlay,preCloseCallback:attrs.ngDialogPreCloseCallback||defaults.preCloseCallback,bodyClassName:attrs.ngDialogBodyClass||defaults.bodyClassName})})}}}]);return m});"use strict";(function(){var module=angular.module("citizenos",["ui.router","pascalprecht.translate","ngSanitize","ngTouch","ngDialog","angularMoment","focus-if","angular-loading-bar","ngCookies"]);module.constant("cosConfig",{api:{baseUrl:"https://citizenos-citizenos-web-test.herokuapp.com"},language:{default:"en",list:{en:"English",et:"Eesti",ru:"Pусский"},debug:"dbg"}});module.config(["$stateProvider","$urlRouterProvider","$translateProvider","$locationProvider","$httpProvider","ngDialogProvider","cfpLoadingBarProvider","cosConfig",function($stateProvider,$urlRouterProvider,$translateProvider,$locationProvider,$httpProvider,ngDialogProvider,cfpLoadingBarProvider,cosConfig){var langReg=Object.keys(cosConfig.language.list).join("|");$locationProvider.html5Mode({enabled:true,rewriteLinks:true,requireBase:true});
+// This is to enable resolving link to state later
+$stateProvider.decorator("parent",function(internalStateObj,parentFn){
+// This fn is called by StateBuilder each time a state is registered
+// The first arg is the internal state. Capture it and add an accessor to public state object.
+internalStateObj.self.$$state=function(){return internalStateObj};
+// pass through to default .parent() function
+return parentFn(internalStateObj)});$urlRouterProvider.otherwise(function($injector,$location){var sAuth=$injector.get("sAuth");var $state=$injector.get("$state");var $translate=$injector.get("$translate");var $log=$injector.get("$log");var locationUrl=$location.url();var locationPath=locationUrl.split("/");var langkeys=Object.keys(cosConfig.language.list);var clientLang=$translate.resolveClientLocale();var useLang=cosConfig.language.default;if(langkeys.indexOf(clientLang)>-1){useLang=clientLang}$log.debug("$urlRouterProvider.otherwise","Language detected before status",useLang);var returnLink="/";sAuth.status().then(function(user){$log.debug("sAuth.success",user);$log.debug("$urlRouterProvider.otherwise","status loaded",user);if(user.language){useLang=user.language}resolveOtherwise()},function(err){$log.debug("sAuth.err",err);resolveOtherwise()});function resolveOtherwise(){returnLink="/"+useLang+"/";if(langkeys.indexOf(locationPath[1])>-1){returnLink="/"+locationPath[1]+"/";useLang=locationPath[1]}else if(locationPath.length>1){returnLink="/"+useLang+locationUrl}var statesList=$state.get();var stateNext=null;
+// Try to resolve the link to a state. We don't wanna use $location.href as it would reload the whole page, call all the API-s again.
+// https://github.com/angular-ui/ui-router/issues/1651
+for(var i=0;i<statesList.length;i++){var stateObj=statesList[i];if(stateObj.name){var privatePortion=stateObj.$$state();var params=privatePortion.url.exec(returnLink,$location.search());if(params){stateNext={name:stateObj.name,params:params};$log.debug("$urlRouterProvider.otherwise","Matched state",stateNext);break}}}if(stateNext){$state.go(stateNext.name,stateNext.params)}else{$state.go("home",{language:useLang})}}});$stateProvider.state("main",{abstract:true,url:"/{language:"+langReg+"}",templateUrl:"/views/layouts/main.html",resolve:{/* @ngInject */
+sTranslate:function($stateParams,$log,sTranslate,sAuth){sTranslate.setLanguage($stateParams.language);if(sAuth.user.isLoading===false){$log.debug('$stateProvider.state("main").resolve',"Status already loaded");return}else{return sAuth.status().catch(function(){})}}}}).state("home",{url:"/",parent:"main",controller:"HomeCtrl",templateUrl:"/views/home.html"}).state("topics",{url:"/topics",parent:"main",controller:"HomeCtrl",templateUrl:"/views/no_topics.html"});$httpProvider.interceptors.push(function(){return{request:function(config){if(config.url.indexOf("api/")>-1){config.url=cosConfig.api.baseUrl+config.url}return config}}});$translateProvider.useStaticFilesLoader({prefix:"languages/",suffix:".json"});
 // https://github.com/likeastore/ngDialog
 ngDialogProvider.setDefaults({overlay:false,showClose:false,trapFocus:false,disableAnimation:true,closeByNavigation:true,closeByDocument:true,closeByEscape:true});
 // https://github.com/chieffancypants/angular-loading-bar
 cfpLoadingBarProvider.loadingBarTemplate='<div id="loading_bar"><div class="bar"></div></div>';cfpLoadingBarProvider.includeSpinner=false;
-// https://code.angularjs.org/1.5.8/docs/guide/production
-$compileProvider.debugInfoEnabled(false)}])})();angular.module("citizenos").service("sSearch",["$log","$q",function($log,$q){var Search=this;Search.search=function(str){$log.debug("sSearch.search()",str);
+// https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translateProvider
+$translateProvider.preferredLanguage(cosConfig.language.default).registerAvailableLanguageKeys(Object.keys(cosConfig.language.list)).determinePreferredLanguage().useSanitizeValueStrategy("escaped").useLocalStorage()}])})();"use strict";angular.module("citizenos").service("sAuth",["$http","$q","$log",function($http,$q,$log){var sAuth=this;sAuth.user={loggedIn:false,isLoading:true};var defaultSuccess=function(response){$log.debug("SUCCESS",response);return response.data};var defaultError=function(response){$log.debug("ERROR",response);return $q.reject(response)};sAuth.login=function(email,password){var data={email:email,password:password};var success=function(response){sAuth.user.loggedIn=true;angular.extend(sAuth.user,response.data.data)};return $http.post("/api/auth/login",data).then(success,defaultError)};sAuth.status=function(){var success=function(response){angular.extend(sAuth.user,response.data.data);sAuth.user.loggedIn=true;sAuth.user.isLoading=false;return response.data.data};var error=function(response){sAuth.user.isLoading=false;return $q.reject(response)};return $http.get("/api/auth/status").then(success,error)}}]);angular.module("citizenos").service("sSearch",["$log","$q",function($log,$q){var Search=this;Search.search=function(str){$log.debug("sSearch.search()",str);
 //FIXME: Replace with actual search function
 return $q(function(resolve,reject){var result=[{groupName:"My Topics 0",groupResults:[{resultTitles:[]}]},{groupName:"My Topics 1",groupResults:[{resultTitles:["Subjects","Categories","Creator"],resultLinks:[{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 1",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 2",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 3",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 4",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 5",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 6",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]}]},{resultTitles:["Users"],resultLinks:[{linksWrap:[{links:[{linkName:"John Doe 1",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 2",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 3",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 4",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 5",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"John Doe 6",linkHref:"#11"}]}]}]},{resultTitles:["Groups"],resultLinks:[{linksWrap:[{links:[{linkName:"Greenpeace 1",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"Greenpeace 2",linkHref:"#11"}]}]},{linksWrap:[{links:[{linkName:"Greenpeace 3",linkHref:"#11"}]}]}]}]},{groupName:"My Topics 2",groupResults:[{resultTitles:["Subjects","Categories","Creator"],resultLinks:[{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 1",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 2",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 3",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 4",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 5",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]},{linksWrap:[{links:[{linkName:"A greener city garden will improve conditions in our neighbourhood 6",linkHref:"#11"}]},{links:[{linkName:"Ecology",linkHref:"#21"},{linkName:"Nature",linkHref:"#22"},{linkName:"Something else",linkHref:"#23"}]},{links:[{linkName:"John Doe",linkHref:"#31"}]}]}]}]}];setTimeout(function(){resolve(result)},200)})}}]);angular.module("citizenos").service("sTopic",["$http","$q","$log",function($http,$q,$log){var Topic=this;Topic.STATUSES={inProgress:"inProgress",// Being worked on
 voting:"voting",// Is being voted which means the Topic is locked and cannot be edited.
@@ -22671,11 +26499,9 @@ politics:"politics",// Politics and public administration
 communities:"communities",// Communities and urban development
 defense:"defense",//  Defense and security
 integration:"integration",// Integration and human rights
-varia:"varia"};Topic.listUnauth=function(statuses,categories,offset,limit){var path="/api/topics";return $http.get(path,{params:{statuses:statuses,categories:categories,offset:offset,limit:limit}})}}]);angular.module("citizenos").directive("cosDropdown",["$document",function($document){return{restrict:"A",link:function(scope,elem,attr){elem.bind("click",function(){elem.toggleClass("dropdown_active");elem.addClass("active_recent")});$document.bind("click",function(){if(!elem.hasClass("active_recent")){elem.removeClass("dropdown_active")}elem.removeClass("active_recent")})}}}]);angular.module("citizenos").directive("cosResize",["$window","$rootScope",function($window,$rootScope){return function(scope,element){var w=angular.element($window);scope.getWindowDimensions=function(){return{w:window.innerWidth}};scope.$watch(scope.getWindowDimensions,function(newValue,oldValue){$rootScope.wWidth=newValue.w;if($rootScope.wWidth>1024){scope.app.showNav=false}},true);w.bind("resize",function(){scope.$apply()})}}]);"use strict";angular.module("citizenos").controller("LoginFormCtrl",["$scope","$log","ngDialog",function($scope,$log,ngDialog){$log.debug("LoginFormCtrl",ngDialog);$scope.form={email:null,password:null};
+varia:"varia"};Topic.listUnauth=function(statuses,categories,offset,limit){var path="/api/topics";return $http.get(path,{params:{statuses:statuses,categories:categories,offset:offset,limit:limit}})}}]);"use strict";angular.module("citizenos").service("sTranslate",["$state","$translate","$log","cosConfig",function($state,$translate,$log,cosConfig){var sTranslate=this;var LANGUAGES=Object.keys(cosConfig.language.list);sTranslate.currentLanguage=cosConfig.language.default;function init(){var clientLang=$translate.resolveClientLocale();if(LANGUAGES.indexOf(clientLang)>-1){sTranslate.currentLanguage=clientLang}}init();sTranslate.setLanguage=function(language){if(checkLanguageIsValid(language)&&$translate.use()!==language){$log.debug("setLanguage",language);sTranslate.currentLanguage=language;return $translate.use(language)}return $translate.use()};sTranslate.switchLanguage=function(language){$log.debug("switch language",language);if(checkLanguageIsValid(language)){$state.transitionTo($state.current.name,{language:language})}sTranslate.setLanguage(language)};function checkLanguageIsValid(language){return LANGUAGES.indexOf(language)!==-1}}]);angular.module("citizenos").directive("cosDropdown",["$document",function($document){return{restrict:"A",link:function(scope,elem,attr){elem.bind("click",function(){elem.toggleClass("dropdown_active");elem.addClass("active_recent")});$document.bind("click",function(){if(!elem.hasClass("active_recent")){elem.removeClass("dropdown_active")}elem.removeClass("active_recent")})}}}]);angular.module("citizenos").directive("cosResize",["$window","$rootScope",function($window,$rootScope){return function(scope,element){var w=angular.element($window);scope.getWindowDimensions=function(){return{w:window.innerWidth}};scope.$watch(scope.getWindowDimensions,function(newValue,oldValue){$rootScope.wWidth=newValue.w;if($rootScope.wWidth>1024){scope.app.showNav=false}},true);w.bind("resize",function(){scope.$apply()})}}]);"use strict";angular.module("citizenos").controller("LoginFormCtrl",["$scope","$log","ngDialog","sAuth",function($scope,$log,ngDialog,sAuth){$log.debug("LoginFormCtrl",ngDialog);$scope.form={email:null,password:null};
 // Hide mobile navigation when login flow is started
-$scope.app.showNav=false;$scope.doLogin=function(){$log.debug("LoginFormCtrl.doLogin()");ngDialog.open({template:"/views/modals/register.html",scope:$scope})}}]);"use strict";angular.module("citizenos").controller("SignUpFormCtrl",["$scope","$log","ngDialog",function($scope,$log,ngDialog){$log.debug("SignUpFormCtrl");$scope.form={};$scope.doSignUp=function(){$log.debug("SignUpFormCtrl.doSignUp()");$scope.app.user.loggedIn=true;ngDialog.closeAll()}}]);"use strict";angular.module("citizenos").controller("AppCtrl",["$scope","$log","cosConfig","ngDialog",function($scope,$log,cosConfig,ngDialog){$log.debug("AppCtrl");$scope.app={config:cosConfig,showSearch:false,showSearchResults:false,showNav:false};
-// Application User info
-$scope.app.user={loggedIn:false};
+$scope.app.showNav=false;$scope.doLogin=function(){$log.debug("LoginFormCtrl.doLogin()");sAuth.login($scope.form.email,$scope.form.password).then(function(res){console.log(res)});ngDialog.open({template:"/views/modals/register.html",scope:$scope})}}]);"use strict";angular.module("citizenos").controller("SignUpFormCtrl",["$scope","$log","ngDialog",function($scope,$log,ngDialog){$log.debug("SignUpFormCtrl");$scope.form={};$scope.doSignUp=function(){$log.debug("SignUpFormCtrl.doSignUp()");$scope.app.user.loggedIn=true;ngDialog.closeAll()}}]);"use strict";angular.module("citizenos").controller("AppCtrl",["$scope","$rootScope","$log","sTranslate","cosConfig","ngDialog","sAuth",function($scope,$rootScope,$log,sTranslate,cosConfig,ngDialog,sAuth){$log.debug("AppCtrl");$scope.app={config:cosConfig,showSearch:false,showSearchResults:false,showNav:false,isLoading:true};$scope.app.user=sAuth.user;$scope.app.language=sTranslate.currentLanguage;
 // Different global notifications that can be shown in the page header
 $scope.app.notifications={messages:{}};$scope.app.notifications.levels={SUCCESS:"success",INFO:"info",ERROR:"error"};
 // Initially all messages
@@ -22690,9 +26516,7 @@ $scope.app.doShowNotification=function(level,message){$scope.app.notifications.m
          *
          * @param {string} level One of $scope.app.notifications.types
          */
-$scope.app.doHideNotification=function(level){$scope.app.notifications.messages[level]=[]};$scope.doShowLogin=function(){$log.debug("AppCtrl.doShowLogin()");ngDialog.open({template:"/views/modals/login.html",scope:$scope})};
-//FIXME: REMOVE, used for debugging on mobile
-$scope.app.alert=function(str){alert(str)}}]);"use strict";angular.module("citizenos").controller("HomeCtrl",["$scope","$log","sTopic",function($scope,$log,sTopic){
+$scope.app.doHideNotification=function(level){$scope.app.notifications.messages[level]=[]};$scope.app.doShowLogin=function(){$log.debug("AppCtrl.doShowLogin()");ngDialog.open({template:"/views/modals/login.html",scope:$scope})};$scope.app.doSwitchLanguage=function(language){$log.debug("AppCtrl.doSwitchLanguage()",language);sTranslate.switchLanguage(language)};$rootScope.$on("$translateChangeSuccess",function(){$scope.app.language=sTranslate.currentLanguage})}]);"use strict";angular.module("citizenos").controller("HomeCtrl",["$scope","$log","sTopic",function($scope,$log,sTopic){
 // Constant marking the "clear" or all options will do
 $scope.FILTERS_ALL="all";$scope.filters={categories:{value:$scope.FILTERS_ALL,options:[$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))},statuses:{value:$scope.FILTERS_ALL,options:[$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))},limit:30,offset:0,tabSelected:"categories"};$scope.topicList=[];$scope.topicCountTotal=null;$scope.isTopicListLoading=null;// Bool, but for initial load using null.
 /**
