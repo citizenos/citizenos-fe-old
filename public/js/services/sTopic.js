@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .service('sTopic', ['$http', '$q', '$log', function ($http, $q, $log) {
+    .service('sTopic', ['$http', '$log', 'sLocation', function ($http, $log, sLocation) {
         var Topic = this;
 
         Topic.STATUSES = {
@@ -28,7 +28,7 @@ angular
         };
 
         Topic.listUnauth = function (statuses, categories, offset, limit) {
-            var path = '/api/topics';
+            var path = sLocation.getAbsoluteUrlApi('/api/topics');
 
             return $http.get(path, {
                 params: {

@@ -35,17 +35,6 @@
                     templateUrl: '../views/no_topics.html'
                 });
 
-            $httpProvider.interceptors.push(function () {
-                return {
-                    request: function (config) {
-                        if (config.url.indexOf('api/') > -1) {
-                            config.url = cosConfig.api.baseUrl + config.url; // FIXME: Environment based!
-                        }
-                        return config;
-                    }
-                }
-            });
-
             // https://github.com/likeastore/ngDialog
             ngDialogProvider.setDefaults({
                 overlay: false,
