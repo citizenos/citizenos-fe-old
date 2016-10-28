@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="citizenos" lang="{{app.locale}}" ng-controller="AppCtrl">
+<html ng-app="citizenos" ng-strict-di="true" lang="{{app.language}}" ng-controller="AppCtrl">
 <head>
     <meta charset="UTF-8">
     <title translate="META_DEFAULT_TITLE">CitizenOS</title>
@@ -7,8 +7,8 @@
     <base href="/">
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=e99ff54c90edfa9bdbcc0798243b0a8c" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=eceb3b191707a684e47cd9ec27087856"></script>
+    <link href="styles/citizenos-fe.bundle.css?v=1fe7ebcd4715f9ca86af434d19f8cf9a" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=9b1bce543245527069b0dcea68db88e7"></script>
 </head>
 
 <!-- LIVE RELOAD CODE -->
@@ -87,9 +87,7 @@
 
     <!-- CONTENT -->
 
-    <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''" ui-view>
-
-    </div>
+    <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''" ui-view></div>
 
 </body>
 </html>

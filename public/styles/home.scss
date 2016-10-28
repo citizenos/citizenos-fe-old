@@ -586,7 +586,6 @@
         }
 
         .big {
-
             padding-right: 10px;
             width: 25%;
 
@@ -661,6 +660,22 @@
 
         }
 
+    }
+    
+
+    #blue_button_wrap {
+        background: $light_gray;
+        text-align: center;
+        .blue_button {
+            display: inline-block;
+            margin: 10px auto 20px auto;;
+            padding-right: 50px;
+            padding-left: 50px;
+            border-radius: 4px;
+            @media (max-width: 500px) {
+                margin-top: 0;
+            }
+        }
     }
 
     #topics_area.no_tutorial_topic {

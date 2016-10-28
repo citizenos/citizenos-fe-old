@@ -203,7 +203,7 @@
             </div>
         </div>
 
-        <a href="" class="big white_text blue_background topic" ng-if="filters.categories.value === FILTERS_ALL && filters.statuses.value === FILTERS_ALL">
+        <a href="" class="big white_text blue_background topic" ng-if="isTutorialVisible()">
             <div class="topic_wrap">
                 <div class="text_area">
 
@@ -255,17 +255,11 @@
             </div>
         </a>
 
-        <a href="" ng-click="loadTopicList()" ng-if="topicCountTotal > topicList.length" class="topic varia">
-            <div class="topic_wrap">
-                <div class="main_text">
-                    <div class="text_big">
-                        Load more...
-                    </div>
-                </div>
-            </div>
-        </a>
-
         <div class="clearer"></div>
-
     </div>
+
+    <div id="blue_button_wrap" ng-click="loadTopicList()" ng-if="topicCountTotal > topicList.length">
+        <div class="blue_button">Load more topics</div>
+    </div>
+
 </div>

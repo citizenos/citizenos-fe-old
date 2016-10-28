@@ -15,14 +15,14 @@ angular
                 value: $scope.FILTERS_ALL,
                 options: [$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))
             },
-            limit: 32,
+            limit: 30,
             offset: 0,
             tabSelected: 'categories' // Mobile view has tabs where the filters are selected, indicates which filter tab is visible
         };
 
         $scope.topicList = [];
         $scope.topicCountTotal = null;
-        $scope.isTopicListLoading = true;
+        $scope.isTopicListLoading = null; // Bool, but for initial load using null.
 
         /**
          * Update topic list by setting relevant filter
@@ -41,7 +41,7 @@ angular
         };
 
         /**
-         * Clear all applised filters
+         * Clear all applied filters
          */
         $scope.doClearFilters = function () {
             $scope.filters.categories.value = $scope.FILTERS_ALL;
@@ -54,8 +54,19 @@ angular
             $scope.loadTopicList();
         };
 
+        $scope.isTutorialVisible = function () {
+            return $scope.filters.categories.value === $scope.FILTERS_ALL
+                && $scope.filters.statuses.value === $scope.FILTERS_ALL
+                && $scope.topicList.length; // Render tutorial only when there are topics, this avoids Android and alignment issues.
+        };
+
         $scope.loadTopicList = function () {
             $log.debug('HomeCtrl.loadTopicList()');
+
+            if ($scope.isTopicListLoading === true) {
+                $log.warn('HomeCtrl.loadTopicList()', 'Topic list already loading, will skip this request.');
+                return;
+            }
 
             if ($scope.topicCountTotal && $scope.topicList.length >= $scope.topicCountTotal) {
                 $log.warn('HomeCtrl.loadTopicList()', 'Maximum count of topics already loaded! Skipping API call.');
@@ -81,12 +92,12 @@ angular
                         $scope.isTopicListLoading = false;
                     },
                     function (err) {
-                        $log.log('List fetch failed or was cancelled', err);
+                        $log.warn('HomeCtrl.loadTopicList()', 'List fetch failed or was cancelled', err);
                         $scope.isTopicListLoading = false;
                     }
                 );
         };
-
         $scope.loadTopicList();
+
 
     }]);
