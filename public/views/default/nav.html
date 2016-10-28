@@ -165,8 +165,8 @@
                 {{app.language}}
             </div>
             <div class="dropdown">
-                <div class="section_item" ng-repeat="(locale, lang) in app.config.language.list" ng-click='app.switchLanguage(locale)'>
-                    {{lang}}
+                <div class="section_item" ng-repeat="(locale, lang) in app.config.language.list" ng-click='app.doSwitchLanguage(locale)'>
+                    {{lang}} {{locale}}
                 </div>
             </div>
         </div>

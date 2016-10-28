@@ -3,7 +3,7 @@
 angular
     .module('citizenos')
     .controller('LoginFormCtrl', ['$scope', '$log', 'ngDialog', function ($scope, $log, ngDialog) {
-        $log.debug('LoginFormCtrl', ngDialog);
+        $log.debug('LoginFormCtrl');
 
         $scope.form = {
             email: null,

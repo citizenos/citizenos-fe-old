@@ -58,24 +58,26 @@ angular
                 template: '/views/modals/login.html',
                 scope: $scope
             });
-        }
+        };
 
-        $scope.app.switchLanguage = function (locale) {
-            $log.debug('AppCtrl.switchLanguage()', locale);
+        $scope.app.doSwitchLanguage = function (locale) {
+            $log.debug('AppCtrl.doSwitchLanguage()', locale);
             sTranslate.switchLanguage(locale);
         };
+
         ///Listeners and watchers
-
-        $rootScope.$watch(function () {
-            return !sAuth.user.isLoading;
-        }, function (isLoading) {
-            $log.info('$scope.app.user.isLoading', sAuth.user.isLoading);
-            if (isLoading) {
-                $scope.app.user = sAuth.user;
-                $scope.app.isLoading = false;
+        $rootScope.$watch(
+            function () {
+                return !sAuth.user.isLoading;
+            },
+            function (isLoading) {
+                $log.info('$scope.app.user.isLoading', sAuth.user.isLoading);
+                if (isLoading) {
+                    $scope.app.user = sAuth.user;
+                    $scope.app.isLoading = false;
+                }
             }
-        });
-
+        );
         $rootScope.$on('$translateChangeSuccess', setLocaleVariables);
 
         function setLocaleVariables() {
