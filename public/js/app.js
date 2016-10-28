@@ -145,7 +145,7 @@
                     url: '/topics',
                     parent: 'main',
                     controller: 'HomeCtrl',
-                    templateUrl: '/views/no_topics.html'
+                    templateUrl: '/views/topics.html'
                 });
 
             $translateProvider.useStaticFilesLoader({
