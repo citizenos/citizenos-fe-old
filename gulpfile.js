@@ -58,7 +58,6 @@ gulp.task('uglify', function () {
             mangle: false,
             compress: false,
             beautify: true,
-            preserveComments: 'all',
             sourceMap: true,
             sourceMapName: pkg.name + '.bundle.js.map'
         }))

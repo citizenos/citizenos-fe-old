@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sAuth', ['$http', '$q', '$log', function ($http, $q, $log) {
+    .service('sAuth', ['$http', '$q', '$log', 'sLocation', function ($http, $q, $log, sLocation) {
         var sAuth = this;
 
         sAuth.user = {
@@ -31,7 +31,8 @@ angular
                 angular.extend(sAuth.user, response.data.data);
             };
 
-            return $http.post('/api/auth/login', data).then(success, defaultError);
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/login');
+            return $http.post(path, data).then(success, defaultError);
         };
 
         sAuth.status = function () {
@@ -47,7 +48,8 @@ angular
                 return $q.reject(response);
             };
 
-            return $http.get('/api/auth/status').then(success, error);
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/status');
+            return $http.get(path).then(success, error);
         };
 
     }]);

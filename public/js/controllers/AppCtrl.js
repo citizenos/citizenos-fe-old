@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', 'sTranslate', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $log, sTranslate, cosConfig, ngDialog, sAuth) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$location', 'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $log, $location, sTranslate, sLocation, cosConfig, ngDialog, sAuth) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -15,6 +15,19 @@ angular
         $scope.app.user = sAuth.user;
         $scope.app.language = sTranslate.currentLanguage;
 
+        $scope.app.metainfo = {
+            title: 'META_DEFAULT_TITLE',
+            description: 'META_DEFAULT_DESCRIPTION',
+            keywords: 'META_DEFAULT_KEYWORDS',
+            icon: sLocation.getBaseUrl() + '/favicon.ico',
+            author: null,
+            image: sLocation.getBaseUrl() + '/static/imgs/logo_dark_seo.png',
+            url: null,
+            siteName: 'CitizenOS.com',
+            hreflang: {}
+        };
+
+        createRelUrls();
         // Different global notifications that can be shown in the page header
         $scope.app.notifications = {
             messages: {}
@@ -68,5 +81,17 @@ angular
         $rootScope.$on('$translateChangeSuccess',function () {
             $scope.app.language = sTranslate.currentLanguage;
         });
+
+        function createRelUrls () {
+            angular.forEach(sTranslate.LANGUAGES, function (language) {
+                var url = $location.url().split('/');
+                url[1] = language;
+                if(url.indexOf('votes') > -1) {
+                    url.splice(url.indexOf('votes'), 2);
+                }
+                console.log(language);
+                $scope.app.metainfo.hreflang[language] = sLocation.getBaseUrl() + url.join('/');
+            });
+        };
 
     }]);

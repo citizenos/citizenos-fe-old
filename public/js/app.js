@@ -63,7 +63,7 @@
                 sAuth
                     .status()
                     .then(function (user) {
-                        $log.debug('sAuth.success',user);
+                        $log.debug('sAuth.success', user);
                         $log.debug('$urlRouterProvider.otherwise', 'status loaded', user);
 
                         if (user.language) {
@@ -145,19 +145,8 @@
                     url: '/topics',
                     parent: 'main',
                     controller: 'HomeCtrl',
-                    templateUrl: '/views/no_topics.html'
+                    templateUrl: '/views/topics.html'
                 });
-
-            $httpProvider.interceptors.push(function () {
-                return {
-                    request: function (config) {
-                        if (config.url.indexOf('api/') > -1) {
-                            config.url = cosConfig.api.baseUrl + config.url; // FIXME: Environment based!
-                        }
-                        return config;
-                    }
-                }
-            });
 
             $translateProvider.useStaticFilesLoader({
                 prefix: 'languages/',
@@ -178,7 +167,6 @@
             // https://github.com/chieffancypants/angular-loading-bar
             cfpLoadingBarProvider.loadingBarTemplate = '<div id="loading_bar"><div class="bar"></div></div>';
             cfpLoadingBarProvider.includeSpinner = false;
-
 
             // https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translateProvider
             $translateProvider
