@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$location', 'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $log, $location, sTranslate, sLocation, cosConfig, ngDialog, sAuth) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$location', '$timeout',  'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $log, $location, $timeout, sTranslate, sLocation, cosConfig, ngDialog, sAuth) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -94,4 +94,10 @@ angular
             });
         };
 
+        $rootScope.$on('$stateChangeSuccess', function () {
+            $timeout(function () {
+                $log.debug('prerenderReady');
+                window.prerenderReady = true;
+            });
+        });
     }]);

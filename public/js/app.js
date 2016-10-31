@@ -120,7 +120,7 @@
                     templateUrl: '/views/layouts/main.html',
                     resolve: {
                         /* @ngInject */
-                        sTranslate: function ($stateParams, $log, sTranslate, sAuth) {
+                        sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {
                             sTranslate.setLanguage($stateParams.language);
                             if (sAuth.user.isLoading === false) {
                                 $log.debug('$stateProvider.state("main").resolve', 'Status already loaded');
@@ -142,11 +142,34 @@
                     templateUrl: '/views/home.html'
                 })
                 .state('topics', {
+                    abstract: true,
                     url: '/topics',
                     parent: 'main',
+                    templateUrl: '/views/topic_layout.html'
+                })
+                .state('topics.view', {
+                    url: '/view/:id',
+                    parent: 'topics',
+                    templateUrl: '/views/topic.html',
+                    controller: 'TopicCtrl',
+                    resolve: {
+                        /* @ngInject */
+                        sTopicResolve: function ($stateParams, $log, sTopic) { // If return is topic, data is read into sTopicResolve param that can be accessed from Controller, on error (500,404) sTopicResolve is undefined
+                            return sTopic
+                                .readUnauth({id:$stateParams.id})
+                                .catch(function () {
+                                    //This to prevent view from loading before there is a response from sAuth
+                                });
+                        }
+                    }
+                })
+                .state('topics.list', {
+                    url: '/list',
+                    parent: 'topics',
                     controller: 'HomeCtrl',
                     templateUrl: '/views/topics.html'
                 });
+
 
             $translateProvider.useStaticFilesLoader({
                 prefix: 'languages/',
