@@ -1,13 +1,22 @@
 @import 'vars';
 @import 'mixins_n_extends';
+@import 'icons';
 
 #topics_root {
     background: $light_gray;
+    @extend .all_zero;
+    position: absolute;
+
+    #topics_wrap {
+        background: $light_gray;
+    }
 
     #topics_left {
         width: 28%;
-        padding: 10px;
+        padding: 10px 11px 10px 10px;
         text-align: left;
+        float: left;
+        position: relative;
 
         .small_topic {
             height: 120px;
@@ -15,6 +24,7 @@
             padding: 13px 20px 17px 20px;
             box-sizing: border-box;
             cursor: pointer;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 
             &:not(:first-child) {
                 margin-top: 10px;
@@ -79,15 +89,34 @@
             .small_topic_title, .small_topic_small_text {
                 color: $white !important;
             }
+
+            .sprite-menu-icon-groups2x-dark {
+                @extend .sprite-menu-icon-groups2x;
+            }
+
+            .sprite-mytopics-icon-progress2x {
+                @extend .sprite-mytopics-icon-progress2x-w;
+            }
+
+            .sprite-mytopics-icon-infollowup2x {
+                @extend .sprite-mytopics-icon-infollowup2x-w;
+            }
+
+            .sprite-mytopics-icon-invoting2x {
+                @extend .sprite-mytopics-icon-invoting2x-w;
+            }
+        }
+
+        .v_line {
+            width: 1px;
+            background: $medium_gray;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
         }
 
     }
 
-    .v_line {
-        float: left;
-        width: 1px;
-        height: 100%;
-        background: $medium_gray;
-    }
 
 }
