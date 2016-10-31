@@ -5,12 +5,12 @@ angular
     .service('sTranslate', ['$state', '$translate', '$log', 'cosConfig', function ($state, $translate, $log, cosConfig) {
         var sTranslate = this;
 
-        var LANGUAGES = Object.keys(cosConfig.language.list);
+        sTranslate.LANGUAGES = Object.keys(cosConfig.language.list);
         sTranslate.currentLanguage = cosConfig.language.default;
 
         function init () {
             var clientLang = $translate.resolveClientLocale();
-            if (LANGUAGES.indexOf(clientLang) > -1) {
+            if (sTranslate.LANGUAGES.indexOf(clientLang) > -1) {
                 sTranslate.currentLanguage = clientLang;
             }
         }
@@ -35,7 +35,7 @@ angular
         };
 
         function checkLanguageIsValid (language) {
-            return LANGUAGES.indexOf(language) !== -1;
+            return sTranslate.LANGUAGES.indexOf(language) !== -1;
         }
 
     }]);

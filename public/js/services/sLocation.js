@@ -4,7 +4,7 @@ angular
         var sLocation = this;
 
         sLocation.getBaseUrl = function () {
-            return $location.protocol + "//" + $location.hostname + ($location.port ? ':' + $location.port : '');
+            return $location.protocol() + "://" + $location.host() + ($location.port() ? ':' + $location.port() : '');
         };
 
         /**
