@@ -227,7 +227,7 @@
             </div>
         </a>
 
-        <a href="" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : topic.categories[0] || 'varia'">
+        <a href="" ui-sref="topics.view({id: topic.id})" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : topic.categories[0] || 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
                     <div class="date">{{topic.createdAt | amDateFormat : 'L'}}</div>
