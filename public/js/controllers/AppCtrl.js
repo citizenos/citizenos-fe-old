@@ -28,6 +28,7 @@ angular
         };
 
         createRelUrls();
+
         // Different global notifications that can be shown in the page header
         $scope.app.notifications = {
             messages: {}
@@ -39,7 +40,7 @@ angular
             ERROR: 'error'
         };
 
-        // Initially all messages
+        // Initially all messages are empty
         Object.keys($scope.app.notifications.levels).forEach(function (key) {
             $scope.app.notifications.messages[$scope.app.notifications.levels[key]] = [];
         });

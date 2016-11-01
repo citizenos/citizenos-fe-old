@@ -11,12 +11,10 @@ angular
         };
 
         var defaultSuccess = function (response) {
-            $log.debug('SUCCESS', response);
             return response.data;
         };
 
         var defaultError = function (response) {
-            $log.debug('ERROR', response);
             return $q.reject(response);
         };
 
@@ -45,7 +43,7 @@ angular
 
             var error = function (response) {
                 sAuth.user.isLoading = false;
-                return $q.reject(response);
+                return defaultError(response);
             };
 
             var path = sLocation.getAbsoluteUrlApi('/api/auth/status');
