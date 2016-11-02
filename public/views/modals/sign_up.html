@@ -24,10 +24,10 @@
 
                     <div class="lightbox_section">
                         <form name="signupForm" ng-controller="SignUpFormCtrl">
-                            <input name="name" placeholder="Full name *" focus-if="{{wWidth > 1024}}">
-                            <input name="company" placeholder="Company">
-                            <input name="email" placeholder="E-mail address">
-                            <input name="password" type="password" placeholder="Password *">
+                            <input name="name" ng-model="form.name" placeholder="Full name *" focus-if="{{wWidth > 1024}}">
+                            <input name="company" ng-model="form.company" placeholder="Company">
+                            <input name="email" ng-model="form.email" placeholder="E-mail address">
+                            <input name="password" ng-model="form.password" type="password" placeholder="Password *">
                             <button type="submit" ng-click="doSignUp()" class="blue_button">Save</button>
                             <div class="link_section">
                                 <a class="lightbox_link" href="" ng-click="closeThisDialog()">Cancel</a>

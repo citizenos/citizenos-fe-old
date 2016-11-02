@@ -48,6 +48,7 @@ gulp.task('uglify', function () {
             'public/js/libs/**/*.js',
             'public/js/app.js',
             'public/js/services/**/*.js',
+            'public/js/filters/**/*.js',
             'public/js/directives/**/*.js',
             'public/js/controllers/**/*.js'
         ])
