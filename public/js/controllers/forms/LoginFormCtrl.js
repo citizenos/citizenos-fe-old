@@ -3,7 +3,7 @@
 angular
     .module('citizenos')
     .controller('LoginFormCtrl', ['$scope', '$log', '$window', 'ngDialog', 'sAuth', function ($scope, $log, $window, ngDialog, sAuth) {
-        $log.debug('LoginFormCtrl', ngDialog);
+        $log.debug('LoginFormCtrl');
 
         var init = function () {
             $scope.form = {
