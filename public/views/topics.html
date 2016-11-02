@@ -1,57 +1,79 @@
-<div id="topics_root">
+<div ui-view></div>
+<div ng-if="app.showTopicsList" id="topics_root">
 
-    <!-- LEFT SIDE -->
-    <div id="topics_left">
+    <div id="topics_wrap">
+        <!-- LEFT SIDE -->
+        <div id="topics_left">
 
-        <div class="small_topic" ng-repeat="(key, this) in ['1', '2', '3', '4', '5', '6', '7', '8', '9']">
-            <div class="small_topic_header">
+            <div cos-dropdown class="classic_dropdown">
 
-                <div class="small_topic_left_cont">
-                    <div class="small_topic_icon">
-                        <div class="sprite sprite-mytopics-icon-progress2x"></div>
+                <div class="drop_down_text">
+                    Show only: Public topics
+                </div>
+
+                <div class="arrow_holder">
+                    <div class="table_cell">
+                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                        <div class="v_line"></div>
                     </div>
-                    <div class="small_topic_small_text">In progress</div>
                 </div>
 
-                <div class="small_topic_right_cont">
-                    <div class="small_topic_icon">
-                        <div class="sprite sprite-menu-icon-groups2x-dark"></div>
+            </div>
+
+            <div class="small_topic" ng-repeat="(key, this) in ['1', '2', '3', '4', '5', '6', '7', '8', '9']">
+                <div class="small_topic_header">
+
+                    <div class="small_topic_left_cont">
+                        <div class="small_topic_icon">
+                            <div class="sprite sprite-mytopics-icon-progress2x"></div>
+                        </div>
+                        <div class="small_topic_small_text">In progress</div>
                     </div>
-                    <div class="small_topic_small_text">3 groups</div>
+
+                    <div class="small_topic_right_cont">
+                        <div class="small_topic_icon">
+                            <div class="sprite sprite-menu-icon-groups2x-dark"></div>
+                        </div>
+                        <div class="small_topic_small_text">3 groups</div>
+                    </div>
+
+                    <div class="clearer"></div>
+
                 </div>
 
-                <div class="clearer"></div>
+                <div class="small_topic_title">
+                    Kuidas paremini arutleda
+                </div>
+
+                <div class="line lightest_line"></div>
+
+
+                <div class="small_topic_footer">
+
+                    <div class="small_topic_left_cont">
+                        <div class="small_topic_small_text">10 new activity</div>
+                    </div>
+
+
+                    <div class="small_topic_right_cont">
+                        <div class="small_topic_small_text">12.07.2016 11:23</div>
+                    </div>
+
+                </div>
 
             </div>
 
-            <div class="small_topic_title">
-                Kuidas paremini arutleda
-            </div>
-
-            <div class="line lightest_line"></div>
-
-
-            <div class="small_topic_footer">
-
-                <div class="small_topic_left_cont">
-                    <div class="small_topic_small_text">10 new activity</div>
-                </div>
-
-
-                <div class="small_topic_right_cont">
-                    <div class="small_topic_small_text">12.07.2016 11:23</div>
-                </div>
-
-            </div>
+            <div class="v_line"></div>
 
         </div>
 
-    </div>
 
-    <div class="v_line"></div>
+        <!-- RIGHT SIDE -->
+        <div id="topics_right">
 
-    <!-- RIGHT SIDE -->
-    <div id="topics_right">
+        </div>
 
+        <div class="clearer"></div>
     </div>
 </div>

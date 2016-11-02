@@ -157,6 +157,45 @@ a:link, a:visited {
     }
 }
 
+/* CLASSIC DROPDOWN */ 
+.classic_dropdown {
+    color: $medium_black;
+    font-size: 13px;
+    border-radius: 4px;
+    background-color: $white;
+    border: solid 1px $lightest_gray;
+    position: relative;
+    box-sizing: border-box;
+    padding: 5px 42px 6px 10px;
+    height: 30px;
+    cursor: pointer;
+
+    .arrow_holder {
+        display: table;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 30px;
+        width: 29px;
+
+        .sprite {
+            margin: 0 auto;
+        }
+
+        .v_line {
+            width: 1px;
+            background: $medium_gray;
+            left: 0  !important;
+            top: 0 !important;
+            bottom: 2px !important;
+            right: initial;
+            margin-left: -1px;
+            position: absolute;
+        }
+    }
+}
+
+
 /* INFO BAR */
 
 #info_bar_wrap {

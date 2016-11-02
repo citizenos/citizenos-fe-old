@@ -8,6 +8,10 @@ var fs = require('fs');
 
 app.use(express.static(__dirname + '/public'));
 
+var prerender = require('prerender-node');
+app.use(require('prerender-node').set('prerenderServiceUrl', 'http://localhost:1337/').set('prerenderToken', 'CrrAflHAEiF44KMFkrs7'));
+app.use(prerender);
+
 app.get('/*', function(req, res){
     res.sendFile(__dirname + '/public/index.html');
 });
