@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$window', 'ngDialog', 'sAuth', function ($scope, $log, $window, ngDialog, sAuth) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$window', 'ngDialog', 'sAuth', 'sTranslate', function ($scope, $log, $window, ngDialog, sAuth, sTranslate) {
         $log.debug('LoginFormCtrl');
 
         var init = function () {
@@ -29,7 +29,7 @@ angular
                         //Not using $state.go('account.signup') cause $stateParams are exposed in the url and
                         //I don't want password to be there. Found no secret way to pass data to new state.
                         ngDialog.open({
-                            template: '/views/modals/register.html',
+                            template: '/views/modals/sign_up.html',
                             data: $scope.form,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
