@@ -35,10 +35,10 @@ angular
                         });
                         break;
                     case 40002: // Account has not been verified
-                        $scope.app.showInfo('MSG_INFO_ACCOUNT_NOT_VERIFIED');
+                        $scope.app.doShowNotification($scope.app.notifications.levels.INFO, 'MSG_INFO_ACCOUNT_NOT_VERIFIED');
                         break;
                     default:
-                        sTranslate.errorsToKeys(response, 'USER');
+                        sTranslate.errorsToKeys(response, sTranslate.models.USER);
                         $scope.errors = response.data.errors;
                 }
             };

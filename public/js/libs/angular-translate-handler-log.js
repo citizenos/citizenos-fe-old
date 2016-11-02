@@ -19,6 +19,6 @@ angular.module('pascalprecht.translate')
     .factory('$translateMissingTranslationHandlerLog', ['$log', function ($log) {
 
         return function (translationId, lang) {
-            $log.warn('Translation for \'' + translationId + '\' doesn\'t exist in language \'' + lang + '\'');
+            $log.warn('$translateMissingTranslationHandlerLog', 'Translation for \'' + translationId + '\' doesn\'t exist in language \'' + lang + '\'');
         };
     }]);

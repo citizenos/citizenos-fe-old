@@ -9,6 +9,12 @@ angular
         var GENERAL_ERROR_FALLBACK_KEY_PATTERN = 'MSG_ERROR_:statusCode';
         var FIELD_ERROR_KEY_PATTERN = 'MSG_ERROR_:statusCode_:model_:fieldName';
 
+        // List of models supported by sTranslate. Making it strict so errors would pop up.
+        // Model name here should have 1:1 correspondence with a model in the REST API.
+        sTranslate.models = {
+            USER: 'USER'
+        };
+
         sTranslate.LANGUAGES = Object.keys(cosConfig.language.list);
         sTranslate.currentLanguage = cosConfig.language.default;
 
@@ -68,20 +74,24 @@ angular
          * @param {string} model Model - the context for ex "User", "Vote". So that for example Groups API property "name" and User API property "name" could have different messages
          */
         sTranslate.errorsToKeys = function (errorResponse, model) {
-            if (!errorResponse || !model) throw new Error('sTranslate.errorsToKeys()', 'Missing one or more required parameters', arguments);
+            if (!errorResponse || !model) {
+                throw new Error('sTranslate.errorsToKeys()', 'Missing one or more required parameters', arguments);
+            }
 
-            var errors = errorResponse.data.errors;
+            var fieldErrors = errorResponse.data.errors;
 
-            // Field error
-            if (errors) {
+            if (fieldErrors) {
                 return fieldErrorsToKeys(errorResponse, model);
             } else {
-                // General error
                 return generalErrorToKey(errorResponse, model);
             }
         };
 
         var fieldErrorsToKeys = function (errorResponse, model) {
+            if (_.values(sTranslate.models).indexOf(model) < 0) {
+                throw new Error('sTranslate.fieldErrorsToKeys', 'Unsupported model provided', model);
+            }
+
             var errors = errorResponse.data.errors;
 
             Object.keys(errors).forEach(function (key) {
@@ -102,7 +112,10 @@ angular
         };
 
         var generalErrorToKey = function (errorResponse, model) {
-            $log.debug('sTranslate._generalErrorToKey'.arguments);
+            if (_.values(sTranslate.models).indexOf(model) < 0) {
+                throw new Error('sTranslate.fieldErrorsToKeys', 'Unsupported model provided', model);
+            }
+
             var translationKey = GENERAL_ERROR_KEY_PATTERN
                 .replace(':statusCode', errorResponse.data.status.code)
                 .replace(':model', model.toUpperCase());
