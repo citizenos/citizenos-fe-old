@@ -8,9 +8,9 @@
     <script> window.prerenderReady = false;</script>
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=897d094a46ed462bf211481642e821a9" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=bffc11c7395ee637559eb9f7ba149fea" rel="stylesheet">
 
-    <script src="js/citizenos-fe.bundle.js?v=10dc28397634b112765fb182be82120c"></script>
+    <script src="js/citizenos-fe.bundle.js?v=373e986f1500a6eafe5c73aa44f26f8a"></script>
 
     <title ng-if="app.metainfo.title">{{app.metainfo.title | translate }}</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" href="{{app.metainfo.icon}}" type="image/x-icon"/>
@@ -40,8 +40,8 @@
                 <div class="sprite sprite-icon-notification-error2x"></div>
             </div>
 
-            <div class="info_bar_text" ng-repeat="message in app.notifications.messages[app.notifications.levels.ERROR]">
-                {{message}}
+            <div class="info_bar_text" ng-repeat="key in app.notifications.messages[app.notifications.levels.ERROR] track by $index">
+                <span translate="{{key}}"></span>
             </div>
 
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.ERROR)">
@@ -56,8 +56,8 @@
                 <div class="sprite sprite-icon-notification-info2x"></div>
             </div>
 
-            <div class="info_bar_text" ng-repeat="message in app.notifications.messages[app.notifications.levels.INFO]">
-                {{message}}
+            <div class="info_bar_text" ng-repeat="key in app.notifications.messages[app.notifications.levels.INFO] track by $index">
+                <span translate="{{key}}"></span>
             </div>
 
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.INFO)">
@@ -72,8 +72,8 @@
             </div>
 
             <div class="info_bar_text">
-                <div class="info_row" ng-repeat="message in app.notifications.messages[app.notifications.levels.SUCCESS]">
-                    {{message}}
+                <div class="info_row" ng-repeat="key in app.notifications.messages[app.notifications.levels.SUCCESS] track by $index">
+                    <span translate="{{key}}"></span>
                 </div>
             </div>
 

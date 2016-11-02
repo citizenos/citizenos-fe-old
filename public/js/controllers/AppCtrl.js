@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$location', '$timeout',  'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $log, $location, $timeout, sTranslate, sLocation, cosConfig, ngDialog, sAuth) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$location', '$timeout', 'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $log, $location, $timeout, sTranslate, sLocation, cosConfig, ngDialog, sAuth) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -49,10 +49,10 @@ angular
          * Show global notification with specified level
          *
          * @param {string} level One of $scope.app.notifications.types
-         * @param {string} message Message to show
+         * @param {string} key Translation key
          */
-        $scope.app.doShowNotification = function (level, message) {
-            $scope.app.notifications.messages[level].push(message);
+        $scope.app.doShowNotification = function (level, key) {
+            $scope.app.notifications.messages[level].push(key);
         };
 
         /**
@@ -79,18 +79,17 @@ angular
             sTranslate.switchLanguage(language);
         };
 
-        $rootScope.$on('$translateChangeSuccess',function () {
+        $rootScope.$on('$translateChangeSuccess', function () {
             $scope.app.language = sTranslate.currentLanguage;
         });
 
-        function createRelUrls () {
+        function createRelUrls() {
             angular.forEach(sTranslate.LANGUAGES, function (language) {
                 var url = $location.url().split('/');
                 url[1] = language;
-                if(url.indexOf('votes') > -1) {
+                if (url.indexOf('votes') > -1) {
                     url.splice(url.indexOf('votes'), 2);
                 }
-                console.log(language);
                 $scope.app.metainfo.hreflang[language] = sLocation.getBaseUrl() + url.join('/');
             });
         };

@@ -197,6 +197,7 @@
                 .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list)) //et
                 .determinePreferredLanguage()
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
-                .useLocalStorage();
+                .useLocalStorage()
+                .useMissingTranslationHandlerLog();
         }]);
 })();
