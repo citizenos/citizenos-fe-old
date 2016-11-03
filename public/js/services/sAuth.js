@@ -48,6 +48,7 @@ angular
 
         sAuth.status = function () {
             var success = function (response) {
+                $log.debug('sAuth.status', response);
                 angular.extend(sAuth.user, response.data.data);
                 sAuth.user.loggedIn = true;
                 sAuth.user.isLoading = false;

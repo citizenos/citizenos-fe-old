@@ -20,7 +20,7 @@ angular
             $scope.errors = null;
 
             var success = function (response) {
-                $window.location.href = '/'; // FIXME: Land on the same page login was started from
+                ngDialog.closeAll(); // FIXME: Land on the same page login was started from
             };
 
             var error = function (response) {
