@@ -7,21 +7,48 @@
 
             <div cos-dropdown class="classic_dropdown">
 
-                <div class="drop_down_text">
-                    Show only: Public topics
-                </div>
+                <div class="dropdown_selection">
+                    <div class="dropdown_text">
+                        Show only: Public topics
+                    </div>
 
-                <div class="arrow_holder">
-                    <div class="table_cell">
-                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
-                        
-                        <div class="v_line"></div>
+                    <div class="arrow_holder">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+                            
+                            <div class="v_line"></div>
+                        </div>
                     </div>
                 </div>
+                
+                <div class="dropdown">
 
+                    <!-- NO CATEGORY -->
+                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                        <div class="item_name">
+                            Show all my topics
+                        </div>
+                    </div>
+
+                    <!-- WITH CATEGORY -->
+                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2', '3', '4', '5']">
+                        <div class="item_category">
+                            Show only:
+                        </div>
+                        <div class="item_names_wrap">
+                            <div class="item_name" ng-class="key === 0 ? 'bold' : ''" ng-repeat="(key, this) in ['1', '2', '3', '4']">
+                                My public topics
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+
+
+                </div>
             </div>
 
-            <div class="small_topic" ng-repeat="(key, this) in ['1', '2', '3', '4', '5', '6', '7', '8', '9']">
+            <div class="small_topic" ng-class="key==0 ? 'active' : '' " ng-repeat="(key, this) in ['1', '2', '3', '4', '5', '6', '7', '8', '9']">
                 <div class="small_topic_header">
 
                     <div class="small_topic_left_cont">
@@ -36,6 +63,20 @@
                             <div class="sprite sprite-menu-icon-groups2x-dark"></div>
                         </div>
                         <div class="small_topic_small_text">3 groups</div>
+
+                        <div class="hover_info">
+
+                            <div class="hover_item">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <div class="item_text">CitizenOS test group</div>
+                            </div>
+
+                            <div class="hover_item">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <div class="item_text">Estonian Government</div>
+                            </div>
+
+                        </div>
                     </div>
 
                     <div class="clearer"></div>
@@ -71,6 +112,212 @@
 
         <!-- RIGHT SIDE -->
         <div id="topics_right">
+            <div class="info_container">
+
+                <div class="container_header">
+                    <div class="header_text">
+                        General information
+                    </div>
+                    <div class="minimize_container">
+                        <div class="sprite sprite-btn-minimize2x"></div>
+                    </div>
+                </div>
+
+                <div class="container_content">
+
+                    <div class="content_top">
+                        <div class="container_title">
+                            Kuidas paremini arutleda
+                        </div>
+                        <div class="container_favorite">
+                            <div class="sprite sprite-icon-favourite-notfilled2x"></div>
+                        </div>
+                    </div>
+
+                    <div class="line lightest_line"></div>
+                    
+                    <div class="content_bottom">
+                        
+                        <!-- COLUMN 1 -->
+                        <div class="content_column">
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Author
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        Taivo Pungas
+                                    </div>
+                                    <div class="v_line"></div>
+                                    <div class="item_link blue_link">
+                                        view
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Date created
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        11.06.2016
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Date deadline
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        24.12.2016
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- COLUMN 2 -->
+                        <div class="content_column">
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Users
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        66
+                                    </div>
+                                    <div class="v_line"></div>
+                                    <div class="item_link blue_link">
+                                        view
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Groups
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        3
+                                    </div>
+                                    <div class="v_line"></div>
+                                    <div class="item_link blue_link">
+                                        view
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Your rights
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text blue_link">
+                                        Read
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- COLUMN 3 -->
+                        <div class="content_column">
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Status
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        In progress
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Topic actions
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text blue_link">
+                                        Leave
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="clearer"></div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="info_container">
+
+                <div class="container_header">
+                    <div class="header_text">
+                        General information
+                    </div>
+                    <div class="minimize_container">
+                        <div class="sprite sprite-btn-minimize2x"></div>
+                    </div>
+                </div>
+
+                <div class="container_content activity_container" >
+                    
+                    <div class="activity" ng-repeat="(key, this) in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']">
+
+                        <div class="activity_left">
+                            <div class="activiy_time">12.07.2016 11:23</div>
+                        </div>
+
+                        <div class="activity_right">
+                            <div class="activity_icon">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            </div>
+                            <div class="activiy_title">Kristian Lember <span class="highlight aqua_marine_background">added</span> a <span class="highlight dark_yellow_background">comment</span>:</div>
+                            <div class="activiy_description">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new ...</div>
+                        </div>
+
+                        <div class="clearer"></div>
+                    </div>
+                    
+                    <div class="activity">
+
+                        <div class="activity_left">
+                            <div class="view_older blue_link">View older</div>
+                        </div>
+
+                        <div class="activity_right">
+                            &nbsp;
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+
+            </div>
 
         </div>
 

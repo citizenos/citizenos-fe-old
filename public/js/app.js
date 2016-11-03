@@ -14,7 +14,7 @@
                 list: {
                     en: 'English',
                     et: 'Eesti',
-                    ru: 'Pусский'
+                    ru: 'Pусский',
                 },
                 debug: 'dbg'
             }
@@ -196,7 +196,7 @@
                 .state('help', {
                     url: '/help',
                     parent: 'main',
-                    templateUrl: '/views/faq.html'
+                    templateUrl: '/views/help.html'
                 });
 
 
@@ -223,9 +223,10 @@
             // https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translateProvider
             $translateProvider
                 .preferredLanguage(cosConfig.language.default)
-                .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list)) //et
+                .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list).push(cosConfig.language.debug)) //et
                 .determinePreferredLanguage()
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
                 .useLocalStorage();
+            $translateProvider.translations('dbg', {}); // For debugging translations
         }]);
 })();

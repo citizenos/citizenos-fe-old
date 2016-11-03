@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$location', '$timeout',  'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', function ($scope, $rootScope, $log, $location, $timeout, sTranslate, sLocation, cosConfig, ngDialog, sAuth) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$location', '$timeout', '$document',  'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sHotkeys', function ($scope, $rootScope, $log, $location, $timeout, $document, sTranslate, sLocation, cosConfig, ngDialog, sAuth, sHotkeys) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -38,6 +38,8 @@ angular
             INFO: 'info',
             ERROR: 'error'
         };
+
+        sHotkeys.add('ctrl+alt+shift+t', sTranslate.debugMode);
 
         // Initially all messages
         Object.keys($scope.app.notifications.levels).forEach(function (key) {
