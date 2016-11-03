@@ -28,8 +28,8 @@ angular
 
                 switch (status.code) {
                     case 40001: // Account does not exist
-                        //Not using $state.go('account.signup') cause $stateParams are exposed in the url and
-                        //I don't want password to be there. Found no secret way to pass data to new state.
+                        // Not using $state.go('account.signup') cause $stateParams are exposed in the url and
+                        // I don't want password to be there. Found no secret way to pass data to new state.
                         ngDialog.open({
                             template: '/views/modals/sign_up.html',
                             data: $scope.form,

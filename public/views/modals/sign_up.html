@@ -24,10 +24,34 @@
 
                     <div class="lightbox_section">
                         <form name="signupForm" ng-controller="SignUpFormCtrl">
-                            <input name="name" ng-model="form.name" placeholder="Full name *" focus-if="{{wWidth > 1024}}">
-                            <input name="company" ng-model="form.company" placeholder="Company">
-                            <input name="email" ng-model="form.email" placeholder="E-mail address">
-                            <input name="password" ng-model="form.password" type="password" placeholder="Password *">
+                            <input id="name" ng-model="form.name" placeholder="Full name *" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" required>
+                            <label for="name" class="error_label" ng-if="errors.name">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.name}}"></span>
+                                </div>
+                            </label>
+                            <input id="company" ng-model="form.company" placeholder="Company" ng-class="{'error_input': errors.company}">
+                            <label for="company" class="error_label" ng-if="errors.company">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.company}}"></span>
+                                </div>
+                            </label>
+                            <input id="email" ng-model="form.email" placeholder="E-mail address" ng-class="{'error_input': errors.email}" required>
+                            <label for="email" class="error_label" ng-if="errors.email">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.email}}"></span>
+                                </div>
+                            </label>
+                            <input id="password" ng-model="form.password" type="password" placeholder="Password *" ng-class="{'error_input': errors.password}" required>
+                            <label for="password" class="error_label" ng-if="errors.password">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.password}}"></span>
+                                </div>
+                            </label>
                             <button type="submit" ng-click="doSignUp()" class="blue_button">Save</button>
                             <div class="link_section">
                                 <a class="lightbox_link" href="" ng-click="closeThisDialog()">Cancel</a>
