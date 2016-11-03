@@ -142,32 +142,61 @@
                     templateUrl: '/views/home.html'
                 })
                 .state('topics', {
-                    abstract: true,
                     url: '/topics',
                     parent: 'main',
-                    templateUrl: '/views/topic_layout.html'
+                    templateUrl: '/views/topics.html',
+                    controller: 'HomeCtrl'
                 })
-                .state('topics.view', {
-                    url: '/view/:id',
+                .state('topics.create', {
+                    url: '/create',
                     parent: 'topics',
                     templateUrl: '/views/topic.html',
-                    controller: 'TopicCtrl',
-                    resolve: {
-                        /* @ngInject */
-                        sTopicResolve: function ($stateParams, $log, sTopic) { // If return is topic, data is read into sTopicResolve param that can be accessed from Controller, on error (500,404) sTopicResolve is undefined
-                            return sTopic
-                                .readUnauth({id:$stateParams.id})
-                                .catch(function () {
-                                    //This to prevent view from loading before there is a response from sAuth
-                                });
-                        }
-                    }
+                    controller: 'TopicCtrl'
                 })
-                .state('topics.list', {
-                    url: '/list',
+                .state('topics.view', {
+                    url: '/:id',
                     parent: 'topics',
-                    controller: 'HomeCtrl',
-                    templateUrl: '/views/topics.html'
+                    templateUrl: '/views/topic.html',
+                    controller: 'TopicCtrl'
+                })
+                .state('topics.vote', {
+                    url:'/vote',
+                    parent: 'topics.view',
+                    templateUrl: 'topic.voting.html',
+                    controller: 'VoteCtrl'
+                })
+                .state('topics.vote.create', {
+                    url:'/vote/create',
+                    parent: 'topics.view',
+                    templateUrl: 'topic.voting.html',
+                    controller: 'VoteCtrl'
+                })
+                .state('groups', {
+                    url: '/groups',
+                    parent: 'main',
+                    templateUrl: '/views/groups.html',
+                    controller: 'GroupCtrl'
+                })
+                .state('groups.create', {
+                    url: '/create',
+                    parent: 'groups',
+                    templateUrl: '/views/groups.html',
+                    controller: 'GroupCtrl'
+                })
+                .state('about', {
+                    url: '/about',
+                    parent: 'main',
+                    templateUrl: '/views/about.html'
+                })
+                .state('faq', {
+                    url: '/faq',
+                    parent: 'main',
+                    templateUrl: '/views/faq.html'
+                })
+                .state('help', {
+                    url: '/help',
+                    parent: 'main',
+                    templateUrl: '/views/help.html'
                 });
 
 
@@ -194,10 +223,11 @@
             // https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translateProvider
             $translateProvider
                 .preferredLanguage(cosConfig.language.default)
-                .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list)) //et
+                .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list).push(cosConfig.language.debug)) //et
                 .determinePreferredLanguage()
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
                 .useLocalStorage()
-                .useMissingTranslationHandlerLog();
+                .useMissingTranslationHandlerLog()
+                .translations('dbg', {})
         }]);
 })();

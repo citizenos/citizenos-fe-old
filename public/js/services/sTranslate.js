@@ -17,6 +17,7 @@ angular
 
         sTranslate.LANGUAGES = Object.keys(cosConfig.language.list);
         sTranslate.currentLanguage = cosConfig.language.default;
+        var debugLang = cosConfig.language.debug;
 
         var init = function () {
             var clientLang = $translate.resolveClientLocale();
@@ -41,6 +42,14 @@ angular
                 $state.transitionTo($state.current.name, {language: language});
             }
             sTranslate.setLanguage(language);
+        };
+
+        sTranslate.debugMode = function () {
+            if ($translate.use() !== debugLang) {
+                $translate.use(debugLang);
+            } else {
+                $translate.use(sTranslate.currentLanguage);
+            }
         };
 
         var checkLanguageIsValid = function (language) {

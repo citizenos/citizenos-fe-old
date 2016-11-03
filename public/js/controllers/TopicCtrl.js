@@ -2,9 +2,8 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$log', 'sTopic', 'sTopicResolve', function ($scope, $log, sTopic, sTopicResolve) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log','$location', 'sTopic', function ($scope, $state, $stateParams, $log, $location, sTopic) {
         $log.debug('TopicCtrl');
-        $log.debug('sTopicResolve',sTopicResolve);
         $scope.topic = {
             id: null,
             title: null,
@@ -18,14 +17,16 @@ angular
             },
             upUrl: null
         };
-        if (sTopicResolve) {
-            angular.extend($scope.topic,sTopicResolve);
-            $scope.app.metainfo.title  = sTopicResolve.title;
-            $scope.app.metainfo.description  = angular.element(sTopicResolve.description).text().replace(sTopicResolve.title,'');
+        if($state.current.name === 'topics.view' && $stateParams.id){
+            sTopic.readUnauth({id:$stateParams.id}).then( function (data) {
+                angular.extend($scope.topic, data);
+                $log.debug('topic.readUnauth', data);
+            });
         }
-        else{
-
-            sTopic.create($scope.topic);
+        if ($state.current.name === 'topics.create') {
+            sTopic.create($scope.topic).then( function (data) {
+                $log.debug('TopicCtrl.topic.create', data);
+            });
 
         }
     }]);
