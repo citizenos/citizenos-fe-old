@@ -1,5 +1,12 @@
 {
   "META_DEFAULT_TITLE": "Citizen OS - an e-decisionmaking platform for communities.",
   "META_DEFAULT_DESCRIPTION": "Citizen OS enables participative discussion and voting for groups, when getting together offline or online at the same time is not an option.",
-  "META_DEFAULT_KEYWORDS": "e-decisionmaking, e-governance, e-democracy, democracy, direct democracy, liquid democracy"
+  "META_DEFAULT_KEYWORDS": "e-decisionmaking, e-governance, e-democracy, democracy, direct democracy, liquid democracy",
+  "MSG_ERROR_40000_USER_EMAIL": "Invalid email.",
+  "MSG_ERROR_40001_USER_EMAIL": "The email address is already in use.",
+  "MSG_ERROR_40002_USER_EMAIL": "Account with this email does not exist.",
+  "MSG_ERROR_40000_USER_PASSWORD": "Password must be at least 6 character long, containing at least 1 digit, 1 lower and upper case character.",
+  "MSG_ERROR_40003_USER_PASSWORD": "Wrong password.",
+  "MSG_INFO_ACCOUNT_NOT_VERIFIED": "The account verification has not been completed. Please check your e-mail.",
+  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Check your email to verify your account."
 }

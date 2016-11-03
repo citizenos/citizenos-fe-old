@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sTranslate', ['$state', '$translate', '$log', 'cosConfig', function ($state, $translate, $log, cosConfig) {
+    .service('sTranslate', ['$state', '$translate', '$log', '$filter', 'cosConfig', function ($state, $translate, $log, $filter, cosConfig) {
         var sTranslate = this;
 
         var GENERAL_ERROR_KEY_PATTERN = 'MSG_ERROR_:statusCode_:model';

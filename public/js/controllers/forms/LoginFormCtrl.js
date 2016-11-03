@@ -17,6 +17,8 @@ angular
         $scope.doLogin = function () {
             $log.debug('LoginFormCtrl.doLogin()');
 
+            $scope.errors = null;
+
             var success = function (response) {
                 $window.location.href = '/'; // FIXME: Land on the same page login was started from
             };
