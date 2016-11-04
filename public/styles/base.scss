@@ -121,7 +121,7 @@ a:link, a:visited {
     box-sizing: border-box;
 }
 
-.blue_button.disabled {
+.blue_button[disabled="true"]  {
     background: $disabled_blue;
     cursor: initial;
 }
@@ -139,7 +139,7 @@ a:link, a:visited {
     }
 }
 
-.blue_button:not(.disabled):hover {
+.blue_button:not([disabled="true"]):hover {
     background: $dark_blue;
     @include tablet {
         background: $deep_sky_blue;
