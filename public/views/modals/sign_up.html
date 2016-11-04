@@ -23,7 +23,7 @@
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section">
-                        <form name="signupForm" ng-controller="SignUpFormCtrl">
+                        <form name="signUpForm" ng-controller="SignUpFormCtrl">
                             <input id="name" ng-model="form.name" placeholder="Full name *" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" required>
                             <label for="name" class="error_label" ng-if="errors.name">
                                 <div class="table_cell">
@@ -52,7 +52,7 @@
                                     <span translate="{{errors.password}}"></span>
                                 </div>
                             </label>
-                            <button type="submit" ng-click="doSignUp()" class="blue_button">Save</button>
+                            <button type="submit" ng-click="doSignUp()" ng-disabled="signUpForm.$invalid" class="blue_button">Save</button>
                             <div class="link_section">
                                 <a class="lightbox_link" href="" ng-click="closeThisDialog()">Cancel</a>
                             </div>

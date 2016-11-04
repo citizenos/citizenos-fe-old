@@ -83,7 +83,7 @@
                                     <span translate="{{errors.password}}"></span>
                                 </div>
                             </label>
-                            <button type="submit" ng-click="doLogin()" class="blue_button">Log in / Register</button>
+                            <button type="submit" ng-click="doLogin()" ng-disabled="loginForm.$invalid" class="blue_button">Log in / Register</button>
                             <div class="link_section">
                                 <a class="lightbox_link" href="">Forgot password?</a>
                             </div>
