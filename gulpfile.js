@@ -51,19 +51,15 @@ gulp.task('uglify', function () {
             'public/js/directives/**/*.js',
             'public/js/controllers/**/*.js'
         ])
+        .pipe(sourcemaps.init({loadMaps : true}))
         .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(concat(pkg.name + '.bundle.js'))
         .pipe(uglify({
             mangle: false,
             compress: false,
-            beautify: true,
-            sourceMap: true,
-            sourceMapName: pkg.name + '.bundle.js.map'
+            beautify: true
         }))
-        .pipe(sourcemaps.write('.', {
-            includeContent: false
-        }))
+        .pipe(concat(pkg.name + '.bundle.js'))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('public/js/'));
 });
 
