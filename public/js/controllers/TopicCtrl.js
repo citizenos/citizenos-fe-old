@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log','$location', 'sTopic', function ($scope, $state, $stateParams, $log, $location, sTopic) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log','$location', 'sTopic', 'sTranslate', function ($scope, $state, $stateParams, $log, $location, sTopic, sTranslate) {
         $log.debug('TopicCtrl');
         $scope.topic = {
             id: null,
@@ -26,6 +26,9 @@ angular
         if ($state.current.name === 'topics.create') {
             sTopic.create($scope.topic).then( function (data) {
                 $log.debug('TopicCtrl.topic.create', data);
+            }, function (err) {
+                $log.error(err);
+                sTranslate.errorsToKeys(err,'USER');
             });
 
         }
