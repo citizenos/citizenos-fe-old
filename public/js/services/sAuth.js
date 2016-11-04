@@ -46,6 +46,24 @@ angular
             return $http.post(path, data).then(success, defaultError);
         };
 
+        sAuth.logout = function () {
+            var success = function (response) {
+                // Delete all user data except login status.
+                // Cant reference a new object here as Angular looses bindings.
+                angular.forEach(sAuth.user, function (value, key) {
+                    if (key !== 'loggedIn') {
+                        delete sAuth.user[key];
+                    }
+                });
+                sAuth.user.loggedIn = false;
+                return response;
+            };
+
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/logout');
+            return $http.post(path).then(success, defaultError);
+        };
+
+
         sAuth.status = function () {
             var success = function (response) {
                 $log.debug('sAuth.status', response);

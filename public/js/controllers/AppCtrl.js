@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$location', '$timeout', 'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sHotkeys', function ($scope, $rootScope, $log, $location, $timeout, sTranslate, sLocation, cosConfig, ngDialog, sAuth, sHotkeys) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', 'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, sTranslate, sLocation, cosConfig, ngDialog, sAuth, sHotkeys) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -81,8 +81,28 @@ angular
             sTranslate.switchLanguage(language);
         };
 
+        $scope.app.doLogout = function () {
+            sAuth
+                .logout()
+                .then(
+                    function () {
+                        $state.go('home');
+                    },
+                    function (err) {
+                        $log.error('AppCtrl.doLogout()', 'Logout failed', err);
+                    }
+                );
+        };
+
         $rootScope.$on('$translateChangeSuccess', function () {
             $scope.app.language = sTranslate.currentLanguage;
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function () {
+            $timeout(function () {
+                $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady');
+                window.prerenderReady = true;
+            });
         });
 
         function createRelUrls() {
@@ -95,12 +115,5 @@ angular
                 $scope.app.metainfo.hreflang[language] = sLocation.getBaseUrl() + url.join('/');
             });
         }
-
-        $rootScope.$on('$stateChangeSuccess', function () {
-            $timeout(function () {
-                $log.debug('prerenderReady');
-                window.prerenderReady = true;
-            });
-        });
 
     }]);
