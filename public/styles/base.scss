@@ -121,6 +121,10 @@ a:link, a:visited {
     box-sizing: border-box;
 }
 
+.blue_button.disabled {
+    background: $disabled_blue;
+}
+
 .blue_link {
     color: $deep_sky_blue;
     font-size: 14px;
