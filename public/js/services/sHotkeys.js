@@ -1,7 +1,7 @@
 'use strict';
 /*
-Enables function calling from key combinations
-*/
+ Enables function calling from key combinations
+ */
 angular
     .module('citizenos')
     .service('sHotkeys', ['$state', '$document', '$log', function ($state, $document, $log) {
@@ -34,7 +34,7 @@ angular
             107: '+',
             109: '-',
             110: '.',
-            111 : '/',
+            111: '/',
             186: ';',
             187: '=',
             188: ',',
@@ -59,31 +59,31 @@ angular
             var combo = [];
             for (var i = 0; i < keysList.length; i++) {
                 var key = keysList[i].toLowerCase();
-                if(Object.values(KEYMAP).indexOf(key) > -1 ){
+                if (Object.values(KEYMAP).indexOf(key) > -1) {
                     var code = Object.keys(KEYMAP)[Object.values(KEYMAP).indexOf(key)];
                     combo.push(parseInt(code));
                 }
-                else{
+                else {
                     $log.error('COULD NOT ADD KEY', key);
                     return;
                 }
             }
-            EVENTMAP.push({keys:combo,callback:callback});
+            EVENTMAP.push({keys: combo, callback: callback});
         };
 
         function keyDown() {
-            $document.find('html').bind('keydown', function(e) {
-                if(sHotkeys.keysDown.indexOf(e.keyCode) < 0){
+            $document.find('html').bind('keydown', function (e) {
+                if (sHotkeys.keysDown.indexOf(e.keyCode) < 0) {
                     sHotkeys.keysDown.push(e.keyCode);
-                    for(var x=0 ; x < EVENTMAP.length; x++){
-                        if(sHotkeys.keysDown.length >= EVENTMAP[x].keys.length){
+                    for (var x = 0; x < EVENTMAP.length; x++) {
+                        if (sHotkeys.keysDown.length >= EVENTMAP[x].keys.length) {
                             var matchCount = 0;
                             var matchNeeded = EVENTMAP[x].keys.length;
-                            for (var i=0; i<sHotkeys.keysDown.length; i++) {
+                            for (var i = 0; i < sHotkeys.keysDown.length; i++) {
                                 console.log(sHotkeys.keysDown[i]);
-                                if (EVENTMAP[x].keys.indexOf(sHotkeys.keysDown[i]) > -1){
+                                if (EVENTMAP[x].keys.indexOf(sHotkeys.keysDown[i]) > -1) {
                                     matchCount++;
-                                    if(matchCount === matchNeeded){
+                                    if (matchCount === matchNeeded) {
                                         sHotkeys.keysDown = [];
                                         var cb = EVENTMAP[x].callback;
                                         cb();
@@ -97,8 +97,8 @@ angular
         }
 
         function keyUp() {
-            $document.find('html').bind('keyup', function(e) {
-                sHotkeys.keysDown.splice(sHotkeys.keysDown.indexOf(e.keyCode,1));
+            $document.find('html').bind('keyup', function (e) {
+                sHotkeys.keysDown.splice(sHotkeys.keysDown.indexOf(e.keyCode, 1));
             });
         }
 

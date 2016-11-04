@@ -11,13 +11,24 @@ angular
         };
 
         var defaultSuccess = function (response) {
-            $log.debug('SUCCESS', response);
             return response.data;
         };
 
         var defaultError = function (response) {
-            $log.debug('ERROR', response);
             return $q.reject(response);
+        };
+
+        sAuth.signUp = function (email, password, name, company, redirectSuccess) {
+            var data = {
+                email: email,
+                password: password,
+                name: name,
+                company: company,
+                redirectSuccess: redirectSuccess
+            };
+
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/signup');
+            return $http.post(path, data).then(defaultSuccess, defaultError);
         };
 
         sAuth.login = function (email, password) {
@@ -35,8 +46,27 @@ angular
             return $http.post(path, data).then(success, defaultError);
         };
 
+        sAuth.logout = function () {
+            var success = function (response) {
+                // Delete all user data except login status.
+                // Cant reference a new object here as Angular looses bindings.
+                angular.forEach(sAuth.user, function (value, key) {
+                    if (key !== 'loggedIn') {
+                        delete sAuth.user[key];
+                    }
+                });
+                sAuth.user.loggedIn = false;
+                return response;
+            };
+
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/logout');
+            return $http.post(path).then(success, defaultError);
+        };
+
+
         sAuth.status = function () {
             var success = function (response) {
+                $log.debug('sAuth.status', response);
                 angular.extend(sAuth.user, response.data.data);
                 sAuth.user.loggedIn = true;
                 sAuth.user.isLoading = false;
@@ -45,7 +75,7 @@ angular
 
             var error = function (response) {
                 sAuth.user.isLoading = false;
-                return $q.reject(response);
+                return defaultError(response);
             };
 
             var path = sLocation.getAbsoluteUrlApi('/api/auth/status');

@@ -14,7 +14,7 @@
                 list: {
                     en: 'English',
                     et: 'Eesti',
-                    ru: 'Pусский',
+                    ru: 'Pусский'
                 },
                 debug: 'dbg'
             }
@@ -24,11 +24,15 @@
         .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
 
             var langReg = Object.keys(cosConfig.language.list).join('|');
+
             $locationProvider.html5Mode({
                 enabled: true,
                 rewriteLinks: true,
                 requireBase: true
             });
+
+            // Send cookies with API request
+            $httpProvider.defaults.withCredentials = true;
 
             // This is to enable resolving link to state later
             $stateProvider.decorator('parent', function (internalStateObj, parentFn) {
@@ -160,13 +164,13 @@
                     controller: 'TopicCtrl'
                 })
                 .state('topics.vote', {
-                    url:'/vote',
+                    url: '/vote',
                     parent: 'topics.view',
                     templateUrl: 'topic.voting.html',
                     controller: 'VoteCtrl'
                 })
                 .state('topics.vote.create', {
-                    url:'/vote/create',
+                    url: '/vote/create',
                     parent: 'topics.view',
                     templateUrl: 'topic.voting.html',
                     controller: 'VoteCtrl'
@@ -226,7 +230,8 @@
                 .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list).push(cosConfig.language.debug)) //et
                 .determinePreferredLanguage()
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
-                .useLocalStorage();
-            $translateProvider.translations('dbg', {}); // For debugging translations
+                .useLocalStorage()
+                .useMissingTranslationHandlerLog()
+                .translations('dbg', {})
         }]);
 })();

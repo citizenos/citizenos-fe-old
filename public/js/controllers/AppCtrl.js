@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$location', '$timeout', '$document',  'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sHotkeys', function ($scope, $rootScope, $log, $location, $timeout, $document, sTranslate, sLocation, cosConfig, ngDialog, sAuth, sHotkeys) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', 'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, sTranslate, sLocation, cosConfig, ngDialog, sAuth, sHotkeys) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -28,6 +28,7 @@ angular
         };
 
         createRelUrls();
+
         // Different global notifications that can be shown in the page header
         $scope.app.notifications = {
             messages: {}
@@ -41,7 +42,7 @@ angular
 
         sHotkeys.add('ctrl+alt+shift+t', sTranslate.debugMode);
 
-        // Initially all messages
+        // Initially all messages are empty
         Object.keys($scope.app.notifications.levels).forEach(function (key) {
             $scope.app.notifications.messages[$scope.app.notifications.levels[key]] = [];
         });
@@ -50,10 +51,10 @@ angular
          * Show global notification with specified level
          *
          * @param {string} level One of $scope.app.notifications.types
-         * @param {string} message Message to show
+         * @param {string} key Translation key
          */
-        $scope.app.doShowNotification = function (level, message) {
-            $scope.app.notifications.messages[level].push(message);
+        $scope.app.doShowNotification = function (level, key) {
+            $scope.app.notifications.messages[level].push(key);
         };
 
         /**
@@ -80,26 +81,39 @@ angular
             sTranslate.switchLanguage(language);
         };
 
-        $rootScope.$on('$translateChangeSuccess',function () {
+        $scope.app.doLogout = function () {
+            sAuth
+                .logout()
+                .then(
+                    function () {
+                        $state.go('home');
+                    },
+                    function (err) {
+                        $log.error('AppCtrl.doLogout()', 'Logout failed', err);
+                    }
+                );
+        };
+
+        $rootScope.$on('$translateChangeSuccess', function () {
             $scope.app.language = sTranslate.currentLanguage;
         });
 
-        function createRelUrls () {
-            angular.forEach(sTranslate.LANGUAGES, function (language) {
-                var url = $location.url().split('/');
-                url[1] = language;
-                if(url.indexOf('votes') > -1) {
-                    url.splice(url.indexOf('votes'), 2);
-                }
-                console.log(language);
-                $scope.app.metainfo.hreflang[language] = sLocation.getBaseUrl() + url.join('/');
-            });
-        };
-
         $rootScope.$on('$stateChangeSuccess', function () {
             $timeout(function () {
-                $log.debug('prerenderReady');
+                $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady');
                 window.prerenderReady = true;
             });
         });
+
+        function createRelUrls() {
+            angular.forEach(sTranslate.LANGUAGES, function (language) {
+                var url = $location.url().split('/');
+                url[1] = language;
+                if (url.indexOf('votes') > -1) {
+                    url.splice(url.indexOf('votes'), 2);
+                }
+                $scope.app.metainfo.hreflang[language] = sLocation.getBaseUrl() + url.join('/');
+            });
+        }
+
     }]);

@@ -67,14 +67,27 @@
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section">
-                        <input name="email" placeholder="E-mail address" focus-if="{{wWidth > 1024}}" class="error_input" ng-model="form.email"><!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
-                        <label for="email" class="error_label"><div class="table_cell"><div class="sprite sprite-icon-inputfield-error2x"></div>Not a correct email address</div>
-                        </label>
-                        <input name="password" type="password" placeholder="Password" ng-model="form.password">
-                        <button type="submit" ng-click="doLogin()" class="blue_button" disabled="true">Log in / Register</button>
-                        <div class="link_section">
-                            <a class="lightbox_link" href="">Forgot password?</a>
-                        </div>
+                        <form name="loginForm">
+                            <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+                            <input id="email" ng-model="form.email" placeholder="E-mail address" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.email}" required>
+                            <label for="email" class="error_label" ng-if="errors.email">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.email}}"></span>
+                                </div>
+                            </label>
+                            <input id="password" ng-model="form.password" type="password" placeholder="Password" ng-class="{'error_input': errors.password}" required>
+                            <label for="password" class="error_label" ng-if="errors.password">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.password}}"></span>
+                                </div>
+                            </label>
+                            <button type="submit" ng-click="doLogin()" ng-disabled="loginForm.$invalid" class="blue_button">Log in / Register</button>
+                            <div class="link_section">
+                                <a class="lightbox_link" href="">Forgot password?</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

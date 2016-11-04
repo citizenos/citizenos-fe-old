@@ -1,12 +1,12 @@
 <div ng-if="wWidth > 1024">
     <!-- Only show this if the user is logged in -->
-    <div class="logo_area" ng-click="app.showSearchResults = false" ng-if="app.user.loggedIn == true">
+    <div class="logo_area" ng-click="app.showSearchResults = false" ng-if="app.user.loggedIn">
         <div class="logo sprite sprite-x5-cos-logo-small2x">
         </div>
     </div>
 
     <!-- Only show this if the user is NOT logged in -->
-    <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="app.user.loggedIn != true">
+    <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="!app.user.loggedIn">
     </div>
 </div>
 
@@ -20,12 +20,12 @@
     </div>
 
     <!-- Only show this if the user is logged in -->
-    <div ng-if="app.user.loggedIn == true">
+    <div ng-if="app.user.loggedIn">
         <div id="account_area">
             <div id="account_picture">
             </div>
             <div id="account_text">
-                <div class="section_header bold_white">Kevin Krepin</div>
+                <div class="section_header bold_white">{{app.user.name}}</div>
                 <a ng-click="app.navOpen = false; app.open_mobile_fi = false" id="account_action" href="#">My Account</a>
             </div>
         </div>
@@ -114,7 +114,7 @@
     <!-- Nav section -->
     <div class="section">
 
-        <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item" href="#" ng-if="app.user.loggedIn == true">
+        <a ng-click="app.navOpen = false; app.open_mobile_fi = false" class="section_item" href="#" ng-if="app.user.loggedIn">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-connections2x"></div>
@@ -175,7 +175,7 @@
 
 
     <!-- Only show this if the user is logged in -->
-    <div ng-if="app.user.loggedIn == true">
+    <div ng-if="app.user.loggedIn">
 
         <div class="line dark_line"></div>
         <div class="line light_line"></div>
@@ -183,7 +183,7 @@
 
         <div class="section">
 
-            <a ng-click="app.navOpen = false; app.open_mobile_fi = false; app.user.loggedIn = false;" class="section_item" href="#">
+            <a ng-click="app.doLogout(); app.navOpen = false; app.open_mobile_fi = false;" class="section_item" href="#">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-menu-icon-logout2x"></div>

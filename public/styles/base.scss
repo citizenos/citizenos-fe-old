@@ -121,7 +121,7 @@ a:link, a:visited {
     box-sizing: border-box;
 }
 
-.blue_button[disabled="true"]  {
+.blue_button[disabled]  {
     background: $disabled_blue;
     cursor: initial;
 }
@@ -139,7 +139,7 @@ a:link, a:visited {
     }
 }
 
-.blue_button:not([disabled="true"]):hover {
+.blue_button:not([disabled]):hover {
     background: $dark_blue;
     @include tablet {
         background: $deep_sky_blue;
@@ -163,7 +163,7 @@ a:link, a:visited {
     }
 }
 
-/* CLASSIC DROPDOWN */ 
+/* CLASSIC DROPDOWN */
 .classic_dropdown {
     color: $medium_black;
     font-size: 13px;
@@ -175,12 +175,12 @@ a:link, a:visited {
     height: 30px;
     z-index: 1;
 
-    
+
     .dropdown_selection {
         padding: 5px 42px 6px 10px;
         position: relative;
         cursor: pointer;
-        
+
         .arrow_holder {
             display: table;
             position: absolute;
@@ -258,7 +258,7 @@ a:link, a:visited {
             }
         }
 
-    
+
 
     }
 }
@@ -302,12 +302,12 @@ a:link, a:visited {
         .info_icon {
             width: 56px;
             @extend .table_cell;
-            
+
             .sprite {
                 margin: 0 auto;
             }
         }
-        
+
         .info_icon:last-child {
             cursor: pointer;
             height: 100%;
