@@ -14,8 +14,20 @@ angular
          * @param {Object} [params] An object containing properties mapped to the named route "parameters".
          * @param {Object} [query] An object containing a property for each query string parameter in the route.
          */
+
         sLocation.getAbsoluteUrlApi = function (path, params, query) {
             var baseUrlApi = cosConfig.api.baseUrl;
+
+            return _getAbsoluteUrl(baseUrlApi ,path, params, query);
+        };
+
+        sLocation.getAbsoluteUrl= function (path, params, query) {
+            var baseUrlApi = sLocation.getBaseUrl();
+
+            return _getAbsoluteUrl(baseUrlApi ,path, params, query);
+        };
+
+        function _getAbsoluteUrl ( baseUrl, path, params, query ) {
 
             if (params) {
                 Object.keys(params).forEach(function (key) {
@@ -33,7 +45,6 @@ angular
                 }
             }
 
-            return baseUrlApi + path + queryString;
-        };
-
+            return baseUrl + path + queryString;
+        }
     }]);
