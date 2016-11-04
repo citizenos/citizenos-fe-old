@@ -123,6 +123,7 @@ a:link, a:visited {
 
 .blue_button.disabled {
     background: $disabled_blue;
+    cursor: initial;
 }
 
 .blue_link {
@@ -138,7 +139,7 @@ a:link, a:visited {
     }
 }
 
-.blue_button:hover {
+.blue_button:not(.disabled):hover {
     background: $dark_blue;
     @include tablet {
         background: $deep_sky_blue;
