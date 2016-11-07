@@ -61,6 +61,7 @@ gulp.task('uglify', function () {
             'public/js/libs/angular-route.js',
             'public/js/libs/angular-translate.js',
             'public/js/libs/**/*.js',
+            '!public/js/libs/template-cache.js',
             'public/js/app.js',
             'public/js/services/**/*.js',
             'public/js/filters/**/*.js',
