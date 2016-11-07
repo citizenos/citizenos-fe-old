@@ -23,7 +23,9 @@ var pkg = JSON.parse(fs.readFileSync('package.json'));
 gulp.task('templatecache', function () {
   return gulp.src('public/views/**/*.html')
     .pipe(templateCache({
-        templateHeader: 'angular.module(\'view-template-cache\'<%= standalone %>)\n    .run([\'$templateCache\', function($templateCache) {\n',
+        module: 'view-template-cache',
+        root: '/views/',
+        templateHeader: 'angular.module(\'<%= module %>\'<%= standalone %>)\n    .run([\'$templateCache\', function($templateCache) {\n',
         templateBody: '        $templateCache.put(\'<%= url %>\',\'<%= contents %>\');',
         templateFooter: '\n    }]);',
         standalone :true
