@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies','view-template-cache']);
+    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies']);
 
     module
         .constant('cosConfig', {
@@ -121,7 +121,7 @@
                 .state('main', {
                     abstract: true,
                     url: '/{language:' + langReg + '}',
-                    templateUrl: 'layouts/main.html',
+                    templateUrl: '/views/layouts/main.html',
                     resolve: {
                         /* @ngInject */
                         sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {
@@ -143,24 +143,24 @@
                     url: '/',
                     parent: 'main',
                     controller: 'HomeCtrl',
-                    templateUrl: 'home.html'
+                    templateUrl: '/views/home.html'
                 })
                 .state('topics', {
                     url: '/topics',
                     parent: 'main',
-                    templateUrl: 'topics.html',
+                    templateUrl: '/views/topics.html',
                     controller: 'HomeCtrl'
                 })
                 .state('topics.create', {
                     url: '/create',
                     parent: 'topics',
-                    templateUrl: 'topic.html',
+                    templateUrl: '/views/topic.html',
                     controller: 'TopicCtrl'
                 })
                 .state('topics.view', {
                     url: '/:id',
                     parent: 'topics',
-                    templateUrl: 'topic.html',
+                    templateUrl: '/views/topic.html',
                     controller: 'TopicCtrl'
                 })
                 .state('topics.vote', {
@@ -178,29 +178,29 @@
                 .state('groups', {
                     url: '/groups',
                     parent: 'main',
-                    templateUrl: 'groups.html',
+                    templateUrl: '/views/groups.html',
                     controller: 'GroupCtrl'
                 })
                 .state('groups.create', {
                     url: '/create',
                     parent: 'groups',
-                    templateUrl: 'groups.html',
+                    templateUrl: '/views/groups.html',
                     controller: 'GroupCtrl'
                 })
                 .state('about', {
                     url: '/about',
                     parent: 'main',
-                    templateUrl: 'about.html'
+                    templateUrl: '/views/about.html'
                 })
                 .state('faq', {
                     url: '/faq',
                     parent: 'main',
-                    templateUrl: 'faq.html'
+                    templateUrl: '/views/faq.html'
                 })
                 .state('help', {
                     url: '/help',
                     parent: 'main',
-                    templateUrl: 'help.html'
+                    templateUrl: '/views/help.html'
                 });
 
 
