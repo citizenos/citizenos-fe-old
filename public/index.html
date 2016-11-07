@@ -8,9 +8,9 @@
     <script> window.prerenderReady = false;</script>
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=8a9dc4b1595e7ed5fb700db391418657" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=4c7c4cfac07ad62c93d210b40c852514" rel="stylesheet">
 
-    <script src="js/citizenos-fe.bundle.js?v=d31590ba7f3ce37aaf5bdd37f43fbd8e"></script>
+    <script src="js/citizenos-fe.bundle.js?v=ea27bc6ac3e00609b6cdec7d65243c21"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" href="{{app.metainfo.icon}}" type="image/x-icon"/>
@@ -88,14 +88,14 @@
     <!-- MOBILE HEADER NAV -->
     <div id="mobile_header" ng-if="wWidth <= 1024">
 
-        <div ng-include="'views/default/nav_mobile.html'"></div>
+        <div ng-include="'default/nav_mobile.html'"></div>
 
     </div>
 
     <!-- NAV -->
     <nav ng-class="app.showNav ? 'nav_is_open' : ''" ng-click="app.showSearchResults = false" ng-swipe-right="app.showNav = false">
 
-        <div ng-include="'views/default/nav.html'"></div>
+        <div ng-include="'default/nav.html'"></div>
 
     </nav>
 

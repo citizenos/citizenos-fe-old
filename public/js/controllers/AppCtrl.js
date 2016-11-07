@@ -71,7 +71,7 @@ angular
             $log.debug('AppCtrl.doShowLogin()');
 
             ngDialog.open({
-                template: '/views/modals/login.html',
+                template: 'modals/login.html',
                 scope: $scope
             });
         };
