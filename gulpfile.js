@@ -15,9 +15,24 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence').use(gulp),
     uncache = require('gulp-uncache'),
     cachebust = require('gulp-cache-bust'),
-    fs = require('fs');
+    fs = require('fs'),
+    templateCache = require('gulp-angular-templatecache');
 
 var pkg = JSON.parse(fs.readFileSync('package.json'));
+
+gulp.task('templatecache', function () {
+  return gulp.src('public/views/**/*.html')
+    .pipe(templateCache({
+        module: 'view-template-cache',
+        root: '/views/',
+        templateHeader: 'angular.module(\'<%= module %>\'<%= standalone %>)\n    .run([\'$templateCache\', function($templateCache) {\n',
+        templateBody: '        $templateCache.put(\'<%= url %>\',\'<%= contents %>\');',
+        templateFooter: '\n    }]);',
+        standalone :true
+    }))
+    .pipe(concat('template-cache.js'))
+    .pipe(gulp.dest('public/js/libs'));
+});
 
 gulp.task('default', function () {
     runSequence(
@@ -46,6 +61,7 @@ gulp.task('uglify', function () {
             'public/js/libs/angular-route.js',
             'public/js/libs/angular-translate.js',
             'public/js/libs/**/*.js',
+            '!public/js/libs/template-cache.js',
             'public/js/app.js',
             'public/js/services/**/*.js',
             'public/js/filters/**/*.js',
@@ -83,6 +99,11 @@ gulp.task('watch', function () {
         runSequence(
             'sass',
             'cachebreaker'
+        );
+    });
+    gulp.watch('public/views/**/*.html', function () {
+        runSequence(
+            'templatecache'
         );
     });
 });
