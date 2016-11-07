@@ -259,7 +259,7 @@
     </div>
 
     <div id="blue_button_wrap" ng-click="loadTopicList()" ng-if="topicCountTotal > topicList.length">
-        <div class="blue_button">Load more topics</div>
+        <div class="blue_button" ng-class="{disabled: isTopicListLoading}">Load more topics</div>
     </div>
 
 </div>
