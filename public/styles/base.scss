@@ -139,7 +139,7 @@ a:link, a:visited {
     }
 }
 
-.blue_button:not([disabled]):hover, .blue_button:not(.disabled):hover {
+.blue_button:not([disabled]):not(.disabled):hover {
     background: $dark_blue;
     @include tablet {
         background: $deep_sky_blue;
