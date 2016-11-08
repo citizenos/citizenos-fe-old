@@ -77,7 +77,27 @@ b {
     font-weight: $bold;
 }
 
+a img, a {
+    outline : none;
+}
+
+img {
+    border : 0;
+}
+
 //Overall button styles and other general items
+
+.profile_image_filler {
+    width: 40px;
+    height: 40px;
+    display: table;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 50%;
+    border: 1px solid $white;
+    box-sizing: border-box;
+    color: $white;
+}
 
 a:link, a:visited {
     text-decoration: none;
