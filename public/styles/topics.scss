@@ -13,6 +13,19 @@
 
         #topics_left {
             width: 28%;
+
+            @media (max-width: 1680px) {
+                width: 33%;
+            }
+
+            @media (max-width: 1320px) {
+                width: 38%;
+            }
+
+            @media (max-width: 750px) {
+                width: 100%;
+            }
+
             padding: 10px 11px 10px 10px;
             box-sizing: border-box;
             float: left;
@@ -25,6 +38,13 @@
                 box-sizing: border-box;
                 cursor: pointer;
                 box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+                position: relative;
+
+                .favorite_container {
+                    position: absolute;
+                    right: -5px;
+                    top: -5px;
+                }
 
                 &:not(:first-child) {
                     margin-top: 10px;
@@ -59,12 +79,31 @@
 
                     .small_topic_right_cont {
                         position: relative;
+
+                        
+                        .icon_container {
+                            height: 20px;
+                            width: 20px;
+                            overflow: hidden;
+                            border-radius: 50%;
+                        }
+                        
                         .small_topic_icon {
                             margin: 1px 8px 0 0;
                         }
 
                         &:hover .hover_info {
                             display: block;
+                            @include tablet {
+                                display: none;
+                            }
+                        }
+
+                        &:hover .small_topic_small_text, &:hover .small_topic_icon {
+                            opacity: 1;
+                            @include tablet {
+                                opacity: .69;
+                            }
                         }
 
                         .hover_info {
@@ -72,7 +111,7 @@
                             position: absolute;
                             color: $white;
                             border-radius: 4px;
-                            padding: 15px 15px 1px 15px;
+                            padding: 14px 15px 1px 15px;
                             font-weight: $bold;
                             font-size: 14px;
                             display: none;
@@ -83,11 +122,17 @@
                             top: 0;
                             margin-top: -15px;
 
+                            .info_arrow {
+                                position: absolute;
+                                left: -5px;
+                                top: 20px;
+                            }
+
                             .hover_item {
                                 margin-bottom: 15px;
-                                .sprite {
+                                .icon_container {
                                     float: left;
-                                    margin: 3px 12px 0 0;
+                                    margin: 0 12px 0 0;
                                 }
                             }
                         }
@@ -141,11 +186,14 @@
                 }
             }
 
-             .small_topic:hover {
-                  .small_topic_title {
+            .small_topic:hover {
+                .small_topic_title {
                     text-decoration: underline;
-                  }
-             }
+                    @include tablet {
+                        text-decoration: none;
+                    }
+                }
+            }
 
             .v_line {
                 width: 1px;
@@ -161,6 +209,15 @@
         
         #topics_right {
             width: 72%;
+
+            @media (max-width: 1680px) {
+                width: 67%;
+            }
+
+            @media (max-width: 1320px) {
+                width: 62%;
+            }
+
             padding: 10px;
             float: left;
             position: relative;
@@ -272,20 +329,90 @@
                             position: absolute;
                             right: 15px;
                             top: 15px;
+                            width: 22px;
+                            height: 22px;
                             cursor: pointer;
+                            background-color: $lightest_gray;
+                            border-radius: 50%;
+                            overflow: hidden;
+
+                            .ff_table_fix {
+                                display: table;
+                                width: 100%;
+                                height: 100%;
+                            }
+
+                            &:hover {
+                                .yellow_bg {
+                                    width: 24px;
+                                    height: 24px;
+                                    top: 0;
+                                    right: 0;
+                                    @include tablet {
+                                        width: 0;
+                                        height: 0;
+                                    }
+                                }
+                            }
+
+                            &:active {
+                                width: 24px;
+                                height: 24px;
+                                top: 14px;
+                                right: 14px;
+                                .yellow_bg {
+                                    transition: none;
+                                    width: 24px;
+                                    height: 24px;
+                                    top: 0;
+                                    right: 0;
+                                }
+                            }
+
+                            .yellow_bg {
+                                transition: all 360ms cubic-bezier(.45,.78,0,1);
+                                @include tablet {
+                                    transition: none;
+                                }
+                                background: $favorite_yellow;
+                                border-radius: 50%;
+                                width: 0;
+                                height: 0;
+                                position: absolute;
+                                top: 12px;
+                                right: 12px;
+                            }
+
+                            .sprite {
+                                margin: 0 auto;
+                                position: relative;
+                                z-index: 1;
+                            }
+
+
                         }
 
-                    }
+                        .container_favorite.favorited {
+                            .yellow_bg {
+                                transition: none;
+                                width: 24px;
+                                height: 24px;
+                                top: 0;
+                                right: 0;
+                            }
+                        }
 
-                    .line {
-                        margin-bottom: 20px;
                     }
 
                     .content_bottom {
                         padding-bottom: 20px;
                         .content_column {
+                            margin-top: 20px;
                             width: 33.3%;
                             float: left;
+                            @media (max-width: 1280px) {
+                                width: 50%;
+                            }
 
                             .content_item {
                                 &:not(:last-child) {

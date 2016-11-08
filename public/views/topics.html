@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <div class="small_topic" ng-class="key==0 ? 'active' : '' " ng-repeat="(key, this) in ['1', '2', '3', '4', '5', '6', '7', '8', '9']">
+            <div class="small_topic" ng-class="key==0 ? 'active' : '' " ng-repeat="(key, this) in ['1', '2']">
                 <div class="small_topic_header">
 
                     <div class="small_topic_left_cont">
@@ -66,16 +66,133 @@
 
                         <div class="hover_info">
 
+                            <div class="info_arrow sprite sprite-tooltip-arrow2x">
+                            </div>
+
                             <div class="hover_item">
-                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <div class="icon_container">
+                                    <div class="sprite sprite-icon-favourite2x"></div>
+                                </div>
                                 <div class="item_text">CitizenOS test group</div>
                             </div>
 
                             <div class="hover_item">
-                                <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                <div class="item_text">Estonian Government</div>
+                                <div class="icon_container">
+                                    <div class="sprite sprite-icon-favourite2x"></div>
+                                </div>
+                                <div class="item_text">CitizenOS test group</div>
                             </div>
 
+                        </div>
+                    </div>
+
+                    <div class="clearer"></div>
+
+                </div>
+
+                <div class="small_topic_title">
+                    Kuidas paremini arutleda
+                </div>
+
+                <div class="line lightest_line"></div>
+
+
+                <div class="small_topic_footer">
+
+                    <div class="small_topic_left_cont">
+                        <div class="small_topic_small_text">10 new activity</div>
+                    </div>
+
+
+                    <div class="small_topic_right_cont">
+                        <div class="small_topic_small_text">12.07.2016 11:23</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="small_topic">
+                <div class="small_topic_header">
+
+                    <div class="small_topic_left_cont">
+                        <div class="small_topic_icon">
+                            <div class="sprite sprite-mytopics-icon-invoting2x"></div>
+                        </div>
+                        <div class="small_topic_small_text">In voting</div>
+                    </div>
+
+                    <div class="small_topic_right_cont">
+                        <div class="small_topic_icon">
+                            <div class="sprite sprite-menu-icon-groups2x-dark"></div>
+                        </div>
+                        <div class="small_topic_small_text">3 groups</div>
+
+                        <div class="hover_info">
+
+                            <div class="info_arrow sprite sprite-tooltip-arrow2x">
+                            </div>
+
+                            <div class="hover_item">
+                                <div class="icon_container">
+                                    <div class="sprite sprite-icon-favourite2x"></div>
+                                </div>
+                                <div class="item_text">CitizenOS test group</div>
+                            </div>
+
+                            <div class="hover_item">
+                                <div class="icon_container">
+                                    <div class="sprite sprite-icon-favourite2x"></div>
+                                </div>
+                                <div class="item_text">CitizenOS test group</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="clearer"></div>
+
+                </div>
+
+                <div class="small_topic_title">
+                    Kuidas paremini arutleda
+                </div>
+
+                <div class="line lightest_line"></div>
+
+
+                <div class="small_topic_footer">
+
+                    <div class="small_topic_left_cont">
+                        <div class="small_topic_small_text">10 new activity</div>
+                    </div>
+
+
+                    <div class="small_topic_right_cont">
+                        <div class="small_topic_small_text">12.07.2016 11:23</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="small_topic">
+                <div class="favorite_container">
+                    <div class="sprite sprite-icon-favourite2x"></div>
+                </div>
+
+                <div class="small_topic_header">
+
+                    <div class="small_topic_left_cont">
+                        <div class="small_topic_icon">
+                            <div class="sprite sprite-mytopics-icon-infollowup2x"></div>
+                        </div>
+                        <div class="small_topic_small_text">In follow-up</div>
+                    </div>
+
+                    <div class="small_topic_right_cont">
+                        <div class="icon_container">
+                            <div class="sprite sprite-icon-favourite2x"></div>
                         </div>
                     </div>
 
@@ -129,8 +246,13 @@
                         <div class="container_title">
                             Kuidas paremini arutleda
                         </div>
-                        <div class="container_favorite">
-                            <div class="sprite sprite-icon-favourite-notfilled2x"></div>
+                        <div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
+                            <div class="ff_table_fix">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-favourite2x-white"></div>
+                                    <div class="yellow_bg"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
