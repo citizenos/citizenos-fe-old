@@ -2,8 +2,13 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$window', 'ngDialog', 'sAuth', 'sTranslate', function ($scope, $log, $window, ngDialog, sAuth, sTranslate) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$window', 'ngDialog', 'sAuth', 'sTranslate', 'sLocation', function ($scope, $log, $state, $window, ngDialog, sAuth, sTranslate, sLocation) {
         $log.debug('LoginFormCtrl');
+
+        $scope.LOGIN_PARTNERS = {
+            facebook: 'facebook',
+            google: 'google'
+        };
 
         var init = function () {
             $scope.form = {
@@ -49,4 +54,22 @@ angular
                 .login($scope.form.email, $scope.form.password)
                 .then(success, error);
         };
+
+
+        /**
+         * Login with partner
+         *
+         * @param {string} partnerId String representing the partner. For ex "facebook", "google".
+         */
+        $scope.doLoginPartner = function (partnerId) {
+            if (_.values($scope.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
+                throw new Error('LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', partnerId);
+            }
+
+            var path = '/api/auth/:partnerId';
+            var redirectSuccess = $state.href($state.current.name, $state.params, {absolute: true});
+
+            $window.location.href = sLocation.getAbsoluteUrlApi(path, {partnerId: partnerId}, {redirectSuccess: redirectSuccess});
+        };
+
     }]);

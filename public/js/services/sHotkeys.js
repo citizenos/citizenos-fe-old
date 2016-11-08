@@ -59,8 +59,8 @@ angular
             var combo = [];
             for (var i = 0; i < keysList.length; i++) {
                 var key = keysList[i].toLowerCase();
-                if (Object.values(KEYMAP).indexOf(key) > -1) {
-                    var code = Object.keys(KEYMAP)[Object.values(KEYMAP).indexOf(key)];
+                if (_.values(KEYMAP).indexOf(key) > -1) {
+                    var code = Object.keys(KEYMAP)[_.values(KEYMAP).indexOf(key)];
                     combo.push(parseInt(code));
                 }
                 else {
@@ -80,7 +80,6 @@ angular
                             var matchCount = 0;
                             var matchNeeded = EVENTMAP[x].keys.length;
                             for (var i = 0; i < sHotkeys.keysDown.length; i++) {
-                                console.log(sHotkeys.keysDown[i]);
                                 if (EVENTMAP[x].keys.indexOf(sHotkeys.keysDown[i]) > -1) {
                                     matchCount++;
                                     if (matchCount === matchNeeded) {
@@ -113,7 +112,7 @@ angular
             }
             /**
              * loop through the f keys, f1 to f19 and add them to the map
-             * programatically
+             * programmatically
              */
             for (i = 1; i < 20; ++i) {
                 KEYMAP[111 + i] = 'f' + i;
