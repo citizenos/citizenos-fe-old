@@ -25,7 +25,7 @@ gulp.task('templatecache', function () {
     .pipe(templateCache({
         module: 'view-template-cache',
         root: '/views/',
-        templateHeader: 'angular.module(\'<%= module %>\'<%= standalone %>)\n    .run([\'$templateCache\', function($templateCache) {\n',
+        templateHeader: 'angular.module(\'<%= module %>\'<%= standalone %>)\n    .run([\'$log\', function($log) {\n',
         templateBody: '        $templateCache.put(\'<%= url %>\',\'<%= contents %>\');',
         templateFooter: '\n    }]);',
         standalone :true
