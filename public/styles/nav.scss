@@ -112,9 +112,14 @@ nav {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: url(../imgs/profile.jpg);
             float: left;
             margin-right: 10px;
+            overflow: hidden;
+
+            img {
+                width: 40px;
+                height: 40px;
+            }
         }
 
         #account_area {
