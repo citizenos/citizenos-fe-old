@@ -23,12 +23,35 @@ var pkg = JSON.parse(fs.readFileSync('package.json'));
 gulp.task('templatecache', function () {
   return gulp.src('public/views/**/*.html')
     .pipe(templateCache({
-        module: 'view-template-cache',
+        module: 'citizenos',
         root: '/views/',
-        templateHeader: 'angular.module(\'<%= module %>\'<%= standalone %>)\n    .run([\'$log\', function($log) {\n',
-        templateBody: '        $templateCache.put(\'<%= url %>\',\'<%= contents %>\');',
-        templateFooter: '\n    }]);',
-        standalone :true
+        templateHeader: 'angular\n    .module(\'<%= module %>\'<%= standalone %>)\n    .run([\'$log\', \'$http\', \'$templateCache\', function($log, $http, $templateCache) {\n       var templates = [\n',
+        templateBody: '            \'<%= url %>\',',
+        templateFooter: '\n'
+        +'        ];\n        var i =0;\n'
+        +'        if( templates.length ){\n'
+        +'            downloadToCache();\n'
+        +'        }\n'
+        +'        function downloadToCache () {\n'
+            +'            var template = templates[i];\n'
+            +'            $http({\n'
+                +'                method:\'GET\' ,\n'
+                +'                url:template\n'
+                +'            }).then(function (response) {\n'
+                +'                $templateCache.put(response.config.url,response.data);\n'
+                +'                $log.debug(\'cached page\', response.config.url);\n\n'
+                +'                if (++i < templates.length) {\n'
+                +'                    downloadToCache();\n'
+                +'                }\n'
+                +'            }, function (err) {\n'
+                +'                $log.error(\'error\', err);\n'
+                +'                if (++i < templates.length) {\n'
+                +'                    downloadToCache();\n'
+                +'                }\n'
+                +'            });\n'
+                +'        }\n'
+                +'    }]);',
+        standalone :false
     }))
     .pipe(concat('template-cache.js'))
     .pipe(gulp.dest('public/js/libs'));
