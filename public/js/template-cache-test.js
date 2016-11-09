@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .run(['$q', '$log', '$http', '$templateCache', function($q, $log, $http, $templateCache) {
+    .run(['$q', '$log', '$http', '$templateCache', function ($q, $log, $http, $templateCache) {
         var templates = [
             '/views/about.html',
             '/views/faq.html',
@@ -26,17 +26,17 @@ angular
         function downloadToCache() {
             var template = templates[index];
             $http({
-                method:'GET' ,
-                url:pages[index]
+                method: 'GET',
+                url: pages[index]
             })
-            .then(function(response) {
-                $log.debug('Template ' +response.config.url+ ' cached');
-                $templateCache.put(response.config.url,response.data);
+                .then(function (response) {
+                    $log.debug('Template ' + response.config.url + ' cached');
+                    $templateCache.put(response.config.url, response.data);
 
-                if (++index < pages.length) {
-                    downloadToCache();
-                }
-            }, function (err) {
+                    if (++index < pages.length) {
+                        downloadToCache();
+                    }
+                }, function (err) {
                     $log.debug("Template error", err);
                     if (++index < pages.length) {
                         downloadToCache();
