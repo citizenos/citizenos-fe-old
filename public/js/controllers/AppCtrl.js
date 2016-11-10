@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', 'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, sTranslate, sLocation, cosConfig, ngDialog, sAuth, sHotkeys) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', 'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, sTranslate, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -78,7 +78,24 @@ angular
 
         $scope.app.doSwitchLanguage = function (language) {
             $log.debug('AppCtrl.doSwitchLanguage()', language);
-            sTranslate.switchLanguage(language);
+            if (language === $scope.app.language) {
+                return;
+            }
+
+            if ($scope.app.user.loggedIn && sTranslate.checkLanguageIsValid(language) && $scope.app.user.language !== language) {
+                    sUser
+                        .updateLanguage(language)
+                        .then(function () {
+                            $scope.app.user.language = language;
+                            sTranslate.switchLanguage(language);
+                        });
+            } else {
+                sTranslate.switchLanguage(language);
+                if( sTranslate.checkLanguageIsValid(language) ){
+                    $cookies.put('language', language);
+                    $log.debug('langCookie', $cookies.get('language'));
+                }
+            }
         };
 
         $scope.app.doLogout = function () {
