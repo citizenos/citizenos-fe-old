@@ -232,6 +232,10 @@
 
         <!-- RIGHT SIDE -->
         <div id="topics_right">
+
+            
+
+            <!-- GENERAL INFORMATION -->
             <div class="info_container">
 
                 <div class="container_header">
@@ -397,11 +401,12 @@
 
             </div>
 
-            <div class="info_container">
+            <!-- ACTIVITY FEED & NOTIFICATIONS -->
+            <div class="info_container" ng-hide="true">
 
                 <div class="container_header">
                     <div class="header_text">
-                        General information
+                        Activity feed & notifications
                     </div>
                     <div class="minimize_container">
                         <div class="sprite sprite-btn-minimize2x"></div>
@@ -410,7 +415,7 @@
 
                 <div class="container_content activity_container" >
                     
-                    <div class="activity" ng-repeat="(key, this) in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']">
+                    <div class="activity" ng-repeat="(key, this) in ['1', '2']">
 
                         <div class="activity_left">
                             <div class="activiy_time">12.07.2016 11:23</div>
@@ -438,6 +443,177 @@
                         </div>
                         
                     </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- CURRENT VOTE RESULTS -->
+            <div class="info_container vote_results" ng-hide="true">
+                
+                <div class="container_header">
+                    <div class="header_text">
+                        General information
+                    </div>
+                    <div class="minimize_container">
+                        <div class="sprite sprite-btn-minimize2x"></div>
+                    </div>
+                </div>
+
+                <div class="container_content">
+
+                    
+                    <div class="content_bottom">
+                        
+                        <!-- COLUMN 1 -->
+                        <div class="content_column">
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Results
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        Yes
+                                    </div>
+                                    <div class="item_text">
+                                        14
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                                <div class="line lightest_line"></div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        No
+                                    </div>
+                                    <div class="item_text">
+                                        12
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                                <div class="line lightest_line"></div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        Neutral
+                                    </div>
+                                    <div class="item_text">
+                                        2
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- COLUMN 2 -->
+                        <div class="content_column">
+
+                            
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Votes counted
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        26
+                                    </div>
+                                    <div class="v_line"></div>
+                                    <div class="item_link blue_link">
+                                        view who voted
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+                            
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Votes needed
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        1000
+                                    </div>
+                                    <div class="v_line"></div>
+                                    <div class="item_link blue_link">
+                                        edit
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+                            
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Vote deadline
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        12.08.2016
+                                    </div>
+                                    <div class="v_line"></div>
+                                    <div class="item_link blue_link">
+                                        edit
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="clearer"></div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- GROUP LIST -->
+            <div class="info_container group_list">
+                
+                <div class="container_header">
+                    <div class="header_text">
+                        General information | <div class="blue_link">search</div> | <div class="blue_link">add</div> 
+                    </div>
+                    <div class="minimize_container">
+                        <div class="sprite sprite-btn-minimize2x"></div>
+                    </div>
+                </div>
+
+                <div class="container_content">
+
+                    <table>
+                        <trth>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Rights
+                            </th>
+                            <th>
+                                Users
+                            </th>
+                            <th>
+                                Remove from topic
+                            </th>
+                        </tr>
+                        <tr ng-repeat="(key, this) in ['1', '2']">
+                            <td>
+                                CitizenOS test group
+                            </td>
+                            <td>
+                                Admin
+                            </td>
+                            <td>
+                                41
+                            </td>
+                            <td>
+                                BIN
+                            </td>
+                        </tr>
+                    </table>
 
                 </div>
 

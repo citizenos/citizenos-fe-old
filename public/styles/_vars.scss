@@ -17,8 +17,9 @@ $medium_gray: #EDEDED;
 $light_gray: #F6F6F6;
 $lightest_gray: #e5e5e5;
 
-$bold: 700;
 $light: 300;
+$medium: 400;
+$bold: 700;
 
 $green_light: #2eecb4;
 $green_medium:  #28c798;
@@ -26,6 +27,10 @@ $green_dark:  #0c6449;
 
 .bold {
     font-weight: $bold !important;
+}
+
+.medium {
+    font-weight: $medium !important;
 }
 
 .light {
