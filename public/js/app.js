@@ -50,6 +50,7 @@
                 var $state = $injector.get('$state');
                 var $translate = $injector.get('$translate');
                 var $log = $injector.get('$log');
+                var $cookies = $injector.get('$cookies');
 
                 var locationUrl = $location.url();
                 var locationPath = locationUrl.split('/');
@@ -59,6 +60,10 @@
                 var useLang = cosConfig.language.default;
                 if (langkeys.indexOf(clientLang) > -1) {
                     useLang = clientLang;
+                }
+                if(langkeys.indexOf($cookies.get('language')) > -1) {
+                    $log.debug('cookieLang',$cookies.get('language'));
+                    useLang = $cookies.get('language');
                 }
                 $log.debug('$urlRouterProvider.otherwise', 'Language detected before status', useLang);
 
@@ -80,6 +85,7 @@
                     });
 
                 function resolveOtherwise() {
+                    console.log('resolveOtherwise', useLang);
                     returnLink = '/' + useLang + '/';
                     if (langkeys.indexOf(locationPath[1]) > -1) {
                         returnLink = '/' + locationPath[1] + '/';
@@ -126,6 +132,7 @@
                         /* @ngInject */
                         sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {
                             sTranslate.setLanguage($stateParams.language);
+                            console.log($stateParams.language);
                             if (sAuth.user.isLoading === false) {
                                 $log.debug('$stateProvider.state("main").resolve', 'Status already loaded');
                                 return;

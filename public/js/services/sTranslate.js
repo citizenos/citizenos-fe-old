@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sTranslate', ['$state', '$translate', '$log', '$filter', 'cosConfig', function ($state, $translate, $log, $filter, cosConfig) {
+    .service('sTranslate', ['$state', '$translate', '$log', '$filter', '$cookies', 'cosConfig', function ($state, $translate, $log, $filter, $cookies, cosConfig) {
         var sTranslate = this;
 
         var GENERAL_ERROR_KEY_PATTERN = 'MSG_ERROR_:statusCode_:model';
@@ -21,6 +21,9 @@ angular
 
         var init = function () {
             var clientLang = $translate.resolveClientLocale();
+            if($cookies.get('language')){
+                clientLang = $cookies.get('language');
+            }
             if (sTranslate.LANGUAGES.indexOf(clientLang) > -1) {
                 sTranslate.currentLanguage = clientLang;
             }
@@ -28,7 +31,8 @@ angular
         init();
 
         sTranslate.setLanguage = function (language) {
-            if (checkLanguageIsValid(language) && $translate.use() !== language) {
+            console.log(language);
+            if (sTranslate.checkLanguageIsValid(language) && $translate.use() !== language) {
                 $log.debug('setLanguage', language);
                 sTranslate.currentLanguage = language;
                 return $translate.use(language);
@@ -38,7 +42,7 @@ angular
 
         sTranslate.switchLanguage = function (language) {
             $log.debug('switch language', language);
-            if (checkLanguageIsValid(language)) {
+            if (sTranslate.checkLanguageIsValid(language)) {
                 $state.transitionTo($state.current.name, {language: language});
             }
             sTranslate.setLanguage(language);
@@ -52,7 +56,10 @@ angular
             }
         };
 
-        var checkLanguageIsValid = function (language) {
+        sTranslate.checkLanguageIsValid = function (language) {
+            if( language === debugLang ){
+                return false;
+            }
             return sTranslate.LANGUAGES.indexOf(language) !== -1;
         };
 
