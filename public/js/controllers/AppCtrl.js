@@ -126,9 +126,6 @@ angular
             angular.forEach(sTranslate.LANGUAGES, function (language) {
                 var url = $location.url().split('/');
                 url[1] = language;
-                if (url.indexOf('votes') > -1) {
-                    url.splice(url.indexOf('votes'), 2);
-                }
                 $scope.app.metainfo.hreflang[language] = sLocation.getBaseUrl() + url.join('/');
             });
         }
