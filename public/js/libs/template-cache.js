@@ -18,6 +18,7 @@ angular
             '/views/default/search.html',
             '/views/layouts/main.html',
             '/views/modals/login.html',
+            '/views/modals/login_esteid.html',
             '/views/modals/sign_up.html',
         ];
         var i = 0;
