@@ -1,0 +1,60 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lighbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <span>Choose a log in method</span>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="lightbox_content">
+                <div id="login_lightbox" ng-controller="LoginEsteIdFormCtrl">
+                    <div class="lightbox_section">
+                        <h1>Mobiil-ID</h1>
+                        <form name="loginMobiilIdForm" novalidate>
+                            <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+                            <input id="phone" name="phone" ng-model="form.phone" placeholder="Phone number *" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': loginMobiilIdForm.phone.$error.pattern && loginMobiilIdForm.phone.$touched}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
+                            <label for="phone" class="error_label" ng-if="loginMobiilIdForm.phone.$error.pattern && loginMobiilIdForm.phone.$touched">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span>Invalid phone number</span>
+                                </div>
+                            </label>
+                            <input id="pid" name="pid" ng-model="form.pid" placeholder="Personal identification code *" ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
+                            <label for="pid" class="error_label" ng-if="loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span>Invalid personal identification code</span>
+                                </div>
+                            </label>
+                            <button type="submit" ng-click="doLoginMobiilId()" ng-disabled="loginMobiilIdForm.$invalid" class="blue_button">Log in with Mobiil-ID</button>
+                        </form>
+                    </div>
+
+                    <div class="line lightest_line"></div>
+
+                    <div class="lightbox_section">
+                        <h1>ID-card</h1>
+                        <button ng-click="doLoginIdCard()" class="blue_button">Log in with ID-card</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()">
+    </div>
+
+</div>

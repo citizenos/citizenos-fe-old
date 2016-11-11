@@ -72,4 +72,15 @@ angular
             $window.location.href = sLocation.getAbsoluteUrlApi(path, {partnerId: partnerId}, {redirectSuccess: redirectSuccess});
         };
 
+
+        /**
+         * Login with Estonian ID-Card
+         */
+        $scope.doLoginEsteId = function () {
+            ngDialog
+                .open({
+                    template: '/views/modals/login_esteid.html'
+                });
+        };
+
     }]);
