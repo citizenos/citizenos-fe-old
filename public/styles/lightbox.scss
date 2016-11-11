@@ -219,17 +219,7 @@
                     /* INPUT AREA */
 
                     input {
-                        width: 100%;
-                        box-sizing: border-box;
-                        border: solid 1px $lightest_gray;
-                        border-radius: 4px;
-                        height: 30px;
-                        font-size: 13px;
-                        padding: 0 10px;
-                        &:focus {
-                            border: 1px solid $dark_gray;
-                            outline: none;
-                        }
+                        @extend .input_small;
                     }
                     
                     input, button {

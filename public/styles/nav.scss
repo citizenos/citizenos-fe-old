@@ -108,22 +108,9 @@ nav {
             color: $white;
         }
 
-        #account_picture {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            float: left;
-            margin-right: 10px;
-            overflow: hidden;
-
-            img {
-                width: 40px;
-                height: 40px;
-            }
-        }
-
         #account_area {
             margin-bottom: 21px;
+            display: table;
         }
 
         .section {

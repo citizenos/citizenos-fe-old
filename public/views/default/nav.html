@@ -21,19 +21,29 @@
 
     <!-- Only show this if the user is logged in -->
     <div ng-if="app.user.loggedIn">
+
         <div id="account_area">
-            <div id="account_picture">
-                <!--<img src=".././imgs/profile.jpg">-->
-                <div class="profile_image_filler">
-                    <div class="table_cell">
-                        ML
+
+            <div class="table_cell">
+                <div class="profile_image_wrapper">
+                    <div class="profile_moon sprite sprite-icon-certified-google2x"></div>
+                    <div class="account_picture">
+                        <!--<img src=".././imgs/profile.jpg">-->
+                        <div class="profile_image_filler">
+                            <div class="table_cell">
+                                ML
+                            </div>
+                            <div class="profile_circle"></div>
+                        </div>
                     </div>
                 </div>
             </div>
+            
             <div id="account_text">
                 <div class="section_header bold_white">{{app.user.name}}</div>
                 <a ng-click="app.navOpen = false; app.open_mobile_fi = false" id="account_action" href="#">My Account</a>
             </div>
+
         </div>
 
         <div class="line dark_line"></div>

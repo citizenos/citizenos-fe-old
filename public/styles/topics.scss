@@ -5,13 +5,51 @@
 #topics_root {
     background: $light_gray;
     @extend .all_zero;
-    position: absolute;
     text-align: left;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    
+    
+
+    .v_line.separator {
+        width: 1px;
+        background: $medium_gray;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+
+        @media (max-width: 750px) {
+            display: none;
+        }
+    }
+
+    .topics_left .v_line.separator {
+        right: 0;
+    }
+
+    .topics_right .v_line.separator {
+        left: -1px;
+    }
+
+    .v_line.absolute_separator {
+        left: 38%;
+        margin-left: -1px;
+
+        @media (max-width: 1680px) {
+            left: 33%;
+        }
+
+        @media (max-width: 1320px) {
+            left: 38%;
+        }
+    }
+
 
     #topics_wrap {
         background: $light_gray;
 
-        #topics_left {
+        .topics_left {
             width: 28%;
 
             @media (max-width: 1680px) {
@@ -200,20 +238,9 @@
                     }
                 }
             }
-
-            .v_line {
-                width: 1px;
-                background: $medium_gray;
-                top: 0;
-                bottom: 0;
-                right: 0;
-                position: absolute;
-            }
-
         }
-
         
-        #topics_right {
+        .topics_right {
             width: 72%;
 
             @media (max-width: 1680px) {
@@ -267,6 +294,42 @@
                             }
                         }
                     }
+                }
+
+                .second_header {
+                    height: 50px;
+                    padding-left: 9px;
+
+                    .table_cell {
+                        input {
+                            @extend .input_small;
+                        }
+                    }
+
+                    .table_cell:nth-child(1) {
+                        padding-right: 10px;
+                    }
+                    
+
+                    .table_cell:nth-child(2) {
+                        width: 100px;
+                        .blue_button {
+                            border-radius: 4px;
+                        }
+                    }
+
+                    .table_cell:nth-child(3) {
+                        width: 60px;
+                        text-align: right;
+                        padding-right: 10px;
+                        padding-bottom: 1px;
+
+                        .blue_link {
+                            font-size: 13px;
+                        }
+
+                    }
+
                 }
 
                 .container_content.activity_container {
@@ -526,13 +589,12 @@
                 
                 .container_content {
                     table {
-                        padding: 8px 0 0 0;
                         width: 100%;
                         border-collapse: collapse;
 
                         th {
                             border-bottom: 1px solid $lightest_gray;
-                            padding: 10px 0;
+                            padding: 20px 0 10px 0;
                         }
                         th {
                             font-size: 13px;
@@ -543,34 +605,111 @@
                             &:hover {
                                 opacity: 1;
                             }
+                            .th_text {
+                                position: relative;
+                                display: inline;
+                                .sprite {
+                                    position: absolute;
+                                    right: -11px;
+                                    top: 4px;
+                                }
+                            }
                         }
+
                         td {
-                            padding: 10px 0;
+                            padding: 5px 0;
                         }
-                        td:nth-child(1), th:nth-child(1) {
+
+                        td:nth-child(1) {
                             font-size: 14px;
                             font-weight: $bold;
                             color: $deep_sky_blue;
+                            cursor: pointer;
+                            &:hover {
+                                text-decoration: underline;
+                                @include tablet {
+                                    text-decoration: none;
+                                }
+                            }
                         }
-                        td:nth-child(1), th:nth-child(1) {
-                            width: 50%;
+
+                        tr:nth-child(2) td {
+                            padding-top: 14px;
                         }
+
+                        tr:last-child td {
+                            padding-bottom: 19px;
+                        }
+
                         td:nth-child(2), th:nth-child(2) {
                             text-align: center;
+                            width: 100px;
                         }
                         td:nth-child(3), th:nth-child(3) {
+                            font-size: 13px;
                             text-align: center;
+                            width: 100px;
                         }
                         td:nth-child(4), th:nth-child(4) {
-                            text-align: right;
+                            text-align: center;
+                            width: 117px;
+                            text-decoration: none;
                         }
+                        .table_wrap {
+                            border-radius: 4px;
+                            border: solid 1px $lightest_gray;
+                            width: 30px;
+                            height: 30px;
+                            margin: 0 auto;
+                            cursor: pointer;
+
+                            &:hover {
+                                border: solid 1px $pinky_red;
+                                background: $pinky_red;
+                                .sprite {
+	                                @extend .sprite-mytopics-icon-deletetopic02x;
+                                    /*@media (max-width: 1024px) {
+	                                    background-position: -579px -548px;
+
+                                    }*/
+                                }
+                                /*@include tablet {
+                                    background: initial;
+                                    border: solid 1px $lightest_gray;
+                                }*/
+                            } 
+
+                            .delete_topic_btn {
+                                width: inherit;
+                                height: inherit;
+                                display: table;
+                            }
+                        }
+                        
+                        .sprite {
+                            margin: 0 auto;
+                        }
+
                     }
                 }
 
             }
-            
-        }
 
-    
+            .info_container.group_list.user_list {
+                .container_content {
+                    table {
+
+                        tr:nth-child(2) td {
+                            padding-top: 10px;
+                        }
+
+                        .name_wrap {
+                            display: table;
+                            height: 40px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

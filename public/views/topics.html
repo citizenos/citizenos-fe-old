@@ -1,9 +1,14 @@
 <div ui-view></div>
+
 <div ng-if="app.showTopicsList" id="topics_root">
 
+    
+    <div class="v_line separator absolute_separator"></div>
+
     <div id="topics_wrap">
+
         <!-- LEFT SIDE -->
-        <div id="topics_left">
+        <div class="topics_left">
 
             <div cos-dropdown class="classic_dropdown">
 
@@ -225,15 +230,15 @@
 
             </div>
 
-            <div class="v_line"></div>
+            <div class="v_line separator"></div>
 
         </div>
 
 
         <!-- RIGHT SIDE -->
-        <div id="topics_right">
-
+        <div class="topics_right">
             
+            <div class="v_line separator"></div>
 
             <!-- GENERAL INFORMATION -->
             <div class="info_container">
@@ -414,13 +419,8 @@
                 </div>
 
                 <div class="container_content activity_container" >
-<<<<<<< HEAD
                     
                     <div class="activity" ng-repeat="(key, this) in ['1', '2']">
-=======
-
-                    <div class="activity" ng-repeat="(key, this) in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']">
->>>>>>> 59f53727e76d3ab9338322b86e3c2166edb60d2d
 
                         <div class="activity_left">
                             <div class="activiy_time">12.07.2016 11:23</div>
@@ -576,11 +576,11 @@
             </div>
 
             <!-- GROUP LIST -->
-            <div class="info_container group_list">
+            <div class="info_container group_list" ng-hide="true">
                 
                 <div class="container_header">
                     <div class="header_text">
-                        General information | <div class="blue_link">search</div> | <div class="blue_link">add</div> 
+                        Group list | <div class="blue_link">search</div> | <div class="blue_link">add</div> 
                     </div>
                     <div class="minimize_container">
                         <div class="sprite sprite-btn-minimize2x"></div>
@@ -592,16 +592,24 @@
                     <table>
                         <trth>
                             <th>
-                                Title
+                                <div class="th_text">
+                                    Title
+                                </div>
                             </th>
                             <th>
-                                Rights
+                                <div class="th_text">
+                                    Rights
+                                </div>
                             </th>
                             <th>
-                                Users
+                                <div class="th_text">
+                                    Users<div class="sprite sprite-icon-list-ordering2x"></div>
+                                </div>
                             </th>
                             <th>
-                                Remove from topic
+                                <div class="th_text">
+                                    Remove from topic
+                                </div>
                             </th>
                         </tr>
                         <tr ng-repeat="(key, this) in ['1', '2']">
@@ -609,13 +617,290 @@
                                 CitizenOS test group
                             </td>
                             <td>
-                                Admin
+                                <div cos-dropdown class="classic_dropdown">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text">
+                                            Admin
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                <div class="v_line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+
+                                        <!-- NO CATEGORY -->
+                                        <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                            <div class="item_name">
+                                                Read
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 41
                             </td>
                             <td>
-                                BIN
+                                <div class="table_wrap">
+                                    <div class="delete_topic_btn">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+
+            </div>
+
+            <!-- USER LIST -->
+            <div class="info_container group_list user_list">
+                
+                <div class="container_header">
+                    <div class="header_text">
+                        User list | <div class="blue_link">cancel search</div> | <div class="blue_link">invite</div> 
+                    </div>
+                    <div class="minimize_container">
+                        <div class="sprite sprite-btn-minimize2x"></div>
+                    </div>
+                </div>
+
+                <div class="container_header second_header">
+                    <div class="table_cell">
+                        <input placeholder="Username, e-mail or group">
+                    </div>
+                    <div class="table_cell">
+                        <div class="blue_button">Search</div>
+                    </div>
+                    <div class="table_cell">
+                        <div class="blue_link">cancel</div>
+                    </div>
+                </div>
+
+                <div class="container_content">
+
+                    <table>
+                        <trth>
+                            <th>
+                                <div class="th_text">
+                                    Profile
+                                </div>
+                            </th>
+                            <th>
+                                <div class="th_text">
+                                    Has voted
+                                </div>
+                            </th>
+                            <th>
+                                <div class="th_text">
+                                    Rights<div class="sprite sprite-icon-list-ordering2x"></div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="th_text">
+                                    Remove from topic
+                                </div>
+                            </th>
+                        </tr>
+                        <tr ng-repeat="(key, this) in ['1', '2']">
+                            <td>
+                                <div class="profile_image_wrapper">
+                                    <div class="profile_moon sprite sprite-icon-certified-fb2x"></div>
+                                    <div class="account_picture dark">
+                                        <!--<img src=".././imgs/profile.jpg">-->
+                                        <div class="profile_image_filler">
+                                            <div class="table_cell">
+                                                ML
+                                            </div>
+                                            <div class="profile_circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name_wrap">
+                                    <div class="table_cell">
+                                        Kristian Lember
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sprite sprite-voted-check2x"></div>
+                            </td>
+                            
+                            <td>
+                                <div cos-dropdown class="classic_dropdown">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text">
+                                            Admin
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                <div class="v_line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+
+                                        <!-- NO CATEGORY -->
+                                        <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                            <div class="item_name">
+                                                Read
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table_wrap">
+                                    <div class="delete_topic_btn">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="(key, this) in ['1', '2']">
+                            <td>
+                                <div class="profile_image_wrapper">
+                                    <div class="profile_moon sprite sprite-icon-certified-google2x"></div>
+                                    <div class="account_picture dark">
+                                        <!--<img src=".././imgs/profile.jpg">-->
+                                        <div class="profile_image_filler">
+                                            <div class="table_cell">
+                                                ML
+                                            </div>
+                                            <div class="profile_circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name_wrap">
+                                    <div class="table_cell">
+                                        Kristian Lember
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sprite sprite-voted-check2x"></div>
+                            </td>
+                            
+                            <td>
+                                <div cos-dropdown class="classic_dropdown">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text">
+                                            Admin
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                <div class="v_line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+
+                                        <!-- NO CATEGORY -->
+                                        <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                            <div class="item_name">
+                                                Read
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table_wrap">
+                                    <div class="delete_topic_btn">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="(key, this) in ['1', '2']">
+                            <td>
+                                <div class="profile_image_wrapper">
+                                    <div class="profile_moon sprite sprite-icon-certified-id2x"></div>
+                                    <div class="account_picture dark">
+                                        <!--<img src=".././imgs/profile.jpg">-->
+                                        <div class="profile_image_filler">
+                                            <div class="table_cell">
+                                                ML
+                                            </div>
+                                            <div class="profile_circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name_wrap">
+                                    <div class="table_cell">
+                                        Kristian Lember
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sprite sprite-voted-nocheck2x"></div>
+                            </td>
+                            
+                            <td>
+                                <div cos-dropdown class="classic_dropdown">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text">
+                                            Admin
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                <div class="v_line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+
+                                        <!-- NO CATEGORY -->
+                                        <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                            <div class="item_name">
+                                                Read
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table_wrap">
+                                    <div class="delete_topic_btn">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </table>
