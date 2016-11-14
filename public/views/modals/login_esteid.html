@@ -18,18 +18,6 @@
 
             <div id="lightbox_content">
                 <div id="login_lightbox" ng-controller="LoginEsteIdFormCtrl">
-                    <div class="info_bar_wrap" ng-if="estidLoginError">
-                        <div class="info_bar bar_red">
-                            <div class="info_icon">
-                                <div class="sprite sprite-icon-notification-error2x"></div>
-                            </div>
-
-                            <div class="info_bar_text" translate="{{estidLoginError}}">
-                                Wohoo, lucky for you something went wrong! We're sorry.
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="lightbox_section">
                         <h1>Mobiil-ID</h1>
                         <form name="loginMobiilIdForm" ng-show="!formMobile.challengeID" novalidate>

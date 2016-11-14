@@ -15,18 +15,13 @@ angular
         };
         init();
 
-        // General error message for both sign-in methods
-        $scope.estidLoginError = null;
-
-        $scope.doCloseEstidLoginError = function () {
-            $scope.estidLoginError = null;
-        };
+        $scope.app.doHideNotification($scope.app.notifications.levels.ERROR);
 
         $scope.doLoginMobiilId = function () {
             $log.debug('LoginEsteIdFormCtrl.doLoginMobiilId()');
 
             $scope.formMobile.isLoading = true;
-            $scope.estidLoginError = null;
+            $scope.app.doHideNotification($scope.app.notifications.levels.ERROR);
 
 
             sAuth
@@ -54,7 +49,7 @@ angular
                     $scope.formMobile.isLoading = false;
                     $scope.formMobile.challengeID = null;
 
-                    $scope.estidLoginError = msg;
+                    $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, msg);
                 });
         };
 
@@ -62,7 +57,7 @@ angular
             $log.debug('LoginEsteIdFormCtrl.doLoginIdCard()');
 
             $scope.isLoadingIdCard = true;
-            $scope.estidLoginError = null;
+            $scope.app.doHideNotification($scope.app.notifications.levels.ERROR);
 
             var msg;
 
@@ -84,7 +79,7 @@ angular
                         }
 
                         $scope.isLoadingIdCard = false;
-                        $scope.estidLoginError = msg;
+                        $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, msg);
                     }
                 );
         };
