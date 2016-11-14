@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 
 
-    <link href="styles/citizenos-fe.bundle.css?v=b87a13b5f59879f21b82d4f04a49cff4" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=bb04f2d1b9370efe49be1f0a9ab3d91f" rel="stylesheet">
     <script src="js/libs/template-cache.js?v=d1573f72832765dae54751b8b339c785"></script>
-    <script src="js/citizenos-fe.bundle.js?v=8593bc50d50dadbf20915d381332b2e8"></script>
+    <script src="js/citizenos-fe.bundle.js?v=8bbfe828e3fc10d3383ba16fe28f3c16"></script>
 
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -34,7 +34,7 @@
 <body ng-class="app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
     <div ng-app="viewTemplateCache"></div>
     <!-- INFO BAR - base.scss -->
-    <div id="info_bar_wrap">
+    <div class="info_bar_wrap">
 
         <!-- RED MESSAGE -->
         <!-- Using ng-hide and ng-show instead of ng-if so that screen flicker would not occur on page load -->
@@ -50,7 +50,6 @@
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.ERROR)">
                 <div class="sprite sprite-icon-closemenu2x"></div>
             </div>
-
         </div>
 
         <!-- BLUE MESSAGE -->

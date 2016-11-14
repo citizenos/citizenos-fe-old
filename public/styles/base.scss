@@ -15,7 +15,7 @@ body, html {
 }
 
 body {
-    
+
 }
 
 body.body_fixed, body.ngdialog-open {
@@ -97,7 +97,7 @@ img {
     position: relative;
     float: left;
     margin-right: 10px;
-    
+
     .profile_moon {
         position: absolute;
         z-index: 1;
@@ -343,7 +343,7 @@ a:link, a:visited {
 
 /* INFO BAR */
 
-#info_bar_wrap {
+.info_bar_wrap {
     position: fixed;
     width: 100%;
     z-index: 9999;

@@ -4,7 +4,6 @@
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
-
                 <div id="lightbox_header_text">
                     <span>Choose a log in method</span>
                 </div>
@@ -15,23 +14,36 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div id="lightbox_content">
                 <div id="login_lightbox" ng-controller="LoginEsteIdFormCtrl">
+                    <div class="info_bar_wrap" ng-show="estidLoginError">
+                        <div class="info_bar bar_red">
+                            <div class="info_icon">
+                                <div class="sprite sprite-icon-notification-error2x"></div>
+                            </div>
+
+                            <div class="info_bar_text" translate="{{estidLoginError}}">
+                                Wohoo, lucky for you something went wrong! We're sorry.
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="lightbox_section">
                         <h1>Mobiil-ID</h1>
                         <form name="loginMobiilIdForm" novalidate>
                             <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
-                            <input id="phone" name="phone" ng-model="form.phone" placeholder="Phone number *" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': loginMobiilIdForm.phone.$error.pattern && loginMobiilIdForm.phone.$touched}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
+                            <input id="phone" name="phone" ng-model="formMobile.phone" placeholder="Phone number *" focus-if="{{wWidth > 1024}}"
+                                   ng-class="{'error_input': loginMobiilIdForm.phone.$error.pattern && loginMobiilIdForm.phone.$touched}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
                             <label for="phone" class="error_label" ng-if="loginMobiilIdForm.phone.$error.pattern && loginMobiilIdForm.phone.$touched">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span>Invalid phone number</span>
                                 </div>
                             </label>
-                            <input id="pid" name="pid" ng-model="form.pid" placeholder="Personal identification code *" ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
+                            <input id="pid" name="pid" ng-model="formMobile.pid" placeholder="Personal identification code *"
+                                   ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
                             <label for="pid" class="error_label" ng-if="loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -46,7 +58,7 @@
 
                     <div class="lightbox_section">
                         <h1>ID-card</h1>
-                        <button ng-click="doLoginIdCard()" class="blue_button">Log in with ID-card</button>
+                        <button ng-click="doLoginIdCard()" ng-disabled="isLoadingIdCard" class="blue_button">Log in with ID-card</button>
                     </div>
                 </div>
             </div>

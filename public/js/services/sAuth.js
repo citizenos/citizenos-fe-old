@@ -46,6 +46,25 @@ angular
             return $http.post(path, data).then(success, defaultError);
         };
 
+        sAuth.loginIdCard = function () {
+            var success = function (response) {
+                $log.debug('Auth.loginId', 'success');
+                if ([20002, 20003].indexOf(response.data.status.code) > -1) {
+                    sAuth.user.loggedIn = true;
+                    angular.extend(sAuth.user, response.data.data);
+                }
+                return response;
+            };
+
+            return $http
+                .get('https://id.citizenos.com/authorize', {withCredentials: true}) // withCredentials so that client certificate is sent
+                .then(function (response) {
+                    var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
+                    return $http.post(path, response.data.data);
+                })
+                .then(success, defaultError);
+        };
+
         sAuth.logout = function () {
             var success = function (response) {
                 // Delete all user data except login status.

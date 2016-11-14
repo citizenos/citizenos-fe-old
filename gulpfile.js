@@ -83,6 +83,8 @@ gulp.task('jshint', function () {
 gulp.task('uglify', function () {
     return gulp.src([
             'public/js/libs/moment-with-locales.js',
+            'public/js/libs/hwcrypto-legacy.js',
+            'public/js/libs/hwcrypto.js',
             'public/js/libs/angular.js',
             'public/js/libs/angular-touch.js',
             'public/js/libs/angular-route.js',
