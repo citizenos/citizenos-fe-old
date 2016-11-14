@@ -12,7 +12,8 @@ angular
         // List of models supported by sTranslate. Making it strict so errors would pop up.
         // Model name here should have 1:1 correspondence with a model in the REST API.
         sTranslate.models = {
-            USER: 'USER'
+            USER: 'USER',
+            LOGIN: 'LOGIN'
         };
 
         sTranslate.LANGUAGES = Object.keys(cosConfig.language.list);
