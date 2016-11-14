@@ -24,7 +24,7 @@ angular
                     $scope.searchResults = results;
                     $scope.app.showSearchResults = true;
                     $scope.app.showNav = false;
-                    $scope.app.open_mobile_fi = false;
+                    $scope.app.showSearchFiltersMobile = false;
                 }, function (err) {
                     $log.error('SearchCtrl', 'Failed to retrieve search results', err);
                 });
