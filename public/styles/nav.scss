@@ -45,7 +45,7 @@ nav {
     font-size: 13px;
     position: fixed;
     z-index: 10;
-    
+
     .dark_line {
         margin-top: 16px;
     }
@@ -152,11 +152,11 @@ nav {
 
 
                 }
-                
+
                 .dropdown_active .section_item {
                     background: $black !important;
                 }
-                
+
                 .dropdown_active .dropdown {
                     visibility: visible;
                     height: initial;
@@ -173,7 +173,7 @@ nav {
                     }
                 }
 
-                .section_item:not(.section_header):hover {
+                .section_item:not(.section_header):hover, .section_item.active {
                     cursor: pointer;
                     font-weight: bold;
                     color: $white;

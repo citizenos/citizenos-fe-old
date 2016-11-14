@@ -116,18 +116,18 @@
     <!-- FILTER AREA MOBILE -->
     <div ng-if="wWidth <= 767" id="filter_bar_mobile">
 
-        <div id="open_fi" ng-if="!app.open_mobile_fi" ng-click="app.open_mobile_fi = true">
+        <div id="open_fi" ng-if="!app.showSearchFiltersMobile" ng-click="app.showSearchFiltersMobile = true">
             Filter the topics
         </div>
 
-        <div id="fi_area" ng-if="app.open_mobile_fi">
+        <div id="fi_area" ng-if="app.showSearchFiltersMobile">
 
             <div id="fi_top">
                 <div id="fi_header">
                     <div id="fi_header_text">
                         Filter the topics
                     </div>
-                    <div id="close_fi" ng-click="app.open_mobile_fi = false">
+                    <div id="close_fi" ng-click="app.showSearchFiltersMobile = false">
                         <div class="table_cell">
                             <div class="sprite sprite-btn-popup-close2x"></div>
                         </div>
@@ -164,7 +164,7 @@
             </div>
 
             <div class="fi_submit">
-                <div class="blue_button" ng-click="app.open_mobile_fi = false">
+                <div class="blue_button" ng-click="app.showSearchFiltersMobile = false">
                     Submit filter
                 </div>
             </div>

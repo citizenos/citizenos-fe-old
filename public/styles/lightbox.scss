@@ -3,13 +3,13 @@
 
 #root_lightbox {
     @extend .all_zero;
-	background-color: rgba(0, 0, 0, 0.6);
-	position: fixed;
-	z-index: 11;
-	overflow-y: auto;
-	overflow-x: hidden;
-	-webkit-transform: translateZ(0);
-	transform: translateZ(0);
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    z-index: 11;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
     box-sizing: border-box;
 
     #close_lightbox {
@@ -19,25 +19,24 @@
         z-index: 10;
     }
 
-        
     #lighbox {
         z-index: 11;
         position: absolute;
         top: 50%;
         left: 50%;
         margin-right: -50%;
-        -webkit-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-        transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
         width: 320px;
-        
+
         @media (max-height: 800px) {
             top: 30px;
             -webkit-transform: translate(-50%, 0);
             -ms-transform: translate(-50%, 0);
             transform: translate(-50%, 0);
         }
-        
+
         @media (max-width: 800px) {
             top: 10px;
             -webkit-transform: translate(-50%, 0);
@@ -49,7 +48,7 @@
             width: 100%;
             top: 0;
         }
-        
+
         #lightbox_wrap {
 
             @include mobile {
@@ -64,7 +63,7 @@
                 display: table;
                 box-sizing: border-box;
                 color: $medium_black;
-                
+
                 #lightbox_header_text {
                     @extend .table_cell;
                     font-weight: $bold;
@@ -100,11 +99,15 @@
                     margin-bottom: 30px;
                 }
 
+                .info_bar_wrap {
+                    position: inherit;
+                }
+
                 .lightbox_section {
                     padding: 20px;
-                    
+
                     /* SOCIAL AREA */
-                    
+
                     .social_button {
                         height: 40px;
                         color: $white;
@@ -165,7 +168,7 @@
                             }
                         }
                     }
-                    
+
                     #google {
                         .social_text .table_cell {
                             background: $google_medium;
@@ -190,7 +193,6 @@
                         }
                     }
 
-                    
                     #id_card {
                         .social_text .table_cell {
                             background: $id_medium;
@@ -221,13 +223,13 @@
                     input {
                         @extend .input_small;
                     }
-                    
+
                     input, button {
                         &:not(:first-child) {
                             margin-top: 10px;
                         }
                     }
-                    
+
                     button {
                         border-radius: 4px;
                         width: 100%;
@@ -254,10 +256,7 @@
                         }
                     }
 
-
                 }
-
-
 
             }
 

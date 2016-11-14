@@ -46,6 +46,53 @@ angular
             return $http.post(path, data).then(success, defaultError);
         };
 
+        sAuth.loginMobiilIdInit = function (pid, phoneNumber) {
+            var data = {
+                pid: pid,
+                phoneNumber: phoneNumber
+            };
+
+            var success = function (response) {
+                return response.data.data;
+            };
+
+
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/mobile/init');
+            return $http.post(path, data).then(success, defaultError);
+        };
+
+        sAuth.loginMobiilIdStatus = function (token) {
+            var success = function (response) {
+                if ([20002, 20003].indexOf(response.data.status.code) > -1) {
+                    sAuth.user.loggedIn = true;
+                    angular.extend(sAuth.user, response.data.data);
+                }
+                return response;
+            };
+
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/mobile/status');
+            return $http.get(path, {params: {token: token}}).then(success, defaultError);
+        };
+
+        sAuth.loginIdCard = function () {
+            var success = function (response) {
+                $log.debug('Auth.loginId', 'success');
+                if ([20002, 20003].indexOf(response.data.status.code) > -1) {
+                    sAuth.user.loggedIn = true;
+                    angular.extend(sAuth.user, response.data.data);
+                }
+                return response;
+            };
+
+            return $http
+                .get('https://id.citizenos.com/authorize', {withCredentials: true}) // withCredentials so that client certificate is sent
+                .then(function (response) {
+                    var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
+                    return $http.post(path, response.data.data);
+                })
+                .then(success, defaultError);
+        };
+
         sAuth.logout = function () {
             var success = function (response) {
                 // Delete all user data except login status.

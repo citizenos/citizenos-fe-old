@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 
 
-    <link href="styles/citizenos-fe.bundle.css?v=0d5121c6b2bd5e7046a02448882e8f82" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=bb04f2d1b9370efe49be1f0a9ab3d91f" rel="stylesheet">
     <script src="js/libs/template-cache.js?v=d1573f72832765dae54751b8b339c785"></script>
-    <script src="js/citizenos-fe.bundle.js?v=d8a8fa2e33173b46f74c533834740ad5"></script>
+    <script src="js/citizenos-fe.bundle.js?v=46235277e54b77004dd31778294a66fe"></script>
 
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -31,10 +31,10 @@
 
 <!-- LIVE RELOAD CODE -->
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body ng-class="app.open_mobile_fi || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
+<body ng-class="app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
     <div ng-app="viewTemplateCache"></div>
     <!-- INFO BAR - base.scss -->
-    <div id="info_bar_wrap">
+    <div class="info_bar_wrap">
 
         <!-- RED MESSAGE -->
         <!-- Using ng-hide and ng-show instead of ng-if so that screen flicker would not occur on page load -->
@@ -50,7 +50,6 @@
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.ERROR)">
                 <div class="sprite sprite-icon-closemenu2x"></div>
             </div>
-
         </div>
 
         <!-- BLUE MESSAGE -->
