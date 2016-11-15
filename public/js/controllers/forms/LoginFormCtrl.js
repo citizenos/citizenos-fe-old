@@ -84,4 +84,15 @@ angular
                 });
         };
 
+        /**
+         * Password reset
+         */
+        $scope.doResetPassword = function () {
+            ngDialog
+                .open({
+                    template: '/views/modals/password_forgot.html',
+                    scope: $scope // Pass on $scope so that I can access AppCtrl
+                });
+        };
+
     }]);

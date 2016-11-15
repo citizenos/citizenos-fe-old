@@ -9,6 +9,7 @@
   "MSG_ERROR_40003_USER_PASSWORD": "Vale salasõna.",
   "MSG_INFO_ACCOUNT_NOT_VERIFIED": "Konto on veel kinnitamata. Palun vaata oma e-postkasti.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Palun vaata e-postiga saadetud kinnituskirja.",
+  "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Tehtud. Salasõna muutmiseks loe palun sulle saadetud e-kirja.",
   "MSG_ERROR_40010_LOGIN": "Olete katkestanud sisse logimise.",
   "MSG_ERROR_40013_LOGIN": "Allkirjastamine ei ole teie telefonis veel tööle hakanud. Palun proovige hiljem uuesti. Probleem püsimisel võtke palun ühendust oma teenusepakkujaga.",
   "MSG_ERROR_40014_LOGIN": "Telefon on välja lülitatud või ei ole leviulatuses.",

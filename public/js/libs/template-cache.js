@@ -20,6 +20,7 @@ angular
             '/views/lightboxes/id_signing.html',
             '/views/modals/login.html',
             '/views/modals/login_esteid.html',
+            '/views/modals/password_forgot.html',
             '/views/modals/sign_up.html',
         ];
         var i = 0;
