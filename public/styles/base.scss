@@ -251,6 +251,7 @@ a:link, a:visited {
         padding: 5px 42px 6px 10px;
         position: relative;
         cursor: pointer;
+        text-align: left;
 
         .arrow_holder {
             display: table;
@@ -303,6 +304,7 @@ a:link, a:visited {
         padding: 5px 0;
 
         .dropdown_item {
+            text-align: left;
             .item_name {
                 cursor: pointer;
                 padding: 5px 10px;
