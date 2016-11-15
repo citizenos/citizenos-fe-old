@@ -79,7 +79,8 @@ angular
         $scope.doLoginEsteId = function () {
             ngDialog
                 .open({
-                    template: '/views/modals/login_esteid.html'
+                    template: '/views/modals/login_esteid.html',
+                    scope: $scope // Pass on $scope so that I can access AppCtrl
                 });
         };
 
