@@ -110,7 +110,6 @@ angular
             return $http.post(path).then(success, defaultError);
         };
 
-
         sAuth.status = function () {
             var success = function (response) {
                 $log.debug('sAuth.status', response);
@@ -127,6 +126,11 @@ angular
 
             var path = sLocation.getAbsoluteUrlApi('/api/auth/status');
             return $http.get(path).then(success, error);
+        };
+
+        sAuth.passwordResetSend = function (email) {
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/password/reset/send');
+            return $http.post(path, {email: email}).then(defaultSuccess, defaultError);
         };
 
     }]);

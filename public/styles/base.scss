@@ -83,11 +83,11 @@ b {
 }
 
 a img, a {
-    outline : none;
+    outline: none;
 }
 
 img {
-    border : 0;
+    border: 0;
 }
 
 //Overall button styles and other general items
@@ -375,6 +375,9 @@ a:link, a:visited {
             width: 56px;
             @extend .table_cell;
 
+            vertical-align: top;
+            padding: 13px 0 13px 0;
+
             .sprite {
                 margin: 0 auto;
             }
@@ -389,6 +392,13 @@ a:link, a:visited {
 
 }
 
+.ngdialog-open {
+    .info_bar_wrap {
+        @include tablet {
+            margin-top: 0;
+        }
+    }
+}
 
 /* ANIMATED LOADER */
 .loader_wrap {
@@ -452,12 +462,12 @@ a:link, a:visited {
   }
 }
 @keyframes load3 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
