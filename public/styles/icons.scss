@@ -9,342 +9,384 @@
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
 	.sprite {
 		background-image: url('../imgs/icons_sprite2x.png');
-		background-size: 1183px 1014px;
+		 background-size: 1775px 1283px;
 	}
+}
+
+.sprite-arrow-calendar-left2x {
+	width: 9px;
+	height: 14px;
+	background-position: 0 0;
+}
+
+.sprite-arrow-calendar-right2x {
+	width: 9px;
+	height: 14px;
+	background-position: -9px -14px;
 }
 
 .sprite-btn-expand2x {
 	width: 16px;
 	height: 16px;
-	background-position: 0 0;
+	background-position: -18px -28px;
 }
 
 .sprite-btn-minimize2x {
 	width: 16px;
 	height: 16px;
-	background-position: -16px -16px;
+	background-position: -34px -44px;
 }
 
 .sprite-btn-popup-close-2x-green {
 	width: 14px;
 	height: 14px;
-	background-position: -32px -32px;
+	background-position: -50px -60px;
 }
 
 .sprite-btn-popup-close2x {
 	width: 14px;
 	height: 14px;
-	background-position: -46px -46px;
+	background-position: -64px -74px;
 }
 
 .sprite-bullet-arrow2x {
 	width: 13px;
 	height: 5px;
-	background-position: -60px -60px;
+	background-position: -78px -88px;
 }
 
 .sprite-bullet-plus2x {
 	width: 9px;
 	height: 9px;
-	background-position: -73px -65px;
+	background-position: -91px -93px;
 }
 
 .sprite-dropdown-arrowdown-big2x {
 	width: 13px;
 	height: 8px;
-	background-position: -82px -74px;
+	background-position: -100px -102px;
 }
 
 .sprite-dropdown-arrowdown-small2x {
 	width: 8px;
 	height: 6px;
-	background-position: -95px -82px;
+	background-position: -113px -110px;
 }
 
 .sprite-icon-back2x {
 	width: 16px;
 	height: 18px;
-	background-position: -103px -88px;
+	background-position: -121px -116px;
 }
 
 .sprite-icon-certified-fb2x {
 	width: 14px;
 	height: 14px;
-	background-position: -119px -106px;
+	background-position: -137px -134px;
 }
 
 .sprite-icon-certified-google2x {
 	width: 14px;
 	height: 14px;
-	background-position: -133px -120px;
+	background-position: -151px -148px;
 }
 
 .sprite-icon-certified-id2x {
 	width: 14px;
 	height: 14px;
-	background-position: -147px -134px;
+	background-position: -165px -162px;
 }
 
 .sprite-icon-certified-id-inverted2x {
 	width: 14px;
 	height: 14px;
-	background-position: -161px -148px;
+	background-position: -179px -176px;
 }
 
 .sprite-icon-closemenu-b-2x {
 	width: 12px;
 	height: 12px;
-	background-position: -175px -162px;
+	background-position: -193px -190px;
 }
 
 .sprite-icon-closemenu2x {
 	width: 12px;
 	height: 12px;
-	background-position: -187px -174px;
+	background-position: -205px -202px;
+}
+
+.sprite-icon-delete-topic2x {
+	width: 46px;
+	height: 40px;
+	background-position: -217px -214px;
 }
 
 .sprite-icon-dropdown-arrowdown2x {
 	width: 11px;
 	height: 7px;
-	background-position: -199px -186px;
+	background-position: -263px -254px;
 }
 
 .sprite-icon-favourite2x {
 	width: 22px;
 	height: 22px;
-	background-position: -210px -193px;
+	background-position: -274px -261px;
 }
 
 .sprite-icon-favourite2x-white {
 	width: 12px;
 	height: 12px;
-	background-position: -232px -215px;
+	background-position: -296px -283px;
 }
 
 .sprite-icon-favourite-notfilled2x {
 	width: 22px;
 	height: 22px;
-	background-position: -244px -227px;
+	background-position: -308px -295px;
 }
 
 .sprite-icon-hamburger2x {
 	width: 16px;
 	height: 12px;
-	background-position: -266px -249px;
+	background-position: -330px -317px;
 }
 
 .sprite-icon-inputfield-error2x {
 	width: 16px;
 	height: 14px;
-	background-position: -282px -261px;
+	background-position: -346px -329px;
 }
 
 .sprite-icon-list-ordering2x {
 	width: 6px;
 	height: 11px;
-	background-position: -298px -275px;
+	background-position: -362px -343px;
 }
 
 .sprite-icon-notification-check2x {
 	width: 16px;
 	height: 16px;
-	background-position: -304px -286px;
+	background-position: -368px -354px;
 }
 
 .sprite-icon-notification-error2x {
 	width: 16px;
 	height: 14px;
-	background-position: -320px -302px;
+	background-position: -384px -370px;
 }
 
 .sprite-icon-notification-info2x {
 	width: 16px;
 	height: 16px;
-	background-position: -336px -316px;
+	background-position: -400px -384px;
 }
 
 .sprite-icon-search-b-2x {
 	width: 15px;
 	height: 15px;
-	background-position: -352px -332px;
+	background-position: -416px -400px;
 }
 
 .sprite-icon-search2x {
 	width: 15px;
 	height: 15px;
-	background-position: -367px -347px;
+	background-position: -431px -415px;
+}
+
+.sprite-i-d-kaart2x {
+	width: 142px;
+	height: 34px;
+	background-position: -446px -430px;
+}
+
+.sprite-id-spinner2x {
+	width: 34px;
+	height: 35px;
+	background-position: -588px -464px;
+}
+
+.sprite-img-idkaart2x {
+	width: 203px;
+	height: 98px;
+	background-position: -622px -499px;
 }
 
 .sprite-login-icon-facebook2x {
 	width: 14px;
 	height: 14px;
-	background-position: -382px -362px;
+	background-position: -825px -597px;
 }
 
 .sprite-login-icon-google2x {
 	width: 14px;
 	height: 14px;
-	background-position: -396px -376px;
+	background-position: -839px -611px;
 }
 
 .sprite-login-icon-id2x {
 	width: 18px;
 	height: 13px;
-	background-position: -410px -390px;
+	background-position: -853px -625px;
 }
 
 .sprite-menu-icon-about2x {
 	width: 18px;
 	height: 15px;
-	background-position: -428px -403px;
+	background-position: -871px -638px;
 }
 
 .sprite-menu-icon-connections2x {
 	width: 21px;
 	height: 17px;
-	background-position: -446px -418px;
+	background-position: -889px -653px;
 }
 
 .sprite-menu-icon-faq2x {
 	width: 17px;
 	height: 17px;
-	background-position: -467px -435px;
+	background-position: -910px -670px;
 }
 
 .sprite-menu-icon-groups2x {
 	width: 17px;
 	height: 16px;
-	background-position: -484px -452px;
+	background-position: -927px -687px;
 }
 
 .sprite-menu-icon-groups2x-dark {
 	width: 17px;
 	height: 16px;
-	background-position: -501px -468px;
+	background-position: -944px -703px;
 }
 
 .sprite-menu-icon-help2x {
 	width: 17px;
 	height: 17px;
-	background-position: -518px -484px;
+	background-position: -961px -719px;
 }
 
 .sprite-menu-icon-logout2x {
 	width: 17px;
 	height: 16px;
-	background-position: -535px -501px;
+	background-position: -978px -736px;
 }
 
 .sprite-menu-icon-topics2x {
 	width: 16px;
 	height: 18px;
-	background-position: -552px -517px;
+	background-position: -995px -752px;
+}
+
+.sprite-mobiil-i-d2x {
+	width: 149px;
+	height: 34px;
+	background-position: -1011px -770px;
 }
 
 .sprite-mytopics-icon-deletetopic02x {
 	width: 11px;
 	height: 13px;
-	background-position: -568px -535px;
+	background-position: -1160px -804px;
 }
 
 .sprite-mytopics-icon-deletetopic2x {
 	width: 11px;
 	height: 13px;
-	background-position: -579px -548px;
+	background-position: -1171px -817px;
 }
 
 .sprite-mytopics-icon-infollowup2x {
 	width: 12px;
 	height: 12px;
-	background-position: -590px -561px;
+	background-position: -1182px -830px;
 }
 
 .sprite-mytopics-icon-infollowup2x-w {
 	width: 12px;
 	height: 12px;
-	background-position: -602px -573px;
+	background-position: -1194px -842px;
 }
 
 .sprite-mytopics-icon-invoting2x {
 	width: 12px;
 	height: 12px;
-	background-position: -614px -585px;
+	background-position: -1206px -854px;
 }
 
 .sprite-mytopics-icon-invoting2x-w {
 	width: 12px;
 	height: 12px;
-	background-position: -626px -597px;
+	background-position: -1218px -866px;
 }
 
 .sprite-mytopics-icon-progress2x {
 	width: 12px;
 	height: 12px;
-	background-position: -638px -609px;
+	background-position: -1230px -878px;
 }
 
 .sprite-mytopics-icon-progress2x-w {
 	width: 12px;
 	height: 12px;
-	background-position: -650px -621px;
+	background-position: -1242px -890px;
 }
 
 .sprite-tooltip-arrow2x {
 	width: 5px;
 	height: 9px;
-	background-position: -662px -633px;
+	background-position: -1254px -902px;
 }
 
 .sprite-voted-check2x {
 	width: 23px;
 	height: 18px;
-	background-position: -667px -642px;
+	background-position: -1259px -911px;
 }
 
 .sprite-voted-nocheck2x {
 	width: 16px;
 	height: 16px;
-	background-position: -690px -660px;
+	background-position: -1282px -929px;
 }
 
 .sprite-x0-menu-icon-help2x {
 	width: 17px;
 	height: 17px;
-	background-position: -706px -676px;
+	background-position: -1298px -945px;
 }
 
 .sprite-x1-mytopics-icon-discuss-big2x {
 	width: 61px;
 	height: 58px;
-	background-position: -723px -693px;
+	background-position: -1315px -962px;
 }
 
 .sprite-x2-mytopics-icon-newtopic-big2x {
 	width: 70px;
 	height: 78px;
-	background-position: -784px -751px;
+	background-position: -1376px -1020px;
 }
 
 .sprite-x3-icon-topbar-earch2x {
 	width: 18px;
 	height: 18px;
-	background-position: -854px -829px;
+	background-position: -1446px -1098px;
 }
 
 .sprite-x4-icon-language-dropdown2x {
 	width: 11px;
 	height: 7px;
-	background-position: -872px -847px;
+	background-position: -1464px -1116px;
 }
 
 .sprite-x5-cos-logo-small2x {
 	width: 150px;
 	height: 28px;
-	background-position: -883px -854px;
+	background-position: -1475px -1123px;
 }
 
 .sprite-x6-cos-logo-big2x {
 	width: 150px;
 	height: 132px;
-	background-position: -1033px -882px;
+	background-position: -1625px -1151px;
 }

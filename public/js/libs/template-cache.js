@@ -20,6 +20,7 @@ angular
             '/views/modals/login.html',
             '/views/modals/login_esteid.html',
             '/views/modals/sign_up.html',
+            '/views/lightboxes/id_signing.html',
         ];
         var i = 0;
         if (templates.length) {
