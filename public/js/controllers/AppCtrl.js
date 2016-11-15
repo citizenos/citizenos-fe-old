@@ -77,12 +77,14 @@ angular
         };
 
         $scope.app.doShowIdSigning = function () {
+
+            $log.debug('AppCtrl.doShowIdSigning()');
+
             ngDialog.open({
                 template: '/views/lightboxes/id_signing.html',
                 scope: $scope
             });
         };
-        $scope.app.doShowIdSigning();
 
         $scope.app.doSwitchLanguage = function (language) {
             $log.debug('AppCtrl.doSwitchLanguage()', language);
