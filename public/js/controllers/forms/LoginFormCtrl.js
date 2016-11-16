@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$window', 'ngDialog', 'sAuth', 'sTranslate', 'sLocation', function ($scope, $log, $state, $window, ngDialog, sAuth, sTranslate, sLocation) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', 'ngDialog', 'sAuth', 'sTranslate', 'sLocation', function ($scope, $log, $state, $stateParams, $window, ngDialog, sAuth, sTranslate, sLocation) {
         $log.debug('LoginFormCtrl');
 
         $scope.LOGIN_PARTNERS = {
@@ -18,6 +18,8 @@ angular
             $scope.app.showNav = false; // Hide mobile navigation when login flow is started
         };
         init();
+
+        angular.extend($scope.form, $stateParams, $scope.$parent.ngDialogData);
 
         $scope.doLogin = function () {
             $log.debug('LoginFormCtrl.doLogin()');

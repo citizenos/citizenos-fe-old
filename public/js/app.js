@@ -159,9 +159,19 @@
                 })
                 .state('account.signup', {
                     url: '/signup?email&name&redirectSuccess',
-                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', function ($scope, $state, $stateParams, $log, ngDialog) {
+                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
                         ngDialog.open({
                             template: '/views/modals/sign_up.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
+                })
+                .state('account.login', {
+                    url: '/login?email&redirectSuccess',
+                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/login.html',
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
