@@ -1,4 +1,4 @@
-<div id="home_root">
+<div id="home_root" ng-controller="HomeCtrl">
 
 
     <!-- FILTER AREA DESKTOP -->
@@ -261,5 +261,7 @@
     <div id="blue_button_wrap" ng-click="loadTopicList()" ng-if="topicCountTotal > topicList.length">
         <div class="blue_button" ng-class="{disabled: isTopicListLoading}">Load more topics</div>
     </div>
+
+    <div ui-view></div>
 
 </div>

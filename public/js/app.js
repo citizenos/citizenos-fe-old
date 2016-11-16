@@ -61,8 +61,8 @@
                 if (langkeys.indexOf(clientLang) > -1) {
                     useLang = clientLang;
                 }
-                if(langkeys.indexOf($cookies.get('language')) > -1) {
-                    $log.debug('cookieLang',$cookies.get('language'));
+                if (langkeys.indexOf($cookies.get('language')) > -1) {
+                    $log.debug('cookieLang', $cookies.get('language'));
                     useLang = $cookies.get('language');
                 }
                 $log.debug('$urlRouterProvider.otherwise', 'Language detected before status', useLang);
@@ -149,50 +149,58 @@
                 .state('home', {
                     url: '/',
                     parent: 'main',
-                    controller: 'HomeCtrl',
                     templateUrl: '/views/home.html'
+                })
+                .state('account', {
+                    abstract: true,
+                    url: '/account',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
+                .state('account.signup', {
+                    url: '/signup?email&name&redirectSuccess',
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', function ($scope, $state, $stateParams, $log, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/sign_up.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
                 })
                 .state('topics', {
                     url: '/topics',
                     parent: 'main',
-                    templateUrl: '/views/topics.html',
-                    controller: 'HomeCtrl'
+                    templateUrl: '/views/topics.html'
                 })
                 .state('topics.create', {
                     url: '/create',
                     parent: 'topics',
-                    templateUrl: '/views/topic.html',
-                    controller: 'TopicCtrl'
+                    templateUrl: '/views/topic.html'
                 })
                 .state('topics.view', {
                     url: '/:id',
                     parent: 'topics',
-                    templateUrl: '/views/topic.html',
-                    controller: 'TopicCtrl'
+                    templateUrl: '/views/topic.html'
                 })
                 .state('topics.vote', {
                     url: '/vote',
                     parent: 'topics.view',
-                    templateUrl: 'topic.voting.html',
-                    controller: 'VoteCtrl'
+                    templateUrl: 'topic.voting.html'
                 })
                 .state('topics.vote.create', {
                     url: '/vote/create',
                     parent: 'topics.view',
-                    templateUrl: 'topic.voting.html',
-                    controller: 'VoteCtrl'
+                    templateUrl: 'topic.voting.html'
                 })
                 .state('groups', {
                     url: '/groups',
                     parent: 'main',
-                    templateUrl: '/views/groups.html',
-                    controller: 'GroupCtrl'
+                    templateUrl: '/views/groups.html'
                 })
                 .state('groups.create', {
                     url: '/create',
                     parent: 'groups',
-                    templateUrl: '/views/groups.html',
-                    controller: 'GroupCtrl'
+                    templateUrl: '/views/groups.html'
                 })
                 .state('about', {
                     url: '/about',

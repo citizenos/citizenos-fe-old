@@ -2,9 +2,8 @@
 
 angular
     .module('citizenos')
-    .controller('HomeCtrl', ['$scope', '$state', '$log', 'sTopic', function ($scope, $state, $log, sTopic) {
-        $scope.app.showTopicsList = false;
-        $log.debug('$state.current.name', $state.current.name);
+    .controller('HomeCtrl', ['$scope', '$log', 'sTopic', function ($scope, $log, sTopic) {
+        $log.debug('HomeCtrl');
 
         // Constant marking the "clear" or all options will do
         $scope.FILTERS_ALL = 'all';
@@ -99,11 +98,6 @@ angular
                     }
                 );
         };
-
-        if(['home', 'topics'].indexOf($state.current.name) > -1){
-            $log.debug('$state.current.name ==topics');
-            $scope.app.showTopicsList = true;
-            $scope.loadTopicList();
-        }
+        $scope.loadTopicList();
 
     }]);
