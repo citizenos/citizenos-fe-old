@@ -64,7 +64,7 @@
                     <div ng-if="isLoadingIdCard" class="loader_wrap">
                         <div class="loader"></div>
                     </div>
-                    <button ng-click="doLoginIdCard()" ng-disabled="isLoadingIdCard" class="blue_button">Log in with ID-card</button>
+                    <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard" class="blue_button">Log in with ID-card</button>
                 </div>
 
                 <div class="clearer"></div>
