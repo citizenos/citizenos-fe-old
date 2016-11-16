@@ -19,11 +19,11 @@
         z-index: 10;
     }
 
-    
+
     /* ID SIGNING LIGHTBOX */
-    #lighbox.id_signing {
+    #lightbox.id_signing {
         width: 600px;
-        
+
         @media (max-width: 640px) {
             width: 100%;
         }
@@ -51,7 +51,7 @@
                     }
 
                 }
-                
+
                 #lightbox_close {
                     height: 54px;
                     border-radius: 0 4px 0 4px;
@@ -59,7 +59,7 @@
                     float: none;
                     right: 0;
                 }
-                
+
                 .voting_tag_padding {
 
                     padding: 0 20px 20px 20px;
@@ -81,6 +81,11 @@
 
                 .line_wrap {
                     padding: 0 20px;
+                    display: none;
+
+                    @media (max-width: 550px) {
+                        display: block;
+                    }
                 }
 
                 .sign_in_section {
@@ -90,7 +95,7 @@
                     box-sizing: border-box;
                     position: relative;
                     text-align: center;
-                    
+
                     @media (max-width: 550px) {
                         width: 100%;
                         float: none;
@@ -106,7 +111,7 @@
                         padding: 0 20px;
                         -webkit-font-smoothing: antialiased;
                     }
-                    
+
                     .sprite {
                         margin: 0 auto;
                         margin-bottom: 45px;
@@ -132,7 +137,7 @@
         }
     }
 
-    #lighbox {
+    #lightbox {
         z-index: 11;
         position: absolute;
         top: 50%;
@@ -181,7 +186,7 @@
                 }
 
             }
-            
+
             @include mobile {
                 padding: 10px;
             }
