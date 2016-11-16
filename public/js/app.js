@@ -187,6 +187,16 @@
                         });
                     }]
                 })
+                .state('account.passwordReset', {
+                    url: '/password/reset/:passwordResetCode?email',
+                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/password_reset.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
+                })
                 .state('topics', {
                     url: '/topics',
                     parent: 'main',

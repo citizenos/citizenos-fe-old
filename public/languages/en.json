@@ -10,6 +10,7 @@
   "MSG_INFO_ACCOUNT_NOT_VERIFIED": "The account verification has not been completed. Please check your e-mail.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Check your email to verify your account.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Success! Please check your email to complete your password recovery.",
+  "MSG_INFO_PASSWORD_RESET_SUCCESS": "Success! Your password has been reset. Log in with your fresh password.",
   "MSG_ERROR_40010_LOGIN": "You have cancelled the log in flow.",
   "MSG_ERROR_40013_LOGIN": "The mobile-ID functionality of your phone is not yet ready. Please try again later. If the problem persists, contact your service provider.",
   "MSG_ERROR_40014_LOGIN": "Your phone is either switched off or out of coverage.",
