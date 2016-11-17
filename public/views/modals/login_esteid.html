@@ -17,10 +17,10 @@
             </div>
 
             <div id="lightbox_content" ng-controller="LoginEsteIdFormCtrl">
-                <div class="line lightest_line"></div>
+                <div class="v_line lightest_line"></div>
 
                 <div class="sign_in_section">
-                    <div class="sprite sprite-mobiil-i-d2x"></div>
+                    <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
                     <form name="loginMobiilIdForm" ng-if="!formMobile.challengeID && !formMobile.isLoading" novalidate>
                         <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
                         <input id="phone" name="phoneNumber" ng-model="formMobile.phoneNumber" placeholder="Phone number *" focus-if="{{wWidth > 1024}}"
@@ -39,7 +39,9 @@
                                 <span>Invalid personal identification code</span>
                             </div>
                         </label>
-                        <button type="submit" ng-click="doLoginMobiilId()" ng-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading" class="blue_button">Log in with Mobiil-ID</button>
+                        <div class="blue_button_wrap">
+                            <button type="submit" ng-click="doLoginMobiilId()" ng-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading" class="blue_button">Log in with Mobiil-ID</button>
+                        </div>
                     </form>
                     <div ng-if="formMobile.challengeID">
                         <div class="code">Control code: {{formMobile.challengeID}}</div>
@@ -51,7 +53,6 @@
                     <div ng-if="formMobile.isLoading && !formMobile.challengeID" class="loader_wrap">
                         <div class="loader"></div>
                     </div>
-                    <div class="v_line lightest_line"></div>
                 </div>
 
                 <div class="line_wrap">
@@ -59,12 +60,14 @@
                 </div>
 
                 <div class="sign_in_section">
-                    <div class="sprite sprite-i-d-kaart2x"></div>
-                    <div class="sprite sprite-img-idkaart2x" ng-if="!isLoadingIdCard"></div>
+                    <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
+                    <div class="sprite_big sprite sprite-img-idkaart2x"></div>
                     <div ng-if="isLoadingIdCard" class="loader_wrap">
                         <div class="loader"></div>
                     </div>
-                    <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard" class="blue_button">Log in with ID-card</button>
+                    <div class="blue_button_wrap">
+                        <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard" class="blue_button">Log in with ID-card</button>
+                    </div>
                 </div>
 
                 <div class="clearer"></div>
