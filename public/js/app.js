@@ -61,8 +61,8 @@
                 if (langkeys.indexOf(clientLang) > -1) {
                     useLang = clientLang;
                 }
-                if(langkeys.indexOf($cookies.get('language')) > -1) {
-                    $log.debug('cookieLang',$cookies.get('language'));
+                if (langkeys.indexOf($cookies.get('language')) > -1) {
+                    $log.debug('cookieLang', $cookies.get('language'));
                     useLang = $cookies.get('language');
                 }
                 $log.debug('$urlRouterProvider.otherwise', 'Language detected before status', useLang);
@@ -125,8 +125,8 @@
 
             $stateProvider
                 .state('main', {
-                    abstract: true,
                     url: '/{language:' + langReg + '}',
+                    abstract: true,
                     templateUrl: '/views/layouts/main.html',
                     resolve: {
                         /* @ngInject */
@@ -149,50 +149,82 @@
                 .state('home', {
                     url: '/',
                     parent: 'main',
-                    controller: 'HomeCtrl',
                     templateUrl: '/views/home.html'
+                })
+                .state('account', {
+                    url: '/account',
+                    abstract: true,
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
+                .state('account.signup', {
+                    url: '/signup?email&name&redirectSuccess',
+                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/sign_up.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
+                })
+                .state('account.login', {
+                    url: '/login?email&redirectSuccess',
+                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/login.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
+                })
+                .state('account.passwordForgot', {
+                    url: '/password/forgot',
+                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/password_forgot.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
+                })
+                .state('account.passwordReset', {
+                    url: '/password/reset/:passwordResetCode?email',
+                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/password_reset.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
                 })
                 .state('topics', {
                     url: '/topics',
+                    abstract: true,
                     parent: 'main',
-                    templateUrl: '/views/topics.html',
-                    controller: 'HomeCtrl'
+                    templateUrl: '/views/topics.html'
                 })
                 .state('topics.create', {
                     url: '/create',
-                    parent: 'topics',
-                    templateUrl: '/views/topic.html',
-                    controller: 'TopicCtrl'
+                    parent: 'topics'
                 })
                 .state('topics.view', {
                     url: '/:id',
-                    parent: 'topics',
-                    templateUrl: '/views/topic.html',
-                    controller: 'TopicCtrl'
+                    parent: 'topics'
                 })
-                .state('topics.vote', {
-                    url: '/vote',
-                    parent: 'topics.view',
-                    templateUrl: 'topic.voting.html',
-                    controller: 'VoteCtrl'
+                .state('mytopics', { // MyTopics aka Dashboard
+                    url: '/mytopics',
+                    parent: 'main',
+                    templateUrl: '/views/mytopics.html'
                 })
-                .state('topics.vote.create', {
-                    url: '/vote/create',
-                    parent: 'topics.view',
-                    templateUrl: 'topic.voting.html',
-                    controller: 'VoteCtrl'
+                .state('mygroups', {
+                    url: '/mygroups',
+                    parent: 'main',
+                    templateUrl: '/views/mygroups.html'
                 })
                 .state('groups', {
                     url: '/groups',
                     parent: 'main',
-                    templateUrl: '/views/groups.html',
-                    controller: 'GroupCtrl'
-                })
-                .state('groups.create', {
-                    url: '/create',
-                    parent: 'groups',
-                    templateUrl: '/views/groups.html',
-                    controller: 'GroupCtrl'
+                    templateUrl: '/views/groups.html'
                 })
                 .state('about', {
                     url: '/about',

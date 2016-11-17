@@ -133,4 +133,9 @@ angular
             return $http.post(path, {email: email}).then(defaultSuccess, defaultError);
         };
 
+        sAuth.passwordReset = function (email, password, passwordResetCode) {
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/password/reset');
+            return $http.post(path, {email: email, password: password, passwordResetCode: passwordResetCode}).then(defaultSuccess, defaultError);
+        };
+
     }]);

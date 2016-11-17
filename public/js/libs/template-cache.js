@@ -9,9 +9,9 @@ angular
             '/views/groups.html',
             '/views/help.html',
             '/views/home.html',
+            '/views/mygroups.html',
+            '/views/mytopics.html',
             '/views/no_topics.html',
-            '/views/topic.html',
-            '/views/topic.voting.html',
             '/views/topics.html',
             '/views/default/nav.html',
             '/views/default/nav_mobile.html',
@@ -21,6 +21,7 @@ angular
             '/views/modals/login.html',
             '/views/modals/login_esteid.html',
             '/views/modals/password_forgot.html',
+            '/views/modals/password_reset.html',
             '/views/modals/sign_up.html',
         ];
         var i = 0;

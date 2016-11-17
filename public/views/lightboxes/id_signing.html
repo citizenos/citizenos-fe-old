@@ -1,10 +1,10 @@
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox">
-    <div id="lighbox" class="id_signing">
+    <div id="lightbox" class="id_signing">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
-                
+
                 <div id="lightbox_header_text">
                     <div class="title">Choose a signing method for</div>
                     We need to do something about the hipsters in Telliskivi!
@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="clearer"></div>
-                
+
                 <div class="voting_tag_padding">
                     <div class="voting_tag">
                         <div class="table_cell">
@@ -26,35 +26,44 @@
                         </div>
                     </div>
                 </div>
-            
+
             </div>
 
-             <div id="lightbox_content">
-                 <div class="line lightest_line"></div>
+            <div id="lightbox_content">
+                <div class="line lightest_line"></div>
 
-                 <div class="sign_in_section">
+                <div class="sign_in_section">
                     <div class="sprite sprite-i-d-kaart2x"></div>
                     <div class="sprite sprite-img-idkaart2x"></div>
-                    <div class="blue_button">Sign with ID-Card</div>
+                    <button class="blue_button">Sign with ID-Card</button>
                     <div class="v_line lightest_line"></div>
-                 </div>
-                 
-                 <div class="line_wrap">
-                    <div class="line lightest_line"></div>
-                 </div>
+                </div>
 
-                 <div class="sign_in_section">
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+
+                <div class="sign_in_section">
                     <div class="sprite sprite-mobiil-i-d2x"></div>
+                    <input id="phone" name="phoneNumber" class="error_input" ng-model="formMobile.phoneNumber" placeholder="Phone number *" focus-if="{{wWidth > 1024}}" required>
+                    <label for="phone" class="error_label">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            <span>Invalid phone number</span>
+                        </div>
+                    </label>
+                    <input name="pid" placeholder="PID *" required>
                     <div class="code">Kontrollkood: 2843</div>
                     <div class="code_text">Please enter the PIN in your mobile phone...</div>
                     <div class="loader_wrap">
                         <div class="loader"></div>
                     </div>
-                 </div>
+                    <button class="blue_button">Sign with Mobiil-ID</>
+                </div>
 
-                 <div class="clearer"></div>
+                <div class="clearer"></div>
 
-              </div>
+            </div>
 
         </div>
     </div>

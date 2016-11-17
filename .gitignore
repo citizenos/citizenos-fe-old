@@ -3,7 +3,7 @@ node_modules
 Thumbs.db
 *.lock
 *.log
-*.log-*
+*.log*
 *.sublime-project
 *.sublime-workspace
 *.iws

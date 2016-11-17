@@ -4,6 +4,7 @@ angular
     .module('citizenos')
     .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log','$location', 'sTopic', 'sTranslate', function ($scope, $state, $stateParams, $log, $location, sTopic, sTranslate) {
         $log.debug('TopicCtrl');
+
         $scope.topic = {
             id: null,
             title: null,
@@ -15,8 +16,9 @@ angular
             permission: {
                 level: null
             },
-            upUrl: null
+            padUrl: null
         };
+
         if($state.current.name === 'topics.view' && $stateParams.id){
             sTopic.readUnauth({id:$stateParams.id}).then( function (data) {
                 angular.extend($scope.topic, data);
