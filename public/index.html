@@ -1,0 +1,108 @@
+<!doctype html>
+<html ng-app="citizenos" ng-strict-di="true" lang="{{app.language}}" ng-controller="AppCtrl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <base href="/">
+    <meta name="fragment" content="!">
+    <script> window.prerenderReady = false;</script>
+    <link href="imgs/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+    <link href="styles/citizenos-fe.bundle.css?v=646dbb856a405f48ddda173a691af29b" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=d6571ac889ac42a673eecb198bae6fe2"></script>
+    <script src="js/libs/template-cache.js?v=98fe691c52433452676759a97aef7cb2"></script>
+
+    <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
+    <link ng-if="app.metainfo.icon" rel="shortcut icon" href="{{app.metainfo.icon}}" type="image/x-icon"/>
+    <meta ng-if="app.metainfo.description" name="description" content="{{app.metainfo.description | translate}}">
+    <meta ng-if="app.metainfo.keywords" name="keywords" content="{{app.metainfo.keywords | translate}}">
+    <meta ng-if="app.metainfo.author" name="author" content="{{app.metainfo.author}}">
+
+    <meta ng-if="app.metainfo.title" property="og:title" content="{{app.metainfo.title | translate}}">
+    <meta ng-if="app.metainfo.image" property="og:image" content="{{app.metainfo.image}}">
+    <meta ng-if="app.metainfo.description" property="og:description" content="{{app.metainfo.description | translate}}">
+    <meta ng-if="app.metainfo.url" property="og:url" content="{{app.metainfo.url}}">
+    <meta ng-if="app.metainfo.site_name" property="og:site_name" content="{{app.metainfo.site_name}}">
+    <link rel="alternate" ng-repeat="(lang, path) in app.metainfo.hreflang" hreflang="{{lang}}" href="{{path}}">
+</head>
+
+<!-- LIVE RELOAD CODE -->
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+<body ng-class="app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
+    <div ng-app="viewTemplateCache"></div>
+    <!-- INFO BAR - base.scss -->
+    <div class="info_bar_wrap">
+
+        <!-- RED MESSAGE -->
+        <!-- Using ng-hide and ng-show instead of ng-if so that screen flicker would not occur on page load -->
+        <div class="info_bar bar_red ng-hide" ng-show="app.notifications.messages[app.notifications.levels.ERROR].length">
+            <div class="info_icon">
+                <div class="sprite sprite-icon-notification-error2x"></div>
+            </div>
+
+            <div class="info_bar_text" ng-repeat="key in app.notifications.messages[app.notifications.levels.ERROR] track by $index">
+                <span translate="{{key}}"></span>
+            </div>
+
+            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.ERROR)">
+                <div class="sprite sprite-icon-closemenu2x"></div>
+            </div>
+        </div>
+
+        <!-- BLUE MESSAGE -->
+        <div class="info_bar bar_blue ng-hide" ng-show="app.notifications.messages[app.notifications.levels.INFO].length">
+            <div class="info_icon">
+                <div class="sprite sprite-icon-notification-info2x"></div>
+            </div>
+
+            <div class="info_bar_text" ng-repeat="key in app.notifications.messages[app.notifications.levels.INFO] track by $index">
+                <span translate="{{key}}"></span>
+            </div>
+
+            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.INFO)">
+                <div class="sprite sprite-icon-closemenu2x"></div>
+            </div>
+        </div>
+
+        <!-- GREEN MESSAGE -->
+        <div class="info_bar bar_green ng-hide" ng-show="app.notifications.messages[app.notifications.levels.SUCCESS].length">
+            <div class="info_icon">
+                <div class="sprite sprite-icon-notification-check2x"></div>
+            </div>
+
+            <div class="info_bar_text">
+                <div class="info_row" ng-repeat="key in app.notifications.messages[app.notifications.levels.SUCCESS] track by $index">
+                    <span translate="{{key}}"></span>
+                </div>
+            </div>
+
+            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.SUCCESS)">
+                <div class="sprite sprite-btn-popup-close-2x-green"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- MOBILE HEADER NAV -->
+    <div id="mobile_header" ng-if="wWidth <= 1024">
+
+        <div ng-include="'views/default/nav_mobile.html'"></div>
+
+    </div>
+
+    <!-- NAV -->
+    <nav ng-class="app.showNav ? 'nav_is_open' : ''" ng-click="app.showSearchResults = false" ng-swipe-right="app.showNav = false">
+
+        <div ng-include="'views/default/nav.html'"></div>
+
+    </nav>
+
+
+    <!-- CONTENT -->
+
+    <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''" ui-view></div>
+
+</body>
+</html>
