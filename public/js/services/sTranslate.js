@@ -22,7 +22,7 @@ angular
 
         var init = function () {
             var clientLang = $translate.resolveClientLocale();
-            if($cookies.get('language')){
+            if ($cookies.get('language')) {
                 clientLang = $cookies.get('language');
             }
             if (sTranslate.LANGUAGES.indexOf(clientLang) > -1) {
@@ -32,7 +32,7 @@ angular
         init();
 
         sTranslate.setLanguage = function (language) {
-            console.log(language);
+            $log.debug('sTranslate', 'setLanguage', language);
             if (sTranslate.checkLanguageIsValid(language) && $translate.use() !== language) {
                 $log.debug('setLanguage', language);
                 sTranslate.currentLanguage = language;
@@ -58,7 +58,7 @@ angular
         };
 
         sTranslate.checkLanguageIsValid = function (language) {
-            if( language === debugLang ){
+            if (language === debugLang) {
                 return false;
             }
             return sTranslate.LANGUAGES.indexOf(language) !== -1;

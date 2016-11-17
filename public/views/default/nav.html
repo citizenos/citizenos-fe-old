@@ -28,10 +28,9 @@
                 <div class="profile_image_wrapper">
                     <!--div class="profile_moon sprite sprite-icon-certified-google2x"></div-->
                     <div class="account_picture">
-                        <!--<img src=".././imgs/profile.jpg">-->
                         <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">
                         <div class="profile_image_filler" ng-if="!app.user.imageUrl">
-                            <div class="table_cell">
+                            <div class="table_cell" cos-initials="app.user.name">
                                 ML
                             </div>
                             <div class="profile_circle"></div>

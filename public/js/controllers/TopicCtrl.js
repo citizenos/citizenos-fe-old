@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log','$location', 'sTopic', 'sTranslate', function ($scope, $state, $stateParams, $log, $location, sTopic, sTranslate) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sTopic', 'sTranslate', function ($scope, $state, $stateParams, $log, $location, sTopic, sTranslate) {
         $log.debug('TopicCtrl');
 
         $scope.topic = {
@@ -19,18 +19,18 @@ angular
             padUrl: null
         };
 
-        if($state.current.name === 'topics.view' && $stateParams.id){
-            sTopic.readUnauth({id:$stateParams.id}).then( function (data) {
+        if ($state.current.name === 'topics.view' && $stateParams.id) {
+            sTopic.readUnauth({id: $stateParams.id}).then(function (data) {
                 angular.extend($scope.topic, data);
                 $log.debug('topic.readUnauth', data);
             });
         }
         if ($state.current.name === 'topics.create') {
-            sTopic.create($scope.topic).then( function (data) {
+            sTopic.create($scope.topic).then(function (data) {
                 $log.debug('TopicCtrl.topic.create', data);
             }, function (err) {
                 $log.error(err);
-                sTranslate.errorsToKeys(err,'USER');
+                sTranslate.errorsToKeys(err, 'USER');
             });
 
         }
