@@ -125,8 +125,8 @@
 
             $stateProvider
                 .state('main', {
-                    abstract: true,
                     url: '/{language:' + langReg + '}',
+                    abstract: true,
                     templateUrl: '/views/layouts/main.html',
                     resolve: {
                         /* @ngInject */
@@ -152,8 +152,8 @@
                     templateUrl: '/views/home.html'
                 })
                 .state('account', {
-                    abstract: true,
                     url: '/account',
+                    abstract: true,
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
@@ -199,37 +199,31 @@
                 })
                 .state('topics', {
                     url: '/topics',
+                    abstract: true,
                     parent: 'main',
                     templateUrl: '/views/topics.html'
                 })
                 .state('topics.create', {
                     url: '/create',
-                    parent: 'topics',
-                    templateUrl: '/views/topic.html'
+                    parent: 'topics'
                 })
                 .state('topics.view', {
                     url: '/:id',
-                    parent: 'topics',
-                    templateUrl: '/views/topic.html'
+                    parent: 'topics'
                 })
-                .state('topics.vote', {
-                    url: '/vote',
-                    parent: 'topics.view',
-                    templateUrl: 'topic.voting.html'
+                .state('mytopics', { // MyTopics aka Dashboard
+                    url: '/mytopics',
+                    parent: 'main',
+                    templateUrl: '/views/mytopics.html'
                 })
-                .state('topics.vote.create', {
-                    url: '/vote/create',
-                    parent: 'topics.view',
-                    templateUrl: 'topic.voting.html'
+                .state('mygroups', {
+                    url: '/mygroups',
+                    parent: 'main',
+                    templateUrl: '/views/mygroups.html'
                 })
                 .state('groups', {
                     url: '/groups',
                     parent: 'main',
-                    templateUrl: '/views/groups.html'
-                })
-                .state('groups.create', {
-                    url: '/create',
-                    parent: 'groups',
                     templateUrl: '/views/groups.html'
                 })
                 .state('about', {

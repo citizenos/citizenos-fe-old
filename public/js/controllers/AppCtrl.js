@@ -67,7 +67,6 @@ angular
         };
 
         $scope.app.doShowLogin = function () {
-
             $log.debug('AppCtrl.doShowLogin()');
 
             ngDialog.open({
@@ -77,7 +76,6 @@ angular
         };
 
         $scope.app.doShowIdSigning = function () {
-
             $log.debug('AppCtrl.doShowIdSigning()');
 
             ngDialog.open({
