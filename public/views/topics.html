@@ -407,7 +407,7 @@
             </div>
 
             <!-- ACTIVITY FEED & NOTIFICATIONS -->
-            <div class="info_container">
+            <div class="info_container" ng-hide="true">
 
                 <div class="container_header">
                     <div class="header_text">
@@ -533,12 +533,32 @@
                             </div>
 
                             <div class="content_item">
+
                                 <div class="item_description">
                                     Votes needed
                                 </div>
                                 <div class="item_content">
                                     <div class="item_text">
                                         1000
+
+                                        <div class="edit_bubble">
+                                            <div class="toggle_widget" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
+                                                <div class="toggle_circle"></div>
+                                            </div>
+
+                                            <div class="bubble_content">
+                                                <div class="bubble_title">Minimum votes</div>
+                                                <div class="bubble_description">THE AMOUNT OF VOTES NEEDED BEFORE SUCCESSFUL CLOSURE.</div>
+                                                <input class="bubble_input input_small" value="1000">
+                                            </div>
+
+                                            <div class="blue_button">Save</div>
+                                            <div class="blue_link_wrapper">
+                                                <div class="blue_link">Cancel</div>
+                                            </div>
+
+                                        </div>
+                                        
                                     </div>
                                     <div class="v_line"></div>
                                     <div class="item_link blue_link">

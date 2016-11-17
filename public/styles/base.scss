@@ -236,6 +236,86 @@ a:link, a:visited {
     }
 }
 
+/* TOGGLE WIDGET */
+.toggle_widget.no {
+    background: $aqua_marine;
+    .toggle_circle {
+        margin-left: 32px;
+    }
+}
+
+.toggle_widget.yes {
+    background: $pinky_red;
+
+    .toggle_circle {
+        margin-left: 2px;
+    }
+}
+
+.toggle_widget {
+    position: absolute;
+    right: 20px;
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    cursor: pointer;
+
+    .toggle_text {
+        display: none;
+    }
+    .toggle_circle {
+        height: 26px;
+        width: 26px;
+        background: $white;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        transition: all 150ms ease-out;
+    }
+}
+
+/* EDIT BUBBLE */
+.edit_bubble {
+    position: absolute;
+    background: $light_gray;
+    z-index: 1;
+    border-radius: 4px;
+    padding: 10px 20px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 6px;
+
+    .bubble_content {
+        font-size: 14px;
+        margin-bottom: 20px;
+
+        .bubble_title {
+            margin-bottom: 2px;
+        }
+
+        .bubble_description {
+            font-weight: $medium;
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+
+    }
+
+    .blue_button {
+        border-radius: 4px;
+    }
+
+    .blue_link_wrapper {
+        width: 100%;
+        text-align: center;
+        margin-top: 8px;
+
+        .blue_link {
+            font-weight: $medium;
+        }
+    }
+
+}
+
 /* CLASSIC DROPDOWN */
 .classic_dropdown {
     color: $medium_black;
