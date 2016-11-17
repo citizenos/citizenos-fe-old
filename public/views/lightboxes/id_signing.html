@@ -29,14 +29,17 @@
 
             </div>
 
+            <div class="line lightest_line"></div>
             <div id="lightbox_content">
-                <div class="line lightest_line"></div>
+
+                <div class="v_line lightest_line"></div>
 
                 <div class="sign_in_section">
-                    <div class="sprite sprite-i-d-kaart2x"></div>
-                    <div class="sprite sprite-img-idkaart2x"></div>
-                    <button class="blue_button">Sign with ID-Card</button>
-                    <div class="v_line lightest_line"></div>
+                    <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
+                    <div class="sprite_big sprite sprite-img-idkaart2x"></div>
+                    <div class="blue_button_wrap">
+                        <button class="blue_button">Sign with ID-Card</button>
+                    </div>
                 </div>
 
                 <div class="line_wrap">
@@ -44,7 +47,7 @@
                 </div>
 
                 <div class="sign_in_section">
-                    <div class="sprite sprite-mobiil-i-d2x"></div>
+                    <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
                     <input id="phone" name="phoneNumber" class="error_input" ng-model="formMobile.phoneNumber" placeholder="Phone number *" focus-if="{{wWidth > 1024}}" required>
                     <label for="phone" class="error_label">
                         <div class="table_cell">
@@ -58,10 +61,14 @@
                     <div class="loader_wrap">
                         <div class="loader"></div>
                     </div>
-                    <button class="blue_button">Sign with Mobiil-ID</>
+                    <div class="blue_button_wrap">
+                        <button class="blue_button">Sign with Mobiil-ID</>
+                    </div>
                 </div>
 
                 <div class="clearer"></div>
+
+
 
             </div>
 

@@ -84,6 +84,8 @@ angular
             });
         };
 
+        $scope.app.doShowIdSigning();
+
         $scope.app.doSwitchLanguage = function (language) {
             $log.debug('AppCtrl.doSwitchLanguage()', language);
             if (language === $scope.app.language) {
