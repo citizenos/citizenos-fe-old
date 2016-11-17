@@ -18,7 +18,44 @@
         cursor: pointer;
         z-index: 10;
     }
+    
+    /* INPUT AREA */
 
+    input {
+        @extend .input_small;
+    }
+
+    input, button {
+        &:not(:first-child) {
+            margin-top: 10px;
+        }
+    }
+
+    button {
+        border-radius: 4px;
+        width: 100%;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, 0);
+        margin-bottom: 10px;
+        &:focus {
+            border: 2px solid $sky_blue;
+            border-radius: 4px;
+            outline: none;
+        }
+    }
+
+    .link_section {
+        text-align: center;
+        padding-bottom: 1px;
+
+        .lightbox_link {
+            color: $deep_sky_blue;
+            font-size: 13px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 
     /* ID SIGNING LIGHTBOX */
     #lightbox.id_signing {
@@ -37,6 +74,7 @@
 
             #lightbox_header {
                 height: auto;
+                position: relative;
 
                 #lightbox_header_text {
                     font-weight: $medium;
@@ -78,9 +116,28 @@
             }
 
             #lightbox_content {
+                padding: 34px 0 10px 0;
+                position: relative;
+                
+                @media (max-width: 550px) {
+                    padding: 30px 0 0 0;
+                }
+
+                .v_line {
+                    position: absolute;
+                    width: 1px;
+                    top: 20px;
+                    bottom: 20px;
+                    left: 50%;
+
+                    @media (max-width: 550px) {
+                        display: none;
+                    }
+                }
 
                 .line_wrap {
                     padding: 0 20px;
+                    margin-bottom: 30px;
                     display: none;
 
                     @media (max-width: 550px) {
@@ -88,23 +145,71 @@
                     }
                 }
 
+
                 .sign_in_section {
-                    float: left;
+                    float: right;
                     width: 50%;
-                    padding: 34px 20px 20px 20px;
+                    padding: 0 20px 30px 20px;
                     box-sizing: border-box;
                     position: relative;
                     text-align: center;
+                    height: 100%;
+
+                    .loader_wrap {
+                        @media (max-width: 550px) {
+                            padding-bottom: 0;
+                        }
+                    }
+                    
+                    &:nth-child(2) {
+                        position: absolute;
+                        
+                        .blue_button_wrap {
+                            bottom: 44px;
+                        }
+                        
+                        @media (max-width: 550px) {
+                            position: relative;
+
+                            .blue_button_wrap {
+                                bottom: 0;
+                            }
+                        }
+
+                    }
 
                     @media (max-width: 550px) {
                         width: 100%;
                         float: none;
                     }
 
+                    .blue_button_wrap {
+                        padding: 0 20px;
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        box-sizing: border-box;
+                        width: 100%;
+
+                        @media (max-width: 550px) {
+                            position: relative;
+                            padding: 0;
+                        }
+
+                    }
+                    .blue_button {
+                        border-radius: 4px;
+                        
+                        @media (max-width: 550px) {
+                            margin-bottom: 0;
+                        }
+                    }
+
                     .code {
                         font-weight: $bold;
                         font-size: 16px;
                         margin-bottom: 8px;
+                        margin-top: 10px;
                     }
 
                     .code_text {
@@ -112,26 +217,15 @@
                         -webkit-font-smoothing: antialiased;
                     }
 
-                    .sprite {
-                        margin: 0 auto;
-                        margin-bottom: 45px;
-                    }
-
-                    .blue_button {
-                        border-radius: 4px;
-                    }
-
-                    .v_line {
-                        width: 1px;
-                        bottom: 20px;
-                        top: 20px;
-                        right: 0;
-                        position: absolute;
+                    .sprite_big {
+                        margin: 0 auto 45px auto;
+                        
                         @media (max-width: 550px) {
-                            display: none;
+                            margin-bottom: 20px;
                         }
                     }
                 }
+
             }
 
         }
@@ -143,9 +237,9 @@
         top: 50%;
         left: 50%;
         margin-right: -50%;
-        -webkit-transform: translate(-50%, -50.1%);
+        -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50.1%);
+        transform: translate(-50%, -50%);
         width: 320px;
 
         @media (max-height: 800px) {
@@ -328,44 +422,6 @@
                             background: $id_medium;
                             @include tablet {
                                 background: $id_dark;
-                            }
-                        }
-                    }
-
-                    /* INPUT AREA */
-
-                    input {
-                        @extend .input_small;
-                    }
-
-                    input, button {
-                        &:not(:first-child) {
-                            margin-top: 10px;
-                        }
-                    }
-
-                    button {
-                        border-radius: 4px;
-                        width: 100%;
-                        outline: none;
-                        border: 2px solid rgba(255, 255, 255, 0);
-                        margin-bottom: 10px;
-                        &:focus {
-                            border: 2px solid $sky_blue;
-                            border-radius: 4px;
-                            outline: none;
-                        }
-                    }
-
-                    .link_section {
-                        text-align: center;
-                        padding-bottom: 1px;
-
-                        .lightbox_link {
-                            color: $deep_sky_blue;
-                            font-size: 13px;
-                            &:hover {
-                                text-decoration: underline;
                             }
                         }
                     }

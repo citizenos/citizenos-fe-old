@@ -483,11 +483,23 @@
                             margin-top: 20px;
                             width: 33.3%;
                             float: left;
+                            position: relative;
                             @media (max-width: 1280px) {
                                 width: 50%;
                             }
 
                             .content_item {
+                                
+                                .edit_bubble {
+                                    width: 100%;
+                                    margin-left: -20px;
+                                    
+                                    .bubble_content {
+                                        padding-right: 80px;
+                                    }
+                                }
+
+
                                 &:not(:last-child) {
                                     margin-bottom: 20px;
                                 }
