@@ -154,6 +154,11 @@
                     position: relative;
                     text-align: center;
                     height: 100%;
+                    min-height: 264px;
+
+                    @media (max-width: 550px) {
+                        min-height: initial;
+                    }
 
                     .loader_wrap {
                         @media (max-width: 550px) {
@@ -194,6 +199,7 @@
                         @media (max-width: 550px) {
                             position: relative;
                             padding: 0;
+                            margin-top: 10px;
                         }
 
                     }
