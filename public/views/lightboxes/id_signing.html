@@ -50,9 +50,7 @@
                     <div class="loader_wrap">
                         <div class="loader"></div>
                     </div>
-                    <div class="blue_button_wrap">
-                        <button class="blue_button">Sign with Mobiil-ID</button>
-                    </div>
+                    <button ng-if="wWidth <= 550" class="blue_button">Sign with Mobiil-ID</button>
                 </div>
 
                 <div class="line_wrap">
@@ -62,11 +60,20 @@
                 <div class="sign_in_section">
                     <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
                     <div class="sprite_big sprite sprite-img-idkaart2x"></div>
-                    <div class="blue_button_wrap">
-                        <button class="blue_button">Sign with ID-Card</button>
-                    </div>
+                    <button ng-if="wWidth <= 550" class="blue_button">Sign with ID-Card</button>
                 </div>
 
+                <div class="clearer"></div>
+
+                
+                <div ng-if="wWidth > 550" class="sign_in_section">
+                    <button class="blue_button">Sign with Mobiil-ID</button>
+                </div>
+                
+                <div ng-if="wWidth > 550" class="sign_in_section">
+                    <button class="blue_button">Sign with ID-Card</button>
+                </div>
+                
                 <div class="clearer"></div>
 
             </div>
