@@ -44,12 +44,12 @@
                             <span>Invalid phone number</span>
                         </div>
                     </label>
-                    <input name="pid" placeholder="PID *" required>
+                    <!--input name="pid" placeholder="PID *" required>
                     <div class="code">Kontrollkood: 2843</div>
                     <div class="code_text">Please enter the PIN in your mobile phone...</div>
                     <div class="loader_wrap">
                         <div class="loader"></div>
-                    </div>
+                    </div-->
                     <button ng-if="wWidth <= 550" class="blue_button">Sign with Mobiil-ID</button>
                 </div>
 
@@ -65,15 +65,14 @@
 
                 <div class="clearer"></div>
 
-                
                 <div ng-if="wWidth > 550" class="sign_in_section">
                     <button class="blue_button">Sign with Mobiil-ID</button>
                 </div>
-                
+
                 <div ng-if="wWidth > 550" class="sign_in_section">
                     <button class="blue_button">Sign with ID-Card</button>
                 </div>
-                
+
                 <div class="clearer"></div>
 
             </div>
@@ -81,7 +80,6 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="closeThisDialog()">
-    </div>
+    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
 
 </div>

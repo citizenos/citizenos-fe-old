@@ -21,67 +21,75 @@
 
             <div id="lightbox_content" ng-controller="LoginEsteIdFormCtrl">
 
-                <div class="v_line lightest_line"></div>
+                <form name="loginMobiilIdForm" novalidate>
 
-                <div class="sign_in_section">
-                    <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
-                    <form name="loginMobiilIdForm" ng-if="!formMobile.challengeID && !formMobile.isLoading" novalidate>
-                        <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
-                        <input id="phone" name="phoneNumber" ng-model="formMobile.phoneNumber" placeholder="Phone number *" focus-if="{{wWidth > 1024}}"
-                               ng-class="{'error_input': loginMobiilIdForm.phoneNumber.$error.pattern && loginMobiilIdForm.phoneNumber.$touched}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
-                        <label for="phone" class="error_label" ng-if="loginMobiilIdForm.phoneNumber.$error.pattern && loginMobiilIdForm.phoneNumber.$touched">
-                            <div class="table_cell">
-                                <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                <span>Invalid phone number</span>
-                            </div>
-                        </label>
-                        <input id="pid" name="pid" ng-model="formMobile.pid" placeholder="Personal identification code *"
-                               ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
-                        <label for="pid" class="error_label" ng-if="loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched">
-                            <div class="table_cell">
-                                <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                <span>Invalid personal identification code</span>
-                            </div>
-                        </label>
-                        <div class="blue_button_wrap">
-                            <button type="submit" ng-click="doLoginMobiilId()" ng-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading" class="blue_button">Log in with Mobiil-ID</button>
-                        </div>
-                    </form>
-                    <div ng-if="formMobile.challengeID">
-                        <div class="code">Control code: {{formMobile.challengeID}}</div>
-                        <div class="code_text">Make sure control code matches with one in the phone screen and enter Mobile-ID PIN2.</div>
-                        <div class="loader_wrap">
+                    <div class="v_line lightest_line"></div>
+
+                    <div class="sign_in_section">
+                        <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
+                        <div ng-if="formMobile.isLoading && !formMobile.challengeID" class="loader_wrap">
                             <div class="loader"></div>
                         </div>
+                        <div ng-if="!formMobile.challengeID && !formMobile.isLoading">
+                            <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+                            <input id="phone" name="phoneNumber" ng-model="formMobile.phoneNumber" placeholder="Phone number *" focus-if="{{wWidth > 1024}}"
+                                   ng-class="{'error_input': loginMobiilIdForm.phoneNumber.$error.pattern && loginMobiilIdForm.phoneNumber.$touched}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
+                            <label for="phone" class="error_label" ng-if="loginMobiilIdForm.phoneNumber.$error.pattern && loginMobiilIdForm.phoneNumber.$touched">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span>Invalid phone number</span>
+                                </div>
+                            </label>
+                            <input id="pid" name="pid" ng-model="formMobile.pid" placeholder="Personal identification code *"
+                                   ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
+                            <label for="pid" class="error_label" ng-if="loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span>Invalid personal identification code</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div ng-if="formMobile.challengeID">
+                            <div class="code">Control code: {{formMobile.challengeID}}</div>
+                            <div class="code_text">Make sure control code matches with one in the phone screen and enter Mobile-ID PIN2.</div>
+                            <div class="loader_wrap">
+                                <div class="loader"></div>
+                            </div>
+                        </div>
+                        <button type="submit" ng-click="doLoginMobiilId()"  ng-if="wWidth <= 550" ng-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading" class="blue_button">Sign with Mobiil-ID</button>
                     </div>
-                    <div ng-if="formMobile.isLoading && !formMobile.challengeID" class="loader_wrap">
-                        <div class="loader"></div>
+
+                    <div class="line_wrap">
+                        <div class="line lightest_line"></div>
                     </div>
-                </div>
 
-                <div class="line_wrap">
-                    <div class="line lightest_line"></div>
-                </div>
-
-                <div class="sign_in_section">
-                    <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
-                    <div class="sprite_big sprite sprite-img-idkaart2x"></div>
-                    <div ng-if="isLoadingIdCard" class="loader_wrap">
-                        <div class="loader"></div>
+                    <div class="sign_in_section">
+                        <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
+                        <div ng-if="!isLoadingIdCard" class="sprite_big sprite sprite-img-idkaart2x"></div>
+                        <div ng-if="isLoadingIdCard" class="loader_wrap">
+                            <div class="loader"></div>
+                        </div>
+                        <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard && wWidth <= 550" class="blue_button">Sign with ID-Card</button>
                     </div>
-                    <div class="blue_button_wrap">
-                        <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard" class="blue_button">Log in with ID-card</button>
+
+                    <div class="clearer"></div>
+
+                    <div ng-if="wWidth > 550" class="sign_in_section">
+                        <button ng-click="doLoginMobiilId()" ng-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading" class="blue_button">Sign with Mobiil-ID</button>
                     </div>
-                </div>
 
-                <div class="clearer"></div>
+                    <div ng-if="wWidth > 550" class="sign_in_section">
+                        <button ng-click="doLoginIdCard()" ng-disabled="formMobile.isLoading" class="blue_button">Sign with ID-Card</button>
+                    </div>
 
+                    <div class="clearer"></div>
+
+                </form>
             </div>
 
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="closeThisDialog()">
-    </div>
+    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
 
 </div>
