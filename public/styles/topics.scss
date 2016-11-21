@@ -499,6 +499,19 @@
                                     }
                                 }
 
+                                .edit_bubble.date_picker {
+                                    margin-left: 0;
+                                    width: 320px;
+                                    box-sizing: border-box;
+                                    
+                                    .bubble_content {
+                                        padding-right: 0;
+                                        .bubble_title {
+                                            padding-right: 80px;
+                                        }
+                                    }
+                                }
+
 
                                 &:not(:last-child) {
                                     margin-bottom: 20px;

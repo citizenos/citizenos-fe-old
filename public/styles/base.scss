@@ -298,12 +298,13 @@ a:link, a:visited {
 
     .bubble_arrow {
         position: absolute;
-        top: -5px;
+        top: -10px;
     }
 
     .bubble_content {
         font-size: 14px;
         margin-bottom: 20px;
+        margin-top: 4px;
 
         .bubble_title {
             margin-bottom: 2px;
@@ -331,6 +332,55 @@ a:link, a:visited {
         }
     }
 
+}
+
+.edit_bubble.date_picker {
+    .bubble_content {
+
+        .bubble_description {
+            margin-top: 17px;
+            margin-bottom: 10px;
+            font-size: inherit;
+
+            .picker_deadline_date {
+                float: left;
+            }
+
+            .picker_days_left {
+                float: right;
+            }
+        }
+        
+        .month_chooser {
+            margin-top: 15px;
+            height: 30px;
+            display: table;
+            width: 100%;
+            text-align: center;
+            .arrow, .month_text {
+                @extend .table_cell;
+            }
+            .arrow {
+                box-sizing: border-box;
+                width: 30px;
+                border-radius: 4px;
+                &:first-child {
+                    padding-right: 1px;
+                }
+                &:last-child {
+                    padding-left: 1px;
+                }
+                &:hover {
+                    background: $medium_gray;
+                }
+                cursor: pointer;
+                .sprite {
+                    margin: 0 auto;
+                }
+            }
+        }
+
+    } 
 }
 
 /* CLASSIC DROPDOWN */
