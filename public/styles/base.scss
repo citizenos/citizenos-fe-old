@@ -239,21 +239,33 @@ a:link, a:visited {
 /* TOGGLE WIDGET */
 .toggle_widget.no {
     background: $aqua_marine;
+    border: 1px solid $aqua_marine_border_second;
+    
     .toggle_circle {
-        margin-left: 32px;
+        margin-left: 31px;
     }
+}
+
+.toggle_widget.no:hover {
+    background: $aqua_marine_border_second;
 }
 
 .toggle_widget.yes {
     background: $pinky_red;
+    border: 1px solid $pinky_red_border;
 
     .toggle_circle {
-        margin-left: 2px;
+        margin-left: 1px;
     }
+}
+
+.toggle_widget.yes:hover {
+    background: $pinky_red_dark_hover;
 }
 
 .toggle_widget {
     position: absolute;
+    box-sizing: border-box;
     right: 20px;
     width: 60px;
     height: 30px;
@@ -269,7 +281,7 @@ a:link, a:visited {
         background: $white;
         border-radius: 50%;
         position: absolute;
-        top: 2px;
+        top: 1px;
         transition: all 150ms ease-out;
     }
 }
@@ -283,6 +295,11 @@ a:link, a:visited {
     padding: 10px 20px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     margin-top: 6px;
+
+    .bubble_arrow {
+        position: absolute;
+        top: -5px;
+    }
 
     .bubble_content {
         font-size: 14px;
