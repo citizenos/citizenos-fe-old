@@ -17,6 +17,7 @@ angular
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
             '/views/layouts/main.html',
+            '/views/modals/input_test.html',
             '/views/modals/login.html',
             '/views/modals/login_esteid.html',
             '/views/modals/password_forgot.html',
