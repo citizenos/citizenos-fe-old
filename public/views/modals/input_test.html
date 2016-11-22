@@ -60,6 +60,19 @@
                                 </span>
                             </div>
                             <br/>
+                            Overlay input with text will trigger the edit
+                            <div>
+                                <b>{{form.date3 || '13.02.1984'}}</b> |
+                                <div style="position: relative;display: inline-block;">
+                                    <a href="" style="pointer-events: none">Edit</a>
+                                    <input name="date3" ng-model="form.date3" type="date" placeholder="Date *"
+                                           style="position: absolute; width: 45px; top: 0; left: 0; padding: 0; margin: 0 0 0 -20px; opacity: 0;" required>
+                                </div>
+                            </div>
+                            <span>Value: {{form.date3}}</span><br/>
+                            <span style="color: red" ng-if="(inputTest.date3.$error.date || inputTest.date3.$error.required) && inputTest.date3.$touched">
+                                Invalid date {{inputTest.date3.$error}}
+                            </span>
                             <span style="color: red" ng-if="inputTest.$invalid">
                                 Form is invalid
                             </span>
