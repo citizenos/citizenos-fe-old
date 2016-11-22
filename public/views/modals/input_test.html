@@ -29,7 +29,7 @@
                                 Invalid e-mail {{inputTest.email.$error}}
                             </span>
                             <input name="tel" ng-model="form.tel" type="tel" placeholder="Phone number *" required>
-                            <span>Value: {{form.tel}} {{inputTest.tel.$error}}</span><br/>
+                            <span>Value: {{form.tel}}</span><br/>
                             <span style="color: red" ng-if="(inputTest.tel.$error.tel || inputTest.tel.$error.required) && inputTest.tel.$touched">
                                 Invalid tel {{inputTest.tel.$error}}
                             </span>
