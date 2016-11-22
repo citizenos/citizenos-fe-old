@@ -23,7 +23,7 @@
                     <div class="line lightest_line"></div>
                     <div class="lightbox_section">
                         <form name="inputTest">
-                            <input name="email" ng-model="form.email" type="email" placeholder="Email *" required>
+                            <input name="email" ng-model="form.email" type="email" placeholder="Email *" autofocus required>
                             <span>Value: {{form.email}}</span><br/>
                             <span style="color: red" ng-if="(inputTest.email.$error.email || inputTest.email.$error.required) && inputTest.email.$touched">
                                 Invalid e-mail {{inputTest.email.$error}}
