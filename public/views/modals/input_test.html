@@ -38,11 +38,20 @@
                             <span style="color: red" ng-if="(inputTest.number.$error.number || inputTest.number.$error.required) && inputTest.number.$touched">
                                 Invalid number {{inputTest.number.$error}}
                             </span>
-                            <input name="date" type="date" placeholder="Date *" required>
+                            <input name="date" ng-model="form.date" type="date" placeholder="Date *" required>
                             <span>Value: {{form.date}}</span><br/>
                             <span style="color: red" ng-if="(inputTest.date.$error.date || inputTest.date.$error.required) && inputTest.date.$touched">
                                 Invalid date {{inputTest.date.$error}}
                             </span>
+                            <a href="" ng-click="showDate2 = !showDate2">Show dynamic field Date2</a>
+                            <div ng-if="showDate2">
+                                <input name="date2" ng-model="form.date2" type="date" placeholder="Date2 *" required>
+                                <span>Value: {{form.date2}}</span><br/>
+                                <span style="color: red" ng-if="(inputTest.date2.$error.date || inputTest.date2.$error.required) && inputTest.date2.$touched">
+                                    Invalid date {{inputTest.date2.$error}}
+                                </span>
+                            </div>
+                            <br/>
                             <span style="color: red" ng-if="inputTest.$invalid">
                                 Form is invalid
                             </span>
