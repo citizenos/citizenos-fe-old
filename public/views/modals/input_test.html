@@ -19,14 +19,34 @@
             </div>
 
             <div id="lightbox_content">
-                <div id="login_lightbox" ng-controller="LoginFormCtrl">
+                <div id="login_lightbox" novalidate>
                     <div class="line lightest_line"></div>
                     <div class="lightbox_section">
                         <form name="inputTest">
-                            <input name="email" type="email" placeholder="Email *">
-                            <input name="tel" type="tel" placeholder="Phone number *">
-                            <input name="number" type="number" placeholder="Number *">
-                            <input name="date" type="date" placeholder="Date *">
+                            <input name="email" ng-model="form.email" type="email" placeholder="Email *" required>
+                            <span>Value: {{form.email}}</span><br/>
+                            <span style="color: red" ng-if="(inputTest.email.$error.email || inputTest.email.$error.required) && inputTest.email.$touched">
+                                Invalid e-mail {{inputTest.email.$error}}
+                            </span>
+                            <input name="tel" ng-model="form.tel" type="tel" placeholder="Phone number *" required>
+                            <span>Value: {{form.tel}} {{inputTest.tel.$error}}</span><br/>
+                            <span style="color: red" ng-if="(inputTest.tel.$error.tel || inputTest.tel.$error.required) && inputTest.tel.$touched">
+                                Invalid tel {{inputTest.tel.$error}}
+                            </span>
+                            <input name="number" ng-model="form.number" type="number" placeholder="Number *" required>
+                            <span>Value: {{form.number}}</span><br/>
+                            <span style="color: red" ng-if="(inputTest.number.$error.number || inputTest.number.$error.required) && inputTest.number.$touched">
+                                Invalid number {{inputTest.number.$error}}
+                            </span>
+                            <input name="date" type="date" placeholder="Date *" required>
+                            <span>Value: {{form.date}}</span><br/>
+                            <span style="color: red" ng-if="(inputTest.date.$error.date || inputTest.date.$error.required) && inputTest.date.$touched">
+                                Invalid date {{inputTest.date.$error}}
+                            </span>
+                            <span style="color: red" ng-if="inputTest.$invalid">
+                                Form is invalid
+                            </span>
+                            <button type="submit" ng-disabled="inputTest.$invalid">Submit</button>
                         </form>
                     </div>
                 </div>
