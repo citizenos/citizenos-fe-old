@@ -45,7 +45,7 @@
                             </span>
                             <a href="" ng-click="showDate2 = !showDate2">Show dynamic field Date2</a>
                             <div ng-if="showDate2">
-                                <input name="date2" ng-model="form.date2" type="date" placeholder="Date2 *" required>
+                                <input name="date2" ng-model="form.date2" type="date" placeholder="Date2 *" autofocus required>
                                 <span>Value: {{form.date2}}</span><br/>
                                 <span style="color: red" ng-if="(inputTest.date2.$error.date || inputTest.date2.$error.required) && inputTest.date2.$touched">
                                     Invalid date {{inputTest.date2.$error}}
