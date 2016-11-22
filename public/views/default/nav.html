@@ -41,7 +41,7 @@
 
             <div id="account_text">
                 <div class="section_header bold_white">{{app.user.name}}</div>
-                <a ng-click="app.navOpen = false; app.showSearchFiltersMobile = false" id="account_action" href="#">My Account</a>
+                <a id="account_action" href="">My Account</a>
             </div>
 
         </div>
@@ -59,7 +59,7 @@
                 </div>
                 Topics
             </div>
-            <a ng-click="app.navOpen = false; app.showSearchFiltersMobile = false;" ui-sref-active="active" class="section_item bold_blue">
+            <a ui-sref-active="active" class="section_item bold_blue">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-plus2x"></div>
@@ -67,7 +67,7 @@
                 </div>
                 Create topic
             </a>
-            <a ng-click="app.navOpen = false; app.showSearchFiltersMobile = false" ui-sref="mytopics" ui-sref-active="active" class="section_item">
+            <a ui-sref="mytopics" ui-sref-active="active" class="section_item">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
@@ -75,7 +75,7 @@
                 </div>
                 My topics
             </a>
-            <a ng-click="app.navOpen = false; app.showSearchFiltersMobile = false" ui-sref="home" ui-sref-active="active" class="section_item">
+            <a ui-sref="home" ui-sref-active="active" class="section_item">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
@@ -95,7 +95,7 @@
                 </div>
                 Groups
             </div>
-            <a ng-click="app.navOpen = false; app.showSearchFiltersMobile = false" ui-sref-active="active" class="section_item bold_blue">
+            <a ui-sref-active="active" class="section_item bold_blue">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-plus2x"></div>
@@ -103,7 +103,7 @@
                 </div>
                 Create groups
             </a>
-            <a ng-click="app.navOpen = false; app.showSearchFiltersMobile = false" ui-sref="mygroups" ui-sref-active="active" class="section_item">
+            <a ui-sref="mygroups" ui-sref-active="active" class="section_item">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
@@ -111,7 +111,7 @@
                 </div>
                 My groups
             </a>
-            <a ng-click="app.navOpen = false; app.showSearchFiltersMobile = false"  ui-sref="groups" ui-sref-active="active" class="section_item">
+            <a ui-sref="groups" ui-sref-active="active" class="section_item">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
@@ -130,7 +130,7 @@
     <!-- Nav section -->
     <div class="section">
 
-        <a ng-click="app.navOpen = false; app.showSearchFiltersMobile = false" class="section_item" href="#" ng-if="app.user.loggedIn">
+        <a class="section_item" href="#" ng-if="app.user.loggedIn">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-connections2x"></div>
@@ -139,7 +139,7 @@
             Connections
         </a>
 
-        <a ui-sref="about" ng-click="app.doShowNotification(app.notifications.levels.SUCCESS, 'NOT IMPLEMENTED!'); app.doShowNotification(app.notifications.levels.SUCCESS, 'SECOND MESSAGE'); app.navOpen = false; app.showSearchFiltersMobile = false" class="section_item" href="#">
+        <a ui-sref="about" ng-click="app.doShowNotification(app.notifications.levels.SUCCESS, 'NOT IMPLEMENTED!'); app.doShowNotification(app.notifications.levels.SUCCESS, 'SECOND MESSAGE');" class="section_item" href="">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-about2x"></div>
@@ -148,7 +148,7 @@
             About
         </a>
 
-        <a ng-click="app.doShowNotification(app.notifications.levels.INFO, 'NOT IMPLEMENTED!'); app.navOpen = false; app.showSearchFiltersMobile = false" class="section_item" href="#">
+        <a ng-click="app.doShowNotification(app.notifications.levels.INFO, 'NOT IMPLEMENTED!');" class="section_item" href="">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-faq2x"></div>
@@ -157,7 +157,7 @@
             FAQ
         </a>
 
-        <a ng-click="app.doShowNotification(app.notifications.levels.ERROR, 'NOT IMPLEMENTED!'); app.navOpen = false; app.showSearchFiltersMobile = false" class="section_item" href="#">
+        <a ng-click="app.doShowNotification(app.notifications.levels.ERROR, 'NOT IMPLEMENTED!')" class="section_item" href="">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-help2x"></div>
@@ -199,7 +199,7 @@
 
         <div class="section">
 
-            <a ng-click="app.doLogout(); app.navOpen = false; app.showSearchFiltersMobile = false;" class="section_item" href="#">
+            <a ng-click="app.doLogout();" class="section_item" href="">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-menu-icon-logout2x"></div>
