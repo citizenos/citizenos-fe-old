@@ -11,7 +11,8 @@ angular
             showSearchResults: false,
             showNav: false,
             showSearchFiltersMobile: false,
-            isLoading: true
+            isLoading: true,
+            date2: new Date() // FIXME: REMOVE
         };
         $scope.app.user = sAuth.user;
         $scope.app.language = sTranslate.currentLanguage;
