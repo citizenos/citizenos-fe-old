@@ -335,11 +335,67 @@ a:link, a:visited {
 }
 
 .edit_bubble.date_picker {
+    padding: 10px 0;
+    
+    .bubble_arrow {
+        left: 17px;
+    }
+
+    .bubble_section {
+        padding: 0 20px;
+    }
+
+    .bubble_section_table {
+        padding: 0 14px;
+    }
+
     .bubble_content {
+        margin-bottom: 12px;
+
+         table {
+            text-align: center;
+            table-layout: fixed;
+            width: 100%;
+            margin-top: 12px;
+            border-collapse: collapse;
+
+            th {
+                font-weight: $bold;
+                opacity: .7;
+                padding-bottom: 7px;
+            }
+
+            td {
+                font-weight: $medium;
+                cursor: pointer;
+
+                &:hover {
+                    .date_circle {
+                        background: $medium_gray;
+                    }
+                } 
+
+                .date_circle {
+                    display: inline-table;
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    text-align: center;
+                }
+                .date_circle.selected {
+                    background: $aqua_marine;
+                }
+            }
+
+            td.no_date {
+                cursor: initial;
+            } 
+            
+        }
 
         .bubble_description {
             margin-top: 17px;
-            margin-bottom: 10px;
+            margin-bottom: 11px;
             font-size: inherit;
 
             .picker_deadline_date {
@@ -379,7 +435,6 @@ a:link, a:visited {
                 }
             }
         }
-
     } 
 }
 
