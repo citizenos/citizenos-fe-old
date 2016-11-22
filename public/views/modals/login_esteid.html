@@ -69,7 +69,7 @@
                         <div ng-if="isLoadingIdCard" class="loader_wrap">
                             <div class="loader"></div>
                         </div>
-                        <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard && wWidth <= 550" class="blue_button">Sign with ID-Card</button>
+                        <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard && wWidth <= 550" ng-disabled="formMobile.isLoading" class="blue_button">Sign with ID-Card</button>
                     </div>
 
                     <div class="clearer"></div>
