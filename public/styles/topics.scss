@@ -9,8 +9,6 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    
-    
 
     .v_line.separator {
         width: 1px;
@@ -44,7 +42,6 @@
             left: 38%;
         }
     }
-
 
     #topics_wrap {
         background: $light_gray;
@@ -86,7 +83,7 @@
 
                 &:not(:first-child) {
                     margin-top: 10px;
-                } 
+                }
 
                 .small_topic_small_text {
                     font-size: 13px;
@@ -99,7 +96,6 @@
                 .small_topic_right_cont {
                     float: right;
                 }
-
 
                 .small_topic_header {
                     height: 20px;
@@ -118,7 +114,6 @@
                     .small_topic_right_cont {
                         position: relative;
 
-                        
                         .icon_container {
                             height: 20px;
                             width: 20px;
@@ -131,7 +126,7 @@
                             }
 
                         }
-                        
+
                         .small_topic_icon {
                             margin: 1px 8px 0 0;
                         }
@@ -190,9 +185,9 @@
                     font-weight: $bold;
                     margin-top: 6px;
                     width: 100%;
-                    overflow:hidden; 
+                    overflow: hidden;
                     text-overflow: ellipsis;
-                    white-space:nowrap; 
+                    white-space: nowrap;
                 }
 
                 .line {
@@ -239,7 +234,7 @@
                 }
             }
         }
-        
+
         .topics_right {
             width: 72%;
 
@@ -249,6 +244,10 @@
 
             @media (max-width: 1320px) {
                 width: 62%;
+            }
+
+            @media (max-width: 750px) {
+                width: 100%;
             }
 
             padding: 10px;
@@ -281,7 +280,7 @@
                         @extend .table_cell;
                         width: 36px;
                         cursor: pointer;
-                        
+
                         .sprite {
                             margin: 0 auto;
                         }
@@ -309,7 +308,6 @@
                     .table_cell:nth-child(1) {
                         padding-right: 10px;
                     }
-                    
 
                     .table_cell:nth-child(2) {
                         width: 100px;
@@ -387,7 +385,6 @@
 
                         }
 
-
                     }
 
                     .content_top {
@@ -443,7 +440,7 @@
                             }
 
                             .yellow_bg {
-                                transition: all 360ms cubic-bezier(.45,.78,0,1);
+                                transition: all 360ms cubic-bezier(.45, .78, 0, 1);
                                 @include tablet {
                                     transition: none;
                                 }
@@ -461,7 +458,6 @@
                                 position: relative;
                                 z-index: 1;
                             }
-
 
                         }
 
@@ -489,11 +485,11 @@
                             }
 
                             .content_item {
-                                
+
                                 .edit_bubble {
                                     width: 100%;
                                     margin-left: -20px;
-                                    
+
                                     .bubble_content {
                                         padding-right: 80px;
                                     }
@@ -503,7 +499,7 @@
                                     margin-left: 0;
                                     width: 320px;
                                     box-sizing: border-box;
-                                    
+
                                     .bubble_content {
                                         padding-right: 0;
                                         .bubble_title {
@@ -511,7 +507,6 @@
                                         }
                                     }
                                 }
-
 
                                 &:not(:last-child) {
                                     margin-bottom: 20px;
@@ -548,9 +543,8 @@
                                 }
                             }
                         }
-                        
-                    }
 
+                    }
 
                 }
 
@@ -594,7 +588,7 @@
 
                         .content_column:nth-child(2) {
                             width: 33.3%;
-                            
+
                             @media (max-width: 1280px) {
                                 width: 50%;
                             }
@@ -611,7 +605,7 @@
             }
 
             .info_container.group_list {
-                
+
                 .container_content {
                     table {
                         width: 100%;
@@ -697,7 +691,7 @@
                                 }
                                 
                                 .sprite {
-	                                @extend .sprite-mytopics-icon-deletetopic02x;
+                                    @extend .sprite-mytopics-icon-deletetopic02x;
                                     /*@media (max-width: 1024px) {
 	                                    background-position: -579px -548px;
 
@@ -707,7 +701,7 @@
                                     background: initial;
                                     border: solid 1px $lightest_gray;
                                 }*/
-                            } 
+                            }
 
                             .delete_topic_btn {
                                 width: inherit;
@@ -716,7 +710,7 @@
                                 position: relative;
                             }
                         }
-                        
+
                         .sprite {
                             margin: 0 auto;
                         }

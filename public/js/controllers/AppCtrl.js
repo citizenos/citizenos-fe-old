@@ -10,7 +10,9 @@ angular
             showSearch: false,
             showSearchResults: false,
             showNav: false,
-            isLoading: true
+            showSearchFiltersMobile: false,
+            isLoading: true,
+            date2: new Date() // FIXME: REMOVE
         };
         $scope.app.user = sAuth.user;
         $scope.app.language = sTranslate.currentLanguage;
@@ -101,15 +103,15 @@ angular
             }
 
             if ($scope.app.user.loggedIn && sTranslate.checkLanguageIsValid(language) && $scope.app.user.language !== language) {
-                    sUser
-                        .updateLanguage(language)
-                        .then(function () {
-                            $scope.app.user.language = language;
-                            sTranslate.switchLanguage(language);
-                        });
+                sUser
+                    .updateLanguage(language)
+                    .then(function () {
+                        $scope.app.user.language = language;
+                        sTranslate.switchLanguage(language);
+                    });
             } else {
                 sTranslate.switchLanguage(language);
-                if( sTranslate.checkLanguageIsValid(language) ){
+                if (sTranslate.checkLanguageIsValid(language)) {
                     $cookies.put('language', language);
                     $log.debug('langCookie', $cookies.get('language'));
                 }
@@ -137,6 +139,11 @@ angular
             $timeout(function () {
                 $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady');
                 window.prerenderReady = true;
+
+                $scope.app.showSearch = false;
+                $scope.app.showSearchResults = false;
+                $scope.app.showSearchFiltersMobile = false;
+                $scope.app.showNav = false;
             });
         });
 

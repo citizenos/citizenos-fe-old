@@ -240,6 +240,16 @@
                     url: '/help',
                     parent: 'main',
                     templateUrl: '/views/help.html'
+                })
+                .state('inputTest', {
+                    url: '/inputtest',
+                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/input_test.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
                 });
 
 

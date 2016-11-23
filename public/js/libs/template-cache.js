@@ -16,7 +16,9 @@ angular
             '/views/default/nav.html',
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
+            '/views/layouts/main.html',
             '/views/modals/delete_topic.html',
+            '/views/modals/input_test.html',
             '/views/modals/login.html',
             '/views/modals/login_esteid.html',
             '/views/modals/my_account.html',
@@ -24,7 +26,6 @@ angular
             '/views/modals/password_reset.html',
             '/views/modals/sign_up.html',
             '/views/modals/topic_vote_sign.html',
-            '/views/layouts/main.html',
         ];
         var i = 0;
         if (templates.length) {
