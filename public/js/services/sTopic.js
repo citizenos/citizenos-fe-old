@@ -41,16 +41,8 @@ angular
         };
 
         sTopic.readUnauth = function (topic) {
-            var success = function (res) {
-                return res.data.data;
-            };
-
-            var error = function (res) {
-                return $q.reject(res);
-            };
-
             var path = sLocation.getAbsoluteUrlApi('/api/topics/:topicId', {topicId: topic.id});
-            return $http.get(path).then(success, error);
+            return $http.get(path);
         };
 
         sTopic.create = function (topic) {
