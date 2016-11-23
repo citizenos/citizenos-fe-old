@@ -41,22 +41,21 @@ angular
         };
 
         sTopic.readUnauth = function (topic) {
-        //    $log.debug('readUnauth', topic);
-            var success = function (response) {
-                $log.debug('sTopic.SUCCESS', response);
-                return response.data.data;
+            var success = function (res) {
+                return res.data.data;
             };
 
-            var error = function (response) {
-                $log.debug('sTopic.ERROR', response);
-                return $q.reject(response);
+            var error = function (res) {
+                return $q.reject(res);
             };
 
-            var path = sLocation.getAbsoluteUrlApi('/api/topics/:topicId').replace(':topicId', topic.id);
+            var path = sLocation.getAbsoluteUrlApi('/api/topics/:topicId', {topicId: topic.id});
             return $http.get(path).then(success, error);
         };
 
         sTopic.create = function (topic) {
-            return $http.post(sLocation.getAbsoluteUrlApi('/api/users/self/topics'), topic);
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics');
+            return $http.post(path, topic);
         };
+
     }]);
