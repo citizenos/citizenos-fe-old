@@ -25,18 +25,27 @@
                     <div class="lightbox_section">
 
                         <div id="image_edit_section">
-                            <div class="large_circle_image">
-                                <img class="large_image" src=".././imgs/profile_large.jpg">
+                            <div class="profile_image_wrapper">
+                                <!--div class="profile_moon sprite sprite-icon-certified-google2x"></div-->
+                                <div class="account_picture">
+                                    <img ng-if="!app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">
+                                    <div class="profile_image_filler" ng-if="!!app.user.imageUrl">
+                                        <div class="table_cell" cos-initials="app.user.name">
+                                            ML
+                                        </div>
+                                        <div class="profile_circle"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="edit_image_properties">
+                            <!--div id="edit_image_properties">
                                 <div class="blue_link">Upload new</div> |
                                 <div class="blue_link">Delete</div>
                                 <br>
                                 Max 500kb jpg, gif or png
-                            </div>
+                            </div-->
                         </div>
 
-                        <form name="signUpForm" ng-controller="SignUpFormCtrl">
+                        <form name="myAccountForm" ng-controller="MyAccountFormCtrl">
                             <input id="name" ng-model="form.name" placeholder="Full name *" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" required>
                             <label for="name" class="error_label" ng-if="errors.name">
                                 <div class="table_cell">
@@ -51,7 +60,7 @@
                                     <span translate="{{errors.company}}"></span>
                                 </div>
                             </label>
-                            <input id="email" ng-model="form.email" placeholder="E-mail address" ng-class="{'error_input': errors.email}" required>
+                            <input id="email" ng-model="form.email" placeholder="E-mail address *" ng-class="{'error_input': errors.email}" required>
                             <label for="email" class="error_label" ng-if="errors.email">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -65,7 +74,7 @@
                                     <span translate="{{errors.password}}"></span>
                                 </div>
                             </label>
-                            <button type="submit" ng-click="doSignUp()" ng-disabled="" class="blue_button">Save changes</button>
+                            <button type="submit" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button">Save changes</button>
                             <div class="link_section">
                                 <a class="lightbox_link" href="" ng-click="closeThisDialog()">Cancel</a>
                             </div>

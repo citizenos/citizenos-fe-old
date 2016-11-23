@@ -12,8 +12,13 @@ angular
             showNav: false,
             showSearchFiltersMobile: false,
             isLoading: true,
-            date2: new Date() // FIXME: REMOVE
+            date2: new Date() // FIXME: REMOVE with input_test.html
         };
+
+        $scope.app.EVENTS = {
+            USER_CHANGE: 'USER_CHANGE'
+        };
+
         $scope.app.user = sAuth.user;
         $scope.app.language = sTranslate.currentLanguage;
 

@@ -23,14 +23,14 @@ angular
         $scope.doSignUp = function () {
             $log.debug('SignUpFormCtrl.doSignUp()');
 
-            var success = function (response) {
+            var success = function () {
                 $scope.app.doShowNotification($scope.app.notifications.levels.INFO, 'MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT');
                 ngDialog.closeAll(); // Close all dialogs, including the one open now...
             };
 
-            var error = function (response) {
-                sTranslate.errorsToKeys(response, 'USER');
-                $scope.errors = response.data.errors;
+            var error = function (res) {
+                sTranslate.errorsToKeys(res, sTranslate.models.USER);
+                $scope.errors = res.data.errors;
             };
 
             sAuth
