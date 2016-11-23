@@ -240,6 +240,7 @@
                     .fi_nav_button {
                         float: left;
                         padding: 10px 10px 0 10px;
+                        cursor: pointer;
 
                         &:first-child {
                             padding-left: 20px;
@@ -661,7 +662,7 @@
         }
 
     }
-    
+
 
     #blue_button_wrap {
         background: $light_gray;
@@ -681,7 +682,7 @@
     #topics_area.no_tutorial_topic {
 
         .topic {
-            
+
             &:nth-child(8n) {
                 margin-left: 10px;
             }
