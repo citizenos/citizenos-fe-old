@@ -194,6 +194,21 @@ a:link, a:visited {
     box-sizing: border-box;
 }
 
+.blue_button.no {
+    background: $white;
+    color: $medium_black;
+    &:hover {
+        background: $lightest_gray !important;
+    }
+}
+
+.blue_button.yes {
+    background: $pinky_red;
+    &:hover {
+        background: $pinky_red_dark_hover !important;
+    }
+}
+
 .blue_button[disabled], .blue_button.disabled {
     background: $disabled_blue;
     cursor: initial;
@@ -283,6 +298,51 @@ a:link, a:visited {
         position: absolute;
         top: 1px;
         transition: all 150ms ease-out;
+    }
+}
+
+/* EDIT TOOLTIP */
+.tooltip {
+    background: $transparent_black;
+    position: absolute;
+    padding: 5px 10px 8px;
+    color: $white;
+    width: 380px;
+    border-radius: 4px;
+    font-size: 13px;
+    bottom: 120%;
+    text-align: left;
+    margin-left: -349px;
+    box-sizing: border-box;
+    visibility: hidden;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        right: 12px;
+        margin-left: -4px;
+        border-width: 4px;
+        border-style: solid;
+        border-color: $transparent_black transparent transparent transparent;
+    }
+}
+
+.tooltip.question {
+    width: 240px;
+    visibility: visible;
+    margin-left: -209px;
+    padding: 10px;
+
+    .blue_button {
+        float: left;
+        width: 105px;
+        margin-top: 10px;
+        border-radius: 4px;
+
+        &:first-child {
+            margin-right: 10px;
+        }
     }
 }
 

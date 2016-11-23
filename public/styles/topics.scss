@@ -691,6 +691,11 @@
                             &:hover {
                                 border: solid 1px $pinky_red;
                                 background: $pinky_red;
+                                
+                                .tooltip {
+                                    visibility: visible;
+                                }
+                                
                                 .sprite {
 	                                @extend .sprite-mytopics-icon-deletetopic02x;
                                     /*@media (max-width: 1024px) {
@@ -708,6 +713,7 @@
                                 width: inherit;
                                 height: inherit;
                                 display: table;
+                                position: relative;
                             }
                         }
                         

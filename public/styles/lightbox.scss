@@ -57,6 +57,12 @@
         }
     }
 
+     #lightbox.my_account_lightbox {
+         .blue_button {
+            margin-top: 20px;
+         }
+     }
+
     /* ID SIGNING LIGHTBOX */
     #lightbox.id_signing {
         width: 600px;
@@ -73,7 +79,6 @@
             }
 
             #lightbox_header {
-                height: auto;
                 position: relative;
 
                 #lightbox_header_text {
@@ -85,7 +90,10 @@
                         opacity: .7;
                         font-weight: $bold;
                         font-size: 16px;
-                        margin-bottom: 3px;
+                    }
+
+                    .title_description {
+                        margin-top: 3px;
                     }
 
                 }
@@ -276,6 +284,39 @@
                 @media (max-height: 800px) {
                     margin-bottom: 30px;
                 }
+
+                #image_edit_section {
+                    display: table;
+                    width: 100%;
+                    margin-bottom: 20px;
+                    
+                    .large_circle_image {
+                        @extend .table_cell;
+                        height: 80px;
+                        width: 80px;
+                        
+                        .large_image {
+                            border-radius: 50%;
+                            overflow: hidden;
+                            height: inherit;
+                            width: inherit;
+                            float: left;
+                        }
+                    }
+                
+                    #edit_image_properties {
+                        @extend .table_cell;
+                        padding-left: 21px;
+
+                        .blue_link {
+                            display: inline-block;
+                            margin-bottom: 3px;
+                        }
+
+                    }
+                }
+
+
 
                 .lightbox_section {
                     padding: 20px;

@@ -75,6 +75,25 @@ angular
             });
         };
 
+        $scope.app.doShowMyAccount = function () {
+            $log.debug('AppCtrl.doShowMyAccount()');
+
+            ngDialog.open({
+                template: '/views/modals/my_account.html',
+                scope: $scope
+            });
+        };
+
+        $scope.app.doShowDeleteTopic = function () {
+            $log.debug('AppCtrl.doShowMyAccount()');
+
+            ngDialog.open({
+                template: '/views/modals/delete_topic.html',
+                scope: $scope
+            });
+        };
+        // $scope.app.doShowDeleteTopic();
+
         $scope.app.doSwitchLanguage = function (language) {
             $log.debug('AppCtrl.doSwitchLanguage()', language);
             if (language === $scope.app.language) {
