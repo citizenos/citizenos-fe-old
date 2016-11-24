@@ -190,22 +190,34 @@ a:link, a:visited {
     text-align: center;
     color: $white;
     font-size: 14px;
-    padding: 5px 3px 6px;
+    padding: 5px 5px 6px;
     box-sizing: border-box;
+}
+
+.blue_button.no, .blue_button.yes {
+    border-radius: 4px;
 }
 
 .blue_button.no {
     background: $white;
     color: $medium_black;
+    border: solid 1px $lightest_gray;
     &:hover {
         background: $lightest_gray !important;
+        @include tablet {
+            background: $white !important;
+        }
     }
 }
 
 .blue_button.yes {
     background: $pinky_red;
+    border: solid 1px $pinky_red_border;
     &:hover {
         background: $pinky_red_dark_hover !important;
+        @include tablet {
+            background: $pinky_red !important;
+        }
     }
 }
 

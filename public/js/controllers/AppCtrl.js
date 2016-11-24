@@ -99,7 +99,6 @@ angular
                 scope: $scope
             });
         };
-        // $scope.app.doShowDeleteTopic();
 
         $scope.app.doSwitchLanguage = function (language) {
             $log.debug('AppCtrl.doSwitchLanguage()', language);

@@ -205,6 +205,81 @@
         }
     }
 
+    
+    /* DELETE TOPIC LIGHTBOX */
+    #lightbox.id_signing.delete_topic {
+
+        #lightbox_header {
+            padding: 20px 20px 22px 20px;
+            text-align: center;
+            color: $pinky_red !important;
+            
+            .sprite {
+                margin: 0 auto 16px auto;
+            }
+            .delete_title {
+                font-size: 22px;
+                font-weight: $bold;
+                margin-bottom: 5px;
+            }
+            .delete_description {
+                font-size: 14px;
+            }
+        }
+
+        #lightbox_content {
+            padding: 40px 20px !important;
+            
+            @media (max-width: 750px) {
+                padding-top: 30px !important;
+            }
+
+            #delete_info_wrap {
+                width: 410px;
+                margin: 0 auto;
+                
+                @media (max-width: 470px) {
+                    width: 100%;
+                }
+
+                .delete_info_text_wrap {
+                    margin-bottom: 40px;
+
+                    @media (max-width: 750px) {
+                        margin-bottom: 25px;
+                    }
+
+                    .delete_info {
+                        margin-bottom: 10px;
+                        display: table;
+                        .sprite-checkmark2x {
+                            display: table-cell;
+                        }
+                        .delete_info_text {
+                            display: table-cell;
+                            padding-left: 10px;
+                        }
+                    }
+                }
+
+                .delete_info_button_wrap {
+                    display: table;
+                    width: 100%;
+
+                    .table_cell:first-child {
+                        padding-right: 5px;
+                    }
+                    .table_cell:last-child {
+                        padding-left: 5px;
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
     #lightbox {
         z-index: 11;
         position: absolute;

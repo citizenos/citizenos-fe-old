@@ -233,6 +233,43 @@ nav {
         padding-left: 59px;
     }
 
+    .header_button.overview {
+        width: 144px;
+        right: 234px;
+        @media (max-width: 560px) {
+            right: 169px;
+        }
+        @media (max-width: 360px) {
+            width: 58px;
+            right: 171px;
+            .header_button_icon {
+                width: 55px;
+                .sprite {
+                    float: none;
+                    margin: 0 auto;
+                }
+            }
+            .header_button_text {
+                display: none;
+            }
+        }
+    }
+
+    .header_button.overview_active {
+        @media (max-width: 560px) {
+            width: 53px;
+            .header_button_icon {
+                .sprite {
+                    float: none;
+                    margin: 0 auto;
+                }
+            }
+            .header_button_text {
+                display: none;
+            }
+        }
+    }
+    
     .header_button {
         width: 118px;
         height: 60px;

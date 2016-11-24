@@ -1,31 +1,13 @@
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox">
-    <div id="lightbox" class="id_signing">
+    <div id="lightbox" class="id_signing delete_topic">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
 
-                <div id="lightbox_header_text">
-                    <div class="title">Choose a signing method for</div>
-                    <div class="title_description">We need to do something about the hipsters in Telliskivi!</div>
-                </div>
-
-                <div id="lightbox_close" ng-click="closeThisDialog()">
-                    <div class="table_cell">
-                        <div class="sprite sprite-btn-popup-close2x">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="clearer"></div>
-
-                <div class="voting_tag_padding">
-                    <div class="voting_tag">
-                        <div class="table_cell">
-                            YOU’RE VOTING: <span class="bold">YES</span>
-                        </div>
-                    </div>
-                </div>
+                <div class="sprite sprite-icon-delete-topic2x"></div>
+                <div class="delete_title">Are you sure you want to delete this topic?</div>
+                <div class="delete_description">Please keep in mind you cannot undo this action.</div>
 
             </div>
 
@@ -33,47 +15,38 @@
 
             <div id="lightbox_content">
 
-                <div class="v_line lightest_line"></div>
+                <div id="delete_info_wrap">
 
-                <div class="sign_in_section">
-                    <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
-                    <input id="phone" name="phoneNumber" class="error_input" ng-model="formMobile.phoneNumber" placeholder="Phone number *" focus-if="{{wWidth > 1024}}" required>
-                    <label for="phone" class="error_label">
-                        <div class="table_cell">
-                            <div class="sprite sprite-icon-inputfield-error2x"></div>
-                            <span>Invalid phone number</span>
+                    <div class="delete_info_text_wrap">
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text">All versions of the topic will be deleted</div>
                         </div>
-                    </label>
-                    <!--input name="pid" placeholder="PID *" required>
-                    <div class="code">Kontrollkood: 2843</div>
-                    <div class="code_text">Please enter the PIN in your mobile phone...</div>
-                    <div class="loader_wrap">
-                        <div class="loader"></div>
-                    </div-->
-                    <button ng-if="wWidth <= 550" class="blue_button">Sign with Mobiil-ID</button>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text">All discussions and voted will be deleted.</div>
+                        </div>
+                        
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text">The topic will be removed from groups and categories.</div>
+                        </div>
+                    </div>
+
+                    <div class="delete_info_button_wrap">
+                        
+                        <div class="table_cell">
+                            <div class="blue_button no">NO, KEEP THIS TOPIC</div>
+                        </div>
+                        
+                        <div class="table_cell">
+                            <div class="blue_button yes">YES, DELETE THIS TOPIC</div>
+                        </div>
+
+                    </div>
+
                 </div>
-
-                <div class="line_wrap">
-                    <div class="line lightest_line"></div>
-                </div>
-
-                <div class="sign_in_section">
-                    <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
-                    <div class="sprite_big sprite sprite-img-idkaart2x"></div>
-                    <button ng-if="wWidth <= 550" class="blue_button">Sign with ID-Card</button>
-                </div>
-
-                <div class="clearer"></div>
-
-                <div ng-if="wWidth > 550" class="sign_in_section">
-                    <button class="blue_button">Sign with Mobiil-ID</button>
-                </div>
-
-                <div ng-if="wWidth > 550" class="sign_in_section">
-                    <button class="blue_button">Sign with ID-Card</button>
-                </div>
-
-                <div class="clearer"></div>
 
             </div>
 
