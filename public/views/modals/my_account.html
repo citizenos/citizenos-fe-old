@@ -25,24 +25,15 @@
                     <div class="lightbox_section">
 
                         <div id="image_edit_section">
-                            <div class="profile_image_wrapper">
-                                <!--div class="profile_moon sprite sprite-icon-certified-google2x"></div-->
-                                <div class="account_picture">
-                                    <img ng-if="!app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">
-                                    <div class="profile_image_filler" ng-if="!!app.user.imageUrl">
-                                        <div class="table_cell" cos-initials="app.user.name">
-                                            ML
-                                        </div>
-                                        <div class="profile_circle"></div>
-                                    </div>
-                                </div>
+                            <div class="large_circle_image">
+                                <img class="large_image" src=".././imgs/profile_large.jpg">
                             </div>
-                            <!--div id="edit_image_properties">
+                            <div id="edit_image_properties">
                                 <div class="blue_link">Upload new</div> |
                                 <div class="blue_link">Delete</div>
                                 <br>
                                 Max 500kb jpg, gif or png
-                            </div-->
+                            </div>
                         </div>
 
                         <form name="myAccountForm" ng-controller="MyAccountFormCtrl">
