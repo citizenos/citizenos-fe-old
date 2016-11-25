@@ -92,6 +92,15 @@ img {
 
 //Overall button styles and other general items
 
+.lock_icon_wrap {
+    display: inline-block;
+    .sprite-icon-lock2x {
+        float: left;
+        margin-bottom: 5px;
+        margin-left: 5px;
+    }
+}
+
 .profile_image_wrapper {
     width: 40px;
     height: 40px;
@@ -275,6 +284,10 @@ a:link, a:visited {
 
 .toggle_widget.no:hover {
     background: $aqua_marine_border_second;
+
+    @include tablet {
+        background: $aqua_marine;
+    }
 }
 
 .toggle_widget.yes {
@@ -287,7 +300,11 @@ a:link, a:visited {
 }
 
 .toggle_widget.yes:hover {
-    background: $pinky_red_dark_hover;
+    background: $pinky_red;
+
+    @include tablet {
+        background: $pinky_red;
+    }
 }
 
 .toggle_widget {
@@ -315,6 +332,7 @@ a:link, a:visited {
 
 /* EDIT TOOLTIP */
 .tooltip {
+    display: none;
     background: $transparent_black;
     position: absolute;
     padding: 5px 10px 8px;
@@ -360,6 +378,7 @@ a:link, a:visited {
 
 /* EDIT BUBBLE */
 .edit_bubble {
+    display: none;
     position: absolute;
     background: $light_gray;
     z-index: 1;
@@ -367,6 +386,15 @@ a:link, a:visited {
     padding: 10px 20px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     margin-top: 6px;
+    width: 100%;
+    margin-left: -20px;
+    
+    @include tablet {
+        width: initial;
+        left: 20px;
+        right: 20px;
+        margin-left: 0;
+    }
 
     .bubble_arrow {
         position: absolute;
@@ -377,6 +405,7 @@ a:link, a:visited {
         font-size: 14px;
         margin-bottom: 20px;
         margin-top: 4px;
+        padding-right: 80px;
 
         .bubble_title {
             margin-bottom: 2px;
@@ -408,6 +437,20 @@ a:link, a:visited {
 
 .edit_bubble.date_picker {
     padding: 10px 0;
+    width: 320px;
+    box-sizing: border-box;
+    margin-left: 0;
+
+    @include tablet {
+        width: initial;
+        left: 20px;
+        right: 20px;
+    }
+    
+    @media (max-width: 400px) {
+        left: 5px;
+        right: 5px;
+    } 
     
     .bubble_arrow {
         left: 17px;
@@ -415,14 +458,77 @@ a:link, a:visited {
 
     .bubble_section {
         padding: 0 20px;
+        @media (max-width: 400px) {
+            padding: 0 15px;
+        } 
     }
 
     .bubble_section_table {
         padding: 0 14px;
+        @media (max-width: 400px) {
+            padding: 0 4px;
+        } 
     }
 
     .bubble_content {
         margin-bottom: 12px;
+        padding-right: 0;
+        
+        .bubble_title {
+            padding-right: 80px;
+        }
+        
+        .bubble_description {
+            margin-top: 17px;
+            margin-bottom: 11px;
+            font-size: inherit;
+
+            .picker_deadline_date {
+                float: left;
+            }
+
+            .picker_days_left {
+                float: right;
+            }
+        }
+        
+        .month_chooser {
+            margin-top: 15px;
+            height: 30px;
+            display: table;
+            width: 100%;
+            text-align: center;
+            @include tablet {
+                height: 40px;
+            }
+            .arrow, .month_text {
+                @extend .table_cell;
+            }
+            .arrow {
+                box-sizing: border-box;
+                width: 30px;
+                border-radius: 4px;
+                @include tablet {
+                    width: 40px;
+                }
+                &:first-child {
+                    padding-right: 1px;
+                }
+                &:last-child {
+                    padding-left: 1px;
+                }
+                &:hover {
+                    background: $medium_gray;
+                    @include tablet {
+                        background: none;
+                    }
+                }
+                cursor: pointer;
+                .sprite {
+                    margin: 0 auto;
+                }
+            }
+        }
 
          table {
             text-align: center;
@@ -444,6 +550,9 @@ a:link, a:visited {
                 &:hover {
                     .date_circle {
                         background: $medium_gray;
+                        @include tablet {
+                            background: none;
+                        }
                     }
                 } 
 
@@ -453,6 +562,12 @@ a:link, a:visited {
                     width: 30px;
                     height: 30px;
                     text-align: center;
+
+                    @include tablet {
+                        width: 40px;
+                        height: 40px;
+                    }
+                    
                 }
                 .date_circle.selected {
                     background: $aqua_marine;
@@ -465,48 +580,6 @@ a:link, a:visited {
             
         }
 
-        .bubble_description {
-            margin-top: 17px;
-            margin-bottom: 11px;
-            font-size: inherit;
-
-            .picker_deadline_date {
-                float: left;
-            }
-
-            .picker_days_left {
-                float: right;
-            }
-        }
-        
-        .month_chooser {
-            margin-top: 15px;
-            height: 30px;
-            display: table;
-            width: 100%;
-            text-align: center;
-            .arrow, .month_text {
-                @extend .table_cell;
-            }
-            .arrow {
-                box-sizing: border-box;
-                width: 30px;
-                border-radius: 4px;
-                &:first-child {
-                    padding-right: 1px;
-                }
-                &:last-child {
-                    padding-left: 1px;
-                }
-                &:hover {
-                    background: $medium_gray;
-                }
-                cursor: pointer;
-                .sprite {
-                    margin: 0 auto;
-                }
-            }
-        }
     } 
 }
 

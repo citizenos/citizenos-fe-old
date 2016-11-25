@@ -223,6 +223,10 @@
                 .sprite-mytopics-icon-invoting2x {
                     @extend .sprite-mytopics-icon-invoting2x-w;
                 }
+                
+                .sprite-icon-lock2x {
+                    @extend .sprite-icon-lock2x-white;
+                }
             }
 
             .small_topic:hover {
@@ -250,7 +254,7 @@
                 width: 100%;
             }
 
-            padding: 10px;
+            padding: 0 10px 10px 10px;
             float: left;
             position: relative;
             box-sizing: border-box;
@@ -259,11 +263,17 @@
                 width: 100%;
                 box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
 
+                .via {
+                    font-weight: $medium;
+                    font-size: 13px;
+                }
+
                 .blue_link {
                     display: inline;
                 }
 
                 .container_header {
+                    margin-top: 10px;
                     height: 30px;
                     background: $medium_gray;
                     display: table;
@@ -298,6 +308,7 @@
                 .second_header {
                     height: 50px;
                     padding-left: 9px;
+                    margin-top: 0;
 
                     .table_cell {
                         input {
@@ -337,7 +348,6 @@
                     padding: 0 20px;
                     box-sizing: border-box;
                     position: relative;
-                    margin-bottom: 10px;
 
                     .highlight {
                         padding: 0 2px;
@@ -346,11 +356,18 @@
                     .activity {
                         padding-left: 130px;
                         margin-bottom: 10px;
+                        @media (max-width: 700px) {
+                            padding-left: 85px;
+                        }
 
                         .activity_left {
                             width: 107px;
                             position: absolute;
                             margin-left: -130px;
+                            @media (max-width: 700px) {
+                                width: 70px;
+                                margin-left: -85px;
+                            }
 
                             .activiy_time {
                                 font-size: 13px;
@@ -391,6 +408,9 @@
                             font-size: 36px;
                             font-weight: $bold;
                             padding: 20px 27px 20px 0;
+                            @include tablet {
+                                font-size: 26px;
+                            }
                         }
                         .container_favorite {
                             position: absolute;
@@ -477,33 +497,31 @@
                             width: 33.3%;
                             float: left;
                             position: relative;
+                                box-sizing: border-box;
                             @media (max-width: 1280px) {
                                 width: 50%;
                             }
+                            @include tablet {
+                                position: initial;
+                            }
+                            @media (max-width: 700px) {
+                                &:nth-child(1) {
+                                    padding-right: 10px;
+                                }
+
+                                &:nth-child(2) {
+                                    padding-left: 10px;
+                                }
+                            }
+                            @include mobile {
+                                width: 100%;
+                                &:nth-child(1), &:nth-child(2) {
+                                    padding-right: 0;
+                                    padding-left: 0;
+                                }
+                            }
 
                             .content_item {
-
-                                .edit_bubble {
-                                    width: 100%;
-                                    margin-left: -20px;
-
-                                    .bubble_content {
-                                        padding-right: 80px;
-                                    }
-                                }
-
-                                .edit_bubble.date_picker {
-                                    margin-left: 0;
-                                    width: 320px;
-                                    box-sizing: border-box;
-
-                                    .bubble_content {
-                                        padding-right: 0;
-                                        .bubble_title {
-                                            padding-right: 80px;
-                                        }
-                                    }
-                                }
 
                                 &:not(:last-child) {
                                     margin-bottom: 20px;
@@ -558,11 +576,18 @@
                             @media (max-width: 1280px) {
                                 width: 50%;
                             }
+                            @include mobile {
+                                width: 100%;
+                            }
                         }
 
                         .content_column:first-child {
                             padding-right: 20px;
                             box-sizing: border-box;
+                            
+                            @include mobile {
+                                padding-right: 0;
+                            }
 
                             .content_item {
 
@@ -573,9 +598,21 @@
                                 .item_content {
                                     margin: 9px 0;
                                     float: left;
+                                    @include mobile {
+                                        width: 100%;
+                                    }
 
                                     .item_text:first-child {
                                         width: 111px;
+                                        @include mobile {
+                                            width: initial;
+                                        }
+                                    }
+
+                                    .item_text:last-child {
+                                        @include mobile {
+                                            float: right;
+                                        }
                                     }
                                 }
 
@@ -634,19 +671,15 @@
 
                         td {
                             padding: 5px 0;
+
+                            &:first-child {
+                                padding-right: 10px;
+                            }
                         }
 
                         td:nth-child(1) {
                             font-size: 14px;
                             font-weight: $bold;
-                            color: $deep_sky_blue;
-                            cursor: pointer;
-                            &:hover {
-                                text-decoration: underline;
-                                @include tablet {
-                                    text-decoration: none;
-                                }
-                            }
                         }
 
                         tr:nth-child(2) td {
@@ -670,6 +703,12 @@
                             text-align: center;
                             width: 117px;
                             text-decoration: none;
+                            @media (max-width: 1280px) {
+                                width: initial;
+                                span {
+                                    display: none;
+                                }
+                            }
                         }
                         .table_wrap {
                             border-radius: 4px;

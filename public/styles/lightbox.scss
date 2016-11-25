@@ -254,6 +254,8 @@
                         display: table;
                         .sprite-checkmark2x {
                             display: table-cell;
+                            float: left;
+                            margin-bottom: -1px;
                         }
                         .delete_info_text {
                             display: table-cell;

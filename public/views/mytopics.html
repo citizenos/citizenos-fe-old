@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="small_topic_title">
-                    Kuidas paremini arutleda
+                    Kuidas paremini arutleda<span class="lock_icon_wrap"><div class="sprite sprite-icon-lock2x"></div></span>
                 </div>
 
                 <div class="line lightest_line"></div>
@@ -244,12 +244,12 @@
                     <div class="header_text">
                         General information
                     </div>
-                    <div class="minimize_container">
-                        <div class="sprite sprite-btn-minimize2x"></div>
+                    <div class="minimize_container" ng-click="app.generalInformation = !app.generalInformation">
+                        <div ng-class="app.generalInformation ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                     </div>
                 </div>
 
-                <div class="container_content">
+                <div class="container_content" ng-if="!app.generalInformation">
 
                     <div class="content_top">
                         <div class="container_title">
@@ -268,6 +268,7 @@
                     <div class="line lightest_line"></div>
 
                     <div class="content_bottom">
+                        
 
                         <!-- COLUMN 1 -->
                         <div class="content_column">
@@ -733,17 +734,17 @@
                     <div class="header_text">
                         Activity feed & notifications
                     </div>
-                    <div class="minimize_container">
-                        <div class="sprite sprite-btn-minimize2x"></div>
+                    <div class="minimize_container" ng-click="app.activityFeed = !app.activityFeed">
+                        <div ng-class="app.activityFeed ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                     </div>
                 </div>
 
-                <div class="container_content activity_container" >
+                <div class="container_content activity_container" ng-if="!app.activityFeed">
 
                     <div class="activity" ng-repeat="(key, this) in ['1', '2']">
 
                         <div class="activity_left">
-                            <div class="activiy_time">12.07.2016 11:23</div>
+                            <div class="activiy_time">55.07.2056 11:23</div>
                         </div>
 
                         <div class="activity_right">
@@ -781,12 +782,12 @@
                     <div class="header_text">
                         Current vote results
                     </div>
-                    <div class="minimize_container">
-                        <div class="sprite sprite-btn-minimize2x"></div>
+                    <div class="minimize_container" ng-click="app.voteResults = !app.voteResults">
+                        <div ng-class="app.voteResults ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                     </div>
                 </div>
 
-                <div class="container_content">
+                <div class="container_content" ng-if="!app.voteResults">
 
 
                     <div class="content_bottom">
@@ -924,12 +925,12 @@
                     <div class="header_text">
                         Group list | <div class="blue_link">search</div> | <div class="blue_link">add</div>
                     </div>
-                    <div class="minimize_container">
-                        <div class="sprite sprite-btn-minimize2x"></div>
+                    <div class="minimize_container" ng-click="app.groupList = !app.groupList">
+                        <div ng-class="app.groupList ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                     </div>
                 </div>
 
-                <div class="container_content">
+                <div class="container_content"  ng-if="!app.groupList">
 
                     <table>
                         <tr>
@@ -950,13 +951,13 @@
                             </th>
                             <th>
                                 <div class="th_text">
-                                    Remove from topic
+                                    Remove <span>from topic</span>
                                 </div>
                             </th>
                         </tr>
                         <tr ng-repeat="(key, this) in ['1', '2', '3', '4', '5']">
                             <td>
-                                CitizenOS test group
+                                <div class="blue_link">CitizenOS test group</div>
                             </td>
                             <td>
                                 <div cos-dropdown class="classic_dropdown">
@@ -1014,12 +1015,12 @@
                     <div class="header_text">
                         User list | <div class="blue_link">cancel search</div> | <div class="blue_link">invite</div>
                     </div>
-                    <div class="minimize_container">
-                        <div class="sprite sprite-btn-minimize2x"></div>
+                    <div class="minimize_container" ng-click="app.userList = !app.userList">
+                        <div ng-class="app.userList ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                     </div>
                 </div>
 
-                <div class="container_header second_header">
+                <div class="container_header second_header" ng-if="!app.userList">
                     <div class="table_cell">
                         <input placeholder="Username, e-mail or group">
                     </div>
@@ -1031,7 +1032,7 @@
                     </div>
                 </div>
 
-                <div class="container_content">
+                <div class="container_content" ng-if="!app.userList">
 
                     <table>
                         <tr>
@@ -1052,7 +1053,7 @@
                             </th>
                             <th>
                                 <div class="th_text">
-                                    Remove from topic
+                                    Remove <span>from topic</span>
                                 </div>
                             </th>
                         </tr>
@@ -1072,7 +1073,8 @@
                                 </div>
                                 <div class="name_wrap">
                                     <div class="table_cell">
-                                        Kristian Lember
+                                        <div class="blue_link">Kristian Lember</div>
+                                        <div class="via">via <div class="blue_link">Group Name Accesssible</div></div>
                                     </div>
                                 </div>
                             </td>
@@ -1140,7 +1142,8 @@
                                 </div>
                                 <div class="name_wrap">
                                     <div class="table_cell">
-                                        Kristian Lember
+                                        <div class="blue_link">Kristian Lember</div>
+                                        <div class="via">via Private Group Name</div>
                                     </div>
                                 </div>
                             </td>
@@ -1203,7 +1206,7 @@
                                 </div>
                                 <div class="name_wrap">
                                     <div class="table_cell">
-                                        Kristian Lember
+                                        <div class="blue_link">Kristian Lember</div>
                                     </div>
                                 </div>
                             </td>
