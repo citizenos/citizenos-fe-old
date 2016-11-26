@@ -177,7 +177,7 @@
                         });
                     }]
                 })
-                .state('account.profile', {
+                .state('account.profile', { // TODO: Naming inconsistency but /account/myaccount would be funny. Maybe rename all related files to profile?
                     url: '/profile',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
                         ngDialog.open({
