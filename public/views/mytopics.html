@@ -116,7 +116,17 @@
 
             </div>
 
-            <div class="small_topic">
+            <div class="container_header bold">
+                <div class="header_img_wrap"><img src=".././imgs/test_topic_logo.png"></div>
+                <div class="header_text">
+                    CitizenOS test Group (2)
+                </div>
+                <div class="minimize_container" ng-click="app.votingThree = !app.votingThree">
+                    <div ng-class="app.votingThree ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite sprite-btn-minimize2x"></div>
+                </div>
+            </div>
+
+            <div class="small_topic" ng-if="!app.votingThree">
                 <div class="small_topic_header">
 
                     <div class="small_topic_left_cont">
@@ -180,7 +190,18 @@
 
             </div>
 
-            <div class="small_topic">
+            
+            <div class="container_header bold active">
+                <div class="header_img_wrap"><img src=".././imgs/test_topic_logo.png"></div>
+                <div class="header_text">
+                    CitizenOS test Group (2)
+                </div>
+                <div class="minimize_container" ng-click="app.votingFour = !app.votingFour">
+                    <div ng-class="app.votingFour ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite sprite-btn-minimize2x"></div>
+                </div>
+            </div>
+
+            <div class="small_topic" ng-if="!app.votingFour">
                 <div class="favorite_container">
                     <div class="sprite sprite-icon-favourite2x"></div>
                 </div>
@@ -236,6 +257,149 @@
         <div class="topics_right">
 
             <div class="v_line separator"></div>
+
+            <!-- GENERAL INFO GROUPS VIEW -->
+            <div class="info_container group_detail">
+
+                <div class="container_header">
+                    <div class="header_text">
+                        General information
+                    </div>
+                    <div class="minimize_container" ng-click="app.generalInformation = !app.generalInformation">
+                        <div ng-class="app.generalInformation ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                    </div>
+                </div>
+
+                <div class="container_content" ng-if="!app.generalInformation">
+
+                    <div class="content_top">
+                        <div class="container_title">
+                           <img src=".././imgs/test_logo2.jpg"> CitizenOS test Group  
+                        </div>
+                        <div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
+                            <div class="ff_table_fix">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-favourite2x-white"></div>
+                                    <div class="yellow_bg"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="line lightest_line"></div>
+
+                    <div class="content_bottom">
+                        
+
+                        <!-- COLUMN 1 -->
+                        <div class="content_column">
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Users
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        66
+                                    </div>
+                                    <div class="v_line"></div>
+                                    <div class="item_link blue_link">
+                                        view
+                                    </div>
+                                    <div class="v_line"></div>
+                                    <div class="item_link blue_link">
+                                        invite
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Topics
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        3
+                                    </div>
+                                    <div class="v_line"></div>
+                                    <div class="item_link blue_link">
+                                        view
+                                    </div>
+                                    <div class="v_line"></div>
+                                    <div class="item_link blue_link">
+                                        add
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Your rights
+                                </div>
+                                <div class="item_content bold">
+                                    Read
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- COLUMN 2 -->
+                        <div class="content_column">
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Status
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        Ettepanek seadusega keelata kõrvklappide kandmine tänaval
+                                        <div class="float_left">
+                                            <div class="v_line bold"></div>
+                                            <div class="item_link blue_link bold">
+                                                view
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="content_item">
+                                <div class="item_description">
+                                    Topic actions
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text blue_link">
+                                        edit
+                                    </div>
+                                    <div class="v_line bold"></div>
+                                    <div class="item_text blue_link">
+                                        leave
+                                    </div>
+                                    <div class="v_line bold"></div>
+                                    <div class="remove item_text blue_link">
+                                        <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                        delete
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="clearer"></div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
 
             <!-- GENERAL INFORMATION -->
             <div class="info_container">
@@ -1059,9 +1223,9 @@
                         </tr>
                         <tr ng-repeat="(key, this) in ['1']">
                             <td>
-                                <div class="profile_image_wrapper">
+                                <div class="profile_image_wrapper dark">
                                     <div class="profile_moon sprite sprite-icon-certified-fb2x"></div>
-                                    <div class="account_picture dark">
+                                    <div class="account_picture">
                                         <!--<img src=".././imgs/profile.jpg">-->
                                         <div class="profile_image_filler">
                                             <div class="table_cell">
@@ -1128,9 +1292,9 @@
                         </tr>
                         <tr ng-repeat="(key, this) in ['1', '2']">
                             <td>
-                                <div class="profile_image_wrapper">
+                                <div class="profile_image_wrapper dark">
                                     <div class="profile_moon sprite sprite-icon-certified-google2x"></div>
-                                    <div class="account_picture dark">
+                                    <div class="account_picture">
                                         <!--<img src=".././imgs/profile.jpg">-->
                                         <div class="profile_image_filler">
                                             <div class="table_cell">
@@ -1192,9 +1356,9 @@
                         </tr>
                         <tr ng-repeat="(key, this) in ['1']">
                             <td>
-                                <div class="profile_image_wrapper">
+                                <div class="profile_image_wrapper dark">
                                     <div class="profile_moon sprite sprite-icon-certified-id2x"></div>
-                                    <div class="account_picture dark">
+                                    <div class="account_picture">
                                         <!--<img src=".././imgs/profile.jpg">-->
                                         <div class="profile_image_filler">
                                             <div class="table_cell">

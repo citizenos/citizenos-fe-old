@@ -25,14 +25,23 @@
                     <div class="lightbox_section">
 
                         <div id="image_edit_section">
-                            <div class="large_circle_image">
-                                <img class="large_image" src=".././imgs/profile_large.jpg">
+                            <div class="profile_image_wrapper dark big">
+                                <div class="profile_moon sprite sprite-icon-certified-google-2-x2x"></div>
+                                <div class="account_picture">
+                                    <!-- NB Remember to use image that has 2x size, meaning 160x160px for this <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">-->
+                                    <div class="profile_image_filler" ng-if="!app.user.imageUrl">
+                                        <div class="table_cell" cos-initials="app.user.name">
+                                            ML
+                                        </div>
+                                        <div class="profile_circle"></div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="edit_image_properties">
                                 <div class="blue_link">Upload new</div> |
                                 <div class="blue_link">Delete</div>
                                 <br>
-                                Max 500kb jpg, gif or png
+                                <span>Max 500kb jpg, gif or png</span>
                             </div>
                         </div>
 

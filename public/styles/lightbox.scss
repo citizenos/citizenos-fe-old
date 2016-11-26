@@ -367,27 +367,20 @@
                     width: 100%;
                     margin-bottom: 20px;
                     
-                    .large_circle_image {
-                        @extend .table_cell;
-                        height: 80px;
-                        width: 80px;
-                        
-                        .large_image {
-                            border-radius: 50%;
-                            overflow: hidden;
-                            height: inherit;
-                            width: inherit;
-                            float: left;
-                        }
+                    .profile_image_wrapper {
+                        margin-right: 12px;
                     }
                 
                     #edit_image_properties {
                         @extend .table_cell;
-                        padding-left: 21px;
 
                         .blue_link {
                             display: inline-block;
                             margin-bottom: 3px;
+                        }
+
+                        span {
+                            opacity: .69;
                         }
 
                     }

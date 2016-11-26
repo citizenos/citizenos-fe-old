@@ -107,6 +107,7 @@ img {
     position: relative;
     float: left;
     margin-right: 10px;
+    font-size: 14px;
 
     .profile_moon {
         position: absolute;
@@ -131,7 +132,6 @@ img {
             display: table;
             position: relative;
             text-align: center;
-            font-size: 14px;
             border-radius: 50%;
             box-sizing: border-box;
             color: $white;
@@ -149,7 +149,7 @@ img {
     }
 }
 
-.account_picture.dark {
+.profile_image_wrapper.dark {
 
     .profile_image_filler {
         color: $dark_gray;
@@ -158,6 +158,18 @@ img {
             color: $dark_gray;
         }
     }
+
+}
+
+.profile_image_wrapper.big {
+    
+    .profile_moon {
+        right: -3px;
+    }
+
+    width: 80px;
+    height: 80px;
+    font-size: 24px;
 
 }
 
@@ -332,7 +344,6 @@ a:link, a:visited {
 
 /* EDIT TOOLTIP */
 .tooltip {
-    display: none;
     background: $transparent_black;
     position: absolute;
     padding: 5px 10px 8px;
@@ -345,6 +356,7 @@ a:link, a:visited {
     margin-left: -349px;
     box-sizing: border-box;
     visibility: hidden;
+    z-index: 1;
 
     &::after {
         content: "";
@@ -378,7 +390,6 @@ a:link, a:visited {
 
 /* EDIT BUBBLE */
 .edit_bubble {
-    display: none;
     position: absolute;
     background: $light_gray;
     z-index: 1;
