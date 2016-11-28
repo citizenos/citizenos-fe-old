@@ -188,14 +188,60 @@
     #filter_bar_mobile {
         margin-top: -50px;
 
-        #open_fi {
+        .filter_topics {
             height: 40px;
             color: $deep_sky_blue;
             font-weight: $bold;
             box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
             font-size: 14px;
-            padding-top: 11px;
             box-sizing: border-box;
+            display: table;
+            width: 100%;
+            table-layout: fixed
+        }
+
+        .filter_topics.edit {
+            height: auto;
+            .filter_topics_top {
+                height: 40px;
+                box-sizing: border-box;
+                display: table;
+                width: 100%;
+                .blue_link {
+                    @extend .table_cell;
+                    padding: 0 10px;
+                }
+                .blue_link:first-child {
+                    text-align: left;
+                }
+                .blue_link:last-child {
+                    text-align: right;
+                }
+            }
+            .filter_topics_bottom {
+
+                padding: 8px 10px 7px 10px;
+                box-sizing: border-box;
+
+                .filter_text {
+                    
+                    margin-bottom: 4px;
+                    font-weight: $medium;
+                    text-align: left;
+                    color: $medium_black;
+                    font-size: 13px;
+                    box-sizing: border-box;
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+
+                    span {
+                        font-weight: $bold;
+                    }
+                }
+            }
+
         }
 
         #fi_area {
