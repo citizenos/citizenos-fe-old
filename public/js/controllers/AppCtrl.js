@@ -7,6 +7,7 @@ angular
 
         $scope.app = {
             config: cosConfig,
+            $state: $state, // Expose $state so that we can use $state.includes in template
             showSearch: false,
             showSearchResults: false,
             showNav: false,
@@ -141,7 +142,7 @@ angular
 
         $rootScope.$on('$stateChangeSuccess', function () {
             $timeout(function () {
-                $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady');
+                $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady', $state.$current.name);
                 window.prerenderReady = true;
 
                 $scope.app.showSearch = false;

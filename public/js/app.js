@@ -226,6 +226,11 @@
                     parent: 'main',
                     templateUrl: '/views/mytopics.html'
                 })
+                .state('mytopics.topicId', { // MyTopics aka Dashboard
+                    url: '/:topicId',
+                    parent: 'mytopics',
+                    templateUrl: '/views/mytopics_topicId.html'
+                })
                 .state('mygroups', {
                     url: '/mygroups',
                     parent: 'main',
