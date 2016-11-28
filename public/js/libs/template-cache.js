@@ -11,6 +11,7 @@ angular
             '/views/home.html',
             '/views/mygroups.html',
             '/views/mytopics.html',
+            '/views/mytopics_topicId.html',
             '/views/no_topics.html',
             '/views/topics.html',
             '/views/default/nav.html',

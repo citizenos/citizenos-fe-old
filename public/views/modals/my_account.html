@@ -26,10 +26,11 @@
 
                         <div id="image_edit_section">
                             <div class="profile_image_wrapper dark big">
-                                <div class="profile_moon sprite sprite-icon-certified-google-2-x2x"></div>
+                                <!--div class="profile_moon sprite sprite-icon-certified-google-2-x2x"></div-->
                                 <div class="account_picture">
                                     <!-- NB Remember to use image that has 2x size, meaning 160x160px for this <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">-->
-                                    <div class="profile_image_filler" ng-if="!app.user.imageUrl">
+                                    <img ng-if="!app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">
+                                    <div class="profile_image_filler" ng-if="!!app.user.imageUrl">
                                         <div class="table_cell" cos-initials="app.user.name">
                                             ML
                                         </div>

@@ -177,6 +177,16 @@
                         });
                     }]
                 })
+                .state('account.profile', { // TODO: Naming inconsistency but /account/myaccount would be funny. Maybe rename all related files to profile?
+                    url: '/profile',
+                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/my_account.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
+                })
                 .state('account.passwordForgot', {
                     url: '/password/forgot',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
@@ -215,6 +225,11 @@
                     url: '/mytopics',
                     parent: 'main',
                     templateUrl: '/views/mytopics.html'
+                })
+                .state('mytopics.topicId', { // MyTopics aka Dashboard
+                    url: '/:topicId',
+                    parent: 'mytopics',
+                    templateUrl: '/views/mytopics_topicId.html'
                 })
                 .state('mygroups', {
                     url: '/mygroups',

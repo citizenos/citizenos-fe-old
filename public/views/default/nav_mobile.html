@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<div class="header_button overview" ng-if="wWidth <= 750">
+<div class="header_button overview" ui-sref="mytopics" ng-if="wWidth <= 750 && !('mytopics' | isState)">
     <div class="header_button_icon">
         <div class="sprite sprite-icon-back2x">
         </div>
@@ -21,7 +21,7 @@
     <div class="header_button_text">
         Overview
     </div>
-    
+
     <div id="line_holder">
         <div class="v_line light_line"></div>
         <div class="v_line dark_line"></div>
@@ -55,6 +55,6 @@
         </div>
     </div>
     <div id="m_search_bar_wrap">
-        <input ng-model="form.searchInput" ng-focus="checkLAndO()"  placeholder="Search">
+        <input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="Search">
     </div>
 </div>
