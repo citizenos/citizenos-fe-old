@@ -24,6 +24,16 @@
   }
 }
 
+.default_setup {
+    background: $light_gray;
+    @extend .all_zero;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+
 @mixin tablet {
   @media (max-width: 1024px) {
     @content;

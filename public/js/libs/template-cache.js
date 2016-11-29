@@ -18,6 +18,7 @@ angular
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
             '/views/layouts/main.html',
+            '/views/modals/create_groups.html',
             '/views/modals/delete_topic.html',
             '/views/modals/input_test.html',
             '/views/modals/login.html',

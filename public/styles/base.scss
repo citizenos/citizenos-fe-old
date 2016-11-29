@@ -215,6 +215,22 @@ a:link, a:visited {
     box-sizing: border-box;
 }
 
+.gray_button {
+    @extend .blue_button;
+    background: $lightest_gray;
+    color: $medium_black;
+    border: 1px solid $id_dark !important;
+    border-radius: 4px;
+
+    &:hover {
+        background: $medium_gray !important;
+        @include tablet {
+            background: $lightest_gray;
+        }
+    }
+
+}
+
 .blue_button.no, .blue_button.yes {
     border-radius: 4px;
 }
@@ -312,7 +328,7 @@ a:link, a:visited {
 }
 
 .toggle_widget.yes:hover {
-    background: $pinky_red;
+    background: $pinky_red_dark_hover;
 
     @include tablet {
         background: $pinky_red;

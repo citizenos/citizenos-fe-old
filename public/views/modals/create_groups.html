@@ -1,0 +1,68 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title">Create a group</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="clearer"></div>
+
+                <div class="header_row">
+                    <div class="tab_button active">
+                        <div class="tab_button_text">SETTINGS</div>
+                        <div class="blue_bottom_line"></div>
+                    </div>
+                    <div class="tab_button">
+                        <div class="tab_button_text">ADD TOPICS</div>
+                        <div class="blue_bottom_line"></div>
+                    </div>
+                    <div class="tab_button">
+                        <div class="tab_button_text">INVITE USERS</div>
+                        <div class="blue_bottom_line"></div>
+                    </div>
+
+                    <div class="blue_button">
+                        Save group
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div id="lightbox_content">
+
+                    <div class="line lightest_line"></div>
+
+                    <div class="lightbox_section">
+                        Insert a name for your group that is clear and understandable for people.
+                        <input placeholder="Group name">
+                        <label for="upload_image">Upload group avatar</label>
+                        <button name="upload_image" class="gray_button">
+                            Choose a file
+                        </button>
+                        Make your group private (only invited users can see it)
+
+                        <div class="toggle_widget" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
+                            <div class="toggle_circle"></div>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()">
+    </div>
+
+</div>

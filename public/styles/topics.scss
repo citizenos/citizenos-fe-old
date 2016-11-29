@@ -3,12 +3,7 @@
 @import 'icons';
 
 #topics_root {
-    background: $light_gray;
-    @extend .all_zero;
-    text-align: left;
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    @extend .default_setup;
 
     .v_line.separator {
         width: 1px;

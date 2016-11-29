@@ -93,13 +93,23 @@ angular
         };
 
         $scope.app.doShowDeleteTopic = function () {
-            $log.debug('AppCtrl.doShowMyAccount()');
+            $log.debug('AppCtrl.doShowDeleteTopic()');
 
             ngDialog.open({
                 template: '/views/modals/delete_topic.html',
                 scope: $scope
             });
         };
+
+        $scope.app.doShowCreateGroups = function () {
+            $log.debug('AppCtrl.doShowCreateGroups()');
+
+            ngDialog.open({
+                template: '/views/modals/create_groups.html',
+                scope: $scope
+            });
+        };
+        $scope.app.doShowCreateGroups();
 
         $scope.app.doSwitchLanguage = function (language) {
             $log.debug('AppCtrl.doSwitchLanguage()', language);
