@@ -10,6 +10,7 @@ angular
             '/views/help.html',
             '/views/home.html',
             '/views/mygroups.html',
+            '/views/mygroups_groupId.html',
             '/views/mytopics.html',
             '/views/mytopics_topicId.html',
             '/views/no_topics.html',

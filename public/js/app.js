@@ -236,6 +236,11 @@
                     parent: 'main',
                     templateUrl: '/views/mygroups.html'
                 })
+                .state('mygroups.groupId', {
+                    url: '/:groupId',
+                    parent: 'mygroups',
+                    templateUrl: '/views/mygroups_groupId.html'
+                })
                 .state('groups', {
                     url: '/groups',
                     parent: 'main',

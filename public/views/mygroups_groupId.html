@@ -1,0 +1,422 @@
+<!-- RIGHT SIDE -->
+<div class="topics_right" ng-controller="GroupCtrl">
+
+    <div class="v_line separator"></div>
+
+    <!-- GENERAL INFO GROUPS VIEW -->
+    <div class="info_container group_detail">
+
+        <div class="container_header">
+            <div class="header_text">
+                General information
+            </div>
+            <div class="minimize_container" ng-click="app.generalInformation = !app.generalInformation">
+                <div ng-class="app.generalInformation ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+            </div>
+        </div>
+
+        <div class="container_content" ng-if="!app.generalInformation">
+
+            <div class="content_top">
+                <div class="container_title">
+                    <!img src=".././imgs/test_logo2.jpg"--> {{group.name}}
+                </div>
+                <div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
+                    <div class="ff_table_fix">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-favourite2x-white"></div>
+                            <div class="yellow_bg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <div class="content_bottom">
+
+
+                <!-- COLUMN 1 -->
+                <div class="content_column">
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Users
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                {{group.members.count}}
+                            </div>
+                            <div class="v_line"></div>
+                            <div class="item_link blue_link">
+                                view
+                            </div>
+                            <div class="v_line"></div>
+                            <div class="item_link blue_link">
+                                invite
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Topics
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                {{group.topics.count}}
+                            </div>
+                            <div class="v_line"></div>
+                            <div class="item_link blue_link">
+                                view
+                            </div>
+                            <div class="v_line"></div>
+                            <div class="item_link blue_link">
+                                add
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Your rights
+                        </div>
+                        <div class="item_content bold">
+                            {{group.permission.level}}
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- COLUMN 2 -->
+                <div class="content_column">
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Latest
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                {{group.topics.latest.title}}
+                                <div class="float_left">
+                                    <div class="v_line bold"></div>
+                                    <div class="item_link blue_link bold">
+                                        view
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Group actions
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text blue_link">
+                                edit
+                            </div>
+                            <div class="v_line bold"></div>
+                            <div class="item_text blue_link">
+                                leave
+                            </div>
+                            <div class="v_line bold"></div>
+                            <div class="remove item_text blue_link">
+                                <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                delete
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- ACTIVITY FEED & NOTIFICATIONS -->
+    <!--div class="info_container">
+
+        <div class="container_header">
+            <div class="header_text">
+                Activity feed & notifications
+            </div>
+            <div class="minimize_container" ng-click="app.activityFeed = !app.activityFeed">
+                <div ng-class="app.activityFeed ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+            </div>
+        </div>
+
+        <div class="container_content activity_container" ng-if="!app.activityFeed">
+
+            <div class="activity" ng-repeat="(key, this) in ['1', '2']">
+
+                <div class="activity_left">
+                    <div class="activiy_time">55.07.2056 11:23</div>
+                </div>
+
+                <div class="activity_right">
+                    <div class="activity_icon">
+                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                    </div>
+                    <div class="activiy_title">Kristian Lember <span class="highlight aqua_marine_background">added</span> a <span class="highlight dark_yellow_background">comment</span>:</div>
+                    <div class="activiy_description">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
+                        home office combo? First off, you will need to set a budget for your new ...
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+            </div>
+
+            <div class="activity">
+
+                <div class="activity_left">
+                    <div class="view_older blue_link">View older</div>
+                </div>
+
+                <div class="activity_right">
+                    &nbsp;
+                </div>
+
+            </div>
+
+        </div>
+
+    </div-->
+
+    <!-- TOPIC LIST -->
+    <div class="info_container group_list">
+
+        <div class="container_header">
+            <div class="header_text">
+                Topic list |
+                <div class="blue_link" ng-click="isTopicListSearchVisible = !isTopicListSearchVisible">search</div>
+                |
+                <div class="blue_link">add</div>
+            </div>
+            <div class="minimize_container" ng-click="doShowTopics()">
+                <div ng-class="!isTopicListVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+            </div>
+        </div>
+
+        <div class="container_header second_header" ng-show="isTopicListSearchVisible">
+            <div class="table_cell">
+                <input placeholder="Topic title">
+            </div>
+            <div class="table_cell">
+                <div class="blue_button">search</div>
+            </div>
+            <div class="table_cell">
+                <div class="blue_link" ng-click="isTopicListSearchVisible = false">cancel</div>
+            </div>
+        </div>
+
+        <div class="container_content" ng-if="isTopicListVisible">
+
+            <table>
+                <tr>
+                    <th>
+                        <div class="th_text">
+                            Title
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th_text">
+                            Rights
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th_text">
+                            Users
+                            <div class="sprite sprite-icon-list-ordering2x"></div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th_text">
+                            Remove <span>from topic</span>
+                        </div>
+                    </th>
+                </tr>
+                <tr ng-repeat="topic in topicList">
+                    <td>
+                        <div class="blue_link">{{topic.title}}</div>
+                    </td>
+                    <td>
+                        <div cos-dropdown class="classic_dropdown">
+
+                            <div class="dropdown_selection">
+                                <div class="dropdown_text">
+                                    {{topic.permission.level}}
+                                </div>
+
+                                <div class="arrow_holder">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                        <div class="v_line"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown">
+
+                                <!-- NO CATEGORY -->
+                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                    <div class="item_name">
+                                        Read
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        {{topic.members.users.count}}
+                    </td>
+                    <td>
+                        <div class="table_wrap">
+                            <div ng-click="app.doShowDeleteTopic()" class="delete_topic_btn">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+    </div>
+
+    <!-- USER LIST -->
+    <div class="info_container group_list user_list">
+
+        <div class="container_header">
+            <div class="header_text">
+                User list |
+                <div class="blue_link" ng-click="isUserListSearchVisible = !isUserListSearchVisible">search</div>
+                |
+                <div class="blue_link">invite</div>
+            </div>
+            <div class="minimize_container" ng-click="doShowUserList()">
+                <div ng-class="!isUserListVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+            </div>
+        </div>
+
+        <div class="container_header second_header" ng-show="isUserListSearchVisible">
+            <div class="table_cell">
+                <input placeholder="Username, e-mail or group">
+            </div>
+            <div class="table_cell">
+                <div class="blue_button">search</div>
+            </div>
+            <div class="table_cell">
+                <div class="blue_link" ng-click="isUserListSearchVisible = false">cancel</div>
+            </div>
+        </div>
+
+        <div class="container_content" ng-if="isUserListVisible">
+
+            <table>
+                <tr>
+                    <th>
+                        <div class="th_text">
+                            Profile
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th_text">
+                            Rights
+                            <div class="sprite sprite-icon-list-ordering2x"></div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th_text">
+                            Remove <span>from topic</span>
+                        </div>
+                    </th>
+                </tr>
+
+                <tr ng-repeat="user in userList">
+                    <td>
+                        <div class="profile_image_wrapper dark">
+                            <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
+                            <div class="account_picture">
+                                <img ng-if="user.imageUrl" ng-src="{{user.imageUrl}}">
+                                <div ng-if="!user.imageUrl" class="profile_image_filler">
+                                    <div class="table_cell" cos-initials="user.name">
+                                        ML
+                                    </div>
+                                    <div class="profile_circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="name_wrap">
+                            <div class="table_cell">
+                                <div class="blue_link">{{user.name}}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div cos-dropdown class="classic_dropdown">
+
+                            <div class="dropdown_selection">
+                                <div class="dropdown_text">
+                                    {{user.level}}
+                                </div>
+
+                                <div class="arrow_holder">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                        <div class="v_line"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown">
+
+                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                    <div class="item_name">
+                                        Read
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="table_wrap">
+                            <div class="delete_topic_btn">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                    <!--div class="tooltip question">
+                                        Are you sure you want to delete this [user/comment/…]?
+                                        <div class="blue_button no">NO</div>
+                                        <div class="blue_button yes">YES</div>
+                                    </div-->
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+    </div>
+
+</div>
