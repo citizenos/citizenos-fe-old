@@ -116,20 +116,19 @@
     <!-- FILTER AREA MOBILE -->
     <div ng-if="wWidth <= 767" id="filter_bar_mobile">
 
-        <div class="filter_topics" ng-if="!app.showSearchFiltersMobile" ng-click="app.showSearchFiltersMobile = true">
+        <div class="filter_topics" ng-if="!app.showSearchFiltersMobile && !isFilterApplied()" ng-click="app.showSearchFiltersMobile = true">
             <div class="table_cell">Filter the topics</div>
         </div>
 
-        <div class="filter_topics edit" ng-if="!app.showSearchFiltersMobile">
+        <div class="filter_topics edit" ng-if="!app.showSearchFiltersMobile && isFilterApplied()">
             <div class="filter_topics_top">
-                <div class="blue_link">Edit filter</div>
-                <div class="blue_link">Clear filters</div>
+                <div class="blue_link" ng-click="app.showSearchFiltersMobile = true">Edit filter</div>
+                <div class="blue_link" ng-click="doClearFilters()">Clear filters</div>
             </div>
             <div class="line lightest_line"></div>
             <div class="filter_topics_bottom">
-                <div class="filter_text"><span>Category:</span> Communities and urban developen</div>
-                <div class="filter_text"><span>Order:</span> By time</div>
-                <div class="filter_text"><span>Status:</span> Only documents in progress</div>
+                <div class="filter_text"><span>Category:</span> {{filters.categories.value}}</div>
+                <div class="filter_text"><span>Status:</span> {{filters.statuses.value}}</div>
             </div>
         </div>
 

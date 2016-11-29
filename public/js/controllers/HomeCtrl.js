@@ -7,23 +7,27 @@ angular
 
         // Constant marking the "clear" or all options will do
         $scope.FILTERS_ALL = 'all';
-        $scope.filters = {
-            categories: {
-                value: $scope.FILTERS_ALL,
-                options: [$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))
-            },
-            statuses: {
-                value: $scope.FILTERS_ALL,
-                options: [$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))
-            },
-            limit: 30,
-            offset: 0,
-            tabSelected: 'categories' // Mobile view has tabs where the filters are selected, indicates which filter tab is visible
-        };
 
-        $scope.topicList = [];
-        $scope.topicCountTotal = null;
-        $scope.isTopicListLoading = null; // Bool, but for initial load using null.
+        var init = function () {
+            $scope.filters = {
+                categories: {
+                    value: $scope.FILTERS_ALL,
+                    options: [$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))
+                },
+                statuses: {
+                    value: $scope.FILTERS_ALL,
+                    options: [$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))
+                },
+                limit: 30,
+                offset: 0,
+                tabSelected: 'categories' // Mobile view has tabs where the filters are selected, indicates which filter tab is visible
+            };
+
+            $scope.topicList = [];
+            $scope.topicCountTotal = null;
+            $scope.isTopicListLoading = null; // Bool, but for initial load using null.
+        };
+        init();
 
         /**
          * Update topic list by setting relevant filter
@@ -45,14 +49,12 @@ angular
          * Clear all applied filters
          */
         $scope.doClearFilters = function () {
-            $scope.filters.categories.value = $scope.FILTERS_ALL;
-            $scope.filters.statuses.value = $scope.FILTERS_ALL;
-
-            $scope.topicList = [];
-            $scope.topicCountTotal = null;
-            $scope.filters.offset = 0;
-
+            init();
             $scope.loadTopicList();
+        };
+
+        $scope.isFilterApplied = function () {
+            return $scope.filters.categories.value !== $scope.FILTERS_ALL || $scope.filters.statuses.value !== $scope.FILTERS_ALL;
         };
 
         $scope.isTutorialVisible = function () {
