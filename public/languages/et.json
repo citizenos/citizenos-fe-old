@@ -30,5 +30,7 @@
   "MSG_ERROR_HWCRYPTO_NO_CERTIFICATES_LOGIN": "Lugeja ei leia ID-kaarti. Palun kontrollige, et ID-kaart oleks korralikult lugejas. Uutel ID-kaartidel on kiip kaardi tagaküljel.",
   "MSG_ERROR_HWCRYPTO_NO_IMPLEMENTATION_LOGIN": "Teie arvutis puudub digitaalse allkirjastamise tarkvara. Tarkvara saate paigaldada installer.id.ee veebilehelt.",
   "MSG_ERROR_HWCRYPTO_TECHNICAL_ERROR_LOGIN": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega.",
-  "MSG_ERROR_50000": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega."
+  "MSG_ERROR_50000": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega.",
+  "PASSWORD": "Parool",
+  "E-MAIL" : "E-mail"
 }
