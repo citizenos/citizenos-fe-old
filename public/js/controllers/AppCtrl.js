@@ -7,13 +7,11 @@ angular
 
         $scope.app = {
             config: cosConfig,
-            $state: $state, // Expose $state so that we can use $state.includes in template
             showSearch: false,
             showSearchResults: false,
             showNav: false,
             showSearchFiltersMobile: false,
-            isLoading: true,
-            date2: new Date() // FIXME: REMOVE with input_test.html
+            isLoading: true
         };
 
         $scope.app.EVENTS = {

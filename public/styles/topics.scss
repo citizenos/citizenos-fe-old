@@ -46,7 +46,7 @@
     #topics_wrap {
         background: $light_gray;
 
-        
+
 
         .container_header {
             margin-top: 10px;
@@ -275,11 +275,11 @@
                 .sprite-mytopics-icon-invoting2x {
                     @extend .sprite-mytopics-icon-invoting2x-w;
                 }
-                
+
                 .sprite-icon-lock2x {
                     @extend .sprite-icon-lock2x-white;
                 }
-                
+
                 .sprite-btn-expand2x {
                     @extend .sprite-btn-expand2x-white;
                 }
@@ -613,7 +613,7 @@
                                         }
                                     }
 
-                                                                        
+
                                     .float_left {
                                         display: inline-block;
                                         position: relative;
@@ -653,7 +653,7 @@
                         width: 100%;
                     }
                 }
-                
+
                 .content_column:nth-child(2) {
                     width: 66.6%;
 
@@ -690,7 +690,7 @@
                         .content_column:first-child {
                             padding-right: 20px;
                             box-sizing: border-box;
-                            
+
                             @include mobile {
                                 padding-right: 0;
                             }
@@ -805,10 +805,11 @@
                             text-align: center;
                             width: 100px;
                         }
-                        td:nth-child(4), th:nth-child(4) {
+                        td:nth-last-of-type(1), th:nth-last-of-type(1) {
                             text-align: center;
                             width: 117px;
                             text-decoration: none;
+                            cursor: default;
                             @media (max-width: 1280px) {
                                 width: initial;
                                 span {
@@ -827,11 +828,11 @@
                             &:hover {
                                 border: solid 1px $pinky_red;
                                 background: $pinky_red;
-                                
+
                                 .tooltip {
                                     visibility: visible;
                                 }
-                                
+
                                 .sprite {
                                     @extend .sprite-mytopics-icon-deletetopic02x;
                                     /*@media (max-width: 1024px) {
