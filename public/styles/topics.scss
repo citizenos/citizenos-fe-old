@@ -46,8 +46,6 @@
     #topics_wrap {
         background: $light_gray;
 
-
-
         .container_header {
             margin-top: 10px;
             height: 30px;
@@ -61,6 +59,7 @@
                 @extend .table_cell;
                 font-size: 13px;
                 padding-left: 5px;
+                cursor: pointer;
             }
 
             .header_img_wrap {
@@ -73,7 +72,6 @@
                     display: block;
                 }
             }
-
 
             .minimize_container {
                 @extend .table_cell;
@@ -253,7 +251,7 @@
 
             }
 
-            .small_topic.active, .container_header.active  {
+            .small_topic.active, .container_header.active {
                 background: $deep_sky_blue;
 
                 .small_topic_title, .small_topic_small_text, .header_text {
@@ -264,16 +262,16 @@
                     @extend .sprite-menu-icon-groups2x;
                 }
 
-                .sprite-mytopics-icon-progress2x {
-                    @extend .sprite-mytopics-icon-progress2x-w;
+                .sprite-mytopics-icon-inProgress2x {
+                    @extend .sprite-mytopics-icon-inProgress2x-w;
                 }
 
-                .sprite-mytopics-icon-infollowup2x {
-                    @extend .sprite-mytopics-icon-infollowup2x-w;
+                .sprite-mytopics-icon-followUp2x {
+                    @extend .sprite-mytopics-icon-followUp2x-w;
                 }
 
-                .sprite-mytopics-icon-invoting2x {
-                    @extend .sprite-mytopics-icon-invoting2x-w;
+                .sprite-mytopics-icon-voting2x {
+                    @extend .sprite-mytopics-icon-voting2x-w;
                 }
 
                 .sprite-icon-lock2x {
@@ -540,7 +538,7 @@
                             width: 33.3%;
                             float: left;
                             position: relative;
-                                box-sizing: border-box;
+                            box-sizing: border-box;
                             @media (max-width: 1280px) {
                                 width: 50%;
                             }
@@ -612,7 +610,6 @@
                                             margin-right: 5px;
                                         }
                                     }
-
 
                                     .float_left {
                                         display: inline-block;

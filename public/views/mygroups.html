@@ -50,13 +50,13 @@
             </div>
 
             <div ng-repeat="group in groupList">
-                <div class="container_header bold" ng-if="!isGroupListLoading" ui-sref="mygroups.groupId({groupId: group.id})" ui-sref-active="active">
+                <div class="container_header bold" ng-if="!isGroupListLoading" ui-sref-active="active">
                     <!--div class="header_img_wrap"><img src=".././imgs/test_topic_logo.png"></div-->
-                    <div class="header_text">
+                    <div class="header_text" ui-sref="mygroups.groupId({groupId: group.id})">
                         {{group.name}} ({{group.topics.count}})
                     </div>
-                    <div class="minimize_container" ng-click="doShowGroupTopicList(group.id)">
-                        <div ng-class="!isGroupTopicListVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite sprite-btn-minimize2x"></div>
+                    <div class="minimize_container" ng-click="doShowGroupTopicList(group.id)" ng-if="group.topics.count">
+                        <div ng-class=" 1 ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite sprite-btn-minimize2x"></div>
                     </div>
                 </div>
                 <div class="small_topic" ui-sref-active="active" ng-repeat="topic in group.topics.rows">
@@ -64,12 +64,12 @@
 
                         <div class="small_topic_left_cont">
                             <div class="small_topic_icon">
-                                <div class="sprite sprite-mytopics-icon-progress2x"></div>
+                                <div class="sprite" ng-class="'sprite-mytopics-icon-' + topic.status + '2x'"></div>
                             </div>
-                            <div class="small_topic_small_text">In progress</div>
+                            <div class="small_topic_small_text">{{topic.status}}</div>
                         </div>
 
-                        <div class="small_topic_right_cont">
+                        <!--div class="small_topic_right_cont">
                             <div class="small_topic_icon">
                                 <div class="sprite sprite-menu-icon-groups2x-dark"></div>
                             </div>
@@ -97,14 +97,14 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div-->
 
                         <div class="clearer"></div>
 
                     </div>
 
                     <div class="small_topic_title">
-                        {{topic.title}}<span class="lock_icon_wrap" ng-if="isTopicPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
+                        {{topic.title}}<span class="lock_icon_wrap" ng-show="isTopicPrivate(topic)"><div class="sprite sprite-icon-lock2x"></div></span>
                     </div>
 
                     <div class="line lightest_line"></div>
@@ -112,13 +112,14 @@
 
                     <div class="small_topic_footer">
 
-                        <div class="small_topic_left_cont">
+                        <!-- TODO: Implement -->
+                        <!--div class="small_topic_left_cont">
                             <div class="small_topic_small_text">10 new activity</div>
-                        </div>
+                        </div-->
 
 
                         <div class="small_topic_right_cont">
-                            <div class="small_topic_small_text">12.07.2016 11:23</div>
+                            <div class="small_topic_small_text">{{topic.updatedAt | amDateFormat : 'L LT'}}</div>
                         </div>
 
                     </div>

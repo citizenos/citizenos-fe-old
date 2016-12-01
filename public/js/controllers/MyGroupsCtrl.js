@@ -26,6 +26,7 @@ angular
             });
 
         $scope.doShowGroupTopicList = function (groupId) {
+            $log.debug('MyGroupsCtrl.doShowGroupTopicList', groupId);
             var group = _.find($scope.groupList, {id: groupId});
             if (!group.topics.rows) {
                 sGroup
@@ -40,11 +41,8 @@ angular
         };
 
         $scope.isTopicPrivate = function (topic) {
+            $log.debug('MyGroupsCtrl.isTopicPrivate', topic.id, topic.visibility === sTopic.VISIBILITY.private);
             return topic.visibility === sTopic.VISIBILITY.private;
         };
-
-        $scope.isCool = function() {
-            return 'COOL!';
-        }
 
     }]);

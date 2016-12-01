@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', 'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, sTranslate, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -136,6 +136,7 @@ angular
 
         $rootScope.$on('$translateChangeSuccess', function () {
             $scope.app.language = sTranslate.currentLanguage;
+            amMoment.changeLocale($scope.app.language);
         });
 
         $rootScope.$on('$stateChangeSuccess', function () {
