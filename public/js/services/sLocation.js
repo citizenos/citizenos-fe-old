@@ -18,16 +18,16 @@ angular
         sLocation.getAbsoluteUrlApi = function (path, params, query) {
             var baseUrlApi = cosConfig.api.baseUrl;
 
-            return _getAbsoluteUrl(baseUrlApi ,path, params, query);
+            return _getAbsoluteUrl(baseUrlApi, path, params, query);
         };
 
-        sLocation.getAbsoluteUrl= function (path, params, query) {
+        sLocation.getAbsoluteUrl = function (path, params, query) {
             var baseUrlApi = sLocation.getBaseUrl();
 
-            return _getAbsoluteUrl(baseUrlApi ,path, params, query);
+            return _getAbsoluteUrl(baseUrlApi, path, params, query);
         };
 
-        function _getAbsoluteUrl ( baseUrl, path, params, query ) {
+        function _getAbsoluteUrl(baseUrl, path, params, query) {
 
             if (params) {
                 Object.keys(params).forEach(function (key) {

@@ -7,6 +7,7 @@ angular
             '/views/about.html',
             '/views/faq.html',
             '/views/groups.html',
+            '/views/groups_test.html',
             '/views/help.html',
             '/views/home.html',
             '/views/mygroups.html',
