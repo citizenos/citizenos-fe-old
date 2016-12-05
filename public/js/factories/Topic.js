@@ -2,6 +2,7 @@ angular
     .module('citizenos')
     .factory('Topic', ['$log', '$resource', 'sLocation', function ($log, $resource, sLocation) {
         $log.debug('citizenos.factory.Topic');
+
         var Topic = $resource(
             sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId'),
             {topicId: '@id'},
@@ -32,6 +33,15 @@ angular
                 }
             }
         );
+
+        Topic.VISIBILITY = {
+            public: 'public', // Everyone has read-only on the Topic.  Pops up in the searches..
+            private: 'private' // No-one can see except collaborators
+        };
+
+        Topic.prototype.isPrivate = function () {
+            return this.visibility === Topic.VISIBILITY.private;
+        };
 
         return Topic;
     }]);
