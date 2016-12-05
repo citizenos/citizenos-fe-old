@@ -41,8 +41,6 @@
     #topics_wrap {
         background: $light_gray;
 
-        
-
         .container_header {
             margin-top: 10px;
             height: 30px;
@@ -56,6 +54,7 @@
                 @extend .table_cell;
                 font-size: 13px;
                 padding-left: 5px;
+                cursor: pointer;
             }
 
             .header_img_wrap {
@@ -68,7 +67,6 @@
                     display: block;
                 }
             }
-
 
             .minimize_container {
                 @extend .table_cell;
@@ -248,7 +246,7 @@
 
             }
 
-            .small_topic.active, .container_header.active  {
+            .small_topic.active, .container_header.active {
                 background: $deep_sky_blue;
 
                 .small_topic_title, .small_topic_small_text, .header_text {
@@ -259,22 +257,22 @@
                     @extend .sprite-menu-icon-groups2x;
                 }
 
-                .sprite-mytopics-icon-progress2x {
-                    @extend .sprite-mytopics-icon-progress2x-w;
+                .sprite-mytopics-icon-inProgress2x {
+                    @extend .sprite-mytopics-icon-inProgress2x-w;
                 }
 
-                .sprite-mytopics-icon-infollowup2x {
-                    @extend .sprite-mytopics-icon-infollowup2x-w;
+                .sprite-mytopics-icon-followUp2x {
+                    @extend .sprite-mytopics-icon-followUp2x-w;
                 }
 
-                .sprite-mytopics-icon-invoting2x {
-                    @extend .sprite-mytopics-icon-invoting2x-w;
+                .sprite-mytopics-icon-voting2x {
+                    @extend .sprite-mytopics-icon-voting2x-w;
                 }
-                
+
                 .sprite-icon-lock2x {
                     @extend .sprite-icon-lock2x-white;
                 }
-                
+
                 .sprite-btn-expand2x {
                     @extend .sprite-btn-expand2x-white;
                 }
@@ -535,7 +533,7 @@
                             width: 33.3%;
                             float: left;
                             position: relative;
-                                box-sizing: border-box;
+                            box-sizing: border-box;
                             @media (max-width: 1280px) {
                                 width: 50%;
                             }
@@ -608,7 +606,6 @@
                                         }
                                     }
 
-                                                                        
                                     .float_left {
                                         display: inline-block;
                                         position: relative;
@@ -648,7 +645,7 @@
                         width: 100%;
                     }
                 }
-                
+
                 .content_column:nth-child(2) {
                     width: 66.6%;
 
@@ -685,7 +682,7 @@
                         .content_column:first-child {
                             padding-right: 20px;
                             box-sizing: border-box;
-                            
+
                             @include mobile {
                                 padding-right: 0;
                             }
@@ -779,15 +776,53 @@
                             text-align: center;
                             width: 100px;
                         }
-                        td:nth-child(4), th:nth-child(4) {
+                        td:nth-last-of-type(1), th:nth-last-of-type(1) {
                             text-align: center;
                             width: 117px;
                             text-decoration: none;
+                            cursor: default;
                             @media (max-width: 1280px) {
                                 width: initial;
                                 span {
                                     display: none;
                                 }
+                            }
+                        }
+
+                        .table_wrap {
+                            border-radius: 4px;
+                            border: solid 1px $lightest_gray;
+                            width: 30px;
+                            height: 30px;
+                            margin: 0 auto;
+                            cursor: pointer;
+
+                            &:hover {
+                                border: solid 1px $pinky_red;
+                                background: $pinky_red;
+
+                                .tooltip {
+                                    visibility: visible;
+                                }
+
+                                .sprite {
+                                    @extend .sprite-mytopics-icon-deletetopic02x;
+                                    /*@media (max-width: 1024px) {
+	                                    background-position: -579px -548px;
+
+                                    }*/
+                                }
+                                /*@include tablet {
+                                    background: initial;
+                                    border: solid 1px $lightest_gray;
+                                }*/
+                            }
+
+                            .delete_topic_btn {
+                                width: inherit;
+                                height: inherit;
+                                display: table;
+                                position: relative;
                             }
                         }
 

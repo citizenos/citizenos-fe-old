@@ -2,18 +2,16 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', 'sTranslate', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, sTranslate, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys) {
         $log.debug('AppCtrl');
 
         $scope.app = {
             config: cosConfig,
-            $state: $state, // Expose $state so that we can use $state.includes in template
             showSearch: false,
             showSearchResults: false,
             showNav: false,
             showSearchFiltersMobile: false,
-            isLoading: true,
-            date2: new Date() // FIXME: REMOVE with input_test.html
+            isLoading: true
         };
 
         $scope.app.EVENTS = {
@@ -147,6 +145,7 @@ angular
 
         $rootScope.$on('$translateChangeSuccess', function () {
             $scope.app.language = sTranslate.currentLanguage;
+            amMoment.changeLocale($scope.app.language);
         });
 
         $rootScope.$on('$stateChangeSuccess', function () {

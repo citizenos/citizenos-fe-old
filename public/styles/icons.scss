@@ -1,244 +1,249 @@
-
-
 /* Generated data URIs used for preview purposes only */
 /* Be sure that you replace data URIs with generated images */
 .sprite {
-	background-image: url('../imgs/icons_sprite.png');
+    background-image: url('../imgs/icons_sprite.png');
 }
 
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+<<<<<<< HEAD
 	.sprite {
 		background-image: url('../imgs/icons_sprite2x.png');
 	background-size: 1992px 1491px;
 	}
+=======
+    .sprite {
+        background-image: url('../imgs/icons_sprite2x.png');
+        background-size: 1977px 1476px;
+    }
+>>>>>>> 901320b2044977d3f0b6ee1c2991fbd112f37e78
 }
 
 .sprite-arrow-calendar-left2x {
-	width: 9px;
-	height: 14px;
-	background-position: 0 0;
+    width: 9px;
+    height: 14px;
+    background-position: 0 0;
 }
 
 .sprite-arrow-calendar-right2x {
-	width: 9px;
-	height: 14px;
-	background-position: -9px -14px;
+    width: 9px;
+    height: 14px;
+    background-position: -9px -14px;
 }
 
 .sprite-btn-expand2x {
-	width: 16px;
-	height: 16px;
-	background-position: -18px -28px;
+    width: 16px;
+    height: 16px;
+    background-position: -18px -28px;
 }
 
 .sprite-btn-expand2x-white {
-	width: 16px;
-	height: 16px;
-	background-position: -34px -44px;
+    width: 16px;
+    height: 16px;
+    background-position: -34px -44px;
 }
 
 .sprite-btn-minimize2x {
-	width: 16px;
-	height: 16px;
-	background-position: -50px -60px;
+    width: 16px;
+    height: 16px;
+    background-position: -50px -60px;
 }
 
 .sprite-btn-minimize2x-white {
-	width: 16px;
-	height: 16px;
-	background-position: -66px -76px;
+    width: 16px;
+    height: 16px;
+    background-position: -66px -76px;
 }
 
 .sprite-btn-popup-close-2x-green {
-	width: 14px;
-	height: 14px;
-	background-position: -82px -92px;
+    width: 14px;
+    height: 14px;
+    background-position: -82px -92px;
 }
 
 .sprite-btn-popup-close2x {
-	width: 14px;
-	height: 14px;
-	background-position: -96px -106px;
+    width: 14px;
+    height: 14px;
+    background-position: -96px -106px;
 }
 
 .sprite-bullet-arrow2x {
-	width: 13px;
-	height: 5px;
-	background-position: -110px -120px;
+    width: 13px;
+    height: 5px;
+    background-position: -110px -120px;
 }
 
 .sprite-bullet-plus2x {
-	width: 9px;
-	height: 9px;
-	background-position: -123px -125px;
+    width: 9px;
+    height: 9px;
+    background-position: -123px -125px;
 }
 
 .sprite-checkmark2x {
-	width: 16px;
-	height: 12px;
-	background-position: -132px -134px;
+    width: 16px;
+    height: 12px;
+    background-position: -132px -134px;
 }
 
 .sprite-dropdown-arrowdown-big2x {
-	width: 13px;
-	height: 8px;
-	background-position: -148px -146px;
+    width: 13px;
+    height: 8px;
+    background-position: -148px -146px;
 }
 
 .sprite-dropdown-arrowdown-small2x {
-	width: 8px;
-	height: 6px;
-	background-position: -161px -154px;
+    width: 8px;
+    height: 6px;
+    background-position: -161px -154px;
 }
 
 .sprite-icon-back2x {
-	width: 16px;
-	height: 18px;
-	background-position: -169px -160px;
+    width: 16px;
+    height: 18px;
+    background-position: -169px -160px;
 }
 
 .sprite-icon-certified-fb2x {
-	width: 14px;
-	height: 14px;
-	background-position: -185px -178px;
+    width: 14px;
+    height: 14px;
+    background-position: -185px -178px;
 }
 
 .sprite-icon-certified-fb-2-x2x {
-	width: 28px;
-	height: 28px;
-	background-position: -199px -192px;
+    width: 28px;
+    height: 28px;
+    background-position: -199px -192px;
 }
 
 .sprite-icon-certified-google2x {
-	width: 14px;
-	height: 14px;
-	background-position: -227px -220px;
+    width: 14px;
+    height: 14px;
+    background-position: -227px -220px;
 }
 
 .sprite-icon-certified-google-2-x2x {
-	width: 28px;
-	height: 28px;
-	background-position: -241px -234px;
+    width: 28px;
+    height: 28px;
+    background-position: -241px -234px;
 }
 
 .sprite-icon-certified-id2x {
-	width: 14px;
-	height: 14px;
-	background-position: -269px -262px;
+    width: 14px;
+    height: 14px;
+    background-position: -269px -262px;
 }
 
 .sprite-icon-certified-id-2-x2x {
-	width: 28px;
-	height: 28px;
-	background-position: -283px -276px;
+    width: 28px;
+    height: 28px;
+    background-position: -283px -276px;
 }
 
 .sprite-icon-certified-id-inverted2x {
-	width: 14px;
-	height: 14px;
-	background-position: -311px -304px;
+    width: 14px;
+    height: 14px;
+    background-position: -311px -304px;
 }
 
 .sprite-icon-certified-id-inverted-2-x2x {
-	width: 28px;
-	height: 28px;
-	background-position: -325px -318px;
+    width: 28px;
+    height: 28px;
+    background-position: -325px -318px;
 }
 
 .sprite-icon-closemenu-b-2x {
-	width: 12px;
-	height: 12px;
-	background-position: -353px -346px;
+    width: 12px;
+    height: 12px;
+    background-position: -353px -346px;
 }
 
 .sprite-icon-closemenu2x {
-	width: 12px;
-	height: 12px;
-	background-position: -365px -358px;
+    width: 12px;
+    height: 12px;
+    background-position: -365px -358px;
 }
 
 .sprite-icon-delete-topic2x {
-	width: 46px;
-	height: 40px;
-	background-position: -377px -370px;
+    width: 46px;
+    height: 40px;
+    background-position: -377px -370px;
 }
 
 .sprite-icon-dropdown-arrowdown2x {
-	width: 11px;
-	height: 7px;
-	background-position: -423px -410px;
+    width: 11px;
+    height: 7px;
+    background-position: -423px -410px;
 }
 
 .sprite-icon-favourite2x {
-	width: 22px;
-	height: 22px;
-	background-position: -434px -417px;
+    width: 22px;
+    height: 22px;
+    background-position: -434px -417px;
 }
 
 .sprite-icon-favourite2x-white {
-	width: 12px;
-	height: 12px;
-	background-position: -456px -439px;
+    width: 12px;
+    height: 12px;
+    background-position: -456px -439px;
 }
 
 .sprite-icon-favourite-notfilled2x {
-	width: 22px;
-	height: 22px;
-	background-position: -468px -451px;
+    width: 22px;
+    height: 22px;
+    background-position: -468px -451px;
 }
 
 .sprite-icon-hamburger2x {
-	width: 16px;
-	height: 12px;
-	background-position: -490px -473px;
+    width: 16px;
+    height: 12px;
+    background-position: -490px -473px;
 }
 
 .sprite-icon-inputfield-error2x {
-	width: 16px;
-	height: 14px;
-	background-position: -506px -485px;
+    width: 16px;
+    height: 14px;
+    background-position: -506px -485px;
 }
 
 .sprite-icon-list-ordering2x {
-	width: 6px;
-	height: 11px;
-	background-position: -522px -499px;
+    width: 6px;
+    height: 11px;
+    background-position: -522px -499px;
 }
 
 .sprite-icon-lock2x {
-	width: 8px;
-	height: 11px;
-	background-position: -528px -510px;
+    width: 8px;
+    height: 11px;
+    background-position: -528px -510px;
 }
 
 .sprite-icon-lock2x-white {
-	width: 8px;
-	height: 11px;
-	background-position: -536px -521px;
+    width: 8px;
+    height: 11px;
+    background-position: -536px -521px;
 }
 
 .sprite-icon-notification-check2x {
-	width: 16px;
-	height: 16px;
-	background-position: -544px -532px;
+    width: 16px;
+    height: 16px;
+    background-position: -544px -532px;
 }
 
 .sprite-icon-notification-error2x {
-	width: 16px;
-	height: 14px;
-	background-position: -560px -548px;
+    width: 16px;
+    height: 14px;
+    background-position: -560px -548px;
 }
 
 .sprite-icon-notification-info2x {
-	width: 16px;
-	height: 16px;
-	background-position: -576px -562px;
+    width: 16px;
+    height: 16px;
+    background-position: -576px -562px;
 }
 
 .sprite-icon-search-b-2x {
-	width: 15px;
-	height: 15px;
-	background-position: -592px -578px;
+    width: 15px;
+    height: 15px;
+    background-position: -592px -578px;
 }
 
 .sprite-icon-search-gray-2x {
@@ -248,12 +253,19 @@
 }
 
 .sprite-icon-search2x {
+    width: 15px;
+    height: 15px;
+    background-position: -607px -593px;
+}
+
+.sprite-icon-search2x {
 	width: 15px;
 	height: 15px;
 	background-position: -622px -608px;
 }
 
 .sprite-i-d-kaart2x {
+<<<<<<< HEAD
 	width: 142px;
 	height: 34px;
 	background-position: -637px -623px;
@@ -462,3 +474,213 @@
 	height: 132px;
 	background-position: -1842px -1359px;
 }
+=======
+    width: 142px;
+    height: 34px;
+    background-position: -622px -608px;
+}
+
+.sprite-id-spinner2x {
+    width: 34px;
+    height: 35px;
+    background-position: -764px -642px;
+}
+
+.sprite-img-idkaart2x {
+    width: 203px;
+    height: 98px;
+    background-position: -798px -677px;
+}
+
+.sprite-login-icon-facebook2x {
+    width: 14px;
+    height: 14px;
+    background-position: -1001px -775px;
+}
+
+.sprite-login-icon-google2x {
+    width: 14px;
+    height: 14px;
+    background-position: -1015px -789px;
+}
+
+.sprite-login-icon-id2x {
+    width: 18px;
+    height: 13px;
+    background-position: -1029px -803px;
+}
+
+.sprite-menu-icon-about2x {
+    width: 18px;
+    height: 15px;
+    background-position: -1047px -816px;
+}
+
+.sprite-menu-icon-connections2x {
+    width: 21px;
+    height: 17px;
+    background-position: -1065px -831px;
+}
+
+.sprite-menu-icon-faq2x {
+    width: 17px;
+    height: 17px;
+    background-position: -1086px -848px;
+}
+
+.sprite-menu-icon-groups2x {
+    width: 17px;
+    height: 16px;
+    background-position: -1103px -865px;
+}
+
+.sprite-menu-icon-groups2x-dark {
+    width: 17px;
+    height: 16px;
+    background-position: -1120px -881px;
+}
+
+.sprite-menu-icon-help2x {
+    width: 17px;
+    height: 17px;
+    background-position: -1137px -897px;
+}
+
+.sprite-menu-icon-logout2x {
+    width: 17px;
+    height: 16px;
+    background-position: -1154px -914px;
+}
+
+.sprite-menu-icon-topics2x {
+    width: 16px;
+    height: 18px;
+    background-position: -1171px -930px;
+}
+
+.sprite-mobiil-i-d2x {
+    width: 149px;
+    height: 34px;
+    background-position: -1187px -948px;
+}
+
+.sprite-mytopics-icon-deletetopic02x {
+    width: 11px;
+    height: 13px;
+    background-position: -1336px -982px;
+}
+
+.sprite-mytopics-icon-deletetopic2x {
+    width: 11px;
+    height: 13px;
+    background-position: -1347px -995px;
+}
+
+.sprite-mytopics-icon-followUp2x {
+    width: 12px;
+    height: 12px;
+    background-position: -1358px -1008px;
+}
+
+.sprite-mytopics-icon-followUp2x-w {
+    width: 12px;
+    height: 12px;
+    background-position: -1370px -1020px;
+}
+
+.sprite-mytopics-icon-voting2x {
+    width: 12px;
+    height: 12px;
+    background-position: -1382px -1032px;
+}
+
+.sprite-mytopics-icon-voting2x-w {
+    width: 12px;
+    height: 12px;
+    background-position: -1394px -1044px;
+}
+
+.sprite-mytopics-icon-inProgress2x {
+    width: 12px;
+    height: 12px;
+    background-position: -1406px -1056px;
+}
+
+.sprite-mytopics-icon-inProgress2x-w {
+    width: 12px;
+    height: 12px;
+    background-position: -1418px -1068px;
+}
+
+.sprite-tooltip-arrow2x {
+    width: 5px;
+    height: 9px;
+    background-position: -1430px -1080px;
+}
+
+.sprite-tooltip-arrow-grey2x {
+    width: 9px;
+    height: 5px;
+    background-position: -1435px -1089px;
+}
+
+.sprite-tooltip-arrow-grey-shadow2x {
+    width: 17px;
+    height: 10px;
+    background-position: -1444px -1094px;
+}
+
+.sprite-voted-check2x {
+    width: 23px;
+    height: 18px;
+    background-position: -1461px -1104px;
+}
+
+.sprite-voted-nocheck2x {
+    width: 16px;
+    height: 16px;
+    background-position: -1484px -1122px;
+}
+
+.sprite-x0-menu-icon-help2x {
+    width: 17px;
+    height: 17px;
+    background-position: -1500px -1138px;
+}
+
+.sprite-x1-mytopics-icon-discuss-big2x {
+    width: 61px;
+    height: 58px;
+    background-position: -1517px -1155px;
+}
+
+.sprite-x2-mytopics-icon-newtopic-big2x {
+    width: 70px;
+    height: 78px;
+    background-position: -1578px -1213px;
+}
+
+.sprite-x3-icon-topbar-earch2x {
+    width: 18px;
+    height: 18px;
+    background-position: -1648px -1291px;
+}
+
+.sprite-x4-icon-language-dropdown2x {
+    width: 11px;
+    height: 7px;
+    background-position: -1666px -1309px;
+}
+
+.sprite-x5-cos-logo-small2x {
+    width: 150px;
+    height: 28px;
+    background-position: -1677px -1316px;
+}
+
+.sprite-x6-cos-logo-big2x {
+    width: 150px;
+    height: 132px;
+    background-position: -1827px -1344px;
+}
+>>>>>>> 901320b2044977d3f0b6ee1c2991fbd112f37e78

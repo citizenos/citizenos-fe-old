@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto']);
+    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto']);
 
     module
         .constant('cosConfig', {
@@ -21,7 +21,7 @@
         });
 
     module
-        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
+        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
 
             var langReg = Object.keys(cosConfig.language.list).join('|');
 
@@ -236,10 +236,20 @@
                     parent: 'main',
                     templateUrl: '/views/mygroups.html'
                 })
+                .state('mygroups.groupId', {
+                    url: '/:groupId',
+                    parent: 'mygroups',
+                    templateUrl: '/views/mygroups_groupId.html'
+                })
                 .state('groups', {
                     url: '/groups',
                     parent: 'main',
                     templateUrl: '/views/groups.html'
+                })
+                .state('groupstest', {
+                    url: '/groupstest',
+                    parent: 'main',
+                    templateUrl: '/views/groups_test.html'
                 })
                 .state('about', {
                     url: '/about',

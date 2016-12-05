@@ -1,3 +1,137 @@
-<div id="my_groups_root">
-    test
+<div id="topics_root" ng-controller="MyGroupsCtrl">
+
+    <div class="v_line separator absolute_separator" ng-show="wWidth > 750"></div>
+
+    <div id="topics_wrap">
+
+        <!-- LEFT SIDE -->
+        <div class="topics_left" ng-hide="wWidth <= 750 && 'mygroups.groupId' | isState">
+
+            <div cos-dropdown class="classic_dropdown">
+
+                <div class="dropdown_selection">
+                    <div class="dropdown_text">
+                        Show only: Public topics
+                    </div>
+
+                    <div class="arrow_holder">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                            <div class="v_line"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+
+                    <!-- NO CATEGORY -->
+                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                        <div class="item_name">
+                            Show all my topics
+                        </div>
+                    </div>
+
+                    <!-- WITH CATEGORY -->
+                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2', '3', '4', '5']">
+                        <div class="item_category">
+                            Show only:
+                        </div>
+                        <div class="item_names_wrap">
+                            <div class="item_name" ng-class="key === 0 ? 'bold' : ''" ng-repeat="(key, this) in ['1', '2', '3', '4']">
+                                My public topics
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div ng-repeat="group in groupList">
+                <div class="container_header bold" ng-if="!isGroupListLoading" ui-sref-active="active">
+                    <!--div class="header_img_wrap"><img src=".././imgs/test_topic_logo.png"></div-->
+                    <div class="header_text" ui-sref="mygroups.groupId({groupId: group.id})">
+                        {{group.name}} ({{group.topics.count}})
+                    </div>
+                    <div class="minimize_container" ng-click="doShowGroupTopicList(group.id)" ng-if="group.topics.count">
+                        <div ng-class=" 1 ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite sprite-btn-minimize2x"></div>
+                    </div>
+                </div>
+                <div class="small_topic" ui-sref-active="active" ng-repeat="topic in group.topics.rows">
+                    <div class="small_topic_header">
+
+                        <div class="small_topic_left_cont">
+                            <div class="small_topic_icon">
+                                <div class="sprite" ng-class="'sprite-mytopics-icon-' + topic.status + '2x'"></div>
+                            </div>
+                            <div class="small_topic_small_text">{{topic.status}}</div>
+                        </div>
+
+                        <!--div class="small_topic_right_cont">
+                            <div class="small_topic_icon">
+                                <div class="sprite sprite-menu-icon-groups2x-dark"></div>
+                            </div>
+                            <div class="small_topic_small_text">3 groups</div>
+
+                            <div class="hover_info">
+
+                                <div class="info_arrow sprite sprite-tooltip-arrow2x">
+                                </div>
+
+                                <div class="hover_item">
+                                    <div class="icon_container">
+                                        <img class="topic_image" src=".././imgs/test_topic_logo.png">
+                                        <div class="sprite sprite-icon-favourite2x"></div>
+                                    </div>
+                                    <div class="item_text">CitizenOS test group</div>
+                                </div>
+
+                                <div class="hover_item">
+                                    <div class="icon_container">
+                                        <img class="topic_image" src=".././imgs/test_topic_logo.png">
+                                        <div class="sprite sprite-icon-favourite2x"></div>
+                                    </div>
+                                    <div class="item_text">CitizenOS test group</div>
+                                </div>
+
+                            </div>
+                        </div-->
+
+                        <div class="clearer"></div>
+
+                    </div>
+
+                    <div class="small_topic_title">
+                        {{topic.title}}<span class="lock_icon_wrap" ng-show="isTopicPrivate(topic)"><div class="sprite sprite-icon-lock2x"></div></span>
+                    </div>
+
+                    <div class="line lightest_line"></div>
+
+
+                    <div class="small_topic_footer">
+
+                        <!-- TODO: Implement -->
+                        <!--div class="small_topic_left_cont">
+                            <div class="small_topic_small_text">10 new activity</div>
+                        </div-->
+
+
+                        <div class="small_topic_right_cont">
+                            <div class="small_topic_small_text">{{topic.updatedAt | amDateFormat : 'L LT'}}</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div ui-view ng-if="!isGroupListLoading"></div>
+
+        <div class="clearer"></div>
+    </div>
 </div>

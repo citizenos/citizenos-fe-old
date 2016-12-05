@@ -10,6 +10,11 @@ angular
             closed: 'closed' // Final status - Topic is completed and no editing/reopening/voting can occur.
         };
 
+        sTopic.VISIBILITY = {
+            public: 'public', // Everyone has read-only on the Topic.  Pops up in the searches..
+            private: 'private' // No-one can see except collaborators
+        };
+
         sTopic.CATEGORIES = {
             business: 'business', // Business and industry
             transport: 'transport', // Public transport and road safety
