@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyGroupsCtrl', ['$rootScope', '$scope', '$state', '$log', 'Group', 'sGroup', 'sTopic', function ($rootScope, $scope, $state, $log, Group, sGroup, sTopic) {
+    .controller('MyGroupsCtrl', ['$rootScope', '$scope', '$state', '$log', 'Group', function ($rootScope, $scope, $state, $log, Group) {
         $log.debug('MyGroupsCtrl');
 
         $scope.groupList = [];

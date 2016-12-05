@@ -68,6 +68,24 @@ angular
             }
         };
 
+        Group.prototype.getUserList = function () {
+            var group = this;
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members', {groupId: this.id});
+            return {
+                $promise: $http
+                    .get(path)
+                    .then(function (res) {
+                        if (res.status < 400) { // FIXME: think this error handling through....
+                            group.members.rows = res.data.data.rows;
+                            group.members.count = res.data.data.rows.length;
+                        } else {
+                            return data;
+                        }
+                    })
+            }
+        };
+
+
         Group.prototype.isTopicListExpanded = false;
 
         return Group;

@@ -126,7 +126,7 @@
                                 leave
                             </div>
                             <div class="v_line bold"></div>
-                            <div class="remove item_text blue_link">
+                            <div class="remove item_text blue_link" ng-click="group.$delete()">
                                 <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
                                 delete
                             </div>
@@ -203,7 +203,7 @@
                 |
                 <div class="blue_link">add</div>
             </div>
-            <div class="minimize_container" ng-click="doShowTopics()">
+            <div class="minimize_container" ng-click="doToggleTopicList(group)">
                 <div ng-class="!isTopicListVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -243,7 +243,7 @@
                         </div>
                     </th>
                 </tr>
-                <tr ng-repeat="topic in topicList">
+                <tr ng-repeat="topic in group.topics.rows">
                     <td>
                         <div class="blue_link">{{topic.title}}</div>
                     </td>
@@ -298,7 +298,7 @@
                 |
                 <div class="blue_link">invite</div>
             </div>
-            <div class="minimize_container" ng-click="doShowUserList()">
+            <div class="minimize_container" ng-click="doToggleUserList(group)">
                 <div ng-class="!isUserListVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -333,7 +333,7 @@
                         </div>
                     </th>
                 </tr>
-                <tr ng-repeat="user in userList">
+                <tr ng-repeat="user in group.members.rows">
                     <td>
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->

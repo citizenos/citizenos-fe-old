@@ -2,42 +2,38 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'sGroup', function ($scope, $state, $stateParams, $log, sGroup) {
+    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', function ($scope, $state, $stateParams, $log) {
         $log.debug('GroupCtrl');
         $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});
 
-        $scope.topicList = [];
         $scope.isTopicListVisible = false;
         $scope.isTopicListSearchVisible = false;
 
-        $scope.userList = [];
         $scope.isUserListVisible = false;
         $scope.isUserListSearchVisible = false;
 
-        $scope.doShowTopics = function () {
+        $scope.doToggleTopicList = function (group) {
             if ($scope.isTopicListVisible) {
                 $scope.isTopicListVisible = false;
                 return;
             }
 
-            sGroup
-                .topicsList($scope.group.id)
-                .then(function (res) {
-                    $scope.topicList = res.data.data.rows;
+            group
+                .getTopicList().$promise
+                .then(function () {
                     $scope.isTopicListVisible = true;
                 });
         };
 
-        $scope.doShowUserList = function () {
+        $scope.doToggleUserList = function (group) {
             if ($scope.isUserListVisible) {
                 $scope.isUserListVisible = false;
                 return;
             }
 
-            sGroup
-                .membersList($scope.group.id)
-                .then(function (res) {
-                    $scope.userList = res.data.data.rows;
+            group
+                .getUserList().$promise
+                .then(function () {
                     $scope.isUserListVisible = true;
                 });
         };
