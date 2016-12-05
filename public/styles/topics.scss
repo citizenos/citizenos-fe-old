@@ -3,12 +3,7 @@
 @import 'icons';
 
 #topics_root {
-    background: $light_gray;
-    @extend .all_zero;
-    text-align: left;
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    @extend .default_setup;
 
     .v_line.separator {
         width: 1px;
@@ -262,16 +257,20 @@
                     @extend .sprite-menu-icon-groups2x;
                 }
 
-                .sprite-mytopics-icon-inProgress2x {
-                    @extend .sprite-mytopics-icon-inProgress2x-w;
+                .sprite-mytopics-icon-inprogress2x {
+                    @extend .sprite-mytopics-icon-inprogress2x-w;
                 }
 
-                .sprite-mytopics-icon-followUp2x {
-                    @extend .sprite-mytopics-icon-followUp2x-w;
+                .sprite-mytopics-icon-followup2x {
+                    @extend .sprite-mytopics-icon-followup2x-w;
                 }
 
                 .sprite-mytopics-icon-voting2x {
                     @extend .sprite-mytopics-icon-voting2x-w;
+                }
+
+                .sprite-mytopics-icon-closed2x {
+                    @extend .sprite-mytopics-icon-closed2x-w;
                 }
 
                 .sprite-icon-lock2x {
@@ -745,32 +744,6 @@
 
                 .container_content {
                     table {
-                        width: 100%;
-                        border-collapse: collapse;
-
-                        th {
-                            border-bottom: 1px solid $lightest_gray;
-                            padding: 20px 0 10px 0;
-                        }
-                        th {
-                            font-size: 13px;
-                            opacity: .7;
-                            font-weight: $medium;
-                            text-decoration: underline;
-                            cursor: pointer;
-                            &:hover {
-                                opacity: 1;
-                            }
-                            .th_text {
-                                position: relative;
-                                display: inline;
-                                .sprite {
-                                    position: absolute;
-                                    right: -11px;
-                                    top: 4px;
-                                }
-                            }
-                        }
 
                         td {
                             padding: 5px 0;
@@ -778,6 +751,11 @@
                             &:first-child {
                                 padding-right: 10px;
                             }
+                        }
+
+                        th {
+                            border-bottom: 1px solid $lightest_gray;
+                            padding: 20px 0 10px 0;
                         }
 
                         td:nth-child(1) {
@@ -814,6 +792,7 @@
                                 }
                             }
                         }
+
                         .table_wrap {
                             border-radius: 4px;
                             border: solid 1px $lightest_gray;
@@ -867,11 +846,7 @@
                         tr:nth-child(2) td {
                             padding-top: 10px;
                         }
-
-                        .name_wrap {
-                            display: table;
-                            height: 40px;
-                        }
+                        
                     }
                 }
             }
