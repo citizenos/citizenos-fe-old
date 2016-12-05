@@ -269,6 +269,10 @@
                     @extend .sprite-mytopics-icon-voting2x-w;
                 }
 
+                .sprite-mytopics-icon-closed2x {
+                    @extend .sprite-mytopics-icon-closed2x-w;
+                }
+
                 .sprite-icon-lock2x {
                     @extend .sprite-icon-lock2x-white;
                 }
