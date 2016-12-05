@@ -743,32 +743,6 @@
 
                 .container_content {
                     table {
-                        width: 100%;
-                        border-collapse: collapse;
-
-                        th {
-                            border-bottom: 1px solid $lightest_gray;
-                            padding: 20px 0 10px 0;
-                        }
-                        th {
-                            font-size: 13px;
-                            opacity: .7;
-                            font-weight: $medium;
-                            text-decoration: underline;
-                            cursor: pointer;
-                            &:hover {
-                                opacity: 1;
-                            }
-                            .th_text {
-                                position: relative;
-                                display: inline;
-                                .sprite {
-                                    position: absolute;
-                                    right: -11px;
-                                    top: 4px;
-                                }
-                            }
-                        }
 
                         td {
                             padding: 5px 0;
@@ -776,6 +750,11 @@
                             &:first-child {
                                 padding-right: 10px;
                             }
+                        }
+
+                        th {
+                            border-bottom: 1px solid $lightest_gray;
+                            padding: 20px 0 10px 0;
                         }
 
                         td:nth-child(1) {
@@ -811,42 +790,6 @@
                                 }
                             }
                         }
-                        .table_wrap {
-                            border-radius: 4px;
-                            border: solid 1px $lightest_gray;
-                            width: 30px;
-                            height: 30px;
-                            margin: 0 auto;
-                            cursor: pointer;
-
-                            &:hover {
-                                border: solid 1px $pinky_red;
-                                background: $pinky_red;
-                                
-                                .tooltip {
-                                    visibility: visible;
-                                }
-                                
-                                .sprite {
-                                    @extend .sprite-mytopics-icon-deletetopic02x;
-                                    /*@media (max-width: 1024px) {
-	                                    background-position: -579px -548px;
-
-                                    }*/
-                                }
-                                /*@include tablet {
-                                    background: initial;
-                                    border: solid 1px $lightest_gray;
-                                }*/
-                            }
-
-                            .delete_topic_btn {
-                                width: inherit;
-                                height: inherit;
-                                display: table;
-                                position: relative;
-                            }
-                        }
 
                         .sprite {
                             margin: 0 auto;
@@ -864,11 +807,7 @@
                         tr:nth-child(2) td {
                             padding-top: 10px;
                         }
-
-                        .name_wrap {
-                            display: table;
-                            height: 40px;
-                        }
+                        
                     }
                 }
             }

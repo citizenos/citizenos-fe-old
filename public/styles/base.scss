@@ -1,6 +1,7 @@
 @import 'vars';
 @import 'mixins_n_extends';
 @import 'no_topics';
+@import 'icons';
 
 body, html {
     font-family: 'Open Sans', sans-serif;
@@ -90,7 +91,166 @@ img {
     border: 0;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+        font-size: 13px;
+        opacity: .7;
+        font-weight: $medium;
+        text-decoration: underline;
+        cursor: pointer;
+        &:first-child {
+            text-align: left;
+        }
+        &:hover {
+            opacity: 1;
+        }
+        .th_text {
+            position: relative;
+            display: inline;
+            .sprite {
+                position: absolute;
+                right: -11px;
+                top: 4px;
+            }
+        }
+    }
+}
+
+.user_list {
+    
+    td {
+        padding: 5px 0;
+        &:nth-child(1) {
+            font-size: 14px;
+            font-weight: $bold;
+        }
+    }
+
+    .name_wrap {
+        display: table;
+        height: 40px;
+    }
+}
+
+
+.btn_wrap.white_bg {
+    background-color: $white;
+}
+
+.btn_wrap {
+    border-radius: 4px;
+    border: solid 1px $lightest_gray;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    cursor: pointer;
+
+    &:hover {
+        border: solid 1px $pinky_red;
+        background: $pinky_red;
+        
+        .tooltip {
+            visibility: visible;
+        }
+        
+        .sprite {
+            @extend .sprite-mytopics-icon-deletetopic02x;
+            /*@media (max-width: 1024px) {
+                background-position: -579px -548px;
+
+            }*/
+        }
+        /*@include tablet {
+            background: initial;
+            border: solid 1px $lightest_gray;
+        }*/
+    }
+
+    .btn {
+        width: inherit;
+        height: inherit;
+        display: table;
+        position: relative;
+        
+
+        .sprite {
+            margin: 0 auto;
+        }
+    }
+
+}
+
+
+.btn_wrap.check.white_bg {
+    background-color: $white;
+}
+
+.btn_wrap.check.yes {
+
+    &:hover {
+        border: solid 1px $aqua_marine_border;
+        @include tablet {
+            border: solid 1px $lightest_gray;
+        }
+
+        .sprite {
+            @extend .sprite-voted-check2x;
+        }
+    }
+}
+
+.btn_wrap.check.no {
+    
+    .sprite {
+        @extend .sprite-voted-nocheck2x;
+    }
+
+    &:hover {
+
+        border: solid 1px $pinky_red_dark;
+        @include tablet {
+            border: solid 1px $lightest_gray;
+        }
+
+        .sprite {
+            @extend .sprite-voted-nocheck2x;
+        }
+    }
+}
+
 //Overall button styles and other general items
+
+.searchbox_with_icon_and_text {
+    position: relative;
+    input {
+        padding-left: 34px !important;
+        padding-right: 129px !important;
+    }
+    .search_icon {
+        position: absolute;
+        height: 30px;
+        width: 36px;
+        display: table;
+        top: 0;
+        .sprite {
+            margin: 0 auto;
+        }
+    }
+    .search_text {
+        position: absolute;
+        color: $deep_sky_blue;
+        font-size: 13px;
+        display: table;
+        right: 0;
+        top: 0;
+        text-align: right;
+        height: 30px;
+        padding-right: 10px;
+    }
+}
 
 .lock_icon_wrap {
     display: inline-block;
@@ -221,6 +381,8 @@ a:link, a:visited {
     color: $medium_black;
     border: 1px solid $id_dark !important;
     border-radius: 4px;
+    padding: 6px 10px 5px 10px;
+    font-size: 13px;
 
     &:hover {
         background: $medium_gray !important;
@@ -308,6 +470,16 @@ a:link, a:visited {
     .toggle_circle {
         margin-left: 31px;
     }
+
+    .text_no {
+        opacity: 0;
+    }
+}
+
+.toggle_widget.no.text_on {
+    .toggle_circle {
+        margin-left: 40px;
+    }
 }
 
 .toggle_widget.no:hover {
@@ -324,6 +496,10 @@ a:link, a:visited {
 
     .toggle_circle {
         margin-left: 1px;
+    }
+
+    .text_yes {
+        opacity: 0;
     }
 }
 
@@ -355,8 +531,38 @@ a:link, a:visited {
         position: absolute;
         top: 1px;
         transition: all 150ms ease-out;
+        z-index: 1;
     }
 }
+
+.toggle_widget.text_on {
+    width: 69px;
+    .toggle_text {
+        display: table;
+        position: absolute;
+        font-size: 14px;
+        font-weight: $bold;
+        color: $white;
+        height: inherit;
+        width: 44px;
+        margin-top: -1px;
+        text-align: center;
+    }
+    .text_yes {
+        color: $green_dark;
+    }
+    .text_no {
+        margin-left: 24px;
+    }
+}
+
+.toggle_widget.relative {
+    position: relative;
+    float: right;
+    right: 0;
+    margin-top: -5px;
+}
+
 
 /* EDIT TOOLTIP */
 .tooltip {

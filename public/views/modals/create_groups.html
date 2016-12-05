@@ -1,5 +1,5 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox">
+<div id="root_lightbox" class="with_save_button">
     <div id="lightbox" class="wide_lightbox">
         <div id="lightbox_wrap">
 
@@ -19,45 +19,284 @@
                 <div class="clearer"></div>
 
                 <div class="header_row">
-                    <div class="tab_button active">
-                        <div class="tab_button_text">SETTINGS</div>
+                    <div class="tab_button" ng-click="app.createGroupsSettings = true; app.createGroupsAddTopics = false; app.createGroupsInviteUsers = false;" ng-class="app.createGroupsSettings != false ?'active' : '' ">
+                        <div class="tab_button_text" >SETTINGS</div>
                         <div class="blue_bottom_line"></div>
                     </div>
-                    <div class="tab_button">
+                    <div class="tab_button" ng-click="app.createGroupsSettings = false; app.createGroupsAddTopics = true; app.createGroupsInviteUsers = false;" ng-class="app.createGroupsAddTopics ?'active' : '' ">
                         <div class="tab_button_text">ADD TOPICS</div>
                         <div class="blue_bottom_line"></div>
                     </div>
-                    <div class="tab_button">
+                    <div class="tab_button" ng-click="app.createGroupsSettings = false; app.createGroupsAddTopics = false; app.createGroupsInviteUsers = true;" ng-class="app.createGroupsInviteUsers  ?'active' : '' ">
                         <div class="tab_button_text">INVITE USERS</div>
                         <div class="blue_bottom_line"></div>
                     </div>
 
-                    <div class="blue_button">
-                        Save group
+                    <div ng-if="wWidth > 640" class="blue_button_wrap">
+                        <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
+                            Save group
+                        </div>
+                        <div class="blue_button" ng-if="app.createGroupsInviteUsers">
+                            Save group and send invite
+                        </div>
                     </div>
                     
                 </div>
 
             </div>
 
-            <div id="lightbox_content">
+
+            <!-- SETTINGS -->
+            <div id="lightbox_content" ng-if="app.createGroupsSettings != false">
 
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section">
-                        Insert a name for your group that is clear and understandable for people.
+                        <div class="input_text">
+                            Insert a name for your group that is clear and understandable for people.
+                        </div>
                         <input placeholder="Group name">
-                        <label for="upload_image">Upload group avatar</label>
-                        <button name="upload_image" class="gray_button">
-                            Choose a file
-                        </button>
-                        Make your group private (only invited users can see it)
+                        
+                        <div class="content_inside_wrap">
+                            <div class="table_cell">
+                                <div class="text">Upload group avatar</div>
+                            </div>
+                            <div class="table_cell button_wrap">
+                                <div class="gray_button">
+                                    Choose a file
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
 
-                        <div class="toggle_widget" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
-                            <div class="toggle_circle"></div>
+                        <div class="content_inside_footer">
+                            <div class="table_cell"> 
+                                Make your group private (only invited users can see it)
+                            </div>
+
+                            
+                            <div class="table_cell toggle_wrap"> 
+                                <div class="toggle_widget text_on relative" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
+                                    <div class="toggle_circle"></div>
+                                    <div class="toggle_text text_no">
+                                        <div class="table_cell">NO</div>
+                                    </div>
+                                    <div class="toggle_text text_yes">
+                                        <div class="table_cell">YES</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearer"></div>
                         </div>
                     </div>
             </div>
+
+            <!-- ADD TOPICS -->
+            <div id="lightbox_content" ng-if="app.createGroupsAddTopics">
+                <div class="line lightest_line"></div>
+
+                <div class="lightbox_section">
+                    <div class="searchbox_with_icon_and_text">
+                        <input placeholder="Search for a topic">
+                        <div class="search_icon">
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-search-gray-2x"></div>
+                            </div>
+                        </div>
+                        <div class="search_text">
+                            <div class="table_cell">
+                                Press enter to add
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lightbox_section has_table">
+                    
+                    
+                    <table>
+
+                        <tr>
+                            <th>
+                                <div class="th_text">Title</div>
+                            </th>
+                            <th>
+                                <div class="th_text">
+                                    Users
+                                    <div class="sprite sprite-icon-list-ordering2x"></div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="th_text">Add to group</div>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="blue_link">
+                                    Aenean mollis, nibh eu vehicula euismod, erat ipsum ornare risus, eget gravida lacus mauris nec erat...
+                                </div>
+                            </td>
+                            <td>
+                                312
+                            </td>
+                            <td>
+                                <div class="btn_wrap check yes white_bg">
+                                    <div class="btn">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-voted-check2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr ng-repeat="i in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']">
+                            <td>
+                                <div class="blue_link">
+                                    Ut at nisi orci. Cras congue elit quis leo commodo.
+                                </div>
+                            </td>
+                            <td>
+                                55555
+                            </td>
+                            <td>
+                                <div class="btn_wrap check no white_bg">
+                                    <div class="btn">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-voted-check2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+                </div>
+            </div>
+
+             <!-- INVITE USERS -->
+            <div id="lightbox_content" ng-if="app.createGroupsInviteUsers">
+                <div class="line lightest_line"></div>
+
+                <div class="lightbox_section">
+                    
+                    <div class="input_text_margin_bottom">
+                        Insert a name for your group that is clear and understandable for people.
+                    </div>
+                    
+                    <div class="searchbox_with_icon_and_text">
+                        <input placeholder="Search for a topic">
+                        <div class="search_icon">
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-search-gray-2x"></div>
+                            </div>
+                        </div>
+                        <div class="search_text">
+                            <div class="table_cell">
+                                Press enter to add
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="lightbox_section user_list">
+
+                    <div ng-repeat="(key, this) in ['1', '2', '3']">
+
+                        <div class="category_title">
+                            <div class="table_cell">
+                                Users
+                            </div>
+                        </div>
+
+                        <table>
+
+                            <tr ng-repeat="(key, this) in ['1', '2', '3']">
+                                <td>
+                                    <div class="profile_image_wrapper dark">
+                                        <div class="profile_moon sprite sprite-icon-certified-fb2x"></div>
+                                        <div class="account_picture">
+                                            <!--<img src=".././imgs/profile.jpg">-->
+                                            <div class="profile_image_filler">
+                                                <div class="table_cell">
+                                                    ML
+                                                </div>
+                                                <div class="profile_circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="name_wrap">
+                                        <div class="table_cell">
+                                            <div class="blue_link">Kristian Lember</div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div cos-dropdown class="classic_dropdown">
+
+                                        <div class="dropdown_selection">
+                                            <div class="dropdown_text">
+                                                Admin
+                                            </div>
+
+                                            <div class="arrow_holder">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                    <div class="v_line"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="dropdown">
+
+                                            <!-- NO CATEGORY -->
+                                            <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                <div class="item_name">
+                                                    Read
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn_wrap white_bg">
+                                        <div class="btn">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>  
+
+                        </table>
+
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
+
+        
+            <!-- MOBILE SAVE BUTTON -->
+            <div ng-if="wWidth <= 640" class="blue_button_wrap mobile">
+                <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
+                    Save group
+                </div>
+                <div class="blue_button" ng-if="app.createGroupsInviteUsers">
+                    Save group and send invite
+                </div>
+            </div>
+            
 
         </div>
     </div>
