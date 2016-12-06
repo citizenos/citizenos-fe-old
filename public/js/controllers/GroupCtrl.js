@@ -2,8 +2,9 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', function ($scope, $state, $stateParams, $log) {
+    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'GroupMemberUser', function ($scope, $state, $stateParams, $log, GroupMemberUser) {
         $log.debug('GroupCtrl');
+
         $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});
 
         $scope.isTopicListVisible = false;
@@ -11,6 +12,17 @@ angular
 
         $scope.isUserListVisible = false;
         $scope.isUserListSearchVisible = false;
+
+        $scope.doDeleteGroup = function (group) {
+            $log.debug('doDeleteGroup', group, $scope.groupList.indexOf(group));
+            var index = $scope.groupList.indexOf(group);
+            group
+                .$delete()
+                .then(function () {
+                    $scope.groupList.splice(index, 1);
+                    $state.go('mygroups');
+                });
+        };
 
         $scope.doToggleTopicList = function (group) {
             if ($scope.isTopicListVisible) {
@@ -31,22 +43,22 @@ angular
                 return;
             }
 
-            group
-                .getUserList().$promise
-                .then(function () {
+            GroupMemberUser
+                .query({groupId: group.id}).$promise
+                .then(function (users) {
+                    group.members.rows = users;
+                    group.members.count = users.length;
                     $scope.isUserListVisible = true;
                 });
         };
 
-        $scope.doDeleteGroup = function (group) {
-            $log.debug('doDeleteGroup', group, $scope.groupList.indexOf(group));
-            var index = $scope.groupList.indexOf(group);
-            group
-                .$delete()
+        $scope.doDeleteMemberUser = function (group, groupMemberUser) {
+            var index = group.members.rows.indexOf(groupMemberUser);
+            groupMemberUser
+                .$delete({groupId: group.id})
                 .then(function () {
-                    $scope.groupList.splice(index, 1);
-                    $state.go('mygroups');
+                    group.members.rows.splice(index, 1);
                 });
-        }
+        };
 
     }]);
