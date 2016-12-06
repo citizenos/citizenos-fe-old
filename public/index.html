@@ -11,7 +11,7 @@
 
 
     <link href="styles/citizenos-fe.bundle.css?v=fcac19735250e92e18b9daa738c33c13" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=6ef4f456cccf63c93c04858643f75a7c"></script>
+    <script src="js/citizenos-fe.bundle.js?v=34011dc8ca8e08558a5c9cdc5fc638c5"></script>
     <script src="js/libs/template-cache.js?v=728843afe8b0205b6b6ee4a84c165c1e"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -42,8 +42,10 @@
                 <div class="sprite sprite-icon-notification-error2x"></div>
             </div>
 
-            <div class="info_bar_text" ng-repeat="key in app.notifications.messages[app.notifications.levels.ERROR] track by $index">
-                <span translate="{{key}}"></span>
+            <div class="info_bar_text">
+                <div class="info_row" ng-repeat="key in app.notifications.messages[app.notifications.levels.ERROR] track by $index">
+                    <span translate="{{key}}"></span>
+                </div>
             </div>
 
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.ERROR)">
@@ -57,8 +59,10 @@
                 <div class="sprite sprite-icon-notification-info2x"></div>
             </div>
 
-            <div class="info_bar_text" ng-repeat="key in app.notifications.messages[app.notifications.levels.INFO] track by $index">
-                <span translate="{{key}}"></span>
+            <div class="info_bar_text">
+                <div class="info_row" ng-repeat="key in app.notifications.messages[app.notifications.levels.INFO] track by $index">
+                    <span translate="{{key}}"></span>
+                </div>
             </div>
 
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.INFO)">

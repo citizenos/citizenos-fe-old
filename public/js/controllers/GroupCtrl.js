@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'GroupMemberUser', function ($scope, $state, $stateParams, $log, GroupMemberUser) {
+    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'sTranslate', 'GroupMemberUser', function ($scope, $state, $stateParams, $log, sTranslate, GroupMemberUser) {
         $log.debug('GroupCtrl');
 
         $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});
@@ -50,6 +50,22 @@ angular
                     group.members.count = users.length;
                     $scope.isUserListVisible = true;
                 });
+        };
+
+        $scope.GroupMemberUser = GroupMemberUser;
+
+        $scope.doUpdateMemberUser = function (group, groupMemberUser, level) {
+            if (groupMemberUser.level !== level) {
+                var oldLevel = groupMemberUser.level;
+                groupMemberUser.level = level;
+                groupMemberUser
+                    .$update({groupId: group.id})
+                    .then(
+                        angular.noop,
+                        function () {
+                            groupMemberUser.level = oldLevel;
+                        });
+            }
         };
 
         $scope.doDeleteMemberUser = function (group, groupMemberUser) {

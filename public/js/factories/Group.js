@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .factory('Group', ['$log', '$resource', 'sLocation', '$http', 'Topic', function ($log, $resource, sLocation, $http, Topic) {
+    .factory('Group', ['$log', '$resource', 'sLocation', '$http', 'Topic', 'GroupMemberUser', function ($log, $resource, sLocation, $http, Topic, GroupMemberUser) {
         $log.debug('citizenos.factory.Group');
         var Group = $resource(
             sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId'),
@@ -18,7 +18,7 @@ angular
                             });
                             return array;
                         } else {
-                            return data;
+                            return angular.fromJson(data);
                         }
                     }
                 },
@@ -71,25 +71,15 @@ angular
             }
         };
 
-        Group.prototype.getUserList = function () {
-            var group = this;
-            var path = sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members', {groupId: this.id});
-            return {
-                $promise: $http
-                    .get(path)
-                    .then(function (res) {
-                        if (res.status < 400) { // FIXME: think this error handling through....
-                            group.members.rows = res.data.data.rows;
-                            group.members.count = res.data.data.rows.length;
-                        } else {
-                            return data;
-                        }
-                    })
-            }
+        Group.prototype.isTopicListExpanded = false;
+
+        Group.prototype.canUpdate = function () {
+            return this.permission.level === GroupMemberUser.LEVELS.admin;
         };
 
-
-        Group.prototype.isTopicListExpanded = false;
+        Group.prototype.canDelete = function () {
+            return this.canUpdate();
+        };
 
         return Group;
     }]);
