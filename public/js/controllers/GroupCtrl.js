@@ -58,6 +58,7 @@ angular
                 .$delete({groupId: group.id})
                 .then(function () {
                     group.members.rows.splice(index, 1);
+                    group.members.count = group.members.rows.length;
                 });
         };
 
