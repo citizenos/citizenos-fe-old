@@ -1,5 +1,5 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="with_save_button">
+<div id="root_lightbox" class="full_screen">
     <div id="lightbox" class="wide_lightbox">
         <div id="lightbox_wrap">
 
@@ -20,19 +20,25 @@
 
                 <div class="header_row">
                     <div class="tab_button" ng-click="app.createGroupsSettings = true; app.createGroupsAddTopics = false; app.createGroupsInviteUsers = false;" ng-class="app.createGroupsSettings != false ?'active' : '' ">
-                        <div class="tab_button_text" >SETTINGS</div>
-                        <div class="blue_bottom_line"></div>
+                        <div class="tab_buttom_wrap">
+                            <div class="tab_button_text">SETTINGS</div>
+                            <div class="blue_bottom_line"></div>
+                        </div>
                     </div>
                     <div class="tab_button" ng-click="app.createGroupsSettings = false; app.createGroupsAddTopics = true; app.createGroupsInviteUsers = false;" ng-class="app.createGroupsAddTopics ?'active' : '' ">
-                        <div class="tab_button_text">ADD TOPICS</div>
-                        <div class="blue_bottom_line"></div>
+                        <div class="tab_buttom_wrap">
+                            <div class="tab_button_text">ADD TOPICS</div>
+                            <div class="blue_bottom_line"></div>
+                        </div>
                     </div>
                     <div class="tab_button" ng-click="app.createGroupsSettings = false; app.createGroupsAddTopics = false; app.createGroupsInviteUsers = true;" ng-class="app.createGroupsInviteUsers  ?'active' : '' ">
-                        <div class="tab_button_text">INVITE USERS</div>
-                        <div class="blue_bottom_line"></div>
+                        <div class="tab_buttom_wrap">
+                            <div class="tab_button_text">INVITE USERS</div>
+                            <div class="blue_bottom_line"></div>
+                        </div>
                     </div>
 
-                    <div ng-if="wWidth > 640" class="blue_button_wrap">
+                    <div ng-if="wWidth > 560" class="blue_button_wrap">
                         <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
                             Save group
                         </div>
@@ -46,36 +52,40 @@
             </div>
 
 
+            <div class="line lightest_line"></div>
             <!-- SETTINGS -->
             <div id="lightbox_content" ng-if="app.createGroupsSettings != false">
 
-                    <div class="line lightest_line"></div>
 
                     <div class="lightbox_section">
-                        <div class="input_text">
+
+                        <div class="input_description">
                             Insert a name for your group that is clear and understandable for people.
                         </div>
                         <input placeholder="Group name">
-                        
+
+                    </div>
+
+                    <div class="line lightest_line mobile_only"></div>
+                    
+                    <div class="lightbox_section">
                         <div class="content_inside_wrap">
-                            <div class="table_cell">
-                                <div class="text">Upload group avatar</div>
-                            </div>
-                            <div class="table_cell button_wrap">
-                                <div class="gray_button">
-                                    Choose a file
-                                </div>
+                            Upload group avatar
+                            <div class="gray_button">
+                                Choose a file
                             </div>
                             <div class="clearer"></div>
                         </div>
+                    </div>
+                    
+                    <div class="line lightest_line mobile_only"></div>
+
+                    <div class="lightbox_section">
 
                         <div class="content_inside_footer">
-                            <div class="table_cell"> 
-                                Make your group private (only invited users can see it)
-                            </div>
+                            Make your group private (only invited users can see it)
 
-                            
-                            <div class="table_cell toggle_wrap"> 
+                            <div class="toggle_wrap"> 
                                 <div class="toggle_widget text_on relative" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
                                     <div class="toggle_circle"></div>
                                     <div class="toggle_text text_no">
@@ -94,7 +104,6 @@
 
             <!-- ADD TOPICS -->
             <div id="lightbox_content" ng-if="app.createGroupsAddTopics">
-                <div class="line lightest_line"></div>
 
                 <div class="lightbox_section">
                     <div class="searchbox_with_icon_and_text">
@@ -179,7 +188,6 @@
 
              <!-- INVITE USERS -->
             <div id="lightbox_content" ng-if="app.createGroupsInviteUsers">
-                <div class="line lightest_line"></div>
 
                 <div class="lightbox_section">
                     
@@ -288,7 +296,7 @@
 
         
             <!-- MOBILE SAVE BUTTON -->
-            <div ng-if="wWidth <= 640" class="blue_button_wrap mobile">
+            <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
                 <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
                     Save group
                 </div>
