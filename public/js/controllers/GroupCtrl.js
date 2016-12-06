@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'sTranslate', 'GroupMemberUser', function ($scope, $state, $stateParams, $log, sTranslate, GroupMemberUser) {
+    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$anchorScroll', '$log', 'sTranslate', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $anchorScroll, $log, sTranslate, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCtrl');
 
         $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});
@@ -30,10 +30,22 @@ angular
                 return;
             }
 
-            group
-                .getTopicList().$promise
-                .then(function () {
+            GroupMemberTopic
+                .query({groupId: group.id}).$promise
+                .then(function (topics) {
+                    group.topics.rows = topics;
+                    group.topics.count = topics.length;
                     $scope.isTopicListVisible = true;
+                });
+        };
+
+        $scope.doDeleteMemberTopic = function (group, groupMemberTopic) {
+            var index = group.topics.rows.indexOf(groupMemberTopic);
+            groupMemberTopic
+                .$delete({groupId: group.id})
+                .then(function () {
+                    group.topics.rows.splice(index, 1);
+                    group.topics.count = group.topics.rows.length;
                 });
         };
 

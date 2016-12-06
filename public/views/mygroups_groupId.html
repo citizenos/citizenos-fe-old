@@ -213,7 +213,7 @@
                 <div ng-class="!isTopicListVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
-        <div class="container_header second_header" ng-if="isTopicListSearchVisible" focus-if>
+        <div class="container_header second_header" ng-if="isTopicListSearchVisible">
             <div class="table_cell">
                 <input placeholder="Topic title">
             </div>
@@ -283,7 +283,7 @@
                     </td>
                     <td>
                         <div class="table_wrap">
-                            <div ng-click="app.doShowDeleteTopic()" class="delete_topic_btn">
+                            <div ng-click="doDeleteMemberTopic(group, topic)" xng-click="app.doShowDeleteTopic()" class="delete_topic_btn">
                                 <div class="table_cell">
                                     <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
                                 </div>
@@ -319,7 +319,7 @@
                 <div class="blue_link" ng-click="isUserListSearchVisible = false">cancel</div>
             </div>
         </div>
-        <div class="container_content" ng-if="isUserListVisible" focus-if>
+        <div class="container_content" ng-if="isUserListVisible">
             <table>
                 <tr>
                     <th>
