@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyGroupsCtrl', ['$rootScope', '$scope', '$state', '$log', 'Group', function ($rootScope, $scope, $state, $log, Group) {
+    .controller('MyGroupsCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', 'Group', function ($rootScope, $scope, $state, $stateParams, $log, Group) {
         $log.debug('MyGroupsCtrl');
 
         $scope.groupList = [];
@@ -22,7 +22,7 @@ angular
         var initGroupListView = function () {
             // Do not auto-navigate to first groups detail view in mobile
             if ($rootScope.wWidth > 750) { // TODO: When dev ends, define constants for different screen widths!
-                if ($scope.groupList.length) {
+                if ($scope.groupList.length && !$stateParams.groupId) {
                     $state.go('mygroups.groupId', {groupId: $scope.groupList[0].id});
                 }
             }
