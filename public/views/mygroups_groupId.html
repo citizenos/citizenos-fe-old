@@ -254,7 +254,8 @@
                         <div class="blue_link">{{topic.title}}</div>
                     </td>
                     <td>
-                        <div cos-dropdown class="classic_dropdown">
+                        <div ng-if="!topic.canUpdate()">{{topic.permission.level}}</div>
+                        <div ng-if="topic.canUpdate()" cos-dropdown class="classic_dropdown">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
                                     {{topic.permission.level}}
@@ -270,9 +271,9 @@
                             </div>
                             <div class="dropdown">
                                 <!-- NO CATEGORY -->
-                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                <div class="dropdown_item" ng-repeat="(key, value) in GroupMemberTopic.LEVELS">
                                     <div class="item_name">
-                                        Read
+                                        {{value}}
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +283,7 @@
                         {{topic.members.users.count}}
                     </td>
                     <td>
-                        <div class="table_wrap">
+                        <div class="table_wrap" ng-if="topic.canDelete()">
                             <div ng-click="doDeleteMemberTopic(group, topic)" xng-click="app.doShowDeleteTopic()" class="delete_topic_btn">
                                 <div class="table_cell">
                                     <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>

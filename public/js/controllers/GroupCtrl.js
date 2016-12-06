@@ -24,6 +24,8 @@ angular
                 });
         };
 
+        $scope.GroupMemberTopic = GroupMemberTopic;
+
         $scope.doToggleTopicList = function (group) {
             if ($scope.isTopicListVisible) {
                 $scope.isTopicListVisible = false;
@@ -49,6 +51,8 @@ angular
                 });
         };
 
+        $scope.GroupMemberUser = GroupMemberUser;
+
         $scope.doToggleUserList = function (group) {
             if ($scope.isUserListVisible) {
                 $scope.isUserListVisible = false;
@@ -63,8 +67,6 @@ angular
                     $scope.isUserListVisible = true;
                 });
         };
-
-        $scope.GroupMemberUser = GroupMemberUser;
 
         $scope.doUpdateMemberUser = function (group, groupMemberUser, level) {
             if (groupMemberUser.level !== level) {

@@ -49,8 +49,12 @@ angular
             return this.visibility === Topic.VISIBILITY.private;
         };
 
+        GroupMemberTopic.prototype.canUpdate = function () {
+            return this.permission.level === GroupMemberTopic.LEVELS.admin;
+        };
+
         GroupMemberTopic.prototype.canDelete = function () {
-            return this.permission.level = GroupMemberTopic.LEVELS.admin;
+            return this.permission.level === GroupMemberTopic.LEVELS.admin;
         };
 
         return GroupMemberTopic;
