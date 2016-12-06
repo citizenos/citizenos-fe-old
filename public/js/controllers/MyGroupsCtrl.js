@@ -13,17 +13,20 @@ angular
             .then(function (groups) {
                 $scope.groupList = groups;
                 $scope.isGroupListLoading = false;
-
-                // Do not auto-navigate to first groups detail view in mobile
-                if ($rootScope.wWidth > 750) { // TODO: When dev ends, define constants for different screen widths!
-                    if ($scope.groupList.length) {
-                        $state.go('mygroups.groupId', {groupId: $scope.groupList[0].id});
-                    }
-                }
+                initGroupListView();
             }, function () {
                 $log.log('MyGroupsCtrl', 'Group list fetch failed', res);
                 $scope.isGroupListLoading = false;
             });
+
+        var initGroupListView = function () {
+            // Do not auto-navigate to first groups detail view in mobile
+            if ($rootScope.wWidth > 750) { // TODO: When dev ends, define constants for different screen widths!
+                if ($scope.groupList.length) {
+                    $state.go('mygroups.groupId', {groupId: $scope.groupList[0].id});
+                }
+            }
+        };
 
         $scope.doToggleGroupTopicList = function (group) {
             if (group.isTopicListExpanded) {
@@ -40,5 +43,12 @@ angular
                 }
             }
         };
+
+        // In case there is $state.go('mygroups') somewhere, we need to initialize the view so that for non-mobile we show first Groups detail view.
+        $scope.$on('$stateChangeSuccess', function () {
+            if ($state.is('mygroups')) {
+                initGroupListView();
+            }
+        });
 
     }]);
