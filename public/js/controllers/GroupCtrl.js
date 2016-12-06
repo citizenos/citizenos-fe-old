@@ -38,4 +38,15 @@ angular
                 });
         };
 
+        $scope.doDeleteGroup = function (group) {
+            $log.debug('doDeleteGroup', group, $scope.groupList.indexOf(group));
+            var index = $scope.groupList.indexOf(group);
+            group
+                .$delete()
+                .then(function () {
+                    $scope.groupList.splice(index, 1);
+                    $state.go('mygroups');
+                });
+        }
+
     }]);

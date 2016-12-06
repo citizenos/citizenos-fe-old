@@ -42,6 +42,9 @@ angular
                     transformResponse: function (data) {
                         return angular.fromJson(data).data;
                     }
+                },
+                delete: {
+                    method: 'DELETE'
                 }
             }
         );
