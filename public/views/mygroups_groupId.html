@@ -270,9 +270,8 @@
                                 </div>
                             </div>
                             <div class="dropdown">
-                                <!-- NO CATEGORY -->
                                 <div class="dropdown_item" ng-repeat="(key, value) in GroupMemberTopic.LEVELS">
-                                    <div class="item_name">
+                                    <div class="item_name" ng-click="doUpdateMemberTopic(group, topic, value)">
                                         {{value}}
                                     </div>
                                 </div>

@@ -41,6 +41,21 @@ angular
                 });
         };
 
+        $scope.doUpdateMemberTopic = function (group, groupMemberTopic, level) {
+            $log.debug('groupMemberTopic', groupMemberTopic, level);
+            if (groupMemberTopic.permission.level !== level) {
+                var oldLevel = groupMemberTopic.permission.level;
+                groupMemberTopic.permission.level = level;
+                groupMemberTopic
+                    .$update({groupId: group.id})
+                    .then(
+                        angular.noop,
+                        function () {
+                            groupMemberTopic.permission.level = oldLevel;
+                        });
+            }
+        };
+
         $scope.doDeleteMemberTopic = function (group, groupMemberTopic) {
             var index = group.topics.rows.indexOf(groupMemberTopic);
             groupMemberTopic

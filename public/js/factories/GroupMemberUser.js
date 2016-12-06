@@ -24,7 +24,7 @@ angular
                     },
                     transformResponse: function (data, headersGetter, status) {
                         if (status < 400) { // FIXME: think this error handling through....
-                            return angular.fromJson(data).data.rows;
+                            return angular.fromJson(data).data;
                         } else {
                             return angular.fromJson(data);
                         }
