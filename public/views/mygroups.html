@@ -5,7 +5,7 @@
     <div id="topics_wrap">
 
         <!-- LEFT SIDE -->
-        <div class="topics_left" ng-hide="wWidth <= 750 && 'mygroups.groupId' | isState">
+        <div class="topics_left" ng-hide="wWidth <= 750 && 'mygroups.view' | isState">
 
             <div cos-dropdown class="classic_dropdown">
 
@@ -52,7 +52,7 @@
             <div ng-repeat="group in groupList">
                 <div class="container_header bold" ng-if="!isGroupListLoading" ui-sref-active="active">
                     <!--div class="header_img_wrap"><img src=".././imgs/test_topic_logo.png"></div-->
-                    <div class="header_text" ui-sref="mygroups.groupId({groupId: group.id})">
+                    <div class="header_text" ui-sref="mygroups.view({groupId: group.id})">
                         {{group.name}} ({{group.topics.count}})
                     </div>
                     <div class="minimize_container" ng-click="doToggleGroupTopicList(group)" ng-if="group.topics.count">

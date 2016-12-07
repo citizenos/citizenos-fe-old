@@ -218,7 +218,7 @@
                     parent: 'topics'
                 })
                 .state('topics.view', {
-                    url: '/:id',
+                    url: '/:topicId',
                     parent: 'topics'
                 })
                 .state('mytopics', { // MyTopics aka Dashboard
@@ -226,20 +226,20 @@
                     parent: 'main',
                     templateUrl: '/views/mytopics.html'
                 })
-                .state('mytopics.topicId', { // MyTopics aka Dashboard
+                .state('mytopics.view', { // MyTopics aka Dashboard
                     url: '/:topicId',
                     parent: 'mytopics',
-                    templateUrl: '/views/mytopics_topicId.html'
+                    templateUrl: '/views/mytopics_view.html'
                 })
                 .state('mygroups', {
                     url: '/mygroups',
                     parent: 'main',
                     templateUrl: '/views/mygroups.html'
                 })
-                .state('mygroups.groupId', {
+                .state('mygroups.view', {
                     url: '/:groupId',
                     parent: 'mygroups',
-                    templateUrl: '/views/mygroups_groupId.html'
+                    templateUrl: '/views/mygroups_view.html'
                 })
                 .state('groups', {
                     url: '/groups',
