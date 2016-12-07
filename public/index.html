@@ -9,9 +9,8 @@
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 
-
-    <link href="styles/citizenos-fe.bundle.css?v=1fba7764c3dc664c585d2e0f6ac41620" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=b04002172954a669f1207aa6ec8fd238"></script>
+    <link href="styles/citizenos-fe.bundle.css?v=5de09d4fdf1ef71aa38e1b700d5d4e18" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=09fc016c3e284ae3d85f46e330b8eea3"></script>
     <script src="js/libs/template-cache.js?v=728843afe8b0205b6b6ee4a84c165c1e"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -42,8 +41,10 @@
                 <div class="sprite sprite-icon-notification-error2x"></div>
             </div>
 
-            <div class="info_bar_text" ng-repeat="key in app.notifications.messages[app.notifications.levels.ERROR] track by $index">
-                <span translate="{{key}}"></span>
+            <div class="info_bar_text">
+                <div class="info_row" ng-repeat="key in app.notifications.messages[app.notifications.levels.ERROR] track by $index">
+                    <span translate="{{key}}"></span>
+                </div>
             </div>
 
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.ERROR)">
@@ -57,8 +58,10 @@
                 <div class="sprite sprite-icon-notification-info2x"></div>
             </div>
 
-            <div class="info_bar_text" ng-repeat="key in app.notifications.messages[app.notifications.levels.INFO] track by $index">
-                <span translate="{{key}}"></span>
+            <div class="info_bar_text">
+                <div class="info_row" ng-repeat="key in app.notifications.messages[app.notifications.levels.INFO] track by $index">
+                    <span translate="{{key}}"></span>
+                </div>
             </div>
 
             <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.INFO)">
