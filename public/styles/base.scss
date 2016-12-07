@@ -13,6 +13,7 @@ body, html {
     bottom: 0;
     color: $medium_black;
     background: $medium_black;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -228,6 +229,9 @@ table {
     input {
         padding-left: 34px !important;
         padding-right: 129px !important;
+        @media (max-width: 560px) {
+            padding-right: 5px !important;
+        }
     }
     .search_icon {
         position: absolute;
@@ -249,6 +253,9 @@ table {
         text-align: right;
         height: 30px;
         padding-right: 10px;
+        @media (max-width: 560px) {
+            display: none;
+        }
     }
 }
 
