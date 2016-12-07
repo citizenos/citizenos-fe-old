@@ -18,38 +18,39 @@
                 
                 <div class="clearer"></div>
 
-                <div class="header_row">
-                    <div class="tab_button" ng-click="app.createGroupsSettings = true; app.createGroupsAddTopics = false; app.createGroupsInviteUsers = false;" ng-class="app.createGroupsSettings != false ?'active' : '' ">
-                        <div class="tab_buttom_wrap">
-                            <div class="tab_button_text">SETTINGS</div>
-                            <div class="blue_bottom_line"></div>
-                        </div>
-                    </div>
-                    <div class="tab_button" ng-click="app.createGroupsSettings = false; app.createGroupsAddTopics = true; app.createGroupsInviteUsers = false;" ng-class="app.createGroupsAddTopics ?'active' : '' ">
-                        <div class="tab_buttom_wrap">
-                            <div class="tab_button_text">ADD TOPICS</div>
-                            <div class="blue_bottom_line"></div>
-                        </div>
-                    </div>
-                    <div class="tab_button" ng-click="app.createGroupsSettings = false; app.createGroupsAddTopics = false; app.createGroupsInviteUsers = true;" ng-class="app.createGroupsInviteUsers  ?'active' : '' ">
-                        <div class="tab_buttom_wrap">
-                            <div class="tab_button_text">INVITE USERS</div>
-                            <div class="blue_bottom_line"></div>
-                        </div>
-                    </div>
+                <div class="header_row_wrap">
+                        <div class="header_row" identifier="createGroupSlider"  start_slide_at="306" slide-controller>
+                            <div class="tab_button" ng-click="app.createGroupsSettings = true; app.createGroupsAddTopics = false; app.createGroupsInviteUsers = false;" ng-class="app.createGroupsSettings != false ?'active' : '' ">
+                                <div class="tab_buttom_wrap">
+                                    <div class="tab_button_text">SETTINGS</div>
+                                    <div class="blue_bottom_line"></div>
+                                </div>
+                            </div>
+                            <div class="tab_button" ng-click="app.createGroupsSettings = false; app.createGroupsAddTopics = true; app.createGroupsInviteUsers = false;" ng-class="app.createGroupsAddTopics ?'active' : '' ">
+                                <div class="tab_buttom_wrap">
+                                    <div class="tab_button_text">ADD TOPICS</div>
+                                    <div class="blue_bottom_line"></div>
+                                </div>
+                            </div>
+                            <div class="tab_button" ng-click="app.createGroupsSettings = false; app.createGroupsAddTopics = false; app.createGroupsInviteUsers = true;" ng-class="app.createGroupsInviteUsers  ?'active' : '' ">
+                                <div class="tab_buttom_wrap">
+                                    <div class="tab_button_text">INVITE USERS</div>
+                                    <div class="blue_bottom_line"></div>
+                                </div>
+                            </div>
 
-                    <div ng-if="wWidth > 560" class="blue_button_wrap">
-                        <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
-                            Save group
-                        </div>
-                        <div class="blue_button" ng-if="app.createGroupsInviteUsers">
-                            Save group and send invite
+                            <div ng-if="wWidth > 560" class="blue_button_wrap">
+                                <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
+                                    Save group
+                                </div>
+                                <div class="blue_button" ng-if="app.createGroupsInviteUsers">
+                                    Save group and send invite
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
-                    
                 </div>
-
-            </div>
 
 
             <div class="line lightest_line"></div>
@@ -103,7 +104,7 @@
             </div>
 
             <!-- ADD TOPICS -->
-            <div id="lightbox_content" ng-if="app.createGroupsAddTopics">
+            <div id="lightbox_content" class="padding_bottom_zero" ng-if="app.createGroupsAddTopics">
 
                 <div class="lightbox_section">
                     <div class="searchbox_with_icon_and_text">
@@ -122,7 +123,12 @@
                 </div>
                 <div class="lightbox_section has_table">
                     
-                    
+                    <div class="mobile_table_header">
+                        <div class="table_cell">
+                            Add an existing topic
+                        </div>
+                    </div>
+
                     <table>
 
                         <tr>
@@ -145,6 +151,25 @@
                                 <div class="blue_link">
                                     Aenean mollis, nibh eu vehicula euismod, erat ipsum ornare risus, eget gravida lacus mauris nec erat...
                                 </div>
+                                <div class="mobile_extra_info">
+                                    <div class="left">
+                                        <div class="table">
+                                            <div class="table_cell">Users: 312</div>
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <div class="table">
+                                            <div class="table_cell">Add to group</div>
+                                        </div>
+                                        <div class="btn_wrap check yes white_bg">
+                                            <div class="btn">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-voted-check2x"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 312
@@ -164,6 +189,25 @@
                             <td>
                                 <div class="blue_link">
                                     Ut at nisi orci. Cras congue elit quis leo commodo.
+                                </div>
+                                <div class="mobile_extra_info">
+                                    <div class="left">
+                                        <div class="table">
+                                            <div class="table_cell">Users: 55555</div>
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <div class="table">
+                                            <div class="table_cell">Add to group</div>
+                                        </div>
+                                        <div class="btn_wrap check no white_bg">
+                                            <div class="btn">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-voted-check2x"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
                             <td>
@@ -187,7 +231,7 @@
             </div>
 
              <!-- INVITE USERS -->
-            <div id="lightbox_content" ng-if="app.createGroupsInviteUsers">
+            <div id="lightbox_content" class="padding_bottom_zero" ng-if="app.createGroupsInviteUsers">
 
                 <div class="lightbox_section">
                     

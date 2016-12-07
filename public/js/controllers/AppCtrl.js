@@ -107,7 +107,6 @@ angular
                 scope: $scope
             });
         };
-        $scope.app.doShowCreateGroups();
 
         $scope.app.doSwitchLanguage = function (language) {
             $log.debug('AppCtrl.doSwitchLanguage()', language);
