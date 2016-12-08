@@ -126,7 +126,7 @@
                                 edit
                             </div>
                             <div class="v_line bold"></div>
-                            <div class="item_text blue_link">
+                            <div class="item_text blue_link" ng-click="doLeaveGroup(group)">
                                 leave
                             </div>
                             <div ng-if="group.canDelete()">
@@ -360,7 +360,8 @@
                         </div>
                     </td>
                     <td>
-                        <div cos-dropdown class="classic_dropdown">
+                        <div ng-if="!group.canUpdate()">{{user.level}}</div>
+                        <div ng-if="group.canUpdate()" cos-dropdown class="classic_dropdown">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
                                     {{user.level}}

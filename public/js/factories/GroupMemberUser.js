@@ -4,7 +4,7 @@ angular
         $log.debug('citizenos.factory.GroupMemberUser');
 
         var GroupMemberUser = $resource(
-            sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members/:userId'),
+            sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members/users/:userId'),
             {groupId: '@groupId', userId: '@id'},
             {
                 query: {

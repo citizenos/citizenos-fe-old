@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'sTranslate', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sTranslate, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'sTranslate', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sTranslate, sAuth, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCtrl');
 
         $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});
@@ -104,6 +104,15 @@ angular
                 .then(function () {
                     group.members.rows.splice(index, 1);
                     group.members.count = group.members.rows.length;
+                });
+        };
+
+        $scope.doLeaveGroup = function (group) {
+            var groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
+            groupMemberUser
+                .$delete({groupId: group.id})
+                .then(function () {
+                    $state.go('mygroups');
                 });
         };
 
