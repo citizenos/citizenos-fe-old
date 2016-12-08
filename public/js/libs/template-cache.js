@@ -7,7 +7,6 @@ angular
             '/views/about.html',
             '/views/faq.html',
             '/views/groups.html',
-            '/views/groups_test.html',
             '/views/help.html',
             '/views/home.html',
             '/views/mygroups.html',
@@ -20,8 +19,7 @@ angular
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
             '/views/layouts/main.html',
-            '/views/modals/create_groups.html',
-            '/views/modals/delete_topic.html',
+            '/views/modals/group_create.html',
             '/views/modals/input_test.html',
             '/views/modals/login.html',
             '/views/modals/login_esteid.html',
@@ -29,6 +27,7 @@ angular
             '/views/modals/password_forgot.html',
             '/views/modals/password_reset.html',
             '/views/modals/sign_up.html',
+            '/views/modals/topic_delete.html',
             '/views/modals/topic_vote_sign.html',
         ];
         var i = 0;

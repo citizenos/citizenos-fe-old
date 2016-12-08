@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$anchorScroll', '$log', 'sTranslate', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $anchorScroll, $log, sTranslate, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'sTranslate', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sTranslate, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCtrl');
 
         $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});

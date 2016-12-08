@@ -94,16 +94,7 @@ angular
             $log.debug('AppCtrl.doShowDeleteTopic()');
 
             ngDialog.open({
-                template: '/views/modals/delete_topic.html',
-                scope: $scope
-            });
-        };
-
-        $scope.app.doShowCreateGroups = function () {
-            $log.debug('AppCtrl.doShowCreateGroups()');
-
-            ngDialog.open({
-                template: '/views/modals/create_groups.html',
+                template: '/views/modals/topic_delete.html',
                 scope: $scope
             });
         };
