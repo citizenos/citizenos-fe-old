@@ -23,7 +23,7 @@ angular
             // Do not auto-navigate to first groups detail view in mobile
             if ($rootScope.wWidth > 750) { // TODO: When dev ends, define constants for different screen widths!
                 if ($scope.groupList.length && !$stateParams.groupId) {
-                    $state.go('mygroups.groupId', {groupId: $scope.groupList[0].id});
+                    $state.go('mygroups.view', {groupId: $scope.groupList[0].id});
                 }
             }
         };
