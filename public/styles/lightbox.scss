@@ -324,10 +324,6 @@
 
             td {
                 padding: 20px 0;
-
-                .mobile_extra_info {
-                    display: none;
-                }
                         
                 @media (max-width: 560px) {
                     &:not(:first-child) {
@@ -400,19 +396,66 @@
 
         table {
             margin: 19px 0;
+            @media (max-width: 560px) {
+                margin: 5px 0 5px 0;
+            }
+            
 
             th, td {
                 padding-left: 10px;
                 padding-right: 10px;
+                
+
+                @media (max-width: 560px) {
+                    &:not(:first-child) {
+                        display: none;
+                    }
+                    padding-right: 20px !important;
+                    padding-bottom: 15px;
+
+                    .mobile_extra_info {
+                        display: block;
+                        margin-top: 10px;
+                        font-weight: $medium;
+                        padding-right: 52px;
+                        position: relative;
+
+                        @media (max-width: 560px) {
+                            display: block;
+                        }
+
+                            
+                        .left {
+                            float: left;
+                            width: 100%;
+                        }
+                        .right {
+                            right: 0;
+                            top: 2px;
+                            position: absolute;
+
+                            .btn_wrap {
+                                float: right;
+                                margin-top: -3px;
+                            }
+
+                        }
+                    }
+                }
 
                 &:first-child {
                     padding-left: 20px;
                     padding-right: 10px;
                     text-align: left;
-                    
 
                     .profile_image_wrapper {
                         margin-right: 20px;
+                        .profile_image_filler {
+                            .table_cell {
+                                z-index: 1;
+                            }
+                            background-color: $white;
+                        }
                     }
                 }
 

@@ -150,24 +150,9 @@ table {
     cursor: pointer;
 
     &:hover {
-        border: solid 1px $pinky_red;
-        background: $pinky_red;
-        
         .tooltip {
             visibility: visible;
         }
-        
-        .sprite {
-            @extend .sprite-mytopics-icon-deletetopic02x;
-            /*@media (max-width: 1024px) {
-                background-position: -579px -548px;
-
-            }*/
-        }
-        /*@include tablet {
-            background: initial;
-            border: solid 1px $lightest_gray;
-        }*/
     }
 
     .btn {
@@ -184,10 +169,46 @@ table {
 
 }
 
-
-.btn_wrap.check.white_bg {
-    background-color: $white;
+.btn_wrap.white_bg {
+    &:hover {
+        border: solid 1px $lightest_gray;
+        @include tablet {
+            background: $white !important;
+        }
+    }
 }
+
+.mobile_fix {
+    display: none;
+}
+
+@include tablet {
+    .desktop_fix {
+        display: none;
+    }
+    .mobile_fix {
+        display: block;
+    }
+}
+
+.btn_wrap.recycle_bin {
+    background-color: $white;
+    &:hover {
+        border: solid 1px $pinky_red;
+        background: $pinky_red;
+        
+        .sprite.desktop_fix {
+            @extend .sprite-mytopics-icon-deletetopic02x;
+        }
+
+        @include tablet {
+            background: initial;
+            border: solid 1px $lightest_gray;
+        }
+    }
+}
+
+
 
 .btn_wrap.check.yes {
 
@@ -223,6 +244,14 @@ table {
 }
 
 //Overall button styles and other general items
+.via {
+    font-weight: $medium;
+    font-size: 13px;
+}
+
+.mobile_extra_info {
+    display: none;
+}
 
 .searchbox_with_icon_and_text {
     position: relative;
@@ -929,6 +958,7 @@ a:link, a:visited {
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
     border-radius: 4px 4px 0 0;
     position: relative;
+    z-index: 2;
 }
 
 /* INFO BAR */
