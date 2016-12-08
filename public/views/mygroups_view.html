@@ -251,7 +251,7 @@
                 </tr>
                 <tr ng-repeat="topic in group.topics.rows">
                     <td>
-                        <div class="blue_link">{{topic.title}} T: {{topic.permission.level}} G: {{topic.permission.levelGroup}}</div>
+                        <div class="blue_link">{{topic.title}}</div>
                     </td>
                     <td>
                         <div ng-if="!topic.canUpdate()">{{topic.permission.level}}</div>

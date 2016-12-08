@@ -4,7 +4,7 @@ angular
         $log.debug('citizenos.factory.GroupMemberTopic');
 
         var GroupMemberTopic = $resource(
-            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups/:groupId'),
+            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups/:groupId'), // Actually Groups are added to Topic
             {topicId: '@id', groupId: '@groupId'},
             {
                 query: {
