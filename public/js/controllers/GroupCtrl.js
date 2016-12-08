@@ -43,15 +43,15 @@ angular
 
         $scope.doUpdateMemberTopic = function (group, groupMemberTopic, level) {
             $log.debug('groupMemberTopic', groupMemberTopic, level);
-            if (groupMemberTopic.permission.level !== level) {
-                var oldLevel = groupMemberTopic.permission.level;
-                groupMemberTopic.permission.level = level;
+            if (groupMemberTopic.permission.levelGroup !== level) {
+                var oldLevel = groupMemberTopic.permission.levelGroup;
+                groupMemberTopic.permission.levelGroup = level;
                 groupMemberTopic
                     .$update({groupId: group.id})
                     .then(
                         angular.noop,
                         function () {
-                            groupMemberTopic.permission.level = oldLevel;
+                            groupMemberTopic.permission.levelGroup = oldLevel;
                         });
             }
         };

@@ -251,14 +251,14 @@
                 </tr>
                 <tr ng-repeat="topic in group.topics.rows">
                     <td>
-                        <div class="blue_link">{{topic.title}}</div>
+                        <div class="blue_link">{{topic.title}} T: {{topic.permission.level}} G: {{topic.permission.levelGroup}}</div>
                     </td>
                     <td>
                         <div ng-if="!topic.canUpdate()">{{topic.permission.level}}</div>
                         <div ng-if="topic.canUpdate()" cos-dropdown class="classic_dropdown">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
-                                    {{topic.permission.level}}
+                                    {{topic.permission.levelGroup}}
                                 </div>
 
                                 <div class="arrow_holder">
