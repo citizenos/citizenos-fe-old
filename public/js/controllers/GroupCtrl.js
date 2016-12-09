@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$anchorScroll', '$log', 'sTranslate', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $anchorScroll, $log, sTranslate, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'sTranslate', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sTranslate, sAuth, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCtrl');
 
         $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});
@@ -43,15 +43,15 @@ angular
 
         $scope.doUpdateMemberTopic = function (group, groupMemberTopic, level) {
             $log.debug('groupMemberTopic', groupMemberTopic, level);
-            if (groupMemberTopic.permission.level !== level) {
-                var oldLevel = groupMemberTopic.permission.level;
-                groupMemberTopic.permission.level = level;
+            if (groupMemberTopic.permission.levelGroup !== level) {
+                var oldLevel = groupMemberTopic.permission.levelGroup;
+                groupMemberTopic.permission.levelGroup = level;
                 groupMemberTopic
                     .$update({groupId: group.id})
                     .then(
                         angular.noop,
                         function () {
-                            groupMemberTopic.permission.level = oldLevel;
+                            groupMemberTopic.permission.levelGroup = oldLevel;
                         });
             }
         };
@@ -104,6 +104,15 @@ angular
                 .then(function () {
                     group.members.rows.splice(index, 1);
                     group.members.count = group.members.rows.length;
+                });
+        };
+
+        $scope.doLeaveGroup = function (group) {
+            var groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
+            groupMemberUser
+                .$delete({groupId: group.id})
+                .then(function () {
+                    $state.go('mygroups');
                 });
         };
 

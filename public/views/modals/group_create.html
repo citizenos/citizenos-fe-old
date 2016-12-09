@@ -1,5 +1,5 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="full_screen">
+<div id="root_lightbox" class="full_screen" ng-controller="GroupCreateCtrl">
     <div id="lightbox" class="wide_lightbox">
         <div id="lightbox_wrap">
 
@@ -15,97 +15,103 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="clearer"></div>
 
                 <div class="header_row_wrap">
-                        <div class="header_row" identifier="createGroupSlider"  start_slide_at="306" slide-controller>
-                            <div class="tab_button" ng-click="app.createGroupsSettings = true; app.createGroupsAddTopics = false; app.createGroupsInviteUsers = false;" ng-class="app.createGroupsSettings != false ?'active' : '' ">
-                                <div class="tab_buttom_wrap">
-                                    <div class="tab_button_text">SETTINGS</div>
-                                    <div class="blue_bottom_line"></div>
-                                </div>
+                    <div class="header_row" slide-controller identifier="createGroupSlider" start_slide_at="306">
+                        <div class="tab_button" ng-click="tabSelected = 'settings'" ng-class="tabSelected === 'settings' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text">SETTINGS</div>
+                                <div class="blue_bottom_line"></div>
                             </div>
-                            <div class="tab_button" ng-click="app.createGroupsSettings = false; app.createGroupsAddTopics = true; app.createGroupsInviteUsers = false;" ng-class="app.createGroupsAddTopics ?'active' : '' ">
-                                <div class="tab_buttom_wrap">
-                                    <div class="tab_button_text">ADD TOPICS</div>
-                                    <div class="blue_bottom_line"></div>
-                                </div>
-                            </div>
-                            <div class="tab_button" ng-click="app.createGroupsSettings = false; app.createGroupsAddTopics = false; app.createGroupsInviteUsers = true;" ng-class="app.createGroupsInviteUsers  ?'active' : '' ">
-                                <div class="tab_buttom_wrap">
-                                    <div class="tab_button_text">INVITE USERS</div>
-                                    <div class="blue_bottom_line"></div>
-                                </div>
-                            </div>
-
-                            <div ng-if="wWidth > 560" class="blue_button_wrap">
-                                <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
-                                    Save group
-                                </div>
-                                <div class="blue_button" ng-if="app.createGroupsInviteUsers">
-                                    Save group and send invite
-                                </div>
-                            </div>
-                            
                         </div>
+                        <div class="tab_button" ng-click="tabSelected = 'memberTopicsCreate'" ng-class="tabSelected === 'memberTopicsCreate' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text">ADD TOPICS</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+                        <div class="tab_button" ng-click="tabSelected = 'memberUsersCreate'" ng-class="tabSelected === 'memberUsersCreate' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text">INVITE USERS</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+
+                        <div ng-if="wWidth > 560" class="blue_button_wrap">
+                            <!--FIXME: Should be based on if any Users were added or not...-->
+                            <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
+                                Save group
+                            </div>
+                            <div class="blue_button" ng-if="app.createGroupsInviteUsers">
+                                Save group and send invite
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+            </div>
 
 
             <div class="line lightest_line"></div>
             <!-- SETTINGS -->
-            <div id="lightbox_content" ng-if="app.createGroupsSettings != false">
+            <div id="lightbox_content" ng-if="tabSelected === 'settings'">
 
-                    <div class="lightbox_section">
 
-                        <div class="input_description">
-                            Insert a name for your group that is clear and understandable for people.
-                        </div>
-                        <input placeholder="Group name">
+                <div class="lightbox_section">
 
+                    <div class="input_description">
+                        Insert a name for your group that is clear and understandable for people.
                     </div>
+                    <input placeholder="Group name">
 
-                    <div class="line lightest_line mobile_only"></div>
-                    
-                    <div class="lightbox_section">
-                        <div class="content_inside_wrap">
-                            Upload group avatar
-                            <div class="gray_button">
-                                Choose a file
-                            </div>
-                            <div class="clearer"></div>
+                </div>
+
+                <div class="line lightest_line mobile_only"></div>
+
+                <div class="lightbox_section">
+                    <div class="content_inside_wrap">
+                        Upload group avatar
+                        <div class="gray_button">
+                            Choose a file
                         </div>
+                        <div class="clearer"></div>
                     </div>
-                    
-                    <div class="line lightest_line mobile_only"></div>
+                </div>
 
-                    <div class="lightbox_section">
+                <div class="line lightest_line mobile_only"></div>
 
-                        <div class="content_inside_footer">
-                            Make your group private (only invited users can see it)
+                <div class="lightbox_section">
 
-                            <div class="toggle_wrap"> 
-                                <div class="toggle_widget text_on relative" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
-                                    <div class="toggle_circle"></div>
-                                    <div class="toggle_text text_no">
-                                        <div class="table_cell">NO</div>
-                                    </div>
-                                    <div class="toggle_text text_yes">
-                                        <div class="table_cell">YES</div>
-                                    </div>
+                    <div class="content_inside_footer">
+                        Make your group private (only invited users can see it)
+
+                        <div class="toggle_wrap">
+                            <div class="toggle_widget text_on relative" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
+                                <div class="toggle_circle"></div>
+                                <div class="toggle_text text_no">
+                                    <div class="table_cell">NO</div>
+                                </div>
+                                <div class="toggle_text text_yes">
+                                    <div class="table_cell">YES</div>
                                 </div>
                             </div>
-
-                            <div class="clearer"></div>
                         </div>
+
+                        <div class="clearer"></div>
                     </div>
+                </div>
             </div>
 
             <!-- ADD TOPICS -->
-            <div id="lightbox_content" class="padding_bottom_zero" ng-if="app.createGroupsAddTopics">
+            <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberTopicsCreate'">
 
                 <div class="lightbox_section">
+                    <div class="input_text_margin_bottom">
+                        Add some topics that the group members can access
+                    </div>
+
                     <div class="searchbox_with_icon_and_text">
                         <input placeholder="Search for a topic">
                         <div class="search_icon">
@@ -121,7 +127,7 @@
                     </div>
                 </div>
                 <div class="lightbox_section has_table">
-                    
+
                     <div class="mobile_table_header">
                         <div class="table_cell">
                             Add an existing topic
@@ -229,17 +235,17 @@
                 </div>
             </div>
 
-             <!-- INVITE USERS -->
-            <div id="lightbox_content" class="padding_bottom_zero" ng-if="app.createGroupsInviteUsers">
+            <!-- INVITE USERS -->
+            <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberUsersCreate'">
 
                 <div class="lightbox_section">
-                    
+
                     <div class="input_text_margin_bottom">
-                        Insert a name for your group that is clear and understandable for people.
+                        Invite users via their name or e-mail address or invite an entire group
                     </div>
-                    
+
                     <div class="searchbox_with_icon_and_text">
-                        <input placeholder="Search for a topic">
+                        <input placeholder="Search for a user">
                         <div class="search_icon">
                             <div class="table_cell">
                                 <div class="sprite sprite-icon-search-gray-2x"></div>
@@ -292,29 +298,29 @@
                                         <div class="left">
                                             <div cos-dropdown class="classic_dropdown">
 
-                                            <div class="dropdown_selection">
-                                                <div class="dropdown_text">
-                                                    Admin
+                                                <div class="dropdown_selection">
+                                                    <div class="dropdown_text">
+                                                        Admin
+                                                    </div>
+
+                                                    <div class="arrow_holder">
+                                                        <div class="table_cell">
+                                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                            <div class="v_line"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
-                                                <div class="arrow_holder">
-                                                    <div class="table_cell">
-                                                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
-
-                                                        <div class="v_line"></div>
+                                                <div class="dropdown">
+                                                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                        <div class="item_name">
+                                                            Read
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="dropdown">
-                                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                                                    <div class="item_name">
-                                                        Read
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            
                                         </div>
 
                                         <div class="right">
@@ -365,18 +371,18 @@
                                         </div>
                                     </div>
                                 </td>
-                            </tr>  
+                            </tr>
 
                         </table>
 
                     </div>
-                    
-                    
+
+
                 </div>
 
             </div>
 
-        
+
             <!-- MOBILE SAVE BUTTON -->
             <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
                 <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
@@ -386,7 +392,7 @@
                     Save group and send invite
                 </div>
             </div>
-            
+
 
         </div>
     </div>

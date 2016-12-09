@@ -1,14 +1,14 @@
 angular
     .module('citizenos')
     .factory('GroupMemberTopic', ['$log', '$resource', 'sLocation', 'Topic', function ($log, $resource, sLocation, Topic) {
-        $log.debug('citizenos.factory.GroupMemberUser');
+        $log.debug('citizenos.factory.GroupMemberTopic');
 
         var GroupMemberTopic = $resource(
-            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups/:groupId'),
+            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups/:groupId'), // Actually Groups are added to Topic
             {topicId: '@id', groupId: '@groupId'},
             {
                 query: {
-                    url: sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/topics'),
+                    url: sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members/topics'),
                     isArray: true,
                     transformResponse: function (data, headersGetter, status) {
                         if (status < 400) { // FIXME: think this error handling through....
@@ -21,7 +21,7 @@ angular
                 update: {
                     method: 'PUT',
                     transformRequest: function (data) {
-                        return angular.toJson({level: data.permission.level});
+                        return angular.toJson({level: data.permission.levelGroup});
                     },
                     transformResponse: function (data, headersGetter, status) {
                         if (status < 400) { // FIXME: think this error handling through....

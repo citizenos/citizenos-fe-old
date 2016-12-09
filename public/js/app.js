@@ -246,10 +246,16 @@
                     parent: 'main',
                     templateUrl: '/views/groups.html'
                 })
-                .state('groupstest', {
-                    url: '/groupstest',
-                    parent: 'main',
-                    templateUrl: '/views/groups_test.html'
+                .state('groups.create', {
+                    url: '/create',
+                    parent: 'groups',
+                    controller: ['$scope', '$stateParams', 'ngDialog', function ($scope, $stateParams, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/group_create.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
                 })
                 .state('about', {
                     url: '/about',
