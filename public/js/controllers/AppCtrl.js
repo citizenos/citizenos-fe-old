@@ -90,6 +90,16 @@ angular
             });
         };
 
+        $scope.app.doShowInviteUsers = function () {
+            $log.debug('AppCtrl.doShowInviteUsers()');
+
+            ngDialog.open({
+                template: '/views/modals/invite_users.html',
+                scope: $scope
+            });
+        };
+        $scope.app.doShowInviteUsers();
+
         $scope.app.doShowDeleteTopic = function () {
             $log.debug('AppCtrl.doShowDeleteTopic()');
 

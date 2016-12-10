@@ -274,17 +274,27 @@ table {
     }
     .search_text {
         position: absolute;
-        color: $deep_sky_blue;
-        font-size: 13px;
         display: table;
         right: 0;
         top: 0;
         text-align: right;
         height: 30px;
         padding-right: 10px;
+        cursor: pointer;
+
+        .blue_link {
+            font-size: 13px !important;
+        }
+
         @media (max-width: 560px) {
             display: none;
         }
+    }
+}
+
+.searchbox_with_icon_and_text.only_text {
+    input {
+        padding-left: 10px !important;
     }
 }
 

@@ -1,0 +1,226 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen" ng-controller="GroupCreateCtrl">
+    <div id="lightbox" class="wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title">Create a group</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div class="header_row_wrap">
+                    <div class="header_row" slide-controller identifier="createGroupSlider" start_slide_at="306">
+                        <div class="tab_button" ng-click="tabSelected = 'settings'" ng-class="tabSelected === 'settings' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text">URL</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+
+                        <div class="tab_button" ng-click="tabSelected = 'memberUsersCreate'" ng-class="tabSelected === 'memberUsersCreate' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text">E-MAIL</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="line lightest_line"></div>
+            <!-- URL -->
+            <div id="lightbox_content" class="invite_url" ng-if="tabSelected === 'settings'">
+
+                <div class="lightbox_section">
+                    <div class="input_text_margin_bottom">
+                        Share this link to people you want to join the topic:
+                    </div>
+
+                    <div class="copy_link">
+                        <div class="searchbox_with_icon_and_text">
+                            <input value="https://citizenos-citizenosfe-web-test.herokuapp.com">
+                            <div class="search_text">
+                                <div class="blue_link table_cell">
+                                    Create a new link
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
+                            Copy link
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="lightbox_section">
+
+                    <div class="qr_code">
+                        <img src=".././imgs/qr_code_holder.png">
+                        <a class="blue_link">Download QR code pdf</a>
+                    </div>
+                    
+
+                </div>
+            </div>
+
+            <!-- E-MAIL -->
+            <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberUsersCreate'">
+
+                <div class="lightbox_section">
+
+                    <div class="input_text_margin_bottom">
+                        Invite users via their name or e-mail address or invite an entire group
+                    </div>
+
+                    <div class="searchbox_with_icon_and_text only_text">
+                        <input placeholder="Username, e-mail or group">
+                        <div class="search_text">
+                            <div class="table_cell blue_link">
+                                Press enter to add
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="lightbox_section user_list">
+
+                    <div ng-repeat="(key, this) in ['1', '2', '3']">
+
+                        <div class="category_title">
+                            <div class="table_cell">
+                                Users
+                            </div>
+                        </div>
+
+                        <table>
+
+                            <tr ng-repeat="(key, this) in ['1', '2', '3']">
+                                <td>
+                                    <div class="profile_image_wrapper dark">
+                                        <div class="profile_moon sprite sprite-icon-certified-fb2x"></div>
+                                        <div class="account_picture">
+                                            <!--<img src=".././imgs/profile.jpg">-->
+                                            <div class="profile_image_filler">
+                                                <div class="table_cell">
+                                                    ML
+                                                </div>
+                                                <div class="profile_circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="name_wrap">
+                                        <div class="table_cell">
+                                            <div class="blue_link">Kristian Lember</div>
+                                            <div class="via">Microsoft</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mobile_extra_info">
+                                        <div class="left">
+                                            <div cos-dropdown class="classic_dropdown">
+
+                                                <div class="dropdown_selection">
+                                                    <div class="dropdown_text">
+                                                        Admin
+                                                    </div>
+
+                                                    <div class="arrow_holder">
+                                                        <div class="table_cell">
+                                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                            <div class="v_line"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="dropdown">
+                                                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                        <div class="item_name">
+                                                            Read
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="right">
+                                            <div class="btn_wrap recycle_bin white_bg">
+                                                <div class="btn">
+                                                    <div class="table_cell">
+                                                        <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div cos-dropdown class="classic_dropdown">
+
+                                        <div class="dropdown_selection">
+                                            <div class="dropdown_text">
+                                                Admin
+                                            </div>
+
+                                            <div class="arrow_holder">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                    <div class="v_line"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="dropdown">
+                                            <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                <div class="item_name">
+                                                    Read
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn_wrap recycle_bin white_bg">
+                                        <div class="btn">
+                                            <div class="table_cell">
+                                                <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                                <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()">
+    </div>
+
+</div>

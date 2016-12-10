@@ -21,6 +21,7 @@ angular
             '/views/layouts/main.html',
             '/views/modals/group_create.html',
             '/views/modals/input_test.html',
+            '/views/modals/invite_users.html',
             '/views/modals/login.html',
             '/views/modals/login_esteid.html',
             '/views/modals/my_account.html',

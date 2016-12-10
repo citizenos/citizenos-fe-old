@@ -921,6 +921,101 @@
     .mobile_only {
         display: none;
     }
+    
+    
+    #lightbox_content.invite_url {
+
+        .copy_link {
+
+            padding-right: 110px;
+            position: relative;
+            
+            .searchbox_with_icon_and_text {
+                input {
+                    padding-left: 10px !important;
+                    padding-right: 123px !important;
+                }
+            }
+
+            .blue_button {
+                width: 100px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                border-radius: 4px;
+            }
+        }
+
+        .qr_code {
+            padding: 40px 0 20px 0;
+            text-align: center;
+            img {
+                display: block;
+                margin: 0 auto 10px auto;
+                height: 210px;
+                width: 210px;
+            }
+            
+            a {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 560px) {
+
+             .copy_link {
+                padding: 0;
+                
+                .searchbox_with_icon_and_text {
+                    input {
+                        padding-right: 5px !important;
+                    }
+
+                    .search_text {
+                        position: relative;
+                        display: block;
+                        margin: 0 auto;
+                        text-align: center;
+                        width: 100%;
+                        margin-top: 10px;
+                        margin-bottom: 11px;
+                        height: auto;
+                        .table_cell {
+                            display: inline;
+                            font-size: 14px;
+                        }
+                    }
+
+                }
+
+                .blue_button {
+                    width: initial;
+                    position: initial;
+                    right: initial;
+                    top: initial;
+                    border-radius: 4px;
+                }
+
+             }
+
+            .qr_code {
+                padding: 20px 0 0 0;
+                
+                img {
+                    height: 150px;
+                    width: 150px;
+                    margin-bottom: 19px;
+                }
+                
+                a {
+                    font-size: 14px;
+                }
+
+            }
+        
+        }
+
+    }
 
      @media (max-width: 560px) {
         .mobile_only {
