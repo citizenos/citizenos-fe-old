@@ -98,7 +98,6 @@ angular
                 scope: $scope
             });
         };
-        $scope.app.doShowInviteUsers();
 
         $scope.app.doShowDeleteTopic = function () {
             $log.debug('AppCtrl.doShowDeleteTopic()');
