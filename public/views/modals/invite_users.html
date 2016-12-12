@@ -1,12 +1,13 @@
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox" class="full_screen" ng-controller="GroupCreateCtrl">
-    <div id="lightbox" class="wide_lightbox">
+    <div id="lightbox" class="wide_lightbox with_title_description">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title">Create a group</div>
+                    <div class="title">Invite users and groups to</div>
+                    <div class="title_description">Ettepanek seadusega keelata kõrvklappide kandmine tänaval Ettepanek seadusega keelata kõrvklappide kandmine tänaval </div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -33,6 +34,14 @@
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
+
+                        <div ng-if="wWidth > 560" class="blue_button_wrap">
+                            <!--FIXME: Should be based on if any Users were added or not...-->
+                            <div class="blue_button" ng-if="tabSelected === 'memberUsersCreate'">
+                                Send invite
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -70,7 +79,6 @@
                         <img src=".././imgs/qr_code_holder.png">
                         <a class="blue_link">Download QR code pdf</a>
                     </div>
-                    
 
                 </div>
             </div>
@@ -215,6 +223,14 @@
 
                 </div>
 
+            </div>
+
+
+            <!-- MOBILE SAVE BUTTON -->
+            <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
+                <div class="blue_button" ng-if="tabSelected === 'memberUsersCreate'">
+                    Send invite
+                </div>
             </div>
 
         </div>

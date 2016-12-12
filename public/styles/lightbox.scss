@@ -75,6 +75,7 @@
          }
      }
 
+
     #lightbox.wide_lightbox {
         width: 600px;
 
@@ -95,17 +96,24 @@
                     font-weight: $medium;
                     float: left;
                     padding: 17px 60px 17px 20px;
-                    height: 55px;
+                    height: 55px;   
                     overflow: hidden;
 
                     .title {
+                        @extend .text_dod_dot_dot;
                         opacity: .7;
                         font-weight: $bold;
                         font-size: 16px;
+                        padding-right: 60px;
+                        position: absolute;
                     }
 
                     .title_description {
-                        margin-top: 3px;
+                        @extend .text_dod_dot_dot;
+                        margin-top: 25px;
+                        overflow: hidden;
+                        position: absolute;
+                        padding-right: 77px;
                     }
 
                 }
@@ -242,6 +250,35 @@
             }
         }
 
+    }
+
+    
+    #lightbox.wide_lightbox.with_title_description {
+          #lightbox_wrap {
+              #lightbox_header {
+                #lightbox_header_text {
+                    height: 71px;
+                    padding-right: 20px;
+                    @media (max-width: 560px) {
+                        font-size: 14px;
+                        height: 101px;
+                        .title_description {
+                            overflow: initial;
+                            text-overflow: initial;
+                            white-space: initial;
+                            width: initial;
+                            position: relative;
+                            padding-right: 0;
+                        }
+                    }
+                }
+            }
+            #lightbox_content {
+                @media (max-width: 560px) {
+                    top: 142px;
+                }
+            }
+        }
     }
     
     .section_with_table {

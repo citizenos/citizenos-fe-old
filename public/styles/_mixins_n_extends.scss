@@ -24,6 +24,15 @@
   }
 }
 
+
+.text_dod_dot_dot {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    box-sizing: border-box;
+    width: 100%;
+}
+
 .default_setup {
     background: $light_gray;
     @extend .all_zero;
