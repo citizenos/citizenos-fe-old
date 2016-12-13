@@ -10,7 +10,7 @@ angular
                     isArray: true,
                     transformResponse: function (data, headersGetter, status) {
                         if (status < 400) { // FIXME: think this error handling through....
-                            var array = angular.fromJson(data).data.rows;
+                            var array = angular.fromJson(data).data.rows || [];
                             array.forEach(function (group) { // TODO: FIX THE API - group.topics should return topics[] with 1 Topic in it.
                                 if (group.topics && group.topics.latest) {
                                     group.topics.latest = new Topic(group.topics.latest);

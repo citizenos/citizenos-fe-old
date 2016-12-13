@@ -7,11 +7,17 @@ angular
 
         $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});
 
-        $scope.isTopicListVisible = false;
-        $scope.isTopicListSearchVisible = false;
+        $scope.topicList = {
+            isVisible: false,
+            isSearchVisible: false,
+            searchFilter: ''
+        };
 
-        $scope.isUserListVisible = false;
-        $scope.isUserListSearchVisible = false;
+        $scope.userList = {
+            isVisible: false,
+            isSearchVisible: false,
+            searchFilter: ''
+        };
 
         $scope.doDeleteGroup = function (group) {
             $log.debug('doDeleteGroup', group, $scope.groupList.indexOf(group));
@@ -27,8 +33,8 @@ angular
         $scope.GroupMemberTopic = GroupMemberTopic;
 
         $scope.doToggleTopicList = function (group) {
-            if ($scope.isTopicListVisible) {
-                $scope.isTopicListVisible = false;
+            if ($scope.topicList.isVisible) {
+                $scope.topicList.isVisible = false;
                 return;
             }
 
@@ -37,7 +43,7 @@ angular
                 .then(function (topics) {
                     group.topics.rows = topics;
                     group.topics.count = topics.length;
-                    $scope.isTopicListVisible = true;
+                    $scope.topicList.isVisible = true;
                 });
         };
 
@@ -69,8 +75,8 @@ angular
         $scope.GroupMemberUser = GroupMemberUser;
 
         $scope.doToggleUserList = function (group) {
-            if ($scope.isUserListVisible) {
-                $scope.isUserListVisible = false;
+            if ($scope.userList.isVisible) {
+                $scope.userList.isVisible = false;
                 return;
             }
 
@@ -79,7 +85,7 @@ angular
                 .then(function (users) {
                     group.members.rows = users;
                     group.members.count = users.length;
-                    $scope.isUserListVisible = true;
+                    $scope.userList.isVisible = true;
                 });
         };
 
@@ -112,7 +118,7 @@ angular
             groupMemberUser
                 .$delete({groupId: group.id})
                 .then(function () {
-                    $state.go('mygroups');
+                    $state.go('mygroups', null, {reload: true});
                 });
         };
 
