@@ -254,8 +254,7 @@
                         <div class="blue_link">{{topic.title}}</div>
                     </td>
                     <td>
-                        <div ng-if="!topic.canUpdate()">{{topic.permission.level}}</div>
-                        <div ng-if="topic.canUpdate()" cos-dropdown class="classic_dropdown">
+                        <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
                                     {{topic.permission.levelGroup}}
@@ -282,10 +281,11 @@
                         {{topic.members.users.count}}
                     </td>
                     <td>
-                        <div class="table_wrap" ng-if="topic.canDelete()">
-                            <div ng-click="doDeleteMemberTopic(group, topic)" xng-click="app.doShowDeleteTopic()" class="delete_topic_btn">
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberTopic(group, topic)" cos-disabled="!topic.canDelete()">
+                            <div class="btn">
                                 <div class="table_cell">
-                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                    <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                    <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
                                 </div>
                             </div>
                         </div>
@@ -360,8 +360,7 @@
                         </div>
                     </td>
                     <td>
-                        <div ng-if="!group.canUpdate()">{{user.level}}</div>
-                        <div ng-if="group.canUpdate()" cos-dropdown class="classic_dropdown">
+                        <div cos-dropdown class="classic_dropdown" cos-disabled="!group.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
                                     {{user.level}}
@@ -385,15 +384,11 @@
                         </div>
                     </td>
                     <td>
-                        <div class="table_wrap">
-                            <div class="delete_topic_btn">
-                                <div class="table_cell" ng-click="doDeleteMemberUser(group, user)">
-                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
-                                    <!--div class="tooltip question">
-                                        Are you sure you want to delete this [user/comment/…]?
-                                        <div class="blue_button no">NO</div>
-                                        <div class="blue_button yes">YES</div>
-                                    </div-->
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(group, user)" cos-disabled="!group.canUpdate()">
+                            <div class="btn">
+                                <div class="table_cell">
+                                    <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                    <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
                                 </div>
                             </div>
                         </div>
