@@ -293,7 +293,7 @@
 
     .lightbox_section.has_table {
         @extend .section_with_table;
-        max-height: 410px;
+        max-height: 381px;
 
         @media (max-width: 640px) {
             max-height: 327px;

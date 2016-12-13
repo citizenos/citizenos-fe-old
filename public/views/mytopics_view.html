@@ -19,7 +19,13 @@
 
             <div class="content_top">
                 <div class="container_title">
-                    <img src=".././imgs/test_logo2.jpg"> CitizenOS test Group
+                    <div class="group_circle big">
+                        <div class="table_cell">
+                            C
+                        </div>
+                    </div>
+                    <!--<img src=".././imgs/test_logo2.jpg">-->
+                     CitizenOS test Group
                 </div>
                 <div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
                     <div class="ff_table_fix">
@@ -875,7 +881,7 @@
                         <div class="blue_link">CitizenOS test group</div>
                     </td>
                     <td>
-                        <div cos-dropdown class="classic_dropdown">
+                        <div cos-dropdown class="classic_dropdown disabled">
 
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
@@ -907,7 +913,7 @@
                         41
                     </td>
                     <td>
-                        <div class="btn_wrap recycle_bin">
+                        <div class="btn_wrap recycle_bin disabled">
                             <div ng-click="app.doShowDeleteTopic()" class="btn">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
