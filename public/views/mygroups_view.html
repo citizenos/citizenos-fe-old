@@ -224,20 +224,22 @@
         <div class="container_content" ng-if="topicList.isVisible">
             <table>
                 <tr>
-                    <th>
+                    <th ng-click="topicList.searchOrderBy.property = 'title'">
                         <div class="th_text">
                             Title
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'title'"></div>
                         </div>
                     </th>
-                    <th>
+                    <th ng-click="topicList.searchOrderBy.property = 'permission.levelGroup'">
                         <div class="th_text">
                             Rights
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'permission.levelGroup'"></div>
                         </div>
                     </th>
                     <th>
-                        <div class="th_text">
+                        <div class="th_text" ng-click="topicList.searchOrderBy.property = 'members.users.count'">
                             Users
-                            <div class="sprite sprite-icon-list-ordering2x"></div>
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'members.users.count'"></div>
                         </div>
                     </th>
                     <th>
@@ -246,7 +248,7 @@
                         </div>
                     </th>
                 </tr>
-                <tr ng-repeat="topic in group.topics.rows | filter: topicList.searchFilter">
+                <tr ng-repeat="topic in group.topics.rows | filter: topicList.searchFilter | orderBy: topicList.searchOrderBy.property">
                     <td>
                         <div class="blue_link">{{topic.title}}</div>
                     </td>
@@ -316,15 +318,16 @@
         <div class="container_content" ng-if="userList.isVisible">
             <table>
                 <tr>
-                    <th>
+                    <th ng-click="userList.searchOrderBy.property = 'name'">
                         <div class="th_text">
                             Profile
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'name'"></div>
                         </div>
                     </th>
-                    <th>
+                    <th ng-click="userList.searchOrderBy.property = 'level'">
                         <div class="th_text">
                             Rights
-                            <div class="sprite sprite-icon-list-ordering2x"></div>
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'level'"></div>
                         </div>
                     </th>
                     <th>
@@ -333,7 +336,7 @@
                         </div>
                     </th>
                 </tr>
-                <tr ng-repeat="user in group.members.rows | filter: userList.searchFilter">
+                <tr ng-repeat="user in group.members.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
                     <td>
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->

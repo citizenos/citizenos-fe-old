@@ -10,13 +10,19 @@ angular
         $scope.topicList = {
             isVisible: false,
             isSearchVisible: false,
-            searchFilter: ''
+            searchFilter: '',
+            searchOrderBy: {
+                property: 'title'
+            }
         };
 
         $scope.userList = {
             isVisible: false,
             isSearchVisible: false,
-            searchFilter: ''
+            searchFilter: '',
+            searchOrderBy: {
+                property: 'name'
+            }
         };
 
         $scope.doDeleteGroup = function (group) {
