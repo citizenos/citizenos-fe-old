@@ -361,6 +361,13 @@
                     .classic_dropdown {
                         margin-top: -5px;
                         margin-left: 10px;
+                        width: 170px;
+                        @media (max-width: 560px) {
+                            width: 112px;
+                        }
+                        @media (max-width: 360px) {
+                            width: 100px;
+                        }
                     }
 
                     .btn_wrap {
