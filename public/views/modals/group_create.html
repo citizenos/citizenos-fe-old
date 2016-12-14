@@ -108,10 +108,6 @@
             <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberTopicsCreate'">
 
                 <div class="lightbox_section">
-                    <div class="input_text_margin_bottom">
-                        Add some topics that the group members can access
-                    </div>
-
                     <div class="searchbox_with_icon_and_text">
                         <input placeholder="Search for a topic">
                         <div class="search_icon">
@@ -126,111 +122,67 @@
                         </div>
                     </div>
                 </div>
-                <div class="lightbox_section has_table">
+                 <div class="lightbox_section double_row_list small_header">
 
-                    <div class="mobile_table_header">
+                    <div class="category_title">
                         <div class="table_cell">
-                            Add an existing topic
+                            Order by:
+                        <div class="black_link">
+                            Title A-Z
+                        </div>
+                        <div class="black_link">
+                            Users
+                        </div>
                         </div>
                     </div>
 
-                    <table>
-
-                        <tr>
-                            <th>
-                                <div class="th_text">Title</div>
-                            </th>
-                            <th>
-                                <div class="th_text">
-                                    Users
-                                    <div class="sprite sprite-icon-list-ordering2x"></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="th_text">Add to group</div>
-                            </th>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <div class="blue_link">
-                                    Aenean mollis, nibh eu vehicula euismod, erat ipsum ornare risus, eget gravida lacus mauris nec erat...
-                                </div>
-                                <div class="mobile_extra_info">
-                                    <div class="left">
-                                        <div class="table">
-                                            <div class="table_cell">Users: 312</div>
+                    <div class="double_row_item" ng-repeat="i in [1,2,3,4,5,6]">
+                        <div class="blue_link">
+                            Aenean mollis, nibh eu vehicula euismod, erat ipsum ornare risus, eget gravida lacus mauris nec erat...
+                        </div>
+                        <div class="double_row_footer">
+                            <div class="left">Topic users: <b>312</b></div>
+                            <div class="right">
+                                <span class="dropdown_description">Group right over topic:</span>
+                                
+                                <div class="btn_wrap recycle_bin white_bg">
+                                    <div class="btn">
+                                        <div class="table_cell">
+                                            <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
                                         </div>
                                     </div>
-                                    <div class="right">
-                                        <div class="table">
-                                            <div class="table_cell">Add to group</div>
+                                </div>
+                                
+                                <div cos-dropdown class="classic_dropdown">
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text">
+                                            Admin
                                         </div>
-                                        <div class="btn_wrap check yes white_bg">
-                                            <div class="btn">
-                                                <div class="table_cell">
-                                                    <div class="sprite sprite-voted-check2x"></div>
-                                                </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                <div class="v_line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                            <div class="item_name">
+                                                Read
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                            <td>
-                                312
-                            </td>
-                            <td>
-                                <div class="btn_wrap check yes white_bg">
-                                    <div class="btn">
-                                        <div class="table_cell">
-                                            <div class="sprite sprite-voted-check2x"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                
+                            </div>
 
-                        <tr ng-repeat="i in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']">
-                            <td>
-                                <div class="blue_link">
-                                    Ut at nisi orci. Cras congue elit quis leo commodo.
-                                </div>
-                                <div class="mobile_extra_info">
-                                    <div class="left">
-                                        <div class="table">
-                                            <div class="table_cell">Users: 55555</div>
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <div class="table">
-                                            <div class="table_cell">Add to group</div>
-                                        </div>
-                                        <div class="btn_wrap check no white_bg">
-                                            <div class="btn">
-                                                <div class="table_cell">
-                                                    <div class="sprite sprite-voted-check2x"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                55555
-                            </td>
-                            <td>
-                                <div class="btn_wrap check no white_bg">
-                                    <div class="btn">
-                                        <div class="table_cell">
-                                            <div class="sprite sprite-voted-check2x"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                    </table>
-
+                            <div class="clearer"></div>
+                            
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -270,7 +222,7 @@
                 </div>
 
 
-                <div class="lightbox_section user_list">
+                <div class="lightbox_section double_row_list user_list">
 
                     <div ng-repeat="(key, this) in ['1', '2', '3']">
 

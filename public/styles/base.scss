@@ -588,6 +588,11 @@ a:link, a:visited {
     }
 }
 
+.black_link {
+    @extend .blue_link;
+    color: $medium_black;
+}
+
 .blue_button:not([disabled]):not(.disabled):hover {
     background: $dark_blue;
     @include tablet {
