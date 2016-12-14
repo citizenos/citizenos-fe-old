@@ -205,42 +205,41 @@
         <div class="container_header">
             <div class="header_text">
                 Topic list ({{group.topics.count}}) |
-                <div class="blue_link" ng-click="isTopicListSearchVisible = !isTopicListSearchVisible">search</div>
+                <div class="blue_link" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible">search</div>
                 |
                 <div class="blue_link">add</div>
             </div>
             <div class="minimize_container" ng-click="doToggleTopicList(group)">
-                <div ng-class="!isTopicListVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                <div ng-class="!topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
-        <div class="container_header second_header" ng-if="isTopicListSearchVisible">
+        <div class="container_header second_header" ng-if="topicList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="Topic title">
+                <input placeholder="Topic title, permission" ng-model="topicList.searchFilter">
             </div>
             <div class="table_cell">
-                <div class="blue_button">search</div>
-            </div>
-            <div class="table_cell">
-                <div class="blue_link" ng-click="isTopicListSearchVisible = false">cancel</div>
+                <div class="blue_link" ng-click="topicList.searchFilter = ''">clear filter</div>
             </div>
         </div>
-        <div class="container_content" ng-if="isTopicListVisible">
+        <div class="container_content" ng-if="topicList.isVisible">
             <table>
                 <tr>
-                    <th>
+                    <th ng-click="topicList.searchOrderBy.property = 'title'">
                         <div class="th_text">
                             Title
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'title'"></div>
                         </div>
                     </th>
-                    <th>
+                    <th ng-click="topicList.searchOrderBy.property = 'permission.levelGroup'">
                         <div class="th_text">
                             Rights
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'permission.levelGroup'"></div>
                         </div>
                     </th>
                     <th>
-                        <div class="th_text">
+                        <div class="th_text" ng-click="topicList.searchOrderBy.property = 'members.users.count'">
                             Users
-                            <div class="sprite sprite-icon-list-ordering2x"></div>
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'members.users.count'"></div>
                         </div>
                     </th>
                     <th>
@@ -249,13 +248,12 @@
                         </div>
                     </th>
                 </tr>
-                <tr ng-repeat="topic in group.topics.rows">
+                <tr ng-repeat="topic in group.topics.rows | filter: topicList.searchFilter | orderBy: topicList.searchOrderBy.property">
                     <td>
                         <div class="blue_link">{{topic.title}}</div>
                     </td>
                     <td>
-                        <div ng-if="!topic.canUpdate()">{{topic.permission.level}}</div>
-                        <div ng-if="topic.canUpdate()" cos-dropdown class="classic_dropdown">
+                        <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
                                     {{topic.permission.levelGroup}}
@@ -282,10 +280,11 @@
                         {{topic.members.users.count}}
                     </td>
                     <td>
-                        <div class="table_wrap" ng-if="topic.canDelete()">
-                            <div ng-click="doDeleteMemberTopic(group, topic)" xng-click="app.doShowDeleteTopic()" class="delete_topic_btn">
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberTopic(group, topic)" cos-disabled="!topic.canDelete()">
+                            <div class="btn">
                                 <div class="table_cell">
-                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                    <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                    <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
                                 </div>
                             </div>
                         </div>
@@ -300,37 +299,35 @@
         <div class="container_header">
             <div class="header_text">
                 User list ({{group.members.count}}) |
-                <div class="blue_link" ng-click="isUserListSearchVisible = !isUserListSearchVisible">search</div>
+                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible">search</div>
                 |
                 <div class="blue_link">invite</div>
             </div>
             <div class="minimize_container" ng-click="doToggleUserList(group)">
-                <div ng-class="!isUserListVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
-        <div class="container_header second_header" ng-if="isUserListSearchVisible">
+        <div class="container_header second_header" ng-if="userList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="Username, e-mail or group">
+                <input placeholder="Username, permission" ng-model="userList.searchFilter">
             </div>
             <div class="table_cell">
-                <div class="blue_button">search</div>
-            </div>
-            <div class="table_cell">
-                <div class="blue_link" ng-click="isUserListSearchVisible = false">cancel</div>
+                <div class="blue_link" ng-click="userList.searchFilter = ''">clear filter</div>
             </div>
         </div>
-        <div class="container_content" ng-if="isUserListVisible">
+        <div class="container_content" ng-if="userList.isVisible">
             <table>
                 <tr>
-                    <th>
+                    <th ng-click="userList.searchOrderBy.property = 'name'">
                         <div class="th_text">
                             Profile
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'name'"></div>
                         </div>
                     </th>
-                    <th>
+                    <th ng-click="userList.searchOrderBy.property = 'level'">
                         <div class="th_text">
                             Rights
-                            <div class="sprite sprite-icon-list-ordering2x"></div>
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'level'"></div>
                         </div>
                     </th>
                     <th>
@@ -339,7 +336,7 @@
                         </div>
                     </th>
                 </tr>
-                <tr ng-repeat="user in group.members.rows">
+                <tr ng-repeat="user in group.members.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
                     <td>
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
@@ -360,8 +357,7 @@
                         </div>
                     </td>
                     <td>
-                        <div ng-if="!group.canUpdate()">{{user.level}}</div>
-                        <div ng-if="group.canUpdate()" cos-dropdown class="classic_dropdown">
+                        <div cos-dropdown class="classic_dropdown" cos-disabled="!group.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
                                     {{user.level}}
@@ -385,15 +381,11 @@
                         </div>
                     </td>
                     <td>
-                        <div class="table_wrap">
-                            <div class="delete_topic_btn">
-                                <div class="table_cell" ng-click="doDeleteMemberUser(group, user)">
-                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
-                                    <!--div class="tooltip question">
-                                        Are you sure you want to delete this [user/comment/…]?
-                                        <div class="blue_button no">NO</div>
-                                        <div class="blue_button yes">YES</div>
-                                    </div-->
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(group, user)" cos-disabled="!group.canUpdate()">
+                            <div class="btn">
+                                <div class="table_cell">
+                                    <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                    <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
                                 </div>
                             </div>
                         </div>

@@ -10,7 +10,11 @@ angular
                 query: {
                     isArray: true,
                     transformResponse: function (data) {
-                        return angular.fromJson(data).data.rows;
+                        if (status < 400) { // FIXME: think this error handling through....
+                            return angular.fromJson(data).data.rows;
+                        } else {
+                            return angular.fromJson(data);
+                        }
                     }
                 },
                 update: {
