@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'sTranslate', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sTranslate, sAuth, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sTranslate', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, ngDialog, sTranslate, sAuth, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCtrl');
 
         $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});
@@ -27,13 +27,20 @@ angular
 
         $scope.doDeleteGroup = function (group) {
             $log.debug('doDeleteGroup', group, $scope.groupList.indexOf(group));
-            var index = $scope.groupList.indexOf(group);
-            group
-                .$delete()
+
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/group_delete_confirm.html'
+                })
                 .then(function () {
-                    $scope.groupList.splice(index, 1);
-                    $state.go('mygroups');
-                });
+                    var index = $scope.groupList.indexOf(group);
+                    group
+                        .$delete()
+                        .then(function () {
+                            $scope.groupList.splice(index, 1);
+                            $state.go('mygroups');
+                        });
+                }, angular.noop);
         };
 
         $scope.GroupMemberTopic = GroupMemberTopic;

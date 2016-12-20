@@ -20,6 +20,7 @@ angular
             '/views/default/search.html',
             '/views/layouts/main.html',
             '/views/modals/group_create.html',
+            '/views/modals/group_delete_confirm.html',
             '/views/modals/input_test.html',
             '/views/modals/invite_users.html',
             '/views/modals/login.html',
@@ -28,7 +29,7 @@ angular
             '/views/modals/password_forgot.html',
             '/views/modals/password_reset.html',
             '/views/modals/sign_up.html',
-            '/views/modals/topic_delete.html',
+            '/views/modals/topic_delete_confirm.html',
             '/views/modals/topic_vote_sign.html',
         ];
         var i = 0;

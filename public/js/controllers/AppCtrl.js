@@ -103,7 +103,7 @@ angular
             $log.debug('AppCtrl.doShowDeleteTopic()');
 
             ngDialog.open({
-                template: '/views/modals/topic_delete.html',
+                template: '/views/modals/topic_delete_confirm.html',
                 scope: $scope
             });
         };
