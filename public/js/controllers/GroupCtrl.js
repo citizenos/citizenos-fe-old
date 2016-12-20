@@ -76,13 +76,22 @@ angular
         };
 
         $scope.doDeleteMemberTopic = function (group, groupMemberTopic) {
-            var index = group.topics.rows.indexOf(groupMemberTopic);
-            groupMemberTopic
-                .$delete({groupId: group.id})
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/group_member_topic_delete_confirm.html',
+                    data: {
+                        topic: groupMemberTopic
+                    }
+                })
                 .then(function () {
-                    group.topics.rows.splice(index, 1);
-                    group.topics.count = group.topics.rows.length;
-                });
+                    var index = group.topics.rows.indexOf(groupMemberTopic);
+                    groupMemberTopic
+                        .$delete({groupId: group.id})
+                        .then(function () {
+                            group.topics.rows.splice(index, 1);
+                            group.topics.count = group.topics.rows.length;
+                        });
+                }, angular.noop);
         };
 
         $scope.GroupMemberUser = GroupMemberUser;
@@ -117,13 +126,24 @@ angular
         };
 
         $scope.doDeleteMemberUser = function (group, groupMemberUser) {
-            var index = group.members.rows.indexOf(groupMemberUser);
-            groupMemberUser
-                .$delete({groupId: group.id})
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/group_member_user_delete_confirm.html',
+                    data: {
+                        user: groupMemberUser
+                    }
+                })
                 .then(function () {
-                    group.members.rows.splice(index, 1);
-                    group.members.count = group.members.rows.length;
-                });
+                    var index = group.members.rows.indexOf(groupMemberUser);
+                    groupMemberUser
+                        .$delete({groupId: group.id})
+                        .then(function () {
+                            group.members.rows.splice(index, 1);
+                            group.members.count = group.members.rows.length;
+                        }, function (res) {
+                            $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, res.data.status.message);
+                        });
+                }, angular.noop);
         };
 
         $scope.doLeaveGroup = function (group) {
