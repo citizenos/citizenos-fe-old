@@ -11,7 +11,7 @@
 
                 <div class="dropdown_selection">
                     <div class="dropdown_text">
-                        Show only: Public topics <!-- FIXME: SELECTED -->
+                        {{filters.selected.name}}
                     </div>
 
                     <div class="arrow_holder">
@@ -31,14 +31,14 @@
                                 {{item.name}}
                             </div>
                             <div class="item_names_wrap">
-                                <div ng-repeat="child in item.children" class="item_name" ng-click="child.onSelect()">
+                                <div ng-repeat="child in item.children" class="item_name" ng-click="child.onSelect(item)" ng-class="child === filters.selected ? 'bold' : ''">
                                     {{child.name}}
                                 </div>
                             </div>
                         </div>
 
                         <div ng-if="!item.children">
-                            <div class="item_name" ng-click="item.onSelect()">
+                            <div class="item_name" ng-click="item.onSelect()" ng-class="item === filters.selected ? 'bold' : ''">
                                 {{item.name}}
                             </div>
                         </div>

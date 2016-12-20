@@ -11,7 +11,8 @@ angular
                 id: 'all',
                 name: 'Show all my topics',
                 onSelect: function () {
-                    $log.debug('$scope.filters.item.onSelect', 'show all my topics', this,  $scope.filters);
+                    $log.debug('$scope.filters.item.onSelect', 'show all my topics', this, $scope.filters);
+                    $scope.filters.selected = this;
                 }
             },
             {
@@ -21,21 +22,24 @@ angular
                         id: 'myPublic',
                         name: 'My public topics',
                         onSelect: function () {
-                            $log.debug('$scope.filters.item.onSelect', 'My public topics', this);
+                            $log.debug('$scope.filters.item.onSelect', 'My public topics', this, $scope.filters);
+                            $scope.filters.selected = this;
                         }
                     },
                     {
                         id: 'myPrivate',
                         name: 'My private topics',
                         onSelect: function () {
-                            $log.debug('$scope.filters.item.onSelect', 'My private topics', this);
+                            $log.debug('$scope.filters.item.onSelect', 'My private topics', this, $scope.filters);
+                            $scope.filters.selected = this;
                         }
                     },
                     {
                         id: 'iCreated',
                         name: 'Topics I created',
                         onSelect: function () {
-                            $log.debug('$scope.filters.item.onSelect', 'Topics I created', this);
+                            $log.debug('$scope.filters.item.onSelect', 'Topics I created', this, $scope.filters);
+                            $scope.filters.selected = this;
                         }
                     }
                 ]
@@ -44,14 +48,16 @@ angular
                 id: 'grouped',
                 name: 'Show topics ordered by groups',
                 onSelect: function () {
-                    $log.debug('$scope.filters.item.onSelect', 'Show topics ordered by groups', this);
+                    $log.debug('$scope.filters.item.onSelect', 'Show topics ordered by groups', this, $scope.filters);
+                    $scope.filters.selected = this;
                 }
             }
         ];
 
+        var filterParam = $stateParams.filter || filters[0].id;
         $scope.filters = {
             items: filters,
-            selected: _.find(filters, {id: $stateParams.filter}) || filters[0]
+            selected: _.find(filters, {id: filterParam}) || _.chain(filters).map('children').flatten().find({id: filterParam}).value() || filters[0]
         };
 
         $scope.groupList = [];
