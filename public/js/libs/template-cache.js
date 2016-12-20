@@ -23,6 +23,7 @@ angular
             '/views/modals/group_delete_confirm.html',
             '/views/modals/group_member_topic_delete_confirm.html',
             '/views/modals/group_member_user_delete_confirm.html',
+            '/views/modals/group_member_user_leave_confirm.html',
             '/views/modals/input_test.html',
             '/views/modals/invite_users.html',
             '/views/modals/login.html',

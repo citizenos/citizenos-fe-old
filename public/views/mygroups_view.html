@@ -19,7 +19,12 @@
 
             <div class="content_top">
                 <div class="container_title">
-                    <!img src=".././imgs/test_logo2.jpg"--> {{group.name}}
+                    <div class="group_circle big" ng-if="!group.imageUrl">
+                        <div class="table_cell" cos-initials="group.name">
+                            C
+                        </div>
+                    </div>
+                    <img ng-if="group.imageUrl" ng-src="group.imageUrl">{{group.name}}
                 </div>
                 <div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
                     <div class="ff_table_fix">
