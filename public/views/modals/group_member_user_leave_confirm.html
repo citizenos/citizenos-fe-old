@@ -1,0 +1,62 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing delete_topic wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div class="delete_title">Leave group</div>
+                <div class="delete_description">Please keep in mind you cannot undo this action.</div>
+
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <div id="lightbox_content">
+
+                <div id="delete_info_wrap">
+
+                    <div class="delete_info_text_wrap">
+                        <div class="delete_info">
+                            <div class="delete_info_text">
+                                <div class="profile_image_wrapper dark">
+                                    <div class="account_picture">
+                                        <img ng-if="ngDialogData.user.imageUrl" ng-src="{{ngDialogData.user.imageUrl}}">
+                                        <div ng-if="!ngDialogData.user.imageUrl" class="profile_image_filler">
+                                            <div class="table_cell" cos-initials="ngDialogData.user.name">
+                                                ML
+                                            </div>
+                                            <div class="profile_circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ngDialogData.user.name}}
+                            </div>
+                        </div>
+                        <div class="delete_info">
+                            <div class="delete_info_text">Are you sure you want to leave this group?</div>
+                        </div>
+                    </div>
+
+                    <div class="delete_info_button_wrap">
+
+                        <div class="table_cell">
+                            <div class="blue_button no" ng-click="closeThisDialog()">NO</div>
+                        </div>
+
+                        <div class="table_cell">
+                            <div class="blue_button yes" ng-click="confirm()">YES</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
+
+</div>

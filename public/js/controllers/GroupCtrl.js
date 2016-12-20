@@ -147,11 +147,24 @@ angular
         };
 
         $scope.doLeaveGroup = function (group) {
-            var groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
-            groupMemberUser
-                .$delete({groupId: group.id})
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/group_member_user_leave_confirm.html',
+                    data: {
+                        user: sAuth.user
+                    }
+                })
                 .then(function () {
-                    $state.go('mygroups', null, {reload: true});
+                    var groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
+                    groupMemberUser
+                        .$delete({groupId: group.id})
+                        .then(function () {
+                            $state.go('mygroups', null, {reload: true});
+                        }, function (res) {
+                            if (res.data.status.code === 40000) {
+                                $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, 'You cannot leave this Group as you are the last admin user of this Group. Please assign a new admin to leave.');
+                            }
+                        });
                 });
         };
 
