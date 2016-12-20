@@ -3,7 +3,56 @@
 angular
     .module('citizenos')
     .controller('MyGroupsCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', 'Group', function ($rootScope, $scope, $state, $stateParams, $log, Group) {
-        $log.debug('MyGroupsCtrl');
+        $log.debug('MyGroupsCtrl', $stateParams);
+
+        // All the Topic filters in the dropdown
+        var filters = [
+            {
+                id: 'all',
+                name: 'Show all my topics',
+                onSelect: function () {
+                    $log.debug('$scope.filters.item.onSelect', 'show all my topics', this,  $scope.filters);
+                }
+            },
+            {
+                name: 'Show only:',
+                children: [
+                    {
+                        id: 'myPublic',
+                        name: 'My public topics',
+                        onSelect: function () {
+                            $log.debug('$scope.filters.item.onSelect', 'My public topics', this);
+                        }
+                    },
+                    {
+                        id: 'myPrivate',
+                        name: 'My private topics',
+                        onSelect: function () {
+                            $log.debug('$scope.filters.item.onSelect', 'My private topics', this);
+                        }
+                    },
+                    {
+                        id: 'iCreated',
+                        name: 'Topics I created',
+                        onSelect: function () {
+                            $log.debug('$scope.filters.item.onSelect', 'Topics I created', this);
+                        }
+                    }
+                ]
+            },
+            {
+                id: 'grouped',
+                name: 'Show topics ordered by groups',
+                onSelect: function () {
+                    $log.debug('$scope.filters.item.onSelect', 'Show topics ordered by groups', this);
+                }
+            }
+        ];
+
+        $scope.filters = {
+            items: filters,
+            selected: _.find(filters, {id: $stateParams.filter}) || filters[0]
+        };
 
         $scope.groupList = [];
         $scope.isGroupListLoading = true;

@@ -232,7 +232,7 @@
                     templateUrl: '/views/mytopics_view.html'
                 })
                 .state('mygroups', {
-                    url: '/mygroups',
+                    url: '/mygroups?filter',
                     parent: 'main',
                     templateUrl: '/views/mygroups.html'
                 })

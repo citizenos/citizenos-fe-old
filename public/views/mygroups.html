@@ -11,7 +11,7 @@
 
                 <div class="dropdown_selection">
                     <div class="dropdown_text">
-                        Show only: Public topics
+                        Show only: Public topics <!-- FIXME: SELECTED -->
                     </div>
 
                     <div class="arrow_holder">
@@ -25,26 +25,26 @@
 
                 <div class="dropdown">
 
-                    <!-- NO CATEGORY -->
-                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                        <div class="item_name">
-                            Show all my topics
-                        </div>
-                    </div>
-
-                    <!-- WITH CATEGORY -->
-                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2', '3', '4', '5']">
-                        <div class="item_category">
-                            Show only:
-                        </div>
-                        <div class="item_names_wrap">
-                            <div class="item_name" ng-class="key === 0 ? 'bold' : ''" ng-repeat="(key, this) in ['1', '2', '3', '4']">
-                                My public topics
+                    <div class="dropdown_item" ng-repeat="item in filters.items">
+                        <div ng-if="item.children">
+                            <div class="item_category">
+                                {{item.name}}
+                            </div>
+                            <div class="item_names_wrap">
+                                <div ng-repeat="child in item.children" class="item_name" ng-click="child.onSelect()">
+                                    {{child.name}}
+                                </div>
                             </div>
                         </div>
+
+                        <div ng-if="!item.children">
+                            <div class="item_name" ng-click="item.onSelect()">
+                                {{item.name}}
+                            </div>
+                        </div>
+
                         <div class="clearer"></div>
                     </div>
-
 
                 </div>
             </div>
