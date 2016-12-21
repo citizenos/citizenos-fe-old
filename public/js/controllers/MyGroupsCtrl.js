@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyGroupsCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', 'Group', function ($rootScope, $scope, $state, $stateParams, $log, Group) {
+    .controller('MyGroupsCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', 'sAuth', 'Group', 'Topic', function ($rootScope, $scope, $state, $stateParams, $log, sAuth, Group, Topic) {
         $log.debug('MyGroupsCtrl', $stateParams);
 
         // All the Topic filters in the dropdown
@@ -11,8 +11,13 @@ angular
                 id: 'all',
                 name: 'Show all my topics',
                 onSelect: function () {
-                    $log.debug('$scope.filters.item.onSelect', 'show all my topics', this, $scope.filters);
                     $scope.filters.selected = this;
+                    Topic
+                        .query().$promise
+                        .then(function (topics) {
+                            $log.debug('Topics loaded', topics);
+                            //FIXME: Do something with the result!
+                        });
                 }
             },
             {
@@ -22,24 +27,39 @@ angular
                         id: 'myPublic',
                         name: 'My public topics',
                         onSelect: function () {
-                            $log.debug('$scope.filters.item.onSelect', 'My public topics', this, $scope.filters);
                             $scope.filters.selected = this;
+                            Topic
+                                .query({visibility: Topic.VISIBILITY.public}).$promise
+                                .then(function (topics) {
+                                    $log.debug('Topics loaded', topics);
+                                    //FIXME: Do something with the result!
+                                });
                         }
                     },
                     {
                         id: 'myPrivate',
                         name: 'My private topics',
                         onSelect: function () {
-                            $log.debug('$scope.filters.item.onSelect', 'My private topics', this, $scope.filters);
                             $scope.filters.selected = this;
+                            Topic
+                                .query({visibility: Topic.VISIBILITY.private}).$promise
+                                .then(function (topics) {
+                                    $log.debug('Topics loaded', topics);
+                                    //FIXME: Do something with the result!
+                                });
                         }
                     },
                     {
                         id: 'iCreated',
                         name: 'Topics I created',
                         onSelect: function () {
-                            $log.debug('$scope.filters.item.onSelect', 'Topics I created', this, $scope.filters);
                             $scope.filters.selected = this;
+                            Topic
+                                .query({creatorId: sAuth.user.id}).$promise
+                                .then(function (topics) {
+                                    $log.debug('Topics loaded', topics);
+                                    //FIXME: Do something with the result!
+                                });
                         }
                     }
                 ]
@@ -48,8 +68,12 @@ angular
                 id: 'grouped',
                 name: 'Show topics ordered by groups',
                 onSelect: function () {
-                    $log.debug('$scope.filters.item.onSelect', 'Show topics ordered by groups', this, $scope.filters);
                     $scope.filters.selected = this;
+                    Group
+                        .query().$promise
+                        .then(function (groups) {
+                            // FIXME: Do something with the result!
+                        });
                 }
             }
         ];
