@@ -1,11 +1,11 @@
-<div id="topics_root" ng-controller="MyGroupsCtrl">
+<div id="topics_root" ng-controller="MyCtrl">
 
     <div class="v_line separator absolute_separator" ng-show="wWidth > 750"></div>
 
     <div id="topics_wrap">
 
         <!-- LEFT SIDE -->
-        <div class="topics_left" ng-hide="wWidth <= 750 && 'mygroups.view' | isState">
+        <div class="topics_left" ng-hide="wWidth <= 750 && (('my.groups.groupId' | isState) || ('my.topics.topicId' | isState))">
 
             <div cos-dropdown class="classic_dropdown">
 
@@ -60,10 +60,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="header_text" ui-sref="mygroups.view({groupId: item.id})">
+                    <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id})">
                         {{item.name}} ({{item.topics.count}})
                     </div>
-                    <div class="minimize_container" ng-if="item.topics.count">
+                    <div class="minimize_container" ng-if="item.topics.count" ng-click="doToggleGroupTopicList(item)">
                         <div ng-class="true ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                     </div>
                 </div>

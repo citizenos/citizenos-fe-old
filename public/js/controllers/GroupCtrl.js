@@ -5,7 +5,7 @@ angular
     .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sTranslate', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, ngDialog, sTranslate, sAuth, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCtrl');
 
-        $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});
+        $scope.group = _.find($scope.itemList, {id: $stateParams.groupId});
 
         $scope.topicList = {
             isVisible: false,

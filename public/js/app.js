@@ -231,15 +231,30 @@
                     parent: 'mytopics',
                     templateUrl: '/views/mytopics_view.html'
                 })
-                .state('mygroups', {
-                    url: '/mygroups?filter',
+                .state('my', {
+                    url: '/my?filter',
                     parent: 'main',
-                    templateUrl: '/views/mygroups.html'
+                    templateUrl: '/views/my.html'
                 })
-                .state('mygroups.view', {
+                .state('my.topics', {
+                    url: '/topics',
+                    parent: 'my',
+                    template: '<div ui-view></div>'
+                })
+                .state('my.topics.topicId', {
+                    url: '/:topicId',
+                    parent: 'my.topics',
+                    templateUrl: '/views/my_topics_topicId.html'
+                })
+                .state('my.groups', {
+                    url: '/groups',
+                    parent: 'my',
+                    template: '<div ui-view></div>'
+                })
+                .state('my.groups.groupId', {
                     url: '/:groupId',
-                    parent: 'mygroups',
-                    templateUrl: '/views/mygroups_view.html'
+                    parent: 'my.groups',
+                    templateUrl: '/views/my_groups_groupId.html'
                 })
                 .state('groups', {
                     url: '/groups',

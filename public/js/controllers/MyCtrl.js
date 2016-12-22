@@ -2,8 +2,8 @@
 
 angular
     .module('citizenos')
-    .controller('MyGroupsCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', 'sAuth', 'Group', 'Topic', 'GroupMemberTopic', function ($rootScope, $scope, $state, $stateParams, $log, sAuth, Group, Topic, GroupMemberTopic) {
-        $log.debug('MyGroupsCtrl', $stateParams);
+    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', 'sAuth', 'Group', 'Topic', 'GroupMemberTopic', function ($rootScope, $scope, $state, $stateParams, $log, sAuth, Group, Topic, GroupMemberTopic) {
+        $log.debug('MyCtrl', $stateParams);
 
         $scope.itemList = []; // Contains Groups and Topics
 
@@ -13,7 +13,9 @@ angular
                 id: 'all',
                 name: 'Show all my topics',
                 onSelect: function () {
-                    $scope.filters.selected = this;
+                    $state.go('my.topics', {filter: this.id});
+                },
+                loadData: function () {
                     Topic
                         .query().$promise
                         .then(function (topics) {
@@ -25,10 +27,12 @@ angular
                 name: 'Show only:',
                 children: [
                     {
-                        id: 'myPublic',
+                        id: 'public',
                         name: 'My public topics',
                         onSelect: function () {
-                            $scope.filters.selected = this;
+                            $state.go('my.topics', {filter: this.id});
+                        },
+                        loadData: function () {
                             Topic
                                 .query({visibility: Topic.VISIBILITY.public}).$promise
                                 .then(function (topics) {
@@ -37,10 +41,12 @@ angular
                         }
                     },
                     {
-                        id: 'myPrivate',
+                        id: 'private',
                         name: 'My private topics',
                         onSelect: function () {
-                            $scope.filters.selected = this;
+                            $state.go('my.topics', {filter: this.id});
+                        },
+                        loadData: function () {
                             Topic
                                 .query({visibility: Topic.VISIBILITY.private}).$promise
                                 .then(function (topics) {
@@ -52,13 +58,16 @@ angular
                         id: 'iCreated',
                         name: 'Topics I created',
                         onSelect: function () {
-                            $scope.filters.selected = this;
+                            $state.go('my.topics', {filter: this.id});
+                        },
+                        loadData: function () {
                             Topic
                                 .query({creatorId: sAuth.user.id}).$promise
                                 .then(function (topics) {
                                     $scope.itemList = topics;
                                 });
                         }
+
                     }
                 ]
             },
@@ -66,7 +75,9 @@ angular
                 id: 'grouped',
                 name: 'Show topics ordered by groups',
                 onSelect: function () {
-                    $scope.filters.selected = this;
+                    $state.go('my.groups', {filter: this.id});
+                },
+                loadData: function () {
                     Group
                         .query().$promise
                         .then(function (groups) {
@@ -83,48 +94,39 @@ angular
         };
 
         var init = function () {
-            $scope.filters.selected.onSelect.call($scope.filters.selected);
+            $scope.filters.selected.loadData();
         };
         init();
+
+        $scope.$watch(function () {
+            return $scope.itemList;
+        }, function (newList) {
+            if (!newList || !newList.length) return;
+
+            // Navigate to first item in the list on big screens.
+            if ($rootScope.wWidth > 750) {
+                if ($state.is('my.groups') || $state.is('my.topics')) {
+                    var item = $scope.itemList[0];
+                    if ($scope.isGroup(item)) {
+                        $state.go('my.groups.groupId', {groupId: item.id});
+                    } else {
+                        $state.go('my.topics.topicId', {topicId: item.id});
+                    }
+                }
+            }
+        });
 
         $scope.isGroup = function (object) {
             return object instanceof Group;
         };
 
-        $scope.isGroupListLoading = true;
-
-        var initGroupListView = function () {
-            // Do not auto-navigate to first groups detail view in mobile
-            if ($rootScope.wWidth > 750) { // TODO: When dev ends, define constants for different screen widths!
-                if ($scope.groupList.length && !$stateParams.groupId) {
-                    $state.go('mygroups.view', {groupId: $scope.groupList[0].id});
-                }
-            }
-        };
-
         $scope.doToggleGroupTopicList = function (group) {
-            if (group.isTopicListExpanded) {
-                group.isTopicListExpanded = false;
-            } else {
-                if (!group.topics.rows) {
-                    GroupMemberTopic
-                        .query({groupId: group.id}).$promise
-                        .then(function (topics) {
-                            group.topics.rows = topics;
-                            group.topics.count = topics.length;
-                            group.isTopicListExpanded = true;
-                        });
-                } else {
-                    group.isTopicListExpanded = true;
-                }
-            }
+            GroupMemberTopic
+                .query({groupId: group.id}).$promise
+                .then(function (topics) {
+                    group.topics.rows = topics;
+                    group.topics.count = topics.length;
+                });
         };
-
-        // In case there is $state.go('mygroups') somewhere, we need to initialize the view so that for non-mobile we show first Groups detail view.
-        $scope.$on('$stateChangeSuccess', function () {
-            if ($state.is('mygroups')) {
-                initGroupListView();
-            }
-        });
 
     }]);
