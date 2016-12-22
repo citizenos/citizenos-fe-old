@@ -69,7 +69,7 @@
                 </div>
 
                 <!-- Topic -->
-                <div ng-if="!isGroup(item)" class="small_topic" ui-sref-active="active">
+                <div ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
                     <div class="small_topic_header">
                         <div class="small_topic_left_cont">
                             <div class="small_topic_icon">

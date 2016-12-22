@@ -98,22 +98,25 @@ angular
         };
         init();
 
-        $scope.$watch(function () {
-            return $scope.itemList;
-        }, function (newList) {
-            if (!newList || !newList.length) return;
-            // Navigate to first item in the list on big screens.
-            if ($rootScope.wWidth > 750) {
-                if ($state.is('my.groups') || $state.is('my.topics')) {
-                    var item = $scope.itemList[0];
-                    if ($scope.isGroup(item)) {
-                        $state.go('my.groups.groupId', {groupId: item.id});
-                    } else {
-                        $state.go('my.topics.topicId', {topicId: item.id});
+        $scope.$watch(
+            function () {
+                return $scope.itemList;
+            },
+            function (newList) {
+                if (!newList || !newList.length) return;
+                // Navigate to first item in the list on big screens.
+                if ($rootScope.wWidth > 750) {
+                    if ($state.is('my.groups') || $state.is('my.topics')) {
+                        var item = $scope.itemList[0];
+                        if ($scope.isGroup(item)) {
+                            $state.go('my.groups.groupId', {groupId: item.id});
+                        } else {
+                            $state.go('my.topics.topicId', {topicId: item.id});
+                        }
                     }
                 }
             }
-        });
+        );
 
         $scope.isGroup = function (object) {
             return object instanceof Group;
