@@ -102,7 +102,6 @@ angular
             return $scope.itemList;
         }, function (newList) {
             if (!newList || !newList.length) return;
-
             // Navigate to first item in the list on big screens.
             if ($rootScope.wWidth > 750) {
                 if ($state.is('my.groups') || $state.is('my.topics')) {
@@ -121,12 +120,33 @@ angular
         };
 
         $scope.doToggleGroupTopicList = function (group) {
-            GroupMemberTopic
-                .query({groupId: group.id}).$promise
-                .then(function (topics) {
-                    group.topics.rows = topics;
-                    group.topics.count = topics.length;
-                });
+            var groupIndex = _.indexOf($scope.itemList, group);
+            if (!group.topics.rows) { // Not expanded
+                GroupMemberTopic
+                    .query({groupId: group.id}).$promise
+                    .then(function (topics) {
+                        group.topics.rows = topics;
+                        group.topics.count = topics.length;
+                        $scope.itemList = $scope.itemList.slice(0, groupIndex + 1).concat(topics, $scope.itemList.slice(groupIndex + 1));
+                    });
+            } else {
+                // Remove all non-Group elements between current Group and the first Group after it
+                var indexStart = groupIndex + 1;
+                var lastIndex;
+                for (var i = indexStart; i < $scope.itemList.length; i++) {
+                    if ($scope.isGroup($scope.itemList[i])) {
+                        lastIndex = i;
+                        break;
+                    }
+                }
+
+                if (!lastIndex) {
+                    lastIndex = $scope.itemList.length;
+                }
+
+                $scope.itemList = $scope.itemList.slice(0, indexStart).concat($scope.itemList.slice(lastIndex));
+                delete group.topics.rows;
+            }
         };
 
     }]);

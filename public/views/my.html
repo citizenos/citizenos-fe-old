@@ -64,7 +64,7 @@
                         {{item.name}} ({{item.topics.count}})
                     </div>
                     <div class="minimize_container" ng-if="item.topics.count" ng-click="doToggleGroupTopicList(item)">
-                        <div ng-class="true ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                        <div ng-class="!item.topics.rows ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                     </div>
                 </div>
 
