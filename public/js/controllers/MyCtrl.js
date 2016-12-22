@@ -87,7 +87,7 @@ angular
             }
         ];
 
-        var filterParam = $state.is('my.groups') ? 'grouped' : $stateParams.filter || filters[0].id;
+        var filterParam = $state.includes('my.groups') ? 'grouped' : $stateParams.filter || filters[0].id;
         $scope.filters = {
             items: filters,
             selected: _.find(filters, {id: filterParam}) || _.chain(filters).map('children').flatten().find({id: filterParam}).value() || filters[0]
