@@ -49,28 +49,7 @@ angular
             }
         );
 
-        Group.prototype.getTopicList = function () {
-            var group = this;
-            var path = sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/topics', {groupId: this.id});
-            return {
-                $promise: $http
-                    .get(path)
-                    .then(function (res) {
-                        if (res.status < 400) { // FIXME: think this error handling through....
-                            var topics = [];
-                            var array = res.data.data.rows;
-                            array.forEach(function (value) {
-                                topics.push(new Topic(value));
-                            });
-                            group.topics.rows = topics;
-                            group.topics.count = topics.length;
-                        } else {
-                            return data;
-                        }
-                    })
-            }
-        };
-
+        // FIXME: Should not be here... upto the Controller..
         Group.prototype.isTopicListExpanded = false;
 
         Group.prototype.canUpdate = function () {

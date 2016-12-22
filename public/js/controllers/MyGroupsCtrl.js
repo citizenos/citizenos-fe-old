@@ -2,8 +2,10 @@
 
 angular
     .module('citizenos')
-    .controller('MyGroupsCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', 'sAuth', 'Group', 'Topic', function ($rootScope, $scope, $state, $stateParams, $log, sAuth, Group, Topic) {
+    .controller('MyGroupsCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', 'sAuth', 'Group', 'Topic', 'GroupMemberTopic', function ($rootScope, $scope, $state, $stateParams, $log, sAuth, Group, Topic, GroupMemberTopic) {
         $log.debug('MyGroupsCtrl', $stateParams);
+
+        $scope.itemList = []; // Contains Groups and Topics
 
         // All the Topic filters in the dropdown
         var filters = [
@@ -15,8 +17,7 @@ angular
                     Topic
                         .query().$promise
                         .then(function (topics) {
-                            $log.debug('Topics loaded', topics);
-                            //FIXME: Do something with the result!
+                            $scope.itemList = topics;
                         });
                 }
             },
@@ -31,8 +32,7 @@ angular
                             Topic
                                 .query({visibility: Topic.VISIBILITY.public}).$promise
                                 .then(function (topics) {
-                                    $log.debug('Topics loaded', topics);
-                                    //FIXME: Do something with the result!
+                                    $scope.itemList = topics;
                                 });
                         }
                     },
@@ -44,8 +44,7 @@ angular
                             Topic
                                 .query({visibility: Topic.VISIBILITY.private}).$promise
                                 .then(function (topics) {
-                                    $log.debug('Topics loaded', topics);
-                                    //FIXME: Do something with the result!
+                                    $scope.itemList = topics;
                                 });
                         }
                     },
@@ -57,8 +56,7 @@ angular
                             Topic
                                 .query({creatorId: sAuth.user.id}).$promise
                                 .then(function (topics) {
-                                    $log.debug('Topics loaded', topics);
-                                    //FIXME: Do something with the result!
+                                    $scope.itemList = topics;
                                 });
                         }
                     }
@@ -72,7 +70,7 @@ angular
                     Group
                         .query().$promise
                         .then(function (groups) {
-                            // FIXME: Do something with the result!
+                            $scope.itemList = groups;
                         });
                 }
             }
@@ -84,19 +82,16 @@ angular
             selected: _.find(filters, {id: filterParam}) || _.chain(filters).map('children').flatten().find({id: filterParam}).value() || filters[0]
         };
 
-        $scope.groupList = [];
-        $scope.isGroupListLoading = true;
+        var init = function () {
+            $scope.filters.selected.onSelect.call($scope.filters.selected);
+        };
+        init();
 
-        Group
-            .query().$promise
-            .then(function (groups) {
-                $scope.groupList = groups;
-                $scope.isGroupListLoading = false;
-                initGroupListView();
-            }, function () {
-                $log.log('MyGroupsCtrl', 'Group list fetch failed', res);
-                $scope.isGroupListLoading = false;
-            });
+        $scope.isGroup = function (object) {
+            return object instanceof Group;
+        };
+
+        $scope.isGroupListLoading = true;
 
         var initGroupListView = function () {
             // Do not auto-navigate to first groups detail view in mobile
@@ -112,9 +107,11 @@ angular
                 group.isTopicListExpanded = false;
             } else {
                 if (!group.topics.rows) {
-                    group
-                        .getTopicList().$promise
-                        .then(function () {
+                    GroupMemberTopic
+                        .query({groupId: group.id}).$promise
+                        .then(function (topics) {
+                            group.topics.rows = topics;
+                            group.topics.count = topics.length;
                             group.isTopicListExpanded = true;
                         });
                 } else {

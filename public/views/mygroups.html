@@ -49,88 +49,54 @@
                 </div>
             </div>
 
-            <div ng-repeat="group in groupList">
-                <div class="container_header bold" ng-if="!isGroupListLoading" ui-sref-active="active">
-                    <!--div class="header_img_wrap"><img src=".././imgs/test_topic_logo.png"></div-->
-                    <div class="header_text" ui-sref="mygroups.view({groupId: group.id})">
-                        {{group.name}} ({{group.topics.count}})
+            <div ng-repeat="item in itemList"><!-- item can be Topic or a Group -->
+                <!-- Group -->
+                <div ng-if="isGroup(item)" class="container_header bold" ui-sref-active="active">
+                    <div class="header_img_wrap">
+                        <img ng-if="item.imageUrl" ng-src="{{item.imageUrl}}">
+                        <div ng-if="!item.imageUrl" class="group_circle small">
+                            <div class="table_cell" cos-initials="item.name | limitTo: 1">
+                                C
+                            </div>
+                        </div>
                     </div>
-                    <div class="minimize_container" ng-click="doToggleGroupTopicList(group)" ng-if="group.topics.count">
-                        <div ng-class="!group.isTopicListExpanded ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                    <div class="header_text" ui-sref="mygroups.view({groupId: item.id})">
+                        {{item.name}} ({{item.topics.count}})
+                    </div>
+                    <div class="minimize_container" ng-if="item.topics.count">
+                        <div ng-class="true ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                     </div>
                 </div>
-                <div class="small_topic" ui-sref-active="active" ng-if="group.isTopicListExpanded" ng-repeat="topic in group.topics.rows">
-                    <div class="small_topic_header">
 
+                <!-- Topic -->
+                <div ng-if="!isGroup(item)" class="small_topic" ui-sref-active="active">
+                    <div class="small_topic_header">
                         <div class="small_topic_left_cont">
                             <div class="small_topic_icon">
-                                <div class="sprite" ng-class="'sprite-mytopics-icon-' + (topic.status | lowercase) + '2x'"></div>
+                                <div class="sprite" ng-class="'sprite-mytopics-icon-' + (item.status | lowercase) + '2x'"></div>
                             </div>
-                            <div class="small_topic_small_text">{{topic.status}}</div>
+                            <div class="small_topic_small_text">{{item.status}}</div>
                         </div>
-
-                        <!--div class="small_topic_right_cont">
-                            <div class="small_topic_icon">
-                                <div class="sprite sprite-menu-icon-groups2x-dark"></div>
-                            </div>
-                            <div class="small_topic_small_text">3 groups</div>
-
-                            <div class="hover_info">
-
-                                <div class="info_arrow sprite sprite-tooltip-arrow2x">
-                                </div>
-
-                                <div class="hover_item">
-                                    <div class="icon_container">
-                                        <img class="topic_image" src=".././imgs/test_topic_logo.png">
-                                        <div class="sprite sprite-icon-favourite2x"></div>
-                                    </div>
-                                    <div class="item_text">CitizenOS test group</div>
-                                </div>
-
-                                <div class="hover_item">
-                                    <div class="icon_container">
-                                        <img class="topic_image" src=".././imgs/test_topic_logo.png">
-                                        <div class="sprite sprite-icon-favourite2x"></div>
-                                    </div>
-                                    <div class="item_text">CitizenOS test group</div>
-                                </div>
-
-                            </div>
-                        </div-->
-
                         <div class="clearer"></div>
-
                     </div>
 
                     <div class="small_topic_title">
-                        {{topic.title}}<span class="lock_icon_wrap" ng-show="topic.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
+                        {{item.title}}<span class="lock_icon_wrap" ng-show="item.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
                     </div>
 
                     <div class="line lightest_line"></div>
 
-
                     <div class="small_topic_footer">
-
-                        <!-- TODO: Implement -->
-                        <!--div class="small_topic_left_cont">
-                            <div class="small_topic_small_text">10 new activity</div>
-                        </div-->
-
-
                         <div class="small_topic_right_cont">
-                            <div class="small_topic_small_text">{{topic.updatedAt | amDateFormat : 'L LT'}}</div>
+                            <div class="small_topic_small_text">{{(item.updatedAt || item.createdAt) | amDateFormat : 'L LT'}}</div>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
         </div>
 
         <!-- RIGHT SIDE -->
-        <div ui-view ng-if="!isGroupListLoading"></div>
+        <div ui-view></div>
 
         <div class="clearer"></div>
     </div>
