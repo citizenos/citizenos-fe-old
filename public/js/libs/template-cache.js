@@ -20,6 +20,7 @@ angular
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
             '/views/layouts/main.html',
+            '/views/modals/add_topics.html',
             '/views/modals/group_create.html',
             '/views/modals/group_delete_confirm.html',
             '/views/modals/group_member_topic_delete_confirm.html',
