@@ -115,6 +115,7 @@
                 height: 120px;
                 background: $white;
                 padding: 13px 20px 17px 20px;
+                margin-top: 10px;
                 box-sizing: border-box;
                 cursor: pointer;
                 box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -124,10 +125,6 @@
                     position: absolute;
                     right: -5px;
                     top: -5px;
-                }
-
-                &:not(:first-child) {
-                    margin-top: 10px;
                 }
 
                 .small_topic_small_text {
@@ -841,7 +838,7 @@
                         tr:nth-child(2) td {
                             padding-top: 10px;
                         }
-                        
+
                     }
                 }
             }

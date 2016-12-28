@@ -1,5 +1,5 @@
 <!-- RIGHT SIDE -->
-<div class="topics_right" ng-controller="GroupCtrl">
+<div class="topics_right" ng-if="itemList.length" ng-controller="GroupCtrl">
 
     <div class="v_line separator"></div>
 
@@ -19,7 +19,12 @@
 
             <div class="content_top">
                 <div class="container_title">
-                    <!img src=".././imgs/test_logo2.jpg"--> {{group.name}}
+                    <div class="group_circle big" ng-if="!group.imageUrl">
+                        <div class="table_cell" cos-initials="group.name | limitTo: 1">
+                            C
+                        </div>
+                    </div>
+                    <img ng-if="group.imageUrl" ng-src="group.imageUrl">{{group.name}}
                 </div>
                 <div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
                     <div class="ff_table_fix">
@@ -236,8 +241,8 @@
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'permission.levelGroup'"></div>
                         </div>
                     </th>
-                    <th>
-                        <div class="th_text" ng-click="topicList.searchOrderBy.property = 'members.users.count'">
+                    <th ng-click="topicList.searchOrderBy.property = 'members.users.count'">
+                        <div class="th_text">
                             Users
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'members.users.count'"></div>
                         </div>

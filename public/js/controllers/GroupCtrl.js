@@ -5,7 +5,7 @@ angular
     .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sTranslate', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, ngDialog, sTranslate, sAuth, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCtrl');
 
-        $scope.group = _.find($scope.groupList, {id: $stateParams.groupId});
+        $scope.group = _.find($scope.itemList, {id: $stateParams.groupId});
 
         $scope.topicList = {
             isVisible: false,
@@ -76,13 +76,22 @@ angular
         };
 
         $scope.doDeleteMemberTopic = function (group, groupMemberTopic) {
-            var index = group.topics.rows.indexOf(groupMemberTopic);
-            groupMemberTopic
-                .$delete({groupId: group.id})
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/group_member_topic_delete_confirm.html',
+                    data: {
+                        topic: groupMemberTopic
+                    }
+                })
                 .then(function () {
-                    group.topics.rows.splice(index, 1);
-                    group.topics.count = group.topics.rows.length;
-                });
+                    var index = group.topics.rows.indexOf(groupMemberTopic);
+                    groupMemberTopic
+                        .$delete({groupId: group.id})
+                        .then(function () {
+                            group.topics.rows.splice(index, 1);
+                            group.topics.count = group.topics.rows.length;
+                        });
+                }, angular.noop);
         };
 
         $scope.GroupMemberUser = GroupMemberUser;
@@ -117,21 +126,45 @@ angular
         };
 
         $scope.doDeleteMemberUser = function (group, groupMemberUser) {
-            var index = group.members.rows.indexOf(groupMemberUser);
-            groupMemberUser
-                .$delete({groupId: group.id})
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/group_member_user_delete_confirm.html',
+                    data: {
+                        user: groupMemberUser
+                    }
+                })
                 .then(function () {
-                    group.members.rows.splice(index, 1);
-                    group.members.count = group.members.rows.length;
-                });
+                    var index = group.members.rows.indexOf(groupMemberUser);
+                    groupMemberUser
+                        .$delete({groupId: group.id})
+                        .then(function () {
+                            group.members.rows.splice(index, 1);
+                            group.members.count = group.members.rows.length;
+                        }, function (res) {
+                            $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, res.data.status.message);
+                        });
+                }, angular.noop);
         };
 
         $scope.doLeaveGroup = function (group) {
-            var groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
-            groupMemberUser
-                .$delete({groupId: group.id})
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/group_member_user_leave_confirm.html',
+                    data: {
+                        user: sAuth.user
+                    }
+                })
                 .then(function () {
-                    $state.go('mygroups', null, {reload: true});
+                    var groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
+                    groupMemberUser
+                        .$delete({groupId: group.id})
+                        .then(function () {
+                            $state.go('mygroups', null, {reload: true});
+                        }, function (res) {
+                            if (res.data.status.code === 40000) {
+                                $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, 'You cannot leave this Group as you are the last admin user of this Group. Please assign a new admin to leave.');
+                            }
+                        });
                 });
         };
 
