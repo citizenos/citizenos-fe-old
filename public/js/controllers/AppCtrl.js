@@ -99,11 +99,20 @@ angular
             });
         };
 
+        $scope.app.doShowAddTopics = function () {
+            $log.debug('AppCtrl.doShowAddTopic()');
+
+            ngDialog.open({
+                template: '/views/modals/add_topics.html',
+                scope: $scope
+            });
+        };
+
         $scope.app.doShowDeleteTopic = function () {
             $log.debug('AppCtrl.doShowDeleteTopic()');
 
             ngDialog.open({
-                template: '/views/modals/topic_delete.html',
+                template: '/views/modals/topic_delete_confirm.html',
                 scope: $scope
             });
         };

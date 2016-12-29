@@ -45,6 +45,11 @@ angular
             });
         };
 
+        sTopic.list = function () {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics');
+            return $http.get(path);
+        };
+
         sTopic.readUnauth = function (topic) {
             var path = sLocation.getAbsoluteUrlApi('/api/topics/:topicId', {topicId: topic.id});
             return $http.get(path);

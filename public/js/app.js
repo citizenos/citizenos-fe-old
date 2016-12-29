@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto']);
+    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead']);
 
     module
         .constant('cosConfig', {
@@ -231,15 +231,30 @@
                     parent: 'mytopics',
                     templateUrl: '/views/mytopics_view.html'
                 })
-                .state('mygroups', {
-                    url: '/mygroups',
+                .state('my', {
+                    url: '/my?filter',
                     parent: 'main',
-                    templateUrl: '/views/mygroups.html'
+                    templateUrl: '/views/my.html'
                 })
-                .state('mygroups.view', {
+                .state('my.topics', {
+                    url: '/topics',
+                    parent: 'my',
+                    template: '<div ui-view></div>'
+                })
+                .state('my.topics.topicId', {
+                    url: '/:topicId',
+                    parent: 'my.topics',
+                    templateUrl: '/views/my_topics_topicId.html'
+                })
+                .state('my.groups', {
+                    url: '/groups',
+                    parent: 'my',
+                    template: '<div ui-view></div>'
+                })
+                .state('my.groups.groupId', {
                     url: '/:groupId',
-                    parent: 'mygroups',
-                    templateUrl: '/views/mygroups_view.html'
+                    parent: 'my.groups',
+                    templateUrl: '/views/my_groups_groupId.html'
                 })
                 .state('groups', {
                     url: '/groups',

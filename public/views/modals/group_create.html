@@ -41,7 +41,7 @@
 
                         <div ng-if="wWidth > 560" class="blue_button_wrap">
                             <!--FIXME: Should be based on if any Users were added or not...-->
-                            <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
+                            <div class="blue_button" ng-if="!app.createGroupsInviteUsers" ng-click="doSaveGroup()">
                                 Save group
                             </div>
                             <div class="blue_button" ng-if="app.createGroupsInviteUsers">
@@ -64,8 +64,13 @@
                     <div class="input_description">
                         Insert a name for your group that is clear and understandable for people.
                     </div>
-                    <input placeholder="Group name">
-
+                    <input placeholder="Group name" ng-model="group.name" ng-class="{'error_input': errors.group.name}">
+                    <label for="group.name" class="error_label" ng-if="errors.group.name">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            <span>No group name</span>
+                        </div>
+                    </label>
                 </div>
 
                 <div class="line lightest_line mobile_only"></div>
@@ -88,7 +93,7 @@
                         Make your group private (only invited users can see it)
 
                         <div class="toggle_wrap">
-                            <div class="toggle_widget text_on relative" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
+                            <div class="toggle_widget text_on relative" ng-click="(group.visibility=='private') ? group.visibility = 'public' : group.visibility = 'private'" ng-class="(group.visibility == 'private') ? 'no' : 'yes'">
                                 <div class="toggle_circle"></div>
                                 <div class="toggle_text text_no">
                                     <div class="table_cell">NO</div>
@@ -106,58 +111,72 @@
 
             <!-- ADD TOPICS -->
             <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberTopicsCreate'">
-
                 <div class="lightbox_section">
-                    <div class="searchbox_with_icon_and_text">
-                        <input placeholder="Search for a topic">
-                        <div class="search_icon">
-                            <div class="table_cell">
-                                <div class="sprite sprite-icon-search-gray-2x"></div>
+                    <div cos-dropdown class="search_with_dropdown">
+                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="filteredTopics.topics" term="topicFilterString" search="filterTopics(term)"
+                                   select="doToggleTopicInGroup(item.id)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
+                           <div class="search_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-search-gray-2x"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="search_text">
-                            <div class="table_cell blue_link">
-                                Press enter to add
+                            <div class="search_text" ng-click="doToggleTopicInGroup(item.id)">
+                                <div class="table_cell blue_link">
+                                    Press enter to add
+                                </div>
                             </div>
-                        </div>
+                            <div class="search_area_wrap">
+                                <div class="search_dropdown_area" ng-show="filteredTopics.topics.length">
+                                    <div class="search_dropdown_item" typeahead-item="topic" ng-repeat="topic in filteredTopics.topics">
+                                        <div class="table_cell search_item_text">
+                                            <b>{{topic.title}}</b>
+                                        </div>
+                                        <div class="table_cell blue_link">
+                                            <span class="submit_link" ng-click="doToggleTopicInGroup(topic.id)">Press enter or click to add</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </typeahead>
                     </div>
                 </div>
-                 <div class="lightbox_section double_row_list small_header">
+                <div class="lightbox_section double_row_list small_header">
 
                     <div class="category_title">
                         <div class="table_cell">
                             Order by:
-                        <div class="black_link">
+                        <div class="black_link" ng-click="doOrderTopics('title')">
                             Title A-Z
                         </div>
-                        <div class="black_link">
+                        <div class="black_link" ng-click="doOrderTopics('users')">
                             Users
                         </div>
                         </div>
                     </div>
 
-                    <div class="double_row_item" ng-repeat="i in [1,2,3,4,5,6]">
+                    <div class="double_row_item" ng-repeat="(key, topic) in topics">
                         <div class="blue_link">
-                            Aenean mollis, nibh eu vehicula euismod, erat ipsum ornare risus, eget gravida lacus mauris nec erat...
+                            {{topic.title}}
                         </div>
                         <div class="double_row_footer">
-                            <div class="left">Topic users: <b>312</b></div>
+                            <div class="left">Topic users: <b>{{topic.members.users.count}}</b></div>
                             <div class="right">
                                 <span class="dropdown_description">Group right over topic:</span>
-                                
+
                                 <div class="btn_wrap recycle_bin white_bg">
                                     <div class="btn">
-                                        <div class="table_cell">
-                                            <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
-                                            <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                        <div class="table_cell" ng-click="doToggleTopicInGroup(topic.id)">
+                                            <div class="sprite desktop_fix " ng-class="(memberTopics.indexOf(topic) > -1) ? 'sprite-voted-nocheck2x' : 'sprite-voted-check2x'"></div>
+                                            <div class="sprite mobile_fix sprite-voted-check2x"></div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div cos-dropdown class="classic_dropdown">
                                     <div class="dropdown_selection">
                                         <div class="dropdown_text">
-                                            Admin
+                                            {{topic.permission.level}}
                                         </div>
 
                                         <div class="arrow_holder">
@@ -169,18 +188,18 @@
                                         </div>
                                     </div>
                                     <div class="dropdown">
-                                        <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                                            <div class="item_name">
-                                                Read
+                                        <div class="dropdown_item" ng-repeat="level in GroupMemberTopic.LEVELS">
+                                            <div class="item_name" ng-click="doSetGroupTopicLevel(topic.id, level)">
+                                                {{level}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                             <div class="clearer"></div>
-                            
+
                         </div>
                     </div>
 
@@ -198,22 +217,30 @@
 
                     <div class="searchbox_with_icon_and_text only_text">
                         <div cos-dropdown class="search_with_dropdown">
-                            <input placeholder="Username, e-mail or group">
-                            <div class="search_area_wrap">
-                                <div class="search_dropdown_area">
-                                    <div class="search_dropdown_item" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]">
-                                        <div class="table_cell search_item_text">
-                                            <b>Lorem ipsum</b> saved my lie in 5 easy steps. Lorem ipsum saved my lie in 5 easy steps. Find out how here saved my lie in 5 easy steps. Lorem ipsum saved
-                                        </div>
-                                        <div class="table_cell blue_link">
-                                            <span class="submit_link">Press enter or click to add</span>
+                            <typeahead class="auto-complete" items="searchResults.results" term="searchString" search="search(term)"
+                                       select="selectMember(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
+                                <div class="search_area_wrap">
+                                    <div class="search_dropdown_area" ng-show="searchResults.results.length">
+                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.results">
+                                            <div class="table_cell search_item_text" ng-if="user.type === 'user'">
+                                                <b>{{user.name}}</b> {{user.company}}
+                                            </div>
+                                            <div class="table_cell search_item_text" ng-if="user.type === 'group'">
+                                                <b>{{user.name}}</b> GROUP
+                                            </div>
+                                            <div class="table_cell blue_link">
+                                                <span  ng-if="user.type === 'user'" class="submit_link" ng-click="selectMember(user)">Press enter or click to add</span>
+                                                <span ng-if="user.type === 'group'" class="submit_link" ng-click="selectMember(group)">Press enter or click to add</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
+                            </typeahead>
+
                         </div>
                         <div class="search_text">
-                            <div class="table_cell blue_link">
+                            <div class="table_cell blue_link" ng-click="doSubmitUser()">
                                 Press enter to add
                             </div>
                         </div>
@@ -224,22 +251,22 @@
 
                 <div class="lightbox_section double_row_list user_list">
 
-                    <div ng-repeat="(key, this) in ['1', '2', '3']">
+                    <div ng-repeat="(key, members) in group.members" ng-if="members.length">
 
                         <div class="category_title">
                             <div class="table_cell">
-                                Users
+                                {{key | uppercase}}
                             </div>
                         </div>
 
                         <table>
 
-                            <tr ng-repeat="(key, this) in ['1', '2', '3']">
+                            <tr ng-repeat="(memberKey, member) in members">
                                 <td>
                                     <div class="profile_image_wrapper dark">
                                         <div class="profile_moon sprite sprite-icon-certified-fb2x"></div>
                                         <div class="account_picture">
-                                            <!--<img src=".././imgs/profile.jpg">-->
+                                            <img ng-if="member.imageUrl" src="{{member.imageUrl}}">
                                             <div class="profile_image_filler">
                                                 <div class="table_cell">
                                                     ML
@@ -250,8 +277,8 @@
                                     </div>
                                     <div class="name_wrap">
                                         <div class="table_cell">
-                                            <div class="blue_link">Kristian Lember</div>
-                                            <div class="via">Microsoft</div>
+                                            <div class="blue_link" ng-click="doRemoveMemberUser(member)">{{member.name}}</div>
+                                            <div class="via">{{member.company}}</div>
                                         </div>
                                     </div>
 
@@ -261,7 +288,7 @@
 
                                                 <div class="dropdown_selection">
                                                     <div class="dropdown_text">
-                                                        Admin
+                                                        {{member.level}}
                                                     </div>
 
                                                     <div class="arrow_holder">
@@ -274,9 +301,9 @@
                                                 </div>
 
                                                 <div class="dropdown">
-                                                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                                                        <div class="item_name">
-                                                            Read
+                                                    <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
+                                                        <div class="item_name" ng-click="doChangeMemberPermissions(key, member.id, level)">
+                                                            {{level}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -288,7 +315,7 @@
                                             <div class="btn_wrap recycle_bin white_bg">
                                                 <div class="btn">
                                                     <div class="table_cell">
-                                                        <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                                        <div class="sprite sprite-mytopics-icon-deletetopic2x" ></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -301,7 +328,7 @@
 
                                         <div class="dropdown_selection">
                                             <div class="dropdown_text">
-                                                Admin
+                                                {{member.level}}
                                             </div>
 
                                             <div class="arrow_holder">
@@ -314,9 +341,9 @@
                                         </div>
 
                                         <div class="dropdown">
-                                            <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                                                <div class="item_name">
-                                                    Read
+                                            <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
+                                                <div class="item_name" ng-click="doChangeMemberPermissions(key, member.id, level)">
+                                                    {{level}}
                                                 </div>
                                             </div>
                                         </div>
@@ -324,7 +351,7 @@
                                 </td>
                                 <td>
                                     <div class="btn_wrap recycle_bin white_bg">
-                                        <div class="btn">
+                                        <div class="btn"  ng-click="doRemoveMemberUser(member.id)">
                                             <div class="table_cell">
                                                 <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                                 <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>

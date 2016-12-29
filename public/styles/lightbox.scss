@@ -26,6 +26,11 @@
             padding-bottom: 20px !important;
         }
     }
+    .padding_bottom_zero.top_112 {
+        @media (max-width: 560px) {
+            top: 112px !important;
+        }
+    }
     
     /* INPUT AREA */
 
@@ -124,6 +129,31 @@
                     position: absolute;
                     float: none;
                     right: 0;
+                }
+
+                .header_row_with_title {
+                    padding: 0 20px 10px;
+
+                    .title_description {
+                        padding-right: 10px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap; 
+                        width: 460px;
+                        box-sizing: border-box;
+                        float: left;
+                    }
+
+                    .blue_button_wrap {
+                        .blue_button {
+                            float: right;
+                            min-width: 100px;
+                            padding-left: 10px;
+                            padding-right: 10px;
+                            border-radius: 4px;
+                            position: relative;
+                        }
+                    }
                 }
                 
                 .header_row_wrap {
@@ -225,6 +255,37 @@
                     }
                 }
                 
+            }
+
+            
+            #lightbox_header.title_and_button {
+                #lightbox_header_text {
+                    @media (max-width: 560px) {
+                        height: 101px;
+                        padding-bottom: 10px;
+                        padding-right: 20px;
+                    }
+                    .title_description {
+                        margin-top: 41px;
+                        padding-right: 148px;
+                        @media (max-width: 560px) {
+                            overflow: initial;
+                            text-overflow: initial;
+                            white-space: initial;
+                            width: initial;
+                            position: relative;
+                            padding-right: 0;
+                            font-size: 14px;
+                            margin-top: 25px;
+                        }
+                    }
+                }
+                .header_row {
+                    padding-bottom: 10px;
+                    .blue_button {
+                        width: 100px;
+                    }
+                }
             }
 
             #lightbox_content {
@@ -459,19 +520,24 @@
         }
 
     }
+    
+    .lightbox_section.double_row_list.small_header.group_create_modal {
+        max-height: 422px;
+    }
 
     .lightbox_section.double_row_list.small_header {
         @extend .section_with_table;
         max-height: 410px;
         
         @media (max-width: 640px) {
-            max-height: 308px;
+            max-height: 308px !important;
         }
         
         @media (max-width: 560px) {
-            max-height: initial;
+            max-height: initial !important;
         }
     }
+
     
 
     .lightbox_section {

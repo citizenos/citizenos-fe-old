@@ -39,6 +39,7 @@ angular
                 },
                 save: {
                     method: 'POST',
+                    url: sLocation.getAbsoluteUrlApi('/api/users/self/groups'),
                     transformResponse: function (data) {
                         return angular.fromJson(data).data;
                     }

@@ -121,7 +121,7 @@ table {
 }
 
 .user_list {
-    
+
     td {
         padding: 5px 0;
         &:nth-child(1) {
@@ -160,7 +160,7 @@ table {
         height: inherit;
         display: table;
         position: relative;
-        
+
 
         .sprite {
             margin: 0 auto;
@@ -196,7 +196,7 @@ table {
     &:hover {
         border: solid 1px $pinky_red;
         background: $pinky_red;
-        
+
         .sprite.desktop_fix {
             @extend .sprite-mytopics-icon-deletetopic02x;
         }
@@ -225,7 +225,7 @@ table {
 }
 
 .btn_wrap.check.no {
-    
+
     .sprite {
         @extend .sprite-voted-nocheck2x;
     }
@@ -364,8 +364,8 @@ table {
                 font-size: 13px;
                 width: 100%;
                 box-sizing: border-box;
-                
-                &:hover {
+
+                &:hover, &.active {
                     background-color: $transparent_blue;
                     cursor: pointer;
                     .blue_link {
@@ -472,7 +472,7 @@ table {
 }
 
 .profile_image_wrapper.big {
-    
+
     .profile_moon {
         right: -3px;
     }
@@ -621,7 +621,7 @@ a:link, a:visited {
 .toggle_widget.no {
     background: $aqua_marine;
     border: 1px solid $aqua_marine_border_second;
-    
+
     .toggle_circle {
         margin-left: 31px;
     }
@@ -776,7 +776,7 @@ a:link, a:visited {
     margin-top: 6px;
     width: 100%;
     margin-left: -20px;
-    
+
     @include tablet {
         width: initial;
         left: 20px;
@@ -834,12 +834,12 @@ a:link, a:visited {
         left: 20px;
         right: 20px;
     }
-    
+
     @media (max-width: 400px) {
         left: 5px;
         right: 5px;
-    } 
-    
+    }
+
     .bubble_arrow {
         left: 17px;
     }
@@ -848,24 +848,24 @@ a:link, a:visited {
         padding: 0 20px;
         @media (max-width: 400px) {
             padding: 0 15px;
-        } 
+        }
     }
 
     .bubble_section_table {
         padding: 0 14px;
         @media (max-width: 400px) {
             padding: 0 4px;
-        } 
+        }
     }
 
     .bubble_content {
         margin-bottom: 12px;
         padding-right: 0;
-        
+
         .bubble_title {
             padding-right: 80px;
         }
-        
+
         .bubble_description {
             margin-top: 17px;
             margin-bottom: 11px;
@@ -879,7 +879,7 @@ a:link, a:visited {
                 float: right;
             }
         }
-        
+
         .month_chooser {
             margin-top: 15px;
             height: 30px;
@@ -942,7 +942,7 @@ a:link, a:visited {
                             background: none;
                         }
                     }
-                } 
+                }
 
                 .date_circle {
                     display: inline-table;
@@ -955,7 +955,7 @@ a:link, a:visited {
                         width: 40px;
                         height: 40px;
                     }
-                    
+
                 }
                 .date_circle.selected {
                     background: $aqua_marine;
@@ -964,11 +964,11 @@ a:link, a:visited {
 
             td.no_date {
                 cursor: initial;
-            } 
-            
+            }
+
         }
 
-    } 
+    }
 }
 
 /* CLASSIC DROPDOWN */
