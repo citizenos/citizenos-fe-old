@@ -79,7 +79,289 @@
             margin-top: 20px;
          }
      }
+     
+    #lightbox.date_picker {
+        #lightbox_wrap {
+            #lightbox_header {
 
+                @media (max-width: 560px) {
+                    font-size: 14px;
+                    height: 105px !important;
+                    min-height: 105px !important;
+                    max-height: 105px !important;
+                }
+
+                #lightbox_header_text {
+                    padding-bottom: 9px;
+                    @media (max-width: 560px) {  
+                        float: left;
+                    }
+
+                    .title {
+                        color: $medium_black_seven;
+                        padding-right: 54px;
+
+                        @media (max-width: 560px) {
+                            padding-right: 70px;
+                            position: absolute;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            box-sizing: border-box;
+                            width: 100%;
+                        }
+                    }
+                    
+                    .lightbox_header_description_text {
+                        font-weight: $medium;
+                        @media (max-width: 560px) {
+                            top: 40px;
+                            right: 20px;
+                            left: 20px;
+                            font-size: 14px;
+                            position: absolute;
+                        }
+                    }
+                }
+
+                #lightbox_close {
+                    height: 54px;
+                    border-radius: 0 4px;
+                    position: absolute;
+                    float: none;
+                    right: 0;
+                }
+
+            }
+
+            #lightbox_content {
+                
+                @media (max-width: 560px) {  
+                    padding-bottom: 38px;
+                }
+
+                .lightbox_section {
+                    padding: 20px 0 !important;
+
+                    @media (max-width: 560px) {
+                        padding-top: 10px !important;
+                    }
+
+                }
+                                
+                .date_picker {
+
+                    @include tablet {
+                        width: initial;
+                        left: 20px;
+                        right: 20px;
+                    }
+                    
+                    @media (max-width: 400px) {
+                        left: 5px;
+                        right: 5px;
+                    } 
+                    
+                    .bubble_arrow {
+                        left: 17px;
+                    }
+
+                    .bubble_section {
+                        padding: 0 20px;
+                        @media (max-width: 400px) {
+                            padding: 0 15px;
+                        } 
+                    }
+
+                    .bubble_section_table {
+                        padding: 0 14px;
+                        @media (max-width: 400px) {
+                            padding: 0 4px;
+                        } 
+                    }
+
+                    .bubble_content {
+                        margin-bottom: 12px;
+                        padding-right: 0;
+                        
+                        .bubble_title {
+                            padding-right: 80px;
+                            font-weight: $bold;
+                        }
+                        
+                        .bubble_description {
+                            margin-top: 17px;
+                            margin-bottom: 11px;
+                            font-size: inherit;
+
+                            .picker_deadline_date {
+                                float: left;
+                            }
+
+                            .picker_days_left {
+                                float: right;
+                            }
+                        }
+                        
+                        .month_chooser {
+                            margin-top: 15px;
+                            height: 30px;
+                            display: table;
+                            width: 100%;
+                            text-align: center;
+                            @include tablet {
+                                height: 40px;
+                            }
+                            .arrow, .month_text {
+                                font-weight: $bold;
+                                @extend .table_cell;
+                            }
+                            .arrow {
+                                box-sizing: border-box;
+                                width: 30px;
+                                border-radius: 4px;
+                                @include tablet {
+                                    width: 40px;
+                                }
+                                &:first-child {
+                                    padding-right: 1px;
+                                }
+                                &:last-child {
+                                    padding-left: 1px;
+                                }
+                                &:hover {
+                                    background: $medium_gray;
+                                    @include tablet {
+                                        background: none;
+                                    }
+                                }
+                                cursor: pointer;
+                                .sprite {
+                                    margin: 0 auto;
+                                }
+                            }
+                        }
+
+                        table {
+                            text-align: center;
+                            table-layout: fixed;
+                            width: 100%;
+                            margin-top: 12px;
+                            border-collapse: collapse;
+
+                            th {
+                                font-weight: $bold;
+                                opacity: .7;
+                                padding-bottom: 7px;
+                                text-align: center;
+                            }
+
+                            td {
+                                font-weight: $medium;
+                                cursor: pointer;
+
+                                &:hover {
+                                    .date_circle {
+                                        background: $medium_gray;
+                                        @include tablet {
+                                            background: none;
+                                        }
+                                    }
+                                } 
+
+                                .date_circle {
+                                    display: inline-table;
+                                    border-radius: 50%;
+                                    width: 30px;
+                                    height: 30px;
+                                    text-align: center;
+
+                                    @include tablet {
+                                        width: 40px;
+                                        height: 40px;
+                                    }
+                                    
+                                }
+                                .date_circle.selected {
+                                    background: $aqua_marine;
+                                }
+                            }
+
+                            td.no_date {
+                                cursor: initial;
+                            } 
+                            
+                        }
+
+                    } 
+                    
+                    .date_save_buttons {
+                        @media (max-width: 560px) {
+                            position: fixed;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 21px;
+                        }
+                        
+                        .blue_link_wrapper {
+                            width: 100%;
+                            text-align: center;
+                            margin-top: 8px;
+                        }
+                        .blue_button {
+                            border-radius: 4px;
+                        }
+
+                    }
+                    
+                }
+
+                @media (max-width: 560px) {
+                    top: 106px !important;
+                }
+            }
+        }
+    }
+
+    #lightbox.confirm_lightbox {
+
+        #lightbox_wrap {
+            #lightbox_header {
+                padding-bottom: 43px;
+
+                #lightbox_header_text {
+                    .title {
+                        color: $medium_black_seven;
+                    }
+                }
+
+                .profile_area {
+                    display: table-row;
+                    left: 0;
+                    margin-top: -9px;
+                    position: absolute;
+
+                    .table {
+                        padding-left: 20px;
+                        padding-bottom: 10px;
+
+                        .profile_image_cell {
+                            @extend .table_cell;
+                            width: 40px;
+                        }
+
+                        .profile_text {
+                            @extend .table_cell;
+                            font-size: 14px;
+                        }
+
+                    }
+                }
+
+            }
+        }
+    }
 
     #lightbox.wide_lightbox {
         width: 600px;
@@ -314,7 +596,7 @@
     }
 
     
-    #lightbox.wide_lightbox.with_title_description {
+    #lightbox.with_title_description {
           #lightbox_wrap {
               #lightbox_header {
                 #lightbox_header_text {
@@ -379,6 +661,7 @@
                 text-decoration: underline;
                 opacity: .7;
                 margin-left: 20px;
+                position: relative;
             
                 @include tablet {
                     opacity: 1;
@@ -677,71 +960,173 @@
     /* DELETE TOPIC LIGHTBOX */
     #lightbox.id_signing.delete_topic {
 
-        #lightbox_header {
-            padding: 20px 20px 22px 20px;
-            text-align: center;
-            color: $pinky_red !important;
-            
-            .sprite {
-                margin: 0 auto 16px auto;
-            }
-            .delete_title {
-                font-size: 22px;
-                font-weight: $bold;
-                margin-bottom: 5px;
-            }
-            .delete_description {
-                font-size: 14px;
-            }
+        @media (max-width: 560px) {
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin-right: 0;
+            -webkit-transform: none;
+            -ms-transform: none;
+            transform: none;
+            width: 100%;
         }
 
-        #lightbox_content {
-            padding: 40px 20px !important;
-            
-            @media (max-width: 750px) {
-                padding-top: 30px !important;
+        @media (max-width: 640px) {
+            top: 0;
+        }
+
+        #lightbox_wrap {
+            @media (max-width: 560px) {
+                padding: 0;
             }
 
-            #delete_info_wrap {
-                width: 410px;
-                margin: 0 auto;
-                
-                @media (max-width: 470px) {
-                    width: 100%;
+            #lightbox_header {
+                display: none !important;
+                height: 55px;
+
+                .line {
+                    position: absolute;
+                    bottom: 0;
                 }
 
-                .delete_info_text_wrap {
-                    margin-bottom: 40px;
+                @media (max-width: 560px) {
+                    border-radius: 0 !important;
+                    display: block !important;
+                }
 
-                    @media (max-width: 750px) {
-                        margin-bottom: 25px;
+                .first_header {
+                    display: none;
+                    @media (max-width: 560px) {
+                        display: block;
+                    }
+                }
+            }
+
+            #lightbox_content {
+                padding: 0;
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
+
+                @media (max-width: 560px) {
+                    border-radius: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                    top: 55px;
+                    position: absolute;
+                    margin: 0;
+                    overflow: auto;
+                }
+
+                .second_header {
+                    padding: 20px 20px 22px 20px;
+                    text-align: center;
+                    color: $pinky_red !important;
+                    background: $white;
+                    border-top-left-radius: 4px;
+                    border-top-right-radius: 4px;
+                    
+                    @media (max-width: 560px) {
+                        background: $light_gray;
+                        padding-top: 40px;
+                        border-radius: 0;
+                    }
+                    
+                    .sprite-icon-delete-topic2x {
+                        margin: 0 auto 16px auto;
+                    }
+                    
+                    .delete_title {
+                        font-size: 22px;
+                        font-weight: $bold;
+                        margin-bottom: 5px;
+                    }
+                    .delete_description {
+                        font-size: 14px;
                     }
 
-                    .delete_info {
-                        margin-bottom: 10px;
+                    #lightbox_close {
+                        right: 0;
+                        top: 0;
+                        height: 54px;
+                        position: absolute;
+                        @media (max-width: 560px) {
+                            display: none;
+                        }
+                    }
+
+                }
+
+                .line_wrap {
+                    @media (min-width: 560px) {
+                        display: block;
+                        padding: 0;
+                        margin: 0;
+                    }
+                }
+
+
+                #delete_info_wrap {
+                    width: 410px;
+                    margin: 0 auto;
+                    padding: 40px;
+                    
+                    @media (max-width: 560px) {
+                        width: 100%;
+                        box-sizing: border-box;
+                        padding: 0 20px;
+                    }
+
+                    .delete_info_text_wrap {
+                        margin-bottom: 40px;
+
+                        @media (max-width: 560px) {
+                            margin-bottom: 124px;
+                        }
+
+                        .delete_info {
+                            margin-bottom: 10px;
+                            display: table;
+                            .sprite-checkmark2x {
+                                display: table-cell;
+                                float: left;
+                                margin-bottom: -1px;
+                            }
+                            .delete_info_text {
+                                display: table-cell;
+                                padding-left: 10px;
+                            }
+                        }
+                    }
+
+                    .delete_info_button_wrap {
                         display: table;
-                        .sprite-checkmark2x {
-                            display: table-cell;
-                            float: left;
-                            margin-bottom: -1px;
-                        }
-                        .delete_info_text {
-                            display: table-cell;
-                            padding-left: 10px;
-                        }
-                    }
-                }
+                        width: 100%;
 
-                .delete_info_button_wrap {
-                    display: table;
-                    width: 100%;
+                        .table_cell:first-child {
+                            padding-right: 5px;
+                        }
+                        .table_cell:last-child {
+                            padding-left: 5px;
+                        }
 
-                    .table_cell:first-child {
-                        padding-right: 5px;
+                        @media (max-width: 560px) {
+                            position: fixed;
+                            bottom: 10px;
+                            left: 0;
+                            padding: 0 20px;
+                            box-sizing: border-box;
+                            
+                            .table_cell {
+                                display: block;
+                                padding: 0 !important;
+                                margin-bottom: 10px;
+                            }
+                        }
+
                     }
-                    .table_cell:last-child {
-                        padding-left: 5px;
-                    }
+
                 }
 
             }

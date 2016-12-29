@@ -90,6 +90,26 @@ angular
             });
         };
 
+        $scope.app.doShowConfirm = function () {
+            $log.debug('AppCtrl.doShowConfirm()');
+
+            ngDialog.open({
+                template: '/views/modals/confirm.html',
+                scope: $scope
+            });
+        };
+
+
+        $scope.app.doShowDatePicker = function () {
+            $log.debug('AppCtrl.doShowDatePicker()');
+
+            ngDialog.open({
+                template: '/views/modals/date_picker.html',
+                scope: $scope
+            });
+        };
+
+
         $scope.app.doShowInviteUsers = function () {
             $log.debug('AppCtrl.doShowInviteUsers()');
 

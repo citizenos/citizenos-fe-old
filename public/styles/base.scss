@@ -245,6 +245,27 @@ table {
 
 //Overall button styles and other general items
 
+.yes_no_buttons {
+    display: table;
+    width: 100%;
+    margin-top: 20px;
+
+    .table_cell:first-child {
+        padding-right: 5px;
+    }
+
+    .table_cell:last-child {
+        padding-left: 5px;
+    }
+
+}
+
+.sprite-icon-list-ordering2x {    
+    position: absolute;
+    right: -11px;
+    top: 4px;
+}
+
 .disabled {
     opacity: .5 !important;
     cursor: default !important;
@@ -821,154 +842,6 @@ a:link, a:visited {
         }
     }
 
-}
-
-.edit_bubble.date_picker {
-    padding: 10px 0;
-    width: 320px;
-    box-sizing: border-box;
-    margin-left: 0;
-
-    @include tablet {
-        width: initial;
-        left: 20px;
-        right: 20px;
-    }
-    
-    @media (max-width: 400px) {
-        left: 5px;
-        right: 5px;
-    } 
-    
-    .bubble_arrow {
-        left: 17px;
-    }
-
-    .bubble_section {
-        padding: 0 20px;
-        @media (max-width: 400px) {
-            padding: 0 15px;
-        } 
-    }
-
-    .bubble_section_table {
-        padding: 0 14px;
-        @media (max-width: 400px) {
-            padding: 0 4px;
-        } 
-    }
-
-    .bubble_content {
-        margin-bottom: 12px;
-        padding-right: 0;
-        
-        .bubble_title {
-            padding-right: 80px;
-        }
-        
-        .bubble_description {
-            margin-top: 17px;
-            margin-bottom: 11px;
-            font-size: inherit;
-
-            .picker_deadline_date {
-                float: left;
-            }
-
-            .picker_days_left {
-                float: right;
-            }
-        }
-        
-        .month_chooser {
-            margin-top: 15px;
-            height: 30px;
-            display: table;
-            width: 100%;
-            text-align: center;
-            @include tablet {
-                height: 40px;
-            }
-            .arrow, .month_text {
-                @extend .table_cell;
-            }
-            .arrow {
-                box-sizing: border-box;
-                width: 30px;
-                border-radius: 4px;
-                @include tablet {
-                    width: 40px;
-                }
-                &:first-child {
-                    padding-right: 1px;
-                }
-                &:last-child {
-                    padding-left: 1px;
-                }
-                &:hover {
-                    background: $medium_gray;
-                    @include tablet {
-                        background: none;
-                    }
-                }
-                cursor: pointer;
-                .sprite {
-                    margin: 0 auto;
-                }
-            }
-        }
-
-         table {
-            text-align: center;
-            table-layout: fixed;
-            width: 100%;
-            margin-top: 12px;
-            border-collapse: collapse;
-
-            th {
-                font-weight: $bold;
-                opacity: .7;
-                padding-bottom: 7px;
-            }
-
-            td {
-                font-weight: $medium;
-                cursor: pointer;
-
-                &:hover {
-                    .date_circle {
-                        background: $medium_gray;
-                        @include tablet {
-                            background: none;
-                        }
-                    }
-                } 
-
-                .date_circle {
-                    display: inline-table;
-                    border-radius: 50%;
-                    width: 30px;
-                    height: 30px;
-                    text-align: center;
-
-                    @include tablet {
-                        width: 40px;
-                        height: 40px;
-                    }
-                    
-                }
-                .date_circle.selected {
-                    background: $aqua_marine;
-                }
-            }
-
-            td.no_date {
-                cursor: initial;
-            } 
-            
-        }
-
-    } 
 }
 
 /* CLASSIC DROPDOWN */
