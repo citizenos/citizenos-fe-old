@@ -16,10 +16,6 @@ body, html {
     -webkit-text-size-adjust: 100%;
 }
 
-body {
-
-}
-
 body.body_fixed, body.ngdialog-open {
     position: fixed !important;
     overflow: initial;
@@ -92,11 +88,11 @@ img {
     border: 0;
 }
 
-table {
+table, .pretend_table {
     width: 100%;
     border-collapse: collapse;
 
-    th {
+    th, .pretend_th {
         font-size: 13px;
         opacity: .7;
         font-weight: $medium;
@@ -122,7 +118,7 @@ table {
 
 .user_list {
     
-    td {
+    td, .pretend_td {
         padding: 5px 0;
         &:nth-child(1) {
             font-size: 14px;
@@ -244,6 +240,27 @@ table {
 }
 
 //Overall button styles and other general items
+
+
+
+.pretend_table {
+    display: table;
+}
+
+.pretend_tr {
+    display: table-row;
+}
+
+.pretend_td, .pretend_th {
+    display: table-cell;
+}
+
+.hide_560 {
+    display: none;
+    @media (max-width: 560px) {
+        display: initial;
+    }
+}
 
 .yes_no_buttons {
     display: table;

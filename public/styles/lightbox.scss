@@ -12,6 +12,10 @@
     transform: translateZ(0);
     box-sizing: border-box;
 
+    @media (max-width: 560px) {
+        background: #F6F6F6;
+    }
+
     #close_lightbox {
         @extend .all_zero;
         position: absolute;
@@ -79,8 +83,8 @@
             margin-top: 20px;
          }
      }
-     
-    #lightbox.date_picker {
+
+    #lightbox.date_picker_wrap {
         #lightbox_wrap {
             #lightbox_header {
 
@@ -149,7 +153,7 @@
 
                 }
                                 
-                .date_picker {
+                .picker_content {
 
                     @include tablet {
                         width: initial;
@@ -323,6 +327,56 @@
             }
         }
     }
+
+    
+    #lightbox.set_number {
+        @extend .date_picker_wrap;
+        #lightbox_wrap {
+            #lightbox_header {
+                
+                @media (max-width: 560px) {
+                    font-size: 14px;
+                    height: 54px !important;
+                    min-height: 54px !important;
+                    max-height: 54px !important;
+                }
+
+                #lightbox_header_text {
+                    padding-bottom: 15px;
+                }
+            }
+            #lightbox_content {
+                top: 55px!important;
+                
+                .lightbox_section {
+                    .description_wrap {
+                        width: 100%;
+                        display: table;
+                        padding: 0 20px;
+                        box-sizing: border-box;
+                        .description {
+                            @extend .table_cell;
+                            padding-right: 10px;
+                        }
+                        .toggle_cell {
+                            width: 60px;
+                            @extend .table_cell;
+                            .toggle_widget {
+                                position: relative;
+                                right: 0;
+                            }
+                        }
+                    }
+
+                    .input_wrap {
+                        padding: 0 20px;
+                        margin: 10px 0 20px;
+                    }
+                }
+            }
+        }
+    }
+     
 
     #lightbox.confirm_lightbox {
 
@@ -1160,7 +1214,7 @@
             transform: translate(-50%, 0);
         }
 
-        @include mobile {
+        @media (max-width: 560px) {
             width: 100%;
             top: 0;
         }
@@ -1174,6 +1228,9 @@
                 float: right;
                 cursor: pointer;
                 border-radius: 0 4px 0 0;
+                @media (max-width: 560px) {
+                    border-radius: 0
+                }
 
                 &:hover {
                     background: $light_gray;
@@ -1185,8 +1242,8 @@
 
             }
 
-            @include mobile {
-                padding: 10px;
+            @media (max-width: 560px) {
+                padding: 0;
             }
 
             #lightbox_header {
@@ -1197,6 +1254,10 @@
                 display: table;
                 box-sizing: border-box;
                 color: $medium_black;
+                    
+                @media (max-width: 560px) {
+                    border-radius: 0
+                }
 
                 #lightbox_header_text {
                     @extend .table_cell;
@@ -1215,6 +1276,10 @@
 
                 @media (max-height: 800px) {
                     margin-bottom: 30px;
+                }
+                
+                @media (max-width: 560px) {
+                    border-radius: 0
                 }
 
                 #image_edit_section {

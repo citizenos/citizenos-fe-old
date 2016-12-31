@@ -100,6 +100,15 @@ angular
         };
 
 
+        $scope.app.doShowSetNumber = function () {
+            $log.debug('AppCtrl.doShowSetNumber()');
+
+            ngDialog.open({
+                template: '/views/modals/set_number.html',
+                scope: $scope
+            });
+        };
+
         $scope.app.doShowDatePicker = function () {
             $log.debug('AppCtrl.doShowDatePicker()');
 
@@ -108,7 +117,6 @@ angular
                 scope: $scope
             });
         };
-
 
         $scope.app.doShowInviteUsers = function () {
             $log.debug('AppCtrl.doShowInviteUsers()');
