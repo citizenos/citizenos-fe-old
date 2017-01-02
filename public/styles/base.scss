@@ -245,6 +245,27 @@ table {
 
 //Overall button styles and other general items
 
+.yes_no_buttons {
+    display: table;
+    width: 100%;
+    margin-top: 20px;
+
+    .table_cell:first-child {
+        padding-right: 5px;
+    }
+
+    .table_cell:last-child {
+        padding-left: 5px;
+    }
+
+}
+
+.sprite-icon-list-ordering2x {
+    position: absolute;
+    right: -11px;
+    top: 4px;
+}
+
 .disabled {
     opacity: .5 !important;
     cursor: default !important;
