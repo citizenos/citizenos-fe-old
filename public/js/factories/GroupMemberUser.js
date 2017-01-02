@@ -30,6 +30,14 @@ angular
                         }
                     }
                 },
+                save: {
+                    method: 'POST',
+                    url: sLocation.getAbsoluteUrlApi('/api/users/:userId/groups/:groupId/members/users'),
+                    transformResponse: function (data) {
+                        console.log(data);
+                        return angular.fromJson(data).data;
+                    }
+                },
                 delete: {
                     method: 'DELETE'
                 }

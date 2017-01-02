@@ -32,5 +32,8 @@
   "MSG_ERROR_HWCRYPTO_TECHNICAL_ERROR_LOGIN": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega.",
   "MSG_ERROR_50000": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega.",
   "PASSWORD": "Parool",
-  "E-MAIL" : "E-mail"
+  "E-MAIL" : "E-mail",
+  "PLACEHOLDER_USERNAME_OR_EMAIL" : "Kasutajanimi või e-mail",
+  "LBL_USERS" : "Kasutajad",
+  "TXT_NO_RESULTS_FOUND" : "Tulemusi ei leitud"
 }
