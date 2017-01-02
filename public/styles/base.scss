@@ -952,7 +952,13 @@ a:link, a:visited {
             }
 
             .item_category, .item_names_wrap {
-                float: left;
+                display: table-cell;
+                background-color: $white;
+            }
+
+            .item_category {
+                width:1%;
+                white-space:nowrap;
             }
         }
 

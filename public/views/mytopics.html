@@ -34,15 +34,16 @@
 
                     <!-- WITH CATEGORY -->
                     <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2', '3', '4', '5']">
-                        <div class="item_category">
-                            Show only:
-                        </div>
-                        <div class="item_names_wrap">
-                            <div class="item_name" ng-class="key === 0 ? 'bold' : ''" ng-repeat="(key, this) in ['1', '2', '3', '4']">
-                                My public topics
+                        <div class="table">
+                            <div class="item_category">
+                                Show only:
+                            </div>
+                            <div class="item_names_wrap">
+                                <div class="item_name" ng-class="key === 0 ? 'bold' : ''" ng-repeat="(key, this) in ['1', '2', '3', '4']">
+                                    My public topics
+                                </div>
                             </div>
                         </div>
-                        <div class="clearer"></div>
                     </div>
 
 
