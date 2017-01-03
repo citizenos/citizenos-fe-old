@@ -1437,6 +1437,9 @@
         display: none;
     }
     
+    #lightbox_content {
+        overflow: initial !important;
+    }
     
     #lightbox_content.invite_url {
 
