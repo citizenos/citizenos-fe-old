@@ -50,6 +50,11 @@ angular
             }
         );
 
+        Group.VISIBILITY = {
+            public: 'public',
+            private: 'private'
+        };
+
         // FIXME: Should not be here... upto the Controller..
         Group.prototype.isTopicListExpanded = false;
 

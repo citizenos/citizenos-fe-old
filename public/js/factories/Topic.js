@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .factory('Topic', ['$log', '$resource', 'sLocation', function ($log, $resource, sLocation) {
+    .factory('Topic', ['$log', '$resource', 'sLocation', 'TopicMemberUser', function ($log, $resource, sLocation, TopicMemberUser) {
         $log.debug('citizenos.factory.Topic');
 
         var Topic = $resource(
@@ -45,6 +45,10 @@ angular
 
         Topic.prototype.isPrivate = function () {
             return this.visibility === Topic.VISIBILITY.private;
+        };
+
+        Topic.prototype.canUpdate = function () {
+            return this.permission.level === TopicMemberUser.LEVELS.admin;
         };
 
         return Topic;
