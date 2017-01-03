@@ -151,7 +151,7 @@ angular
                 .openConfirm({
                     template: '/views/modals/group_member_user_leave_confirm.html',
                     data: {
-                        user: sAuth.user
+                        group: group
                     }
                 })
                 .then(function () {
