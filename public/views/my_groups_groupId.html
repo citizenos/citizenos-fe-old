@@ -227,37 +227,42 @@
             </div>
         </div>
         <div class="container_content" ng-if="topicList.isVisible">
-            <table>
-                <tr>
-                    <th ng-click="topicList.searchOrderBy.property = 'title'">
+            <div class="pretend_table">
+                <div class="pretend_tr">
+                    <div class="mobile_text pretend_th" ng-if="wWidth <= 560">
+                        <div class="th_text">
+                            Order by:
+                        </div>
+                    </div>
+                    <div class="pretend_th" ng-click="topicList.searchOrderBy.property = 'title'">
                         <div class="th_text">
                             Title
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'title'"></div>
                         </div>
-                    </th>
-                    <th ng-click="topicList.searchOrderBy.property = 'permission.levelGroup'">
+                    </div>
+                    <div class="pretend_th" ng-click="topicList.searchOrderBy.property = 'permission.levelGroup'">
                         <div class="th_text">
                             Rights
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'permission.levelGroup'"></div>
                         </div>
-                    </th>
-                    <th ng-click="topicList.searchOrderBy.property = 'members.users.count'">
+                    </div>
+                    <div class="pretend_th" ng-click="topicList.searchOrderBy.property = 'members.users.count'">
                         <div class="th_text">
                             Users
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'members.users.count'"></div>
                         </div>
-                    </th>
-                    <th>
+                    </div>
+                    <div class="pretend_th">
                         <div class="th_text">
                             Remove <span>from group</span>
                         </div>
-                    </th>
-                </tr>
-                <tr ng-repeat="topic in group.topics.rows | filter: topicList.searchFilter | orderBy: topicList.searchOrderBy.property">
-                    <td>
+                    </div>
+                </div>
+                <div class="pretend_tr" ng-repeat="topic in group.topics.rows | filter: topicList.searchFilter | orderBy: topicList.searchOrderBy.property">
+                    <div class="pretend_td">
                         <div class="blue_link">{{topic.title}}</div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
@@ -280,11 +285,11 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
                         {{topic.members.users.count}}
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
                         <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberTopic(group, topic)" cos-disabled="!topic.canDelete()">
                             <div class="btn">
                                 <div class="table_cell">
@@ -293,9 +298,9 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -321,28 +326,33 @@
             </div>
         </div>
         <div class="container_content" ng-if="userList.isVisible">
-            <table>
-                <tr>
-                    <th ng-click="userList.searchOrderBy.property = 'name'">
+            <div class="pretend_table">
+                <div class="pretend_tr">
+                    <div class="mobile_text pretend_th" ng-if="wWidth <= 560">
+                        <div class="th_text">
+                            Order by:
+                        </div>
+                    </div>
+                    <div class="pretend_th" ng-click="userList.searchOrderBy.property = 'name'">
                         <div class="th_text">
                             Profile
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'name'"></div>
                         </div>
-                    </th>
-                    <th ng-click="userList.searchOrderBy.property = 'level'">
+                    </div>
+                    <div class="pretend_th" ng-click="userList.searchOrderBy.property = 'level'">
                         <div class="th_text">
                             Rights
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'level'"></div>
                         </div>
-                    </th>
-                    <th>
+                    </div>
+                    <div class="pretend_th">
                         <div class="th_text">
                             Remove <span>from group</span>
                         </div>
-                    </th>
-                </tr>
-                <tr ng-repeat="user in group.members.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
-                    <td>
+                    </div>
+                </div>
+                <div class="pretend_tr" ng-repeat="user in group.members.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
+                    <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
                             <div class="account_picture">
@@ -360,8 +370,8 @@
                                 <div class="blue_link">{{user.name}}</div>
                             </div>
                         </div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!group.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
@@ -384,8 +394,8 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
                         <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(group, user)" cos-disabled="!group.canUpdate()">
                             <div class="btn">
                                 <div class="table_cell">
@@ -394,9 +404,9 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
