@@ -1,5 +1,5 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="full_screen" ng-controller="GroupCreateCtrl">
+<div id="root_lightbox" class="full_screen">
     <div id="lightbox" class="date_picker_wrap set_number">
         <div id="lightbox_wrap">
 
@@ -7,7 +7,7 @@
 
                 <div id="lightbox_header_text">
                     <div class="title">Minimum votes</div>
-                        
+
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -21,7 +21,7 @@
 
 
             </div>
-            
+
             <div class="line lightest_line"></div>
 
 
@@ -35,7 +35,7 @@
                         <div class="description">
                             The amount of votes needed before successful closure.
                         </div>
-                        
+
                         <div class="toggle_cell">
                             <div class="toggle_widget" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
                                 <div class="toggle_circle"></div>
@@ -48,16 +48,16 @@
                         <input ng-disabled="!app.vote_toggle" value="1000">
                     </div>
 
-                    
+
                     <div class="bubble_section date_save_buttons">
                         <div class="blue_button">Save</div>
                         <div class="blue_link_wrapper">
                             <div class="blue_link">Cancel</div>
                         </div>
                     </div>
-                </div>  
+                </div>
 
-            
+
 
             </div>
 

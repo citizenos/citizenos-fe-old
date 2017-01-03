@@ -31,6 +31,13 @@ angular
                         }
                     }
                 },
+                save: {
+                    method: 'POST',
+                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups'),
+                    transformResponse: function (data) {
+                        return angular.fromJson(data);
+                    }
+                },
                 delete: {
                     method: 'DELETE'
                 }
