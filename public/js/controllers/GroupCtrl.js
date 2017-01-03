@@ -26,19 +26,19 @@ angular
         };
 
         $scope.doDeleteGroup = function (group) {
-            $log.debug('doDeleteGroup', group, $scope.groupList.indexOf(group));
+            $log.debug('doDeleteGroup', group, $scope.itemList.indexOf(group));
 
             ngDialog
                 .openConfirm({
                     template: '/views/modals/group_delete_confirm.html'
                 })
                 .then(function () {
-                    var index = $scope.groupList.indexOf(group);
+                    var index = $scope.itemList.indexOf(group);
                     group
                         .$delete()
                         .then(function () {
-                            $scope.groupList.splice(index, 1);
-                            $state.go('mygroups');
+                            $scope.itemList.splice(index, 1);
+                            $state.go('my.groups');
                         });
                 }, angular.noop);
         };
@@ -159,7 +159,7 @@ angular
                     groupMemberUser
                         .$delete({groupId: group.id})
                         .then(function () {
-                            $state.go('mygroups', null, {reload: true});
+                            $state.go('my.groups', null, {reload: true});
                         }, function (res) {
                             if (res.data.status.code === 40000) {
                                 $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, 'You cannot leave this Group as you are the last admin user of this Group. Please assign a new admin to leave.');
