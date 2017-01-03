@@ -113,7 +113,7 @@
             <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberTopicsCreate'">
                 <div class="lightbox_section">
                     <div cos-dropdown class="search_with_dropdown">
-                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="filteredTopics.topics" term="topicFilterString" search="filterTopics(term)"
+                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchString" search="search(term, 'topic')"
                                    select="doToggleTopicInGroup(item.id)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
                            <div class="search_icon">
                                 <div class="table_cell">
@@ -126,8 +126,8 @@
                                 </div>
                             </div>
                             <div class="search_area_wrap">
-                                <div class="search_dropdown_area" ng-show="filteredTopics.topics.length">
-                                    <div class="search_dropdown_item" typeahead-item="topic" ng-repeat="topic in filteredTopics.topics">
+                                <div class="search_dropdown_area" ng-show="searchResults.topics.length">
+                                    <div class="search_dropdown_item" typeahead-item="topic" ng-repeat="topic in searchResults.topics">
                                         <div class="table_cell search_item_text">
                                             <b>{{topic.title}}</b>
                                         </div>
@@ -217,20 +217,16 @@
 
                     <div class="searchbox_with_icon_and_text only_text">
                         <div cos-dropdown class="search_with_dropdown">
-                            <typeahead class="auto-complete" items="searchResults.results" term="searchString" search="search(term)"
+                            <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchString" search="search(term, 'user')"
                                        select="selectMember(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
                                 <div class="search_area_wrap">
-                                    <div class="search_dropdown_area" ng-show="searchResults.results.length">
-                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.results">
-                                            <div class="table_cell search_item_text" ng-if="user.type === 'user'">
+                                    <div class="search_dropdown_area" ng-show="searchResults.users.length">
+                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
+                                            <div class="table_cell search_item_text">
                                                 <b>{{user.name}}</b> {{user.company}}
                                             </div>
-                                            <div class="table_cell search_item_text" ng-if="user.type === 'group'">
-                                                <b>{{user.name}}</b> GROUP
-                                            </div>
                                             <div class="table_cell blue_link">
-                                                <span  ng-if="user.type === 'user'" class="submit_link" ng-click="selectMember(user)">Press enter or click to add</span>
-                                                <span ng-if="user.type === 'group'" class="submit_link" ng-click="selectMember(group)">Press enter or click to add</span>
+                                                <span class="submit_link" ng-click="selectMember(user)">Press enter or click to add</span>
                                             </div>
                                         </div>
                                     </div>
@@ -302,7 +298,7 @@
 
                                                 <div class="dropdown">
                                                     <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                        <div class="item_name" ng-click="doChangeMemberPermissions(key, member.id, level)">
+                                                        <div class="item_name" ng-click="doChangeMemberPermissions(member.id, level)">
                                                             {{level}}
                                                         </div>
                                                     </div>
@@ -342,7 +338,7 @@
 
                                         <div class="dropdown">
                                             <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                <div class="item_name" ng-click="doChangeMemberPermissions(key, member.id, level)">
+                                                <div class="item_name" ng-click="doChangeMemberPermissions(member.id, level)">
                                                     {{level}}
                                                 </div>
                                             </div>
