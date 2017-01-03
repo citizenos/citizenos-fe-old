@@ -7,6 +7,10 @@ angular
 
         $scope.group = _.find($scope.itemList, {id: $stateParams.groupId});
 
+        $scope.generalInfo = {
+            isVisible: true
+        };
+
         $scope.topicList = {
             isVisible: false,
             isSearchVisible: false,

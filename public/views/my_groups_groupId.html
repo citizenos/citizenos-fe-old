@@ -10,12 +10,12 @@
             <div class="header_text">
                 General information
             </div>
-            <div class="minimize_container" ng-click="app.generalInformation = !app.generalInformation">
-                <div ng-class="app.generalInformation ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+            <div class="minimize_container" ng-click="generalInfo.isVisible = !generalInfo.isVisible">
+                <div ng-class="!generalInfo.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
 
-        <div class="container_content" ng-if="!app.generalInformation">
+        <div class="container_content" ng-if="generalInfo.isVisible">
 
             <div class="content_top">
                 <div class="container_title">
