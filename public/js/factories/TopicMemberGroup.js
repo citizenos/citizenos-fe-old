@@ -1,7 +1,7 @@
 angular
     .module('citizenos')
     .factory('TopicMemberGroup', ['$log', '$resource', 'sLocation', 'Group', function ($log, $resource, sLocation, Group) {
-        $log.debug('citizenos.factory.GroupMemberTopic');
+        $log.debug('citizenos.factory.TopicMemberGroup');
 
         var TopicMemberGroup = $resource(
             sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups/:groupId'),

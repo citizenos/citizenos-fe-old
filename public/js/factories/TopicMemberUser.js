@@ -1,11 +1,11 @@
 angular
     .module('citizenos')
     .factory('TopicMemberUser', ['$log', '$resource', 'sLocation', function ($log, $resource, sLocation) {
-        $log.debug('citizenos.factory.GroupMemberTopic');
+        $log.debug('citizenos.factory.TopicMemberUser');
 
         var TopicMemberUser = $resource(
             sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users/:userId'), // Actually Groups are added to Topic
-            {topicId: '@id', groupId: '@userId'},
+            {topicId: '@topicId', userId: '@id'},
             {
                 query: {
                     isArray: true,
