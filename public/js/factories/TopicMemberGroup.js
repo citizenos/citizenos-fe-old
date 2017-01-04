@@ -36,12 +36,15 @@ angular
             }
         );
 
+        // FIXME: Should be inherited from Topic?
         TopicMemberGroup.LEVELS = {
+            none: 'none', // Enables to override inherited permissions.
             read: 'read',
+            edit: 'edit',
             admin: 'admin'
         };
 
-        // FIXME: Should be inherited from Group?
+        // FIXME: Should be inherited from Topic?
         TopicMemberGroup.prototype.isPrivate = function () {
             return this.visibility === Group.VISIBILITY.private;
         };

@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, ngDialog, TopicMemberGroup) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'TopicMemberGroup', 'TopicMemberUser', function ($scope, $state, $stateParams, $log, ngDialog, TopicMemberGroup, TopicMemberUser) {
         $log.debug('TopicCtrl');
 
         $scope.topic = _.find($scope.itemList, {id: $stateParams.topicId});
@@ -19,6 +19,17 @@ angular
                 property: 'name'
             }
         };
+
+        $scope.userList = {
+            isVisible: false,
+            isSearchVisible: false,
+            searchFilter: '',
+            searchOrderBy: {
+                property: 'name'
+            }
+        };
+
+        $scope.TopicMemberGroup = TopicMemberGroup;
 
         $scope.doToggleGroupList = function (topic) {
             if ($scope.groupList.isVisible) {
@@ -71,7 +82,23 @@ angular
                 }, angular.noop);
         };
 
+        $scope.TopicMemberUser = TopicMemberUser;
 
-        $scope.TopicMemberGroup = TopicMemberGroup;
+        $scope.doToggleMemberUserList = function (topic) {
+            $log.debug('doToggleMemberUserList', topic);
+            
+            if ($scope.userList.isVisible) {
+                $scope.userList.isVisible = false;
+                return;
+            }
+
+            TopicMemberUser
+                .query({topicId: topic.id}).$promise
+                .then(function (users) {
+                    topic.members.users.rows = users;
+                    topic.members.users.count = users.length;
+                    $scope.userList.isVisible = true;
+                });
+        };
 
     }]);

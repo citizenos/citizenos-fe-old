@@ -315,12 +315,12 @@
     <div class="info_container group_list user_list">
         <div class="container_header">
             <div class="header_text">
-                User list ({{group.members.count}}) |
+                User list ({{topic.members.users.count}}) |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible">search</div>
                 |
                 <div class="blue_link">invite</div>
             </div>
-            <div class="minimize_container" ng-click="doToggleUserList(group)">
+            <div class="minimize_container" ng-click="doToggleMemberUserList(topic)">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -358,7 +358,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="user in group.members.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="user in topic.members.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
                     <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
@@ -374,12 +374,12 @@
                         </div>
                         <div class="name_wrap">
                             <div class="table_cell">
-                                <div class="blue_link">{{user.name}}</div>
+                                <div>{{user.name}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <div cos-dropdown class="classic_dropdown" cos-disabled="!group.canUpdate()">
+                        <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
                                     {{user.level}}
@@ -394,8 +394,8 @@
                                 </div>
                             </div>
                             <div class="dropdown">
-                                <div class="dropdown_item" ng-repeat="(key, level) in GroupMemberUser.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberUser(group, user, level)">
+                                <div class="dropdown_item" ng-repeat="(key, level) in TopicMemberUser.LEVELS">
+                                    <div class="item_name" ng-click="doUpdateMemberUser(topic, user, level)">
                                         {{level}}
                                     </div>
                                 </div>
@@ -403,7 +403,7 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(group, user)" cos-disabled="!group.canUpdate()">
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(topic, user)" cos-disabled="!topic.canUpdate()">
                             <div class="btn">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
