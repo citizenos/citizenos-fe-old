@@ -41,7 +41,7 @@ angular
                     group
                         .$delete()
                         .then(function () {
-                            $scope.itemList.splice(index, 1);
+                            $scope.itemList.splice(index);
                             $state.go('my.groups');
                         });
                 }, angular.noop);
@@ -92,7 +92,7 @@ angular
                     groupMemberTopic
                         .$delete({groupId: group.id})
                         .then(function () {
-                            group.topics.rows.splice(index, 1);
+                            group.topics.rows.splice(index);
                             group.topics.count = group.topics.rows.length;
                         });
                 }, angular.noop);

@@ -267,7 +267,7 @@
                 </div>
                 <div class="pretend_tr" ng-repeat="group in topic.members.groups.rows | filter: groupList.searchFilter | orderBy: groupList.searchOrderBy.property">
                     <div class="pretend_td">
-                        <div class="blue_link">{{group.name}}</div>
+                        <div class="blue_link" ui-sref="my.groups.groupId({groupId: group.id})">{{group.name}}</div>
                     </div>
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
@@ -297,7 +297,7 @@
                         {{group.members.users.count}}
                     </div>
                     <div class="pretend_td">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberTopic(group, topic)" cos-disabled="!topic.canDelete()">
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberGroup(topic, group)" cos-disabled="!topic.canUpdate()">
                             <div class="btn">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>

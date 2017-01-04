@@ -39,6 +39,7 @@ angular
             '/views/modals/set_number.html',
             '/views/modals/sign_up.html',
             '/views/modals/topic_delete_confirm.html',
+            '/views/modals/topic_member_group_delete_confirm.html',
             '/views/modals/topic_vote_sign.html',
         ];
         var i = 0;

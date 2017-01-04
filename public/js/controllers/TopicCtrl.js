@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, TopicMemberGroup) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, ngDialog, TopicMemberGroup) {
         $log.debug('TopicCtrl');
 
         $scope.topic = _.find($scope.itemList, {id: $stateParams.topicId});
@@ -50,6 +50,27 @@ angular
                         });
             }
         };
+
+        $scope.doDeleteMemberGroup = function (topic, topicMemberGroup) {
+            $log.debug('doDeleteMemberGroup', topic, topicMemberGroup);
+
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_member_group_delete_confirm.html',
+                    data: {
+                        group: topicMemberGroup
+                    }
+                })
+                .then(function () {
+                    topicMemberGroup
+                        .$delete({topicId: topic.id})
+                        .then(function () {
+                            topic.members.groups.rows.splice(topic.members.groups.rows.indexOf(topicMemberGroup));
+                            topic.members.groups.count = topic.members.groups.rows.length;
+                        });
+                }, angular.noop);
+        };
+
 
         $scope.TopicMemberGroup = TopicMemberGroup;
 
