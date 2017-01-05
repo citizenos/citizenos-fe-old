@@ -6,7 +6,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title">Remove group</div>
+                    <div class="title">Leave topic</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -21,17 +21,9 @@
                 <div class="profile_area">
 
                     <div class="table">
-                        <div class="profile_image_cell">
-                            <div class="group_circle big" ng-if="!group.imageUrl">
-                                <div class="table_cell" cos-initials="ngDialogData.group.name | limitTo: 1">
-                                    G
-                                </div>
-                            </div>
-                            <img ng-if="group.imageUrl" ng-src="group.imageUrl">{{group.name}}
-                        </div>
 
                         <div class="profile_text">
-                            {{ngDialogData.group.name}}
+                            {{ngDialogData.topic.title}}
                         </div>
 
                     </div>
@@ -44,13 +36,13 @@
             <!-- CONFIRM CONTENT -->
             <div id="lightbox_content">
                 <div class="lightbox_section">
-                    Are you sure you want to remove this group?
+                    Are you sure you want to leave this topic?
                     <div class="yes_no_buttons">
                         <div class="table_cell">
                             <div class="blue_button no" ng-click="closeThisDialog()">NO</div>
                         </div>
                         <div class="table_cell">
-                            <div class="blue_button yes" ng-click="confirm()">YES, REMOVE</div>
+                            <div class="blue_button yes" ng-click="confirm()">YES, LEAVE</div>
                         </div>
                     </div>
                 </div>

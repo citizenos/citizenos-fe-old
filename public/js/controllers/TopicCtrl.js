@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'TopicMemberGroup', 'TopicMemberUser', function ($scope, $state, $stateParams, $log, ngDialog, TopicMemberGroup, TopicMemberUser) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuth', 'TopicMemberGroup', 'TopicMemberUser', function ($scope, $state, $stateParams, $log, ngDialog, sAuth, TopicMemberGroup, TopicMemberUser) {
         $log.debug('TopicCtrl');
 
         $scope.topic = _.find($scope.itemList, {id: $stateParams.topicId});
@@ -27,6 +27,45 @@ angular
             searchOrderBy: {
                 property: 'name'
             }
+        };
+
+        $scope.doDeleteTopic = function (topic) {
+            $log.debug('doDeleteTopic', topic);
+
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_delete_confirm.html'
+                })
+                .then(function () {
+                    topic
+                        .$delete()
+                        .then(function () {
+                            $state.go('my.topics', null, {reload: true});
+                        });
+                }, angular.noop);
+        };
+
+        $scope.doLeaveTopic = function (topic) {
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_member_user_leave_confirm.html',
+                    data: {
+                        topic: topic
+                    }
+                })
+                .then(function () {
+                    var topicMemberUser = new TopicMemberUser({id: sAuth.user.id});
+                    topicMemberUser
+                        .$delete({topicId: topic.id})
+                        .then(function () {
+                            $state.go('my.topics', null, {reload: true});
+                        }, function (res) {
+                            // FIXME: More generic handling
+                            if (res.data.status.code === 40010) {
+                                $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, 'You cannot leave this Group as you are the last admin user of this Group. Please assign a new admin to leave.');
+                            }
+                        });
+                });
         };
 
         $scope.TopicMemberGroup = TopicMemberGroup;
@@ -76,7 +115,7 @@ angular
                     topicMemberGroup
                         .$delete({topicId: topic.id})
                         .then(function () {
-                            topic.members.groups.rows.splice(topic.members.groups.rows.indexOf(topicMemberGroup));
+                            topic.members.groups.rows.splice(topic.members.groups.rows.indexOf(topicMemberGroup), 1);
                             topic.members.groups.count = topic.members.groups.rows.length;
                         });
                 }, angular.noop);

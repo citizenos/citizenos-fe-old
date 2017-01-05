@@ -51,5 +51,9 @@ angular
             return this.permission.level === TopicMemberUser.LEVELS.admin;
         };
 
+        Topic.prototype.canDelete = function () {
+            return this.canUpdate();
+        };
+
         return Topic;
     }]);

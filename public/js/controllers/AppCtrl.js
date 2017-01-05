@@ -195,6 +195,11 @@ angular
                 $scope.app.showSearchFiltersMobile = false;
                 $scope.app.showNav = false;
             });
+
+            // Clear all notification messages on navigation
+            Object.keys($scope.app.notifications.levels).forEach(function (key) {
+                $scope.app.notifications.messages[$scope.app.notifications.levels[key]] = [];
+            });
         });
 
         function createRelUrls() {

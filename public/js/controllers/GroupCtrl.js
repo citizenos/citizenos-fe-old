@@ -37,12 +37,10 @@ angular
                     template: '/views/modals/group_delete_confirm.html'
                 })
                 .then(function () {
-                    var index = $scope.itemList.indexOf(group);
                     group
                         .$delete()
                         .then(function () {
-                            $scope.itemList.splice(index);
-                            $state.go('my.groups');
+                            $state.go('my.groups', null, {reload: true});
                         });
                 }, angular.noop);
         };
@@ -92,7 +90,7 @@ angular
                     groupMemberTopic
                         .$delete({groupId: group.id})
                         .then(function () {
-                            group.topics.rows.splice(index);
+                            group.topics.rows.splice(index, 1);
                             group.topics.count = group.topics.rows.length;
                         });
                 }, angular.noop);
@@ -141,7 +139,7 @@ angular
                     groupMemberUser
                         .$delete({groupId: group.id})
                         .then(function () {
-                            group.members.rows.splice(index, 1);
+                            group.members.rows.splice(group.members.rows.indexOf(groupMemberUser), 1);
                             group.members.count = group.members.rows.length;
                         }, function (res) {
                             $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, res.data.status.message);
@@ -164,6 +162,7 @@ angular
                         .then(function () {
                             $state.go('my.groups', null, {reload: true});
                         }, function (res) {
+                            // FIXME: More generic handling
                             if (res.data.status.code === 40000) {
                                 $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, 'You cannot leave this Group as you are the last admin user of this Group. Please assign a new admin to leave.');
                             }

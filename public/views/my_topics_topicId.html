@@ -140,13 +140,15 @@
                                 view
                             </div>
                             <div class="v_line bold"></div>
-                            <div class="item_text blue_link">
+                            <div class="item_text blue_link" ng-click="doLeaveTopic(topic)">
                                 leave
                             </div>
-                            <div class="v_line bold"></div>
-                            <div class="item_text remove blue_link">
-                                <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
-                                delete
+                            <div ng-if="topic.canDelete()">
+                                <div class="v_line bold"></div>
+                                <div class="item_text remove blue_link" ng-click="doDeleteTopic(topic)">
+                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                    delete
+                                </div>
                             </div>
                         </div>
                         <div class="clearer"></div>
