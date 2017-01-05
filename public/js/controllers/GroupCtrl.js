@@ -138,7 +138,6 @@ angular
                     }
                 })
                 .then(function () {
-                    var index = group.members.rows.indexOf(groupMemberUser);
                     groupMemberUser
                         .$delete({groupId: group.id})
                         .then(function () {

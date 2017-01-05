@@ -84,6 +84,16 @@ angular
 
         $scope.TopicMemberUser = TopicMemberUser;
 
+        var loadTopicMemberUserList = function (topic) {
+            return TopicMemberUser
+                .query({topicId: topic.id}).$promise
+                .then(function (users) {
+                    topic.members.users.rows = users;
+                    topic.members.users.count = users.length;
+                    $scope.userList.isVisible = true;
+                });
+        };
+
         $scope.doToggleMemberUserList = function (topic) {
             $log.debug('doToggleMemberUserList', topic);
 
@@ -113,6 +123,25 @@ angular
                             topicMemberUser.level = oldLevel;
                         });
             }
-        }
+        };
+
+        $scope.doDeleteMemberUser = function (topic, topicMemberUser) {
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_member_user_delete_confirm.html',
+                    data: {
+                        user: topicMemberUser
+                    }
+                })
+                .then(function () {
+                    topicMemberUser
+                        .$delete({topicId: topic.id})
+                        .then(function () {
+                            return loadTopicMemberUserList(topic); // Good old topic.members.users.splice wont work due to group permission inheritance
+                        }, function (res) {
+                            $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, res.data.status.message);
+                        });
+                }, angular.noop);
+        };
 
     }]);

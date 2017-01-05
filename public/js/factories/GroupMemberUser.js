@@ -37,9 +37,6 @@ angular
                         console.log(data);
                         return angular.fromJson(data).data;
                     }
-                },
-                delete: {
-                    method: 'DELETE'
                 }
             }
         );
