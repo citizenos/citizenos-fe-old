@@ -86,7 +86,7 @@ angular
 
         $scope.doToggleMemberUserList = function (topic) {
             $log.debug('doToggleMemberUserList', topic);
-            
+
             if ($scope.userList.isVisible) {
                 $scope.userList.isVisible = false;
                 return;
@@ -100,5 +100,19 @@ angular
                     $scope.userList.isVisible = true;
                 });
         };
+
+        $scope.doUpdateMemberUser = function (topic, topicMemberUser, level) {
+            if (topicMemberUser.level !== level) {
+                var oldLevel = topicMemberUser.level;
+                topicMemberUser.level = level;
+                topicMemberUser
+                    .$update({topicId: topic.id})
+                    .then(
+                        angular.noop,
+                        function () {
+                            topicMemberUser.level = oldLevel;
+                        });
+            }
+        }
 
     }]);
