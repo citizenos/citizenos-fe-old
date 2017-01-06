@@ -47,19 +47,27 @@ angular
 
         $scope.GroupMemberTopic = GroupMemberTopic;
 
-        $scope.doToggleTopicList = function (group) {
+        $scope.doShowMemberTopicList = function (group) {
+            if (!$scope.topicList.isVisible) {
+                GroupMemberTopic
+                    .query({groupId: group.id}).$promise
+                    .then(function (topics) {
+                        group.topics.rows = topics;
+                        group.topics.count = topics.length;
+                        $scope.topicList.isVisible = true;
+                        $scope.app.scrollToAnchor('topic_list');
+                    });
+            } else {
+                $scope.app.scrollToAnchor('topic_list');
+            }
+        };
+
+        $scope.doToggleMemberTopicList = function (group) {
             if ($scope.topicList.isVisible) {
                 $scope.topicList.isVisible = false;
-                return;
+            } else {
+                $scope.doShowMemberTopicList(group);
             }
-
-            GroupMemberTopic
-                .query({groupId: group.id}).$promise
-                .then(function (topics) {
-                    group.topics.rows = topics;
-                    group.topics.count = topics.length;
-                    $scope.topicList.isVisible = true;
-                });
         };
 
         $scope.doUpdateMemberTopic = function (group, groupMemberTopic, level) {
@@ -98,19 +106,27 @@ angular
 
         $scope.GroupMemberUser = GroupMemberUser;
 
-        $scope.doToggleUserList = function (group) {
+        $scope.doShowMemberUserList = function (group) {
+            if (!$scope.userList.isVisible) {
+                GroupMemberUser
+                    .query({groupId: group.id}).$promise
+                    .then(function (users) {
+                        group.members.rows = users;
+                        group.members.count = users.length;
+                        $scope.userList.isVisible = true;
+                        $scope.app.scrollToAnchor('user_list');
+                    });
+            } else {
+                $scope.app.scrollToAnchor('user_list');
+            }
+        };
+
+        $scope.doToggleMemberUserList = function (group) {
             if ($scope.userList.isVisible) {
                 $scope.userList.isVisible = false;
-                return;
+            } else {
+                $scope.doShowMemberUserList(group);
             }
-
-            GroupMemberUser
-                .query({groupId: group.id}).$promise
-                .then(function (users) {
-                    group.members.rows = users;
-                    group.members.count = users.length;
-                    $scope.userList.isVisible = true;
-                });
         };
 
         $scope.doUpdateMemberUser = function (group, groupMemberUser, level) {

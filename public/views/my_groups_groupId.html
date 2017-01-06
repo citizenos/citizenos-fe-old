@@ -53,7 +53,7 @@
                                 {{group.members.count}}
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="doToggleUserList(group)">
+                            <div class="item_link blue_link" ng-click="doShowMemberUserList(group)">
                                 view
                             </div>
                             <div ng-if="group.canUpdate()">
@@ -75,7 +75,7 @@
                                 {{group.topics.count}}
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="doToggleTopicList(group)">
+                            <div class="item_link blue_link" ng-click="doShowMemberTopicList(group)">
                                 view
                             </div>
                             <div ng-if="group.canUpdate()">
@@ -206,7 +206,7 @@
     </div-->
 
     <!-- TOPIC LIST -->
-    <div class="info_container group_list">
+    <div class="info_container group_list" id="topic_list">
         <div class="container_header">
             <div class="header_text">
                 Topic list ({{group.topics.count}}) |
@@ -214,7 +214,7 @@
                 |
                 <div class="blue_link">add</div>
             </div>
-            <div class="minimize_container" ng-click="doToggleTopicList(group)">
+            <div class="minimize_container" ng-click="doToggleMemberTopicList(group)">
                 <div ng-class="!topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -305,7 +305,7 @@
     </div>
 
     <!-- USER LIST -->
-    <div class="info_container group_list user_list">
+    <div class="info_container group_list user_list" id="user_list">
         <div class="container_header">
             <div class="header_text">
                 User list ({{group.members.count}}) |
@@ -313,7 +313,7 @@
                 |
                 <div class="blue_link">invite</div>
             </div>
-            <div class="minimize_container" ng-click="doToggleUserList(group)">
+            <div class="minimize_container" ng-click="doToggleMemberUserList(group)">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>

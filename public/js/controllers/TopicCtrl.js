@@ -86,10 +86,10 @@ angular
                         topic.members.groups.rows = groups;
                         topic.members.groups.count = groups.length;
                         $scope.groupList.isVisible = true;
-                        $scope.app.scrollToAnchor('groupList');
+                        $scope.app.scrollToAnchor('group_list');
                     });
             } else {
-                $scope.app.scrollToAnchor('groupList');
+                $scope.app.scrollToAnchor('group_list');
             }
         };
 
@@ -145,10 +145,10 @@ angular
             if (!$scope.userList.isVisible) {
                 loadTopicMemberUserList(topic)
                     .then(function () {
-                        $scope.app.scrollToAnchor('userList');
+                        $scope.app.scrollToAnchor('user_list');
                     });
             } else {
-                $scope.app.scrollToAnchor('userList');
+                $scope.app.scrollToAnchor('user_list');
             }
         };
 
