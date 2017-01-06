@@ -90,7 +90,7 @@
                                 {{topic.members.users.count}}
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link">
+                            <div class="item_link blue_link" ng-click="doShowMemberUserList(topic);">
                                 view
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                 {{topic.members.groups.count}}
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link">
+                            <div class="item_link blue_link" ng-click="doShowMemberGroupList(topic);">
                                 view
                             </div>
                         </div>
@@ -215,7 +215,7 @@
     </div-->
 
     <!-- TOPIC LIST -->
-    <div class="info_container group_list">
+    <div class="info_container group_list" id="groupList">
         <div class="container_header">
             <div class="header_text">
                 Group list ({{topic.members.groups.count}}) |
@@ -223,7 +223,7 @@
                 |
                 <div class="blue_link">add</div>
             </div>
-            <div class="minimize_container" ng-click="doToggleGroupList(topic)">
+            <div class="minimize_container" ng-click="doToggleMemberGroupList(topic)">
                 <div ng-class="!groupList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -314,7 +314,7 @@
     </div>
 
     <!-- USER LIST -->
-    <div class="info_container group_list user_list">
+    <div class="info_container group_list user_list" id="userList">
         <div class="container_header">
             <div class="header_text">
                 User list ({{topic.members.users.count}}) |

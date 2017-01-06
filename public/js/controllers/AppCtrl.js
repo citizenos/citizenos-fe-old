@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -178,6 +178,18 @@ angular
                         $log.error('AppCtrl.doLogout()', 'Logout failed', err);
                     }
                 );
+        };
+
+        $scope.app.scrollToAnchor = function (anchor) {
+            // TODO: Probably not the most elegant way but works for now. Probably should be a directive, which calculates the yOffset (https://docs.angularjs.org/api/ng/service/$anchorScroll#yOffset)
+            $timeout(function () {
+                if ($rootScope.wWidth <= 1024) {
+                    $anchorScroll.yOffset = 68;
+                } else {
+                    $anchorScroll.yOffset = 8;
+                }
+                $anchorScroll(anchor);
+            }, 0);
         };
 
         $rootScope.$on('$translateChangeSuccess', function () {

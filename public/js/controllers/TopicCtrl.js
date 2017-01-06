@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuth', 'TopicMemberGroup', 'TopicMemberUser', function ($scope, $state, $stateParams, $log, ngDialog, sAuth, TopicMemberGroup, TopicMemberUser) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', 'ngDialog', 'sAuth', 'TopicMemberGroup', 'TopicMemberUser', function ($scope, $state, $stateParams, $timeout, $q, $log, ngDialog, sAuth, TopicMemberGroup, TopicMemberUser) {
         $log.debug('TopicCtrl');
 
         $scope.topic = _.find($scope.itemList, {id: $stateParams.topicId});
@@ -70,19 +70,27 @@ angular
 
         $scope.TopicMemberGroup = TopicMemberGroup;
 
-        $scope.doToggleGroupList = function (topic) {
+        $scope.doToggleMemberGroupList = function (topic) {
             if ($scope.groupList.isVisible) {
                 $scope.groupList.isVisible = false;
-                return;
+            } else {
+                $scope.doShowMemberGroupList(topic);
             }
+        };
 
-            TopicMemberGroup
-                .query({topicId: topic.id}).$promise
-                .then(function (groups) {
-                    topic.members.groups.rows = groups;
-                    topic.members.groups.count = groups.length;
-                    $scope.groupList.isVisible = true;
-                });
+        $scope.doShowMemberGroupList = function (topic) {
+            if (!$scope.groupList.isVisible) {
+                TopicMemberGroup
+                    .query({topicId: topic.id}).$promise
+                    .then(function (groups) {
+                        topic.members.groups.rows = groups;
+                        topic.members.groups.count = groups.length;
+                        $scope.groupList.isVisible = true;
+                        $scope.app.scrollToAnchor('groupList');
+                    });
+            } else {
+                $scope.app.scrollToAnchor('groupList');
+            }
         };
 
         $scope.doUpdateMemberGroup = function (topic, topicMemberGroup, level) {
@@ -133,21 +141,25 @@ angular
                 });
         };
 
+        $scope.doShowMemberUserList = function (topic) {
+            if (!$scope.userList.isVisible) {
+                loadTopicMemberUserList(topic)
+                    .then(function () {
+                        $scope.app.scrollToAnchor('userList');
+                    });
+            } else {
+                $scope.app.scrollToAnchor('userList');
+            }
+        };
+
         $scope.doToggleMemberUserList = function (topic) {
             $log.debug('doToggleMemberUserList', topic);
 
             if ($scope.userList.isVisible) {
                 $scope.userList.isVisible = false;
-                return;
+            } else {
+                $scope.doShowMemberUserList(topic);
             }
-
-            TopicMemberUser
-                .query({topicId: topic.id}).$promise
-                .then(function (users) {
-                    topic.members.users.rows = users;
-                    topic.members.users.count = users.length;
-                    $scope.userList.isVisible = true;
-                });
         };
 
         $scope.doUpdateMemberUser = function (topic, topicMemberUser, level) {
@@ -158,8 +170,12 @@ angular
                     .$update({topicId: topic.id})
                     .then(
                         angular.noop,
-                        function () {
+                        function (res) {
                             topicMemberUser.level = oldLevel;
+                            // FIXME: More generic handling
+                            if (res.data.status.code === 40000) {
+                                $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, 'You cannot change permissions as you are the last admin member of this Topic. Pleas assign a new admin to do so.');
+                            }
                         });
             }
         };
