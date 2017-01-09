@@ -37,31 +37,37 @@ angular
                     template: '/views/modals/group_delete_confirm.html'
                 })
                 .then(function () {
-                    var index = $scope.itemList.indexOf(group);
                     group
                         .$delete()
                         .then(function () {
-                            $scope.itemList.splice(index, 1);
-                            $state.go('my.groups');
+                            $state.go('my.groups', null, {reload: true});
                         });
                 }, angular.noop);
         };
 
         $scope.GroupMemberTopic = GroupMemberTopic;
 
-        $scope.doToggleTopicList = function (group) {
+        $scope.doShowMemberTopicList = function (group) {
+            if (!$scope.topicList.isVisible) {
+                GroupMemberTopic
+                    .query({groupId: group.id}).$promise
+                    .then(function (topics) {
+                        group.topics.rows = topics;
+                        group.topics.count = topics.length;
+                        $scope.topicList.isVisible = true;
+                        $scope.app.scrollToAnchor('topic_list');
+                    });
+            } else {
+                $scope.app.scrollToAnchor('topic_list');
+            }
+        };
+
+        $scope.doToggleMemberTopicList = function (group) {
             if ($scope.topicList.isVisible) {
                 $scope.topicList.isVisible = false;
-                return;
+            } else {
+                $scope.doShowMemberTopicList(group);
             }
-
-            GroupMemberTopic
-                .query({groupId: group.id}).$promise
-                .then(function (topics) {
-                    group.topics.rows = topics;
-                    group.topics.count = topics.length;
-                    $scope.topicList.isVisible = true;
-                });
         };
 
         $scope.doUpdateMemberTopic = function (group, groupMemberTopic, level) {
@@ -100,19 +106,27 @@ angular
 
         $scope.GroupMemberUser = GroupMemberUser;
 
-        $scope.doToggleUserList = function (group) {
+        $scope.doShowMemberUserList = function (group) {
+            if (!$scope.userList.isVisible) {
+                GroupMemberUser
+                    .query({groupId: group.id}).$promise
+                    .then(function (users) {
+                        group.members.rows = users;
+                        group.members.count = users.length;
+                        $scope.userList.isVisible = true;
+                        $scope.app.scrollToAnchor('user_list');
+                    });
+            } else {
+                $scope.app.scrollToAnchor('user_list');
+            }
+        };
+
+        $scope.doToggleMemberUserList = function (group) {
             if ($scope.userList.isVisible) {
                 $scope.userList.isVisible = false;
-                return;
+            } else {
+                $scope.doShowMemberUserList(group);
             }
-
-            GroupMemberUser
-                .query({groupId: group.id}).$promise
-                .then(function (users) {
-                    group.members.rows = users;
-                    group.members.count = users.length;
-                    $scope.userList.isVisible = true;
-                });
         };
 
         $scope.doUpdateMemberUser = function (group, groupMemberUser, level) {
@@ -138,11 +152,10 @@ angular
                     }
                 })
                 .then(function () {
-                    var index = group.members.rows.indexOf(groupMemberUser);
                     groupMemberUser
                         .$delete({groupId: group.id})
                         .then(function () {
-                            group.members.rows.splice(index, 1);
+                            group.members.rows.splice(group.members.rows.indexOf(groupMemberUser), 1);
                             group.members.count = group.members.rows.length;
                         }, function (res) {
                             $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, res.data.status.message);
@@ -165,6 +178,7 @@ angular
                         .then(function () {
                             $state.go('my.groups', null, {reload: true});
                         }, function (res) {
+                            // FIXME: More generic handling
                             if (res.data.status.code === 40000) {
                                 $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, 'You cannot leave this Group as you are the last admin user of this Group. Please assign a new admin to leave.');
                             }

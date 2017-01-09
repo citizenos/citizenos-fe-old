@@ -1,7 +1,7 @@
 angular
     .module('citizenos')
     .factory('TopicMemberGroup', ['$log', '$resource', 'sLocation', 'Group', function ($log, $resource, sLocation, Group) {
-        $log.debug('citizenos.factory.GroupMemberTopic');
+        $log.debug('citizenos.factory.TopicMemberGroup');
 
         var TopicMemberGroup = $resource(
             sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups/:groupId'),
@@ -36,12 +36,15 @@ angular
             }
         );
 
+        // FIXME: Should be inherited from Topic?
         TopicMemberGroup.LEVELS = {
+            none: 'none', // Enables to override inherited permissions.
             read: 'read',
+            edit: 'edit',
             admin: 'admin'
         };
 
-        // FIXME: Should be inherited from Group?
+        // FIXME: Should be inherited from Topic?
         TopicMemberGroup.prototype.isPrivate = function () {
             return this.visibility === Group.VISIBILITY.private;
         };

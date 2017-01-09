@@ -113,7 +113,7 @@
             <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberTopicsCreate'">
                 <div class="lightbox_section">
                     <div cos-dropdown class="search_with_dropdown">
-                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchString" search="search(term, 'topic')"
+                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
                                    select="addTopicToGroup(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
                            <div class="search_icon">
                                 <div class="table_cell">
@@ -155,7 +155,7 @@
                         </div>
                     </div>
 
-                    <div class="double_row_item" ng-repeat="(key, topic) in topics">
+                    <div class="double_row_item" ng-repeat="(key, topic) in memberTopics">
                         <div class="blue_link">
                             {{topic.title}}
                         </div>
@@ -167,7 +167,7 @@
                                 <div class="btn_wrap recycle_bin white_bg">
                                     <div class="btn">
                                         <div class="table_cell" ng-click="removeTopicFromGroup(topic.id)">
-                                            <div class="sprite desktop_fix " ng-class="(memberTopics.indexOf(topic) > -1) ? 'sprite-voted-nocheck2x' : 'sprite-voted-check2x'"></div>
+                                            <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                             <div class="sprite mobile_fix sprite-voted-check2x"></div>
                                         </div>
                                     </div>
@@ -217,8 +217,8 @@
 
                     <div class="searchbox_with_icon_and_text only_text">
                         <div cos-dropdown class="search_with_dropdown">
-                            <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchString" search="search(term, 'user')"
-                                       select="selectMember(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
+                            <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
+                                       select="addUserAsMember(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
                                 <div class="search_area_wrap">
                                     <div class="search_dropdown_area" ng-show="searchResults.users.length">
                                         <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
@@ -226,7 +226,7 @@
                                                 <b>{{user.name}}</b> {{user.company}}
                                             </div>
                                             <div class="table_cell blue_link">
-                                                <span class="submit_link" ng-click="selectMember(user)">Press enter or click to add</span>
+                                                <span class="submit_link" ng-click="addUserAsMember(user)">Press enter or click to add</span>
                                             </div>
                                         </div>
                                     </div>
@@ -273,7 +273,7 @@
                                     </div>
                                     <div class="name_wrap">
                                         <div class="table_cell">
-                                            <div class="blue_link" ng-click="doRemoveMemberUser(member)">{{member.name}}</div>
+                                            <div class="blue_link" ng-click="doRemoveMemberUser(member.id)">{{member.name}}</div>
                                             <div class="via">{{member.company}}</div>
                                         </div>
                                     </div>

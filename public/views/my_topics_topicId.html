@@ -90,7 +90,7 @@
                                 {{topic.members.users.count}}
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link">
+                            <div class="item_link blue_link" ng-click="doShowMemberUserList(topic);">
                                 view
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                 {{topic.members.groups.count}}
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link">
+                            <div class="item_link blue_link" ng-click="doShowMemberGroupList(topic);">
                                 view
                             </div>
                         </div>
@@ -140,13 +140,15 @@
                                 view
                             </div>
                             <div class="v_line bold"></div>
-                            <div class="item_text blue_link">
+                            <div class="item_text blue_link" ng-click="doLeaveTopic(topic)">
                                 leave
                             </div>
-                            <div class="v_line bold"></div>
-                            <div class="item_text remove blue_link">
-                                <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
-                                delete
+                            <div ng-if="topic.canDelete()">
+                                <div class="v_line bold"></div>
+                                <div class="item_text remove blue_link" ng-click="doDeleteTopic(topic)">
+                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                    delete
+                                </div>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -213,7 +215,7 @@
     </div-->
 
     <!-- TOPIC LIST -->
-    <div class="info_container group_list">
+    <div class="info_container group_list" id="group_list">
         <div class="container_header">
             <div class="header_text">
                 Group list ({{topic.members.groups.count}}) |
@@ -221,7 +223,7 @@
                 |
                 <div class="blue_link">add</div>
             </div>
-            <div class="minimize_container" ng-click="doToggleGroupList(topic)">
+            <div class="minimize_container" ng-click="doToggleMemberGroupList(topic)">
                 <div ng-class="!groupList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -267,7 +269,7 @@
                 </div>
                 <div class="pretend_tr" ng-repeat="group in topic.members.groups.rows | filter: groupList.searchFilter | orderBy: groupList.searchOrderBy.property">
                     <div class="pretend_td">
-                        <div class="blue_link">{{group.name}}</div>
+                        <div class="blue_link" ui-sref="my.groups.groupId({groupId: group.id})">{{group.name}}</div>
                     </div>
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
@@ -297,7 +299,7 @@
                         {{group.members.users.count}}
                     </div>
                     <div class="pretend_td">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberTopic(group, topic)" cos-disabled="!topic.canDelete()">
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberGroup(topic, group)" cos-disabled="!topic.canUpdate()">
                             <div class="btn">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -312,15 +314,15 @@
     </div>
 
     <!-- USER LIST -->
-    <div class="info_container group_list user_list">
+    <div class="info_container group_list user_list" id="user_list">
         <div class="container_header">
             <div class="header_text">
-                User list ({{group.members.count}}) |
+                User list ({{topic.members.users.count}}) |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible">search</div>
                 |
                 <div class="blue_link">invite</div>
             </div>
-            <div class="minimize_container" ng-click="doToggleUserList(group)">
+            <div class="minimize_container" ng-click="doToggleMemberUserList(topic)">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -354,11 +356,11 @@
                     </div>
                     <div class="pretend_th">
                         <div class="th_text">
-                            Remove <span>from group</span>
+                            Remove <span>from topic</span>
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="user in group.members.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="user in topic.members.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
                     <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
@@ -374,12 +376,12 @@
                         </div>
                         <div class="name_wrap">
                             <div class="table_cell">
-                                <div class="blue_link">{{user.name}}</div>
+                                <div>{{user.name}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <div cos-dropdown class="classic_dropdown" cos-disabled="!group.canUpdate()">
+                        <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
                                     {{user.level}}
@@ -394,8 +396,8 @@
                                 </div>
                             </div>
                             <div class="dropdown">
-                                <div class="dropdown_item" ng-repeat="(key, level) in GroupMemberUser.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberUser(group, user, level)">
+                                <div class="dropdown_item" ng-repeat="(key, level) in TopicMemberUser.LEVELS">
+                                    <div class="item_name" ng-click="doUpdateMemberUser(topic, user, level)">
                                         {{level}}
                                     </div>
                                 </div>
@@ -403,7 +405,7 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(group, user)" cos-disabled="!group.canUpdate()">
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(topic, user)" cos-disabled="!topic.canUpdate()">
                             <div class="btn">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>

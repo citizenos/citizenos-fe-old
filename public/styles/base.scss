@@ -75,7 +75,6 @@ input::-ms-clear {
     display: none;
 }
 
-
 b {
     font-weight: $bold;
 }
@@ -131,7 +130,6 @@ table, .pretend_table {
     }
 }
 
-
 .btn_wrap.white_bg {
     background-color: $white;
 }
@@ -155,7 +153,6 @@ table, .pretend_table {
         height: inherit;
         display: table;
         position: relative;
-
 
         .sprite {
             margin: 0 auto;
@@ -203,8 +200,6 @@ table, .pretend_table {
     }
 }
 
-
-
 .btn_wrap.check.yes {
 
     &:hover {
@@ -239,8 +234,6 @@ table, .pretend_table {
 }
 
 //Overall button styles and other general items
-
-
 
 .pretend_table {
     display: table;
@@ -280,6 +273,11 @@ table, .pretend_table {
     position: absolute;
     right: -11px;
     top: 4px;
+    @include rotate(180);
+
+    &.desc {
+        @include rotate(0);
+    }
 }
 
 .disabled {
@@ -386,7 +384,7 @@ table, .pretend_table {
         position: absolute;
         left: 1px;
         right: 1px;
-        box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
         z-index: 2;
         display: block;
 
@@ -759,7 +757,6 @@ a:link, a:visited {
     margin-top: -5px;
 }
 
-
 /* EDIT TOOLTIP */
 .tooltip {
     background: $transparent_black;
@@ -959,7 +956,7 @@ a:link, a:visited {
             }
         }
 
-         table {
+        table {
             text-align: center;
             table-layout: fixed;
             width: 100%;
@@ -1109,8 +1106,8 @@ a:link, a:visited {
             }
 
             .item_category {
-                width:1%;
-                white-space:nowrap;
+                width: 1%;
+                white-space: nowrap;
             }
         }
 
@@ -1121,11 +1118,10 @@ a:link, a:visited {
     display: block;
 }
 
-
 .disabled.classic_dropdown {
     .dropdown_selection {
         cursor: default;
-         &:hover .dropdown_text {
+        &:hover .dropdown_text {
             color: $medium_black;
         }
     }
@@ -1201,60 +1197,63 @@ a:link, a:visited {
     width: 100%;
 }
 
-
 .loader {
-  font-size: 10px;
-  margin: 22px auto;
-  text-indent: -9999em;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #0680fc;
-  background: -moz-linear-gradient(left, #0680fc 10%, rgba(6,128,252, 0) 42%);
-  background: -webkit-linear-gradient(left, #0680fc 10%, rgba(6,128,252, 0) 42%);
-  background: -o-linear-gradient(left, #0680fc 10%, rgba(6,128,252, 0) 42%);
-  background: -ms-linear-gradient(left, #0680fc 10%, rgba(6,128,252, 0) 42%);
-  background: linear-gradient(to right, #0680fc 10%, rgba(6,128,252, 0) 42%);
-  position: relative;
-  -webkit-animation: load3 1.4s infinite linear;
-  animation: load3 1.4s infinite linear;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
+    font-size: 10px;
+    margin: 22px auto;
+    text-indent: -9999em;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #0680fc;
+    background: -moz-linear-gradient(left, #0680fc 10%, rgba(6, 128, 252, 0) 42%);
+    background: -webkit-linear-gradient(left, #0680fc 10%, rgba(6, 128, 252, 0) 42%);
+    background: -o-linear-gradient(left, #0680fc 10%, rgba(6, 128, 252, 0) 42%);
+    background: -ms-linear-gradient(left, #0680fc 10%, rgba(6, 128, 252, 0) 42%);
+    background: linear-gradient(to right, #0680fc 10%, rgba(6, 128, 252, 0) 42%);
+    position: relative;
+    -webkit-animation: load3 1.4s infinite linear;
+    animation: load3 1.4s infinite linear;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
 }
+
 .loader:before {
-  width: 50%;
-  height: 50%;
-  background: #0680fc;
-  border-radius: 100% 0 0 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
+    width: 50%;
+    height: 50%;
+    background: #0680fc;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
 }
+
 .loader:after {
-  background: $light_gray;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  content: '';
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+    background: $light_gray;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
+
 @-webkit-keyframes load3 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
+
 @keyframes load3 {
     0% {
         -webkit-transform: rotate(0deg);

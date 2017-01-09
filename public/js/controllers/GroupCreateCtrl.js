@@ -21,13 +21,13 @@ angular
             }
         };
 
-        $scope.topics = [];
         $scope.memberTopics =[];
         $scope.GroupMemberTopic = GroupMemberTopic;
         $scope.GroupMemberUser = GroupMemberUser;
 
-        $scope.searchString = null;
-        $scope.searchResults = null;
+        $scope.searchResults = {};
+        $scope.searchStringUser = null;
+        $scope.searchStringTopic = null;
         $scope.errors = {
             group: []
         };
@@ -47,7 +47,6 @@ angular
                 }
             };
 
-            $scope.topics = [];
             $scope.memberTopics =[];
             $scope.GroupMemberTopic = GroupMemberTopic;
             $scope.GroupMemberUser = GroupMemberUser;
@@ -74,18 +73,14 @@ angular
                 sSearch
                     .searchV2(str, include)
                     .then(function (response) {
-                        console.log(response);
                         $scope.searchResults.users = [];
                         $scope.searchResults.topics = [];
-                        if(type == 'user'){
-                            $scope.searchStringUser = str;
+                        if(type == 'user'){;
                             response.data.data.results.public.users.forEach( function (user) {
                                 $scope.searchResults.users.push(user);
                             });
-                            console.log($scope.searchResults.users);
                         }
                         if(type == 'topic'){
-                            $scope.searchStringTopic = str;
                             response.data.data.results.my.topics.forEach( function (topic) {
                                 $scope.searchResults.topics.push(topic);
                             });
@@ -101,25 +96,18 @@ angular
             }
         };
 
-        $scope.doSetGroupTopicLevel = function (topicId, level) {
-            var topic = _.find($scope.topics, function (o) {
-                return o.id === topicId;
-            });
-            var topicIndexMembers = _.indexOf($scope.memberTopics,topic);
-
-            if(topicIndexMembers > -1) {
-                $scope.memberTopics[topicIndexMembers].permission.level = level;
-            }
-            var topicIndex = _.indexOf($scope.topics,topic);
-            $scope.topics[topicIndex].permission.level = level;
-
-        }
-
         $scope.addTopicToGroup = function (topic) {
-            if(_.indexOf($scope.memberTopics,topic) > -1) {
-            } else {
+            if(!topic || !topic.id || !topic.title){
+                return false;
+            }
+            var member = _.find($scope.memberTopics, function (o) {
+                return o.id === topic.id;
+            });
+            if(!member) {
                 $scope.memberTopics.push(topic);
             }
+            $scope.searchStringTopic = null;
+            $scope.searchResults.topics = [];
         }
 
         $scope.removeTopicFromGroup = function (topicId) {
@@ -135,7 +123,7 @@ angular
 
         $scope.doOrderTopics = function (type) {
             if(type = 'title'){
-                $scope.topics.sort(function (a,b){
+                $scope.memberTopics.sort(function (a,b){
                     if(a.title > b.title){
                         return 1 *direction;
                     }
@@ -146,7 +134,7 @@ angular
                 });
             }
             if(type = 'users'){
-                $scope.topics.sort(function (a,b){
+                $scope.memberTopics.sort(function (a,b){
                     if(a.members.users.count > b.members.users.count){
                         return 1 *direction;
                     }
@@ -160,17 +148,16 @@ angular
             direction = direction * -1;
         }
 
-        $scope.doAddUserAsMember = function (user) {
-            if(_.indexOf($scope.group.members.users,user) > -1) {
-            } else {
-                if(!user.level){
-                    user.level = GroupMemberUser.LEVELS.read;
+        $scope.doSetGroupTopicLevel = function (topicId, level) {
+            _.find($scope.memberTopics, function (o) {
+                if(o.id === topicId){
+                    o.permission.level = level;
+                    return true;
                 }
-                $scope.group.members.users.push(user);
-            }
+            });
         }
 
-        $scope.selectMember = function (member) {
+        $scope.addUserAsMember = function (member) {
             if (member) {
                 if (_.find($scope.group.members.users, {userId: member.id})) {
                     // Ignore duplicates
@@ -186,26 +173,27 @@ angular
                 }
             } else {
                 // Assume e-mail was entered.
-                if (validator.isEmail($scope.searchString)) {
+                if (validator.isEmail($scope.searchStringUser)) {
                     // Ignore duplicates
-                    if (!_.find($scope.searchResults.results, {userId: $scope.searchString})) {
+                    if (!_.find($scope.searchResults.results, {userId: $scope.searchStringUser})) {
                         $scope.group.members.users.push({
-                            userId: $scope.searchString,
-                            name: $scope.searchString,
+                            userId: $scope.searchStringUser,
+                            name: $scope.searchStringUser,
                             level: GroupMemberUser.LEVELS.read
                         });
                         $scope.group.members.users.count = $scope.group.members.users.length;
                         $scope.searchResults.users = [];
                     }
                 } else {
-                    $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchString);
+                    $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchStringUser);
                 }
             }
-            $scope.searchString = null;
+            $scope.searchStringUser = null;
+            $scope.searchResults.topics = [];
         };
         $scope.doRemoveMemberUser = function (userId) {
             for(var i = 0; i < $scope.group.members.users.length; i++){
-                if($scope.group.members.users[i].id === user_id) {
+                if($scope.group.members.users[i].id === userId) {
                    $scope.group.members.users.splice(i, 1);
                    i = $scope.group.members.users.length;
                 }
