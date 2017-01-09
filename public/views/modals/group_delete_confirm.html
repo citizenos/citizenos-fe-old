@@ -5,15 +5,41 @@
 
             <div id="lightbox_header">
 
-                <div class="sprite sprite-icon-delete-topic2x"></div>
-                <div class="delete_title">Are you sure you want to delete this group?</div>
-                <div class="delete_description">Please keep in mind you cannot undo this action.</div>
+                <div id="lightbox_header_text">
+                    <div class="title">Delete group</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="line lightest_line"></div>
 
             </div>
 
-            <div class="line lightest_line"></div>
-
             <div id="lightbox_content">
+
+                <div class="second_header">
+
+                    <div class="sprite sprite-icon-delete-topic2x"></div>
+                    <div class="delete_title">Are you sure you want to delete this group?</div>
+                    <div class="delete_description">Please keep in mind you cannot undo this action.</div>
+
+                    <div id="lightbox_close" ng-click="closeThisDialog()">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
 
                 <div id="delete_info_wrap">
 

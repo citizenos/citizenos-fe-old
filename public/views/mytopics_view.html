@@ -225,7 +225,7 @@
                                 24.12.2016
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="app.doShowDatePicker();">
+                            <div class="item_link blue_link" ng-click="app.doShowDatePicker()">
                                 edit
                             </div>
                         </div>
@@ -459,30 +459,9 @@
                         <div class="item_content">
                             <div class="item_text">
                                 1000
-
-                                <div class="edit_bubble">
-                                    <div class="sprite bubble_arrow sprite-tooltip-arrow-grey-shadow2x"></div>
-
-                                    <div class="toggle_widget" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
-                                        <div class="toggle_circle"></div>
-                                    </div>
-
-                                    <div class="bubble_content">
-                                        <div class="bubble_title">Minimum votes</div>
-                                        <div class="bubble_description">THE AMOUNT OF VOTES NEEDED BEFORE SUCCESSFUL CLOSURE.</div>
-                                        <input class="bubble_input input_small" value="1000">
-                                    </div>
-
-                                    <div class="blue_button">Save</div>
-                                    <div class="blue_link_wrapper">
-                                        <div class="blue_link">Cancel</div>
-                                    </div>
-
-                                </div>
-
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link">
+                            <div class="item_link blue_link" ng-click="app.doShowSetNumber()">
                                 edit
                             </div>
                         </div>
@@ -533,35 +512,40 @@
 
         <div class="container_content" ng-if="!app.groupList">
 
-            <table>
-                <tr>
-                    <th>
+             <div class="pretend_table">
+                <div class="pretend_tr">
+                    <div ng-if="wWidth <= 560" class="mobile_text pretend_th">
+                        <div class="th_text">
+                            Order by:
+                        </div>
+                    </div>
+                    <div class="pretend_th">
                         <div class="th_text">
                             Title
                         </div>
-                    </th>
-                    <th>
+                    </div>
+                    <div class="pretend_th">
                         <div class="th_text">
                             Rights
                         </div>
-                    </th>
-                    <th>
+                    </div>
+                    <div class="pretend_th">
                         <div class="th_text">
                             Users
                             <div class="sprite sprite-icon-list-ordering2x"></div>
                         </div>
-                    </th>
-                    <th>
+                    </div>
+                    <div class="pretend_th">
                         <div class="th_text">
                             Remove <span>from topic</span>
                         </div>
-                    </th>
-                </tr>
-                <tr ng-repeat="(key, this) in ['1', '2', '3', '4', '5']">
-                    <td>
+                    </div>
+                </div>
+                <div class="pretend_tr" ng-repeat="(key, this) in ['1', '2', '3', '4', '5']">
+                    <div class="pretend_td">
                         <div class="blue_link">CitizenOS test group</div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown disabled">
 
                             <div class="dropdown_selection">
@@ -589,11 +573,14 @@
 
                             </div>
                         </div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
+                        <span class="hide_560">
+                            Users:
+                        </span>
                         41
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
                         <div class="btn_wrap recycle_bin disabled">
                             <div ng-click="app.doShowDeleteTopic()" class="btn">
                                 <div class="table_cell">
@@ -602,9 +589,9 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
@@ -640,32 +627,37 @@
 
         <div class="container_content" ng-if="!app.userList">
 
-            <table>
-                <tr>
-                    <th>
+            <div class="pretend_table">
+                <div class="pretend_tr">
+                    <div ng-if="wWidth <= 560" class="mobile_text pretend_th">
+                        <div class="th_text">
+                            Order by:
+                        </div>
+                    </div>
+                    <div class="pretend_th">
                         <div class="th_text">
                             Profile
                         </div>
-                    </th>
-                    <th>
+                    </div>
+                    <div class="pretend_th">
                         <div class="th_text">
                             Has voted
                         </div>
-                    </th>
-                    <th>
+                    </div>
+                    <div class="pretend_th">
                         <div class="th_text">
                             Rights
                             <div class="sprite sprite-icon-list-ordering2x"></div>
                         </div>
-                    </th>
-                    <th>
+                    </div>
+                    <div class="pretend_th">
                         <div class="th_text">
                             Remove <span>from topic</span>
                         </div>
-                    </th>
-                </tr>
-                <tr ng-repeat="(key, this) in ['1']">
-                    <td>
+                    </div>
+                </div>
+                <div class="pretend_tr" ng-repeat="(key, this) in ['1']">
+                    <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <div class="profile_moon sprite sprite-icon-certified-fb2x"></div>
                             <div class="account_picture">
@@ -686,12 +678,13 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td with_checkmark">
+                        <div class="checkmark_text">Has voted:</div>
                         <div class="sprite sprite-voted-check2x"></div>
-                    </td>
+                    </div>
 
-                    <td>
+                    <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown">
 
                             <div class="dropdown_selection">
@@ -719,8 +712,8 @@
 
                             </div>
                         </div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
                         <div class="btn_wrap recycle_bin" ng-click="app.doShowConfirm()">
                             <div class="btn">
                                 <div class="table_cell">
@@ -729,10 +722,10 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                </tr>
-                <tr ng-repeat="(key, this) in ['1', '2']">
-                    <td>
+                    </div>
+                </div>
+                <div class="pretend_tr" ng-repeat="(key, this) in ['1', '2']">
+                    <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <div class="profile_moon sprite sprite-icon-certified-google2x"></div>
                             <div class="account_picture">
@@ -751,12 +744,13 @@
                                 <div class="via">via Private Group Name</div>
                             </div>
                         </div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td with_checkmark">
+                        <div class="checkmark_text">Has voted:</div>
                         <div class="sprite sprite-voted-check2x"></div>
-                    </td>
+                    </div>
 
-                    <td>
+                    <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown">
 
                             <div class="dropdown_selection">
@@ -784,8 +778,8 @@
 
                             </div>
                         </div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
                         <div class="btn_wrap recycle_bin">
                             <div class="btn">
                                 <div class="table_cell">
@@ -794,10 +788,10 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                </tr>
-                <tr ng-repeat="(key, this) in ['1']">
-                    <td>
+                    </div>
+                </div>
+                <div class="pretend_tr" ng-repeat="(key, this) in ['1']">
+                    <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <div class="profile_moon sprite sprite-icon-certified-id2x"></div>
                             <div class="account_picture">
@@ -815,12 +809,13 @@
                                 <div class="blue_link">Kristian Lember</div>
                             </div>
                         </div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td with_checkmark">
+                        <div class="checkmark_text">Has voted:</div>
                         <div class="sprite sprite-voted-nocheck2x"></div>
-                    </td>
+                    </div>
 
-                    <td>
+                    <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown">
 
                             <div class="dropdown_selection">
@@ -848,8 +843,8 @@
 
                             </div>
                         </div>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="pretend_td">
                         <div class="btn_wrap recycle_bin">
                             <div class="btn">
                                 <div class="table_cell">
@@ -862,9 +857,9 @@
                                 </div>
                             </div>
                         </div>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
 
         </div>
 

@@ -1,13 +1,13 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="full_screen" ng-controller="GroupCreateCtrl">
-    <div id="lightbox" class="date_picker">
+<div id="root_lightbox" class="full_screen">
+    <div id="lightbox" class="date_picker_wrap">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
                     <div class="title">Edit vote deadline for</div>
-                        
+
                     <div class="lightbox_header_description_text">
                         Ettepanek seadusega keelata kõrvklappide kandmine tänaval
                     </div>
@@ -25,14 +25,14 @@
 
 
             </div>
-            
+
             <div class="line lightest_line"></div>
 
 
             <!-- CONFIRM CONTENT -->
             <div id="lightbox_content">
 
-                <div class="lightbox_section date_picker">
+                <div class="lightbox_section picker_content">
 
                     <div class="toggle_widget" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
                         <div class="toggle_circle"></div>

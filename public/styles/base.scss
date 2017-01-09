@@ -16,10 +16,6 @@ body, html {
     -webkit-text-size-adjust: 100%;
 }
 
-body {
-
-}
-
 body.body_fixed, body.ngdialog-open {
     position: fixed !important;
     overflow: initial;
@@ -92,11 +88,11 @@ img {
     border: 0;
 }
 
-table {
+table, .pretend_table {
     width: 100%;
     border-collapse: collapse;
 
-    th {
+    th, .pretend_th {
         font-size: 13px;
         opacity: .7;
         font-weight: $medium;
@@ -121,8 +117,7 @@ table {
 }
 
 .user_list {
-
-    td {
+    td, .pretend_td {
         padding: 5px 0;
         &:nth-child(1) {
             font-size: 14px;
@@ -244,6 +239,27 @@ table {
 }
 
 //Overall button styles and other general items
+
+
+
+.pretend_table {
+    display: table;
+}
+
+.pretend_tr {
+    display: table-row;
+}
+
+.pretend_td, .pretend_th {
+    display: table-cell;
+}
+
+.hide_560 {
+    display: none;
+    @media (max-width: 560px) {
+        display: initial;
+    }
+}
 
 .yes_no_buttons {
     display: table;
@@ -377,6 +393,10 @@ table {
         .search_dropdown_area {
             max-height: 250px;
             overflow-y: auto;
+
+            @include mobile {
+                max-height: 200px;
+            }
 
             .search_dropdown_item {
                 min-height: 30px;
@@ -1058,6 +1078,7 @@ a:link, a:visited {
         display: none;
         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
         padding: 5px 0;
+        margin-bottom: 20px;
 
         .dropdown_item {
             text-align: left;
@@ -1083,7 +1104,13 @@ a:link, a:visited {
             }
 
             .item_category, .item_names_wrap {
-                float: left;
+                display: table-cell;
+                background-color: $white;
+            }
+
+            .item_category {
+                width:1%;
+                white-space:nowrap;
             }
         }
 

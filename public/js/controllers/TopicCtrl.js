@@ -2,36 +2,55 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sTopic', 'sTranslate', function ($scope, $state, $stateParams, $log, $location, sTopic, sTranslate) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$log', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, TopicMemberGroup) {
         $log.debug('TopicCtrl');
 
-        $scope.topic = {
-            id: null,
-            title: null,
-            description: null,
-            status: null,
-            visibility: null,
-            categories: [],
-            hashtag: null,
-            permission: {
-                level: null
-            },
-            padUrl: null
+        $scope.topic = _.find($scope.itemList, {id: $stateParams.topicId});
+
+        $scope.generalInfo = {
+            isVisible: true
         };
 
-        if ($state.current.name === 'topics.view' && $stateParams.id) {
-            sTopic.readUnauth({id: $stateParams.id}).then(function (data) {
-                angular.extend($scope.topic, data);
-                $log.debug('topic.readUnauth', data);
-            });
-        }
-        if ($state.current.name === 'topics.create') {
-            sTopic.create($scope.topic).then(function (data) {
-                $log.debug('TopicCtrl.topic.create', data);
-            }, function (err) {
-                $log.error(err);
-                sTranslate.errorsToKeys(err, 'USER');
-            });
+        $scope.groupList = {
+            isVisible: false,
+            isSearchVisible: false,
+            searchFilter: '',
+            searchOrderBy: {
+                property: 'name'
+            }
+        };
 
-        }
+        $scope.doToggleGroupList = function (topic) {
+            if ($scope.groupList.isVisible) {
+                $scope.groupList.isVisible = false;
+                return;
+            }
+
+            TopicMemberGroup
+                .query({topicId: topic.id}).$promise
+                .then(function (groups) {
+                    topic.members.groups.rows = groups;
+                    topic.members.groups.count = groups.length;
+                    $scope.groupList.isVisible = true;
+                });
+        };
+
+        $scope.doUpdateMemberGroup = function (topic, topicMemberGroup, level) {
+            $log.debug('doUpdateMemberGroup', topic, topicMemberGroup, level);
+
+            if (topicMemberGroup.level !== level) {
+                var oldLevel = topicMemberGroup.level;
+                topicMemberGroup.level = level;
+                topicMemberGroup
+                    .$update({topicId: topic.id})
+                    .then(
+                        angular.noop,
+                        function () {
+                            topicMemberGroup.level = oldLevel;
+                        });
+            }
+        };
+
+        $scope.TopicMemberGroup = TopicMemberGroup;
+
     }]);

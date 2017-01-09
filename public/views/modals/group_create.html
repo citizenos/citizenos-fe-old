@@ -114,13 +114,13 @@
                 <div class="lightbox_section">
                     <div cos-dropdown class="search_with_dropdown">
                         <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchString" search="search(term, 'topic')"
-                                   select="doToggleTopicInGroup(item.id)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
+                                   select="addTopicToGroup(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
                            <div class="search_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-search-gray-2x"></div>
                                 </div>
                             </div>
-                            <div class="search_text" ng-click="doToggleTopicInGroup(item.id)">
+                            <div class="search_text" ng-click="addTopicToGroup(item)">
                                 <div class="table_cell blue_link">
                                     Press enter to add
                                 </div>
@@ -132,7 +132,7 @@
                                             <b>{{topic.title}}</b>
                                         </div>
                                         <div class="table_cell blue_link">
-                                            <span class="submit_link" ng-click="doToggleTopicInGroup(topic.id)">Press enter or click to add</span>
+                                            <span class="submit_link" ng-click="addTopicToGroup(topic)">Press enter or click to add</span>
                                         </div>
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@
 
                                 <div class="btn_wrap recycle_bin white_bg">
                                     <div class="btn">
-                                        <div class="table_cell" ng-click="doToggleTopicInGroup(topic.id)">
+                                        <div class="table_cell" ng-click="removeTopicFromGroup(topic.id)">
                                             <div class="sprite desktop_fix " ng-class="(memberTopics.indexOf(topic) > -1) ? 'sprite-voted-nocheck2x' : 'sprite-voted-check2x'"></div>
                                             <div class="sprite mobile_fix sprite-voted-check2x"></div>
                                         </div>
