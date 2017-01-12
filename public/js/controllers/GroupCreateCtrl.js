@@ -139,12 +139,7 @@ angular
 
         $scope.dOrderTopics = function (property) {
             if($scope.topicList.searchOrderBy.property == property) {
-                if(property.indexOf('-') === 0) {
-                    property = property.replace('-','');
-                }
-                else {
                     property = '-'+property;
-                }
             }
             $scope.topicList.searchOrderBy.property = property;
         }
