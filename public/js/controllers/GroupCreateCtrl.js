@@ -11,6 +11,13 @@ angular
             admin: 3
         }
 
+        $scope.topicList = {
+            searchFilter: '',
+            searchOrderBy: {
+                property: 'title'
+            }
+        };
+
         $scope.group = {
             id: null,
             name: null,
@@ -104,6 +111,7 @@ angular
                 return o.id === topic.id;
             });
             if(!member) {
+                topic.permission.level = 'read';
                 $scope.memberTopics.push(topic);
             }
             $scope.searchStringTopic = null;
@@ -119,35 +127,6 @@ angular
             }
         }
 
-        var direction = 1;
-
-        $scope.doOrderTopics = function (type) {
-            if(type = 'title'){
-                $scope.memberTopics.sort(function (a,b){
-                    if(a.title > b.title){
-                        return 1 *direction;
-                    }
-                    else if(a.title < b.title){
-                        return -1*direction;
-                    }
-                    return 0;
-                });
-            }
-            if(type = 'users'){
-                $scope.memberTopics.sort(function (a,b){
-                    if(a.members.users.count > b.members.users.count){
-                        return 1 *direction;
-                    }
-                    else if(a.members.users.count < b.members.users.count){
-                        return -1*direction;
-                    }
-                    return 0;
-                });
-
-            }
-            direction = direction * -1;
-        }
-
         $scope.doSetGroupTopicLevel = function (topicId, level) {
             _.find($scope.memberTopics, function (o) {
                 if(o.id === topicId){
@@ -155,6 +134,19 @@ angular
                     return true;
                 }
             });
+            console.log($scope.memberTopics);
+        }
+
+        $scope.dOrderTopics = function (property) {
+            if($scope.topicList.searchOrderBy.property == property) {
+                if(property.indexOf('-') === 0) {
+                    property = property.replace('-','');
+                }
+                else {
+                    property = '-'+property;
+                }
+            }
+            $scope.topicList.searchOrderBy.property = property;
         }
 
         $scope.addUserAsMember = function (member) {
@@ -239,6 +231,7 @@ angular
                         topic.groupId = $scope.group.id;
                         topic.topicId = topic.id;
                         topicsCount++;
+                        console.log('TOPIC', topic);
                         var groupMemberTopic = new GroupMemberTopic(topic);
                         savePromises.push(
                             groupMemberTopic.$save()
@@ -248,7 +241,7 @@ angular
                 .then(function () {
                     Promise.all(savePromises)
                             .then(function (response) {
-                                    init();
+                              //      $state.go('my.groups', $scope.group.id);
                                 }, function (err){
                                     $log.error(err);
                                 }
