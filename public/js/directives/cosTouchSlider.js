@@ -168,3 +168,18 @@ angular
                 }
             }
         }]);
+
+
+angular
+    .module('citizenos')
+    .directive('dimensions', ['$swipe', '$rootScope', '$window', '$parse',
+        function ($swipe, $rootScope, $window, $parse) {
+            return {
+            link: function (scope, elem) {
+                $rootScope.tabs_train_width = elem[0].parentElement.offsetWidth;
+                $rootScope.tabs_visible_area_width = elem[0].parentElement.parentElement.parentElement.offsetWidth;
+                console.log($rootScope.tabs_train_width);
+            }
+        }
+    }
+]);
