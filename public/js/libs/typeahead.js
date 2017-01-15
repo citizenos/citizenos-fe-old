@@ -49,6 +49,7 @@ app.directive('typeahead', ["$timeout", function($timeout) {
             this.select = function(item) {
                 $scope.hide = true;
                 $scope.focused = true;
+                $scope.term = null;
                 $scope.select({item:item});
             };
 
@@ -115,13 +116,13 @@ app.directive('typeahead', ["$timeout", function($timeout) {
 
             scope.$watch('focused', function(focused) {
                 if (focused) {
-                    $timeout(function() { $input.focus(); }, 0, false);
+                    $timeout(function() { $input[0].focus(); }, 0, false);
                 }
             });
 
             scope.$watch('isVisible()', function(visible) {
                 if (visible) {
-                    var pos = $input.position();
+                    var pos = $input[0].getBoundingClientRect();
                     var height = $input[0].offsetHeight;
 
                     $list.css({

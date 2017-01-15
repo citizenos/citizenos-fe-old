@@ -112,27 +112,27 @@
             <!-- ADD TOPICS -->
             <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberTopicsCreate'">
                 <div class="lightbox_section">
-                    <div cos-dropdown class="search_with_dropdown">
-                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="filteredTopics.topics" term="topicFilterString" search="filterTopics(term)"
-                                   select="doToggleTopicInGroup(item.id)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
+                    <div cos-dropdown ng-class="{search_with_dropdown : searchResults.topics.length}">
+                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
+                                   select="addTopicToGroup(item)" ng-attr-placeholder="Search for a topic">
                            <div class="search_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-search-gray-2x"></div>
                                 </div>
                             </div>
-                            <div class="search_text" ng-click="doToggleTopicInGroup(item.id)">
+                            <div class="search_text" ng-click="addTopicToGroup(item)">
                                 <div class="table_cell blue_link">
                                     Press enter to add
                                 </div>
                             </div>
-                            <div class="search_area_wrap">
-                                <div class="search_dropdown_area" ng-show="filteredTopics.topics.length">
-                                    <div class="search_dropdown_item" typeahead-item="topic" ng-repeat="topic in filteredTopics.topics">
+                            <div class="search_area_wrap"  ng-show="searchResults.topics.length">
+                                <div class="search_dropdown_area">
+                                    <div class="search_dropdown_item" typeahead-item="topic" ng-repeat="topic in searchResults.topics">
                                         <div class="table_cell search_item_text">
                                             <b>{{topic.title}}</b>
                                         </div>
                                         <div class="table_cell blue_link">
-                                            <span class="submit_link" ng-click="doToggleTopicInGroup(topic.id)">Press enter or click to add</span>
+                                            <span class="submit_link" ng-click="addTopicToGroup(topic)">Press enter or click to add</span>
                                         </div>
                                     </div>
                                 </div>
@@ -142,20 +142,21 @@
                     </div>
                 </div>
                 <div class="lightbox_section double_row_list small_header">
-                    <div class="category_title">
+                    <div class="category_title" ng-show="memberTopics.length">
                         <div class="table_cell">
                             Order by:
-                        <div class="black_link" ng-click="doOrderTopics('title')">
+                        <div class="black_link" ng-click="dOrderTopics('title')">
                             Title A-Z
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'title' || topicList.searchOrderBy.property === '-title'"></div>
                         </div>
-                        <div class="black_link" ng-click="doOrderTopics('users')">
+                        <div class="black_link" ng-click="dOrderTopics('members.users.count')">
                             Users
-                            <div class="sprite sprite-icon-list-ordering2x"></div>
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'members.users.count' || topicList.searchOrderBy.property === '-members.users.count'"></div>
                         </div>
                         </div>
                     </div>
 
-                    <div class="double_row_item" ng-repeat="(key, topic) in topics">
+                    <div class="double_row_item" ng-repeat="topic in memberTopics | orderBy: topicList.searchOrderBy.property">
                         <div class="blue_link">
                             {{topic.title}}
                         </div>
@@ -166,8 +167,8 @@
 
                                 <div class="btn_wrap recycle_bin white_bg">
                                     <div class="btn">
-                                        <div class="table_cell" ng-click="doToggleTopicInGroup(topic.id)">
-                                            <div class="sprite desktop_fix " ng-class="(memberTopics.indexOf(topic) > -1) ? 'sprite-voted-nocheck2x' : 'sprite-voted-check2x'"></div>
+                                        <div class="table_cell" ng-click="removeTopicFromGroup(topic.id)">
+                                            <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                             <div class="sprite mobile_fix sprite-voted-check2x"></div>
                                         </div>
                                     </div>
@@ -216,21 +217,17 @@
                     </div>
 
                     <div class="searchbox_with_icon_and_text only_text">
-                        <div cos-dropdown class="search_with_dropdown">
-                            <typeahead class="auto-complete" items="searchResults.results" term="searchString" search="search(term)"
-                                       select="selectMember(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
+                        <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length}">
+                            <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
+                                       select="addUserAsMember(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
                                 <div class="search_area_wrap">
-                                    <div class="search_dropdown_area" ng-show="searchResults.results.length">
-                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.results">
-                                            <div class="table_cell search_item_text" ng-if="user.type === 'user'">
+                                    <div class="search_dropdown_area" ng-show="searchResults.users.length">
+                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
+                                            <div class="table_cell search_item_text">
                                                 <b>{{user.name}}</b> {{user.company}}
                                             </div>
-                                            <div class="table_cell search_item_text" ng-if="user.type === 'group'">
-                                                <b>{{user.name}}</b> GROUP
-                                            </div>
                                             <div class="table_cell blue_link">
-                                                <span  ng-if="user.type === 'user'" class="submit_link" ng-click="selectMember(user)">Press enter or click to add</span>
-                                                <span ng-if="user.type === 'group'" class="submit_link" ng-click="selectMember(group)">Press enter or click to add</span>
+                                                <span class="submit_link" ng-click="addUserAsMember(user)">Press enter or click to add</span>
                                             </div>
                                         </div>
                                     </div>
@@ -277,7 +274,7 @@
                                     </div>
                                     <div class="name_wrap">
                                         <div class="table_cell">
-                                            <div class="blue_link" ng-click="doRemoveMemberUser(member)">{{member.name}}</div>
+                                            <div class="blue_link" ng-click="doRemoveMemberUser(member.id)">{{member.name}}</div>
                                             <div class="via">{{member.company}}</div>
                                         </div>
                                     </div>
@@ -302,7 +299,7 @@
 
                                                 <div class="dropdown">
                                                     <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                        <div class="item_name" ng-click="doChangeMemberPermissions(key, member.id, level)">
+                                                        <div class="item_name" ng-click="doChangeMemberPermissions(member.id, level)">
                                                             {{level}}
                                                         </div>
                                                     </div>
@@ -342,7 +339,7 @@
 
                                         <div class="dropdown">
                                             <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                <div class="item_name" ng-click="doChangeMemberPermissions(key, member.id, level)">
+                                                <div class="item_name" ng-click="doChangeMemberPermissions(member.id, level)">
                                                     {{level}}
                                                 </div>
                                             </div>

@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCreateCtrl', ['$scope', '$state', '$stateParams', '$log', 'sTopic', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sTopic, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCreateCtrl', ['$scope', '$state', '$stateParams', '$log', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
 
         $scope.levels = {
             none: 0,
@@ -11,28 +11,30 @@ angular
             admin: 3
         }
 
+        $scope.topicList = {
+            searchFilter: '',
+            searchOrderBy: {
+                property: 'title'
+            }
+        };
+
         $scope.group = {
             id: null,
             name: null,
             visibility: null,
             members: {
                 users:[],
-                groups:[],
                 emails:[]
             }
         };
 
-        $scope.topics = [];
-        $scope.filteredTopics = []
         $scope.memberTopics =[];
         $scope.GroupMemberTopic = GroupMemberTopic;
         $scope.GroupMemberUser = GroupMemberUser;
-        $scope.searchString = null;
-        $scope.topicFilterString = null;
 
-        $scope.searchResults = {
-            results : []
-        };
+        $scope.searchResults = {};
+        $scope.searchStringUser = null;
+        $scope.searchStringTopic = null;
         $scope.errors = {
             group: []
         };
@@ -48,22 +50,17 @@ angular
                 visibility: null,
                 members: {
                     users:[],
-                    groups:[],
                     emails:[]
                 }
             };
 
-            $scope.topics = [];
-            $scope.filteredTopics = []
             $scope.memberTopics =[];
             $scope.GroupMemberTopic = GroupMemberTopic;
             $scope.GroupMemberUser = GroupMemberUser;
-            $scope.searchString = null;
-            $scope.topicFilterString = null;
+            $scope.searchStringUser = null;
+            $scope.searchStringTopic = null;
 
-            $scope.searchResults = {
-                results : []
-            };
+            $scope.searchResults = {};
             $scope.errors = {
                 group: []
             };
@@ -71,202 +68,132 @@ angular
 
         init();
 
-        $scope.loadTopics = function () {
-            sTopic.list()
-            .then( function( result ){
-                if (result.data.data.count > 0) {
-                    result.data.data.rows.forEach( function (topic) {
-                        if($scope.levels[topic.permission.level] > $scope.levels.edit) {
-                            $scope.topics.push(topic);
-                            $scope.filteredTopics.topics.push(topic);
-                        }
-                    })
-                }
-            });
-        }
-
-        $scope.loadTopics();
-
-        $scope.filterTopics = function (str) {
-            $scope.filteredTopics.topics = _.filter($scope.topics, function (o) {
-                return o.title.toLowerCase().indexOf(str.toLowerCase()) >  -1;
-            });
-            $scope.topicFilterString = str;
-        }
-
-        $scope.doSetGroupTopicLevel = function (topicId, level) {
-            var topic = _.find($scope.topics, function (o) {
-                return o.id === topicId;
-            });
-            var topicIndexMembers = _.indexOf($scope.memberTopics,topic);
-
-            if(topicIndexMembers > -1) {
-                $scope.memberTopics[topicIndexMembers].permission.level = level;
-            }
-            var topicIndex = _.indexOf($scope.topics,topic);
-            $scope.topics[topicIndex].permission.level = level;
-
-        }
-
-        $scope.doToggleTopicInGroup = function (topicId) {
-            if (topicId) {
-                var topic = _.find($scope.topics, function (o) {
-                    return o.id === topicId;
-                });
-
-                var topicIndex = _.indexOf($scope.memberTopics,topic);
-
-                if (topicIndex >-1) {
-                    $scope.memberTopics.splice(topicIndex ,1);
-                } else {
-                    $scope.memberTopics.push(topic);
-                }
-            }
-        }
-
-        var direction = 1;
-
-        $scope.doOrderTopics = function (type) {
-            if(type = 'title'){
-                $scope.topics.sort(function (a,b){
-                    if(a.title > b.title){
-                        return 1 *direction;
-                    }
-                    else if(a.title < b.title){
-                        return -1*direction;
-                    }
-                    return 0;
-                });
-            }
-            if(type = 'users'){
-                $scope.topics.sort(function (a,b){
-                    if(a.members.users.count > b.members.users.count){
-                        return 1 *direction;
-                    }
-                    else if(a.members.users.count < b.members.users.count){
-                        return -1*direction;
-                    }
-                    return 0;
-                });
-
-            }
-            direction = direction * -1;
-        }
-
-        $scope.search = function (str) {
-            $scope.searchString = str;
+        $scope.search = function (str, type) {
             if (str && str.length >= 2) {
+                include = null;
+                if(type == 'topic'){
+                    include = 'my.topic';
+                }
+                else if(type == 'user'){
+                    include = 'public.user';
+                }
                 sSearch
-                    .search(str)
+                    .searchV2(str, include)
                     .then(function (response) {
-                        $scope.searchResults.results = [];
-                        response.data.data.users.rows.forEach( function (user) {
-                            user.type = 'user';
-                            $scope.searchResults.results.push(user);
-                        });
-                        response.data.data.groups.rows.forEach( function (group) {
-                            group.type = 'group';
-                            $scope.searchResults.results.push(group);
-                        });
+                        $scope.searchResults.users = [];
+                        $scope.searchResults.topics = [];
+                        if(type == 'user'){;
+                            response.data.data.results.public.users.forEach( function (user) {
+                                $scope.searchResults.users.push(user);
+                            });
+                        }
+                        if(type == 'topic'){
+                            response.data.data.results.my.topics.forEach( function (topic) {
+                                $scope.searchResults.topics.push(topic);
+                            });
+                        }
+
                     },
                     function (response) {
                         $log.error('Search failed...', response);
                     });
             } else {
-                $scope.searchResults.results = [];
+                $scope.searchResults.users = [];
+                $scope.searchResults.topics = [];
             }
         };
 
-        $scope.doAddUserAsMember = function (user) {
-            if(_.indexOf($scope.group.members.users,user) > -1) {
-            } else {
-                if(!user.level){
-                    user.level = GroupMemberUser.LEVELS.read;
+        $scope.addTopicToGroup = function (topic) {
+            if(!topic || !topic.id || !topic.title){
+                return false;
+            }
+            var member = _.find($scope.memberTopics, function (o) {
+                return o.id === topic.id;
+            });
+            if(!member) {
+                topic.permission.level = 'read';
+                $scope.memberTopics.push(topic);
+            }
+            $scope.searchStringTopic = null;
+            $scope.searchResults.topics = [];
+        }
+
+        $scope.removeTopicFromGroup = function (topicId) {
+            for(var i = 0; i < $scope.memberTopics.length; i++){
+                if($scope.memberTopics[i].id === topicId) {
+                   $scope.memberTopics.splice(i, 1);
+                   i = $scope.memberTopics.length;
                 }
-                $scope.group.members.users.push(user);
             }
         }
 
-        $scope.doAddGroupAsMember = function (group) {
-            if(_.indexOf($scope.group.members.groups,group) > -1) {
-            } else {
-                $scope.group.members.groups.push(group);
-            }
+        $scope.doSetGroupTopicLevel = function (topicId, level) {
+            _.find($scope.memberTopics, function (o) {
+                if(o.id === topicId){
+                    o.permission.level = level;
+                    return true;
+                }
+            });
+            console.log($scope.memberTopics);
         }
 
-        $scope.selectMember = function (member) {
+        $scope.dOrderTopics = function (property) {
+            if($scope.topicList.searchOrderBy.property == property) {
+                    property = '-'+property;
+            }
+            $scope.topicList.searchOrderBy.property = property;
+        }
+
+        $scope.addUserAsMember = function (member) {
             if (member) {
                 if (_.find($scope.group.members.users, {userId: member.id})) {
                     // Ignore duplicates
                     return;
-                } else if( member.type=='user' ){
+                } else {
                     var memberClone = angular.copy(member);
                     memberClone.userId = member.id;
                     memberClone.level = GroupMemberUser.LEVELS.read;
 
                     $scope.group.members.users.push(memberClone);
                     $scope.group.members.users.count = $scope.group.members.users.length;
-                } else if( member.type=='group' ){
-                    var memberClone = angular.copy(member);
-                    memberClone.groupId = member.id;
-                    delete memberClone.id;
-                    $scope.group.members.groups.push(memberClone);
-                    $scope.group.members.groups.count = $scope.group.members.groups.length;
+                    $scope.searchResults.users = [];
                 }
             } else {
                 // Assume e-mail was entered.
-                if (validator.isEmail($scope.searchString)) {
+                if (validator.isEmail($scope.searchStringUser)) {
                     // Ignore duplicates
-                    if (!_.find($scope.searchResults.results, {userId: $scope.searchString})) {
+                    if (!_.find($scope.searchResults.results, {userId: $scope.searchStringUser})) {
                         $scope.group.members.users.push({
-                            userId: $scope.searchString,
-                            name: $scope.searchString,
+                            userId: $scope.searchStringUser,
+                            name: $scope.searchStringUser,
                             level: GroupMemberUser.LEVELS.read
                         });
                         $scope.group.members.users.count = $scope.group.members.users.length;
+                        $scope.searchResults.users = [];
                     }
                 } else {
-                    $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchString);
+                    $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchStringUser);
                 }
             }
-            $scope.searchString = null;
+            $scope.searchStringUser = null;
+            $scope.searchResults.topics = [];
         };
-        $scope.doRemoveMemberUser = function (user_id) {
+        $scope.doRemoveMemberUser = function (userId) {
             for(var i = 0; i < $scope.group.members.users.length; i++){
-                if($scope.group.members.users[i].id === user_id) {
+                if($scope.group.members.users[i].id === userId) {
                    $scope.group.members.users.splice(i, 1);
                    i = $scope.group.members.users.length;
                 }
             }
         }
 
-        $scope.doRemoveMemberGroup = function (group_id) {
-            for(var i = 0; i < $scope.group.members.groups.length; i++){
-                if($scope.group.members.groups[i].id === group_id) {
-                   $scope.group.members.groups.splice(i, 1);
-                   i = $scope.group.members.groups.length;
+        $scope.doChangeMemberPermissions = function (memberId, level) {
+            for(var i = 0; i < $scope.group.members.users.length; i++){
+                if($scope.group.members.users[i].id === memberId){
+                    $scope.group.members.users[i].level = level;
+                    i = $scope.group.members.users.length;
                 }
             }
-        }
-
-        $scope.doChangeMemberPermissions = function (type, member_id, level) {
-            if(type === 'users' || type === 'emails'){
-                for(var i = 0; i < $scope.group.members.users.length; i++){
-                    if($scope.group.members.users[i].id === member_id){
-                        $scope.group.members.users[i].level = level;
-                        i = $scope.group.members.users.length;
-                    }
-                }
-            }
-            else if(type === 'groups'){
-                for(var i = 0; i < $scope.group.members.groups.length; i++){
-                    if($scope.group.members.groups[i].id === member_id){
-                        $scope.group.members.groups[i].level = level;
-                        i = $scope.group.members.groups.length;
-                    }
-                }
-            }
-
         }
 
         $scope.doSaveGroup = function () {
@@ -299,6 +226,7 @@ angular
                         topic.groupId = $scope.group.id;
                         topic.topicId = topic.id;
                         topicsCount++;
+                        console.log('TOPIC', topic);
                         var groupMemberTopic = new GroupMemberTopic(topic);
                         savePromises.push(
                             groupMemberTopic.$save()
@@ -308,7 +236,7 @@ angular
                 .then(function () {
                     Promise.all(savePromises)
                             .then(function (response) {
-                                    init();
+                              //      $state.go('my.groups', $scope.group.id);
                                 }, function (err){
                                     $log.error(err);
                                 }
