@@ -57,16 +57,21 @@
         <div class="tabs_wrap_wrap">
 
             <div class="tabs_wrap">
-                <div class="tabs_visible_area">
-                    <div class="arrow left" ng-if="tabs_train_width > tabs_visible_area_width">
-                        <div class="sprite sprite-icon-arrow-topic-tab2x"></div>
+                <div class="tabs_visible_area" ng-controller="buttonsSlider">
+                    <div ng-if="trainPosition <= -tab_length+70"  class="arrow_btn" ng-click="moveLeft()" ng-if="tabs_train_width > tabs_visible_area_width">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-arrow-topic-tab2x"></div>
+                        </div>
+                    </div>
+                    <div ng-if="trainPosition >= -tabs_train_width+tabs_visible_area_width" class="arrow_btn right" ng-click="moveRight()" ng-if="tabs_train_width > tabs_visible_area_width">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-arrow-right-topic-tab2x"></div>
+                        </div>
                     </div>
                     <div class="tabs_rails">
-                        <div class="tabs_train">
-                            <div class="tab" ng-class="i == 4 ? 'selected' : ''" ng-repeat="i in [1,2,3,4,5,6,7,8]" dimensions>
+                        <div class="tabs_train" ng-style="{'margin-left' : trainPosition + 'px'}">
+                            <div class="tab" ng-class="i == 4 ? 'selected' : ''" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" dimensions>
                                 <div class="table_cell">
-                                    {{tabs_train_width}}
-                                    {{tabs_visible_area_width}}
                                     Version {{i}}
                                 </div>
                             </div>

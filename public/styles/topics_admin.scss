@@ -98,6 +98,45 @@
             display: table;
             width: 100%;
 
+            .arrow_btn {
+                position: absolute;
+                background: linear-gradient(90deg, rgba(246, 246, 246, 100%) 72.5%, rgba(246, 246, 246, 0%) 100%);
+                height: inherit;
+                width: 70px;
+                z-index: 2;
+                border-bottom: 1px solid $lightest_gray;
+                display: table;
+                box-sizing: border-box;
+                cursor: pointer;
+                .sprite {
+                    margin-left: 4px;
+                }
+                &:hover {
+                    .sprite {
+                        margin-left: 0;
+                        @extend .sprite-icon-arrow-topic-tab2x-hover;
+                    }   
+                }
+                
+            }
+
+            .arrow_btn.right {
+                right: 0;
+                background: linear-gradient(90deg, rgba(246, 246, 246, 0%) 0, rgba(246, 246, 246, 100%) 28.5%);
+                left: auto;
+                .sprite {
+                    margin-left: auto;
+                    margin-right: 4px;
+                }
+                &:hover {
+                    .sprite {
+                        margin-left: auto;
+                        margin-right: 0;
+                        @extend .sprite-icon-arrow-right-topic-tab2x-hover;
+                    }   
+                }
+            }
+
             .fake_cell {
                 display: table-cell;
                 min-width: 310px;
@@ -123,6 +162,8 @@
                         .tabs_train {
                             height: inherit;
                             float: left;
+                            position: absolute;
+                            transition: all 450ms cubic-bezier(.45,.78,0,1);
                             .tab {
                                 display: table;
                                 height: inherit;

@@ -172,14 +172,46 @@ angular
 
 angular
     .module('citizenos')
-    .directive('dimensions', ['$swipe', '$rootScope', '$window', '$parse',
-        function ($swipe, $rootScope, $window, $parse) {
+    .directive('dimensions', ['$timeout', '$rootScope',
+        function ($timeout, $rootScope) {
             return {
-            link: function (scope, elem) {
-                $rootScope.tabs_train_width = elem[0].parentElement.offsetWidth;
-                $rootScope.tabs_visible_area_width = elem[0].parentElement.parentElement.parentElement.offsetWidth;
-                console.log($rootScope.tabs_train_width);
-            }
+            
+                link: function (scope, elem) {
+                        $timeout(function () {
+                            $rootScope.tabs_train_width = elem[0].parentElement.offsetWidth;
+                            $rootScope.tab_length = elem[0].offsetWidth;
+                            $rootScope.tabs_visible_area_width = elem[0].parentElement.parentElement.parentElement.offsetWidth;
+                            
+                            if ($rootScope.tabs_train_width > $rootScope.tabs_visible_area_width) {
+                                $rootScope.trainPosition = -$rootScope.tabs_train_width+$rootScope.tabs_visible_area_width-70;
+                            }
+                        }, 0);
+                }
+
         }
     }
 ]);
+
+
+angular
+    .module('citizenos')
+    .controller('buttonsSlider', ['$scope', '$rootScope', function ($scope, $rootScope) {
+
+
+        $scope.moveLeft = function() {
+            if ($scope.trainPosition < -$scope.tab_length) {
+                $scope.trainPosition += $scope.tab_length;
+            } else {
+                $scope.trainPosition = 70;
+            }
+        }
+
+        $scope.moveRight = function() {
+            if ($scope.trainPosition > -$scope.tabs_train_width+$scope.tabs_visible_area_width) {
+                $scope.trainPosition -= $scope.tab_length;
+            } else {
+                $scope.trainPosition = $scope.trainPosition = -$scope.tabs_train_width+$scope.tabs_visible_area_width-70;
+            }
+        }
+ 
+    }]);

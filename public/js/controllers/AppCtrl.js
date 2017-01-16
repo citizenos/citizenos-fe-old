@@ -98,6 +98,7 @@ angular
                 scope: $scope
             });
         };
+        
 
 
         $scope.app.doShowSetNumber = function () {

@@ -20,6 +20,7 @@ angular
             '/views/default/nav.html',
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
+            '/views/layouts/main.html',
             '/views/modals/add_topics.html',
             '/views/modals/confirm.html',
             '/views/modals/date_picker.html',
@@ -42,7 +43,6 @@ angular
             '/views/modals/topic_member_user_delete_confirm.html',
             '/views/modals/topic_member_user_leave_confirm.html',
             '/views/modals/topic_vote_sign.html',
-            '/views/layouts/main.html',
         ];
         var i = 0;
         if (templates.length) {
