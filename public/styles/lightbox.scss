@@ -381,7 +381,21 @@
     #lightbox.confirm_lightbox {
 
         #lightbox_wrap {
+
             #lightbox_header {
+                height: auto;
+                #lightbox_close {
+                    height: 54px;
+                }
+                .confirm_description_wrap {
+                    display: table-row;
+                    .confirm_description {
+                        padding: 0 20px 20px 20px;
+                    }
+                }
+            }
+
+            #lightbox_header.profile_circle_on {
                 padding-bottom: 43px;
 
                 #lightbox_header_text {
@@ -413,6 +427,11 @@
                     }
                 }
 
+            }
+
+            #lightbox_content {
+                position: relative !important;
+                top: 0 !important;
             }
         }
     }

@@ -19,6 +19,8 @@ $light_gray: #F6F6F6;
 $lightest_gray: #e5e5e5;
 $smooth_gray: #979797;
 $another_gray: #d8d8d8;
+$timeline_gray: #cfcfcf;
+$side_panel_gray: #ececec;
 
 $light: 300;
 $medium: 400;
@@ -106,6 +108,10 @@ $aqua_marine_border_second: #28d4a0;
     background: $aqua_marine;
 }
 
+.timeline_gray_background {
+    background: $timeline_gray;
+}
+
 .orange_background {
     background: $orange;
 }
@@ -116,6 +122,14 @@ $aqua_marine_border_second: #28d4a0;
 
 .yellow_background {
     background: $yellow;
+}
+
+.light_gray_background {
+    background: $light_gray;
+}
+
+.favorite_yellow_background {
+    background: $favorite_yellow;
 }
 
 .red_background {

@@ -761,14 +761,14 @@ a:link, a:visited {
 .tooltip {
     background: $transparent_black;
     position: absolute;
-    padding: 5px 10px 8px;
+    padding: 10px 10px 11px;
     color: $white;
-    width: 380px;
+    width: 150px;
     border-radius: 4px;
-    font-size: 13px;
-    bottom: 120%;
-    text-align: left;
-    margin-left: -349px;
+    font-size: 14px;
+    bottom: 108%;
+    text-align: center;
+    margin-left: -90px;
     box-sizing: border-box;
     visibility: hidden;
     z-index: 1;
@@ -777,8 +777,7 @@ a:link, a:visited {
         content: "";
         position: absolute;
         top: 100%;
-        right: 12px;
-        margin-left: -4px;
+        margin-left: -35px;
         border-width: 4px;
         border-style: solid;
         border-color: $transparent_black transparent transparent transparent;
