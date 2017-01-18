@@ -40,6 +40,12 @@ angular
                 save: {
                     method: 'POST',
                     url: sLocation.getAbsoluteUrlApi('/api/users/self/groups'),
+                    transformRequest: function (data) {
+                        var requestObject = {};
+                        requestObject.name = data.name;
+                        requestObject.visibility = data.visibility;
+                        return angular.toJson(requestObject);
+                    },
                     transformResponse: function (data) {
                         return angular.fromJson(data).data;
                     }
