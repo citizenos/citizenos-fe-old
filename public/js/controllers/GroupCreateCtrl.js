@@ -21,7 +21,7 @@ angular
         $scope.group = {
             id: null,
             name: null,
-            visibility: null,
+            visibility: Group.VISIBILITY.private,
             members: {
                 users:[],
                 emails:[]
@@ -47,7 +47,7 @@ angular
             $scope.group = {
                 id: null,
                 name: null,
-                visibility: null,
+                visibility: Group.VISIBILITY.private,
                 members: {
                     users:[],
                     emails:[]
@@ -55,6 +55,7 @@ angular
             };
 
             $scope.memberTopics =[];
+            $scope.Group = Group;
             $scope.GroupMemberTopic = GroupMemberTopic;
             $scope.GroupMemberUser = GroupMemberUser;
             $scope.searchStringUser = null;
@@ -68,14 +69,23 @@ angular
 
         init();
 
+        $scope.doSetGroupVisibility = function (visibility) {
+            if(visibility == Group.VISIBILITY.private){
+                $scope.group.visibility = Group.VISIBILITY.public;
+            }
+            else{
+                $scope.group.visibility = Group.VISIBILITY.private;
+            }
+        }
         $scope.search = function (str, type) {
             if (str && str.length >= 2) {
-                include = null;
+                var include = null;
                 if(type == 'topic'){
                     include = 'my.topic';
                 }
                 else if(type == 'user'){
                     include = 'public.user';
+                    $scope.searchStringUser = str;
                 }
                 sSearch
                     .searchV2(str, include)
@@ -134,10 +144,9 @@ angular
                     return true;
                 }
             });
-            console.log($scope.memberTopics);
         }
 
-        $scope.dOrderTopics = function (property) {
+        $scope.doOrderTopics = function (property) {
             if($scope.topicList.searchOrderBy.property == property) {
                     property = '-'+property;
             }
@@ -209,25 +218,28 @@ angular
                 .then(function (data) {
                     angular.extend($scope.group, data);
 
-                    var usersCount = 0;
-                    var topicsCount = 0;
                     angular.extend($scope.group.members.users, $scope.group.members.emails);
 
-                    $scope.group.members.users.forEach(function (member, key) {
-                        usersCount++;
-                        member.groupId = $scope.group.id;
-                        var groupMember = new GroupMemberUser(member);
+                    $scope.group.members.users.forEach(function (user, key) {
+                        var member = {
+                            groupId : $scope.group.id,
+                            level: user.level,
+                            userId:user.userId,
+                            id:user.userId
+                        }
+                        var groupMemberUser = new GroupMemberUser(member);
                         savePromises.push(
-                            groupMember.$save()
+                            groupMemberUser.$save()
                         )
                     });
 
                     $scope.memberTopics.forEach(function (topic, key) {
-                        topic.groupId = $scope.group.id;
-                        topic.topicId = topic.id;
-                        topicsCount++;
-                        console.log('TOPIC', topic);
-                        var groupMemberTopic = new GroupMemberTopic(topic);
+                        var member = {
+                            groupId:$scope.group.id,
+                            id:topic.id,
+                            level: topic.permission.level
+                        }
+                        var groupMemberTopic = new GroupMemberTopic(member);
                         savePromises.push(
                             groupMemberTopic.$save()
                         )
@@ -236,7 +248,7 @@ angular
                 .then(function () {
                     Promise.all(savePromises)
                             .then(function (response) {
-                              //      $state.go('my.groups', $scope.group.id);
+                                    $state.go('my.groups', $scope.group.id);
                                 }, function (err){
                                     $log.error(err);
                                 }
