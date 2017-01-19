@@ -59,7 +59,6 @@ angular
                     /* Start touch-drag code */
                     $swipe.bind(element, {
                         'start': function (coords) {
-
                             /* Get mouse starting coordinates */
                             startX = coords.x;
                             /* Get target element starting position */
@@ -97,6 +96,7 @@ angular
                         'move': function (coords) {
 
                             /* Only do start draggin motion if window width is at lower than defined variable in DOM */
+                            
                             if (scope.startSlideAt >= $rootScope.wWidth) {
                                 /* Get delta by subtracting mouse drag start coordinates by current live mouse coordinates */
                                 var delta = coords.x - startX;
@@ -183,7 +183,7 @@ angular
                             $rootScope.tabs_visible_area_width = elem[0].parentElement.parentElement.parentElement.offsetWidth;
                             
                             if ($rootScope.tabs_train_width > $rootScope.tabs_visible_area_width) {
-                                $rootScope.trainPosition = -$rootScope.tabs_train_width+$rootScope.tabs_visible_area_width-70;
+                                $rootScope.trainPosition = -$rootScope.tabs_train_width+$rootScope.tabs_visible_area_width-10;
                             }
                         }, 0);
                 }
@@ -202,15 +202,17 @@ angular
             if ($scope.trainPosition < -$scope.tab_length) {
                 $scope.trainPosition += $scope.tab_length;
             } else {
-                $scope.trainPosition = 70;
+                $scope.trainPosition = 0;
             }
         }
 
         $scope.moveRight = function() {
-            if ($scope.trainPosition > -$scope.tabs_train_width+$scope.tabs_visible_area_width) {
+            if ($scope.trainPosition > -$scope.tabs_train_width+$scope.tabs_visible_area_width-10) {
                 $scope.trainPosition -= $scope.tab_length;
-            } else {
-                $scope.trainPosition = $scope.trainPosition = -$scope.tabs_train_width+$scope.tabs_visible_area_width-70;
+            } 
+            
+            if ($scope.trainPosition < -$scope.tabs_train_width+$scope.tabs_visible_area_width-10) {
+                $scope.trainPosition = -$scope.tabs_train_width+$scope.tabs_visible_area_width-10;    
             }
         }
  
