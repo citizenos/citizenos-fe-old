@@ -102,10 +102,15 @@ angular
                 topicMemberGroup
                     .$update({topicId: topic.id})
                     .then(
-                        angular.noop,
+                        function () {
+                            if ($scope.userList.isVisible) { // Reload User list when Group permissions change as User permissions may also change
+                                loadTopicMemberUserList(topic);
+                            }
+                        },
                         function () {
                             topicMemberGroup.level = oldLevel;
-                        });
+                        }
+                    );
             }
         };
 
