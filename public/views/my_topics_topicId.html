@@ -377,6 +377,9 @@
                         <div class="name_wrap">
                             <div class="table_cell">
                                 <div>{{user.name}}</div>
+                                <div class="via" ng-if="user.groups.rows.length">
+                                    via <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><div class="blue_link" ui-sref="my.groups.groupId({groupId: group.id})">{{group.name}} ({{group.level}})</div></span>
+                                </div>
                             </div>
                         </div>
                     </div>
