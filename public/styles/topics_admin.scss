@@ -115,7 +115,7 @@
                     .sprite {
                         margin-left: 0;
                         @extend .sprite-icon-arrow-topic-tab2x-hover;
-                    }   
+                    }
                 }
                 
             }
@@ -140,6 +140,9 @@
             .fake_cell {
                 display: table-cell;
                 min-width: 310px;
+                @include tablet {
+                    display: none;
+                }
             }
 
             .tabs_wrap {
@@ -149,6 +152,10 @@
                 width: 70%;
                 padding-left: 60px;
                 box-sizing: border-box;
+                @include tablet {
+                    width: 100%;
+                    padding-left: 0;
+                }
                 .tabs_visible_area { 
                     height: inherit;
                     position: relative;
@@ -164,6 +171,9 @@
                             float: left;
                             position: absolute;
                             transition: all 450ms cubic-bezier(.45,.78,0,1);
+                            @include tablet {
+                                transition: none;
+                            }
                             .tab {
                                 display: table;
                                 height: inherit;
@@ -217,6 +227,9 @@
                 box-sizing: border-box;
                 display: table-cell;
                 width: 70%;
+                @include tablet {
+                    width: 100%;
+                }
                 .iframe_content {
                     background: $disabled_blue;
                 }
@@ -228,6 +241,10 @@
                 min-width: 250px;
                 background: $side_panel_gray;
                 padding: 30px 30px 10px 30px;
+                @include tablet {
+                    width: 100%;
+                    display: none;
+                }
                 .options_wrap {
                     width: 100%;
                     font-size: 14px;
@@ -266,6 +283,9 @@
         right: 0;
         background: $side_panel_gray;
         z-index: 1;
+        @include tablet {
+            display: none;
+        }
     }
     
 }
