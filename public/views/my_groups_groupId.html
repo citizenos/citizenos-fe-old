@@ -209,12 +209,13 @@
     <div class="info_container group_list" id="topic_list">
         <div class="container_header">
             <div class="header_text">
-                Topic list ({{group.topics.count}}) |
+                Topic list ({{group.topics.count}})
+                |
                 <div class="blue_link" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible">search</div>
                 |
                 <div class="blue_link">add</div>
             </div>
-            <div class="minimize_container" ng-click="doToggleMemberTopicList(group)">
+            <div class="minimize_container" ng-if="group.topics.count" ng-click="doToggleMemberTopicList(group)">
                 <div ng-class="!topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>

@@ -79,7 +79,7 @@ angular
                 },
                 loadData: function () {
                     Group
-                        .query().$promise
+                        .query({include: ['member.topic']}).$promise
                         .then(function (groups) {
                             $scope.itemList = groups;
                         });

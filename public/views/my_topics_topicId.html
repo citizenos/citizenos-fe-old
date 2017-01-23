@@ -223,7 +223,7 @@
                 |
                 <div class="blue_link">add</div>
             </div>
-            <div class="minimize_container" ng-click="doToggleMemberGroupList(topic)">
+            <div class="minimize_container" ng-if="topic.members.groups.count" ng-click="doToggleMemberGroupList(topic)">
                 <div ng-class="!groupList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
