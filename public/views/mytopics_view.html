@@ -790,7 +790,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="(key, this) in ['1']">
+                <div class="pretend_tr" ng-repeat="(key, this) in ['1', '2']">
                     <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <div class="profile_moon sprite sprite-icon-certified-id2x"></div>
@@ -798,7 +798,7 @@
                                 <!--<img src=".././imgs/profile.jpg">-->
                                 <div class="profile_image_filler">
                                     <div class="table_cell">
-                                        ML
+                                        KL
                                     </div>
                                     <div class="profile_circle"></div>
                                 </div>
@@ -806,7 +806,7 @@
                         </div>
                         <div class="name_wrap">
                             <div class="table_cell">
-                                <div class="blue_link">Kristian Lember</div>
+                                <div class="blue_link">Kristian Lember {{$index}}</div>
                             </div>
                         </div>
                     </div>
@@ -845,7 +845,7 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <div class="btn_wrap recycle_bin">
+                        <div class="btn_wrap recycle_bin" ng-class="$odd ? 'disabled' : ''">
                             <div class="btn">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>

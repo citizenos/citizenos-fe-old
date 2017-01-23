@@ -377,7 +377,7 @@
                         <div class="name_wrap">
                             <div class="table_cell">
                                 <div>{{user.name}}</div>
-                                <div class="via" ng-if="user.groups.rows.length">
+                                <div class="via" ng-if="user.groups.rows.length && !user.levelUser">
                                     via <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span class="blue_link" ui-sref="my.groups.groupId({groupId: group.id})">{{group.name}} ({{group.level}})</span></span>
                                 </div>
                             </div>
@@ -408,11 +408,14 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(topic, user)" cos-disabled="!topic.canUpdate()">
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(topic, user)" cos-disabled="!topic.canUpdate() || !user.levelUser">
                             <div class="btn">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                     <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                    <div class="tooltip" ng-if="!user.levelUser">
+                                        Permission via Group, remove User from the Group or override the permissions selecting appropriate value from the dropdown.
+                                    </div>
                                 </div>
                             </div>
                         </div>
