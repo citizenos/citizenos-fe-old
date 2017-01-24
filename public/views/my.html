@@ -1,110 +1,178 @@
-<div id="topics_root" ng-controller="MyCtrl">
+<div ng-controller="MyCtrl" style="height: 100%;">
+    <div id="topics_root" ng-if="!itemListIsLoading && itemList.length">
 
-    <div class="v_line separator absolute_separator" ng-show="wWidth > 750"></div>
+        <div class="v_line separator absolute_separator" ng-show="wWidth > 750"></div>
 
-    <div id="topics_wrap">
+        <div id="topics_wrap">
 
-        <!-- LEFT SIDE -->
-        <div class="topics_left" ng-hide="wWidth <= 750 && (('my.groups.groupId' | isState) || ('my.topics.topicId' | isState))">
+            <!-- LEFT SIDE -->
+            <div class="topics_left" ng-hide="wWidth <= 750 && (('my.groups.groupId' | isState) || ('my.topics.topicId' | isState))">
 
-            <div cos-dropdown class="classic_dropdown">
+                <div cos-dropdown class="classic_dropdown">
 
-                <div class="dropdown_selection">
-                    <div class="dropdown_text">
-                        {{filters.selected.name}}
+                    <div class="dropdown_selection">
+                        <div class="dropdown_text">
+                            {{filters.selected.name}}
+                        </div>
+
+                        <div class="arrow_holder">
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                <div class="v_line"></div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="arrow_holder">
-                        <div class="table_cell">
-                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+                    <div class="dropdown">
 
-                            <div class="v_line"></div>
+                        <div class="dropdown_item" ng-repeat="item in filters.items">
+                            <div ng-if="item.children">
+                                <div class="item_category">
+                                    {{item.name}}
+                                </div>
+                                <div class="item_names_wrap">
+                                    <div ng-repeat="child in item.children" class="item_name" ng-click="child.onSelect(item)" ng-class="child === filters.selected ? 'bold' : ''">
+                                        {{child.name}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-if="!item.children">
+                                <div class="item_name" ng-click="item.onSelect()" ng-class="item === filters.selected ? 'bold' : ''">
+                                    {{item.name}}
+                                </div>
+                            </div>
+
+                            <div class="clearer"></div>
                         </div>
+
                     </div>
                 </div>
 
-                <div class="dropdown">
-
-                    <div class="dropdown_item" ng-repeat="item in filters.items">
-                        <div ng-if="item.children">
-                            <div class="item_category">
-                                {{item.name}}
-                            </div>
-                            <div class="item_names_wrap">
-                                <div ng-repeat="child in item.children" class="item_name" ng-click="child.onSelect(item)" ng-class="child === filters.selected ? 'bold' : ''">
-                                    {{child.name}}
+                <div ng-repeat="item in itemList"><!-- item can be Topic or a Group -->
+                    <!-- Group -->
+                    <div ng-if="isGroup(item)" class="container_header bold" ui-sref-active="active">
+                        <div class="header_img_wrap">
+                            <img ng-if="item.imageUrl" ng-src="{{item.imageUrl}}">
+                            <div ng-if="!item.imageUrl" class="group_circle small">
+                                <div class="table_cell" cos-initials="item.name | limitTo: 1">
+                                    C
                                 </div>
                             </div>
                         </div>
-
-                        <div ng-if="!item.children">
-                            <div class="item_name" ng-click="item.onSelect()" ng-class="item === filters.selected ? 'bold' : ''">
-                                {{item.name}}
-                            </div>
+                        <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id})">
+                            {{item.name}} ({{item.topics.count}})
                         </div>
-
-                        <div class="clearer"></div>
+                        <div class="minimize_container" ng-if="item.topics.count" ng-click="doToggleGroupTopicList(item)">
+                            <div ng-class="!item.topics.rows ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                        </div>
                     </div>
 
+                    <!-- Topic -->
+                    <div ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
+                        <div class="small_topic_header">
+                            <div class="small_topic_left_cont">
+                                <div class="small_topic_icon">
+                                    <div class="sprite" ng-class="'sprite-mytopics-icon-' + (item.status | lowercase) + '2x'"></div>
+                                </div>
+                                <div class="small_topic_small_text">{{item.status}}</div>
+                            </div>
+
+                            <div class="small_topic_right_cont">
+                                <div class="small_topic_icon">
+                                    <div class="sprite sprite-menu-icon-groups2x-dark"></div>
+                                </div>
+                                <div class="small_topic_small_text">{{item.members.groups.count}} groups</div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+
+                        <div class="small_topic_title">
+                            {{item.title}}<span class="lock_icon_wrap" ng-show="item.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
+                        </div>
+
+                        <div class="line lightest_line"></div>
+
+                        <div class="small_topic_footer">
+                            <div class="small_topic_right_cont">
+                                <div class="small_topic_small_text">{{(item.updatedAt || item.createdAt) | amDateFormat : 'L LT'}}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div ng-repeat="item in itemList"><!-- item can be Topic or a Group -->
-                <!-- Group -->
-                <div ng-if="isGroup(item)" class="container_header bold" ui-sref-active="active">
-                    <div class="header_img_wrap">
-                        <img ng-if="item.imageUrl" ng-src="{{item.imageUrl}}">
-                        <div ng-if="!item.imageUrl" class="group_circle small">
-                            <div class="table_cell" cos-initials="item.name | limitTo: 1">
-                                C
-                            </div>
+            <!-- RIGHT SIDE -->
+            <div ui-view></div>
+
+            <div class="clearer"></div>
+        </div>
+    </div>
+
+    <!-- No results -->
+    <div class="table" ng-if="!itemListIsLoading && !itemList.length">
+        <!-- No Groups view -->
+        <div class="v_align_cell" ng-if="'my.groups' | isState">
+            <div class="title_area">
+                <h1>
+                    You are not yet part of a group. It's highschool all over again!
+                </h1>
+                <h2>
+                    At least you still have us to help you by
+                </h2>
+            </div>
+
+            <div class="button_area">
+
+                <div class="big_button" ui-sref="groups.create">
+                    <div class="button_cell">
+                        <div class="icon_nudge">
+                            <div class="sprite sprite-icon-creategroup2x"></div>
                         </div>
-                    </div>
-                    <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id})">
-                        {{item.name}} ({{item.topics.count}})
-                    </div>
-                    <div class="minimize_container" ng-if="item.topics.count" ng-click="doToggleGroupTopicList(item)">
-                        <div ng-class="!item.topics.rows ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                        <div class="topic_text">Creating<br> a new group</div>
                     </div>
                 </div>
 
-                <!-- Topic -->
-                <div ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
-                    <div class="small_topic_header">
-                        <div class="small_topic_left_cont">
-                            <div class="small_topic_icon">
-                                <div class="sprite" ng-class="'sprite-mytopics-icon-' + (item.status | lowercase) + '2x'"></div>
-                            </div>
-                            <div class="small_topic_small_text">{{item.status}}</div>
-                        </div>
-
-                        <div class="small_topic_right_cont">
-                            <div class="small_topic_icon">
-                                <div class="sprite sprite-menu-icon-groups2x-dark"></div>
-                            </div>
-                            <div class="small_topic_small_text">{{item.members.groups.count}} groups</div>
-                        </div>
-                        <div class="clearer"></div>
+                <!--div class="big_button">
+                    <div class="button_cell">
+                        <div class="sprite sprite-icon-joingroup2x"></div>
+                        <div class="topic_text">Joining a public<br>group</div>
                     </div>
+                </div-->
 
-                    <div class="small_topic_title">
-                        {{item.title}}<span class="lock_icon_wrap" ng-show="item.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
-                    </div>
-
-                    <div class="line lightest_line"></div>
-
-                    <div class="small_topic_footer">
-                        <div class="small_topic_right_cont">
-                            <div class="small_topic_small_text">{{(item.updatedAt || item.createdAt) | amDateFormat : 'L LT'}}</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+        <!-- No Topics view -->
+        <div class="v_align_cell" ng-if="'my.topics' | isState">
+            <div class="title_area">
+                <h1>
+                    You have not participated in a topic yet. Try it, it’s really cool!
+                </h1>
+                <h2>
+                    You can get involved by
+                </h2>
+            </div>
 
-        <!-- RIGHT SIDE -->
-        <div ui-view></div>
+            <div class="button_area">
 
-        <div class="clearer"></div>
+                <div class="big_button" ui-sref="topics.create">
+                    <div class="button_cell">
+                        <div class="icon_nudge">
+                            <div class="sprite sprite-x2-mytopics-icon-newtopic-big2x"></div>
+                        </div>
+                        <div class="topic_text">Creating<br> a new topic</div>
+                    </div>
+                </div>
+
+                <!--div class="big_button">
+                    <div class="button_cell">
+                        <div class="sprite sprite-x1-mytopics-icon-discuss-big2x"></div>
+                        <div class="topic_text">Actively<br> joining a topic</div>
+                    </div>
+                </div-->
+
+            </div>
+        </div>
     </div>
 </div>

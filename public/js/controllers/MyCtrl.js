@@ -2,10 +2,11 @@
 
 angular
     .module('citizenos')
-    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', 'sAuth', 'Group', 'Topic', 'GroupMemberTopic', function ($rootScope, $scope, $state, $stateParams, $log, sAuth, Group, Topic, GroupMemberTopic) {
+    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', 'sAuth', 'Group', 'Topic', 'GroupMemberTopic', function ($rootScope, $scope, $state, $stateParams, $q, $log, sAuth, Group, Topic, GroupMemberTopic) {
         $log.debug('MyCtrl', $stateParams);
 
         $scope.itemList = []; // Contains Groups and Topics
+        $scope.itemListIsLoading = true;
 
         // All the Topic filters in the dropdown
         var filters = [
@@ -16,11 +17,8 @@ angular
                     $state.go('my.topics', {filter: this.id});
                 },
                 loadData: function () {
-                    Topic
-                        .query().$promise
-                        .then(function (topics) {
-                            $scope.itemList = topics;
-                        });
+                    return Topic
+                        .query().$promise;
                 }
             },
             {
@@ -33,11 +31,8 @@ angular
                             $state.go('my.topics', {filter: this.id});
                         },
                         loadData: function () {
-                            Topic
-                                .query({visibility: Topic.VISIBILITY.public}).$promise
-                                .then(function (topics) {
-                                    $scope.itemList = topics;
-                                });
+                            return Topic
+                                .query({visibility: Topic.VISIBILITY.public}).$promise;
                         }
                     },
                     {
@@ -47,11 +42,8 @@ angular
                             $state.go('my.topics', {filter: this.id});
                         },
                         loadData: function () {
-                            Topic
-                                .query({visibility: Topic.VISIBILITY.private}).$promise
-                                .then(function (topics) {
-                                    $scope.itemList = topics;
-                                });
+                            return Topic
+                                .query({visibility: Topic.VISIBILITY.private}).$promise;
                         }
                     },
                     {
@@ -61,11 +53,8 @@ angular
                             $state.go('my.topics', {filter: this.id});
                         },
                         loadData: function () {
-                            Topic
-                                .query({creatorId: sAuth.user.id}).$promise
-                                .then(function (topics) {
-                                    $scope.itemList = topics;
-                                });
+                            return Topic
+                                .query({creatorId: sAuth.user.id}).$promise;
                         }
 
                     }
@@ -78,11 +67,8 @@ angular
                     $state.go('my.groups', {filter: this.id});
                 },
                 loadData: function () {
-                    Group
-                        .query({include: ['member.topic']}).$promise
-                        .then(function (groups) {
-                            $scope.itemList = groups;
-                        });
+                    return Group
+                        .query({include: ['member.topic']}).$promise;
                 }
             }
         ];
@@ -94,7 +80,14 @@ angular
         };
 
         var init = function () {
-            $scope.filters.selected.loadData();
+            $scope.filters.selected
+                .loadData()
+                .then(
+                    function (itemList) {
+                        $scope.itemList = itemList;
+                        $scope.itemListIsLoading = false;
+                    }
+                );
         };
         init();
 
