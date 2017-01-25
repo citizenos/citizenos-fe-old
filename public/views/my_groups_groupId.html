@@ -50,7 +50,7 @@
                         </div>
                         <div class="item_content">
                             <div class="item_text">
-                                {{group.members.count}}
+                                {{group.members.users.count}}
                             </div>
                             <div class="v_line"></div>
                             <div class="item_link blue_link" ng-click="doShowMemberUserList(group)">
@@ -72,7 +72,7 @@
                         </div>
                         <div class="item_content">
                             <div class="item_text">
-                                {{group.topics.count}}
+                                {{group.members.topics.count}}
                             </div>
                             <div class="v_line"></div>
                             <div class="item_link blue_link" ng-click="doShowMemberTopicList(group)">
@@ -104,13 +104,13 @@
                 <!-- COLUMN 2 -->
                 <div class="content_column">
 
-                    <div class="content_item" ng-if="group.topics.latest">
+                    <div class="content_item" ng-if="group.members.topics.latest">
                         <div class="item_description">
                             Latest
                         </div>
                         <div class="item_content">
                             <div class="item_text">
-                                {{group.topics.latest.title}}
+                                {{group.members.topics.latest.title}}
                                 <div class="float_left">
                                     <div class="v_line bold"></div>
                                     <div class="item_link blue_link bold" ui-sref="topics.view({topicId: group.topics.latest.id})">
@@ -209,13 +209,13 @@
     <div class="info_container group_list" id="topic_list">
         <div class="container_header">
             <div class="header_text">
-                Topic list ({{group.topics.count}})
+                Topic list ({{group.members.topics.count}})
                 |
                 <div class="blue_link" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible">search</div>
                 |
                 <div class="blue_link">add</div>
             </div>
-            <div class="minimize_container" ng-if="group.topics.count" ng-click="doToggleMemberTopicList(group)">
+            <div class="minimize_container" ng-if="group.members.topics.count" ng-click="doToggleMemberTopicList(group)">
                 <div ng-class="!topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -259,7 +259,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="topic in group.topics.rows | filter: topicList.searchFilter | orderBy: topicList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="topic in group.members.topics.rows | filter: topicList.searchFilter | orderBy: topicList.searchOrderBy.property">
                     <div class="pretend_td">
                         <div class="blue_link">{{topic.title}}</div>
                     </div>
@@ -309,7 +309,7 @@
     <div class="info_container group_list user_list" id="user_list">
         <div class="container_header">
             <div class="header_text">
-                User list ({{group.members.count}}) |
+                User list ({{group.members.users.count}}) |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible">search</div>
                 |
                 <div class="blue_link">invite</div>
@@ -352,7 +352,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="user in group.members.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="user in group.members.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
                     <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->

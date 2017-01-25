@@ -50,11 +50,11 @@ angular
         };
 
         TopicMemberGroup.prototype.canUpdate = function () {
-            return this.permission.level === TopicMemberGroup.LEVELS.admin;
+            return this.permission.level === TopicMemberGroup.LEVELS.admin; // User level for the Group
         };
 
         TopicMemberGroup.prototype.canDelete = function () {
-            return this.permission.level === TopicMemberGroup.LEVELS.admin;
+            return this.permission.level === TopicMemberGroup.LEVELS.admin; // User level for the Group
         };
 
         return TopicMemberGroup;

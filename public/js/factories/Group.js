@@ -12,8 +12,8 @@ angular
                         if (status < 400) { // FIXME: think this error handling through....
                             var array = angular.fromJson(data).data.rows || [];
                             array.forEach(function (group) { // TODO: FIX THE API - group.topics should return topics[] with 1 Topic in it.
-                                if (group.topics && group.topics.latest) {
-                                    group.topics.latest = new Topic(group.topics.latest);
+                                if (group.members.topics && group.members.topics.latest) {
+                                    group.members.topics.latest = new Topic(group.members.topics.latest);
                                 }
                             });
                             return array;
