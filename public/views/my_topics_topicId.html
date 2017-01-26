@@ -136,7 +136,7 @@
                             Topic actions
                         </div>
                         <div class="item_content">
-                            <div class="item_text blue_link">
+                            <div class="item_text blue_link" ui-sref="topics.view({topicId: topic.id})">
                                 view
                             </div>
                             <div class="v_line bold"></div>
@@ -269,7 +269,7 @@
                 </div>
                 <div class="pretend_tr" ng-repeat="group in topic.members.groups.rows | filter: groupList.searchFilter | orderBy: groupList.searchOrderBy.property">
                     <div class="pretend_td">
-                        <div class="blue_link" ng-if="group.permission.level" ui-sref="my.groups.groupId({groupId: group.id})"  ui-sref-opts="{reload: true}">{{group.name}}</div>
+                        <div class="blue_link" ng-if="group.permission.level" ui-sref="my.groups.groupId({groupId: group.id})" ui-sref-opts="{reload: true}">{{group.name}}</div>
                         <div ng-if="!group.permission.level" class="disabled">&lt;Inaccessible Group&gt;</div>
                     </div>
                     <div class="pretend_td">
