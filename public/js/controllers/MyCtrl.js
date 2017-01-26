@@ -68,7 +68,7 @@ angular
                 },
                 loadData: function () {
                     return Group
-                        .query({include: ['member.topic']}).$promise;
+                        .query().$promise;
                 }
             }
         ];
@@ -117,12 +117,12 @@ angular
 
         $scope.doToggleGroupTopicList = function (group) {
             var groupIndex = _.indexOf($scope.itemList, group);
-            if (!group.topics.rows) { // Not expanded
+            if (!group.members.topics.rows) { // Not expanded
                 GroupMemberTopic
                     .query({groupId: group.id}).$promise
                     .then(function (topics) {
-                        group.topics.rows = topics;
-                        group.topics.count = topics.length;
+                        group.members.topics.rows = topics;
+                        group.members.topics.count = topics.length;
                         $scope.itemList = $scope.itemList.slice(0, groupIndex + 1).concat(topics, $scope.itemList.slice(groupIndex + 1));
                     });
             } else {
@@ -141,7 +141,7 @@ angular
                 }
 
                 $scope.itemList = $scope.itemList.slice(0, indexStart).concat($scope.itemList.slice(lastIndex));
-                delete group.topics.rows;
+                delete group.members.topics.rows;
             }
         };
 

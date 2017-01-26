@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Citizen OS is an e-decisionmaking platform for communities.",
   "homepage": "https://citizenos.com",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "main": "index.js",
   "repository": {
     "type": "git",

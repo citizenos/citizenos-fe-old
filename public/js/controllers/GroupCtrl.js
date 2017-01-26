@@ -52,8 +52,8 @@ angular
                 GroupMemberTopic
                     .query({groupId: group.id}).$promise
                     .then(function (topics) {
-                        group.topics.rows = topics;
-                        group.topics.count = topics.length;
+                        group.members.topics.rows = topics;
+                        group.members.topics.count = topics.length;
                         $scope.topicList.isVisible = true;
                         $scope.app.scrollToAnchor('topic_list');
                     });
@@ -98,8 +98,8 @@ angular
                     groupMemberTopic
                         .$delete({groupId: group.id})
                         .then(function () {
-                            group.topics.rows.splice(index, 1);
-                            group.topics.count = group.topics.rows.length;
+                            group.members.topics.rows.splice(index, 1);
+                            group.members.topics.count = group.topics.rows.length;
                         });
                 }, angular.noop);
         };
@@ -111,8 +111,8 @@ angular
                 GroupMemberUser
                     .query({groupId: group.id}).$promise
                     .then(function (users) {
-                        group.members.rows = users;
-                        group.members.count = users.length;
+                        group.members.users.rows = users;
+                        group.members.users.count = users.length;
                         $scope.userList.isVisible = true;
                         $scope.app.scrollToAnchor('user_list');
                     });
@@ -155,8 +155,8 @@ angular
                     groupMemberUser
                         .$delete({groupId: group.id})
                         .then(function () {
-                            group.members.rows.splice(group.members.rows.indexOf(groupMemberUser), 1);
-                            group.members.count = group.members.rows.length;
+                            group.members.users.rows.splice(group.members.rows.indexOf(groupMemberUser), 1);
+                            group.members.users.count = group.members.rows.length;
                         }, function (res) {
                             $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, res.data.status.message);
                         });

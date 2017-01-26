@@ -62,10 +62,10 @@
                             </div>
                         </div>
                         <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id})">
-                            {{item.name}} ({{item.topics.count}})
+                            {{item.name}} ({{item.members.topics.count}})
                         </div>
-                        <div class="minimize_container" ng-if="item.topics.count" ng-click="doToggleGroupTopicList(item)">
-                            <div ng-class="!item.topics.rows ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                        <div class="minimize_container" ng-if="item.members.topics.count" ng-click="doToggleGroupTopicList(item)">
+                            <div ng-class="!item.members.topics.rows ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                         </div>
                     </div>
 
