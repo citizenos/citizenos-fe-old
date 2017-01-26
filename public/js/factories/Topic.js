@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .factory('Topic', ['$log', '$resource', 'sLocation', 'TopicMemberUser', function ($log, $resource, sLocation, TopicMemberUser) {
+    .factory('Topic', ['$log', '$resource', 'sLocation', 'TopicMemberUser', 'TopicVote', function ($log, $resource, sLocation, TopicMemberUser, TopicVote) {
         $log.debug('citizenos.factory.Topic');
 
         var Topic = $resource(
@@ -11,7 +11,13 @@ angular
                     isArray: true,
                     transformResponse: function (data) {
                         if (status < 400) { // FIXME: think this error handling through....
-                            return angular.fromJson(data).data.rows;
+                            var array = angular.fromJson(data).data.rows || [];
+                            array.forEach(function (topic) {
+                                if (topic.vote && topic.vote.id) {
+                                    topic.vote = new TopicVote(topic.vote);
+                                }
+                            });
+                            return array;
                         } else {
                             return angular.fromJson(data);
                         }
