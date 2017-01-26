@@ -11,7 +11,7 @@ app.directive('typeahead', ["$timeout", function($timeout) {
         restrict: 'E',
         transclude: true,
         replace: true,
-        template: '<div><div ng-show="label" class="ac-label">{{label}}</div><div class="ac-input"><input ng-model="term" ng-change="query()" type="text" autocomplete="off" placeholder="{{placeholder}}" /></div><div ng-transclude></div></div>',
+        template: '<div><div ng-show="label" class="ac-label">{{label}}</div><div class="ac-input"><input ng-model="term" ng-change="query()" ng-model-options="{debounce:250}" ng-keydown="cancel()" type="text" autocomplete="off" placeholder="{{placeholder}}" /></div><div ng-transclude></div></div>',
         scope: {
             search: "&",
             select: "&",
@@ -20,7 +20,7 @@ app.directive('typeahead', ["$timeout", function($timeout) {
             placeholder: "@",
             label: "@"
         },
-        controller: ["$scope", function($scope) {
+        controller: ["$scope", "$http", function($scope, $http) {
             $scope.items = [];
             $scope.hide = false;
 
@@ -50,6 +50,7 @@ app.directive('typeahead', ["$timeout", function($timeout) {
                 $scope.hide = true;
                 $scope.focused = true;
                 $scope.term = null;
+                $scope.items = [];
                 $scope.select({item:item});
             };
 
@@ -60,6 +61,14 @@ app.directive('typeahead', ["$timeout", function($timeout) {
             $scope.query = function() {
                 $scope.hide = false;
                 $scope.search({term:$scope.term});
+            }
+
+            $scope.cancel = function() {
+                angular.forEach($http.pendingRequests, function(request) {
+                    if (request.timeoutPromise && request.timeout) {;
+                        request.timeoutPromise.resolve();
+                    }
+                });
             }
         }],
 

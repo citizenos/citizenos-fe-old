@@ -111,7 +111,7 @@
             <!-- ADD TOPICS -->
             <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberTopicsCreate'">
                 <div class="lightbox_section">
-                    <div cos-dropdown ng-class="{search_with_dropdown : searchResults.topics.length}">
+                    <div cos-dropdown ng-class="{search_with_dropdown : searchResults.topics.length, dropdown_active : searchResults.topics.length}">
                         <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
                                    select="addTopicToGroup(item)" ng-attr-placeholder="Search for a topic">
                            <div class="search_icon">
@@ -216,7 +216,7 @@
                     </div>
 
                     <div class="searchbox_with_icon_and_text only_text">
-                        <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length}">
+                        <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length, dropdown_active : searchResults.users.length}">
                             <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
                                        select="addUserAsMember(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
                                 <div class="search_area_wrap">

@@ -10,8 +10,10 @@ angular
         };
 
         sSearch.searchV2 = function (str, include, limit, page) {
-            $log.debug('sSearch.search()', str);
+            $log.debug('sSearch.searchV2()', str);
             var params = {str:str};
+            var path = sLocation.getAbsoluteUrlApi('/api/v2/search');
+            var timeoutPromise = $q.defer();
             if (include) {
                 if(!Array.isArray(include)) {
                     include = [include];
@@ -24,8 +26,8 @@ angular
             if(page){
                 params.page = page;
             }
-            var path = sLocation.getAbsoluteUrlApi('/api/v2/search');
-            return $http.get(path, {params: params});
+
+            return $http.get(path, {timeout: timeoutPromise.promise, timeoutPromise: timeoutPromise, params: params});
         };
 
     }]);
