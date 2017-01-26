@@ -215,7 +215,7 @@
     </div-->
 
     <!-- CURRENT VOTE RESULTS -->
-    <div class="info_container vote_results" ng-if="topic.vote">
+    <div class="info_container vote_results" ng-if="topic.vote.id">
 
         <div class="container_header">
             <div class="header_text">
@@ -239,7 +239,6 @@
                             Results
                         </div>
 
-                        <!-- ng-repeat -->
                         <div ng-repeat-start="voteOption in topic.vote.options.rows | orderBy: 'voteCount'"></div>
 
                         <div class="line lightest_line" ng-if="!$first"></div>
@@ -254,7 +253,6 @@
                         <div class="clearer"></div>
 
                         <div ng-repeat-end></div>
-                        <!-- /ng-repeat -->
 
                     </div>
 
@@ -273,10 +271,10 @@
                             <div class="item_text">
                                 {{voteResults.countTotal}}
                             </div>
-                            <div class="v_line"></div>
+                            <!--div class="v_line"></div>
                             <div class="item_link blue_link">
                                 view who voted TODO!
-                            </div>
+                            </div-->
                         </div>
                         <div class="clearer"></div>
                     </div>

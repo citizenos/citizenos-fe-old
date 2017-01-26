@@ -13,7 +13,7 @@ angular
                         if (status < 400) { // FIXME: think this error handling through....
                             var array = angular.fromJson(data).data.rows || [];
                             array.forEach(function (topic) {
-                                if (topic.vote) {
+                                if (topic.vote && topic.vote.id) {
                                     topic.vote = new TopicVote(topic.vote);
                                 }
                             });
