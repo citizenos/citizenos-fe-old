@@ -2,13 +2,17 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', 'ngDialog', 'sAuth', 'TopicMemberGroup', 'TopicMemberUser', function ($scope, $state, $stateParams, $timeout, $q, $log, ngDialog, sAuth, TopicMemberGroup, TopicMemberUser) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', 'ngDialog', 'sAuth', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', function ($scope, $state, $stateParams, $timeout, $q, $log, ngDialog, sAuth, TopicMemberGroup, TopicMemberUser, TopicVote) {
         $log.debug('TopicCtrl');
 
         $scope.topic = _.find($scope.itemList, {id: $stateParams.topicId});
 
         $scope.generalInfo = {
             isVisible: true
+        };
+
+        $scope.voteResults = {
+            isVisible: false
         };
 
         $scope.groupList = {
@@ -66,6 +70,26 @@ angular
                             }
                         });
                 });
+        };
+
+        $scope.doShowVoteResults = function (topic) {
+            if (!$scope.voteResults.isVisible) {
+                topic.vote
+                    .$get({topicId: topic.id})
+                    .then(function (topicVote) {
+                        topic.vote = topicVote;
+                        $log.debug('TOPIC', topic, 'VOTE', topicVote);
+                        $scope.voteResults.isVisible = true;
+                    });
+            }
+        };
+
+        $scope.doToggleVoteResults = function (topic) {
+            if ($scope.voteResults.isVisible) {
+                $scope.voteResults.isVisible = false;
+            } else {
+                $scope.doShowVoteResults(topic);
+            }
         };
 
         $scope.TopicMemberGroup = TopicMemberGroup;

@@ -214,6 +214,117 @@
 
     </div-->
 
+    <!-- CURRENT VOTE RESULTS -->
+    <div class="info_container vote_results" ng-if="topic.vote">
+
+        <div class="container_header">
+            <div class="header_text">
+                Current vote results
+            </div>
+            <div class="minimize_container" ng-click="doToggleVoteResults(topic)">
+                <div ng-class="!voteResults.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+            </div>
+        </div>
+
+        <div class="container_content" ng-if="voteResults.isVisible">
+
+
+            <div class="content_bottom">
+
+                <!-- COLUMN 1 -->
+                <div class="content_column">
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Results
+                        </div>
+
+                        <!-- ng-repeat -->
+                        <div ng-repeat-start="voteOption in topic.vote.options.rows"></div>
+
+                        <div class="line lightest_line" ng-if="!$first"></div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                {{voteOption.value}}
+                            </div>
+                            <div class="item_text">
+                                {{voteOption.voteCount || 0}}
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+
+                        <div ng-repeat-end></div>
+                        <!-- /ng-repeat -->
+
+                    </div>
+
+                </div>
+
+
+                <!-- COLUMN 2 -->
+                <div class="content_column">
+
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Votes counted
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                26
+                            </div>
+                            <div class="v_line"></div>
+                            <div class="item_link blue_link">
+                                view who voted
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                    <div class="content_item">
+
+                        <div class="item_description">
+                            Votes needed
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                1000
+                            </div>
+                            <div class="v_line"></div>
+                            <div class="item_link blue_link" ng-click="app.doShowSetNumber()">
+                                edit
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Vote deadline
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                12.08.2016
+                            </div>
+                            <div class="v_line"></div>
+                            <div class="item_link blue_link">
+                                edit
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
     <!-- TOPIC LIST -->
     <div class="info_container group_list" id="group_list">
         <div class="container_header">
