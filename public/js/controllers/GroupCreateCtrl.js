@@ -105,7 +105,11 @@ angular
 
                     },
                     function (response) {
-                        $log.error('Search failed...', response);
+                        if(response.config.timeout && response.config.timeoutPromise) {
+                            $log.info('Search canceled', response);
+                        } else {
+                            $log.error('Search failed...', response);
+                        }
                     });
             } else {
                 $scope.searchResults.users = [];
@@ -114,6 +118,8 @@ angular
         };
 
         $scope.addTopicToGroup = function (topic) {
+            $scope.searchStringTopic = null;
+            $scope.searchResults.topics = [];
             if(!topic || !topic.id || !topic.title){
                 return false;
             }
@@ -124,8 +130,6 @@ angular
                 topic.permission.level = 'read';
                 $scope.memberTopics.push(topic);
             }
-            $scope.searchStringTopic = null;
-            $scope.searchResults.topics = [];
         }
 
         $scope.removeTopicFromGroup = function (topicId) {
@@ -157,6 +161,8 @@ angular
             if (member) {
                 if (_.find($scope.group.members.users, {userId: member.id})) {
                     // Ignore duplicates
+                    $scope.searchStringUser = null;
+                    $scope.searchResults.topics = [];
                     return;
                 } else {
                     var memberClone = angular.copy(member);
@@ -184,8 +190,6 @@ angular
                     $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchStringUser);
                 }
             }
-            $scope.searchStringUser = null;
-            $scope.searchResults.topics = [];
         };
         $scope.doRemoveMemberUser = function (userId) {
             for(var i = 0; i < $scope.group.members.users.length; i++){
