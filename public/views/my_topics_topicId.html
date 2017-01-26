@@ -240,7 +240,7 @@
                         </div>
 
                         <!-- ng-repeat -->
-                        <div ng-repeat-start="voteOption in topic.vote.options.rows"></div>
+                        <div ng-repeat-start="voteOption in topic.vote.options.rows | orderBy: 'voteCount'"></div>
 
                         <div class="line lightest_line" ng-if="!$first"></div>
                         <div class="item_content">
@@ -271,28 +271,11 @@
                         </div>
                         <div class="item_content">
                             <div class="item_text">
-                                26
+                                {{voteResults.countTotal}}
                             </div>
                             <div class="v_line"></div>
                             <div class="item_link blue_link">
-                                view who voted
-                            </div>
-                        </div>
-                        <div class="clearer"></div>
-                    </div>
-
-                    <div class="content_item">
-
-                        <div class="item_description">
-                            Votes needed
-                        </div>
-                        <div class="item_content">
-                            <div class="item_text">
-                                1000
-                            </div>
-                            <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="app.doShowSetNumber()">
-                                edit
+                                view who voted TODO!
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -303,12 +286,15 @@
                             Vote deadline
                         </div>
                         <div class="item_content">
-                            <div class="item_text">
-                                12.08.2016
+                            <div class="item_text" ng-if="topic.vote.endsAt">
+                                {{topic.vote.endsAt | amDateFormat : 'L'}}
+                            </div>
+                            <div class="item_text" ng-if="!topic.vote.endsAt">
+                                none
                             </div>
                             <div class="v_line"></div>
                             <div class="item_link blue_link">
-                                edit
+                                edit TODO!
                             </div>
                         </div>
                         <div class="clearer"></div>

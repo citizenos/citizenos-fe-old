@@ -12,7 +12,8 @@ angular
         };
 
         $scope.voteResults = {
-            isVisible: false
+            isVisible: false,
+            countTotal: 0
         };
 
         $scope.groupList = {
@@ -78,7 +79,11 @@ angular
                     .$get({topicId: topic.id})
                     .then(function (topicVote) {
                         topic.vote = topicVote;
-                        $log.debug('TOPIC', topic, 'VOTE', topicVote);
+                        var voteCount = 0;
+                        topicVote.options.rows.forEach(function (voteOption) {
+                            voteCount += voteOption.voteCount || 0;
+                        });
+                        $scope.voteResults.countTotal = voteCount;
                         $scope.voteResults.isVisible = true;
                     });
             }
