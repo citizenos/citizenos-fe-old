@@ -1,12 +1,14 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="full_screen" ng-controller="GroupCreateCtrl">
-    <div id="lightbox" class="wide_lightbox">
+<div id="root_lightbox" class="full_screen" ng-controller="GroupCreateSettingsCtrl">
+    <div id="lightbox" class="wide_lightbox" ng-class="group.id ? 'with_title_description' : ''">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title">Create a group</div>
+                    <div class="title" ng-if="!form.group.id">Create a group</div>
+                    <div class="title" ng-if="form.group.id">Edit group</div>
+                    <div class="title_description" ng-if="group.id">{{group.name}}</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -63,8 +65,8 @@
                     <div class="input_description">
                         Insert a name for your group that is clear and understandable for people.
                     </div>
-                    <input id="group.name" placeholder="Group name" ng-model="group.name" ng-class="{'error_input': errors.group.name}">
-                    <label for="group.name" class="error_label" ng-if="errors.group.name">
+                    <input id="groupName" placeholder="Group name" ng-model="form.group.name" ng-class="{'error_input': errors.form.group.name}">
+                    <label for="groupName" class="error_label" ng-if="errors.from.group.name">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-inputfield-error2x"></div>
                             <span>No group name</span>
@@ -74,37 +76,37 @@
 
                 <div class="line lightest_line mobile_only"></div>
 
-               <!-- <div class="lightbox_section">
-                    <div class="content_inside_wrap">
-                        Upload group avatar
-                        <div class="gray_button">
-                            Choose a file
-                        </div>
-                        <div class="clearer"></div>
-                    </div>
-                </div>
+                <!-- <div class="lightbox_section">
+                     <div class="content_inside_wrap">
+                         Upload group avatar
+                         <div class="gray_button">
+                             Choose a file
+                         </div>
+                         <div class="clearer"></div>
+                     </div>
+                 </div>
 
-                <div class="line lightest_line mobile_only"></div>
+                 <div class="line lightest_line mobile_only"></div>
 
-                <div class="lightbox_section">
+                 <div class="lightbox_section">
 
-                    <div class="content_inside_footer">
-                        Make your group private (only invited users can see it)
-                        <div class="toggle_wrap">
-                            <div class="toggle_widget text_on relative" ng-click="doSetGroupVisibility(group.visibility)" ng-class="{no: (group.visibility === Group.VISIBILITY.private), yes: (group.visibility === Group.VISIBILITY.public)}">
-                                <div class="toggle_circle"></div>
-                                <div class="toggle_text text_no">
-                                    <div class="table_cell">NO</div>
-                                </div>
-                                <div class="toggle_text text_yes">
-                                    <div class="table_cell">YES</div>
-                                </div>
-                            </div>
-                        </div>
+                     <div class="content_inside_footer">
+                         Make your group private (only invited users can see it)
+                         <div class="toggle_wrap">
+                             <div class="toggle_widget text_on relative" ng-click="doSetGroupVisibility(group.visibility)" ng-class="{no: (group.visibility === Group.VISIBILITY.private), yes: (group.visibility === Group.VISIBILITY.public)}">
+                                 <div class="toggle_circle"></div>
+                                 <div class="toggle_text text_no">
+                                     <div class="table_cell">NO</div>
+                                 </div>
+                                 <div class="toggle_text text_yes">
+                                     <div class="table_cell">YES</div>
+                                 </div>
+                             </div>
+                         </div>
 
-                        <div class="clearer"></div>
-                    </div>
-                </div>-->
+                         <div class="clearer"></div>
+                     </div>
+                 </div>-->
             </div>
 
             <!-- ADD TOPICS -->
@@ -113,7 +115,7 @@
                     <div cos-dropdown ng-class="{search_with_dropdown : searchResults.topics.length, dropdown_active : searchResults.topics.length}">
                         <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
                                    select="addTopicToGroup(item)" ng-attr-placeholder="Search for a topic">
-                           <div class="search_icon">
+                            <div class="search_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-search-gray-2x"></div>
                                 </div>
@@ -123,7 +125,7 @@
                                     Press enter to add
                                 </div>
                             </div>
-                            <div class="search_area_wrap"  ng-show="searchResults.topics.length">
+                            <div class="search_area_wrap" ng-show="searchResults.topics.length">
                                 <div class="search_dropdown_area">
                                     <div class="search_dropdown_item" typeahead-item="topic" ng-repeat="topic in searchResults.topics">
                                         <div class="table_cell search_item_text">
@@ -143,14 +145,17 @@
                     <div class="category_title" ng-show="memberTopics.length">
                         <div class="table_cell">
                             Order by:
-                        <div class="black_link" ng-click="doOrderTopics('title')">
-                            Title A-Z
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'title' || topicList.searchOrderBy.property === '-title'" ng-class="{desc : topicList.searchOrderBy.property === '-title'}"></div>
-                        </div>
-                        <div class="black_link" ng-click="doOrderTopics('members.users.count')">
-                            Users
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'members.users.count' || topicList.searchOrderBy.property === '-members.users.count'" ng-class="{desc : topicList.searchOrderBy.property === '-members.users.count'}"></div>
-                        </div>
+                            <div class="black_link" ng-click="doOrderTopics('title')">
+                                Title A-Z
+                                <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'title' || topicList.searchOrderBy.property === '-title'"
+                                     ng-class="{desc : topicList.searchOrderBy.property === '-title'}"></div>
+                            </div>
+                            <div class="black_link" ng-click="doOrderTopics('members.users.count')">
+                                Users
+                                <div class="sprite sprite-icon-list-ordering2x"
+                                     ng-if="topicList.searchOrderBy.property === 'members.users.count' || topicList.searchOrderBy.property === '-members.users.count'"
+                                     ng-class="{desc : topicList.searchOrderBy.property === '-members.users.count'}"></div>
+                            </div>
                         </div>
                     </div>
 
@@ -310,7 +315,7 @@
                                             <div class="btn_wrap recycle_bin white_bg">
                                                 <div class="btn">
                                                     <div class="table_cell">
-                                                        <div class="sprite sprite-mytopics-icon-deletetopic2x" ></div>
+                                                        <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -346,7 +351,7 @@
                                 </td>
                                 <td>
                                     <div class="btn_wrap recycle_bin white_bg">
-                                        <div class="btn"  ng-click="doRemoveMemberUser(member)">
+                                        <div class="btn" ng-click="doRemoveMemberUser(member)">
                                             <div class="table_cell">
                                                 <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                                 <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>

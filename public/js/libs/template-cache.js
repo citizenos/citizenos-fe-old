@@ -25,7 +25,7 @@ angular
             '/views/modals/confirm.html',
             '/views/modals/cosOverlay.html',
             '/views/modals/date_picker.html',
-            '/views/modals/group_create.html',
+            '/views/modals/group_create_settings.html',
             '/views/modals/group_delete_confirm.html',
             '/views/modals/group_member_topic_delete_confirm.html',
             '/views/modals/group_member_user_delete_confirm.html',

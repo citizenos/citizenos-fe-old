@@ -2,9 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCreateCtrl', ['$scope', '$state', '$stateParams', '$log', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
-        $log.debug('GroupCreateCtrl');
-
+    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
         $scope.levels = {
             none: 0,
             read: 1,
@@ -40,17 +38,14 @@ angular
         var init = function () {
             // Group creation
             if (!$stateParams.groupId) {
-                $scope.group = {
+                $scope.form.group = new Group({
                     id: null,
                     name: null,
                     visibility: Group.VISIBILITY.private
-                };
-            } else { // Group settings
-                Group
-                    .get({groupId: $stateParams.groupId}).$promise
-                    .then(function (group) {
-                        $scope.group = group;
-                    });
+                });
+            } else {
+                // Create a copy of parent scopes Group, so that while modifying we don't change parent state
+                $scope.form.group = angular.copy($scope.group);
             }
 
             $scope.memberTopics = [];
@@ -69,10 +64,10 @@ angular
 
         $scope.doSetGroupVisibility = function (visibility) {
             if (visibility == Group.VISIBILITY.private) {
-                $scope.group.visibility = Group.VISIBILITY.public;
+                $scope.form.group.visibility = Group.VISIBILITY.public;
             }
             else {
-                $scope.group.visibility = Group.VISIBILITY.private;
+                $scope.form.group.visibility = Group.VISIBILITY.private;
             }
         };
 
@@ -206,7 +201,7 @@ angular
         };
 
         $scope.doSaveGroup = function () {
-            if (!$scope.group.name) {
+            if (!$scope.form.group.name) {
                 $scope.errors.group.name = true;
                 $scope.tabSelected = 'settings';
                 return;
@@ -214,20 +209,20 @@ angular
             $scope.errors.group = [];
 
             var groupSavePromise;
-            if (!$scope.group.id) {
-                groupSavePromise = new Group($scope.group).$save();
+            if (!$scope.form.group.id) {
+                groupSavePromise = $scope.form.group.$save();
             } else {
-                groupSavePromise = $scope.group.$update();
+                groupSavePromise = $scope.form.group.$update();
             }
 
             var savePromises = [];
             groupSavePromise
                 .then(function (data) {
-                    angular.extend($scope.group, data);
+                    angular.extend($scope.form.group, data);
 
                     $scope.members.users.concat($scope.members.emails).forEach(function (user) {
                         var member = {
-                            groupId: $scope.group.id,
+                            groupId: $scope.form.group.id,
                             level: user.level,
                             userId: user.userId
                         };
@@ -239,7 +234,7 @@ angular
 
                     $scope.memberTopics.forEach(function (topic, key) {
                         var member = {
-                            groupId: $scope.group.id,
+                            groupId: $scope.form.group.id,
                             id: topic.id,
                             level: topic.permission.level
                         };

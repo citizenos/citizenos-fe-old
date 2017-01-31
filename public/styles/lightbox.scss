@@ -35,7 +35,7 @@
             top: 112px !important;
         }
     }
-    
+
     /* INPUT AREA */
 
     .input_text_margin_bottom {
@@ -97,7 +97,7 @@
 
                 #lightbox_header_text {
                     padding-bottom: 9px;
-                    @media (max-width: 560px) {  
+                    @media (max-width: 560px) {
                         float: left;
                     }
 
@@ -115,7 +115,7 @@
                             width: 100%;
                         }
                     }
-                    
+
                     .lightbox_header_description_text {
                         font-weight: $medium;
                         @media (max-width: 560px) {
@@ -139,8 +139,8 @@
             }
 
             #lightbox_content {
-                
-                @media (max-width: 560px) {  
+
+                @media (max-width: 560px) {
                     padding-bottom: 38px;
                 }
 
@@ -152,7 +152,7 @@
                     }
 
                 }
-                                
+
                 .picker_content {
 
                     @include tablet {
@@ -160,12 +160,12 @@
                         left: 20px;
                         right: 20px;
                     }
-                    
+
                     @media (max-width: 400px) {
                         left: 5px;
                         right: 5px;
-                    } 
-                    
+                    }
+
                     .bubble_arrow {
                         left: 17px;
                     }
@@ -174,25 +174,25 @@
                         padding: 0 20px;
                         @media (max-width: 400px) {
                             padding: 0 15px;
-                        } 
+                        }
                     }
 
                     .bubble_section_table {
                         padding: 0 14px;
                         @media (max-width: 400px) {
                             padding: 0 4px;
-                        } 
+                        }
                     }
 
                     .bubble_content {
                         margin-bottom: 12px;
                         padding-right: 0;
-                        
+
                         .bubble_title {
                             padding-right: 80px;
                             font-weight: $bold;
                         }
-                        
+
                         .bubble_description {
                             margin-top: 17px;
                             margin-bottom: 11px;
@@ -206,7 +206,7 @@
                                 float: right;
                             }
                         }
-                        
+
                         .month_chooser {
                             margin-top: 15px;
                             height: 30px;
@@ -271,7 +271,7 @@
                                             background: none;
                                         }
                                     }
-                                } 
+                                }
 
                                 .date_circle {
                                     display: inline-table;
@@ -284,7 +284,7 @@
                                         width: 40px;
                                         height: 40px;
                                     }
-                                    
+
                                 }
                                 .date_circle.selected {
                                     background: $aqua_marine;
@@ -293,12 +293,12 @@
 
                             td.no_date {
                                 cursor: initial;
-                            } 
-                            
+                            }
+
                         }
 
-                    } 
-                    
+                    }
+
                     .date_save_buttons {
                         @media (max-width: 560px) {
                             position: fixed;
@@ -307,7 +307,7 @@
                             right: 0;
                             bottom: 21px;
                         }
-                        
+
                         .blue_link_wrapper {
                             width: 100%;
                             text-align: center;
@@ -318,7 +318,7 @@
                         }
 
                     }
-                    
+
                 }
 
                 @media (max-width: 560px) {
@@ -328,12 +328,12 @@
         }
     }
 
-    
+
     #lightbox.set_number {
         @extend .date_picker_wrap;
         #lightbox_wrap {
             #lightbox_header {
-                
+
                 @media (max-width: 560px) {
                     font-size: 14px;
                     height: 54px !important;
@@ -347,7 +347,7 @@
             }
             #lightbox_content {
                 top: 55px!important;
-                
+
                 .lightbox_section {
                     .description_wrap {
                         width: 100%;
@@ -376,7 +376,7 @@
             }
         }
     }
-     
+
 
     #lightbox.confirm_lightbox {
 
@@ -442,7 +442,7 @@
         @media (max-width: 640px) {
             width: 100%;
         }
-        
+
         #lightbox_wrap {
 
             @media (max-width: 640px) {
@@ -456,7 +456,7 @@
                     font-weight: $medium;
                     float: left;
                     padding: 17px 60px 17px 20px;
-                    height: 55px;   
+                    height: 55px;
                     overflow: hidden;
 
                     .title {
@@ -474,6 +474,7 @@
                         overflow: hidden;
                         position: absolute;
                         padding-right: 77px;
+                        font-style: italic;
                     }
 
                 }
@@ -493,7 +494,7 @@
                         padding-right: 10px;
                         overflow: hidden;
                         text-overflow: ellipsis;
-                        white-space: nowrap; 
+                        white-space: nowrap;
                         width: 460px;
                         box-sizing: border-box;
                         float: left;
@@ -510,10 +511,10 @@
                         }
                     }
                 }
-                
+
                 .header_row_wrap {
                     width: 100%;
-                    
+
                     @media (max-width: 560px) {
                         width: 200%;
                         overflow: hidden;
@@ -525,12 +526,12 @@
                         top: 54px;
                         cursor: pointer;
                         overflow: hidden;
-                        
+
                         @media (max-width: 560px) {
                             float: left;
                             padding: 0 0 0 10px;
                         }
-                        
+
                         .tab_button {
                             float: left;
                             position: relative;
@@ -544,13 +545,13 @@
                                 position: relative;
                                 height: 40px;
                                 margin: 0 auto;
-                                
+
                                 .tab_button_text {
                                     font-size: 14px;
                                     padding-top: 10px;
                                     opacity: 0.7;
                                 }
-                                
+
                                 .blue_bottom_line {
                                     width: 0%;
                                     left: 50%;
@@ -559,7 +560,7 @@
                                     background: $deep_sky_blue;
                                     transition: all 300ms cubic-bezier(.45,.78,0,1);
                                     bottom: 0;
-                                        
+
                                     @include tablet {
                                         transition: none;
                                     }
@@ -570,12 +571,12 @@
                                 &:hover {
                                     .blue_bottom_line {
                                         width: 100%;
-                                        left: 0%;  
+                                        left: 0%;
                                         @include tablet {
                                             transition: none;
-                                                
+
                                             width: auto;
-                                            left: initial;  
+                                            left: initial;
                                         }
                                     }
                                 }
@@ -587,7 +588,7 @@
                                 .tab_button_text {
                                     opacity: 1;
                                 }
-                                
+
                                 .blue_bottom_line {
                                     width: 100%;
                                     left: 0%;
@@ -609,10 +610,10 @@
 
                     }
                 }
-                
+
             }
 
-            
+
             #lightbox_header.title_and_button {
                 #lightbox_header_text {
                     @media (max-width: 560px) {
@@ -651,7 +652,7 @@
             }
 
         }
-        
+
         .blue_button_wrap.mobile {
             border-radius: 0 0 4px 4px;
             position: absolute;
@@ -668,7 +669,7 @@
 
     }
 
-    
+
     #lightbox.with_title_description {
           #lightbox_wrap {
               #lightbox_header {
@@ -696,7 +697,7 @@
             }
         }
     }
-    
+
     .section_with_table {
         padding: 0 !important;
         text-align: center;
@@ -705,15 +706,15 @@
 
     }
 
-    
+
     .lightbox_section.double_row_list {
         @extend .section_with_table;
         max-height: 381px;
-        
+
         @media (max-width: 640px) {
             max-height: 279px;
         }
-        
+
         @media (max-width: 560px) {
             max-height: initial;
         }
@@ -735,7 +736,7 @@
                 opacity: .7;
                 margin-left: 20px;
                 position: relative;
-            
+
                 @include tablet {
                     opacity: 1;
                 }
@@ -744,14 +745,14 @@
                     opacity: 1;
                 }
             }
-            
+
         }
 
         .double_row_item {
             padding: 20px 20px 19px 20px;
             box-sizing: border-box;
             border-bottom: 1px solid $lightest_gray;
-            
+
             .blue_link {
                 font-weight: $bold;
                 text-align: left;
@@ -802,12 +803,12 @@
             @media (max-width: 560px) {
                 margin: 5px 0 5px 0;
             }
-            
+
 
             th, td {
                 padding-left: 10px;
                 padding-right: 10px;
-                
+
 
                 @media (max-width: 560px) {
                     &:not(:first-child) {
@@ -827,7 +828,7 @@
                             display: block;
                         }
 
-                            
+
                         .left {
                             float: left;
                             width: 100%;
@@ -876,7 +877,7 @@
         }
 
     }
-    
+
     .lightbox_section.double_row_list.small_header.group_create_modal {
         max-height: 422px;
     }
@@ -884,17 +885,17 @@
     .lightbox_section.double_row_list.small_header {
         @extend .section_with_table;
         max-height: 410px;
-        
+
         @media (max-width: 640px) {
             max-height: 308px !important;
         }
-        
+
         @media (max-width: 560px) {
             max-height: initial !important;
         }
     }
 
-    
+
 
     .lightbox_section {
 
@@ -950,7 +951,7 @@
             #lightbox_content {
                 padding: 34px 0 10px 0;
                 position: relative;
-                
+
                 @media (max-width: 550px) {
                     padding: 30px 0 0 0;
                 }
@@ -986,7 +987,7 @@
                     position: relative;
                     text-align: center;
                     height: 100%;
-                    
+
 
                     @media (max-width: 550px) {
                         width: 100%;
@@ -995,7 +996,7 @@
 
                     .blue_button {
                         border-radius: 4px;
-                        
+
                         @media (max-width: 550px) {
                             margin-bottom: 20px;
                             margin-top: 10px;
@@ -1017,7 +1018,7 @@
 
                     .sprite_big {
                         margin: 0 auto 45px auto;
-                        
+
                         @media (max-width: 550px) {
                             margin-bottom: 20px;
                         }
@@ -1029,7 +1030,7 @@
         }
     }
 
-    
+
     /* DELETE TOPIC LIGHTBOX */
     #lightbox.id_signing.delete_topic {
 
@@ -1099,17 +1100,17 @@
                     background: $white;
                     border-top-left-radius: 4px;
                     border-top-right-radius: 4px;
-                    
+
                     @media (max-width: 560px) {
                         background: $light_gray;
                         padding-top: 40px;
                         border-radius: 0;
                     }
-                    
+
                     .sprite-icon-delete-topic2x {
                         margin: 0 auto 16px auto;
                     }
-                    
+
                     .delete_title {
                         font-size: 22px;
                         font-weight: $bold;
@@ -1144,7 +1145,7 @@
                     width: 410px;
                     margin: 0 auto;
                     padding: 40px;
-                    
+
                     @media (max-width: 560px) {
                         width: 100%;
                         box-sizing: border-box;
@@ -1190,7 +1191,7 @@
                             left: 0;
                             padding: 0 20px;
                             box-sizing: border-box;
-                            
+
                             .table_cell {
                                 display: block;
                                 padding: 0 !important;
@@ -1273,7 +1274,7 @@
                 display: table;
                 box-sizing: border-box;
                 color: $medium_black;
-                    
+
                 @media (max-width: 560px) {
                     border-radius: 0
                 }
@@ -1296,7 +1297,7 @@
                 @media (max-height: 800px) {
                     margin-bottom: 30px;
                 }
-                
+
                 @media (max-width: 560px) {
                     border-radius: 0
                 }
@@ -1305,11 +1306,11 @@
                     display: table;
                     width: 100%;
                     margin-bottom: 20px;
-                    
+
                     .profile_image_wrapper {
                         margin-right: 12px;
                     }
-                
+
                     #edit_image_properties {
                         @extend .table_cell;
 
@@ -1455,18 +1456,18 @@
     .mobile_only {
         display: none;
     }
-    
+
     #lightbox_content {
         overflow: initial !important;
     }
-    
+
     #lightbox_content.invite_url {
 
         .copy_link {
 
             padding-right: 110px;
             position: relative;
-            
+
             .searchbox_with_icon_and_text {
                 input {
                     padding-left: 10px !important;
@@ -1492,7 +1493,7 @@
                 height: 210px;
                 width: 210px;
             }
-            
+
             a {
                 font-size: 13px;
             }
@@ -1502,7 +1503,7 @@
 
              .copy_link {
                 padding: 0;
-                
+
                 .searchbox_with_icon_and_text {
                     input {
                         padding-right: 5px !important;
@@ -1537,19 +1538,19 @@
 
             .qr_code {
                 padding: 20px 0 0 0;
-                
+
                 img {
                     height: 150px;
                     width: 150px;
                     margin-bottom: 19px;
                 }
-                
+
                 a {
                     font-size: 14px;
                 }
 
             }
-        
+
         }
 
     }
@@ -1570,7 +1571,7 @@
             width: 100%;
             #lightbox_wrap {
                 padding: 0;
-                
+
                 #lightbox_header, #lightbox_content {
                     border-radius: 0;
                 }
@@ -1588,7 +1589,7 @@
                     position: absolute;
                     margin: 0;
                     overflow: auto;
-                    
+
                     .lightbox_section {
                         margin-bottom: 20px;
 
@@ -1623,7 +1624,7 @@
 
                             }
                         }
-                    
+
                     }
                 }
             }
