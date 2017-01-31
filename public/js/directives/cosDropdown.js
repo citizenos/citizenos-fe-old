@@ -3,7 +3,6 @@ angular
     .directive('cosDropdown', ['$document', function ($document) {
         return {
             restrict: 'A',
-            transclude: true,
             link: function (scope, elem, attr) {
 
                 elem.bind('click', function () {
