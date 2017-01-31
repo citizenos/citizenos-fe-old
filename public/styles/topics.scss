@@ -433,6 +433,7 @@
                             font-size: 36px;
                             font-weight: $bold;
                             padding: 20px 27px 20px 0;
+                            cursor: pointer;
                             @include tablet {
                                 font-size: 26px;
                             }
@@ -654,6 +655,8 @@
                 }
 
                 .container_title {
+                    color: $medium_black;
+                    cursor: default;
                     padding-top: 16px !important;
                     padding-bottom: 15px !important;
                 }
@@ -880,9 +883,9 @@
                                 border-bottom: none;
                                 &:last-child {
                                     display: none;
-                                } 
+                                }
                             }
-                            
+
                             .mobile_text {
                                 text-decoration: none;
                                 opacity: 1;
@@ -920,7 +923,7 @@
                         tr:nth-child(2) td, .pretend_tr:nth-child(2) .pretend_td {
                             padding-top: 10px;
                         }
-                        
+
                         .with_checkmark {
                             .checkmark_text {
                                 display: none;
@@ -962,7 +965,7 @@
                                 margin-right: 52px;
                                 margin-top: -5px;
                             }
-                            
+
                             .pretend_td:nth-child(4) {
                                 margin-top: -6px;
                             }
