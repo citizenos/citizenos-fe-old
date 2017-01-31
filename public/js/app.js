@@ -280,7 +280,7 @@
                     parent: 'groups',
                     controller: ['$scope', '$stateParams', 'ngDialog', function ($scope, $stateParams, ngDialog) {
                         ngDialog.open({
-                            template: '/views/modals/group_create.html',
+                            template: '/views/modals/group_create_settings.html',
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });

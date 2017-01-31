@@ -264,11 +264,11 @@
                             <tr ng-repeat="(memberKey, member) in members">
                                 <td>
                                     <div class="profile_image_wrapper dark">
-                                        <div class="profile_moon sprite sprite-icon-certified-fb2x"></div>
+                                        <div class="profile_moon sprite"></div>
                                         <div class="account_picture">
                                             <img ng-if="member.imageUrl" src="{{member.imageUrl}}">
                                             <div class="profile_image_filler">
-                                                <div class="table_cell">
+                                                <div class="table_cell" cos-initials="member.name">
                                                     ML
                                                 </div>
                                                 <div class="profile_circle"></div>
@@ -373,19 +373,19 @@
 
             <!-- MOBILE SAVE BUTTON -->
             <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
-                <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
+                <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveGroup()">
                     Save group
                 </div>
-                <div class="blue_button" ng-if="app.createGroupsInviteUsers">
+                <div class="blue_button" ng-if="members.users.length || members.emails.length" ng-click="doSaveGroup()">
                     Save group and send invite
                 </div>
             </div>
-
 
         </div>
     </div>
 
     <div id="close_lightbox" ng-click="closeThisDialog()">
+
     </div>
 
 </div>
