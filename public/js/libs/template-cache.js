@@ -23,6 +23,7 @@ angular
             '/views/layouts/main.html',
             '/views/modals/add_topics.html',
             '/views/modals/confirm.html',
+            '/views/modals/cosOverlay.html',
             '/views/modals/date_picker.html',
             '/views/modals/group_create.html',
             '/views/modals/group_delete_confirm.html',

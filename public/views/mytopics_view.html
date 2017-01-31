@@ -476,15 +476,18 @@
                         <div class="item_description">
                             Votes needed
                         </div>
-                        <div class="item_content">
-                            <div class="item_text">
-                                1000
+                        <cos-overlay title="Votes needed" title-description="Ettepanek seadusega keelata kõrvklappide kandmine tänaval" innerdirective="cos-input" description="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}" save="showMeSomething()">
+                            <div class="item_content">
+                                <div class="item_text">
+                                    1000
+                                </div>
+                                <div class="v_line"></div>
+                                <div class="item_link blue_link" ng-click="app.doShowSetNumber()">
+                                    edit
+                                </div>
                             </div>
-                            <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="app.doShowSetNumber()">
-                                edit
-                            </div>
-                        </div>
+                        </cos-overlay>
+                    </div>
                         <div class="clearer"></div>
                     </div>
 
