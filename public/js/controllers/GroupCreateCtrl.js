@@ -157,7 +157,6 @@ angular
         };
 
         $scope.addUserAsMember = function (member) {
-            $log.debug('addUserAsMember', member);
             if (member) {
                 if (_.find($scope.members.users, {userId: member.id})) {
                     // Ignore duplicates
@@ -225,7 +224,7 @@ angular
             groupSavePromise
                 .then(function (data) {
                     angular.extend($scope.group, data);
-                    $log.debug('SAVED', data, $scope.group, $scope.members.users, $scope.members.emails);
+
                     $scope.members.users.concat($scope.members.emails).forEach(function (user) {
                         var member = {
                             groupId: $scope.group.id,
@@ -235,7 +234,7 @@ angular
                         var groupMemberUser = new GroupMemberUser(member);
                         savePromises.push(
                             groupMemberUser.$save()
-                        );
+                        )
                     });
 
                     $scope.memberTopics.forEach(function (topic, key) {
