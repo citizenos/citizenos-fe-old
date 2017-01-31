@@ -40,11 +40,10 @@
                         </div>
 
                         <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <!--FIXME: Should be based on if any Users were added or not...-->
-                            <div class="blue_button" ng-if="!app.createGroupsInviteUsers" ng-click="doSaveGroup()">
+                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveGroup()">
                                 Save group
                             </div>
-                            <div class="blue_button" ng-if="app.createGroupsInviteUsers">
+                            <div class="blue_button" ng-if="members.users.length || members.emails.length" ng-click="doSaveGroup()">
                                 Save group and send invite
                             </div>
                         </div>
@@ -64,7 +63,7 @@
                     <div class="input_description">
                         Insert a name for your group that is clear and understandable for people.
                     </div>
-                    <input placeholder="Group name" ng-model="group.name" ng-class="{'error_input': errors.group.name}">
+                    <input id="group.name" placeholder="Group name" ng-model="group.name" ng-class="{'error_input': errors.group.name}">
                     <label for="group.name" class="error_label" ng-if="errors.group.name">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -247,7 +246,7 @@
 
                 <div class="lightbox_section double_row_list user_list">
 
-                    <div ng-repeat="(key, members) in group.members" ng-if="members.length">
+                    <div ng-repeat="(key, members) in members" ng-if="members.length">
 
                         <div class="category_title">
                             <div class="table_cell">
@@ -273,7 +272,7 @@
                                     </div>
                                     <div class="name_wrap">
                                         <div class="table_cell">
-                                            <div class="blue_link" ng-click="doRemoveMemberUser(member.id)">{{member.name}}</div>
+                                            <div class="blue_link" ng-click="doRemoveMemberUser(member)">{{member.name}}</div>
                                             <div class="via">{{member.company}}</div>
                                         </div>
                                     </div>
@@ -298,7 +297,7 @@
 
                                                 <div class="dropdown">
                                                     <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                        <div class="item_name" ng-click="doChangeMemberPermissions(member.id, level)">
+                                                        <div class="item_name" ng-click="doChangeMemberPermissions(member, level)">
                                                             {{level}}
                                                         </div>
                                                     </div>
@@ -338,7 +337,7 @@
 
                                         <div class="dropdown">
                                             <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                <div class="item_name" ng-click="doChangeMemberPermissions(member.id, level)">
+                                                <div class="item_name" ng-click="doChangeMemberPermissions(member, level)">
                                                     {{level}}
                                                 </div>
                                             </div>
@@ -347,7 +346,7 @@
                                 </td>
                                 <td>
                                     <div class="btn_wrap recycle_bin white_bg">
-                                        <div class="btn"  ng-click="doRemoveMemberUser(member.id)">
+                                        <div class="btn"  ng-click="doRemoveMemberUser(member)">
                                             <div class="table_cell">
                                                 <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                                 <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>

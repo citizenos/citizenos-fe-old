@@ -655,8 +655,8 @@
                 }
 
                 .container_title {
-                    color: $medium_black;
-                    cursor: default;
+                    color: $medium_black !important;
+                    cursor: default !important;
                     padding-top: 16px !important;
                     padding-bottom: 15px !important;
                 }
@@ -872,7 +872,7 @@
                                 padding-bottom: 0;
                             }
 
-                            .pretend_table, .pretend_tr,  .pretend_td, .pretend_th {
+                            .pretend_table, .pretend_tr, .pretend_td, .pretend_th {
                                 display: block;
                             }
 
@@ -891,7 +891,6 @@
                                 opacity: 1;
                                 margin-left: 0;
                             }
-
 
                             .pretend_td:nth-child(2) {
                                 float: right;
@@ -931,8 +930,8 @@
 
                         }
 
-                         @media (max-width: 560px) {
-                             .with_checkmark {
+                        @media (max-width: 560px) {
+                            .with_checkmark {
                                 .checkmark_text {
                                     font-size: 13px;
                                     float: left;
@@ -944,7 +943,7 @@
                                     margin-left: 10px;
                                 }
 
-                             }
+                            }
 
                             .pretend_td {
                                 padding-top: 0 !important;

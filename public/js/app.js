@@ -256,6 +256,20 @@
                     parent: 'my.groups',
                     templateUrl: '/views/my_groups_groupId.html'
                 })
+                .state('my.groups.groupId.settings', {
+                    url: '/settings',
+                    parent: 'my.groups.groupId',
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/group_create.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function () {
+                            $state.go('^');
+                        });
+                    }]
+                })
                 .state('groups', {
                     url: '/groups',
                     parent: 'main',

@@ -94,12 +94,13 @@ angular
                     }
                 })
                 .then(function () {
-                    var index = group.topics.rows.indexOf(groupMemberTopic);
+                    $log.debug('DELETE', group, groupMemberTopic);
+                    var index = group.members.topics.rows.indexOf(groupMemberTopic);
                     groupMemberTopic
                         .$delete({groupId: group.id})
                         .then(function () {
                             group.members.topics.rows.splice(index, 1);
-                            group.members.topics.count = group.topics.rows.length;
+                            group.members.topics.count = group.members.topics.rows.length;
                         });
                 }, angular.noop);
         };
@@ -155,8 +156,8 @@ angular
                     groupMemberUser
                         .$delete({groupId: group.id})
                         .then(function () {
-                            group.members.users.rows.splice(group.members.rows.indexOf(groupMemberUser), 1);
-                            group.members.users.count = group.members.rows.length;
+                            group.members.users.rows.splice(group.members.users.rows.indexOf(groupMemberUser), 1);
+                            group.members.users.count = group.members.users.rows.length;
                         }, function (res) {
                             $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, res.data.status.message);
                         });

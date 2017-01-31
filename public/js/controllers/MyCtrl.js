@@ -84,7 +84,6 @@ angular
                 .loadData()
                 .then(
                     function (itemList) {
-                        $log.debug('ITEM LIST', itemList);
                         $scope.itemList = itemList;
                         $scope.itemListIsLoading = false;
                     }

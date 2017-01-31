@@ -127,8 +127,8 @@
                             Group actions
                         </div>
                         <div class="item_content">
-                            <div class="item_text blue_link">
-                                settings TODO!
+                            <div class="item_text blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id})">
+                                settings
                             </div>
                             <div class="v_line bold"></div>
                             <div class="item_text blue_link" ng-click="doLeaveGroup(group)">
@@ -411,5 +411,7 @@
         </div>
 
     </div>
+
+    <div ui-view></div>
 
 </div>

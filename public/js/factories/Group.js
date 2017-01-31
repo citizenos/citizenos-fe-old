@@ -6,6 +6,15 @@ angular
             sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId'),
             {groupId: '@id'},
             {
+                get: {
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status < 400) { // FIXME: think this error handling through....
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
+                },
                 query: {
                     isArray: true,
                     transformResponse: function (data, headersGetter, status) {
