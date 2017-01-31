@@ -18,7 +18,7 @@
         <div class="container_content" ng-if="generalInfo.isVisible">
 
             <div class="content_top">
-                <div class="container_title">
+                <div class="container_title" ui-sref="topics.view({topicId: topic.id})">
                     {{topic.title}}
                 </div>
                 <!--div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
@@ -136,8 +136,8 @@
                             Topic actions
                         </div>
                         <div class="item_content">
-                            <div class="item_text blue_link" ui-sref="topics.view({topicId: topic.id})">
-                                view
+                            <div class="item_text blue_link">
+                                settings TODO
                             </div>
                             <div class="v_line bold"></div>
                             <div class="item_text blue_link" ng-click="doLeaveTopic(topic)">
