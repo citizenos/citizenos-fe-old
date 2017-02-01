@@ -4,8 +4,8 @@
 
             <div id="lightbox_header">
 
-                <div ng-if="title" id="lightbox_header_text">
-                    <div class="title">{{title}}</div>
+                <div ng-if="modalTitle" id="lightbox_header_text">
+                    <div class="title">{{modalTitle}}</div>
 
                 </div>
 
@@ -32,10 +32,10 @@
 
                     <div class="description_wrap">
                         <div class="description">
-                            {{description}}
+                            {{modalDescription}}
                         </div>
-                        <div class="toggle_cell">
-                            <div class="toggle_widget" ng-click="app.vote_toggle = !app.vote_toggle" ng-class="app.vote_toggle ? 'no' : 'yes'">
+                        <div class="toggle_cell" ng-if="showToggle">
+                            <div class="toggle_widget" ng-click="switchToggle()" ng-class="toggle ? 'no' : 'yes'">
                                 <div class="toggle_circle"></div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
 
                     <div id="cosOverlayConfirmButtons" class="bubble_section date_save_buttons">
                         <div class="blue_button" ng-click="doSaveAction()">Save</div>
-                        <div class="blue_link_wrapper">
+                        <div class="blue_link_wrapper" ng-click="closeThisDialog()">
                             <div class="blue_link">Cancel</div>
                         </div>
                     </div>

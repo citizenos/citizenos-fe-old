@@ -20,6 +20,7 @@ angular
             '/views/default/nav.html',
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
+            '/views/directives/datePicker.html',
             '/views/layouts/main.html',
             '/views/modals/add_topics.html',
             '/views/modals/confirm.html',

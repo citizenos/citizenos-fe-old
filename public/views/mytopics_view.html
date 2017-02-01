@@ -452,7 +452,7 @@
 
 
                 <!-- COLUMN 2 -->
-                <div class="content_column">
+                <div class="content_column" ng-controller="TestCtrl">
 
 
                     <div class="content_item">
@@ -476,7 +476,18 @@
                         <div class="item_description">
                             Votes needed
                         </div>
-                        <cos-overlay title="Votes needed" title-description="Ettepanek seadusega keelata kõrvklappide kandmine tänaval" innerdirective="cos-input" description="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}" save="showMeSomething()">
+                        <cos-overlay link="Set date" modal-title="End date" modal-description="Ettepanek seadusega keelata kõrvklappide kandmine tänaval" innerdirective='date-picker="item" max-view="date" min-view="date" template="/views/directives/datePicker.html"' description="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}" save="saveDate()" value="date">
+                            <div class="item_content">
+                                <div class="item_text">
+                                    1000
+                                </div>
+                                <div class="v_line"></div>
+                                <div class="item_link blue_link" ng-click="app.doShowSetNumber()">
+                                    edit
+                                </div>
+                            </div>
+                        </cos-overlay>
+                        <cos-overlay link="Votes needed" modal-title="Votes needed" modal-description="Ettepanek seadusega keelata kõrvklappide kandmine tänaval" innerdirective='cos-input item="item"' value="item" toggle="false">
                             <div class="item_content">
                                 <div class="item_text">
                                     1000
