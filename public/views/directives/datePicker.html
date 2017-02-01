@@ -1,0 +1,116 @@
+<div class="line lightest_line"></div>
+<div ng-switch="view"  class="bubble_content">
+    <div ng-switch-when="date">
+        <div class="bubble_section">
+            <div class="month_chooser">
+                <div class="arrow">
+                    <a href="" class="sprite sprite-arrow-calendar-left2x" ng-click="prev()">&nbsp;</a>
+                </div>
+                <span class="month_text" class="switch" ng-click="setView('month')">{{date|amDateFormat:'MMMM YYYY'}}</span>
+                <div class="arrow">
+                    <a href="" class="sprite sprite-arrow-calendar-right2x" ng-click="next()">&nbsp;</a>
+                </div>
+            </div>
+        </div>
+        <!--/head-->
+        <div class="bubble_section_table">
+            <table>
+                <tr>
+                    <th ng-repeat="day in weekdays">{{day | amDateFormat: 'dd'}}</th>
+                </tr>
+                <tr ng-repeat="week in weeks">
+                    <td ng-repeat="day in week" ng-click="setDate(day)">
+                        <div class="date_circle" ng-class="{'now':isNow(day),'selected':isSameDay(day),'disabled':(day.getMonth()!=date.getMonth()),'after':isAfter(day),'before':isBefore(day)}" >
+                            <div class="table_cell">
+                                <a ng-if="(day.getMonth()==date.getMonth())" ng-bind="day.getDate()"></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- TODO: below this line nothing is actually used and not ported to angular-moment. But we don't know what future holds... -->
+    <div ng-switch-when="year">
+        <table>
+            <thead>
+            <tr>
+                <th ng-click="prev(10)">‹</th>
+                <th colspan="5" class="switch">{{years[0].getFullYear()}}-{{years[years.length-1].getFullYear()}}</th>
+                <th ng-click="next(10)">›</i></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="7">
+                    <span ng-class="{'active':isSameYear(year),'now':isNow(year)}"
+                          ng-repeat="year in years"
+                          ng-click="setDate(year)" ng-bind="year.getFullYear()"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-switch-when="month">
+        <table>
+            <thead>
+            <tr>
+                <th ng-click="prev()">‹</th>
+                <th colspan="5" class="switch" ng-click="setView('year')">{{ date|date:"yyyy" }}</th>
+                <th ng-click="next()">›</i></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="7">
+                <span ng-repeat="month in months"
+                      ng-class="{'active':isSameMonth(month),'after':isAfter(month),'before':isBefore(month),'now':isNow(month)}"
+                      ng-click="setDate(month)">{{month|date:'MMM'}}</span>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-switch-when="hours">
+        <table>
+            <thead>
+            <tr>
+                <th ng-click="prev(24)">‹</th>
+                <th colspan="5" class="switch" ng-click="setView('date')">{{ date|date:"dd MMMM yyyy" }}</th>
+                <th ng-click="next(24)">›</i></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="7">
+                <span ng-repeat="hour in hours"
+                      ng-class="{'now':isNow(hour),'active':isSameHour(hour)}"
+                      ng-click="setDate(hour)" ng-bind="hour.getHours()+':00'"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-switch-when="minutes">
+        <table>
+            <thead>
+            <tr>
+                <th ng-click="prev()">‹</th>
+                <th colspan="5" class="switch" ng-click="setView('hours')">{{ date|date:"dd MMMM yyyy" }}
+                </th>
+                <th ng-click="next()">›</i></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="7">
+                    <span ng-repeat="minute in minutes"
+                          ng-class="{active:isSameMinutes(minute),'now':isNow(minute)}"
+                          ng-click="setDate(minute)">{{minute|date:"HH:mm"}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
