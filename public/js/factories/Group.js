@@ -70,9 +70,6 @@ angular
             private: 'private'
         };
 
-        // FIXME: Should not be here... upto the Controller..
-        Group.prototype.isTopicListExpanded = false;
-
         Group.prototype.canUpdate = function () {
             return this.permission.level === GroupMemberUser.LEVELS.admin;
         };
