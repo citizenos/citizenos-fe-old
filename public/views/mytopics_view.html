@@ -476,28 +476,64 @@
                         <div class="item_description">
                             Votes needed
                         </div>
-                        <cos-overlay link="Set date" modal-title="End date" modal-description="Ettepanek seadusega keelata kõrvklappide kandmine tänaval" innerdirective='date-picker="item" max-view="date" min-view="date" template="/views/directives/datePicker.html"' description="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}" save="saveDate()" value="date">
-                            <div class="item_content">
-                                <div class="item_text">
-                                    1000
-                                </div>
-                                <div class="v_line"></div>
-                                <div class="item_link blue_link" ng-click="app.doShowSetNumber()">
-                                    edit
-                                </div>
-                            </div>
-                        </cos-overlay>
-                        <cos-overlay link="Votes needed" modal-title="Votes needed" modal-description="Ettepanek seadusega keelata kõrvklappide kandmine tänaval" innerdirective='cos-input item="item"' value="item" toggle="false">
-                            <div class="item_content">
-                                <div class="item_text">
-                                    1000
-                                </div>
-                                <div class="v_line"></div>
-                                <div class="item_link blue_link" ng-click="app.doShowSetNumber()">
-                                    edit
+                        <cos-modal ng-model="item">
+                            <div cos-modal-title>
+                                <div id="lightbox_header_text">
+                                    <div class="title">Votes needed</div>
+                                    <div class="lightbox_header_description_text">
+                                        Ettepanek seadusega keelata kõrvklappide kandmine tänaval
+                                    </div>
                                 </div>
                             </div>
-                        </cos-overlay>
+                            <div cos-modal-link class="item_content" >
+                                <div class="item_text">
+                                    {{item}}
+                                </div>
+                                <div class="v_line"></div>
+                                <div class="item_link blue_link">
+                                    Votes needed
+                                </div>
+                            </div>
+                            <div cos-modal-content>
+                                <cos-toggle>
+                                    <div class="description_wrap">
+                                        <div class="description">
+                                            See on mingi description
+                                        </div>
+                                        <div class="toggle_cell" ng-if="showToggle">
+                                            <div class="toggle_widget" ng-click="switchToggle()" ng-class="toggle ? 'no' : 'yes'">
+                                                <div class="toggle_circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div cos-input item="item"></div>
+                                </cos-toggle>
+                            </div>
+                        </cos-modal>
+
+                        <cos-modal ng-model="date" template="/views/modals/input_test.html">
+                            <div cos-modal-title>
+                                <div id="lightbox_header_text">
+                                    <div class="title">Votes deadline</div>
+                                    <div class="lightbox_header_description_text">
+                                        Ettepanek seadusega keelata kõrvklappide kandmine tänaval
+                                    </div>
+                                </div>
+                            </div>
+                            <div cos-modal-link class="item_content" >
+                                <div class="item_text">
+                                    {{date}}
+                                </div>
+                                <div class="v_line"></div>
+                                <div class="item_link blue_link">
+                                    Vote deadline
+                                </div>
+                            </div>
+                            <div cos-modal-content>
+                                <p>LambiTekst</p>
+                                <div date-picker="date" max-view="date" min-view="date" template="/views/directives/datePicker.html"></div>
+                            </div>
+                        </cos-modal>
                     </div>
                         <div class="clearer"></div>
                     </div>

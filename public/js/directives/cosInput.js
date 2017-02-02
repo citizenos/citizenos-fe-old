@@ -1,13 +1,12 @@
 angular
     .module('citizenos')
-    .directive('cosInput', ["$compile", function($compile) {
+    .directive('cosInput', function() {
         return {
             restrict: 'A',
             replace: true,
-            template: '<div class="input_wrap"><input ng-disabled="!disabled" ng-model="item"></div>',
+            template: '<div class="input_wrap"><input ng-model="item"></div>',
             scope: {
-                disabled: '=',
                 item: '='
             }
         }
-    }]);
+    });

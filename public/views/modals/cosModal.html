@@ -4,12 +4,10 @@
 
             <div id="lightbox_header">
 
-                <div ng-if="modalTitle" id="lightbox_header_text">
-                    <div class="title">{{modalTitle}}</div>
-
+                <div id="lightbox_header_text" class="cosModalTitle">
                 </div>
 
-                <div id="lightbox_close" ng-click="closeThisDialog()">
+                <div id="lightbox_close" ng-click="cosModalClose()">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
                         </div>
@@ -29,23 +27,11 @@
 
                 <div class="lightbox_section picker_content">
 
-
-                    <div class="description_wrap">
-                        <div class="description">
-                            {{modalDescription}}
-                        </div>
-                        <div class="toggle_cell" ng-if="showToggle">
-                            <div class="toggle_widget" ng-click="switchToggle()" ng-class="toggle ? 'no' : 'yes'">
-                                <div class="toggle_circle"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="directive"></div>
+                    <div class="cosModalContent"></div>
 
                     <div id="cosOverlayConfirmButtons" class="bubble_section date_save_buttons">
-                        <div class="blue_button" ng-click="doSaveAction()">Save</div>
-                        <div class="blue_link_wrapper" ng-click="closeThisDialog()">
+                        <div class="blue_button" ng-click="cosModalSaveAction()">Save</div>
+                        <div class="blue_link_wrapper" ng-click="cosModalClose()">
                             <div class="blue_link">Cancel</div>
                         </div>
                     </div>
