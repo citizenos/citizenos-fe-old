@@ -43,7 +43,11 @@ angular
                         return angular.toJson(requestObject);
                     },
                     transformResponse: function (data, headersGetter, status) {
-                        return angular.fromJson(data).data;
+                        if (status < 400) { // FIXME: think this error handling through....
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
                     }
                 },
                 save: {
@@ -56,7 +60,11 @@ angular
                         return angular.toJson(requestObject);
                     },
                     transformResponse: function (data) {
-                        return angular.fromJson(data).data;
+                        if (status < 400) { // FIXME: think this error handling through....
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
                     }
                 },
                 delete: {

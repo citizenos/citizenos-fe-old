@@ -29,9 +29,7 @@ angular
         $scope.searchResults = {};
         $scope.searchStringUser = null;
         $scope.searchStringTopic = null;
-        $scope.errors = {
-            group: []
-        };
+        $scope.errors = {};
 
         $scope.tabSelected = 'settings';
 
@@ -56,6 +54,7 @@ angular
             $scope.searchStringTopic = null;
 
             $scope.searchResults = {};
+
             $scope.errors = {
                 group: []
             };
@@ -77,12 +76,12 @@ angular
                     .then(function (response) {
                             $scope.searchResults.users = [];
                             $scope.searchResults.topics = [];
-                            if (type == 'user') {
+                            if (type === 'user') {
                                 response.data.data.results.public.users.forEach(function (user) {
                                     $scope.searchResults.users.push(user);
                                 });
                             }
-                            if (type == 'topic') {
+                            if (type === 'topic') {
                                 response.data.data.results.my.topics.forEach(function (topic) {
                                     $scope.searchResults.topics.push(topic);
                                 });
@@ -198,9 +197,10 @@ angular
                 groupSavePromise = $scope.form.group.$update();
             }
 
-            var savePromises = [];
             groupSavePromise
                 .then(function (data) {
+                    var savePromises = [];
+
                     angular.extend($scope.form.group, data);
 
                     // Users
@@ -231,18 +231,16 @@ angular
                             groupMemberTopic.$save()
                         )
                     });
-                })
-                .then(function () {
-                    Promise.all(savePromises)
-                        .then(
-                            function () {
-                                $state.go('my.groups.groupId', {groupId: $scope.form.group.id}, {reload: true});
-                            }, function (err) {
-                                $log.error(err);
-                            }
-                        );
-                });
 
+                    return Promise.all(savePromises)
+                })
+                .then(
+                    function () {
+                        $state.go('my.groups.groupId', {groupId: $scope.form.group.id}, {reload: true});
+                    }, function (err) {
+                        $log.error('FAIL!', arguments);
+                    }
+                );
         }
 
     }]);

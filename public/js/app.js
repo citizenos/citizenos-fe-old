@@ -33,6 +33,19 @@
 
             // Send cookies with API request
             $httpProvider.defaults.withCredentials = true;
+            $httpProvider.interceptors.push(['$q', function ($q) {
+                return {
+                    'request': function (config) {
+                        console.log('request', config.url, config.headers('content-type'), config);
+                        return $q.resolve(config);
+                    },
+
+                    'response': function (response) {
+                        console.log('response', response.config.url, response.headers('content-type'), response);
+                        return $q.resolve(response);
+                    }
+                };
+            }]);
 
             // This is to enable resolving link to state later
             $stateProvider.decorator('parent', function (internalStateObj, parentFn) {
@@ -313,7 +326,6 @@
                         });
                     }]
                 });
-
 
             $translateProvider.useStaticFilesLoader({
                 prefix: 'languages/',
