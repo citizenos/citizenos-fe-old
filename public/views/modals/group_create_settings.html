@@ -107,6 +107,26 @@
                          <div class="clearer"></div>
                      </div>
                  </div>-->
+
+                <div class="lightbox_section" ng-if="group.id">
+                    <div class="content_inside_wrap">
+                        Leave group
+                        <div class="gray_button" ng-click="doLeaveGroup(group)">
+                            Leave group
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+                </div>
+
+                <div class="lightbox_section" ng-if="group.id && group.canDelete()">
+                    <div class="content_inside_wrap">
+                        Delete group
+                        <div class="gray_button" ng-click="doDeleteGroup(group)">
+                            Delete group
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- ADD TOPICS -->
