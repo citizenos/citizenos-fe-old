@@ -33,10 +33,12 @@
 
             // Send cookies with API request
             $httpProvider.defaults.withCredentials = true;
-            $httpProvider.interceptors.push(['$q', function ($q) {
+
+            /**
+             $httpProvider.interceptors.push(['$q', function ($q) {
                 return {
                     'request': function (config) {
-                        console.log('request', config.url, config.headers('content-type'), config);
+                        console.log('request', config.url, config.headers['accept'], config);
                         return $q.resolve(config);
                     },
 
@@ -46,8 +48,9 @@
                     }
                 };
             }]);
+             **/
 
-            // This is to enable resolving link to state later
+                // This is to enable resolving link to state later
             $stateProvider.decorator('parent', function (internalStateObj, parentFn) {
                 // This fn is called by StateBuilder each time a state is registered
                 // The first arg is the internal state. Capture it and add an accessor to public state object.
