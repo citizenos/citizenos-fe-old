@@ -114,7 +114,7 @@ angular
             });
 
             if (!member) {
-                topic.permission.level = GroupMemberTopic.levels.read;
+                topic.permission.level = GroupMemberTopic.LEVELS.read;
                 $scope.memberTopics.push(topic);
             }
         };
@@ -236,7 +236,7 @@ angular
                     Promise.all(savePromises)
                         .then(
                             function () {
-                                $state.go('my.groups.groupId', null, {reload: true});
+                                $state.go('my.groups.groupId', {groupId: $scope.form.group.id}, {reload: true});
                             }, function (err) {
                                 $log.error(err);
                             }
