@@ -93,7 +93,7 @@
                      <div class="content_inside_footer">
                          Make your group private (only invited users can see it)
                          <div class="toggle_wrap">
-                             <div class="toggle_widget text_on relative" ng-click="doSetGroupVisibility(group.visibility)" ng-class="{no: (group.visibility === Group.VISIBILITY.private), yes: (group.visibility === Group.VISIBILITY.public)}">
+                             <div class="toggle_widget text_on relative no">
                                  <div class="toggle_circle"></div>
                                  <div class="toggle_text text_no">
                                      <div class="table_cell">NO</div>
@@ -242,7 +242,7 @@
                     <div class="searchbox_with_icon_and_text only_text">
                         <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length, dropdown_active : searchResults.users.length}">
                             <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
-                                       select="addUserAsMember(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
+                                       select="addUserAsMember(item)" placeholder="Search by username or e-mail address">
                                 <div class="search_area_wrap">
                                     <div class="search_dropdown_area" ng-show="searchResults.users.length">
                                         <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
@@ -404,7 +404,7 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="closeThisDialog()">
+    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()">
 
     </div>
 

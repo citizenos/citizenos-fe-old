@@ -62,15 +62,6 @@ angular
         };
         init();
 
-        $scope.doSetGroupVisibility = function (visibility) {
-            if (visibility == Group.VISIBILITY.private) {
-                $scope.form.group.visibility = Group.VISIBILITY.public;
-            }
-            else {
-                $scope.form.group.visibility = Group.VISIBILITY.private;
-            }
-        };
-
         $scope.search = function (str, type) {
             if (str && str.length >= 2) {
                 var include = null;
@@ -246,8 +237,9 @@ angular
                 })
                 .then(function () {
                     Promise.all(savePromises)
-                        .then(function () {
-                                $state.go('my.groups.groupId', {groupId: $scope.group.id}, {reload: true});
+                        .then(
+                            function () {
+                                $state.go('my.groups.groupId', null, {reload: true});
                             }, function (err) {
                                 $log.error(err);
                             }

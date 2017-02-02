@@ -265,8 +265,10 @@
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
-                        dialog.closePromise.then(function () {
-                            $state.go('^');
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
                         });
                     }]
                 })
