@@ -1,7 +1,7 @@
 angular
     .module('citizenos')
-    .directive('slideController', ['$swipe', '$rootScope', '$window', '$parse',
-        function ($swipe, $rootScope, $window, $parse) {
+    .directive('slideController', ['$timeout','$swipe', '$rootScope', '$window', '$parse',
+        function ($timeout, $swipe, $rootScope, $window, $parse) {
 
             return {
                 restrict: 'EA',
@@ -12,6 +12,7 @@ angular
                     class: '@'
                 },
                 link: function (scope, element, attrs) {
+                    if (scope.startSlideAt >= $rootScope.wWidth) {
                     /* Define multiple variables */
                     var startX, elementX_start, elementX_live, element_max_distance_left, target_position, last_element_position, element_drag_speed, stop_position, ease_animation, new_element_position, neg_ili_pos, moved_amount, element_style;
                     var speeding_ticket;
@@ -29,13 +30,17 @@ angular
 
                     /* This function needs to run on start up and on resize of the window */
                     function run_me_twice() {
-                        element_max_distance_left = $rootScope.wWidth - Number(element_style.getPropertyValue('width').replace('px', '')) - 20;
 
-                        element[0].style.marginLeft = element_max_distance_left * ($rootScope.$eval(moved_percent) / 100) + 'px';
+                        /* Use timeout so other directives can run their course */
+                        $timeout(function () {
+                            element_max_distance_left = $rootScope.wWidth - Number(element_style.getPropertyValue('width').replace('px', '')) - 20;
 
-                        if (element_max_distance_left > 0) {
-                            element[0].style.marginLeft = 0;
-                        }
+                            element[0].style.marginLeft = element_max_distance_left * ($rootScope.$eval(moved_percent) / 100) + 'px';
+
+                            if (element_max_distance_left > 0) {
+                                element[0].style.marginLeft = 0;
+                            }
+                        }, 0);
 
                     }
 
@@ -166,25 +171,64 @@ angular
                         }
                     });
                 }
+                }
             }
         }]);
 
 
+//Initial positioning and getting dimensions of tabs train
 angular
     .module('citizenos')
     .directive('dimensions', ['$timeout', '$rootScope',
         function ($timeout, $rootScope) {
+
+            //Set initial tab lengh variable
+            $rootScope.tabLength = 0;
             return {
             
                 link: function (scope, elem) {
                         $timeout(function () {
-                            $rootScope.tabs_train_width = elem[0].parentElement.offsetWidth;
-                            $rootScope.tab_length = elem[0].offsetWidth;
-                            $rootScope.tabs_visible_area_width = elem[0].parentElement.parentElement.parentElement.offsetWidth;
                             
-                            if ($rootScope.tabs_train_width > $rootScope.tabs_visible_area_width) {
-                                $rootScope.trainPosition = -$rootScope.tabs_train_width+$rootScope.tabs_visible_area_width-10;
+                            //To set all tabs the same width use this code below
+                            if ($rootScope.tabLength < elem[0].offsetWidth) {
+                                 $rootScope.tabLength = elem[0].offsetWidth;
                             }
+
+                            //If last element in ng-repeat is reached execute
+                            if (scope.$last === true) {
+
+                                //Get the length of widest tab (and set it to all tabs <= in DOM)
+                                $rootScope.tabFinalLength = $rootScope.tabLength+2;
+                                 
+
+                                //Get the number of elements in ng-repeat
+                                var numberOfElements = scope.$index+1;
+
+                                //Get the length of tabs train
+                                $rootScope.tabsTrainWidth = ($rootScope.tabFinalLength+10)*numberOfElements;
+
+                                //Get the length of visible area
+                                $rootScope.tabsVisibleAreaWidth = elem[0].parentElement.parentElement.parentElement.offsetWidth;
+
+                                //If all the tabs do not fit to the screen, move the tabs train to the left
+                                if ($rootScope.tabsTrainWidth > $rootScope.tabsVisibleAreaWidth) {
+                                    $rootScope.trainPosition = -$rootScope.tabsTrainWidth+$rootScope.tabsVisibleAreaWidth-10;
+
+                                    //Make sure that in mobile, one button is always shown half-way
+                                    if ($rootScope.wWidth <= 1024) {
+                                        
+                                        var halfVariable = ($rootScope.tabsVisibleAreaWidth/($rootScope.tabFinalLength+10) % 1).toFixed(2);
+
+                                        if (halfVariable < 0.18 || halfVariable > 0.8) {
+                                            $rootScope.trainPosition -= 50;
+                                        }
+                                    }
+
+                                }
+
+
+                            }
+
                         }, 0);
                 }
 
@@ -192,27 +236,29 @@ angular
     }
 ]);
 
-
+//Movement of tabs train
 angular
     .module('citizenos')
     .controller('buttonsSlider', ['$scope', '$rootScope', function ($scope, $rootScope) {
 
-
+        //When left arrow is clicked move the tabs train to left
         $scope.moveLeft = function() {
-            if ($scope.trainPosition < -$scope.tab_length) {
-                $scope.trainPosition += $scope.tab_length;
+            if ($scope.trainPosition < -$scope.tabFinalLength) {
+                $scope.trainPosition += $scope.tabFinalLength;
             } else {
                 $scope.trainPosition = 0;
             }
         }
 
+        //When right arrow is clicked move the tabs train to right
         $scope.moveRight = function() {
-            if ($scope.trainPosition > -$scope.tabs_train_width+$scope.tabs_visible_area_width-10) {
-                $scope.trainPosition -= $scope.tab_length;
+            if ($scope.trainPosition > -$scope.tabsTrainWidth+$scope.tabsVisibleAreaWidth-10) {
+                $scope.trainPosition -= $scope.tabFinalLength;
             } 
-            
-            if ($scope.trainPosition < -$scope.tabs_train_width+$scope.tabs_visible_area_width-10) {
-                $scope.trainPosition = -$scope.tabs_train_width+$scope.tabs_visible_area_width-10;    
+
+            //If end of the line
+            if ($scope.trainPosition < -$scope.tabsTrainWidth+$scope.tabsVisibleAreaWidth-10) {
+                $scope.trainPosition = -$scope.tabsTrainWidth+$scope.tabsVisibleAreaWidth-10;    
             }
         }
  

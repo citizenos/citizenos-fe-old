@@ -41,7 +41,7 @@ angular
                 $scope.cosModalSaveAction = function () {
                     if ($element.parent().html().indexOf('cos-toggle') > -1 && $scope.cosToggleStatus() === true) {
 
-                        if (typeof $scope.cosModalValue == 'number') {
+                        if (typeof $scope.cosModalValue === 'number') {
                             $scope.cosModalValue = 0;
                         } else {
                             $scope.cosModalValue = null;

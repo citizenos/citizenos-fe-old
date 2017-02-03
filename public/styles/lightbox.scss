@@ -411,8 +411,7 @@
                     position: absolute;
 
                     .table {
-                        padding-left: 20px;
-                        padding-bottom: 10px;
+                        padding: 0 20px 10px 20px;
 
                         .profile_image_cell {
                             @extend .table_cell;
@@ -422,6 +421,7 @@
                         .profile_text {
                             @extend .table_cell;
                             font-size: 14px;
+                            word-break: break-all;
                         }
 
                     }

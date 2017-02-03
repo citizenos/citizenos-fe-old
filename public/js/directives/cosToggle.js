@@ -30,7 +30,6 @@ angular
             link: function (scope, element) {
                 var $input = element.find('input');
                 var contentHtml = element.html();
-
                 if (contentHtml.indexOf('cos-toggle-switch') < 0) {
                     element.parent().prepend($compile('\
                         <div class="toggle_cell">\

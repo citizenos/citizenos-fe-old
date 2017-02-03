@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <!--<img src=".././imgs/test_logo2.jpg">-->
-                     CitizenOS test Group
+                    CitizenOS test Group
                 </div>
                 <div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
                     <div class="ff_table_fix">
@@ -485,7 +485,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div cos-modal-link class="item_content" >
+                            <div cos-modal-link class="item_content">
                                 <div class="item_text">
                                     {{item}}
                                 </div>
@@ -513,7 +513,7 @@
                         </div>
                     </div>
 
-                        <div class="clearer"></div>
+                    <div class="clearer"></div>
 
                     <div class="content_item">
                         <div class="item_description">
@@ -528,7 +528,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div cos-modal-link class="item_content" >
+                            <div cos-modal-link class="item_content">
                                 <div class="item_text">
                                     {{date | amDateFormat : 'L'}}
                                 </div>
@@ -546,18 +546,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="bubble_section">
-                                            <div class="bubble_title">Deadline</div>
-                                            <div class="bubble_description">
+                                    <div class="bubble_section">
+                                        <div class="bubble_title">Deadline</div>
+                                        <div class="bubble_description">
 
-                                                <div class="picker_deadline_date">
-                                                    {{cosModalValue|amDateFormat:'L'}}
-                                                </div>
-                                                <div class="picker_days_left">
-                                                    15
-                                                </div>
-                                                <div class="clearer"></div>
+                                            <div class="picker_deadline_date">
+                                                {{cosModalValue|amDateFormat:'L'}}
                                             </div>
+                                            <div class="picker_days_left">
+                                                15
+                                            </div>
+                                            <div class="clearer"></div>
                                         </div>
                                     <div date-picker="cosModalValue" max-view="date" min-view="date" template="/views/directives/date_picker.html"></div>
                                 </div>
@@ -595,7 +594,7 @@
 
         <div class="container_content" ng-if="!app.groupList">
 
-             <div class="pretend_table">
+            <div class="pretend_table">
                 <div class="pretend_tr">
                     <div ng-if="wWidth <= 560" class="mobile_text pretend_th">
                         <div class="th_text">
