@@ -93,7 +93,7 @@
                      <div class="content_inside_footer">
                          Make your group private (only invited users can see it)
                          <div class="toggle_wrap">
-                             <div class="toggle_widget text_on relative" ng-click="doSetGroupVisibility(group.visibility)" ng-class="{no: (group.visibility === Group.VISIBILITY.private), yes: (group.visibility === Group.VISIBILITY.public)}">
+                             <div class="toggle_widget text_on relative no">
                                  <div class="toggle_circle"></div>
                                  <div class="toggle_text text_no">
                                      <div class="table_cell">NO</div>
@@ -107,6 +107,26 @@
                          <div class="clearer"></div>
                      </div>
                  </div>-->
+
+                <div class="lightbox_section" ng-if="group.id">
+                    <div class="content_inside_wrap">
+                        Leave group
+                        <div class="gray_button" ng-click="doLeaveGroup(group)">
+                            Leave group
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+                </div>
+
+                <div class="lightbox_section" ng-if="group.id && group.canDelete()">
+                    <div class="content_inside_wrap">
+                        Delete group
+                        <div class="gray_button" ng-click="doDeleteGroup(group)">
+                            Delete group
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- ADD TOPICS -->
@@ -114,13 +134,13 @@
                 <div class="lightbox_section">
                     <div cos-dropdown ng-class="{search_with_dropdown : searchResults.topics.length, dropdown_active : searchResults.topics.length}">
                         <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
-                                   select="addTopicToGroup(item)" ng-attr-placeholder="Search for a topic">
+                                   select="addGroupMemberTopic(item)" ng-attr-placeholder="Search for a topic">
                             <div class="search_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-search-gray-2x"></div>
                                 </div>
                             </div>
-                            <div class="search_text" ng-click="addTopicToGroup(item)">
+                            <div class="search_text" ng-click="addGroupMemberTopic(item)">
                                 <div class="table_cell blue_link">
                                     Press enter to add
                                 </div>
@@ -132,7 +152,7 @@
                                             <b>{{topic.title}}</b>
                                         </div>
                                         <div class="table_cell blue_link">
-                                            <span class="submit_link" ng-click="addTopicToGroup(topic)">Press enter or click to add</span>
+                                            <span class="submit_link" ng-click="addGroupMemberTopic(topic)">Press enter or click to add</span>
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +190,7 @@
 
                                 <div class="btn_wrap recycle_bin white_bg">
                                     <div class="btn">
-                                        <div class="table_cell" ng-click="removeTopicFromGroup(topic.id)">
+                                        <div class="table_cell" ng-click="removeGroupMemberTopic(topic)">
                                             <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                             <div class="sprite mobile_fix sprite-voted-check2x"></div>
                                         </div>
@@ -193,7 +213,7 @@
                                     </div>
                                     <div class="dropdown">
                                         <div class="dropdown_item" ng-repeat="level in GroupMemberTopic.LEVELS">
-                                            <div class="item_name" ng-click="doSetGroupTopicLevel(topic.id, level)">
+                                            <div class="item_name" ng-click="updateGroupMemberTopicLevel(topic, level)">
                                                 {{level}}
                                             </div>
                                         </div>
@@ -222,7 +242,7 @@
                     <div class="searchbox_with_icon_and_text only_text">
                         <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length, dropdown_active : searchResults.users.length}">
                             <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
-                                       select="addUserAsMember(item)" ng-attr-placeholder="{{'PLACEHOLDER_USERNAME_OR_EMAIL' | translate}}">
+                                       select="addGroupMemberUser(item)" placeholder="Search by username or e-mail address">
                                 <div class="search_area_wrap">
                                     <div class="search_dropdown_area" ng-show="searchResults.users.length">
                                         <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
@@ -230,7 +250,7 @@
                                                 <b>{{user.name}}</b> {{user.company}}
                                             </div>
                                             <div class="table_cell blue_link">
-                                                <span class="submit_link" ng-click="addUserAsMember(user)">Press enter or click to add</span>
+                                                <span class="submit_link" ng-click="addGroupMemberUser(user)">Press enter or click to add</span>
                                             </div>
                                         </div>
                                     </div>
@@ -240,7 +260,7 @@
 
                         </div>
                         <div class="search_text">
-                            <div class="table_cell blue_link" ng-click="doSubmitUser()">
+                            <div class="table_cell blue_link">
                                 Press enter to add
                             </div>
                         </div>
@@ -302,7 +322,7 @@
 
                                                 <div class="dropdown">
                                                     <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                        <div class="item_name" ng-click="doChangeMemberPermissions(member, level)">
+                                                        <div class="item_name" ng-click="updateGroupMemberUserLevel(member, level)">
                                                             {{level}}
                                                         </div>
                                                     </div>
@@ -342,7 +362,7 @@
 
                                         <div class="dropdown">
                                             <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                <div class="item_name" ng-click="doChangeMemberPermissions(member, level)">
+                                                <div class="item_name" ng-click="updateGroupMemberUserLevel(member, level)">
                                                     {{level}}
                                                 </div>
                                             </div>
@@ -384,7 +404,7 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="closeThisDialog()">
+    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()">
 
     </div>
 

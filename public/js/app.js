@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead']);
+    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker']);
 
     module
         .constant('cosConfig', {
@@ -34,7 +34,23 @@
             // Send cookies with API request
             $httpProvider.defaults.withCredentials = true;
 
-            // This is to enable resolving link to state later
+            /**
+             $httpProvider.interceptors.push(['$q', function ($q) {
+                return {
+                    'request': function (config) {
+                        console.log('request', config.url, config.headers['accept'], config);
+                        return $q.resolve(config);
+                    },
+
+                    'response': function (response) {
+                        console.log('response', response.config.url, response.headers('content-type'), response);
+                        return $q.resolve(response);
+                    }
+                };
+            }]);
+             **/
+
+                // This is to enable resolving link to state later
             $stateProvider.decorator('parent', function (internalStateObj, parentFn) {
                 // This fn is called by StateBuilder each time a state is registered
                 // The first arg is the internal state. Capture it and add an accessor to public state object.
@@ -265,8 +281,10 @@
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
-                        dialog.closePromise.then(function () {
-                            $state.go('^');
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
                         });
                     }]
                 })
@@ -311,7 +329,6 @@
                         });
                     }]
                 });
-
 
             $translateProvider.useStaticFilesLoader({
                 prefix: 'languages/',

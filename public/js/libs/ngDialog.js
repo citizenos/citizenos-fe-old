@@ -524,8 +524,8 @@
                             var hasOverlayClass = options.overlay ? '' : ' ngdialog-no-overlay';
                             $dialog = $el('<div id="' + dialogID + '" class="ngdialog' + hasOverlayClass + '"></div>');
                             $dialog.html((options.overlay ?
-                                '<div class="ngdialog-overlay"></div><div class="ngdialog-content" role="document">' + template + '</div>' :
-                                '<div class="ngdialog-content" role="document">' + template + '</div>'));
+                            '<div class="ngdialog-overlay"></div><div class="ngdialog-content" role="document">' + template + '</div>' :
+                            '<div class="ngdialog-content" role="document">' + template + '</div>'));
 
                             $dialog.data('$ngDialogOptions', options);
 
@@ -668,7 +668,7 @@
                             if (options.closeByNavigation) {
                                 var eventName = privateMethods.getRouterLocationEventName();
                                 $rootScope.$on(eventName, function ($event) {
-                                    if (privateMethods.closeDialog($dialog) === false)
+                                    if (privateMethods.closeDialog($dialog, '$navigation') === false)
                                         $event.preventDefault();
                                 });
                             }
@@ -707,8 +707,13 @@
                         };
 
                         function loadTemplateUrl (tmpl, config) {
+                            var config = config || {};
+                            config.headers = config.headers || {};
+
+                            angular.extend(config.headers, {'Accept': 'text/html'});
+
                             $rootScope.$broadcast('ngDialog.templateLoading', tmpl);
-                            return $http.get(tmpl, (config || {})).then(function(res) {
+                            return $http.get(tmpl, config).then(function(res) {
                                 $rootScope.$broadcast('ngDialog.templateLoaded', tmpl);
                                 return res.data || '';
                             });

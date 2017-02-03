@@ -33,7 +33,7 @@ angular
                 },
                 save: {
                     method: 'POST',
-                    params :{topicId:'@id', groupId:null},
+                    params: {topicId: '@id', groupId: null},
                     url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups'),
                     transformRequest: function (data) {
                         return angular.toJson({topicId: data.id, groupId: data.groupId, level: data.level});
