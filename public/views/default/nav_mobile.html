@@ -3,7 +3,7 @@
     </div>
 </div>
 
-<div class="header_button" ng-click="app.showSearch = !app.showSearch;" ng-style="{'display': app.showSearch ? 'none ' : 'relative'}" ng-class="1>0 ? 'overview_active' : ''">
+<div class="header_button search" ng-click="app.showSearch = !app.showSearch;" ng-style="{'display': app.showSearch ? 'none ' : 'relative'}" ng-class="1>0 ? 'overview_active' : ''">
     <div class="header_button_icon">
         <div class="sprite sprite-icon-search2x">
         </div>
@@ -23,7 +23,7 @@
             Overview
         </div>
 
-        <div id="line_holder">
+        <div class="line_holder">
             <div class="v_line light_line"></div>
             <div class="v_line dark_line"></div>
         </div>
@@ -38,16 +38,51 @@
             Overview
         </div>
 
-        <div id="line_holder">
+        <div class="line_holder">
             <div class="v_line light_line"></div>
             <div class="v_line dark_line"></div>
         </div>
     </div>
 </div>
 
+<div ng-if="wWidth <= 1024">
+    <div class="header_button edit">
+            <div class="header_button_icon">
+                <div class="sprite sprite-icon-mobile-edit2x">
+                </div>
+            </div>
+            <div class="header_button_text">
+                Edit
+            </div>
+
+            <div class="line_holder">
+                <div class="v_line dark_line"></div>
+                <div class="v_line light_line"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header_button settings">
+            <div class="header_button_icon">
+                <div class="sprite sprite-icon-mobile-settings2x">
+                </div>
+            </div>
+            
+            <div class="header_button_text">
+                Settings
+            </div>
+
+            <div class="line_holder">
+                <div class="v_line dark_line"></div>
+                <div class="v_line light_line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="header_button" ng-click="app.showNav = !app.showNav">
-    <div id="line_holder">
+    <div class="line_holder first_holder">
         <div class="v_line light_line"></div>
         <div class="v_line dark_line"></div>
     </div>

@@ -6,20 +6,55 @@
     @extend .default_setup;
 
     .timeline {
-        height: 100px;
+        height: 85px;
         display: table;
         padding: 0 60px;
         box-sizing: border-box;
         width: 100%;
         font-size: 14px;
-        margin-top: 7px;
+        margin-top: 15px;
         position: relative;
         z-index: 2;
         background: $light_gray;
 
+        @media (max-width: 767px) {
+            padding: 0;
+            height: 86px;
+            margin-top: 22px;
+            height: 106px;
+        }
+
+        .milestones_wrap {
+            text-align: center;
+            margin-bottom: 38px;
+            display: none;
+            width: 100px;
+
+            @media (max-width: 767px) {
+                display: table-row;
+                height: 42px;
+            }
+
+            .milestones_section {
+                display: inline-table;
+                background: $lightest_gray;
+                padding-right: 12px;
+                border-radius: 12px;
+                margin-left: -2px;
+                .table_cell {
+                    width: auto;
+                    .milestones_checkmark {
+                        padding-right: 5px;
+                    }
+                }
+            }
+        
+
+        }
+
         .table_cell {
-            width: 100%;
             position: relative;
+            width: 100%;
 
             .background_line {
                 height: 4px;
@@ -51,6 +86,11 @@
                 display: table;
                 margin-top: -15px;
                 position: absolute;
+
+                @media (max-width: 767px) {
+                    display: none;
+                }
+
                 .table_cell {
                     width: 100%;
                     height: 100%;
@@ -74,15 +114,24 @@
 
         .additional_info {
             position: absolute;
-            top: 10px;
+            top: 2px;
         }
 
         .additional_info.signing_deadline {
             right: 60px;
+            @media (max-width: 767px) {
+                width: 100%;
+                left: 0;
+                text-align: center;
+                top: 33px;
+            }
         }
 
         .additional_info.current_phase {
             left: 60px;
+            @media (max-width: 767px) {
+                display: none;
+            }
         }
 
     }
@@ -161,6 +210,10 @@
                     position: relative;
                     overflow: hidden;
 
+                    @include tablet {
+                        padding-left: 10px;
+                    }
+
                     .tabs_rails {
                         height: inherit;
                         width: 99999px;
@@ -187,11 +240,17 @@
                                 border: 1px solid $lightest_gray;
                                 position: relative;
                                 z-index: 1;
+                                text-align: center;
                                 &:hover {
                                     cursor: pointer;
                                     background: $light_gray;
                                     @include tablet {
                                         background: $white;
+                                    }
+                                }
+                                @include tablet {
+                                    &:last-child {
+                                        margin-right: 0;
                                     }
                                 }
                             } 
@@ -229,6 +288,9 @@
                 width: 70%;
                 @include tablet {
                     width: 100%;
+                }
+                @media (max-width: 767px) {
+                    padding: 30px 20px;
                 }
                 .iframe_content {
                     background: $disabled_blue;

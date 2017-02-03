@@ -2,6 +2,23 @@
 
     <div class="timeline">
 
+        
+        <div class="milestones_wrap">
+
+            <div class="milestones_section">
+                <div class="table_cell milestones_checkmark">
+                    <div class="sprite sprite-check-timeline-gray2x">
+                    </div>
+                </div>
+                <div class="table_cell">
+                    <div class="bold">
+                        3 MILESTONES
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <div class="table_cell">
             <div class="background_line timeline_gray_background">
             </div>
@@ -47,30 +64,31 @@
             Signing deadline: <span class="bold">31.01.2016</span>
         </div>
 
+
         <div class="additional_info current_phase">
             Current phase: Document version 3
         </div>
-
     </div>
+
 
     <div class="content_wrap">
         <div class="tabs_wrap_wrap">
 
             <div class="tabs_wrap">
                 <div class="tabs_visible_area" ng-controller="buttonsSlider">
-                    <div ng-if="trainPosition != 0 && tabs_train_width > tabs_visible_area_width && wWidth > 1024"  class="arrow_btn" ng-click="moveLeft()">
+                    <div ng-if="trainPosition != 0 && tabsTrainWidth > tabsVisibleAreaWidth && wWidth > 1024"  class="arrow_btn" ng-click="moveLeft()">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-arrow-topic-tab2x"></div>
                         </div>
                     </div>
-                    <div ng-if="trainPosition >= -tabs_train_width+tabs_visible_area_width && wWidth > 1024" class="arrow_btn right" ng-click="moveRight()" ng-if="tabs_train_width > tabs_visible_area_width">
+                    <div ng-if="trainPosition >= -tabsTrainWidth+tabsVisibleAreaWidth && wWidth > 1024" class="arrow_btn right" ng-click="moveRight()" ng-if="tabsTrainWidth > tabsVisibleAreaWidth">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-arrow-right-topic-tab2x"></div>
                         </div>
                     </div>
                     <div class="tabs_rails">
                         <div class="tabs_train" slide-controller identifier="tabsTrain" start_slide_at="1024" ng-style="{'margin-left' : trainPosition + 'px'}">
-                            <div class="tab" ng-class="i == 15 ? 'selected' : ''" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" dimensions>
+                            <div class="tab" ng-class="i == 15 ? 'selected' : ''" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
                                 <div class="table_cell">
                                     Version {{i}}
                                 </div>
