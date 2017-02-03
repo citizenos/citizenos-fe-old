@@ -1,22 +1,28 @@
+/**
+*   Modal directive for angular
+*   Default template has save and cancel actions, but custom template may be used without these actions
+*   NOTE! If directive in cos-modal-content needs scope variable for initialization replace scope variable name with cosModalValue
+*/
 angular
     .module('citizenos')
     .directive('cosModal', ['$compile', function($compile) {
     return {
         restrict: 'E',
         transclude: true,
+        require: 'cosModalLink',
         template: '<div ng-transclude></div>',
         replace: true,
         scope: {
             template: '@',
             save: '&',
-            toggle: '=',
-            ngModel: '=',
+            model: '=ngModel',
         },
         controller: ['$scope', '$templateCache', '$element', function($scope, $templateCache, $element) {
-            $scope.item = $scope.ngModel;
+
+            $scope.cosModalValue = $scope.model;
             this.templateHtml = '';
 
-            if(!$scope.template){
+            if (!$scope.template) {
                 $scope.template = '/views/modals/cosModal.html';
             }
 
@@ -38,21 +44,25 @@ angular
             }
 
             $scope.cosModalSaveAction = function () {
-                if(!angular.isDefined($scope.toggle) || $scope.toggle ===true) {
-                    $scope.ngModel = $scope.item;
-                    $scope.save();
+                if ($element.parent().html().indexOf('cos-toggle') > -1 && $scope.cosToggleStatus() === true){
+
+                    if (typeof $scope.cosModalValue == 'number'){
+                        $scope.cosModalValue = 0;
+                    } else {
+                        $scope.cosModalValue = null;
+                    }
+
                 }
+                $scope.model = $scope.cosModalValue;
+                $scope.save();
+
                 $scope.cosModalClose();
             };
 
             $scope.cosModalClose = function () {
-                $scope.item = $scope.ngModel;
+                $scope.cosModalValue = $scope.model;
                 $scope.dialog.remove();
             };
-
-            $scope.switchToggle = function () {
-                $scope.toggle = !$scope.toggle;
-            }
 
             this.modalOpen  = function () {
                 $scope.cosModalOpen();
@@ -83,7 +93,8 @@ angular
     return {
         require: '^cosModal',
         link: function(scope, element, attrs, controller) {
-            element.bind('click', function(e) {
+            element.off();
+            element.on('click', function(e) {
                 scope.$apply(function() { controller.modalOpen(); });
             });
             controller.setLink(element);
@@ -111,7 +122,6 @@ angular
         require: '^cosModal',
         link: function(scope, element, attrs, controller) {
             var title = angular.copy(element);
-            console.log(title);
             controller.setModalTitle(title[0].innerHTML);
             element.remove();
         }

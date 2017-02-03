@@ -6,7 +6,7 @@ angular
             replace: true,
             template: '<div class="input_wrap"><input ng-model="item"></div>',
             scope: {
-                item: '='
+                item: '=cosInput'
             }
         }
     });

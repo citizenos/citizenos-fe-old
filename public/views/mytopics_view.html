@@ -498,23 +498,31 @@
                                 <cos-toggle>
                                     <div class="description_wrap">
                                         <div class="description">
-                                            See on mingi description
+                                            The amount of votes needed before successful closure.
                                         </div>
-                                        <div class="toggle_cell" ng-if="showToggle">
-                                            <div class="toggle_widget" ng-click="switchToggle()" ng-class="toggle ? 'no' : 'yes'">
+
+                                        <div class="toggle_cell">
+                                            <div cos-toggle-switch class="toggle_widget" ng-click="cosToggle()" ng-class="cosToggleStatus() ? 'no' : 'yes'">
                                                 <div class="toggle_circle"></div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div cos-input item="item"></div>
+                                    <div cos-input="item"></div>
                                 </cos-toggle>
                             </div>
                         </cos-modal>
+                    </div>
 
-                        <cos-modal ng-model="date" template="/views/modals/input_test.html">
+                        <div class="clearer"></div>
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Vote deadline
+                        </div>
+                        <cos-modal ng-model="date" save="saveDate()">
                             <div cos-modal-title>
                                 <div id="lightbox_header_text">
-                                    <div class="title">Votes deadline</div>
+                                    <div class="title">Vote deadline</div>
                                     <div class="lightbox_header_description_text">
                                         Ettepanek seadusega keelata kõrvklappide kandmine tänaval
                                     </div>
@@ -522,35 +530,43 @@
                             </div>
                             <div cos-modal-link class="item_content" >
                                 <div class="item_text">
-                                    {{date}}
+                                    {{date | amDateFormat : 'L'}}
                                 </div>
                                 <div class="v_line"></div>
                                 <div class="item_link blue_link">
-                                    Vote deadline
+                                    edit
                                 </div>
                             </div>
                             <div cos-modal-content>
-                                <p>LambiTekst</p>
-                                <div date-picker="date" max-view="date" min-view="date" template="/views/directives/datePicker.html"></div>
+                                <cos-toggle cosToggleOn='yes' cosToggleOff='no'>
+                                    <div class="description_wrap">
+                                        <div class="description">
+                                            Ettepanek seadusega keelata kõrvklappide kandmine tänaval
+                                        </div>
+                                        <div class="toggle_cell" >
+                                            <div class="toggle_widget" cos-toggle-switch  ng-class="cosToggleStatus() ? 'no' : 'yes'">
+                                                <div class="toggle_circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="bubble_section">
+                                            <div class="bubble_title">Deadline</div>
+                                            <div class="bubble_description">
+
+                                                <div class="picker_deadline_date">
+                                                    {{cosModalValue|amDateFormat:'L'}}
+                                                </div>
+                                                <div class="picker_days_left">
+                                                    15
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                        </div>
+                                    <div date-picker="cosModalValue" max-view="date" min-view="date" template="/views/directives/datePicker.html"></div>
+                                </cos-toggle>
                             </div>
                         </cos-modal>
-                    </div>
-                        <div class="clearer"></div>
-                    </div>
 
-                    <div class="content_item">
-                        <div class="item_description">
-                            Vote deadline
-                        </div>
-                        <div class="item_content">
-                            <div class="item_text">
-                                12.08.2016
-                            </div>
-                            <div class="v_line"></div>
-                            <div class="item_link blue_link">
-                                edit
-                            </div>
-                        </div>
                         <div class="clearer"></div>
                     </div>
 
