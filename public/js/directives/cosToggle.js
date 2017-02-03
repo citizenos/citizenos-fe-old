@@ -1,42 +1,44 @@
 /**
-*   Toggle for angular
-*   Has no isolated scope because it might get interfered if another directive is used.
-*   For custom toggle button use cos-toggle-switch on desired element, else inserts default toggle button
-*/
+ *   Toggle for angular
+ *   Has no isolated scope because it might get interfered if another directive is used.
+ *   For custom toggle button use cos-toggle-switch on desired element, else inserts default toggle button
+ */
 angular
     .module('citizenos')
-    .directive('cosToggle',['$compile', function ($compile) {
+    .directive('cosToggle', ['$compile', function ($compile) {
         return {
             restrict: 'AE',
             replace: false,
-            controller: ['$scope', '$templateCache', function($scope, $templateCache) {
+            controller: ['$scope', '$templateCache', function ($scope, $templateCache) {
                 $scope.cosToggleOn = angular.isDefined($scope.cosToggleOn) ? $scope.cosToggleOn : true;
                 $scope.cosToggleoOff = angular.isDefined($scope.cosToggleoOff) ? $scope.cosToggleoOff : false;
                 $scope.cosToggleState = angular.isDefined($scope.cosToggleState) ? $scope.cosToggleState : $scope.cosToggleoOff;
                 $scope.cosToggle = function () {
-                    if($scope.cosToggleState === $scope.cosToggleOn){
+                    if ($scope.cosToggleState === $scope.cosToggleOn) {
                         $scope.cosToggleState = $scope.cosToggleoOff;
                     } else {
                         $scope.cosToggleState = $scope.cosToggleOn;
                     }
                     $scope.cosToggleStatus();
-                }
+                };
 
                 $scope.cosToggleStatus = function () {
                     return $scope.cosToggleState === $scope.cosToggleOn;
                 }
             }],
-            link: function (scope, element, attrs, controller) {
+            link: function (scope, element) {
                 var $input = element.find('input');
                 var contentHtml = element.html();
-                if(contentHtml.indexOf('cos-toggle-switch')<0) {
-                    element.parent().prepend($compile('<div class="toggle_cell">\
+                if (contentHtml.indexOf('cos-toggle-switch') < 0) {
+                    element.parent().prepend($compile('\
+                        <div class="toggle_cell">\
                             <div class="toggle_widget" ng-click="cosToggle()" ng-class="cosToggleStatus() ? \'no\' : \'yes\'">\
                                 <div class="toggle_circle"></div>\
                             </div>\
-                        </div>')(scope));
+                        </div>\
+                    ')(scope));
                 }
-                if($input && $input[0]){
+                if ($input && $input[0]) {
                     $input.attr('ng-disabled', 'cosToggleStatus()');
                     $input.replaceWith($compile($input[0].outerHTML)(scope));
                 }
@@ -47,13 +49,15 @@ angular
 angular
     .module('citizenos')
     .directive('cosToggleSwitch', function () {
-    return {
-        require: '^cosToggle',
-        link: function (scope, element, attrs, controller) {
-            element.off();
-            element.on('click', function(e) {
-                scope.$apply(function() { scope.cosToggle(); });
-            });
-        }
-    };
-});
+        return {
+            require: '^cosToggle',
+            link: function (scope, element, attrs, controller) {
+                element.off();
+                element.on('click', function (e) {
+                    scope.$apply(function () {
+                        scope.cosToggle();
+                    });
+                });
+            }
+        };
+    });
