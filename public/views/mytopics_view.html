@@ -476,7 +476,7 @@
                         <div class="item_description">
                             Votes needed
                         </div>
-                        <cos-modal ng-model="item">
+                        <div cos-modal ng-model="item">
                             <div cos-modal-title>
                                 <div id="lightbox_header_text">
                                     <div class="title">Votes needed</div>
@@ -495,7 +495,7 @@
                                 </div>
                             </div>
                             <div cos-modal-content>
-                                <cos-toggle>
+                                <div cos-toggle>
                                     <div class="description_wrap">
                                         <div class="description">
                                             The amount of votes needed before successful closure.
@@ -508,9 +508,9 @@
                                         </div>
                                     </div>
                                     <div class="input_wrap"><input ng-model="cosModalValue"></div>
-                                </cos-toggle>
+                                </div>
                             </div>
-                        </cos-modal>
+                        </div>
                     </div>
 
                         <div class="clearer"></div>
@@ -519,7 +519,7 @@
                         <div class="item_description">
                             Vote deadline
                         </div>
-                        <cos-modal ng-model="date" save="saveDate()">
+                        <div cos-modal ng-model="date" save="saveDate()">
                             <div cos-modal-title>
                                 <div id="lightbox_header_text">
                                     <div class="title">Vote deadline</div>
@@ -538,11 +538,8 @@
                                 </div>
                             </div>
                             <div cos-modal-content>
-                                <cos-toggle cosToggleOn='yes' cosToggleOff='no'>
+                                <div cos-toggle cos-toggle-on='yes' cos-toggle-off='no'>
                                     <div class="description_wrap">
-                                        <div class="description">
-                                            Ettepanek seadusega keelata kõrvklappide kandmine tänaval
-                                        </div>
                                         <div class="toggle_cell" >
                                             <div class="toggle_widget" cos-toggle-switch  ng-class="cosToggleStatus() ? 'no' : 'yes'">
                                                 <div class="toggle_circle"></div>
@@ -562,10 +559,10 @@
                                                 <div class="clearer"></div>
                                             </div>
                                         </div>
-                                    <div date-picker="cosModalValue" max-view="date" min-view="date" template="/views/directives/datePicker.html"></div>
-                                </cos-toggle>
+                                    <div date-picker="cosModalValue" max-view="date" min-view="date" template="/views/directives/date_picker.html"></div>
+                                </div>
                             </div>
-                        </cos-modal>
+                        </div>
 
                         <div class="clearer"></div>
                     </div>
