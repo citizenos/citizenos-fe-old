@@ -34,23 +34,57 @@
             // Send cookies with API request
             $httpProvider.defaults.withCredentials = true;
 
-            /**
-             $httpProvider.interceptors.push(['$q', function ($q) {
+            $httpProvider.interceptors.push(['$q', function ($q) {
+                var urlApiRegex = /\/api\/.*/i;
                 return {
                     'request': function (config) {
-                        console.log('request', config.url, config.headers['accept'], config);
+                        var match = config.url.match(urlApiRegex);
+                        var path = match ? match[0] : null;
+
+                        if (path) {
+                            var translationKey = config.method + path.replace(/\/self\//g, '_').replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/ig, '_').replace(/\//g, '_').toUpperCase();
+                            console.log('request', config.url, config.method, path, config.headers['accept'], translationKey, config);
+                        }
+
                         return $q.resolve(config);
                     },
 
                     'response': function (response) {
-                        console.log('response', response.config.url, response.headers('content-type'), response);
+                        var config = response.config;
+                        var match = config.url.match(urlApiRegex);
+                        var path = match ? match[0] : null;
+
+                        if (path) {
+                            var translationKey = config.method + path.replace(/\/self\//g, '_').replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/ig, '_').replace(/\//g, '_').toUpperCase();
+                            console.log('response', config.url, config.method, path, response.headers('content-type'), translationKey, response);
+                        }
+
                         return $q.resolve(response);
+                    },
+
+                    'responseError': function (response) {
+                        var config = response.config;
+                        var data = response.data;
+                        var match = config.url.match(urlApiRegex);
+                        var path = match ? match[0] : null;
+
+                        if (path) {
+                            var translationKey = config.method + path.replace(/\/self\//g, '_').replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/ig, '_').replace(/\//g, '_').toUpperCase();
+                            if (data && data.status) {
+                                translationKey += '_' + data.status.code;
+                            } else {
+                                translationKey += '_' + response.status;
+                            }
+                            // TODO: Don't forget to handle field errors!
+                            console.log('responseError', response.config.url, config.method, path, translationKey, response.headers('content-type'), response);
+                        }
+
+                        return $q.reject(response);
                     }
                 };
             }]);
-             **/
 
-                // This is to enable resolving link to state later
+            // This is to enable resolving link to state later
             $stateProvider.decorator('parent', function (internalStateObj, parentFn) {
                 // This fn is called by StateBuilder each time a state is registered
                 // The first arg is the internal state. Capture it and add an accessor to public state object.
