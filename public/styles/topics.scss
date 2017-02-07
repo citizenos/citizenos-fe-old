@@ -446,78 +446,11 @@
                             }
                         }
                         .container_favorite {
-                            position: absolute;
                             right: 15px;
                             top: 15px;
-                            width: 22px;
-                            height: 22px;
-                            cursor: pointer;
-                            background-color: $lightest_gray;
-                            border-radius: 50%;
-                            overflow: hidden;
-
-                            .ff_table_fix {
-                                display: table;
-                                width: 100%;
-                                height: 100%;
-                            }
-
-                            &:hover {
-                                .yellow_bg {
-                                    width: 24px;
-                                    height: 24px;
-                                    top: 0;
-                                    right: 0;
-                                    @include tablet {
-                                        width: 0;
-                                        height: 0;
-                                    }
-                                }
-                            }
-
                             &:active {
-                                width: 24px;
-                                height: 24px;
                                 top: 14px;
                                 right: 14px;
-                                .yellow_bg {
-                                    transition: none;
-                                    width: 24px;
-                                    height: 24px;
-                                    top: 0;
-                                    right: 0;
-                                }
-                            }
-
-                            .yellow_bg {
-                                transition: all 360ms cubic-bezier(.45, .78, 0, 1);
-                                @include tablet {
-                                    transition: none;
-                                }
-                                background: $favorite_yellow;
-                                border-radius: 50%;
-                                width: 0;
-                                height: 0;
-                                position: absolute;
-                                top: 12px;
-                                right: 12px;
-                            }
-
-                            .sprite {
-                                margin: 0 auto;
-                                position: relative;
-                                z-index: 1;
-                            }
-
-                        }
-
-                        .container_favorite.favorited {
-                            .yellow_bg {
-                                transition: none;
-                                width: 24px;
-                                height: 24px;
-                                top: 0;
-                                right: 0;
                             }
                         }
 
@@ -835,6 +768,19 @@
                         @media (max-width: 560px) {
 
                             .pretend_tr:not(:first-child) {
+                                height: 80px;
+                                position: relative;
+                                display: block;
+                                width: 100%;
+                            }
+
+                            .pretend_tr:first-child:after {
+                                content: '';
+                                display: block;
+                                clear: both;
+                            }
+
+                            .pretend_table, .pretend_tr,  .pretend_td, .pretend_th {
                                 position: relative;
                                 display: block;
                                 width: 100%;
@@ -878,6 +824,24 @@
 
                             .pretend_th {
                                 float: left;
+                            }
+
+                            .pretend_td:not(:first-child) {
+                                position: absolute;
+                            }
+
+                            .pretend_td:nth-child(2) {
+                                right: 70px;
+
+                            }
+
+                            .pretend_td:nth-child(3) {
+                                left: 0;
+                                text-align: left;
+                            }
+
+                            .pretend_td:nth-child(4) {
+                                right: 20px;
                                 width: initial !important;
                                 margin-left: 20px;
                                 border-bottom: none;

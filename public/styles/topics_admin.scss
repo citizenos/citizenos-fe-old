@@ -182,7 +182,7 @@
                         margin-left: auto;
                         margin-right: 0;
                         @extend .sprite-icon-arrow-right-topic-tab2x-hover;
-                    }   
+                    }
                 }
             }
 
@@ -281,28 +281,164 @@
             box-sizing: border-box;
             position: relative;
             
-           .iframe_wrap {
-                padding: 30px 60px;
+           .main_panel {
                 box-sizing: border-box;
                 display: table-cell;
                 width: 70%;
-                @include tablet {
-                    width: 100%;
+                position: relative;
+
+                .info_bar_wrap {
+                    position: relative;
+                    z-index: 1;
+                    .info_icon {
+                        vertical-align: middle;
+                    }
+                     @include tablet {
+                         margin-top: 0;
+                    }
+                    
                 }
-                @media (max-width: 767px) {
-                    padding: 30px 20px;
-                }
-                .iframe_content {
-                    background: $disabled_blue;
+
+                .iframe_wrap {
+                    position: relative;
+                    box-sizing: border-box;
+
+                    @include tablet {
+                        width: 100%;
+                    }
+                    .iframe_content_wrap {
+                        padding: 30px 60px;
+                            
+                        @media (max-width: 767px) {
+                            padding: 30px 20px;
+                        }
+
+                        .topic_info.open {
+                            .more_info_button {
+                                .table_cell {
+                                    .circle_holder {
+                                        .circle_wrap {
+                                            .circle {
+                                                bottom: -1px;
+                                            }
+                                            &:nth-child(2) {
+                                                .circle {
+                                                    bottom: auto;
+                                                    top: -2px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .line {
+                                margin-top: 63px;
+                            }
+
+                        }
+
+                        .topic_info {
+                            position: relative;
+                            margin-bottom: 29px;
+                            
+                            .container_favorite {    
+                                top: -4px;
+                                right: -41px;
+                                &:active {
+                                    top: -5px;
+                                    right: -42px;
+                                }
+                                @media (max-width: 767px) {
+                                    top: auto;
+                                    bottom: 20px;
+                                    right: 0;
+                                    &:active {
+                                        top: auto;
+                                        bottom: 19px;
+                                        right: -1px;
+                                    }
+                                }
+                            }
+                            
+                            .more_info_button {
+                                width: 36px;
+                                height: 20px;
+                                background-color: $mobile_gray;
+                                border: 1px solid $mobile_border_gray;
+                                border-radius: 4px;
+                                position: absolute;
+                                bottom: 21px;
+                                display: none;
+                                @media (max-width: 767px) {
+                                    display: table;
+                                }
+                                .table_cell {
+                                    width: 100%;
+                                    height: 100%;
+                                    .circle_holder {
+                                        width: 20px;
+                                        margin: 0 auto;
+                                        .circle_wrap {
+                                            float: left;
+                                            height: 4px;
+                                            width: 4px;
+                                            position: relative;
+                                            &:not(:first-child) {
+                                                margin-left: 4px;
+                                            }
+                                            .circle {
+                                                position: absolute;
+                                                height: 4px;
+                                                width: 4px;
+                                                border-radius: 50%;
+                                                background: $circle_gray;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            .info_sections_wrap {
+                                .info_section {
+                                    margin-bottom: 7px;
+                                }
+                            }
+
+                            .line {
+                                margin-top: 22px;
+                                @media (max-width: 767px) {
+                                    margin-top: 32px;
+                                }
+                            }
+                            .info_section, .blue_link {
+                                font-size: 13px;
+                            }
+                        }
+
+                        .iframe_content {
+                            background: $disabled_blue;
+                        }
+                    }
+
                 }
            }
 
-           .side_panel {
+
+            .side_panel {
+                padding: 30px 30px 10px 30px;
                 display: table-cell;
                 width: 30%;
                 min-width: 250px;
                 background: $side_panel_gray;
-                padding: 30px 30px 10px 30px;
+                vertical-align: top;
+
+                .blue_button {
+                    margin-bottom: 20px;
+                    border-radius: 4px;
+                }
+
                 @include tablet {
                     width: 100%;
                     display: none;
@@ -331,14 +467,15 @@
                         }
                     }
                 }
-           }
+            }
+           
         }
 
     }
 
     .side_panel_background {
         position: absolute;
-        top: 7px;
+        top: 15px;
         bottom: 0;
         width: 30%;
         min-width: 310px;
