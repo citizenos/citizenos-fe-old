@@ -8,11 +8,11 @@ angular
         $scope.saveItem = function () {
             console.log('saveItem');
             console.log($scope.item);
-        }
+        };
 
         $scope.saveDate = function () {
             console.log('saveDate');
             console.log($scope.date);
-        }
+        };
 
     }]);

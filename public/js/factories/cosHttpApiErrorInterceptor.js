@@ -73,12 +73,17 @@ angular
         };
 
         var generalErrorToKey = function (errorResponse) {
+            if (errorResponse.status < 0) {
+                sNotification.addError('MSG_ERROR_NETWORK_PROBLEMS');
+                return;
+            }
+
             var GENERAL_ERROR_FALLBACK_KEY_PATTERN = 'MSG_ERROR_:statusCode';
 
             var translationKey = getGeneralErrorTranslationKey(errorResponse);
 
             var data = errorResponse.data;
-            var statusCode = (data.status && data.status.code) ? data.status.code : errorResponse.status;
+            var statusCode = data.status.code;
 
             var translationKeyFallback = GENERAL_ERROR_FALLBACK_KEY_PATTERN
                 .replace(':statusCode', statusCode);
@@ -97,6 +102,10 @@ angular
         };
 
         return {
+            'response': function (response) {
+                sNotification.removeAll();
+                return response;
+            },
             'responseError': function (response) {
                 if (response.config.url.match(API_REQUEST_REGEX)) {
                     try {
