@@ -12,12 +12,21 @@ var prerender = require('prerender-node');
 app.use(require('prerender-node').set('prerenderToken', 'CrrAflHAEiF44KMFkrs7'));
 app.use(prerender);
 
-app.get('/*', function(req, res){
+app.get('/*', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+var host = process.env.HOST;
+if (!host) {
+    if (app.get('env') === 'development') {
+        host = null; // Binds 0.0.0.0, thus open on all interfaces. In dev useful so that app running in Vbox is visible to the host machine.
+    } else {
+        host = 'localhost';  // Bind to localhost, so the port is not open to the whole world.
+    }
+}
+
 var portHttp = process.env.PORT || 3000;
-http.createServer(app).listen(portHttp, function (err, res) {
+http.createServer(app).listen(portHttp, host, function (err, res) {
     if (err) {
         console.log('Failed to start HTTP server on port' + portHttp, err);
         return;
@@ -33,7 +42,7 @@ if (app.get('env') === 'development') {
         cert: fs.readFileSync('./config/certs/dev.citizenos.com.crt')
     };
 
-    https.createServer(options, app).listen(portHttps, function (err, res) {
+    https.createServer(options, app).listen(portHttps, host, function (err, res) {
         if (err) {
             console.log('Failed to start HTTPS server on port' + portHttps, err);
             return;
