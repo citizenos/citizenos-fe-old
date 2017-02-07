@@ -33,12 +33,17 @@ angular
             }
 
             $scope.memberTopics = [];
+            $scope.members = {
+                users: [],
+                emails: []
+            };
+
             $scope.Group = Group;
             $scope.GroupMemberTopic = GroupMemberTopic;
             $scope.GroupMemberUser = GroupMemberUser;
+
             $scope.searchStringUser = null;
             $scope.searchStringTopic = null;
-
             $scope.searchResults = {};
 
             $scope.errors = null;
