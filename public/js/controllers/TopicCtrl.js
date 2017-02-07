@@ -201,10 +201,6 @@ angular
                         angular.noop,
                         function (res) {
                             topicMemberUser.level = oldLevel;
-                            // FIXME: More generic handling
-                            if (res.data.status.code === 40000) {
-                                $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, 'You cannot change permissions as you are the last admin member of this Topic. Pleas assign a new admin to do so.');
-                            }
                         });
             }
         };

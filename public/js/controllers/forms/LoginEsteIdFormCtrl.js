@@ -19,8 +19,7 @@ angular
             $log.debug('LoginEsteIdFormCtrl.doLoginMobiilId()');
 
             $scope.formMobile.isLoading = true;
-            $scope.app.doHideNotification($scope.app.notifications.levels.ERROR);
-
+            
             sAuth
                 .loginMobiilIdInit($scope.formMobile.pid, $scope.formMobile.phoneNumber)
                 .then(function (loginMobileIdInitResult) {
