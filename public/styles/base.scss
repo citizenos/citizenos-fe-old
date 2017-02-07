@@ -235,6 +235,79 @@ table, .pretend_table {
 
 //Overall button styles and other general items
 
+ .container_favorite {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    background-color: $lightest_gray;
+    border-radius: 50%;
+    overflow: hidden;
+
+    .ff_table_fix {
+        display: table;
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover {
+        .yellow_bg {
+            width: 24px;
+            height: 24px;
+            top: 0;
+            right: 0;
+            @include tablet {
+                width: 0;
+                height: 0;
+            }
+        }
+    }
+
+    &:active {
+        width: 24px;
+        height: 24px;
+        .yellow_bg {
+            transition: none;
+            width: 24px;
+            height: 24px;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    .yellow_bg {
+        transition: all 360ms cubic-bezier(.45, .78, 0, 1);
+        @include tablet {
+            transition: none !important;
+        }
+        background: $favorite_yellow;
+        border-radius: 50%;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+    }
+
+    .sprite {
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+}
+
+.container_favorite.favorited {
+    .yellow_bg {
+        transition: none;
+        width: 24px !important;
+        height: 24px !important;
+        top: 0;
+        right: 0;
+    }
+}
+
+
 .pretend_table {
     display: table;
 }
