@@ -65,11 +65,11 @@
                     <div class="input_description">
                         Insert a name for your group that is clear and understandable for people.
                     </div>
-                    <input id="groupName" placeholder="Group name" ng-model="form.group.name" ng-class="{'error_input': errors.form.group.name}">
-                    <label for="groupName" class="error_label" ng-if="errors.from.group.name">
+                    <input id="groupName" placeholder="Group name" ng-model="form.group.name" ng-class="{'error_input': errors.name}">
+                    <label for="groupName" class="error_label" ng-if="errors.name">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-inputfield-error2x"></div>
-                            <span>No group name</span>
+                            <span translate="{{errors.name}}">Invalid group name</span>
                         </div>
                     </label>
                 </div>

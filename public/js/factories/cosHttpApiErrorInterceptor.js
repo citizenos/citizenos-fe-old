@@ -73,6 +73,7 @@ angular
         };
 
         var generalErrorToKey = function (errorResponse) {
+            $log.debug('AAAAAAAAAAAAAAAAAAAaa', errorResponse);
             if (errorResponse.status < 0) {
                 sNotification.addError('MSG_ERROR_NETWORK_PROBLEMS');
                 return;
