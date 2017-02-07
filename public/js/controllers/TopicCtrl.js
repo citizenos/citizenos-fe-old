@@ -64,11 +64,6 @@ angular
                         .$delete({topicId: topic.id})
                         .then(function () {
                             $state.go('my.topics', null, {reload: true});
-                        }, function (res) {
-                            // FIXME: More generic handling
-                            if (res.data.status.code === 40010) {
-                                $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, 'You cannot leave this Group as you are the last admin user of this Group. Please assign a new admin to leave.');
-                            }
                         });
                 });
         };
@@ -227,8 +222,6 @@ angular
                         .$delete({topicId: topic.id})
                         .then(function () {
                             return loadTopicMemberUserList(topic); // Good old topic.members.users.splice wont work due to group permission inheritance
-                        }, function (res) {
-                            $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, res.data.status.message);
                         });
                 }, angular.noop);
         };

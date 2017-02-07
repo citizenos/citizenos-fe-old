@@ -16,14 +16,7 @@ app.get('/*', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
-var host = process.env.HOST;
-if (!host) {
-    if (app.get('env') === 'development') {
-        host = null; // Binds 0.0.0.0, thus open on all interfaces. In dev useful so that app running in Vbox is visible to the host machine.
-    } else {
-        host = 'localhost'; // Bind to localhost, so the port is not open to the whole world.
-    }
-}
+var host = process.env.HOST || null;
 
 var portHttp = process.env.PORT || 3000;
 http.createServer(app).listen(portHttp, host, function (err, res) {

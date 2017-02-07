@@ -11,7 +11,7 @@
 
     <link href="styles/citizenos-fe.bundle.css?v=a29b3ded6192f5b428f1ce8a2c47ac3c" rel="stylesheet">
 
-    <script src="js/citizenos-fe.bundle.js?v=5361501388045ceddd7dabf6e386d428"></script>
+    <script src="js/citizenos-fe.bundle.js?v=3e539f7e2eb5d36855cd86c1af8d9b60"></script>
     <script src="js/libs/template-cache.js?v=a1e4e7cda903a35785dca07d9ae017d6"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.ERROR)">
+            <div class="info_icon" ng-click="app.notifications.removeAll(app.notifications.levels.ERROR)">
                 <div class="sprite sprite-icon-closemenu2x"></div>
             </div>
         </div>
@@ -65,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.INFO)">
+            <div class="info_icon" ng-click="app.notifications.removeAll(app.notifications.levels.INFO)">
                 <div class="sprite sprite-icon-closemenu2x"></div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.SUCCESS)">
+            <div class="info_icon" ng-click="app.notifications.removeAll(app.notifications.levels.SUCCESS)">
                 <div class="sprite sprite-btn-popup-close-2x-green"></div>
             </div>
         </div>
@@ -104,9 +104,7 @@
 
     </nav>
 
-
     <!-- CONTENT -->
-
     <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''" ui-view></div>
 
 </body>

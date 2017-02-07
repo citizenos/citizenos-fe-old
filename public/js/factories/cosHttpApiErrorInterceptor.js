@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .factory('cosHttpApiErrorInterceptor', ['$log', '$q', '$translate', '$filter', function ($log, $q, $translate, $filter) {
+    .factory('cosHttpApiErrorInterceptor', ['$log', '$q', '$translate', '$filter', 'sNotification', function ($log, $q, $translate, $filter, sNotification) {
         $log.debug('citizenos.factory.cosHttpApiErrorInterceptor');
 
         var API_REQUEST_REGEX = /\/api\/.*/i;
@@ -66,13 +66,8 @@ angular
                 var translationKey = getGeneralErrorTranslationKey(errorResponse);
                 translationKey += '_' + key.toUpperCase();
 
-                // "Check" if key exists, if it does, replace the API message with translation key.
-                // If it does not, leave the API message as a fallback.
-                // The key exists
                 if (translationKey !== translate(translationKey)) {
                     errors[key] = translationKey;
-                } else {
-                    $log.warn('cosHttpApiErrorInterceptor.fieldErrorsToKeys()', 'Translation not found', translationKey, errorResponse);
                 }
             });
         };
@@ -91,11 +86,13 @@ angular
             // The key exists
             if (translationKey !== translate(translationKey)) {
                 errorResponse.data.status.message = translationKey;
+                sNotification.addError(translationKey);
                 // Use fallback to generic error
             } else if (translationKeyFallback !== translate(translationKeyFallback)) {
                 errorResponse.data.status.message = translationKeyFallback;
+                sNotification.addError(translationKey);
             } else {
-                $log.warn('cosHttpApiErrorInterceptor.generalErrorToKey()', 'Translation not found for key', translationKey, errorResponse);
+                $log.error('cosHttpApiErrorInterceptor.generalErrorToKey', 'No translation for', translationKey, translationKeyFallback, errorResponse);
             }
         };
 

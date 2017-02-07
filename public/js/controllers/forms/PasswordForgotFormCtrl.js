@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('PasswordForgotFormCtrl', ['$scope', '$log', '$state', 'ngDialog', 'sAuth', function ($scope, $log, $state, ngDialog, sAuth) {
+    .controller('PasswordForgotFormCtrl', ['$scope', '$log', '$state', 'ngDialog', 'sAuth', 'sNotification', function ($scope, $log, $state, ngDialog, sAuth, sNotification) {
         $log.debug('PasswordForgotFormCtrl');
 
         $scope.form = {
@@ -15,7 +15,7 @@ angular
             $scope.errors = null;
 
             var success = function (res) {
-                $scope.app.doShowNotification($scope.app.notifications.levels.SUCCESS, 'MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT');
+                sNotification.addInfo('MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT');
                 ngDialog.closeAll(); // Close all dialogs, including this one..
             };
 
