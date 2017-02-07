@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginEsteIdFormCtrl', ['$scope', '$log', '$state', '$window', '$timeout', 'ngDialog', 'sAuth', 'sTranslate', function ($scope, $log, $state, $window, $timeout, ngDialog, sAuth, sTranslate) {
+    .controller('LoginEsteIdFormCtrl', ['$scope', '$log', '$state', '$window', '$timeout', 'ngDialog', 'sAuth', function ($scope, $log, $state, $window, $timeout, ngDialog, sAuth) {
         $log.debug('LoginEsteIdFormCtrl');
 
         var init = function () {
@@ -42,7 +42,6 @@ angular
                         $log.error('Error when logging in with mobile id', err);
                         msg = 'MSG_ERROR_50000';
                     } else {
-                        sTranslate.errorsToKeys(err, sTranslate.models.LOGIN);
                         msg = err.data.status.message;
                     }
 
@@ -74,7 +73,6 @@ angular
                             $log.error('Error when logging in with card', err);
                             msg = 'MSG_ERROR_50000';
                         } else {
-                            sTranslate.errorsToKeys(err, sTranslate.models.LOGIN);
                             msg = err.data.status.message;
                         }
 

@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', 'ngDialog', 'sAuth', 'sTranslate', 'sLocation', function ($scope, $log, $state, $stateParams, $window, ngDialog, sAuth, sTranslate, sLocation) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', 'ngDialog', 'sAuth', 'sLocation', function ($scope, $log, $state, $stateParams, $window, ngDialog, sAuth, sLocation) {
         $log.debug('LoginFormCtrl');
 
         $scope.LOGIN_PARTNERS = {
@@ -47,7 +47,6 @@ angular
                         $scope.app.doShowNotification($scope.app.notifications.levels.INFO, 'MSG_INFO_ACCOUNT_NOT_VERIFIED');
                         break;
                     default:
-                        sTranslate.errorsToKeys(response, sTranslate.models.USER);
                         $scope.errors = response.data.errors;
                 }
             };

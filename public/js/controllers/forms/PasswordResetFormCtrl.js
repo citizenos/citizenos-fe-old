@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('PasswordResetFormCtrl', ['$scope', '$log', '$state', '$stateParams', 'ngDialog', 'sTranslate', 'sAuth', function ($scope, $log, $state, $stateParams, ngDialog, sTranslate, sAuth) {
+    .controller('PasswordResetFormCtrl', ['$scope', '$log', '$state', '$stateParams', 'ngDialog', 'sAuth', function ($scope, $log, $state, $stateParams, ngDialog, sAuth) {
         $log.debug('PasswordResetFormCtrl');
 
         $scope.form = {
@@ -25,7 +25,6 @@ angular
             };
 
             var error = function (res) {
-                sTranslate.errorsToKeys(res, sTranslate.models.USER);
                 if (res.data.errors) { // Field errors
                     $scope.errors = res.data.errors;
                 } else { // General error

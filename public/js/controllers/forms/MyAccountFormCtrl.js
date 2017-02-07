@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', 'ngDialog', 'sTranslate', 'sAuth', 'sUser', function ($scope, $log, $stateParams, $filter, ngDialog, sTranslate, sAuth, sUser) {
+    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', 'ngDialog', 'sAuth', 'sUser', function ($scope, $log, $stateParams, $filter, ngDialog, sAuth, sUser) {
         $log.debug('MyAccountFormCtrl');
 
         $scope.form = {
@@ -23,7 +23,6 @@ angular
             };
 
             var error = function (res) {
-                sTranslate.errorsToKeys(res, sTranslate.models.USER);
                 $scope.errors = res.data.errors;
             };
 

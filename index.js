@@ -21,7 +21,7 @@ if (!host) {
     if (app.get('env') === 'development') {
         host = null; // Binds 0.0.0.0, thus open on all interfaces. In dev useful so that app running in Vbox is visible to the host machine.
     } else {
-        host = 'localhost';  // Bind to localhost, so the port is not open to the whole world.
+        host = 'localhost'; // Bind to localhost, so the port is not open to the whole world.
     }
 }
 

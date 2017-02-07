@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('PasswordForgotFormCtrl', ['$scope', '$log', '$state', 'ngDialog', 'sTranslate', 'sAuth', function ($scope, $log, $state, ngDialog, sTranslate, sAuth) {
+    .controller('PasswordForgotFormCtrl', ['$scope', '$log', '$state', 'ngDialog', 'sAuth', function ($scope, $log, $state, ngDialog, sAuth) {
         $log.debug('PasswordForgotFormCtrl');
 
         $scope.form = {
@@ -20,7 +20,6 @@ angular
             };
 
             var error = function (res) {
-                sTranslate.errorsToKeys(res, sTranslate.models.USER);
                 $scope.errors = res.data.errors;
             };
 
