@@ -125,6 +125,10 @@
                 }
             });
 
+            $urlRouterProvider.config({
+                absolute: true // All urls absolute by default
+            });
+
             $stateProvider
                 .state('main', {
                     url: '/{language:' + langReg + '}',
