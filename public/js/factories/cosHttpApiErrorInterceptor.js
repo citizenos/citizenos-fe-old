@@ -73,7 +73,6 @@ angular
         };
 
         var generalErrorToKey = function (errorResponse) {
-            $log.debug('AAAAAAAAAAAAAAAAAAAaa', errorResponse);
             if (errorResponse.status < 0) {
                 sNotification.addError('MSG_ERROR_NETWORK_PROBLEMS');
                 return;
@@ -96,7 +95,7 @@ angular
                 // Use fallback to generic error
             } else if (translationKeyFallback !== translate(translationKeyFallback)) {
                 errorResponse.data.status.message = translationKeyFallback;
-                sNotification.addError(translationKey);
+                sNotification.addError(translationKeyFallback);
             } else {
                 $log.error('cosHttpApiErrorInterceptor.generalErrorToKey', 'No translation for', translationKey, translationKeyFallback, errorResponse);
             }
