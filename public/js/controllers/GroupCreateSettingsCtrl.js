@@ -3,6 +3,7 @@
 angular
     .module('citizenos')
     .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
+        $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
         $scope.levels = {
             none: 0,
             read: 1,
@@ -10,14 +11,14 @@ angular
             admin: 3
         };
 
+        $scope.tabSelected = $stateParams.tab || 'settings';
+
         $scope.topicList = {
             searchFilter: '',
             searchOrderBy: {
                 property: 'title'
             }
         };
-
-        $scope.tabSelected = 'settings';
 
         var init = function () {
             // Group creation
@@ -226,8 +227,8 @@ angular
                     },
                     function (errorResponse) {
                         if (errorResponse.data && errorResponse.data.errors) {
-                            $scope.tabSelected = 'settings';
                             $scope.errors = errorResponse.data.errors;
+                            $scope.tabSelected = 'settings';
                         }
                     }
                 );

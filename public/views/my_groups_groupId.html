@@ -46,28 +46,6 @@
 
                     <div class="content_item">
                         <div class="item_description">
-                            Users
-                        </div>
-                        <div class="item_content">
-                            <div class="item_text">
-                                {{group.members.users.count}}
-                            </div>
-                            <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="doShowMemberUserList(group)">
-                                view
-                            </div>
-                            <div ng-if="group.canUpdate()">
-                                <div class="v_line"></div>
-                                <div class="item_link blue_link">
-                                    invite
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearer"></div>
-                    </div>
-
-                    <div class="content_item">
-                        <div class="item_description">
                             Topics
                         </div>
                         <div class="item_content">
@@ -80,8 +58,30 @@
                             </div>
                             <div ng-if="group.canUpdate()">
                                 <div class="v_line"></div>
-                                <div class="item_link blue_link">
+                                <div class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})">
                                     add
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Users
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                {{group.members.users.count}}
+                            </div>
+                            <div class="v_line"></div>
+                            <div class="item_link blue_link" ng-click="doShowMemberUserList(group)">
+                                view
+                            </div>
+                            <div ng-if="group.canUpdate()">
+                                <div class="v_line"></div>
+                                <div class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})">
+                                    invite
                                 </div>
                             </div>
                         </div>
@@ -211,9 +211,9 @@
             <div class="header_text">
                 Topic list ({{group.members.topics.count}})
                 |
-                <div class="blue_link" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible">search</div>
+                <div class="blue_link" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doToggleMemberTopicList(group)">filter</div>
                 |
-                <div class="blue_link">add</div>
+                <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})">add</div>
             </div>
             <div class="minimize_container" ng-if="group.members.topics.count" ng-click="doToggleMemberTopicList(group)">
                 <div ng-class="!topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -221,7 +221,7 @@
         </div>
         <div class="container_header second_header" ng-if="topicList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="Topic title, permission" ng-model="topicList.searchFilter">
+                <input placeholder="Topic title, permission" ng-model="topicList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="topicList.searchFilter = ''">clear filter</div>
@@ -309,10 +309,11 @@
     <div class="info_container group_list user_list" id="user_list">
         <div class="container_header">
             <div class="header_text">
-                User list ({{group.members.users.count}}) |
-                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible">search</div>
+                User list ({{group.members.users.count}})
                 |
-                <div class="blue_link">invite</div>
+                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doToggleMemberUserList(group)">filter</div>
+                |
+                <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})">invite</div>
             </div>
             <div class="minimize_container" ng-click="doToggleMemberUserList(group)">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -320,7 +321,7 @@
         </div>
         <div class="container_header second_header" ng-if="userList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="Username, permission" ng-model="userList.searchFilter">
+                <input placeholder="Name, permission" ng-model="userList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="userList.searchFilter = ''">clear filter</div>

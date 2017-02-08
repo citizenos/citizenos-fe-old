@@ -259,7 +259,7 @@
                     templateUrl: '/views/my_groups_groupId.html'
                 })
                 .state('my.groups.groupId.settings', {
-                    url: '/settings',
+                    url: '/settings?tab',
                     parent: 'my.groups.groupId',
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({

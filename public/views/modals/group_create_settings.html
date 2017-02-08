@@ -28,13 +28,13 @@
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="tabSelected = 'memberTopicsCreate'" ng-class="tabSelected === 'memberTopicsCreate' ? 'active' : ''">
+                        <div class="tab_button" ng-click="tabSelected = 'topics'" ng-class="tabSelected === 'topics' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">ADD TOPICS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="tabSelected = 'memberUsersCreate'" ng-class="tabSelected === 'memberUsersCreate' ? 'active' : ''">
+                        <div class="tab_button" ng-click="tabSelected = 'users'" ng-class="tabSelected === 'users' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">INVITE USERS</div>
                                 <div class="blue_bottom_line"></div>
@@ -130,7 +130,7 @@
             </div>
 
             <!-- ADD TOPICS -->
-            <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberTopicsCreate'">
+            <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'topics'">
                 <div class="lightbox_section">
                     <div class="input_text_margin_bottom">
                         Add topics searching by title
@@ -234,7 +234,7 @@
             </div>
 
             <!-- INVITE USERS -->
-            <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberUsersCreate'">
+            <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'users'">
 
                 <div class="lightbox_section">
 
@@ -289,7 +289,7 @@
                                     <div class="profile_image_wrapper dark">
                                         <div class="profile_moon sprite"></div>
                                         <div class="account_picture">
-                                            <img ng-if="member.imageUrl" src="{{member.imageUrl}}">
+                                            <img ng-if="member.imageUrl" ng-src="{{member.imageUrl}}">
                                             <div class="profile_image_filler">
                                                 <div class="table_cell" cos-initials="member.name">
                                                     ML
@@ -405,10 +405,10 @@
             </div>
 
         </div>
+
     </div>
 
     <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()">
-
     </div>
 
 </div>
