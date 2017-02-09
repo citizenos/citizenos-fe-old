@@ -32,7 +32,7 @@
                         </div>
                         <div ng-if="!formMobile.challengeID && !formMobile.isLoading">
                             <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
-                            <input id="phone" name="phoneNumber" type="tel" ng-model="formMobile.phoneNumber" placeholder="Phone number *" focus-if="{{wWidth > 1024}}"
+                            <input id="phone" name="phoneNumber" type="tel" ng-model="formMobile.phoneNumber" placeholder="Phone number" focus-if="{{wWidth > 1024}}"
                                    ng-class="{'error_input': loginMobiilIdForm.phoneNumber.$error.pattern && loginMobiilIdForm.phoneNumber.$touched}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
                             <label for="phone" class="error_label" ng-if="loginMobiilIdForm.phoneNumber.$error.pattern && loginMobiilIdForm.phoneNumber.$touched">
                                 <div class="table_cell">
@@ -40,7 +40,7 @@
                                     <span>Invalid phone number</span>
                                 </div>
                             </label>
-                            <input id="pid" name="pid" type="number" ng-model="formMobile.pid" placeholder="Personal identification code *"
+                            <input id="pid" name="pid" type="number" ng-model="formMobile.pid" placeholder="Personal identification code"
                                    ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
                             <label for="pid" class="error_label" ng-if="loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched">
                                 <div class="table_cell">

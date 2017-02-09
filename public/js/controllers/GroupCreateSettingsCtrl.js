@@ -3,6 +3,7 @@
 angular
     .module('citizenos')
     .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
+        $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
         $scope.levels = {
             none: 0,
             read: 1,
@@ -10,28 +11,14 @@ angular
             admin: 3
         };
 
+        $scope.tabSelected = $stateParams.tab || 'settings';
+
         $scope.topicList = {
             searchFilter: '',
             searchOrderBy: {
                 property: 'title'
             }
         };
-
-        $scope.memberTopics = [];
-        $scope.members = {
-            users: [],
-            emails: []
-        };
-
-        $scope.GroupMemberTopic = GroupMemberTopic;
-        $scope.GroupMemberUser = GroupMemberUser;
-
-        $scope.searchResults = {};
-        $scope.searchStringUser = null;
-        $scope.searchStringTopic = null;
-        $scope.errors = {};
-
-        $scope.tabSelected = 'settings';
 
         var init = function () {
             // Group creation
@@ -47,17 +34,20 @@ angular
             }
 
             $scope.memberTopics = [];
+            $scope.members = {
+                users: [],
+                emails: []
+            };
+
             $scope.Group = Group;
             $scope.GroupMemberTopic = GroupMemberTopic;
             $scope.GroupMemberUser = GroupMemberUser;
+
             $scope.searchStringUser = null;
             $scope.searchStringTopic = null;
-
             $scope.searchResults = {};
 
-            $scope.errors = {
-                group: []
-            };
+            $scope.errors = null;
         };
         init();
 
@@ -183,12 +173,7 @@ angular
         };
 
         $scope.doSaveGroup = function () {
-            if (!$scope.form.group.name) {
-                $scope.errors.group.name = true;
-                $scope.tabSelected = 'settings';
-                return;
-            }
-            $scope.errors.group = [];
+            $scope.errors = null;
 
             var groupSavePromise;
             if (!$scope.form.group.id) {
@@ -198,47 +183,53 @@ angular
             }
 
             groupSavePromise
-                .then(function (data) {
-                    var savePromises = [];
+                .then(
+                    function (data) {
+                        var savePromises = [];
 
-                    angular.extend($scope.form.group, data);
+                        angular.extend($scope.form.group, data);
 
-                    // Users
-                    var groupMemberUsersToSave = [];
-                    $scope.members.users.concat($scope.members.emails).forEach(function (member) {
-                        groupMemberUsersToSave.push({
-                            userId: member.userId,
-                            level: member.level
-                        })
-                    });
+                        // Users
+                        var groupMemberUsersToSave = [];
+                        $scope.members.users.concat($scope.members.emails).forEach(function (member) {
+                            groupMemberUsersToSave.push({
+                                userId: member.userId,
+                                level: member.level
+                            })
+                        });
 
-                    if (groupMemberUsersToSave.length) {
-                        savePromises.push(
-                            GroupMemberUser.save({groupId: $scope.form.group.id}, groupMemberUsersToSave)
-                        );
+                        if (groupMemberUsersToSave.length) {
+                            savePromises.push(
+                                GroupMemberUser.save({groupId: $scope.form.group.id}, groupMemberUsersToSave)
+                            );
+                        }
+
+                        // Topics
+                        // TODO: Once there is POST /groups/:groupId/members/topics use that
+                        $scope.memberTopics.forEach(function (topic) {
+                            var member = {
+                                groupId: $scope.form.group.id,
+                                id: topic.id,
+                                level: topic.permission.level
+                            };
+                            var groupMemberTopic = new GroupMemberTopic(member);
+                            savePromises.push(
+                                groupMemberTopic.$save()
+                            )
+                        });
+
+                        return Promise.all(savePromises)
                     }
-
-                    // Topics
-                    // TODO: Once there is POST /groups/:groupId/members/topics use that
-                    $scope.memberTopics.forEach(function (topic) {
-                        var member = {
-                            groupId: $scope.form.group.id,
-                            id: topic.id,
-                            level: topic.permission.level
-                        };
-                        var groupMemberTopic = new GroupMemberTopic(member);
-                        savePromises.push(
-                            groupMemberTopic.$save()
-                        )
-                    });
-
-                    return Promise.all(savePromises)
-                })
+                )
                 .then(
                     function () {
                         $state.go('my.groups.groupId', {groupId: $scope.form.group.id}, {reload: true});
-                    }, function (err) {
-                        $log.error('FAIL!', arguments);
+                    },
+                    function (errorResponse) {
+                        if (errorResponse.data && errorResponse.data.errors) {
+                            $scope.errors = errorResponse.data.errors;
+                            $scope.tabSelected = 'settings';
+                        }
                     }
                 );
         }

@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', 'ngDialog', 'sAuth', 'sTranslate', 'sLocation', function ($scope, $log, $state, $stateParams, $window, ngDialog, sAuth, sTranslate, sLocation) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', 'ngDialog', 'sAuth', 'sLocation', 'sNotification', function ($scope, $log, $state, $stateParams, $window, ngDialog, sAuth, sLocation, sNotification) {
         $log.debug('LoginFormCtrl');
 
         $scope.LOGIN_PARTNERS = {
@@ -43,11 +43,7 @@ angular
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         break;
-                    case 40002: // Account has not been verified
-                        $scope.app.doShowNotification($scope.app.notifications.levels.INFO, 'MSG_INFO_ACCOUNT_NOT_VERIFIED');
-                        break;
                     default:
-                        sTranslate.errorsToKeys(response, sTranslate.models.USER);
                         $scope.errors = response.data.errors;
                 }
             };

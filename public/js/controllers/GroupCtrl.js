@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sTranslate', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, ngDialog, sTranslate, sAuth, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, ngDialog, sAuth, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCtrl');
 
         $scope.group = _.find($scope.itemList, {id: $stateParams.groupId});
@@ -158,8 +158,6 @@ angular
                         .then(function () {
                             group.members.users.rows.splice(group.members.users.rows.indexOf(groupMemberUser), 1);
                             group.members.users.count = group.members.users.rows.length;
-                        }, function (res) {
-                            $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, res.data.status.message);
                         });
                 }, angular.noop);
         };
@@ -178,11 +176,6 @@ angular
                         .$delete({groupId: group.id})
                         .then(function () {
                             $state.go('my.groups', null, {reload: true});
-                        }, function (res) {
-                            // FIXME: More generic handling
-                            if (res.data.status.code === 40000) {
-                                $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, 'You cannot leave this Group as you are the last admin user of this Group. Please assign a new admin to leave.');
-                            }
                         });
                 });
         };

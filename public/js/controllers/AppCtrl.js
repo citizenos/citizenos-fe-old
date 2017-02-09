@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -12,10 +12,6 @@ angular
             showNav: false,
             showSearchFiltersMobile: false,
             isLoading: true
-        };
-
-        $scope.app.EVENTS = {
-            USER_CHANGE: 'USER_CHANGE'
         };
 
         $scope.app.user = sAuth.user;
@@ -36,41 +32,9 @@ angular
         createRelUrls();
 
         // Different global notifications that can be shown in the page header
-        $scope.app.notifications = {
-            messages: {}
-        };
-
-        $scope.app.notifications.levels = {
-            SUCCESS: 'success',
-            INFO: 'info',
-            ERROR: 'error'
-        };
+        $scope.app.notifications = sNotification;
 
         sHotkeys.add('ctrl+alt+shift+t', sTranslate.debugMode);
-
-        // Initially all messages are empty
-        Object.keys($scope.app.notifications.levels).forEach(function (key) {
-            $scope.app.notifications.messages[$scope.app.notifications.levels[key]] = [];
-        });
-
-        /**
-         * Show global notification with specified level
-         *
-         * @param {string} level One of $scope.app.notifications.types
-         * @param {string} key Translation key
-         */
-        $scope.app.doShowNotification = function (level, key) {
-            $scope.app.notifications.messages[level].push(key);
-        };
-
-        /**
-         * Hide global notification with specified level
-         *
-         * @param {string} level One of $scope.app.notifications.types
-         */
-        $scope.app.doHideNotification = function (level) {
-            $scope.app.notifications.messages[level] = [];
-        };
 
         $scope.app.doShowLogin = function () {
             $log.debug('AppCtrl.doShowLogin()');
@@ -143,7 +107,6 @@ angular
                 scope: $scope
             });
         };
-        $scope.app.doShowTopicSettings();
         
 
         $scope.app.doShowDeleteTopic = function () {
@@ -216,11 +179,6 @@ angular
                 $scope.app.showSearchResults = false;
                 $scope.app.showSearchFiltersMobile = false;
                 $scope.app.showNav = false;
-            });
-
-            // Clear all notification messages on navigation
-            Object.keys($scope.app.notifications.levels).forEach(function (key) {
-                $scope.app.notifications.messages[$scope.app.notifications.levels[key]] = [];
             });
         });
 

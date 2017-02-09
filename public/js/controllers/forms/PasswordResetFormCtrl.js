@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('PasswordResetFormCtrl', ['$scope', '$log', '$state', '$stateParams', 'ngDialog', 'sTranslate', 'sAuth', function ($scope, $log, $state, $stateParams, ngDialog, sTranslate, sAuth) {
+    .controller('PasswordResetFormCtrl', ['$scope', '$log', '$state', '$stateParams', 'ngDialog', 'sAuth', 'sNotification', function ($scope, $log, $state, $stateParams, ngDialog, sAuth, sNotification) {
         $log.debug('PasswordResetFormCtrl');
 
         $scope.form = {
@@ -20,16 +20,13 @@ angular
                 $state
                     .go('account.login', {email: $scope.passwordResetEmail})
                     .then(function () {
-                        $scope.app.doShowNotification($scope.app.notifications.levels.SUCCESS, 'MSG_INFO_PASSWORD_RESET_SUCCESS');
+                        sNotification.addInfo('MSG_INFO_PASSWORD_RESET_SUCCESS');
                     });
             };
 
             var error = function (res) {
-                sTranslate.errorsToKeys(res, sTranslate.models.USER);
                 if (res.data.errors) { // Field errors
                     $scope.errors = res.data.errors;
-                } else { // General error
-                    $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, res.data.status.message);
                 }
             };
 

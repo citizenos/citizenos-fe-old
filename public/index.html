@@ -9,10 +9,11 @@
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 
-    <link href="styles/citizenos-fe.bundle.css?v=9c8caee2da3b44e01537bab8a578f39a" rel="stylesheet">
 
-    <script src="js/citizenos-fe.bundle.js?v=8ecc4d12572c79118bea6cb3197df2f9"></script>
-    <script src="js/libs/template-cache.js?v=fec06c8332f88e41291532839fe8b4d6"></script>
+    <link href="styles/citizenos-fe.bundle.css?v=9c8caee2da3b44e01537bab8a578f39a" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=0b5870de851c41d930329431f1559746"></script>
+    <script src="js/libs/template-cache.js?v=42b2551e5ba8d54dbb3ef9a501c7eabd"></script>
+
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" href="{{app.metainfo.icon}}" type="image/x-icon"/>
@@ -48,7 +49,7 @@
                 </div>
             </div>
 
-            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.ERROR)">
+            <div class="info_icon" ng-click="app.notifications.removeAll(app.notifications.levels.ERROR)">
                 <div class="sprite sprite-icon-closemenu2x"></div>
             </div>
         </div>
@@ -65,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.INFO)">
+            <div class="info_icon" ng-click="app.notifications.removeAll(app.notifications.levels.INFO)">
                 <div class="sprite sprite-icon-closemenu2x"></div>
             </div>
         </div>
@@ -82,7 +83,7 @@
                 </div>
             </div>
 
-            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.SUCCESS)">
+            <div class="info_icon" ng-click="app.notifications.removeAll(app.notifications.levels.SUCCESS)">
                 <div class="sprite sprite-btn-popup-close-2x-green"></div>
             </div>
         </div>
@@ -104,9 +105,7 @@
 
     </nav>
 
-
     <!-- CONTENT -->
-
     <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''" ui-view></div>
 
 </body>

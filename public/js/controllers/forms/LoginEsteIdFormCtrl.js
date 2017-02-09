@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginEsteIdFormCtrl', ['$scope', '$log', '$state', '$window', '$timeout', 'ngDialog', 'sAuth', 'sTranslate', function ($scope, $log, $state, $window, $timeout, ngDialog, sAuth, sTranslate) {
+    .controller('LoginEsteIdFormCtrl', ['$scope', '$log', '$state', '$window', '$timeout', 'ngDialog', 'sAuth', function ($scope, $log, $state, $window, $timeout, ngDialog, sAuth) {
         $log.debug('LoginEsteIdFormCtrl');
 
         var init = function () {
@@ -15,14 +15,10 @@ angular
         };
         init();
 
-        $scope.app.doHideNotification($scope.app.notifications.levels.ERROR);
-
         $scope.doLoginMobiilId = function () {
             $log.debug('LoginEsteIdFormCtrl.doLoginMobiilId()');
 
             $scope.formMobile.isLoading = true;
-            $scope.app.doHideNotification($scope.app.notifications.levels.ERROR);
-
 
             sAuth
                 .loginMobiilIdInit($scope.formMobile.pid, $scope.formMobile.phoneNumber)
@@ -34,22 +30,10 @@ angular
                 .then(function () {
                     handleLoginSuccess();
                 }, function (err) {
-                    var msg;
-
                     $log.error('Something failed when trying to log in with mobile', err);
-
-                    if (!err.data) {
-                        $log.error('Error when logging in with mobile id', err);
-                        msg = 'MSG_ERROR_50000';
-                    } else {
-                        sTranslate.errorsToKeys(err, sTranslate.models.LOGIN);
-                        msg = err.data.status.message;
-                    }
 
                     $scope.formMobile.isLoading = false;
                     $scope.formMobile.challengeID = null;
-
-                    $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, msg);
                 });
         };
 
@@ -57,9 +41,6 @@ angular
             $log.debug('LoginEsteIdFormCtrl.doLoginIdCard()');
 
             $scope.isLoadingIdCard = true;
-            $scope.app.doHideNotification($scope.app.notifications.levels.ERROR);
-
-            var msg;
 
             sAuth
                 .loginIdCard()
@@ -70,16 +51,7 @@ angular
                     function (err) {
                         $log.error('Something failed when trying to log in with card', err);
 
-                        if (!err.data) {
-                            $log.error('Error when logging in with card', err);
-                            msg = 'MSG_ERROR_50000';
-                        } else {
-                            sTranslate.errorsToKeys(err, sTranslate.models.LOGIN);
-                            msg = err.data.status.message;
-                        }
-
                         $scope.isLoadingIdCard = false;
-                        $scope.app.doShowNotification($scope.app.notifications.levels.ERROR, msg);
                     }
                 );
         };

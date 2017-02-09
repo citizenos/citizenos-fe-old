@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('SignUpFormCtrl', ['$scope', '$log', '$stateParams', '$filter', 'ngDialog', 'sTranslate', 'sAuth', function ($scope, $log, $stateParams, $filter, ngDialog, sTranslate, sAuth) {
+    .controller('SignUpFormCtrl', ['$scope', '$log', '$stateParams', '$filter', 'ngDialog', 'sAuth', 'sNotification', function ($scope, $log, $stateParams, $filter, ngDialog, sAuth, sNotification) {
         $log.debug('SignUpFormCtrl');
 
         $scope.form = {
@@ -24,12 +24,11 @@ angular
             $log.debug('SignUpFormCtrl.doSignUp()');
 
             var success = function () {
-                $scope.app.doShowNotification($scope.app.notifications.levels.INFO, 'MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT');
+                sNotification.addInfo('MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT');
                 ngDialog.closeAll(); // Close all dialogs, including the one open now...
             };
 
             var error = function (res) {
-                sTranslate.errorsToKeys(res, sTranslate.models.USER);
                 $scope.errors = res.data.errors;
             };
 
