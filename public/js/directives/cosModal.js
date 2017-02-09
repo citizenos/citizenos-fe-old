@@ -18,7 +18,6 @@ angular
                 model: '=ngModel'
             },
             controller: ['$scope', '$templateCache', '$element', function ($scope, $templateCache, $element) {
-
                 $scope.cosModalValue = $scope.model;
 
                 if (!$scope.template) {
