@@ -99,8 +99,6 @@ angular
             });
         };
 
-
-
         $scope.app.doShowSetNumber = function () {
             $log.debug('AppCtrl.doShowSetNumber()');
 
@@ -136,6 +134,17 @@ angular
                 scope: $scope
             });
         };
+
+        $scope.app.doShowTopicSettings = function () {
+            $log.debug('AppCtrl.doShowTopicSettings()');
+
+            ngDialog.open({
+                template: '/views/modals/topic_settings.html',
+                scope: $scope
+            });
+        };
+        $scope.app.doShowTopicSettings();
+        
 
         $scope.app.doShowDeleteTopic = function () {
             $log.debug('AppCtrl.doShowDeleteTopic()');

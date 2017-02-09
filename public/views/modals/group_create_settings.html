@@ -57,7 +57,7 @@
 
             <div class="line lightest_line"></div>
             <!-- SETTINGS -->
-            <div id="lightbox_content" ng-if="tabSelected === 'settings'">
+            <div class="lightbox_content" ng-if="tabSelected === 'settings'">
 
 
                 <div class="lightbox_section">
@@ -130,7 +130,7 @@
             </div>
 
             <!-- ADD TOPICS -->
-            <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberTopicsCreate'">
+            <div class="lightbox_content padding_bottom_zero" ng-if="tabSelected === 'memberTopicsCreate'">
                 <div class="lightbox_section">
                     <div cos-dropdown ng-class="{search_with_dropdown : searchResults.topics.length, dropdown_active : searchResults.topics.length}">
                         <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
@@ -231,7 +231,7 @@
             </div>
 
             <!-- INVITE USERS -->
-            <div id="lightbox_content" class="padding_bottom_zero" ng-if="tabSelected === 'memberUsersCreate'">
+            <div class="lightbox_content padding_bottom_zero" ng-if="tabSelected === 'memberUsersCreate'">
 
                 <div class="lightbox_section">
 

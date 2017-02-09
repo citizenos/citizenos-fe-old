@@ -604,6 +604,15 @@ a:link, a:visited {
     height: 1px;
 }
 
+.v_line {
+    width: 1px;
+}
+
+.tip {
+    font-weight: $bold;
+    font-size: 16px;
+}
+
 .clearer {
     clear: both;
 }
@@ -649,7 +658,7 @@ a:link, a:visited {
     &:hover {
         background: $medium_gray !important;
         @include tablet {
-            background: $lightest_gray;
+            background: $lightest_gray !important;
         }
     }
 
@@ -1111,7 +1120,6 @@ a:link, a:visited {
             }
 
             .v_line {
-                width: 1px;
                 background: $medium_gray;
                 left: 0 !important;
                 top: 0 !important;

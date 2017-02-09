@@ -1,5 +1,6 @@
 @import 'vars';
 @import 'mixins_n_extends';
+@import 'icons';
 
 #root_lightbox {
     @extend .all_zero;
@@ -138,7 +139,7 @@
 
             }
 
-            #lightbox_content {
+            .lightbox_content {
 
                 @media (max-width: 560px) {
                     padding-bottom: 38px;
@@ -345,7 +346,7 @@
                     padding-bottom: 15px;
                 }
             }
-            #lightbox_content {
+            .lightbox_content {
                 top: 55px!important;
 
                 .lightbox_section {
@@ -429,7 +430,7 @@
 
             }
 
-            #lightbox_content {
+            .lightbox_content {
                 position: relative !important;
                 top: 0 !important;
             }
@@ -644,7 +645,7 @@
                 }
             }
 
-            #lightbox_content {
+            .lightbox_content {
                 padding: 20px 0;
                 .lightbox_section {
                     padding: 0 20px;
@@ -690,13 +691,14 @@
                     }
                 }
             }
-            #lightbox_content {
+            .lightbox_content{
                 @media (max-width: 560px) {
                     top: 142px;
                 }
             }
         }
     }
+
 
     .section_with_table {
         padding: 0 !important;
@@ -948,7 +950,7 @@
                 }
             }
 
-            #lightbox_content {
+            .lightbox_content {
                 padding: 34px 0 10px 0;
                 position: relative;
 
@@ -1077,7 +1079,7 @@
                 }
             }
 
-            #lightbox_content {
+            .lightbox_content {
                 padding: 0;
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
@@ -1288,7 +1290,7 @@
                 }
             }
 
-            #lightbox_content {
+            .lightbox_content {
                 background: $light_gray;
                 font-size: 14px;
                 border-radius: 0 0 4px 4px;
@@ -1453,15 +1455,318 @@
 
 #root_lightbox.full_screen {
 
+    .lightbox_content.settings_section_wrap {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        overflow: hidden !important;
+        
+        @media (max-width: 560px) {
+            overflow: auto !important;
+        }
+        .lightbox_section {
+            max-height: 381px;
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+            overflow-y: auto;
+
+            @media (max-width: 640px) {
+                max-height: 279px;
+            }
+
+            @media (max-width: 560px) {
+                max-height: initial;
+                padding-bottom: 20px !important;
+            }
+
+
+
+            .settings_section {
+                width: 100%;
+                display: table;
+                padding: 19px 0 19px;
+                
+                &:first-child {
+                    padding-top: 0;
+                }
+
+                &:last-child {
+                    padding-bottom: 0;
+                }
+
+                .settings_cell {
+                    @extend .table_cell;
+                    width: 50%;
+
+                    &:last-child {
+                        padding-left: 20px;
+                    }
+
+                    .setting_title {
+                        font-size: 16px;
+                        font-weight: $bold;
+                    }
+
+                    .setting_description {
+                        font-size: 11px;
+                    }
+
+                    input, .classic_dropdown {
+                        width: 180px;
+                        float: right;
+                    }
+
+                    .blue_button, .gray_button {
+                        width: 110px;
+                        float: right;
+                        font-size: 14px;
+                    }
+
+                }
+
+                
+                @media (max-width: 560px) {
+                    display: block;
+                    
+                    &:last-child {
+                        padding-bottom: 20px;
+                    }
+
+                    .settings_cell {
+                        display: block;
+                        width: 100%;
+
+                        &:last-child {
+                            padding-left: 0;
+                        }
+                            
+                        input, .classic_dropdown, .blue_button, .gray_button {
+                            width: 100%;
+                            float: none;
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+            
+            .settings_section {
+
+                .toggle_widget {
+                    position: relative;
+                    float: right;
+                    @media (max-width: 560px) {
+                        float: none;
+                        margin-left: 20px;
+                        margin-top: 10px;
+                    }
+                }
+                
+                &.group_image {
+                    position: relative;
+                    
+                    .settings_cell {
+
+                        &:first-child {
+                            width: 70%;
+
+                            .setting_title {
+                                margin-bottom: 15px;
+                                @media (max-width: 560px) {
+                                    margin-bottom: -1px;
+                                }
+                            }
+
+                            .gray_button {
+                                float: left;
+                                width: auto;
+                            }
+
+                            .blue_link {
+                                font-weight: $bold !important;
+                                margin: 6px 10px 5px 20px;
+                                float: left;
+                            }
+                            @media (max-width: 560px) {
+                                width: 100%;
+                                padding-bottom: 14px;
+                                .button_holder {
+                                    padding-right: 90px;
+                                    text-align: center;
+                                }
+                                .gray_button {
+                                    float: none;
+                                    width: 100%;
+                                }
+                                .blue_link {
+                                    float: none;
+                                    margin: 15px 0 0;
+                                }
+                            }
+                        }
+                        
+                        img {
+                            width: 80px;
+                            height: 80px;
+                            float: right;
+                        }
+                        
+                        &:last-child {
+                            @media (max-width: 560px) {
+                                position: absolute;
+                                top: 50px;
+                                right: 0;
+                            }
+                        }
+
+                    }
+
+                }
+                
+            }
+            
+            .settings_section.full_width {
+                .settings_cell {
+                    width: 100%;
+                    padding: 0;
+                    input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    .lightbox_content.categories_section_wrap {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        overflow: hidden !important;
+        
+        @media (max-width: 560px) {
+            overflow: auto !important;
+        }
+
+
+        .lightbox_section {
+            max-height: 381px;
+            overflow-y: auto;
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+
+            @media (max-width: 640px) {
+                max-height: 279px;
+            }
+
+            @media (max-width: 560px) {
+                max-height: initial;
+                padding-bottom: 40px !important;
+            }
+
+            
+            .category_wrap {
+                display: table;
+                width: 100%;
+                height: 30px;
+                background: $medium_gray;
+                border: 1px solid $lightest_gray;
+                border-radius: 4px;
+                overflow: hidden;
+                box-sizing: border-box;
+                margin-bottom: 5px;
+                
+                .category_cell {
+                    @extend .table_cell;
+                }
+
+                .category_title {
+                    padding: 4px 10px;
+                }
+
+                .category_control {
+
+                    &:hover {
+                        background: $white;
+                        @include tablet {
+                            background: $medium_gray;
+                        }
+                    }
+
+                    cursor: pointer;
+                    width: 28px;
+                    border-left: 1px solid $lightest_gray;
+                    .sprite {
+                        margin: 0 auto;
+                    }
+                }
+
+            }
+
+            .selected_categories {
+                margin: 20px 0;
+            }
+
+            .category_selection {
+                margin-top: 20px;
+                .category_wrap {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    @include tablet {
+                        color: $medium_black;
+                        background: $medium_gray;
+                        border: 1px solid $lightest_gray;
+                    }
+
+                    .category_control {
+                        display: none;
+                        @include tablet {
+                            display: table-cell;
+                        }
+                    }
+
+                    &:hover {
+                        background: $deep_sky_blue;
+                        color: $white;
+                        border: 1px solid $dark_blue;
+                        @include tablet {
+                            color: $medium_black;
+                            background: $medium_gray;
+                            border: 1px solid $lightest_gray;
+                        }
+                        .category_control {
+                            display: table-cell;
+                            border-left: 1px solid $dark_blue;
+                            @include tablet {
+                                border-left: 1px solid $lightest_gray;
+                            }
+                            &:hover {
+                                background: $dark_blue;
+                                @include tablet {
+                            background: $medium_gray;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
     .mobile_only {
         display: none;
     }
 
-    #lightbox_content {
+    .lightbox_content {
         overflow: initial !important;
+        @media (max-width: 560px) {
+            overflow: auto !important;
+        }
     }
 
-    #lightbox_content.invite_url {
+    #lightbox.with_header_menu #lightbox_wrap .lightbox_content {
+        top: 142px;
+    }
+
+    .lightbox_content.invite_url {
 
         .copy_link {
 
@@ -1500,6 +1805,8 @@
         }
 
         @media (max-width: 560px) {
+            
+            padding-bottom: 40px !important;
 
              .copy_link {
                 padding: 0;
@@ -1572,7 +1879,7 @@
             #lightbox_wrap {
                 padding: 0;
 
-                #lightbox_header, #lightbox_content {
+                #lightbox_header, .lightbox_content {
                     border-radius: 0;
                 }
 
@@ -1581,7 +1888,7 @@
                     max-height: 95px;
                 }
 
-                #lightbox_content {
+                .lightbox_content {
                     bottom: 0;
                     right: 0;
                     left: 0;

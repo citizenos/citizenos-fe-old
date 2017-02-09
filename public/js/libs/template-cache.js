@@ -10,10 +10,10 @@ angular
             '/views/help.html',
             '/views/home.html',
             '/views/my.html',
-            '/views/my_groups_groupId.html',
-            '/views/my_topics_topicId.html',
             '/views/mytopics.html',
             '/views/mytopics_view.html',
+            '/views/my_groups_groupId.html',
+            '/views/my_topics_topicId.html',
             '/views/no_groups.html',
             '/views/no_topics.html',
             '/views/topics.html',
@@ -22,7 +22,6 @@ angular
             '/views/default/search.html',
             '/views/directives/cos_modal.html',
             '/views/directives/date_picker.html',
-            '/views/layouts/main.html',
             '/views/modals/add_topics.html',
             '/views/modals/confirm.html',
             '/views/modals/cosModal.html',
@@ -45,7 +44,9 @@ angular
             '/views/modals/topic_member_group_delete_confirm.html',
             '/views/modals/topic_member_user_delete_confirm.html',
             '/views/modals/topic_member_user_leave_confirm.html',
+            '/views/modals/topic_settings.html',
             '/views/modals/topic_vote_sign.html',
+            '/views/layouts/main.html',
         ];
         var i = 0;
         if (templates.length) {
