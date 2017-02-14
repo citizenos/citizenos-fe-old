@@ -63,7 +63,6 @@
                 <div class="lightbox_section">
 
                     <div class="settings_section full_width">
-
                         <div class="settings_cell">
                             <div class="setting_title">
                                 Group name
@@ -79,11 +78,9 @@
                                 </div>
                             </label>
                         </div>
-
                     </div>
 
-                    <div class="line lightest_line"></div>
-
+                    <!--<div class="line lightest_line"></div-->
                     <!--div class="settings_section group_image">
 
                         <div class="settings_cell">
@@ -103,6 +100,8 @@
                     </div>
                     <div class="line lightest_line"></div-->
 
+
+                    <div class="line lightest_line" ng-if="group.id"></div>
                     <div class="settings_section" ng-if="group.id">
                         <div class="settings_cell">
                             <div class="setting_title">
@@ -117,8 +116,9 @@
                             <div class="gray_button" ng-click="doLeaveGroup(group)">Leave group</div>
                         </div>
                     </div>
-                    <div class="line lightest_line"></div>
 
+
+                    <div class="line lightest_line" ng-if="group.id && group.canDelete()"></div>
                     <div class="settings_section" ng-if="group.id && group.canDelete()">
                         <div class="settings_cell">
                             <div class="setting_title">
@@ -132,6 +132,7 @@
                             <div class="blue_button yes" ng-click="doDeleteGroup(group)">Delete group</div>
                         </div>
                     </div>
+
 
                 </div>
 
