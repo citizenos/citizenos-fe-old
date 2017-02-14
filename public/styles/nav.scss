@@ -259,10 +259,6 @@ nav {
         }
     }
 
-    .header_button.search {
-    
-    }
-
     .header_button.overview_active {
         @media (max-width: '560px') {
             width: 53px;
@@ -348,6 +344,14 @@ nav {
             right: 160px;
         }
 
+    }
+
+    .header_button.settings.active {
+        background: $side_panel_gray;
+        padding-left: 0;
+        .line_holder {
+            display: none;
+        }
     }
 
 

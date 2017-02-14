@@ -241,6 +241,8 @@
                                 position: relative;
                                 z-index: 1;
                                 text-align: center;
+                                color: $text_gray;
+                                
                                 &:hover {
                                     cursor: pointer;
                                     background: $light_gray;
@@ -440,8 +442,22 @@
                 }
 
                 @include tablet {
+                    top: 60px;
+                    position: fixed;
+                    z-index: 1;
                     width: 100%;
-                    display: none;
+                    box-sizing: border-box;
+                    bottom: 0;
+                    left: 0;
+                    overflow: auto;
+                    padding: 20px 20px 40px;
+                    min-width: initial;
+                    .blue_button {
+                        position: fixed;
+                        bottom: -10px;
+                        left: 10px;
+                        right: 10px;
+                    }
                 }
                 .options_wrap {
                     width: 100%;
