@@ -283,12 +283,12 @@
                         <div class="item_description">
                             Vote deadline
                         </div>
-                        <div cos-modal ng-model="topic.vote.endsAt" save="saveDate()">
+                        <div cos-modal ng-model="topic.vote.endsAt" save="saveDate()" cos-modal-title="{{topic.title}}">
                             <div cos-modal-title>
                                 <div id="lightbox_header_text">
                                     <div class="title">Vote deadline</div>
                                     <div class="lightbox_header_description_text">
-                                        {{topic.title}}
+                                        {{scope.title}}
                                     </div>
                                 </div>
                             </div>
