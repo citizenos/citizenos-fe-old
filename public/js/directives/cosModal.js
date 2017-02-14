@@ -15,7 +15,9 @@ angular
             scope: {
                 template: '@',
                 save: '&',
-                model: '=ngModel'
+                model: '=ngModel',
+                cosModalTitle: '=',
+                cosModalDescription: '=?'
             },
             controller: ['$scope', '$templateCache', '$element', function ($scope, $templateCache, $element) {
                 $scope.cosModalValue = $scope.model;
@@ -31,10 +33,6 @@ angular
 
                 this.setModalContent = function (content) {
                     $scope.content = content;
-                };
-
-                this.setModalTitle = function (title) {
-                    $scope.title = title;
                 };
 
                 $scope.cosModalSaveAction = function () {
@@ -68,10 +66,6 @@ angular
                     var dialogDivs = $scope.dialog.find('div');
 
                     for (var i = 0; i < dialogDivs.length; i++) {
-                        if (angular.element(dialogDivs[i]).hasClass('cos_modal_title')) {
-                            angular.element(dialogDivs[i]).replaceWith($compile($scope.title)($scope));
-                        }
-
                         if (angular.element(dialogDivs[i]).hasClass('cos_modal_content')) {
                             angular.element(dialogDivs[i]).replaceWith($compile($scope.content)($scope));
                         }
@@ -107,19 +101,6 @@ angular
             link: function (scope, element, attrs, controller) {
                 var content = angular.copy(element);
                 controller.setModalContent(content[0].innerHTML);
-                element.remove();
-            }
-        };
-    });
-
-angular
-    .module('citizenos')
-    .directive('cosModalTitle', function () {
-        return {
-            require: '^cosModal',
-            link: function (scope, element, attrs, controller) {
-                var title = angular.copy(element);
-                controller.setModalTitle(title[0].innerHTML);
                 element.remove();
             }
         };

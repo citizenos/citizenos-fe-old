@@ -119,6 +119,7 @@
 
                     .lightbox_header_description_text {
                         font-weight: $medium;
+                        font-style: italic;
                         @media (max-width: 560px) {
                             top: 40px;
                             right: 20px;
@@ -1511,6 +1512,7 @@
                     }
 
                     input, .classic_dropdown {
+                        float: right;
                         width: 180px;
                     }
 
@@ -1628,6 +1630,7 @@
                     padding: 0;
                     input {
                         width: 100%;
+                        float: none;
                     }
                 }
             }

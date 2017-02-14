@@ -4,7 +4,11 @@
 
             <div id="lightbox_header">
 
-                <div id="lightbox_header_text" class="cos_modal_title">
+                <div id="lightbox_header_text">
+                    <div class="title">{{cosModalTitle}}</div>
+                    <div class="lightbox_header_description_text" ng-if="cosModalDescription">
+                        {{cosModalDescription}}
+                    </div>
                 </div>
 
                 <div id="lightbox_close" ng-click="cosModalClose()">
