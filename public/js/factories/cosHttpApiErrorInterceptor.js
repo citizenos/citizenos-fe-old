@@ -110,6 +110,7 @@ angular
                 return response;
             },
             'responseError': function (response) {
+                sNotification.removeAll();
                 if (response.config.url.match(API_REQUEST_REGEX)) {
                     try {
                         errorsToKeys(response);
