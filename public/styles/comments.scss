@@ -1,0 +1,222 @@
+@import 'vars';
+@import 'mixins_n_extends';
+@import 'icons';
+@import 'icons_temp';
+
+.comments_section {
+    margin-top: 60px;
+
+    .tabs_wrap {
+        padding: 0 60px;
+        @media (max-width: 767px) {
+            padding: 0 20px;
+        }
+        .tab {
+            font-weight: $bold;
+            background: $lightest_gray;
+            float: left;
+            display: table;
+            height: 44px;
+            padding: 0 20px;
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+            font-size: 14px;
+            cursor: pointer;
+            color: $text_gray;
+        }
+
+        .tab.active {
+            background: $white;
+        }
+
+    }
+
+    .comments_content {
+        background: $white;
+        padding: 0 60px;
+        @media (max-width: 767px) {
+            padding: 0 20px;
+        }
+
+        .arguments_wrap {
+            .arguments_header {
+                padding-top: 40px;
+                padding-bottom: 20px;
+                .number_of_arguments {
+                    font-size: 24px;
+                    font-weight: $bold;
+                    float: left;
+                    @media (max-width: 1500px) {
+                        float: none;
+                    }
+                }
+                .arguments_data {
+                    .data_item {
+                        font-size: 13px;
+                        font-weight: $bold;
+                        opacity: 0.7;
+                    }
+
+                    .data_left {
+                        float: left;
+                        margin-top: 12px;
+                        .data_item {
+                            float: left;
+                            margin-left: 10px;
+                            &:first-child {
+                                @media (max-width: 1500px) {
+                                    margin-left: 0;
+                                }
+                            }
+                        }
+                    }
+                    .data_right {
+                        float: right;
+                        margin-top: 9px;
+                        @media (max-width: 1200px) {
+                            width: 100%;
+                        }
+                        @include tablet {
+                            width: auto;
+                        }
+                        @media (max-width: 621px) {
+                            width: 100%;
+                        }
+                        .data_item {
+                            margin-right: 20px;
+                            @media (max-width: 1200px) {
+                                float: right;
+                                margin-top: -27px;
+                            }
+                            @include tablet {
+                                float: none;
+                                margin-right: 20px;
+                            }
+                            @media (max-width: 621px) {
+                                float: right;
+                                margin-top: -27px;
+                            }
+                        }
+                                
+                        .blue_button {
+                            float: right;
+                            margin-top: -3px;
+                            padding-left: 20px;
+                            padding-right: 20px;
+                            border-radius: 4px;
+                            @media (max-width: 1200px) {
+                                float: none;
+                            }
+                            @include tablet {
+                                float: right;
+                            }
+                            @media (max-width: 621px) {
+                                float: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .arguments_content {
+                padding: 40px 0;
+
+                .argument {
+                    padding: 7px 0 7px 16px;
+                    border-left: 4px solid $comments_green;
+                    
+                    .line_wrap {
+                        float: left;
+                        height: 25px;
+                        margin: 0 10px;
+                        display: table;
+                        .v_line {
+                            height: 15px;
+                            background: $dark_gray;
+                        }
+                    }
+                    
+                    .argument_header {
+                        font-size: 13px;
+                        margin-bottom: 6px;
+                        .argumentator, .argument_date {
+                            opacity: 0.7;
+                            float: left;
+                            height: 25px;
+                            display: table;
+                        }
+                    }
+                    .argument_title {
+                        font-size: 16px;
+                        font-weight: $bold;
+                        margin-bottom: 10px;
+                    }
+                    .argument_text {
+                        font-size: 14px;
+                        margin-bottom: 8px;
+                    }
+
+                    .argument_footer {
+                        font-size: 13px;
+
+                        .line_wrap {
+                            margin: 0;
+                        }
+
+                        .blue_link {
+                            font-size: 13px;
+                            padding-right: 10px;
+                        }
+                        
+                        .blue_link, .link_wrap {
+                            opacity: 0.7;
+                        }
+
+                      .thumbs_up, .thumbs_down, .exclamation, .link_wrap {
+                            height: 25px;
+                            display: table;
+                            float: left;
+                        }
+
+                        .thumbs_up, .thumbs_down, .exclamation {
+                            padding: 0 10px;
+                        }
+
+                        .thumbs_up, .thumbs_down {
+                            font-weight: $bold;
+                            cursor: pointer;
+                            .sprite_temp2 {
+                                margin-right: 8px;
+                                opacity: 0.44;
+                            }
+                            &:hover {
+                                .sprite_temp2 {
+                                    opacity: 1;
+                                    @include tablet {
+                                        opacity: 0.44;
+                                    }
+                                }
+                            }
+                        }
+
+                        .exclamation {
+                            cursor: pointer;
+                            &:hover {
+                                .sprite_temp2.desktop_fix {
+                                    @extend .sprite-icon-reportmessage-hover2x;
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
+    
+}

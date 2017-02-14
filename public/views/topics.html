@@ -128,6 +128,71 @@
 
                 <div class="iframe_wrap">
 
+                    <div class="voting_platform_wrap">
+                        <div class="platform_description">
+                            Create a voting platform
+                        </div>
+                        <div class="voting_platform_section">
+                            <div class="line lightest_line"></div>
+                            <div class="voting_platform_section_title">
+                                Step 1: Choose voting type
+                            </div>
+
+                            <div class="voting_platform_buttons_wrap">
+                                
+                                <div class="table_cell">
+                                    <div class="voting_platform_button">
+                                        <div class="table_cell">
+                                            <div class="button_title">
+                                                REGULAR
+                                            </div>
+                                            <div class="button_description">
+                                                (ie. yes/no/neutral/…)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="table_cell">
+                                    <div class="voting_platform_button active">
+                                        <div class="table_cell">
+                                            <div class="button_title">
+                                                MULTIPLECHOICE
+                                            </div>
+                                            <div class="button_description">
+                                                (ie. A/B/C/D/…)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="clearer"></div>
+
+                        </div>
+
+                        <div class="line lightest_line"></div>
+
+                        <div class="voting_platform_section">
+                            <div class="voting_platform_section_title">
+                                Step 2: Define answers
+                            </div>
+
+                            <div class="voting_platform_buttons_wrap">
+                                
+                                <div class="table_cell">
+                                    coming soon
+                                </div>
+
+                            </div>
+
+                            <div class="clearer"></div>
+
+                        </div>
+
+                    </div>
+
                     <div class="iframe_content_wrap">
                         
                         <div class="topic_info" ng-class="app.more_info_button ? 'open' : ''">
@@ -176,14 +241,167 @@
                         <div class="iframe_content">
                             iframe content
                         </div>
+
                     </div>
+
+                
+                    <div class="comments_section">
+                        <div class="tabs_wrap">
+                            <div class="tab active">
+                                <div class="table_cell">
+                                    Arguments
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <div class="table_cell">
+                                    Social mentions
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                        <div class="comments_content">
+
+                            <div class="arguments_wrap">
+                                <div class="arguments_header">
+                                    <div class="number_of_arguments">
+                                        55555 arguments
+                                    </div>
+                                    <div class="arguments_data">
+                                        <div class="data_left">
+                                            <span class="data_item">
+                                                pro: 55555
+                                            </span>
+                                            <span class="data_item">
+                                                con: 55555
+                                            </span>
+                                        </div>
+                                        <div class="data_right">
+                                            <div cos-dropdown class="classic_dropdown data_item">
+
+                                                <div class="dropdown_selection">
+                                                    <div class="dropdown_text">
+                                                        Most recent
+                                                    </div>
+
+                                                    <div class="arrow_holder">
+                                                        <div class="table_cell">
+                                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                            <div class="v_line"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="dropdown">
+
+                                                    <!-- NO CATEGORY -->
+                                                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                        <div class="item_name">
+                                                            Read
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div class="blue_button">
+                                                Add argument
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearer"></div>
+                                </div>
+
+                                <div class="line lightest_line"></div>
+
+                                <div class="arguments_content">
+                                    <div class="argument">
+                                        <div class="argument_header">
+                                            <div class="argumentator">
+                                                <div class="table_cell">
+                                                    Kristian Lember
+                                                </div>
+                                            </div>
+                                            <div class="line_wrap">
+                                                <div class="table_cell">
+                                                    <div class="v_line"></div>
+                                                </div>
+                                            </div>
+                                            <div class="argument_date">
+                                                <div class="table_cell">
+                                                    05/01/2017 14:36
+                                                </div>
+                                            </div>
+                                            <div class="clearer"></div>
+                                        </div>
+                                        <div class="argument_title">
+                                            Subject of argument goes here
+                                        </div>
+                                        <div class="argument_text">
+                                            Right on! I couldn’t agree more and it shows because I chose a pro argument comment to be added here.
+                                        </div>
+                                        <div class="argument_footer">
+                                            <div class="link_wrap">
+                                                <div class="table_cell">
+                                                    <div class="blue_link black_text">
+                                                        Reply
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="line_wrap">
+                                                <div class="table_cell">
+                                                    <div class="v_line"></div>
+                                                </div>
+                                            </div>
+                                            <div class="thumbs_up">
+                                                <div class="table_cell">
+                                                    <div class="sprite_temp2 sprite-icon-thumbsup-hover2x">
+                                                    </div>
+                                                </div>
+                                                <div class="table_cell">
+                                                    12
+                                                </div>
+                                            </div>
+                                            <div class="thumbs_down">
+                                                <div class="table_cell">
+                                                    <div class="sprite_temp2 sprite-icon-thumbsdown-hover2x">
+                                                    </div>
+                                                </div>
+                                                <div class="table_cell">
+                                                    2
+                                                </div>
+                                            </div>
+                                            <div class="line_wrap">
+                                                <div class="table_cell">
+                                                    <div class="v_line"></div>
+                                                </div>
+                                            </div>
+                                            <div class="exclamation">
+                                                <div class="table_cell">
+                                                    <div class="sprite_temp2 mobile_fix sprite-icon-reportmessage-default2x">
+                                                    </div>
+                                                    <div class="sprite_temp2 desktop_fix sprite-icon-reportmessage-default2x">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
 
-                <div class="side_panel">
+                <div class="side_panel" ng-if="wWidth > 1024 || app.topics_settings">
 
-                    <div class="blue_button">Save changes</div>
+                    <div class="blue_button" ng-click="app.topics_settings = false">Save changes</div>
 
                     <div class="options_wrap">
                         <div class="options_header">

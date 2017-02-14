@@ -1,0 +1,473 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+    <div id="lightbox" class="wide_lightbox with_title_description with_header_menu">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title">Edit topic</div>
+                    <div class="title_description">We need to do something about the hipsters in Telliskivi! We need to do something about the hipsters in Telliskivi!</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div class="header_row_wrap">
+                    <div class="header_row" slide-controller identifier="topicSettingsSlider" start_slide_at="329">
+                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsSettings'" ng-class="tabSelected === 'topicSettingsSettings' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text">SETTINGS</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsCategories'" ng-class="tabSelected === 'topicSettingsCategories' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text">CATEGORIES</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsInvite'" ng-class="tabSelected === 'topicSettingsInvite' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text">INVITE</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsShare'" ng-class="tabSelected === 'topicSettingsShare' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text">SHARE</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+
+                        <div ng-if="wWidth > 560" class="blue_button_wrap">
+                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveGroup()">
+                                Save settings
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="line lightest_line"></div>
+
+            <!-- SETTINGS -->
+            <div class="lightbox_content settings_section_wrap" ng-if="tabSelected === 'topicSettingsSettings'">
+
+
+                <div class="lightbox_section">
+
+                    
+                    <div class="settings_section full_width">
+                        <div class="settings_cell">
+                            <div class="setting_title">
+                                Group name
+                            </div>
+                            <div class="setting_description">
+                                USE A NAME THAT IS CLEAR AND UNDERSTANDABLE
+                            </div>
+                            <input placeholder="Group name">
+                        </div>
+                    </div>
+                    <div class="line lightest_line"></div>
+
+                    
+                    <div class="settings_section group_image">
+
+                        <div class="settings_cell">
+                            <div class="setting_title">
+                                Group image
+                            </div>
+                            <div class="button_holder">
+                                <div class="gray_button">Upload another image</div>
+                                <div class="blue_link red_text">Remove image</div>
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+
+                        <div class="settings_cell">
+                            <img src='.././imgs/profile_large.jpg')>
+                        </div>
+                    </div>
+                    <div class="line lightest_line"></div>
+
+                    
+                    <div class="settings_section">
+                        <div class="settings_cell">
+                            <div class="setting_title">
+                                Make your group private
+                            </div>
+                            <div class="setting_description">
+                                ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE GROUP
+                            </div>
+                        </div>
+
+                        <div class="settings_cell">
+                            <div cos-toggle-switch class="toggle_widget" ng-click="cosToggle()" ng-class="cosToggleStatus() ? 'no' : 'yes'">
+                                <div class="toggle_circle"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="line lightest_line"></div>
+
+                    
+                    <div class="settings_section">
+                        <div class="settings_cell">
+                            <div class="setting_title">
+                                Topic accessibility
+                            </div>
+                            <div class="setting_description">
+                                THIS SETS WHO CAN SEE YOUR TOPIC
+                            </div>
+                        </div>
+
+                        <div class="settings_cell">
+                            <div cos-dropdown class="classic_dropdown">
+
+                            <div class="dropdown_selection">
+
+                                <div class="dropdown_text">
+                                    Private
+                                </div>
+
+                                <div class="arrow_holder">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                            <div class="v_line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <!-- NO CATEGORY -->
+                                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                        <div class="item_name">
+                                            Private
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="line lightest_line"></div>
+                    
+                    <div class="settings_section">
+                        <div class="settings_cell">
+                            <div class="setting_title">
+                                Hashtag
+                            </div>
+                            <div class="setting_description">
+                                USE THIS HASHTAG IN SOCIAL MEDIA AND THE MENTIONS WILL BE SHOWN BELOW YOUR TOPIC
+                            </div>
+                        </div>
+
+                        <div class="settings_cell">
+                            <input value="#cos_hipsters">
+                        </div>
+
+                    </div>
+                    <div class="line lightest_line"></div>
+                    
+                    <div class="settings_section">
+                        <div class="settings_cell">
+                            <div class="setting_title">
+                                Leave topic
+                            </div>
+                            <div class="setting_description">
+                                LEAVING A TOPIC WILL RESULT IN GIVING UP ANY POWERS YOU MAY HAVE AS USER IN THAT TOPIC
+                            </div>
+                        </div>
+
+                        <div class="settings_cell">
+                            <div class="gray_button">Leave topic</div>
+                        </div>
+
+                    </div>
+                    <div class="line lightest_line"></div>
+                    
+                    <div class="settings_section">
+                        <div class="settings_cell">
+                            <div class="setting_title">
+                                Delete topic
+                            </div>
+                            <div class="setting_description">
+                                DELETING A TOPIC CAN NOT BE UNDONE. BE SURE TO BE REALLY SURE ABOUT THIS.
+                            </div>
+                        </div>
+
+                        <div class="settings_cell">
+                            <div class="blue_button yes">Delete topic</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            
+            <!-- CATEGORIES -->
+            <div class="lightbox_content categories_section_wrap" ng-if="tabSelected === 'topicSettingsCategories'">
+                <div class="lightbox_section">
+                    <div class="tip">Assign up to 3 categories</div>
+                    <div class="selected_categories">
+
+                        <div class="category_wrap" ng-repeat="i in [1,2,3]">
+
+                            <div class="category_cell category_title">
+                                Communities and urban development
+                            </div>
+
+                            <div class="category_cell category_control">
+                                    <div class="sprite_temp2 sprite-icon-category-delete2x"></div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="line lightest_line"></div>
+
+                    <div class="category_selection">
+                        
+                        <div class="category_wrap" ng-repeat="i in [1,2,3, 4, 5, 6, 7, 8, 9, 10]">
+
+                            <div class="category_cell category_title">
+                                Communities and urban development
+                            </div>
+
+                            <div class="category_cell category_control">
+                                    <div class="sprite_temp2 desktop_fix sprite-icon-category-add2x"></div>
+                                    <div class="sprite_temp2 mobile_fix sprite-icon-category-add2x-black"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- INVITE USERS -->
+            <div class="lightbox_content padding_bottom_zero" ng-if="tabSelected === 'topicSettingsInvite'">
+
+                <div class="lightbox_section">
+
+                    <div class="input_text_margin_bottom">
+                        Invite users via their name or e-mail address
+                    </div>
+
+                    <div class="searchbox_with_icon_and_text only_text">
+                        <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length, dropdown_active : searchResults.users.length}">
+                            <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
+                                       select="addGroupMemberUser(item)" placeholder="Search by username or e-mail address">
+                                <div class="search_area_wrap">
+                                    <div class="search_dropdown_area" ng-show="searchResults.users.length">
+                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
+                                            <div class="table_cell search_item_text">
+                                                <b>{{user.name}}</b> {{user.company}}
+                                            </div>
+                                            <div class="table_cell blue_link">
+                                                <span class="submit_link" ng-click="addGroupMemberUser(user)">Press enter or click to add</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </typeahead>
+
+                        </div>
+                        <div class="search_text">
+                            <div class="table_cell blue_link">
+                                Press enter to add
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="lightbox_section double_row_list user_list">
+
+                    <div ng-repeat="(key, members) in members" ng-if="members.length">
+
+                        <div class="category_title">
+                            <div class="table_cell">
+                                {{key | uppercase}}
+                            </div>
+                        </div>
+
+                        <table>
+
+                            <tr ng-repeat="(memberKey, member) in members">
+                                <td>
+                                    <div class="profile_image_wrapper dark">
+                                        <div class="profile_moon sprite"></div>
+                                        <div class="account_picture">
+                                            <img ng-if="member.imageUrl" src="{{member.imageUrl}}">
+                                            <div class="profile_image_filler">
+                                                <div class="table_cell" cos-initials="member.name">
+                                                    ML
+                                                </div>
+                                                <div class="profile_circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="name_wrap">
+                                        <div class="table_cell">
+                                            <div class="blue_link" ng-click="doRemoveMemberUser(member)">{{member.name}}</div>
+                                            <div class="via">{{member.company}}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mobile_extra_info">
+                                        <div class="left">
+                                            <div cos-dropdown class="classic_dropdown">
+
+                                                <div class="dropdown_selection">
+                                                    <div class="dropdown_text">
+                                                        {{member.level}}
+                                                    </div>
+
+                                                    <div class="arrow_holder">
+                                                        <div class="table_cell">
+                                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                            <div class="v_line"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="dropdown">
+                                                    <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
+                                                        <div class="item_name" ng-click="updateGroupMemberUserLevel(member, level)">
+                                                            {{level}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="right">
+                                            <div class="btn_wrap recycle_bin white_bg">
+                                                <div class="btn">
+                                                    <div class="table_cell">
+                                                        <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div cos-dropdown class="classic_dropdown">
+
+                                        <div class="dropdown_selection">
+                                            <div class="dropdown_text">
+                                                {{member.level}}
+                                            </div>
+
+                                            <div class="arrow_holder">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                    <div class="v_line"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="dropdown">
+                                            <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
+                                                <div class="item_name" ng-click="updateGroupMemberUserLevel(member, level)">
+                                                    {{level}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn_wrap recycle_bin white_bg">
+                                        <div class="btn" ng-click="doRemoveMemberUser(member)">
+                                            <div class="table_cell">
+                                                <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                                <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!-- SHARE -->
+            <div class="lightbox_content invite_url" ng-if="tabSelected === 'topicSettingsShare'">
+            
+                <div class="lightbox_section">
+                    <div class="input_text_margin_bottom">
+                        Share this link to people you want to join the topic:
+                    </div>
+
+                    <div class="copy_link">
+                        <div class="searchbox_with_icon_and_text">
+                            <input value="https://citizenos-citizenosfe-web-test.herokuapp.com">
+                            <div class="search_text">
+                                <div class="blue_link table_cell">
+                                    Create a new link
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
+                            Copy link
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="lightbox_section">
+
+                    <div class="qr_code">
+                        <img src=".././imgs/qr_code_holder.png">
+                        <a class="blue_link">Download QR code pdf</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MOBILE SAVE BUTTON -->
+            <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
+                <div class="blue_button">
+                    Save settings
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()">
+
+    </div>
+
+</div>

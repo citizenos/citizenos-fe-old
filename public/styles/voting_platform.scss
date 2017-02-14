@@ -1,0 +1,61 @@
+@import 'vars';
+@import 'mixins_n_extends';
+@import 'icons';
+
+.voting_platform_wrap {
+    background: $white;
+    margin: 40px 60px;
+    .platform_description {
+        font-size: 13px;
+        font-weight: $bold;
+        padding: 10px 20px 0;
+    }
+    .voting_platform_section {
+        padding: 10px 20px 0;
+        .voting_platform_section_title {
+            font-size: 16px;
+            font-weight: $bold;
+            margin: 20px 0;
+        }
+
+        .voting_platform_buttons_wrap {
+            display: table;
+            width: 100%;
+            margin-bottom: 40px;
+
+            .table_cell {
+                width: 50%;
+                &:first-child {
+                    padding-right: 10px;
+                }
+                &:last-child {
+                    padding-left: 10px;
+                }
+            }
+
+            .voting_platform_button {
+                width: 100%;
+                height: 100px;
+                border: 2px solid $aqua_marine_border;
+                border-radius: 4px;
+                float: left;
+                display: table;
+                text-align: center;
+                cursor: pointer;
+                .button_title {
+                    font-size: 26px;
+                    font-weight: $bold;
+                }
+                .button_description {
+                    font-size: 13px;
+                }
+
+                &.active {
+                    background: $aqua_marine;
+                }
+            }
+
+        }
+    }
+    
+}

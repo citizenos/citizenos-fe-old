@@ -27,6 +27,7 @@ $side_panel_gray: #ececec;
 $mobile_gray: #E8E8E8;
 $mobile_border_gray: #CECECE;
 $circle_gray: #9A9A9A;
+$text_gray: #3A434A;
 
 $light: 300;
 $medium: 400;
@@ -75,6 +76,7 @@ $favorite_yellow: #ffc600;
 $aqua_marine: #2eecb4;
 $aqua_marine_border: #2be0aa;
 $aqua_marine_border_second: #28d4a0;
+$comments_green: #BAE830;
 
 /* INFO BAR COLORS */
 .bar_red {
@@ -180,4 +182,12 @@ $aqua_marine_border_second: #28d4a0;
 
 .red_text {
     color: $pinky_red;
+}
+
+.gray_text {
+    color: $pinky_red;
+}
+
+.black_text {
+    color: $medium_black;
 }
