@@ -283,35 +283,14 @@
                         <div class="item_description">
                             Vote deadline
                         </div>
-                        <div cos-modal ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title" save="saveDate()">
-                            <div cos-modal-link class="item_content">
-                                <div class="item_text">
-                                    {{(date | amDateFormat : 'L') || 'none'}}
-                                </div>
-                                <div class="v_line"></div>
-                                <div class="item_link blue_link">
-                                    edit
-                                </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                {{(topic.vote.endsAt | amDateFormat : 'L') || 'none'}}
                             </div>
-                            <div cos-modal-content>
-                                <div cos-toggle ng-model="cosModalValue" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
-                                <div class="bubble_section">
-                                    <div class="bubble_title">Deadline</div>
-                                    <div class="bubble_description">
-
-                                        <div class="picker_deadline_date">
-                                            {{cosModalValue|amDateFormat:'L'}}
-                                        </div>
-                                        <div class="picker_days_left">
-                                            15
-                                        </div>
-                                        <div class="clearer"></div>
-                                    </div>
-                                    <div date-picker="cosModalValue" max-view="date" min-view="date" template="/views/directives/date_picker.html"></div>
-                                </div>
+                            <div class="v_line"></div>
+                            <div class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt">
+                                edit
                             </div>
-
-                            <div class="clearer"></div>
                         </div>
                     </div>
 

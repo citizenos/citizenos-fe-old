@@ -19,21 +19,12 @@ angular
             ',
             scope: {
                 model: '=ngModel',
-                cosToggleTextOn: '=',
-                cosToggleTextOff: '='
+                cosToggleTextOn: '=?',
+                cosToggleTextOff: '=?'
             },
             controller: ['$scope', '$element', function ($scope, $element) {
                 $scope.cosToggle = function () {
-                    console.log('citizenos.cosToggle', $scope.model);
-                    if (typeof $scope.model === 'boolean') {
-                        $scope.model = !$scope.model;
-                    } else {
-                        if ($scope.model) {
-                            $scope.model = null;
-                        } else {
-                            $scope.model = new Date();
-                        }
-                    }
+                    $scope.model = !$scope.model;
                 };
             }]
         }

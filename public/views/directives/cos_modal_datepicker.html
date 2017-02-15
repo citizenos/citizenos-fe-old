@@ -1,0 +1,69 @@
+<div id="root_lightbox" class="full_screen">
+    <div id="lightbox" class="date_picker_wrap set_number">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title">{{cosModalTitle}}</div>
+                    <div class="lightbox_header_description_text" ng-if="cosModalDescription">
+                        {{cosModalDescription}}
+                    </div>
+                </div>
+
+                <div id="lightbox_close" ng-click="cosModalClose()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+            <div class="line lightest_line"></div>
+
+
+            <!-- CONFIRM CONTENT -->
+            <div class="lightbox_content">
+
+                <div class="lightbox_section picker_content">
+                    <div class="bubble_content">
+
+                        <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                        <div class="bubble_section">
+                            <div class="bubble_title">Deadline</div>
+                            <div class="bubble_description">
+
+                                <div ng-if="cosModalIsDateSelected">
+                                    <div class="picker_deadline_date">
+                                        {{cosModelValue | amDateFormat:'L'}}
+                                    </div>
+                                    <div class="picker_days_left">
+                                        {{cosModelValue | amDifference : null : 'days' : false}}
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+                            <!-- ng-if creates a new child scope, thus the $parent.cosModelValue... -->
+                            <div ng-if="cosModalIsDateSelected" date-picker="$parent.cosModelValue" max-view="date" min-view="date" after="datePickerAfter" template="/views/directives/date_picker.html"></div>
+                        </div>
+
+                        <div id="cosOverlayConfirmButtons" class="bubble_section date_save_buttons">
+                            <div class="blue_button" ng-click="cosModalSaveAction()">Save</div>
+                            <div class="blue_link_wrapper" ng-click="cosModalClose()">
+                                <div class="blue_link">Cancel</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="cosModalClose()"></div>
+
+</div>
