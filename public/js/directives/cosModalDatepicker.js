@@ -30,7 +30,8 @@ angular
                 };
 
                 $scope.cosModalSaveAction = function () {
-                    $scope.model = $scope.cosModalIsDateSelected ? $scope.cosModelValue : null;
+                    // The 'add' and 'subtract' - because the picked date is inclusive
+                    $scope.model = $scope.cosModalIsDateSelected ? $scope.cosModelValue.add(1, 'day').subtract(1, 'ms') : null;
 
                     $timeout(function () {
                         $scope.cosModalOnSave()()
