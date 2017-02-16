@@ -21,6 +21,7 @@ angular
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
             '/views/directives/cos_modal.html',
+            '/views/directives/cos_modal_datepicker.html',
             '/views/directives/date_picker.html',
             '/views/layouts/main.html',
             '/views/modals/add_topics.html',

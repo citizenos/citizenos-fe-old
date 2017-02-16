@@ -235,7 +235,7 @@ table, .pretend_table {
 
 //Overall button styles and other general items
 
- .container_favorite {
+.container_favorite {
     position: absolute;
     width: 22px;
     height: 22px;
@@ -306,7 +306,6 @@ table, .pretend_table {
         right: 0;
     }
 }
-
 
 .pretend_table {
     display: table;
@@ -738,55 +737,7 @@ a:link, a:visited {
     }
 }
 
-/* TOGGLE WIDGET */
-.toggle_widget.no {
-    background: $aqua_marine;
-    border: 1px solid $aqua_marine_border_second;
-
-    .toggle_circle {
-        margin-left: 31px;
-    }
-
-    .text_no {
-        opacity: 0;
-    }
-}
-
-.toggle_widget.no.text_on {
-    .toggle_circle {
-        margin-left: 40px;
-    }
-}
-
-.toggle_widget.no:hover {
-    background: $aqua_marine_border_second;
-
-    @include tablet {
-        background: $aqua_marine;
-    }
-}
-
-.toggle_widget.yes {
-    background: $pinky_red;
-    border: 1px solid $pinky_red_border;
-
-    .toggle_circle {
-        margin-left: 1px;
-    }
-
-    .text_yes {
-        opacity: 0;
-    }
-}
-
-.toggle_widget.yes:hover {
-    background: $pinky_red_dark_hover;
-
-    @include tablet {
-        background: $pinky_red;
-    }
-}
-
+/** TOGGLE WIDGET **/
 .toggle_widget {
     position: absolute;
     box-sizing: border-box;
@@ -799,6 +750,7 @@ a:link, a:visited {
     .toggle_text {
         display: none;
     }
+
     .toggle_circle {
         height: 26px;
         width: 26px;
@@ -809,34 +761,75 @@ a:link, a:visited {
         transition: all 150ms ease-out;
         z-index: 1;
     }
-}
 
-.toggle_widget.text_on {
-    width: 69px;
-    .toggle_text {
-        display: table;
-        position: absolute;
-        font-size: 14px;
-        font-weight: $bold;
-        color: $white;
-        height: inherit;
-        width: 44px;
-        margin-top: -1px;
-        text-align: center;
-    }
-    .text_yes {
-        color: $green_dark;
-    }
-    .text_no {
-        margin-left: 24px;
-    }
-}
+    &.on {
+        background: $aqua_marine;
+        border: 1px solid $aqua_marine_border_second;
 
-.toggle_widget.relative {
-    position: relative;
-    float: right;
-    right: 0;
-    margin-top: -5px;
+        .toggle_circle {
+            margin-left: 31px;
+        }
+
+        &:hover {
+            background: $aqua_marine_border_second;
+
+            @include tablet {
+                background: $aqua_marine;
+            }
+        }
+    }
+
+    &.off {
+        background: $pinky_red;
+        border: 1px solid $pinky_red_border;
+
+        .toggle_circle {
+            margin-left: 1px;
+        }
+
+        &:hover {
+            background: $pinky_red_dark_hover;
+
+            @include tablet {
+                background: $pinky_red;
+            }
+        }
+    }
+
+    &.text_on {
+        width: 69px;
+        .toggle_text {
+            display: table;
+            position: absolute;
+            font-size: 14px;
+            font-weight: $bold;
+            color: $white;
+            height: inherit;
+            width: 44px;
+            margin-top: -1px;
+            text-align: center;
+        }
+
+        &.on {
+            color: $green_dark;
+
+            .toggle_circle {
+                margin-left: 40px;
+            }
+        }
+        &.off {
+            .toggle_text {
+                right: 0;
+            }
+        }
+    }
+
+    &.relative {
+        position: relative;
+        float: right;
+        right: 0;
+        margin-top: -5px;
+    }
 }
 
 /* EDIT TOOLTIP */

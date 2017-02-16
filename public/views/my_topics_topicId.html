@@ -284,18 +284,14 @@
                             Vote deadline
                         </div>
                         <div class="item_content">
-                            <div class="item_text" ng-if="topic.vote.endsAt">
-                                {{topic.vote.endsAt | amDateFormat : 'L'}}
-                            </div>
-                            <div class="item_text" ng-if="!topic.vote.endsAt">
-                                none
+                            <div class="item_text">
+                                {{(topic.vote.endsAt | amDateFormat : 'L') || 'none'}}
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link">
-                                edit TODO!
+                            <div class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt">
+                                edit
                             </div>
                         </div>
-                        <div class="clearer"></div>
                     </div>
 
                 </div>

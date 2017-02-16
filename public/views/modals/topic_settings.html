@@ -65,7 +65,7 @@
 
                 <div class="lightbox_section">
 
-                    
+
                     <div class="settings_section full_width">
                         <div class="settings_cell">
                             <div class="setting_title">
@@ -79,7 +79,7 @@
                     </div>
                     <div class="line lightest_line"></div>
 
-                    
+
                     <div class="settings_section group_image">
 
                         <div class="settings_cell">
@@ -99,7 +99,7 @@
                     </div>
                     <div class="line lightest_line"></div>
 
-                    
+
                     <div class="settings_section">
                         <div class="settings_cell">
                             <div class="setting_title">
@@ -111,15 +111,13 @@
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-toggle-switch class="toggle_widget" ng-click="cosToggle()" ng-class="cosToggleStatus() ? 'no' : 'yes'">
-                                <div class="toggle_circle"></div>
-                            </div>
+                            <div cos-toggle ng-model="isTopicSettingsPrivate"></div>
                         </div>
 
                     </div>
                     <div class="line lightest_line"></div>
 
-                    
+
                     <div class="settings_section">
                         <div class="settings_cell">
                             <div class="setting_title">
@@ -161,7 +159,7 @@
 
                     </div>
                     <div class="line lightest_line"></div>
-                    
+
                     <div class="settings_section">
                         <div class="settings_cell">
                             <div class="setting_title">
@@ -178,7 +176,7 @@
 
                     </div>
                     <div class="line lightest_line"></div>
-                    
+
                     <div class="settings_section">
                         <div class="settings_cell">
                             <div class="setting_title">
@@ -195,7 +193,7 @@
 
                     </div>
                     <div class="line lightest_line"></div>
-                    
+
                     <div class="settings_section">
                         <div class="settings_cell">
                             <div class="setting_title">
@@ -216,7 +214,7 @@
 
             </div>
 
-            
+
             <!-- CATEGORIES -->
             <div class="lightbox_content categories_section_wrap" ng-if="tabSelected === 'topicSettingsCategories'">
                 <div class="lightbox_section">
@@ -240,7 +238,7 @@
                     <div class="line lightest_line"></div>
 
                     <div class="category_selection">
-                        
+
                         <div class="category_wrap" ng-repeat="i in [1,2,3, 4, 5, 6, 7, 8, 9, 10]">
 
                             <div class="category_cell category_title">
@@ -421,7 +419,7 @@
 
             <!-- SHARE -->
             <div class="lightbox_content invite_url" ng-if="tabSelected === 'topicSettingsShare'">
-            
+
                 <div class="lightbox_section">
                     <div class="input_text_margin_bottom">
                         Share this link to people you want to join the topic:

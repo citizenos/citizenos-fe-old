@@ -64,27 +64,20 @@ angular
                 sSearch
                     .searchV2(str, include)
                     .then(function (response) {
-                            $scope.searchResults.users = [];
-                            $scope.searchResults.topics = [];
-                            if (type === 'user') {
-                                response.data.data.results.public.users.forEach(function (user) {
-                                    $scope.searchResults.users.push(user);
-                                });
-                            }
-                            if (type === 'topic') {
-                                response.data.data.results.my.topics.forEach(function (topic) {
-                                    $scope.searchResults.topics.push(topic);
-                                });
-                            }
+                        $scope.searchResults.users = [];
+                        $scope.searchResults.topics = [];
+                        if (type === 'user') {
+                            response.data.data.results.public.users.forEach(function (user) {
+                                $scope.searchResults.users.push(user);
+                            });
+                        }
+                        if (type === 'topic') {
+                            response.data.data.results.my.topics.forEach(function (topic) {
+                                $scope.searchResults.topics.push(topic);
+                            });
+                        }
 
-                        },
-                        function (response) {
-                            if (response.config.timeout && response.config.timeoutPromise) {
-                                $log.info('Search canceled', response);
-                            } else {
-                                $log.error('Search failed...', response);
-                            }
-                        });
+                    });
             } else {
                 $scope.searchResults.users = [];
                 $scope.searchResults.topics = [];

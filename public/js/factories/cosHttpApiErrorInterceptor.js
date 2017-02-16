@@ -74,6 +74,9 @@ angular
 
         var generalErrorToKey = function (errorResponse) {
             if (errorResponse.status < 0) {
+                if (errorResponse.config.timeout.$$state.value === 'cancelled') {
+                    return;
+                }
                 sNotification.addError('MSG_ERROR_NETWORK_PROBLEMS');
                 return;
             }
@@ -107,6 +110,7 @@ angular
                 return response;
             },
             'responseError': function (response) {
+                sNotification.removeAll();
                 if (response.config.url.match(API_REQUEST_REGEX)) {
                     try {
                         errorsToKeys(response);

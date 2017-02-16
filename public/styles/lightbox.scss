@@ -119,6 +119,7 @@
 
                     .lightbox_header_description_text {
                         font-weight: $medium;
+                        font-style: italic;
                         @media (max-width: 560px) {
                             top: 40px;
                             right: 20px;
@@ -1459,7 +1460,7 @@
         padding-top: 0 !important;
         padding-bottom: 0 !important;
         overflow: hidden !important;
-        
+
         @media (max-width: 560px) {
             overflow: auto !important;
         }
@@ -1484,7 +1485,7 @@
                 width: 100%;
                 display: table;
                 padding: 19px 0 19px;
-                
+
                 &:first-child {
                     padding-top: 0;
                 }
@@ -1511,8 +1512,8 @@
                     }
 
                     input, .classic_dropdown {
-                        width: 180px;
                         float: right;
+                        width: 180px;
                     }
 
                     .blue_button, .gray_button {
@@ -1523,10 +1524,10 @@
 
                 }
 
-                
+
                 @media (max-width: 560px) {
                     display: block;
-                    
+
                     &:last-child {
                         padding-bottom: 20px;
                     }
@@ -1538,7 +1539,7 @@
                         &:last-child {
                             padding-left: 0;
                         }
-                            
+
                         input, .classic_dropdown, .blue_button, .gray_button {
                             width: 100%;
                             float: none;
@@ -1547,7 +1548,7 @@
                     }
                 }
             }
-            
+
             .settings_section {
 
                 .toggle_widget {
@@ -1559,10 +1560,10 @@
                         margin-top: 10px;
                     }
                 }
-                
+
                 &.group_image {
                     position: relative;
-                    
+
                     .settings_cell {
 
                         &:first-child {
@@ -1602,13 +1603,13 @@
                                 }
                             }
                         }
-                        
+
                         img {
                             width: 80px;
                             height: 80px;
                             float: right;
                         }
-                        
+
                         &:last-child {
                             @media (max-width: 560px) {
                                 position: absolute;
@@ -1620,15 +1621,16 @@
                     }
 
                 }
-                
+
             }
-            
+
             .settings_section.full_width {
                 .settings_cell {
                     width: 100%;
                     padding: 0;
                     input {
                         width: 100%;
+                        float: none;
                     }
                 }
             }
@@ -1639,7 +1641,7 @@
         padding-top: 0 !important;
         padding-bottom: 0 !important;
         overflow: hidden !important;
-        
+
         @media (max-width: 560px) {
             overflow: auto !important;
         }
@@ -1660,7 +1662,7 @@
                 padding-bottom: 40px !important;
             }
 
-            
+
             .category_wrap {
                 display: table;
                 width: 100%;
@@ -1671,7 +1673,7 @@
                 overflow: hidden;
                 box-sizing: border-box;
                 margin-bottom: 5px;
-                
+
                 .category_cell {
                     @extend .table_cell;
                 }
@@ -1805,7 +1807,7 @@
         }
 
         @media (max-width: 560px) {
-            
+
             padding-bottom: 40px !important;
 
              .copy_link {

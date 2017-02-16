@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', 'ngDialog', 'sAuth', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', function ($scope, $state, $stateParams, $timeout, $q, $log, ngDialog, sAuth, TopicMemberGroup, TopicMemberUser, TopicVote) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', 'ngDialog', 'sAuth', 'TopicMemberGroup', 'TopicMemberUser', function ($scope, $state, $stateParams, $timeout, $q, $log, ngDialog, sAuth, TopicMemberGroup, TopicMemberUser) {
         $log.debug('TopicCtrl');
 
         $scope.topic = _.find($scope.itemList, {id: $stateParams.topicId});
@@ -90,6 +90,12 @@ angular
             } else {
                 $scope.doShowVoteResults(topic);
             }
+        };
+
+        $scope.doSaveVoteEndsAt = function () {
+            $log.debug('TopicCtrl.doSaveVoteEndsAt', arguments);
+            // FIXME: HTTP request here to save endsAt
+            return $q.resolve();
         };
 
         $scope.TopicMemberGroup = TopicMemberGroup;

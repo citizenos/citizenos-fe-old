@@ -211,7 +211,7 @@
             <div class="header_text">
                 Topic list ({{group.members.topics.count}})
                 |
-                <div class="blue_link" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doToggleMemberTopicList(group)">filter</div>
+                <div class="blue_link" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doShowMemberTopicList(group)">filter</div>
                 |
                 <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})">add</div>
             </div>
@@ -311,7 +311,7 @@
             <div class="header_text">
                 User list ({{group.members.users.count}})
                 |
-                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doToggleMemberUserList(group)">filter</div>
+                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(group)">filter</div>
                 |
                 <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})">invite</div>
             </div>
