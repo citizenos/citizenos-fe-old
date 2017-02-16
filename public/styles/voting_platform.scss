@@ -3,8 +3,12 @@
 @import 'icons';
 
 .voting_platform_wrap {
+    display: none;
     background: $white;
     margin: 40px 60px;
+    @media (max-width: 767px) {
+        margin: 0;
+    }
     .platform_description {
         font-size: 13px;
         font-weight: $bold;

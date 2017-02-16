@@ -247,12 +247,12 @@
                 
                     <div class="comments_section">
                         <div class="tabs_wrap">
-                            <div class="tab active">
+                            <div ng-click="app.activeCommentSection = 'arguments'" class="tab" ng-class="app.activeCommentSection == 'arguments' || app.activeCommentSection == undefined ? 'active':''">
                                 <div class="table_cell">
                                     Arguments
                                 </div>
                             </div>
-                            <div class="tab">
+                            <div ng-click="app.activeCommentSection = 'socialMentions'" class="tab" ng-class="app.activeCommentSection == 'socialMentions' ? 'active':''">
                                 <div class="table_cell">
                                     Social mentions
                                 </div>
@@ -261,133 +261,913 @@
                         <div class="clearer"></div>
                         <div class="comments_content">
 
-                            <div class="arguments_wrap">
-                                <div class="arguments_header">
-                                    <div class="number_of_arguments">
-                                        55555 arguments
-                                    </div>
-                                    <div class="arguments_data">
-                                        <div class="data_left">
-                                            <span class="data_item">
-                                                pro: 55555
-                                            </span>
-                                            <span class="data_item">
-                                                con: 55555
-                                            </span>
+                            <div ng-if="app.activeCommentSection == 'arguments' || app.activeCommentSection == undefined" class="arguments_container">
+                                <div class="arguments_wrap">
+                                    <div class="arguments_header">
+                                        <div class="number_of_arguments">
+                                            55555 arguments
                                         </div>
-                                        <div class="data_right">
-                                            <div cos-dropdown class="classic_dropdown data_item">
+                                        <div class="arguments_data">
+                                            <div class="data_left">
+                                                <span class="data_item">
+                                                    pro: 55555
+                                                </span>
+                                                <span class="data_item">
+                                                    con: 55555
+                                                </span>
+                                            </div>
+                                            <div class="data_right">
+                                                <div cos-dropdown class="classic_dropdown borderless_dropdown">
 
-                                                <div class="dropdown_selection">
-                                                    <div class="dropdown_text">
-                                                        Most recent
+                                                    <div class="dropdown_selection">
+                                                        <div class="dropdown_text data_item">
+                                                            Most recent
+                                                        </div>
+
+                                                        <div class="arrow_holder">
+                                                            <div class="table_cell">
+                                                                <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
-                                                    <div class="arrow_holder">
-                                                        <div class="table_cell">
-                                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+                                                    <div class="dropdown">
+                                                        <!-- NO CATEGORY -->
+                                                        <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                            <div class="item_name">
+                                                                Read
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                                            <div class="v_line"></div>
+                                                </div>
+                                                
+                                                <div class="blue_button">
+                                                    Add argument
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="clearer"></div>
+                                        
+                                        <div class="line lightest_line"></div>
+                                    </div>
+
+                                    <div class="arguments_content">
+
+                                    <!-- FIRST COMMENT -->
+                                    <div class="argument_wrap">
+                                        <div class="argument">
+                                            <div class="argument_header">
+                                                <div class="argumentator">
+                                                    <div class="table_cell">
+                                                        <div cos-dropdown class="classic_dropdown borderless_dropdown">
+                                                    
+                                                            <div class="dropdown_selection">
+                                                                <div class="dropdown_text data_item">
+                                                                    Kristian Lember
+                                                                </div>
+
+                                                                <div class="arrow_holder">
+                                                                    <div class="table_cell">
+                                                                        <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown">
+                                                                <!-- NO CATEGORY -->
+                                                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                                    <div class="item_name">
+                                                                        Read
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="dropdown">
-
-                                                    <!-- NO CATEGORY -->
-                                                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                                                        <div class="item_name">
-                                                            Read
-                                                        </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
                                                     </div>
-
                                                 </div>
+                                                <div class="argument_date">
+                                                    <div class="table_cell">
+                                                        05/01/2017 14:36
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                            <div class="argument_title">
+                                                Subject of argument goes here
+                                            </div>
 
+                                            <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
+                                                <div class="argument_text">
+                                                    Right on! I couldn’t agree more and it shows because I chose a pro argument comment to be added here.
+                                                </div>
+                                                <div class="argument_overlay">
+                                                </div>
+                                                <div class="read_more_link " ng-click="readMore = !readMore">
+                                                    {{ (readMore) ? 'Close comment' : 'Read more' }}
+                                                </div>
                                             </div>
                                             
-                                            <div class="blue_button">
-                                                Add argument
+                                            <div class="argument_footer">
+                                                <div class="link_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="blue_link black_text">
+                                                            Reply
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_up">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsup-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        12
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_down">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsdown-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        2
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="exclamation">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 mobile_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                        <div class="sprite_temp2 desktop_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="clearer"></div>
+
+
+                                    <!-- SECOND COMMENT -->
+                                    <div class="argument_wrap">
+                                        <div class="argument">
+                                            <div class="argument_header">
+                                                <div class="argumentator">
+                                                    <div class="table_cell">
+                                                        <div cos-dropdown class="classic_dropdown borderless_dropdown">
+                                                    
+                                                            <div class="dropdown_selection">
+                                                                <div class="dropdown_text data_item">
+                                                                    Kristian Lember
+                                                                </div>
+
+                                                                <div class="arrow_holder">
+                                                                    <div class="table_cell">
+                                                                        <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown">
+                                                                <!-- NO CATEGORY -->
+                                                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                                    <div class="item_name">
+                                                                        Read
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="argument_date">
+                                                    <div class="table_cell">
+                                                        05/01/2017 14:36
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                            <div class="argument_title">
+                                                Another argument sub
+                                            </div>
+                                            
+                                            <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
+                                                <div class="argument_text">
+                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                </div>
+                                                <div class="argument_overlay">
+                                                </div>
+                                                <div class="read_more_link" ng-click="readMore = !readMore">
+                                                    {{ (readMore) ? 'Close comment' : 'Read more' }}
+                                                </div>
+                                            </div>
+
+                                            <div class="argument_footer">
+                                                <div class="link_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="blue_link black_text">
+                                                            Reply
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_up">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsup-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        12
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_down">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsdown-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        2
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="exclamation">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 mobile_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                        <div class="sprite_temp2 desktop_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- SECOND COMMENT REPLY -->
+                                        <div class="argument is_reply">
+                                            <div class="argument_header">
+                                                <div class="reply_icon sprite_temp2 sprite-icon-arrow-reply2x">
+                                                </div>
+                                                <div class="argumentator">
+                                                    <div class="table_cell">
+                                                        <div cos-dropdown class="classic_dropdown borderless_dropdown">
+                                                    
+                                                            <div class="dropdown_selection">
+                                                                <div class="dropdown_text data_item">
+                                                                    Kristian Lember
+                                                                </div>
+
+                                                                <div class="arrow_holder">
+                                                                    <div class="table_cell">
+                                                                        <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown">
+                                                                <!-- NO CATEGORY -->
+                                                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                                    <div class="item_name">
+                                                                        Read
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="argument_date">
+                                                    <div class="table_cell">
+                                                        05/01/2017 14:36
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                            
+                                            <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
+                                                <div class="argument_text">
+                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                </div>
+                                                <div class="argument_overlay">
+                                                </div>
+                                                <div class="read_more_link " ng-click="readMore = !readMore">
+                                                    {{ (readMore) ? 'Close comment' : 'Read more' }}
+                                                </div>
+                                            </div>
+
+                                            <div class="argument_footer">
+                                                <div class="link_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="blue_link black_text">
+                                                            Reply
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_up">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsup-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        12
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_down">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsdown-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        2
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="exclamation">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 mobile_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                        <div class="sprite_temp2 desktop_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- THIRD COMMENT -->
+                                    <div class="argument_wrap is_con">
+                                        <div class="argument">
+                                            <div class="argument_header">
+                                                <div class="argumentator">
+                                                    <div class="table_cell">
+                                                        <div cos-dropdown class="classic_dropdown borderless_dropdown">
+                                                    
+                                                            <div class="dropdown_selection">
+                                                                <div class="dropdown_text data_item">
+                                                                    Kristian Lember
+                                                                </div>
+
+                                                                <div class="arrow_holder">
+                                                                    <div class="table_cell">
+                                                                        <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown">
+                                                                <!-- NO CATEGORY -->
+                                                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                                    <div class="item_name">
+                                                                        Read
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="argument_date">
+                                                    <div class="table_cell">
+                                                        05/01/2017 14:36
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                            <div class="argument_title">
+                                                Another argument sub
+                                            </div>
+                                            
+                                            <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
+                                                <div class="argument_text">
+                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                </div>
+                                                <div class="argument_overlay">
+                                                </div>
+                                                <div class="read_more_link " ng-click="readMore = !readMore">
+                                                    {{ (readMore) ? 'Close comment' : 'Read more' }}
+                                                </div>
+                                            </div>
+
+                                            <div class="argument_footer">
+                                                <div class="link_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="blue_link black_text">
+                                                            Reply
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_up">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsup-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        12
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_down">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsdown-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        2
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="exclamation">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 mobile_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                        <div class="sprite_temp2 desktop_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- THIRD COMMENT REPLY -->
+                                        <div class="argument is_reply">
+                                            <div class="argument_header">
+                                                <div class="reply_icon sprite_temp2 sprite-icon-arrow-reply2x">
+                                                </div>
+                                                <div class="argumentator">
+                                                    <div class="table_cell">
+                                                        <div cos-dropdown class="classic_dropdown borderless_dropdown">
+                                                    
+                                                            <div class="dropdown_selection">
+                                                                <div class="dropdown_text data_item">
+                                                                    Commentator One
+                                                                </div>
+
+                                                                <div class="arrow_holder">
+                                                                    <div class="table_cell">
+                                                                        <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown">
+                                                                <!-- NO CATEGORY -->
+                                                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                                    <div class="item_name">
+                                                                        Read
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="argument_date">
+                                                    <div class="table_cell">
+                                                        05/01/2017 14:36
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                            
+                                            <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
+                                                <div class="argument_text">
+                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                </div>
+                                                <div class="argument_overlay">
+                                                </div>
+                                                <div class="read_more_link" ng-click="readMore = !readMore">
+                                                    {{ (readMore) ? 'Close comment' : 'Read more' }}
+                                                </div>
+                                            </div>
+
+                                            <div class="argument_footer">
+                                                <div class="link_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="blue_link black_text">
+                                                            Reply
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_up">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsup-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        12
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_down">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsdown-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        2
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="exclamation">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 mobile_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                        <div class="sprite_temp2 desktop_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- THIRD COMMENT REPLY -->
+                                        <div class="argument is_reply">
+                                            <div class="argument_header">
+                                                <div class="reply_icon sprite_temp2 sprite-icon-arrow-reply2x">
+                                                </div>
+                                                <div class="argumentator">
+                                                    <div class="table_cell">
+                                                        <div cos-dropdown class="classic_dropdown borderless_dropdown">
+                                                    
+                                                            <div class="dropdown_selection">
+                                                                <div class="dropdown_text data_item">
+                                                                    Commentator Two
+                                                                </div>
+
+                                                                <div class="arrow_holder">
+                                                                    <div class="table_cell">
+                                                                        <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown">
+                                                                <!-- NO CATEGORY -->
+                                                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                                    <div class="item_name">
+                                                                        Read
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="argument_date">
+                                                    <div class="table_cell">
+                                                        05/01/2017 14:36
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                            
+                                            <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
+                                                <div class="argument_text">
+                                                    <span class="replys_reply">@Commentator One</span> Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
+                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                </div>
+                                                <div class="argument_overlay">
+                                                </div>
+                                                <div class="read_more_link read_more_link " ng-click="readMore = !readMore">
+                                                    {{ (readMore) ? 'Close comment' : 'Read more' }}
+                                                </div>
+                                            </div>
+
+                                            <div class="argument_footer">
+                                                <div class="link_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="blue_link black_text">
+                                                            Reply
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_up">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsup-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        12
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_down">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsdown-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        2
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="exclamation">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 mobile_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                        <div class="sprite_temp2 desktop_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+
+                                    <!-- FOURTH COMMENT - DELETED COMMENT -->
+                                    <div class="argument_wrap">
+                                        <div class="argument deleted">
+                                            <div class="argument_header">
+                                                <div class="argumentator">
+                                                    <div class="table_cell">
+                                                        <div cos-dropdown class="classic_dropdown borderless_dropdown">
+                                                    
+                                                            <div class="dropdown_selection">
+                                                                <div class="dropdown_text data_item">
+                                                                    Kristian Lember
+                                                                </div>
+
+                                                                <div class="arrow_holder">
+                                                                    <div class="table_cell">
+                                                                        <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="dropdown">
+                                                                <!-- NO CATEGORY -->
+                                                                <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                                                    <div class="item_name">
+                                                                        Read
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="argument_date">
+                                                    <div class="table_cell">
+                                                        05/01/2017 14:36
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                            <div class="argument_title">
+                                                Comment deleted
+                                            </div>
+
+                                            <div class="argument_text_wrap">
+                                                <div class="argument_text italic">
+                                                    This comment has been deleted by the admin.
+                                                </div>
+                                                <div class="argument_overlay">
+                                                </div>
+                                                <div class="read_more_link " ng-click="readMore = !readMore">
+                                                    {{ (readMore) ? 'Close comment' : 'Read more' }}
+                                                </div>
+                                            </div>
+
+                                            <div class="argument_footer delete_reasons">
+                                                <div class="link_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="blue_link">
+                                                            Why?
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="link_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="blue_link">
+                                                            View comment anyway
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                            
+                                            
+                                            <div class="argument_footer">
+                                                <div class="link_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="blue_link black_text">
+                                                            Reply
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_up">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsup-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        12
+                                                    </div>
+                                                </div>
+                                                <div class="thumbs_down">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-thumbsdown-hover2x">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table_cell">
+                                                        2
+                                                    </div>
+                                                </div>
+                                                <div class="line_wrap">
+                                                    <div class="table_cell">
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="exclamation">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 mobile_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                        <div class="sprite_temp2 desktop_fix sprite-icon-reportmessage-default2x">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearer"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    </div>
+
+                                    <div class="post_argument_wrap">
+                                        <div class="line lightest_line"></div>
+                                        <input placeholder="Add a subject to your argument..." class="gray_borders">
+                                        <textarea class="gray_borders" placeholder="Explain your arguments..."></textarea>
+                                        <div class="blue_button nature_green_button">Post as a pro argument</div>
+                                        <div class="blue_button pinky_red_button">Post as a con argument</div>
+                                        <div class="clearer"></div>
+                                    </div>
                                 </div>
 
-                                <div class="line lightest_line"></div>
+                            </div>
 
-                                <div class="arguments_content">
-                                    <div class="argument">
-                                        <div class="argument_header">
-                                            <div class="argumentator">
+                            <div ng-if="app.activeCommentSection == 'socialMentions'" class="social_mentions_container">
+
+                                <div class="social_mentions_header">
+                                    <div class="social_mentions_description">
+                                        Social mentions
+                                    </div>
+                                    <div class="social_mentions_hashtag">
+                                        #cos_backyard
+                                    </div>
+                                    <div class="clearer"></div>
+                                    <div class="line lightest_line"></div>
+                                </div>
+
+                                <div class="social_mentions_wrap">
+
+                                    <div class="social_mention" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">
+                                        <div class="social_mention_header">
+                                            <div class="social_mention_header_section">
+                                                <div class="table_cell">
+                                                    <img alt="" src=".././imgs/test_topic_logo.png">
+                                                </div>
+                                            </div>
+                                            <div class="social_mention_header_section social_mention_opacity">
                                                 <div class="table_cell">
                                                     Kristian Lember
                                                 </div>
                                             </div>
-                                            <div class="line_wrap">
+                                             <div class="social_mention_header_section">
                                                 <div class="table_cell">
                                                     <div class="v_line"></div>
                                                 </div>
                                             </div>
-                                            <div class="argument_date">
+                                            <div class="social_mention_header_section social_mention_opacity">
                                                 <div class="table_cell">
                                                     05/01/2017 14:36
                                                 </div>
                                             </div>
-                                            <div class="clearer"></div>
-                                        </div>
-                                        <div class="argument_title">
-                                            Subject of argument goes here
-                                        </div>
-                                        <div class="argument_text">
-                                            Right on! I couldn’t agree more and it shows because I chose a pro argument comment to be added here.
-                                        </div>
-                                        <div class="argument_footer">
-                                            <div class="link_wrap">
-                                                <div class="table_cell">
-                                                    <div class="blue_link black_text">
-                                                        Reply
+                                            <div class="clearer mobile_clearer"></div>
+                                            <div class="social_channel">
+                                                <div class="social_mention_header_section social_mention_icon">
+                                                    <div class="table_cell">
+                                                        <div class="sprite_temp2 sprite-icon-social-twitter2x">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="line_wrap">
-                                                <div class="table_cell">
-                                                    <div class="v_line"></div>
-                                                </div>
-                                            </div>
-                                            <div class="thumbs_up">
-                                                <div class="table_cell">
-                                                    <div class="sprite_temp2 sprite-icon-thumbsup-hover2x">
-                                                    </div>
-                                                </div>
-                                                <div class="table_cell">
-                                                    12
-                                                </div>
-                                            </div>
-                                            <div class="thumbs_down">
-                                                <div class="table_cell">
-                                                    <div class="sprite_temp2 sprite-icon-thumbsdown-hover2x">
-                                                    </div>
-                                                </div>
-                                                <div class="table_cell">
-                                                    2
-                                                </div>
-                                            </div>
-                                            <div class="line_wrap">
-                                                <div class="table_cell">
-                                                    <div class="v_line"></div>
-                                                </div>
-                                            </div>
-                                            <div class="exclamation">
-                                                <div class="table_cell">
-                                                    <div class="sprite_temp2 mobile_fix sprite-icon-reportmessage-default2x">
-                                                    </div>
-                                                    <div class="sprite_temp2 desktop_fix sprite-icon-reportmessage-default2x">
+                                                <div class="social_mention_header_section social_mention_opacity">
+                                                    <div class="table_cell">
+                                                        Posted via <span class="social_mention_channel">Twitter</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="clearer"></div>
+                                        </div>
+                                        <div class="social_mention_text">
+                                            We’re talking about quite important stuff here. Everyone should join in! We’re talking about quite important stuff here. Everyone should join in! We’re talking about quite important stuff here. Everyone should join in! We’re talking about quite important stuff here. Everyone should join in! <span class="blue_link">#cos_backyard</span> #yeswecan
                                         </div>
                                     </div>
+
                                 </div>
 
                             </div>
@@ -400,8 +1180,6 @@
             </div>
 
                 <div class="side_panel" ng-if="wWidth > 1024 || app.topics_settings">
-
-                    <div class="blue_button" ng-click="app.topics_settings = false">Save changes</div>
 
                     <div class="options_wrap">
                         <div class="options_header">
