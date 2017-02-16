@@ -93,7 +93,7 @@ angular
         };
 
         $scope.doSaveVoteEndsAt = function () {
-            $log.debug('TopicCtrl.doSaveVoteEndsAt', arguments);
+            $log.debug('TopicCtrl.doSaveVoteEndsAt', arguments, $scope.topic.vote.endsAt.toString());
             // FIXME: HTTP request here to save endsAt
             return $q.resolve();
         };

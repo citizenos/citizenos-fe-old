@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .directive('cosModalDatepicker', ['$log', '$compile', '$templateCache', function ($log, $compile, $templateCache) {
+    .directive('cosModalDatepicker', ['$log', '$compile', '$templateCache', '$timeout', function ($log, $compile, $templateCache, $timeout) {
         return {
             restrict: 'A',
             transclude: true,
@@ -14,7 +14,7 @@ angular
             controller: ['$scope', '$element', '$document', function ($scope, $element, $document) {
                 $log.debug('cosModalDatepicker.controller', arguments);
 
-                $scope.cosModelValue = $scope.model ? $scope.model :  new Date(); // So that original model is not modified
+                $scope.cosModelValue = $scope.model ? $scope.model : new Date(); // So that original model is not modified
                 $scope.cosModalIsDateSelected = !!$scope.cosModelValue;
 
                 $scope.datePickerMin = new Date();
@@ -31,10 +31,13 @@ angular
 
                 $scope.cosModalSaveAction = function () {
                     $scope.model = $scope.cosModalIsDateSelected ? $scope.cosModelValue : null;
-                    $scope.cosModalOnSave()()
-                        .then(function () {
-                            $scope.cosModalClose();
-                        });
+
+                    $timeout(function () {
+                        $scope.cosModalOnSave()()
+                            .then(function () {
+                                $scope.cosModalClose();
+                            });
+                    });
                 }
             }],
             link: function (scope, element, attrs) {
