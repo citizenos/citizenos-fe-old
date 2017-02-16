@@ -262,4 +262,21 @@ angular
             }
         }
  
-    }]);
+}]);
+
+//Get div height for comment hiding
+angular
+    .module('citizenos')
+    .directive('checkHeight', ['$timeout', function($timeout) {
+    return {  
+        scope: true,
+        link: function (scope, el, attrs) {
+            $timeout(init, false);
+                function init(){
+                    scope.offsetHeight = el[0].offsetHeight;
+                    scope.readMore = false;
+                    scope.maxTextHeight = 200;
+                }
+
+        }
+}}]);
