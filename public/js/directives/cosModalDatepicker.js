@@ -14,10 +14,10 @@ angular
             controller: ['$scope', '$element', '$document', function ($scope, $element, $document) {
                 $log.debug('cosModalDatepicker.controller', arguments);
 
-                $scope.cosModelValue = $scope.model ? $scope.model : new Date(); // So that original model is not modified
+                $scope.cosModelValue = $scope.model ? $scope.model :  new Date(); // So that original model is not modified
                 $scope.cosModalIsDateSelected = !!$scope.cosModelValue;
 
-                $scope.datePickerAfter = new Date();
+                $scope.datePickerMin = new Date();
 
                 $scope.isModalVisible = false;
 
