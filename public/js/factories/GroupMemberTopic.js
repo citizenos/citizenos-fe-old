@@ -11,7 +11,7 @@ angular
                     url: sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members/topics'),
                     isArray: true,
                     transformResponse: function (data, headersGetter, status) {
-                        if (status < 400) { // FIXME: think this error handling through....
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data.rows;
                         } else {
                             return angular.fromJson(data);
@@ -24,7 +24,7 @@ angular
                         return angular.toJson({level: data.permission.levelGroup});
                     },
                     transformResponse: function (data, headersGetter, status) {
-                        if (status < 400) { // FIXME: think this error handling through....
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;
                         } else {
                             return angular.fromJson(data);

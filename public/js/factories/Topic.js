@@ -9,8 +9,8 @@ angular
             {
                 query: {
                     isArray: true,
-                    transformResponse: function (data) {
-                        if (status < 400) { // FIXME: think this error handling through....
+                    transformResponse: function (data, headerGetter, status) {
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
                             var array = angular.fromJson(data).data.rows || [];
                             array.forEach(function (topic) {
                                 if (topic.vote && topic.vote.id) {

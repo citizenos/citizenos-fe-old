@@ -8,7 +8,7 @@ angular
             {
                 get: {
                     transformResponse: function (data, headersGetter, status) {
-                        if (status < 400) { // FIXME: think this error handling through....
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;
                         } else {
                             return angular.fromJson(data);
@@ -18,7 +18,7 @@ angular
                 query: {
                     isArray: true,
                     transformResponse: function (data, headersGetter, status) {
-                        if (status < 400) { // FIXME: think this error handling through....
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
                             var array = angular.fromJson(data).data.rows || [];
                             array.forEach(function (group) {
                                 if (group.members.topics && group.members.topics.latest) {
@@ -43,7 +43,7 @@ angular
                         return angular.toJson(requestObject);
                     },
                     transformResponse: function (data, headersGetter, status) {
-                        if (status < 400) { // FIXME: think this error handling through....
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;
                         } else {
                             return angular.fromJson(data);
@@ -60,7 +60,7 @@ angular
                         return angular.toJson(requestObject);
                     },
                     transformResponse: function (data, headersGetter, status) {
-                        if (status < 400) { // FIXME: think this error handling through....
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;
                         } else {
                             return angular.fromJson(data);
