@@ -74,7 +74,7 @@ angular
 
         var generalErrorToKey = function (errorResponse) {
             if (errorResponse.status < 0) {
-                if (errorResponse.config.timeout.$$state.value === 'cancelled') {
+                if (errorResponse.config.timeout && errorResponse.config.timeout.$$state && errorResponse.config.timeout.$$state.value === 'cancelled') {
                     return;
                 }
                 sNotification.addError('MSG_ERROR_NETWORK_PROBLEMS');

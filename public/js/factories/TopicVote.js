@@ -8,8 +8,18 @@ angular
             {topicId: '@topicId', voteId: '@id'},
             {
                 get: {
-                    transformResponse: function (data) {
-                        if (status < 400) { // FIXME: think this error handling through....
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
+                },
+                update: {
+                    method: 'PUT',
+                    transformResponse: function(data, headersGetter, status) {
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;
                         } else {
                             return angular.fromJson(data);
