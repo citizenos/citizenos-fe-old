@@ -3,7 +3,6 @@
 @import 'icons';
 
 .voting_platform_wrap {
-    display: none;
     background: $white;
     margin: 40px 60px;
     @media (max-width: 767px) {
@@ -13,6 +12,9 @@
         font-size: 13px;
         font-weight: $bold;
         padding: 10px 20px 0;
+        @media (max-width: 670px) {
+            padding-top: 21px;
+        }
     }
     .voting_platform_section {
         padding: 10px 20px 0;
@@ -20,12 +22,46 @@
             font-size: 16px;
             font-weight: $bold;
             margin: 20px 0;
+            @media (max-width: 670px) {
+                margin-bottom: 13px;
+            }
         }
+
+        @mixin buttons_in_rows {
+            margin-bottom: 20px;
+            &>.table_cell {
+                padding: 0 !important;
+                display: table;
+                box-sizing: border-box;
+                &:not(:last-child) {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
 
         .voting_platform_buttons_wrap {
             display: table;
             width: 100%;
             margin-bottom: 40px;
+            @media (max-width: 1550px) {
+                @include buttons_in_rows;
+            }
+
+            @media (max-width: 1024px) {
+                &>.table_cell {
+                    padding: 0 !important;
+                    display: table-cell;
+                    box-sizing: border-box;
+                    &:not(:last-child) {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            @media (max-width: 670px) {
+                @include buttons_in_rows;
+            }
 
             .table_cell {
                 width: 50%;
@@ -35,17 +71,48 @@
                 &:last-child {
                     padding-left: 10px;
                 }
+
+                @media (max-width: 1550px) {
+                    width: 100%;
+                    padding: 5px;
+                }
+
+                @media (max-width: 1024px) {
+                    width: 50%;
+                    &:first-child {
+                        padding-right: 10px !important;
+                    }
+                    &:last-child {
+                        padding-left: 10px !important;
+                    }
+                }
+
+                @media (max-width: 670px) {
+                    width: 100%;
+                    &:first-child {
+                        padding-right: 0 !important;
+                    }
+                    &:last-child {
+                        padding-left: 0 !important;
+                    }
+                }
             }
 
             .voting_platform_button {
                 width: 100%;
                 height: 100px;
                 border: 2px solid $aqua_marine_border;
+                box-sizing: border-box;
                 border-radius: 4px;
                 float: left;
                 display: table;
                 text-align: center;
                 cursor: pointer;
+
+                &:not(.active):hover {
+                    background: none;
+                }
+
                 .button_title {
                     font-size: 26px;
                     font-weight: $bold;
@@ -56,10 +123,119 @@
 
                 &.active {
                     background: $aqua_marine;
+                    cursor: pointer;
                 }
             }
 
         }
+
+        .define_answers_wrap {
+            display: table;
+            width: 100%;
+            padding-bottom: 40px;
+            @media (max-width: 1550px) {
+                padding-bottom: 20px;
+            }
+
+            &>.table_cell:first-child {
+                width: 50%;
+                & .table>.table_cell {
+                    width: 50%;
+                    border-right: 1px solid $lightest_gray;
+                }
+            }
+            &>.table_cell:last-child {
+                width: 50%;
+                & .table>.table_cell {
+                    width: 50%;
+                    &:not(:last-child) {
+                        border-right: 1px solid $lightest_gray;
+                    }
+                }
+            }
+            @media (max-width: 1550px) {
+                &>.table_cell {
+                    display: block !important;
+                    width: 100% !important;
+                }
+                &>.table_cell:first-child {
+                    border-bottom: 1px solid $lightest_gray;
+                    & .table>.table_cell:last-child {
+                        border-right: none;
+                    }
+                }
+            }
+
+            @media (max-width: 470px) {
+
+                &>.table_cell>.table>.table_cell {
+                    display: block !important;
+                    width: 100% !important;
+                    border-right: none !important;
+                    &:not(:last-child) {
+                        border-bottom: 1px solid $lightest_gray;
+                    }
+                }
+
+            }
+
+        }
+
+        .define_answers_wrap_with_add {
+            padding-bottom: 40px;
+            display: table;
+            width: 100%;
+            @media (max-width: 1200px) {
+                padding-bottom: 20px;
+            }
+            
+            .left_row, .right_row {
+                display: table-cell;
+                vertical-align: top;
+                width: 50%;
+                @media (max-width: 1200px) {
+                    display: block;
+                    width: 100%;
+                }
+                @media (max-width: 1024px) {
+                    display: table-cell;
+                    vertical-align: top;
+                    width: 50%;
+                }
+                @media (max-width: 600px) {
+                    display: block;
+                    width: 100%;
+                }
+
+            }
+            .left_row {
+                padding-right: 10px;
+                @media (max-width: 1200px) {
+                    padding: 0;
+                }
+                @media (max-width: 1024px) {
+                    padding-right: 10px;
+                }
+                @media (max-width: 600px) {
+                    padding: 0;
+                }
+            }
+            .right_row {
+                padding-left: 10px;
+                @media (max-width: 1200px) {
+                    margin-top: 20px;
+                    padding: 0;
+                }
+                @media (max-width: 1024px) {
+                    padding-left: 10px;
+                }
+                @media (max-width: 600px) {
+                    margin-top: 20px;
+                    padding: 0;
+                }
+            }
+        }
+
     }
     
 }

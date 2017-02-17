@@ -50,6 +50,14 @@
     bottom: 0;
 }
 
+.add_bottom_borders {
+  & > div {
+    &:not(:last-child) {
+      border-bottom: 1px solid $lightest_gray;
+    }
+  }
+}
+
 
 @mixin tablet {
   @media (max-width: 1024px) {

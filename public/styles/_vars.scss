@@ -31,10 +31,6 @@ $light: 300;
 $medium: 400;
 $bold: 700;
 
-$green_light: #2eecb4;
-$green_medium:  #28c798;
-$green_dark:  #0c6449;
-
 .italic {
     font-style: italic;
 }
@@ -82,6 +78,10 @@ $nature_green_border_dark: #a5cc30;
 
 $dark_yellow: #fedc32;
 $favorite_yellow: #ffc600;
+
+$aqua_marine: #2eecb4;
+$green_medium:  #28c798;
+$green_dark:  #0c6449;
 $aqua_marine: #2eecb4;
 $aqua_marine_border: #2be0aa;
 $aqua_marine_border_second: #28d4a0;
@@ -107,7 +107,7 @@ $aqua_marine_border_second: #28d4a0;
 
 .bar_green {
     color: $green_dark;
-    background:  $green_light;
+    background:  $aqua_marine;
 
     .info_icon:last-child:hover {
         background: $green_medium

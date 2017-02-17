@@ -7,78 +7,96 @@
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
 	.sprite_temp2 {
         background-image: url('../imgs/icons_sprite_temp2x.png');
-		 background-size: 158px 158px;
+		background-size: 304px 211px;
 	}
+}
+
+.sprite-inputfield-icon-delete2x {
+	width: 11px;
+	height: 13px;
+	background-position: 0 0;
+}
+
+.sprite-mobiil-id-small2x {
+	width: 70px;
+	height: 20px;
+	background-position: -11px -13px;
+}
+
+.sprite-id-kaart-small2x {
+	width: 65px;
+	height: 20px;
+	background-position: -81px -33px;
 }
 
 .sprite-icon-social-twitter2x {
 	width: 20px;
 	height: 20px;
-	background-position: 0 0;
+	background-position: -146px -53px;
 }
 
 .sprite-icon-category-add2x {
 	width: 12px;
 	height: 12px;
-	background-position: -20px -20px;
+	background-position: -166px -73px;
 }
 
 .sprite-icon-category-add2x-black {
 	width: 12px;
 	height: 12px;
-	background-position: -32px -32px;
+	background-position: -178px -85px;
 }
 
 .sprite-icon-category-delete2x {
 	width: 10px;
 	height: 10px;
-	background-position: -44px -44px;
+	background-position: -190px -97px;
 }
 
 .sprite-icon-arrow-reply2x {
 	width: 12px;
 	height: 11px;
-	background-position: -54px -54px;
+	background-position: -200px -107px;
 }
 
 .sprite-icon-reportmessage-default2x {
 	width: 12px;
 	height: 12px;
-	background-position: -66px -65px;
+	background-position: -212px -118px;
 }
 
 .sprite-icon-reportmessage-hover2x {
 	width: 12px;
 	height: 12px;
-	background-position: -78px -77px;
+	background-position: -224px -130px;
 }
 
 .sprite-icon-thumbsdown-default2x {
 	width: 12px;
 	height: 12px;
-	background-position: -90px -89px;
+	background-position: -236px -142px;
 }
 
 .sprite-icon-thumbsdown-hover2x {
 	width: 12px;
 	height: 12px;
-	background-position: -102px -101px;
+	background-position: -248px -154px;
 }
 
 .sprite-icon-thumbsup-hover2x {
 	width: 12px;
 	height: 12px;
-	background-position: -114px -113px;
+	background-position: -260px -166px;
 }
 
 .sprite-icon-thumbsup-default2x {
 	width: 12px;
 	height: 12px;
-	background-position: -126px -125px;
+	background-position: -272px -178px;
 }
 
 .sprite-icon-mobile-settings-active2x {
 	width: 20px;
 	height: 21px;
-	background-position: -138px -137px;
+	background-position: -284px -190px;
 }

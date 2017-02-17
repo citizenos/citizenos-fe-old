@@ -141,7 +141,7 @@
                             <div class="voting_platform_buttons_wrap">
                                 
                                 <div class="table_cell">
-                                    <div class="voting_platform_button">
+                                    <div class="voting_platform_button" ng-click="activeVotingType = 'regular'" ng-class="activeVotingType == 'regular' || activeVotingType == undefined ? 'active' : ''">
                                         <div class="table_cell">
                                             <div class="button_title">
                                                 REGULAR
@@ -154,7 +154,7 @@
                                 </div>
                                 
                                 <div class="table_cell">
-                                    <div class="voting_platform_button active">
+                                    <div class="voting_platform_button" ng-click="activeVotingType = 'multiplechoice'" ng-class="activeVotingType == 'multiplechoice' ? 'active' : ''">
                                         <div class="table_cell">
                                             <div class="button_title">
                                                 MULTIPLECHOICE
@@ -179,17 +179,111 @@
                                 Step 2: Define answers
                             </div>
 
-                            <div class="voting_platform_buttons_wrap">
-                                
+                            <!-- regular -->
+                            <div class="define_answers_wrap" ng-if="activeVotingType == 'regular' || activeVotingType == undefined">
                                 <div class="table_cell">
-                                    coming soon
+                                    <div class="table">
+                                        <div class="table_cell">
+                                            <div class="gray_toggle_box">
+                                                <div class="table_cell">
+                                                    Yes
+                                                </div>
+                                                <div class="table_cell">
+                                                    <div cos-toggle ng-model="cosModalIsDateSelected" class="disabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table_cell">
+                                            <div class="gray_toggle_box">
+                                                <div class="table_cell">
+                                                    No
+                                                </div>
+                                                <div class="table_cell">
+                                                    <div cos-toggle ng-model="cosModalIsDateSelected" class="disabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table_cell">
+                                    <div class="table">
+                                        <div class="table_cell">
+                                            <div class="gray_toggle_box">
+                                                <div class="table_cell">
+                                                    Neutral
+                                                </div>
+                                                <div class="table_cell">
+                                                    <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table_cell">
+                                            <div class="gray_toggle_box">
+                                                <div class="table_cell">
+                                                    Veto
+                                                </div>
+                                                <div class="table_cell">
+                                                    <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
+                            </div>
+
+                            <!-- multiplechoice -->
+                            <div class="define_answers_wrap_with_add" ng-if="activeVotingType == 'multiplechoice'">
+                                <div class="left_row">
+                                    
+                                    <div class="input_with_icon clickable">
+                                        <input class="gray_borders" value="This is a first answer here">
+                                        <div class="icon_table">
+                                            <div class="icon_cell">
+                                                <div class="sprite_temp2 sprite-inputfield-icon-delete2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="input_with_icon clickable">
+                                        <input class="gray_borders" placeholder="Enter a possible answer">
+                                        <div class="icon_table">
+                                            <div class="icon_cell">
+                                                <div class="sprite_temp2 sprite-inputfield-icon-delete2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="blue_button">Add another answer</div>
+                                </div>
+                                <div class="right_row add_bottom_borders">
+
+                                    <div class="gray_toggle_box">
+                                        <div class="table_cell">
+                                            Neutral
+                                        </div>
+                                        <div class="table_cell">
+                                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="gray_toggle_box">
+                                        <div class="table_cell">
+                                            Veto
+                                        </div>
+                                        <div class="table_cell">
+                                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
 
                             <div class="clearer"></div>
 
                         </div>
+
+                        <div class="line lightest_line"></div>
 
                     </div>
 

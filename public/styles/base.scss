@@ -633,9 +633,58 @@ a:link, a:visited {
     }
 }
 
+
+.input_with_icon {
+    height: 45px;
+    position: relative;
+    margin-bottom: 10px;
+
+    input {
+        height: inherit;
+        width: 100%;
+        font-size: 13px;
+        padding: 0 45px 0 10px;
+        box-sizing: border-box;
+    }
+
+    .icon_table {
+        height: inherit;
+        width: 45px;
+        position: absolute;
+        display: table;
+        top: 0;
+        right: 0;
+        
+        .icon_cell {
+            height: inherit;
+            width: inherit;
+            @extend .table_cell;
+            .sprite_temp2 {
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+.input_with_icon.clickable {
+    .icon_table:hover {
+        @media (min-width: 1025px) {
+            cursor: pointer;
+            height: 43px;
+            width: 43px;
+            background: $light_gray;
+            border-radius: 0 4px 4px 0;
+            border-top: 1px solid $lightest_gray;
+            border-right: 1px solid $lightest_gray;
+            border-bottom: 1px solid $lightest_gray;
+        }
+    }
+}
+
+
 .blue_button {
     background: $deep_sky_blue;
-    border-radius: 2px;
+    border-radius: 4px;
     font-weight: $bold;
     cursor: pointer;
     text-align: center;
@@ -829,6 +878,23 @@ a:link, a:visited {
         float: right;
         right: 0;
         margin-top: -5px;
+    }
+}
+
+.gray_toggle_box {
+    display: table;
+    background: $light_gray;
+    height: 50px;
+    width: 100%;
+    padding: 5px 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    .table_cell {
+        position: relative;
+        .toggle_widget {
+            right: 0;
+            top: 5px;
+        }   
     }
 }
 
