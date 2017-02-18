@@ -881,22 +881,257 @@ a:link, a:visited {
     }
 }
 
+
 .gray_toggle_box {
     display: table;
     background: $light_gray;
     height: 50px;
     width: 100%;
-    padding: 5px 20px;
+    padding: 10px 20px;
     box-sizing: border-box;
     font-size: 14px;
-    .table_cell {
+    &>.table_cell {
         position: relative;
         .toggle_widget {
+            position: relative;
+            margin: 0 auto;
+            top: auto;
+            right: auto;
+        }
+        &:first-child {
+            padding: 2px 15px 1px 0;
+        }
+        
+        &:nth-child(2) {
+            width: 60px;
+            vertical-align: top;
+        } 
+    }
+
+    .toggle_box_title {
+        font-weight: $bold;
+    }
+
+    .toggle_box_description {
+        margin-top: 3px;
+        font-size: 11px;
+    }
+
+    .toggle_box_warning {
+        color: $pinky_red;
+        padding: 8px 0 13px 36px;
+        position: relative;
+        .sprite {
+            position: absolute;
+            left: 0;
+            top: 12px;
+        }
+    }
+
+    .icons_section {
+        margin-top: 8px;
+
+        .sprite_temp2 {
+            float: left;
+            margin-bottom: 12px;
+            &:first-child {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .small_input {
+        height: 30px;
+        padding: 0 8px;
+        box-sizing: border-box;
+        font-size: 13px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+        max-width: 200px;
+    }
+
+}
+
+/* DATE PICKER */
+.picker_content {
+    font-size: 14px;
+
+    @include tablet {
+        width: initial;
+        left: 20px;
+        right: 20px;
+    }
+
+    @media (max-width: 400px) {
+        left: 5px;
+        right: 5px;
+    }
+
+    .bubble_arrow {
+        left: 17px;
+    }
+
+    .bubble_section {
+        padding: 0 20px;
+        @media (max-width: 400px) {
+            padding: 0 15px;
+        }
+    }
+
+    .bubble_section_table {
+        padding: 0 14px;
+        @media (max-width: 400px) {
+            padding: 0 4px;
+        }
+    }
+
+    .bubble_content {
+        margin-bottom: 12px;
+        padding-right: 0;
+
+        .gray_toggle_box {
+            padding: 0;
+            height: 30px;
+
+            .table_cell {
+                vertical-align: middle;
+            }
+        }
+
+        .bubble_description {
+            margin-top: 10px;
+            margin-bottom: 11px;
+            font-size: inherit;
+
+            .picker_deadline_date {
+                float: left;
+            }
+
+            .picker_days_left {
+                float: right;
+            }
+        }
+
+        .month_chooser {
+            margin-top: 15px;
+            height: 30px;
+            display: table;
+            width: 100%;
+            text-align: center;
+            @include tablet {
+                height: 40px;
+            }
+            .arrow, .month_text {
+                font-weight: $bold;
+                @extend .table_cell;
+            }
+            .arrow {
+                box-sizing: border-box;
+                width: 30px;
+                border-radius: 4px;
+                @include tablet {
+                    width: 40px;
+                }
+                &:first-child {
+                    padding-right: 1px;
+                }
+                &:last-child {
+                    padding-left: 1px;
+                }
+                &:hover {
+                    background: $medium_gray;
+                    @include tablet {
+                        background: none;
+                    }
+                }
+                cursor: pointer;
+                .sprite {
+                    margin: 0 auto;
+                }
+            }
+        }
+
+        table {
+            text-align: center;
+            table-layout: fixed;
+            width: 100%;
+            margin: 12px 0;
+            border-collapse: collapse;
+
+            th {
+                font-weight: $bold;
+                opacity: .7;
+                padding-bottom: 7px;
+                text-align: center;
+            }
+
+            td {
+                font-weight: $medium;
+                cursor: pointer;
+
+                &:hover {
+                    .date_circle {
+                        background: $medium_gray;
+                        @include tablet {
+                            background: none;
+                        }
+                    }
+                }
+
+                .date_circle {
+                    display: inline-table;
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    text-align: center;
+
+                    @include tablet {
+                        width: 40px;
+                        height: 40px;
+                    }
+
+                    &.now {
+                        background: $transparent_white;
+                    }
+
+                    &.selected {
+                        background: $aqua_marine;
+                    }
+
+                }
+
+            }
+
+            td.no_date {
+                cursor: initial;
+            }
+
+        }
+
+    }
+
+    .date_save_buttons {
+        @media (max-width: 560px) {
+            position: fixed;
+            bottom: 0;
+            left: 0;
             right: 0;
-            top: 5px;
-        }   
+            bottom: 21px;
+        }
+
+        .blue_link_wrapper {
+            width: 100%;
+            text-align: center;
+            margin-top: 8px;
+        }
+        .blue_button {
+            border-radius: 4px;
+        }
     }
 }
+
+
 
 /* EDIT TOOLTIP */
 .tooltip {

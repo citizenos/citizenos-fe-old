@@ -34,13 +34,21 @@
             <div class="lightbox_content">
 
                 <div class="lightbox_section picker_content">
-
-                    <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
-
                     <div class="bubble_content">
 
                         <div class="bubble_section">
-                            <div class="bubble_title">Deadline</div>
+                                
+                            <div class="gray_toggle_box">
+                                <div class="table_cell">
+                                    <div class="toggle_box_title">
+                                        Deadline
+                                    </div>
+                                </div>
+                                <div class="table_cell">
+                                    <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                </div>
+                            </div>
+                            
                             <div class="bubble_description">
 
                                 <div class="picker_deadline_date">

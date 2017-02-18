@@ -4,9 +4,11 @@
 
 .voting_platform_wrap {
     background: $white;
-    margin: 40px 60px;
+    margin: 40px 60px 22px;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
+
     @media (max-width: 767px) {
-        margin: 0;
+        margin: 0 0 16px;
     }
     .platform_description {
         font-size: 13px;
@@ -18,6 +20,17 @@
     }
     .voting_platform_section {
         padding: 10px 20px 0;
+
+        &:last-child {
+            padding: 20px;
+            .blue_button {
+                height: 60px;
+                font-size: 20px;
+                display: table;
+                width: 100%;
+            }
+        }
+
         .voting_platform_section_title {
             font-size: 16px;
             font-weight: $bold;
@@ -107,10 +120,10 @@
                 float: left;
                 display: table;
                 text-align: center;
-                cursor: pointer;
 
                 &:not(.active):hover {
-                    background: none;
+                    background: $medium_gray;
+                    cursor: pointer;
                 }
 
                 .button_title {
@@ -123,7 +136,6 @@
 
                 &.active {
                     background: $aqua_marine;
-                    cursor: pointer;
                 }
             }
 
@@ -181,14 +193,32 @@
 
         }
 
-        .define_answers_wrap_with_add {
+        .double_cell_layout {
             padding-bottom: 40px;
             display: table;
             width: 100%;
+
+            &.ten_px_margin_between {
+                .right_row {
+                    @media (max-width: 600px) {
+                        margin-top: 10px;
+                    }
+                }
+            }
+
+            &.margin_betwen_boxes {
+                .gray_toggle_box:not(:first-child) {
+                    margin-top: 20px;
+                    @media (max-width: 600px) {
+                        margin-top: 10px;
+                    }
+                }
+            }
+
             @media (max-width: 1200px) {
                 padding-bottom: 20px;
             }
-            
+
             .left_row, .right_row {
                 display: table-cell;
                 vertical-align: top;
@@ -233,6 +263,37 @@
                     margin-top: 20px;
                     padding: 0;
                 }
+            }
+        }
+
+    }
+
+    .picker_content {
+        background: $light_gray;
+        position: relative;
+        padding: 10px 0 14px;
+        left: 0;
+
+        .bubble_content {
+            margin-bottom: 0;
+            table {
+                margin-bottom: 0;
+            }
+
+            .bubble_section:not(:first-child), .bubble_section_table {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        
+        .bubble_description, .date_picker_wrap {
+            display: none;
+        }
+
+        &.active {
+            .bubble_description, .date_picker_wrap {
+                display: block;
             }
         }
 

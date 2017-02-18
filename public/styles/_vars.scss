@@ -82,7 +82,6 @@ $favorite_yellow: #ffc600;
 $aqua_marine: #2eecb4;
 $green_medium:  #28c798;
 $green_dark:  #0c6449;
-$aqua_marine: #2eecb4;
 $aqua_marine_border: #2be0aa;
 $aqua_marine_border_second: #28d4a0;
 
@@ -110,7 +109,7 @@ $aqua_marine_border_second: #28d4a0;
     background:  $aqua_marine;
 
     .info_icon:last-child:hover {
-        background: $green_medium
+        background: $green_medium;
     }
 }
 
@@ -122,6 +121,12 @@ $aqua_marine_border_second: #28d4a0;
 
 .aqua_marine_background {
     background: $aqua_marine;
+    &:hover {
+        background: $aqua_marine_border_second !important;
+        @media (max-width: 1025px) {
+            background: $aqua_marine;
+        }
+    }
 }
 
 .timeline_gray_background {
