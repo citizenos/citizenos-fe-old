@@ -181,23 +181,13 @@
                             border-left: none;
                             border-right: 4px solid $pinky_red;
                             padding-right: 46px;
+                            padding-left: 0;
                         }
                     }
 
-                    .argument {
-                        padding: 5px 0 4px 16px;
-                        border-left: 4px solid $nature_green;
-                        margin-bottom: 20px;
-
-                        &.deleted {
-                            .argument_text_wrap {
-                                .argument_text {
-                                    margin-bottom: 0;
-                                }
-                            }
-                        }
-
-                        &.is_reply {
+                
+                    .is_reply {
+                        .argument {
                             padding-left: 46px;
                             border-color: $dark_gray;
 
@@ -211,6 +201,25 @@
                                     position: absolute;
                                     left: -31px;
                                     top: 7px;
+                                }
+                            }
+                        }
+
+                        .post_argument_wrap {
+                            padding-left: 46px !important;
+                        }
+
+                    }
+
+                    .argument {
+                        padding: 5px 0 4px 16px;
+                        border-left: 4px solid $nature_green;
+                        margin-bottom: 20px;
+
+                        &.deleted {
+                            .argument_text_wrap {
+                                .argument_text {
+                                    margin-bottom: 0;
                                 }
                             }
                         }
@@ -393,6 +402,21 @@
                         }
 
                     }
+
+                    .post_argument_wrap {
+                        padding-bottom: 30px;
+
+                        textarea {
+                            margin-bottom: 5px;
+                        }
+
+                        .blue_button {
+                            padding-left: 20px;
+                            padding-right: 20px;
+                            float: left;
+                        }
+                    }
+
                 }
 
             }

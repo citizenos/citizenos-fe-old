@@ -115,6 +115,11 @@ table, .pretend_table {
     }
 }
 
+.name_wrap {
+    display: table;
+    height: 40px;
+}
+
 .user_list {
     td, .pretend_td {
         padding: 5px 0;
@@ -122,11 +127,6 @@ table, .pretend_table {
             font-size: 14px;
             font-weight: $bold;
         }
-    }
-
-    .name_wrap {
-        display: table;
-        height: 40px;
     }
 }
 
@@ -928,18 +928,6 @@ a:link, a:visited {
         }
     }
 
-    .icons_section {
-        margin-top: 8px;
-
-        .sprite_temp2 {
-            float: left;
-            margin-bottom: 12px;
-            &:first-child {
-                margin-right: 5px;
-            }
-        }
-    }
-
     .small_input {
         height: 30px;
         padding: 0 8px;
@@ -951,6 +939,18 @@ a:link, a:visited {
         max-width: 200px;
     }
 
+}
+
+.icons_section {
+    margin-top: 8px;
+
+    .sprite_temp2 {
+        float: left;
+        margin-bottom: 12px;
+        &:first-child {
+            margin-right: 5px;
+        }
+    }
 }
 
 /* DATE PICKER */

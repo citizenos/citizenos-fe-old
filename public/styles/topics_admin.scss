@@ -301,7 +301,7 @@
                     
                 }
 
-                .iframe_wrap {
+                .main_content_wrap {
                     position: relative;
                     box-sizing: border-box;
 
@@ -489,9 +489,6 @@
         z-index: 1;
         @include tablet {
             display: none;
-        }
-        .sprite_temp2 {
-            
         }
     }
     
