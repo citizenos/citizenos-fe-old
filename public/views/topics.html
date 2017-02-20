@@ -158,10 +158,26 @@
 
                             <div class="message_header">
                                 <div class="message_title">This vote requires an ID card or Mobile ID signing.</div>
-                                <div class="icons_section">
+                                <div class="float_wrap">
                                     <div class="sprite_temp2 sprite-id-kaart-small2x"></div>
                                     <div class="sprite_temp2 sprite-mobiil-id-small2x"></div>
                                     <div class="clearer"></div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="message_content">
+                                This document needs a signing by ID card or Mobile ID to be registered. You can not vote if you don’t identify yourself.
+                            </div>
+
+                        </div>
+
+                        <div class="vote_casting_message">
+
+                            <div class="message_header">
+                                <div class="message_title">Your vote has been registered!</div>
+                                <div class="float_wrap">
+                                    <div class="blue_link">Download your DDOC</div>
                                 </div>
                                 <div class="clearer"></div>
                             </div>
@@ -438,7 +454,7 @@
                                                 <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                             </div>
                                         <div class="table_row">
-                                            <div class="icons_section">
+                                            <div class="float_wrap">
                                                 <div class="sprite_temp2 sprite-id-kaart-small2x"></div>
                                                 <div class="sprite_temp2 sprite-mobiil-id-small2x"></div>
                                                 <div class="clearer"></div>
@@ -811,17 +827,17 @@
                                     
                                     <div class="gray_toggle_box">
 
-                                            <div class="table_cell">
-                                                <div class="toggle_box_title">
-                                                    Minimum votes
-                                                </div>
-                                                <div class="toggle_box_description">
-                                                    THE AMOUNT OF VOTES NEEDED BEFORE SUCCESSFUL CLOSURE.
-                                                </div>
+                                        <div class="table_cell">
+                                            <div class="toggle_box_title">
+                                                Minimum votes
                                             </div>
-                                            <div class="table_cell">
-                                                <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                            <div class="toggle_box_description">
+                                                THE AMOUNT OF VOTES NEEDED BEFORE SUCCESSFUL CLOSURE.
                                             </div>
+                                        </div>
+                                        <div class="table_cell">
+                                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                        </div>
                                         <div class="table_row">
                                             <input class="small_input gray_borders" placeholder="eg. 1000">
                                         </div>

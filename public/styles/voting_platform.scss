@@ -94,20 +94,30 @@
                 float: left;
             }
 
-            .icons_section {
+            .float_wrap {
                 float: right;
                 margin: 0;
+
+                .blue_link {
+                    font-size: 13px;
+                }
 
                 @media (max-width: 1400px) {
                     position: absolute;
                     bottom: 10px;
                     left: 20px;
+                    .blue_link {
+                        margin-bottom: 15px;
+                    }
                 }
 
                 @media (max-width: 1024px) {
                     position: initial;
                     bottom: initial;
                     left: initial;
+                    .blue_link {
+                        margin-bottom: 0;
+                    }
                 }
 
                 
@@ -115,6 +125,9 @@
                     position: absolute;
                     bottom: 10px;
                     left: 20px;
+                    .blue_link {
+                        margin-bottom: 15px;
+                    }
                 }
 
             }
@@ -546,6 +559,13 @@
             margin-bottom: 0;
             table {
                 margin-bottom: 0;
+            }
+
+           
+            .bubble_section {
+                @media (max-width: 400px) {
+                    padding: 0 20px;
+                }
             }
 
             .bubble_section:not(:first-child), .bubble_section_table {
