@@ -97,6 +97,8 @@ table, .pretend_table {
         font-weight: $medium;
         text-decoration: underline;
         cursor: pointer;
+        border-bottom: 1px solid $lightest_gray;
+        padding: 20px 0 10px 0;
         &:first-child {
             text-align: left;
         }
@@ -338,7 +340,26 @@ table, .pretend_table {
     .table_cell:last-child {
         padding-left: 5px;
     }
+}
 
+
+
+.minimize_container {
+    @extend .table_cell;
+    width: 36px;
+    cursor: pointer;
+
+    .sprite {
+        margin: 0 auto;
+    }
+
+    &:hover {
+        background: $dark_gray;
+
+        @include tablet {
+            background: initial;
+        }
+    }
 }
 
 .sprite-icon-list-ordering2x {
@@ -950,6 +971,84 @@ a:link, a:visited {
         &:first-child {
             margin-right: 5px;
         }
+    }
+}
+
+/* CONTENT ITEM */
+
+.content_item {
+
+    .item_description {
+        font-size: 13px;
+        opacity: .7;
+    }
+    .item_content {
+
+
+
+        .item_text {
+            .separator {
+                font-weight: $light;
+            }
+            .blue_link {
+                font-weight: $medium;
+                font-size: 13px;
+            }
+        }
+
+        .item_text, .v_line, .item_link {
+            float: left;
+        }
+
+        .v_line {
+            height: 14px;
+            width: 1px;
+            background: $medium_black;
+            margin-right: 7px;
+            margin-top: 4px;
+        }
+
+        .v_line.bold {
+            width: 2px;
+        }
+
+        .item_text {
+            font-weight: $bold;
+            font-size: 16px;
+        }
+
+        .item_link {
+            font-size: 13px;
+            margin-top: 2px;
+            margin-right: 7px;
+        }
+
+        .remove {
+            color: $pinky_red;
+            .sprite {
+                float: left;
+                margin-top: 4px;
+                margin-right: 5px;
+            }
+        }
+
+        .float_left {
+            display: inline-block;
+            position: relative;
+            margin-left: 2px;
+            width: 40px;
+            .v_line, .item_link {
+                position: absolute;
+            }
+            .v_line {
+                bottom: -1px;
+            }
+            .item_link {
+                bottom: -3px;
+                left: 10px;
+            }
+        }
+
     }
 }
 
