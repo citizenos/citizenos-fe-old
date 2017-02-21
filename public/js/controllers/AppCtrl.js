@@ -107,7 +107,7 @@ angular
                 scope: $scope
             });
         };
-        
+
 
         $scope.app.doShowDeleteTopic = function () {
             $log.debug('AppCtrl.doShowDeleteTopic()');

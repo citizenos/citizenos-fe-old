@@ -136,8 +136,8 @@
                             Topic actions
                         </div>
                         <div class="item_content">
-                            <div class="item_text blue_link">
-                                settings TODO
+                            <div class="item_text blue_link" ui-sref="my.topics.topicId.settings({topicId: topic.id})">
+                                settings
                             </div>
                             <div class="v_line bold"></div>
                             <div class="item_text blue_link" ng-click="doLeaveTopic(topic)">
@@ -517,5 +517,7 @@
         </div>
 
     </div>
+
+    <div ui-view></div>
 
 </div>

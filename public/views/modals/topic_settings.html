@@ -1,13 +1,14 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="full_screen">
+<div id="root_lightbox" class="full_screen" ng-controller="TopicSettingsCtrl">
+
     <div id="lightbox" class="wide_lightbox with_title_description with_header_menu">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title">Edit topic</div>
-                    <div class="title_description">We need to do something about the hipsters in Telliskivi! We need to do something about the hipsters in Telliskivi!</div>
+                    <div class="title">{{topic.title}}</div>
+                    <div class="title_description">{{form.description}}</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -47,8 +48,11 @@
                         </div>
 
                         <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveGroup()">
-                                Save settings
+                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveTopic()">
+                                Save topic
+                            </div>
+                            <div class="blue_button" ng-if="members.users.length || members.emails.length" ng-click="doSaveTopic()">
+                                Save topic and send invite
                             </div>
                         </div>
 
@@ -69,22 +73,22 @@
                     <div class="settings_section full_width">
                         <div class="settings_cell">
                             <div class="setting_title">
-                                Group name
+                                Topic title
                             </div>
                             <div class="setting_description">
-                                USE A NAME THAT IS CLEAR AND UNDERSTANDABLE
+                                USE A TITLE THAT IS CLEAR AND UNDERSTANDABLE
                             </div>
-                            <input placeholder="Group name">
+                            <input placeholder="Group name" ng-model="form.topic.title">
                         </div>
                     </div>
                     <div class="line lightest_line"></div>
 
 
-                    <div class="settings_section group_image">
+                    <!--<div class="settings_section group_image">
 
                         <div class="settings_cell">
                             <div class="setting_title">
-                                Group image
+                                Topic image
                             </div>
                             <div class="button_holder">
                                 <div class="gray_button">Upload another image</div>
@@ -97,7 +101,7 @@
                             <img src='.././imgs/profile_large.jpg')>
                         </div>
                     </div>
-                    <div class="line lightest_line"></div>
+                    <div class="line lightest_line"></div> -->
 
 
                     <div class="settings_section">
@@ -111,17 +115,17 @@
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-toggle ng-model="isTopicSettingsPrivate"></div>
+                            <div cos-toggle cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'" ng-model="form.topic.visibility"></div>
                         </div>
 
                     </div>
                     <div class="line lightest_line"></div>
 
 
-                    <div class="settings_section">
+                    <!--<div class="settings_section">
                         <div class="settings_cell">
                             <div class="setting_title">
-                                Topic accessibility
+                                Topic visibility
                             </div>
                             <div class="setting_description">
                                 THIS SETS WHO CAN SEE YOUR TOPIC
@@ -134,7 +138,7 @@
                             <div class="dropdown_selection">
 
                                 <div class="dropdown_text">
-                                    Private
+                                    {{form.topic.visibility}}
                                 </div>
 
                                 <div class="arrow_holder">
@@ -147,17 +151,17 @@
                                 </div>
 
                                 <div class="dropdown">
-                                    <!-- NO CATEGORY -->
-                                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                                        <div class="item_name">
-                                            Private
+                                    <!-- NO CATEGORY
+                                    <div class="dropdown_item" ng-repeat="(level, value) in levels">
+                                        <div class="item_name" ng-click="updateTopicVisibility(level)">
+                                            {{level}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </div>
+                    </div> -->
                     <div class="line lightest_line"></div>
 
                     <div class="settings_section">
@@ -171,7 +175,7 @@
                         </div>
 
                         <div class="settings_cell">
-                            <input value="#cos_hipsters">
+                            <input value="#cos_hipsters" ng-model="form.topic.hashtag">
                         </div>
 
                     </div>
@@ -188,7 +192,7 @@
                         </div>
 
                         <div class="settings_cell">
-                            <div class="gray_button">Leave topic</div>
+                            <div class="gray_button" ng-click="doLeaveTopic(topic)">Leave topic</div>
                         </div>
 
                     </div>
@@ -205,7 +209,7 @@
                         </div>
 
                         <div class="settings_cell">
-                            <div class="blue_button yes">Delete topic</div>
+                            <div class="blue_button yes" ng-click="doDeleteTopic(topic)">Delete topic</div>
                         </div>
 
                     </div>
@@ -221,13 +225,13 @@
                     <div class="tip">Assign up to 3 categories</div>
                     <div class="selected_categories">
 
-                        <div class="category_wrap" ng-repeat="i in [1,2,3]">
+                        <div class="category_wrap" ng-repeat="topicCategory in form.topic.categories">
 
                             <div class="category_cell category_title">
-                                Communities and urban development
+                                {{topicCategory}}
                             </div>
 
-                            <div class="category_cell category_control">
+                            <div class="category_cell category_control" ng-click="removeTopicCategory(topicCategory)">
                                     <div class="sprite_temp2 sprite-icon-category-delete2x"></div>
                             </div>
 
@@ -239,13 +243,13 @@
 
                     <div class="category_selection">
 
-                        <div class="category_wrap" ng-repeat="i in [1,2,3, 4, 5, 6, 7, 8, 9, 10]">
+                        <div class="category_wrap" ng-repeat="category in Topic.CATEGORIES">
 
                             <div class="category_cell category_title">
-                                Communities and urban development
+                                {{category}}
                             </div>
 
-                            <div class="category_cell category_control">
+                            <div class="category_cell category_control" ng-click="addTopicCategory(category)">
                                     <div class="sprite_temp2 desktop_fix sprite-icon-category-add2x"></div>
                                     <div class="sprite_temp2 mobile_fix sprite-icon-category-add2x-black"></div>
                             </div>
@@ -267,17 +271,31 @@
                     </div>
 
                     <div class="searchbox_with_icon_and_text only_text">
-                        <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length, dropdown_active : searchResults.users.length}">
-                            <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
-                                       select="addGroupMemberUser(item)" placeholder="Search by username or e-mail address">
+                        <div cos-dropdown ng-class="{search_with_dropdown : (searchResults.users.length || searchResults.groups.length), dropdown_active : (searchResults.users.length || searchResults.groups.length)}">
+                            <typeahead id="userSearch" class="auto-complete" items="searchResults.combined" term="searchString" search="search(term, 'user')"
+                                       select="addTopicMember(item)" placeholder="Search by username or e-mail address">
                                 <div class="search_area_wrap">
-                                    <div class="search_dropdown_area" ng-show="searchResults.users.length">
+                                    <div class="search_dropdown_area" ng-show="searchResults.users.length || searchResults.groups.length">
+                                        <div class="search_dropdown_item" ng-if="searchResults.users.length">
+                                            <div class="table_cell">Users</div>
+                                        </div>
                                         <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
                                             <div class="table_cell search_item_text">
                                                 <b>{{user.name}}</b> {{user.company}}
                                             </div>
                                             <div class="table_cell blue_link">
-                                                <span class="submit_link" ng-click="addGroupMemberUser(user)">Press enter or click to add</span>
+                                                <span class="submit_link" ng-click="addTopicMemberUser(user)">Press enter or click to add</span>
+                                            </div>
+                                        </div>
+                                        <div class="search_dropdown_item" ng-if="searchResults.groups.length">
+                                            <div class="table_cell">Groups</div>
+                                        </div>
+                                        <div class="search_dropdown_item" typeahead-item="group" ng-repeat="group in searchResults.groups">
+                                            <div class="table_cell search_item_text">
+                                                <b>{{group.name}}</b>
+                                            </div>
+                                            <div class="table_cell blue_link">
+                                                <span class="submit_link" ng-click="addTopicMemberGroup(group)">Press enter or click to add</span>
                                             </div>
                                         </div>
                                     </div>
@@ -324,7 +342,7 @@
                                     </div>
                                     <div class="name_wrap">
                                         <div class="table_cell">
-                                            <div class="blue_link" ng-click="doRemoveMemberUser(member)">{{member.name}}</div>
+                                            <div class="blue_link" ng-click="(key==='groups')? removeTopicMemberGroup(member) : removeTopicMemberUser(member)">{{member.name}}</div>
                                             <div class="via">{{member.company}}</div>
                                         </div>
                                     </div>
@@ -348,8 +366,13 @@
                                                 </div>
 
                                                 <div class="dropdown">
-                                                    <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                        <div class="item_name" ng-click="updateGroupMemberUserLevel(member, level)">
+                                                    <div ng-if="key ==='users'" class="dropdown_item" ng-repeat="level in TopicMemberUser.LEVELS">
+                                                        <div class="item_name" ng-click="updateTopicMemberUserLevel(member, level)">
+                                                            {{level}}
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="key ==='groups'" class="dropdown_item" ng-repeat="level in TopicMemberGroup.LEVELS">
+                                                        <div class="item_name" ng-click="updateTopicMemberGroupLevel(member, level)">
                                                             {{level}}
                                                         </div>
                                                     </div>
@@ -388,8 +411,13 @@
                                         </div>
 
                                         <div class="dropdown">
-                                            <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                <div class="item_name" ng-click="updateGroupMemberUserLevel(member, level)">
+                                            <div ng-if="key ==='users'" class="dropdown_item" ng-repeat="level in TopicMemberUser.LEVELS">
+                                                <div class="item_name" ng-click="updateTopicMemberUserLevel(member, level)">
+                                                    {{level}}
+                                                </div>
+                                            </div>
+                                            <div ng-if="key ==='groups'" class="dropdown_item" ng-repeat="level in TopicMemberGroup.LEVELS">
+                                                <div class="item_name" ng-click="updateTopicMemberGroupLevel(member, level)">
                                                     {{level}}
                                                 </div>
                                             </div>
@@ -398,7 +426,7 @@
                                 </td>
                                 <td>
                                     <div class="btn_wrap recycle_bin white_bg">
-                                        <div class="btn" ng-click="doRemoveMemberUser(member)">
+                                        <div class="btn" ng-click="(key==='groups')? removeTopicMemberGroup(member) : removeTopicMemberUser(member)">
                                             <div class="table_cell">
                                                 <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                                 <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -427,9 +455,9 @@
 
                     <div class="copy_link">
                         <div class="searchbox_with_icon_and_text">
-                            <input value="https://citizenos-citizenosfe-web-test.herokuapp.com">
+                            <input ng-model="form.urlJoin">
                             <div class="search_text">
-                                <div class="blue_link table_cell">
+                                <div class="blue_link table_cell" ng-click="generateTokenJoin()">
                                     Create a new link
                                 </div>
                             </div>
@@ -445,8 +473,8 @@
                 <div class="lightbox_section">
 
                     <div class="qr_code">
-                        <img src=".././imgs/qr_code_holder.png">
-                        <a class="blue_link">Download QR code pdf</a>
+                        <qrcode data="{{form.urlJoin}}" size="210" version="3" error-correction-level="L" download class="qr_img"></qrcode>
+                        <!-- <a class="blue_link">Download QR code pdf</a> -->
                     </div>
 
                 </div>

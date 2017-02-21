@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker']);
+    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker','monospaced.qrcode']);
 
     module
         .constant('cosConfig', {
@@ -251,6 +251,22 @@
                     url: '/:topicId',
                     parent: 'my.topics',
                     templateUrl: '/views/my_topics_topicId.html'
+                })
+                .state('my.topics.topicId.settings', {
+                    url: '/settings?tab',
+                    parent: 'my.topics.topicId',
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_settings.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
                 })
                 .state('my.groups', {
                     url: '/groups',
