@@ -3,7 +3,7 @@
     <div class="groups_wrap">
         <div class="group_wrap" ng-repeat="i in [1,2,3]">
             
-            <div class="group_show_content">
+            <div class="group_shown_content">
 
                 <div class="group_header">
 
@@ -80,8 +80,12 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div class="group_hidden_content">
+                
                 <div class="group_table">
-                    <div class="table_header">
+                    <div class="table_upper_block">
                         <div class="table_cell">
                             Topic list | <span class="blue_link">search</span> | <span class="blue_link">create topic</span>
                         </div>
@@ -89,25 +93,42 @@
                             <div ng-class="app.tempVar ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite sprite-btn-minimize2x"></div>
                         </div>
                     </div>
-                    <div class="pretend_table">
-                        <div class="pretend_tr">
-                            <div class="pretend_th">
-                                <div class="th_text">
-                                    TItle
+
+                    <div class="table_wrapper">
+                        <div class="pretend_table">
+                            <div class="pretend_tr">
+                                <div class="pretend_th">
+                                    <div class="th_text">
+                                        Title
+                                    </div>
+                                </div>
+                                <div class="pretend_th">
+                                    <div class="th_text">
+                                        Activity
+                                    </div>
+                                </div>
+                                <div class="pretend_th">
+                                    <div class="th_text">
+                                        Users<div class="sprite sprite-icon-list-ordering2x"></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="pretend_th">
-                                <div class="th_text">
-                                    Activity
+
+                            <div class="pretend_tr" ng-repeat="i in [1,2,3]">
+                                <div class="pretend_td">
+                                    <span class="blue_link bold">Ettepanek seadusega keelata kõrvklappide kandmine tänaval</span>
                                 </div>
-                            </div>
-                            <div class="pretend_th">
-                                <div class="th_text">
-                                    Users<div class="sprite sprite-icon-list-ordering2x"></div>
+                                <div class="pretend_td">
+                                    55.55.5555 55:55
+                                </div>
+                                <div class="pretend_td">
+                                    555 000 000
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
 
             </div>

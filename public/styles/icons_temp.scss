@@ -7,102 +7,109 @@
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
 	.sprite_temp2 {
         background-image: url('../imgs/icons_sprite_temp2x.png');
-		background-size: 324px 235px;
+ 		background-size: 330px 246px;
 	}
 }
 
-.sprite-inputfield-icon-delete2x {
-	width: 11px;
-	height: 13px;
-	background-position: 0 0;
-}
 
-.sprite-mobiil-id-small2x {
-	width: 70px;
-	height: 20px;
-	background-position: -11px -13px;
-}
-
-.sprite-id-kaart-small2x {
-	width: 65px;
-	height: 20px;
-	background-position: -81px -33px;
-}
-
-.sprite-icon-social-twitter2x {
-	width: 20px;
-	height: 20px;
-	background-position: -146px -53px;
-}
-
-.sprite-icon-category-add2x {
-	width: 12px;
-	height: 12px;
-	background-position: -166px -73px;
-}
-
-.sprite-icon-category-add2x-black {
-	width: 12px;
-	height: 12px;
-	background-position: -178px -85px;
-}
-
-.sprite-icon-category-delete2x {
-	width: 10px;
-	height: 10px;
-	background-position: -190px -97px;
-}
-
-.sprite-icon-arrow-reply2x {
-	width: 12px;
+.sprite-icon-list-ordering-down-black2x {
+	width: 6px;
 	height: 11px;
-	background-position: -200px -107px;
-}
-
-.sprite-icon-reportmessage-default2x {
-	width: 12px;
-	height: 12px;
-	background-position: -212px -118px;
-}
-
-.sprite-icon-reportmessage-hover2x {
-	width: 12px;
-	height: 12px;
-	background-position: -224px -130px;
-}
-
-.sprite-icon-thumbsdown-default2x {
-	width: 12px;
-	height: 12px;
-	background-position: -236px -142px;
-}
-
-.sprite-icon-thumbsdown-hover2x {
-	width: 12px;
-	height: 12px;
-	background-position: -248px -154px;
-}
-
-.sprite-icon-thumbsup-hover2x {
-	width: 12px;
-	height: 12px;
-	background-position: -260px -166px;
-}
-
-.sprite-icon-thumbsup-default2x {
-	width: 12px;
-	height: 12px;
-	background-position: -272px -178px;
-}
-
-.sprite-icon-mobile-settings-active2x {
-	width: 20px;
-	height: 21px;
-	background-position: -284px -190px;
+	background-position: 0 0;
 }
 
 .sprite-icon-delegate2x {
 	width: 20px;
 	height: 24px;
-	background-position: -304px -211px;
+	background-position: -6px -11px;
+}
+
+.sprite-inputfield-icon-delete2x {
+	width: 11px;
+	height: 13px;
+	background-position: -26px -35px;
+}
+
+.sprite-mobiil-id-small2x {
+	width: 70px;
+	height: 20px;
+	background-position: -37px -48px;
+}
+
+.sprite-id-kaart-small2x {
+	width: 65px;
+	height: 20px;
+	background-position: -107px -68px;
+}
+
+.sprite-icon-social-twitter2x {
+	width: 20px;
+	height: 20px;
+	background-position: -172px -88px;
+}
+
+.sprite-icon-category-add2x {
+	width: 12px;
+	height: 12px;
+	background-position: -192px -108px;
+}
+
+.sprite-icon-category-add2x-black {
+	width: 12px;
+	height: 12px;
+	background-position: -204px -120px;
+}
+
+.sprite-icon-category-delete2x {
+	width: 10px;
+	height: 10px;
+	background-position: -216px -132px;
+}
+
+.sprite-icon-arrow-reply2x {
+	width: 12px;
+	height: 11px;
+	background-position: -226px -142px;
+}
+
+.sprite-icon-reportmessage-default2x {
+	width: 12px;
+	height: 12px;
+	background-position: -238px -153px;
+}
+
+.sprite-icon-reportmessage-hover2x {
+	width: 12px;
+	height: 12px;
+	background-position: -250px -165px;
+}
+
+.sprite-icon-thumbsdown-default2x {
+	width: 12px;
+	height: 12px;
+	background-position: -262px -177px;
+}
+
+.sprite-icon-thumbsdown-hover2x {
+	width: 12px;
+	height: 12px;
+	background-position: -274px -189px;
+}
+
+.sprite-icon-thumbsup-hover2x {
+	width: 12px;
+	height: 12px;
+	background-position: -286px -201px;
+}
+
+.sprite-icon-thumbsup-default2x {
+	width: 12px;
+	height: 12px;
+	background-position: -298px -213px;
+}
+
+.sprite-icon-mobile-settings-active2x {
+	width: 20px;
+	height: 21px;
+	background-position: -310px -225px;
 }

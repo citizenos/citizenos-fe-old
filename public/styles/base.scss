@@ -318,7 +318,7 @@ table, .pretend_table {
 }
 
 .pretend_td, .pretend_th {
-    display: table-cell;
+    @extend .table_cell;
 }
 
 .hide_560 {

@@ -14,8 +14,8 @@
             margin-top: 10px;
             box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
             
-            .group_show_content {
-                padding: 30px 20px 20px;
+            .group_shown_content {
+                padding: 30px 20px 16px;
                 position: relative;
                 @media (max-width: 768px) {
                     padding-bottom: 69px;
@@ -69,7 +69,6 @@
                 .group_details {
                     margin-top: 19px;
                     .group_details_header {
-
                         .show_in_mobile {
                             display: none;
                             @media (max-width: 768px) {
@@ -100,22 +99,63 @@
                         }
                     }
                 }
+            }
 
+            .group_hidden_content {
+                padding: 20px 20px 11px;
+                
                 .group_table {
-                    .table_header {
+
+                    .table_upper_block {
                         height: 30px;
                         font-size: 13px;
                         background: $medium_gray;
                         display: table;
                         width: 100%;
                         padding-left: 10px;
-                        margin-top: 40px;
                         box-sizing: border-box;
+                        .blue_link {
+                            font-size: 13px;
+                        }
+                    }
+
+                    .table_wrapper {
+                        padding: 0 10px;
+                        .pretend_table {
+
+                            .pretend_td {
+                                font-size: 13px;
+                            }
+
+                            .pretend_td:nth-child(2), .pretend_td:nth-child(3), .pretend_th:nth-child(2), .pretend_th:nth-child(3)   {
+                                text-align: center;
+                            }
+
+
+                            .pretend_td:nth-child(2), .pretend_th:nth-child(2) {
+                                min-width: 134px;
+                            }
+
+                            .pretend_td:nth-child(3), .pretend_th:nth-child(3) {
+                                width: 76px;
+                            }
+
+                            .pretend_tr:not(:first-child) .pretend_td {
+                                padding-top: 11px;
+                                padding-bottom: 11px;
+                            }
+                            
+                            .pretend_tr:nth-child(2) .pretend_td {
+                                padding-top: 19px;
+                            }
+
+                        }
                     }
 
                 }
 
             }
+
         }
     }
 }
