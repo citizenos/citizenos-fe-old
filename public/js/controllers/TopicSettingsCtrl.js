@@ -86,6 +86,7 @@ angular
 
         $scope.generateJoinUrl = function () {
             $scope.form.urlJoin = sLocation.getAbsoluteUrl('/join/'+$scope.topic.tokenJoin);
+            $scope.form.urlJoin = 'https://citizenos-citizenosfe-web-test.herokuapp.com/join/'+$scope.topic.tokenJoin;
         }
 
         $scope.addTopicCategory = function (category) {
