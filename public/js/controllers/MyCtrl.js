@@ -115,33 +115,25 @@ angular
             return object instanceof Group;
         };
 
+        var groupMemberTopicsVisible = []; // goupId-s of which GroupMemberTopic list is expanded
+
+        $scope.isGroupMemberTopicsVisible = function (group) {
+            return groupMemberTopicsVisible.indexOf(group.id) > -1;
+        };
+
         $scope.doToggleGroupTopicList = function (group) {
-            var groupIndex = _.indexOf($scope.itemList, group);
-            if (!group.members.topics.rows) { // Not expanded
+            var indexGroupIdVisible = groupMemberTopicsVisible.indexOf(group.id);
+
+            if (indexGroupIdVisible < 0) { // not visible
                 GroupMemberTopic
                     .query({groupId: group.id}).$promise
                     .then(function (topics) {
                         group.members.topics.rows = topics;
                         group.members.topics.count = topics.length;
-                        $scope.itemList = $scope.itemList.slice(0, groupIndex + 1).concat(topics, $scope.itemList.slice(groupIndex + 1));
+                        groupMemberTopicsVisible.push(group.id);
                     });
-            } else {
-                // Remove all non-Group elements between current Group and the first Group after it
-                var indexStart = groupIndex + 1;
-                var lastIndex;
-                for (var i = indexStart; i < $scope.itemList.length; i++) {
-                    if ($scope.isGroup($scope.itemList[i])) {
-                        lastIndex = i;
-                        break;
-                    }
-                }
-
-                if (!lastIndex) {
-                    lastIndex = $scope.itemList.length;
-                }
-
-                $scope.itemList = $scope.itemList.slice(0, indexStart).concat($scope.itemList.slice(lastIndex));
-                delete group.members.topics.rows;
+            } else { // already visible, we hide
+                groupMemberTopicsVisible.splice(indexGroupIdVisible, 1);
             }
         };
 

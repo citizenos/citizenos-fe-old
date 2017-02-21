@@ -2,10 +2,15 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', 'ngDialog', 'sAuth', 'TopicMemberGroup', 'TopicMemberUser', function ($scope, $state, $stateParams, $timeout, $q, $log, ngDialog, sAuth, TopicMemberGroup, TopicMemberUser) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', 'ngDialog', 'sAuth', 'TopicMemberGroup', 'TopicMemberUser', 'Topic', function ($scope, $state, $stateParams, $timeout, $q, $log, ngDialog, sAuth, TopicMemberGroup, TopicMemberUser, Topic) {
         $log.debug('TopicCtrl');
 
-        $scope.topic = _.find($scope.itemList, {id: $stateParams.topicId});
+        // TODO: Probably should move this kind of stuff to $stateProvider.state "resolve" option
+        Topic
+            .get({topicId: $stateParams.topicId}).$promise
+            .then(function(topic){
+                $scope.topic = topic;
+            });
 
         $scope.generalInfo = {
             isVisible: true

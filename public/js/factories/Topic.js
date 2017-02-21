@@ -7,6 +7,16 @@ angular
             sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId'),
             {topicId: '@id'},
             {
+                get: {
+                    method: 'GET',
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status > 0 && status < 400) {
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
+                },
                 query: {
                     isArray: true,
                     transformResponse: function (data, headerGetter, status) {
