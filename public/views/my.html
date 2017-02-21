@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id})">
-                        {{item.name}} ({{item.members.topics.count}}) {{groupMemberTopicsVisible[item.id]}}
+                        {{item.name}} ({{item.members.topics.count}})
                     </div>
                     <div class="minimize_container" ng-if="item.members.topics.count" ng-click="doToggleGroupTopicList(item)">
                         <div ng-class="!isGroupMemberTopicsVisible(item) ?  'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
