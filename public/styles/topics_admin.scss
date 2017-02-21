@@ -301,7 +301,7 @@
                     
                 }
 
-                .iframe_wrap {
+                .main_content_wrap {
                     position: relative;
                     box-sizing: border-box;
 
@@ -436,11 +436,6 @@
                 background: $side_panel_gray;
                 vertical-align: top;
 
-                .blue_button {
-                    margin-bottom: 20px;
-                    border-radius: 4px;
-                }
-
                 @include tablet {
                     top: 60px;
                     position: fixed;
@@ -452,12 +447,6 @@
                     overflow: auto;
                     padding: 20px 20px 40px;
                     min-width: initial;
-                    .blue_button {
-                        position: fixed;
-                        bottom: -10px;
-                        left: 10px;
-                        right: 10px;
-                    }
                 }
                 .options_wrap {
                     width: 100%;

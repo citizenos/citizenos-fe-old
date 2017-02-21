@@ -329,6 +329,13 @@ nav {
             .header_button_text {
                 display: none;
             }
+            .header_button_icon {
+                width: 51px;
+                .sprite {
+                    float: none;
+                    margin: 0 auto;
+                }
+            }
         }
 
         @media (max-width: '600px') {
@@ -337,7 +344,7 @@ nav {
             
         @media (max-width: '560px') {
             right: 224px;
-            padding-left: 9px;
+            padding-left: 0;
         }
 
         @media (max-width: '340px') {

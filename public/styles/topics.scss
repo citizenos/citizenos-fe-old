@@ -67,24 +67,6 @@
                     display: block;
                 }
             }
-
-            .minimize_container {
-                @extend .table_cell;
-                width: 36px;
-                cursor: pointer;
-
-                .sprite {
-                    margin: 0 auto;
-                }
-
-                &:hover {
-                    background: $dark_gray;
-
-                    @include tablet {
-                        background: initial;
-                    }
-                }
-            }
         }
 
         .topics_left {
@@ -493,67 +475,6 @@
                                     margin-bottom: 20px;
                                 }
 
-                                .item_description {
-                                    font-size: 13px;
-                                    opacity: .7;
-                                }
-                                .item_content {
-
-                                    .item_text, .v_line, .item_link {
-                                        float: left;
-                                    }
-
-                                    .v_line {
-                                        height: 14px;
-                                        width: 1px;
-                                        background: $medium_black;
-                                        margin-right: 7px;
-                                        margin-top: 4px;
-                                    }
-
-                                    .v_line.bold {
-                                        width: 2px;
-                                    }
-
-                                    .item_text {
-                                        font-weight: $bold;
-                                        margin-right: 7px;
-                                        font-size: 16px;
-                                    }
-
-                                    .item_link {
-                                        font-size: 13px;
-                                        margin-top: 2px;
-                                        margin-right: 7px;
-                                    }
-
-                                    .remove {
-                                        color: $pinky_red;
-                                        .sprite {
-                                            float: left;
-                                            margin-top: 4px;
-                                            margin-right: 5px;
-                                        }
-                                    }
-
-                                    .float_left {
-                                        display: inline-block;
-                                        position: relative;
-                                        margin-left: 2px;
-                                        width: 40px;
-                                        .v_line, .item_link {
-                                            position: absolute;
-                                        }
-                                        .v_line {
-                                            bottom: -1px;
-                                        }
-                                        .item_link {
-                                            bottom: -3px;
-                                            left: 10px;
-                                        }
-                                    }
-
-                                }
                             }
                         }
 
@@ -681,11 +602,6 @@
                             }
                         }
 
-                        th, .pretend_th {
-                            border-bottom: 1px solid $lightest_gray;
-                            padding: 20px 0 10px 0;
-                        }
-
                         td:nth-child(1),
                         .pretend_td:nth-child(1) {
                             font-size: 14px;
@@ -784,7 +700,7 @@
                                 position: relative;
                                 display: block;
                                 width: 100%;
-                                border-top: 1px solid #e5e5e5;
+                                border-top: 1px solid $lightest_gray;
                                 padding: 9px 0 20px;
                             }
 

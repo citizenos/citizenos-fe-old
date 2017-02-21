@@ -2,26 +2,360 @@
 @import 'mixins_n_extends';
 @import 'icons';
 
+.vote_casting_wrap {
+    padding: 20px;
+
+    .vote_casting_header {
+        margin-bottom: 11px;
+        
+        .vote_casting_header_section {
+            height: 15px;
+            display: table;
+            font-size: 13px;
+
+            &:first-child {
+                float: left;
+            }
+
+            &:nth-child(2) {
+                float: right;
+            }
+
+            @media (max-width: 1200px) {
+                &:first-child {
+                    float: none;
+                    margin-bottom: 12px;
+                }
+
+                &:nth-child(2) {
+                    float: none;
+                }
+            }
+
+            @media (max-width: 1024px) {
+                &:first-child {
+                    float: left;
+                    margin-bottom: 0;
+                }
+
+                &:nth-child(2) {
+                    float: right;
+                }
+            }
+
+            @media (max-width: 460px) {
+                &:first-child {
+                    margin-bottom: 12px;
+                }
+                float: none !important;
+            }
+
+            .table_cell {
+                height: inherit;
+
+                .v_line {
+                    background: $dark_gray;
+                    height: inherit;
+                    margin: 1px 7px 0;
+                }
+                
+                .blue_link {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+
+    .vote_casting_message {
+        background: $light_gray;
+        padding: 20px 20px 21px;
+        margin: 20px 0;
+        position: relative;
+
+        @media (max-width: 1400px) {
+            padding-bottom: 60px;
+        }
+
+        @media (max-width: 1024px) {
+            padding-bottom: 21px;
+        }
+
+        @media (max-width: 850px) {
+            padding-bottom: 60px;
+        }
+            
+        .message_header {
+            margin-bottom: 4px;
+
+            .message_title {
+                font-size: 16px;
+                font-weight: bold;
+                float: left;
+            }
+
+            .float_wrap {
+                float: right;
+                margin: 0;
+
+                .blue_link {
+                    font-size: 13px;
+                }
+
+                @media (max-width: 1400px) {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 20px;
+                    .blue_link {
+                        margin-bottom: 15px;
+                    }
+                }
+
+                @media (max-width: 1024px) {
+                    position: initial;
+                    bottom: initial;
+                    left: initial;
+                    .blue_link {
+                        margin-bottom: 0;
+                    }
+                }
+
+                
+                @media (max-width: 850px) {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 20px;
+                    .blue_link {
+                        margin-bottom: 15px;
+                    }
+                }
+
+            }
+            
+        }
+    
+        .message_content {
+            font-size: 14px;
+        }
+        
+    }
+
+
+    .voting_button {
+        height: 40px;
+        display: table;
+        width: 100%;
+        font-weight: $bold;
+        text-align: center;
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+        overflow: hidden;
+        
+        &.active {
+            .table_cell:last-child {
+                background: $aqua_marine;
+            }
+        }
+        
+            
+        .table_cell {
+            border-radius: 0 4px 4px 0;
+            
+            &:first-child {
+                width: 40px;
+                background: $aqua_marine_border;
+                border-radius: 4px 0 0 4px;
+            }
+
+            &:last-child {
+                border-top: 2px solid $aqua_marine;
+                border-right: 2px solid $aqua_marine;
+                border-bottom: 2px solid $aqua_marine;
+            }
+        }
+
+        &:not(.active):hover {
+            cursor: pointer;
+            @media (min-width: 1025px) {
+                .table_cell {
+                    &:first-child {
+                        background: $aqua_marine_border_second;
+                    }
+                    &:last-child {
+                        background: $medium_gray;
+                        border-color: $aqua_marine_border_second;
+                    }
+                }
+            }
+        }
+    }
+
+    .delegation_section {
+        margin-top: 20px;
+        .voting_button {
+            cursor: pointer;
+
+            &.active {
+                .table_cell:last-child {
+                    color: $white;
+                    background: $deep_sky_blue;
+                }
+            }
+
+            .table_cell {
+                color: $deep_sky_blue;
+                &:first-child {
+                    background: $deep_sky_blue;
+                    border-radius: 4px 0 0 4px;
+                }
+
+                &:last-child {
+                    border-top: 2px solid $deep_sky_blue;
+                    border-right: 2px solid $deep_sky_blue;
+                    border-bottom: 2px solid $deep_sky_blue;
+                }
+
+                .sprite_temp2 {
+                    margin: 0 auto;
+                }
+            }
+
+            &:not(.active):hover {
+                @media (min-width: 1025px) {
+                    .table_cell {
+                        &:first-child {
+                            background: $deep_sky_blue;
+                        }
+                        &:last-child {
+                            background: $medium_gray;
+                            border-color: $deep_sky_blue;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .delegation_information {
+            background: $light_gray;
+            padding: 20px;
+            margin-top: 20px;
+
+            .delegation_title {
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            .delegations {
+                margin-top: 19px;
+                display: table;
+                width: 100%;
+                height: 40px;
+                    
+                .name_wrap {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+                
+                .blue_button {
+                    float: right;
+                    padding-left: 20px;
+                    padding-right: 20px;
+
+                    @media (max-width: 568px) {
+                        margin-top: 20px;
+                        float: none;
+                    }
+                }
+
+                @media (max-width: 568px) {
+                    &>.table_cell {
+                        display: block;
+                    }
+                }
+
+            }
+        }
+    }
+
+
+
+}
+
 .voting_platform_wrap {
     background: $white;
-    margin: 40px 60px;
+    margin: 40px 60px 22px;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
+
+    @media (max-width: 767px) {
+        margin: 0 0 16px;
+    }
     .platform_description {
         font-size: 13px;
         font-weight: $bold;
         padding: 10px 20px 0;
+        @media (max-width: 670px) {
+            padding-top: 21px;
+        }
     }
     .voting_platform_section {
         padding: 10px 20px 0;
+
+        &:last-child {
+            padding: 20px;
+            .blue_button {
+                height: 60px;
+                font-size: 20px;
+                display: table;
+                width: 100%;
+            }
+        }
+
         .voting_platform_section_title {
             font-size: 16px;
             font-weight: $bold;
             margin: 20px 0;
+            @media (max-width: 670px) {
+                margin-bottom: 13px;
+            }
         }
+
+        @mixin buttons_in_rows {
+            margin-bottom: 20px;
+            &>.table_cell {
+                padding: 0 !important;
+                display: table;
+                box-sizing: border-box;
+                &:not(:last-child) {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
 
         .voting_platform_buttons_wrap {
             display: table;
             width: 100%;
             margin-bottom: 40px;
+            @media (max-width: 1550px) {
+                @include buttons_in_rows;
+            }
+
+            @media (max-width: 1024px) {
+                &>.table_cell {
+                    padding: 0 !important;
+                    display: table-cell;
+                    box-sizing: border-box;
+                    &:not(:last-child) {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            @media (max-width: 670px) {
+                @include buttons_in_rows;
+            }
 
             .table_cell {
                 width: 50%;
@@ -31,17 +365,48 @@
                 &:last-child {
                     padding-left: 10px;
                 }
+
+                @media (max-width: 1550px) {
+                    width: 100%;
+                    padding: 5px;
+                }
+
+                @media (max-width: 1024px) {
+                    width: 50%;
+                    &:first-child {
+                        padding-right: 10px !important;
+                    }
+                    &:last-child {
+                        padding-left: 10px !important;
+                    }
+                }
+
+                @media (max-width: 670px) {
+                    width: 100%;
+                    &:first-child {
+                        padding-right: 0 !important;
+                    }
+                    &:last-child {
+                        padding-left: 0 !important;
+                    }
+                }
             }
 
             .voting_platform_button {
                 width: 100%;
                 height: 100px;
                 border: 2px solid $aqua_marine_border;
+                box-sizing: border-box;
                 border-radius: 4px;
                 float: left;
                 display: table;
                 text-align: center;
-                cursor: pointer;
+
+                &:not(.active):hover {
+                    background: $medium_gray;
+                    cursor: pointer;
+                }
+
                 .button_title {
                     font-size: 26px;
                     font-weight: $bold;
@@ -56,6 +421,170 @@
             }
 
         }
+
+        .define_answers_wrap {
+            display: table;
+            width: 100%;
+            padding-bottom: 40px;
+            @media (max-width: 1550px) {
+                padding-bottom: 20px;
+            }
+
+            &>.table_cell:first-child {
+                width: 50%;
+                & .table>.table_cell {
+                    width: 50%;
+                    border-right: 1px solid $lightest_gray;
+                }
+            }
+            &>.table_cell:last-child {
+                width: 50%;
+                & .table>.table_cell {
+                    width: 50%;
+                    &:not(:last-child) {
+                        border-right: 1px solid $lightest_gray;
+                    }
+                }
+            }
+            @media (max-width: 1550px) {
+                &>.table_cell {
+                    display: block !important;
+                    width: 100% !important;
+                }
+                &>.table_cell:first-child {
+                    border-bottom: 1px solid $lightest_gray;
+                    & .table>.table_cell:last-child {
+                        border-right: none;
+                    }
+                }
+            }
+
+            @media (max-width: 470px) {
+
+                &>.table_cell>.table>.table_cell {
+                    display: block !important;
+                    width: 100% !important;
+                    border-right: none !important;
+                    &:not(:last-child) {
+                        border-bottom: 1px solid $lightest_gray;
+                    }
+                }
+
+            }
+
+        }
+
+        .double_cell_layout {
+            padding-bottom: 40px;
+            display: table;
+            width: 100%;
+
+            &.ten_px_margin_between {
+                .right_row {
+                    @media (max-width: 600px) {
+                        margin-top: 10px;
+                    }
+                }
+            }
+
+            &.margin_betwen_boxes {
+                .gray_toggle_box:not(:first-child) {
+                    margin-top: 20px;
+                    @media (max-width: 600px) {
+                        margin-top: 10px;
+                    }
+                }
+            }
+
+            @media (max-width: 1200px) {
+                padding-bottom: 20px;
+            }
+
+            .left_row, .right_row {
+                display: table-cell;
+                vertical-align: top;
+                width: 50%;
+                @media (max-width: 1200px) {
+                    display: block;
+                    width: 100%;
+                }
+                @media (max-width: 1024px) {
+                    display: table-cell;
+                    vertical-align: top;
+                    width: 50%;
+                }
+                @media (max-width: 600px) {
+                    display: block;
+                    width: 100%;
+                }
+
+            }
+            .left_row {
+                padding-right: 10px;
+                @media (max-width: 1200px) {
+                    padding: 0;
+                }
+                @media (max-width: 1024px) {
+                    padding-right: 10px;
+                }
+                @media (max-width: 600px) {
+                    padding: 0;
+                }
+            }
+            .right_row {
+                padding-left: 10px;
+                @media (max-width: 1200px) {
+                    margin-top: 20px;
+                    padding: 0;
+                }
+                @media (max-width: 1024px) {
+                    padding-left: 10px;
+                }
+                @media (max-width: 600px) {
+                    margin-top: 20px;
+                    padding: 0;
+                }
+            }
+        }
+
+    }
+
+    .picker_content {
+        background: $light_gray;
+        position: relative;
+        padding: 10px 0 14px;
+        left: 0;
+
+        .bubble_content {
+            margin-bottom: 0;
+            table {
+                margin-bottom: 0;
+            }
+
+           
+            .bubble_section {
+                @media (max-width: 400px) {
+                    padding: 0 20px;
+                }
+            }
+
+            .bubble_section:not(:first-child), .bubble_section_table {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        
+        .bubble_description, .date_picker_wrap {
+            display: none;
+        }
+
+        &.active {
+            .bubble_description, .date_picker_wrap {
+                display: block;
+            }
+        }
+
     }
     
 }

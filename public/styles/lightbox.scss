@@ -79,11 +79,11 @@
         }
     }
 
-     #lightbox.my_account_lightbox {
-         .blue_button {
+    #lightbox.my_account_lightbox {
+        .blue_button {
             margin-top: 20px;
-         }
-     }
+        }
+    }
 
     #lightbox.date_picker_wrap {
         #lightbox_wrap {
@@ -155,181 +155,12 @@
 
                 }
 
-                .picker_content {
-
-                    @include tablet {
-                        width: initial;
-                        left: 20px;
-                        right: 20px;
-                    }
-
-                    @media (max-width: 400px) {
-                        left: 5px;
-                        right: 5px;
-                    }
-
-                    .bubble_arrow {
-                        left: 17px;
-                    }
-
-                    .bubble_section {
-                        padding: 0 20px;
-                        @media (max-width: 400px) {
-                            padding: 0 15px;
-                        }
-                    }
-
-                    .bubble_section_table {
-                        padding: 0 14px;
-                        @media (max-width: 400px) {
-                            padding: 0 4px;
-                        }
-                    }
-
-                    .bubble_content {
-                        margin-bottom: 12px;
-                        padding-right: 0;
-
-                        .bubble_title {
-                            padding-right: 80px;
-                            font-weight: $bold;
-                        }
-
-                        .bubble_description {
-                            margin-top: 17px;
-                            margin-bottom: 11px;
-                            font-size: inherit;
-
-                            .picker_deadline_date {
-                                float: left;
-                            }
-
-                            .picker_days_left {
-                                float: right;
-                            }
-                        }
-
-                        .month_chooser {
-                            margin-top: 15px;
-                            height: 30px;
-                            display: table;
-                            width: 100%;
-                            text-align: center;
-                            @include tablet {
-                                height: 40px;
-                            }
-                            .arrow, .month_text {
-                                font-weight: $bold;
-                                @extend .table_cell;
-                            }
-                            .arrow {
-                                box-sizing: border-box;
-                                width: 30px;
-                                border-radius: 4px;
-                                @include tablet {
-                                    width: 40px;
-                                }
-                                &:first-child {
-                                    padding-right: 1px;
-                                }
-                                &:last-child {
-                                    padding-left: 1px;
-                                }
-                                &:hover {
-                                    background: $medium_gray;
-                                    @include tablet {
-                                        background: none;
-                                    }
-                                }
-                                cursor: pointer;
-                                .sprite {
-                                    margin: 0 auto;
-                                }
-                            }
-                        }
-
-                        table {
-                            text-align: center;
-                            table-layout: fixed;
-                            width: 100%;
-                            margin-top: 12px;
-                            border-collapse: collapse;
-
-                            th {
-                                font-weight: $bold;
-                                opacity: .7;
-                                padding-bottom: 7px;
-                                text-align: center;
-                            }
-
-                            td {
-                                font-weight: $medium;
-                                cursor: pointer;
-
-                                &:hover {
-                                    .date_circle {
-                                        background: $medium_gray;
-                                        @include tablet {
-                                            background: none;
-                                        }
-                                    }
-                                }
-
-                                .date_circle {
-                                    display: inline-table;
-                                    border-radius: 50%;
-                                    width: 30px;
-                                    height: 30px;
-                                    text-align: center;
-
-                                    @include tablet {
-                                        width: 40px;
-                                        height: 40px;
-                                    }
-
-                                }
-                                .date_circle.selected {
-                                    background: $aqua_marine;
-                                }
-                            }
-
-                            td.no_date {
-                                cursor: initial;
-                            }
-
-                        }
-
-                    }
-
-                    .date_save_buttons {
-                        @media (max-width: 560px) {
-                            position: fixed;
-                            bottom: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 21px;
-                        }
-
-                        .blue_link_wrapper {
-                            width: 100%;
-                            text-align: center;
-                            margin-top: 8px;
-                        }
-                        .blue_button {
-                            border-radius: 4px;
-                        }
-
-                    }
-
-                }
-
                 @media (max-width: 560px) {
                     top: 106px !important;
                 }
             }
         }
     }
-
 
     #lightbox.set_number {
         @extend .date_picker_wrap;
@@ -348,7 +179,7 @@
                 }
             }
             .lightbox_content {
-                top: 55px!important;
+                top: 55px !important;
 
                 .lightbox_section {
                     .description_wrap {
@@ -378,7 +209,6 @@
             }
         }
     }
-
 
     #lightbox.confirm_lightbox {
 
@@ -522,7 +352,6 @@
                         overflow: hidden;
                     }
 
-
                     .header_row {
                         padding: 0 20px 0 10px;
                         top: 54px;
@@ -560,7 +389,7 @@
                                     height: 2px;
                                     position: absolute;
                                     background: $deep_sky_blue;
-                                    transition: all 300ms cubic-bezier(.45,.78,0,1);
+                                    transition: all 300ms cubic-bezier(.45, .78, 0, 1);
                                     bottom: 0;
 
                                     @include tablet {
@@ -614,7 +443,6 @@
                 }
 
             }
-
 
             #lightbox_header.title_and_button {
                 #lightbox_header_text {
@@ -671,10 +499,9 @@
 
     }
 
-
     #lightbox.with_title_description {
-          #lightbox_wrap {
-              #lightbox_header {
+        #lightbox_wrap {
+            #lightbox_header {
                 #lightbox_header_text {
                     height: 71px;
                     padding-right: 20px;
@@ -692,14 +519,13 @@
                     }
                 }
             }
-            .lightbox_content{
+            .lightbox_content {
                 @media (max-width: 560px) {
                     top: 142px;
                 }
             }
         }
     }
-
 
     .section_with_table {
         padding: 0 !important;
@@ -708,7 +534,6 @@
         margin-top: 20px;
 
     }
-
 
     .lightbox_section.double_row_list {
         @extend .section_with_table;
@@ -800,18 +625,15 @@
 
         }
 
-
         table {
             margin: 19px 0;
             @media (max-width: 560px) {
                 margin: 5px 0 5px 0;
             }
 
-
             th, td {
                 padding-left: 10px;
                 padding-right: 10px;
-
 
                 @media (max-width: 560px) {
                     &:not(:first-child) {
@@ -830,7 +652,6 @@
                         @media (max-width: 560px) {
                             display: block;
                         }
-
 
                         .left {
                             float: left;
@@ -898,8 +719,6 @@
         }
     }
 
-
-
     .lightbox_section {
 
         .content_inside_wrap {
@@ -924,7 +743,6 @@
 
     /* ID SIGNING LIGHTBOX */
     #lightbox.id_signing {
-
 
         #lightbox_wrap {
 
@@ -981,7 +799,6 @@
                     }
                 }
 
-
                 .sign_in_section {
                     float: left;
                     width: 50%;
@@ -990,7 +807,6 @@
                     position: relative;
                     text-align: center;
                     height: 100%;
-
 
                     @media (max-width: 550px) {
                         width: 100%;
@@ -1032,7 +848,6 @@
 
         }
     }
-
 
     /* DELETE TOPIC LIGHTBOX */
     #lightbox.id_signing.delete_topic {
@@ -1142,7 +957,6 @@
                         margin: 0;
                     }
                 }
-
 
                 #delete_info_wrap {
                     width: 410px;
@@ -1329,8 +1143,6 @@
                     }
                 }
 
-
-
                 .lightbox_section {
                     padding: 20px;
 
@@ -1479,8 +1291,6 @@
                 padding-bottom: 20px !important;
             }
 
-
-
             .settings_section {
                 width: 100%;
                 display: table;
@@ -1523,7 +1333,6 @@
                     }
 
                 }
-
 
                 @media (max-width: 560px) {
                     display: block;
@@ -1646,7 +1455,6 @@
             overflow: auto !important;
         }
 
-
         .lightbox_section {
             max-height: 381px;
             overflow-y: auto;
@@ -1661,7 +1469,6 @@
                 max-height: initial;
                 padding-bottom: 40px !important;
             }
-
 
             .category_wrap {
                 display: table;
@@ -1742,7 +1549,7 @@
                             &:hover {
                                 background: $dark_blue;
                                 @include tablet {
-                            background: $medium_gray;
+                                    background: $medium_gray;
                                 }
                             }
                         }
@@ -1810,7 +1617,7 @@
 
             padding-bottom: 40px !important;
 
-             .copy_link {
+            .copy_link {
                 padding: 0;
 
                 .searchbox_with_icon_and_text {
@@ -1843,7 +1650,7 @@
                     border-radius: 4px;
                 }
 
-             }
+            }
 
             .qr_code {
                 padding: 20px 0 0 0;
@@ -1864,11 +1671,11 @@
 
     }
 
-     @media (max-width: 560px) {
+    @media (max-width: 560px) {
         .mobile_only {
             display: block;
         }
-         #lightbox {
+        #lightbox {
             top: 0;
             bottom: 0;
             right: 0;
@@ -1937,6 +1744,6 @@
                     }
                 }
             }
-         }
+        }
     }
 }

@@ -93,9 +93,12 @@ angular
         };
 
         $scope.doSaveVoteEndsAt = function () {
-            $log.debug('TopicCtrl.doSaveVoteEndsAt', arguments);
-            // FIXME: HTTP request here to save endsAt
-            return $q.resolve();
+            return $scope.topic.vote
+                .$update({topicId: $scope.topic.id})
+                .then(function (vote) {
+                    // TODO: Reload from server until GET /:voteId and PUT /:voteId return the same output
+                    return vote.$get({topicId: $scope.topic.id});
+                });
         };
 
         $scope.TopicMemberGroup = TopicMemberGroup;

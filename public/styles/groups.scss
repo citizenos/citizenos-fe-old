@@ -1,0 +1,121 @@
+@import 'vars';
+@import 'mixins_n_extends';
+@import 'icons';
+
+#groups_root {
+    @extend .default_setup;
+
+    .groups_wrap {
+        padding: 0 10px 10px 10px;
+        background: $light_gray;
+
+        .group_wrap {
+            background: $white;
+            margin-top: 10px;
+            box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
+            
+            .group_show_content {
+                padding: 30px 20px 20px;
+                position: relative;
+                @media (max-width: 768px) {
+                    padding-bottom: 69px;
+                }
+
+                .group_header {
+                    display: table;
+                    width: 100%;
+                    box-sizing: border-box;
+                    margin-bottom: 20px;
+                    
+                    .group_icon {
+                        width: 40px;
+                        .group_circle {
+                            margin-top: 0;
+                            .group_icon {
+                                width: 40px;
+                            }
+                        }
+                    }
+
+                    .button_cell {
+                        @extend .table_cell;
+                        @media (max-width: 768px) {
+                            position: absolute;
+                            display: block;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            padding: 20px;
+                            .blue_button {
+                                float: none;
+                            }
+                        }
+                    }
+
+                    .blue_button {
+                        float: right;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+                }
+
+                .group_name {
+                    color: $deep_sky_blue;
+                    font-weight: $bold;
+                    font-size: 26px;
+                    padding-right: 20px;
+                }
+
+                .group_details {
+                    margin-top: 19px;
+                    .group_details_header {
+
+                        .show_in_mobile {
+                            display: none;
+                            @media (max-width: 768px) {
+                                display: block;
+                            }
+                        }
+                        .group_column {
+                            float: left;
+                            box-sizing: border-box;
+
+                            &:not(.text_group) {
+                                padding-right: 20px;
+                                width: 16.5%;
+                                @media (max-width: 768px) {
+                                    width: 50%;
+                                }
+                            }
+
+                            &.text_group {
+                                width: 66.6%;
+                                float: left;
+                                @media (max-width: 768px) {
+                                    margin-top: 15px;
+                                    width: 100%;
+                                    float: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .group_table {
+                    .table_header {
+                        height: 30px;
+                        font-size: 13px;
+                        background: $medium_gray;
+                        display: table;
+                        width: 100%;
+                        padding-left: 10px;
+                        margin-top: 40px;
+                        box-sizing: border-box;
+                    }
+
+                }
+
+            }
+        }
+    }
+}
