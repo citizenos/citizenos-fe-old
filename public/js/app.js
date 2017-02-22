@@ -217,14 +217,21 @@
                     url: '/topics',
                     abstract: true,
                     parent: 'main',
-                    templateUrl: '/views/topics.html'
-                })
-                .state('topics.create', {
-                    url: '/create',
-                    parent: 'topics'
+                    template: '<div ui-view></div>'
                 })
                 .state('topics.view', {
                     url: '/:topicId',
+                    parent: 'topics',
+                    templateUrl: '/views/topics_topicId.html',
+                    resolve: {
+                        rTopic: ['$stateParams', 'Topic', function ($stateParams, Topic) {
+                            return Topic.get({topicId: $stateParams.topicId}).$promise;
+                        }]
+                    },
+                    controller: 'TopicCtrl'
+                })
+                .state('topics.create', {
+                    url: '/create',
                     parent: 'topics'
                 })
                 .state('mytopics', { // MyTopics aka Dashboard
@@ -250,7 +257,13 @@
                 .state('my.topics.topicId', {
                     url: '/:topicId',
                     parent: 'my.topics',
-                    templateUrl: '/views/my_topics_topicId.html'
+                    templateUrl: '/views/my_topics_topicId.html',
+                    resolve: {
+                        rTopic: ['$stateParams', 'Topic', function ($stateParams, Topic) {
+                            return Topic.get({topicId: $stateParams.topicId}).$promise;
+                        }]
+                    },
+                    controller: 'TopicCtrl'
                 })
                 .state('my.topics.topicId.settings', {
                     url: '/settings?tab',
@@ -324,16 +337,6 @@
                     url: '/help',
                     parent: 'main',
                     templateUrl: '/views/help.html'
-                })
-                .state('inputTest', {
-                    url: '/inputtest',
-                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
-                        ngDialog.open({
-                            template: '/views/modals/input_test.html',
-                            data: $stateParams,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                    }]
                 })
                 .state('join', { // Join a Topic via shared url
                     url: '/join/:tokenJoin',

@@ -2,7 +2,7 @@
 
     <div class="timeline">
 
-        
+
         <div class="milestones_wrap">
 
             <div class="milestones_section">
@@ -22,7 +22,7 @@
         <div class="table_cell">
             <div class="background_line timeline_gray_background">
             </div>
-        
+
             <div class="progress_line favorite_yellow_background">
             </div>
 
@@ -100,7 +100,7 @@
             <div class="fake_cell"></div>
 
             <div class="line lightest_line"></div>
-            
+
 
         </div>
 
@@ -129,7 +129,7 @@
                 <div class="main_content_wrap">
 
                     <div class="voting_platform_wrap vote_casting_wrap">
-                        
+
                         <div class="vote_casting_header">
                             <div class="vote_casting_header_section">
                                 <div class="table_cell bold vote_casting_description">
@@ -203,7 +203,7 @@
                         </div>
 
                         <div class="delegation_section">
-                            
+
                             <div class="voting_button" ng-class="i == 2 ? 'active' : ''"ng-repeat="i in [1,2]">
                                 <div class="table_cell">
                                     <div class="sprite_temp2 sprite-icon-delegate2x"></div>
@@ -242,7 +242,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                         </div>
 
 
@@ -260,7 +260,7 @@
                             </div>
 
                             <div class="voting_platform_buttons_wrap">
-                                
+
                                 <div class="table_cell">
                                     <div class="voting_platform_button" ng-click="activeVotingType = 'regular'" ng-class="activeVotingType == 'regular' || activeVotingType == undefined ? 'active' : ''">
                                         <div class="table_cell">
@@ -273,7 +273,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="table_cell">
                                     <div class="voting_platform_button" ng-click="activeVotingType = 'multiplechoice'" ng-class="activeVotingType == 'multiplechoice' ? 'active' : ''">
                                         <div class="table_cell">
@@ -356,7 +356,7 @@
                             <!-- multiplechoice -->
                             <div class="double_cell_layout" ng-if="activeVotingType == 'multiplechoice'">
                                 <div class="left_row">
-                                    
+
                                     <div class="input_with_icon clickable">
                                         <input class="gray_borders" value="This is a first answer here">
                                         <div class="icon_table">
@@ -365,7 +365,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="input_with_icon clickable">
                                         <input class="gray_borders" placeholder="Enter a possible answer">
                                         <div class="icon_table">
@@ -374,7 +374,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="blue_button">Add another answer</div>
                                 </div>
                                 <div class="right_row add_bottom_borders">
@@ -404,7 +404,7 @@
 
                         <div class="line lightest_line"></div>
 
-                        
+
                         <div class="voting_platform_section">
                             <div class="voting_platform_section_title">
                                 Step 3: User vote casting
@@ -459,10 +459,10 @@
                                                 <div class="sprite_temp2 sprite-mobiil-id-small2x"></div>
                                                 <div class="clearer"></div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="right_row add_bottom_borders">
 
@@ -491,7 +491,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="line lightest_line"></div>
 
                         <div class="voting_platform_section">
@@ -530,7 +530,7 @@
                                                 </div>
                                             </div>
 
-                                            
+
                                             <div class="date_picker_wrap">
 
                                                 <div class="line lightest_line"></div>
@@ -822,9 +822,9 @@
 
                                     </div>
                                 </div>
-                                
+
                                 <div class="right_row">
-                                    
+
                                     <div class="gray_toggle_box">
 
                                         <div class="table_cell">
@@ -842,7 +842,7 @@
                                             <input class="small_input gray_borders" placeholder="eg. 1000">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="gray_toggle_box">
                                         <div class="table_cell">
                                             <div class="toggle_box_title">
@@ -861,7 +861,7 @@
 
                             </div>
                         </div>
-                        
+
                         <div class="line lightest_line"></div>
 
                         <div class="voting_platform_section">
@@ -878,9 +878,9 @@
                     </div>
 
                     <div class="iframe_content_wrap">
-                        
+
                         <div class="topic_info" ng-class="app.more_info_button ? 'open' : ''">
-                            
+
                             <div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
                                 <div class="ff_table_fix">
                                     <div class="table_cell">
@@ -905,7 +905,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="info_sections_wrap" ng-if="wWidth > 767 || app.more_info_button">
                                 <div class="info_section">
                                     Categories: <span class="blue_link">Communities and urban development</span> | <span class="blue_link">Integration and human rights</span> | <span class="blue_link">Environment, animal protection</span>
@@ -917,7 +917,7 @@
                                     Activity: <span class="blue_link">5 arguments</span> | <span class="blue_link">3 social mentions</span> #cos_telliskivihipsters
                                 </div>
                             </div>
-                            
+
                             <div class="line lightest_line"></div>
                         </div>
 
@@ -928,7 +928,7 @@
 
                     </div>
 
-                
+
                     <div class="comments_section">
                         <div class="tabs_wrap">
                             <div ng-click="app.activeCommentSection = 'arguments'" class="tab" ng-class="app.activeCommentSection == 'arguments' || app.activeCommentSection == undefined ? 'active':''">
@@ -985,7 +985,7 @@
                                                     </div>
 
                                                 </div>
-                                                
+
                                                 <div class="blue_button">
                                                     Add argument
                                                 </div>
@@ -993,7 +993,7 @@
                                             </div>
                                         </div>
                                         <div class="clearer"></div>
-                                        
+
                                         <div class="line lightest_line"></div>
                                     </div>
 
@@ -1007,7 +1007,7 @@
                                                     <div class="argumentator">
                                                         <div class="table_cell">
                                                             <div cos-dropdown class="classic_dropdown borderless_dropdown">
-                                                        
+
                                                                 <div class="dropdown_selection">
                                                                     <div class="dropdown_text data_item">
                                                                         Kristian Lember
@@ -1058,7 +1058,7 @@
                                                         {{ (readMore) ? 'Close comment' : 'Read more' }}
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="argument_footer">
                                                     <div class="link_wrap">
                                                         <div class="table_cell">
@@ -1107,7 +1107,7 @@
                                                 </div>
                                             </div>
 
-                                            
+
                                             <div class="post_argument_wrap">
                                                 <textarea class="gray_borders" placeholder="Write your reply here..."></textarea>
                                                 <div class="blue_button">Post reply</div>
@@ -1127,7 +1127,7 @@
                                                     <div class="argumentator">
                                                         <div class="table_cell">
                                                             <div cos-dropdown class="classic_dropdown borderless_dropdown">
-                                                        
+
                                                                 <div class="dropdown_selection">
                                                                     <div class="dropdown_text data_item">
                                                                         Kristian Lember
@@ -1167,7 +1167,7 @@
                                                 <div class="argument_title">
                                                     Another argument sub
                                                 </div>
-                                                
+
                                                 <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
                                                     <div class="argument_text">
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -1239,7 +1239,7 @@
                                                     <div class="argumentator">
                                                         <div class="table_cell">
                                                             <div cos-dropdown class="classic_dropdown borderless_dropdown">
-                                                        
+
                                                                 <div class="dropdown_selection">
                                                                     <div class="dropdown_text data_item">
                                                                         Kristian Lember
@@ -1276,7 +1276,7 @@
                                                     </div>
                                                     <div class="clearer"></div>
                                                 </div>
-                                                
+
                                                 <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
                                                     <div class="argument_text">
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -1354,7 +1354,7 @@
                                                     <div class="argumentator">
                                                         <div class="table_cell">
                                                             <div cos-dropdown class="classic_dropdown borderless_dropdown">
-                                                        
+
                                                                 <div class="dropdown_selection">
                                                                     <div class="dropdown_text data_item">
                                                                         Kristian Lember
@@ -1394,7 +1394,7 @@
                                                 <div class="argument_title">
                                                     Another argument sub
                                                 </div>
-                                                
+
                                                 <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
                                                     <div class="argument_text">
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -1453,7 +1453,7 @@
                                                     <div class="clearer"></div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="post_argument_wrap">
                                                 <textarea class="gray_borders" placeholder="Write your reply here..."></textarea>
                                                 <div class="blue_button">Post reply</div>
@@ -1472,7 +1472,7 @@
                                                     <div class="argumentator">
                                                         <div class="table_cell">
                                                             <div cos-dropdown class="classic_dropdown borderless_dropdown">
-                                                        
+
                                                                 <div class="dropdown_selection">
                                                                     <div class="dropdown_text data_item">
                                                                         Commentator One
@@ -1509,7 +1509,7 @@
                                                     </div>
                                                     <div class="clearer"></div>
                                                 </div>
-                                                
+
                                                 <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
                                                     <div class="argument_text">
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -1586,7 +1586,7 @@
                                                     <div class="argumentator">
                                                         <div class="table_cell">
                                                             <div cos-dropdown class="classic_dropdown borderless_dropdown">
-                                                        
+
                                                                 <div class="dropdown_selection">
                                                                     <div class="dropdown_text data_item">
                                                                         Commentator Two
@@ -1623,10 +1623,10 @@
                                                     </div>
                                                     <div class="clearer"></div>
                                                 </div>
-                                                
+
                                                 <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
                                                     <div class="argument_text">
-                                                        <span class="replys_reply">@Commentator One</span> Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
+                                                        <span class="replys_reply">@Commentator One</span> Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                                                     </div>
                                                     <div class="argument_overlay">
@@ -1685,7 +1685,7 @@
                                             </div>
 
                                         </div>
-                                        
+
                                     </div>
 
 
@@ -1697,7 +1697,7 @@
                                                     <div class="argumentator">
                                                         <div class="table_cell">
                                                             <div cos-dropdown class="classic_dropdown borderless_dropdown">
-                                                        
+
                                                                 <div class="dropdown_selection">
                                                                     <div class="dropdown_text data_item">
                                                                         Kristian Lember
@@ -1771,8 +1771,8 @@
                                                     </div>
                                                     <div class="clearer"></div>
                                                 </div>
-                                                
-                                                
+
+
                                                 <div class="argument_footer">
                                                     <div class="link_wrap">
                                                         <div class="table_cell">
