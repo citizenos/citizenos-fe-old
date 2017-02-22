@@ -47,6 +47,7 @@ angular
             var path = config.url.match(API_REQUEST_REGEX)[0]
                 .replace(/\/self\//g, '_')
                 .replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/ig, '_')
+                .replace(/[0-9a-f]{8}/ig, '_')
                 .replace(/\//g, '_');
             var statusCode = (data.status && data.status.code) ? data.status.code : errorResponse.status;
 

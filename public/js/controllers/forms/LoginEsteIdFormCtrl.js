@@ -60,6 +60,11 @@ angular
             // TODO: Partner login support
             // TODO: Redirect to somewhere?
             ngDialog.closeAll(true);
+            console.log($state);
+            if ($state.params && $state.params.redirectSuccess) {
+                // TODO: I guess checking the URL would be nice in the future...
+                return $window.location.href = $state.params.redirectSuccess;
+            }
         };
 
         var pollMobiilIdLoginStatus = function (token, milliseconds, retry) {

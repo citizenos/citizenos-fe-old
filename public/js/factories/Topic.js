@@ -32,15 +32,24 @@ angular
                         return angular.fromJson(data).data;
                     }
                 },
+                join: {
+                    method: 'POST',
+                    params: {tokenJoin: '@id'},
+                    url: sLocation.getAbsoluteUrlApi('/api/topics/join/:tokenJoin'),
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status > 0 && status < 400) {
+                            return angular.fromJson(data);
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
+                },
                 updateTokenJoin: { //TODO: Support patch method
                     method: 'PUT',
                     params: {topicId: '@id'},
                     url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/tokenJoin'),
-                    transformRequest: function (data, headersGetter) {
-                        return angular.toJson(data);
-                    },
                     transformResponse: function (data, headersGetter, status) {
-                        if (status < 400) { // IF patch is working then make it return data again, for now return nothing to stop from overwriting all fields but topkenJoin
+                        if (status > 0 && status < 400) { // IF patch is working then make it return data again, for now return nothing to stop from overwriting all fields but topkenJoin
                         } else {
                             return angular.fromJson(data);
                         }

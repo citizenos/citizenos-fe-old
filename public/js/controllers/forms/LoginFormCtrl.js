@@ -66,8 +66,15 @@ angular
 
             var path = '/api/auth/:partnerId';
             var redirectSuccess = $state.href($state.current.name, $state.params, {absolute: true});
+            if($state.params.redirectSuccess) {
+                console.log('LOGINSUCCESS', redirectSuccess);
+                $window.location.href = $state.params.redirectSuccess;
+            }
+            else {
+                $window.location.href = sLocation.getAbsoluteUrlApi(path, {partnerId: partnerId}, {redirectSuccess: redirectSuccess});
+            }
 
-            $window.location.href = sLocation.getAbsoluteUrlApi(path, {partnerId: partnerId}, {redirectSuccess: redirectSuccess});
+
         };
 
 

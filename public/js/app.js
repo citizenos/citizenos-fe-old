@@ -334,6 +334,11 @@
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                     }]
+                })
+                .state('join', { // Join a Topic via shared url
+                    url: '/join/:tokenJoin',
+                    parent: 'main',
+                    controller: 'JoinCtrl'
                 });
 
             $translateProvider.useStaticFilesLoader({
