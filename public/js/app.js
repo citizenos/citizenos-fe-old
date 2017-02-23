@@ -276,6 +276,17 @@
                     parent: 'my',
                     template: '<div ui-view></div>'
                 })
+                .state('my.groups.create', {
+                    url: '/create',
+                    parent: 'my.groups',
+                    controller: ['$scope', '$stateParams', 'ngDialog', function ($scope, $stateParams, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/group_create_settings.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
+                })
                 .state('my.groups.groupId', {
                     url: '/:groupId',
                     parent: 'my.groups',
@@ -301,17 +312,6 @@
                     url: '/groups',
                     parent: 'main',
                     templateUrl: '/views/groups.html'
-                })
-                .state('groups.create', {
-                    url: '/create',
-                    parent: 'groups',
-                    controller: ['$scope', '$stateParams', 'ngDialog', function ($scope, $stateParams, ngDialog) {
-                        ngDialog.open({
-                            template: '/views/modals/group_create_settings.html',
-                            data: $stateParams,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                    }]
                 })
                 .state('about', {
                     url: '/about',

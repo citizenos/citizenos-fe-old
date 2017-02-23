@@ -54,51 +54,57 @@ angular
             });
         };
 
+        // TODO: REMOVE - temporary for templates
         $scope.app.doShowConfirm = function () {
             $log.debug('AppCtrl.doShowConfirm()');
 
             ngDialog.open({
-                template: '/views/modals/confirm.html',
+                template: '/views/_templates/modals/confirm.html',
                 scope: $scope
             });
         };
 
+        // TODO: REMOVE - temporary for templates
         $scope.app.doShowSetNumber = function () {
             $log.debug('AppCtrl.doShowSetNumber()');
 
             ngDialog.open({
-                template: '/views/modals/set_number.html',
+                template: '/views/_templates/modals/set_number.html',
                 scope: $scope
             });
         };
 
+        // TODO: REMOVE - temporary for templates
         $scope.app.doShowDatePicker = function () {
             $log.debug('AppCtrl.doShowDatePicker()');
 
             ngDialog.open({
-                template: '/views/modals/date_picker.html',
+                template: '/views/_templates/modals/date_picker.html',
                 scope: $scope
             });
         };
 
+        // TODO: REMOVE - temporary for templates
         $scope.app.doShowInviteUsers = function () {
             $log.debug('AppCtrl.doShowInviteUsers()');
 
             ngDialog.open({
-                template: '/views/modals/invite_users.html',
+                template: '/views/_templates/modals/invite_users.html',
                 scope: $scope
             });
         };
 
+        // TODO: REMOVE - temporary for templates
         $scope.app.doShowAddTopics = function () {
             $log.debug('AppCtrl.doShowAddTopic()');
 
             ngDialog.open({
-                template: '/views/modals/add_topics.html',
+                template: '/views/_templates/modals/add_topics.html',
                 scope: $scope
             });
         };
 
+        // TODO: REMOVE - temporary for templates
         $scope.app.doShowTopicSettings = function () {
             $log.debug('AppCtrl.doShowTopicSettings()');
 
@@ -108,12 +114,12 @@ angular
             });
         };
 
-
+        // TODO: REMOVE - temporary for templates
         $scope.app.doShowDeleteTopic = function () {
             $log.debug('AppCtrl.doShowDeleteTopic()');
 
             ngDialog.open({
-                template: '/views/modals/topic_delete_confirm.html',
+                template: '/views/_templates/modals/topic_delete_confirm.html',
                 scope: $scope
             });
         };
