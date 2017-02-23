@@ -234,16 +234,6 @@
                     url: '/create',
                     parent: 'topics'
                 })
-                .state('mytopics', { // MyTopics aka Dashboard
-                    url: '/mytopics',
-                    parent: 'main',
-                    templateUrl: '/views/mytopics.html'
-                })
-                .state('mytopics.view', { // MyTopics aka Dashboard
-                    url: '/:topicId',
-                    parent: 'mytopics',
-                    templateUrl: '/views/mytopics_view.html'
-                })
                 .state('my', {
                     url: '/my?filter',
                     parent: 'main',
@@ -287,6 +277,17 @@
                     parent: 'my',
                     template: '<div ui-view></div>'
                 })
+                .state('my.groups.create', {
+                    url: '/create',
+                    parent: 'my.groups',
+                    controller: ['$scope', '$stateParams', 'ngDialog', function ($scope, $stateParams, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/group_create_settings.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
+                })
                 .state('my.groups.groupId', {
                     url: '/:groupId',
                     parent: 'my.groups',
@@ -314,18 +315,6 @@
                     parent: 'main',
                     templateUrl: '/views/groups.html'
                 })
-                .state('groups.create', {
-                    url: '/create',
-                    parent: 'groups',
-                    reloadOnSearch: false,
-                    controller: ['$scope', '$stateParams', 'ngDialog', function ($scope, $stateParams, ngDialog) {
-                        ngDialog.open({
-                            template: '/views/modals/group_create_settings.html',
-                            data: $stateParams,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                    }]
-                })
                 .state('about', {
                     url: '/about',
                     parent: 'main',
@@ -345,6 +334,22 @@
                     url: '/join/:tokenJoin',
                     parent: 'main',
                     controller: 'JoinCtrl'
+                })
+                .state('_templates', { // TODO: From here below are the template path relevant in development
+                    url: '/_templates',
+                    abstract: true,
+                    parent: 'main',
+                    template: '<div ui-view></div>'
+                })
+                .state('_templates.topics', {
+                    url: '/my/topics',
+                    parent: '_templates',
+                    templateUrl: '/views/_templates/mytopics.html'
+                })
+                .state('_templates.topics.topicId', {
+                    url: '/:topicId',
+                    parent: '_templates.topics',
+                    templateUrl: '/views/_templates/mytopics_view.html'
                 });
 
             $translateProvider.useStaticFilesLoader({
