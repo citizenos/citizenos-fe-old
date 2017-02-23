@@ -234,16 +234,6 @@
                     url: '/create',
                     parent: 'topics'
                 })
-                .state('mytopics', { // MyTopics aka Dashboard
-                    url: '/mytopics',
-                    parent: 'main',
-                    templateUrl: '/views/mytopics.html'
-                })
-                .state('mytopics.view', { // MyTopics aka Dashboard
-                    url: '/:topicId',
-                    parent: 'mytopics',
-                    templateUrl: '/views/mytopics_view.html'
-                })
                 .state('my', {
                     url: '/my?filter',
                     parent: 'main',
@@ -342,6 +332,22 @@
                     url: '/join/:tokenJoin',
                     parent: 'main',
                     controller: 'JoinCtrl'
+                })
+                .state('_templates', { // TODO: From here below are the template path relevant in development
+                    url: '/_templates',
+                    abstract: true,
+                    parent: 'main',
+                    template: '<div ui-view></div>'
+                })
+                .state('_templates.topics', {
+                    url: '/my/topics',
+                    parent: '_templates',
+                    templateUrl: '/views/_templates/mytopics.html'
+                })
+                .state('_templates.topics.topicId', {
+                    url: '/:topicId',
+                    parent: '_templates.topics',
+                    templateUrl: '/views/_templates/mytopics_view.html'
                 });
 
             $translateProvider.useStaticFilesLoader({
