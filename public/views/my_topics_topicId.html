@@ -1,5 +1,5 @@
 <!-- RIGHT SIDE -->
-<div class="topics_right" ng-if="itemList.length" ng-controller="TopicCtrl">
+<div class="topics_right" ng-if="itemList.length">
 
     <div class="v_line separator"></div>
 
@@ -90,7 +90,7 @@
                                 {{topic.members.users.count}}
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="doShowMemberUserList(topic);">
+                            <div class="item_link blue_link" ng-click="doShowMemberUserList();">
                                 view
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                 {{topic.members.groups.count}}
                             </div>
                             <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="doShowMemberGroupList(topic);">
+                            <div class="item_link blue_link" ng-click="doShowMemberGroupList();">
                                 view
                             </div>
                         </div>
@@ -144,12 +144,12 @@
                                 view
                             </div>
                             <div class="v_line bold"></div>
-                            <div class="item_text blue_link" ng-click="doLeaveTopic(topic)">
+                            <div class="item_text blue_link" ng-click="doLeaveTopic()">
                                 leave
                             </div>
                             <div ng-if="topic.canDelete()">
                                 <div class="v_line bold"></div>
-                                <div class="item_text remove blue_link" ng-click="doDeleteTopic(topic)">
+                                <div class="item_text remove blue_link" ng-click="doDeleteTopic()">
                                     <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
                                     delete
                                 </div>
@@ -225,7 +225,7 @@
             <div class="header_text">
                 Current vote results
             </div>
-            <div class="minimize_container" ng-click="doToggleVoteResults(topic)">
+            <div class="minimize_container" ng-click="doToggleVoteResults()">
                 <div ng-class="!voteResults.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -318,7 +318,7 @@
                 |
                 <div class="blue_link">add</div>
             </div>
-            <div class="minimize_container" ng-if="topic.members.groups.count" ng-click="doToggleMemberGroupList(topic)">
+            <div class="minimize_container" ng-if="topic.members.groups.count" ng-click="doToggleMemberGroupList()">
                 <div ng-class="!groupList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -384,7 +384,7 @@
                             </div>
                             <div class="dropdown">
                                 <div class="dropdown_item" ng-repeat="(key, value) in TopicMemberGroup.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberGroup(topic, group, value)">
+                                    <div class="item_name" ng-click="doUpdateMemberGroup(group, value)">
                                         {{value}}
                                     </div>
                                 </div>
@@ -395,7 +395,7 @@
                         {{group.members.users.count}}
                     </div>
                     <div class="pretend_td">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberGroup(topic, group)" cos-disabled="!topic.canUpdate()">
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberGroup(group)" cos-disabled="!topic.canUpdate()">
                             <div class="btn">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -418,7 +418,7 @@
                 |
                 <div class="blue_link">invite</div>
             </div>
-            <div class="minimize_container" ng-click="doToggleMemberUserList(topic)">
+            <div class="minimize_container" ng-click="doToggleMemberUserList()">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -496,7 +496,7 @@
                             </div>
                             <div class="dropdown">
                                 <div class="dropdown_item" ng-repeat="(key, level) in TopicMemberUser.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberUser(topic, user, level)">
+                                    <div class="item_name" ng-click="doUpdateMemberUser(user, level)">
                                         {{level}}
                                     </div>
                                 </div>
@@ -504,7 +504,7 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(topic, user)" cos-disabled="!topic.canUpdate() || !user.levelUser">
+                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(user)" cos-disabled="!topic.canUpdate() || !user.levelUser">
                             <div class="btn">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>

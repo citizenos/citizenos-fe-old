@@ -22,25 +22,25 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="topicSettingsSlider" start_slide_at="329">
-                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsSettings'" ng-class="tabSelected === 'topicSettingsSettings' ? 'active' : ''">
+                        <div class="tab_button" ng-click="selectTab('topicSettingsSettings')" ng-class="tabSelected === 'topicSettingsSettings' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">SETTINGS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsCategories'" ng-class="tabSelected === 'topicSettingsCategories' ? 'active' : ''">
+                        <div class="tab_button" ng-click="selectTab('topicSettingsCategories')" ng-class="tabSelected === 'topicSettingsCategories' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">CATEGORIES</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsInvite'" ng-class="tabSelected === 'topicSettingsInvite' ? 'active' : ''">
+                        <div class="tab_button" ng-click="selectTab('topicSettingsInvite')" ng-class="tabSelected === 'topicSettingsInvite' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">INVITE</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsShare'" ng-class="tabSelected === 'topicSettingsShare' ? 'active' : ''">
+                        <div class="tab_button" ng-click="selectTab('topicSettingsShare')" ng-class="tabSelected === 'topicSettingsShare' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">SHARE</div>
                                 <div class="blue_bottom_line"></div>
@@ -48,10 +48,10 @@
                         </div>
 
                         <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveTopic()">
+                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canUpdate()" ng-click="doSaveTopic()">
                                 Save topic
                             </div>
-                            <div class="blue_button" ng-if="members.users.length || members.emails.length" ng-click="doSaveTopic()">
+                            <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canUpdate()" ng-click="doSaveTopic()">
                                 Save topic and send invite
                             </div>
                         </div>
@@ -68,22 +68,6 @@
 
 
                 <div class="lightbox_section">
-
-
-                    <div class="settings_section full_width">
-                        <div class="settings_cell">
-                            <div class="setting_title">
-                                Topic title
-                            </div>
-                            <div class="setting_description">
-                                USE A TITLE THAT IS CLEAR AND UNDERSTANDABLE
-                            </div>
-                            <input placeholder="Group name" ng-model="form.topic.title">
-                        </div>
-                    </div>
-                    <div class="line lightest_line"></div>
-
-
                     <!--<div class="settings_section group_image">
 
                         <div class="settings_cell">
@@ -107,15 +91,15 @@
                     <div class="settings_section">
                         <div class="settings_cell">
                             <div class="setting_title">
-                                Make your group private
+                                Make your topic private
                             </div>
                             <div class="setting_description">
-                                ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE GROUP
+                                ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC
                             </div>
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-toggle cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'" ng-model="form.topic.visibility"></div>
+                            <div cos-disabled="!topic.canUpdate()" cos-toggle cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'" ng-model="form.topic.visibility"></div>
                         </div>
 
                     </div>
@@ -175,7 +159,13 @@
                         </div>
 
                         <div class="settings_cell">
-                            <input value="#cos_hipsters" ng-model="form.topic.hashtag">
+                            <input cos-disabled="!topic.canUpdate()" value="#cos_hipsters" ng-model="form.topic.hashtag" ng-change="checkHashtag()" ng-class="{'error_input': errors.hashtag}">
+                            <label for="hashtag" class="error_label" ng-if="errors.hashtag">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.hashtag}}"></span>
+                                </div>
+                            </label>
                         </div>
 
                     </div>
@@ -209,7 +199,7 @@
                         </div>
 
                         <div class="settings_cell">
-                            <div class="blue_button yes" ng-click="doDeleteTopic(topic)">Delete topic</div>
+                            <div cos-disabled="!topic.canDelete()" class="blue_button yes" ng-click="doDeleteTopic(topic)">Delete topic</div>
                         </div>
 
                     </div>
@@ -231,7 +221,7 @@
                                 {{topicCategory}}
                             </div>
 
-                            <div class="category_cell category_control" ng-click="removeTopicCategory(topicCategory)">
+                            <div class="category_cell category_control" cos-disabled="!topic.canUpdate()" ng-click="removeTopicCategory(topicCategory)">
                                     <div class="sprite_temp2 sprite-icon-category-delete2x"></div>
                             </div>
 
@@ -249,7 +239,7 @@
                                 {{category}}
                             </div>
 
-                            <div class="category_cell category_control" ng-click="addTopicCategory(category)">
+                            <div class="category_cell category_control" cos-disabled="!topic.canUpdate()" ng-click="addTopicCategory(category)">
                                     <div class="sprite_temp2 desktop_fix sprite-icon-category-add2x"></div>
                                     <div class="sprite_temp2 mobile_fix sprite-icon-category-add2x-black"></div>
                             </div>
@@ -272,7 +262,7 @@
 
                     <div class="searchbox_with_icon_and_text only_text">
                         <div cos-dropdown ng-class="{search_with_dropdown : (searchResults.users.length || searchResults.groups.length), dropdown_active : (searchResults.users.length || searchResults.groups.length)}">
-                            <typeahead id="userSearch" class="auto-complete" items="searchResults.combined" term="searchString" search="search(term, 'user')"
+                            <typeahead cos-disabled="!topic.canUpdate()" id="userSearch" class="auto-complete" items="searchResults.combined" term="searchString" search="search(term, 'user')"
                                        select="addTopicMember(item)" placeholder="Search by username or e-mail address">
                                 <div class="search_area_wrap">
                                     <div class="search_dropdown_area" ng-show="searchResults.users.length || searchResults.groups.length">
@@ -455,15 +445,15 @@
 
                     <div class="copy_link">
                         <div class="searchbox_with_icon_and_text">
-                            <input ng-model="form.urlJoin">
+                            <input id="url_invite_topic_input" ng-model="form.urlJoin" cos-disabled="!topic.canUpdate()">
                             <div class="search_text">
-                                <div class="blue_link table_cell" ng-click="generateTokenJoin()">
+                                <div class="blue_link table_cell" cos-disabled="!topic.canUpdate()" ng-click="generateTokenJoin()">
                                     Create a new link
                                 </div>
                             </div>
                         </div>
 
-                        <div class="blue_button" ng-if="!app.createGroupsInviteUsers">
+                        <div class="blue_button" cos-disabled="!topic.canUpdate()" ng-click="copyInviteLink()" ng-if="!app.createGroupsInviteUsers">
                             Copy link
                         </div>
                     </div>

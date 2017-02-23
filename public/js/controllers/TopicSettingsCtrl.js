@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', 'sSearch', 'sLocation', 'Topic', 'TopicMemberUser', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, sSearch, sLocation, Topic, TopicMemberUser, TopicMemberGroup) {
+    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'Topic', 'TopicMemberUser', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, Topic, TopicMemberUser, TopicMemberGroup) {
         $log.debug('TopicSettingsCtrl', $state, $stateParams);
 
         $scope.levels = {
@@ -72,6 +72,30 @@ angular
             }
         };
 
+        $scope.checkHashtag = function () {
+            var length = 0;
+            var str = $scope.form.topic.hashtag;
+            var bytesLeft = 0;
+            var hashtagMaxLength = 59;
+            if(str){
+                var length = str.length;
+                for (var i= 0; i < str.length; i++) {
+                  var code = str.charCodeAt(i);
+                  if (code > 0x7f && code <= 0x7ff) length++;
+                  else if (code > 0x7ff && code <= 0xffff) length+=2;
+                  if (code >= 0xDC00 && code <= 0xDFFF) i++; //trail surrogate
+                }
+            }
+
+            bytesLeft = (((hashtagMaxLength - length) > 0) ? (hashtagMaxLength - length) : 0);
+            if((hashtagMaxLength - length) < 0){
+                $scope.errors = {hashtag:'MSG_ERROR_40000_TOPIC_HASHTAG'};
+            }
+            else if($scope.errors && $scope.errors.hashtag){
+                $scope.errors.hashtag = null;
+            }
+        }
+
         $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,
             $scope.topic.$updateTokenJoin();
             $scope.topic = Topic
@@ -84,8 +108,24 @@ angular
                 });
         };
 
+        $scope.selectTab = function (tab) {
+            $scope.tabSelected = tab;
+            $location.search({tab: tab});
+        }
+
+        $scope.copyInviteLink = function () {
+            var urlInputElement = document.getElementById('url_invite_topic_input');
+            urlInputElement.focus();
+            urlInputElement.select();
+            if (!urlInputElement.execCommand) return; // feature detection
+            var fieldRange = urlInputElement.createTextRange();
+            fieldRange.execCommand('copy');
+        }
+
         $scope.generateJoinUrl = function () {
-            $scope.form.urlJoin = sLocation.getAbsoluteUrl('/join/'+$scope.topic.tokenJoin);
+            if ($scope.topic.tokenJoin) {
+                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/join/'+$scope.topic.tokenJoin);
+            }
         }
 
         $scope.addTopicCategory = function (category) {
@@ -99,6 +139,7 @@ angular
         };
 
         $scope.addTopicMember = function (member) {
+            console.log(member);
             if(member.hasOwnProperty('company')) {
                 $scope.addTopicMemberUser(member);
             } else {
