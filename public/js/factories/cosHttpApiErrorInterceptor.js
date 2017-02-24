@@ -47,7 +47,8 @@ angular
             var path = config.url.match(API_REQUEST_REGEX)[0]
                 .replace(/\/self\//g, '_')
                 .replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/ig, '_')
-                .replace(/\//g, '_');
+                .replace(/\//g, '_'); // TODO: In the future handle /join/:hash urls as :hash is not UUID
+
             var statusCode = (data.status && data.status.code) ? data.status.code : errorResponse.status;
 
             return GENERAL_ERROR_KEY_PATTERN
@@ -56,7 +57,6 @@ angular
                 .replace(':statusCode', statusCode)
                 .replace(/[_]+/g, '_')
                 .toUpperCase();
-
         };
 
         var fieldErrorsToKeys = function (errorResponse) {

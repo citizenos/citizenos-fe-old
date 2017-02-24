@@ -17,6 +17,17 @@ angular
                         }
                     }
                 },
+                save: {
+                    method: 'POST',
+                    params: {topicId: '@topicId', groupId: null},
+                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups'),
+                    transformRequest: function (data) {
+                        return angular.toJson({topicId: data.topicId, groupId: data.id, level: data.level});
+                    },
+                    transformResponse: function (data, headersGetter, status) {
+                        return angular.fromJson(data);
+                    }
+                },
                 update: {
                     method: 'PUT',
                     transformRequest: function (data) {

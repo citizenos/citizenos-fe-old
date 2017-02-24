@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, $location, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
         $scope.levels = {
             none: 0,
@@ -164,6 +164,11 @@ angular
                 $scope.members.emails[$scope.members.emails.indexOf(member)].level = level;
             }
         };
+
+        $scope.selectTab = function (tab) {
+            $scope.tabSelected = tab;
+            $location.search({tab: tab});
+        }
 
         $scope.doSaveGroup = function () {
             $scope.errors = null;

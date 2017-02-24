@@ -3,15 +3,13 @@ angular
     .directive('cosDisabled', [function () {
         return {
             restrict: 'A',
-            scope: {
-                cosDisabled: '='
-            },
             priority: -10,
-            link: function (scope, elem) {
+            link: function (scope, elem, attrs) {
+                var cosDisabled = scope.$eval(attrs.cosDisabled);
                 var classDisabled = 'disabled';
 
                 var update = function () {
-                    if (scope.cosDisabled) {
+                    if (cosDisabled) {
                         elem.addClass(classDisabled);
                     } else {
                         elem.removeClass(classDisabled);
@@ -19,13 +17,13 @@ angular
                 };
 
                 elem.on('click', function (e) {
-                    if (scope.cosDisabled) {
+                    if (cosDisabled) {
                         e.stopImmediatePropagation();
                     }
                 });
 
                 scope.$watch(function () {
-                    return scope.cosDisabled;
+                    return cosDisabled;
                 }, function () {
                     update();
                 });

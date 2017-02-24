@@ -50,57 +50,92 @@
                     </div>
                 </div>
 
-                <div ng-repeat="item in itemList"><!-- item can be Topic or a Group -->
-                    <!-- Group -->
-                    <div ng-if="isGroup(item)" class="container_header bold" ui-sref-active="active">
-                        <div class="header_img_wrap">
-                            <img ng-if="item.imageUrl" ng-src="{{item.imageUrl}}">
-                            <div ng-if="!item.imageUrl" class="group_circle small">
-                                <div class="table_cell" cos-initials="item.name | limitTo: 1">
-                                    C
-                                </div>
+                <div ng-repeat-start="item in itemList"></div><!-- item can be Topic or a Group -->
+
+                <!-- Group -->
+                <div ng-if="isGroup(item)" class="container_header bold" ui-sref-active="active">
+                    <div class="header_img_wrap">
+                        <img ng-if="item.imageUrl" ng-src="{{item.imageUrl}}">
+                        <div ng-if="!item.imageUrl" class="group_circle small">
+                            <div class="table_cell" cos-initials="item.name | limitTo: 1">
+                                C
                             </div>
-                        </div>
-                        <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id})">
-                            {{item.name}} ({{item.members.topics.count}})
-                        </div>
-                        <div class="minimize_container" ng-if="item.members.topics.count" ng-click="doToggleGroupTopicList(item)">
-                            <div ng-class="!item.members.topics.rows ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                         </div>
                     </div>
+                    <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id})">
+                        {{item.name}} ({{item.members.topics.count}})
+                    </div>
+                    <div class="minimize_container" ng-if="item.members.topics.count" ng-click="doToggleGroupTopicList(item)">
+                        <div ng-class="!isGroupMemberTopicsVisible(item) ?  'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                    </div>
+                </div>
 
-                    <!-- Topic -->
-                    <div ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
-                        <div class="small_topic_header">
-                            <div class="small_topic_left_cont">
-                                <div class="small_topic_icon">
-                                    <div class="sprite" ng-class="'sprite-mytopics-icon-' + (item.status | lowercase) + '2x'"></div>
-                                </div>
-                                <div class="small_topic_small_text">{{item.status}}</div>
+                <!-- Group member Topic -->
+                <div ng-if="isGroupMemberTopicsVisible(item)" ng-repeat="groupMemberTopic in item.members.topics.rows" class="small_topic" ui-sref="my.topics.topicId({topicId: groupMemberTopic.id})" ui-sref-active="active">
+                    <div class="small_topic_header">
+                        <div class="small_topic_left_cont">
+                            <div class="small_topic_icon">
+                                <div class="sprite" ng-class="'sprite-mytopics-icon-' + (groupMemberTopic.status | lowercase) + '2x'"></div>
                             </div>
-
-                            <div class="small_topic_right_cont">
-                                <div class="small_topic_icon">
-                                    <div class="sprite sprite-menu-icon-groups2x-dark"></div>
-                                </div>
-                                <div class="small_topic_small_text">{{item.members.groups.count}} groups</div>
-                            </div>
-                            <div class="clearer"></div>
+                            <div class="small_topic_small_text">{{groupMemberTopic.status}}</div>
                         </div>
 
-                        <div class="small_topic_title">
-                            {{item.title}}<span class="lock_icon_wrap" ng-show="item.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
-                        </div>
-
-                        <div class="line lightest_line"></div>
-
-                        <div class="small_topic_footer">
-                            <div class="small_topic_right_cont">
-                                <div class="small_topic_small_text">{{(item.updatedAt || item.createdAt) | amDateFormat : 'L LT'}}</div>
+                        <div class="small_topic_right_cont">
+                            <div class="small_topic_icon">
+                                <div class="sprite sprite-menu-icon-groups2x-dark"></div>
                             </div>
+                            <div class="small_topic_small_text">{{groupMemberTopic.members.groups.count}} groups</div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                    <div class="small_topic_title">
+                        {{groupMemberTopic.title}}<span class="lock_icon_wrap" ng-show="groupMemberTopic.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
+                    </div>
+
+                    <div class="line lightest_line"></div>
+
+                    <div class="small_topic_footer">
+                        <div class="small_topic_right_cont">
+                            <div class="small_topic_small_text">{{(groupMemberTopic.updatedAt || groupMemberTopic.createdAt) | amDateFormat : 'L LT'}}</div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Topics -->
+                <div ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
+                    <div class="small_topic_header">
+                        <div class="small_topic_left_cont">
+                            <div class="small_topic_icon">
+                                <div class="sprite" ng-class="'sprite-mytopics-icon-' + (item.status | lowercase) + '2x'"></div>
+                            </div>
+                            <div class="small_topic_small_text">{{item.status}}</div>
+                        </div>
+
+                        <div class="small_topic_right_cont">
+                            <div class="small_topic_icon">
+                                <div class="sprite sprite-menu-icon-groups2x-dark"></div>
+                            </div>
+                            <div class="small_topic_small_text">{{item.members.groups.count}} groups</div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                    <div class="small_topic_title">
+                        {{item.title}}<span class="lock_icon_wrap" ng-show="item.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
+                    </div>
+
+                    <div class="line lightest_line"></div>
+
+                    <div class="small_topic_footer">
+                        <div class="small_topic_right_cont">
+                            <div class="small_topic_small_text">{{(item.updatedAt || item.createdAt) | amDateFormat : 'L LT'}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-repeat-end></div>
+
             </div>
 
             <!-- RIGHT SIDE -->
@@ -125,7 +160,7 @@
 
             <div class="button_area">
 
-                <div class="big_button" ui-sref="groups.create">
+                <div class="big_button" ui-sref="my.groups.create">
                     <div class="button_cell">
                         <div class="icon_nudge">
                             <div class="sprite sprite-icon-creategroup2x"></div>

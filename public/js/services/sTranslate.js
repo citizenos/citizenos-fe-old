@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sTranslate', ['$state', '$translate', '$log', '$filter', '$cookies', 'cosConfig', function ($state, $translate, $log, $filter, $cookies, cosConfig) {
+    .service('sTranslate', ['$state', '$stateParams', '$translate', '$log', '$filter', '$cookies', 'cosConfig', function ($state, $stateParams, $translate, $log, $filter, $cookies, cosConfig) {
         var sTranslate = this;
 
         sTranslate.LANGUAGES = Object.keys(cosConfig.language.list);
@@ -33,7 +33,8 @@ angular
         sTranslate.switchLanguage = function (language) {
             $log.debug('switch language', language);
             if (sTranslate.checkLanguageIsValid(language)) {
-                $state.transitionTo($state.current.name, {language: language});
+                $stateParams.language = language;
+                $state.transitionTo($state.current.name, $stateParams);
             }
             sTranslate.setLanguage(language);
         };

@@ -24,19 +24,19 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="createGroupSlider" start_slide_at="306">
-                        <div class="tab_button" ng-click="tabSelected = 'settings'" ng-class="tabSelected === 'settings' ? 'active' : ''">
+                        <div class="tab_button" ng-click="selectTab('settings')" ng-class="tabSelected === 'settings' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">SETTINGS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="tabSelected = 'topics'" ng-class="tabSelected === 'topics' ? 'active' : ''">
+                        <div class="tab_button" ng-click="selectTab('topics')" ng-class="tabSelected === 'topics' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">ADD TOPICS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="tabSelected = 'users'" ng-class="tabSelected === 'users' ? 'active' : ''">
+                        <div class="tab_button" ng-click="selectTab('users')" ng-class="tabSelected === 'users' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">INVITE USERS</div>
                                 <div class="blue_bottom_line"></div>
