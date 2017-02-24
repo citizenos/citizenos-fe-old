@@ -7,7 +7,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/citizenos/citizenos-fe"
+    "url": "git+https://github.com/citizenos/citizenos-fe.git"
   },
   "scripts": {
     "start": "node ./index.js",
@@ -39,5 +39,9 @@
     "jshint": "2.9.3",
     "jshint-stylish": "2.2.1",
     "run-sequence": "1.2.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/citizenos/citizenos-fe/issues"
+  },
+  "author": ""
 }

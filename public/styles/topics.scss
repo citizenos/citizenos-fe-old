@@ -684,19 +684,6 @@
                         @media (max-width: 560px) {
 
                             .pretend_tr:not(:first-child) {
-                                height: 80px;
-                                position: relative;
-                                display: block;
-                                width: 100%;
-                            }
-
-                            .pretend_tr:first-child:after {
-                                content: '';
-                                display: block;
-                                clear: both;
-                            }
-
-                            .pretend_table, .pretend_tr,  .pretend_td, .pretend_th {
                                 position: relative;
                                 display: block;
                                 width: 100%;
@@ -740,24 +727,6 @@
 
                             .pretend_th {
                                 float: left;
-                            }
-
-                            .pretend_td:not(:first-child) {
-                                position: absolute;
-                            }
-
-                            .pretend_td:nth-child(2) {
-                                right: 70px;
-
-                            }
-
-                            .pretend_td:nth-child(3) {
-                                left: 0;
-                                text-align: left;
-                            }
-
-                            .pretend_td:nth-child(4) {
-                                right: 20px;
                                 width: initial !important;
                                 margin-left: 20px;
                                 border-bottom: none;
@@ -781,6 +750,7 @@
                                 text-align: left;
                                 float: left;
                                 margin-top: 5px;
+                                width: auto;
                             }
 
                             .pretend_td:nth-child(4) {
