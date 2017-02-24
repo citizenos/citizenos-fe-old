@@ -95,6 +95,11 @@
                     <div class="table_wrapper">
                         <div class="pretend_table">
                             <div class="pretend_tr">
+                                <div ng-if="wWidth <= 500" class="mobile_text pretend_th">
+                                    <div class="th_text">
+                                        Order by:
+                                    </div>
+                                </div>
                                 <div class="pretend_th">
                                     <div class="th_text">
                                         Title
@@ -117,10 +122,10 @@
                                     <span class="blue_link bold">Ettepanek seadusega keelata kõrvklappide kandmine tänaval</span>
                                 </div>
                                 <div class="pretend_td">
-                                    55.55.5555 55:55
+                                    <span class="pretend_table_mobile_text">Activity:</span> 55.55.5555 55:55
                                 </div>
                                 <div class="pretend_td">
-                                    555 000 000
+                                    <span class="pretend_table_mobile_text">Users:</span> 555 000 000
                                 </div>
                             </div>
                         </div>

@@ -93,7 +93,7 @@ table, .pretend_table {
 
     th, .pretend_th {
         font-size: 13px;
-        opacity: .7;
+        opacity: .5;
         font-weight: $medium;
         text-decoration: underline;
         cursor: pointer;
@@ -115,6 +115,25 @@ table, .pretend_table {
             }
         }
     }
+
+    .pretend_table_mobile_text {
+        display: none;
+        opacity: .7;
+    }
+
+}
+
+
+.pretend_table {
+    display: table;
+}
+
+.pretend_tr {
+    display: table-row;
+}
+
+.pretend_td, .pretend_th {
+    @extend .table_cell;
 }
 
 .name_wrap {
@@ -307,18 +326,6 @@ table, .pretend_table {
         top: 0;
         right: 0;
     }
-}
-
-.pretend_table {
-    display: table;
-}
-
-.pretend_tr {
-    display: table-row;
-}
-
-.pretend_td, .pretend_th {
-    @extend .table_cell;
 }
 
 .hide_560 {

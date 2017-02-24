@@ -149,9 +149,25 @@
                                 padding-top: 19px;
                             }
 
+                            @media (max-width: 500px) {
+
+                                @include table_mobile_view;
+                                
+                                .pretend_td:not(:first-child) {
+                                    padding: 0 !important;
+                                    width: initial !important;
+                                    min-width: initial !important;
+                                    text-align: left;
+                                }
+
+                                .pretend_td:first-child {
+                                    padding: 11px 0 !important;
+                                    width: 100%;
+                                }
+                            }
+
                         }
                     }
-
                 }
 
             }

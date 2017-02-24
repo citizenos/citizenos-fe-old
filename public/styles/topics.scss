@@ -683,63 +683,7 @@
 
                         @media (max-width: 560px) {
 
-                            .pretend_tr:not(:first-child) {
-                                position: relative;
-                                display: block;
-                                width: 100%;
-                                border-top: 1px solid $lightest_gray;
-                                padding: 9px 0 20px;
-                            }
-
-                            .pretend_tr:first-child {
-                                width: 100%;
-                                padding-bottom: 10px;
-                                &:after {
-                                    content: '';
-                                    display: block;
-                                    clear: both;
-                                }
-                            }
-
-                            .pretend_td:not(:first-child) {
-                                padding: 0;
-                            }
-
-                            .pretend_td:first-child {
-                                padding: 11px 0 !important;
-                            }
-
-                            .pretend_tr {
-                                &:after {
-                                    content: '';
-                                    display: block;
-                                    clear: both;
-                                }
-                            }
-
-                            .pretend_tr:last-child .pretend_td:not(:first-child) {
-                                padding-bottom: 0;
-                            }
-
-                            .pretend_table, .pretend_tr, .pretend_td, .pretend_th {
-                                display: block;
-                            }
-
-                            .pretend_th {
-                                float: left;
-                                width: initial !important;
-                                margin-left: 20px;
-                                border-bottom: none;
-                                &:last-child {
-                                    display: none;
-                                }
-                            }
-
-                            .mobile_text {
-                                text-decoration: none;
-                                opacity: 1;
-                                margin-left: 0;
-                            }
+                            @include table_mobile_view;
 
                             .pretend_td:nth-child(2) {
                                 float: right;
@@ -757,6 +701,14 @@
                                 position: absolute;
                                 right: 0;
                                 margin-top: -1px;
+                            }
+
+                            .pretend_td:not(:first-child) {
+                                padding: 0;
+                            }
+
+                            .pretend_td:first-child {
+                                padding: 11px 0 !important;
                             }
                         }
 
