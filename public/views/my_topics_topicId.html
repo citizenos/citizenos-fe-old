@@ -88,10 +88,10 @@
                         <div class="item_content">
                             <div class="item_text">
                                 {{topic.members.users.count}}
-                            </div>
-                            <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="doShowMemberUserList();">
-                                view
+                                <span class="separator">|</span>
+                                <span class="item_link blue_link" ng-click="doShowMemberUserList();">
+                                    view
+                                </span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -104,10 +104,10 @@
                         <div class="item_content">
                             <div class="item_text">
                                 {{topic.members.groups.count}}
-                            </div>
-                            <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="doShowMemberGroupList();">
-                                view
+                                <span class="separator">|</span>
+                                <span class="item_link blue_link" ng-click="doShowMemberGroupList();">
+                                    view
+                                </span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -136,24 +136,24 @@
                             Topic actions
                         </div>
                         <div class="item_content">
-                            <div class="item_text blue_link" ui-sref="my.topics.topicId.settings({topicId: topic.id})">
+                            <span class="item_text blue_link" ui-sref="my.topics.topicId.settings({topicId: topic.id})">
                                 settings
-                            </div>
-                            <div class="v_line bold"></div>
-                            <div class="item_text blue_link" ui-sref="topics.view({topicId: topic.id})">
+                            </span>
+                            <span class="separator">|</span>
+                            <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id})">
                                 view
-                            </div>
-                            <div class="v_line bold"></div>
-                            <div class="item_text blue_link" ng-click="doLeaveTopic()">
+                            </span>
+                            <span class="separator">|</span>
+                            <span class="item_text blue_link" ng-click="doLeaveTopic()">
                                 leave
-                            </div>
-                            <div ng-if="topic.canDelete()">
-                                <div class="v_line bold"></div>
-                                <div class="item_text remove blue_link" ng-click="doDeleteTopic()">
+                            </span>
+                            <span ng-if="topic.canDelete()">
+                                <span class="separator">|</span>
+                                <span class="item_text remove blue_link" ng-click="doDeleteTopic()">
                                     <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
                                     delete
-                                </div>
-                            </div>
+                                </span>
+                            </span>
                         </div>
                         <div class="clearer"></div>
                     </div>
@@ -274,11 +274,11 @@
                         <div class="item_content">
                             <div class="item_text">
                                 {{voteResults.countTotal}}
+                                <!--<span class="separator">|</span>
+                                <span class="item_link blue_link">
+                                    view who voted TODO!
+                                </span-->
                             </div>
-                            <!--div class="v_line"></div>
-                            <div class="item_link blue_link">
-                                view who voted TODO!
-                            </div-->
                         </div>
                         <div class="clearer"></div>
                     </div>
@@ -290,10 +290,10 @@
                         <div class="item_content">
                             <div class="item_text">
                                 {{(topic.vote.endsAt | amDateFormat : 'L') || 'none'}}
-                            </div>
-                            <div class="v_line"></div>
-                            <div class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt">
-                                edit
+                                <span class="separator">|</span>
+                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt">
+                                    edit
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -392,9 +392,9 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        {{group.members.users.count}}
+                        <span class="pretend_table_mobile_text">Users: </span>{{group.members.users.count}}
                     </div>
-                    <div class="pretend_td">
+                    <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberGroup(group)" cos-disabled="!topic.canUpdate()">
                             <div class="btn">
                                 <div class="table_cell">
@@ -503,7 +503,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pretend_td">
+                    <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(user)" cos-disabled="!topic.canUpdate() || !user.levelUser">
                             <div class="btn">
                                 <div class="table_cell">

@@ -328,13 +328,6 @@ table, .pretend_table {
     }
 }
 
-.hide_560 {
-    display: none;
-    @media (max-width: 560px) {
-        display: initial;
-    }
-}
-
 .yes_no_buttons {
     display: table;
     width: 100%;
@@ -1003,10 +996,6 @@ a:link, a:visited {
             }
         }
 
-        .item_text, .v_line, .item_link {
-            float: left;
-        }
-
         .v_line {
             height: 14px;
             width: 1px;
@@ -1027,7 +1016,6 @@ a:link, a:visited {
         .item_link {
             font-size: 13px;
             margin-top: 2px;
-            margin-right: 7px;
         }
 
         .remove {

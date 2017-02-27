@@ -175,7 +175,10 @@
                             padding-left: 20%;
                         }
                         @media (max-width: 621px) {
-                            padding-left: 4px;
+                            padding-left: 20px;
+                            .post_argument_wrap {
+                                padding-left: 0;
+                            }
                         }
                         .argument {
                             border-left: none;
@@ -183,6 +186,7 @@
                             padding-right: 46px;
                             padding-left: 0;
                         }
+
                     }
 
                 
@@ -426,7 +430,7 @@
                 padding-bottom: 60px;
 
                 @media (max-width: 621px) {
-                    padding: 0 20px 30px 20px;
+                    padding: 0 20px 30px;
                 }
 
                 input, textarea {

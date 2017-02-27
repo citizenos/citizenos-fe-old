@@ -309,7 +309,7 @@
                 box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
 
                 .blue_link {
-                    display: inline;
+                    display: inline-block;
                 }
 
                 .second_header {
@@ -525,10 +525,8 @@
                             width: 66.6%;
 
                             @media (max-width: 1280px) {
-                                width: 50%;
-                            }
-                            @include mobile {
                                 width: 100%;
+                                padding: 0 !important;
                             }
                         }
 
@@ -545,26 +543,32 @@
                                 .item_content:nth-child(2) {
                                     margin-top: 4px;
                                 }
+                                
+                                .results_table {
+                                    display: table;
+                                    border-collapse: collapse;
+                                    table-layout: fixed;
+                                    width: 100%;
 
-                                .item_content {
-                                    margin: 9px 0;
-                                    float: left;
-                                    @include mobile {
-                                        width: 100%;
-                                    }
+                                    .item_content {
+                                        display: table-row;
 
-                                    .item_text:first-child {
-                                        width: 111px;
-                                        @include mobile {
-                                            width: initial;
+                                        &:not(:last-child) {
+                                            border-bottom: 1px solid $lightest_gray;
+                                        }
+
+                                        .item_text {
+                                            @extend .table_cell;
+                                            &:last-child {
+                                                width: 95px;
+                                                padding-right: 0;
+                                                text-align: right;
+                                            }
+                                            padding: 10px 30px 10px 0;
+                                            word-wrap: break-word;
                                         }
                                     }
 
-                                    .item_text:last-child {
-                                        @include mobile {
-                                            float: right;
-                                        }
-                                    }
                                 }
 
                             }
@@ -695,12 +699,6 @@
                                 float: left;
                                 margin-top: 5px;
                                 width: auto;
-                            }
-
-                            .pretend_td:nth-child(4) {
-                                position: absolute;
-                                right: 0;
-                                margin-top: -1px;
                             }
 
                             .pretend_td:not(:first-child) {
