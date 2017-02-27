@@ -680,7 +680,7 @@ a:link, a:visited {
             height: inherit;
             width: inherit;
             @extend .table_cell;
-            .sprite_temp2 {
+            .sprite {
                 margin: 0 auto;
             }
         }
@@ -965,7 +965,7 @@ a:link, a:visited {
 .float_wrap {
     margin-top: 8px;
 
-    .sprite_temp2 {
+    .sprite {
         float: left;
         margin-bottom: 12px;
         &:first-child {

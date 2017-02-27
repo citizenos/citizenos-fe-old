@@ -2,7 +2,6 @@
 @import 'base';
 @import 'mixins_n_extends';
 @import 'icons';
-@import 'icons_temp';
 
 .comments_section {
     margin-top: 60px;
@@ -380,12 +379,12 @@
                             .thumbs_up, .thumbs_down {
                                 font-weight: $bold;
                                 cursor: pointer;
-                                .sprite_temp2 {
+                                .sprite {
                                     margin-right: 8px;
                                     opacity: 0.44;
                                 }
                                 &:hover {
-                                    .sprite_temp2 {
+                                    .sprite {
                                         opacity: 1;
                                         @include tablet {
                                             opacity: 0.44;
@@ -397,7 +396,7 @@
                             .exclamation {
                                 cursor: pointer;
                                 &:hover {
-                                    .sprite_temp2.desktop_fix {
+                                    .sprite.desktop_fix {
                                         @extend .sprite-icon-reportmessage-hover2x;
                                     }
                                 }

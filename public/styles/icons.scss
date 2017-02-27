@@ -7,7 +7,7 @@
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
 	.sprite {
         background-image: url('../imgs/icons_sprite2x.png');
-		background-size: 2467px 1899px;
+		background-size: 2797px 2145px;
 	}
 }
 
@@ -119,434 +119,536 @@
 	background-position: -305px -294px;
 }
 
+.sprite-icon-arrow-reply2x {
+	width: 12px;
+	height: 11px;
+	background-position: -313px -300px;
+}
+
 .sprite-icon-arrow-right-topic-tab2x {
 	width: 22px;
 	height: 12px;
-	background-position: -313px -300px;
+	background-position: -325px -311px;
 }
 
 .sprite-icon-arrow-right-topic-tab2x-hover {
 	width: 22px;
 	height: 12px;
-	background-position: -335px -312px;
+	background-position: -347px -323px;
 }
 
 .sprite-icon-arrow-topic-tab2x {
 	width: 22px;
 	height: 12px;
-	background-position: -357px -324px;
+	background-position: -369px -335px;
 }
 
 .sprite-icon-arrow-topic-tab2x-hover {
 	width: 22px;
 	height: 12px;
-	background-position: -379px -336px;
+	background-position: -391px -347px;
+}
+
+.sprite-icon-category-add2x {
+	width: 12px;
+	height: 12px;
+	background-position: -413px -359px;
+}
+
+.sprite-icon-category-add2x-black {
+	width: 12px;
+	height: 12px;
+	background-position: -425px -371px;
+}
+
+.sprite-icon-category-delete2x {
+	width: 10px;
+	height: 10px;
+	background-position: -437px -383px;
 }
 
 .sprite-icon-creategroup2x {
 	width: 84px;
 	height: 86px;
-	background-position: -401px -348px;
+	background-position: -447px -393px;
+}
+
+.sprite-icon-delegate2x {
+	width: 20px;
+	height: 24px;
+	background-position: -531px -479px;
 }
 
 .sprite-icon-joingroup2x {
 	width: 97px;
 	height: 71px;
-	background-position: -485px -434px;
+	background-position: -551px -503px;
+}
+
+.sprite-icon-list-ordering-down-black2x {
+	width: 6px;
+	height: 11px;
+	background-position: -648px -574px;
 }
 
 .sprite-icon-mobile-edit2x {
 	width: 18px;
 	height: 18px;
-	background-position: -582px -505px;
+	background-position: -654px -585px;
+}
+
+.sprite-icon-mobile-settings-active2x {
+	width: 20px;
+	height: 21px;
+	background-position: -672px -603px;
 }
 
 .sprite-icon-mobile-settings2x {
 	width: 20px;
 	height: 21px;
-	background-position: -600px -523px;
+	background-position: -692px -624px;
+}
+
+.sprite-icon-reportmessage-default2x {
+	width: 12px;
+	height: 12px;
+	background-position: -712px -645px;
+}
+
+.sprite-icon-reportmessage-hover2x {
+	width: 12px;
+	height: 12px;
+	background-position: -724px -657px;
+}
+
+.sprite-icon-social-twitter2x {
+	width: 20px;
+	height: 20px;
+	background-position: -736px -669px;
+}
+
+.sprite-icon-thumbsdown-default2x {
+	width: 12px;
+	height: 12px;
+	background-position: -756px -689px;
+}
+
+.sprite-icon-thumbsdown-hover2x {
+	width: 12px;
+	height: 12px;
+	background-position: -768px -701px;
+}
+
+.sprite-icon-thumbsup-default2x {
+	width: 12px;
+	height: 12px;
+	background-position: -780px -713px;
+}
+
+.sprite-icon-thumbsup-hover2x {
+	width: 12px;
+	height: 12px;
+	background-position: -792px -725px;
 }
 
 .sprite-icon-back2x {
 	width: 16px;
 	height: 18px;
-	background-position: -620px -544px;
+	background-position: -804px -737px;
 }
 
 .sprite-icon-certified-fb2x {
 	width: 14px;
 	height: 14px;
-	background-position: -636px -562px;
+	background-position: -820px -755px;
 }
 
 .sprite-icon-certified-fb-2-x2x {
 	width: 28px;
 	height: 28px;
-	background-position: -650px -576px;
+	background-position: -834px -769px;
 }
 
 .sprite-icon-certified-google2x {
 	width: 14px;
 	height: 14px;
-	background-position: -678px -604px;
+	background-position: -862px -797px;
 }
 
 .sprite-icon-certified-google-2-x2x {
 	width: 28px;
 	height: 28px;
-	background-position: -692px -618px;
+	background-position: -876px -811px;
 }
 
 .sprite-icon-certified-id2x {
 	width: 14px;
 	height: 14px;
-	background-position: -720px -646px;
+	background-position: -904px -839px;
 }
 
 .sprite-icon-certified-id-2-x2x {
 	width: 28px;
 	height: 28px;
-	background-position: -734px -660px;
+	background-position: -918px -853px;
 }
 
 .sprite-icon-certified-id-inverted2x {
 	width: 14px;
 	height: 14px;
-	background-position: -762px -688px;
+	background-position: -946px -881px;
 }
 
 .sprite-icon-certified-id-inverted-2-x2x {
 	width: 28px;
 	height: 28px;
-	background-position: -776px -702px;
+	background-position: -960px -895px;
 }
 
 .sprite-icon-closemenu-b-2x {
 	width: 12px;
 	height: 12px;
-	background-position: -804px -730px;
+	background-position: -988px -923px;
 }
 
 .sprite-icon-closemenu2x {
 	width: 12px;
 	height: 12px;
-	background-position: -816px -742px;
+	background-position: -1000px -935px;
 }
 
 .sprite-icon-delete-topic2x {
 	width: 46px;
 	height: 40px;
-	background-position: -828px -754px;
+	background-position: -1012px -947px;
 }
 
 .sprite-icon-dropdown-arrowdown2x {
 	width: 11px;
 	height: 7px;
-	background-position: -874px -794px;
+	background-position: -1058px -987px;
 }
 
 .sprite-icon-favourite2x {
 	width: 22px;
 	height: 22px;
-	background-position: -885px -801px;
+	background-position: -1069px -994px;
 }
 
 .sprite-icon-favourite2x-white {
 	width: 12px;
 	height: 12px;
-	background-position: -907px -823px;
+	background-position: -1091px -1016px;
 }
 
 .sprite-icon-favourite-notfilled2x {
 	width: 22px;
 	height: 22px;
-	background-position: -919px -835px;
+	background-position: -1103px -1028px;
 }
 
 .sprite-icon-hamburger2x {
 	width: 16px;
 	height: 12px;
-	background-position: -941px -857px;
+	background-position: -1125px -1050px;
 }
 
 .sprite-icon-inputfield-error2x {
 	width: 16px;
 	height: 14px;
-	background-position: -957px -869px;
+	background-position: -1141px -1062px;
 }
 
 .sprite-icon-list-ordering2x {
 	width: 6px;
 	height: 11px;
-	background-position: -973px -883px;
+	background-position: -1157px -1076px;
 }
 
 .sprite-icon-lock2x {
 	width: 8px;
 	height: 11px;
-	background-position: -979px -894px;
+	background-position: -1163px -1087px;
 }
 
 .sprite-icon-lock2x-white {
 	width: 8px;
 	height: 11px;
-	background-position: -987px -905px;
+	background-position: -1171px -1098px;
 }
 
 .sprite-icon-notification-check2x {
 	width: 16px;
 	height: 16px;
-	background-position: -995px -916px;
+	background-position: -1179px -1109px;
 }
 
 .sprite-icon-notification-error2x {
 	width: 16px;
 	height: 14px;
-	background-position: -1011px -932px;
+	background-position: -1195px -1125px;
 }
 
 .sprite-icon-notification-info2x {
 	width: 16px;
 	height: 16px;
-	background-position: -1027px -946px;
+	background-position: -1211px -1139px;
 }
 
 .sprite-icon-search-b-2x {
 	width: 15px;
 	height: 15px;
-	background-position: -1043px -962px;
+	background-position: -1227px -1155px;
 }
 
 .sprite-icon-search-gray-2x {
 	width: 15px;
 	height: 15px;
-	background-position: -1058px -977px;
+	background-position: -1242px -1170px;
 }
 
 .sprite-icon-search2x {
 	width: 15px;
 	height: 15px;
-	background-position: -1073px -992px;
+	background-position: -1257px -1185px;
+}
+
+.sprite-id-kaart-small2x {
+	width: 65px;
+	height: 20px;
+	background-position: -1272px -1200px;
 }
 
 .sprite-i-d-kaart2x {
 	width: 142px;
 	height: 34px;
-	background-position: -1088px -1007px;
+	background-position: -1337px -1220px;
 }
 
 .sprite-id-spinner2x {
 	width: 34px;
 	height: 35px;
-	background-position: -1230px -1041px;
+	background-position: -1479px -1254px;
 }
 
 .sprite-img-idkaart2x {
 	width: 203px;
 	height: 98px;
-	background-position: -1264px -1076px;
+	background-position: -1513px -1289px;
+}
+
+.sprite-inputfield-icon-delete2x {
+	width: 11px;
+	height: 13px;
+	background-position: -1716px -1387px;
 }
 
 .sprite-login-icon-facebook2x {
 	width: 14px;
 	height: 14px;
-	background-position: -1467px -1174px;
+	background-position: -1727px -1400px;
 }
 
 .sprite-login-icon-google2x {
 	width: 14px;
 	height: 14px;
-	background-position: -1481px -1188px;
+	background-position: -1741px -1414px;
 }
 
 .sprite-login-icon-id2x {
 	width: 18px;
 	height: 13px;
-	background-position: -1495px -1202px;
+	background-position: -1755px -1428px;
 }
 
 .sprite-menu-icon-about2x {
 	width: 18px;
 	height: 15px;
-	background-position: -1513px -1215px;
+	background-position: -1773px -1441px;
 }
 
 .sprite-menu-icon-connections2x {
 	width: 21px;
 	height: 17px;
-	background-position: -1531px -1230px;
+	background-position: -1791px -1456px;
 }
 
 .sprite-menu-icon-faq2x {
 	width: 17px;
 	height: 17px;
-	background-position: -1552px -1247px;
+	background-position: -1812px -1473px;
 }
 
 .sprite-menu-icon-groups2x {
 	width: 17px;
 	height: 16px;
-	background-position: -1569px -1264px;
+	background-position: -1829px -1490px;
 }
 
 .sprite-menu-icon-groups2x-dark {
 	width: 17px;
 	height: 16px;
-	background-position: -1586px -1280px;
+	background-position: -1846px -1506px;
 }
 
 .sprite-menu-icon-help2x {
 	width: 17px;
 	height: 17px;
-	background-position: -1603px -1296px;
+	background-position: -1863px -1522px;
 }
 
 .sprite-menu-icon-logout2x {
 	width: 17px;
 	height: 16px;
-	background-position: -1620px -1313px;
+	background-position: -1880px -1539px;
 }
 
 .sprite-menu-icon-topics2x {
 	width: 16px;
 	height: 18px;
-	background-position: -1637px -1329px;
+	background-position: -1897px -1555px;
+}
+
+.sprite-mobiil-id-small2x {
+	width: 70px;
+	height: 20px;
+	background-position: -1913px -1573px;
 }
 
 .sprite-mobiil-i-d2x {
 	width: 149px;
 	height: 34px;
-	background-position: -1653px -1347px;
+	background-position: -1983px -1593px;
 }
 
 .sprite-mytopics-icon-closed2x {
 	width: 12px;
 	height: 12px;
-	background-position: -1802px -1381px;
+	background-position: -2132px -1627px;
 }
 
 .sprite-mytopics-icon-closed2x-w {
 	width: 12px;
 	height: 12px;
-	background-position: -1814px -1393px;
+	background-position: -2144px -1639px;
 }
 
 .sprite-mytopics-icon-deletetopic02x {
 	width: 11px;
 	height: 13px;
-	background-position: -1826px -1405px;
+	background-position: -2156px -1651px;
 }
 
 .sprite-mytopics-icon-deletetopic2x {
 	width: 11px;
 	height: 13px;
-	background-position: -1837px -1418px;
+	background-position: -2167px -1664px;
 }
 
 .sprite-mytopics-icon-followup2x {
 	width: 12px;
 	height: 12px;
-	background-position: -1848px -1431px;
+	background-position: -2178px -1677px;
 }
 
 .sprite-mytopics-icon-followup2x-w {
 	width: 12px;
 	height: 12px;
-	background-position: -1860px -1443px;
+	background-position: -2190px -1689px;
 }
 
 .sprite-mytopics-icon-inprogress2x {
 	width: 12px;
 	height: 12px;
-	background-position: -1872px -1455px;
+	background-position: -2202px -1701px;
 }
 
 .sprite-mytopics-icon-inprogress2x-w {
 	width: 12px;
 	height: 12px;
-	background-position: -1884px -1467px;
+	background-position: -2214px -1713px;
 }
 
 .sprite-mytopics-icon-voting2x {
 	width: 12px;
 	height: 12px;
-	background-position: -1896px -1479px;
+	background-position: -2226px -1725px;
 }
 
 .sprite-mytopics-icon-voting2x-w {
 	width: 12px;
 	height: 12px;
-	background-position: -1908px -1491px;
+	background-position: -2238px -1737px;
 }
 
 .sprite-tooltip-arrow2x {
 	width: 5px;
 	height: 9px;
-	background-position: -1920px -1503px;
+	background-position: -2250px -1749px;
 }
 
 .sprite-tooltip-arrow-grey2x {
 	width: 9px;
 	height: 5px;
-	background-position: -1925px -1512px;
+	background-position: -2255px -1758px;
 }
 
 .sprite-tooltip-arrow-grey-shadow2x {
 	width: 17px;
 	height: 10px;
-	background-position: -1934px -1517px;
+	background-position: -2264px -1763px;
 }
 
 .sprite-voted-check2x {
 	width: 23px;
 	height: 18px;
-	background-position: -1951px -1527px;
+	background-position: -2281px -1773px;
 }
 
 .sprite-voted-nocheck2x {
 	width: 16px;
 	height: 16px;
-	background-position: -1974px -1545px;
+	background-position: -2304px -1791px;
 }
 
 .sprite-x0-menu-icon-help2x {
 	width: 17px;
 	height: 17px;
-	background-position: -1990px -1561px;
+	background-position: -2320px -1807px;
 }
 
 .sprite-x1-mytopics-icon-discuss-big2x {
 	width: 61px;
 	height: 58px;
-	background-position: -2007px -1578px;
+	background-position: -2337px -1824px;
 }
 
 .sprite-x2-mytopics-icon-newtopic-big2x {
 	width: 70px;
 	height: 78px;
-	background-position: -2068px -1636px;
+	background-position: -2398px -1882px;
 }
 
 .sprite-x3-icon-topbar-earch2x {
 	width: 18px;
 	height: 18px;
-	background-position: -2138px -1714px;
+	background-position: -2468px -1960px;
 }
 
 .sprite-x4-icon-language-dropdown2x {
 	width: 11px;
 	height: 7px;
-	background-position: -2156px -1732px;
+	background-position: -2486px -1978px;
 }
 
 .sprite-x5-cos-logo-small2x {
 	width: 150px;
 	height: 28px;
-	background-position: -2167px -1739px;
+	background-position: -2497px -1985px;
 }
 
 .sprite-x6-cos-logo-big2x {
 	width: 150px;
 	height: 132px;
-	background-position: -2317px -1767px;
+	background-position: -2647px -2013px;
 }
