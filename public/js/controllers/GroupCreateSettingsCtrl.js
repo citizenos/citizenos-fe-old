@@ -54,15 +54,14 @@ angular
         $scope.search = function (str, type) {
             if (str && str.length >= 2) {
                 var include = null;
-                if (type == 'topic') {
+                if (type === 'topic') {
                     include = 'my.topic';
-                }
-                else if (type == 'user') {
+                } else if (type === 'user') {
                     include = 'public.user';
                     $scope.searchStringUser = str;
                 }
                 sSearch
-                    .searchV2(str, include)
+                    .searchV2(str, {include: include, 'my.topic.level': 'admin'})
                     .then(function (response) {
                         $scope.searchResults.users = [];
                         $scope.searchResults.topics = [];
@@ -168,7 +167,7 @@ angular
         $scope.selectTab = function (tab) {
             $scope.tabSelected = tab;
             $location.search({tab: tab});
-        }
+        };
 
         $scope.doSaveGroup = function () {
             $scope.errors = null;
