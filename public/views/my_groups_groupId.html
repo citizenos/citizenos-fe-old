@@ -209,7 +209,7 @@
             <div class="header_text">
                 Topic list ({{group.members.topics.count}})
                 |
-                <div class="blue_link" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doShowMemberTopicList(group)">filter</div>
+                <div class="blue_link" cos-disabled="!group.members.topics.count" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doShowMemberTopicList(group)">filter</div>
                 |
                 <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})">add</div>
             </div>

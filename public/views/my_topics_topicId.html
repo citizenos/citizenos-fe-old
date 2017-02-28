@@ -313,7 +313,7 @@
         <div class="container_header">
             <div class="header_text">
                 Group list ({{topic.members.groups.count}}) |
-                <div class="blue_link" ng-click="groupList.isSearchVisible = !groupList.isSearchVisible">search</div>
+                <div class="blue_link" cos-disabled="!topic.members.groups.count" ng-click="groupList.isSearchVisible = !groupList.isSearchVisible; doShowMemberGroupList()">filter</div>
                 |
                 <div class="blue_link">add</div>
             </div>
@@ -413,7 +413,7 @@
         <div class="container_header">
             <div class="header_text">
                 User list ({{topic.members.users.count}}) |
-                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible">search</div>
+                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList()">filter</div>
                 |
                 <div class="blue_link">invite</div>
             </div>
