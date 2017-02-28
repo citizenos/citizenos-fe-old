@@ -34,7 +34,7 @@ angular
                     }
                 },
                 update: {
-                    method: 'PUT'
+                    method: 'PUT',
                 },
                 save: {
                     method: 'POST',
@@ -68,6 +68,13 @@ angular
             }
         );
 
+        Topic.STATUSES = {
+            inProgress: 'inProgress', // Being worked on
+            voting: 'voting', // Is being voted which means the Topic is locked and cannot be edited.
+            followUp: 'followUp', // Done editing Topic and executing on the follow up plan.
+            closed: 'closed' // Final status - Topic is completed and no editing/reopening/voting can occur.
+        };
+
         Topic.VISIBILITY = {
             public: 'public', // Everyone has read-only on the Topic.  Pops up in the searches..
             private: 'private' // No-one can see except collaborators
@@ -97,7 +104,11 @@ angular
         };
 
         Topic.prototype.canUpdate = function () {
-            return this.permission.level === TopicMemberUser.LEVELS.admin;
+            return (this.permission.level === TopicMemberUser.LEVELS.admin && this.status === Topic.STATUSES.inProgress);
+        };
+
+        Topic.prototype.canEdit = function () {
+            return ([TopicMemberUser.LEVELS.admin, TopicMemberUser.LEVELS.edit].indexOf(this.permission.level) > -1 && this.status === Topic.STATUSES.inProgress);
         };
 
         Topic.prototype.canDelete = function () {

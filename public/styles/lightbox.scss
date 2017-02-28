@@ -1518,6 +1518,28 @@
                     background: none;
                     border: none;
                     cursor: pointer;
+                    &.category_selected{
+                        display: table;
+                        width: 100%;
+                        height: 30px;
+                        background: $medium_gray;
+                        border: 1px solid $lightest_gray;
+                        border-radius: 4px;
+                        overflow: hidden;
+                        box-sizing: border-box;
+                        margin-bottom: 5px;
+
+                        .category_control {
+                            &:hover {
+                                background: $white;
+                                @include tablet {
+                                    background: $medium_gray;
+                                }
+                            }
+
+                            display:table-cell;
+                        }
+                    }
                     @include tablet {
                         color: $medium_black;
                         background: $medium_gray;

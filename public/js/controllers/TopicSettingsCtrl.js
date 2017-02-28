@@ -53,6 +53,7 @@ angular
                     .then(function (response) {
                         $scope.searchResults.users = [];
                         $scope.searchResults.groups = [];
+                        $scope.searchResults.combined = [];
                         if (response.data.data.results.public.users) {
                             response.data.data.results.public.users.forEach(function (user) {
                                 $scope.searchResults.users.push(user);
@@ -68,7 +69,7 @@ angular
             } else {
                 $scope.searchResults.users = [];
                 $scope.searchResults.groups = [];
-                $scope.searchResults.combined = []
+                $scope.searchResults.combined = [];
             }
         };
 
@@ -97,15 +98,19 @@ angular
         }
 
         $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,
-            $scope.topic.$updateTokenJoin();
-            $scope.topic = Topic
+            $scope.topic.$updateTokenJoin()
+            .then( function () {
+                Topic
                 .query()
                 .$promise
                 .then(function (topics) {
-                    $scope.topic = _.find(topics, {id: $stateParams.topicId});
-                    $scope.form.topic.tokenJoin = $scope.topic.tokenJoin;
-                    $scope.generateJoinUrl();
+                    if (topics) {
+                        $scope.topic = _.find(topics, {id: $stateParams.topicId});
+                        $scope.form.topic.tokenJoin = $scope.topic.tokenJoin;
+                        $scope.generateJoinUrl();
+                    }
                 });
+            });
         };
 
         $scope.selectTab = function (tab) {
@@ -139,7 +144,6 @@ angular
         };
 
         $scope.addTopicMember = function (member) {
-            console.log(member);
             if(member.hasOwnProperty('company')) {
                 $scope.addTopicMemberUser(member);
             } else {
@@ -149,6 +153,7 @@ angular
 
         $scope.addTopicMemberGroup = function (group) {
             $scope.searchString = null;
+            $scope.searchResults.users = [];
             $scope.searchResults.groups = [];
             $scope.searchResults.combined = [];
 
@@ -189,6 +194,7 @@ angular
                     // Ignore duplicates
                     $scope.searchString = null;
                     $scope.searchResults.users = [];
+                    $scope.searchResults.groups = [];
                     $scope.searchResults.combined = [];
                     return;
                 } else {
@@ -197,7 +203,9 @@ angular
                     memberClone.level = TopicMemberUser.LEVELS.read;
 
                     $scope.members.users.push(memberClone);
+                    $scope.searchResults.groups = [];
                     $scope.searchResults.users = [];
+                    $scope.searchResults.combined = [];
                 }
             } else {
                 // Assume e-mail was entered.
@@ -209,7 +217,9 @@ angular
                             name: $scope.searchString,
                             level: TopicMemberUser.LEVELS.read
                         });
+                        $scope.searchResults.groups = [];
                         $scope.searchResults.users = [];
+                        $scope.searchResults.combined = [];
                     }
                 } else {
                     $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchString);
@@ -240,6 +250,9 @@ angular
                 $scope.form.topic.visibility = 'private';
             } else {
                 $scope.form.topic.visibility = 'public';
+            }
+            if($scope.form.topic.endsAt &&  $scope.topic.endsAt === $scope.form.topic.endsAt){ //Remove endsAt field so that topics with endsAt value set could be updated if endsAt is not changed
+                delete $scope.form.topic.endsAt;
             }
             var topicSavePromise = $scope.form.topic.$update();
 
@@ -285,7 +298,6 @@ angular
                     function (errorResponse) {
                         if (errorResponse.data && errorResponse.data.errors) {
                             $scope.errors = errorResponse.data.errors;
-                            $scope.tabSelected = 'settings';
                         }
                     }
                 );

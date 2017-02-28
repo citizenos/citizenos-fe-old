@@ -48,7 +48,7 @@
                         </div>
 
                         <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canUpdate()" ng-click="doSaveTopic()">
+                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()">
                                 Save topic
                             </div>
                             <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canUpdate()" ng-click="doSaveTopic()">
@@ -99,7 +99,7 @@
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-disabled="!topic.canUpdate()" cos-toggle cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'" ng-model="form.topic.visibility"></div>
+                            <div cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'" ng-model="form.topic.visibility"></div>
                         </div>
 
                     </div>
@@ -159,7 +159,7 @@
                         </div>
 
                         <div class="settings_cell">
-                            <input cos-disabled="!topic.canUpdate()" value="#cos_hipsters" ng-model="form.topic.hashtag" ng-change="checkHashtag()" ng-class="{'error_input': errors.hashtag}">
+                            <input cos-disabled="!topic.canEdit()" value="#cos_hipsters" ng-model="form.topic.hashtag" ng-change="checkHashtag()" ng-class="{'error_input': errors.hashtag}">
                             <label for="hashtag" class="error_label" ng-if="errors.hashtag">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -215,13 +215,13 @@
                     <div class="tip">Assign up to 3 categories</div>
                     <div class="selected_categories">
 
-                        <div class="category_wrap" ng-repeat="topicCategory in form.topic.categories">
+                        <div class="category_wrap" ng-repeat="topicCategory in form.topic.categories" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
 
                             <div class="category_cell category_title">
                                 {{topicCategory}}
                             </div>
 
-                            <div class="category_cell category_control" cos-disabled="!topic.canUpdate()" ng-click="removeTopicCategory(topicCategory)">
+                            <div class="category_cell category_control">
                                     <div class="sprite_temp2 sprite-icon-category-delete2x"></div>
                             </div>
 
@@ -233,14 +233,15 @@
 
                     <div class="category_selection">
 
-                        <div class="category_wrap" ng-repeat="category in Topic.CATEGORIES">
+                        <div class="category_wrap" ng-repeat="category in Topic.CATEGORIES" cos-disabled="!topic.canEdit()" ng-click="(form.topic.categories.indexOf(category) > -1)? removeTopicCategory(category): addTopicCategory(category)" ng-class="{'category_selected': (form.topic.categories.indexOf(category) > -1)}">
 
                             <div class="category_cell category_title">
                                 {{category}}
                             </div>
 
-                            <div class="category_cell category_control" cos-disabled="!topic.canUpdate()" ng-click="addTopicCategory(category)">
-                                    <div class="sprite_temp2 desktop_fix sprite-icon-category-add2x"></div>
+                            <div class="category_cell category_control">
+                                    <div class="sprite_temp2 desktop_fix" ng-class="{'sprite-icon-category-delete2x': (form.topic.categories.indexOf(category) > -1),
+                                    'sprite-icon-category-add2x': (form.topic.categories.indexOf(category) === -1)}"></div>
                                     <div class="sprite_temp2 mobile_fix sprite-icon-category-add2x-black"></div>
                             </div>
 
@@ -264,7 +265,7 @@
                         <div cos-dropdown ng-class="{search_with_dropdown : (searchResults.users.length || searchResults.groups.length), dropdown_active : (searchResults.users.length || searchResults.groups.length)}">
                             <typeahead cos-disabled="!topic.canUpdate()" id="userSearch" class="auto-complete" items="searchResults.combined" term="searchString" search="search(term, 'user')"
                                        select="addTopicMember(item)" placeholder="Search by username or e-mail address">
-                                <div class="search_area_wrap">
+                                <div class="search_area_wrap" ng-if="this.canUpdate()" >
                                     <div class="search_dropdown_area" ng-show="searchResults.users.length || searchResults.groups.length">
                                         <div class="search_dropdown_item" ng-if="searchResults.users.length">
                                             <div class="table_cell">Users</div>
