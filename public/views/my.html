@@ -148,7 +148,7 @@
     <!-- No results -->
     <div class="table" ng-if="!itemListIsLoading && !itemList.length">
         <!-- No Groups view -->
-        <div class="v_align_cell" ng-if="'my.groups' | isState">
+        <div class="v_align_cell" ng-if="('my.groups' | isState) || ('my.groups.create' | isState)">
             <div class="title_area">
                 <h1>
                     You are not yet part of a group. It's highschool all over again!
@@ -209,5 +209,6 @@
 
             </div>
         </div>
+        <div ui-view></div>
     </div>
 </div>
