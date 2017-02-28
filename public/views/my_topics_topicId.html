@@ -243,20 +243,18 @@
                             Results
                         </div>
 
-                        <div ng-repeat-start="voteOption in topic.vote.options.rows | orderBy: 'voteCount'"></div>
+                        <div class="results_table">
 
-                        <div class="line lightest_line" ng-if="!$first"></div>
-                        <div class="item_content">
-                            <div class="item_text">
-                                {{voteOption.value}}
+                            <div class="item_content" ng-repeat="voteOption in topic.vote.options.rows | orderBy: 'voteCount'">
+                                <div class="item_text">
+                                    {{voteOption.value}}
+                                </div>
+                                <div class="item_text">
+                                    {{voteOption.voteCount || 0}}
+                                </div>
                             </div>
-                            <div class="item_text">
-                                {{voteOption.voteCount || 0}}
-                            </div>
+
                         </div>
-                        <div class="clearer"></div>
-
-                        <div ng-repeat-end></div>
 
                     </div>
 
@@ -291,7 +289,8 @@
                             <div class="item_text">
                                 {{(topic.vote.endsAt | amDateFormat : 'L') || 'none'}}
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt">
+                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title"
+                                      cos-modal-on-save="doSaveVoteEndsAt">
                                     edit
                                 </span>
                             </div>

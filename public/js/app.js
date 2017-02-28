@@ -250,7 +250,7 @@
                     templateUrl: '/views/my_topics_topicId.html',
                     resolve: {
                         rTopic: ['$stateParams', 'Topic', function ($stateParams, Topic) {
-                            return Topic.get({topicId: $stateParams.topicId}).$promise;
+                            return Topic.get({topicId: $stateParams.topicId, include: 'vote'}).$promise;
                         }]
                     },
                     controller: 'TopicCtrl'
