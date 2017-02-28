@@ -65,6 +65,7 @@ angular
                             });
                         }
                         $scope.searchResults.combined = $scope.searchResults.users.concat($scope.searchResults.groups);
+                        console.log($scope.searchResults.combined);
                     });
             } else {
                 $scope.searchResults.users = [];

@@ -675,7 +675,7 @@ a:link, a:visited {
         display: table;
         top: 0;
         right: 0;
-        
+
         .icon_cell {
             height: inherit;
             width: inherit;
@@ -762,6 +762,11 @@ a:link, a:visited {
 
 .blue_button[disabled], .blue_button.disabled {
     background: $disabled_blue;
+    cursor: initial;
+}
+
+.blue_button.yes[disabled], .blue_button.yes.disabled {
+    background: $pinky_red;
     cursor: initial;
 }
 
@@ -922,11 +927,11 @@ a:link, a:visited {
         &:first-child {
             padding: 2px 15px 1px 0;
         }
-        
+
         &:nth-child(2) {
             width: 60px;
             vertical-align: top;
-        } 
+        }
     }
 
     .toggle_box_title {

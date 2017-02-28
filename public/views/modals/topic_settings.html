@@ -264,7 +264,7 @@
                         <div cos-dropdown ng-class="{search_with_dropdown : (searchResults.users.length || searchResults.groups.length), dropdown_active : (searchResults.users.length || searchResults.groups.length)}">
                             <typeahead cos-disabled="!topic.canUpdate()" id="userSearch" class="auto-complete" items="searchResults.combined" term="searchString" search="search(term, 'user')"
                                        select="addTopicMember(item)" placeholder="Search by username or e-mail address">
-                                <div class="search_area_wrap" ng-if="this.canUpdate()" >
+                                <div class="search_area_wrap">
                                     <div class="search_dropdown_area" ng-show="searchResults.users.length || searchResults.groups.length">
                                         <div class="search_dropdown_item" ng-if="searchResults.users.length">
                                             <div class="table_cell">Users</div>
@@ -295,7 +295,7 @@
 
                         </div>
                         <div class="search_text">
-                            <div class="table_cell blue_link">
+                            <div class="table_cell blue_link" cos-disabled="!topic.canUpdate()">
                                 Press enter to add
                             </div>
                         </div>
