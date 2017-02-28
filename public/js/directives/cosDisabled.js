@@ -11,8 +11,16 @@ angular
                 var update = function () {
                     if (cosDisabled) {
                         elem.addClass(classDisabled);
+                        elem.find('input').attr('disabled', true);
+                        if (elem[0].tagName === 'INPUT') {
+                            elem.attr('disabled', true);
+                        }
                     } else {
                         elem.removeClass(classDisabled);
+                        elem.find('input').removeAttr('disabled');
+                        if (elem[0].tagName === 'INPUT') {
+                            elem.removeAttr('disabled');
+                        }
                     }
                 };
 

@@ -26,8 +26,12 @@ angular
                 $scope.form.group = new Group({
                     id: null,
                     name: null,
-                    visibility: Group.VISIBILITY.private
+                    visibility: Group.VISIBILITY.private,
+                    permission: {
+                        level: GroupMemberUser.LEVELS.admin
+                    }
                 });
+                console.log('Group', $scope.form.group.canUpdate());
             } else {
                 // Create a copy of parent scopes Group, so that while modifying we don't change parent state
                 $scope.form.group = angular.copy($scope.group);
