@@ -93,7 +93,7 @@ table, .pretend_table {
 
     th, .pretend_th {
         font-size: 13px;
-        opacity: .7;
+        opacity: .5;
         font-weight: $medium;
         text-decoration: underline;
         cursor: pointer;
@@ -115,6 +115,25 @@ table, .pretend_table {
             }
         }
     }
+
+    .pretend_table_mobile_text {
+        display: none;
+        opacity: .7;
+    }
+
+}
+
+
+.pretend_table {
+    display: table;
+}
+
+.pretend_tr {
+    display: table-row;
+}
+
+.pretend_td, .pretend_th {
+    @extend .table_cell;
 }
 
 .name_wrap {
@@ -306,25 +325,6 @@ table, .pretend_table {
         height: 24px !important;
         top: 0;
         right: 0;
-    }
-}
-
-.pretend_table {
-    display: table;
-}
-
-.pretend_tr {
-    display: table-row;
-}
-
-.pretend_td, .pretend_th {
-    display: table-cell;
-}
-
-.hide_560 {
-    display: none;
-    @media (max-width: 560px) {
-        display: initial;
     }
 }
 
@@ -680,7 +680,7 @@ a:link, a:visited {
             height: inherit;
             width: inherit;
             @extend .table_cell;
-            .sprite_temp2 {
+            .sprite {
                 margin: 0 auto;
             }
         }
@@ -965,7 +965,7 @@ a:link, a:visited {
 .float_wrap {
     margin-top: 8px;
 
-    .sprite_temp2 {
+    .sprite {
         float: left;
         margin-bottom: 12px;
         &:first-child {
@@ -996,10 +996,6 @@ a:link, a:visited {
             }
         }
 
-        .item_text, .v_line, .item_link {
-            float: left;
-        }
-
         .v_line {
             height: 14px;
             width: 1px;
@@ -1020,7 +1016,6 @@ a:link, a:visited {
         .item_link {
             font-size: 13px;
             margin-top: 2px;
-            margin-right: 7px;
         }
 
         .remove {

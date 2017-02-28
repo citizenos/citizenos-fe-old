@@ -45,11 +45,11 @@ angular
             $scope.generateJoinUrl();
         };
 
-        $scope.search = function (str, type) {
+        $scope.search = function (str) {
             if (str && str.length >= 2) {
                 var include = ['my.group', 'public.user'];
                 sSearch
-                    .searchV2(str, include)
+                    .searchV2(str, {include: include})
                     .then(function (response) {
                         $scope.searchResults.users = [];
                         $scope.searchResults.groups = [];

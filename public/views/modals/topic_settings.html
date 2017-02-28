@@ -221,8 +221,8 @@
                                 {{topicCategory}}
                             </div>
 
-                            <div class="category_cell category_control">
-                                    <div class="sprite_temp2 sprite-icon-category-delete2x"></div>
+                            <div class="category_cell category_control" cos-disabled="!topic.canUpdate()" ng-click="removeTopicCategory(topicCategory)">
+                                    <div class="sprite sprite-icon-category-delete2x"></div>
                             </div>
 
                         </div>
@@ -239,10 +239,9 @@
                                 {{category}}
                             </div>
 
-                            <div class="category_cell category_control">
-                                    <div class="sprite_temp2 desktop_fix" ng-class="{'sprite-icon-category-delete2x': (form.topic.categories.indexOf(category) > -1),
-                                    'sprite-icon-category-add2x': (form.topic.categories.indexOf(category) === -1)}"></div>
-                                    <div class="sprite_temp2 mobile_fix sprite-icon-category-add2x-black"></div>
+                            <div class="category_cell category_control" cos-disabled="!topic.canUpdate()" ng-click="addTopicCategory(category)">
+                                    <div class="sprite desktop_fix sprite-icon-category-add2x"></div>
+                                    <div class="sprite mobile_fix sprite-icon-category-add2x-black"></div>
                             </div>
 
                         </div>

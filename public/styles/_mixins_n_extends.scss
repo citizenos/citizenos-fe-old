@@ -80,3 +80,74 @@
 @mixin rotate ($deg) {
     @include transform(rotate(#{$deg}deg));
 }
+
+
+@mixin table_mobile_view {
+                                
+    .pretend_th {
+        float: left;
+        width: initial !important;
+        min-width: initial !important;
+        padding-left: 12px;
+        padding-right: 12px;
+        margin: 0 !important;
+        border-bottom: none;
+    }
+
+    .pretend_tr:not(:first-child) {
+        position: relative;
+        display: block;
+        width: 100%;
+        border-top: 1px solid $lightest_gray;
+        padding: 9px 0 20px;
+    }
+
+    .pretend_tr:first-child {
+        width: 100%;
+        padding-bottom: 10px;
+        &:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    }
+
+    .not_sortable {
+        display: none !important;
+    }
+
+    .pretend_tr {
+        &:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    }
+
+    .mobile_text {
+        text-decoration: none;
+        opacity: 1;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .pretend_table_mobile_text {
+        display: inline;
+    }
+
+    .pretend_tr:last-child .pretend_td:not(:first-child) {
+        padding-bottom: 0;
+    }
+
+    .pretend_table, .pretend_tr, .pretend_td, .pretend_th {
+        display: block;
+    }
+
+    .recycle_bin_wrap {
+        position: absolute;
+        right: 0 !important;
+        margin-right: 0 !important;
+        margin-top: -1px !important;
+    }
+
+}

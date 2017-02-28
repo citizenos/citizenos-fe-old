@@ -18,31 +18,14 @@ angular
          * NOTE: Each new requests cancels previous pending requests.
          *
          * @param {string} str Search string
-         * @param {string|array} [include] Properties to include in the result
-         * @param {number} [limit] Limit of results
-         * @param {string} [page] Page number for pagination
+         * @param {object} params Request parameters {limit, page, include, "my.topic.level"}
          *
          * @returns {HttpPromise} Angular $http promise
          */
-        sSearch.searchV2 = function (str, include, limit, page) {
+        sSearch.searchV2 = function (str, params) {
             $log.debug('sSearch.searchV2()', str);
-            var params = {str: str};
             var path = sLocation.getAbsoluteUrlApi('/api/v2/search');
 
-            if (include) {
-                if (!Array.isArray(include)) {
-                    include = [include];
-                }
-                params.include = include;
-            }
-
-            if (limit) {
-                params.limit = limit;
-            }
-
-            if (page) {
-                params.page = page;
-            }
 
             // Cancel all pending requests, there is no need to many in parallel as used in TypeAhead.
             if (searchV2PendingDefer) {
@@ -51,7 +34,7 @@ angular
 
             searchV2PendingDefer = $q.defer();
 
-            return $http.get(path, {timeout: searchV2PendingDefer.promise, params: params});
+            return $http.get(path, {timeout: searchV2PendingDefer.promise, params: angular.extend({str: str}, params)});
         };
 
     }]);

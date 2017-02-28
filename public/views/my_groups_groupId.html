@@ -51,16 +51,16 @@
                         <div class="item_content">
                             <div class="item_text">
                                 {{group.members.topics.count}}
-                            </div>
-                            <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="doShowMemberTopicList(group)">
-                                view
-                            </div>
-                            <div ng-if="group.canUpdate()">
-                                <div class="v_line"></div>
-                                <div class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})">
-                                    add
-                                </div>
+                                <span class="separator">|</span>
+                                <span class="item_link blue_link" ng-click="doShowMemberTopicList(group)">
+                                    view
+                                </span>
+                                <span ng-if="group.canUpdate()">
+                                    <span class="separator">|</span>
+                                    <span class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})">
+                                        add
+                                    </span>
+                                </span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -73,16 +73,16 @@
                         <div class="item_content">
                             <div class="item_text">
                                 {{group.members.users.count}}
-                            </div>
-                            <div class="v_line"></div>
-                            <div class="item_link blue_link" ng-click="doShowMemberUserList(group)">
-                                view
-                            </div>
-                            <div ng-if="group.canUpdate()">
-                                <div class="v_line"></div>
-                                <div class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})">
-                                    invite
-                                </div>
+                                <span class="separator">|</span>
+                                <span class="item_link blue_link" ng-click="doShowMemberUserList(group)">
+                                    view
+                                </span>
+                                <span ng-if="group.canUpdate()">
+                                    <span class="separator">|</span>
+                                    <span class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})">
+                                        invite
+                                    </span>
+                                </span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -111,12 +111,10 @@
                         <div class="item_content">
                             <div class="item_text">
                                 {{group.members.topics.latest.title}}
-                                <div class="float_left">
-                                    <div class="v_line bold"></div>
-                                    <div class="item_link blue_link bold" ui-sref="topics.view({topicId: group.topics.latest.id})">
-                                        view
-                                    </div>
-                                </div>
+                                <span class="separator">|</span>
+                                <span class="item_link blue_link bold" ui-sref="topics.view({topicId: group.topics.latest.id})">
+                                    view
+                                </span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -127,20 +125,20 @@
                             Group actions
                         </div>
                         <div class="item_content">
-                            <div class="item_text blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id})">
+                            <span class="item_text blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id})">
                                 settings
-                            </div>
-                            <div class="v_line bold"></div>
-                            <div class="item_text blue_link" ng-click="doLeaveGroup(group)">
+                            </span>
+                            <span class="separator">|</span>
+                            <span class="item_text blue_link" ng-click="doLeaveGroup(group)">
                                 leave
-                            </div>
-                            <div ng-if="group.canDelete()">
-                                <div class="v_line bold"></div>
-                                <div class="remove item_text blue_link" ng-click="doDeleteGroup(group)">
+                            </span>
+                            <span ng-if="group.canDelete()">
+                                <span class="separator">|</span>
+                                <span class="remove item_text blue_link" ng-click="doDeleteGroup(group)">
                                     <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
                                     delete
-                                </div>
-                            </div>
+                                </span>
+                            </span>
                         </div>
                         <div class="clearer"></div>
                     </div>
@@ -288,9 +286,9 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        {{topic.members.users.count}}
+                        <span class="pretend_table_mobile_text">Users: </span>{{topic.members.users.count}}
                     </div>
-                    <div class="pretend_td">
+                    <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberTopic(group, topic)" cos-disabled="!topic.canDelete()">
                             <div class="btn">
                                 <div class="table_cell">
@@ -397,7 +395,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pretend_td">
+                    <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(group, user)" cos-disabled="!group.canUpdate()">
                             <div class="btn">
                                 <div class="table_cell">

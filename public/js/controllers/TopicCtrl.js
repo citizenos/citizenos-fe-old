@@ -6,7 +6,6 @@ angular
         $log.debug('TopicCtrl', $scope);
         $scope.topic = rTopic;
 
-        $log.debug($scope.topic);
         $scope.generalInfo = {
             isVisible: true
         };

@@ -11,7 +11,11 @@ angular
                     method: 'GET',
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) {
-                            return angular.fromJson(data).data;
+                            var topic = angular.fromJson(data).data;
+                            if (topic.vote && topic.vote.id) {
+                                topic.vote = new TopicVote(topic.vote);
+                            }
+                            return topic;
                         } else {
                             return angular.fromJson(data);
                         }

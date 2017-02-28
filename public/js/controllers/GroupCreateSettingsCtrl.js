@@ -26,8 +26,12 @@ angular
                 $scope.form.group = new Group({
                     id: null,
                     name: null,
-                    visibility: Group.VISIBILITY.private
+                    visibility: Group.VISIBILITY.private,
+                    permission: {
+                        level: GroupMemberUser.LEVELS.admin
+                    }
                 });
+                console.log('Group', $scope.form.group.canUpdate());
             } else {
                 // Create a copy of parent scopes Group, so that while modifying we don't change parent state
                 $scope.form.group = angular.copy($scope.group);
@@ -54,15 +58,14 @@ angular
         $scope.search = function (str, type) {
             if (str && str.length >= 2) {
                 var include = null;
-                if (type == 'topic') {
+                if (type === 'topic') {
                     include = 'my.topic';
-                }
-                else if (type == 'user') {
+                } else if (type === 'user') {
                     include = 'public.user';
                     $scope.searchStringUser = str;
                 }
                 sSearch
-                    .searchV2(str, include)
+                    .searchV2(str, {include: include, 'my.topic.level': 'admin'})
                     .then(function (response) {
                         $scope.searchResults.users = [];
                         $scope.searchResults.topics = [];
@@ -168,7 +171,7 @@ angular
         $scope.selectTab = function (tab) {
             $scope.tabSelected = tab;
             $location.search({tab: tab});
-        }
+        };
 
         $scope.doSaveGroup = function () {
             $scope.errors = null;
