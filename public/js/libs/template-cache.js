@@ -17,6 +17,7 @@ angular
             '/views/_templates/mytopics_view.html',
             '/views/_templates/no_groups.html',
             '/views/_templates/no_topics.html',
+            '/views/_templates/topics_topicId.html',
             '/views/default/nav.html',
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
@@ -47,6 +48,7 @@ angular
             '/views/_templates/modals/invite_users.html',
             '/views/_templates/modals/set_number.html',
             '/views/_templates/modals/topic_delete_confirm.html',
+            '/views/_templates/modals/topic_settings.html',
         ];
         var i = 0;
         if (templates.length) {
