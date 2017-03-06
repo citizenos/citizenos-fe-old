@@ -531,8 +531,9 @@
                         }
 
                         .content_column:first-child {
-                            padding-right: 20px;
+                            padding-right: 70px;
                             box-sizing: border-box;
+                            padding-right: 70px;
 
                             @include mobile {
                                 padding-right: 0;
