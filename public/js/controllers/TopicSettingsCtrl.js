@@ -129,7 +129,7 @@ angular
         }
 
         $scope.generateJoinUrl = function () {
-            if ($scope.topic.tokenJoin) {
+            if ($scope.topic.tokenJoin && $scope.topic.canUpdate()) {
                 $scope.form.urlJoin = sLocation.getAbsoluteUrl('/join/'+$scope.topic.tokenJoin);
             }
         }
@@ -294,7 +294,7 @@ angular
                     })
                 .then(
                     function () {
-                        $state.go('my.topics.topicId', {topicId: $scope.topic.id}, {reload: true});
+                        $state.go($state.current.parent, {topicId: $scope.topic.id}, {reload: true});
                     },
                     function (errorResponse) {
                         if (errorResponse.data && errorResponse.data.errors) {

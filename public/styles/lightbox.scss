@@ -1560,7 +1560,7 @@
                         }
                     }
 
-                    &:hover {
+                    &:not(.disabled):hover {
                         background: $deep_sky_blue;
                         color: $white;
                         border: 1px solid $dark_blue;

@@ -230,6 +230,23 @@
                     },
                     controller: 'TopicCtrl'
                 })
+                .state('topics.view.settings', {
+                    url: '/settings?tab',
+                    parent: 'topics.view',
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_settings.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
                 .state('topics.create', {
                     url: '/create',
                     parent: 'topics'
@@ -356,6 +373,28 @@
                     url: '/:topicId',
                     parent: '_templates.topics',
                     templateUrl: '/views/_templates/mytopics_view.html'
+                })
+                .state('_templates.topics.topicId.settings', {
+                    url: '/settings?tab',
+                    parent: '_templates.topics.topicId',
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        $scope.tabSelected = 'topicSettingsSettings';
+                        var dialog = ngDialog.open({
+                            template: '/views/_templates/modals/topic_settings.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
+                .state('_templates.topics.view', {
+                    url: '/topics/:topicId',
+                    parent: '_templates',
+                    templateUrl: '/views/_templates/topics_topicId.html'
                 });
 
             $translateProvider.useStaticFilesLoader({
