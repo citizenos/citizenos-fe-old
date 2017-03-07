@@ -51,7 +51,7 @@
                             <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()">
                                 Save topic
                             </div>
-                            <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canUpdate()" ng-click="doSaveTopic()">
+                            <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()">
                                 Save topic and send invite
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                                 {{topicCategory}}
                             </div>
 
-                            <div class="category_cell category_control" cos-disabled="!topic.canUpdate()" ng-click="removeTopicCategory(topicCategory)">
+                            <div class="category_cell category_control" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
                                 <div class="sprite sprite-icon-category-delete2x"></div>
                             </div>
 
@@ -238,7 +238,7 @@
                                 {{category}}
                             </div>
 
-                            <div class="category_cell category_control" cos-disabled="!topic.canUpdate()">
+                            <div class="category_cell category_control" cos-disabled="!topic.canEdit()">
                                 <div class="sprite desktop_fix" ng-class="(form.topic.categories.indexOf(category) > -1) ? 'sprite-icon-category-delete2x' : 'sprite-icon-category-add2x'"></div>
                                 <div class="sprite mobile_fix" ng-class="(form.topic.categories.indexOf(category) > -1) ? 'sprite-icon-category-delete2x' : 'sprite-icon-category-add2x-black'"></div>
                             </div>
