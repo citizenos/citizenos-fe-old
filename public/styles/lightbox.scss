@@ -355,7 +355,6 @@
                     .header_row {
                         padding: 0 20px 0 10px;
                         top: 54px;
-                        cursor: pointer;
                         overflow: hidden;
 
                         @media (max-width: 560px) {
@@ -371,6 +370,7 @@
                             padding-left: 10px;
                             padding-right: 10px;
                             box-sizing: border-box;
+                            cursor: pointer;
 
                             .tab_buttom_wrap {
                                 position: relative;
