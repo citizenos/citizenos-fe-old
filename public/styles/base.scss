@@ -378,6 +378,15 @@ table, .pretend_table {
     cursor: default !important;
 }
 
+.disabled_with_tooltip {
+    cursor: default !important;
+    opacity: 1 !important;
+    .table_cell, .disabled_area {
+        opacity: .5 !important;
+    }
+}
+
+
 .group_circle {
     height: 40px;
     width: 40px;

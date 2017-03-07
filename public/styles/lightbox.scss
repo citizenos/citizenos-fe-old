@@ -752,6 +752,13 @@
 
             #lightbox_header {
 
+                #lightbox_header_text {
+                    height: 80px !important;
+                    .title_description {
+                        font-style: initial !important;
+                    }
+                }
+
                 .voting_tag_padding {
 
                     padding: 0 20px 20px 20px;
