@@ -333,11 +333,6 @@
                         });
                     }]
                 })
-                .state('groups', {
-                    url: '/groups',
-                    parent: 'main',
-                    templateUrl: '/views/groups.html'
-                })
                 .state('about', {
                     url: '/about',
                     parent: 'main',
@@ -395,6 +390,11 @@
                     url: '/topics/:topicId',
                     parent: '_templates',
                     templateUrl: '/views/_templates/topics_topicId.html'
+                })
+                .state('_templates.groups', {
+                    url: '/groups',
+                    parent: '_templates',
+                    templateUrl: '/views/_templates/groups.html'
                 });
 
             $translateProvider.useStaticFilesLoader({
