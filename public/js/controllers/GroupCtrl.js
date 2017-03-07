@@ -2,10 +2,10 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, ngDialog, sAuth, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', 'rGroup', function ($scope, $state, $stateParams, $log, ngDialog, sAuth, GroupMemberUser, GroupMemberTopic, rGroup) {
         $log.debug('GroupCtrl');
 
-        $scope.group = _.find($scope.itemList, {id: $stateParams.groupId});
+        $scope.group = rGroup;
 
         $scope.generalInfo = {
             isVisible: true
@@ -29,15 +29,13 @@ angular
             }
         };
 
-        $scope.doDeleteGroup = function (group) {
-            $log.debug('doDeleteGroup', group, $scope.itemList.indexOf(group));
-
+        $scope.doDeleteGroup = function () {
             ngDialog
                 .openConfirm({
                     template: '/views/modals/group_delete_confirm.html'
                 })
                 .then(function () {
-                    group
+                    $scope.group
                         .$delete()
                         .then(function () {
                             $state.go('my.groups', null, {reload: true});
@@ -47,13 +45,13 @@ angular
 
         $scope.GroupMemberTopic = GroupMemberTopic;
 
-        $scope.doShowMemberTopicList = function (group) {
+        $scope.doShowMemberTopicList = function () {
             if (!$scope.topicList.isVisible) {
                 GroupMemberTopic
-                    .query({groupId: group.id}).$promise
+                    .query({groupId: $scope.group.id}).$promise
                     .then(function (topics) {
-                        group.members.topics.rows = topics;
-                        group.members.topics.count = topics.length;
+                        $scope.group.members.topics.rows = topics;
+                        $scope.group.members.topics.count = topics.length;
                         $scope.topicList.isVisible = true;
                         $scope.app.scrollToAnchor('topic_list');
                     });
@@ -62,21 +60,21 @@ angular
             }
         };
 
-        $scope.doToggleMemberTopicList = function (group) {
+        $scope.doToggleMemberTopicList = function () {
             if ($scope.topicList.isVisible) {
                 $scope.topicList.isVisible = false;
             } else {
-                $scope.doShowMemberTopicList(group);
+                $scope.doShowMemberTopicList($scope.group);
             }
         };
 
-        $scope.doUpdateMemberTopic = function (group, groupMemberTopic, level) {
+        $scope.doUpdateMemberTopic = function (groupMemberTopic, level) {
             $log.debug('groupMemberTopic', groupMemberTopic, level);
             if (groupMemberTopic.permission.levelGroup !== level) {
                 var oldLevel = groupMemberTopic.permission.levelGroup;
                 groupMemberTopic.permission.levelGroup = level;
                 groupMemberTopic
-                    .$update({groupId: group.id})
+                    .$update({groupId: $scope.group.id})
                     .then(
                         angular.noop,
                         function () {
@@ -85,7 +83,7 @@ angular
             }
         };
 
-        $scope.doDeleteMemberTopic = function (group, groupMemberTopic) {
+        $scope.doDeleteMemberTopic = function (groupMemberTopic) {
             ngDialog
                 .openConfirm({
                     template: '/views/modals/group_member_topic_delete_confirm.html',
@@ -94,26 +92,25 @@ angular
                     }
                 })
                 .then(function () {
-                    $log.debug('DELETE', group, groupMemberTopic);
                     var index = group.members.topics.rows.indexOf(groupMemberTopic);
                     groupMemberTopic
-                        .$delete({groupId: group.id})
+                        .$delete({groupId: $scope.group.id})
                         .then(function () {
-                            group.members.topics.rows.splice(index, 1);
-                            group.members.topics.count = group.members.topics.rows.length;
+                            $scope.group.members.topics.rows.splice(index, 1);
+                            $scope.group.members.topics.count = $scope.group.members.topics.rows.length;
                         });
                 }, angular.noop);
         };
 
         $scope.GroupMemberUser = GroupMemberUser;
 
-        $scope.doShowMemberUserList = function (group) {
+        $scope.doShowMemberUserList = function () {
             if (!$scope.userList.isVisible) {
                 GroupMemberUser
-                    .query({groupId: group.id}).$promise
+                    .query({groupId: $scope.group.id}).$promise
                     .then(function (users) {
-                        group.members.users.rows = users;
-                        group.members.users.count = users.length;
+                        $scope.group.members.users.rows = users;
+                        $scope.group.members.users.count = users.length;
                         $scope.userList.isVisible = true;
                         $scope.app.scrollToAnchor('user_list');
                     });
@@ -122,20 +119,20 @@ angular
             }
         };
 
-        $scope.doToggleMemberUserList = function (group) {
+        $scope.doToggleMemberUserList = function () {
             if ($scope.userList.isVisible) {
                 $scope.userList.isVisible = false;
             } else {
-                $scope.doShowMemberUserList(group);
+                $scope.doShowMemberUserList();
             }
         };
 
-        $scope.doUpdateMemberUser = function (group, groupMemberUser, level) {
+        $scope.doUpdateMemberUser = function (groupMemberUser, level) {
             if (groupMemberUser.level !== level) {
                 var oldLevel = groupMemberUser.level;
                 groupMemberUser.level = level;
                 groupMemberUser
-                    .$update({groupId: group.id})
+                    .$update({groupId: $scope.group.id})
                     .then(
                         angular.noop,
                         function () {
@@ -144,7 +141,7 @@ angular
             }
         };
 
-        $scope.doDeleteMemberUser = function (group, groupMemberUser) {
+        $scope.doDeleteMemberUser = function (groupMemberUser) {
             ngDialog
                 .openConfirm({
                     template: '/views/modals/group_member_user_delete_confirm.html',
@@ -154,26 +151,26 @@ angular
                 })
                 .then(function () {
                     groupMemberUser
-                        .$delete({groupId: group.id})
+                        .$delete({groupId: $scope.group.id})
                         .then(function () {
-                            group.members.users.rows.splice(group.members.users.rows.indexOf(groupMemberUser), 1);
-                            group.members.users.count = group.members.users.rows.length;
+                            $scope.group.members.users.rows.splice($scope.group.members.users.rows.indexOf(groupMemberUser), 1);
+                            $scope.group.members.users.count = $scope.group.members.users.rows.length;
                         });
                 }, angular.noop);
         };
 
-        $scope.doLeaveGroup = function (group) {
+        $scope.doLeaveGroup = function () {
             ngDialog
                 .openConfirm({
                     template: '/views/modals/group_member_user_leave_confirm.html',
                     data: {
-                        group: group
+                        group: $scope.group
                     }
                 })
                 .then(function () {
                     var groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
                     groupMemberUser
-                        .$delete({groupId: group.id})
+                        .$delete({groupId: $scope.group.id})
                         .then(function () {
                             $state.go('my.groups', null, {reload: true});
                         });

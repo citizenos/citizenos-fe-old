@@ -337,7 +337,13 @@
                 .state('my.groups.groupId', {
                     url: '/:groupId',
                     parent: 'my.groups',
-                    templateUrl: '/views/my_groups_groupId.html'
+                    templateUrl: '/views/my_groups_groupId.html',
+                    resolve: {
+                        rGroup: ['$stateParams', 'Group', function ($stateParams, Group) {
+                            return Group.get({groupId: $stateParams.groupId}).$promise;
+                        }]
+                    },
+                    controller: 'GroupCtrl'
                 })
                 .state('my.groups.groupId.settings', {
                     url: '/settings?tab',
