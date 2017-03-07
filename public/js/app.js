@@ -17,6 +17,13 @@
                     ru: 'Pусский'
                 },
                 debug: 'dbg'
+            },
+            links: {
+                help: {
+                    en: 'http://citizenos.uservoice.com/knowledgebase/articles/741585',
+                    et: 'http://citizenos.uservoice.com/knowledgebase/articles/741582',
+                    ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798'
+                }
             }
         });
 
@@ -337,16 +344,6 @@
                     url: '/about',
                     parent: 'main',
                     templateUrl: '/views/about.html'
-                })
-                .state('faq', {
-                    url: '/faq',
-                    parent: 'main',
-                    templateUrl: '/views/faq.html'
-                })
-                .state('help', {
-                    url: '/help',
-                    parent: 'main',
-                    templateUrl: '/views/help.html'
                 })
                 .state('join', { // Join a Topic via shared url
                     url: '/join/:tokenJoin',

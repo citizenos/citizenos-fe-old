@@ -5,8 +5,6 @@ angular
     .run(['$log', '$http', '$templateCache', function ($log, $http, $templateCache) {
         var templates = [
             '/views/about.html',
-            '/views/faq.html',
-            '/views/help.html',
             '/views/home.html',
             '/views/my.html',
             '/views/my_groups_groupId.html',
