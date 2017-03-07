@@ -4,6 +4,7 @@ angular
     .module('citizenos')
     .run(['$log', '$http', '$templateCache', function ($log, $http, $templateCache) {
         var templates = [
+            '/views/401.html',
             '/views/about.html',
             '/views/home.html',
             '/views/my.html',

@@ -38,7 +38,7 @@ angular
                     }
                 },
                 update: {
-                    method: 'PUT',
+                    method: 'PUT'
                 },
                 save: {
                     method: 'POST',

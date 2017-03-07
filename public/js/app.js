@@ -164,6 +164,22 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('error', {
+                    url: '/error',
+                    parent: 'main',
+                    abstract: true,
+                    template: '<div ui-view style="height: 100%"></div>'
+                })
+                .state('error.401', {
+                    url: '/401',
+                    parent: 'error',
+                    templateUrl: '/views/401.html'
+                })
+                .state('error.403', {
+                    url: '/403',
+                    parent: 'error',
+                    templateUrl: '/views/401.html'
+                })
                 .state('account', {
                     url: '/account',
                     abstract: true,

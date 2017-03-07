@@ -188,6 +188,15 @@ angular
             });
         });
 
+        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+            $log.debug('$stateChangeError', 'event', event, 'toState', toState, 'toParams', toParams, 'fromState', fromState, 'fromParams', fromParams, 'error', error);
+            if (error.status && error.data && error.config) { // $http failure in "resolve"
+                var stateError = 'error.' + error.status;
+                $log.debug('$stateChangeError', '"resolve" failed in route definition.');
+                $state.go(stateError, null, {location: false});
+            }
+        });
+
         function createRelUrls() {
             angular.forEach(sTranslate.LANGUAGES, function (language) {
                 var url = $location.url().split('/');
