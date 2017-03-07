@@ -373,7 +373,7 @@
 
                                         <div class="right">
                                             <div class="btn_wrap recycle_bin white_bg">
-                                                <div class="btn">
+                                                <div class="btn" ng-click="(key === 'groups')? removeTopicMemberGroup(member) : removeTopicMemberUser(member)">
                                                     <div class="table_cell">
                                                         <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
                                                     </div>
@@ -416,7 +416,7 @@
                                 </td>
                                 <td>
                                     <div class="btn_wrap recycle_bin white_bg">
-                                        <div class="btn" ng-click="(key==='groups')? removeTopicMemberGroup(member) : removeTopicMemberUser(member)">
+                                        <div class="btn" ng-click="(key === 'groups')? removeTopicMemberGroup(member) : removeTopicMemberUser(member)">
                                             <div class="table_cell">
                                                 <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                                 <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
