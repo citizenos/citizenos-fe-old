@@ -474,7 +474,7 @@
 
             <!-- MOBILE SAVE BUTTON -->
             <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
-                <div class="blue_button" cos-disabled="!topic.canEdit()">
+                <div class="blue_button" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()">
                     Save settings
                 </div>
             </div>
