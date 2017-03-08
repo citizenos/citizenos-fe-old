@@ -516,6 +516,168 @@
 
     </div>
 
+    <!-- CURRENT VOTE WITH VOTING -->
+    <div class="info_container vote_results">
+
+        <div class="container_header">
+            <div class="header_text">
+                Current vote results
+            </div>
+            <div class="minimize_container" ng-click="app.voteResults = !app.voteResults">
+                <div ng-class="app.voteResults ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+            </div>
+        </div>
+
+        <div class="container_content" ng-if="!app.voteResults">
+
+
+            <div class="content_bottom">
+
+                <!-- COLUMN 1 -->
+                <div class="content_column">
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Cast your vote
+                        </div>
+                        <div class="voting_buttons">
+                            <div class="line lightest_line"></div>
+                                
+                            <div class="voting_platform_buttons">
+
+                                <div class="voting_button" ng-class="i == 2 ? 'active' : ''"ng-repeat="i in [1,2,3,4,5,6]">
+                                    <div class="table_cell left_side">
+                                        A
+                                    </div>
+                                    <div class="table_cell right_side">
+                                        YES
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="delegation_section">
+
+                                <div class="voting_button voting_button_blue" ng-class="i == 2 ? 'active' : ''" ng-repeat="i in [1,2]">
+                                    <div class="table_cell left_side">
+                                        <div class="sprite sprite-icon-delegate2x"></div>
+                                    </div>
+                                    <div class="table_cell right_side">
+                                        Delegate your vote
+                                    </div>
+                                </div>
+
+                                <div class="delegation_information">
+                                    <div class="delegation_title">You delegated your vote to</div>
+                                    <div class="delegations">
+
+                                        <div class="table_cell">
+                                            <div class="profile_image_wrapper dark">
+                                                <div class="profile_moon sprite sprite-icon-certified-fb2x"></div>
+                                                <div class="account_picture">
+                                                    <!--<img src=".././imgs/profile.jpg">-->
+                                                    <div class="profile_image_filler">
+                                                        <div class="table_cell">
+                                                            ML
+                                                        </div>
+                                                        <div class="profile_circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="name_wrap">
+                                                <div class="table_cell">
+                                                    <div class="blue_link bold">Kristian Lember</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="table_cell">
+                                            <div class="blue_button">Revoke your delegation</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- COLUMN 2 -->
+                <div class="content_column">
+
+
+                    <div class="content_item">
+                        <div class="item_description">
+                            Votes counted
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                26
+                                <span class="separator">|</span>
+                                <span class="item_link blue_link">
+                                    view who voted
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                    <div class="clearer"></div>
+
+                    <div class="content_item">
+
+                        <div class="item_description">
+                            Votes needed
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                1000
+                                <span class="separator">|</span>
+                                <span class="item_link blue_link">
+                                    edit
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+
+                    </div>
+
+                    <div class="clearer"></div>
+
+
+                    <div class="content_item">
+
+                        <div class="item_description">
+                            Vote deadline
+                        </div>
+                        <div class="item_content">
+                            <div class="item_text">
+                                none
+                                <span class="separator">|</span>
+                                <span class="item_link blue_link">
+                                    edit
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+
+                    </div>
+
+                    <div class="clearer"></div>
+
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
     <!-- GROUP LIST -->
     <div class="info_container group_list">
 
