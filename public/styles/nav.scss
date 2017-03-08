@@ -281,7 +281,7 @@ nav {
         width: 97px;
         box-sizing: border-box;
         padding-right: 0;
-        
+
         .v_line {
             float: right;
         }
@@ -291,9 +291,9 @@ nav {
                 float: right;
             }
         }
-        
+
         @media (max-width: '600px') {
-            
+
             width: 53px;
             .header_button_text {
                 display: none;
@@ -341,7 +341,7 @@ nav {
         @media (max-width: '600px') {
             right: 289px;
         }
-            
+
         @media (max-width: '560px') {
             right: 224px;
             padding-left: 0;
@@ -363,7 +363,7 @@ nav {
 
 
 
-    
+
     .header_button {
         width: 118px;
         height: 60px;
@@ -391,7 +391,7 @@ nav {
             .first_holder {
                 width: 2px;
             }
-        } 
+        }
 
         &:nth-child(2) {
             right: 118px;

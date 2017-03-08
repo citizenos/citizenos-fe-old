@@ -1,12 +1,11 @@
 <div ng-if="wWidth > 1024">
-    <!-- Only show this if the user is logged in -->
-    <div class="logo_area" ng-click="app.showSearchResults = false" ng-if="app.user.loggedIn">
-        <div class="logo sprite sprite-x5-cos-logo-small2x">
+    <div class="logo_area">
+        <!-- Only show this if the user is logged in -->
+        <div class="logo sprite sprite-x5-cos-logo-small2x" ng-click="app.showSearchResults = false" ng-if="app.user.loggedIn" ui-sref="home">
         </div>
-    </div>
-
-    <!-- Only show this if the user is NOT logged in -->
-    <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="!app.user.loggedIn">
+        <!-- Only show this if the user is NOT logged in -->
+        <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="!app.user.loggedIn" ui-sref="home">
+        </div>
     </div>
 </div>
 
