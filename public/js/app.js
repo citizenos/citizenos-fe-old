@@ -281,8 +281,10 @@
                     controller: 'MyCtrl',
                     resolve: {
                         // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$q', 'sAuth', 'Topic', 'Group', function ($state, $stateParams, $q, sAuth, Topic, Group) {
-                            var filterParam = $state.includes('my.groups') ? 'grouped' : $stateParams.filter || 'all';
+                        rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', function ($state, $stateParams, $q, $window, sAuth, Topic, Group) {
+                            // FYI: Cannot use $state.include('my.groups') as $state has not changed and the state name is of the previous state.
+                            var filterParam = $window.location.href.match(/\/my\/groups/) ? 'grouped' : $stateParams.filter || 'all';
+
                             switch (filterParam) {
                                 case 'all':
                                     return Topic.query().$promise;
