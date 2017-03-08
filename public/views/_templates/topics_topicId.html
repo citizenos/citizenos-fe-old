@@ -154,7 +154,7 @@
 
                         <div class="line lightest_line"></div>
 
-                        <div class="vote_casting_message">
+                        <div class="vote_casting_message with_upper_right_links">
 
                             <div class="message_header">
                                 <div class="message_title">This vote requires an ID card or Mobile ID signing.</div>
@@ -172,7 +172,7 @@
 
                         </div>
 
-                        <div class="vote_casting_message">
+                        <div class="vote_casting_message with_upper_right_links">
 
                             <div class="message_header">
                                 <div class="message_title">Your vote has been registered!</div>
@@ -192,10 +192,10 @@
                         <div class="voting_platform_buttons">
 
                             <div class="voting_button" ng-class="i == 2 ? 'active' : ''"ng-repeat="i in [1,2,3,4,5,6]">
-                                <div class="table_cell">
+                                <div class="table_cell left_side">
                                     A
                                 </div>
-                                <div class="table_cell">
+                                <div class="table_cell right_side">
                                     YES
                                 </div>
                             </div>
@@ -204,11 +204,11 @@
 
                         <div class="delegation_section">
 
-                            <div class="voting_button" ng-class="i == 2 ? 'active' : ''"ng-repeat="i in [1,2]">
-                                <div class="table_cell">
+                            <div class="voting_button voting_button_blue" ng-class="i == 2 ? 'active' : ''" ng-repeat="i in [1,2]">
+                                <div class="table_cell left_side">
                                     <div class="sprite sprite-icon-delegate2x"></div>
                                 </div>
-                                <div class="table_cell">
+                                <div class="table_cell right_side">
                                     Delegate your vote
                                 </div>
                             </div>
@@ -245,6 +245,63 @@
 
                         </div>
 
+                        
+                        <!-- Statistics graph start -->
+                        <div class="vote_casting_message">
+
+                            <div class="message_header">
+                                <div class="message_title">Voting has ended!</div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="message_content">
+                                Everyone has cast their votes. You can download the full document here.
+                            </div>
+
+                            <div class="voting_button voting_button_blue">
+                                <div class="table_cell">
+                                    Download full DDOC
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Regular graph -->
+                        <div class="graph_wrap">
+
+                            <div class="graph_column" ng-class="i == 2 ? 'active' : ''" ng-repeat="i in [1,2,3,4]">
+                                <div class="graph_column_text">
+                                    NEUTRAL<br>
+                                    <span class="bold">101</span>
+                                </div>
+                                <div class="graph_column_fill">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Big graph -->
+                        <div class="big_graph">
+                            <div class="long_text_holder">
+                                <div class="long_text" ng-class="i == 2 ? 'active' : ''" ng-repeat="i in [1,2,3,4,5]">
+                                     <span class="bold">A.</span> Very long title that seems to be going on for a very long time ago in a galaxy far, far away
+                                </div>
+                            </div>
+
+                            <div class="graph_wrap">
+
+                                <div class="graph_column" ng-class="i == 2 ? 'active' : ''" ng-repeat="i in [1,2,3,4,5]">
+                                    <div class="graph_column_text">
+                                        A.<br>
+                                        <span class="bold">101</span>
+                                    </div>
+                                    <div class="graph_column_fill">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Statistics graph end -->
 
                     </div>
 
