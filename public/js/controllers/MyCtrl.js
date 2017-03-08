@@ -51,7 +51,7 @@ angular
             }
         ];
 
-        var filterParam = $state.includes('my.groups') ? 'grouped' : $stateParams.filter || filters[0].id;
+        var filterParam = $stateParams.filter || filters[0].id;
         $scope.filters = {
             items: filters,
             selected: _.find(filters, {id: filterParam}) || _.chain(filters).map('children').flatten().find({id: filterParam}).value() || filters[0]
@@ -68,7 +68,7 @@ angular
                     if ($state.is('my.groups') || $state.is('my.topics')) {
                         var item = $scope.itemList[0];
                         if ($scope.isGroup(item)) {
-                            $state.go('my.groups.groupId', {groupId: item.id});
+                            $state.go('my.groups.groupId', {groupId: item.id, filter: 'grouped'});
                         } else {
                             $state.go('my.topics.topicId', {topicId: item.id});
                         }

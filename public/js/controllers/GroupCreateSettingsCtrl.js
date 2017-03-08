@@ -224,7 +224,7 @@ angular
                 )
                 .then(
                     function () {
-                        $state.go('my.groups.groupId', {groupId: $scope.form.group.id}, {reload: true});
+                        $state.go('my.groups.groupId', {groupId: $scope.form.group.id, filter: 'grouped'}, {reload: true});
                     },
                     function (errorResponse) {
                         if (errorResponse.data && errorResponse.data.errors) {

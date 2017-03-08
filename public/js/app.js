@@ -282,8 +282,7 @@
                     resolve: {
                         // Array of Topics / Groups
                         rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', function ($state, $stateParams, $q, $window, sAuth, Topic, Group) {
-                            // FYI: Cannot use $state.includes('my.groups') as $state has not changed and the state name is of the previous state.
-                            var filterParam = $window.location.href.match(/\/my\/groups/) ? 'grouped' : $stateParams.filter || 'all';
+                            var filterParam = $stateParams.filter || 'all';
 
                             switch (filterParam) {
                                 case 'all':
