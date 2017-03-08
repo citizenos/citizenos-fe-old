@@ -51,7 +51,7 @@
                             <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()">
                                 Save topic
                             </div>
-                            <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canUpdate()" ng-click="doSaveTopic()">
+                            <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()">
                                 Save topic and send invite
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                                 {{topicCategory}}
                             </div>
 
-                            <div class="category_cell category_control" cos-disabled="!topic.canUpdate()" ng-click="removeTopicCategory(topicCategory)">
+                            <div class="category_cell category_control" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
                                 <div class="sprite sprite-icon-category-delete2x"></div>
                             </div>
 
@@ -238,7 +238,7 @@
                                 {{category}}
                             </div>
 
-                            <div class="category_cell category_control" cos-disabled="!topic.canUpdate()">
+                            <div class="category_cell category_control" cos-disabled="!topic.canEdit()">
                                 <div class="sprite desktop_fix" ng-class="(form.topic.categories.indexOf(category) > -1) ? 'sprite-icon-category-delete2x' : 'sprite-icon-category-add2x'"></div>
                                 <div class="sprite mobile_fix" ng-class="(form.topic.categories.indexOf(category) > -1) ? 'sprite-icon-category-delete2x' : 'sprite-icon-category-add2x-black'"></div>
                             </div>
@@ -373,7 +373,7 @@
 
                                         <div class="right">
                                             <div class="btn_wrap recycle_bin white_bg">
-                                                <div class="btn">
+                                                <div class="btn" ng-click="(key === 'groups')? removeTopicMemberGroup(member) : removeTopicMemberUser(member)">
                                                     <div class="table_cell">
                                                         <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
                                                     </div>
@@ -416,7 +416,7 @@
                                 </td>
                                 <td>
                                     <div class="btn_wrap recycle_bin white_bg">
-                                        <div class="btn" ng-click="(key==='groups')? removeTopicMemberGroup(member) : removeTopicMemberUser(member)">
+                                        <div class="btn" ng-click="(key === 'groups')? removeTopicMemberGroup(member) : removeTopicMemberUser(member)">
                                             <div class="table_cell">
                                                 <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                                 <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -474,7 +474,7 @@
 
             <!-- MOBILE SAVE BUTTON -->
             <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
-                <div class="blue_button" cos-disabled="!topic.canEdit()">
+                <div class="blue_button" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()">
                     Save settings
                 </div>
             </div>

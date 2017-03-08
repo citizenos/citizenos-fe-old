@@ -38,7 +38,7 @@ angular
                     }
                 },
                 update: {
-                    method: 'PUT',
+                    method: 'PUT'
                 },
                 save: {
                     method: 'POST',
@@ -108,11 +108,11 @@ angular
         };
 
         Topic.prototype.canUpdate = function () {
-            return (this.permission.level === TopicMemberUser.LEVELS.admin && this.status === Topic.STATUSES.inProgress);
+            return this.permission.level === TopicMemberUser.LEVELS.admin;
         };
 
         Topic.prototype.canEdit = function () {
-            return ([TopicMemberUser.LEVELS.admin, TopicMemberUser.LEVELS.edit].indexOf(this.permission.level) > -1 && this.status === Topic.STATUSES.inProgress);
+            return [TopicMemberUser.LEVELS.admin, TopicMemberUser.LEVELS.edit].indexOf(this.permission.level) > -1;
         };
 
         Topic.prototype.canDelete = function () {

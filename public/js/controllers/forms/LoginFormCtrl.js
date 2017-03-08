@@ -27,7 +27,7 @@ angular
             $scope.errors = null;
 
             var success = function (response) {
-                ngDialog.closeAll(); // FIXME: Land on the same page login was started from
+                $window.location.reload();
             };
 
             var error = function (response) {
@@ -65,15 +65,12 @@ angular
             }
 
             var path = '/api/auth/:partnerId';
-            var redirectSuccess = $state.href($state.current.name, $state.params, {absolute: true});
-            if($state.params.redirectSuccess) {
+
+            if ($state.params.redirectSuccess) {
                 $window.location.href = $state.params.redirectSuccess;
+            } else {
+                $window.location.href = sLocation.getAbsoluteUrlApi(path, {partnerId: partnerId}, {redirectSuccess: $window.location.href});
             }
-            else {
-                $window.location.href = sLocation.getAbsoluteUrlApi(path, {partnerId: partnerId}, {redirectSuccess: redirectSuccess});
-            }
-
-
         };
 
 

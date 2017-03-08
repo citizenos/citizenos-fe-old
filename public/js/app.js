@@ -17,6 +17,13 @@
                     ru: 'Pусский'
                 },
                 debug: 'dbg'
+            },
+            links: {
+                help: {
+                    en: 'http://citizenos.uservoice.com/knowledgebase/articles/741585',
+                    et: 'http://citizenos.uservoice.com/knowledgebase/articles/741582',
+                    ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798'
+                }
             }
         });
 
@@ -157,6 +164,22 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('error', {
+                    url: '/error',
+                    parent: 'main',
+                    abstract: true,
+                    template: '<div ui-view style="height: 100%"></div>'
+                })
+                .state('error.401', {
+                    url: '/401',
+                    parent: 'error',
+                    templateUrl: '/views/401.html'
+                })
+                .state('error.403', {
+                    url: '/403',
+                    parent: 'error',
+                    templateUrl: '/views/401.html'
+                })
                 .state('account', {
                     url: '/account',
                     abstract: true,
@@ -254,7 +277,30 @@
                 .state('my', {
                     url: '/my?filter',
                     parent: 'main',
-                    templateUrl: '/views/my.html'
+                    templateUrl: '/views/my.html',
+                    controller: 'MyCtrl',
+                    resolve: {
+                        // Array of Topics / Groups
+                        rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', function ($state, $stateParams, $q, $window, sAuth, Topic, Group) {
+                            // FYI: Cannot use $state.includes('my.groups') as $state has not changed and the state name is of the previous state.
+                            var filterParam = $window.location.href.match(/\/my\/groups/) ? 'grouped' : $stateParams.filter || 'all';
+
+                            switch (filterParam) {
+                                case 'all':
+                                    return Topic.query().$promise;
+                                case 'public':
+                                    return Topic.query({visibility: Topic.VISIBILITY.public}).$promise;
+                                case 'private':
+                                    return Topic.query({visibility: Topic.VISIBILITY.private}).$promise;
+                                case 'iCreated':
+                                    return Topic.query({creatorId: sAuth.user.id}).$promise;
+                                case 'grouped':
+                                    return Group.query().$promise;
+                                default:
+                                    return $q.reject();
+                            }
+                        }]
+                    }
                 })
                 .state('my.topics', {
                     url: '/topics',
@@ -314,7 +360,13 @@
                 .state('my.groups.groupId', {
                     url: '/:groupId',
                     parent: 'my.groups',
-                    templateUrl: '/views/my_groups_groupId.html'
+                    templateUrl: '/views/my_groups_groupId.html',
+                    resolve: {
+                        rGroup: ['$stateParams', 'Group', 'rItems', function ($stateParams, Group, rItems) {
+                            return _.find(rItems, {id: $stateParams.groupId});
+                        }]
+                    },
+                    controller: 'GroupCtrl'
                 })
                 .state('my.groups.groupId.settings', {
                     url: '/settings?tab',
@@ -333,25 +385,10 @@
                         });
                     }]
                 })
-                .state('groups', {
-                    url: '/groups',
-                    parent: 'main',
-                    templateUrl: '/views/groups.html'
-                })
                 .state('about', {
                     url: '/about',
                     parent: 'main',
                     templateUrl: '/views/about.html'
-                })
-                .state('faq', {
-                    url: '/faq',
-                    parent: 'main',
-                    templateUrl: '/views/faq.html'
-                })
-                .state('help', {
-                    url: '/help',
-                    parent: 'main',
-                    templateUrl: '/views/help.html'
                 })
                 .state('join', { // Join a Topic via shared url
                     url: '/join/:tokenJoin',
@@ -395,6 +432,11 @@
                     url: '/topics/:topicId',
                     parent: '_templates',
                     templateUrl: '/views/_templates/topics_topicId.html'
+                })
+                .state('_templates.groups', {
+                    url: '/groups',
+                    parent: '_templates',
+                    templateUrl: '/views/_templates/groups.html'
                 });
 
             $translateProvider.useStaticFilesLoader({
