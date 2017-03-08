@@ -277,7 +277,28 @@
                 .state('my', {
                     url: '/my?filter',
                     parent: 'main',
-                    templateUrl: '/views/my.html'
+                    templateUrl: '/views/my.html',
+                    controller: 'MyCtrl',
+                    resolve: {
+                        // Array of Topics / Groups
+                        rItems: ['$state', '$stateParams', '$q', 'sAuth', 'Topic', 'Group', function ($state, $stateParams, $q, sAuth, Topic, Group) {
+                            var filterParam = $state.includes('my.groups') ? 'grouped' : $stateParams.filter || 'all';
+                            switch (filterParam) {
+                                case 'all':
+                                    return Topic.query().$promise;
+                                case 'public':
+                                    return Topic.query({visibility: Topic.VISIBILITY.public}).$promise;
+                                case 'private':
+                                    return Topic.query({visibility: Topic.VISIBILITY.private}).$promise;
+                                case 'iCreated':
+                                    return Topic.query({creatorId: sAuth.user.id}).$promise;
+                                case 'grouped':
+                                    return Group.query().$promise;
+                                default:
+                                    return $q.reject();
+                            }
+                        }]
+                    }
                 })
                 .state('my.topics', {
                     url: '/topics',
@@ -339,8 +360,8 @@
                     parent: 'my.groups',
                     templateUrl: '/views/my_groups_groupId.html',
                     resolve: {
-                        rGroup: ['$stateParams', 'Group', function ($stateParams, Group) {
-                            return Group.get({groupId: $stateParams.groupId}).$promise;
+                        rGroup: ['$stateParams', 'Group', 'rItems', function ($stateParams, Group, rItems) {
+                            return _.find(rItems, {id: $stateParams.groupId});
                         }]
                     },
                     controller: 'GroupCtrl'

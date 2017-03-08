@@ -1,5 +1,5 @@
-<div ng-controller="MyCtrl" style="height: 100%;">
-    <div ng-controller="MyCtrl" id="topics_root" ng-if="!itemListIsLoading && itemList.length">
+<div style="height: 100%;">
+    <div id="topics_root" ng-if="itemList.length">
 
         <div class="v_line separator absolute_separator" ng-show="wWidth > 750"></div>
 
@@ -146,7 +146,7 @@
     </div>
 
     <!-- No results -->
-    <div class="table" ng-if="!itemListIsLoading && !itemList.length">
+    <div class="table" ng-if="!itemList.length">
         <!-- No Groups view -->
         <div class="v_align_cell" ng-if="('my.groups' | isState) || ('my.groups.create' | isState)">
             <div class="title_area">
