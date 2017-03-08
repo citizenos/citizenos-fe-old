@@ -473,7 +473,7 @@
                             <div class="table_cell">
                                 <div>{{user.name}}</div>
                                 <div class="via" ng-if="user.groups.rows.length && !user.levelUser">
-                                    via <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{group.level}})</span></span>
+                                    via <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{group.level}})</span><span ng-if="!group.name" class="disabled">&lt;Inaccessible Group&gt; ({{group.level}})</span></span>
                                 </div>
                             </div>
                         </div>
