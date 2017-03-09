@@ -394,8 +394,8 @@
                         <span class="pretend_table_mobile_text">Users: </span>{{group.members.users.count}}
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberGroup(group)" cos-disabled="!topic.canUpdate()">
-                            <div class="btn">
+                        <div class="btn_wrap recycle_bin">
+                            <div class="btn" ng-click="doDeleteMemberGroup(group)" cos-disabled="!topic.canUpdate()">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                     <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -503,14 +503,11 @@
                         </div>
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(user)" cos-disabled="!topic.canUpdate() || !user.levelUser">
-                            <div class="btn">
+                        <div class="btn_wrap recycle_bin">
+                            <div class="btn" ng-click="doDeleteMemberUser(user)" cos-disabled="!topic.canUpdate() || !user.levelUser">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                     <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
-                                    <div class="tooltip" ng-if="!user.levelUser">
-                                        Permission via Group, remove User from the Group or override the permissions selecting appropriate value from the dropdown.
-                                    </div>
                                 </div>
                             </div>
                         </div>

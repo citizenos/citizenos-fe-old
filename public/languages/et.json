@@ -30,6 +30,8 @@
   "MSG_ERROR_HWCRYPTO_NO_IMPLEMENTATION_LOGIN": "Teie arvutis puudub digitaalse allkirjastamise tarkvara. Tarkvara saate paigaldada installer.id.ee veebilehelt.",
   "MSG_ERROR_HWCRYPTO_TECHNICAL_ERROR_LOGIN": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega.",
   "MSG_ERROR_DELETE_API_USERS_GROUPS_MEMBERS_USERS_40000": "You cannot leave this Group as you are the last admin user of this Group. Please assign a new admin to leave.",
+  "MSG_ERROR_DELETE_API_USERS_TOPICS_MEMBERS_USERS_40010": "Viimast admin õigustes kasutajat pole võimalik kustutada. Määra uus admin, et antud kasutaja kustutada.",
+  "MSG_ERROR_PUT_API_USERS_TOPICS_MEMBERS_USERS_40000": "Viimase admin õigustes kasutaja õigusi pole võimalik muuta. Määra uus admin, et antud kasutaja õigusi muuta.",
   "MSG_ERROR_40300": "Teil puuduvad õigused antud operatsiooni teostamiseks.",
   "MSG_ERROR_50000": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Network issues, please check your internet connection."

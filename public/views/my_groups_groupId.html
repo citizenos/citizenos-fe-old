@@ -289,8 +289,8 @@
                         <span class="pretend_table_mobile_text">Users: </span>{{topic.members.users.count}}
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberTopic(group, topic)" cos-disabled="!topic.canDelete()">
-                            <div class="btn">
+                        <div class="btn_wrap recycle_bin">
+                            <div class="btn" ng-click="doDeleteMemberTopic(group, topic)" cos-disabled="!topic.canDelete()">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                     <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -396,8 +396,8 @@
                         </div>
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
-                        <div class="btn_wrap recycle_bin" ng-click="doDeleteMemberUser(group, user)" cos-disabled="!group.canUpdate()">
-                            <div class="btn">
+                        <div class="btn_wrap recycle_bin">
+                            <div class="btn" ng-click="doDeleteMemberUser(group, user)" cos-disabled="!group.canUpdate()">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                     <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
