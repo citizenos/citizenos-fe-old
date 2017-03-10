@@ -4,16 +4,15 @@ angular
     .module('citizenos')
     .run(['$log', '$http', '$templateCache', function ($log, $http, $templateCache) {
         var templates = [
+            '/views/401.html',
             '/views/about.html',
-            '/views/faq.html',
-            '/views/groups.html',
-            '/views/help.html',
             '/views/home.html',
             '/views/my.html',
             '/views/my_groups_groupId.html',
             '/views/my_topics_topicId.html',
             '/views/topics_topicId.html',
             '/views/unknown_device.html',
+            '/views/_templates/groups.html',
             '/views/_templates/mytopics.html',
             '/views/_templates/mytopics_view.html',
             '/views/_templates/no_groups.html',

@@ -52,8 +52,8 @@ angular
                 pro: 0,
                 con: 0
             };
-            var topicComment = TopicComment.query({topicId:$scope.topic.id}).$promise
-                .then(function(comments) {
+            var topicComment = TopicComment.query({topicId: $scope.topic.id}).$promise
+                .then(function (comments) {
                     if (comments) {
                         $scope.topicComments.count.pro = _.filter(comments, {type: TopicComment.COMMENT_TYPES.pro}).length;
                         $scope.topicComments.count.con = _.filter(comments, {type: TopicComment.COMMENT_TYPES.con}).length;
@@ -65,7 +65,7 @@ angular
                             con: 0
                         };
                     }
-            });
+                });
         }
 
 
@@ -82,7 +82,7 @@ angular
             }
         }
         $scope.loadTopicSocialMentions = function () {
-            $scope.topicSocialMentions = Mention.query({topicId:$scope.topic.id});
+            $scope.topicSocialMentions = Mention.query({topicId: $scope.topic.id});
         }
         $scope.loadTopicSocialMentions();
 
@@ -97,12 +97,12 @@ angular
         $scope.doCommentVote = function (commentId, value) {
             if (!$scope.app.user.loggedIn) return;
 
-            var topicComment = new TopicComment({id:commentId, topicId: $scope.topic.id});
+            var topicComment = new TopicComment({id: commentId, topicId: $scope.topic.id});
             topicComment.value = value;
             topicComment.$vote()
-            .then( function (data) {
-                $scope.loadTopicComments();
-            });
+                .then(function (data) {
+                    $scope.loadTopicComments();
+                });
         };
         $scope.loadTopicComments();
 
@@ -142,10 +142,10 @@ angular
 
         $scope.doSetTopicStatus = function (status) {
 
-            if(status !==$scope.topic.status) {
+            if (status !== $scope.topic.status) {
                 $scope.topic.status = status;
                 $scope.topic.$update(function (data) {
-                    $scope.topic = Topic.get({topicId:$stateParams.topicId});
+                    $scope.topic = Topic.get({topicId: $stateParams.topicId});
                 });
             }
         };
@@ -287,7 +287,9 @@ angular
                 topicMemberUser
                     .$update({topicId: $scope.topic.id})
                     .then(
-                        angular.noop,
+                        function () {
+                            topicMemberUser.levelUser = level;
+                        },
                         function (res) {
                             topicMemberUser.level = oldLevel;
                         });

@@ -2,11 +2,10 @@
 
 angular
     .module('citizenos')
-    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', 'sAuth', 'Group', 'Topic', 'GroupMemberTopic', function ($rootScope, $scope, $state, $stateParams, $q, $log, sAuth, Group, Topic, GroupMemberTopic) {
-        $log.debug('MyCtrl', $stateParams);
+    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', 'sAuth', 'Group', 'Topic', 'GroupMemberTopic', 'rItems', function ($rootScope, $scope, $state, $stateParams, $q, $log, sAuth, Group, Topic, GroupMemberTopic, rItems) {
+        $log.debug('MyCtrl', $stateParams, rItems);
 
-        $scope.itemList = []; // Contains Groups and Topics
-        $scope.itemListIsLoading = true;
+        $scope.itemList = rItems;
 
         // All the Topic filters in the dropdown
         var filters = [
@@ -14,11 +13,7 @@ angular
                 id: 'all',
                 name: 'Show all my topics',
                 onSelect: function () {
-                    $state.go('my.topics', {filter: this.id});
-                },
-                loadData: function () {
-                    return Topic
-                        .query().$promise;
+                    $state.go('my.topics', {filter: this.id}, {reload: true});
                 }
             },
             {
@@ -28,35 +23,22 @@ angular
                         id: 'public',
                         name: 'My public topics',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id});
-                        },
-                        loadData: function () {
-                            return Topic
-                                .query({visibility: Topic.VISIBILITY.public}).$promise;
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'private',
                         name: 'My private topics',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id});
-                        },
-                        loadData: function () {
-                            return Topic
-                                .query({visibility: Topic.VISIBILITY.private}).$promise;
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'iCreated',
                         name: 'Topics I created',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id});
-                        },
-                        loadData: function () {
-                            return Topic
-                                .query({creatorId: sAuth.user.id}).$promise;
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
-
                     }
                 ]
             },
@@ -64,32 +46,16 @@ angular
                 id: 'grouped',
                 name: 'Show topics ordered by groups',
                 onSelect: function () {
-                    $state.go('my.groups', {filter: this.id});
-                },
-                loadData: function () {
-                    return Group
-                        .query().$promise;
+                    $state.go('my.groups', {filter: this.id}, {reload: true});
                 }
             }
         ];
 
-        var filterParam = $state.includes('my.groups') ? 'grouped' : $stateParams.filter || filters[0].id;
+        var filterParam = $stateParams.filter || filters[0].id;
         $scope.filters = {
             items: filters,
             selected: _.find(filters, {id: filterParam}) || _.chain(filters).map('children').flatten().find({id: filterParam}).value() || filters[0]
         };
-
-        var init = function () {
-            $scope.filters.selected
-                .loadData()
-                .then(
-                    function (itemList) {
-                        $scope.itemList = itemList;
-                        $scope.itemListIsLoading = false;
-                    }
-                );
-        };
-        init();
 
         $scope.$watch(
             function () {
@@ -102,7 +68,7 @@ angular
                     if ($state.is('my.groups') || $state.is('my.topics')) {
                         var item = $scope.itemList[0];
                         if ($scope.isGroup(item)) {
-                            $state.go('my.groups.groupId', {groupId: item.id});
+                            $state.go('my.groups.groupId', {groupId: item.id, filter: 'grouped'});
                         } else {
                             $state.go('my.topics.topicId', {topicId: item.id});
                         }

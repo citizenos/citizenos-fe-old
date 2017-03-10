@@ -1,5 +1,5 @@
-<div ng-controller="MyCtrl" style="height: 100%;">
-    <div id="topics_root" ng-if="!itemListIsLoading && itemList.length">
+<div style="height: 100%;">
+    <div id="topics_root" ng-if="itemList.length">
 
         <div class="v_line separator absolute_separator" ng-show="wWidth > 750"></div>
 
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id})">
+                    <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id, filter: 'grouped'})">
                         {{item.name}} ({{item.members.topics.count}})
                     </div>
                     <div class="minimize_container" ng-if="item.members.topics.count" ng-click="doToggleGroupTopicList(item)">
@@ -146,7 +146,7 @@
     </div>
 
     <!-- No results -->
-    <div class="table" ng-if="!itemListIsLoading && !itemList.length">
+    <div class="table" ng-if="!itemList.length">
         <!-- No Groups view -->
         <div class="v_align_cell" ng-if="('my.groups' | isState) || ('my.groups.create' | isState)">
             <div class="title_area">

@@ -1,12 +1,11 @@
 <div ng-if="wWidth > 1024">
-    <!-- Only show this if the user is logged in -->
-    <div class="logo_area" ng-click="app.showSearchResults = false" ng-if="app.user.loggedIn">
-        <div class="logo sprite sprite-x5-cos-logo-small2x">
+    <div class="logo_area">
+        <!-- Only show this if the user is logged in -->
+        <div class="logo sprite sprite-x5-cos-logo-small2x" ng-click="app.showSearchResults = false" ng-if="app.user.loggedIn" ui-sref="home">
         </div>
-    </div>
-
-    <!-- Only show this if the user is NOT logged in -->
-    <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="!app.user.loggedIn">
+        <!-- Only show this if the user is NOT logged in -->
+        <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="!app.user.loggedIn" ui-sref="home">
+        </div>
     </div>
 </div>
 
@@ -67,7 +66,7 @@
                 </div>
                 Create topic
             </a>
-            <a ui-sref="my.topics" ui-sref-opts="{reload: true}" ui-sref-active="active" class="section_item">
+            <a ui-sref="my.topics({filter: 'all'})" ui-sref-opts="{reload: true}" ui-sref-active="active" class="section_item">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
@@ -103,21 +102,13 @@
                 </div>
                 Create groups
             </a>
-            <a ui-sref="my.groups" ui-sref-opts="{reload: true}" ui-sref-active="active" class="section_item">
+            <a ui-sref="my.groups({filter: 'grouped'})" ui-sref-opts="{reload: true}" ui-sref-active="active" class="section_item">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
                 My groups
-            </a>
-            <a ui-sref="groups" ui-sref-active-eq="active" class="section_item">
-                <div class="section_icon">
-                    <div class="table_cell">
-                        <div class="sprite sprite-bullet-arrow2x"></div>
-                    </div>
-                </div>
-                Public groups
             </a>
         </div>
     </div>
@@ -130,16 +121,7 @@
     <!-- Nav section -->
     <div class="section">
 
-        <a class="section_item" href="#" ng-if="app.user.loggedIn">
-            <div class="section_icon">
-                <div class="table_cell">
-                    <div class="sprite sprite-menu-icon-connections2x"></div>
-                </div>
-            </div>
-            Connections
-        </a>
-
-        <a ui-sref="about" class="section_item" href="">
+        <a class="section_item" ui-sref="about">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-about2x"></div>
@@ -148,7 +130,7 @@
             About
         </a>
 
-        <a class="section_item" href="">
+        <a class="section_item" href="https://citizenos.uservoice.com/">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-faq2x"></div>
@@ -157,7 +139,7 @@
             FAQ
         </a>
 
-        <a class="section_item" href="">
+        <a class="section_item" ng-href="{{app.config.links.help[app.language]}}">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-help2x"></div>
