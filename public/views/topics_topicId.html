@@ -93,8 +93,8 @@
                                     View
                                 </div>
                             </div>
-                            <div ng-if="topic.vote.voteId" class="tab" ui-sref-active="selected" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
-                                <div class="table_cell" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.vote.voteId})">
+                            <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref-active="selected" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                <div class="table_cell" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})">
                                     Vote
                                 </div>
                             </div>
