@@ -137,18 +137,25 @@
                     resolve: {
                         /* @ngInject */
                         sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {
-                            sTranslate.setLanguage($stateParams.language);
-                            console.log($stateParams.language);
-                            if (sAuth.user.isLoading === false) {
-                                $log.debug('$stateProvider.state("main").resolve', 'Status already loaded');
-                                return;
-                            } else {
+                            $log.debug('Resolve language', $stateParams.language);
+                            return sTranslate.setLanguage($stateParams.language);
+                        },
+                        sAuthResolve: function ($q, $log, sAuth) {
+                                if(sAuth.user.loggedIn) {
+                                    return;
+                                }
                                 return sAuth
                                     .status()
-                                    .catch(function () {
-                                        //This to prevent view from loading before there is a response from sAuth
-                                    });
-                            }
+                                    .then(
+                                        function () {
+                                            $log.debug('Resolve user', sAuth.user);
+                                            return $q.resolve();
+                                        },
+                                        function () {
+                                            $log.debug('Resolve user', sAuth.user);
+                                            return $q.resolve();
+                                        }
+                                    );
                         }
                     }
                 })
@@ -224,8 +231,9 @@
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', 'Topic', function ($stateParams, Topic) {
-                            return Topic.get({topicId: $stateParams.topicId}).$promise;
+                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', function ($stateParams, Topic, sAuthResolve) {
+                            var topic = new Topic({id: $stateParams.topicId});
+                            return topic.$get();
                         }]
                     },
                     controller: 'TopicCtrl'
@@ -255,6 +263,36 @@
                     url: '/my?filter',
                     parent: 'main',
                     templateUrl: '/views/my.html'
+                })
+                .state('topics.view.votes', {
+                    abstract: true,
+                    url: '/votes',
+                    parent: 'topics.view',
+                    template:'<div ui-view></div>'
+                })
+                .state('topics.view.votes.create', {
+                    parent: 'topics.view.votes',
+                    url: '/create',
+                    template: '<div ui-view></div>',
+                    controller: 'TopicVoteCreateCtrl',
+                    resolve: {
+                        rVote: ['rTopic', '$state','$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
+                            if(rTopic.voteId) {
+                                $timeout( function () {
+                                    $state.go('topics.view.votes.view', {language:$stateParams.language, topicId:rTopic.id, voteId:rTopic.voteId}); //if vote is allready created redirect to voting
+                                }, 0);
+                                return $q.reject();
+                            } else {
+                                return $q.resolve();
+                            }
+                        }]
+                    }
+                })
+                .state('topics.view.votes.view', {
+                    parent: 'topics.view.votes',
+                    url: '/:voteId',
+                    template: '<div ui-view></div>',
+                    controller: 'TopicVoteCtrl'
                 })
                 .state('my.topics', {
                     url: '/topics',

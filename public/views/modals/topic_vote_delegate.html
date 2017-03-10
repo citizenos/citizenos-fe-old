@@ -1,0 +1,181 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+    <div id="lightbox" class="wide_lightbox with_title_description with_header_menu">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title">Delegate your vote for topic</div>
+                    <div class="title_description">{{topic.title}}</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div class="header_row_wrap">
+                    <div class="header_row" slide-controller identifier="topicSettingsSlider" start_slide_at="329">
+                        <div class="tab_button active">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text">Delegate</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+                        <div ng-if="wWidth > 560" class="blue_button_wrap">
+                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveGroup()">
+                                Delegate vote
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="line lightest_line"></div>
+
+            <!-- INVITE USERS -->
+            <div class="lightbox_content padding_bottom_zero">
+
+                <div class="lightbox_section">
+
+                    <div class="input_text_margin_bottom">
+                        Invite users via their name or e-mail address
+                    </div>
+
+                    <div class="searchbox_with_icon_and_text only_text">
+                        <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length, dropdown_active : searchResults.users.length}">
+                            <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
+                                       select="addUser(item)" placeholder="Search by username or e-mail address">
+                                <div class="search_area_wrap">
+                                    <div class="search_dropdown_area" ng-show="searchResults.users.length">
+                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
+                                            <div class="table_cell search_item_text">
+                                                <b>{{user.name}}</b> {{user.company}}
+                                            </div>
+                                            <div class="table_cell blue_link">
+                                                <span class="submit_link" ng-click="addUser(user)">Press enter or click to add</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </typeahead>
+
+                        </div>
+                        <div class="search_text">
+                            <div class="table_cell blue_link">
+                                Press enter to add
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="lightbox_section double_row_list user_list">
+
+                    <div ng-if="delegateUser">
+
+                        <div class="category_title">
+                            <div class="table_cell">
+                                Users
+                            </div>
+                        </div>
+
+                        <table>
+
+                            <tr>
+                                <td>
+                                    <div class="profile_image_wrapper dark">
+                                        <div class="profile_moon sprite"></div>
+                                        <div class="account_picture">
+                                            <img ng-if="member.imageUrl" src="{{delegateUser.imageUrl}}">
+                                            <div class="profile_image_filler">
+                                                <div class="table_cell" cos-initials="delegateUser.name">
+                                                    ML
+                                                </div>
+                                                <div class="profile_circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="name_wrap">
+                                        <div class="table_cell">
+                                            <div class="blue_link" ng-click="doRemoveDelegateUser(delegateUser)">{{delegateUser.name}}</div>
+                                            <div class="via">{{delegateUser.company}}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mobile_extra_info">
+                                        <div class="left">
+                                            <div cos-dropdown class="classic_dropdown">
+
+                                                <div class="dropdown_selection">
+                                                    <div class="dropdown_text">
+                                                        {{delegateUser.level}}
+                                                    </div>
+
+                                                    <div class="arrow_holder">
+                                                        <div class="table_cell">
+                                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                            <div class="v_line"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="right">
+                                            <div class="btn_wrap recycle_bin white_bg">
+                                                <div class="btn">
+                                                    <div class="table_cell">
+                                                        <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn_wrap recycle_bin white_bg">
+                                        <div class="btn" ng-click="doRemoveDelegateUser(member)">
+                                            <div class="table_cell">
+                                                <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                                <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- MOBILE SAVE BUTTON -->
+            <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
+                <div class="blue_button">
+                    Delegate vote
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()">
+
+    </div>
+
+</div>

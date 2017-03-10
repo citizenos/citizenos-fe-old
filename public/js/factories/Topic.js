@@ -1,19 +1,24 @@
 angular
     .module('citizenos')
-    .factory('Topic', ['$log', '$resource', 'sLocation', 'TopicMemberUser', 'TopicVote', function ($log, $resource, sLocation, TopicMemberUser, TopicVote) {
+    .factory('Topic', ['$log', '$resource', 'sLocation', 'sAuth', 'TopicMemberUser', 'TopicVote', 'Vote', function ($log, $resource, sLocation, sAuth, TopicMemberUser, TopicVote, Vote) {
         $log.debug('citizenos.factory.Topic');
 
         var Topic = $resource(
-            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId'),
+            sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId'),
             {topicId: '@id'},
             {
                 get: {
                     method: 'GET',
+                    params: {topicId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) {
                             var topic = angular.fromJson(data).data;
-                            if (topic.vote && topic.vote.id) {
-                                topic.vote = new TopicVote(topic.vote);
+                            if ((topic.vote && topic.vote.id) || topic.voteId) {
+                                if(topic.vote){
+                                    topic.vote = new TopicVote(topic.vote);
+                                } else {
+                                    topic.vote = new TopicVote({id:topic.voteId, topicId:topic.id});
+                                }
                             }
                             return topic;
                         } else {
@@ -23,12 +28,17 @@ angular
                 },
                 query: {
                     isArray: true,
+                    params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformResponse: function (data, headerGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             var array = angular.fromJson(data).data.rows || [];
                             array.forEach(function (topic) {
-                                if (topic.vote && topic.vote.id) {
-                                    topic.vote = new TopicVote(topic.vote);
+                                if ((topic.vote && topic.vote.id) || topic.voteId) {
+                                    if(topic.vote){
+                                        topic.vote = new TopicVote(topic.vote);
+                                    } else {
+                                        topic.vote = new TopicVote({topicId:topic.id, id:topic.voteId});
+                                    }
                                 }
                             });
                             return array;
@@ -38,9 +48,15 @@ angular
                     }
                 },
                 update: {
+                    params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     method: 'PUT',
                 },
+                patch: {
+                    params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
+                    method: 'PATCH'
+                },
                 save: {
+                    params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     method: 'POST',
                     transformResponse: function (data) {
                         return angular.fromJson(data).data;
@@ -108,7 +124,7 @@ angular
         };
 
         Topic.prototype.canUpdate = function () {
-            return this.permission.level === TopicMemberUser.LEVELS.admin;
+            return (this.permission && this.permission.level === TopicMemberUser.LEVELS.admin);
         };
 
         Topic.prototype.canEdit = function () {
@@ -117,6 +133,10 @@ angular
 
         Topic.prototype.canDelete = function () {
             return this.canUpdate();
+        };
+
+        Topic.prototype.canVote = function () {
+            return this.vote && (this.permission.level !== TopicMemberUser.LEVELS.none || (this.vote.authType === Vote.VOTE_AUTH_TYPES.hard && this.visibility === Topic.VISIBILITY.public) && this.status === Topic.STATUSES.voting);
         };
 
         return Topic;

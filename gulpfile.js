@@ -41,7 +41,6 @@ gulp.task('templatecache', function () {
             + '                .then(\n'
             + '                    function (response) {\n'
             + '                        $templateCache.put(response.config.url, response.data);\n'
-            + '                        $log.debug(\'cached page\', response.config.url);\n\n'
             + '                        if (++i < templates.length) {\n'
             + '                            downloadToCache();\n'
             + '                        }\n'

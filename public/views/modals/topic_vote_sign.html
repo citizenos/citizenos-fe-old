@@ -22,7 +22,7 @@
                 <div class="voting_tag_padding">
                     <div class="voting_tag">
                         <div class="table_cell">
-                            YOU’RE VOTING: <span class="bold">YES</span>
+                            YOU’RE VOTING: <span class="bold">{{optionSelected.value}}</span>
                         </div>
                     </div>
                 </div>
@@ -36,21 +36,29 @@
                 <div class="v_line lightest_line"></div>
 
                 <div class="sign_in_section">
-                    <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
-                    <input id="phone" name="phoneNumber" class="error_input" ng-model="formMobile.phoneNumber" placeholder="Phone number *" focus-if="{{wWidth > 1024}}" required>
-                    <label for="phone" class="error_label">
-                        <div class="table_cell">
-                            <div class="sprite sprite-icon-inputfield-error2x"></div>
-                            <span>Invalid phone number</span>
+                    <form name="formMobileSign" novalidate>
+                        <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
+                        <input ng-if="!formMobile.isLoading"  id="phone" name="phoneNumber" ng-class="{error_input: formMobileSign.phoneNumber.$error.pattern && formMobileSign.phoneNumber.$touched}" ng-model="formMobile.phoneNumber" placeholder="Phone number *" focus-if="{{wWidth > 1024}}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
+                        <label ng-if="formMobileSign.phoneNumber.$error.pattern && formMobileSign.phoneNumber.$touched" for="phone" class="error_label" >
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <span>Invalid phone number</span>
+                            </div>
+                        </label>
+                        <input ng-if="!formMobile.isLoading" ng-model="formMobile.pid" name="pid" ng-class="{error_input: formMobileSign.pid.$error.pattern && formMobileSign.pid.$touched}" placeholder="PID *" ng-pattern="/^[0-9]{11}$/" required>
+                        <label ng-if="formMobileSign.pid.$error.pattern && formMobileSign.pid.$touched" for="phone" class="error_label" >
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <span>Invalid PID number</span>
+                            </div>
+                        </label>
+                        <div ng-if="formMobile.isLoading" class="code">Kontrollkood: {{challengeID}}</div>
+                        <div ng-if="formMobile.isLoading" class="code_text">Please enter the PIN in your mobile phone...</div>
+                        <div ng-if="formMobile.isLoading"  class="loader_wrap">
+                            <div class="loader"></div>
                         </div>
-                    </label>
-                    <!--input name="pid" placeholder="PID *" required>
-                    <div class="code">Kontrollkood: 2843</div>
-                    <div class="code_text">Please enter the PIN in your mobile phone...</div>
-                    <div class="loader_wrap">
-                        <div class="loader"></div>
-                    </div-->
-                    <button ng-if="wWidth <= 550" class="blue_button">Sign with Mobiil-ID</button>
+                        <button ng-if="wWidth <= 550" class="blue_button" ng-click="doSignWithMobile()" cos-disabled="formMobileSign.$invalid">Sign with Mobiil-ID</button>
+                    </form>
                 </div>
 
                 <div class="line_wrap">
@@ -66,7 +74,7 @@
                 <div class="clearer"></div>
 
                 <div ng-if="wWidth > 550" class="sign_in_section">
-                    <button class="blue_button">Sign with Mobiil-ID</button>
+                    <button class="blue_button" ng-click="doSignWithMobile()" cos-disabled="formMobileSign.$invalid">Sign with Mobiil-ID</button>
                 </div>
 
                 <div ng-if="wWidth > 550" class="sign_in_section">

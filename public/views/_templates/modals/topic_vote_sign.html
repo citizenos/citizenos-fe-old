@@ -1,0 +1,85 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title">Choose a signing method for</div>
+                    <div class="title_description">We need to do something about the hipsters in Telliskivi!</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div class="voting_tag_padding">
+                    <div class="voting_tag">
+                        <div class="table_cell">
+                            YOU’RE VOTING: <span class="bold">YES</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <div class="lightbox_content">
+
+                <div class="v_line lightest_line"></div>
+
+                <div class="sign_in_section">
+                    <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
+                    <input id="phone" name="phoneNumber" class="error_input" ng-model="formMobile.phoneNumber" placeholder="Phone number *" focus-if="{{wWidth > 1024}}" required>
+                    <label for="phone" class="error_label">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            <span>Invalid phone number</span>
+                        </div>
+                    </label>
+                    <!--input name="pid" placeholder="PID *" required>
+                    <div class="code">Kontrollkood: 2843</div>
+                    <div class="code_text">Please enter the PIN in your mobile phone...</div>
+                    <div class="loader_wrap">
+                        <div class="loader"></div>
+                    </div-->
+                    <button ng-if="wWidth <= 550" class="blue_button">Sign with Mobiil-ID</button>
+                </div>
+
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+
+                <div class="sign_in_section">
+                    <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
+                    <div class="sprite_big sprite sprite-img-idkaart2x"></div>
+                    <button ng-if="wWidth <= 550" class="blue_button">Sign with ID-Card</button>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div ng-if="wWidth > 550" class="sign_in_section">
+                    <button class="blue_button">Sign with Mobiil-ID</button>
+                </div>
+
+                <div ng-if="wWidth > 550" class="sign_in_section">
+                    <button class="blue_button">Sign with ID-Card</button>
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
+
+</div>

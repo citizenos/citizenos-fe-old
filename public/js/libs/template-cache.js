@@ -14,6 +14,11 @@ angular
             '/views/my_topics_topicId.html',
             '/views/topics_topicId.html',
             '/views/unknown_device.html',
+            '/views/_templates/mytopics.html',
+            '/views/_templates/mytopics_view.html',
+            '/views/_templates/no_groups.html',
+            '/views/_templates/no_topics.html',
+            '/views/_templates/topics_topicId.html',
             '/views/default/nav.html',
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
@@ -37,12 +42,8 @@ angular
             '/views/modals/topic_member_user_delete_confirm.html',
             '/views/modals/topic_member_user_leave_confirm.html',
             '/views/modals/topic_settings.html',
+            '/views/modals/topic_vote_delegate.html',
             '/views/modals/topic_vote_sign.html',
-            '/views/_templates/mytopics.html',
-            '/views/_templates/mytopics_view.html',
-            '/views/_templates/no_groups.html',
-            '/views/_templates/no_topics.html',
-            '/views/_templates/topics_topicId.html',
             '/views/_templates/modals/add_topics.html',
             '/views/_templates/modals/confirm.html',
             '/views/_templates/modals/date_picker.html',
@@ -50,6 +51,7 @@ angular
             '/views/_templates/modals/set_number.html',
             '/views/_templates/modals/topic_delete_confirm.html',
             '/views/_templates/modals/topic_settings.html',
+            '/views/_templates/modals/topic_vote_sign.html',
         ];
         var i = 0;
         if (templates.length) {
@@ -64,8 +66,6 @@ angular
                 .then(
                     function (response) {
                         $templateCache.put(response.config.url, response.data);
-                        $log.debug('cached page', response.config.url);
-
                         if (++i < templates.length) {
                             downloadToCache();
                         }
