@@ -1,56 +1,58 @@
 angular
     .module('citizenos')
-    .directive('cosDisabled', ['$timeout', function ($timeout) {
+    .directive('cosDisabled', ['$compile', '$log', function ($compile, $log) {
         return {
             restrict: 'A',
-            priority: -10,
-            transclude: true,
-            template: '<div tooltips tooltip-template="{{cosDisabledTooltip}}" tooltip-smart="true" ng-transclude style="display: inherit; width: inherit; height: inherit;"></div>',
-            link: function (scope, elem, attrs) {
-                var cosDisabled = scope.$eval(attrs.cosDisabled);
-                var classDisabled = attrs.cosDisabledTooltip ? 'disabled_with_tooltip' : 'disabled';
+            priority: -1000,
+            compile: function (tElem, tAttrs) {
+                $log.debug('cosDisabled.compile', tElem, tAttrs);
 
-                scope.cosDisabledTooltip = attrs.cosDisabledTooltip;
+                tElem.removeAttr('cos-disabled');
+                tElem.removeAttr('cos-disabled-tooltip');
+                tElem.removeAttr('ng-repeat'); // Remove ng-repeat so that the when used along with ng-repeat the directive is not recompiled
 
-                var update = function () {
-                    if (cosDisabled) {
-                        elem.addClass(classDisabled);
-                        //elem.css('pointer-events', 'none');
-                        elem.find('input').attr('disabled', true);
-                        if (elem[0].tagName === 'INPUT') {
-                            elem.attr('disabled', true);
-                        }
-                    } else {
-                        elem.removeClass(classDisabled);
-                        //elem.css('pointer-events', 'auto');
-                        elem.find('input').removeAttr('disabled');
-                        if (elem[0].tagName === 'INPUT') {
-                            elem.removeAttr('disabled');
-                        }
+                return function (scope, elem, attrs) {
+                    $log.debug('cosDisabled.link', scope, elem, attrs);
+
+                    var cosDisabled = scope.$eval(attrs.cosDisabled);
+                    var cosDisabledTooltip = tAttrs.cosDisabledTooltip;
+
+                    if (cosDisabledTooltip) {
+                        elem.attr('tooltips', '');
+                        elem.attr('tooltip-template', cosDisabledTooltip);
+                        elem.attr('tooltip-smart', true);
                     }
-                };
 
-                elem.on('click', function (e) {
-                    if (cosDisabled) {
-                        e.stopImmediatePropagation();
-                    }
-                });
+                    var update = function () {
+                        $log.debug('cosDisabled.update()', cosDisabled, elem);
 
-                $timeout(function () { // To disable all innerElement click events $timeout helps to override ng-click events created inside other directives eg. cosToggle
-                    elem.find('*').on('click', function (e) {
                         if (cosDisabled) {
-                            e.stopImmediatePropagation();
+                            elem.addClass(cosDisabledTooltip ? 'disabled_with_tooltip' : 'disabled');
+                            elem.css('pointer-events', 'none');
+                            elem.find('input').attr('disabled', true);
+                            if (elem[0].tagName === 'INPUT') {
+                                elem.attr('disabled', true);
+                            }
+                        } else {
+                            elem.removeClass(cosDisabledTooltip ? 'disabled_with_tooltip' : 'disabled');
+                            elem.css('pointer-events', 'auto');
+                            elem.find('input').removeAttr('disabled');
+                            if (elem[0].tagName === 'INPUT') {
+                                elem.removeAttr('disabled');
+                            }
                         }
+
+                        $compile(elem)(scope);
+                    };
+
+                    scope.$watch(function () {
+                        return cosDisabled;
+                    }, function (newVal, oldVal) {
+                        $log.debug('cosDisabled.watch', arguments);
+                        update();
                     });
-                });
 
-                scope.$watch(function () {
-                    cosDisabled = scope.$eval(attrs.cosDisabled);
-                    return cosDisabled;
-                }, function () {
-                    update();
-                });
-
+                }
             }
         }
     }]);

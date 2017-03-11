@@ -541,7 +541,7 @@ table, .pretend_table {
 .disabled_with_tooltip {
     cursor: default !important;
     opacity: 1 !important;
-    .table_cell, .disabled_area {
+    .table_cell, .disabled_area, .dropdown_selection {
         opacity: .5 !important;
     }
 }
