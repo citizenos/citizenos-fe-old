@@ -473,16 +473,22 @@
                             <div class="table_cell">
                                 <div>{{user.name}}</div>
                                 <div class="via" ng-if="user.groups.rows.length && !user.levelUser">
-                                    via <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{group.level}})</span><span ng-if="!group.name" class="disabled">&lt;Inaccessible Group&gt; ({{group.level}})</span></span>
+                                    via <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link"
+                                                                                                                         ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{group.level}})</span><span
+                                    ng-if="!group.name" class="disabled">&lt;Inaccessible Group&gt; ({{group.level}})</span></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
+                        <form action="">
+                            <input type="checkbox" ng-model="yolo" title="YOLO" style="border: 1px solid red; width: 16px; height: 16px;">
+                            {{yolo}}
+                        </form>
+                        <div cos-dropdown class="classic_dropdown" cos-disabled="yolo">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
-                                    {{user.level}}
+                                    {{user.level}} {{yolo}}
                                 </div>
 
                                 <div class="arrow_holder">

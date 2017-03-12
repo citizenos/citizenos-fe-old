@@ -10,8 +10,10 @@ angular
                 tElem.removeAttr('ng-repeat'); // Remove ng-repeat so that the when used along with ng-repeat the directive is not recompiled
 
                 return function (scope, elem, attrs) {
+                    $log.debug('cosDisabled.link', elem, attrs);
+
                     var cosDisabled = scope.$eval(attrs.cosDisabled);
-                    var cosDisabledTooltip = tAttrs.cosDisabledTooltip;
+                    var cosDisabledTooltip = attrs.cosDisabledTooltip;
 
                     if (cosDisabledTooltip) {
                         elem.attr('tooltips', '');
@@ -21,6 +23,8 @@ angular
                     }
 
                     var update = function () {
+                        $log.debug('cosDisabled.update', elem, attrs.cosDisabled);
+
                         if (cosDisabled) {
                             elem.addClass(cosDisabledTooltip ? 'disabled_with_tooltip' : 'disabled');
                             elem.css('pointer-events', 'none');
@@ -40,11 +44,16 @@ angular
                         $compile(elem)(scope);
                     };
 
-                    scope.$watch(function () {
-                        return cosDisabled;
-                    }, function () {
-                        update();
-                    });
+                    scope.$watch(
+                        function () {
+                            $log.debug('cosDisabled.watch', attrs.cosDisabled);
+                            return cosDisabled;
+                        }
+                        , function (newVal, oldVal) {
+                            $log.debug('cosDisabled.watch.trigger', arguments);
+                            update();
+                        }
+                    );
 
                 }
             }
