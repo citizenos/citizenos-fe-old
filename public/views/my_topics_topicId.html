@@ -481,14 +481,10 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <form action="">
-                            <input type="checkbox" ng-model="yolo" title="YOLO" style="border: 1px solid red; width: 16px; height: 16px;">
-                            {{yolo}}
-                        </form>
-                        <div cos-dropdown class="classic_dropdown" cos-disabled="yolo">
+                        <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">
-                                    {{user.level}} {{yolo}}
+                                    {{user.level}}
                                 </div>
 
                                 <div class="arrow_holder">

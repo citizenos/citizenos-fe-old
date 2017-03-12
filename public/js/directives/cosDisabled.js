@@ -5,6 +5,8 @@ angular
             restrict: 'A',
             priority: -1000,
             compile: function (tElem, tAttrs) {
+                $log.debug('cosDisabled.compile', tElem, tAttrs);
+
                 tElem.removeAttr('cos-disabled'); // Remove itself from the template element to avoid compile loop
                 tElem.removeAttr('cos-disabled-tooltip'); // Remove itself from the template element to avoid compile loop
                 tElem.removeAttr('ng-repeat'); // Remove ng-repeat so that the when used along with ng-repeat the directive is not recompiled
@@ -23,7 +25,7 @@ angular
                     }
 
                     var update = function () {
-                        $log.debug('cosDisabled.update', elem, attrs.cosDisabled);
+                        $log.debug('cosDisabled.update()', cosDisabled, elem);
 
                         if (cosDisabled) {
                             elem.addClass(cosDisabledTooltip ? 'disabled_with_tooltip' : 'disabled');
@@ -44,16 +46,13 @@ angular
                         $compile(elem)(scope);
                     };
 
-                    scope.$watch(
-                        function () {
-                            $log.debug('cosDisabled.watch', attrs.cosDisabled);
-                            return cosDisabled;
-                        }
-                        , function (newVal, oldVal) {
-                            $log.debug('cosDisabled.watch.trigger', arguments);
-                            update();
-                        }
-                    );
+                    scope.$watch(function () {
+                        $log.debug('cosDisabled.watch', 'add watch', cosDisabled);
+                        return cosDisabled;
+                    }, function (newVal, oldVal) {
+                        $log.debug('cosDisabled.watch', arguments);
+                        update();
+                    });
 
                 }
             }
