@@ -436,6 +436,11 @@
                     url: '/groups',
                     parent: '_templates',
                     templateUrl: '/views/_templates/groups.html'
+                })
+                .state('cos_input_test', {
+                    url: '/cos_input_test',
+                    parent: 'main',
+                    templateUrl: '/views/_templates/cos_input_test.html'
                 });
 
             $translateProvider.useStaticFilesLoader({

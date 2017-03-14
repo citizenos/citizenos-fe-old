@@ -12,6 +12,7 @@ angular
             '/views/my_topics_topicId.html',
             '/views/topics_topicId.html',
             '/views/unknown_device.html',
+            '/views/_templates/cos_input_test.html',
             '/views/_templates/groups.html',
             '/views/_templates/mytopics.html',
             '/views/_templates/mytopics_view.html',
