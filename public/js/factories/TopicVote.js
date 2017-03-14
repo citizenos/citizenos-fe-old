@@ -5,6 +5,7 @@ angular
 
         var path = '/api/:prefix/:userId/topics/:topicId/votes/:voteId';
         var pathStatus = path+'/status';
+        var pathSign = path+'/sign';
 
         var TopicVote = $resource(
             sLocation.getAbsoluteUrlApi(path),
@@ -17,9 +18,12 @@ angular
                         delete data.topicId;
                         return angular.toJson(data);
                     },
-                    transformResponse: function (data) {
-                        console.log('TopicVote', data);
-                        return angular.fromJson(data).data;
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status > 0 && status < 400) {
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
                     }
                 },
                 get: {
@@ -48,6 +52,11 @@ angular
                     method: 'GET',
                     params: {topicId: '@topicId', voteId: '@id', prefix:sLocation.getApiPathPrefix(sAuth.user.loggedIn)},
                     url: sLocation.getAbsoluteUrlApi(pathStatus),
+                },
+                sign: {
+                    method: 'POST',
+                    url: sLocation.getAbsoluteUrlApi(pathSign),
+                    params: {topicId: '@topicId', voteId: '@id'}
                 }
             }
         );

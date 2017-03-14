@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TopicVoteCtrl', ['$scope', '$rootScope', '$state', '$log', '$timeout', 'TopicVote', 'Vote', 'ngDialog', function ($scope, $rootScope, $state, $log, $timeout, TopicVote, Vote, ngDialog) {
+app.controller('TopicVoteCtrl', ['$scope', '$rootScope', '$state', '$log', '$timeout', 'TopicVote', 'Vote', 'VoteDelegation', 'ngDialog', function ($scope, $rootScope, $state, $log, $timeout, TopicVote, Vote, VoteDelegation, ngDialog) {
     $log.debug('TopicVoteCtrl');
 
     $scope.topic.vote.topicId = $scope.topic.id;
@@ -74,42 +74,55 @@ app.controller('TopicVoteCtrl', ['$scope', '$rootScope', '$state', '$log', '$tim
     };
 
     $scope.$parent.$parent.doDelegate = function () {
+        if (!$scope.topic.vote.delegation) {
+            ngDialog
+                .open({
+                    template: '/views/modals/topic_vote_delegate.html',
+                    controller: 'TopicVoteDelegateCtrl',
+                    data: {
+                        topic: $scope.topic
+                    },
+                    preCloseCallback: function (data) {
+                        $log.debug(data);
+                        if (data && data.delegateUser && data.delegateUser.id) {
+                            var delegation = new VoteDelegation({topicId: $scope.topic.id, voteId: $scope.topic.vote.id});
+                            delegation.userId = data.delegateUser.id;
+                            delegation
+                                .$save()
+                                .then( function (data) {
+                                    $scope.topic.vote.topicId = $scope.topic.id;
+                                    $scope.topic.vote.$get();
+                                });
+                        }
+                        return true;
+                    }
+                })
+        }
+    };
+
+    $scope.$parent.$parent.doRevokeDelegation = function () {
+        $log.debug('doDeleteTopic');
+
         ngDialog
-            .open({
-                template: '/views/modals/topic_vote_delegate.html',
-                controller: 'TopicVoteDelegateCtrl',
+            .openConfirm({
+                template: '/views/modals/topic_vote_revoke_delegation_confirm.html',
                 data: {
-                    topic: $scope.topic
-                },
-                preCloseCallback: function (data) {
-                    $log.debug(data);
-                    return true;
+                    user: $scope.topic.vote.delegation
                 }
             })
+            .then(function () {
+                VoteDelegation
+                .delete({topicId:$scope.topic.id, voteId: $scope.topic.vote.id})
+                .$promise
+                .then (function () {
+                    $scope.topic.vote.topicId = $scope.topic.id;
+                    $scope.topic.vote.$get();
+                });
+            }, angular.noop);
     };
-    /*$scope.doDelegate = function (user) {
-        sTopic
-            .voteDelegationCreate($state.params.id, $state.params.voteId, user.id)
-            .then(function (res) {
-                $log.log('Delegation success', res);
-                $scope.init(); // Reload Vote so that delegation is visible
-            }, function (res) {
-                $log.error('Delegation failure', res);
-                if (res.status === 400) {
-                    $scope.app.showError(res.data.status.message);
-                }
-            });
-    };*/
 
-    /*$scope.doRevokeDelegation = function () {
-        sTopic
-            .voteDelegationDelete($state.params.id, $state.params.voteId)
-            .then(function (res) {
-                $log.log('Delegation deletion succeeded', res);
-                $scope.init(); // Reload Vote so that delegation is visible
-            }, function (res) {
-                $log.error('Delegation deletion failure', res);
-            });
-    };*/
-
+    $scope.$parent.$parent.getVoteValuePercentage = function (value) {
+        if (!$scope.topic.vote.getVoteCountTotal() || value < 1) return 0;
+        return value / $scope.topic.vote.getVoteCountTotal() * 100;
+    };
 }]);

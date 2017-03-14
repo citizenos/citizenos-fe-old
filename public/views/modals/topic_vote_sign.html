@@ -68,7 +68,7 @@
                 <div class="sign_in_section">
                     <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
                     <div class="sprite_big sprite sprite-img-idkaart2x"></div>
-                    <button ng-if="wWidth <= 550" class="blue_button">Sign with ID-Card</button>
+                    <button ng-if="wWidth <= 550" class="blue_button" cos-disabled="isLoadingIdCard" ng-click="doSignWithCard()">Sign with ID-Card</button>
                 </div>
 
                 <div class="clearer"></div>
@@ -78,7 +78,7 @@
                 </div>
 
                 <div ng-if="wWidth > 550" class="sign_in_section">
-                    <button class="blue_button">Sign with ID-Card</button>
+                    <button class="blue_button" cos-disabled="isLoadingIdCard" ng-click="doSignWithCard()">Sign with ID-Card</button>
                 </div>
 
                 <div class="clearer"></div>

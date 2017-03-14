@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveGroup()">
+                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveDelegate()">
                                 Delegate vote
                             </div>
                         </div>
@@ -111,38 +111,6 @@
                                             <div class="via">{{delegateUser.company}}</div>
                                         </div>
                                     </div>
-
-                                    <div class="mobile_extra_info">
-                                        <div class="left">
-                                            <div cos-dropdown class="classic_dropdown">
-
-                                                <div class="dropdown_selection">
-                                                    <div class="dropdown_text">
-                                                        {{delegateUser.level}}
-                                                    </div>
-
-                                                    <div class="arrow_holder">
-                                                        <div class="table_cell">
-                                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
-
-                                                            <div class="v_line"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="right">
-                                            <div class="btn_wrap recycle_bin white_bg">
-                                                <div class="btn">
-                                                    <div class="table_cell">
-                                                        <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </td>
                                 <td>
                                     <div class="btn_wrap recycle_bin white_bg">
@@ -166,7 +134,7 @@
             </div>
             <!-- MOBILE SAVE BUTTON -->
             <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
-                <div class="blue_button">
+                <div class="blue_button" ng-click="doSaveDelegate()">
                     Delegate vote
                 </div>
             </div>

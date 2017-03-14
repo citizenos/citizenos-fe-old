@@ -143,7 +143,7 @@
                             </div>
                             <div class="vote_casting_header_section">
                                 <div class="table_cell">
-                                    <span class="bold">264</span>/{{topic.vote.getVoteCountTotal()}} votes counte
+                                    <span class="bold">{{topic.vote.getVoteCountTotal()}}</span>/{{topic.members.users.count}} votes counte
                                 </div>
                                 <div class="table_cell">
                                     <div class="v_line"></div>
@@ -209,16 +209,16 @@
 
                         <div class="delegation_section">
 
-                            <div class="voting_button" cos-disabled="(!topic.vote.delegationIsAllowed || topic.vote.authType === voteAuthTypes.hard)" ng-class="vote.delegationIsAllowed ? 'active' : ''" ng-click="doDelegate()">
-                                <div class="table_cell">
+                            <div class="voting_button voting_button_blue" cos-disabled="(!topic.vote.delegationIsAllowed || topic.vote.authType === voteAuthTypes.hard)" ng-class="topic.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
+                                <div class="table_cell left_side">
                                     <div class="sprite sprite-icon-delegate2x"></div>
                                 </div>
-                                <div class="table_cell">
+                                <div class="table_cell right_side">
                                     Delegate your vote
                                 </div>
                             </div>
 
-                            <div class="delegation_information" ng-if="voteDelegated.length">
+                            <div class="delegation_information" ng-if="topic.vote.delegation">
                                 <div class="delegation_title">You delegated your vote to</div>
                                 <div class="delegations">
 
@@ -226,7 +226,7 @@
                                         <div class="profile_image_wrapper dark">
                                             <div class="profile_moon sprite sprite-icon-certified-fb2x"></div>
                                             <div class="account_picture">
-                                                <!--<img src=".././imgs/profile.jpg">-->
+                                                <img ng-src="{{topic.vote.delegation.imageUrl}}">
                                                 <div class="profile_image_filler">
                                                     <div class="table_cell">
                                                         ML
@@ -237,13 +237,13 @@
                                         </div>
                                         <div class="name_wrap">
                                             <div class="table_cell">
-                                                <div class="blue_link bold">Kristian Lember</div>
+                                                <div class="blue_link bold">{{topic.vote.delegation.name}}</div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="table_cell">
-                                        <div class="blue_button">Revoke your delegation</div>
+                                        <div class="blue_button" ng-click="doRevokeDelegation()">Revoke your delegation</div>
                                     </div>
                                 </div>
                             </div>
@@ -265,7 +265,42 @@
                             </div>
 
                         </div>
+                        <!-- Regular graph -->
+                        <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular">
 
+                            <div class="graph_column" ng-class="(option.selected) ? 'active' : ''" ng-repeat="option in topic.vote.options.rows">
+                                <div class="graph_column_text">
+                                    {{option.value}}<br>
+                                    <span class="bold">{{option.voteCount || 0}}</span>
+                                </div>
+                                <div class="graph_column_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%'}">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Big graph -->
+                        <div class="big_graph" ng-if="topic.vote.type === voteTypes.multiple">
+                            <div class="long_text_holder">
+                                <div class="long_text" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
+                                     <span class="bold">{{key}}.</span> {{option.value}}
+                                </div>
+                            </div>
+
+                            <div class="graph_wrap">
+
+                                <div class="graph_column" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
+                                    <div class="graph_column_text">
+                                        {{key}}<br>
+                                        <span class="bold">{{option.voteCount || 0}}</span>
+                                    </div>
+                                    <div class="graph_column_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%'}">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Statistics graph end -->
                     </div>
 
 

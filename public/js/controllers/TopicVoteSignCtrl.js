@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TopicVoteSignCtrl', ['$scope', '$state', '$log', '$q', '$timeout', 'hwcrypto', 'ngDialog', 'sTranslate', 'sTopic', 'sAuth', 'TopicVote', function ($scope, $state, $log, $q, $timeout, hwcrypto, ngDialog, sTranslate, sTopic, sAuth, TopicVote) {
+app.controller('TopicVoteSignCtrl', ['$scope', '$state', '$log', '$q', '$timeout', 'hwcrypto', 'ngDialog', 'sNotification', 'sTopic', 'sAuth', 'TopicVote', function ($scope, $state, $log, $q, $timeout, hwcrypto, ngDialog, sNotification, sTopic, sAuth, TopicVote) {
     $log.debug('TopicVoteSignCtrl', $scope.ngDialogData);
 
     var topic = $scope.ngDialogData.topic;
@@ -18,23 +18,15 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$state', '$log', '$q', '$timeout
     // TODO: Multiple choice support some day... - https://trello.com/c/WzECsxck/280-bug-vote-sign-no-multiple-choice-support
     $scope.optionSelected = option;
 
-    $scope.voteSignError = null;
-
-    $scope.doCloseVoteSignError = function () {
-        $scope.voteSignError = null;
-    };
-
     $scope.doSignWithCard = function () {
         $log.debug('doSign()', hwcrypto);
 
-        $scope.voteSignError = null;
         $scope.isLoadingIdCard = true;
 
         hwcrypto
             .getCertificate({})
             .then(function (certificate) {
                 $log.debug('Certificate', certificate);
-                $scope.voteSignError = null;
 
                 var votePromise;
 
@@ -48,9 +40,9 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$state', '$log', '$q', '$timeout
                 var certificate = results[0];
                 var voteResponse = results[1];
 
-                var signedInfoDigest = voteResponse.data.data.signedInfoDigest;
-                var signedInfoHashType = voteResponse.data.data.signedInfoHashType;
-                var token = voteResponse.data.data.token;
+                var signedInfoDigest = voteResponse.signedInfoDigest;
+                var signedInfoHashType = voteResponse.signedInfoHashType;
+                var token = voteResponse.token;
 
                 return $q.all([
                     hwcrypto.sign(certificate, {hex: signedInfoDigest, type: signedInfoHashType}, {}),
@@ -61,19 +53,16 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$state', '$log', '$q', '$timeout
                 var signature = results[0];
                 var token = results[1];
 
-                if (sAuth.user.loggedIn) {
-                    return sTopic
-                        .voteVoteSign(topicId, voteId, signature.hex, token);
-                } else {
-                    return sTopic
-                        .voteVoteSignUnauth(topicId, voteId, signature.hex, token);
-                }
+                var signTopicVote = new TopicVote({id: topic.vote.id, topicId:topic.id});
+                signTopicVote.signatureValue = signature.hex;
+                signTopicVote.token = token;
+                return signTopicVote.$sign();
             })
             .then(function (voteSignResult) {
                 $log.debug('voteVoteSign succeeded', arguments);
                 ngDialog.closeAll({ // Pass Vote options, so we can show selected option for the unauthenticated User
-                    options: options,
-                    bdocUri: voteSignResult.data.data.bdocUri
+                    options: [{optionId: $scope.optionSelected.id}],
+                    bdocUri: voteSignResult.bdocUri
                 });
             }, function (err) {
                 $scope.isLoadingIdCard = false;
@@ -82,13 +71,10 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$state', '$log', '$q', '$timeout
                 if (err instanceof Error) { //hwcrypto and JS errors
                     msg = hwCryptoErrorToTranslationKey(err);
                 } else { // API error response
-                    sTranslate.errorsToKeys(err, 'VOTE');
-                    msg = err.data.status.message;
+                    msg = err.status.message;
                 }
 
-                $scope.$apply(function () {
-                    $scope.voteSignError = msg;
-                });
+                $scope.$apply(sNotification.addError(msg));
             });
     };
 
@@ -96,7 +82,6 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$state', '$log', '$q', '$timeout
         $log.debug('doSignWithMobile()');
 
         $scope.formMobile.isLoading = true;
-        $scope.voteSignError = null;
 
         var userVote = new TopicVote({id: topic.vote.id, topicId:topic.id});
         userVote.options = [{optionId: $scope.optionSelected.id}];
@@ -119,21 +104,8 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$state', '$log', '$q', '$timeout
                     bdocUri: voteStatusResult.bdocUri
                 });
             }, function (err) {
-                $log.error('Something failed when trying to sign with mobile', err);
-
-                var msg = null;
-                if (!err) {
-                    $log.error('Error when signing with mobile id', err);
-                    msg = 'MSG_ERROR_50000';
-                } else {
-                    sTranslate.errorsToKeys(err, 'VOTE');
-                    msg = err.status.message;
-                }
-
                 $scope.formMobile.isLoading = false;
-                $scope.formMobile.challengeID = null;
-
-                $scope.voteSignError = msg;
+          ///      sNotification.addError(err);
             });
     };
 
@@ -145,7 +117,6 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$state', '$log', '$q', '$timeout
 
         return voteStatusPromise
             .then(function (response) {
-                console.log(response);
                 var statusCode = response.status.code;
                 switch (statusCode) {
                     case 20001:
