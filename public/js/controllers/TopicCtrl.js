@@ -42,9 +42,9 @@ angular
             orderBy: TopicComment.COMMENT_ORDER_BY.date,
             orderByOptions: TopicComment.COMMENT_ORDER_BY
         };
-
         $scope.topic.padUrl = $sce.trustAsResourceUrl($scope.topic.padUrl);
-        $scope.editMode = false;
+        $scope.editMode = $stateParams.editMode || false;
+
         $scope.STATUSES = Topic.STATUSES;
         $scope.loadTopicComments = function () {
             $scope.topicComments.rows = [];
@@ -68,6 +68,19 @@ angular
                 });
         }
 
+
+        $scope.showVoteCreate = function () {
+            $scope.showVoteCreateForm = !$scope.showVoteCreateForm;
+        };
+
+        $scope.sendToVote = function () {
+            if(!$scope.topic.voteId) {
+                $state.go('topics.view.votes.create', {topicId: $scope.topic.id});
+            } else if ( $scope.topic.voteId && $scope.status !== $scope.STATUSES.voting) {
+                $scope.topic.status = $scope.STATUSES.voting;
+                $scope.topic.$patch();
+            }
+        }
         $scope.loadTopicSocialMentions = function () {
             $scope.topicSocialMentions = Mention.query({topicId: $scope.topic.id});
         }

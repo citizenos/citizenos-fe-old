@@ -3,10 +3,7 @@ angular
     .factory('TopicComment', ['$log', '$resource', 'sLocation', 'sAuth', function ($log, $resource, sLocation, sAuth) {
         $log.debug('citizenos.factory.TopicComment');
 
-        var path = '/api/topics/:topicId/comments/:commentId';
-        if(sAuth.user.loggedIn) {
-            path = '/api/users/self/topics/:topicId/comments/:commentId';
-        }
+        var path = '/api/:prefix/:userId/topics/:topicId/comments/:commentId';
 
         var TopicComment = $resource(
             sLocation.getAbsoluteUrlApi(path),
@@ -14,6 +11,7 @@ angular
             {
                 save: {
                     method:'POST',
+                    params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformRequest: function (data) {
                         return angular.toJson(data);
                     },
@@ -27,6 +25,7 @@ angular
                 },
                 query: {
                     isArray: true,
+                    params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformResponse: function (data, headerGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data.rows;
@@ -37,6 +36,7 @@ angular
                 },
                 update: {
                     method: 'PUT',
+                    params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformRequest: function (data) {
                         return angular.toJson({level: data.level});
                     },

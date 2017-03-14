@@ -6,12 +6,12 @@ angular
             replace: false,
             template: ' \
             <div class="toggle_cell" > \
-                <div class="toggle_widget text_on" ng-click="cosToggle()" ng-class="model ? \'on\' : \'off\'"> \
+                <div class="toggle_widget text_on" ng-click="cosToggle()" ng-class="enabled ? \'on\' : \'off\'"> \
                     <div class="toggle_circle"></div> \
-                     <div class="toggle_text" ng-if="cosToggleTextOff && !model"> \
+                     <div class="toggle_text" ng-if="cosToggleTextOff && !enabled"> \
                         <div class="table_cell">{{cosToggleTextOff}}</div> \
                     </div> \
-                    <div class="toggle_text" ng-if="cosToggleTextOn && model"> \
+                    <div class="toggle_text" ng-if="cosToggleTextOn && enabled"> \
                         <div class="table_cell">{{cosToggleTextOn}}</div> \
                     </div> \
                 </div> \
@@ -19,13 +19,52 @@ angular
             ',
             scope: {
                 model: '=ngModel',
+                value: '=?ngValue',
+                offvalue: '=?offValue',
                 cosToggleTextOn: '=?',
                 cosToggleTextOff: '=?'
             },
             controller: ['$scope', '$element', function ($scope, $element) {
+                $scope.enabled = false;
+
+                if(!$scope.value) {
+                    $scope.enabled = $scope.model;
+                }
+
+                if($scope.value && $scope.model === $scope.value) {
+                    $scope.enabled = true;
+                }
+
                 $scope.cosToggle = function () {
-                    $scope.model = !$scope.model;
+                    if($scope.value){
+                        if($scope.model === $scope.value && $scope.offvalue){
+                            $scope.model = $scope.offvalue;
+                        } else {
+                            $scope.model = $scope.value;
+                        }
+                    } else {
+                        $scope.model = !$scope.model;
+                    }
                 };
+
+                $scope.switch = function () {
+                    console.log('switch', $scope.model, $scope.value)
+                    if($scope.value && $scope.model === $scope.value) {
+                        $scope.enabled = true;
+                    } else if ($scope.value && $scope.model != $scope.value) {
+                        $scope.enabled = false;
+                    } else {
+                        $scope.enabled = !$scope.enabled;
+                    }
+                }
+
+                $scope.$watch(function(scope) { return scope.model },
+                    function(newValue, oldValue) {
+                        if(newValue != oldValue) {
+                            $scope.switch();
+                        }
+                    }
+                );
             }]
         }
     }]);

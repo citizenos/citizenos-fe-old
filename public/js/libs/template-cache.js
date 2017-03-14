@@ -42,6 +42,8 @@ angular
             '/views/modals/topic_member_user_delete_confirm.html',
             '/views/modals/topic_member_user_leave_confirm.html',
             '/views/modals/topic_settings.html',
+            '/views/modals/topic_vote_delegate.html',
+            '/views/modals/topic_vote_revoke_delegation_confirm.html',
             '/views/modals/topic_vote_sign.html',
             '/views/_templates/modals/add_topics.html',
             '/views/_templates/modals/confirm.html',
@@ -50,6 +52,7 @@ angular
             '/views/_templates/modals/set_number.html',
             '/views/_templates/modals/topic_delete_confirm.html',
             '/views/_templates/modals/topic_settings.html',
+            '/views/_templates/modals/topic_vote_sign.html',
         ];
         var i = 0;
         if (templates.length) {
@@ -64,8 +67,6 @@ angular
                 .then(
                     function (response) {
                         $templateCache.put(response.config.url, response.data);
-                        $log.debug('cached page', response.config.url);
-
                         if (++i < templates.length) {
                             downloadToCache();
                         }
