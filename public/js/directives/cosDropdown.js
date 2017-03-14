@@ -16,7 +16,7 @@ angular
                     }
                     elem.removeClass('active_recent');
                 };
-                $document.on('click', documentClickHandler);
+                $document.on('click touchend', documentClickHandler);
 
                 scope.$on('$destroy', function () {
                     // Don't leave event handlers hanging
