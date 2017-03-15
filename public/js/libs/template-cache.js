@@ -43,7 +43,6 @@ angular
             '/views/modals/topic_member_user_leave_confirm.html',
             '/views/modals/topic_settings.html',
             '/views/modals/topic_vote_delegate.html',
-            '/views/modals/topic_vote_revoke_delegation_confirm.html',
             '/views/modals/topic_vote_sign.html',
             '/views/_templates/modals/add_topics.html',
             '/views/_templates/modals/confirm.html',
