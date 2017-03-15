@@ -41,6 +41,8 @@ angular
             '/views/modals/topic_member_group_delete_confirm.html',
             '/views/modals/topic_member_user_delete_confirm.html',
             '/views/modals/topic_member_user_leave_confirm.html',
+            '/views/modals/topic_send_to_followUp_confirm.html',
+            '/views/modals/topic_send_to_vote_confirm.html',
             '/views/modals/topic_settings.html',
             '/views/modals/topic_vote_delegate.html',
             '/views/modals/topic_vote_revoke_delegation_confirm.html',

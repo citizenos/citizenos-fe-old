@@ -136,7 +136,27 @@ angular
         };
 
         Topic.prototype.canVote = function () {
-            return this.vote && (this.permission.level !== TopicMemberUser.LEVELS.none || (this.vote.authType === Vote.VOTE_AUTH_TYPES.hard && this.visibility === Topic.VISIBILITY.public) && this.status === Topic.STATUSES.voting);
+            return this.vote && ((this.permission.level !== TopicMemberUser.LEVELS.none || (this.vote.authType === Vote.VOTE_AUTH_TYPES.hard && this.visibility === Topic.VISIBILITY.public)) && this.status === Topic.STATUSES.voting);
+        };
+
+        Topic.prototype.canDelegate = function () {
+            return (this.canVote() && this.vote.delegationIsAllowed === true);
+        };
+
+        Topic.prototype.canSendToFollowUp = function () {
+            return this.canUpdate() && this.vote && this.vote.id && this.status !== Topic.STATUSES.followUp;
+        };
+
+        Topic.prototype.canSendToVote = function () {
+            return this.canUpdate() && [Topic.STATUSES.voting, Topic.STATUSES.closed].indexOf(this.status) < 0;
+        };
+
+        Topic.prototype.hasVoteEnded = function () {
+            if ([Topic.STATUSES.followUp, Topic.STATUSES.closed].indexOf(this.status) > -1) {
+                return true;
+            }
+
+            return this.vote && this.vote.endsAt && new Date() > new Date(this.vote.endsAt);
         };
 
         return Topic;

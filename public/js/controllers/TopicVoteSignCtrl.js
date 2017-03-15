@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TopicVoteSignCtrl', ['$scope', '$state', '$log', '$q', '$timeout', 'hwcrypto', 'ngDialog', 'sNotification', 'sTopic', 'sAuth', 'TopicVote', function ($scope, $state, $log, $q, $timeout, hwcrypto, ngDialog, sNotification, sTopic, sAuth, TopicVote) {
+app.controller('TopicVoteSignCtrl', ['$scope', '$log', '$q', '$timeout', 'hwcrypto', 'ngDialog', 'sNotification', 'sAuth', 'TopicVote', function ($scope, $log, $q, $timeout, hwcrypto, ngDialog, sNotification, sAuth, TopicVote) {
     $log.debug('TopicVoteSignCtrl', $scope.ngDialogData);
 
     var topic = $scope.ngDialogData.topic;
