@@ -3,7 +3,7 @@
 angular
     .module('citizenos')
     .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'rTopic', function ($scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, rTopic) {
-        $log.debug('TopicCtrl', $scope);
+        $log.debug('TopicCtrl', $scope, 'state includes', $state.includes('topics.**'), 'state is', $state.is('topics.view.**'));
         $scope.topic = rTopic;
 
         $scope.generalInfo = {

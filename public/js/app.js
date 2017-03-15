@@ -249,6 +249,10 @@
                     parent: 'main',
                     template: '<div ui-view></div>'
                 })
+                .state('topics.create', {
+                    url: '/create',
+                    parent: 'topics'
+                })
                 .state('topics.view', {
                     url: '/:topicId',
                     parent: 'topics',
@@ -277,37 +281,6 @@
                             }
                         });
                     }]
-                })
-                .state('topics.create', {
-                    url: '/create',
-                    parent: 'topics'
-                })
-                .state('my', {
-                    url: '/my?filter',
-                    parent: 'main',
-                    templateUrl: '/views/my.html',
-                    controller: 'MyCtrl',
-                    resolve: {
-                        // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', function ($state, $stateParams, $q, $window, sAuth, Topic, Group) {
-                            var filterParam = $stateParams.filter || 'all';
-
-                            switch (filterParam) {
-                                case 'all':
-                                    return Topic.query().$promise;
-                                case 'public':
-                                    return Topic.query({visibility: Topic.VISIBILITY.public}).$promise;
-                                case 'private':
-                                    return Topic.query({visibility: Topic.VISIBILITY.private}).$promise;
-                                case 'iCreated':
-                                    return Topic.query({creatorId: sAuth.user.id}).$promise;
-                                case 'grouped':
-                                    return Group.query().$promise;
-                                default:
-                                    return $q.reject();
-                            }
-                        }]
-                    }
                 })
                 .state('topics.view.votes', {
                     abstract: true,
@@ -338,6 +311,33 @@
                     url: '/:voteId',
                     template: '<div ui-view></div>',
                     controller: 'TopicVoteCtrl'
+                })
+                .state('my', {
+                    url: '/my?filter',
+                    parent: 'main',
+                    templateUrl: '/views/my.html',
+                    controller: 'MyCtrl',
+                    resolve: {
+                        // Array of Topics / Groups
+                        rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', function ($state, $stateParams, $q, $window, sAuth, Topic, Group) {
+                            var filterParam = $stateParams.filter || 'all';
+
+                            switch (filterParam) {
+                                case 'all':
+                                    return Topic.query().$promise;
+                                case 'public':
+                                    return Topic.query({visibility: Topic.VISIBILITY.public}).$promise;
+                                case 'private':
+                                    return Topic.query({visibility: Topic.VISIBILITY.private}).$promise;
+                                case 'iCreated':
+                                    return Topic.query({creatorId: sAuth.user.id}).$promise;
+                                case 'grouped':
+                                    return Group.query().$promise;
+                                default:
+                                    return $q.reject();
+                            }
+                        }]
+                    }
                 })
                 .state('my.topics', {
                     url: '/topics',
