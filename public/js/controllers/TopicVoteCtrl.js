@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TopicVoteCtrl', ['$scope', '$rootScope', '$state', '$log', '$timeout', 'TopicVote', 'Vote', 'VoteDelegation', 'ngDialog', function ($scope, $rootScope, $state, $log, $timeout, TopicVote, Vote, VoteDelegation, ngDialog) {
+app.controller('TopicVoteCtrl', ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDelegation', 'ngDialog', function ($scope, $log, TopicVote, Vote, VoteDelegation, ngDialog) {
     $log.debug('TopicVoteCtrl');
 
     $scope.topic.vote.topicId = $scope.topic.id;
@@ -21,21 +21,13 @@ app.controller('TopicVoteCtrl', ['$scope', '$rootScope', '$state', '$log', '$tim
         return false;
     };
 
-    $scope.$parent.$parent.getVoteHasEnded = function () {
-        if ([$scope.STATUSES.followUp, $scope.STATUSES.closed].indexOf($scope.topic.status) > -1) {
-            return true;
-        }
-
-        return $scope.topic.vote && $scope.topic.vote.endsAt && new Date() > new Date($scope.topic.vote.endsAt);
-    };
-
     $scope.$parent.$parent.doVote = function (option) {
         if (!$scope.topic.canVote()) return;
         if ($scope.topic.vote.authType === $scope.voteAuthTypes.hard) {
             ngDialog
                 .open({
                     template: '/views/modals/topic_vote_sign.html',
-                    controller:'TopicVoteSignCtrl',
+                    controller: 'TopicVoteSignCtrl',
                     data: {
                         topic: $scope.topic,
                         option: option
@@ -44,25 +36,24 @@ app.controller('TopicVoteCtrl', ['$scope', '$rootScope', '$state', '$log', '$tim
                         if (data) {
                             $scope.topic.vote.topicId = $scope.topic.id;
                             $scope.topic.vote.$get()
-                                .then(function (){
-                                    console.log(data);
+                                .then(function () {
                                     $scope.topic.vote.options.rows.forEach(function (option) {
-                                        data.options.forEach(function(dOption) {
-                                            if(option.id === dOption.optionId) {
+                                        data.options.forEach(function (dOption) {
+                                            if (option.id === dOption.optionId) {
                                                 option.selected = true;
                                             }
                                         });
                                     });
-                                    $scope.topic.vote.downloads = {bdocVote:data.bdocUri};
+                                    $scope.topic.vote.downloads = {bdocVote: data.bdocUri};
                                 });
-                                return true;
+                            return true;
                         }
                     }
                 });
 
             return;
         } else {
-            var userVote = new TopicVote({id: $scope.topic.vote.id, topicId:$scope.topic.id});
+            var userVote = new TopicVote({id: $scope.topic.vote.id, topicId: $scope.topic.id});
             userVote.options = [{optionId: option.id}];
             userVote
                 .$save()
@@ -89,7 +80,7 @@ app.controller('TopicVoteCtrl', ['$scope', '$rootScope', '$state', '$log', '$tim
                             delegation.userId = data.delegateUser.id;
                             delegation
                                 .$save()
-                                .then( function (data) {
+                                .then(function (data) {
                                     $scope.topic.vote.topicId = $scope.topic.id;
                                     $scope.topic.vote.$get();
                                 });
@@ -112,12 +103,12 @@ app.controller('TopicVoteCtrl', ['$scope', '$rootScope', '$state', '$log', '$tim
             })
             .then(function () {
                 VoteDelegation
-                .delete({topicId:$scope.topic.id, voteId: $scope.topic.vote.id})
-                .$promise
-                .then (function () {
-                    $scope.topic.vote.topicId = $scope.topic.id;
-                    $scope.topic.vote.$get();
-                });
+                    .delete({topicId: $scope.topic.id, voteId: $scope.topic.vote.id})
+                    .$promise
+                    .then(function () {
+                        $scope.topic.vote.topicId = $scope.topic.id;
+                        $scope.topic.vote.$get();
+                    });
             }, angular.noop);
     };
 

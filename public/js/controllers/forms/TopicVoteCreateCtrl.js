@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TopicVoteCreateCtrl', ['$scope', '$rootScope', '$state', '$log', '$q', 'Vote', function ($scope, $rootScope, $state, $log, $q, Vote) {
+app.controller('TopicVoteCreateCtrl', ['$scope', '$state', '$log', 'Vote', function ($scope, $state, $log, Vote) {
     $log.debug('TopicVoteCreateCtrl');
 
     $scope.$parent.$parent.datePickerMin = new Date();

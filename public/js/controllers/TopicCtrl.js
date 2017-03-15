@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'Mention', 'rTopic', function ($scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, Mention, rTopic) {
+    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'rTopic', function ($scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, rTopic) {
         $log.debug('TopicCtrl', $scope);
         $scope.topic = rTopic;
 
@@ -44,8 +44,70 @@ angular
         };
         $scope.topic.padUrl = $sce.trustAsResourceUrl($scope.topic.padUrl);
         $scope.editMode = $stateParams.editMode || false;
+        $scope.showVoteArea = false;
 
         $scope.STATUSES = Topic.STATUSES;
+
+        if ($scope.topic.voteId || $scope.topic.vote) {
+            $scope.topic.vote = new TopicVote({id: $scope.topic.voteId, topicId: $scope.topic.id});
+            $scope.topic.vote.$get();
+        }
+
+        if ($scope.topic.voteId || $scope.topic.vote) {
+            $scope.topic.vote = new TopicVote({id: $scope.topic.voteId, topicId: $scope.topic.id});
+            $scope.topic.vote.$get();
+        }
+
+        $scope.showVoteCreate = function () {
+            $scope.showVoteCreateForm = !$scope.showVoteCreateForm;
+        };
+
+        $scope.sendToVote = function () {
+            if ($scope.topic.canSendToVote()) {
+                if (!$scope.topic.voteId && !$scope.topic.vote) {
+                    $scope.app.topics_settings = false;
+                    $state.go('topics.view.votes.create', {topicId: $scope.topic.id});
+                } else if (($scope.topic.voteId || ($scope.topic.vote && $scope.topic.vote.id)) && $scope.topic.status !== $scope.STATUSES.voting) {
+                    ngDialog
+                        .openConfirm({
+                            template: '/views/modals/topic_send_to_vote_confirm.html'
+                        }).then(function () {
+                        $log.debug('sendToVote');
+                        $scope.topic.status = $scope.STATUSES.voting;
+                        $scope.topic.$patch();
+                        $scope.app.topics_settings = false;
+                    }, angular.noop);
+                }
+            }
+        };
+
+        $scope.sendToFollowUp = function () {
+            if ($scope.topic.canSendToFollowUp()) {
+                ngDialog
+                    .openConfirm({
+                        template: '/views/modals/topic_send_to_followUp_confirm.html'
+                    }).then(function () {
+                    $scope.topic.status = $scope.STATUSES.followUp;
+                    $scope.topic.$patch();
+                    $scope.app.topics_settings = false;
+                    if ($state.is('topics.view.votes.view')) {
+                        $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true});
+                    }
+                }, angular.noop);
+            }
+        };
+
+        $scope.loadTopicSocialMentions = function () {
+            $scope.topicSocialMentions = Mention.query({topicId: $scope.topic.id});
+        };
+
+        $scope.loadTopicSocialMentions();
+
+        $scope.dotoggleEditMode = function () {
+            $scope.editMode = !$scope.editMode;
+            $scope.app.topics_settings = false;
+        };
+
         $scope.loadTopicComments = function () {
             $scope.topicComments.rows = [];
             $scope.topicComments.count = {
@@ -66,33 +128,11 @@ angular
                         };
                     }
                 });
-        }
-
-
-        $scope.showVoteCreate = function () {
-            $scope.showVoteCreateForm = !$scope.showVoteCreateForm;
         };
-
-        $scope.sendToVote = function () {
-            if(!$scope.topic.voteId) {
-                $state.go('topics.view.votes.create', {topicId: $scope.topic.id});
-            } else if ( $scope.topic.voteId && $scope.status !== $scope.STATUSES.voting) {
-                $scope.topic.status = $scope.STATUSES.voting;
-                $scope.topic.$patch();
-            }
-        }
-        $scope.loadTopicSocialMentions = function () {
-            $scope.topicSocialMentions = Mention.query({topicId: $scope.topic.id});
-        }
-        $scope.loadTopicSocialMentions();
 
         $scope.orderComments = function (order) {
             $scope.topicComments.orderBy = order;
-        }
-
-        $scope.dotoggleEditMode = function () {
-            $scope.editMode = !$scope.editMode;
-        }
+        };
 
         $scope.doCommentVote = function (commentId, value) {
             if (!$scope.app.user.loggedIn) return;
@@ -104,6 +144,7 @@ angular
                     $scope.loadTopicComments();
                 });
         };
+
         $scope.loadTopicComments();
 
         $scope.doDeleteTopic = function () {
