@@ -48,7 +48,6 @@
                     }
                 }
             }
-        
 
         }
 
@@ -63,7 +62,7 @@
                 left: 0;
                 margin-top: -2px;
             }
-            
+
             .progress_line {
                 @extend .background_line;
                 width: 40%;
@@ -140,7 +139,7 @@
         background: $light_gray;
         position: relative;
         z-index: 2;
-        
+
         .tabs_wrap_wrap {
             height: 44px;
             position: relative;
@@ -166,7 +165,7 @@
                         @extend .sprite-icon-arrow-topic-tab2x-hover;
                     }
                 }
-                
+
             }
 
             .arrow_btn.right {
@@ -205,7 +204,7 @@
                     width: 100%;
                     padding-left: 0;
                 }
-                .tabs_visible_area { 
+                .tabs_visible_area {
                     height: inherit;
                     position: relative;
                     overflow: hidden;
@@ -223,7 +222,7 @@
                             height: inherit;
                             float: left;
                             position: absolute;
-                            transition: all 450ms cubic-bezier(.45,.78,0,1);
+                            transition: all 450ms cubic-bezier(.45, .78, 0, 1);
                             @include tablet {
                                 transition: none;
                             }
@@ -242,7 +241,7 @@
                                 z-index: 1;
                                 text-align: center;
                                 color: $text_gray;
-                                
+
                                 &:hover {
                                     cursor: pointer;
                                     background: $light_gray;
@@ -255,11 +254,11 @@
                                         margin-right: 0;
                                     }
                                 }
-                            } 
+                            }
                             .selected {
                                 background: $light_gray;
                                 border-bottom: 1px solid $light_gray;
-                                
+
                                 &:hover {
                                     cursor: initial;
                                 }
@@ -282,8 +281,8 @@
             width: 100%;
             box-sizing: border-box;
             position: relative;
-            
-           .main_panel {
+
+            .main_panel {
                 box-sizing: border-box;
                 display: table-cell;
                 width: 70%;
@@ -295,10 +294,10 @@
                     .info_icon {
                         vertical-align: middle;
                     }
-                     @include tablet {
-                         margin-top: 0;
+                    @include tablet {
+                        margin-top: 0;
                     }
-                    
+
                 }
 
                 .main_content_wrap {
@@ -310,7 +309,7 @@
                     }
                     .iframe_content_wrap {
                         padding: 30px 60px;
-                            
+
                         @media (max-width: 767px) {
                             padding: 30px 20px;
                         }
@@ -343,8 +342,8 @@
                         .topic_info {
                             position: relative;
                             margin-bottom: 29px;
-                            
-                            .container_favorite {    
+
+                            .container_favorite {
                                 top: -4px;
                                 right: -41px;
                                 &:active {
@@ -362,7 +361,7 @@
                                     }
                                 }
                             }
-                            
+
                             .more_info_button {
                                 width: 36px;
                                 height: 20px;
@@ -401,7 +400,6 @@
                                 }
                             }
 
-
                             .info_sections_wrap {
                                 .info_section {
                                     margin-bottom: 7px;
@@ -419,14 +417,58 @@
                             }
                         }
 
-                        .iframe_content {
-                            background: $disabled_blue;
+                        .topic_content {
+                            font-family: 'Noto Serif', serif;
+                            font-size: 16px;
+                            font-weight: bold;
+                            line-height: 28px;
+                            text-align: justify;
+
+                            h1, h2, h3, h4, h5, h6 {
+                                font-family: 'Open Sans', sans-serif;
+                                color: $medium_black;
+                                margin: 20px 0;
+                            }
+
+                            h1 {
+                                font-size: 46px;
+                                font-weight: bold;
+                                line-height: 62px;
+                            }
+
+                            h2 {
+                                font-size: 40px;
+                                line-height: 54px;
+                            }
+
+                            h3 {
+                                font-size: 34px;
+                                line-height: 45.9px;
+                            }
+
+                            h4 {
+                                font-size: 28px;
+                                line-height: 37.8px;
+                            }
+
+                            h5 {
+                                font-size: 22px;
+                                line-height: 29.7px;
+                            }
+
+                            h6 {
+                                font-size: 16px;
+                                line-height: 21.6px;
+                            }
+
+                            a {
+                                color: $deep_sky_blue;
+                            }
                         }
                     }
 
                 }
-           }
-
+            }
 
             .side_panel {
                 padding: 30px 30px 10px 30px;
@@ -473,7 +515,7 @@
                     }
                 }
             }
-           
+
         }
 
     }
@@ -491,5 +533,5 @@
             display: none;
         }
     }
-    
+
 }
