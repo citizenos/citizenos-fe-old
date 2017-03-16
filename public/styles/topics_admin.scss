@@ -421,44 +421,39 @@
                             font-family: 'Noto Serif', serif;
                             font-size: 16px;
                             font-weight: normal;
-                            line-height: 28px;
+                            line-height: 175%;
                             text-align: justify;
 
                             h1, h2, h3, h4, h5, h6 {
                                 font-family: 'Open Sans', sans-serif;
                                 color: $medium_black;
                                 margin: 20px 0;
+                                line-height: 135%;
                             }
 
                             h1 {
                                 font-size: 46px;
                                 font-weight: bold;
-                                line-height: 62px;
                             }
 
                             h2 {
                                 font-size: 40px;
-                                line-height: 54px;
                             }
 
                             h3 {
                                 font-size: 34px;
-                                line-height: 45.9px;
                             }
 
                             h4 {
                                 font-size: 28px;
-                                line-height: 37.8px;
                             }
 
                             h5 {
                                 font-size: 22px;
-                                line-height: 29.7px;
                             }
 
                             h6 {
                                 font-size: 16px;
-                                line-height: 21.6px;
                             }
 
                             a {
