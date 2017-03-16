@@ -55,6 +55,8 @@
             });
 
             $urlRouterProvider.otherwise(function ($injector, $location) {
+                console.log('$urlRouterProvider.otherwise');
+
                 var sAuth = $injector.get('sAuth');
                 var $state = $injector.get('$state');
                 var $translate = $injector.get('$translate');

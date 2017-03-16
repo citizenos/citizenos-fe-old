@@ -49,7 +49,7 @@ angular
                 },
                 update: {
                     params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
-                    method: 'PUT',
+                    method: 'PUT'
                 },
                 patch: {
                     params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
@@ -58,6 +58,13 @@ angular
                 save: {
                     params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     method: 'POST',
+                    transformResponse: function (data) {
+                        return angular.fromJson(data).data;
+                    }
+                },
+                delete: {
+                    params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
+                    method: 'DELETE',
                     transformResponse: function (data) {
                         return angular.fromJson(data).data;
                     }
