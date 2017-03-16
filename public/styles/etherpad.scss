@@ -77,6 +77,10 @@ $deep_sky_blue: #0680FC;
         color: $deep_sky_blue;
     }
 
+    b * {
+        font-weight: bold;
+    }
+
     code * {
         font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif
     }
