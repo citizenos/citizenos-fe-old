@@ -30,45 +30,47 @@ $deep_sky_blue: #0680FC;
 /** iframe #ace_inner **/
 #innerdocbody, #padcontent {
     background: none;
-    font-family: 'Noto Serif', serif;
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 175%;
-    text-align: justify;
+    * {
+        font-family: 'Noto Serif', serif;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 175%;
+        text-align: justify;
+    }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
         font-family: 'Open Sans', sans-serif;
         color: $medium_black;
         margin: 20px 0;
         line-height: 135%;
-    }
-
-    h1 {
-        font-size: 46px;
         font-weight: bold;
     }
 
-    h2 {
+    h1 * {
+        font-size: 46px;
+    }
+
+    h2 * {
         font-size: 40px;
     }
 
-    h3 {
+    h3 * {
         font-size: 34px;
     }
 
-    h4 {
+    h4 * {
         font-size: 28px;
     }
 
-    h5 {
+    h5 * {
         font-size: 22px;
     }
 
-    h6 {
+    h6 * {
         font-size: 16px;
     }
 
-    a {
+    a * {
         color: $deep_sky_blue;
     }
 }
