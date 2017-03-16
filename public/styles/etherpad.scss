@@ -38,12 +38,15 @@ $deep_sky_blue: #0680FC;
         text-align: justify;
     }
 
+    h1, h2, h3, h4, h5, h6 {
+        margin: 20px 0;
+    }
+
     h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
         font-family: 'Open Sans', sans-serif;
         color: $medium_black;
-        margin: 20px 0;
-        line-height: 135%;
         font-weight: bold;
+        line-height: 135%;
     }
 
     h1 * {
@@ -70,8 +73,12 @@ $deep_sky_blue: #0680FC;
         font-size: 16px;
     }
 
-    a * {
+    a {
         color: $deep_sky_blue;
+    }
+
+    code * {
+        font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif
     }
 }
 
