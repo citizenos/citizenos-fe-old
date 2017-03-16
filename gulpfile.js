@@ -61,9 +61,10 @@ gulp.task('templatecache', function () {
 });
 
 gulp.task('default', function () {
-    runSequence(
+    return runSequence(
         'uglify',
         'sass',
+        'sass_etherpad',
         'cachebreaker',
         'watch'
     );
@@ -120,31 +121,42 @@ gulp.task('cachebreaker', function () {
 
 gulp.task('watch', function () {
     gulp.watch(['public/js/**/*.js', '!public/js/*.bundle.js'], function () {
-        runSequence(
+        return runSequence(
             'uglify',
             'cachebreaker'
         );
     });
     gulp.watch('public/styles/*.scss', function () {
-        runSequence(
+        return runSequence(
             'sass',
+            'sass_etherpad',
             'cachebreaker'
         );
     });
     gulp.watch('public/views/**/*.html', function () {
-        runSequence(
+        return runSequence(
             'templatecache'
         );
     });
 });
 
 gulp.task('sass', function () {
-    gulp.src('public/styles/*.scss')
+    return gulp.src(['public/styles/*.scss', '!public/styles/etherpad.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(cleanCSS())
         .pipe(concat(pkg.name + '.bundle.css'))
+        .pipe(sourcemaps.write('maps'))
+        .pipe(gulp.dest('public/styles/'))
+});
+
+gulp.task('sass_etherpad', function() {
+    return gulp.src(['public/styles/etherpad.scss'])
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(cleanCSS())
         .pipe(sourcemaps.write('maps'))
         .pipe(gulp.dest('public/styles/'))
 });
