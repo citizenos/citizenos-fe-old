@@ -470,7 +470,6 @@
 
 
         .social_mentions_container {
-            padding-top: 40px;
             @media (max-width: 1200px) {
                 padding: 19px 0 0;
             }
@@ -482,6 +481,7 @@
             }
 
             .social_mentions_header {
+                padding-top: 20px;
                 .social_mentions_description, .social_mentions_hashtag {
                     font-size: 24px;
                     font-weight: $bold;
@@ -494,7 +494,7 @@
                     float: right;
                 }
                 .line {
-                    margin-top: 21px;
+                    margin-top: 25px;
                 }
                 @media (max-width: 1200px) {
                     .social_mentions_description, .social_mentions_hashtag {
@@ -526,6 +526,16 @@
                 }
                 @media (max-width: 621px) {
                    padding: 20px 0;
+                }
+                .social_mentions_message_info {
+                    font-weight:bold;
+                    text-align:center;
+                    .blue_button {
+                        max-width:180px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 40px;
+                    }
                 }
                 .social_mention {
                     margin-bottom: 21px;

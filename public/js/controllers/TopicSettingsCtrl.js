@@ -24,7 +24,6 @@ angular
         var init = function () {
             // Create a copy of parent scopes Topic, so that while modifying we don't change parent state
             $scope.form.topic = angular.copy($scope.topic);
-            $scope.form.topic.visibility = ($scope.topic.visibility === 'private') ? true : false;
             $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
             $scope.memberGroups = [];
             $scope.members = {

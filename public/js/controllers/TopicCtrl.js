@@ -106,80 +106,9 @@ angular
             }
         };
 
-        $scope.toggleEditHashtag = function () {
-            $scope.hashtagForm.hashtag = $scope.topic.hashtag;
-            $scope.checkHashtag();
-            $scope.showEditHashtag = !$scope.showEditHashtag;
-        };
-
-        $scope.checkHashtag = function () {
-            var length = 0;
-            var str = $scope.hashtagForm.hashtag;
-            var bytesLeft = 0;
-            var hashtagMaxLength = 59;
-            if(str){
-                var length = str.length;
-                for (var i= 0; i < str.length; i++) {
-                  var code = str.charCodeAt(i);
-                  if (code > 0x7f && code <= 0x7ff) length++;
-                  else if (code > 0x7ff && code <= 0xffff) length+=2;
-                  if (code >= 0xDC00 && code <= 0xDFFF) i++; //trail surrogate
-                }
-            }
-
-            bytesLeft = (((hashtagMaxLength - length) > 0) ? (hashtagMaxLength - length) : 0);
-            $scope.hashtagForm.bytesLeft = bytesLeft;
-            if((hashtagMaxLength - length) < 0){
-                $scope.hashtagForm.errors = {hashtag:'MSG_ERROR_40000_TOPIC_HASHTAG'};
-            }
-            else if($scope.hashtagForm.errors){
-                $scope.hashtagForm.errors = null;
-            }
-        };
-
-        $scope.saveHashtag = function () {
-            if($scope.hashtagForm.hashtag && $scope.hashtagForm.hashtag !=  $scope.topic.hashtag && !$scope.hashtagForm.errors) {
-                var hashtagTopic = new Topic({id: $scope.topic.id});
-                hashtagTopic.hashtag = $scope.hashtagForm.hashtag;
-                $scope.topic.hashtag = $scope.hashtagForm.hashtag;
-                hashtagTopic
-                    .$patch()
-                    .then( function () {
-                        $scope.topic
-                        .$get()
-                        .then(function () {
-                            $scope.showEditHashtag = false;
-                            $scope.loadTopicSocialMentions();
-                        });
-                    });
-            };
-        };
-
-        $scope.deleteHashtag = function () {
-            $scope.hashtagForm.hashtag = null;
-            $scope.hashtagForm.bytesLeft = 0;
-            $scope.checkHashtag();
-            if ($scope.topic.hashtag) {
-                var hashtagTopic = new Topic({id: $scope.topic.id});
-                hashtagTopic.hashtag = null;
-                hashtagTopic
-                    .$patch()
-                    .then( function () {
-                        $scope.topic
-                        .$get()
-                        .then(function () {
-                            $scope.topicSocialMentions = [];
-                            $scope.loadTopicSocialMentions();
-                        });
-                    });
-            }
-        };
-
         $scope.loadTopicSocialMentions = function () {
             if($scope.topic.hashtag){
                 $scope.topicSocialMentions = Mention.query({topicId: $scope.topic.id});
-            } else {
-                $scope.showEditHashtag = true;
             }
         };
 

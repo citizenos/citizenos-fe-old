@@ -99,53 +99,10 @@
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'" ng-model="form.topic.visibility"></div>
+                            <div cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'" ng-value="Topic.VISIBILITY.private" off-value="Topic.VISIBILITY.public" ng-model="form.topic.visibility"></div>
                         </div>
 
                     </div>
-                    <div class="line lightest_line"></div>
-
-
-                    <!--<div class="settings_section">
-                        <div class="settings_cell">
-                            <div class="setting_title">
-                                Topic visibility
-                            </div>
-                            <div class="setting_description">
-                                THIS SETS WHO CAN SEE YOUR TOPIC
-                            </div>
-                        </div>
-
-                        <div class="settings_cell">
-                            <div cos-dropdown class="classic_dropdown">
-
-                            <div class="dropdown_selection">
-
-                                <div class="dropdown_text">
-                                    {{form.topic.visibility}}
-                                </div>
-
-                                <div class="arrow_holder">
-                                        <div class="table_cell">
-                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
-
-                                            <div class="v_line"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="dropdown">
-                                    <!-- NO CATEGORY
-                                    <div class="dropdown_item" ng-repeat="(level, value) in levels">
-                                        <div class="item_name" ng-click="updateTopicVisibility(level)">
-                                            {{level}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div> -->
                     <div class="line lightest_line"></div>
 
                     <div class="settings_section">
