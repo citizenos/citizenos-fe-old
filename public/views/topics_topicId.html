@@ -679,13 +679,13 @@
 
                             <div class="info_sections_wrap" ng-if="wWidth > 767 || app.more_info_button">
                                 <div class="info_section">
-                                    Categories: <span class="blue_link" ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length">none <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsCategories'})">add categories</span></span>
-                                </div>
-                                <div class="info_section" ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')">
-                                    Authors: <span class="blue_link">{{topic.creator.name}}</span>
+                                    Categories: <span ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length">none <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsCategories'})">add categories</span></span>
                                 </div>
                                 <div class="info_section">
-                                    Activity: <span class="blue_link">{{topicComments.rows.length}} arguments</span> | <span class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')">{{topicSocialMentions.length || 0}} social mentions<span ng-if="!topic.hashtag && topic.canEdit()">, add hashtag</span></span><span ng-if="topic.hashtag"> #{{topic.hashtag}}</span>
+                                    Authors: <span>{{topic.creator.name}}</span>
+                                </div>
+                                <div class="info_section">
+                                    Activity: <span class="blue_link" ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')">{{topicComments.rows.length}} arguments</span> | <span class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')">{{topicSocialMentions.length || 0}} social mentions<span ng-if="!topic.hashtag && topic.canEdit()">, add hashtag</span></span><span ng-if="topic.hashtag"> #{{topic.hashtag}}</span>
                                 </div>
                             </div>
 
