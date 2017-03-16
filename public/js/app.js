@@ -454,7 +454,7 @@
                     url: '/settings?tab',
                     parent: '_templates.topics.topicId',
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        $scope.tabSelected = 'topicSettingsSettings';
+                        $scope.tabSelected = 'settings';
                         var dialog = ngDialog.open({
                             template: '/views/_templates/modals/topic_settings.html',
                             data: $stateParams,

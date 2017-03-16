@@ -12,7 +12,7 @@ angular
             admin: 3
         };
         $scope.cosToggleTextOn = 'public';
-        $scope.tabSelected = $stateParams.tab || 'topicSettingsSettings';
+        $scope.tabSelected = $stateParams.tab || 'settings';
 
         $scope.topicList = {
             searchFilter: '',
@@ -73,8 +73,6 @@ angular
             }
         };
 
-<<<<<<< HEAD
-=======
         $scope.checkHashtag = function () {
             var length = 0;
             var str = $scope.form.topic.hashtag;
@@ -99,7 +97,6 @@ angular
             }
         };
 
->>>>>>> 4af19a6258f9cfbe43f46084dfd8b1e9d613db52
         $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,
             $scope.topic.$updateTokenJoin()
                 .then(function () {

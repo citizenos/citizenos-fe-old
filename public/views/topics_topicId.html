@@ -679,7 +679,7 @@
 
                             <div class="info_sections_wrap" ng-if="wWidth > 767 || app.more_info_button">
                                 <div class="info_section">
-                                    Categories: <span ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length">none <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsCategories'})">add categories</span></span>
+                                    Categories: <span ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length">none <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})">add categories</span></span>
                                 </div>
                                 <div class="info_section">
                                     Authors: <span>{{topic.creator.name}}</span>
@@ -1273,16 +1273,16 @@
                                 Send to follow up
                             </div>
                             <div class="line lightest_line"></div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsSettings'})">
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">
                                 Settings
                             </div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsCategories'})">
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})">
                                 Categories
                             </div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsInvite'})">
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'invite'})">
                                 Invite users
                             </div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsShare'})">
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'share'})">
                                 Share topic
                             </div>
                             <div class="line lightest_line"></div>
