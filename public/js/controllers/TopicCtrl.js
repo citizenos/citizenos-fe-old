@@ -41,9 +41,17 @@ angular
             },
             orderBy: TopicComment.COMMENT_ORDER_BY.date,
             orderByOptions: TopicComment.COMMENT_ORDER_BY
+
         };
+        $scope.hashtagForm  = {
+            hashtag: null,
+            errors: null,
+            bytesLeft: 59
+        };
+
         $scope.topic.padUrl = $sce.trustAsResourceUrl($scope.topic.padUrl);
-        $scope.editMode = $stateParams.editMode || false;
+        $scope.editMode = ($stateParams.editMode && $stateParams.editMode ==='true') || false;
+        $scope.showInfoEdit = $scope.editMode;
         $scope.showVoteArea = false;
 
         $scope.STATUSES = Topic.STATUSES;
@@ -97,24 +105,107 @@ angular
             }
         };
 
+        $scope.toggleEditHashtag = function () {
+            $scope.hashtagForm.hashtag = $scope.topic.hashtag;
+            $scope.checkHashtag();
+            $scope.showEditHashtag = !$scope.showEditHashtag;
+        };
+
+        $scope.checkHashtag = function () {
+            var length = 0;
+            var str = $scope.hashtagForm.hashtag;
+            var bytesLeft = 0;
+            var hashtagMaxLength = 59;
+            if(str){
+                var length = str.length;
+                for (var i= 0; i < str.length; i++) {
+                  var code = str.charCodeAt(i);
+                  if (code > 0x7f && code <= 0x7ff) length++;
+                  else if (code > 0x7ff && code <= 0xffff) length+=2;
+                  if (code >= 0xDC00 && code <= 0xDFFF) i++; //trail surrogate
+                }
+            }
+
+            bytesLeft = (((hashtagMaxLength - length) > 0) ? (hashtagMaxLength - length) : 0);
+            $scope.hashtagForm.bytesLeft = bytesLeft;
+            if((hashtagMaxLength - length) < 0){
+                $scope.hashtagForm.errors = {hashtag:'MSG_ERROR_40000_TOPIC_HASHTAG'};
+            }
+            else if($scope.hashtagForm.errors){
+                $scope.hashtagForm.errors = null;
+            }
+        };
+
+        $scope.saveHashtag = function () {
+            if($scope.hashtagForm.hashtag && $scope.hashtagForm.hashtag !=  $scope.topic.hashtag && !$scope.hashtagForm.errors) {
+                var hashtagTopic = new Topic({id: $scope.topic.id});
+                hashtagTopic.hashtag = $scope.hashtagForm.hashtag;
+                $scope.topic.hashtag = $scope.hashtagForm.hashtag;
+                hashtagTopic
+                    .$patch()
+                    .then( function () {
+                        $scope.topic
+                        .$get()
+                        .then(function () {
+                            $scope.showEditHashtag = false;
+                            $scope.loadTopicSocialMentions();
+                        });
+                    });
+            };
+        };
+
+        $scope.deleteHashtag = function () {
+            $scope.hashtagForm.hashtag = null;
+            $scope.hashtagForm.bytesLeft = 0;
+            $scope.checkHashtag();
+            if ($scope.topic.hashtag) {
+                var hashtagTopic = new Topic({id: $scope.topic.id});
+                hashtagTopic.hashtag = null;
+                hashtagTopic
+                    .$patch()
+                    .then( function () {
+                        $scope.topic
+                        .$get()
+                        .then(function () {
+                            $scope.topicSocialMentions = [];
+                            $scope.loadTopicSocialMentions();
+                        });
+                    });
+            }
+        };
+
         $scope.loadTopicSocialMentions = function () {
-            $scope.topicSocialMentions = Mention.query({topicId: $scope.topic.id});
+            if($scope.topic.hashtag){
+                $scope.topicSocialMentions = Mention.query({topicId: $scope.topic.id});
+            } else {
+                $scope.showEditHashtag = true;
+            }
         };
 
         $scope.loadTopicSocialMentions();
 
         $scope.dotoggleEditMode = function () {
+            $log.debug($scope.editMode);
             $scope.editMode = !$scope.editMode;
             $scope.app.topics_settings = false;
+            if ($scope.editMode === true) {
+                $state.go('topics.view', {topicId: $scope.topic.id, editMode: $scope.editMode});
+            } else {
+                $state.go('topics.view', {topicId: $scope.topic.id, editMode:null}, {reload:true});
+            }
         };
 
-        $scope.loadTopicComments = function () {
+        $scope.hideInfoEdit = function () {
+            $scope.showInfoEdit = false
+        };
+
+        $scope.loadTopicComments = function (orderBy) {
             $scope.topicComments.rows = [];
             $scope.topicComments.count = {
                 pro: 0,
                 con: 0
             };
-            var topicComment = TopicComment.query({topicId: $scope.topic.id}).$promise
+            var topicComment = TopicComment.query({topicId: $scope.topic.id, orderBy:$scope.topicComments.orderBy}).$promise
                 .then(function (comments) {
                     if (comments) {
                         $scope.topicComments.count.pro = _.filter(comments, {type: TopicComment.COMMENT_TYPES.pro}).length;
@@ -132,6 +223,7 @@ angular
 
         $scope.orderComments = function (order) {
             $scope.topicComments.orderBy = order;
+            $scope.loadTopicComments();
         };
 
         $scope.doCommentVote = function (commentId, value) {

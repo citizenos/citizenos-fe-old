@@ -81,7 +81,7 @@ app.controller('TopicVoteCreateCtrl', ['$scope', '$state', '$log', 'Vote', funct
                 vote.options.push({value: option.value});
             }
         }
-
+        vote.options = _.filter(vote.options, function (option) {return !!option.value});
         // Ends at midnight of the date chosen, thus 00:00:00 of the next day.
         var endsAt = moment($scope.voteForm.endsAt).add(1, 'd').toDate();
 

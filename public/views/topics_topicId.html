@@ -113,7 +113,7 @@
 
             <div class="main_panel">
 
-                <!--div class="info_bar_wrap">
+                <div class="info_bar_wrap" ng-if="editMode && showInfoEdit">
                     <div class="info_bar bar_blue">
                             <div class="info_icon">
                                 <div class="sprite sprite-icon-notification-info2x"></div>
@@ -121,15 +121,15 @@
 
                             <div class="info_bar_text">
                                 <div class="info_row">
-                                    <span translate="{{key}}">test</span>
+                                    <span translate="{{key}}">You are now in edit mode. You can add text or make changes to it </span>
                                 </div>
                             </div>
 
-                            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.INFO)">
+                            <div class="info_icon" ng-click="hideInfoEdit()">
                                 <div class="sprite sprite-icon-closemenu2x"></div>
                             </div>
                     </div>
-                </div-->
+                </div>
 
                 <div class="main_content_wrap">
 
@@ -419,7 +419,7 @@
                                 <div class="left_row">
 
                                     <div class="input_with_icon clickable"  ng-repeat="(key, option) in voteForm.options">
-                                        <input class="gray_borders" ng-model="option.value">
+                                        <input class="gray_borders" ng-model="option.value" placeholder="Enter a possible answer">
                                         <div class="icon_table">
                                             <div class="icon_cell" ng-click="removeOption(key)">
                                                 <div class="sprite sprite-inputfield-icon-delete2x"></div>
@@ -679,13 +679,13 @@
 
                             <div class="info_sections_wrap" ng-if="wWidth > 767 || app.more_info_button">
                                 <div class="info_section">
-                                    Categories: <span class="blue_link" ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span>
+                                    Categories: <span class="blue_link" ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length">none <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsCategories'})">add categories</span></span>
                                 </div>
-                                <div class="info_section">
+                                <div class="info_section" ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')">
                                     Authors: <span class="blue_link">{{topic.creator.name}}</span>
                                 </div>
                                 <div class="info_section">
-                                    Activity: <span class="blue_link">{{topicComments.rows.length}} arguments</span> | <span class="blue_link">{{topicSocialMentions.length}} social mentions</span> #{{topic.hashtag}}
+                                    Activity: <span class="blue_link">{{topicComments.rows.length}} arguments</span> | <span class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')">{{topicSocialMentions.length || 0}} social mentions<span ng-if="!topic.hashtag && topic.canEdit()">, add hashtag</span></span><span ng-if="topic.hashtag"> #{{topic.hashtag}}</span>
                                 </div>
                             </div>
 
@@ -750,7 +750,7 @@
                                                     <div class="dropdown">
                                                         <!-- NO CATEGORY -->
                                                         <div class="dropdown_item" ng-repeat="(orderOption, key) in topicComments.orderByOptions">
-                                                            <div class="item_name" ng-click="orderComments(orderOption)">
+                                                            <div class="item_name" ng-click="orderComments(key)">
                                                                 {{key}}
                                                             </div>
                                                         </div>
@@ -769,7 +769,7 @@
                                         <div class="line lightest_line"></div>
                                     </div>
 
-                                    <div class="arguments_content">
+                                    <div class="arguments_content" id="arguments">
 
                                     <!-- FIRST COMMENT -->
                                     <div class="argument_wrap" ng-class="{is_con:comment.type=='con'}" ng-repeat="comment in topicComments.rows | orderBy: topicComments.orderBy">
@@ -1154,14 +1154,49 @@
 
                             </div>
 
-                            <div ng-if="app.activeCommentSection == 'socialMentions'" class="social_mentions_container">
+                            <div id="socialMentions" ng-if="app.activeCommentSection == 'socialMentions'" class="social_mentions_container">
 
                                 <div class="social_mentions_header">
-                                    <div class="social_mentions_description">
+                                    <div class="social_mentions_description" ng-if="topic.hashtag">
                                         Social mentions
                                     </div>
-                                    <div class="social_mentions_hashtag">
+                                    <div class="social_mentions_hashtag" ng-if="topic.hashtag" ng-click="toggleEditHashtag()">
                                         #{{topic.hashtag}}
+                                    </div>
+                                    <div ng-if="!topic.hashtag && !topic.canEdit()">
+                                        Sorry, we cannot show you the social mentions as there is no hashtag defined for this Topic. Users with editor permissions can add the hashtag to fetch social mentions.
+                                    </div>
+                                    <div class="edit_hashtag_section" ng-if="showEditHashtag && topic.canEdit()">
+                                        <div class="settings_row">
+                                            <div class="setting_title">
+                                                Hashtag
+                                            </div>
+                                            <div class="setting_description">
+                                                USE THIS HASHTAG IN SOCIAL MEDIA AND THE MENTIONS WILL BE SHOWN BELOW YOUR TOPIC
+                                            </div>
+                                        </div>
+
+                                        <div class="settings_row">
+                                            <input id="hashtag" cos-disabled="!topic.canEdit()" ng-value="hashtagForm.hashtag" ng-model="hashtagForm.hashtag" ng-change="checkHashtag()" ng-class="{'error_input': hashtagForm.errors}">
+                                            <label for="hashtag" class="error_label" ng-if="hashtagForm.errors">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                                    <span translate="{{hashtagForm.errors.hashtag}}"></span>
+                                                </div>
+                                            </label>
+                                            <label for="hashtag" class="info_label">
+                                                <div class="table_cell">
+                                                    <div class="sprite"></div>
+                                                    <span translate="{{hashtagForm.bytesLeft}} bytes left"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div class="settings_row">
+                                            <div class="blue_button" cos-disabled="!hashtagForm.hashtag" ng-click="saveHashtag()">Save hashtag</div>
+                                            <div class="blue_button pinky_red_button" cos-disabled="!hashtagForm.hashtag" ng-click="deleteHashtag()">Delete hashtag</div>
+                                        </div>
+
                                     </div>
                                     <div class="clearer"></div>
                                     <div class="line lightest_line"></div>
@@ -1231,23 +1266,27 @@
                             </div>
                         </div>
                         <div class="options_content">
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsSettings'})">
-                                Settings
-                            </div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsCategories'})">
-                                Categories
-                            </div>
                             <div ng-if="!(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToVote()" ng-click="sendToVote()">
                                 Send to vote
                             </div>
                             <div ng-if="(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToFollowUp()" ng-click="sendToFollowUp()">
                                 Send to follow up
                             </div>
+                            <div class="line lightest_line"></div>
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsSettings'})">
+                                Settings
+                            </div>
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsCategories'})">
+                                Categories
+                            </div>
                             <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsInvite'})">
                                 Invite users
                             </div>
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsShare'})">
+                                Share topic
+                            </div>
                             <div class="line lightest_line"></div>
-                            <div class="blue_link" cos-disabled="!topic.canEdit()" ng-click="dotoggleEditMode()" ng-bind="(editMode ? 'View topic' : 'Edit topic')">
+                            <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="dotoggleEditMode()" ng-bind="(editMode ? 'View topic' : 'Edit topic')">
                                 Edit topic
                             </div>
                             <div class="blue_link" ng-click="doLeaveTopic(topic)">

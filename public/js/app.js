@@ -250,7 +250,7 @@
                     template: '<div ui-view></div>'
                 })
                 .state('topics.view', {
-                    url: '/:topicId',
+                    url: '/:topicId?editMode',
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {

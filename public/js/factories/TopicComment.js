@@ -65,9 +65,9 @@ angular
         };
 
         TopicComment.COMMENT_ORDER_BY = {
-            'votes.up': 'rating',
+            rating: 'rating',
             popularity: 'popularity',
-            createdAt: 'date'
+            date: 'date'
         };
 
         return TopicComment;
