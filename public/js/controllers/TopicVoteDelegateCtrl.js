@@ -27,7 +27,7 @@ app.controller('TopicVoteDelegateCtrl', ['$scope', '$log', 'TopicMemberUser', 'n
     };
 
     $scope.addUser = function (member) {
-        if(member.id && member !== $scope.delegateUser) {
+        if (member.id && member !== $scope.delegateUser) {
             $scope.delegateUser = member;
         }
     };

@@ -4,6 +4,7 @@ angular
     .module('citizenos')
     .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'rTopic', function ($scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, rTopic) {
         $log.debug('TopicCtrl', $scope);
+
         $scope.topic = rTopic;
 
         $scope.generalInfo = {
@@ -56,13 +57,13 @@ angular
 
         $scope.STATUSES = Topic.STATUSES;
 
-        if($scope.topic.voteId || $scope.topic.vote) {
-            $scope.topic.vote = new TopicVote({id:$scope.topic.voteId, topicId:$scope.topic.id});
+        if ($scope.topic.voteId || $scope.topic.vote) {
+            $scope.topic.vote = new TopicVote({id: $scope.topic.voteId, topicId: $scope.topic.id});
             $scope.topic.vote.$get();
         }
 
-        if($scope.topic.voteId || $scope.topic.vote) {
-            $scope.topic.vote = new TopicVote({id:$scope.topic.voteId, topicId:$scope.topic.id});
+        if ($scope.topic.voteId || $scope.topic.vote) {
+            $scope.topic.vote = new TopicVote({id: $scope.topic.voteId, topicId: $scope.topic.id});
             $scope.topic.vote.$get();
         }
 
@@ -71,19 +72,19 @@ angular
         };
 
         $scope.sendToVote = function () {
-            if($scope.topic.canSendToVote()) {
-                if(!$scope.topic.voteId && !$scope.topic.vote) {
+            if ($scope.topic.canSendToVote()) {
+                if (!$scope.topic.voteId && !$scope.topic.vote) {
                     $scope.app.topics_settings = false;
                     $state.go('topics.view.votes.create', {topicId: $scope.topic.id});
-                } else if ( ($scope.topic.voteId || ($scope.topic.vote && $scope.topic.vote.id)) && $scope.topic.status !== $scope.STATUSES.voting) {
+                } else if (($scope.topic.voteId || ($scope.topic.vote && $scope.topic.vote.id)) && $scope.topic.status !== $scope.STATUSES.voting) {
                     ngDialog
                         .openConfirm({
                             template: '/views/modals/topic_send_to_vote_confirm.html'
                         }).then(function () {
-                            $log.debug('sendToVote');
-                            $scope.topic.status = $scope.STATUSES.voting;
-                            $scope.topic.$patch();
-                            $scope.app.topics_settings = false;
+                        $log.debug('sendToVote');
+                        $scope.topic.status = $scope.STATUSES.voting;
+                        $scope.topic.$patch();
+                        $scope.app.topics_settings = false;
                     }, angular.noop);
                 }
             }
@@ -95,13 +96,13 @@ angular
                     .openConfirm({
                         template: '/views/modals/topic_send_to_followUp_confirm.html'
                     }).then(function () {
-                        $scope.topic.status = $scope.STATUSES.followUp;
-                        $scope.topic.$patch();
-                        $scope.app.topics_settings = false;
-                        if($state.is('topics.view.votes.view')) {
-                            $state.go('topics.view', {topicId: $scope.topic.id}, {reload:true});
-                        }
-                    }, angular.noop);
+                    $scope.topic.status = $scope.STATUSES.followUp;
+                    $scope.topic.$patch();
+                    $scope.app.topics_settings = false;
+                    if ($state.is('topics.view.votes.view')) {
+                        $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true});
+                    }
+                }, angular.noop);
             }
         };
 

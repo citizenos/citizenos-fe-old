@@ -30,7 +30,7 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$log', '$q', '$timeout', 'hwcryp
 
                 var votePromise;
 
-                var userVote = new TopicVote({id: topic.vote.id, topicId:topic.id});
+                var userVote = new TopicVote({id: topic.vote.id, topicId: topic.id});
                 userVote.options = [{optionId: $scope.optionSelected.id}];
                 userVote.certificate = certificate.hex;
                 return $q.all([certificate, userVote.$save()]);
@@ -53,7 +53,7 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$log', '$q', '$timeout', 'hwcryp
                 var signature = results[0];
                 var token = results[1];
 
-                var signTopicVote = new TopicVote({id: topic.vote.id, topicId:topic.id});
+                var signTopicVote = new TopicVote({id: topic.vote.id, topicId: topic.id});
                 signTopicVote.signatureValue = signature.hex;
                 signTopicVote.token = token;
                 return signTopicVote.$sign();
@@ -83,7 +83,7 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$log', '$q', '$timeout', 'hwcryp
 
         $scope.formMobile.isLoading = true;
 
-        var userVote = new TopicVote({id: topic.vote.id, topicId:topic.id});
+        var userVote = new TopicVote({id: topic.vote.id, topicId: topic.id});
         userVote.options = [{optionId: $scope.optionSelected.id}];
         userVote.pid = $scope.formMobile.pid;
         userVote.certificate = null;
@@ -105,7 +105,7 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$log', '$q', '$timeout', 'hwcryp
                 });
             }, function (err) {
                 $scope.formMobile.isLoading = false;
-          ///      sNotification.addError(err);
+                ///      sNotification.addError(err);
             });
     };
 
@@ -113,7 +113,7 @@ app.controller('TopicVoteSignCtrl', ['$scope', '$log', '$q', '$timeout', 'hwcryp
         if (!retry) retry = 80;
         if (!retry--) throw new Error('Too many retries');
 
-        var voteStatusPromise = TopicVote.status({topicId:topic.id, voteId: topic.vote.id, prefix:sAuth.getUrlPrefix(), userId: sAuth.getUrlUserId(), token:token}).$promise
+        var voteStatusPromise = TopicVote.status({topicId: topic.id, voteId: topic.vote.id, prefix: sAuth.getUrlPrefix(), userId: sAuth.getUrlUserId(), token: token}).$promise
 
         return voteStatusPromise
             .then(function (response) {

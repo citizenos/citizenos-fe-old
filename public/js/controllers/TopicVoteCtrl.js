@@ -27,7 +27,7 @@ app.controller('TopicVoteCtrl', ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDel
             ngDialog
                 .open({
                     template: '/views/modals/topic_vote_sign.html',
-                    controller:'TopicVoteSignCtrl',
+                    controller: 'TopicVoteSignCtrl',
                     data: {
                         topic: $scope.topic,
                         option: option
@@ -36,24 +36,24 @@ app.controller('TopicVoteCtrl', ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDel
                         if (data) {
                             $scope.topic.vote.topicId = $scope.topic.id;
                             $scope.topic.vote.$get()
-                                .then(function (){
+                                .then(function () {
                                     $scope.topic.vote.options.rows.forEach(function (option) {
-                                        data.options.forEach(function(dOption) {
-                                            if(option.id === dOption.optionId) {
+                                        data.options.forEach(function (dOption) {
+                                            if (option.id === dOption.optionId) {
                                                 option.selected = true;
                                             }
                                         });
                                     });
-                                    $scope.topic.vote.downloads = {bdocVote:data.bdocUri};
+                                    $scope.topic.vote.downloads = {bdocVote: data.bdocUri};
                                 });
-                                return true;
+                            return true;
                         }
                     }
                 });
 
             return;
         } else {
-            var userVote = new TopicVote({id: $scope.topic.vote.id, topicId:$scope.topic.id});
+            var userVote = new TopicVote({id: $scope.topic.vote.id, topicId: $scope.topic.id});
             userVote.options = [{optionId: option.id}];
             userVote
                 .$save()
@@ -80,7 +80,7 @@ app.controller('TopicVoteCtrl', ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDel
                             delegation.userId = data.delegateUser.id;
                             delegation
                                 .$save()
-                                .then( function (data) {
+                                .then(function (data) {
                                     $scope.topic.vote.topicId = $scope.topic.id;
                                     $scope.topic.vote.$get();
                                 });
@@ -103,9 +103,9 @@ app.controller('TopicVoteCtrl', ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDel
             })
             .then(function () {
                 VoteDelegation
-                    .delete({topicId:$scope.topic.id, voteId: $scope.topic.vote.id})
+                    .delete({topicId: $scope.topic.id, voteId: $scope.topic.vote.id})
                     .$promise
-                    .then (function () {
+                    .then(function () {
                         $scope.topic.vote.topicId = $scope.topic.id;
                         $scope.topic.vote.$get();
                     });

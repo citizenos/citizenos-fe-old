@@ -38,13 +38,13 @@ angular
                         // Angular-tooltips also wraps the original element into 'tip-cont' element.
                         var tooltip;
                         if (Node.COMMENT_NODE === elem.prop('nodeType')) {
-                            tooltip = elem.next();
+                            tooltip = angular.element(elem[0].nextSibling); // NOTE: Did not use "elem.next();" as IE returns the same comment node for each next() call.
                             if (tooltip.prop('tagName') !== 'TOOLTIP') {
-                                $log.error('cosDisabled.link', 'update()', 'A non tooltip element found where tooltip is expected!', elem);
+                                $log.error('cosDisabled.link', 'update()', 'A non tooltip element found where tooltip is expected!', tooltip);
                             }
                         }
                         if (tooltip) {
-                            originalElement = angular.element(elem.next().find('tip-cont').children());
+                            originalElement = angular.element(tooltip.find('tip-cont').children());
                         }
 
                         if (!angular.isDefined(cosDisabled) || cosDisabled) {

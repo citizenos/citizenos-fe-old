@@ -143,12 +143,13 @@ angular
                 return 'users';
             }
             return null;
-        }
+        };
+
         sAuth.getUrlUserId = function () {
             if(sAuth.user.loggedIn) {
                 return 'self';
             }
             return null;
-        }
+        };
 
     }]);
