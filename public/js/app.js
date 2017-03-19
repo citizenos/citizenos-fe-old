@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode']);
+    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips']);
 
     module
         .constant('cosConfig', {
@@ -55,6 +55,8 @@
             });
 
             $urlRouterProvider.otherwise(function ($injector, $location) {
+                console.log('$urlRouterProvider.otherwise');
+
                 var sAuth = $injector.get('sAuth');
                 var $state = $injector.get('$state');
                 var $translate = $injector.get('$translate');
@@ -144,18 +146,25 @@
                     resolve: {
                         /* @ngInject */
                         sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {
-                            sTranslate.setLanguage($stateParams.language);
-                            console.log($stateParams.language);
-                            if (sAuth.user.isLoading === false) {
-                                $log.debug('$stateProvider.state("main").resolve', 'Status already loaded');
-                                return;
-                            } else {
+                            $log.debug('Resolve language', $stateParams.language);
+                            return sTranslate.setLanguage($stateParams.language);
+                        },
+                        sAuthResolve: function ($q, $log, sAuth) {
+                                if(sAuth.user.loggedIn) {
+                                    return;
+                                }
                                 return sAuth
                                     .status()
-                                    .catch(function () {
-                                        //This to prevent view from loading before there is a response from sAuth
-                                    });
-                            }
+                                    .then(
+                                        function () {
+                                            $log.debug('Resolve user', sAuth.user);
+                                            return $q.resolve();
+                                        },
+                                        function () {
+                                            $log.debug('Resolve user', sAuth.user);
+                                            return $q.resolve();
+                                        }
+                                    );
                         }
                     }
                 })
@@ -242,13 +251,18 @@
                     parent: 'main',
                     template: '<div ui-view></div>'
                 })
+                .state('topics.create', {
+                    url: '/create',
+                    parent: 'topics'
+                })
                 .state('topics.view', {
-                    url: '/:topicId',
+                    url: '/:topicId?editMode',
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', 'Topic', function ($stateParams, Topic) {
-                            return Topic.get({topicId: $stateParams.topicId}).$promise;
+                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', function ($stateParams, Topic, sAuthResolve) {
+                            var topic = new Topic({id: $stateParams.topicId});
+                            return topic.$get();
                         }]
                     },
                     controller: 'TopicCtrl'
@@ -270,9 +284,35 @@
                         });
                     }]
                 })
-                .state('topics.create', {
+                .state('topics.view.votes', {
+                    abstract: true,
+                    url: '/votes',
+                    parent: 'topics.view',
+                    template:'<div ui-view></div>'
+                })
+                .state('topics.view.votes.create', {
+                    parent: 'topics.view.votes',
                     url: '/create',
-                    parent: 'topics'
+                    template: '<div ui-view></div>',
+                    controller: 'TopicVoteCreateCtrl',
+                    resolve: {
+                        rVote: ['rTopic', '$state','$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
+                            if(rTopic.voteId) {
+                                $timeout( function () {
+                                    $state.go('topics.view.votes.view', {language:$stateParams.language, topicId:rTopic.id, voteId:rTopic.voteId}); //if vote is allready created redirect to voting
+                                }, 0);
+                                return $q.reject();
+                            } else {
+                                return $q.resolve();
+                            }
+                        }]
+                    }
+                })
+                .state('topics.view.votes.view', {
+                    parent: 'topics.view.votes',
+                    url: '/:voteId',
+                    template: '<div ui-view></div>',
+                    controller: 'TopicVoteCtrl'
                 })
                 .state('my', {
                     url: '/my?filter',
@@ -282,8 +322,7 @@
                     resolve: {
                         // Array of Topics / Groups
                         rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', function ($state, $stateParams, $q, $window, sAuth, Topic, Group) {
-                            // FYI: Cannot use $state.includes('my.groups') as $state has not changed and the state name is of the previous state.
-                            var filterParam = $window.location.href.match(/\/my\/groups/) ? 'grouped' : $stateParams.filter || 'all';
+                            var filterParam = $stateParams.filter || 'all';
 
                             switch (filterParam) {
                                 case 'all':
@@ -415,7 +454,7 @@
                     url: '/settings?tab',
                     parent: '_templates.topics.topicId',
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        $scope.tabSelected = 'topicSettingsSettings';
+                        $scope.tabSelected = 'settings';
                         var dialog = ngDialog.open({
                             template: '/views/_templates/modals/topic_settings.html',
                             data: $stateParams,
@@ -437,6 +476,11 @@
                     url: '/groups',
                     parent: '_templates',
                     templateUrl: '/views/_templates/groups.html'
+                })
+                .state('cos_input_test', {
+                    url: '/cos_input_test',
+                    parent: 'main',
+                    templateUrl: '/views/_templates/cos_input_test.html'
                 });
 
             $translateProvider.useStaticFilesLoader({

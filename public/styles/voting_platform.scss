@@ -7,7 +7,7 @@
 
     .vote_casting_header {
         margin-bottom: 11px;
-        
+
         .vote_casting_header_section {
             height: 15px;
             display: table;
@@ -58,7 +58,7 @@
                     height: inherit;
                     margin: 1px 7px 0;
                 }
-                
+
                 .blue_link {
                     font-size: 13px;
                 }
@@ -86,7 +86,7 @@
                 padding-bottom: 56px;
             }
         }
-            
+
         .message_header {
             margin-bottom: 14px;
 
@@ -100,7 +100,7 @@
             .float_wrap {
                 float: right;
                 margin: 0;
-                    
+
                 .sprite {
                     margin-bottom: 0;
                     @media (max-width: 1400px) {
@@ -136,7 +136,7 @@
                     }
                 }
 
-                
+
                 @media (max-width: 850px) {
                     position: absolute;
                     bottom: 10px;
@@ -147,13 +147,13 @@
                 }
 
             }
-            
+
         }
-    
+
         .message_content {
             font-size: 14px;
         }
-        
+
          .voting_button {
             margin-top: 21px;
          }
@@ -172,7 +172,7 @@
             display: table-cell;
             position: relative;
             vertical-align: bottom;
-            
+
             &.active {
                 .graph_column_fill {
                     background: $aqua_marine;
@@ -182,10 +182,9 @@
             .graph_column_fill {
                 background: $side_panel_gray;
                 width: 60%;
-                height: 170px;
                 margin: 0 auto;
             }
-            
+
 
             .graph_column_text {
                 width: 100%;
@@ -205,7 +204,7 @@
         @media (max-width: 500px) {
             margin-top: 30px;
         }
-        
+
         .graph_wrap {
             margin-top: 70px;
             @media (max-width: 500px) {
@@ -259,7 +258,7 @@
                 }
             }
         }
-        
+
 
     }
 
@@ -272,7 +271,7 @@
     box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
 
     @media (max-width: 767px) {
-        margin: 0 0 16px;
+        margin: 16px 0 16px;
     }
     .platform_description {
         font-size: 13px;
@@ -544,7 +543,7 @@
                 margin-bottom: 0;
             }
 
-           
+
             .bubble_section {
                 @media (max-width: 400px) {
                     padding: 0 20px;
@@ -557,7 +556,7 @@
             }
         }
 
-        
+
         .bubble_description, .date_picker_wrap {
             display: none;
         }
@@ -569,5 +568,5 @@
         }
 
     }
-    
+
 }

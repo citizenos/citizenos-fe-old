@@ -11,8 +11,8 @@ angular
             edit: 2,
             admin: 3
         };
-        $scope.cosToggleTextOn ='public';
-        $scope.tabSelected = $stateParams.tab || 'topicSettingsSettings';
+        $scope.cosToggleTextOn = 'public';
+        $scope.tabSelected = $stateParams.tab || 'settings';
 
         $scope.topicList = {
             searchFilter: '',
@@ -24,7 +24,6 @@ angular
         var init = function () {
             // Create a copy of parent scopes Topic, so that while modifying we don't change parent state
             $scope.form.topic = angular.copy($scope.topic);
-            $scope.form.topic.visibility = ($scope.topic.visibility === 'private')? true: false;
             $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
             $scope.memberGroups = [];
             $scope.members = {
@@ -65,7 +64,6 @@ angular
                             });
                         }
                         $scope.searchResults.combined = $scope.searchResults.users.concat($scope.searchResults.groups);
-                        console.log($scope.searchResults.combined);
                     });
             } else {
                 $scope.searchResults.users = [];
@@ -79,45 +77,45 @@ angular
             var str = $scope.form.topic.hashtag;
             var bytesLeft = 0;
             var hashtagMaxLength = 59;
-            if(str){
+            if (str) {
                 var length = str.length;
-                for (var i= 0; i < str.length; i++) {
-                  var code = str.charCodeAt(i);
-                  if (code > 0x7f && code <= 0x7ff) length++;
-                  else if (code > 0x7ff && code <= 0xffff) length+=2;
-                  if (code >= 0xDC00 && code <= 0xDFFF) i++; //trail surrogate
+                for (var i = 0; i < str.length; i++) {
+                    var code = str.charCodeAt(i);
+                    if (code > 0x7f && code <= 0x7ff) length++;
+                    else if (code > 0x7ff && code <= 0xffff) length += 2;
+                    if (code >= 0xDC00 && code <= 0xDFFF) i++; //trail surrogate
                 }
             }
 
             bytesLeft = (((hashtagMaxLength - length) > 0) ? (hashtagMaxLength - length) : 0);
-            if((hashtagMaxLength - length) < 0){
-                $scope.errors = {hashtag:'MSG_ERROR_40000_TOPIC_HASHTAG'};
+            if ((hashtagMaxLength - length) < 0) {
+                $scope.errors = {hashtag: 'MSG_ERROR_40000_TOPIC_HASHTAG'};
             }
-            else if($scope.errors && $scope.errors.hashtag){
+            else if ($scope.errors && $scope.errors.hashtag) {
                 $scope.errors.hashtag = null;
             }
-        }
+        };
 
         $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,
             $scope.topic.$updateTokenJoin()
-            .then( function () {
-                Topic
-                .query()
-                .$promise
-                .then(function (topics) {
-                    if (topics) {
-                        $scope.topic = _.find(topics, {id: $stateParams.topicId});
-                        $scope.form.topic.tokenJoin = $scope.topic.tokenJoin;
-                        $scope.generateJoinUrl();
-                    }
+                .then(function () {
+                    Topic
+                        .query()
+                        .$promise
+                        .then(function (topics) {
+                            if (topics) {
+                                $scope.topic = _.find(topics, {id: $stateParams.topicId});
+                                $scope.form.topic.tokenJoin = $scope.topic.tokenJoin;
+                                $scope.generateJoinUrl();
+                            }
+                        });
                 });
-            });
         };
 
         $scope.selectTab = function (tab) {
             $scope.tabSelected = tab;
             $location.search({tab: tab});
-        }
+        };
 
         $scope.copyInviteLink = function () {
             var urlInputElement = document.getElementById('url_invite_topic_input');
@@ -126,16 +124,16 @@ angular
             if (!urlInputElement.execCommand) return; // feature detection
             var fieldRange = urlInputElement.createTextRange();
             fieldRange.execCommand('copy');
-        }
+        };
 
         $scope.generateJoinUrl = function () {
             if ($scope.topic.tokenJoin && $scope.topic.canUpdate()) {
-                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/join/'+$scope.topic.tokenJoin);
+                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/join/' + $scope.topic.tokenJoin);
             }
-        }
+        };
 
         $scope.addTopicCategory = function (category) {
-            if($scope.form.topic.categories.indexOf(category) === -1 && $scope.form.topic.categories.length < Topic.CATEGORIES_COUNT_MAX) {
+            if ($scope.form.topic.categories.indexOf(category) === -1 && $scope.form.topic.categories.length < Topic.CATEGORIES_COUNT_MAX) {
                 $scope.form.topic.categories.push(category);
             }
         };
@@ -145,12 +143,12 @@ angular
         };
 
         $scope.addTopicMember = function (member) {
-            if(member.hasOwnProperty('company')) {
+            if (member.hasOwnProperty('company')) {
                 $scope.addTopicMemberUser(member);
             } else {
                 $scope.addTopicMemberGroup(member);
             }
-        }
+        };
 
         $scope.addTopicMemberGroup = function (group) {
             $scope.searchString = null;
@@ -252,7 +250,7 @@ angular
             } else {
                 $scope.form.topic.visibility = 'public';
             }
-            if($scope.form.topic.endsAt &&  $scope.topic.endsAt === $scope.form.topic.endsAt){ //Remove endsAt field so that topics with endsAt value set could be updated if endsAt is not changed
+            if ($scope.form.topic.endsAt && $scope.topic.endsAt === $scope.form.topic.endsAt) { //Remove endsAt field so that topics with endsAt value set could be updated if endsAt is not changed
                 delete $scope.form.topic.endsAt;
             }
             var topicSavePromise = $scope.form.topic.$update();
@@ -302,7 +300,7 @@ angular
                         }
                     }
                 );
-        }
+        };
 
         init();
     }]);

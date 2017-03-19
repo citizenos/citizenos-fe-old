@@ -1,4 +1,4 @@
-<div class="logo_area" ng-click="!app.showSearchResults">
+<div class="logo_area" ng-click="!app.showSearchResults" ui-sref="home">
     <div class="logo sprite sprite-x5-cos-logo-small2x">
     </div>
 </div>
@@ -46,7 +46,7 @@
 </div>
 
 <div ng-if="wWidth <= 1024">
-    <div class="header_button edit" ng-click="app.topics_settings = false">
+    <div class="header_button edit" ng-click="app.topics_settings = false" ng-if="'topics.**' | includedByState">
             <div class="header_button_icon">
                 <div class="sprite sprite-icon-mobile-edit2x">
                 </div>
@@ -62,12 +62,12 @@
         </div>
     </div>
 
-    <div class="header_button settings" ng-click="app.topics_settings = true" ng-class="app.topics_settings ? 'active': ''">
+    <div class="header_button settings" ng-click="app.topics_settings = true" ng-class="app.topics_settings ? 'active': ''" ng-if="'topics.**' | includedByState">
             <div class="header_button_icon">
                 <div class="sprite sprite-icon-mobile-settings2x">
                 </div>
             </div>
-            
+
             <div class="header_button_text">
                 Settings
             </div>

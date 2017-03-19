@@ -62,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id})">
+                    <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id, filter: 'grouped'})">
                         {{item.name}} ({{item.members.topics.count}})
                     </div>
                     <div class="minimize_container" ng-if="item.members.topics.count" ng-click="doToggleGroupTopicList(item)">

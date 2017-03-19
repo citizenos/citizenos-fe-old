@@ -1,52 +1,99 @@
 angular
     .module('citizenos')
-    .directive('cosDisabled', ['$timeout', function ($timeout) {
+    .directive('cosDisabled', ['$compile', '$timeout', '$log', function ($compile, $timeout, $log) {
         return {
             restrict: 'A',
-            priority: -10,
-            link: function (scope, elem, attrs) {
-                var cosDisabled = scope.$eval(attrs.cosDisabled);
-                var classDisabled = 'disabled';
+            terminal: true,
+            priority: 599, // Lower than ng-if, ng-repeat
+            scope: true,
+            compile: function (tElem, tAttrs) {
+                $log.debug('cosDisabled.compile', tElem, tAttrs);
 
-                var update = function () {
-                    if (cosDisabled) {
-                        elem.addClass(classDisabled);
-                        elem.css('pointer-events', 'none');
-                        elem.find('input').attr('disabled', true);
-                        if (elem[0].tagName === 'INPUT') {
-                            elem.attr('disabled', true);
-                        }
-                    } else {
-                        elem.removeClass(classDisabled);
-                        elem.css('pointer-events', 'auto');
-                        elem.find('input').removeAttr('disabled');
-                        if (elem[0].tagName === 'INPUT') {
-                            elem.removeAttr('disabled');
-                        }
+                tElem.removeAttr('cos-disabled'); // Remove itself from the template element to avoid compile loop
+                tElem.removeAttr('cos-disabled-tooltip'); // Remove itself from the template element to avoid compile loop
+                tElem.removeAttr('ng-repeat'); // Remove ng-repeat so that the when used along with ng-repeat the directive is not recompiled
+                tElem.removeAttr('ng-if'); // Remove ng-if so that the when used along with ng-if the directive is not recompiled
+
+                return function (scope, elem, attrs) {
+                    $log.debug('cosDisabled.link', elem, attrs, attrs.cosDisabled);
+
+                    var cosDisabled = scope.$eval(attrs.cosDisabled);
+                    var cosDisabledTooltip = attrs.cosDisabledTooltip;
+
+                    if (cosDisabledTooltip) {
+                        elem.attr('tooltips', '');
+                        elem.attr('tooltip-template', cosDisabledTooltip);
+                        elem.attr('tooltip-smart', true);
+                        elem.attr('tooltip-show-trigger', 'mouseover click');
                     }
-                };
 
-                elem.on('click', function (e) {
-                    if (cosDisabled) {
-                        e.stopImmediatePropagation();
-                    }
-                });
+                    $compile(elem)(scope);
 
-                $timeout(function () { // To disable all innerElement click events $timeout helps to override ng-click events created inside other directives eg. cosToggle
-                    elem.find('*').on('click', function (e) {
-                        if (cosDisabled) {
-                            e.stopImmediatePropagation();
+                    var update = function () {
+                        $log.debug('cosDisabled.update()', attrs.cosDisabled, cosDisabled, elem, attrs, elem.next());
+
+                        var originalElement = elem;
+
+                        // With tooltip on, the elem is not the original, but a "comment" that marks tooltip start. So elem.next gives the tooltip itself.
+                        // Angular-tooltips also wraps the original element into 'tip-cont' element.
+                        var tooltip;
+                        if (Node.COMMENT_NODE === elem.prop('nodeType')) {
+                            tooltip = angular.element(elem[0].nextSibling); // NOTE: Did not use "elem.next();" as IE returns the same comment node for each next() call.
+                            if (tooltip.prop('tagName') !== 'TOOLTIP') {
+                                $log.error('cosDisabled.link', 'update()', 'A non tooltip element found where tooltip is expected!', tooltip);
+                            }
+                        }
+                        if (tooltip) {
+                            originalElement = angular.element(tooltip.find('tip-cont').children());
+                        }
+
+                        if (!angular.isDefined(cosDisabled) || cosDisabled) {
+                            $log.debug('cosDisabled.update()', 'DISABLE', originalElement, elem.prop('nodeType'), elem.prop('tagName'));
+                            originalElement.addClass('disabled');
+                            originalElement.css('pointer-events', 'none');
+                            originalElement.find('input').attr('disabled', true);
+                            if (originalElement[0].tagName === 'INPUT') {
+                                originalElement.attr('disabled', true);
+                            }
+                            if (tooltip) {
+                                tooltip.removeClass('_force-hidden');
+                            }
+                        } else {
+                            $log.debug('cosDisabled.update()', 'ENABLE', cosDisabled, originalElement, elem);
+                            originalElement.removeClass('disabled');
+                            originalElement.css('pointer-events', 'auto');
+                            originalElement.find('input').removeAttr('disabled');
+                            if (originalElement[0].tagName === 'INPUT') {
+                                originalElement.removeAttr('disabled');
+                            }
+                            if (tooltip) {
+                                tooltip.addClass('_force-hidden');
+                            }
+                        }
+                    };
+
+                    var watchDerigistrationFunction = scope.$watch(function () {
+                        $log.debug('cosDisabled.addWatch', elem);
+                        cosDisabled = scope.$eval(attrs.cosDisabled);
+                        return cosDisabled;
+                    }, function (newVal, oldVal) {
+                        $log.debug('cosDisabled.watch', arguments);
+                        update();
+                    });
+
+                    // HACKISH: This forces one update once the parent tooltip directive is compiled so that the initial state for tooltip would be correct
+                    $timeout(function () {
+                        update();
+                    });
+
+                    scope.$on('$destroy', function () {
+                        $log.debug('cosDisabled.$destroy');
+                        if (watchDerigistrationFunction) {
+                            watchDerigistrationFunction();
                         }
                     });
-                });
 
-                scope.$watch(function () {
-                    cosDisabled = scope.$eval(attrs.cosDisabled);
-                    return cosDisabled;
-                }, function () {
-                    update();
-                });
-
+                }
             }
         }
     }]);

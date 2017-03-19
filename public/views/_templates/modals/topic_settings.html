@@ -21,25 +21,25 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="topicSettingsSlider" start_slide_at="329">
-                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsSettings'" ng-class="tabSelected === 'topicSettingsSettings' ? 'active' : ''">
+                        <div class="tab_button" ng-click="tabSelected = 'settings'" ng-class="tabSelected === 'settings' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">SETTINGS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsCategories'" ng-class="tabSelected === 'topicSettingsCategories' ? 'active' : ''">
+                        <div class="tab_button" ng-click="tabSelected = 'categories'" ng-class="tabSelected === 'categories' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">CATEGORIES</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsInvite'" ng-class="tabSelected === 'topicSettingsInvite' ? 'active' : ''">
+                        <div class="tab_button" ng-click="tabSelected = 'invite'" ng-class="tabSelected === 'invite' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">INVITE</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="tabSelected = 'topicSettingsShare'" ng-class="tabSelected === 'topicSettingsShare' ? 'active' : ''">
+                        <div class="tab_button" ng-click="tabSelected = 'invite'" ng-class="tabSelected === 'invite' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text">SHARE</div>
                                 <div class="blue_bottom_line"></div>
@@ -60,7 +60,7 @@
             <div class="line lightest_line"></div>
 
             <!-- SETTINGS -->
-            <div class="lightbox_content settings_section_wrap" ng-if="tabSelected === 'topicSettingsSettings'">
+            <div class="lightbox_content settings_section_wrap" ng-if="tabSelected === 'settings'">
 
 
                 <div class="lightbox_section">
@@ -216,7 +216,7 @@
 
 
             <!-- CATEGORIES -->
-            <div class="lightbox_content categories_section_wrap" ng-if="tabSelected === 'topicSettingsCategories'">
+            <div class="lightbox_content categories_section_wrap" ng-if="tabSelected === 'categories'">
                 <div class="lightbox_section">
                     <div class="tip">Assign up to 3 categories</div>
                     <div class="selected_categories">
@@ -258,7 +258,7 @@
             </div>
 
             <!-- INVITE USERS -->
-            <div class="lightbox_content padding_bottom_zero" ng-if="tabSelected === 'topicSettingsInvite'">
+            <div class="lightbox_content padding_bottom_zero" ng-if="tabSelected === 'invite'">
 
                 <div class="lightbox_section">
 
@@ -418,7 +418,7 @@
             </div>
 
             <!-- SHARE -->
-            <div class="lightbox_content invite_url" ng-if="tabSelected === 'topicSettingsShare'">
+            <div class="lightbox_content invite_url" ng-if="tabSelected === 'share'">
 
                 <div class="lightbox_section">
                     <div class="input_text_margin_bottom">

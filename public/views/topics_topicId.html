@@ -19,49 +19,8 @@
 
         </div>
 
-        <div class="table_cell">
-            <div class="background_line timeline_gray_background">
-            </div>
-
-            <div class="progress_line favorite_yellow_background">
-            </div>
-
-            <div class="days_left_wrap favorite_yellow_background">
-                <div class="table_cell">
-                    17 DAYS LEFT
-                </div>
-            </div>
-
-            <div class="checkmark">
-                <div class="table_cell">
-                    <div class="sprite sprite-check-timeline-yellow-start2x">
-                    </div>
-                </div>
-            </div>
-
-            <div class="checkmark" ng-style="{'margin-left': '10%'}">
-                <div class="table_cell">
-                    <div class="sprite sprite-check-timeline-yellow2x">
-                    </div>
-                </div>
-                <div class="tooltip">
-                    Phase: <span class="bold">Document version 2</span>
-                </div>
-            </div>
-
-            <div class="checkmark" ng-style="{'margin-left': '25%'}">
-                <div class="table_cell">
-                    <div class="sprite sprite-check-timeline-yellow2x">
-                    </div>
-                </div>
-                <div class="tooltip">
-                    Phase: <span class="bold">Document version 2</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="additional_info signing_deadline">
-            Signing deadline: <span class="bold">{{topic.endsAt || topic.vote.endsAt || ''}}</span>
+        <div class="additional_info signing_deadline" ng-if="topic.vote.endsAt">
+            Signing deadline: <span class="bold">{{topic.vote.endsAt | amDateFormat:'L'}}</span>
         </div>
 
 
@@ -88,9 +47,14 @@
                     </div>
                     <div class="tabs_rails">
                         <div class="tabs_train" slide-controller identifier="tabsTrain" start_slide_at="1024" ng-style="{'margin-left' : trainPosition + 'px'}">
-                            <div class="tab" ng-class="i == 15 ? 'selected' : ''" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
-                                <div class="table_cell">
-                                    Version {{i}}
+                            <div class="tab" ng-class="{selected: ('topics.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                <div class="table_cell" ui-sref="topics.view({topicId: topic.id})" ui-sref-opts="{reload: true}">
+                                    View
+                                </div>
+                            </div>
+                            <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ng-class="{selected: ('topics.view.votes.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                <div class="table_cell" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})" ui-sref-opts="{reload: true}">
+                                    Vote
                                 </div>
                             </div>
                         </div>
@@ -108,7 +72,7 @@
 
             <div class="main_panel">
 
-                <div class="info_bar_wrap">
+                <div class="info_bar_wrap" ng-if="editMode && showInfoEdit">
                     <div class="info_bar bar_blue">
                             <div class="info_icon">
                                 <div class="sprite sprite-icon-notification-info2x"></div>
@@ -116,11 +80,11 @@
 
                             <div class="info_bar_text">
                                 <div class="info_row">
-                                    <span translate="{{key}}">test</span>
+                                    <span translate="{{key}}">You are now in edit mode. You can add text or make changes to it </span>
                                 </div>
                             </div>
 
-                            <div class="info_icon" ng-click="app.doHideNotification(app.notifications.levels.INFO)">
+                            <div class="info_icon" ng-click="hideInfoEdit()">
                                 <div class="sprite sprite-icon-closemenu2x"></div>
                             </div>
                     </div>
@@ -128,7 +92,7 @@
 
                 <div class="main_content_wrap">
 
-                    <div class="voting_platform_wrap vote_casting_wrap" ng-if="topic.vote.id">
+                    <div class="voting_platform_wrap vote_casting_wrap" ng-if="topic.vote.id && showVoteArea">
 
                         <div class="vote_casting_header">
                             <div class="vote_casting_header_section">
@@ -138,23 +102,23 @@
                             </div>
                             <div class="vote_casting_header_section">
                                 <div class="table_cell">
-                                    <span class="bold">264</span>/474 votes counte
+                                    <span class="bold">{{topic.vote.getVoteCountTotal()}}</span>/{{topic.members.users.count}} votes counte
                                 </div>
-                                <div class="table_cell">
+                                <!--div class="table_cell">
                                     <div class="v_line"></div>
                                 </div>
                                 <div class="table_cell">
                                     <div class="blue_link">
                                         view who voted
                                     </div>
-                                </div>
+                                </div -->
                             </div>
                             <div class="clearer"></div>
                         </div>
 
                         <div class="line lightest_line"></div>
 
-                        <div class="vote_casting_message">
+                        <div class="vote_casting_message with_upper_right_links" ng-if="topic.vote.authType === voteAuthTypes.hard && !topic.hasVoteEnded()">
 
                             <div class="message_header">
                                 <div class="message_title">This vote requires an ID card or Mobile ID signing.</div>
@@ -172,48 +136,48 @@
 
                         </div>
 
-                        <div class="vote_casting_message">
+                        <div class="vote_casting_message with_upper_right_links" ng-if="getUserHasVoted() && !topic.hasVoteEnded()">
 
                             <div class="message_header">
                                 <div class="message_title">Your vote has been registered!</div>
                                 <div class="float_wrap">
-                                    <div class="blue_link">Download your DDOC</div>
+                                    <div class="blue_link" ng-show="topic.vote.authType === voteAuthTypes.hard"><a ng-href="{{topic.vote.downloads.bdocVote}}">Download your DDOC</a></div>
                                 </div>
                                 <div class="clearer"></div>
                             </div>
 
-                            <div class="message_content">
+                            <div class="message_content" ng-show="topic.vote.authType === voteAuthTypes.hard">
                                 This document needs a signing by ID card or Mobile ID to be registered. You can not vote if you don’t identify yourself.
                             </div>
 
                         </div>
 
 
-                        <div class="voting_platform_buttons">
+                        <div class="voting_platform_buttons" ng-if="!topic.hasVoteEnded()">
 
-                            <div class="voting_button" ng-class="i == 2 ? 'active' : ''"ng-repeat="i in [1,2,3,4,5,6]">
-                                <div class="table_cell">
-                                    A
+                            <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active' : ''"ng-repeat="(key, option) in topic.vote.options.rows" ng-click="doVote(option)">
+                                <div class="table_cell left_side">
+                                    {{key}}
                                 </div>
-                                <div class="table_cell">
-                                    YES
+                                <div class="table_cell right_side">
+                                    {{option.value}}
                                 </div>
                             </div>
 
                         </div>
 
-                        <div class="delegation_section">
+                        <div class="delegation_section" ng-if="!topic.hasVoteEnded()">
 
-                            <div class="voting_button" ng-class="i == 2 ? 'active' : ''"ng-repeat="i in [1,2]">
-                                <div class="table_cell">
+                            <div class="voting_button voting_button_blue" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)" ng-class="topic.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
+                                <div class="table_cell left_side">
                                     <div class="sprite sprite-icon-delegate2x"></div>
                                 </div>
-                                <div class="table_cell">
+                                <div class="table_cell right_side">
                                     Delegate your vote
                                 </div>
                             </div>
 
-                            <div class="delegation_information">
+                            <div class="delegation_information" ng-if="topic.vote.delegation">
                                 <div class="delegation_title">You delegated your vote to</div>
                                 <div class="delegations">
 
@@ -221,7 +185,7 @@
                                         <div class="profile_image_wrapper dark">
                                             <div class="profile_moon sprite sprite-icon-certified-fb2x"></div>
                                             <div class="account_picture">
-                                                <!--<img src=".././imgs/profile.jpg">-->
+                                                <img ng-src="{{topic.vote.delegation.imageUrl}}">
                                                 <div class="profile_image_filler">
                                                     <div class="table_cell">
                                                         ML
@@ -232,13 +196,13 @@
                                         </div>
                                         <div class="name_wrap">
                                             <div class="table_cell">
-                                                <div class="blue_link bold">Kristian Lember</div>
+                                                <div class="blue_link bold">{{topic.vote.delegation.name}}</div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="table_cell">
-                                        <div class="blue_button">Revoke your delegation</div>
+                                        <div class="blue_button" ng-click="doRevokeDelegation()">Revoke your delegation</div>
                                     </div>
                                 </div>
                             </div>
@@ -246,10 +210,66 @@
                         </div>
 
 
+                        <!-- Statistics graph start -->
+                        <div class="vote_casting_message" ng-if="topic.canUpdate() && topic.hasVoteEnded() && topic.vote.authType===voteAuthTypes.hard">
+
+                            <div class="message_header">
+                                <div class="message_title">Voting has ended!</div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="message_content">
+                                Everyone has cast their votes. You can download the full document here.
+                            </div>
+
+                            <div class="voting_button voting_button_blue">
+                                <div class="table_cell" ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank">
+                                    Download full DDOC
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Regular graph -->
+                        <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular">
+
+                            <div class="graph_column" ng-class="(option.selected) ? 'active' : ''" ng-repeat="option in topic.vote.options.rows">
+                                <div class="graph_column_text">
+                                    {{option.value}}<br>
+                                    <span class="bold">{{option.voteCount || 0}}</span>
+                                </div>
+                                <div class="graph_column_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%'}">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Big graph -->
+                        <div class="big_graph" ng-if="topic.vote.type === voteTypes.multiple">
+                            <div class="long_text_holder">
+                                <div class="long_text" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
+                                     <span class="bold">{{key}}.</span> {{option.value}}
+                                </div>
+                            </div>
+
+                            <div class="graph_wrap">
+
+                                <div class="graph_column" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
+                                    <div class="graph_column_text">
+                                        {{key}}<br>
+                                        <span class="bold">{{option.voteCount || 0}}</span>
+                                    </div>
+                                    <div class="graph_column_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%'}">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Statistics graph end -->
+
                     </div>
 
-
-                    <div class="voting_platform_wrap" ng-if="topic.showVote">
+                    <div class="voting_platform_wrap" ng-if="showVoteCreateForm">
                         <div class="platform_description">
                             Create a voting platform
                         </div>
@@ -262,7 +282,7 @@
                             <div class="voting_platform_buttons_wrap">
 
                                 <div class="table_cell">
-                                    <div class="voting_platform_button" ng-click="activeVotingType = 'regular'" ng-class="activeVotingType == 'regular' || activeVotingType == undefined ? 'active' : ''">
+                                    <div class="voting_platform_button" ng-click="setVoteType(voteTypes.regular)" ng-class="voteForm.voteType == 'regular'? 'active' : ''">
                                         <div class="table_cell">
                                             <div class="button_title">
                                                 REGULAR
@@ -275,7 +295,7 @@
                                 </div>
 
                                 <div class="table_cell">
-                                    <div class="voting_platform_button" ng-click="activeVotingType = 'multiplechoice'" ng-class="activeVotingType == 'multiplechoice' ? 'active' : ''">
+                                    <div class="voting_platform_button" ng-click="setVoteType(voteTypes.multiple)" ng-class="voteForm.voteType == 'multiple' ? 'active' : ''">
                                         <div class="table_cell">
                                             <div class="button_title">
                                                 MULTIPLECHOICE
@@ -295,13 +315,13 @@
 
                         <div class="line lightest_line"></div>
 
-                        <div class="voting_platform_section">
+                        <div class="voting_platform_section" ng-if="voteForm.voteType">
                             <div class="voting_platform_section_title">
                                 Step 2: Define answers
                             </div>
 
                             <!-- regular -->
-                            <div class="define_answers_wrap" ng-if="activeVotingType == 'regular' || activeVotingType == undefined">
+                            <div class="define_answers_wrap" ng-if="voteForm.voteType == 'regular'">
                                 <div class="table_cell">
                                     <div class="table">
                                         <div class="table_cell">
@@ -310,7 +330,7 @@
                                                     Yes
                                                 </div>
                                                 <div class="table_cell">
-                                                    <div cos-toggle ng-model="cosModalIsDateSelected" class="disabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                    <div cos-disabled="true" cos-toggle ng-model="voteForm.options[0].enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -320,7 +340,7 @@
                                                     No
                                                 </div>
                                                 <div class="table_cell">
-                                                    <div cos-toggle ng-model="cosModalIsDateSelected" class="disabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                    <div cos-disabled="true" cos-toggle ng-model="voteForm.options[1].enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -334,7 +354,7 @@
                                                     Neutral
                                                 </div>
                                                 <div class="table_cell">
-                                                    <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                    <div cos-toggle ng-model="voteForm.extraOptions.neutral.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -344,7 +364,7 @@
                                                     Veto
                                                 </div>
                                                 <div class="table_cell">
-                                                    <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                    <div cos-toggle ng-model="voteForm.extraOptions.veto.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -354,13 +374,13 @@
                             </div>
 
                             <!-- multiplechoice -->
-                            <div class="double_cell_layout" ng-if="activeVotingType == 'multiplechoice'">
+                            <div class="double_cell_layout" ng-if="voteForm.voteType == 'multiple'">
                                 <div class="left_row">
 
-                                    <div class="input_with_icon clickable">
-                                        <input class="gray_borders" value="This is a first answer here">
+                                    <div class="input_with_icon clickable"  ng-repeat="(key, option) in voteForm.options">
+                                        <input class="gray_borders" ng-model="option.value" placeholder="Enter a possible answer">
                                         <div class="icon_table">
-                                            <div class="icon_cell">
+                                            <div class="icon_cell" ng-click="removeOption(key)">
                                                 <div class="sprite sprite-inputfield-icon-delete2x"></div>
                                             </div>
                                         </div>
@@ -375,7 +395,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="blue_button">Add another answer</div>
+                                <div class="blue_button" ng-click="addOption()">Add another answer</div>
                                 </div>
                                 <div class="right_row add_bottom_borders">
 
@@ -384,7 +404,7 @@
                                             Neutral
                                         </div>
                                         <div class="table_cell">
-                                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                            <div cos-toggle ng-model="voteForm.extraOptions.neutral.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                         </div>
                                     </div>
 
@@ -393,7 +413,7 @@
                                             Veto
                                         </div>
                                         <div class="table_cell">
-                                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                            <div cos-toggle ng-model="voteForm.extraOptions.veto.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                         </div>
                                     </div>
 
@@ -402,10 +422,10 @@
 
                         </div>
 
-                        <div class="line lightest_line"></div>
+                        <div class="line lightest_line" ng-if="voteForm.voteType"></div>
 
 
-                        <div class="voting_platform_section">
+                        <div class="voting_platform_section" ng-if="voteForm.voteType">
                             <div class="voting_platform_section_title">
                                 Step 3: User vote casting
                             </div>
@@ -416,28 +436,14 @@
                                     <div class="gray_toggle_box">
                                         <div class="table_cell">
                                             <div class="toggle_box_title">
-                                                Anonymous
-                                            </div>
-                                        </div>
-                                        <div class="table_cell">
-                                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="gray_toggle_box">
-                                        <div class="table_cell">
-                                            <div class="toggle_box_title">
                                                 Soft-ID
                                             </div>
                                             <div class="toggle_box_description">
                                                 CITIZENOS LOGIN IS REQUIRED
-                                                CITIZENOS LOGIN IS REQUIRED
-                                                CITIZENOS LOGIN IS REQUIRED
-                                                CITIZENOS LOGIN IS REQUIRED
                                             </div>
                                         </div>
                                         <div class="table_cell">
-                                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                            <div cos-toggle ng-value="voteAuthTypes.soft" off-value="voteAuthTypes.hard" ng-model="voteForm.authType" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                         </div>
                                     </div>
 
@@ -451,7 +457,7 @@
                                                 </div>
                                             </div>
                                             <div class="table_cell">
-                                                <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                <div cos-toggle ng-value="voteAuthTypes.hard" off-value="voteAuthTypes.soft" ng-model="voteForm.authType" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                             </div>
                                         <div class="table_row">
                                             <div class="float_wrap">
@@ -476,11 +482,11 @@
                                             </div>
                                         </div>
                                         <div class="table_cell">
-                                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                            <div cos-toggle cos-disabled="(voteForm.authType == voteAuthTypes.hard)" ng-model="voteForm.delegationIsAllowed" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                         </div>
                                     </div>
 
-                                    <div class="gray_toggle_box">
+                                    <div class="gray_toggle_box" ng-if="(voteForm.authType == voteAuthTypes.hard)">
                                         <div class="toggle_box_warning">
                                             <div class="sprite sprite-icon-inputfield-error2x"></div>
                                             When Hard-ID is the chosen method of voting, delegation is not allowed.
@@ -492,9 +498,9 @@
                         </div>
 
 
-                        <div class="line lightest_line"></div>
+                        <div class="line lightest_line" ng-if="voteForm.voteType"></div>
 
-                        <div class="voting_platform_section">
+                        <div class="voting_platform_section" ng-if="voteForm.voteType">
                             <div class="voting_platform_section_title">
                                 Step 4: End of voting system
                             </div>
@@ -502,7 +508,7 @@
                             <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes">
 
                                 <div class="left_row add_bottom_borders">
-                                    <div class="picker_content" ng-class="app.show_datepicker ? 'active' : ''">
+                                    <div class="picker_content" ng-class="voteForm.endsAt ? 'active' : ''">
 
                                         <div class="bubble_content">
 
@@ -515,358 +521,34 @@
                                                         </div>
                                                     </div>
                                                     <div class="table_cell">
-                                                        <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'" ng-click="app.show_datepicker = !app.show_datepicker"></div>
+                                                        <div cos-toggle ng-model="voteForm.endsAt" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                                     </div>
                                                 </div>
 
                                                 <div class="bubble_description">
                                                     <div class="picker_deadline_date">
-                                                        21.12.2016
+                                                        {{voteForm.endsAt | amDateFormat:'L'}}
                                                     </div>
                                                     <div class="picker_days_left">
-                                                        76 days left
+                                                        {{daysToVoteEnd()}} days left
                                                     </div>
                                                     <div class="clearer"></div>
                                                 </div>
                                             </div>
 
-
-                                            <div class="date_picker_wrap">
-
-                                                <div class="line lightest_line"></div>
-
-                                                <div class="bubble_section">
-                                                    <div class="month_chooser">
-                                                        <div class="arrow">
-                                                            <div class="sprite sprite-arrow-calendar-left2x"></div>
-                                                        </div>
-                                                        <div class="month_text">December 2016</div>
-                                                        <div class="arrow">
-                                                            <div class="sprite sprite-arrow-calendar-right2x"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="bubble_section_table">
-                                                    <table>
-                                                        <tr>
-                                                            <th>
-                                                                M
-                                                            </th>
-                                                            <th>
-                                                                T
-                                                            </th>
-                                                            <th>
-                                                                W
-                                                            </th>
-                                                            <th>
-                                                                T
-                                                            </th>
-                                                            <th>
-                                                                F
-                                                            </th>
-                                                            <th>
-                                                                S
-                                                            </th>
-                                                            <th>
-                                                                S
-                                                            </th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="no_date">
-                                                            </td>
-                                                            <td class="no_date">
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        1
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        2
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        3
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        4
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        5
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        6
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        7
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        8
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        9
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        10
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        11
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        12
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        13
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        14
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle selected">
-                                                                    <div class="table_cell">
-                                                                        15
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        16
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        17
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        18
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        19
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        20
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        21
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        22
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        23
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        24
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        25
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        26
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        27
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        28
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        29
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        30
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="date_circle">
-                                                                    <div class="table_cell">
-                                                                        31
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td class="no_date">
-                                                            </td>
-                                                            <td class="no_date">
-                                                            </td>
-                                                        </tr>
-
-                                                    </table>
-                                                </div>
-
-                                            </div>
-
+                                            <div class="date_picker_wrap" date-picker="voteForm.endsAt" min-date="datePickerMin" max-view="date" min-view="date" template="/views/directives/date_picker.html"></div>
                                         </div>
 
                                     </div>
                                 </div>
-
-                                <div class="right_row">
-
-                                    <div class="gray_toggle_box">
-
-                                        <div class="table_cell">
-                                            <div class="toggle_box_title">
-                                                Minimum votes
-                                            </div>
-                                            <div class="toggle_box_description">
-                                                THE AMOUNT OF VOTES NEEDED BEFORE SUCCESSFUL CLOSURE.
-                                            </div>
-                                        </div>
-                                        <div class="table_cell">
-                                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
-                                        </div>
-                                        <div class="table_row">
-                                            <input class="small_input gray_borders" placeholder="eg. 1000">
-                                        </div>
-                                    </div>
-
-                                    <div class="gray_toggle_box">
-                                        <div class="table_cell">
-                                            <div class="toggle_box_title">
-                                                All votes are in
-                                            </div>
-                                            <div class="toggle_box_description">
-                                                WHEN EVERY USER IN THE TOPIC HAS VOTED, THE VOTE SYSTEM CLOSES.
-                                            </div>
-                                        </div>
-                                        <div class="table_cell">
-                                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
                             </div>
                         </div>
 
-                        <div class="line lightest_line"></div>
+                        <div class="line lightest_line" ng-if="voteForm.voteType"></div>
 
-                        <div class="voting_platform_section">
+                        <div class="voting_platform_section" ng-if="voteForm.voteType">
 
-                            <div class="blue_button aqua_marine_background black_text">
+                            <div class="blue_button aqua_marine_background black_text" ng-click="createVote()">
                                 <div class="table_cell">
                                     CREATE VOTING SYSTEM
                                 </div>
@@ -908,13 +590,13 @@
 
                             <div class="info_sections_wrap" ng-if="wWidth > 767 || app.more_info_button">
                                 <div class="info_section">
-                                    Categories: <span class="blue_link" ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span>
+                                    Categories: <span ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length">none <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})">add categories</span></span>
                                 </div>
                                 <div class="info_section">
-                                    Authors: <span class="blue_link">{{topic.creator.name}}</span>
+                                    Authors: <span>{{topic.creator.name}}</span>
                                 </div>
                                 <div class="info_section">
-                                    Activity: <span class="blue_link">{{topicComments.rows.length}} arguments</span> | <span class="blue_link">{{topicSocialMentions.length}} social mentions</span> #{{topic.hashtag}}
+                                    Activity: <span class="blue_link" ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')">{{topicComments.rows.length}} arguments</span> | <span class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')">{{topicSocialMentions.length || 0}} social mentions</span><span class="blue_link" ng-if="!topic.hashtag && topic.canEdit()" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"> add hashtag</span><span ng-if="topic.hashtag"> #{{topic.hashtag}}</span>
                                 </div>
                             </div>
 
@@ -922,7 +604,7 @@
                         </div>
 
 
-                        <div class="iframe_content">
+                        <div class="topic_content">
                             <iframe ng-if="topic.canUpdate() && editMode" frameborder="0" scrolling="no" ng-show="topic.padUrl && !('topics.view.followUp' | isState)" ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
                             <ng-bind-html ng-if="!editMode" ng-bind-html="topic.description"></ng-bind-html>
                         </div>
@@ -979,7 +661,7 @@
                                                     <div class="dropdown">
                                                         <!-- NO CATEGORY -->
                                                         <div class="dropdown_item" ng-repeat="(orderOption, key) in topicComments.orderByOptions">
-                                                            <div class="item_name" ng-click="orderComments(orderOption)">
+                                                            <div class="item_name" ng-click="orderComments(key)">
                                                                 {{key}}
                                                             </div>
                                                         </div>
@@ -987,7 +669,7 @@
 
                                                 </div>
 
-                                                <div class="blue_button">
+                                                <div class="blue_button" ng-click="app.scrollToAnchor('post_argument_wrap')">
                                                     Add argument
                                                 </div>
 
@@ -998,7 +680,7 @@
                                         <div class="line lightest_line"></div>
                                     </div>
 
-                                    <div class="arguments_content">
+                                    <div class="arguments_content" id="arguments" ng-if="topicComments.rows.length">
 
                                     <!-- FIRST COMMENT -->
                                     <div class="argument_wrap" ng-class="{is_con:comment.type=='con'}" ng-repeat="comment in topicComments.rows | orderBy: topicComments.orderBy">
@@ -1232,146 +914,12 @@
                                         </div>
                                     </div>
 
-                                    <!-- FOURTH COMMENT - DELETED COMMENT -->
-                                    <div class="argument_wrap">
-                                        <div class="single_argument">
-                                            <div class="argument deleted">
-                                                <div class="argument_header">
-                                                    <div class="argumentator">
-                                                        <div class="table_cell">
-                                                            <div cos-dropdown class="classic_dropdown borderless_dropdown">
-
-                                                                <div class="dropdown_selection">
-                                                                    <div class="dropdown_text data_item">
-                                                                        Kristian Lember
-                                                                    </div>
-
-                                                                    <div class="arrow_holder">
-                                                                        <div class="table_cell">
-                                                                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="dropdown">
-                                                                    <!-- NO CATEGORY -->
-                                                                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                                                                        <div class="item_name">
-                                                                            Read
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="line_wrap">
-                                                        <div class="table_cell">
-                                                            <div class="v_line"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="argument_date">
-                                                        <div class="table_cell">
-                                                            05/01/2017 14:36
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearer"></div>
-                                                </div>
-                                                <div class="argument_title">
-                                                    Comment deleted
-                                                </div>
-
-                                                <div class="argument_text_wrap">
-                                                    <div class="argument_text italic">
-                                                        This comment has been deleted by the admin.
-                                                    </div>
-                                                    <div class="argument_overlay">
-                                                    </div>
-                                                    <div class="read_more_link " ng-click="readMore = !readMore">
-                                                        {{ (readMore) ? 'Close comment' : 'Read more' }}
-                                                    </div>
-                                                </div>
-
-                                                <div class="argument_footer delete_reasons">
-                                                    <div class="link_wrap">
-                                                        <div class="table_cell">
-                                                            <div class="blue_link">
-                                                                Why?
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="line_wrap">
-                                                        <div class="table_cell">
-                                                            <div class="v_line"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="link_wrap">
-                                                        <div class="table_cell">
-                                                            <div class="blue_link">
-                                                                View comment anyway
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearer"></div>
-                                                </div>
-
-
-                                                <div class="argument_footer">
-                                                    <div class="link_wrap">
-                                                        <div class="table_cell">
-                                                            <div class="blue_link black_text">
-                                                                Reply
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="line_wrap">
-                                                        <div class="table_cell">
-                                                            <div class="v_line"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="thumbs_up">
-                                                        <div class="table_cell">
-                                                            <div class="sprite sprite-icon-thumbsup-hover2x">
-                                                            </div>
-                                                        </div>
-                                                        <div class="table_cell">
-                                                            12
-                                                        </div>
-                                                    </div>
-                                                    <div class="thumbs_down">
-                                                        <div class="table_cell">
-                                                            <div class="sprite sprite-icon-thumbsdown-hover2x">
-                                                            </div>
-                                                        </div>
-                                                        <div class="table_cell">
-                                                            2
-                                                        </div>
-                                                    </div>
-                                                    <div class="line_wrap">
-                                                        <div class="table_cell">
-                                                            <div class="v_line"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="exclamation">
-                                                        <div class="table_cell">
-                                                            <div class="sprite mobile_fix sprite-icon-reportmessage-default2x">
-                                                            </div>
-                                                            <div class="sprite desktop_fix sprite-icon-reportmessage-default2x">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearer"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
 
 
                                     </div>
 
-                                    <div class="post_argument_wrap" ng-controller="TopicCommentCreateFormCtrl">
-                                        <div class="line lightest_line"></div>
+                                    <div id="post_argument_wrap" class="post_argument_wrap" ng-controller="TopicCommentCreateFormCtrl">
+                                        <div class="line lightest_line" ng-if="topicComments.rows.length"></div>
                                         <input placeholder="Add a subject to your argument..." class="gray_borders" ng-model="form.subject">
                                         <textarea class="gray_borders" placeholder="Explain your arguments..." ng-model="form.text"></textarea>
                                         <div class="blue_button nature_green_button" cos-disabled="(!form.subject || !form.text)" ng-click="submitPro()">Post as a pro argument</div>
@@ -1383,13 +931,13 @@
 
                             </div>
 
-                            <div ng-if="app.activeCommentSection == 'socialMentions'" class="social_mentions_container">
+                            <div id="socialMentions" ng-if="app.activeCommentSection == 'socialMentions'" class="social_mentions_container">
 
                                 <div class="social_mentions_header">
-                                    <div class="social_mentions_description">
+                                    <div class="social_mentions_description" />
                                         Social mentions
                                     </div>
-                                    <div class="social_mentions_hashtag">
+                                    <div class="social_mentions_hashtag" ng-if="topic.hashtag" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">
                                         #{{topic.hashtag}}
                                     </div>
                                     <div class="clearer"></div>
@@ -1397,7 +945,14 @@
                                 </div>
 
                                 <div class="social_mentions_wrap">
-
+                                    <div class="social_mentions_message_info" ng-if="!topic.hashtag">
+                                        Sorry, we cannot show you the social mentions as there is no hashtag defined for this Topic. Users with editor permissions can add the hashtag to fetch social mentions.
+                                        <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">Add hashtag</div>
+                                    </div>
+                                    <div class="social_mentions_message_info" ng-if="topic.hashtag && !topic.topicSocialMentions">
+                                        Sorry, no social mentions found on Twitter for the hashtag <span ng-class="{blue_link: topic.canEdit()}" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"/>#{{topic.hashtag}}</span>
+                                        <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">Change hashtag</div>
+                                    </div>
                                     <div class="social_mention" ng-repeat="mention in topicSocialMentions">
                                         <div class="social_mention_header">
                                             <div class="social_mention_header_section">
@@ -1460,20 +1015,27 @@
                             </div>
                         </div>
                         <div class="options_content">
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsSettings'})">
-                                Settings
-                            </div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsCategories'})">
-                                Categories
-                            </div>
-                            <div class="blue_link">
+                            <div ng-if="!(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToVote()" ng-click="sendToVote()">
                                 Send to vote
                             </div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'topicSettingsInvite'})">
-                                Invite users
+                            <div ng-if="(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToFollowUp()" ng-click="sendToFollowUp()">
+                                Send to follow up
                             </div>
                             <div class="line lightest_line"></div>
-                            <div class="blue_link" cos-disabled="!topic.canEdit()" ng-click="dotoggleEditMode()">
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">
+                                Settings
+                            </div>
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})">
+                                Categories
+                            </div>
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'invite'})">
+                                Invite users
+                            </div>
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'share'})">
+                                Share topic
+                            </div>
+                            <div class="line lightest_line"></div>
+                            <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="dotoggleEditMode()" ng-bind="(editMode ? 'View topic' : 'Edit topic')">
                                 Edit topic
                             </div>
                             <div class="blue_link" ng-click="doLeaveTopic(topic)">
@@ -1481,27 +1043,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--
-                    <div class="options_wrap">
-                        <div class="options_header">
-                            <div class="table_cell">
-                                PERSONAL NOTES
-                            </div>
-                        </div>
-                        <div class="options_content">
-                            <div class="personal_note">
-                                Must discuss this with our manager…
-                            </div>
-                            <div class="personal_note">
-                                Another personal note for my diary.
-                            </div>
-                            <div class="line lightest_line"></div>
-                            <div class="blue_link">
-                                Add a personal note
-                            </div>
-                        </div>
-                    </div> -->
-
                 </div>
         </div>
 

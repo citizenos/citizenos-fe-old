@@ -1,0 +1,129 @@
+/** Main **/
+$base: #f6f6f6;
+$medium_black: #252525;
+$deep_sky_blue: #0680FC;
+
+#editorcontainer {
+    overflow: hidden;
+}
+
+.toolbar {
+    background: none;
+    border: none;
+}
+
+.timeslider-bar {
+    background: none;
+}
+
+#editbar {
+    background: $base;
+    border-bottom: 1px solid #ccc;
+}
+
+/** iframe #ace_outer **/
+#outerdocbody {
+    overflow: hidden;
+    background: none;
+}
+
+/** iframe #ace_inner **/
+#innerdocbody, #padcontent {
+    background: none;
+    * {
+        font-family: 'Noto Serif', serif;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 175%;
+        text-align: justify;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin: 20px 0;
+    }
+
+    h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
+        font-family: 'Open Sans', sans-serif;
+        color: $medium_black;
+        font-weight: bold;
+        line-height: 135%;
+    }
+
+    h1 * {
+        font-size: 46px;
+    }
+
+    h2 * {
+        font-size: 40px;
+    }
+
+    h3 * {
+        font-size: 34px;
+    }
+
+    h4 * {
+        font-size: 28px;
+    }
+
+    h5 * {
+        font-size: 22px;
+    }
+
+    h6 * {
+        font-size: 16px;
+    }
+
+    a {
+        color: $deep_sky_blue;
+    }
+
+    b, b * {
+        font-weight: bold;
+    }
+
+    code * {
+        font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif
+    }
+}
+
+#epAuthorshipToggleAuthorList {
+    font-family: bold, sans-serif;
+    background: $base;
+}
+
+#padpage {
+    #timeslider-top {
+        background: $base;
+
+        * {
+            font-family: bold, sans-serif;
+        }
+
+        .toolbar * {
+            font-family: regular, sans-serif;
+        }
+
+        #steppers .stepper {
+            font-family: fontawesome-etherpad;
+        }
+    }
+}
+
+/** Chat flickers on load, don't want that **/
+#chatbox, #chaticon {
+    display: none !important;
+}
+
+.popup, #users, #connectivity {
+    background: $base;
+    border-top: 1px solid $base;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-radius: 0;
+    z-index: 1500 !important;
+    margin-top: -1px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}

@@ -234,6 +234,7 @@ $aqua_marine_text: #00ce8f;;
 .pinky_red_button {
     @extend .nature_green_button;
     background: $pinky_red;
+    color: $white;
     border: 1px solid $pinky_red_border;
     &:hover {
         background: $pinky_red_dark_hover !important;

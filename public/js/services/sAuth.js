@@ -138,4 +138,18 @@ angular
             return $http.post(path, {email: email, password: password, passwordResetCode: passwordResetCode}).then(defaultSuccess, defaultError);
         };
 
+        sAuth.getUrlPrefix = function () {
+            if(sAuth.user.loggedIn) {
+                return 'users';
+            }
+            return null;
+        };
+
+        sAuth.getUrlUserId = function () {
+            if(sAuth.user.loggedIn) {
+                return 'self';
+            }
+            return null;
+        };
+
     }]);
