@@ -196,11 +196,6 @@ nav {
                     & {
                         background: $black;
 
-                        @include tablet {
-                            -webkit-tap-highlight-color: rgba(0, 0, 0, .45);
-                            background: initial;
-                        }
-
                     }
 
                     .sprite {
@@ -208,6 +203,14 @@ nav {
                     }
 
                 }
+
+                .section_item:not(.section_header):hover {
+                    @include tablet {
+                        -webkit-tap-highlight-color: rgba(0, 0, 0, .45);
+                        background: initial;
+                    }
+                }
+                
         }
 
     }
