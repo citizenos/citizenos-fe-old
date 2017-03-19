@@ -233,12 +233,12 @@
                         <!-- Regular graph -->
                         <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular">
 
-                            <div class="graph_column" ng-class="(option.selected) ? 'active' : ''" ng-repeat="option in topic.vote.options.rows">
-                                <div class="graph_column_text">
+                            <div class="graph_row" ng-class="(option.selected) ? 'active' : ''" ng-repeat="option in topic.vote.options.rows">
+                                <div class="graph_row_text">
                                     {{option.value}}<br>
                                     <span class="bold">{{option.voteCount || 0}}</span>
                                 </div>
-                                <div class="graph_column_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%'}">
+                                <div class="graph_row_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%'}">
                                 </div>
                             </div>
 
@@ -254,12 +254,12 @@
 
                             <div class="graph_wrap">
 
-                                <div class="graph_column" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
-                                    <div class="graph_column_text">
+                                <div class="graph_row" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
+                                    <div class="graph_row_text">
                                         {{key}}<br>
                                         <span class="bold">{{option.voteCount || 0}}</span>
                                     </div>
-                                    <div class="graph_column_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%'}">
+                                    <div class="graph_row_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%'}">
                                     </div>
                                 </div>
 
