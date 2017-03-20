@@ -179,12 +179,15 @@
                 }
             }
 
+            .graph_column_fill_wrapper {
+                height: 170px;
+            }
+
             .graph_column_fill {
                 background: $side_panel_gray;
                 width: 60%;
                 margin: 0 auto;
             }
-
 
             .graph_column_text {
                 width: 100%;

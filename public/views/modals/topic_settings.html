@@ -68,24 +68,6 @@
 
 
                 <div class="lightbox_section">
-                    <!--<div class="settings_section group_image">
-
-                        <div class="settings_cell">
-                            <div class="setting_title">
-                                Topic image
-                            </div>
-                            <div class="button_holder">
-                                <div class="gray_button">Upload another image</div>
-                                <div class="blue_link red_text">Remove image</div>
-                            </div>
-                        </div>
-                        <div class="clearer"></div>
-
-                        <div class="settings_cell">
-                            <img src='.././imgs/profile_large.jpg')>
-                        </div>
-                    </div>
-                    <div class="line lightest_line"></div> -->
 
 
                     <div class="settings_section">
@@ -114,9 +96,31 @@
                                 USE THIS HASHTAG IN SOCIAL MEDIA AND THE MENTIONS WILL BE SHOWN BELOW YOUR TOPIC
                             </div>
                         </div>
-
-                        <div class="settings_cell">
+                        <div class="settings_cell hashtag_cell">
+                            <div class="recycle_bin_wrap">
+                                <div ng-click="doDeleteHashtag()" class="btn_wrap recycle_bin" ng-class="$odd ? 'disabled disabled_with_tooltip' : ''">
+                                    <div class="btn">
+                                        <div class="tooltip">
+                                            Permission via Group, remove User from the Group or override the permissions selecting appropriate value from the dropdown.
+                                        </div>
+                                        <div class="table_cell disabled_area">
+                                            <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <input id="hashtag" cos-disabled="!topic.canEdit()" value="#cos_hipsters" ng-model="form.topic.hashtag" ng-change="checkHashtag()" ng-class="{'error_input': errors.hashtag}">
+                            <div class="recycle_bin_wrap wrap_mobile">
+                                <div ng-click="doDeleteHashtag()" class="btn_wrap recycle_bin" ng-class="$odd ? 'disabled disabled_with_tooltip' : ''">
+                                    <div class="btn">
+                                        <div class="table_cell disabled_area">
+                                            <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <label for="hashtag" class="error_label" ng-if="errors.hashtag">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -124,7 +128,6 @@
                                 </div>
                             </label>
                         </div>
-
                     </div>
                     <div class="line lightest_line"></div>
 

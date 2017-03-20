@@ -106,6 +106,22 @@ angular
             }
         };
 
+        $scope.closeTopic = function () {
+            if($scope.topic.canUpdate()) {
+                ngDialog
+                    .openConfirm({
+                        template: '/views/modals/topic_close_confirm.html'
+                    }).then(function () {
+                    $scope.topic.status = $scope.STATUSES.closed;
+                    $scope.topic.$patch();
+                    $scope.app.topics_settings = false;
+                    if ($state.is('topics.view.votes.view')) {
+                        $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true});
+                    }
+                }, angular.noop);
+            }
+        }
+
         $scope.loadTopicSocialMentions = function () {
             if($scope.topic.hashtag){
                 $scope.topicSocialMentions = Mention.query({topicId: $scope.topic.id});

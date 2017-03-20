@@ -19,6 +19,66 @@
 
         </div>
 
+        <div class="table_cell">
+            <div class="background_line timeline_gray_background">
+            </div>
+
+            <div ng-if="topic.status === STATUSES.closed" class="progress_line orange_background" style="width:100%;" >
+            </div>
+
+            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="progress_line bar_blue" style="width:75%;" >
+            </div>
+
+            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting].indexOf(topic.status) > -1" class="progress_line bar_green" style="width:50%;" >
+            </div>
+
+            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting, STATUSES.inProgress].indexOf(topic.status) > -1" class="progress_line favorite_yellow_background" style="width:25%;" >
+            </div>
+
+            <div class="days_left_wrap" ng-class="{favorite_yellow_background: topic.status === STATUSES.inProgress, bar_green: topic.status === STATUSES.voting, bar_blue: topic.status === STATUSES.followUp,orange_background: topic.status === STATUSES.closed }" ng-style="topic.status === STATUSES.inProgress && {'left':'25%'}  || topic.status === STATUSES.voting && {'left':'50%'} || topic.status === STATUSES.followUp && {'left': '75%'} || topic.status === STATUSES.closed && {'left': '100%'}">
+                <div class="table_cell">
+                    {{topic.status}}
+                </div>
+            </div>
+
+            <div class="checkmark">
+                <div class="table_cell">
+                    <div class="sprite sprite-check-timeline-yellow-start2x">
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting].indexOf(topic.status) > -1" class="checkmark" ng-style="{'left': '24%'}">
+                <div class="table_cell">
+                    <div class="sprite sprite-check-timeline-yellow2x">
+                    </div>
+                </div>
+                <div class="tooltip">
+                    Phase: <span class="bold">In progress</span>
+                </div>
+            </div>
+
+            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="checkmark" ng-style="{'left': '49%'}">
+                <div class="table_cell">
+                    <div class="sprite sprite-check-timeline-green2x">
+                    </div>
+                </div>
+                <div class="tooltip">
+                    Phase: <span class="bold">Voting</span>
+                </div>
+            </div>
+
+            <div ng-if="topic.status === STATUSES.closed" class="checkmark" ng-style="{'left': '74%'}">
+                <div class="table_cell">
+                    <div class="sprite sprite-check-timeline-gray2x">
+                    </div>
+                </div>
+                <div class="tooltip">
+                    Phase: <span class="bold">In followup</span>
+                </div>
+            </div>
+        </div>
+
         <div class="additional_info signing_deadline" ng-if="topic.vote.endsAt">
             Signing deadline: <span class="bold">{{topic.vote.endsAt | amDateFormat:'L'}}</span>
         </div>
@@ -104,14 +164,6 @@
                                 <div class="table_cell">
                                     <span class="bold">{{topic.vote.getVoteCountTotal()}}</span>/{{topic.members.users.count}} votes counte
                                 </div>
-                                <!--div class="table_cell">
-                                    <div class="v_line"></div>
-                                </div>
-                                <div class="table_cell">
-                                    <div class="blue_link">
-                                        view who voted
-                                    </div>
-                                </div -->
                             </div>
                             <div class="clearer"></div>
                         </div>
@@ -157,7 +209,7 @@
 
                             <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active' : ''"ng-repeat="(key, option) in topic.vote.options.rows" ng-click="doVote(option)">
                                 <div class="table_cell left_side">
-                                    {{key}}
+                                    {{getOptionLetter(key)}}.
                                 </div>
                                 <div class="table_cell right_side">
                                     {{option.value}}
@@ -238,7 +290,9 @@
                                     {{option.value}}<br>
                                     <span class="bold">{{option.voteCount || 0}}</span>
                                 </div>
-                                <div class="graph_column_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%'}">
+                                <div class="graph_column_fill_wrapper"/>
+                                    <div class="graph_column_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%', top:(100-getVoteValuePercentage(option.voteCount) + '%'), position: 'relative'}"  tooltips tooltip-template="{{option.value}}">
+                                    </div>
                                 </div>
                             </div>
 
@@ -248,7 +302,7 @@
                         <div class="big_graph" ng-if="topic.vote.type === voteTypes.multiple">
                             <div class="long_text_holder">
                                 <div class="long_text" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
-                                     <span class="bold">{{key}}.</span> {{option.value}}
+                                     <span class="bold">{{getOptionLetter(key)}}.</span> {{option.value}}
                                 </div>
                             </div>
 
@@ -256,10 +310,12 @@
 
                                 <div class="graph_column" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                     <div class="graph_column_text">
-                                        {{key}}<br>
+                                        {{getOptionLetter(key)}}<br>
                                         <span class="bold">{{option.voteCount || 0}}</span>
                                     </div>
-                                    <div class="graph_column_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%'}">
+                                    <div class="graph_column_fill_wrapper"/>
+                                        <div class="graph_column_fill" ng-style="{height: getVoteValuePercentage(option.voteCount) + '%', top:(100-getVoteValuePercentage(option.voteCount) + '%'), position: 'relative'}" tooltips tooltip-template="{{option.value}}">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -1020,6 +1076,9 @@
                             </div>
                             <div ng-if="(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToFollowUp()" ng-click="sendToFollowUp()">
                                 Send to follow up
+                            </div>
+                            <div class="blue_link" cos-disabled="!topic.canUpdate()" ng-click="closeTopic()">
+                                Close topic
                             </div>
                             <div class="line lightest_line"></div>
                             <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">

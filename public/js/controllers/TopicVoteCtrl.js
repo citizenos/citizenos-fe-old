@@ -116,4 +116,9 @@ app.controller('TopicVoteCtrl', ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDel
         if (!$scope.topic.vote.getVoteCountTotal() || value < 1) return 0;
         return value / $scope.topic.vote.getVoteCountTotal() * 100;
     };
+
+    $scope.$parent.$parent.getOptionLetter = function (index) {
+        return String.fromCharCode(65 + index);
+    };
+
 }]);

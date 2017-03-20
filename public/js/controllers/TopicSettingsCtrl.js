@@ -96,6 +96,10 @@ angular
             }
         };
 
+        $scope.doDeleteHashtag = function () {
+            $scope.form.topic.hashtag = null;
+        };
+
         $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,
             $scope.topic.$updateTokenJoin()
                 .then(function () {

@@ -253,7 +253,15 @@
                 })
                 .state('topics.create', {
                     url: '/create',
-                    parent: 'topics'
+                    parent: 'topics',
+                    controller: ['$scope', '$state', '$stateParams', 'Topic', function ($scope, $state, $stateParams, Topic) {
+                        var topic = new Topic();
+                        topic
+                            .$save()
+                            .then(function () {
+                                $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode:true});
+                            });
+                    }]
                 })
                 .state('topics.view', {
                     url: '/:topicId?editMode',
