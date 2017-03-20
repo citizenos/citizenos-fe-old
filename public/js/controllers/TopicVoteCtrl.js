@@ -113,7 +113,7 @@ app.controller('TopicVoteCtrl', ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDel
     };
 
     $scope.$parent.$parent.getVoteValuePercentage = function (value) {
-        if (!$scope.topic.vote.getVoteCountTotal() || value < 1) return 0;
+        if (!$scope.topic.vote.getVoteCountTotal() || value < 1 || !value) return 0;
         return value / $scope.topic.vote.getVoteCountTotal() * 100;
     };
 

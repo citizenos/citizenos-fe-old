@@ -160,61 +160,63 @@
     }
 
     .graph_wrap {
-        border-bottom: 1px solid $lightest_gray;
-        height: 170px;
+        border-left: 1px solid $lightest_gray;
         width: 100%;
         text-align: center;
         position: relative;
-        margin-top: 80px;
-        display: table;
+        padding: 10px 100px 10px 0;
+        box-sizing: border-box;
 
-        .graph_column {
-            display: table-cell;
+        .graph_row {
             position: relative;
-            vertical-align: bottom;
+            height: 40px;
+            width: 100%;
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
 
             &.active {
-                .graph_column_fill {
+                .graph_row_fill {
                     background: $aqua_marine;
                 }
             }
 
-            .graph_column_fill_wrapper {
-                height: 170px;
-            }
-
-            .graph_column_fill {
+            .graph_row_fill {
                 background: $side_panel_gray;
-                width: 60%;
-                margin: 0 auto;
+                height: 100%;
+                width: 100%;
+                position: relative;
             }
 
-            .graph_column_text {
-                width: 100%;
-                padding: 0 3px;
+            .graph_row_text_wrap {
+                display: table;
+                height: 100%;
+                width: 100px;
+                min-width: 100px;
+                position: absolute;
+                right: -100px;
+            }
+
+            .graph_row_text {
                 box-sizing: border-box;
+                padding-left: 10px;
                 font-size: 13px;
                 line-height: 15px;
-                bottom: 105.5%;
+                text-align: left;
                 word-wrap: break-word;
-                position: absolute;
+                width: 100px;
+                min-width: 100px;
             }
         }
     }
 
     .big_graph {
-         margin-top: 40px;
-        @media (max-width: 500px) {
-            margin-top: 30px;
-        }
+        margin-top: 30px;
 
         .graph_wrap {
-            margin-top: 70px;
-            @media (max-width: 500px) {
-                margin-top: 60px;
-            }
-            .graph_column {
-                .graph_column_fill {
+            margin-top: 30px;
+            .graph_row {
+                .graph_row_fill {
                     cursor: pointer;
                     @media (min-width: 1025px) {
                         &:hover {
@@ -224,7 +226,7 @@
                 }
 
                 &.active {
-                    .graph_column_fill {
+                    .graph_row_fill {
                         @media (min-width: 1025px) {
                             &:hover {
                                 background: $aqua_marine_border_second;
@@ -237,7 +239,6 @@
         }
 
         .long_text_holder {
-            padding: 0 10px;
             font-size: 14px;
             @media (max-width: 500px) {
                 padding: 0;
@@ -246,9 +247,9 @@
             .long_text {
                 cursor: pointer;
                 display: inline-block;
-                padding: 5px 10px;
+                padding: 5px 3px;
                 @media (max-width: 500px) {
-                    padding: 5px 0;
+                    padding: 5px 5px 0;
                 }
                 &.active {
                     color: $aqua_marine_text;

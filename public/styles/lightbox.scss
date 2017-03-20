@@ -1574,46 +1574,26 @@
                         .category_control {
                             &:hover {
                                 background: $white;
-                                @include tablet {
-                                    background: $medium_gray;
-                                }
                             }
 
                             display:table-cell;
                         }
                     }
-                    @include tablet {
-                        color: $medium_black;
-                        background: $medium_gray;
-                        border: 1px solid $lightest_gray;
-                    }
 
                     .category_control {
                         display: none;
-                        @include tablet {
-                            display: table-cell;
-                        }
                     }
 
                     &:not(.disabled):hover {
-                        background: $deep_sky_blue;
-                        color: $white;
-                        border: 1px solid $dark_blue;
-                        @include tablet {
-                            color: $medium_black;
-                            background: $medium_gray;
-                            border: 1px solid $lightest_gray;
-                        }
-                        .category_control {
-                            display: table-cell;
-                            border-left: 1px solid $dark_blue;
-                            @include tablet {
-                                border-left: 1px solid $lightest_gray;
-                            }
-                            &:hover {
-                                background: $dark_blue;
-                                @include tablet {
-                                    background: $medium_gray;
+                        @media (min-width: 1024px) {
+                            background: $deep_sky_blue;
+                            color: $white;
+                            border: 1px solid $dark_blue;
+                            .category_control {
+                                display: table-cell;
+                                border-left: 1px solid $dark_blue;
+                                &:hover {
+                                    background: $dark_blue;
                                 }
                             }
                         }
