@@ -51,8 +51,8 @@ angular
         };
 
         $scope.topic.padUrl = $sce.trustAsResourceUrl($scope.topic.padUrl);
-        $scope.editMode = ($stateParams.editMode && $stateParams.editMode ==='true') || false;
-        $scope.showInfoEdit = $scope.editMode;
+        $scope.app.editMode = ($stateParams.editMode && $stateParams.editMode ==='true') || false;
+        $scope.showInfoEdit = $scope.app.editMode;
         $scope.showVoteArea = false;
 
         $scope.STATUSES = Topic.STATUSES;
@@ -130,12 +130,12 @@ angular
 
         $scope.loadTopicSocialMentions();
 
-        $scope.dotoggleEditMode = function () {
-            $log.debug($scope.editMode);
-            $scope.editMode = !$scope.editMode;
+        $scope.app.dotoggleEditMode = function () {
+            $log.debug($scope.app.editMode);
+            $scope.app.editMode = !$scope.app.editMode;
             $scope.app.topics_settings = false;
-            if ($scope.editMode === true) {
-                $state.go('topics.view', {topicId: $scope.topic.id, editMode: $scope.editMode});
+            if ($scope.app.editMode === true) {
+                $state.go('topics.view', {topicId: $scope.topic.id, editMode: $scope.app.editMode});
             } else {
                 $state.go('topics.view', {topicId: $scope.topic.id, editMode:null}, {reload:true});
             }

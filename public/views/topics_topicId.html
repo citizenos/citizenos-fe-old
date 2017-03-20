@@ -132,7 +132,7 @@
 
             <div class="main_panel">
 
-                <div class="info_bar_wrap" ng-if="editMode && showInfoEdit">
+                <div class="info_bar_wrap" ng-if="app.editMode && showInfoEdit">
                     <div class="info_bar bar_blue">
                             <div class="info_icon">
                                 <div class="sprite sprite-icon-notification-info2x"></div>
@@ -273,13 +273,13 @@
                             <div class="message_content">
                                 Everyone has cast their votes. You can download the full document here.
                             </div>
-
-                            <div class="voting_button voting_button_blue">
-                                <div class="table_cell" ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank">
-                                    Download full DDOC
+                            <a ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank">
+                                <div class="voting_button voting_button_blue">
+                                    <div class="table_cell">
+                                            Download full DDOC
+                                    </div>
                                 </div>
-                            </div>
-
+                            </a>
                         </div>
 
                         <!-- Regular graph -->
@@ -665,8 +665,8 @@
 
 
                         <div class="topic_content">
-                            <iframe ng-if="topic.canUpdate() && editMode" frameborder="0" scrolling="no" ng-show="topic.padUrl && !('topics.view.followUp' | isState)" ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
-                            <ng-bind-html ng-if="!editMode" ng-bind-html="topic.description"></ng-bind-html>
+                            <iframe ng-if="topic.canUpdate() && app.editMode" frameborder="0" scrolling="no" ng-show="topic.padUrl && !('topics.view.followUp' | isState)" ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
+                            <ng-bind-html ng-if="!app.editMode" ng-bind-html="topic.description"></ng-bind-html>
                         </div>
 
                     </div>
@@ -1098,7 +1098,7 @@
                                 Share topic
                             </div>
                             <div class="line lightest_line"></div>
-                            <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="dotoggleEditMode()" ng-bind="(editMode ? 'View topic' : 'Edit topic')">
+                            <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="app.dotoggleEditMode()" ng-bind="(app.editMode ? 'View topic' : 'Edit topic')">
                                 Edit topic
                             </div>
                             <div class="blue_link" ng-click="doLeaveTopic(topic)">

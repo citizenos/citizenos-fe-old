@@ -96,8 +96,8 @@
                                 USE THIS HASHTAG IN SOCIAL MEDIA AND THE MENTIONS WILL BE SHOWN BELOW YOUR TOPIC
                             </div>
                         </div>
-                        <div class="settings_cell hashtag_cell">
-                            <div class="recycle_bin_wrap">
+                        <div class="settings_cell hashtag_cell" >
+                            <div class="recycle_bin_wrap" cos-disabled="!topic.canEdit()">
                                 <div ng-click="doDeleteHashtag()" class="btn_wrap recycle_bin">
                                     <div class="btn">
                                         <div class="table_cell disabled_area">
@@ -108,7 +108,7 @@
                                 </div>
                             </div>
                             <input id="hashtag" cos-disabled="!topic.canEdit()" value="#cos_hipsters" ng-model="form.topic.hashtag" ng-change="checkHashtag()" ng-class="{'error_input': errors.hashtag}">
-                            <div class="recycle_bin_wrap wrap_mobile">
+                            <div class="recycle_bin_wrap wrap_mobile" cos-disabled="!topic.canEdit()">
                                 <div ng-click="doDeleteHashtag()" class="btn_wrap recycle_bin">
                                     <div class="btn">
                                         <div class="table_cell disabled_area">
