@@ -249,7 +249,7 @@
                     url: '/topics',
                     abstract: true,
                     parent: 'main',
-                    template: '<div ui-view></div>'
+                    template: '<div ui-view></div>',
                 })
                 .state('topics.create', {
                     url: '/create',
@@ -329,7 +329,7 @@
                     controller: 'MyCtrl',
                     resolve: {
                         // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', function ($state, $stateParams, $q, $window, sAuth, Topic, Group) {
+                        rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', 'sAuthResolve', function ($state, $stateParams, $q, $window, sAuth, Topic, Group, sAuthResolve) {
                             var filterParam = $stateParams.filter || 'all';
 
                             switch (filterParam) {
@@ -359,7 +359,7 @@
                     parent: 'my.topics',
                     templateUrl: '/views/my_topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', 'Topic', function ($stateParams, Topic) {
+                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', function ($stateParams, Topic, sAuthResolve) {
                             return Topic.get({topicId: $stateParams.topicId, include: 'vote'}).$promise;
                         }]
                     },
