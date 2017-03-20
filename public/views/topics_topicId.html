@@ -12,7 +12,7 @@
                 </div>
                 <div class="table_cell">
                     <div class="bold">
-                        3 MILESTONES
+                        {{}} MILESTONES
                     </div>
                 </div>
             </div>
@@ -1009,7 +1009,7 @@
                                         Sorry, we cannot show you the social mentions as there is no hashtag defined for this Topic. Users with editor permissions can add the hashtag to fetch social mentions.
                                         <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">Add hashtag</div>
                                     </div>
-                                    <div class="social_mentions_message_info" ng-if="topic.hashtag && !topic.topicSocialMentions">
+                                    <div class="social_mentions_message_info" ng-if="topic.hashtag && !topicSocialMentions.length">
                                         Sorry, no social mentions found on Twitter for the hashtag <span ng-class="{blue_link: topic.canEdit()}" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"/>#{{topic.hashtag}}</span>
                                         <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">Change hashtag</div>
                                     </div>
