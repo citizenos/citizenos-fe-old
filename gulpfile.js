@@ -64,6 +64,7 @@ gulp.task('default', function () {
     return runSequence(
         'uglify',
         'sass',
+        'sass_partner',
         'sass_etherpad',
         'cachebreaker',
         'watch'
@@ -126,9 +127,10 @@ gulp.task('watch', function () {
             'cachebreaker'
         );
     });
-    gulp.watch('public/styles/*.scss', function () {
+    gulp.watch('public/styles/**/*.scss', function () {
         return runSequence(
             'sass',
+            'sass_partner',
             'sass_etherpad',
             'cachebreaker'
         );
@@ -140,8 +142,12 @@ gulp.task('watch', function () {
     });
 });
 
+/**
+ * TODO: Would be 1 SASS task if followed the best practice - http://thesassway.com/beginner/how-to-structure-a-sass-project
+ * BUT, if we try to follow it with current code, SASS goes berserk and generates 31 mb CSS or hangs. Needs some investigation.
+ */
 gulp.task('sass', function () {
-    return gulp.src(['public/styles/*.scss', '!public/styles/etherpad.scss'])
+    return gulp.src(['public/styles/*.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())
@@ -151,12 +157,22 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('public/styles/'))
 });
 
-gulp.task('sass_etherpad', function() {
-    return gulp.src(['public/styles/etherpad.scss'])
+gulp.task('sass_partner', function() {
+    return gulp.src(['public/styles/partner/partner.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(cleanCSS())
-        .pipe(sourcemaps.write('maps'))
+        .pipe(sourcemaps.write('../maps'))
+        .pipe(gulp.dest('public/styles/'));
+});
+
+gulp.task('sass_etherpad', function() {
+    return gulp.src(['public/styles/etherpad/etherpad.scss'])
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(cleanCSS())
+        .pipe(sourcemaps.write('../maps'))
         .pipe(gulp.dest('public/styles/'))
 });
