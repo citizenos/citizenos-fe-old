@@ -13,6 +13,7 @@ angular
         $scope.noResults = true;
         $scope.searchString = null;
         $scope.doSearch = function (str) {
+            $scope.noResults = true;
             if (!str || str.length < 3) {
                 $scope.searchString = null;
                 $scope.app.showSearchResults = false;
@@ -36,7 +37,7 @@ angular
                     contexts.forEach(function (context) {
                         var models = Object.keys($scope.searchResults[context]);
                         models.forEach( function (model) {
-                            if($scope.searchResults[context][model].count) {
+                            if($scope.searchResults[context][model].count > 0) {
                                 $scope.noResults = false;
                             }
                         });
