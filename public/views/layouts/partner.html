@@ -1,4 +1,4 @@
-<div id="table_element">
+<div id="table_element" ng-controller="PartnerCtrl">
 
     <div class="table_row">
         <div class="table_cell">
@@ -29,12 +29,9 @@
     <div class="table_row">
         <div class="centered_content main_content_wrap" ng-class="('partners.consent' | isState) ? 'consent' : ''">
             <div id="main_content">
-
-                <!-- FIXME: Dynamic -->
-                <img id="partner_logo" src="imgs/RA_logo2x.png" alt="">
+                <img id="partner_logo" ng-src="{{'imgs/logo_partner_' + partner.id + '.png'}}" alt="">
 
                 <div ui-view></div>
-
             </div>
         </div>
     </div>
