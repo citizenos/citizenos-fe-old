@@ -8,10 +8,11 @@
     <script> window.prerenderReady = false;</script>
     <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
     <link href="styles/citizenos-fe.bundle.css?v=894a9ce646db7e1d07a56edea07b7938" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=51ae24bb7fb8e3ec66685180b611c159"></script>
-    <script src="js/libs/template-cache.js?v=7df2957209dd75993bc4c1e2492747d8"></script>
+    <script src="js/citizenos-fe.bundle.js?v=4999021ff15cdeea265e96dba4e7f532"></script>
+    <script src="js/libs/template-cache.js?v=2a990f6d0692f1293db53eb95e22042d"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" href="{{app.metainfo.icon}}" type="image/x-icon"/>
@@ -31,9 +32,9 @@
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 <body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
     <div ng-app="viewTemplateCache"></div>
+
     <!-- INFO BAR - base.scss -->
     <div class="info_bar_wrap">
-
         <!-- RED MESSAGE -->
         <!-- Using ng-hide and ng-show instead of ng-if so that screen flicker would not occur on page load -->
         <div class="info_bar bar_red ng-hide" ng-show="app.notifications.messages[app.notifications.levels.ERROR].length">
@@ -85,26 +86,10 @@
                 <div class="sprite sprite-btn-popup-close-2x-green"></div>
             </div>
         </div>
-
-
     </div>
-
-    <!-- MOBILE HEADER NAV -->
-    <div id="mobile_header" ng-if="wWidth <= 1024">
-
-        <div ng-include="'views/default/nav_mobile.html'"></div>
-
-    </div>
-
-    <!-- NAV -->
-    <nav ng-class="app.showNav ? 'nav_is_open' : ''" ng-click="app.showSearchResults = false" ng-swipe-right="app.showNav = false">
-
-        <div ng-include="'views/default/nav.html'"></div>
-
-    </nav>
 
     <!-- CONTENT -->
-    <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''" ui-view></div>
-
+    <!-- Cant have ui-view without a wrapper element. Search results depend on the outer element height, thus the style -->
+    <div ui-view style="height: 100%;"></div>
 </body>
 </html>

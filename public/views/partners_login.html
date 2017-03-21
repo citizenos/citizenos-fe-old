@@ -1,0 +1,68 @@
+<p>
+    We work together with CitizenOS to offer you a great experience. If you want to use the platform to its fullest, <span class="bold">please login or register.</span>
+</p>
+
+<div class="social_buttons_wrap">
+
+    <div id="facebook" ng-click="doLoginPartner(LOGIN_PARTNERS.facebook)" class="social_button">
+        <div class="social_icon">
+            <div class="table_cell">
+                <div class="sprite sprite-login-icon-facebook2x"></div>
+            </div>
+        </div>
+        <div class="social_text">
+            <div class="table_cell">
+                Login with Facebook account
+            </div>
+        </div>
+    </div>
+
+    <div id="google" ng-click="doLoginPartner(LOGIN_PARTNERS.google)" class="social_button">
+        <div class="social_icon">
+            <div class="table_cell">
+                <div class="sprite sprite-login-icon-google2x"></div>
+            </div>
+        </div>
+        <div class="social_text">
+            <div class="table_cell">
+                Login with Google account
+            </div>
+        </div>
+    </div>
+
+    <div id="id_card" ng-click="doLoginEsteId()" class="social_button">
+        <div class="social_icon">
+            <div class="table_cell">
+                <div class="sprite sprite-login-icon-id2x"></div>
+            </div>
+        </div>
+        <div class="social_text">
+            <div class="table_cell">
+                Login with ID-Card / Mobiil-ID
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<form class="login_form" name="loginForm">
+    <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+    <input id="email" ng-model="form.email" type="email" placeholder="E-MAIL" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.email}" required>
+    <label for="email" class="error_label" ng-if="errors.email">
+        <div class="table_cell">
+            <div class="sprite sprite-icon-inputfield-error2x"></div>
+            <span translate="{{errors.email}}"></span>
+        </div>
+    </label>
+    <input id="password" ng-model="form.password" type="password" placeholder="PASSWORD" ng-class="{'error_input': errors.password}" required>
+    <label for="password" class="error_label" ng-if="errors.password">
+        <div class="table_cell">
+            <div class="sprite sprite-icon-inputfield-error2x"></div>
+            <span translate="{{errors.password}}"></span>
+        </div>
+    </label>
+    <button type="submit" ng-click="doLogin()" ng-disabled="loginForm.$invalid">Log in / Register</button>
+    <div class="link_section">
+        <a class="lightbox_link" ng-click="doResetPassword()" href="">Forgot password?</a>
+    </div>
+</form>

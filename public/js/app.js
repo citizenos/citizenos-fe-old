@@ -114,14 +114,17 @@
                         var stateObj = statesList[i];
                         if (stateObj.name) {
                             var privatePortion = stateObj.$$state();
-                            var params = privatePortion.url.exec(returnLink, $location.search());
-                            if (params) {
-                                stateNext = {
-                                    name: stateObj.name,
-                                    params: params
-                                };
-                                $log.debug('$urlRouterProvider.otherwise', 'Matched state', stateNext);
-                                break; // Stop the loop, we found our state
+
+                            if (privatePortion.url) {
+                                var params = privatePortion.url.exec(returnLink, $location.search());
+                                if (params) {
+                                    stateNext = {
+                                        name: stateObj.name,
+                                        params: params
+                                    };
+                                    $log.debug('$urlRouterProvider.otherwise', 'Matched state', stateNext);
+                                    break; // Stop the loop, we found our state
+                                }
                             }
                         }
                     }
@@ -139,10 +142,10 @@
             });
 
             $stateProvider
-                .state('main', {
+                .state('index', {
                     url: '/{language:' + langReg + '}',
                     abstract: true,
-                    templateUrl: '/views/layouts/main.html',
+                    template: '<div ui-view></div>',
                     resolve: {
                         /* @ngInject */
                         sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {
@@ -150,23 +153,29 @@
                             return sTranslate.setLanguage($stateParams.language);
                         },
                         sAuthResolve: function ($q, $log, sAuth) {
-                                if(sAuth.user.loggedIn) {
-                                    return;
-                                }
-                                return sAuth
-                                    .status()
-                                    .then(
-                                        function () {
-                                            $log.debug('Resolve user', sAuth.user);
-                                            return $q.resolve();
-                                        },
-                                        function () {
-                                            $log.debug('Resolve user', sAuth.user);
-                                            return $q.resolve();
-                                        }
-                                    );
+                            if (sAuth.user.loggedIn) {
+                                return;
+                            }
+                            return sAuth
+                                .status()
+                                .then(
+                                    function () {
+                                        $log.debug('Resolve user', sAuth.user);
+                                        return $q.resolve();
+                                    },
+                                    function () {
+                                        $log.debug('Resolve user', sAuth.user);
+                                        return $q.resolve();
+                                    }
+                                );
                         }
                     }
+                })
+                .state('main', {
+                    url: null,
+                    abstract: true,
+                    parent: 'index',
+                    templateUrl: '/views/layouts/main.html'
                 })
                 .state('home', {
                     url: '/',
@@ -259,7 +268,7 @@
                         topic
                             .$save()
                             .then(function () {
-                                $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode:true});
+                                $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
                             });
                     }]
                 })
@@ -296,7 +305,7 @@
                     abstract: true,
                     url: '/votes',
                     parent: 'topics.view',
-                    template:'<div ui-view></div>'
+                    template: '<div ui-view></div>'
                 })
                 .state('topics.view.votes.create', {
                     parent: 'topics.view.votes',
@@ -304,10 +313,10 @@
                     template: '<div ui-view></div>',
                     controller: 'TopicVoteCreateCtrl',
                     resolve: {
-                        rVote: ['rTopic', '$state','$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
-                            if(rTopic.voteId) {
-                                $timeout( function () {
-                                    $state.go('topics.view.votes.view', {language:$stateParams.language, topicId:rTopic.id, voteId:rTopic.voteId}); //if vote is allready created redirect to voting
+                        rVote: ['rTopic', '$state', '$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
+                            if (rTopic.voteId) {
+                                $timeout(function () {
+                                    $state.go('topics.view.votes.view', {language: $stateParams.language, topicId: rTopic.id, voteId: rTopic.voteId}); //if vote is allready created redirect to voting
                                 }, 0);
                                 return $q.reject();
                             } else {
@@ -441,6 +450,22 @@
                     url: '/join/:tokenJoin',
                     parent: 'main',
                     controller: 'JoinCtrl'
+                })
+                .state('partners', {
+                    url: '/partners/:partnerId',
+                    abstract: true,
+                    parent: 'index',
+                    templateUrl: '/views/layouts/partner.html'
+                })
+                .state('partners.login', {
+                    url: '/login',
+                    parent: 'partners',
+                    templateUrl: '/views/partners_login.html'
+                })
+                .state('partners.consent', {
+                    url: '/consent',
+                    parent: 'partners',
+                    templateUrl: '/views/partners_consent.html'
                 })
                 .state('_templates', { // TODO: From here below are the template path relevant in development
                     url: '/_templates',
