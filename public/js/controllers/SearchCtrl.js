@@ -14,6 +14,7 @@ angular
         $scope.searchString = null;
         $scope.doSearch = function (str) {
             $scope.noResults = true;
+            $scope.searchResults = null;
             if (!str || str.length < 3) {
                 $scope.searchString = null;
                 $scope.app.showSearchResults = false;
@@ -27,7 +28,7 @@ angular
             }
             // TODO: Should use some kind of previous request cancellation mechanism while typing fast.
             sSearch
-                .searchV2(str, {include: include})
+                .searchV2(str, {include: include, limit:5})
                 .then(function (result) {
                     $scope.searchResults = result.data.data.results;
                     $scope.app.showSearchResults = true;
@@ -64,10 +65,10 @@ angular
                     include = context + '.group';
                 }
 
-                var page = Math.floor($scope.searchResults[context][model].rows.length/10)+1;
+                var page = Math.floor($scope.searchResults[context][model].rows.length/5)+1;
 
                 sSearch
-                    .searchV2($scope.searchString, {include: include, page: page})
+                    .searchV2($scope.searchString, {include: include, limit:5, page: page})
                     .then(function (result) {
                         var moreResults = result.data.data.results;
 
