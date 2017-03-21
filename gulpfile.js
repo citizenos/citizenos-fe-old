@@ -13,7 +13,6 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     batch = require('gulp-batch'),
     runSequence = require('run-sequence').use(gulp),
-    uncache = require('gulp-uncache'),
     cachebust = require('gulp-cache-bust'),
     fs = require('fs'),
     templateCache = require('gulp-angular-templatecache');
@@ -64,7 +63,6 @@ gulp.task('default', function () {
     return runSequence(
         'uglify',
         'sass',
-        'sass_partner',
         'sass_etherpad',
         'cachebreaker',
         'watch'
@@ -130,7 +128,6 @@ gulp.task('watch', function () {
     gulp.watch('public/styles/**/*.scss', function () {
         return runSequence(
             'sass',
-            'sass_partner',
             'sass_etherpad',
             'cachebreaker'
         );
@@ -155,16 +152,6 @@ gulp.task('sass', function () {
         .pipe(concat(pkg.name + '.bundle.css'))
         .pipe(sourcemaps.write('maps'))
         .pipe(gulp.dest('public/styles/'))
-});
-
-gulp.task('sass_partner', function() {
-    return gulp.src(['public/styles/partner/partner.scss'])
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(sass())
-        .pipe(cleanCSS())
-        .pipe(sourcemaps.write('maps'))
-        .pipe(gulp.dest('public/styles/'));
 });
 
 gulp.task('sass_etherpad', function() {
