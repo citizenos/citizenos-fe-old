@@ -1,52 +1,55 @@
-<!-- SEARCH BAR -->
-
-<div id="search_bar" ng-if="wWidth > 1024">
-    <div id="search_icon">
-        <div class="table_cell">
-            <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
-        </div>
-    </div>
-
-    <div id="close_search_icon" ng-click="app.showSearchResults = false" ng-style="{'display': app.showSearchResults ? 'relative' : 'none'}">
-        <div class="table_cell">
-            <div class="sprite sprite-icon-closemenu-b-2x"></div>
-        </div>
-    </div>
-
-    <input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="Search topics, users, groups…">
-
+<!-- MOBILE HEADER NAV -->
+<div id="mobile_header" ng-if="wWidth <= 1024">
+    <div ng-include="'views/default/nav_mobile.html'"></div>
 </div>
 
-<!-- CONTENT WRAP -->
+<!-- NAV -->
+<nav ng-class="app.showNav ? 'nav_is_open' : ''" ng-click="app.showSearchResults = false" ng-swipe-right="app.showNav = false">
+    <div ng-include="'views/default/nav.html'"></div>
+</nav>
 
-<div id="content_wrap">
-
-
-    <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
-         ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
-
-
-    <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
-         ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
-
-
-    <div id="content">
-        <div id="content_cell">
-
-            <!-- SEARCH AREA  -->
-            <div id="search_area" ng-style="{'height' : app.showSearchResults ? '100%' : '0' }">
-
-                <div ng-include="'views/default/search.html'"></div>
-
+<!-- CONTENT -->
+<div id="content_root" ng-class="app.showNav ? 'navOpen' : ''">
+    <!-- SEARCH BAR -->
+    <div id="search_bar" ng-if="wWidth > 1024">
+        <div id="search_icon">
+            <div class="table_cell">
+                <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
             </div>
-
-            <!-- CLOSE SEARCH AREA -->
-            <div ng-click="app.showSearchResults = false" id="search_area_close" ng-style="{'display' : app.showSearchResults ? 'block' : 'none' }">
-            </div>
-
-            <!-- ROUTES CONTENT -->
-            <div id="view" ui-view></div>
         </div>
+
+        <div id="close_search_icon" ng-click="app.showSearchResults = false" ng-style="{'display': app.showSearchResults ? 'relative' : 'none'}">
+            <div class="table_cell">
+                <div class="sprite sprite-icon-closemenu-b-2x"></div>
+            </div>
+        </div>
+
+        <input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="Search topics, users, groups…">
     </div>
 
+    <!-- CONTENT WRAP -->
+    <div id="content_wrap">
+        <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
+             ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+
+
+        <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
+             ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+
+
+        <div id="content">
+            <div id="content_cell">
+                <!-- SEARCH AREA  -->
+                <div id="search_area" ng-style="{'height' : app.showSearchResults ? '100%' : '0' }">
+                    <div ng-include="'views/default/search.html'"></div>
+                </div>
+
+                <!-- CLOSE SEARCH AREA -->
+                <div ng-click="app.showSearchResults = false" id="search_area_close" ng-style="{'display' : app.showSearchResults ? 'block' : 'none' }"></div>
+
+                <!-- ROUTES CONTENT -->
+                <div id="view" ui-view></div>
+            </div>
+        </div>
+    </div>
 </div>
