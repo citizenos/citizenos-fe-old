@@ -163,7 +163,7 @@ gulp.task('sass_partner', function() {
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(cleanCSS())
-        .pipe(sourcemaps.write('../maps'))
+        .pipe(sourcemaps.write('maps'))
         .pipe(gulp.dest('public/styles/'));
 });
 
@@ -173,6 +173,6 @@ gulp.task('sass_etherpad', function() {
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(cleanCSS())
-        .pipe(sourcemaps.write('../maps'))
+        .pipe(sourcemaps.write('maps'))
         .pipe(gulp.dest('public/styles/'))
 });
