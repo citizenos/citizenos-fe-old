@@ -6,7 +6,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title">Choose a log in method</div>
+                    <div class="title" translate="MODALS.LOGIN_ESTEID_HEADING">Choose a log in method</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -32,31 +32,30 @@
                         </div>
                         <div ng-if="!formMobile.challengeID && !formMobile.isLoading">
                             <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
-                            <input id="phone" name="phoneNumber" type="tel" ng-model="formMobile.phoneNumber" placeholder="Phone number" focus-if="{{wWidth > 1024}}"
+                            <input id="phone" name="phoneNumber" type="tel" ng-model="formMobile.phoneNumber" placeholder="{{'MODALS.LOGIN_ESTEID_PLACEHOLDER_PHONE' | translate}}" focus-if="{{wWidth > 1024}}"
                                    ng-class="{'error_input': loginMobiilIdForm.phoneNumber.$error.pattern && loginMobiilIdForm.phoneNumber.$touched}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
                             <label for="phone" class="error_label" ng-if="loginMobiilIdForm.phoneNumber.$error.pattern && loginMobiilIdForm.phoneNumber.$touched">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span>Invalid phone number</span>
+                                    <span translate="MODALS.LOGIN_ESTEID_ERROR_PHONE">Invalid phone number</span>
                                 </div>
                             </label>
-                            <input id="pid" name="pid" type="number" ng-model="formMobile.pid" placeholder="Personal identification code"
-                                   ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
+                            <input id="pid" name="pid" type="number" ng-model="formMobile.pid" placeholder="{{'MODALS.LOGIN_ESTEID_PLACEHOLDER_PID' | translate}}" ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
                             <label for="pid" class="error_label" ng-if="loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span>Invalid personal identification code</span>
+                                    <span translate="MODALS.LOGIN_ESTEID_ERROR_PID">Invalid personal identification code</span>
                                 </div>
                             </label>
                         </div>
                         <div ng-if="formMobile.challengeID">
-                            <div class="code">Control code: {{formMobile.challengeID}}</div>
-                            <div class="code_text">Make sure control code matches with one in the phone screen and enter Mobile-ID PIN2.</div>
+                            <div class="code" translate="MODALS.LOGIN_ESTEID_TXT_CONTROL_CODE" translate-values="{count: formMobile.challengeID}">Control code: 1234</div>
+                            <div class="code_text" translate="MODALS.LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE">Make sure control code matches with one in the phone screen and enter Mobile-ID PIN2.</div>
                             <div class="loader_wrap">
                                 <div class="loader"></div>
                             </div>
                         </div>
-                        <button type="submit" ng-click="doLoginMobiilId()"  ng-if="wWidth <= 550" ng-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading" class="blue_button">Sign with Mobiil-ID</button>
+                        <button type="submit" ng-click="doLoginMobiilId()"  ng-if="wWidth <= 550" ng-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading" class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_MID">Log in with Mobiil-ID</button>
                     </div>
 
                     <div class="line_wrap">
@@ -69,17 +68,17 @@
                         <div ng-if="isLoadingIdCard" class="loader_wrap">
                             <div class="loader"></div>
                         </div>
-                        <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard && wWidth <= 550" ng-disabled="formMobile.isLoading" class="blue_button">Sign with ID-Card</button>
+                        <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard && wWidth <= 550" ng-disabled="formMobile.isLoading" class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_ID">Log in with ID-Card</button>
                     </div>
 
                     <div class="clearer"></div>
 
                     <div ng-if="wWidth > 550" class="sign_in_section">
-                        <button ng-click="doLoginMobiilId()" ng-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading" class="blue_button">Sign with Mobiil-ID</button>
+                        <button ng-click="doLoginMobiilId()" ng-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading" class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_MID">Log in with Mobiil-ID</button>
                     </div>
 
                     <div ng-if="wWidth > 550" class="sign_in_section">
-                        <button ng-click="doLoginIdCard()" ng-disabled="formMobile.isLoading" class="blue_button">Sign with ID-Card</button>
+                        <button ng-click="doLoginIdCard()" ng-disabled="formMobile.isLoading" class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_ID">Log in with ID-Card</button>
                     </div>
 
                     <div class="clearer"></div>
