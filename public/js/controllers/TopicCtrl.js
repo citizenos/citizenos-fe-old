@@ -127,7 +127,7 @@ angular
                     }
                 }, angular.noop);
             }
-        }
+        };
 
         $scope.loadTopicSocialMentions = function () {
             if ($scope.topic.hashtag) {
