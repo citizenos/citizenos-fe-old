@@ -11,8 +11,7 @@
                     </div>
                 </div>
                 <div class="table_cell">
-                    <div class="bold">
-                        3 MILESTONES
+                    <div class="bold" ng-bind="(topic.status==STATUSES.voting ? '1 MILESTONE' :  topic.status==STATUSES.followUp ? '2 MILESTONES': '0 MILESTONES')">
                     </div>
                 </div>
             </div>
@@ -23,19 +22,16 @@
             <div class="background_line timeline_gray_background">
             </div>
 
-            <div ng-if="topic.status === STATUSES.closed" class="progress_line orange_background" style="width:100%;" >
+            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="progress_line bar_blue" ng-style="STATUSES.followUp === topic.status && {'width':'75%'} || {'width': '100%'}">
             </div>
 
-            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="progress_line bar_blue" style="width:75%;" >
+            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting].indexOf(topic.status) > -1" class="progress_line bar_green" ng-style="STATUSES.voting === topic.status && {'width':'50%'} || {'width': '66%'}" >
             </div>
 
-            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting].indexOf(topic.status) > -1" class="progress_line bar_green" style="width:50%;" >
+            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting, STATUSES.inProgress].indexOf(topic.status) > -1" class="progress_line favorite_yellow_background" ng-style="STATUSES.inProgress === topic.status && {'width':'25%'} || {'width': '33%'}">
             </div>
 
-            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting, STATUSES.inProgress].indexOf(topic.status) > -1" class="progress_line favorite_yellow_background" style="width:25%;" >
-            </div>
-
-            <div class="days_left_wrap" ng-class="{favorite_yellow_background: topic.status === STATUSES.inProgress, bar_green: topic.status === STATUSES.voting, bar_blue: topic.status === STATUSES.followUp,orange_background: topic.status === STATUSES.closed }" ng-style="topic.status === STATUSES.inProgress && {'left':'25%'}  || topic.status === STATUSES.voting && {'left':'50%'} || topic.status === STATUSES.followUp && {'left': '75%'} || topic.status === STATUSES.closed && {'left': '100%'}">
+            <div class="days_left_wrap" ng-class="{favorite_yellow_background: topic.status === STATUSES.inProgress, bar_green: topic.status === STATUSES.voting, bar_blue: topic.status === STATUSES.followUp,timeline_gray_background: topic.status === STATUSES.closed }" ng-style="topic.status === STATUSES.inProgress && {'left':'25%'}  || topic.status === STATUSES.voting && {'left':'50%'} || topic.status === STATUSES.followUp && {'left': '75%'} || topic.status === STATUSES.closed && {'left': '99%'}">
                 <div class="table_cell">
                     {{topic.status}}
                 </div>
@@ -48,7 +44,7 @@
                 </div>
             </div>
 
-            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting].indexOf(topic.status) > -1" class="checkmark" ng-style="{'left': '24%'}">
+            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting].indexOf(topic.status) > -1" class="checkmark" ng-style="{'left': '32%'}">
                 <div class="table_cell">
                     <div class="sprite sprite-check-timeline-yellow2x">
                     </div>
@@ -58,7 +54,7 @@
                 </div>
             </div>
 
-            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="checkmark" ng-style="{'left': '49%'}">
+            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="checkmark" ng-style="{'left': '65%'}">
                 <div class="table_cell">
                     <div class="sprite sprite-check-timeline-green2x">
                     </div>
@@ -68,15 +64,6 @@
                 </div>
             </div>
 
-            <div ng-if="topic.status === STATUSES.closed" class="checkmark" ng-style="{'left': '74%'}">
-                <div class="table_cell">
-                    <div class="sprite sprite-check-timeline-gray2x">
-                    </div>
-                </div>
-                <div class="tooltip">
-                    Phase: <span class="bold">In followup</span>
-                </div>
-            </div>
         </div>
 
         <div class="additional_info signing_deadline" ng-if="topic.vote.endsAt">
@@ -132,7 +119,7 @@
 
             <div class="main_panel">
 
-                <div class="info_bar_wrap" ng-if="editMode && showInfoEdit">
+                <div class="info_bar_wrap" ng-if="app.editMode && showInfoEdit">
                     <div class="info_bar bar_blue">
                             <div class="info_icon">
                                 <div class="sprite sprite-icon-notification-info2x"></div>
@@ -273,13 +260,13 @@
                             <div class="message_content">
                                 Everyone has cast their votes. You can download the full document here.
                             </div>
-
-                            <div class="voting_button voting_button_blue">
-                                <div class="table_cell" ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank">
-                                    Download full DDOC
+                            <a ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank">
+                                <div class="voting_button voting_button_blue">
+                                    <div class="table_cell">
+                                            Download full DDOC
+                                    </div>
                                 </div>
-                            </div>
-
+                            </a>
                         </div>
 
                         <!-- Regular graph -->
@@ -665,8 +652,8 @@
 
 
                         <div class="topic_content">
-                            <iframe ng-if="topic.canUpdate() && editMode" frameborder="0" scrolling="no" ng-show="topic.padUrl && !('topics.view.followUp' | isState)" ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
-                            <ng-bind-html ng-if="!editMode" ng-bind-html="topic.description"></ng-bind-html>
+                            <iframe ng-if="topic.canUpdate() && app.editMode" frameborder="0" scrolling="no" ng-show="topic.padUrl && !('topics.view.followUp' | isState)" ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
+                            <ng-bind-html ng-if="!app.editMode" ng-bind-html="topic.description"></ng-bind-html>
                         </div>
 
                     </div>
@@ -1009,7 +996,7 @@
                                         Sorry, we cannot show you the social mentions as there is no hashtag defined for this Topic. Users with editor permissions can add the hashtag to fetch social mentions.
                                         <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">Add hashtag</div>
                                     </div>
-                                    <div class="social_mentions_message_info" ng-if="topic.hashtag && !topic.topicSocialMentions">
+                                    <div class="social_mentions_message_info" ng-if="topic.hashtag && !topicSocialMentions.length">
                                         Sorry, no social mentions found on Twitter for the hashtag <span ng-class="{blue_link: topic.canEdit()}" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"/>#{{topic.hashtag}}</span>
                                         <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">Change hashtag</div>
                                     </div>
@@ -1098,7 +1085,7 @@
                                 Share topic
                             </div>
                             <div class="line lightest_line"></div>
-                            <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="dotoggleEditMode()" ng-bind="(editMode ? 'View topic' : 'Edit topic')">
+                            <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="app.dotoggleEditMode()" ng-bind="(app.editMode ? 'View topic' : 'Edit topic')">
                                 Edit topic
                             </div>
                             <div class="blue_link" ng-click="doLeaveTopic(topic)">

@@ -144,6 +144,10 @@
                                 view
                             </span>
                             <span class="separator">|</span>
+                            <span class="item_text blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ui-sref="topics.view({topicId: topic.id, editMode: true})">
+                                edit
+                            </span>
+                            <span class="separator">|</span>
                             <span class="item_text blue_link" ng-click="doLeaveTopic()">
                                 leave
                             </span>
