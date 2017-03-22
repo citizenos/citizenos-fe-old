@@ -62,8 +62,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id, filter: 'grouped'})">
-                        {{item.name}} ({{item.members.topics.count}})
+                    <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id, filter: 'grouped'})" ng-bind="item.name+' ('+item.members.topics.count+')'">
+                        item (0)
                     </div>
                     <div class="minimize_container" ng-if="item.members.topics.count" ng-click="doToggleGroupTopicList(item)">
                         <div ng-class="!isGroupMemberTopicsVisible(item) ?  'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -77,27 +77,27 @@
                             <div class="small_topic_icon">
                                 <div class="sprite" ng-class="'sprite-mytopics-icon-' + (groupMemberTopic.status | lowercase) + '2x'"></div>
                             </div>
-                            <div class="small_topic_small_text">{{groupMemberTopic.status}}</div>
+                            <div class="small_topic_small_text" ng-bind="groupMemberTopic.status">groupMemberTopic.status</div>
                         </div>
 
                         <div class="small_topic_right_cont">
                             <div class="small_topic_icon">
                                 <div class="sprite sprite-menu-icon-groups2x-dark"></div>
                             </div>
-                            <div class="small_topic_small_text">{{groupMemberTopic.members.groups.count}} groups</div>
+                            <div class="small_topic_small_text" translate="VIEWS.MY.LBL_GROUPS_COUNT" translate-values="{count: groupMemberTopic.members.groups.count}">0 groups</div>
                         </div>
                         <div class="clearer"></div>
                     </div>
 
                     <div class="small_topic_title">
-                        {{groupMemberTopic.title}}<span class="lock_icon_wrap" ng-show="groupMemberTopic.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
+                        <span ng-bind="groupMemberTopic.title">title<span/> <span class="lock_icon_wrap" ng-show="groupMemberTopic.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
                     </div>
 
                     <div class="line lightest_line"></div>
 
                     <div class="small_topic_footer">
                         <div class="small_topic_right_cont">
-                            <div class="small_topic_small_text">{{(groupMemberTopic.updatedAt || groupMemberTopic.createdAt) | amDateFormat : 'L LT'}}</div>
+                            <div class="small_topic_small_text" ng-bind="(groupMemberTopic.updatedAt || groupMemberTopic.createdAt) | amDateFormat : 'L LT'">12/12/2012</div>
                         </div>
                     </div>
                 </div>
@@ -109,27 +109,27 @@
                             <div class="small_topic_icon">
                                 <div class="sprite" ng-class="'sprite-mytopics-icon-' + (item.status | lowercase) + '2x'"></div>
                             </div>
-                            <div class="small_topic_small_text">{{item.status}}</div>
+                            <div class="small_topic_small_text" ng-bind="item.status">status</div>
                         </div>
 
                         <div class="small_topic_right_cont">
                             <div class="small_topic_icon">
                                 <div class="sprite sprite-menu-icon-groups2x-dark"></div>
                             </div>
-                            <div class="small_topic_small_text">{{item.members.groups.count}} groups</div>
+                            <div class="small_topic_small_text" translate="VIEWS.MY.LBL_GROUPS_COUNT" translate-values="{count: item.members.groups.count}">0 groups</div>
                         </div>
                         <div class="clearer"></div>
                     </div>
 
                     <div class="small_topic_title">
-                        {{item.title}}<span class="lock_icon_wrap" ng-show="item.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
+                        <span ng-bind="item.title">title</span><span class="lock_icon_wrap" ng-show="item.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
                     </div>
 
                     <div class="line lightest_line"></div>
 
                     <div class="small_topic_footer">
                         <div class="small_topic_right_cont">
-                            <div class="small_topic_small_text">{{(item.updatedAt || item.createdAt) | amDateFormat : 'L LT'}}</div>
+                            <div class="small_topic_small_text" ng-bind="(item.updatedAt || item.createdAt) | amDateFormat : 'L LT'">12/12/2015</div>
                         </div>
                     </div>
                 </div>
@@ -150,12 +150,8 @@
         <!-- No Groups view -->
         <div class="v_align_cell" ng-if="('my.groups' | isState) || ('my.groups.create' | isState)">
             <div class="title_area">
-                <h1>
-                    You are not yet part of a group. It's highschool all over again!
-                </h1>
-                <h2>
-                    At least you still have us to help you by
-                </h2>
+                <h1 translate="VIEWS.MY.TXT_NOT_IN_GROUP">You are not yet part of a group. It's highschool all over again!</h1>
+                <h2 translate="VIEWS.MY.TXT_AT_LEAST_WE_HELP">At least you still have us to help you by</h2>
             </div>
 
             <div class="button_area">
@@ -165,14 +161,14 @@
                         <div class="icon_nudge">
                             <div class="sprite sprite-icon-creategroup2x"></div>
                         </div>
-                        <div class="topic_text">Creating<br> a new group</div>
+                        <div class="topic_text" translate="VIEWS.MY.TXT_CREATING_A NEW_GROUP">Creating a new group</div>
                     </div>
                 </div>
 
                 <!--div class="big_button">
                     <div class="button_cell">
                         <div class="sprite sprite-icon-joingroup2x"></div>
-                        <div class="topic_text">Joining a public<br>group</div>
+                        <div class="topic_text">Joining a public group</div>
                     </div>
                 </div-->
 
@@ -181,12 +177,8 @@
         <!-- No Topics view -->
         <div class="v_align_cell" ng-if="'my.topics' | isState">
             <div class="title_area">
-                <h1>
-                    You have not participated in a topic yet. Try it, it’s really cool!
-                </h1>
-                <h2>
-                    You can get involved by
-                </h2>
+                <h1 translate="VIEWS.MY.TXT_NOT_PARTICIPATED">You have not participated in a topic yet. Try it, it’s really cool!</h1>
+                <h2 translate="VIEWS.MY.TXT_GET_INVOLVED">You can get involved by</h2>
             </div>
 
             <div class="button_area">
@@ -196,7 +188,7 @@
                         <div class="icon_nudge">
                             <div class="sprite sprite-x2-mytopics-icon-newtopic-big2x"></div>
                         </div>
-                        <div class="topic_text">Creating<br> a new topic</div>
+                        <div class="topic_text" translate="VIEWS.MY.MY_CREATING_A_NEW_TOPIC">Creating a new topic</div>
                     </div>
                 </div>
 
