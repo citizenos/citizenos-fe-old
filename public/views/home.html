@@ -5,7 +5,7 @@
     <div ng-if="wWidth > 767" id="filter_bar_desktop">
 
         <div id="bar_top">
-            <div class="bar_text">Show me topics about</div>
+            <div class="bar_text" translate="VIEWS.HOME.HEADINGS_SHOW_ME_TOPICS_ABOUT">Show me topics about</div>
             <div cos-dropdown class="bar_select">
 
                 <div class="select_text">
@@ -69,7 +69,7 @@
             </div-->
 
             <div cos-dropdown class="bar_section">
-                <div class="bar_text">Show</div>
+                <div class="bar_text" translate="VIEWS.HOME.LNK_SHOW">Show</div>
                 <div class="bar_select">
                     {{filters.statuses.value}}
                     <div class="icon_holder">
@@ -100,7 +100,7 @@
                 </div>
 
 
-                <div class="blue_link" ng-click="doClearFilters()">Clear filters</div>
+                <div class="blue_link" ng-click="doClearFilters()" translate="VIEWS.HOME.LNK_CLEAR_FILTERS">Clear filters</div>
             </span>
 
         </div>
@@ -111,18 +111,18 @@
     <div ng-if="wWidth <= 767" id="filter_bar_mobile">
 
         <div class="filter_topics" ng-if="!app.showSearchFiltersMobile && !isFilterApplied()" ng-click="app.showSearchFiltersMobile = true">
-            <div class="table_cell">Filter the topics</div>
+            <div class="table_cell" translate="VIEWS.HOME.LBL_FILTER_THE_TOPICS">Filter the topics</div>
         </div>
 
         <div class="filter_topics edit" ng-if="!app.showSearchFiltersMobile && isFilterApplied()">
             <div class="filter_topics_top">
-                <div class="blue_link" ng-click="app.showSearchFiltersMobile = true">Edit filter</div>
-                <div class="blue_link" ng-click="doClearFilters()">Clear filters</div>
+                <div class="blue_link" ng-click="app.showSearchFiltersMobile = true" translate="VIEWS.HOME.LNK_EDIT_FILTER">Edit filter</div>
+                <div class="blue_link" ng-click="doClearFilters()" translate="VIEWS.HOME.LNK_CLEAR_FILTERS">Clear filters</div>
             </div>
             <div class="line lightest_line"></div>
             <div class="filter_topics_bottom">
-                <div class="filter_text"><span>Category:</span> {{filters.categories.value}}</div>
-                <div class="filter_text"><span>Status:</span> {{filters.statuses.value}}</div>
+                <div class="filter_text"><span translate="VIEWS.HOME.LBL_CATEGORY">Category:</span> {{filters.categories.value}}</div>
+                <div class="filter_text"><span translate="VIEWS.HOME.LBL_STATUS">Status:</span> {{filters.statuses.value}}</div>
             </div>
         </div>
 
@@ -130,7 +130,7 @@
 
             <div id="fi_top">
                 <div id="fi_header">
-                    <div id="fi_header_text">Filter the topics</div>
+                    <div id="fi_header_text" translate="VIEWS.HOME.LBL_FILTER_THE_TOPICS">Filter the topics</div>
                     <div id="close_fi" ng-click="app.showSearchFiltersMobile = false">
                         <div class="table_cell">
                             <div class="sprite sprite-btn-popup-close2x"></div>
@@ -140,7 +140,7 @@
                 <div id="fi_nav">
 
                     <div class="fi_nav_button" ng-click="filters.tabSelected = 'categories'">
-                        <div class="fi_button_text" ng-class="filters.tabSelected === 'categories' ? 'selected' : ''">CATEGORY</div>
+                        <div class="fi_button_text" ng-class="filters.tabSelected === 'categories' ? 'selected' : ''" translate="VIEWS.HOME.BTN_CATEGORY">CATEGORY</div>
                         <div class="line blue_background" ng-class="filters.tabSelected === 'categories' ? 'selected' :  ''"></div>
                     </div>
 
@@ -150,7 +150,7 @@
                     </div-->
 
                     <div class="fi_nav_button">
-                        <div class="fi_button_text" ng-class="filters.tabSelected === 'statuses' ? 'selected' : ''" ng-click="filters.tabSelected = 'statuses'">STATUS</div>
+                        <div class="fi_button_text" ng-class="filters.tabSelected === 'statuses' ? 'selected' : ''" ng-click="filters.tabSelected = 'statuses'" translate="VIEWS.HOME.BTN_STATUS">STATUS</div>
                         <div class="line blue_background" ng-class="filters.tabSelected === 'statuses' ? 'selected' : ''"></div>
                     </div>
 
@@ -168,7 +168,7 @@
             </div>
 
             <div class="fi_submit">
-                <div class="blue_button" ng-click="app.showSearchFiltersMobile = false">Submit filter</div>
+                <div class="blue_button" ng-click="app.showSearchFiltersMobile = false" translate="VIEWS.HOME.BTN_SUBMIT_FILTER">Submit filter</div>
             </div>
 
         </div>
@@ -182,8 +182,8 @@
         <div ng-if="!isTopicListLoading && !topicList.length" class="table">
             <div class="v_align_cell">
                 <div class="title_area">
-                    <h1>We’re sorry, but we couldn’t find any results :(</h1>
-                    <h2>Maybe you can get the first discussion initiated by</h2>
+                    <h1 translate="VIEWS.HOME.HEADING_NO_RESUTS">We’re sorry, but we couldn’t find any results :(</h1>
+                    <h2 translate="VIEWS.HOME.HEADING_GET_STARTED">Maybe you can get the first discussion initiated by</h2>
                 </div>
 
                 <div class="button_area">
@@ -193,7 +193,7 @@
                             <div class="icon_nudge">
                                 <div class="sprite sprite-x2-mytopics-icon-newtopic-big2x"></div>
                             </div>
-                            <div class="topic_text">Creating a new topic</div>
+                            <div class="topic_text" translate="VIEWS.HOME.BTN_CREATING_A_NEW_TOPIC">Creating a new topic</div>
                         </div>
                     </div>
 
@@ -205,15 +205,15 @@
             <div class="topic_wrap">
                 <div class="text_area">
 
-                    <div class="top text_small">A beginner’s guide to CitizenOS.</div>
+                    <div class="top text_small" translate="VIEWS.HOME.HEADING_BEGINNERS_GUIDE">A beginner’s guide to CitizenOS.</div>
 
                     <div class="main_text">
-                        <div class="text_big">Hi there, welcome to CitizenOS! Read this topic to find out how everything works.</div>
+                        <div class="text_big" translate="VIEWS.HOME.TXT_BEGINNERS_GUIDE">Hi there, welcome to CitizenOS! Read this topic to find out how everything works.</div>
                     </div>
 
                     <div class="line white_line"></div>
 
-                    <div class="text_small" ng-if="wWidth > 667">Tutorial and explanation</div>
+                    <div class="text_small" ng-if="wWidth > 667" translate="VIEWS.HOME.LBL_TUTORIAL_AND_EXPLANATION">Tutorial and explanation</div>
 
                 </div>
             </div>
@@ -222,8 +222,8 @@
         <a ui-sref="topics.view({topicId: topic.id})" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : topic.categories[0] || 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
-                    <div class="date">{{topic.createdAt | amDateFormat : 'L'}}</div>
-                    <div class="author">{{topic.creator.name}}</div>
+                    <div class="date" ng-bind="topic.createdAt | amDateFormat : 'L'">12/12/2015</div>
+                    <div class="author" ng-bind="topic.creator.name">creator name</div>
                     <div class="clearer"></div>
                 </div>
 
@@ -247,7 +247,7 @@
     </div>
 
     <div id="blue_button_wrap" ng-click="loadTopicList()" ng-if="topicCountTotal > topicList.length">
-        <div class="blue_button" ng-class="{disabled: isTopicListLoading}">Load more topics</div>
+        <div class="blue_button" ng-class="{disabled: isTopicListLoading}" translate="VIEWS.HOME.BTN_LOAD_MORE_TOPICS">Load more topics</div>
     </div>
 
     <div ui-view></div>
