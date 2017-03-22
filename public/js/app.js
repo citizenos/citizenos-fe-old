@@ -544,6 +544,6 @@
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
                 .useLocalStorage()
                 .useMissingTranslationHandlerLog()
-                .translations('dbg', {})
+                .translations('dbg', {});
         }]);
 })();

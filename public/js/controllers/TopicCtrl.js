@@ -72,15 +72,14 @@ angular
         };
 
         $scope.sendToVote = function () {
-            if ($scope.topic.canSendToVote()) {
-                if (!$scope.topic.voteId && !$scope.topic.vote) {
-                    $scope.app.topics_settings = false;
-                    $state.go('topics.view.votes.create', {topicId: $scope.topic.id});
-                } else if (($scope.topic.voteId || ($scope.topic.vote && $scope.topic.vote.id)) && $scope.topic.status !== $scope.STATUSES.voting) {
-                    ngDialog
-                        .openConfirm({
-                            template: '/views/modals/topic_send_to_vote_confirm.html'
-                        }).then(function () {
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_send_to_vote_confirm.html'
+                }).then(function () {
+                    if (!$scope.topic.voteId && !$scope.topic.vote) {
+                        $scope.app.topics_settings = false;
+                        $state.go('topics.view.votes.create', {topicId: $scope.topic.id});
+                    } else if (($scope.topic.voteId || ($scope.topic.vote && $scope.topic.vote.id)) && $scope.topic.status !== $scope.STATUSES.voting) {
                         $log.debug('sendToVote');
                         $scope.topic.status = $scope.STATUSES.voting;
                         $scope.topic
@@ -91,45 +90,40 @@ angular
                                     $state.go('topics.view.votes.view', {topicId: $scope.topic.id, voteId:$scope.topic.vote.id,  editMode:null}, {reload: true});
                                 }
                             });
-                    }, angular.noop);
-                }
-            }
+                    }
+            }, angular.noop);
         };
 
         $scope.sendToFollowUp = function () {
-            if ($scope.topic.canSendToFollowUp()) {
-                ngDialog
-                    .openConfirm({
-                        template: '/views/modals/topic_send_to_followUp_confirm.html'
-                    }).then(function () {
-                        $scope.topic.status = $scope.STATUSES.followUp;
-                        $scope.topic
-                            .$patch()
-                            .then(function () {
-                                $scope.app.topics_settings = false;
-                                if ($state.is('topics.view.votes.view')) {
-                                    $state.go('topics.view', {topicId: $scope.topic.id, editMode:null}, {reload: true});
-                                }
-                            })
-                }, angular.noop);
-            }
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_send_to_followUp_confirm.html'
+                }).then(function () {
+                    $scope.topic.status = $scope.STATUSES.followUp;
+                    $scope.topic
+                        .$patch()
+                        .then(function () {
+                            $scope.app.topics_settings = false;
+                            if ($state.is('topics.view.votes.view')) {
+                                $state.go('topics.view', {topicId: $scope.topic.id, editMode:null}, {reload: true});
+                            }
+                        })
+            }, angular.noop);
         };
 
         $scope.closeTopic = function () {
-            if($scope.topic.canUpdate()) {
-                ngDialog
-                    .openConfirm({
-                        template: '/views/modals/topic_close_confirm.html'
-                    }).then(function () {
-                    $scope.topic.status = $scope.STATUSES.closed;
-                    $scope.topic.$patch();
-                    $scope.app.topics_settings = false;
-                    if ($state.is('topics.view.votes.view')) {
-                        $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true});
-                    }
-                }, angular.noop);
-            }
-        }
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_close_confirm.html'
+                }).then(function () {
+                $scope.topic.status = $scope.STATUSES.closed;
+                $scope.topic.$patch();
+                $scope.app.topics_settings = false;
+                if ($state.is('topics.view.votes.view')) {
+                    $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true});
+                }
+            }, angular.noop);
+        };
 
         $scope.loadTopicSocialMentions = function () {
             if($scope.topic.hashtag){

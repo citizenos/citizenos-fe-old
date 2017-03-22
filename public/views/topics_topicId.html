@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="table_cell">
-                    <div class="bold" ng-bind="(topic.status==STATUSES.voting ? '1 MILESTONE' :  topic.status==STATUSES.followUp ? '2 MILESTONES': '0 MILESTONES')">
+                    <div class="bold" translate="VIEWS.TOPICS_TOPICID.BAR_MILESTONES" tranlsate-values="{count: (topic.status==STATUSES.voting ? 1 :  topic.status==STATUSES.followUp ? 2: 0)}"> 0 MILESTONES
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="tooltip">
-                    Phase: <span class="bold">In progress</span>
+                    <span translate="VIEWS.TOPICS_TOPICID.BAR_TOOLTIP_PHASE">Phase:</span> <span class="bold" translate="VIEWS.TOPICS_TOPICID.BAR_TOOLTIP_IN_PROGRESS">In progress</span>
                 </div>
             </div>
 
@@ -60,19 +60,19 @@
                     </div>
                 </div>
                 <div class="tooltip">
-                    Phase: <span class="bold">Voting</span>
+                    <span translate="VIEWS.TOPICS_TOPICID.BAR_TOOLTIP_PHASE">Phase:</span> <span class="bold" translate="VIEWS.TOPICS_TOPICID.BAR_TOOLTIP_VOTING">Voting</span>
                 </div>
             </div>
 
         </div>
 
         <div class="additional_info signing_deadline" ng-if="topic.vote.endsAt">
-            Signing deadline: <span class="bold">{{topic.vote.endsAt | amDateFormat:'L'}}</span>
+            <span translate="VIEWS.TOPICS_TOPICID.BAR_SIGNING_DEADLINE">Signing deadline</span>: <span class="bold">{{topic.vote.endsAt | amDateFormat:'L'}}</span>
         </div>
 
 
         <div class="additional_info current_phase">
-            Current phase: {{topic.status}}
+            <span translate="VIEWS.TOPICS_TOPICID.BAR_CURRENT_PHASE">Current phase:</span> {{topic.status}}
         </div>
     </div>
 
@@ -95,14 +95,10 @@
                     <div class="tabs_rails">
                         <div class="tabs_train" slide-controller identifier="tabsTrain" start_slide_at="1024" ng-style="{'margin-left' : trainPosition + 'px'}">
                             <div class="tab" ng-class="{selected: ('topics.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
-                                <div class="table_cell" ui-sref="topics.view({topicId: topic.id})" ui-sref-opts="{reload: true}">
-                                    View
-                                </div>
+                                <div class="table_cell" ui-sref="topics.view({topicId: topic.id})" ui-sref-opts="{reload: true}" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
                             </div>
                             <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ng-class="{selected: ('topics.view.votes.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
-                                <div class="table_cell" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})" ui-sref-opts="{reload: true}">
-                                    Vote
-                                </div>
+                                <div class="table_cell" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})" ui-sref-opts="{reload: true}" translate="VIEWS.TOPICS_TOPICID.TAB_VOTE">Vote</div>
                             </div>
                         </div>
                     </div>
@@ -119,7 +115,7 @@
 
             <div class="main_panel">
 
-                <div class="info_bar_wrap" ng-if="app.editMode && showInfoEdit">
+                <div class="info_bar_wrap" ng-if="app.editMode && showInfoEdit && topic.canEdit() && (topic.status === STATUSES.inProgress)">
                     <div class="info_bar bar_blue">
                             <div class="info_icon">
                                 <div class="sprite sprite-icon-notification-info2x"></div>
@@ -127,7 +123,7 @@
 
                             <div class="info_bar_text">
                                 <div class="info_row">
-                                    <span translate="{{key}}">You are now in edit mode. You can add text or make changes to it </span>
+                                    <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_EDIT">You are now in edit mode. You can add text or make changes to it</span>
                                 </div>
                             </div>
 
@@ -143,13 +139,11 @@
 
                         <div class="vote_casting_header">
                             <div class="vote_casting_header_section">
-                                <div class="table_cell bold vote_casting_description">
-                                    Cast your vote
-                                </div>
+                                <div class="table_cell bold vote_casting_description" translate="VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE">Cast your vote</div>
                             </div>
                             <div class="vote_casting_header_section">
                                 <div class="table_cell">
-                                    <span class="bold">{{topic.vote.getVoteCountTotal()}}</span>/{{topic.members.users.count}} votes counte
+                                    <span class="bold">{{topic.vote.getVoteCountTotal()}}</span>/{{topic.members.users.count}} <span translate="VIEWS.TOPICS_TOPICID.VOTE_VOTES_COUNTED"> votes counted</span>
                                 </div>
                             </div>
                             <div class="clearer"></div>
@@ -160,7 +154,7 @@
                         <div class="vote_casting_message with_upper_right_links" ng-if="topic.vote.authType === voteAuthTypes.hard && !topic.hasVoteEnded()">
 
                             <div class="message_header">
-                                <div class="message_title">This vote requires an ID card or Mobile ID signing.</div>
+                                <div class="message_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_REQUIRE_HARD_ID">This vote requires an ID card or Mobile ID signing.</div>
                                 <div class="float_wrap">
                                     <div class="sprite sprite-id-kaart-small2x"></div>
                                     <div class="sprite sprite-mobiil-id-small2x"></div>
@@ -169,25 +163,21 @@
                                 <div class="clearer"></div>
                             </div>
 
-                            <div class="message_content">
-                                This document needs a signing by ID card or Mobile ID to be registered. You can not vote if you don’t identify yourself.
-                            </div>
+                            <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_REQUIRE_HARD_ID">This document needs a signing by ID card or Mobile ID to be registered. You can not vote if you don’t identify yourself.</div>
 
                         </div>
 
                         <div class="vote_casting_message with_upper_right_links" ng-if="getUserHasVoted() && !topic.hasVoteEnded()">
 
                             <div class="message_header">
-                                <div class="message_title">Your vote has been registered!</div>
+                                <div class="message_title" translate="VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED">Your vote has been registered!</div>
                                 <div class="float_wrap">
-                                    <div class="blue_link" ng-show="topic.vote.authType === voteAuthTypes.hard"><a ng-href="{{topic.vote.downloads.bdocVote}}">Download your DDOC</a></div>
+                                    <div class="blue_link" ng-show="topic.vote.authType === voteAuthTypes.hard"><a ng-href="{{topic.vote.downloads.bdocVote}}" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_USER_BDOC">Download your DDOC</a></div>
                                 </div>
                                 <div class="clearer"></div>
                             </div>
 
-                            <div class="message_content" ng-show="topic.vote.authType === voteAuthTypes.hard">
-                                This document needs a signing by ID card or Mobile ID to be registered. You can not vote if you don’t identify yourself.
-                            </div>
+                            <div class="message_content" ng-show="topic.vote.authType === voteAuthTypes.hard" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_REGISTERED">This document needs a signing by ID card or Mobile ID to be registered. You can not vote if you don’t identify yourself.</div>
 
                         </div>
 
@@ -211,13 +201,11 @@
                                 <div class="table_cell left_side">
                                     <div class="sprite sprite-icon-delegate2x"></div>
                                 </div>
-                                <div class="table_cell right_side">
-                                    Delegate your vote
-                                </div>
+                                <div class="table_cell right_side" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_DELEGATE">Delegate your vote</div>
                             </div>
 
                             <div class="delegation_information" ng-if="topic.vote.delegation">
-                                <div class="delegation_title">You delegated your vote to</div>
+                                <div class="delegation_title" translate="VIEWS.TOPICS_TOPICID.VOTE_DELEGATED_TO">You delegated your vote to</div>
                                 <div class="delegations">
 
                                     <div class="table_cell">
@@ -241,7 +229,7 @@
                                     </div>
 
                                     <div class="table_cell">
-                                        <div class="blue_button" ng-click="doRevokeDelegation()">Revoke your delegation</div>
+                                        <div class="blue_button" ng-click="doRevokeDelegation()" translate="VIEWS.TOPICS_TOPICID.VOTE_REVOKE_DELEGATION">Revoke your delegation</div>
                                     </div>
                                 </div>
                             </div>
@@ -253,18 +241,14 @@
                         <div class="vote_casting_message" ng-if="topic.canUpdate() && topic.hasVoteEnded() && topic.vote.authType===voteAuthTypes.hard">
 
                             <div class="message_header">
-                                <div class="message_title">Voting has ended!</div>
+                                <div class="message_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_VOTE_CLOSED">Voting has ended!</div>
                                 <div class="clearer"></div>
                             </div>
 
-                            <div class="message_content">
-                                Everyone has cast their votes. You can download the full document here.
-                            </div>
+                            <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
                             <a ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank">
                                 <div class="voting_button voting_button_blue">
-                                    <div class="table_cell">
-                                            Download full DDOC
-                                    </div>
+                                    <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
                                 </div>
                             </a>
                         </div>
@@ -317,26 +301,18 @@
                     </div>
 
                     <div class="voting_platform_wrap" ng-if="showVoteCreateForm">
-                        <div class="platform_description">
-                            Create a voting platform
-                        </div>
+                        <div class="platform_description" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_CREATE">Create a voting platform</div>
                         <div class="voting_platform_section">
                             <div class="line lightest_line"></div>
-                            <div class="voting_platform_section_title">
-                                Step 1: Choose voting type
-                            </div>
+                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP1">Step 1: Choose voting type</div>
 
                             <div class="voting_platform_buttons_wrap">
 
                                 <div class="table_cell">
                                     <div class="voting_platform_button" ng-click="setVoteType(voteTypes.regular)" ng-class="voteForm.voteType == 'regular'? 'active' : ''">
                                         <div class="table_cell">
-                                            <div class="button_title">
-                                                REGULAR
-                                            </div>
-                                            <div class="button_description">
-                                                (ie. yes/no/neutral/…)
-                                            </div>
+                                            <div class="button_title" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_REGULAR">REGULAR</div>
+                                            <div class="button_description" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_REGULAR_EXPLANATION">(ie. yes/no/neutral/…)</div>
                                         </div>
                                     </div>
                                 </div>
@@ -344,12 +320,8 @@
                                 <div class="table_cell">
                                     <div class="voting_platform_button" ng-click="setVoteType(voteTypes.multiple)" ng-class="voteForm.voteType == 'multiple' ? 'active' : ''">
                                         <div class="table_cell">
-                                            <div class="button_title">
-                                                MULTIPLECHOICE
-                                            </div>
-                                            <div class="button_description">
-                                                (ie. A/B/C/D/…)
-                                            </div>
+                                            <div class="button_title" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_MULTIPLECHOICE">MULTIPLECHOICE</div>
+                                            <div class="button_description" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_MULTIPLECHOICE_EXPLANATION">(ie. A/B/C/D/…)</div>
                                         </div>
                                     </div>
                                 </div>
@@ -363,9 +335,7 @@
                         <div class="line lightest_line"></div>
 
                         <div class="voting_platform_section" ng-if="voteForm.voteType">
-                            <div class="voting_platform_section_title">
-                                Step 2: Define answers
-                            </div>
+                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP2">Step 2: Define answers</div>
 
                             <!-- regular -->
                             <div class="define_answers_wrap" ng-if="voteForm.voteType == 'regular'">
@@ -373,9 +343,7 @@
                                     <div class="table">
                                         <div class="table_cell">
                                             <div class="gray_toggle_box">
-                                                <div class="table_cell">
-                                                    Yes
-                                                </div>
+                                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_YES">Yes</div>
                                                 <div class="table_cell">
                                                     <div cos-disabled="true" cos-toggle ng-model="voteForm.options[0].enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                                 </div>
@@ -383,9 +351,7 @@
                                         </div>
                                         <div class="table_cell">
                                             <div class="gray_toggle_box">
-                                                <div class="table_cell">
-                                                    No
-                                                </div>
+                                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_NO">No</div>
                                                 <div class="table_cell">
                                                     <div cos-disabled="true" cos-toggle ng-model="voteForm.options[1].enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                                 </div>
@@ -397,9 +363,7 @@
                                     <div class="table">
                                         <div class="table_cell">
                                             <div class="gray_toggle_box">
-                                                <div class="table_cell">
-                                                    Neutral
-                                                </div>
+                                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_NEUTRAL">Neutral</div>
                                                 <div class="table_cell">
                                                     <div cos-toggle ng-model="voteForm.extraOptions.neutral.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                                 </div>
@@ -407,9 +371,7 @@
                                         </div>
                                         <div class="table_cell">
                                             <div class="gray_toggle_box">
-                                                <div class="table_cell">
-                                                    Veto
-                                                </div>
+                                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_VETO">Veto</div>
                                                 <div class="table_cell">
                                                     <div cos-toggle ng-model="voteForm.extraOptions.veto.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                                 </div>
@@ -442,23 +404,19 @@
                                         </div>
                                     </div>
 
-                                <div class="blue_button" ng-click="addOption()">Add another answer</div>
+                                <div class="blue_button" ng-click="addOption()" translate="VIEWS.TOPICS_TOPICID.VOTE_BTB_ADD_OPTION">Add another answer</div>
                                 </div>
                                 <div class="right_row add_bottom_borders">
 
                                     <div class="gray_toggle_box">
-                                        <div class="table_cell">
-                                            Neutral
-                                        </div>
+                                        <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_NEUTRAL">Neutral</div>
                                         <div class="table_cell">
                                             <div cos-toggle ng-model="voteForm.extraOptions.neutral.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                         </div>
                                     </div>
 
                                     <div class="gray_toggle_box">
-                                        <div class="table_cell">
-                                            Veto
-                                        </div>
+                                        <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_VETO">Veto</div>
                                         <div class="table_cell">
                                             <div cos-toggle ng-model="voteForm.extraOptions.veto.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
                                         </div>
@@ -473,21 +431,15 @@
 
 
                         <div class="voting_platform_section" ng-if="voteForm.voteType">
-                            <div class="voting_platform_section_title">
-                                Step 3: User vote casting
-                            </div>
+                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP3">Step 3: User vote casting</div>
 
                             <div class="double_cell_layout ten_px_margin_between">
                                 <div class="left_row add_bottom_borders">
 
                                     <div class="gray_toggle_box">
                                         <div class="table_cell">
-                                            <div class="toggle_box_title">
-                                                Soft-ID
-                                            </div>
-                                            <div class="toggle_box_description">
-                                                CITIZENOS LOGIN IS REQUIRED
-                                            </div>
+                                            <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_AUTH_SOFT_ID">Soft-ID</div>
+                                            <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_AUTH_SOFT_ID_EXPLANATION">CITIZENOS LOGIN IS REQUIRED</div>
                                         </div>
                                         <div class="table_cell">
                                             <div cos-toggle ng-value="voteAuthTypes.soft" off-value="voteAuthTypes.hard" ng-model="voteForm.authType" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
@@ -496,12 +448,8 @@
 
                                     <div class="gray_toggle_box">
                                             <div class="table_cell">
-                                                <div class="toggle_box_title">
-                                                    Hard-ID
-                                                </div>
-                                                <div class="toggle_box_description">
-                                                    ID-CARD OR MOBILE ID SIGNING IS REQUIRED
-                                                </div>
+                                                <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_AUTH_HARD_ID">Hard-ID</div>
+                                                <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_AUTH_HARD_ID_EXPLANATION">ID-CARD OR MOBILE ID SIGNING IS REQUIRED</div>
                                             </div>
                                             <div class="table_cell">
                                                 <div cos-toggle ng-value="voteAuthTypes.hard" off-value="voteAuthTypes.soft" ng-model="voteForm.authType" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
@@ -521,12 +469,8 @@
 
                                     <div class="gray_toggle_box">
                                         <div class="table_cell">
-                                            <div class="toggle_box_title">
-                                                Delegation
-                                            </div>
-                                            <div class="toggle_box_description">
-                                                ALLOW USERS TO PASS ON THEIR VOTING RIGHT.
-                                            </div>
+                                            <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DELEGATION">Delegation</div>
+                                            <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DELEGATION_EXPLANATION">ALLOW USERS TO PASS ON THEIR VOTING RIGHT.</div>
                                         </div>
                                         <div class="table_cell">
                                             <div cos-toggle cos-disabled="(voteForm.authType == voteAuthTypes.hard)" ng-model="voteForm.delegationIsAllowed" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
@@ -536,7 +480,7 @@
                                     <div class="gray_toggle_box" ng-if="(voteForm.authType == voteAuthTypes.hard)">
                                         <div class="toggle_box_warning">
                                             <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                            When Hard-ID is the chosen method of voting, delegation is not allowed.
+                                            <span translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID">When Hard-ID is the chosen method of voting, delegation is not allowed.</span>
                                         </div>
                                     </div>
 
@@ -548,9 +492,7 @@
                         <div class="line lightest_line" ng-if="voteForm.voteType"></div>
 
                         <div class="voting_platform_section" ng-if="voteForm.voteType">
-                            <div class="voting_platform_section_title">
-                                Step 4: End of voting system
-                            </div>
+                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP4">Step 4: End of voting system</div>
 
                             <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes">
 
@@ -563,9 +505,7 @@
 
                                                 <div class="gray_toggle_box">
                                                     <div class="table_cell">
-                                                        <div class="toggle_box_title">
-                                                            Deadline
-                                                        </div>
+                                                        <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DEADLINE">Deadline</div>
                                                     </div>
                                                     <div class="table_cell">
                                                         <div cos-toggle ng-model="voteForm.endsAt" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
@@ -576,9 +516,7 @@
                                                     <div class="picker_deadline_date">
                                                         {{voteForm.endsAt | amDateFormat:'L'}}
                                                     </div>
-                                                    <div class="picker_days_left">
-                                                        {{daysToVoteEnd()}} days left
-                                                    </div>
+                                                    <div class="picker_days_left" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT" translate-values="{numberOfDaysLeft: daysToVoteEnd()}">0 days left</div>
                                                     <div class="clearer"></div>
                                                 </div>
                                             </div>
@@ -596,9 +534,7 @@
                         <div class="voting_platform_section" ng-if="voteForm.voteType">
 
                             <div class="blue_button aqua_marine_background black_text" ng-click="createVote()">
-                                <div class="table_cell">
-                                    CREATE VOTING SYSTEM
-                                </div>
+                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_CREATE_VOTE">CREATE VOTING SYSTEM</div>
                             </div>
 
                         </div>
@@ -637,13 +573,11 @@
 
                             <div class="info_sections_wrap" ng-if="wWidth > 767 || app.more_info_button">
                                 <div class="info_section">
-                                    Categories: <span ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length">none <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})">add categories</span></span>
+                                    <span translate="VIEWS.TOPICS_TOPICID.LBL_CATEGORIES">Categories:</span> <span ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span></span>
                                 </div>
+                                <div class="info_section"><span translate="VIEWS.TOPICS_TOPICID.LBL_AUTHORS">Authors:</span> {{topic.creator.name}}</div>
                                 <div class="info_section">
-                                    Authors: <span>{{topic.creator.name}}</span>
-                                </div>
-                                <div class="info_section">
-                                    Activity: <span class="blue_link" ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')">{{topicComments.rows.length}} arguments</span> | <span class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')">{{topicSocialMentions.length || 0}} social mentions</span><span class="blue_link" ng-if="!topic.hashtag && topic.canEdit()" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"> add hashtag</span><span ng-if="topic.hashtag"> #{{topic.hashtag}}</span>
+                                    <span translate="VIEWS.TOPICS_TOPICID.LBL_ACTIVITY">Activity:</span> <span class="blue_link" ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT" translate-values="{count: topicComments.rows.length}">0 arguments</span> | <span class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')" translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT" translate-values="{mentionsCount: (topicSocialMentions.length ||0)}">0 social mentions</span> <span class="blue_link" ng-if="!topic.hashtag && topic.canEdit()" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})" translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG"> add hashtag</span><span ng-if="topic.hashtag"> #{{topic.hashtag}}</span>
                                 </div>
                             </div>
 
@@ -662,14 +596,10 @@
                     <div class="comments_section">
                         <div class="tabs_wrap">
                             <div ng-click="app.activeCommentSection = 'arguments'" class="tab" ng-class="app.activeCommentSection == 'arguments' || app.activeCommentSection == undefined ? 'active':''">
-                                <div class="table_cell">
-                                    Arguments
-                                </div>
+                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.LBL_TAB_ARGUMENTS">Arguments</div>
                             </div>
                             <div ng-click="app.activeCommentSection = 'socialMentions'" class="tab" ng-class="app.activeCommentSection == 'socialMentions' ? 'active':''">
-                                <div class="table_cell">
-                                    Social mentions
-                                </div>
+                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.LBL_TAB_MENTIONS">Social mentions</div>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -678,17 +608,11 @@
                             <div ng-if="app.activeCommentSection == 'arguments' || app.activeCommentSection == undefined" class="arguments_container">
                                 <div class="arguments_wrap">
                                     <div class="arguments_header">
-                                        <div class="number_of_arguments">
-                                            {{topicComments.rows.length}} arguments
-                                        </div>
+                                        <div class="number_of_arguments" translate="VIEWS.TOPICS_TOPICID.TAB_ARGUMENTS_HEADING" translate-values="{comments: topicComments.rows.length}">0 arguments</div>
                                         <div class="arguments_data">
                                             <div class="data_left">
-                                                <span class="data_item">
-                                                    pro: {{topicComments.count.pro}}
-                                                </span>
-                                                <span class="data_item">
-                                                    con: {{topicComments.count.con}}
-                                                </span>
+                                                <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_PRO" translate-values="{countPro:topicComments.count.pro}">pro: 0</span>
+                                                <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_CON" translate-values="{countCon:topicComments.count.con}">con: 0</span>
                                             </div>
                                             <div class="data_right">
                                                 <div cos-dropdown class="classic_dropdown borderless_dropdown">
@@ -716,9 +640,7 @@
 
                                                 </div>
 
-                                                <div class="blue_button" ng-click="app.scrollToAnchor('post_argument_wrap')">
-                                                    Add argument
-                                                </div>
+                                                <div class="blue_button" ng-click="app.scrollToAnchor('post_argument_wrap')" translate="VIEWS.TOPICS_TOPICID.BTN_ADD_ARGUMENT">Add argument</div>
 
                                             </div>
                                         </div>
@@ -735,30 +657,9 @@
                                             <div class="argument">
                                                 <div class="argument_header">
                                                     <div class="argumentator">
-                                                        <div class="table_cell">
-                                                            <div cos-dropdown class="classic_dropdown borderless_dropdown">
-
-                                                                <div class="dropdown_selection">
-                                                                    <div class="dropdown_text data_item">
-                                                                        {{comment.creator.name}}
-                                                                    </div>
-
-                                                                    <div class="arrow_holder">
-                                                                        <div class="table_cell">
-                                                                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="dropdown">
-                                                                    <!-- NO CATEGORY -->
-                                                                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                                                                        <div class="item_name">
-                                                                            Read
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
+                                                        <div class="line_wrap">
+                                                            <div class="table_cell">
+                                                                {{comment.creator.name}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -784,17 +685,13 @@
                                                     </div>
                                                     <div class="argument_overlay">
                                                     </div>
-                                                    <div class="read_more_link " ng-click="readMore = !readMore">
-                                                        {{ (readMore) ? 'Close comment' : 'Read more' }}
-                                                    </div>
+                                                    <div class="read_more_link " ng-click="readMore = !readMore" translate="(readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_READ_MORE'">Read more</div>
                                                 </div>
 
                                                 <div class="argument_footer">
                                                     <div class="link_wrap">
                                                         <div class="table_cell">
-                                                            <div class="blue_link black_text" ng-click="comment.showReply=!comment.showReply">
-                                                                Reply
-                                                            </div>
+                                                            <div class="blue_link black_text" ng-click="comment.showReply=!comment.showReply" translate="VIEWS.TOPICS_TOPICID.LNK_COMMENT_REPLY">Reply</div>
                                                         </div>
                                                     </div>
                                                     <div class="line_wrap">
@@ -840,7 +737,7 @@
 
                                             <div class="post_argument_wrap" ng-if="comment.showReply" ng-controller="TopicCommentCreateFormCtrl">
                                                 <textarea class="gray_borders" placeholder="Write your reply here..." ng-model="form.text"></textarea>
-                                                <div class="blue_button" cos-disabled="!form.text" ng-click="submitReply(comment.id)">Post reply</div>
+                                                <div class="blue_button" cos-disabled="!form.text" ng-click="submitReply(comment.id)" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_REPLY">Post reply</div>
                                                 <div class="clearer"></div>
                                             </div>
 
@@ -853,30 +750,9 @@
                                                     <div class="reply_icon sprite sprite-icon-arrow-reply2x">
                                                     </div>
                                                     <div class="argumentator">
-                                                        <div class="table_cell">
-                                                            <div cos-dropdown class="classic_dropdown borderless_dropdown">
-
-                                                                <div class="dropdown_selection">
-                                                                    <div class="dropdown_text data_item">
-                                                                        {{reply.creator.name}}
-                                                                    </div>
-
-                                                                    <div class="arrow_holder">
-                                                                        <div class="table_cell">
-                                                                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="dropdown">
-                                                                    <!-- NO CATEGORY -->
-                                                                    <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                                                                        <div class="item_name">
-                                                                            Read
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
+                                                        <div class="line_wrap">
+                                                            <div class="table_cell">
+                                                                {{comment.creator.name}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -899,17 +775,13 @@
                                                     </div>
                                                     <div class="argument_overlay">
                                                     </div>
-                                                    <div class="read_more_link " ng-click="readMore = !readMore">
-                                                        {{ (readMore) ? 'Close comment' : 'Read more' }}
-                                                    </div>
+                                                    <div class="read_more_link " ng-click="readMore = !readMore" translate="(readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_REPLY_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_REPLY_READ_MORE'">Read more</div>
                                                 </div>
 
                                                 <div class="argument_footer">
                                                     <div class="link_wrap">
                                                         <div class="table_cell">
-                                                            <div class="blue_link black_text" ng-click="reply.showReply = !reply.showReply">
-                                                                Reply
-                                                            </div>
+                                                            <div class="blue_link black_text" ng-click="reply.showReply = !reply.showReply" translate="VIEWS.TOPICS_TOPICID.LNK_COMMENT_REPLY_REPLY">Reply</div>
                                                         </div>
                                                     </div>
                                                     <div class="line_wrap">
@@ -954,7 +826,7 @@
 
                                             <div class="post_argument_wrap" ng-if="reply.showReply" ng-controller="TopicCommentCreateFormCtrl">
                                                 <textarea class="gray_borders" placeholder="Write your reply here..." ng-model="form.text"></textarea>
-                                                <div class="blue_button" cos-disabled="!form.text" ng-click="submitReply(comment.id)">Post reply</div>
+                                                <div class="blue_button" cos-disabled="!form.text" ng-click="submitReply(comment.id)" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_REPLY_POST_REPLY">Post reply</div>
                                                 <div class="clearer"></div>
                                             </div>
 
@@ -969,8 +841,8 @@
                                         <div class="line lightest_line" ng-if="topicComments.rows.length"></div>
                                         <input placeholder="Add a subject to your argument..." class="gray_borders" ng-model="form.subject">
                                         <textarea class="gray_borders" placeholder="Explain your arguments..." ng-model="form.text"></textarea>
-                                        <div class="blue_button nature_green_button" cos-disabled="(!form.subject || !form.text)" ng-click="submitPro()">Post as a pro argument</div>
-                                        <div class="blue_button pinky_red_button" cos-disabled="(!form.subject || !form.text)" ng-click="submitCon()">Post as a con argument</div>
+                                        <div class="blue_button nature_green_button" cos-disabled="(!form.subject || !form.text)" ng-click="submitPro()" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_PRO">Post as a pro argument</div>
+                                        <div class="blue_button pinky_red_button" cos-disabled="(!form.subject || !form.text)" ng-click="submitCon()" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_CON">Post as a con argument</div>
                                         <div class="clearer"></div>
                                     </div>
 
@@ -981,9 +853,7 @@
                             <div id="socialMentions" ng-if="app.activeCommentSection == 'socialMentions'" class="social_mentions_container">
 
                                 <div class="social_mentions_header">
-                                    <div class="social_mentions_description" />
-                                        Social mentions
-                                    </div>
+                                    <div class="social_mentions_description" translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_HEADING">Social mentions</div>
                                     <div class="social_mentions_hashtag" ng-if="topic.hashtag" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">
                                         #{{topic.hashtag}}
                                     </div>
@@ -993,12 +863,12 @@
 
                                 <div class="social_mentions_wrap">
                                     <div class="social_mentions_message_info" ng-if="!topic.hashtag">
-                                        Sorry, we cannot show you the social mentions as there is no hashtag defined for this Topic. Users with editor permissions can add the hashtag to fetch social mentions.
-                                        <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">Add hashtag</div>
+                                        <span translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED">Sorry, we cannot show you the social mentions as there is no hashtag defined for this Topic. Users with editor permissions can add the hashtag to fetch social mentions.</span>
+                                        <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})" translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG">Add hashtag</div>
                                     </div>
                                     <div class="social_mentions_message_info" ng-if="topic.hashtag && !topicSocialMentions.length">
-                                        Sorry, no social mentions found on Twitter for the hashtag <span ng-class="{blue_link: topic.canEdit()}" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"/>#{{topic.hashtag}}</span>
-                                        <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">Change hashtag</div>
+                                        <span translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_NO_MENTIONS_FOUND">Sorry, no social mentions found on Twitter for the hashtag</span> <span ng-class="{blue_link: topic.canEdit()}" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"/>#{{topic.hashtag}}</span>
+                                        <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})" translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_BTN_CHANGE_HASHTAG">Change hashtag</div>
                                     </div>
                                     <div class="social_mention" ng-repeat="mention in topicSocialMentions">
                                         <div class="social_mention_header">
@@ -1032,7 +902,7 @@
                                                 </div>
                                                 <div class="social_mention_header_section social_mention_opacity">
                                                     <div class="table_cell">
-                                                        Posted via <span class="social_mention_channel">{{mention.sourceId}}</span>
+                                                        <span translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_POSTED_VIA">Posted via</span><span class="social_mention_channel">{{mention.sourceId}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1057,40 +927,20 @@
 
                     <div class="options_wrap">
                         <div class="options_header">
-                            <div class="table_cell">
-                                OPTIONS
-                            </div>
+                            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.NAV_HEADING">OPTIONS</div>
                         </div>
                         <div class="options_content">
-                            <div ng-if="!(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToVote()" ng-click="sendToVote()">
-                                Send to vote
-                            </div>
-                            <div ng-if="(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToFollowUp()" ng-click="sendToFollowUp()">
-                                Send to follow up
-                            </div>
-                            <div class="blue_link" cos-disabled="!topic.canUpdate()" ng-click="closeTopic()">
-                                Close topic
-                            </div>
+                            <div ng-if="!(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToVote()" ng-click="sendToVote()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_VOTE">Send to vote</div>
+                            <div ng-if="(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToFollowUp()" ng-click="sendToFollowUp()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow up</div>
+                            <div class="blue_link" cos-disabled="!topic.canUpdate()" ng-click="closeTopic()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_CLOSE_TOPIC">Close topic</div>
                             <div class="line lightest_line"></div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">
-                                Settings
-                            </div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})">
-                                Categories
-                            </div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'invite'})">
-                                Invite users
-                            </div>
-                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'share'})">
-                                Share topic
-                            </div>
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SETTINGS">Settings</div>
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_CATEGORIES">Categories</div>
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'invite'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_INVITE_USERS">Invite users</div>
+                            <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'share'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SHARE">Share topic</div>
                             <div class="line lightest_line"></div>
-                            <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="app.dotoggleEditMode()" ng-bind="(app.editMode ? 'View topic' : 'Edit topic')">
-                                Edit topic
-                            </div>
-                            <div class="blue_link" ng-click="doLeaveTopic(topic)">
-                                Leave topic
-                            </div>
+                            <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="app.dotoggleEditMode()" ng-bind="(app.editMode ? 'View topic' : 'Edit topic')" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC">Edit topic</div>
+                            <div class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
                         </div>
                     </div>
                 </div>
