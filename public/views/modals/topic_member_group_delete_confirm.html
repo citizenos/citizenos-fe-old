@@ -6,7 +6,7 @@
             <div id="lightbox_header" class="profile_circle_on">
 
                 <div id="lightbox_header_text">
-                    <div class="title">Remove group</div>
+                    <div class="title" translate="MODALS.TOPIC_MEMBER_GROUP_DELETE_CONFIRM_HEADING">Remove group</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -44,13 +44,13 @@
             <!-- CONFIRM CONTENT -->
             <div class="lightbox_content">
                 <div class="lightbox_section">
-                    Are you sure you want to remove this group?
+                    <span translate="MODALS.TOPIC_MEMBER_GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to remove this group?</span>
                     <div class="yes_no_buttons">
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="closeThisDialog()">NO</div>
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_NO">NO</div>
                         </div>
                         <div class="table_cell">
-                            <div class="blue_button yes" ng-click="confirm()">YES, REMOVE</div>
+                            <div class="blue_button yes" ng-click="confirm()" translate="MODALS.TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_YES">YES, REMOVE</div>
                         </div>
                     </div>
                 </div>
