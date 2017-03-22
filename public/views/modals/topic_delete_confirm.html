@@ -7,7 +7,7 @@
 
 
                 <div id="lightbox_header_text">
-                    <div class="title">Delete topic</div>
+                    <div class="title" translate="MODALS.TOPIC_DELETE_CONFIRM_HEADING">Delete topic</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -27,8 +27,8 @@
                 <div class="second_header">
 
                     <div class="sprite sprite-icon-delete-topic2x"></div>
-                    <div class="delete_title">Are you sure you want to delete this topic?</div>
-                    <div class="delete_description">Please keep in mind you cannot undo this action.</div>
+                    <div class="delete_title" translate="MODALS.TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to delete this topic?</div>
+                    <div class="delete_description" translate="MODALS.TOPIC_DELETE_CONFIRM_TXT_NO_UNDO">Please keep in mind you cannot undo this action.</div>
 
                     <div id="lightbox_close" ng-click="closeThisDialog()">
                         <div class="table_cell">
@@ -48,28 +48,28 @@
                     <div class="delete_info_text_wrap">
                         <div class="delete_info">
                             <div class="sprite sprite-checkmark2x"></div>
-                            <div class="delete_info_text">All versions of the topic will be deleted</div>
+                            <div class="delete_info_text" translate="MODALS.TOPIC_DELETE_CONFIRM_TXT_TOPIC_DELETED">All versions of the topic will be deleted</div>
                         </div>
 
                         <div class="delete_info">
                             <div class="sprite sprite-checkmark2x"></div>
-                            <div class="delete_info_text">All discussions and voted will be deleted.</div>
+                            <div class="delete_info_text" translate="MODALS.TOPIC_DELETE_CONFIRM_TXT_DISCUSSION_DELETED">All discussions and voted will be deleted.</div>
                         </div>
 
                         <div class="delete_info">
                             <div class="sprite sprite-checkmark2x"></div>
-                            <div class="delete_info_text">The topic will be removed from groups and categories.</div>
+                            <div class="delete_info_text" translate="MODALS.TOPIC_DELETE_CONFIRM_TXT_TOPIC_REMOVED_FROM_GROUPS">The topic will be removed from groups and categories.</div>
                         </div>
                     </div>
 
                     <div class="delete_info_button_wrap">
 
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="closeThisDialog()">NO, KEEP THIS TOPIC</div>
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.TOPIC_DELETE_CONFIRM_NO">NO, KEEP THIS TOPIC</div>
                         </div>
 
                         <div class="table_cell">
-                            <div class="blue_button yes" ng-click="confirm()">YES, DELETE THIS TOPIC</div>
+                            <div class="blue_button yes" ng-click="confirm()" translate="MODALS.TOPIC_DELETE_CONFIRM_YES">YES, DELETE THIS TOPIC</div>
                         </div>
 
                     </div>
