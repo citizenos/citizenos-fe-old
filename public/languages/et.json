@@ -2,6 +2,12 @@
   "META_DEFAULT_TITLE": "Citizen OS - kogukondlik e-otsustamise platvorm",
   "META_DEFAULT_DESCRIPTION": "Citizen OS võimaldab kaasavat arutelu ja otsustamist tingimustes, kus kõigil osalistel samal ajal online või offline kohtuda ei ole võimalik.",
   "META_DEFAULT_KEYWORDS": "kaasamine, e-otsustamine, e-valitsemine, e-demokraatia, demokraatia, valgdemokraatia, otsedemokraatia",
+  "MODALS": {
+    "TOPIC_CLOSE_CONFIRM_TXT_ARE_YOU_SURE": "Soovid kindlasti jätkata?",
+    "TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO": "Meenutame, et seda tegevust ei saa tagasi võtta.",
+    "TOPIC_CLOSE_CONFIRM_TXT_NO_EDIT": "Teema arutelu lõpetatakse ja teema sisu enam muuta ei saa.",
+    "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Hääletamine suletakse."
+  },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Viga e-posti aadressis.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "See e-posti aadress on juba kasutusel.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Sellise e-posti aadressiga kasutajat süsteemis ei ole.",

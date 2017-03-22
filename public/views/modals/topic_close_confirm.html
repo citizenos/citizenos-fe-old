@@ -7,13 +7,12 @@
 
 
                 <div id="lightbox_header_text">
-                    <div class="title">Close topic</div>
+                    <div class="title" translate="MODALS.TOPIC_CLOSE_CONFIRM_HEADING_CLOSE_TOPIC">Close topic</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
                     <div class="table_cell">
-                        <div class="sprite sprite-btn-popup-close2x">
-                        </div>
+                        <div class="sprite sprite-btn-popup-close2x"></div>
                     </div>
                 </div>
 
@@ -27,13 +26,12 @@
                 <div class="second_header">
 
                     <div class="sprite sprite-icon-delete-topic2x"></div>
-                    <div class="delete_title">Are you sure you want to continue?</div>
-                    <div class="delete_description">Please keep in mind you cannot undo this action.</div>
+                    <div class="delete_title" translate="MODALS.TOPIC_CLOSE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to continue?</div>
+                    <div class="delete_description" translate="MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO">Please keep in mind you cannot undo this action.</div>
 
                     <div id="lightbox_close" ng-click="closeThisDialog()">
                         <div class="table_cell">
-                            <div class="sprite sprite-btn-popup-close2x">
-                            </div>
+                            <div class="sprite sprite-btn-popup-close2x"></div>
                         </div>
                     </div>
 
@@ -48,23 +46,23 @@
                     <div class="delete_info_text_wrap">
                         <div class="delete_info">
                             <div class="sprite sprite-checkmark2x"></div>
-                            <div class="delete_info_text">The topic will close, it's contents can no longer be edited.</div>
+                            <div class="delete_info_text" translate="MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_EDIT">The topic will close, it's contents can no longer be edited.</div>
                         </div>
 
                         <div class="delete_info">
                             <div class="sprite sprite-checkmark2x"></div>
-                            <div class="delete_info_text">Voting will end, further voting will not be possible.</div>
+                            <div class="delete_info_text" translate="MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE">Voting will end, further voting will not be possible.</div>
                         </div>
                     </div>
 
                     <div class="delete_info_button_wrap">
 
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="closeThisDialog()">NO, DON'T CLOSE THE TOPIC</div>
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.TOPIC_CLOSE_CONFIRM_BTN_NO">NO, DON'T CLOSE THE TOPIC</div>
                         </div>
 
                         <div class="table_cell">
-                            <div class="blue_button yes" ng-click="confirm()">YES, CLOSE THE TOPIC</div>
+                            <div class="blue_button yes" ng-click="confirm()" translate="MODALS.TOPIC_CLOSE_CONFIRM_BTN_YES">YES, CLOSE THE TOPIC</div>
                         </div>
 
                     </div>

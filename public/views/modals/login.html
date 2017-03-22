@@ -6,7 +6,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <span>Log in / Register</span>
+                    <span translate="MODALS.LOGIN_HEADING">Log in / Register</span>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -30,9 +30,7 @@
                                 </div>
                             </div>
                             <div class="social_text">
-                                <div class="table_cell">
-                                    Login with Facebook account
-                                </div>
+                                <div class="table_cell" translate="MODALS.LOGIN_BTN_LOGIN_FACEBOOK">Login with Facebook account</div>
                             </div>
                         </div>
 
@@ -43,9 +41,7 @@
                                 </div>
                             </div>
                             <div class="social_text">
-                                <div class="table_cell">
-                                    Login with Google account
-                                </div>
+                                <div class="table_cell" translate="MODALS.LOGIN_BTN_LOGIN_GOOGLE">Login with Google account</div>
                             </div>
                         </div>
 
@@ -56,9 +52,7 @@
                                 </div>
                             </div>
                             <div class="social_text">
-                                <div class="table_cell">
-                                    Login with ID-Card / Mobiil-ID
-                                </div>
+                                <div class="table_cell" translate="MODALS.LOGIN_BTN_LOGIN_ESTEID">Login with ID-Card / Mobiil-ID</div>
                             </div>
                         </div>
 
@@ -69,23 +63,23 @@
                     <div class="lightbox_section">
                         <form name="loginForm">
                             <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
-                            <input id="email" ng-model="form.email" type="email" placeholder="E-mail" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.email}" required>
+                            <input id="email" ng-model="form.email" type="email" placeholder="{{'MODALS.LOGIN_PLACEHOLDER_EMAIL' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.email}" required>
                             <label for="email" class="error_label" ng-if="errors.email">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.email}}"></span>
                                 </div>
                             </label>
-                            <input id="password" ng-model="form.password" type="password" placeholder="Password" ng-class="{'error_input': errors.password}" required>
+                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.LOGIN_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" required>
                             <label for="password" class="error_label" ng-if="errors.password">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.password}}"></span>
                                 </div>
                             </label>
-                            <button type="submit" ng-click="doLogin()" ng-disabled="loginForm.$invalid" class="blue_button">Log in / Register</button>
+                            <button type="submit" ng-click="doLogin()" cos-disabled="loginForm.$invalid" class="blue_button" translate="MODALS.LOGIN_BTN_LOGIN_REGISTER">Log in / Register</button>
                             <div class="link_section">
-                                <a class="lightbox_link" ng-click="doResetPassword()" href="">Forgot password?</a>
+                                <a class="lightbox_link" ng-click="doResetPassword()" href="" translate="MODALS.LOGIN_LNK_FORGOT_PASSWORD">Forgot password?</a>
                             </div>
                         </form>
                     </div>

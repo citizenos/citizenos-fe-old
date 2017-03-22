@@ -259,7 +259,7 @@
                 </div>
                 <div class="pretend_tr" ng-repeat="topic in group.members.topics.rows | filter: topicList.searchFilter | orderBy: topicList.searchOrderBy.property">
                     <div class="pretend_td">
-                        <div class="blue_link" ui-sref="topics.view({topicId: topic.id})">{{topic.title}}</div>
+                        <div class="blue_link" ui-sref="my.topics.topicId({topicId: topic.id})">{{topic.title}}</div>
                     </div>
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">

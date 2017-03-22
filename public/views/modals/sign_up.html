@@ -6,7 +6,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <span>Register</span>
+                    <span translate="MODALS.SIGN_UP_HEADING">Register</span>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -24,37 +24,38 @@
 
                     <div class="lightbox_section">
                         <form name="signUpForm" ng-controller="SignUpFormCtrl">
-                            <input id="name" ng-model="form.name" placeholder="Full name *" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" required>
+                            <input id="name" ng-model="form.name" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_NAME' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}"
+                                   required>
                             <label for="name" class="error_label" ng-if="errors.name">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.name}}"></span>
                                 </div>
                             </label>
-                            <input id="company" ng-model="form.company" placeholder="Company" ng-class="{'error_input': errors.company}">
+                            <input id="company" ng-model="form.company" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_COMPANY' | translate}}" ng-class="{'error_input': errors.company}">
                             <label for="company" class="error_label" ng-if="errors.company">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.company}}"></span>
                                 </div>
                             </label>
-                            <input id="email" ng-model="form.email" placeholder="E-mail address" ng-class="{'error_input': errors.email}" required>
+                            <input id="email" ng-model="form.email" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_EMAIL' | translate" ng-class="{'error_input': errors.email}" required>
                             <label for="email" class="error_label" ng-if="errors.email">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.email}}"></span>
                                 </div>
                             </label>
-                            <input id="password" ng-model="form.password" type="password" placeholder="Password *" ng-class="{'error_input': errors.password}" required>
+                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" required>
                             <label for="password" class="error_label" ng-if="errors.password">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.password}}"></span>
                                 </div>
                             </label>
-                            <button type="submit" ng-click="doSignUp()" ng-disabled="signUpForm.$invalid" class="blue_button">Save</button>
+                            <button type="submit" ng-click="doSignUp()" ng-disabled="signUpForm.$invalid" class="blue_button" translate="MODALS.SIGN_UP_BTN_SAVE">Register</button>
                             <div class="link_section">
-                                <a class="lightbox_link" href="" ng-click="closeThisDialog()">Cancel</a>
+                                <a class="lightbox_link" href="" ng-click="closeThisDialog()" translate="MODALS.SIGN_UP_LNK_CANCEL">Cancel</a>
                             </div>
                         </form>
                     </div>

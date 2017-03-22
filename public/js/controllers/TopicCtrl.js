@@ -44,14 +44,14 @@ angular
             orderByOptions: TopicComment.COMMENT_ORDER_BY
 
         };
-        $scope.hashtagForm  = {
+        $scope.hashtagForm = {
             hashtag: null,
             errors: null,
             bytesLeft: 59
         };
 
         $scope.topic.padUrl = $sce.trustAsResourceUrl($scope.topic.padUrl);
-        $scope.app.editMode = ($stateParams.editMode && $stateParams.editMode ==='true') || false;
+        $scope.app.editMode = ($stateParams.editMode && $stateParams.editMode === 'true') || false;
         $scope.showInfoEdit = $scope.app.editMode;
         $scope.showVoteArea = false;
 
@@ -87,7 +87,7 @@ angular
                             .then(function () {
                                 $scope.app.topics_settings = false;
                                 if ($state.is('topics.view')) {
-                                    $state.go('topics.view.votes.view', {topicId: $scope.topic.id, voteId:$scope.topic.vote.id,  editMode:null}, {reload: true});
+                                    $state.go('topics.view.votes.view', {topicId: $scope.topic.id, voteId: $scope.topic.vote.id, editMode: null}, {reload: true});
                                 }
                             });
                     }
@@ -126,7 +126,7 @@ angular
         };
 
         $scope.loadTopicSocialMentions = function () {
-            if($scope.topic.hashtag){
+            if ($scope.topic.hashtag) {
                 $scope.topicSocialMentions = Mention.query({topicId: $scope.topic.id});
             }
         };
@@ -140,7 +140,7 @@ angular
             if ($scope.app.editMode === true) {
                 $state.go('topics.view', {topicId: $scope.topic.id, editMode: $scope.app.editMode});
             } else {
-                $state.go('topics.view', {topicId: $scope.topic.id, editMode:null}, {reload:true});
+                $state.go('topics.view', {topicId: $scope.topic.id, editMode: null}, {reload: true});
             }
         };
 
@@ -154,7 +154,7 @@ angular
                 pro: 0,
                 con: 0
             };
-            var topicComment = TopicComment.query({topicId: $scope.topic.id, orderBy:$scope.topicComments.orderBy}).$promise
+            var topicComment = TopicComment.query({topicId: $scope.topic.id, orderBy: $scope.topicComments.orderBy}).$promise
                 .then(function (comments) {
                     if (comments) {
                         $scope.topicComments.count.pro = _.filter(comments, {type: TopicComment.COMMENT_TYPES.pro}).length;
