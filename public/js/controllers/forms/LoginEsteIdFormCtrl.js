@@ -12,6 +12,8 @@ angular
                 challengeID: null,
                 isLoading: false
             };
+
+            $scope.isLoadingIdCard = false;
         };
         init();
 

@@ -16,29 +16,23 @@ angular
         };
 
         $scope.challengeID = null;
+        $scope.isLoadingIdCard = false;
 
         // TODO: Multiple choice support some day... - https://trello.com/c/WzECsxck/280-bug-vote-sign-no-multiple-choice-support
         $scope.optionSelected = option;
 
         $scope.doSignWithCard = function () {
-            $log.debug('doSign()', hwcrypto);
-
             $scope.isLoadingIdCard = true;
 
             hwcrypto
                 .getCertificate({})
                 .then(function (certificate) {
-                    $log.debug('Certificate', certificate);
-
-                    var votePromise;
-
                     var userVote = new TopicVote({id: topic.vote.id, topicId: topic.id});
                     userVote.options = [{optionId: $scope.optionSelected.id}];
                     userVote.certificate = certificate.hex;
                     return $q.all([certificate, userVote.$save()]);
                 })
                 .then(function (results) {
-                    $log.debug('After Vote', arguments);
                     var certificate = results[0];
                     var voteResponse = results[1];
 
