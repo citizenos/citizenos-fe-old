@@ -14,9 +14,7 @@
 
 
     <!-- Only show this if the user is NOT logged in -->
-    <div class="blue_button" ng-click="app.doShowLogin()" ng-if="!app.user.loggedIn">
-        Log in / Register
-    </div>
+    <div class="blue_button" ng-click="app.doShowLogin()" ng-if="!app.user.loggedIn" translate="DEFAULT.NAV.LNK_LOG_IN_REGISTER">Log in / Register</div>
 
     <!-- Only show this if the user is logged in -->
     <div ng-if="app.user.loggedIn">
@@ -40,7 +38,7 @@
 
             <div id="account_text">
                 <div class="section_header bold_white">{{app.user.name}}</div>
-                <a ng-click="app.doShowMyAccount()" id="account_action" href="">My Account</a>
+                <a ng-click="app.doShowMyAccount()" id="account_action" href="" translate="DEFAULT.NAV.LNK_MY_ACCOUNT">My Account</a>
             </div>
 
         </div>
@@ -56,7 +54,7 @@
                         <div class="sprite sprite-menu-icon-topics2x"></div>
                     </div>
                 </div>
-                Topics
+                <span translate="DEFAULT.NAV.HEADING_TOPICS">Topics</span>
             </div>
             <a ui-sref="topics.create" ui-sref-active="active" class="section_item bold_blue">
                 <div class="section_icon">
@@ -64,7 +62,7 @@
                         <div class="sprite sprite-bullet-plus2x"></div>
                     </div>
                 </div>
-                Create topic
+                <span translate="DEFAULT.NAV.LNK_CREATE_TOPICS">Create topic</span>
             </a>
             <a ui-sref="my.topics({filter: 'all'})" ui-sref-opts="{reload: true}" ui-sref-active="active" class="section_item">
                 <div class="section_icon">
@@ -72,7 +70,7 @@
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
-                My topics
+                <span translate="DEFAULT.NAV.LNK_MY_TOPICS">My topics</span>
             </a>
             <a ui-sref="home" ui-sref-active="active" class="section_item">
                 <div class="section_icon">
@@ -80,7 +78,7 @@
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
-                Public topics
+                <span translate="DEFAULT.NAV.LNK_PUBLIC_TOPICS">Public topics</span>
             </a>
         </div>
 
@@ -92,7 +90,7 @@
                         <div class="sprite sprite-menu-icon-groups2x"></div>
                     </div>
                 </div>
-                Groups
+                <span translate="DEFAULT.NAV.HEADING_GROUPS">Groups</span>
             </div>
             <a ui-sref="my.groups.create({filter:null})" ui-sref-opts="{reload: true}" ui-sref-active="active" class="section_item bold_blue">
                 <div class="section_icon">
@@ -100,7 +98,7 @@
                         <div class="sprite sprite-bullet-plus2x"></div>
                     </div>
                 </div>
-                Create groups
+                <span translate="DEFAULT.NAV.LNK_CREATE_GROUPS">Create groups</span>
             </a>
             <a ui-sref="my.groups({filter: 'grouped'})" ui-sref-opts="{reload: true}" ui-sref-active="active" class="section_item">
                 <div class="section_icon">
@@ -108,7 +106,7 @@
                         <div class="sprite sprite-bullet-arrow2x"></div>
                     </div>
                 </div>
-                My groups
+                <span translate="DEFAULT.NAV.LNK_MY_GROUPS">My groups</span>
             </a>
         </div>
     </div>
@@ -127,7 +125,7 @@
                     <div class="sprite sprite-menu-icon-about2x"></div>
                 </div>
             </div>
-            About
+            <span translate="DEFAULT.NAV.LNK_ABOUT">About</span>
         </a>
 
         <a class="section_item" href="https://citizenos.uservoice.com/">
@@ -136,7 +134,7 @@
                     <div class="sprite sprite-menu-icon-faq2x"></div>
                 </div>
             </div>
-            FAQ
+            <span translate="DEFAULT.NAV.LNK_FAQ">FAQ</span>
         </a>
 
         <a class="section_item" ng-href="{{app.config.links.help[app.language]}}">
@@ -145,7 +143,7 @@
                     <div class="sprite sprite-menu-icon-help2x"></div>
                 </div>
             </div>
-            Help
+            <span translate="DEFAULT.NAV.LNK_HELP">Help</span>
         </a>
 
         <div cos-dropdown id="dropdown_wrap">
@@ -187,7 +185,7 @@
                         <div class="sprite sprite-menu-icon-logout2x"></div>
                     </div>
                 </div>
-                Log out
+                <span translate="DEFAULT.NAV.LNK_LOG_OUT">Log out</span>
             </a>
 
         </div>

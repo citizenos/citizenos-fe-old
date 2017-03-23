@@ -56,7 +56,7 @@ angular
                     } else {
                         $scope.enabled = !$scope.enabled;
                     }
-                }
+                };
 
                 $scope.$watch(function(scope) { return scope.model },
                     function(newValue, oldValue) {

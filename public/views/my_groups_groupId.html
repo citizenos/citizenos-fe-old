@@ -191,7 +191,7 @@
         </div>
         <div class="container_header second_header" ng-if="topicList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="Topic title, permission" ng-model="topicList.searchFilter" focus-if>
+                <input placeholder="{{VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_TOPIC_TITLE_PERMISSION | translate}}" ng-model="topicList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="topicList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
@@ -285,7 +285,7 @@
         </div>
         <div class="container_header second_header" ng-if="userList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="Name, permission" ng-model="userList.searchFilter" focus-if>
+                <input placeholder="{{VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION | translate}}" ng-model="userList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="userList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>

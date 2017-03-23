@@ -24,35 +24,35 @@
                     <div class="header_row" slide-controller identifier="topicSettingsSlider" start_slide_at="329">
                         <div class="tab_button" ng-click="selectTab('settings')" ng-class="tabSelected === 'settings' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
-                                <div class="tab_button_text">SETTINGS</div>
+                                <div class="tab_button_text" translate="MODALS.TOPIC_SETTINGS_TAB_SETTINGS">SETTINGS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
                         <div class="tab_button" ng-click="selectTab('categories')" ng-class="tabSelected === 'categories' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
-                                <div class="tab_button_text">CATEGORIES</div>
+                                <div class="tab_button_text" translate="MODALS.TOPIC_SETTINGS_TAB_CATEGORIES">CATEGORIES</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
                         <div class="tab_button" ng-click="selectTab('invite')" ng-class="tabSelected === 'invite' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
-                                <div class="tab_button_text">INVITE</div>
+                                <div class="tab_button_text" translate="MODALS.TOPIC_SETTINGS_TAB_INVITE">INVITE</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
                         <div class="tab_button" ng-click="selectTab('share')" ng-class="tabSelected === 'share' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
-                                <div class="tab_button_text">SHARE</div>
+                                <div class="tab_button_text" translate="MODALS.TOPIC_SETTINGS_TAB_SHARE">SHARE</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
 
                         <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()">
-                                Save topic
+                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                                 translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC">Save topic
                             </div>
-                            <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()">
-                                Save topic and send invite
+                            <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                                 translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC_AND_INVITE">Save topic and send invite
                             </div>
                         </div>
 
@@ -72,31 +72,24 @@
 
                     <div class="settings_section">
                         <div class="settings_cell">
-                            <div class="setting_title">
-                                Make your topic private
-                            </div>
-                            <div class="setting_description">
-                                ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC
-                            </div>
+                            <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_MAKE_PRIVATE">Make your topic private</div>
+                            <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_MAKE_PRIVATE_EXT">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-value="Topic.VISIBILITY.private" off-value="Topic.VISIBILITY.public" ng-model="form.topic.visibility"></div>
+                            <div cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                 ng-value="Topic.VISIBILITY.private" off-value="Topic.VISIBILITY.public" ng-model="form.topic.visibility"></div>
                         </div>
-
                     </div>
+
                     <div class="line lightest_line"></div>
 
                     <div class="settings_section">
                         <div class="settings_cell">
-                            <div class="setting_title">
-                                Hashtag
-                            </div>
-                            <div class="setting_description">
-                                USE THIS HASHTAG IN SOCIAL MEDIA AND THE MENTIONS WILL BE SHOWN BELOW YOUR TOPIC
-                            </div>
+                            <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_HASHTAG">Hashtag</div>
+                            <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_HASHTAG_EXT">USE THIS HASHTAG IN SOCIAL MEDIA AND THE MENTIONS WILL BE SHOWN BELOW YOUR TOPIC</div>
                         </div>
-                        <div class="settings_cell hashtag_cell" >
+                        <div class="settings_cell hashtag_cell">
                             <div class="recycle_bin_wrap" cos-disabled="!topic.canEdit()">
                                 <div ng-click="doDeleteHashtag()" class="btn_wrap recycle_bin">
                                     <div class="btn">
@@ -107,7 +100,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <input id="hashtag" cos-disabled="!topic.canEdit()" value="#cos_hipsters" ng-model="form.topic.hashtag" ng-change="checkHashtag()" ng-class="{'error_input': errors.hashtag}">
+                            <input id="hashtag" cos-disabled="!topic.canEdit()" value="#cos_hipsters" ng-model="form.topic.hashtag" ng-change="checkHashtag()"
+                                   placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_HASHTAG' | translate}}" ng-class="{'error_input': errors.hashtag}">
                             <div class="recycle_bin_wrap wrap_mobile" cos-disabled="!topic.canEdit()">
                                 <div ng-click="doDeleteHashtag()" class="btn_wrap recycle_bin">
                                     <div class="btn">
@@ -131,16 +125,12 @@
 
                     <div class="settings_section">
                         <div class="settings_cell">
-                            <div class="setting_title">
-                                Leave topic
-                            </div>
-                            <div class="setting_description">
-                                LEAVING A TOPIC WILL RESULT IN GIVING UP ANY POWERS YOU MAY HAVE AS USER IN THAT TOPIC
-                            </div>
+                            <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_LEAVE_TOPIC">Leave topic</div>
+                            <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_LEAVE_TOPIC_EXT">LEAVING A TOPIC WILL RESULT IN GIVING UP ANY POWERS YOU MAY HAVE AS USER IN THAT TOPIC</div>
                         </div>
 
                         <div class="settings_cell">
-                            <div class="gray_button" ng-click="doLeaveTopic(topic)">Leave topic</div>
+                            <div class="gray_button" ng-click="doLeaveTopic(topic)" translate="MODALS.TOPIC_SETTINGS_BTN_LEAVE_TOPIC">Leave topic</div>
                         </div>
 
                     </div>
@@ -148,18 +138,13 @@
 
                     <div class="settings_section">
                         <div class="settings_cell">
-                            <div class="setting_title">
-                                Delete topic
-                            </div>
-                            <div class="setting_description">
-                                DELETING A TOPIC CAN NOT BE UNDONE. BE SURE TO BE REALLY SURE ABOUT THIS.
-                            </div>
+                            <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_DELETE_TOPIC">Delete topic</div>
+                            <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_DELETE_TOPIC_EXT">DELETING A TOPIC CAN NOT BE UNDONE. BE SURE TO BE REALLY SURE ABOUT THIS.</div>
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-disabled="!topic.canDelete()" class="blue_button yes" ng-click="doDeleteTopic(topic)">Delete topic</div>
+                            <div cos-disabled="!topic.canDelete()" class="blue_button yes" ng-click="doDeleteTopic(topic)" translate="MODALS.TOPIC_SETTINGS_BTN_DELETE_TOPIC">Delete topic</div>
                         </div>
-
                     </div>
 
                 </div>
@@ -170,20 +155,18 @@
             <!-- CATEGORIES -->
             <div class="lightbox_content categories_section_wrap" ng-if="tabSelected === 'categories'">
                 <div class="lightbox_section">
-                    <div class="tip">Assign up to 3 categories</div>
+                    <div class="tip" translate="MODALS.TOPIC_SETTINGS_TXT_ASSIGN_CATEGORIES">Assign up to 3 categories</div>
                     <div class="selected_categories">
                         <div class="category_wrap" ng-repeat="topicCategory in form.topic.categories" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
-
                             <div class="category_cell category_title">
                                 {{'TXT_TOPIC_CATEGORY_' + topicCategory | uppercase | translate}}
                             </div>
-
                             <div class="category_cell category_control" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
                                 <div class="sprite sprite-icon-category-delete2x"></div>
                             </div>
-
                         </div>
                     </div>
+
                     <div class="line lightest_line"></div>
 
                     <div class="category_selection">
@@ -213,37 +196,35 @@
 
                 <div class="lightbox_section">
 
-                    <div class="input_text_margin_bottom">
-                        Invite users via their name or e-mail address
-                    </div>
+                    <div class="input_text_margin_bottom" translate="MODALS.TOPIC_SETTINGS_TXT_INVITE_USERS">Invite users via their name or e-mail address</div>
 
                     <div class="searchbox_with_icon_and_text only_text">
                         <div cos-dropdown
                              ng-class="{search_with_dropdown : (searchResults.users.length || searchResults.groups.length), dropdown_active : (searchResults.users.length || searchResults.groups.length)}">
                             <typeahead cos-disabled="!topic.canUpdate()" id="userSearch" class="auto-complete" items="searchResults.combined" term="searchString" search="search(term, 'user')"
-                                       select="addTopicMember(item)" placeholder="Search by username or e-mail address">
+                                       select="addTopicMember(item)" placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_SEARCH_BY_USERNAME_OR_EMAIL' | translate}}">
                                 <div class="search_area_wrap">
                                     <div class="search_dropdown_area" ng-show="searchResults.users.length || searchResults.groups.length">
                                         <div class="search_dropdown_item" ng-if="searchResults.users.length">
-                                            <div class="table_cell">Users</div>
+                                            <div class="table_cell" translate="MODALS.TOPIC_SETTINGS_TH_USERS">Users</div>
                                         </div>
                                         <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
                                             <div class="table_cell search_item_text">
                                                 <b>{{user.name}}</b> {{user.company}}
                                             </div>
                                             <div class="table_cell blue_link">
-                                                <span class="submit_link" ng-click="addTopicMemberUser(user)">Press enter or click to add</span>
+                                                <span class="submit_link" ng-click="addTopicMemberUser(user)" translate="MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
                                             </div>
                                         </div>
                                         <div class="search_dropdown_item" ng-if="searchResults.groups.length">
-                                            <div class="table_cell">Groups</div>
+                                            <div class="table_cell" translate="MODALS.TOPIC_SETTINGS_TH_GROUPS">Groups</div>
                                         </div>
                                         <div class="search_dropdown_item" typeahead-item="group" ng-repeat="group in searchResults.groups">
                                             <div class="table_cell search_item_text">
                                                 <b>{{group.name}}</b>
                                             </div>
                                             <div class="table_cell blue_link">
-                                                <span class="submit_link" ng-click="addTopicMemberGroup(group)">Press enter or click to add</span>
+                                                <span class="submit_link" ng-click="addTopicMemberGroup(group)" translate="MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter or click to add</span>
                                             </div>
                                         </div>
                                     </div>
@@ -253,9 +234,7 @@
 
                         </div>
                         <div class="search_text">
-                            <div class="table_cell blue_link" cos-disabled="!topic.canUpdate()">
-                                Press enter to add
-                            </div>
+                            <div class="table_cell blue_link" cos-disabled="!topic.canUpdate()" translate="MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter to add</div>
                         </div>
                     </div>
 
@@ -397,23 +376,17 @@
             <div class="lightbox_content invite_url" ng-if="tabSelected === 'share'">
 
                 <div class="lightbox_section">
-                    <div class="input_text_margin_bottom">
-                        Share this link to people you want to join the topic:
-                    </div>
+                    <div class="input_text_margin_bottom" translate="MODALS.TOPIC_SETTINGS_TXT_SHARE_LINK">Share this link to people you want to join the topic:</div>
 
                     <div class="copy_link">
                         <div class="searchbox_with_icon_and_text">
-                            <input id="url_invite_topic_input" ng-model="form.urlJoin" cos-disabled="!topic.canUpdate()" placeholder="Generate a link to share">
+                            <input id="url_invite_topic_input" ng-model="form.urlJoin" cos-disabled="!topic.canUpdate()" placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_CREATE_NEW_LINK' | translate}}">
                             <div class="search_text">
-                                <div class="blue_link table_cell" cos-disabled="!topic.canUpdate()" ng-click="generateTokenJoin()">
-                                    Create a new link
-                                </div>
+                                <div class="blue_link table_cell" cos-disabled="!topic.canUpdate()" ng-click="generateTokenJoin()" translate="{{'MODALS.TOPIC_SETTINGS_LNK_CREATE_NEW_LINK' | translate}}">Create a new link</div>
                             </div>
                         </div>
 
-                        <div class="blue_button" cos-disabled="!topic.canUpdate()" ng-click="copyInviteLink()" ng-if="!app.createGroupsInviteUsers">
-                            Copy link
-                        </div>
+                        <div class="blue_button" cos-disabled="!topic.canUpdate()" ng-click="copyInviteLink()" ng-if="!app.createGroupsInviteUsers" translate="MODALS.TOPIC_SETTINGS_BTN_COPY_LINK">Copy link</div>
                     </div>
 
                 </div>
@@ -432,16 +405,13 @@
 
             <!-- MOBILE SAVE BUTTON -->
             <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
-                <div class="blue_button" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()">
-                    Save settings
-                </div>
+                <div class="blue_button" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()" translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_SETTINGS">Save settings</div>
             </div>
 
         </div>
     </div>
 
     <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()">
-
     </div>
 
 </div>

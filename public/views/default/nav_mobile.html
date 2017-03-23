@@ -8,9 +8,7 @@
         <div class="sprite sprite-icon-search2x">
         </div>
     </div>
-    <div class="header_button_text">
-        Search
-    </div>
+    <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_SEARCH">Search</div>
 </div>
 
 <div ng-if="wWidth <= 750">
@@ -19,9 +17,7 @@
             <div class="sprite sprite-icon-back2x">
             </div>
         </div>
-        <div class="header_button_text">
-            Overview
-        </div>
+        <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_OVERVIEW">Overview</div>
 
         <div class="line_holder">
             <div class="v_line light_line"></div>
@@ -34,9 +30,7 @@
             <div class="sprite sprite-icon-back2x">
             </div>
         </div>
-        <div class="header_button_text">
-            Overview
-        </div>
+        <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_OVERVIEW">Overview</div>
 
         <div class="line_holder">
             <div class="v_line light_line"></div>
@@ -51,9 +45,7 @@
                 <div class="sprite sprite-icon-mobile-edit2x">
                 </div>
             </div>
-            <div class="header_button_text">
-                Edit
-            </div>
+            <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_EDIT">Edit</div>
 
             <div class="line_holder">
                 <div class="v_line dark_line"></div>
@@ -68,9 +60,7 @@
                 </div>
             </div>
 
-            <div class="header_button_text">
-                Settings
-            </div>
+            <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_SETTINGS">Settings</div>
 
             <div class="line_holder" ng-if="!app.editMode">
                 <div class="v_line dark_line"></div>
@@ -91,9 +81,7 @@
         <div class="sprite" ng-class="app.showNav ? 'sprite-icon-closemenu2x' : 'sprite-icon-hamburger2x'">
         </div>
     </div>
-    <div class="header_button_text">
-        Menu
-    </div>
+    <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_MENU">Menu</div>
 </div>
 
 <div id="m_search_bar" ng-style="{'display': app.showSearch ? 'relative' : 'none'}">
@@ -108,6 +96,6 @@
         </div>
     </div>
     <div id="m_search_bar_wrap">
-        <input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="Search">
+        <input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="{{DEFAULT.NAV_MOBILE.PLACEHOLDER_SEARCH | translate}}">
     </div>
 </div>
