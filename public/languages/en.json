@@ -481,6 +481,8 @@
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "Account with this email does not exist.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Success! Please check your email to complete your password recovery.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Success! Your password has been reset. Log in with your fresh password.",
+  "MSG_ERROR_PUT_API_USERS_SELF_40000_PASSWORD": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD",
+  "MSG_ERROR_PUT_API_USERS_SELF_40000_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL",
   "MSG_ERROR_POST_API_USERS_GROUPS_40000_NAME": "Group name must be 2 to 255 characters long.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40010": "You have cancelled the log in flow.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40013": "The mobile-ID functionality of your phone is not yet ready. Please try again later. If the problem persists, contact your service provider.",
