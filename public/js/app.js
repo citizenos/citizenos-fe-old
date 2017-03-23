@@ -236,6 +236,7 @@
                 })
                 .state('account.passwordForgot', {
                     url: '/password/forgot',
+                    parent: 'account',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
                         ngDialog.open({
                             template: '/views/modals/password_forgot.html',
@@ -246,6 +247,7 @@
                 })
                 .state('account.passwordReset', {
                     url: '/password/reset/:passwordResetCode?email',
+                    parent: 'account',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
                         ngDialog.open({
                             template: '/views/modals/password_reset.html',
