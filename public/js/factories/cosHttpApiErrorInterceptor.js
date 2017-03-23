@@ -101,7 +101,7 @@ angular
                 sNotification.addError(translationKeyFallback);
             } else {
                 $log.error('cosHttpApiErrorInterceptor.generalErrorToKey', 'No translation for', translationKey, translationKeyFallback, errorResponse);
-                sNotification.addError(data.status.message);
+                sNotification.addError(data.status.message + ' *');
             }
         };
 
