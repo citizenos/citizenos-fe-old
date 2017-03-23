@@ -192,7 +192,7 @@
                                 <div cos-dropdown class="classic_dropdown">
                                     <div class="dropdown_selection">
                                         <div class="dropdown_text">
-                                            {{topic.permission.level}}
+                                            {{'TXT_TOPIC_LEVELS_' + topic.permission.level | uppercase | translate}}
                                         </div>
 
                                         <div class="arrow_holder">
@@ -206,7 +206,7 @@
                                     <div class="dropdown">
                                         <div class="dropdown_item" ng-repeat="level in GroupMemberTopic.LEVELS">
                                             <div class="item_name" ng-click="updateGroupMemberTopicLevel(topic, level)">
-                                                {{level}}
+                                                {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
                                             </div>
                                         </div>
                                     </div>
@@ -297,7 +297,7 @@
 
                                                 <div class="dropdown_selection">
                                                     <div class="dropdown_text">
-                                                        {{member.level}}
+                                                        {{'TXT_TOPIC_LEVELS_' + member.level | uppercase | translate}}
                                                     </div>
 
                                                     <div class="arrow_holder">
@@ -312,7 +312,7 @@
                                                 <div class="dropdown">
                                                     <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
                                                         <div class="item_name" ng-click="updateGroupMemberUserLevel(member, level)">
-                                                            {{level}}
+                                                            {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -337,7 +337,7 @@
 
                                         <div class="dropdown_selection">
                                             <div class="dropdown_text">
-                                                {{member.level}}
+                                                {{'TXT_TOPIC_LEVELS_' + member.level | uppercase | translate}}
                                             </div>
 
                                             <div class="arrow_holder">
@@ -352,7 +352,7 @@
                                         <div class="dropdown">
                                             <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
                                                 <div class="item_name" ng-click="updateGroupMemberUserLevel(member, level)">
-                                                    {{level}}
+                                                    {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
                                                 </div>
                                             </div>
                                         </div>

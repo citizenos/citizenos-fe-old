@@ -54,7 +54,7 @@
                     <div class="content_item">
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_YOUR_RIGHTS">Your rights</div>
                         <div class="item_content">
-                            <div class="item_text" ng-bind="topic.permission.level">level</div>
+                            <div class="item_text">{{'TXT_TOPIC_LEVELS_' + topic.permission.level | uppercase | translate}}</div>
                         </div>
                         <div class="clearer"></div>
                     </div>
@@ -317,7 +317,7 @@
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
-                                <div class="dropdown_text" ng-bind="group.level">level</div>
+                                <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}}</div>
 
                                 <div class="arrow_holder">
                                     <div class="table_cell">
@@ -328,8 +328,8 @@
                                 </div>
                             </div>
                             <div class="dropdown">
-                                <div class="dropdown_item" ng-repeat="(key, value) in TopicMemberGroup.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberGroup(group, value)" ng-bind="value">option</div>
+                                <div class="dropdown_item" ng-repeat="(key, level) in TopicMemberGroup.LEVELS">
+                                    <div class="item_name" ng-click="doUpdateMemberGroup(group, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
                                 </div>
                             </div>
                         </div>
@@ -414,8 +414,8 @@
                         <div class="name_wrap">
                             <div class="table_cell">
                                 <div ng-bind="user.name">user.name</div>
-                                <div class="via" ng-if="user.groups.rows.length && !user.levelUser"><span translate="VIEWS.MY_TOPICS_TOPICID.LBL_VIA">via</span> <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})" ng-bind="group.name (group.level)">group.name (group.level)</span><span
-                                    ng-if="!group.name" class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP">&lt;Inaccessible Group&gt; ({{group.level}})</span></span>
+                                <div class="via" ng-if="user.groups.rows.length && !user.levelUser"><span translate="VIEWS.MY_TOPICS_TOPICID.LBL_VIA">via</span> <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}})</span><span
+                                    ng-if="!group.name" class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP" translate-values="{level: {{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}}}">&lt;Inaccessible Group&gt; (read)</span></span>
                                 </div>
                             </div>
                         </div>
@@ -423,7 +423,7 @@
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
-                                <div class="dropdown_text" ng-bind="user.level">user.level</div>
+                                <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + user.level | uppercase | translate}}</div>
 
                                 <div class="arrow_holder">
                                     <div class="table_cell">
@@ -435,7 +435,7 @@
                             </div>
                             <div class="dropdown">
                                 <div class="dropdown_item" ng-repeat="(key, level) in TopicMemberUser.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberUser(user, level)" ng-bind="level">level</div>
+                                    <div class="item_name" ng-click="doUpdateMemberUser(user, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
                                 </div>
                             </div>
                         </div>

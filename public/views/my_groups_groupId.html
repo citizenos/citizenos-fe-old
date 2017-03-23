@@ -76,7 +76,7 @@
 
                     <div class="content_item">
                         <div class="item_description" translate="VIEWS.MY_GROUPS_GROUPID.LBL_YOUR_RIGHTS">Your rights</div>
-                        <div class="item_content bold" ng-bind="group.permission.level">read</div>
+                        <div class="item_content bold">{{'TXT_TOPIC_LEVELS_' + group.permission.level | uppercase | translate}}</div>
                         <div class="clearer"></div>
                     </div>
 
@@ -234,7 +234,7 @@
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
-                                <div class="dropdown_text">{{topic.permission.levelGroup}}</div>
+                                <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + topic.permission.levelGroup | uppercase | translate}}</div>
 
                                 <div class="arrow_holder">
                                     <div class="table_cell">
@@ -245,8 +245,8 @@
                                 </div>
                             </div>
                             <div class="dropdown">
-                                <div class="dropdown_item" ng-repeat="(key, value) in GroupMemberTopic.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberTopic(group, topic, value)">{{value}}</div>
+                                <div class="dropdown_item" ng-repeat="(key, level) in GroupMemberTopic.LEVELS">
+                                    <div class="item_name" ng-click="doUpdateMemberTopic(group, topic, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
                                 </div>
                             </div>
                         </div>
@@ -338,7 +338,7 @@
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!group.canUpdate()">
                             <div class="dropdown_selection">
-                                <div class="dropdown_text">{{user.level}}</div>
+                                <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + user.level | uppercase | translate}}</div>
 
                                 <div class="arrow_holder">
                                     <div class="table_cell">
@@ -350,7 +350,7 @@
                             </div>
                             <div class="dropdown">
                                 <div class="dropdown_item" ng-repeat="(key, level) in GroupMemberUser.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberUser(group, user, level)">{{level}}</div>
+                                    <div class="item_name" ng-click="doUpdateMemberUser(group, user, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
                                 </div>
                             </div>
                         </div>

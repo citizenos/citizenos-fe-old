@@ -85,7 +85,7 @@
                     <div class="dropdown_item" ng-repeat="status in filters.statuses.options" ng-click="doSetFilter(filters.statuses, status)"
                          ng-class="status === filters.statuses.value ? 'bold' : ''">
                         <div class="item_name">
-                            {{'TXT_TOPIC_STATUS_' + status | uppercase}}
+                            {{'TXT_TOPIC_STATUS_' + status | uppercase | translate}}
                         </div>
                         <div class="clearer"></div>
                     </div>
