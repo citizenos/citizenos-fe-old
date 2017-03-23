@@ -239,7 +239,7 @@
       "PLACEHOLDER_SEARCH": "Search"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "Context search results in {{context}} {{model}}",
+      "HEADING_RESULTS_IN": "Context search results in <b>{{context}} {{model}}</b>",
       "LNK_VIEW_MORE_RESULTS": "View more results",
       "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
       "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?<br>We did find some things scattered throughout the CitizenOS platform, so feel free to check them out. We promise it will be worth your while!"
