@@ -37,14 +37,6 @@ angular
             return _getAbsoluteUrl(baseUrlApi, path, params, query);
         };
 
-        sLocation.getApiPathPrefix = function (isLoggedIn) {
-            $log.debug('getApiPathPrefix isLoggedIn', isLoggedIn);
-            if(isLoggedIn) {
-                return 'users/self';
-            }
-            return null;
-        };
-
         function _getAbsoluteUrl(baseUrl, path, params, query) {
 
             if (params) {

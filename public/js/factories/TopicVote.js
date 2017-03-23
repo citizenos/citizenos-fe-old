@@ -39,7 +39,7 @@ angular
                 },
                 update: {
                     method: 'PUT',
-                    params: {topicId: '@topicId', voteId: '@id', prefix:sLocation.getApiPathPrefix(sAuth.user.loggedIn)},
+                    params: {topicId: '@topicId', voteId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformResponse: function(data, headersGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;
@@ -50,7 +50,7 @@ angular
                 },
                 status: {
                     method: 'GET',
-                    params: {topicId: '@topicId', voteId: '@id', prefix:sLocation.getApiPathPrefix(sAuth.user.loggedIn)},
+                    params: {topicId: '@topicId', voteId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     url: sLocation.getAbsoluteUrlApi(pathStatus),
                 },
                 sign: {
