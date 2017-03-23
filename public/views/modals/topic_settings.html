@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'" ng-value="Topic.VISIBILITY.private" off-value="Topic.VISIBILITY.public" ng-model="form.topic.visibility"></div>
+                            <div cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-value="Topic.VISIBILITY.private" off-value="Topic.VISIBILITY.public" ng-model="form.topic.visibility"></div>
                         </div>
 
                     </div>
@@ -175,7 +175,7 @@
                         <div class="category_wrap" ng-repeat="topicCategory in form.topic.categories" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
 
                             <div class="category_cell category_title">
-                                {{topicCategory}}
+                                {{'TXT_TOPIC_CATEGORY_' + topicCategory | uppercase | translate}}
                             </div>
 
                             <div class="category_cell category_control" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
@@ -193,7 +193,7 @@
                              ng-class="{'category_selected': (form.topic.categories.indexOf(category) > -1)}">
 
                             <div class="category_cell category_title">
-                                {{category}}
+                                {{'TXT_TOPIC_CATEGORY_' + category | uppercase | translate}}
                             </div>
 
                             <div class="category_cell category_control" cos-disabled="!topic.canEdit()">

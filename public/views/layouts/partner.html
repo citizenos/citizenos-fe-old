@@ -6,8 +6,8 @@
                 <div id="logo" class="centered_content">
                     <div class="sprite sprite-cos-logo-small-positive2x"></div>
                 </div>
-                <div id="name" class="centered_content" ng-if="app.user.loggedIn">
-                    {{app.user.name}}
+                <div id="name" class="centered_content" ng-if="app.user.loggedIn" ng-bind="app.user.name">
+                    user name
                 </div>
                 <div id="profile_image" class="centered_content" ng-if="app.user.loggedIn">
                     <div class="profile_image_wrapper dark">

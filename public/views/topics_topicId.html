@@ -33,7 +33,7 @@
 
             <div class="days_left_wrap" ng-class="{favorite_yellow_background: topic.status === STATUSES.inProgress, bar_green: topic.status === STATUSES.voting, bar_blue: topic.status === STATUSES.followUp,timeline_gray_background: topic.status === STATUSES.closed }" ng-style="topic.status === STATUSES.inProgress && {'left':'25%'}  || topic.status === STATUSES.voting && {'left':'50%'} || topic.status === STATUSES.followUp && {'left': '75%'} || topic.status === STATUSES.closed && {'left': '99%'}">
                 <div class="table_cell">
-                    {{topic.status}}
+                    {{'TXT_TOPIC_STATUS_' + topic.status | uppercase}}
                 </div>
             </div>
 
@@ -72,7 +72,7 @@
 
 
         <div class="additional_info current_phase">
-            <span translate="VIEWS.TOPICS_TOPICID.BAR_CURRENT_PHASE">Current phase:</span> {{topic.status}}
+            <span translate="VIEWS.TOPICS_TOPICID.BAR_CURRENT_PHASE">Current phase:</span> {{'TXT_TOPIC_STATUS_' + topic.status | uppercase}}
         </div>
     </div>
 
@@ -345,7 +345,7 @@
                                             <div class="gray_toggle_box">
                                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_YES">Yes</div>
                                                 <div class="table_cell">
-                                                    <div cos-disabled="true" cos-toggle ng-model="voteForm.options[0].enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                    <div cos-disabled="true" cos-toggle ng-model="voteForm.options[0].enabled" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -353,7 +353,7 @@
                                             <div class="gray_toggle_box">
                                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_NO">No</div>
                                                 <div class="table_cell">
-                                                    <div cos-disabled="true" cos-toggle ng-model="voteForm.options[1].enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                    <div cos-disabled="true" cos-toggle ng-model="voteForm.options[1].enabled" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -365,7 +365,7 @@
                                             <div class="gray_toggle_box">
                                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_NEUTRAL">Neutral</div>
                                                 <div class="table_cell">
-                                                    <div cos-toggle ng-model="voteForm.extraOptions.neutral.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                    <div cos-toggle ng-model="voteForm.extraOptions.neutral.enabled" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -373,7 +373,7 @@
                                             <div class="gray_toggle_box">
                                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_VETO">Veto</div>
                                                 <div class="table_cell">
-                                                    <div cos-toggle ng-model="voteForm.extraOptions.veto.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                    <div cos-toggle ng-model="voteForm.extraOptions.veto.enabled" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -411,14 +411,14 @@
                                     <div class="gray_toggle_box">
                                         <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_NEUTRAL">Neutral</div>
                                         <div class="table_cell">
-                                            <div cos-toggle ng-model="voteForm.extraOptions.neutral.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                            <div cos-toggle ng-model="voteForm.extraOptions.neutral.enabled" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                         </div>
                                     </div>
 
                                     <div class="gray_toggle_box">
                                         <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_VETO">Veto</div>
                                         <div class="table_cell">
-                                            <div cos-toggle ng-model="voteForm.extraOptions.veto.enabled" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                            <div cos-toggle ng-model="voteForm.extraOptions.veto.enabled" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                         </div>
                                     </div>
 
@@ -442,7 +442,7 @@
                                             <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_AUTH_SOFT_ID_EXPLANATION">CITIZENOS LOGIN IS REQUIRED</div>
                                         </div>
                                         <div class="table_cell">
-                                            <div cos-toggle ng-value="voteAuthTypes.soft" off-value="voteAuthTypes.hard" ng-model="voteForm.authType" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                            <div cos-toggle ng-value="voteAuthTypes.soft" off-value="voteAuthTypes.hard" ng-model="voteForm.authType" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                         </div>
                                     </div>
 
@@ -452,7 +452,7 @@
                                                 <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_AUTH_HARD_ID_EXPLANATION">ID-CARD OR MOBILE ID SIGNING IS REQUIRED</div>
                                             </div>
                                             <div class="table_cell">
-                                                <div cos-toggle ng-value="voteAuthTypes.hard" off-value="voteAuthTypes.soft" ng-model="voteForm.authType" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                <div cos-toggle ng-value="voteAuthTypes.hard" off-value="voteAuthTypes.soft" ng-model="voteForm.authType" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                             </div>
                                         <div class="table_row">
                                             <div class="float_wrap">
@@ -473,7 +473,7 @@
                                             <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DELEGATION_EXPLANATION">ALLOW USERS TO PASS ON THEIR VOTING RIGHT.</div>
                                         </div>
                                         <div class="table_cell">
-                                            <div cos-toggle cos-disabled="(voteForm.authType == voteAuthTypes.hard)" ng-model="voteForm.delegationIsAllowed" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                            <div cos-toggle cos-disabled="(voteForm.authType == voteAuthTypes.hard)" ng-model="voteForm.delegationIsAllowed" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                         </div>
                                     </div>
 
@@ -508,7 +508,7 @@
                                                         <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DEADLINE">Deadline</div>
                                                     </div>
                                                     <div class="table_cell">
-                                                        <div cos-toggle ng-model="voteForm.endsAt" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                                                        <div cos-toggle ng-model="voteForm.endsAt" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                                     </div>
                                                 </div>
 
@@ -573,7 +573,7 @@
 
                             <div class="info_sections_wrap" ng-if="wWidth > 767 || app.more_info_button">
                                 <div class="info_section">
-                                    <span translate="VIEWS.TOPICS_TOPICID.LBL_CATEGORIES">Categories:</span> <span ng-repeat="category in topic.categories">{{category}}<span ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span></span>
+                                    <span translate="VIEWS.TOPICS_TOPICID.LBL_CATEGORIES">Categories:</span> <span ng-repeat="category in topic.categories">{{'TXT_TOPIC_CATEGORY_' + category | uppercase | translate}}<span ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span></span>
                                 </div>
                                 <div class="info_section"><span translate="VIEWS.TOPICS_TOPICID.LBL_AUTHORS">Authors:</span> {{topic.creator.name}}</div>
                                 <div class="info_section">

@@ -29,12 +29,12 @@
 
                 <div class="lightbox_section picker_content">
 
-                    <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'ON'" cos-toggle-text-off="'OFF'"></div>
+                    <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
 
                     <div class="bubble_content">
 
                         <div class="bubble_section">
-                            <div class="bubble_title">Deadline</div>
+                            <div class="bubble_title" translate="">Deadline</div>
                             <div class="bubble_description">
                                 <div ng-if="cosModalIsDateSelected">
                                     <div class="picker_deadline_date">
@@ -53,9 +53,9 @@
                         <div ng-if="cosModalIsDateSelected" date-picker="$parent.cosModelValue" min-date="$parent.datePickerMin" max-view="date" min-view="date" template="/views/directives/date_picker.html"></div>
 
                         <div class="bubble_section date_save_buttons">
-                            <div class="blue_button" ng-click="cosModalSaveAction()">Save</div>
+                            <div class="blue_button" ng-click="cosModalSaveAction()" translate="">Save</div>
                             <div class="blue_link_wrapper" ng-click="cosModalClose()">
-                                <div class="blue_link">Cancel</div>
+                                <div class="blue_link" translate="">Cancel</div>
                             </div>
                         </div>
                     </div>

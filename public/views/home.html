@@ -9,7 +9,7 @@
             <div cos-dropdown class="bar_select">
 
                 <div class="select_text">
-                    {{filters.categories.value}}
+                    {{'TXT_TOPIC_CATEGORY_' + filters.categories.value | uppercase | translate}}
                     <div class="icon_holder">
                         <div class="table_cell">
                             <div class="sprite sprite-dropdown-arrowdown-big2x"></div>
@@ -26,7 +26,7 @@
                     <div class="dropdown_item" ng-repeat="category in filters.categories.options" ng-click="doSetFilter(filters.categories, category)"
                          ng-class="category === filters.categories.value ? 'bold' : ''">
                         <div class="item_name">
-                            {{category}}
+                            {{'TXT_TOPIC_CATEGORY_' + category | uppercase | translate}}
                         </div>
                         <!--div class="item_props">
                             404 topics
@@ -85,7 +85,7 @@
                     <div class="dropdown_item" ng-repeat="status in filters.statuses.options" ng-click="doSetFilter(filters.statuses, status)"
                          ng-class="status === filters.statuses.value ? 'bold' : ''">
                         <div class="item_name">
-                            {{status}}
+                            {{'TXT_TOPIC_STATUS_' + status | uppercase}}
                         </div>
                         <div class="clearer"></div>
                     </div>
@@ -121,7 +121,7 @@
             </div>
             <div class="line lightest_line"></div>
             <div class="filter_topics_bottom">
-                <div class="filter_text"><span translate="VIEWS.HOME.LBL_CATEGORY">Category:</span> {{filters.categories.value}}</div>
+                <div class="filter_text"><span translate="VIEWS.HOME.LBL_CATEGORY">Category:</span> {{'TXT_TOPIC_CATEGORY_' + filters.categories.value | uppercase | translate}}</div>
                 <div class="filter_text"><span translate="VIEWS.HOME.LBL_STATUS">Status:</span> {{filters.statuses.value}}</div>
             </div>
         </div>
@@ -237,7 +237,7 @@
                 <div class="text_small" ng-if="wWidth > 667">
                     <!-- FIXME: translate! -->
                     <span ng-repeat="category in topic.categories">
-                        {{category}}<span ng-show="!$last">, </span>
+                        {{'TXT_TOPIC_CATEGORY_' + category | uppercase | translate}}<span ng-show="!$last">, </span>
                     </span>
                 </div>
             </div>
