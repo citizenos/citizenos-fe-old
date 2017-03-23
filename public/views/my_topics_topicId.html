@@ -7,9 +7,7 @@
     <div class="info_container">
 
         <div class="container_header">
-            <div class="header_text">
-                General information
-            </div>
+            <div class="header_text" translate="VIEWS.MY_TOPICS_TOPICID.HEADING_GENERAL_INFORMATION">General information</div>
             <div class="minimize_container" ng-click="generalInfo.isVisible = !generalInfo.isVisible">
                 <div ng-class="!generalInfo.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
@@ -18,9 +16,7 @@
         <div class="container_content" ng-if="generalInfo.isVisible">
 
             <div class="content_top">
-                <div class="container_title" ui-sref="topics.view({topicId: topic.id})">
-                    {{topic.title}}
-                </div>
+                <div class="container_title" ui-sref="topics.view({topicId: topic.id})" ng-bind="topic.title">Topic title</div>
                 <!--div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
                     <div class="ff_table_fix">
                         <div class="table_cell">
@@ -40,37 +36,25 @@
                 <div class="content_column">
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Author
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_AUTHOR">Author</div>
                         <div class="item_content">
-                            <div class="item_text">
-                                {{topic.creator.name}}
-                            </div>
+                            <div class="item_text" ng-bind="topic.creator.name">Autor autor</div>
                         </div>
                         <div class="clearer"></div>
                     </div>
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Date created
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_DATE_CREATED">Date created</div>
                         <div class="item_content">
-                            <div class="item_text">
-                                {{topic.createdAt | amDateFormat : 'L'}}
-                            </div>
+                            <div class="item_text" ng-bind="topic.createdAt | amDateFormat : 'L'">12/12/2017</div>
                         </div>
                         <div class="clearer"></div>
                     </div>
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Your rights
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_YOUR_RIGHTS">Your rights</div>
                         <div class="item_content">
-                            <div class="item_text">
-                                {{topic.permission.level}}
-                            </div>
+                            <div class="item_text" ng-bind="topic.permission.level">level</div>
                         </div>
                         <div class="clearer"></div>
                     </div>
@@ -82,32 +66,24 @@
                 <div class="content_column">
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Users
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_USERS">Users</div>
                         <div class="item_content">
                             <div class="item_text">
-                                {{topic.members.users.count}}
+                                <span ng-bind="topic.members.users.count">0</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" ng-click="doShowMemberUserList();">
-                                    view
-                                </span>
+                                <span class="item_link blue_link" ng-click="doShowMemberUserList();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
                             </div>
                         </div>
                         <div class="clearer"></div>
                     </div>
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Groups
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_GROUPS">Groups</div>
                         <div class="item_content">
                             <div class="item_text">
-                                {{topic.members.groups.count}}
+                                <span ng-bind="topic.members.groups.count">0</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" ng-click="doShowMemberGroupList();">
-                                    view
-                                </span>
+                                <span class="item_link blue_link" ng-click="doShowMemberGroupList();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -120,42 +96,28 @@
                 <div class="content_column">
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Status
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_STATUS">Status</div>
                         <div class="item_content">
-                            <div class="item_text">
-                                {{topic.status}}
-                            </div>
+                            <div class="item_text" ng-bind="topic.status">topic.status</div>
                         </div>
                         <div class="clearer"></div>
                     </div>
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Topic actions
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_TOPIC_ACTIONS">Topic actions</div>
                         <div class="item_content">
-                            <span class="item_text blue_link" ui-sref="my.topics.topicId.settings({topicId: topic.id})">
-                                settings
-                            </span>
+                            <span class="item_text blue_link" ui-sref="my.topics.topicId.settings({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_SETTINGS">settings</span>
                             <span class="separator">|</span>
-                            <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id})">
-                                view
-                            </span>
+                            <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
                             <span class="separator">|</span>
-                            <span class="item_text blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ui-sref="topics.view({topicId: topic.id, editMode: true})">
-                                edit
-                            </span>
+                            <span class="item_text blue_link" translate="MY_TOPIC.LBL_EDIT" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ui-sref="topics.view({topicId: topic.id, editMode: true})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span>
                             <span class="separator">|</span>
-                            <span class="item_text blue_link" ng-click="doLeaveTopic()">
-                                leave
-                            </span>
+                            <span class="item_text blue_link" ng-click="doLeaveTopic()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_LEAVE">leave</span>
                             <span ng-if="topic.canDelete()">
                                 <span class="separator">|</span>
                                 <span class="item_text remove blue_link" ng-click="doDeleteTopic()">
                                     <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
-                                    delete
+                                    <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_DELETE">delete</span>
                                 </span>
                             </span>
                         </div>
@@ -226,9 +188,7 @@
     <div class="info_container vote_results" ng-if="topic.vote.id">
 
         <div class="container_header">
-            <div class="header_text">
-                Current vote results
-            </div>
+            <div class="header_text" translate="VIEWS.MY_TOPICS_TOPICID.HEADING_CURRENT_VOTE_RESULTS">Current vote results</div>
             <div class="minimize_container" ng-click="doToggleVoteResults()">
                 <div ng-class="!voteResults.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
@@ -243,19 +203,13 @@
                 <div class="content_column">
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Results
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_RESULTS">Results</div>
 
                         <div class="results_table">
 
                             <div class="item_content" ng-repeat="voteOption in topic.vote.options.rows | orderBy: 'voteCount'">
-                                <div class="item_text">
-                                    {{voteOption.value}}
-                                </div>
-                                <div class="item_text">
-                                    {{voteOption.voteCount || 0}}
-                                </div>
+                                <div class="item_text" ng-bind="voteOption.value">voteOption.value</div>
+                                <div class="item_text" ng-bind="voteOption.voteCount || 0">0</div>
                             </div>
 
                         </div>
@@ -270,9 +224,7 @@
 
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Votes counted
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_VOTES_COUNTED">Votes counted</div>
                         <div class="item_content">
                             <div class="item_text">
                                 {{voteResults.countTotal}}
@@ -286,17 +238,12 @@
                     </div>
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Vote deadline
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE">Vote deadline</div>
                         <div class="item_content">
                             <div class="item_text">
-                                {{(topic.vote.endsAt | amDateFormat : 'L') || 'none'}}
+                                <span ng-bind="(topic.vote.endsAt | amDateFormat : 'L') || 'none'">12/12/2017</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title"
-                                      cos-modal-on-save="doSaveVoteEndsAt">
-                                    edit
-                                </span>
+                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt"><span translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span></span>
                             </div>
                         </div>
                     </div>
@@ -315,11 +262,10 @@
     <!-- TOPIC LIST -->
     <div class="info_container group_list" id="group_list">
         <div class="container_header">
-            <div class="header_text">
-                Group list ({{topic.members.groups.count}}) |
-                <div class="blue_link" cos-disabled="!topic.members.groups.count" ng-click="groupList.isSearchVisible = !groupList.isSearchVisible; doShowMemberGroupList()">filter</div>
+            <div class="header_text"><span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_GROUP_LIST">Group list</span> <span ng-bind="'('+topic.members.groups.count+')'">0</span> |
+                <div class="blue_link" cos-disabled="!topic.members.groups.count" ng-click="groupList.isSearchVisible = !groupList.isSearchVisible; doShowMemberGroupList()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
                 |
-                <div class="blue_link">add</div>
+                <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
             </div>
             <div class="minimize_container" ng-if="topic.members.groups.count" ng-click="doToggleMemberGroupList()">
                 <div ng-class="!groupList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -330,52 +276,48 @@
                 <input placeholder="Topic title, permission" ng-model="groupList.searchFilter">
             </div>
             <div class="table_cell">
-                <div class="blue_link" ng-click="groupList.searchFilter = ''">clear filter</div>
+                <div class="blue_link" ng-click="groupList.searchFilter = ''" translate="VIEWS.MY_TOPICS_TOPICID.LNK_CLEAR_FILTER">clear filter</div>
             </div>
         </div>
         <div class="container_content" ng-if="groupList.isVisible">
             <div class="pretend_table">
                 <div class="pretend_tr">
                     <div class="mobile_text pretend_th" ng-if="wWidth <= 560">
-                        <div class="th_text">
-                            Order by:
-                        </div>
+                        <div class="th_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_ORDER_BY">Order by:</div>
                     </div>
                     <div class="pretend_th" ng-click="groupList.searchOrderBy.property = 'name'">
                         <div class="th_text">
-                            Name
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_NAME">Name</span>
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="groupList.searchOrderBy.property === 'name'"></div>
                         </div>
                     </div>
                     <div class="pretend_th" ng-click="groupList.searchOrderBy.property = 'level'">
                         <div class="th_text">
-                            Rights
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_RIGHTS">Rights</span>
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="groupList.searchOrderBy.property === 'level'"></div>
                         </div>
                     </div>
                     <div class="pretend_th" ng-click="groupList.searchOrderBy.property = 'members.users.count'">
                         <div class="th_text">
-                            Users
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_USERS">Users</span>
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="groupList.searchOrderBy.property === 'members.users.count'"></div>
                         </div>
                     </div>
                     <div class="pretend_th not_sortable">
                         <div class="th_text">
-                            Remove <span>from topic</span>
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_REMOVE_FROM_TOPIC">Remove from topic</span>
                         </div>
                     </div>
                 </div>
                 <div class="pretend_tr" ng-repeat="group in topic.members.groups.rows | filter: groupList.searchFilter | orderBy: groupList.searchOrderBy.property">
                     <div class="pretend_td">
-                        <div class="blue_link" ng-if="group.permission.level" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})" ui-sref-opts="{reload: true}">{{group.name}}</div>
-                        <div ng-if="!group.permission.level" class="disabled">&lt;Inaccessible Group&gt;</div>
+                        <div class="blue_link" ng-if="group.permission.level" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})" ui-sref-opts="{reload: true}" ng-bind="group.name">Group name</div>
+                        <div ng-if="!group.permission.level" class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP">&lt;Inaccessible Group&gt;</div>
                     </div>
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
-                                <div class="dropdown_text">
-                                    {{group.level}}
-                                </div>
+                                <div class="dropdown_text" ng-bind="group.level">level</div>
 
                                 <div class="arrow_holder">
                                     <div class="table_cell">
@@ -387,15 +329,13 @@
                             </div>
                             <div class="dropdown">
                                 <div class="dropdown_item" ng-repeat="(key, value) in TopicMemberGroup.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberGroup(group, value)">
-                                        {{value}}
-                                    </div>
+                                    <div class="item_name" ng-click="doUpdateMemberGroup(group, value)" ng-bind="value">option</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <span class="pretend_table_mobile_text">Users: </span>{{group.members.users.count}}
+                        <span class="pretend_table_mobile_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_USERS_COUNT" translate-values="{count: group.members.users.count}">Users: </span> 0
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin">
@@ -416,10 +356,10 @@
     <div class="info_container group_list user_list" id="user_list">
         <div class="container_header">
             <div class="header_text">
-                User list ({{topic.members.users.count}}) |
-                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList()">filter</div>
+                <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'('+topic.members.users.count+')'">(0)</span> |
+                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
                 |
-                <div class="blue_link">invite</div>
+                <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE">invite</div>
             </div>
             <div class="minimize_container" ng-click="doToggleMemberUserList()">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -430,32 +370,30 @@
                 <input placeholder="Username, permission" ng-model="userList.searchFilter">
             </div>
             <div class="table_cell">
-                <div class="blue_link" ng-click="userList.searchFilter = ''">clear filter</div>
+                <div class="blue_link" ng-click="userList.searchFilter = ''" translate="VIEWS.MY_TOPICS_TOPICID.LNK_CLEAR_FILTER">clear filter</div>
             </div>
         </div>
         <div class="container_content" ng-if="userList.isVisible">
             <div class="pretend_table">
                 <div class="pretend_tr">
                     <div class="mobile_text pretend_th" ng-if="wWidth <= 560">
-                        <div class="th_text">
-                            Order by:
-                        </div>
+                        <div class="th_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_ORDER_BY">Order by:</div>
                     </div>
                     <div class="pretend_th" ng-click="userList.searchOrderBy.property = 'name'">
                         <div class="th_text">
-                            Profile
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_PROFILE">Profile</span>
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'name'"></div>
                         </div>
                     </div>
                     <div class="pretend_th" ng-click="userList.searchOrderBy.property = 'level'">
                         <div class="th_text">
-                            Rights
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_RIGHTS">Rights</span>
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'level'"></div>
                         </div>
                     </div>
                     <div class="pretend_th not_sortable">
                         <div class="th_text">
-                            Remove <span>from topic</span>
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_REMOVE_FROM_TOPIC">Remove from topic</span>
                         </div>
                     </div>
                 </div>
@@ -475,11 +413,9 @@
                         </div>
                         <div class="name_wrap">
                             <div class="table_cell">
-                                <div>{{user.name}}</div>
-                                <div class="via" ng-if="user.groups.rows.length && !user.levelUser">
-                                    via <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link"
-                                                                                                                         ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{group.level}})</span><span
-                                    ng-if="!group.name" class="disabled">&lt;Inaccessible Group&gt; ({{group.level}})</span></span>
+                                <div ng-bind="user.name">user.name</div>
+                                <div class="via" ng-if="user.groups.rows.length && !user.levelUser"><span translate="VIEWS.MY_TOPICS_TOPICID.LBL_VIA">via</span> <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})" ng-bind="group.name (group.level)">group.name (group.level)</span><span
+                                    ng-if="!group.name" class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP">&lt;Inaccessible Group&gt; ({{group.level}})</span></span>
                                 </div>
                             </div>
                         </div>
@@ -487,9 +423,7 @@
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
-                                <div class="dropdown_text">
-                                    {{user.level}}
-                                </div>
+                                <div class="dropdown_text" ng-bind="user.level">user.level</div>
 
                                 <div class="arrow_holder">
                                     <div class="table_cell">
@@ -501,9 +435,7 @@
                             </div>
                             <div class="dropdown">
                                 <div class="dropdown_item" ng-repeat="(key, level) in TopicMemberUser.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberUser(user, level)">
-                                        {{level}}
-                                    </div>
+                                    <div class="item_name" ng-click="doUpdateMemberUser(user, level)" ng-bind="level">level</div>
                                 </div>
                             </div>
                         </div>

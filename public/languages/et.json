@@ -40,5 +40,9 @@
   "MSG_ERROR_PUT_API_USERS_TOPICS_MEMBERS_USERS_40000": "Viimase admin õigustes kasutaja õigusi pole võimalik muuta. Määra uus admin, et antud kasutaja õigusi muuta.",
   "MSG_ERROR_40300": "Teil puuduvad õigused antud operatsiooni teostamiseks.",
   "MSG_ERROR_50000": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega.",
-  "MSG_ERROR_NETWORK_PROBLEMS": "Network issues, please check your internet connection."
+  "MSG_ERROR_NETWORK_PROBLEMS": "Network issues, please check your internet connection.",
+  "EDIT": "muuda",
+  "MY_TOPIC": {
+      "LBL_EDIT": "@:EDIT"
+  }
 }

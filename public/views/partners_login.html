@@ -1,7 +1,5 @@
 <div ng-controller="LoginFormCtrl">
-    <p>
-        We work together with CitizenOS to offer you a great experience. If you want to use the platform to its fullest, <span class="bold">please login or register.</span>
-    </p>
+    <p translate="VIEWS.PARTNERS_LOGIN.HEADING">We work together with CitizenOS to offer you a great experience. If you want to use the platform to its fullest, <span class="bold">please login or register.</span></p>
 
     <div class="social_buttons_wrap">
 
@@ -12,9 +10,7 @@
                 </div>
             </div>
             <div class="social_text">
-                <div class="table_cell">
-                    Login with Facebook account
-                </div>
+                <div class="table_cell" translate="VIEWS.PARTNERS_LOGIN.BTN_LOGIN_FACEBOOK">Login with Facebook account</div>
             </div>
         </div>
 
@@ -25,9 +21,7 @@
                 </div>
             </div>
             <div class="social_text">
-                <div class="table_cell">
-                    Login with Google account
-                </div>
+                <div class="table_cell" translate="VIEWS.PARTNERS_LOGIN.BTN_LOGIN_GOOGLE">Login with Google account</div>
             </div>
         </div>
 
@@ -38,9 +32,7 @@
                 </div>
             </div>
             <div class="social_text">
-                <div class="table_cell">
-                    Login with ID-Card / Mobiil-ID
-                </div>
+                <div class="table_cell" translate="VIEWS.PARTNERS_LOGIN.ID">Login with ID-Card / Mobiil-ID</div>
             </div>
         </div>
 
@@ -62,9 +54,9 @@
                 <span translate="{{errors.password}}"></span>
             </div>
         </label>
-        <button type="submit" ng-click="doLogin()" cos-disabled="loginForm.$invalid">Log in / Register</button>
+        <button type="submit" ng-click="doLogin()" cos-disabled="loginForm.$invalid" translate="VIEWS.PARTNERS_LOGIN.LOGIN_REGISTER">Log in / Register</button>
         <div class="link_section">
-            <a class="lightbox_link" ng-click="doResetPassword()" href="">Forgot password?</a>
+            <a class="lightbox_link" ng-click="doResetPassword()" href="" translate="VIEWS.PARTNERS_LOGIN.FORGOT_PASSWORD">Forgot password?</a>
         </div>
     </form>
 

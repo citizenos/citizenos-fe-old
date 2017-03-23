@@ -5,9 +5,7 @@
     <div ng-if="wWidth > 767" id="filter_bar_desktop">
 
         <div id="bar_top">
-            <div class="bar_text">
-                Show me topics about
-            </div>
+            <div class="bar_text">Show me topics about</div>
             <div cos-dropdown class="bar_select">
 
                 <div class="select_text">
@@ -71,9 +69,7 @@
             </div-->
 
             <div cos-dropdown class="bar_section">
-                <div class="bar_text">
-                    Show
-                </div>
+                <div class="bar_text">Show</div>
                 <div class="bar_select">
                     {{filters.statuses.value}}
                     <div class="icon_holder">
@@ -104,9 +100,7 @@
                 </div>
 
 
-                <div class="blue_link" ng-click="doClearFilters()">
-                    Clear filters
-                </div>
+                <div class="blue_link" ng-click="doClearFilters()">Clear filters</div>
             </span>
 
         </div>
@@ -136,9 +130,7 @@
 
             <div id="fi_top">
                 <div id="fi_header">
-                    <div id="fi_header_text">
-                        Filter the topics
-                    </div>
+                    <div id="fi_header_text">Filter the topics</div>
                     <div id="close_fi" ng-click="app.showSearchFiltersMobile = false">
                         <div class="table_cell">
                             <div class="sprite sprite-btn-popup-close2x"></div>
@@ -176,9 +168,7 @@
             </div>
 
             <div class="fi_submit">
-                <div class="blue_button" ng-click="app.showSearchFiltersMobile = false">
-                    Submit filter
-                </div>
+                <div class="blue_button" ng-click="app.showSearchFiltersMobile = false">Submit filter</div>
             </div>
 
         </div>
@@ -192,12 +182,8 @@
         <div ng-if="!isTopicListLoading && !topicList.length" class="table">
             <div class="v_align_cell">
                 <div class="title_area">
-                    <h1>
-                        We’re sorry, but we couldn’t find any results :(
-                    </h1>
-                    <h2>
-                        Maybe you can get the first discussion initiated by
-                    </h2>
+                    <h1>We’re sorry, but we couldn’t find any results :(</h1>
+                    <h2>Maybe you can get the first discussion initiated by</h2>
                 </div>
 
                 <div class="button_area">
@@ -207,7 +193,7 @@
                             <div class="icon_nudge">
                                 <div class="sprite sprite-x2-mytopics-icon-newtopic-big2x"></div>
                             </div>
-                            <div class="topic_text">Creating<br> a new topic</div>
+                            <div class="topic_text">Creating a new topic</div>
                         </div>
                     </div>
 
@@ -219,21 +205,15 @@
             <div class="topic_wrap">
                 <div class="text_area">
 
-                    <div class="top text_small">
-                        A beginner’s guide to CitizenOS.
-                    </div>
+                    <div class="top text_small">A beginner’s guide to CitizenOS.</div>
 
                     <div class="main_text">
-                        <div class="text_big">
-                            Hi there, welcome to CitizenOS! Read this topic to find out how everything works.
-                        </div>
+                        <div class="text_big">Hi there, welcome to CitizenOS! Read this topic to find out how everything works.</div>
                     </div>
 
                     <div class="line white_line"></div>
 
-                    <div class="text_small" ng-if="wWidth > 667">
-                        Tutorial and explanation
-                    </div>
+                    <div class="text_small" ng-if="wWidth > 667">Tutorial and explanation</div>
 
                 </div>
             </div>
@@ -248,12 +228,8 @@
                 </div>
 
                 <div class="main_text">
-                    <div class="text_big" ng-bind-html="topic.title">
-                        Open Governance Workshop: Public decision-making in 2025
-                    </div>
-                    <div class="text_small" ng-if="wWidth > 667" ng-bind-html="topic.description">
-                        Discussions, lectures and a mini-hackathon to change experiences and ideas, to get inspired and boost ope…
-                    </div>
+                    <div class="text_big" ng-bind-html="topic.title">Open Governance Workshop: Public decision-making in 2025</div>
+                    <div class="text_small" ng-if="wWidth > 667" ng-bind-html="topic.description">Discussions, lectures and a mini-hackathon to change experiences and ideas, to get inspired and boost ope…</div>
                 </div>
 
                 <div class="line"></div>
