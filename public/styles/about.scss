@@ -1,0 +1,20 @@
+@import 'vars';
+
+#about_page_root {
+    display: table;
+    h1 {
+        font-size: 46px;
+        font-weight: $medium_black;
+        line-height: 62px;
+        font-weight: $bold;
+        color: $medium_black;
+    }
+}
+
+.about_page_left, .about_page_right  {
+    display: table;
+}
+
+.about_page_left {
+    background: $light_gray;
+}
