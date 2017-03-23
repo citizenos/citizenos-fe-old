@@ -33,7 +33,7 @@
 
             <div class="days_left_wrap" ng-class="{favorite_yellow_background: topic.status === STATUSES.inProgress, bar_green: topic.status === STATUSES.voting, bar_blue: topic.status === STATUSES.followUp,timeline_gray_background: topic.status === STATUSES.closed }" ng-style="topic.status === STATUSES.inProgress && {'left':'25%'}  || topic.status === STATUSES.voting && {'left':'50%'} || topic.status === STATUSES.followUp && {'left': '75%'} || topic.status === STATUSES.closed && {'left': '99%'}">
                 <div class="table_cell">
-                    {{'TXT_TOPIC_STATUS_' + topic.status | uppercase}}
+                    {{'TXT_TOPIC_STATUS_' + topic.status | uppercase | translate}}
                 </div>
             </div>
 
@@ -72,7 +72,7 @@
 
 
         <div class="additional_info current_phase">
-            <span translate="VIEWS.TOPICS_TOPICID.BAR_CURRENT_PHASE">Current phase:</span> {{'TXT_TOPIC_STATUS_' + topic.status | uppercase}}
+            <span translate="VIEWS.TOPICS_TOPICID.BAR_CURRENT_PHASE">Current phase:</span> {{'TXT_TOPIC_STATUS_' + topic.status | uppercase | translate}}
         </div>
     </div>
 
