@@ -25,28 +25,28 @@
                     <div class="lightbox_section">
                         <form name="signUpForm" ng-controller="SignUpFormCtrl">
                             <input id="name" ng-model="form.name" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_NAME' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}"
-                                   required>
+                                   maxlength="255" required>
                             <label for="name" class="error_label" ng-if="errors.name">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.name}}"></span>
                                 </div>
                             </label>
-                            <input id="company" ng-model="form.company" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_COMPANY' | translate}}" ng-class="{'error_input': errors.company}">
+                            <input id="company" ng-model="form.company" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_COMPANY' | translate}}" ng-class="{'error_input': errors.company}" maxlength="255">
                             <label for="company" class="error_label" ng-if="errors.company">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.company}}"></span>
                                 </div>
                             </label>
-                            <input id="email" ng-model="form.email" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_EMAIL' | translate" ng-class="{'error_input': errors.email}" required>
+                            <input id="email" ng-model="form.email" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_EMAIL' | translate}}" ng-class="{'error_input': errors.email}" maxlength="254" required>
                             <label for="email" class="error_label" ng-if="errors.email">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.email}}"></span>
                                 </div>
                             </label>
-                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" required>
+                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64" required>
                             <label for="password" class="error_label" ng-if="errors.password">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>

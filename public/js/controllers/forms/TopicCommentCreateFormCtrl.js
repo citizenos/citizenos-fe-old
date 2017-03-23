@@ -32,7 +32,8 @@ angular
                 .then(function (data) {
                     $scope.loadTopicComments();
                 });
-        }
+        };
+
         $scope.submitPro = function () {
             saveComment(null, TopicComment.COMMENT_TYPES.pro);
         };

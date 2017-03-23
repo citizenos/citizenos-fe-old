@@ -52,8 +52,8 @@
                                 <span translate="MODALS.TOPIC_VOTE_SIGN_ERROR_PID">Invalid PID number</span>
                             </div>
                         </label>
-                        <div ng-if="formMobile.isLoading" class="code" translate="MODALS.TOPIC_VOTE_SIGN_TXT_CONTROL_CODE" translate-values="{code: challengeID}">Kontrollkood: 1234</div>
-                        <div ng-if="formMobile.isLoading" class="code_text" translate="MODALS.TOPIC_VOTE_SIGN_TXT_CHECK_CONTROL_CODE">Please enter the PIN in your mobile phone...</div>
+                        <div ng-if="formMobile.isLoading && formMobile.challengeID" class="code" translate="MODALS.TOPIC_VOTE_SIGN_TXT_CONTROL_CODE" translate-values="{code: challengeID}">Kontrollkood: 1234</div>
+                        <div ng-if="formMobile.isLoading && formMobile.challengeID" class="code_text" translate="MODALS.TOPIC_VOTE_SIGN_TXT_CHECK_CONTROL_CODE">Please enter the PIN in your mobile phone...</div>
                         <div ng-if="formMobile.isLoading"  class="loader_wrap">
                             <div class="loader"></div>
                         </div>

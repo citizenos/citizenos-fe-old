@@ -68,6 +68,8 @@ angular
 
                 if (translationKey !== translate(translationKey)) {
                     errors[key] = translationKey;
+                } else {
+                    errors[key] = errors[key] + ' *'; // Add asterisk to the end so its easy to see that untranslated message was shown
                 }
             });
         };

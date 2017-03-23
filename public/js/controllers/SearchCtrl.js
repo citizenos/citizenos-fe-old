@@ -50,7 +50,11 @@ angular
 
         $scope.goToView = function (id, model) {
             if(model == 'topic') {
-                $state.go('my.topics.topicId', {topicId: id, filter:null}, {reload:true});
+                if(sAuth.user.loggedIn) {
+                    $state.go('my.topics.topicId', {topicId: id, filter:null}, {reload:true});
+                } else {
+                    $state.go('topics.view', {topicId: id, filter:null}, {reload:true});
+                }
             } else if (model === 'group') {
                 $state.go('my.groups.groupId', {groupId: id, filter:'grouped'}, {reload:true});
             }
