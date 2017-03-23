@@ -94,11 +94,11 @@
                     </div>
                     <div class="tabs_rails">
                         <div class="tabs_train" slide-controller identifier="tabsTrain" start_slide_at="1024" ng-style="{'margin-left' : trainPosition + 'px'}">
-                            <div class="tab" ng-class="{selected: ('topics.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
-                                <div class="table_cell" ui-sref="topics.view({topicId: topic.id})" ui-sref-opts="{reload: true}" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
+                            <div class="tab" ui-sref="topics.view({topicId: topic.id})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
                             </div>
-                            <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ng-class="{selected: ('topics.view.votes.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
-                                <div class="table_cell" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})" ui-sref-opts="{reload: true}" translate="VIEWS.TOPICS_TOPICID.TAB_VOTE">Vote</div>
+                            <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VOTE">Vote</div>
                             </div>
                         </div>
                     </div>

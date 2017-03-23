@@ -184,8 +184,9 @@
 
     </div-->
 
-    <!-- CURRENT VOTE RESULTS -->
-    <div class="info_container vote_results" ng-if="topic.vote.id">
+    <!-- CURRENT VOTE WITH VOTING -->
+
+    <div class="info_container vote_results" ng-if="topic.vote.id" >
 
         <div class="container_header">
             <div class="header_text" translate="VIEWS.MY_TOPICS_TOPICID.HEADING_CURRENT_VOTE_RESULTS">Current vote results</div>
@@ -200,7 +201,70 @@
             <div class="content_bottom">
 
                 <!-- COLUMN 1 -->
-                <div class="content_column">
+                <div class="content_column" ng-controller="TopicVoteCtrl">
+                    <div class="content_item" ng-if="topic.status === STATUSES.voting">
+                        <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE">
+                            Cast your vote
+                        </div>
+                        <div class="voting_buttons">
+                            <div class="line lightest_line"></div>
+
+                            <div class="voting_platform_buttons">
+
+                                <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active' : ''"ng-repeat="(key, option) in topic.vote.options.rows" ng-click="doVote(option)">
+                                    <div class="table_cell left_side">
+                                        {{getOptionLetter(key)}}.
+                                    </div>
+                                    <div class="table_cell right_side">
+                                        {{option.value}}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="delegation_section" ng-if="!topic.hasVoteEnded()">
+
+                                <div class="voting_button voting_button_blue" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)" ng-class="topic.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
+                                    <div class="table_cell left_side">
+                                        <div class="sprite sprite-icon-delegate2x"></div>
+                                    </div>
+                                    <div class="table_cell right_side" translate="VIEWS.MY_TOPICS_TOPICID.VOTE_HEADING_DELEGATE">Delegate your vote</div>
+                                </div>
+
+                                <div class="delegation_information" ng-if="topic.vote.delegation">
+                                    <div class="delegation_title" translate="VIEWS.MY_TOPICS_TOPICID.VOTE_DELEGATED_TO">You delegated your vote to</div>
+                                    <div class="delegations">
+
+                                        <div class="table_cell">
+                                            <div class="profile_image_wrapper dark">
+                                                <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
+                                                <div class="account_picture">
+                                                    <img ng-src="{{topic.vote.delegation.imageUrl}}">
+                                                    <div class="profile_image_filler">
+                                                        <div class="table_cell">
+                                                            ML
+                                                        </div>
+                                                        <div class="profile_circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="name_wrap">
+                                                <div class="table_cell">
+                                                    <div class="blue_link bold">{{topic.vote.delegation.name}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="table_cell">
+                                            <div class="blue_button" ng-click="doRevokeDelegation()" translate="VIEWS.MY_TOPICS_TOPICID.VOTE_REVOKE_DELEGATION">Revoke your delegation</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
 
                     <div class="content_item">
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_RESULTS">Results</div>
