@@ -34,7 +34,7 @@
         .search_cat {
             width: 100%;
             background: $medium_gray;
-            
+
             .cat_wrap {
                 @extend .table_cell;
                 padding: 0 20px 0 20px;
@@ -61,7 +61,7 @@
                         display: inline-block;
                         margin-bottom: 10px;
                     }
-                        
+
                     .search_msg {
                         display: inline-block;
                         width: 560px;
@@ -79,14 +79,14 @@
                 .result_title, .links_wrap {
                     display: table-cell;
                 }
-                
+
                 .links_wrap, .result_title, .more_results {
                     padding: 5px 15px;
                 }
 
                 .links_wrap {
                     @include mobile {
-                        padding: 10px 15px; 
+                        padding: 10px 15px;
                     }
                 }
 
@@ -108,7 +108,7 @@
                 .more_results:hover, .result_link:hover  {
                     color: $sky_blue;
                 }
-                
+
             }
         }
     }
