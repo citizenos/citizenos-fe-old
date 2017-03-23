@@ -110,7 +110,7 @@
                             <span class="separator">|</span>
                             <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
                             <span class="separator">|</span>
-                            <span class="item_text blue_link" translate="MY_TOPIC.LBL_EDIT" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ui-sref="topics.view({topicId: topic.id, editMode: true})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span>
+                            <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id, editMode: true})" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span>
                             <span class="separator">|</span>
                             <span class="item_text blue_link" ng-click="doLeaveTopic()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_LEAVE">leave</span>
                             <span ng-if="topic.canDelete()">
@@ -265,7 +265,7 @@
             <div class="header_text"><span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_GROUP_LIST">Group list</span> <span ng-bind="'('+topic.members.groups.count+')'">0</span> |
                 <div class="blue_link" cos-disabled="!topic.members.groups.count" ng-click="groupList.isSearchVisible = !groupList.isSearchVisible; doShowMemberGroupList()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
                 |
-                <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
+                <div class="blue_link" ui-sref="my.topics.topicId.settings({topicId: topic.id, tab: 'invite'})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
             </div>
             <div class="minimize_container" ng-if="topic.members.groups.count" ng-click="doToggleMemberGroupList()">
                 <div ng-class="!groupList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -305,7 +305,7 @@
                     </div>
                     <div class="pretend_th not_sortable">
                         <div class="th_text">
-                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_REMOVE_FROM_TOPIC">Remove from topic</span>
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LBL_REMOVE_FROM_TOPIC">Remove from topic</span>
                         </div>
                     </div>
                 </div>
@@ -359,7 +359,7 @@
                 <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'('+topic.members.users.count+')'">(0)</span> |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
                 |
-                <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE">invite</div>
+                <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my.topics.topicId.settings({topicId: topic.id, tab: 'invite'})">invite</div>
             </div>
             <div class="minimize_container" ng-click="doToggleMemberUserList()">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -393,7 +393,7 @@
                     </div>
                     <div class="pretend_th not_sortable">
                         <div class="th_text">
-                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_REMOVE_FROM_TOPIC">Remove from topic</span>
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LBL_REMOVE_FROM_TOPIC">Remove from topic</span>
                         </div>
                     </div>
                 </div>

@@ -123,7 +123,8 @@
     "TOPIC_SETTINGS_LBL_DELETE_TOPIC_EXT": "DELETING A TOPIC CAN NOT BE UNDONE. BE SURE TO BE REALLY SURE ABOUT THIS.",
     "TOPIC_SETTINGS_BTN_DELETE_TOPIC": "@:MODALS.TOPIC_SETTINGS_LBL_DELETE_TOPIC",
     "TOPIC_SETTINGS_TXT_ASSIGN_CATEGORIES": "Assign up to 3 categories",
-    "TOPIC_SETTINGS_TXT_INVITE_USERS": "Invite users via their name or e-mail address",
+    "TOPIC_SETTINGS_TXT_INVITE_USERS_AND_GROUPS": "Invite users and groups via name or e-mail address",
+    "TOPIC_SETTINGS_PLACEHOLDER_INVITE_USERS_AND_GROUPS": "Search by name or e-mail address",
     "TOPIC_SETTINGS_TH_USERS": "Users",
     "TOPIC_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD": "Press enter or click to add",
     "TOPIC_SETTINGS_TH_GROUPS": "Groups",
@@ -157,7 +158,7 @@
     "GROUP_CREATE_SETTINGS_TH_USERS": "@:MODALS.TOPIC_SETTINGS_TH_USERS",
     "GROUP_CREATE_SETTINGS_TXT_TOPIC_USERS": "Topic users: <b>{{count}}</b>",
     "GROUP_CREATE_SETTINGS_LBL_GROUP_RIGHTS": "Group right over topic:",
-    "GROUP_CREATE_SETTINGS_LBL_INVITE_USERS": "@:MODALS.TOPIC_SETTINGS_TXT_INVITE_USERS",
+    "GROUP_CREATE_SETTINGS_LBL_INVITE_USERS": "Invite users via their name or e-mail address",
     "GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_BY_NAME_EMAIL": "Search by username or e-mail address",
     "TOPIC_VOTE_DELEGATE_HEADING": "Delegate your vote for topic",
     "TOPIC_VOTE_DELEGATE_TAB": "Delegate",
@@ -166,7 +167,21 @@
     "TOPIC_VOTE_DELEGATE_PLACEHOLDER_SEARCH_BY_NAME": "Search members by name",
     "TOPIC_VOTE_DELEGATE_TXT_PRESS_ENTER_OR_CLICK_TO_ADD": "@:MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD",
     "TOPIC_VOTE_DELEGATE_TXT_PRESS_ENTER_TO_ADD": "@:MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_TO_ADD",
-    "TOPIC_VOTE_DELEGATE_TH_USERS": "@:MODALS.TOPIC_SETTINGS_TH_USERS"
+    "TOPIC_VOTE_DELEGATE_TH_USERS": "@:MODALS.TOPIC_SETTINGS_TH_USERS",
+    "TOPIC_VOTE_REVOKE_DELEGATION_CONFIRM_HEADING": "Revoke delegation",
+    "TOPIC_VOTE_REVOKE_DELEGATION_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to revoke this delegation?",
+    "TOPIC_VOTE_REVOKE_DELEGATION_CONFIRM_NO": "@:BTN_NO",
+    "TOPIC_VOTE_REVOKE_DELEGATION_CONFIRM_YES": "@:BTN_YES",
+    "TOPIC_VOTE_SIGN_HEADING": "Choose a signing method",
+    "TOPIC_VOTE_SIGN_TXT_VOTING_FOR": "YOU’RE VOTING: {{optionSelected.value}}",
+    "TOPIC_VOTE_SIGN_PLACEHOLDER_PHONE": "@:MODALS.LOGIN_ESTEID_PLACEHOLDER_PHONE",
+    "TOPIC_VOTE_SIGN_ERROR_PHONE": "@:MODALS.LOGIN_ESTEID_ERROR_PHONE",
+    "TOPIC_VOTE_SIGN_PLACEHOLDER_PID": "@:MODALS.LOGIN_ESTEID_PLACEHOLDER_PID",
+    "TOPIC_VOTE_SIGN_ERROR_PID": "@:MODALS.LOGIN_ESTEID_ERROR_PID",
+    "TOPIC_VOTE_SIGN_TXT_CONTROL_CODE": "@:MODALS.LOGIN_ESTEID_TXT_CONTROL_CODE",
+    "TOPIC_VOTE_SIGN_TXT_CHECK_CONTROL_CODE": "@:MODALS.LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE",
+    "TOPIC_VOTE_SIGN_BTN_SIGN_MID": "Sign with Mobiil-ID",
+    "TOPIC_VOTE_SIGN_BTN_SIGN_CARD": "Sign with ID-Card"
   },
   "TXT_TOPIC_CATEGORY_BUSINESS": "Business and industry",
   "TXT_TOPIC_CATEGORY_TRANSPORT": "Public transport and road safety",
@@ -182,6 +197,32 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Defense and security",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integration and human rights",
   "TXT_TOPIC_CATEGORY_VARIA": "Varia",
+  "DEFAULT": {
+    "NAV": "Log out",
+    "NAV_MOBILE": {
+      "BTN_EDIT": "Edit",
+      "BTN_SETTINGS": "Settings",
+      "BTN_MENU": "Menu",
+      "PLACEHOLDER_SEARCH": "Search"
+    },
+    "SEARCH": {
+      "HEADING_RESULTS_IN": "Context search results in {{context}} {{model}}",
+      "LNK_VIEW_MORE_RESULTS": "View more results",
+      "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
+      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?<br>We did find some things scattered throughout the CitizenOS platform, so feel free to check them out. We promise it will be worth your while!"
+    }
+  },
+  "DIRECTIVES": {
+    "COS_MODAL": {
+      "BTN_SAVE": "Save",
+      "BTN_CANCEL": "@:LNK_CANCEL"
+    },
+    "COS_MODAL_DATEPICKER": {
+      "LBL_DEADLINE": "@:VIEWS.TOPICS_TOPICID.VOTE_LBL_DEADLINE",
+      "BTN_SAVE": "Save",
+      "BTN_CANCEL": "@:LNK_CANCEL"
+    }
+  },
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource :(",
@@ -300,7 +341,7 @@
       "BAR_TOOLTIP_IN_PROGRESS": "in progress",
       "BAR_TOOLTIP_VOTING": "in voting",
       "BAR_SIGNING_DEADLINE": "Signing deadline: {{deadline | amDateFormat:'L'}}",
-      "BAR_CURRENT_PHASE": "Current phase: {{status}}",
+      "BAR_CURRENT_PHASE": "Current phase:",
       "TAB_VIEW": "View",
       "TAB_VOTE": "Vote",
       "TAB_INFO_TXT_EDIT": "You are now in edit mode. You can add text or make changes to it",
