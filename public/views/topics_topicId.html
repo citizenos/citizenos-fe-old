@@ -387,7 +387,7 @@
                                 <div class="left_row">
 
                                     <div class="input_with_icon clickable"  ng-repeat="(key, option) in voteForm.options">
-                                        <input class="gray_borders" ng-model="option.value" placeholder="{{VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER | translate}}">
+                                        <input class="gray_borders" ng-model="option.value" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER' | translate}}">
                                         <div class="icon_table">
                                             <div class="icon_cell" ng-click="removeOption(key)">
                                                 <div class="sprite sprite-inputfield-icon-delete2x"></div>
@@ -396,7 +396,7 @@
                                     </div>
 
                                     <div class="input_with_icon clickable">
-                                        <input class="gray_borders" placeholder="{{VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER | translate}}">
+                                        <input class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER' | translate}}">
                                         <div class="icon_table">
                                             <div class="icon_cell">
                                                 <div class="sprite sprite-inputfield-icon-delete2x"></div>
@@ -608,7 +608,7 @@
                             <div ng-if="app.activeCommentSection == 'arguments' || app.activeCommentSection == undefined" class="arguments_container">
                                 <div class="arguments_wrap">
                                     <div class="arguments_header">
-                                        <div class="number_of_arguments" translate="VIEWS.TOPICS_TOPICID.TAB_ARGUMENTS_HEADING" translate-values="{comments: topicComments.rows.length}">0 arguments</div>
+                                        <div class="number_of_arguments" translate="VIEWS.TOPICS_TOPICID.TAB_ARGUMENTS_HEADING" translate-values="{count: topicComments.rows.length}">0 arguments</div>
                                         <div class="arguments_data">
                                             <div class="data_left">
                                                 <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_PRO" translate-values="{countPro:topicComments.count.pro}">pro: 0</span>
@@ -736,7 +736,7 @@
 
 
                                             <div class="post_argument_wrap" ng-if="comment.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                                                <textarea class="gray_borders" placeholder="{{VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE | translate}}" ng-model="form.text"></textarea>
+                                                <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" ng-model="form.text"></textarea>
                                                 <div class="blue_button" cos-disabled="!form.text" ng-click="submitReply(comment.id)" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_REPLY">Post reply</div>
                                                 <div class="clearer"></div>
                                             </div>
@@ -825,7 +825,7 @@
                                             </div>
 
                                             <div class="post_argument_wrap" ng-if="reply.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                                                <textarea class="gray_borders" placeholder="{{VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE | translate}}" ng-model="form.text"></textarea>
+                                                <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" ng-model="form.text"></textarea>
                                                 <div class="blue_button" cos-disabled="!form.text" ng-click="submitReply(comment.id)" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_REPLY_POST_REPLY">Post reply</div>
                                                 <div class="clearer"></div>
                                             </div>
@@ -839,8 +839,8 @@
 
                                     <div id="post_argument_wrap" class="post_argument_wrap" ng-controller="TopicCommentCreateFormCtrl">
                                         <div class="line lightest_line" ng-if="topicComments.rows.length"></div>
-                                        <input placeholder="{{VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT | translate}}" class="gray_borders" ng-model="form.subject">
-                                        <textarea class="gray_borders" placeholder="{{VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT | translate}}" ng-model="form.text"></textarea>
+                                        <input placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}" class="gray_borders" ng-model="form.subject">
+                                        <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-model="form.text"></textarea>
                                         <div class="blue_button nature_green_button" cos-disabled="(!form.subject || !form.text)" ng-click="submitPro()" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_PRO">Post as a pro argument</div>
                                         <div class="blue_button pinky_red_button" cos-disabled="(!form.subject || !form.text)" ng-click="submitCon()" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_CON">Post as a con argument</div>
                                         <div class="clearer"></div>

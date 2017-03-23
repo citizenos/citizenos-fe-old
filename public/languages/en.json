@@ -314,8 +314,8 @@
       "LNK_RIGHTS": "Rights",
       "LNK_USERS": "Users",
       "LBL_REMOVE_FROM_GROUP": "Remove from group",
-      "LBL_USERS_COUNT": "Users: {{topic.members.users.count}}",
-      "HEADING_USERS_LIST": "User list ({{group.members.users.count}})",
+      "LBL_USERS_COUNT": "Users: {{count}}",
+      "HEADING_USERS_LIST": "User list ({{count}})",
       "LNK_PROFILE": "Profile"
     },
     "MY_TOPICS_TOPICID": {
