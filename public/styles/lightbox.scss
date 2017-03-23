@@ -1339,6 +1339,25 @@
                         font-size: 14px;
                     }
 
+                    &.hashtag_cell {
+                        padding: 0;
+                    }
+
+                    #hashtag {
+                        margin: 0 10px 0 0;
+                    }
+                    .recycle_bin_wrap {
+                        width: 32px;
+                        display: inline-block;
+                        float:right;
+                        &.wrap_mobile {
+                            display:none;
+                        }
+                    }
+
+                    .error_label {
+                        width: 100%;
+                    }
                 }
 
                 @media (max-width: 560px) {
@@ -1361,6 +1380,22 @@
                             float: none;
                             margin-top: 10px;
                         }
+                        &.hashtag_cell {
+                            width: 100%;
+                        }
+                        .recycle_bin_wrap {
+                            display:none;
+                            width: 100%;
+                            .btn_wrap {
+                                width: 100%;
+                                margin-top:10px;
+                            }
+                            &.wrap_mobile {
+                                display: inline-block;
+                                float: none;
+                            }
+                        }
+
                     }
                 }
             }

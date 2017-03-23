@@ -7,16 +7,12 @@ angular
             priority: 599, // Lower than ng-if, ng-repeat
             scope: true,
             compile: function (tElem, tAttrs) {
-                $log.debug('cosDisabled.compile', tElem, tAttrs);
-
                 tElem.removeAttr('cos-disabled'); // Remove itself from the template element to avoid compile loop
                 tElem.removeAttr('cos-disabled-tooltip'); // Remove itself from the template element to avoid compile loop
                 tElem.removeAttr('ng-repeat'); // Remove ng-repeat so that the when used along with ng-repeat the directive is not recompiled
                 tElem.removeAttr('ng-if'); // Remove ng-if so that the when used along with ng-if the directive is not recompiled
 
                 return function (scope, elem, attrs) {
-                    $log.debug('cosDisabled.link', elem, attrs, attrs.cosDisabled);
-
                     var cosDisabled = scope.$eval(attrs.cosDisabled);
                     var cosDisabledTooltip = attrs.cosDisabledTooltip;
 
@@ -30,8 +26,6 @@ angular
                     $compile(elem)(scope);
 
                     var update = function () {
-                        $log.debug('cosDisabled.update()', attrs.cosDisabled, cosDisabled, elem, attrs, elem.next());
-
                         var originalElement = elem;
 
                         // With tooltip on, the elem is not the original, but a "comment" that marks tooltip start. So elem.next gives the tooltip itself.
@@ -48,7 +42,6 @@ angular
                         }
 
                         if (!angular.isDefined(cosDisabled) || cosDisabled) {
-                            $log.debug('cosDisabled.update()', 'DISABLE', originalElement, elem.prop('nodeType'), elem.prop('tagName'));
                             originalElement.addClass('disabled');
                             originalElement.css('pointer-events', 'none');
                             originalElement.find('input').attr('disabled', true);
@@ -59,7 +52,6 @@ angular
                                 tooltip.removeClass('_force-hidden');
                             }
                         } else {
-                            $log.debug('cosDisabled.update()', 'ENABLE', cosDisabled, originalElement, elem);
                             originalElement.removeClass('disabled');
                             originalElement.css('pointer-events', 'auto');
                             originalElement.find('input').removeAttr('disabled');
@@ -73,11 +65,9 @@ angular
                     };
 
                     var watchDerigistrationFunction = scope.$watch(function () {
-                        $log.debug('cosDisabled.addWatch', elem);
                         cosDisabled = scope.$eval(attrs.cosDisabled);
                         return cosDisabled;
                     }, function (newVal, oldVal) {
-                        $log.debug('cosDisabled.watch', arguments);
                         update();
                     });
 
@@ -87,7 +77,6 @@ angular
                     });
 
                     scope.$on('$destroy', function () {
-                        $log.debug('cosDisabled.$destroy');
                         if (watchDerigistrationFunction) {
                             watchDerigistrationFunction();
                         }

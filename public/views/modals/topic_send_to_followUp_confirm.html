@@ -7,7 +7,7 @@
 
 
                 <div id="lightbox_header_text">
-                    <div class="title">Send topic to follow up</div>
+                    <div class="title" translate="MODALS.TOPIC_SEND_TO_FOLLOWUP_CONFIRM_HEADING">Send topic to follow up</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -27,7 +27,7 @@
                 <div class="second_header">
 
                     <div class="sprite sprite-icon-delete-topic2x"></div>
-                    <div class="delete_title">Are you sure you want to continue?</div>
+                    <div class="delete_title" translate="MODALS.TOPIC_SEND_TO_FOLLOWUP_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to continue?</div>
 
                     <div id="lightbox_close" ng-click="closeThisDialog()">
                         <div class="table_cell">
@@ -47,23 +47,23 @@
                     <div class="delete_info_text_wrap">
                         <div class="delete_info">
                             <div class="sprite sprite-checkmark2x"></div>
-                            <div class="delete_info_text">The topic will close, it's contents can no longer be edited.</div>
+                            <div class="delete_info_text" translate="MODALS.TOPIC_SEND_TO_FOLLOWUP_CONFIRM_TXT_NO_EDIT">The topic will close, it's contents can no longer be edited.</div>
                         </div>
 
                         <div class="delete_info">
                             <div class="sprite sprite-checkmark2x"></div>
-                            <div class="delete_info_text">Voting will end, further voting will not be possible.</div>
+                            <div class="delete_info_text" translate="MODALS.TOPIC_SEND_TO_FOLLOWUP_CONFIRM_TXT_NO_VOTE">Voting will end, further voting will not be possible.</div>
                         </div>
                     </div>
 
                     <div class="delete_info_button_wrap">
 
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="closeThisDialog()">NO, DON'T CHANGE STATUS</div>
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.TOPIC_SEND_TO_FOLLOWUP_CONFIRM_BTN_NO">NO, DON'T CHANGE STATUS</div>
                         </div>
 
                         <div class="table_cell">
-                            <div class="blue_button yes" ng-click="confirm()">YES, CHANGE THE STATUS</div>
+                            <div class="blue_button yes" ng-click="confirm()" translate="MODALS.TOPIC_SEND_TO_FOLLOWUP_CONFIRM_BTN_YES">YES, CHANGE THE STATUS</div>
                         </div>
 
                     </div>

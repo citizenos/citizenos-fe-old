@@ -1,14 +1,13 @@
 angular
     .module('citizenos')
-    .directive('required', ['$translate', function ($translate) {
+    .directive('required', ['$timeout', function ($timeout) {
         return {
             restrict: 'A',
             link: function (scope, elem, attrs) {
                 if (attrs.placeholder) {
-                    $translate(attrs.placeholder)
-                        .then(function (translatedValue) {
-                            elem.attr('placeholder', translatedValue + ' *');
-                        });
+                    $timeout(function () {
+                        elem.attr('placeholder', attrs.placeholder + ' *');
+                    });
                 }
             }
         }

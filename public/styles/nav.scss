@@ -356,7 +356,7 @@ nav {
 
     }
 
-    .header_button.settings.active {
+    .header_button.settings.active, .header_button.edit.active  {
         background: $side_panel_gray;
         padding-left: 0;
         .line_holder {

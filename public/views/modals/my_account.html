@@ -6,7 +6,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <span>My account</span>
+                    <span translate="MODALS.MY_ACCOUNT_HEADING">My account</span>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -38,46 +38,46 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="edit_image_properties">
-                                <div class="blue_link">Upload new</div> |
-                                <div class="blue_link">Delete</div>
+                            <!--div id="edit_image_properties">
+                                <div class="blue_link" translate="">Upload new</div> |
+                                <div class="blue_link" translate="">Delete</div>
                                 <br>
-                                <span>Max 500kb jpg, gif or png</span>
-                            </div>
+                                <span translate="">Max 500kb jpg, gif or png</span>
+                            </div-->
                         </div>
 
                         <form name="myAccountForm" ng-controller="MyAccountFormCtrl">
-                            <input id="name" ng-model="form.name" placeholder="Full name" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" required>
+                            <input id="name" ng-model="form.name" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NAME' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" maxlength="255" required>
                             <label for="name" class="error_label" ng-if="errors.name">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.name}}"></span>
                                 </div>
                             </label>
-                            <input id="company" ng-model="form.company" placeholder="Company" ng-class="{'error_input': errors.company}">
+                            <input id="company" ng-model="form.company" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_COMPANY' | translate}}" ng-class="{'error_input': errors.company}" maxlength="255">
                             <label for="company" class="error_label" ng-if="errors.company">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.company}}"></span>
                                 </div>
                             </label>
-                            <input id="email" ng-model="form.email" placeholder="E-mail address" ng-class="{'error_input': errors.email}" required>
+                            <input id="email" ng-model="form.email" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_EMAIL' | translate}}" ng-class="{'error_input': errors.email}"  maxlength="254" required>
                             <label for="email" class="error_label" ng-if="errors.email">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.email}}"></span>
                                 </div>
                             </label>
-                            <input id="password" ng-model="form.password" type="password" placeholder="Password" ng-class="{'error_input': errors.password}" required>
+                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64" required>
                             <label for="password" class="error_label" ng-if="errors.password">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.password}}"></span>
                                 </div>
                             </label>
-                            <button type="submit" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button">Save changes</button>
+                            <button type="submit" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button" translate="">Save changes</button>
                             <div class="link_section">
-                                <a class="lightbox_link" href="" ng-click="closeThisDialog()">Cancel</a>
+                                <a class="lightbox_link" href="" ng-click="closeThisDialog()" translate="">Cancel</a>
                             </div>
                         </form>
                     </div>

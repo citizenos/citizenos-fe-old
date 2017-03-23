@@ -114,14 +114,17 @@
                         var stateObj = statesList[i];
                         if (stateObj.name) {
                             var privatePortion = stateObj.$$state();
-                            var params = privatePortion.url.exec(returnLink, $location.search());
-                            if (params) {
-                                stateNext = {
-                                    name: stateObj.name,
-                                    params: params
-                                };
-                                $log.debug('$urlRouterProvider.otherwise', 'Matched state', stateNext);
-                                break; // Stop the loop, we found our state
+
+                            if (privatePortion.url) {
+                                var params = privatePortion.url.exec(returnLink, $location.search());
+                                if (params) {
+                                    stateNext = {
+                                        name: stateObj.name,
+                                        params: params
+                                    };
+                                    $log.debug('$urlRouterProvider.otherwise', 'Matched state', stateNext);
+                                    break; // Stop the loop, we found our state
+                                }
                             }
                         }
                     }
@@ -139,10 +142,10 @@
             });
 
             $stateProvider
-                .state('main', {
+                .state('index', {
                     url: '/{language:' + langReg + '}',
                     abstract: true,
-                    templateUrl: '/views/layouts/main.html',
+                    template: '<div ui-view style="height: 100%"></div>',
                     resolve: {
                         /* @ngInject */
                         sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {
@@ -150,23 +153,29 @@
                             return sTranslate.setLanguage($stateParams.language);
                         },
                         sAuthResolve: function ($q, $log, sAuth) {
-                                if(sAuth.user.loggedIn) {
-                                    return;
-                                }
-                                return sAuth
-                                    .status()
-                                    .then(
-                                        function () {
-                                            $log.debug('Resolve user', sAuth.user);
-                                            return $q.resolve();
-                                        },
-                                        function () {
-                                            $log.debug('Resolve user', sAuth.user);
-                                            return $q.resolve();
-                                        }
-                                    );
+                            if (sAuth.user.loggedIn) {
+                                return;
+                            }
+                            return sAuth
+                                .status()
+                                .then(
+                                    function () {
+                                        $log.debug('Resolve user', sAuth.user);
+                                        return $q.resolve();
+                                    },
+                                    function () {
+                                        $log.debug('Resolve user', sAuth.user);
+                                        return $q.resolve();
+                                    }
+                                );
                         }
                     }
+                })
+                .state('main', {
+                    url: null,
+                    abstract: true,
+                    parent: 'index',
+                    templateUrl: '/views/layouts/main.html'
                 })
                 .state('home', {
                     url: '/',
@@ -227,6 +236,7 @@
                 })
                 .state('account.passwordForgot', {
                     url: '/password/forgot',
+                    parent: 'account',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
                         ngDialog.open({
                             template: '/views/modals/password_forgot.html',
@@ -237,6 +247,7 @@
                 })
                 .state('account.passwordReset', {
                     url: '/password/reset/:passwordResetCode?email',
+                    parent: 'account',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
                         ngDialog.open({
                             template: '/views/modals/password_reset.html',
@@ -249,11 +260,19 @@
                     url: '/topics',
                     abstract: true,
                     parent: 'main',
-                    template: '<div ui-view></div>'
+                    template: '<div ui-view></div>',
                 })
                 .state('topics.create', {
                     url: '/create',
-                    parent: 'topics'
+                    parent: 'topics',
+                    controller: ['$scope', '$state', '$stateParams', 'Topic', function ($scope, $state, $stateParams, Topic) {
+                        var topic = new Topic();
+                        topic
+                            .$save()
+                            .then(function () {
+                                $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
+                            });
+                    }]
                 })
                 .state('topics.view', {
                     url: '/:topicId?editMode',
@@ -288,7 +307,7 @@
                     abstract: true,
                     url: '/votes',
                     parent: 'topics.view',
-                    template:'<div ui-view></div>'
+                    template: '<div ui-view></div>'
                 })
                 .state('topics.view.votes.create', {
                     parent: 'topics.view.votes',
@@ -296,10 +315,10 @@
                     template: '<div ui-view></div>',
                     controller: 'TopicVoteCreateCtrl',
                     resolve: {
-                        rVote: ['rTopic', '$state','$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
-                            if(rTopic.voteId) {
-                                $timeout( function () {
-                                    $state.go('topics.view.votes.view', {language:$stateParams.language, topicId:rTopic.id, voteId:rTopic.voteId}); //if vote is allready created redirect to voting
+                        rVote: ['rTopic', '$state', '$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
+                            if (rTopic.voteId) {
+                                $timeout(function () {
+                                    $state.go('topics.view.votes.view', {language: $stateParams.language, topicId: rTopic.id, voteId: rTopic.voteId}); //if vote is allready created redirect to voting
                                 }, 0);
                                 return $q.reject();
                             } else {
@@ -321,7 +340,7 @@
                     controller: 'MyCtrl',
                     resolve: {
                         // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', function ($state, $stateParams, $q, $window, sAuth, Topic, Group) {
+                        rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', 'sAuthResolve', function ($state, $stateParams, $q, $window, sAuth, Topic, Group, sAuthResolve) {
                             var filterParam = $stateParams.filter || 'all';
 
                             switch (filterParam) {
@@ -351,7 +370,7 @@
                     parent: 'my.topics',
                     templateUrl: '/views/my_topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', 'Topic', function ($stateParams, Topic) {
+                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', function ($stateParams, Topic, sAuthResolve) {
                             return Topic.get({topicId: $stateParams.topicId, include: 'vote'}).$promise;
                         }]
                     },
@@ -434,6 +453,22 @@
                     parent: 'main',
                     controller: 'JoinCtrl'
                 })
+                .state('partners', {
+                    url: '/partners/:partnerId',
+                    abstract: true,
+                    parent: 'index',
+                    templateUrl: '/views/layouts/partner.html'
+                })
+                .state('partners.login', {
+                    url: '/login',
+                    parent: 'partners',
+                    templateUrl: '/views/partners_login.html'
+                })
+                .state('partners.consent', {
+                    url: '/consent',
+                    parent: 'partners',
+                    templateUrl: '/views/partners_consent.html'
+                })
                 .state('_templates', { // TODO: From here below are the template path relevant in development
                     url: '/_templates',
                     abstract: true,
@@ -511,6 +546,6 @@
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
                 .useLocalStorage()
                 .useMissingTranslationHandlerLog()
-                .translations('dbg', {})
+                .translations('dbg', {});
         }]);
 })();

@@ -53,12 +53,12 @@ angular
                         $scope.searchResults.users = [];
                         $scope.searchResults.groups = [];
                         $scope.searchResults.combined = [];
-                        if (response.data.data.results.public.users) {
-                            response.data.data.results.public.users.forEach(function (user) {
+                        if (response.data.data.results.public.users.rows.length) {
+                            response.data.data.results.public.users.rows.forEach(function (user) {
                                 $scope.searchResults.users.push(user);
                             });
                         }
-                        if (response.data.data.results.my.groups.rows) {
+                        if (response.data.data.results.my.groups.rows.length) {
                             response.data.data.results.my.groups.rows.forEach(function (group) {
                                 $scope.searchResults.groups.push(group);
                             });
@@ -94,6 +94,10 @@ angular
             else if ($scope.errors && $scope.errors.hashtag) {
                 $scope.errors.hashtag = null;
             }
+        };
+
+        $scope.doDeleteHashtag = function () {
+            $scope.form.topic.hashtag = null;
         };
 
         $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,

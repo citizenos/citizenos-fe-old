@@ -249,7 +249,7 @@
                 display: inline-block;
                 padding: 5px 3px;
                 @media (max-width: 500px) {
-                    padding: 5px 0;
+                    padding: 5px 5px 0;
                 }
                 &.active {
                     color: $aqua_marine_text;

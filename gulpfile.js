@@ -13,7 +13,6 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     batch = require('gulp-batch'),
     runSequence = require('run-sequence').use(gulp),
-    uncache = require('gulp-uncache'),
     cachebust = require('gulp-cache-bust'),
     fs = require('fs'),
     templateCache = require('gulp-angular-templatecache');
@@ -126,7 +125,7 @@ gulp.task('watch', function () {
             'cachebreaker'
         );
     });
-    gulp.watch('public/styles/*.scss', function () {
+    gulp.watch('public/styles/**/*.scss', function () {
         return runSequence(
             'sass',
             'sass_etherpad',
@@ -140,8 +139,12 @@ gulp.task('watch', function () {
     });
 });
 
+/**
+ * TODO: Would be 1 SASS task if followed the best practice - http://thesassway.com/beginner/how-to-structure-a-sass-project
+ * BUT, if we try to follow it with current code, SASS goes berserk and generates 31 mb CSS or hangs. Needs some investigation.
+ */
 gulp.task('sass', function () {
-    return gulp.src(['public/styles/*.scss', '!public/styles/etherpad.scss'])
+    return gulp.src(['public/styles/*.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())
@@ -152,7 +155,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('sass_etherpad', function() {
-    return gulp.src(['public/styles/etherpad.scss'])
+    return gulp.src(['public/styles/etherpad/etherpad.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())

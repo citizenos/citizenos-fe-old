@@ -7,9 +7,7 @@
     <div class="info_container group_detail">
 
         <div class="container_header">
-            <div class="header_text">
-                General information
-            </div>
+            <div class="header_text" translate="VIEWS.MY_GROUPS_GROUPID.HEADING_GENERAL_INFORMATION">General information</div>
             <div class="minimize_container" ng-click="generalInfo.isVisible = !generalInfo.isVisible">
                 <div ng-class="!generalInfo.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
@@ -24,7 +22,7 @@
                             C
                         </div>
                     </div>
-                    <img ng-if="group.imageUrl" ng-src="group.imageUrl">{{group.name}}
+                    <img ng-if="group.imageUrl" ng-src="group.imageUrl"><span ng-bind="group.name">group.name</span>
                 </div>
                 <div class="container_favorite" ng-class="app.favorite ? 'favorited' : ''" ng-click="app.favorite = !app.favorite">
                     <div class="ff_table_fix">
@@ -45,21 +43,15 @@
                 <div class="content_column">
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Topics
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_GROUPS_GROUPID.LBL_TOPICS">Topics</div>
                         <div class="item_content">
                             <div class="item_text">
-                                {{group.members.topics.count}}
+                                <span ng-bind="group.members.topics.count">0</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" ng-click="doShowMemberTopicList(group)">
-                                    view
-                                </span>
+                                <span class="item_link blue_link" ng-click="doShowMemberTopicList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                                 <span ng-if="group.canUpdate()">
                                     <span class="separator">|</span>
-                                    <span class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})">
-                                        add
-                                    </span>
+                                    <span class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</span>
                                 </span>
                             </div>
                         </div>
@@ -67,21 +59,15 @@
                     </div>
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Users
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_GROUPS_GROUPID.LBL_USERS">Users</div>
                         <div class="item_content">
                             <div class="item_text">
-                                {{group.members.users.count}}
+                                <span ng-bind="group.members.users.count">0</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" ng-click="doShowMemberUserList(group)">
-                                    view
-                                </span>
+                                <span class="item_link blue_link" ng-click="doShowMemberUserList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                                 <span ng-if="group.canUpdate()">
                                     <span class="separator">|</span>
-                                    <span class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})">
-                                        invite
-                                    </span>
+                                    <span class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</span>
                                 </span>
                             </div>
                         </div>
@@ -89,12 +75,8 @@
                     </div>
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Your rights
-                        </div>
-                        <div class="item_content bold">
-                            {{group.permission.level}}
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_GROUPS_GROUPID.LBL_YOUR_RIGHTS">Your rights</div>
+                        <div class="item_content bold">{{'TXT_TOPIC_LEVELS_' + group.permission.level | uppercase | translate}}</div>
                         <div class="clearer"></div>
                     </div>
 
@@ -105,38 +87,28 @@
                 <div class="content_column">
 
                     <div class="content_item" ng-if="group.members.topics.latest">
-                        <div class="item_description">
-                            Latest
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_GROUPS_GROUPID.LBL_LATEST">Latest</div>
                         <div class="item_content">
                             <div class="item_text">
-                                {{group.members.topics.latest.title}}
+                                <span ng-bind="group.members.topics.latest.title">latest title</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link bold" ui-sref="topics.view({topicId: group.topics.latest.id})">
-                                    view
-                                </span>
+                                <span class="item_link blue_link bold" ui-sref="topics.view({topicId: group.topics.latest.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                             </div>
                         </div>
                         <div class="clearer"></div>
                     </div>
 
                     <div class="content_item">
-                        <div class="item_description">
-                            Group actions
-                        </div>
+                        <div class="item_description" translate="VIEWS.MY_GROUPS_GROUPID.LBL_GROUP_ACTIONS">Group actions</div>
                         <div class="item_content">
-                            <span class="item_text blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id})">
-                                settings
-                            </span>
+                            <span class="item_text blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_SETTINGS">settings</span>
                             <span class="separator">|</span>
-                            <span class="item_text blue_link" ng-click="doLeaveGroup(group)">
-                                leave
-                            </span>
+                            <span class="item_text blue_link" ng-click="doLeaveGroup(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_LEAVE">leave</span>
                             <span ng-if="group.canDelete()">
                                 <span class="separator">|</span>
                                 <span class="remove item_text blue_link" ng-click="doDeleteGroup(group)">
                                     <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
-                                    delete
+                                    <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_DELETE">delete</span>
                                 </span>
                             </span>
                         </div>
@@ -207,11 +179,11 @@
     <div class="info_container group_list" id="topic_list">
         <div class="container_header">
             <div class="header_text">
-                Topic list ({{group.members.topics.count}})
+                <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_TOPIC_LIST" translate-values="{count: group.members.topics.count}">Topic list ({{group.members.topics.count}})</span>
                 |
-                <div class="blue_link" cos-disabled="!group.members.topics.count" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doShowMemberTopicList(group)">filter</div>
+                <div class="blue_link" cos-disabled="!group.members.topics.count" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doShowMemberTopicList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter</div>
                 |
-                <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})">add</div>
+                <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</div>
             </div>
             <div class="minimize_container" ng-if="group.members.topics.count" ng-click="doToggleMemberTopicList(group)">
                 <div ng-class="!topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -219,54 +191,50 @@
         </div>
         <div class="container_header second_header" ng-if="topicList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="Topic title, permission" ng-model="topicList.searchFilter" focus-if>
+                <input placeholder="{{VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_TOPIC_TITLE_PERMISSION | translate}}" ng-model="topicList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
-                <div class="blue_link" ng-click="topicList.searchFilter = ''">clear filter</div>
+                <div class="blue_link" ng-click="topicList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
             </div>
         </div>
         <div class="container_content" ng-if="topicList.isVisible">
             <div class="pretend_table">
                 <div class="pretend_tr">
                     <div class="mobile_text pretend_th" ng-if="wWidth <= 560">
-                        <div class="th_text">
-                            Order by:
-                        </div>
+                        <div class="th_text" translate="VIEWS.MY_GROUPS_GROUPID.LBL_ORDER_BY">Order by:</div>
                     </div>
                     <div class="pretend_th" ng-click="topicList.searchOrderBy.property = 'title'">
                         <div class="th_text">
-                            Title
+                            <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_TITLE">Title</span>
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'title'"></div>
                         </div>
                     </div>
                     <div class="pretend_th" ng-click="topicList.searchOrderBy.property = 'permission.levelGroup'">
                         <div class="th_text">
-                            Rights
+                            <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_RIGHTS">Rights</span>
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'permission.levelGroup'"></div>
                         </div>
                     </div>
                     <div class="pretend_th" ng-click="topicList.searchOrderBy.property = 'members.users.count'">
                         <div class="th_text">
-                            Users
+                            <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_USERS">Users</span>
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'members.users.count'"></div>
                         </div>
                     </div>
                     <div class="pretend_th">
                         <div class="th_text">
-                            Remove <span>from group</span>
+                            <span translate="VIEWS.MY_GROUPS_GROUPID.LBL_REMOVE_FROM_GROUP">Remove from group</span>
                         </div>
                     </div>
                 </div>
                 <div class="pretend_tr" ng-repeat="topic in group.members.topics.rows | filter: topicList.searchFilter | orderBy: topicList.searchOrderBy.property">
                     <div class="pretend_td">
-                        <div class="blue_link" ui-sref="topics.view({topicId: topic.id})">{{topic.title}}</div>
+                        <div class="blue_link" ui-sref="my.topics.topicId({topicId: topic.id})" ng-bind="topic.title">topic.title</div>
                     </div>
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
                             <div class="dropdown_selection">
-                                <div class="dropdown_text">
-                                    {{topic.permission.levelGroup}}
-                                </div>
+                                <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + topic.permission.levelGroup | uppercase | translate}}</div>
 
                                 <div class="arrow_holder">
                                     <div class="table_cell">
@@ -277,16 +245,14 @@
                                 </div>
                             </div>
                             <div class="dropdown">
-                                <div class="dropdown_item" ng-repeat="(key, value) in GroupMemberTopic.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberTopic(group, topic, value)">
-                                        {{value}}
-                                    </div>
+                                <div class="dropdown_item" ng-repeat="(key, level) in GroupMemberTopic.LEVELS">
+                                    <div class="item_name" ng-click="doUpdateMemberTopic(group, topic, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <span class="pretend_table_mobile_text">Users: </span>{{topic.members.users.count}}
+                        <span class="pretend_table_mobile_text" translate="VIEWS.MY_GROUPS_GROUPID.LBL_USERS_COUNT" translate-values="{count: topic.members.users.count}">Users: 0</span>
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin">
@@ -307,11 +273,11 @@
     <div class="info_container group_list user_list" id="user_list">
         <div class="container_header">
             <div class="header_text">
-                User list ({{group.members.users.count}})
+                <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_USERS_LIST" translate-values="{count: group.members.users.count}">User list (0)</span>
                 |
-                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(group)">filter</div>
+                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter</div>
                 |
-                <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})">invite</div>
+                <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</div>
             </div>
             <div class="minimize_container" ng-click="doToggleMemberUserList(group)">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -319,35 +285,33 @@
         </div>
         <div class="container_header second_header" ng-if="userList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="Name, permission" ng-model="userList.searchFilter" focus-if>
+                <input placeholder="{{VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION | translate}}" ng-model="userList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
-                <div class="blue_link" ng-click="userList.searchFilter = ''">clear filter</div>
+                <div class="blue_link" ng-click="userList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
             </div>
         </div>
         <div class="container_content" ng-if="userList.isVisible">
             <div class="pretend_table">
                 <div class="pretend_tr">
                     <div class="mobile_text pretend_th" ng-if="wWidth <= 560">
-                        <div class="th_text">
-                            Order by:
-                        </div>
+                        <div class="th_text" translate="VIEWS.MY_GROUPS_GROUPID.LBL_ORDER_BY">Order by:</div>
                     </div>
                     <div class="pretend_th" ng-click="userList.searchOrderBy.property = 'name'">
                         <div class="th_text">
-                            Profile
+                            <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_PROFILE">Profile</span>
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'name'"></div>
                         </div>
                     </div>
                     <div class="pretend_th" ng-click="userList.searchOrderBy.property = 'level'">
                         <div class="th_text">
-                            Rights
+                            <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_RIGHTS">Rights</span>
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'level'"></div>
                         </div>
                     </div>
                     <div class="pretend_th">
                         <div class="th_text">
-                            Remove <span>from group</span>
+                            <span translate="VIEWS.MY_GROUPS_GROUPID.LBL_REMOVE_FROM_GROUP">Remove from group</span>
                         </div>
                     </div>
                 </div>
@@ -367,16 +331,14 @@
                         </div>
                         <div class="name_wrap">
                             <div class="table_cell">
-                                <div>{{user.name}}</div>
+                                <div ng-bind="user.name">user name</div>
                             </div>
                         </div>
                     </div>
                     <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" cos-disabled="!group.canUpdate()">
                             <div class="dropdown_selection">
-                                <div class="dropdown_text">
-                                    {{user.level}}
-                                </div>
+                                <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + user.level | uppercase | translate}}</div>
 
                                 <div class="arrow_holder">
                                     <div class="table_cell">
@@ -388,9 +350,7 @@
                             </div>
                             <div class="dropdown">
                                 <div class="dropdown_item" ng-repeat="(key, level) in GroupMemberUser.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberUser(group, user, level)">
-                                        {{level}}
-                                    </div>
+                                    <div class="item_name" ng-click="doUpdateMemberUser(group, user, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
                                 </div>
                             </div>
                         </div>
