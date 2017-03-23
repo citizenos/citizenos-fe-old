@@ -90,6 +90,7 @@ angular
             userVote.pid = $scope.formMobile.pid;
             userVote.certificate = null;
             userVote.phoneNumber = $scope.formMobile.phoneNumber;
+            $scope.formMobile.challengeID = null;
 
             userVote.$save()
                 .then(function (voteInitResult) {
@@ -107,7 +108,6 @@ angular
                     });
                 }, function (err) {
                     $scope.formMobile.isLoading = false;
-                    ///      sNotification.addError(err);
                 });
         };
 
