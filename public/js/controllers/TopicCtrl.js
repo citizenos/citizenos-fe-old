@@ -223,7 +223,6 @@ angular
         };
 
         $scope.doSetTopicStatus = function (status) {
-
             if (status !== $scope.topic.status) {
                 $scope.topic.status = status;
                 $scope.topic.$update(function (data) {
