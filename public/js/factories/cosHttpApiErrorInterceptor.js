@@ -114,7 +114,8 @@ angular
             },
             'responseError': function (response) {
                 sNotification.removeAll();
-                if (response.config.url.match(API_REQUEST_REGEX)) {
+                var matchURL = response.config.url.match(API_REQUEST_REGEX);
+                if (matchURL && matchURL[0] !== '/api/auth/status') {
                     try {
                         errorsToKeys(response);
                     } catch (err) {
