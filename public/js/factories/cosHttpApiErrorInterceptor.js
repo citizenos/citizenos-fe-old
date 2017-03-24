@@ -3,7 +3,7 @@ angular
     .factory('cosHttpApiErrorInterceptor', ['$log', '$q', '$translate', '$filter', 'sNotification', function ($log, $q, $translate, $filter, sNotification) {
         $log.debug('citizenos.factory.cosHttpApiErrorInterceptor');
 
-        var API_REQUEST_REGEX = /\/api\/.*/i;
+        var API_REQUEST_REGEX = /\/api\/(?!auth\/status).*/i;
 
         /**
          * Translate a key. Compared to $translate, it will uppercase any key before translating.
@@ -114,6 +114,7 @@ angular
             },
             'responseError': function (response) {
                 sNotification.removeAll();
+
                 if (response.config.url.match(API_REQUEST_REGEX)) {
                     try {
                         errorsToKeys(response);

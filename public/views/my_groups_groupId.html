@@ -92,7 +92,7 @@
                             <div class="item_text">
                                 <span ng-bind="group.members.topics.latest.title">latest title</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link bold" ui-sref="topics.view({topicId: group.topics.latest.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
+                                <span class="item_link blue_link bold" ui-sref="topics.view({topicId: group.members.topics.latest.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -191,7 +191,7 @@
         </div>
         <div class="container_header second_header" ng-if="topicList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="{{VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_TOPIC_TITLE_PERMISSION | translate}}" ng-model="topicList.searchFilter" focus-if>
+                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-model="topicList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="topicList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
@@ -273,7 +273,7 @@
     <div class="info_container group_list user_list" id="user_list">
         <div class="container_header">
             <div class="header_text">
-                <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_USERS_LIST" translate-values="{count: group.members.users.count}">User list (0)</span>
+                <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_USERS_LIST" translate-values="{count: (group.members.users.count || 0)}">User list (0)</span>
                 |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter</div>
                 |
@@ -285,7 +285,7 @@
         </div>
         <div class="container_header second_header" ng-if="userList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="{{VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION | translate}}" ng-model="userList.searchFilter" focus-if>
+                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-model="userList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="userList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>

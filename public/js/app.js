@@ -161,11 +161,11 @@
                                 .then(
                                     function () {
                                         $log.debug('Resolve user', sAuth.user);
-                                        return $q.resolve();
+                                        return $q.resolve(true);
                                     },
                                     function () {
                                         $log.debug('Resolve user', sAuth.user);
-                                        return $q.resolve();
+                                        return $q.resolve(false);
                                     }
                                 );
                         }
@@ -265,7 +265,11 @@
                 .state('topics.create', {
                     url: '/create',
                     parent: 'topics',
-                    controller: ['$scope', '$state', '$stateParams', 'Topic', function ($scope, $state, $stateParams, Topic) {
+                    controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', function ($scope, $state, $stateParams, sAuth, Topic) {
+                        if (!sAuth.user.loggedIn) {
+                            return $state.go('account.login', null, {location: false});
+                        }
+
                         var topic = new Topic();
                         topic
                             .$save()
@@ -340,7 +344,7 @@
                     controller: 'MyCtrl',
                     resolve: {
                         // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', 'sAuthResolve', function ($state, $stateParams, $q, $window, sAuth, Topic, Group, sAuthResolve) {
+                        rItems: ['$state', '$stateParams', '$q', '$window', 'Topic', 'Group', function ($state, $stateParams, $q, $window, Topic, Group) {
                             var filterParam = $stateParams.filter || 'all';
 
                             switch (filterParam) {

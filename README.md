@@ -1,7 +1,6 @@
 # CitizenOS-FE
-CitizenOS front-end web application
-
-**IN DEVELOPMENT - Will replace https://citizenos.com FE application by the end of 2016**
+CitizenOS front-end web application.
+Currently in beta - https://beta.citizenos.com
 
 ## Running locally
 
