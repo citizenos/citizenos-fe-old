@@ -9,18 +9,22 @@ angular
             searchInput: null
         };
 
-        $scope.searchResults = null;
+        $scope.searchResults = {
+            combined:[]
+        };
         $scope.noResults = true;
-        $scope.searchString = null;
+
         $scope.doSearch = function (str) {
             $scope.noResults = true;
-            $scope.searchResults = null;
+            $scope.searchResults = {
+                combined:[]
+            };
+
             if (!str || str.length < 3) {
-                $scope.searchString = null;
                 $scope.app.showSearchResults = false;
                 return;
             }
-            $scope.searchString = str;
+            $scope.form.searchInput = str;
             var include = ['public.topic'];
 
             if (sAuth.user.loggedIn) {
@@ -31,6 +35,7 @@ angular
                 .searchV2(str, {include: include, limit:5})
                 .then(function (result) {
                     $scope.searchResults = result.data.data.results;
+                    $scope.searchResults.combined = [];
                     $scope.app.showSearchResults = true;
                     $scope.app.showNav = false;
                     $scope.app.showSearchFiltersMobile = false;
@@ -40,6 +45,7 @@ angular
                         models.forEach( function (model) {
                             if($scope.searchResults[context][model].count > 0) {
                                 $scope.noResults = false;
+                                $scope.searchResults.combined = $scope.searchResults.combined.concat($scope.searchResults[context][model].rows);
                             }
                         });
                     });
@@ -48,15 +54,21 @@ angular
                 });
         };
 
-        $scope.goToView = function (id, model) {
-            if(model == 'topic') {
-                if(sAuth.user.loggedIn) {
-                    $state.go('my.topics.topicId', {topicId: id, filter:null}, {reload:true});
-                } else {
-                    $state.go('topics.view', {topicId: id, filter:null}, {reload:true});
+        $scope.goToView = function (item) {
+            if (item) {
+                var model = 'topic';
+                if( item.hasOwnProperty('name') ) {
+                    model = 'group';
                 }
-            } else if (model === 'group') {
-                $state.go('my.groups.groupId', {groupId: id, filter:'grouped'}, {reload:true});
+                if(model == 'topic') {
+                    if(sAuth.user.loggedIn) {
+                        $state.go('my.topics.topicId', {topicId: item.id, filter:null}, {reload:true});
+                    } else {
+                        $state.go('topics.view', {topicId: item.id, filter:null}, {reload:true});
+                    }
+                } else if (model === 'group') {
+                    $state.go('my.groups.groupId', {groupId: item.id, filter:'grouped'}, {reload:true});
+                }
             }
         };
 
@@ -72,7 +84,7 @@ angular
                 var page = Math.floor($scope.searchResults[context][model].rows.length/5)+1;
 
                 sSearch
-                    .searchV2($scope.searchString, {include: include, limit:5, page: page})
+                    .searchV2($scope.form.searchInput, {include: include, limit:5, page: page})
                     .then(function (result) {
                         var moreResults = result.data.data.results;
 
