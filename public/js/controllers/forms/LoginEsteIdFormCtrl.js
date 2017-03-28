@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginEsteIdFormCtrl', ['$scope', '$log', '$state', '$window', '$timeout', 'ngDialog', 'sAuth', function ($scope, $log, $state, $window, $timeout, ngDialog, sAuth) {
+    .controller('LoginEsteIdFormCtrl', ['$scope', '$log', '$state', '$window', '$timeout', 'ngDialog', 'sLocation', 'sAuth', function ($scope, $log, $state, $window, $timeout, ngDialog, sLocation, sAuth) {
         $log.debug('LoginEsteIdFormCtrl');
 
         var init = function () {
@@ -59,12 +59,15 @@ angular
         };
 
         var handleLoginSuccess = function () {
-            // TODO: Partner login support
-            // TODO: Redirect to somewhere?
-            ngDialog.closeAll(true);
-            if ($state.params && $state.params.redirectSuccess) {
-                // TODO: I guess checking the URL would be nice in the future...
-                return $window.location.href = $state.params.redirectSuccess;
+            if ($state.is('partners.consent') || $state.is('partners.login')) {
+                return $window.location.href = sLocation.getAbsoluteUrlApi('/api/auth/openid/authorize');
+            } else {
+                if ($state.params && $state.params.redirectSuccess) {
+                    // TODO: I guess checking the URL would be nice in the future...
+                    return $window.location.href = $state.params.redirectSuccess;
+                } else {
+                    $window.location.reload();
+                }
             }
         };
 

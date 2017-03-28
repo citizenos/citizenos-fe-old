@@ -27,7 +27,11 @@ angular
             $scope.errors = null;
 
             var success = function (response) {
-                $window.location.reload();
+                if ($state.is('partners.consent') || $state.is('partners.login')) {
+                    return $window.location.href = sLocation.getAbsoluteUrlApi('/api/auth/openid/authorize');
+                } else {
+                    $window.location.reload();
+                }
             };
 
             var error = function (response) {
@@ -64,13 +68,16 @@ angular
                 throw new Error('LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', partnerId);
             }
 
-            var path = '/api/auth/:partnerId';
+            var url = '/api/auth/:partnerId'
+                .replace(':partnerId', partnerId);
 
-            if ($state.params.redirectSuccess) {
-                $window.location.href = $state.params.redirectSuccess;
+            if ($stateParams.redirectSuccess) {
+                url += '?redirectSuccess=' + encodeURIComponent($stateParams.redirectSuccess);
             } else {
-                $window.location.href = sLocation.getAbsoluteUrlApi(path, {partnerId: partnerId}, {redirectSuccess: $window.location.href});
+                url += '?redirectSuccess=' + $state.href($state.current.name, $state.params, {absolute: true}) + '?'; // HACK: + '?' avoids digest loop on Angular side for Google callbacks.
             }
+
+            $window.location.href = url;
         };
 
 
