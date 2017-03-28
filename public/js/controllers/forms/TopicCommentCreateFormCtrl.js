@@ -31,6 +31,7 @@ angular
             Comment.$save({topicId: $scope.topic.id})
                 .then(function (data) {
                     $scope.loadTopicComments();
+                    init();
                 });
         };
 

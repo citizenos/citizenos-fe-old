@@ -877,11 +877,13 @@
                                                 </div>
 
                                                 <div class="post_argument_wrap" ng-if="reply.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                                                    <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" ng-model="form.text"></textarea>
-                                                    <div class="blue_button" cos-disabled="!form.text" ng-click="submitReply(comment.id)" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_REPLY_POST_REPLY">
-                                                        Post reply
-                                                    </div>
-                                                    <div class="clearer"></div>
+                                                    <form name="argumentReplyForm">
+                                                        <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" ng-model="form.text" required></textarea>
+                                                        <div class="blue_button" cos-disabled="argumentReplyForm.$invalid" ng-click="submitReply(comment.id)" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_REPLY_POST_REPLY">
+                                                            Post reply
+                                                        </div>
+                                                        <div class="clearer"></div>
+                                                    </form>
                                                 </div>
 
                                             </div>
@@ -891,16 +893,18 @@
                                     </div>
 
                                     <div id="post_argument_wrap" class="post_argument_wrap" ng-controller="TopicCommentCreateFormCtrl">
-                                        <div class="line lightest_line" ng-if="topicComments.rows.length"></div>
-                                        <input placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}" class="gray_borders" ng-model="form.subject">
-                                        <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-model="form.text"></textarea>
-                                        <div class="blue_button nature_green_button" cos-disabled="(!form.subject || !form.text)" ng-click="submitPro()"
-                                             translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_PRO">Post as a pro argument
-                                        </div>
-                                        <div class="blue_button pinky_red_button" cos-disabled="(!form.subject || !form.text)" ng-click="submitCon()"
-                                             translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_CON">Post as a con argument
-                                        </div>
-                                        <div class="clearer"></div>
+                                        <form name="argumentForm">
+                                            <div class="line lightest_line" ng-if="topicComments.rows.length"></div>
+                                            <input placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}" class="gray_borders" ng-model="form.subject" required>
+                                            <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-model="form.text" required></textarea>
+                                            <div class="blue_button nature_green_button" cos-disabled="argumentForm.$invalid" ng-click="submitPro()"
+                                                 translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_PRO">Post as a pro argument
+                                            </div>
+                                            <div class="blue_button pinky_red_button" cos-disabled="argumentForm.$invalid" ng-click="submitCon()"
+                                                 translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_CON">Post as a con argument
+                                            </div>
+                                            <div class="clearer"></div>
+                                        </form>
                                     </div>
 
                                 </div>
