@@ -374,8 +374,12 @@
                     parent: 'my.topics',
                     templateUrl: '/views/my_topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', function ($stateParams, Topic, sAuthResolve) {
-                            return Topic.get({topicId: $stateParams.topicId, include: 'vote'}).$promise;
+                        rTopic: ['$stateParams', '$anchorScroll', 'Topic', function ($stateParams, $anchorScroll, Topic) {
+                            return Topic.get({topicId: $stateParams.topicId, include: 'vote'}).$promise
+                                .then(function (topic) {
+                                    $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
+                                    return topic;
+                                });
                         }]
                     },
                     controller: 'TopicCtrl'
@@ -424,7 +428,8 @@
                     parent: 'my.groups',
                     templateUrl: '/views/my_groups_groupId.html',
                     resolve: {
-                        rGroup: ['$stateParams', 'Group', 'rItems', function ($stateParams, Group, rItems) {
+                        rGroup: ['$stateParams', '$anchorScroll', 'Group', 'rItems', function ($stateParams, $anchorScroll, Group, rItems) {
+                            $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
                             return _.find(rItems, {id: $stateParams.groupId});
                         }]
                     },
