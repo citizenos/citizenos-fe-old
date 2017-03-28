@@ -23,12 +23,12 @@ angular
         });
 
         var saveComment = function (parentId, type) {
-            var Comment = new TopicComment();
-            Comment.parentId = parentId;
-            Comment.type = type;
-            Comment.subject = $scope.form.subject;
-            Comment.text = $scope.form.text;
-            Comment.$save({topicId: $scope.topic.id})
+            var comment = new TopicComment();
+            comment.parentId = parentId;
+            comment.type = type;
+            comment.subject = $scope.form.subject;
+            comment.text = $scope.form.text;
+            comment.$save({topicId: $scope.topic.id})
                 .then(function (data) {
                     $scope.loadTopicComments();
                     init();
