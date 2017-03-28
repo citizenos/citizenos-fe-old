@@ -586,7 +586,7 @@
 
 
                         <div class="topic_content">
-                            <iframe ng-if="topic.canUpdate() && app.editMode" frameborder="0" scrolling="no" ng-show="topic.padUrl && !('topics.view.followUp' | isState)" ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
+                            <iframe cos-etherpad ng-if="topic.canUpdate() && app.editMode" frameborder="0" scrolling="no" ng-show="topic.padUrl && !('topics.view.followUp' | isState)" ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
                             <ng-bind-html ng-if="!app.editMode" ng-bind-html="topic.description"></ng-bind-html>
                         </div>
 
