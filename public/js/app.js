@@ -344,7 +344,7 @@
                     controller: 'MyCtrl',
                     resolve: {
                         // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$q', '$window', 'Topic', 'Group', function ($state, $stateParams, $q, $window, Topic, Group) {
+                        rItems: ['$state', '$stateParams', '$q', '$window', 'Topic', 'Group', 'sAuth', function ($state, $stateParams, $q, $window, Topic, Group, sAuth) {
                             var filterParam = $stateParams.filter || 'all';
 
                             switch (filterParam) {
