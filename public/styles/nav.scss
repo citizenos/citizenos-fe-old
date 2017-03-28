@@ -20,6 +20,7 @@
 
     .logo {
         margin-top: 16px;
+        margin-bottom: 16px;
         @include mobile {
             width: 28px;
         }
@@ -29,7 +30,6 @@
 .logo {
     margin: 0 auto;
 }
-
 
 .nav_is_open {
     right: 0;
@@ -214,7 +214,7 @@ nav {
                         background: initial;
                     }
                 }
-                
+
         }
 
     }
