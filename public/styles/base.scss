@@ -1836,6 +1836,26 @@ a:link, a:visited {
 
 }
 
+.content_wrap {
+    background: $light_gray;
+    position: relative;
+    z-index: 2;
+}
+
+.side_panel_background {
+    position: absolute;
+    top: 15px;
+    bottom: 0;
+    width: 30%;
+    min-width: 310px;
+    right: 0;
+    background: $side_panel_gray;
+    z-index: 1;
+    @include tablet {
+        display: none;
+    }
+}
+
 .ngdialog-open {
     .info_bar_wrap {
         @include tablet {
