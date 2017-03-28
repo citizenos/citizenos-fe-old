@@ -11,8 +11,9 @@
 
 <div id="small_text" translate="VIEWS.PARTNERS_CONSENT.TXT_POLICY">Meie partner kasutab Sinu infot vastavalt oma kasutustingimustele ja privaatsuspoliitikale.</div>
 
-
-<button type="submit" ng-click="doLogin()" ng-disabled="loginForm.$invalid" translate="VIEWS.PARTNERS_CONSENT._AGREE">Nõustun</button>
-<div class="link_section">
-    <a class="lightbox_link" ng-click="doResetPassword()" href="" translate="VIEWS.PARTNERS_CONSENT.DISAGREE">Katkesta</a>
-</div>
+<form name="userConsentForm" ng-controller="UserConsentFormCtrl">
+    <button type="submit" ng-click="doAccept()" ng-disabled="loginForm.$invalid" translate="VIEWS.PARTNERS_CONSENT._AGREE">Nõustun</button>
+    <div class="link_section">
+        <a class="lightbox_link" ng-click="doCancel()" href="" translate="VIEWS.PARTNERS_CONSENT.DISAGREE">Katkesta</a>
+    </div>
+</form>
