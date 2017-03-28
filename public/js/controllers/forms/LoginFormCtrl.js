@@ -68,8 +68,7 @@ angular
                 throw new Error('LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', partnerId);
             }
 
-            var url = '/api/auth/:partnerId'
-                .replace(':partnerId', partnerId);
+            var url = sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', {partnerId: partnerId});
 
             if ($stateParams.redirectSuccess) {
                 url += '?redirectSuccess=' + encodeURIComponent($stateParams.redirectSuccess);
