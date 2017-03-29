@@ -394,6 +394,7 @@
       "TAB_VIEW": "Vaata",
       "TAB_VOTE": "Hääleta",
       "TAB_INFO_TXT_EDIT": "Toimetamisolek. Saad teksti lisada või muuta. Kõik muudatused salvestatakse automaatselt.",
+      "TAB_INFO_TXT_VOTE": "Teema on hääletamisel, sisu muuta enam ei saa!",
       "VOTE_CAST_YOUR_VOTE": "Anna oma hääl",
       "VOTE_VOTES_COUNTED": "häält loetud",
       "VOTE_HEADING_REQUIRE_HARD_ID": "Hääl vajab allkirjastamist ID-kaardi või Mobiil ID-ga",

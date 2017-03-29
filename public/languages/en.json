@@ -394,6 +394,7 @@
       "TAB_VIEW": "View",
       "TAB_VOTE": "Vote",
       "TAB_INFO_TXT_EDIT": "You are now in edit mode. You can add text or make changes to it. All changes are automatically saved.",
+      "TAB_INFO_TXT_VOTE": "This topic is being voted on, editing is no longer possible!",
       "VOTE_CAST_YOUR_VOTE": "Cast your vote",
       "VOTE_VOTES_COUNTED": "votes counted",
       "VOTE_HEADING_REQUIRE_HARD_ID": "This vote requires an ID card or Mobile ID signing.",

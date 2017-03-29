@@ -93,7 +93,7 @@
                             <div class="sprite sprite-icon-arrow-topic-tab2x"></div>
                         </div>
                     </div>
-                    <div ng-if="trainPosition >= -tabsTrainWidth+tabsVisibleAreaWidth && wWidth > 1024" class="arrow_btn right" ng-click="moveRight()" ng-if="tabsTrainWidth > tabsVisibleAreaWidth">
+                    <div ng-if="trainPosition >= -tabsTrainWidth+tabsVisibleAreaWidth && wWidth > 1024" class="arrow_btn right" ng-click="moveRight()">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-arrow-right-topic-tab2x"></div>
                         </div>
@@ -137,6 +137,20 @@
 
                         <div class="info_icon" ng-click="hideInfoEdit()">
                             <div class="sprite sprite-icon-closemenu2x"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info_bar_wrap" ng-if="topic.canEdit() && (topic.status === STATUSES.voting) && !('topics.view.votes' | includedByState)">
+                    <div class="info_bar bar_green">
+                        <div class="info_icon">
+                            <div class="sprite sprite-icon-notification-check2x"></div>
+                        </div>
+
+                        <div class="info_bar_text">
+                            <div class="info_row">
+                                <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_VOTE">This topic is being voted on, editing is no longer possible!</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -505,7 +519,8 @@
                                     <div class="gray_toggle_box" ng-if="(voteForm.authType == voteAuthTypes.hard)">
                                         <div class="toggle_box_warning">
                                             <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                            <span translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID">When Hard-ID is the chosen method of voting, delegation is not allowed.</span>
+                                        <span
+                                            translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID">When Hard-ID is the chosen method of voting, delegation is not allowed.</span>
                                         </div>
                                     </div>
 
@@ -878,8 +893,10 @@
 
                                                 <div class="post_argument_wrap" ng-if="reply.showReply" ng-controller="TopicCommentCreateFormCtrl">
                                                     <form name="argumentReplyForm">
-                                                        <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" ng-model="form.text" required></textarea>
-                                                        <div class="blue_button" cos-disabled="argumentReplyForm.$invalid" ng-click="submitReply(comment.id)" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_REPLY_POST_REPLY">
+                                                    <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" ng-model="form.text"
+                                                              required></textarea>
+                                                        <div class="blue_button" cos-disabled="argumentReplyForm.$invalid" ng-click="submitReply(comment.id)"
+                                                             translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_REPLY_POST_REPLY">
                                                             Post reply
                                                         </div>
                                                         <div class="clearer"></div>
@@ -896,7 +913,8 @@
                                         <form name="argumentForm">
                                             <div class="line lightest_line" ng-if="topicComments.rows.length"></div>
                                             <input placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}" class="gray_borders" ng-model="form.subject" required>
-                                            <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-model="form.text" required></textarea>
+                                            <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-model="form.text"
+                                                      required></textarea>
                                             <div class="blue_button nature_green_button" cos-disabled="argumentForm.$invalid" ng-click="submitPro()"
                                                  translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_PRO">Post as a pro argument
                                             </div>
