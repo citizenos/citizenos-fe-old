@@ -52,23 +52,23 @@ angular
 
         $scope.$parent.$parent.removeOption = function (key) {
             $scope.voteForm.options.splice(key, 1);
-        }
+        };
 
         $scope.$parent.$parent.addOption = function () {
             $scope.voteForm.options.push({value: null});
-        }
+        };
 
         $scope.$parent.$parent.daysToVoteEnd = function () {
             if ($scope.voteForm.endsAt) {
                 if ($scope.voteForm.endsAt === true) {
                     $scope.voteForm.endsAt = new Date();
                 }
-                var endDate = $scope.voteForm.endsAt
+                var endDate = $scope.voteForm.endsAt;
                 var diffTime = new Date(endDate).getTime() - new Date().getTime();
                 $scope.voteForm.numberOfDaysLeft = Math.ceil(diffTime / (1000 * 3600 * 24)); // Diff in days
             }
             return $scope.voteForm.numberOfDaysLeft;
-        }
+        };
 
         $scope.$parent.$parent.createVote = function () {
             var vote = new Vote({topicId: $scope.topic.id});

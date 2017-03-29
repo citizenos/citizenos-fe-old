@@ -217,9 +217,8 @@
                                 <div class="table_cell left_side">
                                     {{getOptionLetter(key)}}.
                                 </div>
-                                <div class="table_cell right_side">
-                                    {{option.value}}
-                                </div>
+                                <div class="table_cell right_side" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
+                                     translate-default="{{option.value | linky}}"></div>
                             </div>
 
                         </div>
@@ -287,11 +286,15 @@
                         <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular">
 
                             <div class="graph_row" ng-class="option.selected ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
-                                <div class="graph_row_fill" ng-style="{width: getVoteValuePercentage(option.voteCount) + '%'}" tooltips tooltip-template="{{option.value}}" tooltip-smart="true">
+                                <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
+                                <div class="graph_row_fill" ng-style="{width: getVoteValuePercentage(option.voteCount) + '%'}" tooltips
+                                     tooltip-template="{{((optionTranslation = ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase | translate)) != ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase)) ? optionTranslation : (option.value | linky)}}"
+                                     tooltip-smart="true">
                                     <div class="graph_row_text_wrap">
                                         <div class="table_cell">
                                             <div class="graph_row_text">
-                                                {{option.value}}<br>
+                                                <span translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
+                                                      translate-default="{{option.value | linky}}"></span><br>
                                                 <span class="bold">{{option.voteCount || 0}}</span>
                                             </div>
                                         </div>
@@ -305,14 +308,18 @@
                         <div class="big_graph" ng-if="topic.vote.type === voteTypes.multiple">
                             <div class="long_text_holder">
                                 <div class="long_text" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
-                                    <span class="bold">{{getOptionLetter(key)}}.</span> {{option.value}}
+                                    <span class="bold">{{getOptionLetter(key)}}.</span> <span translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
+                                                                                              translate-default="{{option.value | linky}}"></span>
                                 </div>
                             </div>
 
                             <div class="graph_wrap">
 
                                 <div class="graph_row" ng-class="option.selected ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
-                                    <div class="graph_row_fill" ng-style="{width: getVoteValuePercentage(option.voteCount) + '%'}" tooltips tooltip-template="{{option.value}}" tooltip-smart="true">
+                                    <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
+                                    <div class="graph_row_fill" ng-style="{width: getVoteValuePercentage(option.voteCount) + '%'}" tooltips
+                                         tooltip-template="{{((optionTranslation = ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase | translate)) != ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase)) ? optionTranslation : (option.value | linky)}}"
+                                         tooltip-smart="true">
                                         <div class="graph_row_text_wrap">
                                             <div class="table_cell">
                                                 <div class="graph_row_text">

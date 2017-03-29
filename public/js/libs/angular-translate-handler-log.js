@@ -17,6 +17,9 @@ angular.module('pascalprecht.translate')
      */
     .factory('$translateMissingTranslationHandlerLog', ['$log', function ($log) {
         return function (translationId, lang) {
-            $log.warn('$translateMissingTranslationHandlerLog', 'Translation for \'' + translationId + '\' doesn\'t exist in language \'' + lang + '\'');
+            // Custom vote labels are generated from options and it's OK if they don't exist.
+            if (translationId.indexOf('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_') === -1) {
+                $log.warn('$translateMissingTranslationHandlerLog', 'Translation for \'' + translationId + '\' doesn\'t exist in language \'' + lang + '\'');
+            }
         };
     }]);

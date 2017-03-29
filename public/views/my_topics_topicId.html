@@ -215,8 +215,8 @@
                                     <div class="table_cell left_side">
                                         {{getOptionLetter(key)}}.
                                     </div>
-                                    <div class="table_cell right_side">
-                                        {{option.value}}
+                                    <div class="table_cell right_side" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
+                                         translate-default="{{option.value | linky}}">
                                     </div>
                                 </div>
 
