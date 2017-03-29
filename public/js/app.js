@@ -206,21 +206,41 @@
                 })
                 .state('account.signup', {
                     url: '/signup?email&name&redirectSuccess',
-                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
-                        ngDialog.open({
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve) {
+                        if (sAuthResolve) {
+                            return $state.go('home');
+                        }
+
+                        var dialog = ngDialog.open({
                             template: '/views/modals/sign_up.html',
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                return $state.go('home');
+                            }
                         });
                     }]
                 })
                 .state('account.login', {
                     url: '/login?email&redirectSuccess',
-                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
-                        ngDialog.open({
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve) {
+                        if (sAuthResolve) {
+                            return $state.go('home');
+                        }
+
+                        var dialog = ngDialog.open({
                             template: '/views/modals/login.html',
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                return $state.go('home');
+                            }
                         });
                     }]
                 })
@@ -260,7 +280,7 @@
                     url: '/topics',
                     abstract: true,
                     parent: 'main',
-                    template: '<div ui-view></div>',
+                    template: '<div ui-view></div>'
                 })
                 .state('topics.create', {
                     url: '/create',
