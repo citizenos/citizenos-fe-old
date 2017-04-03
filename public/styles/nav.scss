@@ -99,9 +99,10 @@ nav {
             color: $white;
         }
 
-        .bold_blue {
+        .bold_blue, .bold_blue:visited, .bold_blue:link {
             font-weight: 700;
             color: $sky_blue;
+            opacity: 1;
         }
 
         a:hover {
@@ -184,7 +185,6 @@ nav {
 
                     @include tablet {
                         font-weight: initial;
-                        opacity: .69;
 
                         &.bold_blue {
                             font-weight: $bold;

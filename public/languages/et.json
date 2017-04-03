@@ -365,17 +365,17 @@
       "LBL_VIA": "grupist"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "Meie partner soovib juurdepääsu Sinu CitizenOS andmetele allolevate õigustega:",
-      "TXT_VIEW_PROFILE": "Sinu profiili vaatamine ja muutmine - nimi, organisatsioon, e-post, pilt.",
-      "TXT_VIEW_TOPICS": "Sinu avalike, partneri veebilehe kaudu loodud teemade vaatamine ja muutmine.",
-      "TXT_VIEW_VOTES": "Sinu avalike, partneri veebilehe kaudu loodud häälte vaatamine ja muutmine.",
-      "TXT_VIEW_GROUPS": "Sinu rühmade vaatamine ja muutmine.",
-      "TXT_POLICY": "Meie partner kasutab Sinu infot vastavalt oma kasutustingimustele ja privaatsuspoliitikale.",
+      "HEADING": "Rahvaalgatus.ee soovib juurdepääsu Sinu CitizenOS andmetele allolevate õigustega:",
+      "TXT_VIEW_PROFILE": "Sinu CitizenOS profiili vaatamine ja muutmine - nimi, organisatsioon, e-post, pilt.",
+      "TXT_VIEW_TOPICS": "Sinu CitizenOS-s avalike ja Rahvaalgatus.ee veebilehe kaudu loodud teemade vaatamine ja muutmine.",
+      "TXT_VIEW_VOTES": "Sinu CitizenOS-s avalike ja Rahvaalgatus.ee veebilehe kaudu loodud häälte vaatamine ja muutmine.",
+      "TXT_VIEW_GROUPS": "Sinu CitizenOS gruppide vaatamine ja muutmine.",
+      "TXT_POLICY": "Rahvaalgatus.ee kasutab Sinu infot vastavalt oma kasutustingimustele ja privaatsuspoliitikale.",
       "_AGREE": "Nõustu",
       "DISAGREE": "Katkesta"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "Parima kasutajakogemuse pakkumiseks teeme koostööd CitizenOS keskkonnaga. Kui tahate kasutada kõiki meie platvormi võimalusi, <strong>palun registreeruge või logige sisse.</strong>",
+      "HEADING": "Parima kasutajakogemuse pakkumiseks teeb Rahvaalgatus.ee koostööd CitizenOS keskkonnaga. Kui tahate kasutada kõiki meie platvormi võimalusi, <strong>palun registreeruge või logige sisse.</strong>",
       "BTN_LOGIN_FACEBOOK": "@:MODALS.LOGIN_BTN_LOGIN_FACEBOOK",
       "BTN_LOGIN_GOOGLE": "@:MODALS.LOGIN_BTN_LOGIN_GOOGLE",
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",
