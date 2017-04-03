@@ -365,17 +365,17 @@
       "LBL_VIA": "via"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "Our partner would like to access following data from Your CitizenOS account:",
+      "HEADING": "Rahvaalgatus.ee would like to access following data from Your CitizenOS account:",
       "TXT_VIEW_PROFILE": "View and edit Your CitizenOS profile - name, company, email, picture.",
-      "TXT_VIEW_TOPICS": "View and edit Your public Topics, created via the partner website.",
-      "TXT_VIEW_VOTES": "View and edit Your Votes in public Topics, created via the partned website.",
-      "TXT_VIEW_GROUPS": "View and edit Your Groups.",
-      "TXT_POLICY": "Our partner will use this information in accordance with their respective terms of service and privacy policies.",
+      "TXT_VIEW_TOPICS": "View and edit Your CitizenOS public Topics and Topics created via the Rahvaalgatus.ee website.",
+      "TXT_VIEW_VOTES": "View and edit Your CitizenOS Votes in public Topics and Topics created via the Rahvaalgatus.ee website.",
+      "TXT_VIEW_GROUPS": "View and edit Your CitizenOS Groups.",
+      "TXT_POLICY": "Rahvaalgatus.ee will use this information in accordance with their respective terms of service and privacy policies.",
       "_AGREE": "Accept",
       "DISAGREE": "Cancel"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "We work together with CitizenOS to offer you a great experience. If you want to use the platform to its fullest, <strong>please login or register.</strong>",
+      "HEADING": "Rahvaalgatus.ee works together with CitizenOS to offer you a great experience. If you want to use the platform to its fullest, <strong>please login or register.</strong>",
       "BTN_LOGIN_FACEBOOK": "@:MODALS.LOGIN_BTN_LOGIN_FACEBOOK",
       "BTN_LOGIN_GOOGLE": "@:MODALS.LOGIN_BTN_LOGIN_GOOGLE",
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",
