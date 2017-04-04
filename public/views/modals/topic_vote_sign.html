@@ -45,7 +45,7 @@
                                 <span translate="MODALS.TOPIC_VOTE_SIGN_ERROR_PHONE">Invalid phone number</span>
                             </div>
                         </label>
-                        <input ng-if="!formMobile.isLoading" ng-model="formMobile.pid" name="pid" ng-class="{error_input: formMobileSign.pid.$error.pattern && formMobileSign.pid.$touched}" placeholder="{{'MODALS.TOPIC_VOTE_SIGN_PLACEHOLDER_PID' | translate}}" ng-pattern="/^[0-9]{11}$/" required>
+                        <input ng-if="!formMobile.isLoading" ng-model="formMobile.pid" name="pid" type="text" inputmode="numeric" ng-class="{error_input: formMobileSign.pid.$error.pattern && formMobileSign.pid.$touched}" placeholder="{{'MODALS.TOPIC_VOTE_SIGN_PLACEHOLDER_PID' | translate}}" ng-pattern="/^[0-9]{11}$/" required>
                         <label ng-if="formMobileSign.pid.$error.pattern && formMobileSign.pid.$touched" for="phone" class="error_label" >
                             <div class="table_cell">
                                 <div class="sprite sprite-icon-inputfield-error2x"></div>
