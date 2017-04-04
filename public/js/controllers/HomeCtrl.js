@@ -60,8 +60,7 @@ angular
         $scope.isTutorialVisible = function () {
             return $scope.filters.categories.value === $scope.FILTERS_ALL
                 && $scope.filters.statuses.value === $scope.FILTERS_ALL
-                && $scope.topicList.length // Render tutorial only when there are topics, this avoids Android and alignment issues.
-                && false; // Disable tutorial while we have nothing to back it.
+                && $scope.topicList.length; // Render tutorial only when there are topics, this avoids Android and alignment issues.
         };
 
         $scope.loadTopicList = function () {
