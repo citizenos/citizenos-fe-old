@@ -7,7 +7,7 @@
     module
         .constant('cosConfig', {
             api: {
-                baseUrl: 'https://citizenos.com' // FIXME: Environment based!
+                baseUrl: 'https://api.citizenos.com' // FIXME: Environment based!
             },
             language: {
                 default: 'en',
