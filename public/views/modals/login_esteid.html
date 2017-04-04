@@ -41,7 +41,7 @@
                                     <span translate="MODALS.LOGIN_ESTEID_ERROR_PHONE">Invalid phone number</span>
                                 </div>
                             </label>
-                            <input id="pid" name="pid" type="text" inputmode="numeric" pattern="[0-9]*" ng-model="formMobile.pid" placeholder="{{'MODALS.LOGIN_ESTEID_PLACEHOLDER_PID' | translate}}"
+                            <input id="pid" name="pid" type="text" inputmode="numeric" ng-model="formMobile.pid" placeholder="{{'MODALS.LOGIN_ESTEID_PLACEHOLDER_PID' | translate}}"
                                    ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
                             <label for="pid" class="error_label" ng-if="loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched">
                                 <div class="table_cell">
