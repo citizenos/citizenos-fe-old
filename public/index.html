@@ -6,16 +6,15 @@
     <base href="/">
     <meta name="fragment" content="!">
     <script> window.prerenderReady = false;</script>
-    <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
     <link href="styles/citizenos-fe.bundle.css?v=cfb682f3b398e311feeb797f59a6a354" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=1d433c660cb86f8c58c37850622e7dbd"></script>
+    <script src="js/citizenos-fe.bundle.js?v=2cf4863d91ec59012e502f3cfb0f37c8"></script>
     <script src="js/libs/template-cache.js?v=2a990f6d0692f1293db53eb95e22042d"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
-    <link ng-if="app.metainfo.icon" rel="shortcut icon" href="{{app.metainfo.icon}}" type="image/x-icon"/>
+    <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
     <meta ng-if="app.metainfo.description" name="description" content="{{app.metainfo.description | translate}}">
     <meta ng-if="app.metainfo.keywords" name="keywords" content="{{app.metainfo.keywords | translate}}">
     <meta ng-if="app.metainfo.author" name="author" content="{{app.metainfo.author}}">
