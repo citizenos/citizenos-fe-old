@@ -3,7 +3,7 @@
     <div ng-repeat="(context, results) in searchResults">
         <div ng-repeat="(model, items) in results">
             <div class="search_cat" ng-if="!noResults && items.count">
-                <div class="cat_wrap" translate="DEFAULT.SEARCH.HEADING_RESULTS_IN" translate-values="{context: context, model: model}">Context search results in <b>{{context}} {{model}}</b></div>
+                <div class="cat_wrap"><span translate="DEFAULT.SEARCH.HEADING_RESULTS_IN">Context search results</span> <b translate="{{'LBL_CONTEXT_' + context + '_' + model | uppercase}}"></b></div>
             </div>
 
             <div class="results_area" ng-if="!noResults && items.count">
