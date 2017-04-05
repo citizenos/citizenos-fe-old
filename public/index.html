@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
     <link href="styles/citizenos-fe.bundle.css?v=cfb682f3b398e311feeb797f59a6a354" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=d6fe21ace63833a84d6aa894234f966e"></script>
+    <script src="js/citizenos-fe.bundle.js?v=4d35aad66184afc15a43ff4c24de7b88"></script>
     <script src="js/libs/template-cache.js?v=2a990f6d0692f1293db53eb95e22042d"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -28,8 +28,6 @@
     <link rel="alternate" ng-repeat="(lang, path) in app.metainfo.hreflang" hreflang="{{lang}}" href="{{path}}">
 </head>
 
-<!-- LIVE RELOAD CODE -->
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 <body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
     <div ng-app="viewTemplateCache"></div>
 
