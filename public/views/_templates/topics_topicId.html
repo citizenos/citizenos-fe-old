@@ -1113,13 +1113,13 @@
                                                     Subject of argument goes here
                                                 </div>
 
-                                                <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
+                                                <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
                                                     <div class="argument_text">
                                                         Right on! I couldn’t agree more and it shows because I chose a pro argument comment to be added here.
                                                     </div>
                                                     <div class="argument_overlay">
                                                     </div>
-                                                    <div class="read_more_link " ng-click="readMore = !readMore">
+                                                    <div class="read_more_link" ng-click="readMore = !readMore">
                                                         {{ (readMore) ? 'Close comment' : 'Read more' }}
                                                     </div>
                                                 </div>

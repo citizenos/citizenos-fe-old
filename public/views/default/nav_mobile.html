@@ -40,7 +40,7 @@
 </div>
 
 <div ng-if="wWidth <= 1024">
-    <div class="header_button edit" ng-click="app.topics_settings = false; app.dotoggleEditMode()" ng-class="app.editMode ? 'active': ''" ng-if="'topics.**' | includedByState">
+    <div class="header_button edit" ng-click="app.topics_settings = false; app.dotoggleEditMode()" ng-class="app.editMode ? 'active': ''" ng-if="('topics.**' | includedByState) && app.user.loggedIn">
             <div class="header_button_icon">
                 <div class="sprite sprite-icon-mobile-edit2x">
                 </div>
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="header_button settings" ng-click="app.topics_settings = !app.topics_settings" ng-class="app.topics_settings ? 'active': ''" ng-if="'topics.**' | includedByState">
+    <div class="header_button settings" ng-click="app.topics_settings = !app.topics_settings" ng-class="app.topics_settings ? 'active': ''" ng-if="('topics.**' | includedByState) && app.user.loggedIn">
             <div class="header_button_icon">
                 <div class="sprite sprite-icon-mobile-settings2x">
                 </div>
