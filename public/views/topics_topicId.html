@@ -743,14 +743,14 @@
                                                         {{comment.subject}}
                                                     </div>
 
-                                                    <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
+                                                    <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
                                                         <div class="argument_text">
-                                                            {{comment.text}}
+                                                            READ MORE: {{readMore}} {{comment.text}}
                                                         </div>
                                                         <div class="argument_overlay">
                                                         </div>
-                                                        <div class="read_more_link " ng-click="readMore = !readMore"
-                                                             translate="{{(readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_READ_MORE'}}">Read more
+                                                        <div class="read_more_link" ng-click="$parent.readMore = !$parent.readMore"
+                                                             translate="{{($parent.readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_READ_MORE'}}">Read more
                                                         </div>
                                                     </div>
 
@@ -845,8 +845,9 @@
                                                         </div>
                                                         <div class="argument_overlay">
                                                         </div>
-                                                        <div class="read_more_link " ng-click="readMore = !readMore"
-                                                             translate="{{(readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_REPLY_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_REPLY_READ_MORE'}}">Read more
+                                                        <div class="read_more_link " ng-click="$parent.readMore = !$parent.readMore"
+                                                             translate="{{($parent.readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_REPLY_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_REPLY_READ_MORE'}}">
+                                                            Read more
                                                         </div>
                                                     </div>
 
