@@ -1,9 +1,15 @@
 # CitizenOS-FE
-CitizenOS front-end web application
 
-**IN DEVELOPMENT - Will replace https://citizenos.com FE application by the end of 2016**
+CitizenOS front-end web application - https://citizenos.com
 
-## Running locally
+## Contributing
+
+### Pull requests
+
+* All pull requests to `master` branch
+* Live site runs on `prod` branch
+
+### Running locally
 
 * Add to dev.citizenos.com to your hosts file - `127.0.0.1 dev.citizenos.com`
 * Install Gulp (http://gulpjs.com/) - `npm install -g gulp`

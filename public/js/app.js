@@ -2,18 +2,21 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips']);
+    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'cosUserVoice']);
 
     module
         .constant('cosConfig', {
             api: {
-                baseUrl: 'https://citizenos-citizenos-web-test.herokuapp.com' // FIXME: Environment based!
+                baseUrl: 'https://citizenos-citizenos-api-test.herokuapp.com' // FIXME: Environment based!
             },
             language: {
                 default: 'en',
                 list: {
                     en: 'English',
+                    fr: 'Français',
                     et: 'Eesti',
+                    lv: 'Latviešu',
+                    lt: 'Lietuvių',
                     ru: 'Pусский'
                 },
                 debug: 'dbg'
@@ -28,7 +31,7 @@
         });
 
     module
-        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
+        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'UserVoiceProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, UserVoiceProvider, cosConfig) {
 
             var langReg = Object.keys(cosConfig.language.list).join('|');
 
@@ -161,11 +164,11 @@
                                 .then(
                                     function () {
                                         $log.debug('Resolve user', sAuth.user);
-                                        return $q.resolve();
+                                        return $q.resolve(true);
                                     },
                                     function () {
                                         $log.debug('Resolve user', sAuth.user);
-                                        return $q.resolve();
+                                        return $q.resolve(false);
                                     }
                                 );
                         }
@@ -206,21 +209,41 @@
                 })
                 .state('account.signup', {
                     url: '/signup?email&name&redirectSuccess',
-                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
-                        ngDialog.open({
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve) {
+                        if (sAuthResolve) {
+                            return $state.go('home');
+                        }
+
+                        var dialog = ngDialog.open({
                             template: '/views/modals/sign_up.html',
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                return $state.go('home');
+                            }
                         });
                     }]
                 })
                 .state('account.login', {
                     url: '/login?email&redirectSuccess',
-                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
-                        ngDialog.open({
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve) {
+                        if (sAuthResolve) {
+                            return $state.go('home');
+                        }
+
+                        var dialog = ngDialog.open({
                             template: '/views/modals/login.html',
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                return $state.go('home');
+                            }
                         });
                     }]
                 })
@@ -260,12 +283,16 @@
                     url: '/topics',
                     abstract: true,
                     parent: 'main',
-                    template: '<div ui-view></div>',
+                    template: '<div ui-view></div>'
                 })
                 .state('topics.create', {
                     url: '/create',
                     parent: 'topics',
-                    controller: ['$scope', '$state', '$stateParams', 'Topic', function ($scope, $state, $stateParams, Topic) {
+                    controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', function ($scope, $state, $stateParams, sAuth, Topic) {
+                        if (!sAuth.user.loggedIn) {
+                            return $state.go('account.login', null, {location: false});
+                        }
+
                         var topic = new Topic();
                         topic
                             .$save()
@@ -340,7 +367,7 @@
                     controller: 'MyCtrl',
                     resolve: {
                         // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$q', '$window', 'sAuth', 'Topic', 'Group', 'sAuthResolve', function ($state, $stateParams, $q, $window, sAuth, Topic, Group, sAuthResolve) {
+                        rItems: ['$state', '$stateParams', '$q', '$window', 'Topic', 'Group', 'sAuth', function ($state, $stateParams, $q, $window, Topic, Group, sAuth) {
                             var filterParam = $stateParams.filter || 'all';
 
                             switch (filterParam) {
@@ -370,8 +397,12 @@
                     parent: 'my.topics',
                     templateUrl: '/views/my_topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', function ($stateParams, Topic, sAuthResolve) {
-                            return Topic.get({topicId: $stateParams.topicId, include: 'vote'}).$promise;
+                        rTopic: ['$stateParams', '$anchorScroll', 'Topic', function ($stateParams, $anchorScroll, Topic) {
+                            return Topic.get({topicId: $stateParams.topicId, include: 'vote'}).$promise
+                                .then(function (topic) {
+                                    $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
+                                    return topic;
+                                });
                         }]
                     },
                     controller: 'TopicCtrl'
@@ -420,7 +451,8 @@
                     parent: 'my.groups',
                     templateUrl: '/views/my_groups_groupId.html',
                     resolve: {
-                        rGroup: ['$stateParams', 'Group', 'rItems', function ($stateParams, Group, rItems) {
+                        rGroup: ['$stateParams', '$anchorScroll', 'Group', 'rItems', function ($stateParams, $anchorScroll, Group, rItems) {
+                            $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
                             return _.find(rItems, {id: $stateParams.groupId});
                         }]
                     },
@@ -547,5 +579,7 @@
                 .useLocalStorage()
                 .useMissingTranslationHandlerLog()
                 .translations('dbg', {});
+
+            UserVoiceProvider.setApiKey('f7Trszzveus2InvLcEelw');
         }]);
 })();

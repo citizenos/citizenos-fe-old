@@ -20,6 +20,7 @@
 
     .logo {
         margin-top: 16px;
+        margin-bottom: 16px;
         @include mobile {
             width: 28px;
         }
@@ -29,7 +30,6 @@
 .logo {
     margin: 0 auto;
 }
-
 
 .nav_is_open {
     right: 0;
@@ -99,9 +99,10 @@ nav {
             color: $white;
         }
 
-        .bold_blue {
+        .bold_blue, .bold_blue:visited, .bold_blue:link {
             font-weight: 700;
             color: $sky_blue;
+            opacity: 1;
         }
 
         a:hover {
@@ -120,12 +121,16 @@ nav {
             }
 
             .section_item {
-                padding: 4px 0 4px 12px ;
-                height: 20px;
+                padding: 4px 0 6px 12px;
                 display: block;
 
+                span {
+                    display: block;
+                    padding-left: 37px;
+                }
+
                 @include tablet {
-                    padding: 8px 0 27px 12px ;
+                    padding: 8px 0 8px 12px ;
                     box-sizing: border-box;
                 }
 
@@ -175,15 +180,14 @@ nav {
 
                 .section_item:not(.section_header):hover, .section_item.active {
                     cursor: pointer;
-                    font-weight: bold;
+                    font-weight: $bold;
                     color: $white;
 
                     @include tablet {
                         font-weight: initial;
-                        opacity: .69;
 
                         &.bold_blue {
-                            font-weight: 700;
+                            font-weight: $bold;
                             color: $sky_blue;
                             opacity: 1;
 
@@ -195,7 +199,7 @@ nav {
 
                     & {
                         background: $black;
-
+                        font-weight: $bold;
                     }
 
                     .sprite {
@@ -210,7 +214,7 @@ nav {
                         background: initial;
                     }
                 }
-                
+
         }
 
     }

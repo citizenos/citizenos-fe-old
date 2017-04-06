@@ -6,17 +6,15 @@
     <base href="/">
     <meta name="fragment" content="!">
     <script> window.prerenderReady = false;</script>
-    <link href="imgs/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
-    <link href="styles/citizenos-fe.bundle.css?v=d62534a7fc5c5555d9a0267ea3cd2143" rel="stylesheet">
-
-    <script src="js/citizenos-fe.bundle.js?v=795715c221b16d172750ab27c3abc160"></script>
+    <link href="styles/citizenos-fe.bundle.css?v=b499f44369b7375c7d82cfcb6d2889f4" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=66dc54bd18e6ef9422a2156631a2cc98"></script>
     <script src="js/libs/template-cache.js?v=c2b186edc26fe0951cc6edf7792b6ff8"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
-    <link ng-if="app.metainfo.icon" rel="shortcut icon" href="{{app.metainfo.icon}}" type="image/x-icon"/>
+    <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
     <meta ng-if="app.metainfo.description" name="description" content="{{app.metainfo.description | translate}}">
     <meta ng-if="app.metainfo.keywords" name="keywords" content="{{app.metainfo.keywords | translate}}">
     <meta ng-if="app.metainfo.author" name="author" content="{{app.metainfo.author}}">
@@ -29,8 +27,6 @@
     <link rel="alternate" ng-repeat="(lang, path) in app.metainfo.hreflang" hreflang="{{lang}}" href="{{path}}">
 </head>
 
-<!-- LIVE RELOAD CODE -->
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 <body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
     <div ng-app="viewTemplateCache"></div>
 

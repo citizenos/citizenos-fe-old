@@ -41,7 +41,7 @@
                                     <span translate="MODALS.LOGIN_ESTEID_ERROR_PHONE">Invalid phone number</span>
                                 </div>
                             </label>
-                            <input id="pid" name="pid" type="number" ng-model="formMobile.pid" placeholder="{{'MODALS.LOGIN_ESTEID_PLACEHOLDER_PID' | translate}}"
+                            <input id="pid" name="pid" type="text" inputmode="numeric" ng-model="formMobile.pid" placeholder="{{'MODALS.LOGIN_ESTEID_PLACEHOLDER_PID' | translate}}"
                                    ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
                             <label for="pid" class="error_label" ng-if="loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched">
                                 <div class="table_cell">
@@ -51,7 +51,7 @@
                             </label>
                         </div>
                         <div ng-if="formMobile.challengeID">
-                            <div class="code" translate="MODALS.LOGIN_ESTEID_TXT_CONTROL_CODE" translate-values="{count: formMobile.challengeID}">Control code: 1234</div>
+                            <div class="code" translate="MODALS.LOGIN_ESTEID_TXT_CONTROL_CODE" translate-values="{code: formMobile.challengeID}">Control code: 1234</div>
                             <div class="code_text" translate="MODALS.LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE">Make sure control code matches with one in the phone screen and enter Mobile-ID PIN2.</div>
                             <div class="loader_wrap">
                                 <div class="loader"></div>
