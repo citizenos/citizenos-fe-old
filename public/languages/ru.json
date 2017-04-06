@@ -518,6 +518,8 @@
   "MSG_ERROR_POST_API_TOPICS_VOTES_40024": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40024",
   "MSG_ERROR_POST_API_TOPICS_VOTES_40025": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40025",
   "MSG_ERROR_POST_API_TOPICS_VOTES_40026": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40026",
+  "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT": "Argument text can be 1 to 2048 characters long.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT": "Main statement can be 1 to 128 characters long.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Вы прервали процесс подписания и Ваш голос не засчитан.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Процесс подписания занял слишком много времени и голос остался не засчитан. Пожалуйста, начните с начала.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Подпись неверна. Ваш голос не засчитан.",
