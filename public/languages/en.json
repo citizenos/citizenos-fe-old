@@ -239,7 +239,7 @@
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "Context search results in ",
+      "HEADING_RESULTS_IN": "Context search results in",
       "LNK_VIEW_MORE_RESULTS": "View more results",
       "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
       "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?<br>We did find some things scattered throughout the CitizenOS platform, so feel free to check them out."
@@ -365,12 +365,12 @@
       "LBL_VIA": "via"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "Rahvaalgatus.ee would like to access following data from Your CitizenOS account:",
+      "HEADING": "Rahvaalgatus.ee would like to access following data from Your account:",
       "TXT_VIEW_PROFILE": "View and edit Your CitizenOS profile - name, company, email, picture.",
       "TXT_VIEW_TOPICS": "View and edit Your CitizenOS public Topics and Topics created via the Rahvaalgatus.ee website.",
       "TXT_VIEW_VOTES": "View and edit Your CitizenOS Votes in public Topics and Topics created via the Rahvaalgatus.ee website.",
       "TXT_VIEW_GROUPS": "View and edit Your CitizenOS Groups.",
-      "TXT_POLICY": "Rahvaalgatus.ee will use this information in accordance with their respective terms of service and privacy policies.",
+      "TXT_POLICY": "Rahvaalgatus.ee will use this information in accordance with their respective <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">terms of service and privacy policies</a>.",
       "_AGREE": "Accept",
       "DISAGREE": "Cancel"
     },

@@ -365,12 +365,12 @@
       "LBL_VIA": "grupist"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "Rahvaalgatus.ee soovib juurdepääsu Sinu CitizenOS andmetele allolevate õigustega:",
+      "HEADING": "Rahvaalgatus.ee soovib juurdepääsu Sinu andmetele allolevate õigustega:",
       "TXT_VIEW_PROFILE": "Sinu CitizenOS profiili vaatamine ja muutmine - nimi, organisatsioon, e-post, pilt.",
       "TXT_VIEW_TOPICS": "Sinu CitizenOS-s avalike ja Rahvaalgatus.ee veebilehe kaudu loodud teemade vaatamine ja muutmine.",
       "TXT_VIEW_VOTES": "Sinu CitizenOS-s avalike ja Rahvaalgatus.ee veebilehe kaudu loodud häälte vaatamine ja muutmine.",
       "TXT_VIEW_GROUPS": "Sinu CitizenOS gruppide vaatamine ja muutmine.",
-      "TXT_POLICY": "Rahvaalgatus.ee kasutab Sinu infot vastavalt oma kasutustingimustele ja privaatsuspoliitikale.",
+      "TXT_POLICY": "Rahvaalgatus.ee kasutab Sinu infot vastavalt oma <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">kasutustingimustele ja privaatsuspoliitikale</a>.",
       "_AGREE": "Nõustu",
       "DISAGREE": "Katkesta"
     },
