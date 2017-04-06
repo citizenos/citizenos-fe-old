@@ -742,8 +742,7 @@
                                                     </div>
 
                                                     <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
-                                                        <div class="argument_text">
-                                                            {{comment.text}}
+                                                        <div class="argument_text" ng-bind-html="comment.text | linky">
                                                         </div>
                                                         <div class="argument_overlay">
                                                         </div>
@@ -838,8 +837,7 @@
                                                     </div>
 
                                                     <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
-                                                        <div class="argument_text">
-                                                            {{reply.text}}
+                                                        <div class="argument_text" ng-bind-html="reply.text | linky">
                                                         </div>
                                                         <div class="argument_overlay">
                                                         </div>
