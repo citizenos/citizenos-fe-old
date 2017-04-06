@@ -518,6 +518,8 @@
   "MSG_ERROR_POST_API_TOPICS_VOTES_40024": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40024",
   "MSG_ERROR_POST_API_TOPICS_VOTES_40025": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40025",
   "MSG_ERROR_POST_API_TOPICS_VOTES_40026": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40026",
+  "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT": "Väite selgitus ja tõestus võib olla 1 kuni 2048 tähemärki pikk.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT": "Väide võib olla 1 kuni 128 tähemärki pikk.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Olete katkestanud allkirjastamise ja Teie häält ei loetud.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Allkirjastamine võttis liiga kaua aega. Häält ei loetud. Palun alustage uuesti.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Allkiri ei ole korrektne. Teie häält ei loetud.",
