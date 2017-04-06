@@ -11,7 +11,6 @@
 
     <link href="styles/citizenos-fe.bundle.css?v=937274747c5713a672b4c4c859bab3f9" rel="stylesheet">
     <script src="js/citizenos-fe.bundle.js?v=2cf4863d91ec59012e502f3cfb0f37c8"></script>
-    <script src="js/libs/template-cache.js?v=2a990f6d0692f1293db53eb95e22042d"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
@@ -88,5 +87,26 @@
     <!-- CONTENT -->
     <!-- Cant have ui-view without a wrapper element. Search results depend on the outer element height, thus the style -->
     <div ui-view style="height: 100%;"></div>
+
+    <!-- GOOGLE ANALYTICS -->
+    <script>
+        if (/\/\/(www.)?citizenos\.com/.test(window.location.href)) {
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-67049149-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+    <script src="js/libs/template-cache.js?v=2a990f6d0692f1293db53eb95e22042d"></script>
 </body>
 </html>
