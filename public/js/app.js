@@ -43,6 +43,7 @@
 
             // Send cookies with API request
             $httpProvider.defaults.withCredentials = true;
+            $httpProvider.defaults.cache = true;
 
             $httpProvider.interceptors.push('cosHttpApiErrorInterceptor');
 
