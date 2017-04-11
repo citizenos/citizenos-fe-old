@@ -186,6 +186,7 @@ angular
                 $scope.app.showSearchResults = false;
                 $scope.app.showSearchFiltersMobile = false;
                 $scope.app.showNav = false;
+                $anchorScroll();
             });
         });
 
