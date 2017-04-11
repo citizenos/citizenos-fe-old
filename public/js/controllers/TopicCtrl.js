@@ -154,7 +154,8 @@ angular
                 pro: 0,
                 con: 0
             };
-            var topicComment = TopicComment.query({topicId: $scope.topic.id, orderBy: $scope.topicComments.orderBy}).$promise
+
+            TopicComment.query({topicId: $scope.topic.id, orderBy: $scope.topicComments.orderBy}).$promise
                 .then(function (comments) {
                     if (comments) {
                         $scope.topicComments.count.pro = _.filter(comments, {type: TopicComment.COMMENT_TYPES.pro}).length;

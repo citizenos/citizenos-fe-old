@@ -43,7 +43,6 @@
 
             // Send cookies with API request
             $httpProvider.defaults.withCredentials = true;
-            $httpProvider.defaults.cache = true;
 
             $httpProvider.interceptors.push('cosHttpApiErrorInterceptor');
 
@@ -57,14 +56,6 @@
                 // pass through to default .parent() function
                 return parentFn(internalStateObj);
             });
-
-            // Set Moment.js time to server time, to avoid issues time diff calculations (from(), to() ...)
-            var setMomentServerTime = function (serverTime) {
-                var offset = new Date(serverTime).getTime() - Date.now();
-                moment.now = function() {
-                    return offset + Date.now();
-                }
-            };
 
             $urlRouterProvider.otherwise(function ($injector, $location) {
                 console.log('$urlRouterProvider.otherwise');
