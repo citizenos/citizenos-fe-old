@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', 'sAuth', 'Group', 'Topic', 'GroupMemberTopic', 'rItems', function ($rootScope, $scope, $state, $stateParams, $q, $log, sAuth, Group, Topic, GroupMemberTopic, rItems) {
+    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', 'Group', 'Topic', 'GroupMemberTopic', 'rItems', function ($rootScope, $scope, $state, $stateParams, $q, $log, Group, Topic, GroupMemberTopic, rItems) {
         $log.debug('MyCtrl', $stateParams, rItems);
 
         $scope.itemList = rItems;
@@ -30,6 +30,7 @@ angular
                         id: 'private',
                         name: 'My private topics',
                         onSelect: function () {
+                            console.log('MY PRIVATE TOPICS')
                             $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
                     },
