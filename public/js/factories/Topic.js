@@ -8,7 +8,6 @@ angular
             if(!prefix) {
                 prefix = '@prefix';
             }
-            console.log('PREFIX', prefix);
             return prefix;
         }
 
@@ -17,7 +16,6 @@ angular
             if(!userId) {
                 userId = '@userId';
             }
-            console.log('USER', userId);
             return userId;
         }
 
