@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
     <link href="styles/citizenos-fe.bundle.css?v=aa3c47ae10b3e5b147a84aeb06706f66" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=4aa67851e3341441277f9c4f19787f51"></script>
+    <script src="js/citizenos-fe.bundle.js?v=18dee2cfc32430508e6f19721d603132"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
@@ -108,5 +108,28 @@
         }
     </script>
     <script src="js/libs/template-cache.js?v=2a990f6d0692f1293db53eb95e22042d"></script>
+    <script>
+        if (/\/\/(www.)?citizenos\.com/.test(window.location.href)) {
+            if (/(chrome|firefox)/.test(navigator.userAgent.toLowerCase())) {
+                var notified = false;
+                window.addEventListener('devtoolschange', function (e) {
+                    var o = e.detail.open;
+                    if (o && !notified) {
+                        if ('function' == typeof console.group) {
+                            console.group('We\'re open source. Contribute on Github - https://github.com/citizenos/citizenos-fe!');
+                        }
+
+                        console.log('%c' + '    Found a bug? Need a feature?', 'background-image: url("https://citizenos.com/imgs/citizenos_logo_black.png"); background-repeat: no-repeat; background-size: 58px 50px; font-size:30px; line-height: 2; font-weight: bold;');
+                        console.log('%c' + 'We\'re open source. Contribute on GitHub - https://github.com/citizenos/citizenos-fe', 'font-size:15px; line-height: 2');
+                        notified = true;
+
+                        if ('function' == typeof console.groupEnd) {
+                            console.groupEnd();
+                        }
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>
