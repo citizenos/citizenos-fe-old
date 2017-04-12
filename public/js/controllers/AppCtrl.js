@@ -195,7 +195,7 @@ angular
             if (error.status && error.data && error.config) { // $http failure in "resolve"
                 var stateError = 'error.' + error.status;
                 $log.debug('$stateChangeError', '"resolve" failed in route definition.');
-                $state.go(stateError, null, {location: false});
+                $state.go(stateError, {language: fromParams.language || $scope.app.user.language}, {location: false});
             }
         });
 
