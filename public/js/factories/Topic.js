@@ -3,13 +3,21 @@ angular
     .factory('Topic', ['$log', '$resource', 'sLocation', 'sAuth', 'TopicMemberUser', 'TopicVote', 'Vote', function ($log, $resource, sLocation, sAuth, TopicMemberUser, TopicVote, Vote) {
         $log.debug('citizenos.factory.Topic');
 
+        var getUrlPrefix = function () {
+            console.log('PREFIX', Topic.prefix);
+            return (sAuth.getUrlPrefix() || '@prefix');
+        }
+
+        var getUrlUser = function () {
+            return (sAuth.getUrlUserId() || '@userId');
+        }
+
         var Topic = $resource(
             sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId'),
-            {topicId: '@id'},
+            {topicId: '@id', prefix: getUrlPrefix, userId: getUrlUser},
             {
                 get: {
                     method: 'GET',
-                    params: {topicId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) {
                             var topic = angular.fromJson(data).data;
@@ -28,7 +36,6 @@ angular
                 },
                 query: {
                     isArray: true,
-                    params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformResponse: function (data, headerGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             var array = angular.fromJson(data).data.rows || [];
@@ -48,22 +55,18 @@ angular
                     }
                 },
                 update: {
-                    params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     method: 'PUT'
                 },
                 patch: {
-                    params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     method: 'PATCH'
                 },
                 save: {
-                    params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     method: 'POST',
                     transformResponse: function (data) {
                         return angular.fromJson(data).data;
                     }
                 },
                 delete: {
-                    params: {topicId: '@id',prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     method: 'DELETE',
                     transformResponse: function (data) {
                         return angular.fromJson(data).data;

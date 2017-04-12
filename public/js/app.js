@@ -367,18 +367,26 @@
                     controller: 'MyCtrl',
                     resolve: {
                         // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$q', '$window', 'Topic', 'Group', 'sAuth', function ($state, $stateParams, $q, $window, Topic, Group, sAuth) {
+                        rItems: ['$state', '$stateParams', '$q', '$window', 'Topic', 'Group', 'sAuth', 'sAuthResolve', function ($state, $stateParams, $q, $window, Topic, Group, sAuth, sAuthResolve) {
                             var filterParam = $stateParams.filter || 'all';
+                            var urlParams = {prefix: null, userId: null};
+
+                            if(sAuthResolve) {
+                                urlParams = {prefix: 'users', userId : 'self'}
+                            }
 
                             switch (filterParam) {
                                 case 'all':
-                                    return Topic.query().$promise;
+                                    return Topic.query(urlParams).$promise;
                                 case 'public':
-                                    return Topic.query({visibility: Topic.VISIBILITY.public}).$promise;
+                                    urlParams.visibility = Topic.VISIBILITY.public;
+                                    return Topic.query(urlParams).$promise;
                                 case 'private':
-                                    return Topic.query({visibility: Topic.VISIBILITY.private}).$promise;
+                                    urlParams.visibility = Topic.VISIBILITY.private;
+                                    return Topic.query(urlParams).$promise;
                                 case 'iCreated':
-                                    return Topic.query({creatorId: sAuth.user.id}).$promise;
+                                    urlParams.creatorId = sAuth.user.id;
+                                    return Topic.query(urlParams).$promise;
                                 case 'grouped':
                                     return Group.query().$promise;
                                 default:
@@ -397,8 +405,13 @@
                     parent: 'my.topics',
                     templateUrl: '/views/my_topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', '$anchorScroll', 'Topic', function ($stateParams, $anchorScroll, Topic) {
-                            return Topic.get({topicId: $stateParams.topicId, include: 'vote'}).$promise
+                        rTopic: ['$stateParams', '$anchorScroll', 'Topic', 'sAuthResolve', function ($stateParams, $anchorScroll, Topic, sAuthResolve) {
+                            var urlParams = {topicId: $stateParams.topicId, include: 'vote'};
+                            if(sAuthResolve) {
+                                urlParams.prefix = 'users';
+                                urlParams.userId = 'self';
+                            }
+                            return Topic.get(urlParams).$promise
                                 .then(function (topic) {
                                     $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
                                     return topic;
