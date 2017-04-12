@@ -26,7 +26,6 @@ angular
             if (sNotification.messages[level].indexOf(key) === -1) {
                 sNotification.messages[level].push(key);
             }
-            $log.debug('POST ADD', sNotification.messages);
         };
 
         sNotification.removeAll = function (level) {

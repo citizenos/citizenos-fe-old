@@ -58,7 +58,7 @@
             });
 
             $urlRouterProvider.otherwise(function ($injector, $location) {
-                console.log('$urlRouterProvider.otherwise');
+                console.log('$urlRouterProvider.otherwise', $location.absUrl());
 
                 var sAuth = $injector.get('sAuth');
                 var $state = $injector.get('$state');
@@ -99,7 +99,7 @@
                     });
 
                 function resolveOtherwise() {
-                    console.log('resolveOtherwise', useLang);
+                    console.log('resolveOtherwise', locationUrl, useLang);
                     returnLink = '/' + useLang + '/';
                     if (langkeys.indexOf(locationPath[1]) > -1) {
                         returnLink = '/' + locationPath[1] + '/';
