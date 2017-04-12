@@ -444,11 +444,21 @@
 
                 input {
                     margin: 19px 0 10px;
+                    &.error_input {
+                        margin: 19px 0 0;
+                    }
                 }
 
                 textarea {
                     height: 100px;
                     margin-bottom: 15px;
+                    &.error_input {
+                        margin-bottom: 0px;
+                    }
+                }
+
+                .error_label {
+                    margin-bottom: 10px;
                 }
 
                 .nature_green_button {
