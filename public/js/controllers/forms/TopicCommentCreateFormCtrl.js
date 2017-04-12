@@ -7,7 +7,8 @@ angular
             $scope.form = {
                 type: null,
                 subject: null,
-                text: null
+                text: null,
+                errors: null
             };
             $scope.maxLengthSubject = 128;
             $scope.maxLengthText = 2048;
@@ -28,11 +29,20 @@ angular
             comment.type = type;
             comment.subject = $scope.form.subject;
             comment.text = $scope.form.text;
-            comment.$save({topicId: $scope.topic.id})
-                .then(function (data) {
-                    $scope.loadTopicComments();
-                    init();
-                });
+
+            $scope.form.errors = null;
+
+            comment
+                .$save({topicId: $scope.topic.id})
+                .then(
+                    function () {
+                        $scope.loadTopicComments();
+                        init();
+                    },
+                    function (res) {
+                        $scope.form.errors = res.data.errors;
+                    }
+                );
         };
 
         $scope.submitPro = function () {

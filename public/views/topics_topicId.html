@@ -801,7 +801,13 @@
 
 
                                                 <div class="post_argument_wrap" ng-if="comment.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                                                    <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" ng-model="form.text"></textarea>
+                                                    <textarea id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}"></textarea>
+                                                    <label for="argument_con_reply_text" class="error_label" ng-if="form.errors.text">
+                                                        <div class="table_cell">
+                                                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                                            <span translate="{{form.errors.text}}"></span>
+                                                        </div>
+                                                    </label>
                                                     <div class="blue_button" cos-disabled="!form.text" ng-click="submitReply(comment.id)" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_REPLY">Post
                                                         reply
                                                     </div>
@@ -897,8 +903,14 @@
 
                                                 <div class="post_argument_wrap" ng-if="reply.showReply" ng-controller="TopicCommentCreateFormCtrl">
                                                     <form name="argumentReplyForm">
-                                                    <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" ng-model="form.text"
-                                                              required></textarea>
+                                                        <textarea id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}"
+                                                                  required></textarea>
+                                                        <label for="argument_pro_reply_text" class="error_label" ng-if="form.errors.text">
+                                                            <div class="table_cell">
+                                                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                                                <span translate="{{form.errors.text}}"></span>
+                                                            </div>
+                                                        </label>
                                                         <div class="blue_button" cos-disabled="argumentReplyForm.$invalid" ng-click="submitReply(comment.id)"
                                                              translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_REPLY_POST_REPLY">
                                                             Post reply
@@ -916,9 +928,23 @@
                                     <div id="post_argument_wrap" class="post_argument_wrap" ng-controller="TopicCommentCreateFormCtrl">
                                         <form name="argumentForm">
                                             <div class="line lightest_line" ng-if="topicComments.rows.length"></div>
-                                            <input placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}" class="gray_borders" ng-model="form.subject" required>
-                                            <textarea class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-model="form.text"
+                                            <input id="argument_subject" ng-model="form.subject" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}"
+                                                   class="gray_borders" ng-class="{'error_input': form.errors.subject}" required>
+                                            <label for="argument_subject" class="error_label" ng-if="form.errors.subject">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                                    <span translate="{{form.errors.subject}}"></span>
+                                                </div>
+                                            </label>
+                                            <textarea id="argument_text" ng-model="form.text" class="gray_borders"
+                                                      placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-class="{'error_input': form.errors.text}"
                                                       required></textarea>
+                                            <label for="argument_text" class="error_label" ng-if="form.errors.text">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                                    <span translate="{{form.errors.text}}"></span>
+                                                </div>
+                                            </label>
                                             <div class="blue_button nature_green_button" cos-disabled="argumentForm.$invalid" ng-click="submitPro()"
                                                  translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_PRO">Post as a pro argument
                                             </div>
