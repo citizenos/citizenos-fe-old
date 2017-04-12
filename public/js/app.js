@@ -370,8 +370,9 @@
                         rItems: ['$state', '$stateParams', '$q', '$window', 'Topic', 'Group', 'sAuth', 'sAuthResolve', function ($state, $stateParams, $q, $window, Topic, Group, sAuth, sAuthResolve) {
                             var filterParam = $stateParams.filter || 'all';
                             var urlParams = {prefix: null, userId: null};
+                            console.log('sAuthResolve', sAuthResolve);
 
-                            if(sAuthResolve) {
+                            if(sAuth.user.loggedIn) {
                                 urlParams = {prefix: 'users', userId : 'self'}
                             }
 

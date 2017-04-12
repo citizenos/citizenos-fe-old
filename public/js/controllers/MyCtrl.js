@@ -30,6 +30,7 @@ angular
                         id: 'private',
                         name: 'My private topics',
                         onSelect: function () {
+                            console.log('MY PRIVATE TOPICS')
                             $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
                     },

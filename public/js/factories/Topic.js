@@ -4,12 +4,21 @@ angular
         $log.debug('citizenos.factory.Topic');
 
         var getUrlPrefix = function () {
-            console.log('PREFIX', Topic.prefix);
-            return (sAuth.getUrlPrefix() || '@prefix');
+            var prefix = sAuth.getUrlPrefix();
+            if(!prefix) {
+                prefix = '@prefix';
+            }
+            console.log('PREFIX', prefix);
+            return prefix;
         }
 
         var getUrlUser = function () {
-            return (sAuth.getUrlUserId() || '@userId');
+            var userId = sAuth.getUrlUserId();
+            if(!userId) {
+                userId = '@userId';
+            }
+            console.log('USER', userId);
+            return userId;
         }
 
         var Topic = $resource(
