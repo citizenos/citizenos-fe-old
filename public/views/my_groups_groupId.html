@@ -103,7 +103,7 @@
                         <div class="item_content">
                             <span class="item_text blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_SETTINGS">settings</span>
                             <span class="separator">|</span>
-                            <span class="item_text blue_link" ng-click="doLeaveGroup(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_LEAVE">leave</span>
+                            <span class="item_text blue_link" ng-click="doLeaveGroup()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_LEAVE">leave</span>
                             <span ng-if="group.canDelete()">
                                 <span class="separator">|</span>
                                 <span class="remove item_text blue_link" ng-click="doDeleteGroup(group)">
@@ -350,14 +350,14 @@
                             </div>
                             <div class="dropdown">
                                 <div class="dropdown_item" ng-repeat="(key, level) in GroupMemberUser.LEVELS">
-                                    <div class="item_name" ng-click="doUpdateMemberUser(group, user, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
+                                    <div class="item_name" ng-click="doUpdateMemberUser(user, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin">
-                            <div class="btn" ng-click="doDeleteMemberUser(group, user)" cos-disabled="!group.canUpdate()">
+                            <div class="btn" ng-click="doDeleteMemberUser(user)" cos-disabled="!group.canUpdate()">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                     <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
