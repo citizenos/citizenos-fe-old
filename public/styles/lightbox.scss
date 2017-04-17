@@ -1283,6 +1283,7 @@
         @media (max-width: 560px) {
             overflow: auto !important;
         }
+
         .lightbox_section {
             max-height: 381px;
             padding-top: 20px !important;
@@ -1349,9 +1350,9 @@
                     .recycle_bin_wrap {
                         width: 32px;
                         display: inline-block;
-                        float:right;
+                        float: right;
                         &.wrap_mobile {
-                            display:none;
+                            display: none;
                         }
                     }
 
@@ -1384,11 +1385,11 @@
                             width: 100%;
                         }
                         .recycle_bin_wrap {
-                            display:none;
+                            display: none;
                             width: 100%;
                             .btn_wrap {
                                 width: 100%;
-                                margin-top:10px;
+                                margin-top: 10px;
                             }
                             &.wrap_mobile {
                                 display: inline-block;
@@ -1560,7 +1561,7 @@
                     background: none;
                     border: none;
                     cursor: pointer;
-                    &.category_selected{
+                    &.category_selected {
                         display: table;
                         width: 100%;
                         height: 30px;
@@ -1576,7 +1577,7 @@
                                 background: $white;
                             }
 
-                            display:table-cell;
+                            display: table-cell;
                         }
                     }
 
