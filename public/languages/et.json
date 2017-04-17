@@ -554,6 +554,7 @@
   "MSG_ERROR_HWCRYPTO_NO_CERTIFICATES": "Lugeja ei leia ID-kaarti. Palun kontrollige, et ID-kaart oleks korralikult lugejas. Uutel ID-kaartidel on kiip kaardi tagaküljel.",
   "MSG_ERROR_HWCRYPTO_NO_IMPLEMENTATION": "Teie arvutis puudub digitaalse allkirjastamise tarkvara. Tarkvara saate paigaldada installer.id.ee veebilehelt.",
   "MSG_ERROR_HWCRYPTO_TECHNICAL_ERROR": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega.",
+  "MSG_ERROR_PUT_API_USERS_GROUPS_MEMBERS_USERS_40000": "Kasutaja õigusi ei saa muuta kuna kasutaja on viimane admin selles grupis. Õiguste muutmiseks määra uus admin.",
   "MSG_ERROR_DELETE_API_USERS_GROUPS_MEMBERS_USERS_40000": "Sa ei saa rühmast lahkuda, oled viimane admin õigustega kasutaja. Lahkumiseks palun määra enda asemele uus administraator.",
   "MSG_ERROR_DELETE_API_USERS_TOPICS_MEMBERS_USERS_40010": "Viimast admin õigustega kasutajat pole võimalik kustutada. Määra uus administraator, et antud kasutaja kustutada.",
   "MSG_ERROR_PUT_API_USERS_TOPICS_MEMBERS_USERS_40000": "Viimase admin õigustega kasutaja õigusi pole võimalik muuta. Määra uus administraator, et antud kasutaja õigusi muuta.",
