@@ -9,7 +9,7 @@ angular
             searchInput: null
         };
 
-        $scope.searchResults = null;
+        $scope.searchResults = {combined: []};
         $scope.noResults = true;
 
         $scope.viewMoreInProgress = false;
@@ -44,13 +44,11 @@ angular
                 return;
             }
             $scope.noResults = true;
-            $scope.searchResults = null;
+   //         $scope.searchResults = null;
             if (!str || str.length < 3) {
-                $scope.searchString = null;
                 $scope.app.showSearchResults = false;
                 return;
             }
-            $scope.searchString = str;
             var include = ['public.topic'];
 
             if (sAuth.user.loggedIn) {
@@ -61,10 +59,10 @@ angular
                 .searchV2(str, {include: include, limit:5})
                 .then(function (result) {
                     $scope.searchResults = result.data.data.results;
+                    $scope.searchResults.combined = [];
                     $scope.app.showSearchResults = true;
                     $scope.app.showNav = false;
                     $scope.app.showSearchFiltersMobile = false;
-
                     $scope.combineResults();
                 }, function (err) {
                     $log.error('SearchCtrl', 'Failed to retrieve search results', err);
@@ -114,7 +112,7 @@ angular
                 var page = Math.floor($scope.searchResults[context][model].rows.length/5)+1;
 
                 sSearch
-                    .searchV2($scope.searchString, {include: include, limit:5, page: page})
+                    .searchV2($scope.moreStr, {include: include, limit:5, page: page})
                     .then(function (result) {
                         var moreResults = result.data.data.results;
 

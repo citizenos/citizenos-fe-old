@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
-    <link href="styles/citizenos-fe.bundle.css?v=48c1fb9714489657689e58e30e61640b" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=f52c90a38de00205ae2e98b6e22da287"></script>
+    <link href="styles/citizenos-fe.bundle.css?v=2720381a7607a46a2c933339d315c2ec" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=24c37e9da6e5025c08700f77400e4a41"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
@@ -26,7 +26,7 @@
     <link rel="alternate" ng-repeat="(lang, path) in app.metainfo.hreflang" hreflang="{{lang}}" href="{{path}}">
 </head>
 
-<body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
+<body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" cos-resize>
     <div ng-app="viewTemplateCache"></div>
 
     <!-- INFO BAR - base.scss -->

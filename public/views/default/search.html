@@ -1,4 +1,4 @@
-<div id="search_area_wrap">
+<div id="search_area_wrap" ng-controller="SearchCtrl">
     <typeahead id="search_results_area" class="auto-complete" items="searchResults.combined" term="form.searchInput" search="doSearch(term)"
                                    select="goToView(item)" placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_INVITE_USERS_AND_GROUPS' | translate}}">
 
@@ -33,9 +33,6 @@
                                 <div ng-if="row.id ==='viewMore'" class="more_results" ng-click="viewMoreResults(context, model)" translate="DEFAULT.SEARCH.LNK_VIEW_MORE_RESULTS">View more results</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="result_links" ng-if="items.rows.length < items.count" >
-                        <div class="more_results" ng-click="viewMoreResults(context, model)" translate="DEFAULT.SEARCH.LNK_VIEW_MORE_RESULTS">View more results</div>
                     </div>
                 </div>
             </div>

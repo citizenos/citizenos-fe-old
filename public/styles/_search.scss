@@ -53,6 +53,9 @@
             @include tablet {
                 padding-left: 190px;
                 padding-right: 135px;
+                @include mobile {
+                    padding-left: 59px;
+                }
             }
         }
         .ac-input {
