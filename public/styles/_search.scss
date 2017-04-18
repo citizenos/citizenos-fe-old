@@ -31,7 +31,7 @@
     @include tablet {
         left: 0;
         width: 100%;
-        overflow-y: inherit;
+        position:fixed;
     }
 
     #search_area_wrap {
@@ -41,8 +41,9 @@
         left: 0;
         right: 0;
         z-index: 2;
+
         @include tablet {
-            background: none;
+            background: $medium_black;
             display: table;
             height: 60px;
             width: 100%;
@@ -55,6 +56,31 @@
                 padding-right: 135px;
                 @include mobile {
                     padding-left: 59px;
+                }
+            }
+
+            #m_search_icon, #m_search_close {
+                display: none;
+
+                @include tablet {
+                    position: absolute;
+                    display: block;
+                    height: 60px;
+                    width: 32px;
+                    display: table;
+                    z-index: 6;
+                    top:0;
+
+                    .sprite {
+                        margin: 0 auto;
+                    }
+                }
+            }
+
+            #m_search_close {
+                @include tablet {
+                    right: 135px;
+                    cursor: pointer;
                 }
             }
         }

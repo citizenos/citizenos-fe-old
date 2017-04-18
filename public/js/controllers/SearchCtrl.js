@@ -133,9 +133,10 @@
             };
 
             $scope.closeSearchArea = function () {
-                app.showSearchResults = false;
+                $scope.app.showSearchResults = false;
                 $scope.form.searchInput = null;
                 $scope.searchResults.combined = [];
+                $scope.app.showSearch = false;
 
             }
 
