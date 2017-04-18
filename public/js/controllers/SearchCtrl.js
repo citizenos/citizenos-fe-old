@@ -13,8 +13,37 @@ angular
             combined:[]
         };
         $scope.noResults = true;
+        $scope.viewMoreInProgress = false;
+        $scope.moreStr = null;
+
+        $scope.combineResults = function () {
+            var contexts = Object.keys($scope.searchResults);
+            contexts.forEach(function (context) {
+                var models = Object.keys($scope.searchResults[context]);
+                models.forEach( function (model) {
+                    if($scope.searchResults[context][model].count > 0) {
+                        $scope.noResults = false;
+                        $scope.searchResults[context][model].rows.forEach(function (item, key) {
+                            if(item.id === 'viewMore') {
+                                $scope.searchResults[context][model].rows.splice(key,1);
+                            }
+                        })
+
+                        var currentResults = $scope.searchResults[context][model].rows;
+                            if($scope.searchResults[context][model].count > $scope.searchResults[context][model].rows.length) {
+                                currentResults.push({id:'viewMore', model: model, context: context});
+                            }
+                        $scope.searchResults.combined = $scope.searchResults.combined.concat(currentResults);
+                    }
+                });
+            });
+        };
 
         $scope.doSearch = function (str) {
+            if($scope.viewMoreInProgress) {
+                $scope.form.searchInput = $scope.moreStr;
+                return;
+            }
             $scope.noResults = true;
             $scope.searchResults = {
                 combined:[]
@@ -39,16 +68,7 @@ angular
                     $scope.app.showSearchResults = true;
                     $scope.app.showNav = false;
                     $scope.app.showSearchFiltersMobile = false;
-                    var contexts = Object.keys($scope.searchResults);
-                    contexts.forEach(function (context) {
-                        var models = Object.keys($scope.searchResults[context]);
-                        models.forEach( function (model) {
-                            if($scope.searchResults[context][model].count > 0) {
-                                $scope.noResults = false;
-                                $scope.searchResults.combined = $scope.searchResults.combined.concat($scope.searchResults[context][model].rows);
-                            }
-                        });
-                    });
+                    $scope.combineResults();
                 }, function (err) {
                     $log.error('SearchCtrl', 'Failed to retrieve search results', err);
                 });
@@ -57,6 +77,11 @@ angular
         $scope.goToView = function (item) {
             if (item) {
                 var model = 'topic';
+                if(item.id  === 'viewMore') {
+                    model = 'viewMore';
+                    $scope.viewMoreResults(item.context, item.model);
+                    return;
+                }
                 if( item.hasOwnProperty('name') ) {
                     model = 'group';
                 }
@@ -73,6 +98,12 @@ angular
         };
 
         $scope.viewMoreResults = function (context, model) {
+            if($scope.viewMoreInProgress) {
+                return;
+            } else {
+                $scope.viewMoreInProgress = true;
+                $scope.moreStr = $scope.form.searchInput;
+            }
             if(context && model && $scope.searchResults[context][model].count > $scope.searchResults[context][model].rows.length) {
                 var include = context + '.' + model;
                 if(model === 'topics') {
@@ -93,11 +124,22 @@ angular
                             $scope.searchResults[context][model].rows.push(row);
                         });
 
+                        $scope.combineResults();
+
+                        $scope.viewMoreInProgress = false;
+
                     }, function (err) {
                         $log.error('SearchCtrl', 'Failed to retrieve search results', err);
                     });
             }
         };
+
+        $scope.closeSearchArea = function () {
+            app.showSearchResults = false;
+            $scope.form.searchInput = null;
+            $scope.searchResults.combined = [];
+
+        }
 
         $scope.$watch(
             function () {

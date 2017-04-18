@@ -49,6 +49,7 @@
             width: 60px;
             height: 60px;
             display: table;
+            top:0;
 
             .sprite {
                 margin: 0 auto;
@@ -64,11 +65,9 @@
         #close_search_icon:hover {
             background: $light_gray;
         }
-
     }
 
     #content_wrap {
-        margin-top: -60px;
         height: 100%;
 
         @include tablet {
@@ -81,8 +80,8 @@
         text-align: center;
         width: 100%;
         height: 100%;
-        padding-top: 60px;
         box-sizing: border-box;
+        padding-top:60px;
 
         @include tablet {
             padding-top: 0;
@@ -107,11 +106,10 @@
                 }
             }
 
-            /* SEARCH AREA (Search bar styles in nav.scss) */
-            @import 'search';
         }
     }
 
 }
-
+/* SEARCH AREA (Search bar styles in nav.scss) */
+@import 'search';
 

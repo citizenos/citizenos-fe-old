@@ -625,6 +625,11 @@
                     if (!date.isValid()) {
                         return '';
                     }
+                    // Quickhax for getting Moment not to get into troubles with server and client time differences.
+                    // TODO: Need a decent fix - https://github.com/moment/moment/issues/537
+                    if(moment().isBefore(date)) {
+                        date = moment();
+                    }
 
                     dateFrom = moment(from);
                     if (!isUndefinedOrNull(from) && dateFrom.isValid()) {

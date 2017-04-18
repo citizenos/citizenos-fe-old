@@ -16,4 +16,10 @@ angular
             return $http.put(path, {language: language});
         };
 
+        sUser.consentsCreate = function (partnerId) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/consents');
+
+            return $http.post(path, {partnerId: partnerId});
+        };
+
     }]);

@@ -7,7 +7,8 @@ angular
             $scope.form = {
                 type: null,
                 subject: null,
-                text: null
+                text: null,
+                errors: null
             };
             $scope.maxLengthSubject = 128;
             $scope.maxLengthText = 2048;
@@ -23,15 +24,25 @@ angular
         });
 
         var saveComment = function (parentId, type) {
-            var Comment = new TopicComment();
-            Comment.parentId = parentId;
-            Comment.type = type;
-            Comment.subject = $scope.form.subject;
-            Comment.text = $scope.form.text;
-            Comment.$save({topicId: $scope.topic.id})
-                .then(function (data) {
-                    $scope.loadTopicComments();
-                });
+            var comment = new TopicComment();
+            comment.parentId = parentId;
+            comment.type = type;
+            comment.subject = $scope.form.subject;
+            comment.text = $scope.form.text;
+
+            $scope.form.errors = null;
+
+            comment
+                .$save({topicId: $scope.topic.id})
+                .then(
+                    function () {
+                        $scope.loadTopicComments();
+                        init();
+                    },
+                    function (res) {
+                        $scope.form.errors = res.data.errors;
+                    }
+                );
         };
 
         $scope.submitPro = function () {

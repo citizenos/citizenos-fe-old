@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'UserVoice', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, UserVoice) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -21,7 +21,7 @@ angular
             title: 'META_DEFAULT_TITLE',
             description: 'META_DEFAULT_DESCRIPTION',
             keywords: 'META_DEFAULT_KEYWORDS',
-            icon: sLocation.getAbsoluteUrl('/favicon.ico'),
+            icon: sLocation.getAbsoluteUrl('/imgs/favicon.ico'),
             author: null,
             image: sLocation.getAbsoluteUrl('/imgs/logo_dark_seo.png'),
             url: null,
@@ -174,6 +174,7 @@ angular
         $rootScope.$on('$translateChangeSuccess', function () {
             $scope.app.language = sTranslate.currentLanguage;
             amMoment.changeLocale($scope.app.language);
+            UserVoice.push(['set', 'locale', $scope.app.language]);
         });
 
         $rootScope.$on('$stateChangeSuccess', function () {
@@ -185,6 +186,7 @@ angular
                 $scope.app.showSearchResults = false;
                 $scope.app.showSearchFiltersMobile = false;
                 $scope.app.showNav = false;
+                $anchorScroll();
             });
         });
 
@@ -193,7 +195,7 @@ angular
             if (error.status && error.data && error.config) { // $http failure in "resolve"
                 var stateError = 'error.' + error.status;
                 $log.debug('$stateChangeError', '"resolve" failed in route definition.');
-                $state.go(stateError, null, {location: false});
+                $state.go(stateError, {language: fromParams.language || $scope.app.user.language}, {location: false});
             }
         });
 
@@ -204,5 +206,27 @@ angular
                 $scope.app.metainfo.hreflang[language] = sLocation.getBaseUrl() + url.join('/');
             });
         }
+
+        // Update UserVoice data when User changes
+        $scope.$watch(function () {
+            return $scope.app.user.loggedIn;
+        }, function (loggedIn) {
+            if (loggedIn) {
+                UserVoice.push(['identify', {
+                    email: $scope.app.user.email || '',
+                    id: $scope.app.user.id,
+                    name: $scope.app.user.name
+                }]);
+            }
+        });
+        // Set up UserVoice - https://developer.uservoice.com/docs/widgets/options/
+        // TODO: Ideally this should be in provider.config...
+        UserVoice.push(['set', {
+            accent_color: '#808283',
+            trigger_color: 'white',
+            trigger_background_color: 'rgba(46, 49, 51, 0.6)'
+        }]);
+
+        UserVoice.push(['addTrigger', {mode: 'contact', trigger_position: 'bottom-right'}]);
 
     }]);
