@@ -70,7 +70,7 @@
                 var locationPath = locationUrl.split('/');
 
                 var langkeys = Object.keys(cosConfig.language.list);
-                var clientLang = $translate.resolveClientLocale() | $translate.use();;
+                var clientLang = $translate.resolveClientLocale() || $translate.use();;
                 var useLang = cosConfig.language.default;
                 if (langkeys.indexOf(clientLang) > -1) {
                     useLang = clientLang;
