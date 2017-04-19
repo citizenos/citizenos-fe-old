@@ -41,35 +41,32 @@
 
 <div ng-if="wWidth <= 1024">
     <div class="header_button edit" ng-click="app.topics_settings = false; app.dotoggleEditMode()" ng-class="app.editMode ? 'active': ''" ng-if="('topics.**' | includedByState) && app.user.loggedIn">
-            <div class="header_button_icon">
-                <div class="sprite sprite-icon-mobile-edit2x">
-                </div>
-            </div>
-            <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_EDIT">Edit</div>
-
-            <div class="line_holder">
-                <div class="v_line dark_line"></div>
-                <div class="v_line light_line"></div>
+        <div class="header_button_icon">
+            <div class="sprite sprite-icon-mobile-edit2x">
             </div>
         </div>
-    </div>
+        <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_EDIT">Edit</div>
 
-    <div class="header_button settings" ng-click="app.topics_settings = !app.topics_settings" ng-class="app.topics_settings ? 'active': ''" ng-if="('topics.**' | includedByState) && app.user.loggedIn">
-            <div class="header_button_icon">
-                <div class="sprite sprite-icon-mobile-settings2x">
-                </div>
-            </div>
-
-            <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_SETTINGS">Settings</div>
-
-            <div class="line_holder" ng-if="!app.editMode">
-                <div class="v_line dark_line"></div>
-                <div class="v_line light_line"></div>
-            </div>
+        <div class="line_holder">
+            <div class="v_line dark_line"></div>
+            <div class="v_line light_line"></div>
         </div>
     </div>
 </div>
 
+<div class="header_button settings" ng-click="app.topics_settings = !app.topics_settings" ng-class="app.topics_settings ? 'active': ''" ng-if="('topics.**' | includedByState) && app.user.loggedIn">
+    <div class="header_button_icon">
+        <div class="sprite sprite-icon-mobile-settings2x">
+        </div>
+    </div>
+
+    <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_SETTINGS">Settings</div>
+
+    <div class="line_holder" ng-if="!app.editMode">
+        <div class="v_line dark_line"></div>
+        <div class="v_line light_line"></div>
+    </div>
+</div>
 
 <div class="header_button" ng-click="app.showNav = !app.showNav">
     <div class="line_holder first_holder">
@@ -84,22 +81,6 @@
     <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_MENU">Menu</div>
 </div>
 
-<div id="m_search_bar" ng-style="{'display': app.showSearch ? 'relative' : 'none'}">
-    <!--div id="m_search_icon">
-        <div class="table_cell">
-            <div class="sprite sprite-icon-search-b-2x"></div>
-        </div>
-    </div>
-    <div id="m_search_close" ng-click="app.showSearch = !app.showSearch; app.showSearchResults = false">
-        <div class="table_cell">
-            <div class="sprite sprite-icon-closemenu-b-2x"></div>
-        </div>
-    </div>
-    <div id="m_search_bar_wrap">
-        <div id="search_input_placeholder"></div>
-        <!--input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="{{'DEFAULT.NAV_MOBILE.PLACEHOLDER_SEARCH' | translate}}">
-    </div-->
-</div>
 <div id="search_area" ng-style="{'display': app.showSearch ? 'relative' : 'none'}">
-        <div ng-include="'views/default/search.html'"></div>
-    </div>
+    <div ng-include="'views/default/search.html'"></div>
+</div>
