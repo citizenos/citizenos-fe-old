@@ -5,10 +5,6 @@ angular
     .controller('HomeCtrl', ['$scope', '$log', 'sTopic', function ($scope, $log, sTopic) {
         $log.debug('HomeCtrl');
 
-        $scope.app.metainfo.title = 'META_DEFAULT_TITLE';
-        $scope.app.metainfo.description = 'META_DEFAULT_DESCRIPTION';
-        $scope.app.metainfo.keywords = 'META_DEFAULT_KEYWORDS';
-
         // Constant marking the "clear" or all options will do
         $scope.FILTERS_ALL = 'all';
 
