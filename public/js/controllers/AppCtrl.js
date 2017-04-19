@@ -18,9 +18,9 @@ angular
         $scope.app.language = sTranslate.currentLanguage;
 
         $scope.app.metainfo = {
-            title: 'META_DEFAULT_TITLE',
-            description: 'META_DEFAULT_DESCRIPTION',
-            keywords: 'META_DEFAULT_KEYWORDS',
+            title: null,
+            description: null,
+            keywords: null,
             icon: sLocation.getAbsoluteUrl('/imgs/favicon.ico'),
             author: null,
             image: sLocation.getAbsoluteUrl('/imgs/logo_dark_seo.png'),
@@ -180,13 +180,13 @@ angular
         $rootScope.$on('$stateChangeSuccess', function () {
             $timeout(function () {
                 $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady', $state.$current.name);
-                window.prerenderReady = true;
 
                 $scope.app.showSearch = false;
                 $scope.app.showSearchResults = false;
                 $scope.app.showSearchFiltersMobile = false;
                 $scope.app.showNav = false;
                 $anchorScroll();
+                window.prerenderReady = true;
             });
         });
 
