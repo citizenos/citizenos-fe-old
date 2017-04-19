@@ -50,6 +50,13 @@
             position: relative;
         }
 
+        .logo_area, .header_button {
+            display:none;
+            @include tablet {
+                display:table;
+            }
+        }
+
         #search_results_area{
             @include tablet {
                 padding-left: 190px;
