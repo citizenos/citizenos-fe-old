@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
     <link href="styles/citizenos-fe.bundle.css?v=68f2c2cabebce005977d6ec3ac23e4d1" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=fdea079ae5a904279620522043ce4a25"></script>
+    <script src="js/citizenos-fe.bundle.js?v=80c361fad7f3a569e324f06d93068e0a"></script>
 
-    <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
+    <title ng-if="app.metainfo.title">{{app.metainfo.title | translate}}</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
     <meta ng-if="app.metainfo.description" name="description" content="{{app.metainfo.description | translate}}">
     <meta ng-if="app.metainfo.keywords" name="keywords" content="{{app.metainfo.keywords | translate}}">
