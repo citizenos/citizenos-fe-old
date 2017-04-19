@@ -58,25 +58,85 @@
             });
 
             $urlRouterProvider.otherwise(function ($injector, $location) {
-                var langkeys = Object.keys(cosConfig.language.list);
-                var $translate = $injector.get('$translate');
+                console.log('$urlRouterProvider.otherwise', $location.absUrl());
+
                 var sAuth = $injector.get('sAuth');
-                var currentLang = $translate.proposedLanguage() || $translate.use();
+                var $state = $injector.get('$state');
+                var $translate = $injector.get('$translate');
+                var $log = $injector.get('$log');
+                var $cookies = $injector.get('$cookies');
 
-                if (!currentLang || langkeys.indexOf(currentLang) < 0) { // Unsupported locale detected, use default.
-                    currentLang = cosConfig.language.default;
+                var locationUrl = $location.url();
+                var locationPath = locationUrl.split('/');
+
+                var langkeys = Object.keys(cosConfig.language.list);
+                var clientLang = $translate.resolveClientLocale();
+                var useLang = cosConfig.language.default;
+                if (langkeys.indexOf(clientLang) > -1) {
+                    useLang = clientLang;
                 }
+                if (langkeys.indexOf($cookies.get('language')) > -1) {
+                    $log.debug('cookieLang', $cookies.get('language'));
+                    useLang = $cookies.get('language');
+                }
+                $log.debug('$urlRouterProvider.otherwise', 'Language detected before status', useLang);
 
-                var locationPath = $location.url().split('/');
+                var returnLink = '/';
 
-                if (langkeys.indexOf(locationPath[1]) > -1) {
-                    return '/' + locationPath[1] + '/';
-                } else if (locationPath.length > 1) {
-                    sAuth.user.loadlang = true;
-                    return '/' + currentLang + $location.url();
-                } else {
-                    sAuth.user.loadlang = true;
-                    return '/' + currentLang + '/';
+                sAuth
+                    .status()
+                    .then(function (user) {
+                        $log.debug('sAuth.success', user);
+                        $log.debug('$urlRouterProvider.otherwise', 'status loaded', user);
+
+                        if (user.language) {
+                            useLang = user.language;
+                        }
+                        resolveOtherwise();
+                    }, function (err) {
+                        $log.debug('sAuth.err', err);
+                        resolveOtherwise();
+                    });
+
+                function resolveOtherwise() {
+                    console.log('resolveOtherwise', locationUrl, useLang);
+                    returnLink = '/' + useLang + '/';
+                    if (langkeys.indexOf(locationPath[1]) > -1) {
+                        returnLink = '/' + locationPath[1] + '/';
+                        useLang = locationPath[1];
+                    } else if (locationPath.length > 1) {
+                        returnLink = '/' + useLang + locationUrl;
+                    }
+
+                    var statesList = $state.get();
+                    var stateNext = null;
+
+                    // Try to resolve the link to a state. We don't wanna use $location.href as it would reload the whole page, call all the API-s again.
+                    // https://github.com/angular-ui/ui-router/issues/1651
+                    for (var i = 0; i < statesList.length; i++) {
+                        var stateObj = statesList[i];
+                        if (stateObj.name) {
+                            var privatePortion = stateObj.$$state();
+
+                            if (privatePortion.url) {
+                                var params = privatePortion.url.exec(returnLink, $location.search());
+                                if (params) {
+                                    stateNext = {
+                                        name: stateObj.name,
+                                        params: params
+                                    };
+                                    $log.debug('$urlRouterProvider.otherwise', 'Matched state', stateNext);
+                                    break; // Stop the loop, we found our state
+                                }
+                            }
+                        }
+                    }
+
+                    if (stateNext) {
+                        $state.go(stateNext.name, stateNext.params);
+                    } else {
+                        $state.go('home', {language: useLang});
+                    }
                 }
             });
 
