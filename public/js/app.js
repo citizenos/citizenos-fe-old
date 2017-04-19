@@ -172,7 +172,12 @@
                                     }
                                 );
                         }
-                    }
+                    },
+                    controller: ['$scope', '$state', '$stateParams', '$translate', '$location', function ($scope, $state, $stateParams, $translate, $location) {
+                        if ($stateParams.language) {
+                            $translate.use($stateParams.language);
+                        }
+                    }]
                 })
                 .state('main', {
                     url: null,
