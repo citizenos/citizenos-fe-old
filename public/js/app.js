@@ -70,7 +70,7 @@
                 var locationPath = locationUrl.split('/');
 
                 var langkeys = Object.keys(cosConfig.language.list);
-                var clientLang = $translate.resolveClientLocale();
+                var clientLang = $translate.resolveClientLocale() || $translate.use();
                 var useLang = cosConfig.language.default;
                 if (langkeys.indexOf(clientLang) > -1) {
                     useLang = clientLang;
@@ -183,7 +183,11 @@
                 .state('home', {
                     url: '/',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    templateUrl: '/views/home.html',
+                    controller: ['$scope', '$log', 'sTranslateResolve', 'sAuthResolve', function ($scope, $log, sTranslateResolve, sAuthResolve) {
+                        $log.debug('sTranslateResolve', sTranslateResolve);
+                        $log.debug('sAuthResolve', sAuthResolve);
+                    }]
                 })
                 .state('error', {
                     url: '/error',
