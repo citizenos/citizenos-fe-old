@@ -11,6 +11,10 @@ angular
             admin: 3
         };
 
+        $scope.form = {
+            group: null
+        };
+
         $scope.tabSelected = $stateParams.tab || 'settings';
 
         $scope.topicList = {
@@ -22,6 +26,9 @@ angular
 
         var init = function () {
             // Group creation
+            $scope.form = {
+                group: null
+            };
             if (!$stateParams.groupId) {
                 $scope.form.group = new Group({
                     id: null,

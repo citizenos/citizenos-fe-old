@@ -11,27 +11,28 @@
     }
 }
 
-#search_bar {
-
-
-}
-
 #search_area {
     position: absolute;
-    overflow-y: auto;
+    overflow: hidden;
     z-index: 3;
     top: 0;
-    left: 190px;
     right: 0;
-    bottom: 0;
+    left: 190px;
+    height: 60px;
     text-align: left;
     font-size: 14px;
     transition: all 220ms ease-out;
 
     @include tablet {
-        left: 0;
-        width: 100%;
-        position:fixed;
+        right: 136px;
+    }
+
+    @media (max-width: 535px) {
+        left: 62px;
+    }
+
+    @media (max-width: 340px) {
+        right: 70px;
     }
 
     #search_area_wrap {
@@ -51,14 +52,17 @@
         }
 
         .logo_area, .header_button {
-            display:none;
+            display: none;
             @include tablet {
-                display:table;
+                display: table;
             }
         }
 
-        #search_results_area{
+        #search_results_area {
             @include tablet {
+                left: 0;
+                width: 100%;
+                position: fixed;
                 padding-left: 190px;
                 padding-right: 135px;
                 @include mobile {
@@ -70,13 +74,12 @@
                 display: none;
 
                 @include tablet {
-                    position: absolute;
-                    display: block;
+                    position: inherit;
+                    display: table;
                     height: 60px;
                     width: 32px;
-                    display: table;
                     z-index: 6;
-                    top:0;
+                    top: 0;
 
                     .sprite {
                         margin: 0 auto;
@@ -89,11 +92,16 @@
                     right: 135px;
                     cursor: pointer;
                 }
+
+                @media (max-width: 340px) {
+                    right: 68px;
+                }
             }
         }
+
         .ac-input {
             @include tablet {
-                position:relative;
+                position: relative;
                 height: 60px;
                 vertical-align: middle;
                 width: 100%;
@@ -131,9 +139,9 @@
             width: 60px;
             height: 60px;
             display: table;
-            top:0;
+            top: 0;
             @include tablet {
-                display:none;
+                display: none;
             }
 
             .sprite {
@@ -168,11 +176,19 @@
 
         #search_results_list {
             background: $white;
+            position: fixed;
+            overflow-y: scroll;
+            border: 1px solid red;
+            left: 190px;
+            right: 0;
+            height: 100%;
+
             @include tablet {
-                position:absolute;
-                left:0;
-                right:0;
-                width: 100%;
+                left: 0;
+            }
+
+            .last {
+                margin-bottom: 60px;
             }
         }
 
@@ -200,9 +216,9 @@
                     .search_msg {
                         display: inline-block;
                         width: 560px;
-                            @media (max-width: 600px) {
-                                width: 100%;
-                            }
+                        @media (max-width: 600px) {
+                            width: 100%;
+                        }
                     }
 
                 }
@@ -248,7 +264,7 @@
                     display: inline-block;
                 }
 
-                .more_results:hover, .result_link:hover  {
+                .more_results:hover, .result_link:hover {
                     color: $sky_blue;
                 }
 

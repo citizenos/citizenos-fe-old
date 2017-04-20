@@ -3,74 +3,71 @@
         <div class="logo sprite sprite-x5-cos-logo-small2x">
         </div>
     </div>
-    <typeahead id="search_results_area" class="auto-complete" items="searchResults.combined" term="form.searchInput" search="doSearch(term)"
-                                   select="goToView(item)" placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_INVITE_USERS_AND_GROUPS' | translate}}">
-        <div id="m_search_icon">
-            <div class="table_cell">
-                <div class="sprite sprite-icon-search-b-2x"></div>
+    <typeahead class="auto-complete" items="searchResults.combined" term="form.searchInput" search="doSearch(term)"
+               select="goToView(item)" placeholder="{{'LAYOUTS.MAIN.PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS' | translate}}">
+
+        <div id="search_results_area">
+            <div id="m_search_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-search-b-2x"></div>
+                </div>
             </div>
-        </div>
-        <div id="m_search_close" ng-click="app.showSearch = !app.showSearch; app.showSearchResults = false">
-            <div class="table_cell">
-                <div class="sprite sprite-icon-closemenu-b-2x"></div>
+            <div id="m_search_close" ng-click="app.showSearch = !app.showSearch; app.showSearchResults = false">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-closemenu-b-2x"></div>
+                </div>
             </div>
-        </div>
-        <div id="search_icon">
-            <div class="table_cell">
-                <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
+
+            <div id="search_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
+                </div>
+            </div>
+
+            <div id="close_search_icon" ng-click="closeSearchArea()" ng-style="{'display': app.showSearchResults ? 'relative' : 'none'}">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-closemenu-b-2x"></div>
+                </div>
             </div>
         </div>
 
-        <div id="close_search_icon" ng-click="closeSearchArea()" ng-style="{'display': app.showSearchResults ? 'relative' : 'none'}">
-            <div class="table_cell">
-                <div class="sprite sprite-icon-closemenu-b-2x"></div>
-            </div>
-        </div>
-        <div id="search_results_list">
-            <div ng-if="app.showSearchResults" ng-repeat="(context, results) in searchResults">
+        <div id="search_results_list" ng-if="app.showSearchResults && $parent.isVisible()">
+            <div ng-repeat="(context, results) in searchResults" ng-class="{last: $last}">
                 <div ng-repeat="(model, items) in results">
                     <div class="search_cat" ng-if="!noResults && items.count">
-                        <div class="cat_wrap"><span translate="DEFAULT.SEARCH.HEADING_RESULTS_IN">Context search results</span> <b translate="{{'LBL_CONTEXT_' + context + '_' + model | uppercase}}"></b></div>
+                        <div class="cat_wrap"><span translate="DEFAULT.SEARCH.HEADING_RESULTS_IN">Context search results</span> <b
+                            translate="{{'LBL_CONTEXT_' + context + '_' + model | uppercase}}"></b></div>
                     </div>
 
                     <div class="results_area" ng-if="!noResults && items.count">
                         <div class="result_group">
 
-                            <div class="result_links"  typeahead-item="row" ng-repeat="(key, row) in items.rows">
+                            <div class="result_links" typeahead-item="row" ng-repeat="(key, row) in items.rows">
                                 <div ng-if="row.id !== 'viewMore'" class="links_wrap">
                                     <span>
-                                        <a ng-if="model ==='groups'" ng-click="goToView(row.id, 'group')" class="blue_link result_link" > {{row.name}}</a>
+                                        <a ng-if="model ==='groups'" ng-click="goToView(row.id, 'group')" class="blue_link result_link"> {{row.name}}</a>
                                         <a ng-if="model ==='topics'" ng-click="goToView(row.id, 'topic')" class="blue_link result_link">{{row.title}}</a>
                                     </span>
                                 </div>
-                                <div ng-if="row.id ==='viewMore'" class="more_results" ng-click="viewMoreResults(context, model)" translate="DEFAULT.SEARCH.LNK_VIEW_MORE_RESULTS">View more results</div>
+                                <div ng-if="row.id ==='viewMore'" class="more_results" ng-click="viewMoreResults(context, model)" translate="DEFAULT.SEARCH.LNK_VIEW_MORE_RESULTS">View more results
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="results_area" ng-if="app.showSearchResults && noResults">
+            <div class="results_area" ng-if="noResults">
                 <div class="result_group">
 
                     <div class="no_results">
                         <b class="search_msgb" translate="DEFAULT.SEARCH.TXT_OOPS_NO_RESULTS">Oops, we couldn’t find any results matching your search :(</b>
                         <br>
-                        <div class="search_msg" translate="DEFAULT.SEARCH.TXT_MAYBE_TYPO">Maybe you have a typo in your search?<br>We did find some things scattered throughout the CitizenOS platform, so feel free to check them out. We promise it will be worth your while!</div>
+                        <div class="search_msg" translate="DEFAULT.SEARCH.TXT_MAYBE_TYPO">Maybe you have a typo in your search?<br>We did find some things scattered throughout the CitizenOS platform,
+                            so feel free to check them out. We promise it will be worth your while!
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </typeahead>
-    <div class="header_button" ng-click="app.showNav = !app.showNav; closeSearchArea();" style="top: 0px">
-        <div class="line_holder first_holder">
-            <div class="v_line light_line"></div>
-            <div class="v_line dark_line"></div>
-        </div>
-
-        <div class="header_button_icon">
-            <div class="sprite" ng-class="app.showNav ? 'sprite-icon-closemenu2x' : 'sprite-icon-hamburger2x'">
-            </div>
-        </div>
-        <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_MENU">Menu</div>
-    </div>
 </div>

@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <base href="/">
     <meta name="fragment" content="!">
-    <script> window.prerenderReady = false;</script>
+    <script>window.prerenderReady = false;</script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
-    <link href="styles/citizenos-fe.bundle.css?v=68f2c2cabebce005977d6ec3ac23e4d1" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=a38579c0032857910659f7823cc7b448"></script>
+    <link href="styles/citizenos-fe.bundle.css?v=63d8225e64912adf5b51eada7a7f1e03" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=98adf8b04edebf7981958d8471e507e7"></script>
 
-    <title ng-if="app.metainfo.title">{{app.metainfo.title | translate}}</title>
+    <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}" translate-default="Citizen OS - an e-decisionmaking platform for communities."></title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
-    <meta ng-if="app.metainfo.description" name="description" content="{{app.metainfo.description | translate}}">
-    <meta ng-if="app.metainfo.keywords" name="keywords" content="{{app.metainfo.keywords | translate}}">
+    <meta ng-if="app.metainfo.description" translate translate-attr-content="{{app.metainfo.description}}" translate-default="Citizen OS enables participative discussion and voting for groups, when getting together offline or online at the same time is not an option." name="description">
+    <meta ng-if="app.metainfo.keywords" name="keywords" translate translate-attr-content="{{app.metainfo.keywords}}" translate-default="e-decisionmaking, e-governance, e-democracy, democracy, direct democracy, liquid democracy">
     <meta ng-if="app.metainfo.author" name="author" content="{{app.metainfo.author}}">
 
-    <meta ng-if="app.metainfo.title" property="og:title" content="{{app.metainfo.title | translate}}">
+    <meta ng-if="app.metainfo.title" property="og:title" translate translate-attr-content="{{app.metainfo.title}}" translate-default="Citizen OS - an e-decisionmaking platform for communities.">
     <meta ng-if="app.metainfo.image" property="og:image" content="{{app.metainfo.image}}">
-    <meta ng-if="app.metainfo.description" property="og:description" content="{{app.metainfo.description | translate}}">
+    <meta ng-if="app.metainfo.description" property="og:description" translate translate-attr-content="{{app.metainfo.description}}" translate-default="Citizen OS enables participative discussion and voting for groups, when getting together offline or online at the same time is not an option.">
     <meta ng-if="app.metainfo.url" property="og:url" content="{{app.metainfo.url}}">
     <meta ng-if="app.metainfo.site_name" property="og:site_name" content="{{app.metainfo.site_name}}">
     <link rel="alternate" ng-repeat="(lang, path) in app.metainfo.hreflang" hreflang="{{lang}}" href="{{path}}">
@@ -107,7 +107,7 @@
             ga('send', 'pageview');
         }
     </script>
-    <script src="js/libs/template-cache.js?v=50eb6bcb577bc9740f6e31893792723b"></script>
+    <script src="js/libs/template-cache.js?v=2a990f6d0692f1293db53eb95e22042d"></script>
     <script>
         if (/\/\/(www.)?citizenos\.com/.test(window.location.href)) {
             if (/(chrome|firefox)/.test(navigator.userAgent.toLowerCase())) {
