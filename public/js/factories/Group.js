@@ -79,7 +79,7 @@ angular
         };
 
         Group.prototype.canUpdate = function () {
-            return this.permission.level === GroupMemberUser.LEVELS.admin;
+            return this.permission && this.permission.level === GroupMemberUser.LEVELS.admin;
         };
 
         Group.prototype.canDelete = function () {

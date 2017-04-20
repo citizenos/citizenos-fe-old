@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, $location, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $timeout, $log, $location, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
         $scope.levels = {
             none: 0,
@@ -230,7 +230,9 @@ angular
                 )
                 .then(
                     function () {
-                        $state.go('my.groups.groupId', {groupId: $scope.form.group.id, filter: 'grouped'}, {reload: true});
+                        $timeout(function () { // Avoid $digest already in progress
+                            $state.go('my.groups.groupId', {groupId: $scope.form.group.id, filter: 'grouped'}, {reload: true});
+                        });
                     },
                     function (errorResponse) {
                         if (errorResponse.data && errorResponse.data.errors) {
