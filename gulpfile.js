@@ -144,7 +144,7 @@ gulp.task('watch', function () {
  * BUT, if we try to follow it with current code, SASS goes berserk and generates 31 mb CSS or hangs. Needs some investigation.
  */
 gulp.task('sass', function () {
-    return gulp.src(['public/styles/*.scss'])
+    gulp.src(['public/styles/*.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())
@@ -155,7 +155,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('sass_etherpad', function() {
-    return gulp.src(['public/styles/etherpad/etherpad.scss'])
+    gulp.src(['public/styles/etherpad/etherpad.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())
