@@ -46,11 +46,14 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
                 this.select($scope.active);
             };
 
-            this.select = function (item) {
-                $scope.hide = true;
-                $scope.focused = true;
-                $scope.term = null;
-                $scope.items = [];
+            this.select = function (item, noHide) {
+                console.log('SELECT', item, noHide);
+                if (!noHide) {
+                    $scope.hide = true;
+                    $scope.focused = true;
+                    $scope.term = null;
+                    $scope.items = [];
+                }
                 $scope.select({item: item});
             };
 
@@ -147,8 +150,8 @@ app.directive('typeaheadItem', function () {
     return {
         require: '^typeahead',
         link: function (scope, element, attrs, controller) {
-
             var item = scope.$eval(attrs.typeaheadItem);
+            var noHide = attrs.typeaheadItemNoClose ? scope.$eval(attrs.typeaheadItemNoClose) : false;
 
             scope.$watch(function () {
                 return controller.isActive(item);
@@ -168,7 +171,7 @@ app.directive('typeaheadItem', function () {
 
             element.bind('click', function (e) {
                 scope.$apply(function () {
-                    controller.select(item);
+                    controller.select(item, noHide);
                 });
             });
         }

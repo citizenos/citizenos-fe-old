@@ -16,6 +16,8 @@ angular
         $scope.moreStr = null;
 
         $scope.combineResults = function () {
+            $scope.searchResults.combined = [];
+
             var contexts = Object.keys($scope.searchResults);
             contexts.forEach(function (context) {
                 var models = Object.keys($scope.searchResults[context]);
@@ -125,7 +127,6 @@ angular
                         $scope.combineResults();
 
                         $scope.viewMoreInProgress = false;
-
                     }, function (err) {
                         $log.error('SearchCtrl', 'Failed to retrieve search results', err);
                     });
