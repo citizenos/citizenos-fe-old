@@ -32,7 +32,6 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
             this.activateNextItem = function () {
                 var index = $scope.items.indexOf($scope.active);
                 this.activate($scope.items[(index + 1) % $scope.items.length]);
-                console.log('YOLO', this.itemsNoClose);
             };
 
             this.activatePreviousItem = function () {
