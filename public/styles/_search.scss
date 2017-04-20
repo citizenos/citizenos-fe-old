@@ -16,9 +16,9 @@
     overflow: hidden;
     z-index: 3;
     top: 0;
-    left: 190px;
     right: 0;
     bottom: 0;
+    left: 190px;
     text-align: left;
     font-size: 14px;
     transition: all 220ms ease-out;
@@ -172,14 +172,19 @@
 
         #search_results_list {
             background: $white;
+            position: fixed;
+            overflow-y: scroll;
+            border: 1px solid red;
+            left: 190px;
+            right: 0;
+            height: 100%;
+
             @include tablet {
-                position: fixed;
                 left: 0;
-                right: 0;
-                height: 100%;
-                padding-bottom: 300px;
-                overflow-y: scroll;
-                border: 1px solid red;
+            }
+
+            .last {
+                margin-bottom: 60px;
             }
         }
 

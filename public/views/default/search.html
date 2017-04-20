@@ -4,7 +4,7 @@
         </div>
     </div>
     <typeahead class="auto-complete" items="searchResults.combined" term="form.searchInput" search="doSearch(term)"
-               select="goToView(item)" placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_INVITE_USERS_AND_GROUPS' | translate}}">
+               select="goToView(item)" placeholder="{{'LAYOUTS.MAIN.PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS' | translate}}">
 
         <div id="search_results_area">
             <div id="m_search_icon">
@@ -32,7 +32,7 @@
         </div>
 
         <div id="search_results_list" ng-if="app.showSearchResults">
-            <div ng-repeat="(context, results) in searchResults">
+            <div ng-repeat="(context, results) in searchResults" ng-class="{last: $last}">
                 <div ng-repeat="(model, items) in results">
                     <div class="search_cat" ng-if="!noResults && items.count">
                         <div class="cat_wrap"><span translate="DEFAULT.SEARCH.HEADING_RESULTS_IN">Context search results</span> <b
