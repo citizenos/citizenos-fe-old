@@ -11,7 +11,7 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
         restrict: 'E',
         transclude: true,
         replace: true,
-        template: '<div><div ng-show="label" class="ac-label">{{label}}</div><div class="ac-input"><input ng-model="term" ng-change="query()" ng-model-options="{debounce:250}" type="text" autocomplete="off" placeholder="{{placeholder}}" /></div><div ng-transclude></div></div>',
+        template: '<div><div ng-show="label" class="ac-label">{{label}}</div><div class="ac-input"><input ng-model="term" ng-change="query()" ng-model-options="{debounce:250}" type="text" autocomplete="off" placeholder="{{placeholder}}" autofocus/></div><div ng-transclude></div></div>',
         scope: {
             search: "&",
             select: "&",
@@ -67,7 +67,7 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
         link: function (scope, element, attrs, controller) {
 
             var $input = element.find('input');
-            var $list = element.find('div[ng-transclude]');
+            var $list = angular.element(element[0].querySelectorAll('[ng-transclude]'));
 
             $input.bind('focus', function () {
                 scope.$apply(function () {
@@ -103,12 +103,13 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
                 if (e.keyCode === 27) {
                     scope.$apply(function () {
                         scope.hide = true;
+                        scope.term = null;
                     });
                 }
             });
 
             $input.bind('keydown', function (e) {
-                if (e.keyCode === 9 || e.keyCode === 13 || e.keyCode === 27) {
+                if (e.keyCode === 9 || e.keyCode === 13) {
                     e.preventDefault();
                 }
 
@@ -136,21 +137,6 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
                     $timeout(function () {
                         $input[0].focus();
                     }, 0, false);
-                }
-            });
-
-            scope.$watch('isVisible()', function (visible) {
-                if (visible) {
-                    var pos = $input[0].getBoundingClientRect();
-                    var height = $input[0].offsetHeight;
-
-                    $list.css({
-                        top: pos.top + height,
-                        left: pos.left,
-                        display: 'block'
-                    });
-                } else {
-                    $list.css('display', 'none');
                 }
             });
         }

@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div id="search_results_list" ng-if="app.showSearchResults">
+        <div id="search_results_list" ng-if="app.showSearchResults && $parent.isVisible()">
             <div ng-repeat="(context, results) in searchResults" ng-class="{last: $last}">
                 <div ng-repeat="(model, items) in results">
                     <div class="search_cat" ng-if="!noResults && items.count">
