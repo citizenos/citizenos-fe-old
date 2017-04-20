@@ -23,6 +23,7 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
         controller: ["$scope", "$http", function ($scope, $http) {
             $scope.items = [];
             $scope.hide = false;
+            this.itemsNoClose = []; // Do not close the search results for these items
 
             this.activate = function (item) {
                 $scope.active = item;
@@ -31,6 +32,7 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
             this.activateNextItem = function () {
                 var index = $scope.items.indexOf($scope.active);
                 this.activate($scope.items[(index + 1) % $scope.items.length]);
+                console.log('YOLO', this.itemsNoClose);
             };
 
             this.activatePreviousItem = function () {
@@ -46,9 +48,8 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
                 this.select($scope.active);
             };
 
-            this.select = function (item, noHide) {
-                console.log('SELECT', item, noHide);
-                if (!noHide) {
+            this.select = function (item) {
+                if (this.itemsNoClose.indexOf(item) < 0) {
                     $scope.hide = true;
                     $scope.focused = true;
                     $scope.term = null;
@@ -61,8 +62,10 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
                 return !$scope.hide && ($scope.focused || $scope.mousedOver);
             };
 
+            var self = this;
             $scope.query = function () {
                 $scope.hide = false;
+                self.itemsNoClose = [];
                 $scope.search({term: $scope.term});
             };
         }],
@@ -97,13 +100,13 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
             });
 
             $input.bind('keyup', function (e) {
-                if (e.keyCode === 9 || e.keyCode === 13) {
+                if (e.keyCode === 13) { // ENTER
                     scope.$apply(function () {
                         controller.selectActive();
                     });
                 }
 
-                if (e.keyCode === 27) {
+                if (e.keyCode === 27) { // ESC
                     scope.$apply(function () {
                         scope.hide = true;
                         scope.term = null;
@@ -112,11 +115,11 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
             });
 
             $input.bind('keydown', function (e) {
-                if (e.keyCode === 9 || e.keyCode === 13) {
+                if (e.keyCode === 13) { // ENTER
                     e.preventDefault();
                 }
 
-                if (e.keyCode === 40) {
+                if (e.keyCode === 40 || e.keyCode === 9) { // DOWN OR TAB
                     e.preventDefault();
                     scope.$apply(function () {
                         controller.activateNextItem();
@@ -151,7 +154,10 @@ app.directive('typeaheadItem', function () {
         require: '^typeahead',
         link: function (scope, element, attrs, controller) {
             var item = scope.$eval(attrs.typeaheadItem);
-            var noHide = attrs.typeaheadItemNoClose ? scope.$eval(attrs.typeaheadItemNoClose) : false;
+
+            if (attrs.typeaheadItemNoClose && scope.$eval(attrs.typeaheadItemNoClose)) {
+                controller.itemsNoClose.push(item);
+            }
 
             scope.$watch(function () {
                 return controller.isActive(item);
@@ -171,8 +177,12 @@ app.directive('typeaheadItem', function () {
 
             element.bind('click', function (e) {
                 scope.$apply(function () {
-                    controller.select(item, noHide);
+                    controller.select(item);
                 });
+            });
+
+            scope.$on('$destroy', function () {
+                controller.itemsNoClose.splice(controller.itemsNoClose.indexOf(item), 1);
             });
         }
     };
