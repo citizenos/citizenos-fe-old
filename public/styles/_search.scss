@@ -17,8 +17,8 @@
     z-index: 3;
     top: 0;
     right: 0;
-    bottom: 0;
     left: 190px;
+    height: 60px;
     text-align: left;
     font-size: 14px;
     transition: all 220ms ease-out;
@@ -91,6 +91,10 @@
                 @include tablet {
                     right: 135px;
                     cursor: pointer;
+                }
+
+                @media (max-width: 340px) {
+                    right: 68px;
                 }
             }
         }
