@@ -441,6 +441,7 @@ nav {
             height: 60px;
             width: 32px;
             display: table;
+            z-index: 6;
 
             .sprite {
                 margin: 0 auto;
@@ -466,6 +467,15 @@ nav {
                 &:focus {
                     outline: none;
                 }
+            }
+            #search_input_placeholder {
+                border-radius: 15px;
+                border: none;
+                height: 30px;
+                padding: 0 34px 1px 34px;
+                box-sizing: border-box;
+                width: 100%;
+                background: $medium_black;
             }
         }
     }

@@ -5,28 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <base href="/">
     <meta name="fragment" content="!">
-    <script> window.prerenderReady = false;</script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <!--[if lte IE 9]>
+    <script>
+        window.location.href = '/views/unknown_device.html';
+    </script>
+    <![endif]-->
+    <script>window.prerenderReady = false;</script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
-    <link href="styles/citizenos-fe.bundle.css?v=aa3c47ae10b3e5b147a84aeb06706f67" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=18dee2cfc32430508e6f19721d603132"></script>
+    <link href="styles/citizenos-fe.bundle.css?v=0ba65035f1321673de9c37c238a9a360" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=d3e12641395c5d2a1c314e8b7e29e450"></script>
 
-    <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
+    <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}" translate-default="Citizen OS - an e-decisionmaking platform for communities."></title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
-    <meta ng-if="app.metainfo.description" name="description" content="{{app.metainfo.description | translate}}">
-    <meta ng-if="app.metainfo.keywords" name="keywords" content="{{app.metainfo.keywords | translate}}">
+    <meta ng-if="app.metainfo.description" translate translate-attr-content="{{app.metainfo.description}}" translate-default="Citizen OS enables participative discussion and voting for groups, when getting together offline or online at the same time is not an option." name="description">
+    <meta ng-if="app.metainfo.keywords" name="keywords" translate translate-attr-content="{{app.metainfo.keywords}}" translate-default="e-decisionmaking, e-governance, e-democracy, democracy, direct democracy, liquid democracy">
     <meta ng-if="app.metainfo.author" name="author" content="{{app.metainfo.author}}">
 
-    <meta ng-if="app.metainfo.title" property="og:title" content="{{app.metainfo.title | translate}}">
+    <meta ng-if="app.metainfo.title" property="og:title" translate translate-attr-content="{{app.metainfo.title}}" translate-default="Citizen OS - an e-decisionmaking platform for communities.">
     <meta ng-if="app.metainfo.image" property="og:image" content="{{app.metainfo.image}}">
-    <meta ng-if="app.metainfo.description" property="og:description" content="{{app.metainfo.description | translate}}">
+    <meta ng-if="app.metainfo.description" property="og:description" translate translate-attr-content="{{app.metainfo.description}}" translate-default="Citizen OS enables participative discussion and voting for groups, when getting together offline or online at the same time is not an option.">
     <meta ng-if="app.metainfo.url" property="og:url" content="{{app.metainfo.url}}">
     <meta ng-if="app.metainfo.site_name" property="og:site_name" content="{{app.metainfo.site_name}}">
     <link rel="alternate" ng-repeat="(lang, path) in app.metainfo.hreflang" hreflang="{{lang}}" href="{{path}}">
 </head>
 
-<body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" ng-controller="SearchCtrl" cos-resize>
+<body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" cos-resize>
     <div ng-app="viewTemplateCache"></div>
 
     <!-- INFO BAR - base.scss -->

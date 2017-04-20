@@ -10,23 +10,6 @@
 
 <!-- CONTENT -->
 <div id="content_root" ng-class="app.showNav ? 'navOpen' : ''">
-    <!-- SEARCH BAR -->
-    <div id="search_bar" ng-if="wWidth > 1024">
-        <div id="search_icon">
-            <div class="table_cell">
-                <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
-            </div>
-        </div>
-
-        <div id="close_search_icon" ng-click="app.showSearchResults = false" ng-style="{'display': app.showSearchResults ? 'relative' : 'none'}">
-            <div class="table_cell">
-                <div class="sprite sprite-icon-closemenu-b-2x"></div>
-            </div>
-        </div>
-
-        <input ng-model="form.searchInput" ng-focus="checkLAndO()" placeholder="{{'LAYOUTS.MAIN.PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS' | translate}}">
-    </div>
-
     <!-- CONTENT WRAP -->
     <div id="content_wrap">
         <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
@@ -38,12 +21,11 @@
 
 
         <div id="content">
+            <!-- SEARCH AREA -->
+            <div id="search_area" ng-if="wWidth > 1024">
+                <div ng-include="'views/default/search.html'"></div>
+            </div>
             <div id="content_cell">
-                <!-- SEARCH AREA  -->
-                <div id="search_area" ng-style="{'height' : app.showSearchResults ? '100%' : '0' }">
-                    <div ng-include="'views/default/search.html'"></div>
-                </div>
-
                 <!-- CLOSE SEARCH AREA -->
                 <div ng-click="app.showSearchResults = false" id="search_area_close" ng-style="{'display' : app.showSearchResults ? 'block' : 'none' }"></div>
 

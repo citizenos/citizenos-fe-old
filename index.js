@@ -6,10 +6,10 @@ var https = require('https');
 var http = require('http');
 var fs = require('fs');
 
-app.use(express.static(__dirname + '/public'));
-
 var prerender = require('prerender-node');
 app.use(prerender.set('prerenderToken', 'CrrAflHAEiF44KMFkrs7'));
+
+app.use(express.static(__dirname + '/public'));
 
 app.get('/*', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
