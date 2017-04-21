@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
-    <link href="styles/citizenos-fe.bundle.css?v=8e157a45803347b3f885ee848b559cb1" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=fdea079ae5a904279620522043ce4a25"></script>
+    <link href="styles/citizenos-fe.bundle.css?v=facc88be35079ab2ab1e7c86def8ebb0" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=f5eab89afc27aad83fa1e83dfda7a446"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
@@ -24,6 +24,7 @@
     <meta ng-if="app.metainfo.url" property="og:url" content="{{app.metainfo.url}}">
     <meta ng-if="app.metainfo.site_name" property="og:site_name" content="{{app.metainfo.site_name}}">
     <link rel="alternate" ng-repeat="(lang, path) in app.metainfo.hreflang" hreflang="{{lang}}" href="{{path}}">
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </head>
 
 <body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" cos-resize>
@@ -107,7 +108,7 @@
             ga('send', 'pageview');
         }
     </script>
-    <script src="js/libs/template-cache.js?v=50eb6bcb577bc9740f6e31893792723b"></script>
+    <script src="js/libs/template-cache.js?v=e57a8ce5aebd4abb6af94669a183c482"></script>
     <script>
         if (/\/\/(www.)?citizenos\.com/.test(window.location.href)) {
             if (/(chrome|firefox)/.test(navigator.userAgent.toLowerCase())) {
