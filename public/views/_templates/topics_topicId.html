@@ -23,16 +23,22 @@
             <div class="background_line timeline_gray_background">
             </div>
 
-            <div class="progress_line favorite_yellow_background">
+            <div ng-style="{'width': '80%'}" class="progress_line blue_progress_bar">
             </div>
 
-            <div class="days_left_wrap favorite_yellow_background">
+            <div ng-style="{'width': '60%'}" class="progress_line aqua_progress_bar">
+            </div>
+
+            <div ng-style="{'width': '40%'}" class="progress_line yellow_progress_bar">
+            </div>
+
+            <div ng-style="{'left': '80%'}"  class="days_left_wrap blue_progress_bar">
                 <div class="table_cell">
                     17 DAYS LEFT
                 </div>
             </div>
 
-            <div class="checkmark">
+            <div class="checkmark" ng-style="{'margin-left': '0'}">
                 <div class="table_cell">
                     <div class="sprite sprite-check-timeline-yellow-start2x">
                     </div>
@@ -58,6 +64,42 @@
                     Phase: <span class="bold">Document version 2</span>
                 </div>
             </div>
+
+            <div ng-style="{'margin-left': '40%'}"  class="checkmark">
+                <div class="table_cell">
+                    <div class="sprite sprite-check-timeline-green-start2x">
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkmark" ng-style="{'margin-left': '50%'}">
+                <div class="table_cell">
+                    <div class="sprite sprite-check-timeline-green2x">
+                    </div>
+                </div>
+                <div class="tooltip">
+                    Phase: <span class="bold">Document version 2</span>
+                </div>
+            </div>
+            
+            <div class="checkmark" ng-style="{'margin-left': '60%'}">
+                <div class="table_cell">
+                    <div class="sprite sprite-check-timeline-blue-start2x">
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="checkmark" ng-style="{'margin-left': '70%'}">
+                <div class="table_cell">
+                    <div class="sprite sprite-check-timeline-blue2x">
+                    </div>
+                </div>
+                <div class="tooltip">
+                    Phase: <span class="bold">Document version 2</span>
+                </div>
+            </div>
+
         </div>
 
         <div class="additional_info signing_deadline">
@@ -213,9 +255,22 @@
 
                             <div class="voting_platform_section">
                                 
-                                <input placeholder="Add a subject to your argument..." class="gray_borders">
+                                <input name="create_milestone_title" placeholder="Add a subject to your argument..." class="gray_borders">
+                                <label for="create_milestone_title" class="error_label">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                        <span translate="MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL">The email address is already in use.</span>
+                                    </div>
+                                </label>
                                 
-                                <textarea class="gray_borders" placeholder="Please provide details, links, etc."></textarea>
+                                <textarea name="create_milestone_text" class="gray_borders" placeholder="Please provide details, links, etc."></textarea>
+
+                                <label for="create_milestone_textarea" class="error_label">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                        <span translate="MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL">The email address is already in use.</span>
+                                    </div>
+                                </label>
 
                                 <div class="blue_button">
                                     <div class="table_cell">
