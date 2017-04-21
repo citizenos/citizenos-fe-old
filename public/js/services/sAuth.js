@@ -38,8 +38,7 @@ angular
             };
 
             var success = function (response) {
-                sAuth.user.loggedIn = true;
-                angular.extend(sAuth.user, response.data.data);
+                setLoginData(response.data.data)
             };
 
             var path = sLocation.getAbsoluteUrlApi('/api/auth/login');
@@ -78,8 +77,7 @@ angular
             var success = function (response) {
                 $log.debug('Auth.loginId', 'success');
                 if ([20002, 20003].indexOf(response.data.status.code) > -1) {
-                    sAuth.user.loggedIn = true;
-                    angular.extend(sAuth.user, response.data.data);
+                    setLoginData(response.data.data)
                 }
                 return response;
             };
@@ -113,9 +111,7 @@ angular
         sAuth.status = function () {
             var success = function (response) {
                 $log.debug('sAuth.status', response);
-                angular.extend(sAuth.user, response.data.data);
-                sAuth.user.loggedIn = true;
-                sAuth.user.isLoading = false;
+                setLoginData(response.data.data)
                 return response.data.data;
             };
 
@@ -152,4 +148,9 @@ angular
             return null;
         };
 
+        var setLoginData = function (userData) {
+            angular.extend(sAuth.user, userData);
+            sAuth.user.loggedIn = true;
+            sAuth.user.isLoading = false;
+        }
     }]);

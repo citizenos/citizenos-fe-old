@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'cosUserVoice']);
+    var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'cosUserVoice']);
 
     module
         .constant('cosConfig', {
@@ -596,3 +596,10 @@
             UserVoiceProvider.setApiKey('f7Trszzveus2InvLcEelw');
         }]);
 })();
+
+Raven
+    .config('https://8a7192ea412a489e8107a7f23cbd3b47@sentry.io/160293', {
+        debug: true
+    })
+    .addPlugin(Raven.Plugins.Angular)
+    .install();
