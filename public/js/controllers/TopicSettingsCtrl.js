@@ -11,6 +11,11 @@ angular
             edit: 2,
             admin: 3
         };
+        $scope.form = {
+            topic: null,
+            description: null,
+            urlJoin:null
+        };
         $scope.cosToggleTextOn = 'public';
         $scope.tabSelected = $stateParams.tab || 'settings';
 
@@ -23,6 +28,11 @@ angular
 
         var init = function () {
             // Create a copy of parent scopes Topic, so that while modifying we don't change parent state
+            $scope.form = {
+                topic: null,
+                description: null,
+                urlJoin:null
+            };
             $scope.form.topic = angular.copy($scope.topic);
             $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
             $scope.memberGroups = [];

@@ -2,13 +2,17 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $log, $location, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $timeout, $log, $location, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
         $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
         $scope.levels = {
             none: 0,
             read: 1,
             edit: 2,
             admin: 3
+        };
+
+        $scope.form = {
+            group: null
         };
 
         $scope.tabSelected = $stateParams.tab || 'settings';
@@ -22,6 +26,9 @@ angular
 
         var init = function () {
             // Group creation
+            $scope.form = {
+                group: null
+            };
             if (!$stateParams.groupId) {
                 $scope.form.group = new Group({
                     id: null,
@@ -223,7 +230,9 @@ angular
                 )
                 .then(
                     function () {
-                        $state.go('my.groups.groupId', {groupId: $scope.form.group.id, filter: 'grouped'}, {reload: true});
+                        $timeout(function () { // Avoid $digest already in progress
+                            $state.go('my.groups.groupId', {groupId: $scope.form.group.id, filter: 'grouped'}, {reload: true});
+                        });
                     },
                     function (errorResponse) {
                         if (errorResponse.data && errorResponse.data.errors) {

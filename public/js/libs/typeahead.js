@@ -11,7 +11,7 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
         restrict: 'E',
         transclude: true,
         replace: true,
-        template: '<div><div ng-show="label" class="ac-label">{{label}}</div><div class="ac-input"><input ng-model="term" ng-change="query()" ng-model-options="{debounce:250}" type="text" autocomplete="off" placeholder="{{placeholder}}" /></div><div ng-transclude></div></div>',
+        template: '<div><div ng-show="label" class="ac-label">{{label}}</div><div class="ac-input"><input ng-model="term" ng-change="query()" ng-model-options="{debounce:250}" type="text" autocomplete="off" placeholder="{{placeholder}}" autofocus/></div><div ng-transclude></div></div>',
         scope: {
             search: "&",
             select: "&",
@@ -23,6 +23,7 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
         controller: ["$scope", "$http", function ($scope, $http) {
             $scope.items = [];
             $scope.hide = false;
+            this.itemsNoClose = []; // Do not close the search results for these items
 
             this.activate = function (item) {
                 $scope.active = item;
@@ -47,10 +48,12 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
             };
 
             this.select = function (item) {
-                $scope.hide = true;
-                $scope.focused = true;
-                $scope.term = null;
-                $scope.items = [];
+                if (this.itemsNoClose.indexOf(item) < 0) {
+                    $scope.hide = true;
+                    $scope.focused = true;
+                    $scope.term = null;
+                    $scope.items = [];
+                }
                 $scope.select({item: item});
             };
 
@@ -58,8 +61,10 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
                 return !$scope.hide && ($scope.focused || $scope.mousedOver);
             };
 
+            var self = this;
             $scope.query = function () {
                 $scope.hide = false;
+                self.itemsNoClose = [];
                 $scope.search({term: $scope.term});
             };
         }],
@@ -67,7 +72,7 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
         link: function (scope, element, attrs, controller) {
 
             var $input = element.find('input');
-            var $list = element.find('div[ng-transclude]');
+            var $list = angular.element(element[0].querySelectorAll('[ng-transclude]'));
 
             $input.bind('focus', function () {
                 scope.$apply(function () {
@@ -94,25 +99,26 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
             });
 
             $input.bind('keyup', function (e) {
-                if (e.keyCode === 9 || e.keyCode === 13) {
+                if (e.keyCode === 13) { // ENTER
                     scope.$apply(function () {
                         controller.selectActive();
                     });
                 }
 
-                if (e.keyCode === 27) {
+                if (e.keyCode === 27) { // ESC
                     scope.$apply(function () {
                         scope.hide = true;
+                        scope.term = null;
                     });
                 }
             });
 
             $input.bind('keydown', function (e) {
-                if (e.keyCode === 9 || e.keyCode === 13 || e.keyCode === 27) {
+                if (e.keyCode === 13) { // ENTER
                     e.preventDefault();
                 }
 
-                if (e.keyCode === 40) {
+                if (e.keyCode === 40 || e.keyCode === 9) { // DOWN OR TAB
                     e.preventDefault();
                     scope.$apply(function () {
                         controller.activateNextItem();
@@ -138,21 +144,6 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
                     }, 0, false);
                 }
             });
-
-            scope.$watch('isVisible()', function (visible) {
-                if (visible) {
-                    var pos = $input[0].getBoundingClientRect();
-                    var height = $input[0].offsetHeight;
-
-                    $list.css({
-                        top: pos.top + height,
-                        left: pos.left,
-                        display: 'block'
-                    });
-                } else {
-                    $list.css('display', 'none');
-                }
-            });
         }
     };
 }]);
@@ -161,8 +152,11 @@ app.directive('typeaheadItem', function () {
     return {
         require: '^typeahead',
         link: function (scope, element, attrs, controller) {
-
             var item = scope.$eval(attrs.typeaheadItem);
+
+            if (attrs.typeaheadItemNoClose && scope.$eval(attrs.typeaheadItemNoClose)) {
+                controller.itemsNoClose.push(item);
+            }
 
             scope.$watch(function () {
                 return controller.isActive(item);
@@ -184,6 +178,10 @@ app.directive('typeaheadItem', function () {
                 scope.$apply(function () {
                     controller.select(item);
                 });
+            });
+
+            scope.$on('$destroy', function () {
+                controller.itemsNoClose.splice(controller.itemsNoClose.indexOf(item), 1);
             });
         }
     };

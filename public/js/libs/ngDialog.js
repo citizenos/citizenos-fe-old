@@ -807,7 +807,7 @@
                             if (id === '$escape') {
                                 var topDialogId = openIdStack[openIdStack.length - 1];
                                 $dialog = $el(document.getElementById(topDialogId));
-                                if ($dialog.data('$ngDialogOptions').closeByEscape) {
+                                if ($dialog.data('$ngDialogOptions') && $dialog.data('$ngDialogOptions').closeByEscape) {
                                     privateMethods.closeDialog($dialog, '$escape');
                                 }
                             } else {
