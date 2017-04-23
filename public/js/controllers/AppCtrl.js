@@ -4,7 +4,7 @@ angular
     .module('citizenos')
     .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'UserVoice', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, UserVoice) {
         $log.debug('AppCtrl');
-        console.error({oi:'oioioioioi'});
+
         $scope.app = {
             config: cosConfig,
             showSearch: false,
@@ -162,7 +162,6 @@ angular
         $scope.app.scrollToAnchor = function (anchor) {
             // TODO: Probably not the most elegant way but works for now. Probably should be a directive, which calculates the yOffset (https://docs.angularjs.org/api/ng/service/$anchorScroll#yOffset)
             $timeout(function () {
-                viga('country');
                 if ($rootScope.wWidth <= 1024) {
                     $anchorScroll.yOffset = 68;
                 } else {
@@ -224,6 +223,7 @@ angular
                 }]);
             } else {
                 Raven.setUserContext();
+                UserVoice.push(['identify', {}]);
             }
         });
         // Set up UserVoice - https://developer.uservoice.com/docs/widgets/options/

@@ -1415,7 +1415,7 @@ a:link, a:visited {
     margin-left: -90px;
     box-sizing: border-box;
     visibility: hidden;
-    z-index: 1;
+    z-index: 10;
 
     &::after {
         content: "";
@@ -1850,7 +1850,7 @@ a:link, a:visited {
     min-width: 310px;
     right: 0;
     background: $side_panel_gray;
-    z-index: 1;
+    z-index: -1;
     @include tablet {
         display: none;
     }

@@ -86,6 +86,20 @@ $aqua_marine_border: #2be0aa;
 $aqua_marine_border_second: #28d4a0;
 $aqua_marine_text: #00ce8f;;
 
+
+.blue_progress_bar {
+    background: $deep_sky_blue;
+    color: $white;
+}
+
+.aqua_progress_bar {
+    background: $aqua_marine;
+}
+
+.yellow_progress_bar {
+    background: $favorite_yellow;
+}
+
 /* INFO BAR COLORS */
 .bar_red {
     color: $white;
@@ -118,6 +132,10 @@ $aqua_marine_text: #00ce8f;;
 
 .dark_yellow_background {
     background: $dark_yellow;
+}
+
+.aqua_marine_progress_bar_background {
+    background: $aqua_marine;
 }
 
 .aqua_marine_background {

@@ -14,14 +14,12 @@
         font-size: 14px;
         margin-top: 15px;
         position: relative;
-        z-index: 2;
         background: $light_gray;
 
         @media (max-width: 767px) {
             padding: 0;
-            height: 86px;
-            margin-top: 22px;
             height: 106px;
+            margin-top: 22px;
         }
 
         .milestones_wrap {
@@ -43,6 +41,9 @@
                 margin-left: -2px;
                 .table_cell {
                     width: auto;
+                    .milestones_text {
+                        padding-left: 9px;
+                    }
                     .milestones_checkmark {
                         padding-right: 5px;
                     }
@@ -65,7 +66,6 @@
 
             .progress_line {
                 @extend .background_line;
-                width: 40%;
             }
 
             .days_left_wrap {
@@ -76,7 +76,6 @@
                 padding: 0 10px;
                 position: absolute;
                 margin-top: -12px;
-                left: 40%;
             }
 
             .checkmark {
