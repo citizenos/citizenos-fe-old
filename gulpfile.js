@@ -89,6 +89,9 @@ gulp.task('uglify', function () {
             'public/js/libs/angular-resource.js',
             'public/js/libs/angular-route.js',
             'public/js/libs/angular-translate.js',
+            'public/js/libs/raven.js',
+            'public/js/libs/raven-console.js',
+            'public/js/libs/angular-raven.js',
             'public/js/libs/**/*.js',
             '!public/js/libs/template-cache.js',
             'public/js/app.js',
@@ -144,7 +147,7 @@ gulp.task('watch', function () {
  * BUT, if we try to follow it with current code, SASS goes berserk and generates 31 mb CSS or hangs. Needs some investigation.
  */
 gulp.task('sass', function () {
-    return gulp.src(['public/styles/*.scss'])
+    gulp.src(['public/styles/*.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())
@@ -155,7 +158,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('sass_etherpad', function() {
-    return gulp.src(['public/styles/etherpad/etherpad.scss'])
+    gulp.src(['public/styles/etherpad/etherpad.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())
