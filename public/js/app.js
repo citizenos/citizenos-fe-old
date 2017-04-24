@@ -360,6 +360,21 @@
                     template: '<div ui-view></div>',
                     controller: 'TopicVoteCtrl'
                 })
+                .state('topics.view.followUp', {
+                    parent: 'topics.view',
+                    url: '/followUp',
+                    template: '<div ui-view></div>',
+                    resolve: {
+                        status: ['rTopic','$q', '$state', '$stateParams', 'Topic', function (rTopic, $q, $state, $stateParams, Topic) {
+                            if([Topic.STATUSES.closed, Topic.STATUSES.followUp].indexOf(rTopic.status) > -1) {
+                                return $q.resolve();
+                            } else {
+                                 $state.go('topics.view', {language: $stateParams.language, topicId: rTopic.id}); //if topic editing or voting is still in progress
+                            }
+                        }]
+                    },
+                    controller: 'TopicFollowUpCtrl'
+                })
                 .state('my', {
                     url: '/my?filter',
                     parent: 'main',
