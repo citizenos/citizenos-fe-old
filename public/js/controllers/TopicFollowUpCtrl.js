@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicFollowUpCtrl', ['$scope', '$log', 'TopicEvent',  function ($scope, $log, TopicEvent) {
+    .controller('TopicFollowUpCtrl', ['$scope', '$log', 'TopicEvent', 'ngDialog',  function ($scope, $log, TopicEvent, ngDialog) {
         $log.debug('TopicFollowUpCtrl');
 
         $scope.$parent.topicEvents = null;
@@ -30,11 +30,21 @@ angular
         };
 
         $scope.$parent.deleteEvent = function (event) {
-            event
-                .$delete()
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_event_delete_confirm.html',
+                    data: {
+                        event: event
+                    }
+                })
                 .then(function () {
-                    init();
-                });
+                    event.topicId = $scope.topic.id;
+                    event
+                        .$delete()
+                        .then(function () {
+                            init();
+                        });
+                }, angular.noop);
 
         }
 

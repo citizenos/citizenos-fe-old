@@ -42,6 +42,7 @@ angular
             '/views/modals/sign_up.html',
             '/views/modals/topic_close_confirm.html',
             '/views/modals/topic_delete_confirm.html',
+            '/views/modals/topic_event_delete_confirm.html',
             '/views/modals/topic_member_group_delete_confirm.html',
             '/views/modals/topic_member_user_delete_confirm.html',
             '/views/modals/topic_member_user_leave_confirm.html',

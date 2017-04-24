@@ -290,6 +290,12 @@
                                         {{event.createdAt | amDateFormat: 'LLL'}}
                                     </div>
                                 </div>
+                                <div class="table_cell" ng-if="topic.canEdit()">
+                                    <div class="v_line"></div>
+                                </div>
+                                <div class="table_cell" ng-if="topic.canEdit()">
+                                    <span class="item_link red_text blue_link" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONE_DELETE" ng-click="deleteEvent(event)">delete</span>
+                                </div>
                             </div>
                             <div class="milestone_description_content">
                                 <div class="milestone_description_title" ng-bind-html="event.subject">
