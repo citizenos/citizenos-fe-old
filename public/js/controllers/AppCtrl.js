@@ -212,11 +212,18 @@ angular
             return $scope.app.user.loggedIn;
         }, function (loggedIn) {
             if (loggedIn) {
+                Raven.setUserContext({
+                    id: $scope.app.user.id
+                });
+
                 UserVoice.push(['identify', {
                     email: $scope.app.user.email || '',
                     id: $scope.app.user.id,
                     name: $scope.app.user.name
                 }]);
+            } else {
+                Raven.setUserContext();
+                UserVoice.push(['identify', {}]);
             }
         });
         // Set up UserVoice - https://developer.uservoice.com/docs/widgets/options/
