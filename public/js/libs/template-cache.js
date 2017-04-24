@@ -12,7 +12,6 @@ angular
             '/views/my_topics_topicId.html',
             '/views/partners_consent.html',
             '/views/partners_login.html',
-            '/views/topics_follow_up.html',
             '/views/topics_topicId.html',
             '/views/unknown_device.html',
             '/views/_templates/cos_input_test.html',
