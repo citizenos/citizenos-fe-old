@@ -9,7 +9,7 @@ angular
             template: '{{initials}}',
             link: function (scope, elem, attrs) {
                 var updateInitials = function () {
-                    if (!scope.cosInitials.length) {
+                    if (!scope.cosInitials || !scope.cosInitials.length) {
                         scope.initials = '';
                         return;
                     }
