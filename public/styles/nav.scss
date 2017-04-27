@@ -300,24 +300,24 @@ nav {
         }
 
         @media (max-width: '600px') {
-
             width: 53px;
+
             .header_button_text {
                 display: none;
             }
 
-        }
-
-        @media (max-width: '560px') {
-            right: 172px;
-            padding-left: 10px;
-
             .header_button_icon {
+                width: 51px;
                 .sprite {
                     float: none;
                     margin: 0 auto;
                 }
             }
+        }
+
+        @media (max-width: '560px') {
+            right: 172px;
+            padding-left: 10px;
         }
 
         @media (max-width: '340px') {
