@@ -1,5 +1,5 @@
 /**
- * Toru Etherpad Lite iframe directive
+ * CitizenOS Etherpad Lite iframe directive
  *
  * If Angulars JQuery wasn't so limited and .css also returned non-inline styles I could also check if iframes initial size was defined with CSS. @see {@link https://docs.angularjs.org/api/ng/function/angular.element#angular-s-jqlite}
  *
@@ -60,9 +60,15 @@ angular
                 var sendScrollMessage = _.debounce(function () {
                     var targetWindow = element[0].contentWindow;
 
+                    var yOffsetExtra = 0; // Additional Y offset in case there is a floating header element
+                    var mobileHeader = $window.document.getElementById('mobile_header');
+                    if (mobileHeader) {
+                        yOffsetExtra = parseFloat($window.getComputedStyle(mobileHeader)['height']);
+                    }
+
                     var data = {
                         scroll: {
-                            top: $window.pageYOffset,
+                            top: $window.pageYOffset + yOffsetExtra,
                             left: $window.pageXOffset
                         },
                         frameOffset: getFrameOffset()
@@ -99,7 +105,7 @@ angular
                     };
                 };
 
-                $($window).on('scroll', function (e) {
+                $($window).on('scroll resize', function (e) {
                     sendScrollMessage();
                 });
 

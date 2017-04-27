@@ -107,6 +107,10 @@
                                  ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VOTE">Vote</div>
                             </div>
+                            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="tab" ui-sref="topics.view.followUp({topicId: topic.id})"
+                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.followUp' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_FOLLOW_UP">Follow up</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -155,6 +159,156 @@
                 </div>
 
                 <div class="main_content_wrap">
+
+                    <!-- Topic summary -->
+
+                    <div class="voting_platform_wrap topic_summary_wrap" ng-if="('topics.view.followUp' | isState)">
+
+                        <div class="vote_casting_header">
+                            <div class="vote_casting_header_section">
+                                <div class="table_cell bold" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_HEADER">
+                                    Topic summary
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+
+                        <div class="line lightest_line"></div>
+
+                        <div class="topic_summary_content">
+
+                            <div class="content_item topic_summary_title">
+                                <div class="item_description" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_TITLE">
+                                    Title
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        {{topic.title}}
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="content_item topic_summary_date">
+                                <div class="item_description" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_FINALIZED_ON">
+                                    Document finalised on
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        {{topic.vote.createdAt  | amDateFormat:'L'}}
+                                        <span class="separator">|</span>
+                                        <span class="item_link blue_link" ng-click="app.scrollToAnchor('topic_content_area')" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_FINAL_DOCUMENT">
+                                            view final document
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="content_item topic_summary_date">
+                                <div class="item_description" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_VOTING_ENDED_ON">
+                                    Voting ended on
+                                </div>
+                                <div class="item_content">
+                                    <div class="item_text">
+                                        {{topic.vote.endsAt  | amDateFormat:'L'}}
+                                        <span class="separator">|</span>
+                                        <span class="item_link blue_link" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_VOTE_RESULTS">
+                                            view vote results
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                            <div class="clearer"></div>
+
+                        </div>
+                    </div>
+
+                    <!-- Create a milestone -->
+
+                    <div class="voting_platform_wrap create_a_milestone_wrap" ng-if="('topics.view.followUp' | isState) && topic.canEdit()">
+
+                        <div class="vote_casting_header">
+                            <div class="vote_casting_header_section">
+                                <div class="table_cell bold" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_CREATE_A_MILESTONE">
+                                    Create a milestone
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+
+                        <div class="line lightest_line"></div>
+
+                        <div class="create_a_milestone_content">
+                            <div class="voting_platform_section">
+
+                                <input name="create_milestone_title" ng-model="eventForm.subject" ng-class="{'error_input': eventForm.errors.subject}" translate translate-att-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_SUBJECT" class="gray_borders" maxlength="{{maxLengthSubject}}" required>
+                                <label for="create_milestone_title" class="error_label" ng-if="eventForm.errors.subject">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                        <span translate="{{eventForm.errors.subject}}">The email address is already in use.</span>
+                                    </div>
+                                </label>
+
+                                <textarea name="create_milestone_text" class="gray_borders" ng-class="{'error_input': eventForm.errors.text}" ng-model="eventForm.text" translate translate-att-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_SUBJECT" maxlength="{{maxLengthText}}" required></textarea>
+
+                                <label for="create_milestone_textarea" class="error_label" ng-if="eventForm.errors.text">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                        <span translate="{{eventForm.errors.text}}">The email address is already in use.</span>
+                                    </div>
+                                </label>
+
+                                <div class="blue_button">
+                                    <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_ADD_MILESTONE" ng-click="submitEvent()">
+                                        ADD MILESTONE
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="milestones_in_descriptions_wrap" ng-if="('topics.view.followUp' | isState)">
+                        <div class="milestone_description" ng-repeat="(key, event) in topicEvents">
+                            <div class="milestone_description_header">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-check-timeline-blue2x"></div>
+                                </div>
+                                <div class="table_cell">
+                                    <div class="milestone_number" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_MILESTONE" translate-values="{number: key}">2ND MILESTONE</div>
+                                </div>
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                                <div class="table_cell">
+                                    <div class="milestone_date">
+                                        {{event.createdAt | amDateFormat: 'LLL'}}
+                                    </div>
+                                </div>
+                                <div class="table_cell" ng-if="topic.canEdit()">
+                                    <div class="v_line"></div>
+                                </div>
+                                <div class="table_cell" ng-if="topic.canEdit()">
+                                    <span class="item_link red_text blue_link" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONE_DELETE" ng-click="deleteEvent(event)">delete</span>
+                                </div>
+                            </div>
+                            <div class="milestone_description_content">
+                                <div class="milestone_description_title" ng-bind-html="event.subject">
+                                    This is what we will do in our second step of our 5-year plan
+                                </div>
+                                <div class="milestone_description_text" ng-bind-html="event.text">
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cast your vote container-->
 
                     <div class="voting_platform_wrap vote_casting_wrap" ng-if="topic.vote.id && showVoteArea">
 
@@ -646,7 +800,7 @@
                         </div>
 
 
-                        <div class="topic_content">
+                        <div id="topic_content_area" class="topic_content">
                             <iframe cos-etherpad ng-if="topic.canUpdate() && app.editMode" frameborder="0" scrolling="no" ng-show="topic.padUrl && !('topics.view.followUp' | isState)"
                                     ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
                             <ng-bind-html ng-if="!app.editMode" ng-bind-html="topic.description"></ng-bind-html>
