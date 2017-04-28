@@ -111,7 +111,7 @@ angular
 
                 scope.$on('$destroy', function () {
                     // Don't leave handlers hanging...
-                    $($window).off('message onmessage scroll');
+                    $($window).off('message onmessage scroll resize');
                 });
             }
         }
