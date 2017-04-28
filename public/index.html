@@ -30,7 +30,6 @@
     <meta ng-if="app.metainfo.url" property="og:url" content="{{app.metainfo.url}}">
     <meta ng-if="app.metainfo.site_name" property="og:site_name" content="{{app.metainfo.site_name}}">
     <link rel="alternate" ng-repeat="(lang, path) in app.metainfo.hreflang" hreflang="{{lang}}" href="{{path}}">
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </head>
 
 <body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" cos-resize>
