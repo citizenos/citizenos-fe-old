@@ -35,7 +35,7 @@ angular
                     minHeight = parseFloat(scope.height);
                 }
 
-                $($window).on('message onmessage', function (e) {
+                var receiveMessageHandler = function (e) {
                     var msg = e.data;
                     if (msg.name === 'ep_resize') {
                         var width = msg.data.width;
@@ -55,7 +55,7 @@ angular
                             }
                         }
                     }
-                });
+                };
 
                 var sendScrollMessage = _.debounce(function () {
                     var targetWindow = element[0].contentWindow;
@@ -105,13 +105,13 @@ angular
                     };
                 };
 
-                $($window).on('scroll resize', function (e) {
-                    sendScrollMessage();
-                });
+                $($window).on('message onmessage', receiveMessageHandler);
+                $($window).on('scroll resize', sendScrollMessage);
 
                 scope.$on('$destroy', function () {
                     // Don't leave handlers hanging...
-                    $($window).off('message onmessage scroll resize');
+                    $($window).off('message onmessage', receiveMessageHandler);
+                    $($window).off('scroll resize', sendScrollMessage);
                 });
             }
         }
