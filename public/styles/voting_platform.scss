@@ -368,6 +368,10 @@
                 font-size: 13px;
                 opacity: 0.7;
             }
+
+            .blue_link {
+                font-size: 13px;
+            }
         }
         .milestone_description_content {
             padding: 0 60px;
@@ -382,6 +386,8 @@
                 font-weight: $bold;
                 line-height: 40px;
                 margin-bottom: 19px;
+                word-break: break-word;
+
                 @media (max-width: 760px) {
                     font-size: 26px;
                     line-height: 34px;
@@ -396,6 +402,8 @@
                 font-size: 16px;
                 line-height: 28px;
                 font-family: "Noto Serif";
+                word-break: break-word;
+
                 @media (max-width: 760px) {
                     font-size: 15px;
                     line-height: 25px;
