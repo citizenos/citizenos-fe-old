@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicFollowUpCtrl', ['$scope', '$log', 'TopicEvent', 'ngDialog',  function ($scope, $log, TopicEvent, ngDialog) {
+    .controller('TopicFollowUpCtrl', ['$scope', '$log', 'TopicEvent', 'ngDialog', function ($scope, $log, TopicEvent, ngDialog) {
         $log.debug('TopicFollowUpCtrl');
 
         $scope.$parent.topicEvents = null;
@@ -15,18 +15,22 @@ angular
 
             $scope.$parent.maxLengthSubject = 128;
             $scope.$parent.maxLengthText = 2048;
-            $scope.$parent.topicEvents = TopicEvent.query({topicId:$scope.topic.id});
+            $scope.$parent.topicEvents = TopicEvent.query({topicId: $scope.topic.id});
         };
         init();
 
         $scope.$parent.submitEvent = function () {
-            var topicEvent = new TopicEvent({topicId:$scope.topic.id, subject: $scope.eventForm.subject, text: $scope.eventForm.text});
+            var topicEvent = new TopicEvent({topicId: $scope.topic.id, subject: $scope.eventForm.subject, text: $scope.eventForm.text});
 
             topicEvent
                 .$save()
-                .then(function () {
-                    init();
-                });
+                .then(
+                    function () {
+                        init();
+                    },
+                    function (res) {
+                        $scope.eventForm.errors = res.data.errors;
+                    });
         };
 
         $scope.$parent.deleteEvent = function (event) {

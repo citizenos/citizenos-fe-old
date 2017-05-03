@@ -197,7 +197,7 @@
                                     <div class="item_text">
                                         {{topic.vote.createdAt  | amDateFormat:'L'}}
                                         <span class="separator">|</span>
-                                        <span class="item_link blue_link" ng-click="app.scrollToAnchor('topic_content_area')" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_FINAL_DOCUMENT">
+                                        <span class="item_link blue_link" ui-sref="topics.view({topicId: topic.id})" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_FINAL_DOCUMENT">
                                             view final document
                                         </span>
                                     </div>
@@ -205,7 +205,7 @@
                                 <div class="clearer"></div>
                             </div>
 
-                            <div class="content_item topic_summary_date">
+                            <div class="content_item topic_summary_date" ng-if="topic.vote.endsAt">
                                 <div class="item_description" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_VOTING_ENDED_ON">
                                     Voting ended on
                                 </div>
@@ -244,20 +244,20 @@
                         <div class="create_a_milestone_content">
                             <div class="voting_platform_section">
 
-                                <input name="create_milestone_title" ng-model="eventForm.subject" ng-class="{'error_input': eventForm.errors.subject}" translate translate-att-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_SUBJECT" class="gray_borders" maxlength="{{maxLengthSubject}}" required>
+                                <input id="create_milestone_title" ng-model="eventForm.subject" ng-class="{'error_input': eventForm.errors.subject}" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_SUBJECT" class="gray_borders" maxlength="{{maxLengthSubject}}" required>
                                 <label for="create_milestone_title" class="error_label" ng-if="eventForm.errors.subject">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                        <span translate="{{eventForm.errors.subject}}">The email address is already in use.</span>
+                                        <span translate="{{eventForm.errors.subject}}">Subject error</span>
                                     </div>
                                 </label>
 
-                                <textarea name="create_milestone_text" class="gray_borders" ng-class="{'error_input': eventForm.errors.text}" ng-model="eventForm.text" translate translate-att-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_SUBJECT" maxlength="{{maxLengthText}}" required></textarea>
+                                <textarea id="create_milestone_textarea" class="gray_borders" ng-class="{'error_input': eventForm.errors.text}" ng-model="eventForm.text" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_TEXT" maxlength="{{maxLengthText}}" required></textarea>
 
                                 <label for="create_milestone_textarea" class="error_label" ng-if="eventForm.errors.text">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                        <span translate="{{eventForm.errors.text}}">The email address is already in use.</span>
+                                        <span translate="{{eventForm.errors.text}}">Text error</span>
                                     </div>
                                 </label>
 
@@ -280,7 +280,7 @@
                                     <div class="sprite sprite-check-timeline-blue2x"></div>
                                 </div>
                                 <div class="table_cell">
-                                    <div class="milestone_number" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_MILESTONE" translate-values="{number: key}">2ND MILESTONE</div>
+                                    <div class="milestone_number" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_MILESTONE" translate-values="{number: key + 1}">2ND MILESTONE</div>
                                 </div>
                                 <div class="table_cell">
                                     <div class="v_line"></div>
@@ -294,7 +294,9 @@
                                     <div class="v_line"></div>
                                 </div>
                                 <div class="table_cell" ng-if="topic.canEdit()">
-                                    <span class="item_link red_text blue_link" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONE_DELETE" ng-click="deleteEvent(event)">delete</span>
+                                    <div class="milestone_action">
+                                        <span class="red_text blue_link" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONE_DELETE" ng-click="deleteEvent(event)">delete</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="milestone_description_content">
@@ -745,7 +747,7 @@
 
                     </div>
 
-                    <div class="iframe_content_wrap">
+                    <div class="iframe_content_wrap" ng-if="!('topics.view.followUp' | isState)">
 
                         <div class="topic_info" ng-class="app.more_info_button ? 'open' : ''">
 
