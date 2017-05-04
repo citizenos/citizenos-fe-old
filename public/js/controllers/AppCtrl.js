@@ -65,6 +65,16 @@ angular
         };
 
         // TODO: REMOVE - temporary for templates
+        $scope.app.doShowDeleteComment = function () {
+            $log.debug('AppCtrl.doShowDeleteComment()');
+
+            ngDialog.open({
+                template: '/views/_templates/modals/delete_comment.html',
+                scope: $scope
+            });
+        };
+
+        // TODO: REMOVE - temporary for templates
         $scope.app.doShowSetNumber = function () {
             $log.debug('AppCtrl.doShowSetNumber()');
 

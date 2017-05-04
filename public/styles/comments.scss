@@ -220,6 +220,12 @@
                         border-left: 4px solid $nature_green;
                         margin-bottom: 20px;
 
+                        &.edit_argument {
+                            input {
+                                margin-top: 0;
+                            }
+                        }
+
                         &.deleted {
                             .argument_text_wrap {
                                 .argument_text {
@@ -243,15 +249,23 @@
                         .line_wrap {
                             float: left;
                             height: 31px;
-                            margin-right: 10px;
+                            margin: 0 10px;
                             display: table;
                             .v_line {
                                 height: 15px;
                                 background: $dark_gray;
                             }
+                            &.last_edited_line {
+                                @media (max-width: 500px) {
+                                    display: none;
+                                }
+                            }
                         }
 
                         .argument_header {
+                            .argumentator + .line_wrap {
+                                margin-left: 0;
+                            }
                             font-size: 13px;
                             margin-bottom: 3px;
                             .borderless_dropdown {
@@ -261,13 +275,13 @@
                                     opacity: 1;
                                 }
                             }
-                            .argumentator, .argument_date {
+                            .argumentator, .argument_header_widget {
                                 float: left;
                                 height: 30px;
                                 display: table;
                             }
 
-                            .argument_date {
+                            .argument_header_widget {
                                 opacity: 0.7;
                             }
                         }
@@ -340,9 +354,44 @@
 
                         }
 
+                        .argument_footer_with_buttons {
+                            display: table;
+                            width: 100%;
+                            .table_cell {
+                                padding: 0 5px;
+                                height: 100%;
+                                &:first-child {
+                                    padding-left: 0;
+                                }
+                                &:last-child {
+                                    padding-right: 0;
+                                }
+                                .blue_button {
+                                    display: table;
+                                    float: none;
+                                    height: 100%;
+                                    width: 100%;
+                                }
+                            }
+                            @media (max-width: 621px) {
+                                display: block;
+                                & > .table_cell {
+                                    display: block;
+                                    padding: 0;
+                                    &:first-child {
+                                        .blue_button {
+                                            margin-top: 0;
+                                        }
+                                    }
+                                    .blue_button {
+                                        margin-top: 10px;
+                                    }
+                                }
+                            }
+                        }
+
                         .argument_footer {
                             font-size: 13px;
-
                             .line_wrap {
                                 margin: 0;
                             }
@@ -360,11 +409,41 @@
                                 }
                             }
 
+                            .argument_footer_widget {
+                                display: table;
+                                height: 30px;
+                                padding: 0 10px;
+                                @media (max-width: 500px) {
+                                    width: 100%;
+                                    padding: 0;
+                                }
+                            }
+
                             &.delete_reasons {
                                 .link_wrap {
                                     opacity: 1;
+                                    &:first-child {
+                                        .active_red_triangle_wrap {
+                                            padding-right: 10px;
+                                        }
+                                    }
                                     .blue_link {
                                         font-size: 14px;
+                                        &.active_red {
+                                            color: $pinky_red;
+                                            text-decoration: underline;
+                                        }
+                                    }
+                                    .active_red_triangle_wrap {
+                                        width: 14px;
+                                        margin: 0 auto;
+                                        .active_red_triangle {
+                                            width: 0;
+                                            height: 0;
+                                            border-bottom: 9px solid $pinky_red;;
+                                            border-left: 7px solid transparent;
+                                            border-right: 7px solid transparent;
+                                        }
                                     }
                                 }
                             }
@@ -406,6 +485,16 @@
                             }
 
                         }
+
+                        .alert_argument {
+                            font-size: 14px;
+                            line-height: 20px;
+                            background: $old_pink;
+                            padding: 10px 15px;
+                            border: 1px solid $pinky_red;
+                            margin-bottom: 4px;
+                        }
+
 
                     }
 
@@ -476,6 +565,10 @@
                     }
                 }
 
+            }
+
+            .edit_argument {
+                @extend .post_argument_wrap;
             }
 
         }

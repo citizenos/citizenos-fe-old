@@ -894,9 +894,8 @@ a:link, a:visited {
     font-size: 13px;
 
     &:hover {
-        background: $medium_gray !important;
-        @include tablet {
-            background: $lightest_gray !important;
+        @media (min-width: 1025px) {
+            background: $medium_gray !important;
         }
     }
 
@@ -911,9 +910,8 @@ a:link, a:visited {
     color: $medium_black;
     border: solid 1px $lightest_gray;
     &:hover {
-        background: $lightest_gray !important;
-        @include tablet {
-            background: $white !important;
+        @media (min-width: 1025px) {
+            background: $lightest_gray !important;
         }
     }
 }
@@ -922,9 +920,8 @@ a:link, a:visited {
     background: $pinky_red;
     border: solid 1px $pinky_red_border;
     &:hover {
-        background: $pinky_red_dark_hover !important;
-        @include tablet {
-            background: $pinky_red !important;
+        @media (min-width: 1025px) {
+            background: $pinky_red_dark_hover !important;
         }
     }
 }
@@ -957,10 +954,31 @@ a:link, a:visited {
     color: $medium_black;
 }
 
+.underline_link {
+    cursor: pointer;
+    @media (min-width: 1025px) {
+        &:hover {
+            text-decoration: underline;
+            opacity: 1 !important;
+        }
+    }
+}
+
+.underlined_link {
+    cursor: pointer;
+    color: $medium_black;
+    text-decoration: underline !important;
+    @media (min-width: 1025px) {
+        &:hover {
+            color: $deep_sky_blue;
+        }
+    }
+}
+
+
 .blue_button:not([disabled]):not(.disabled):hover {
-    background: $dark_blue;
-    @include tablet {
-        background: $deep_sky_blue;
+    @media (min-width: 1025px) {
+        background: $dark_blue;
     }
 }
 
