@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
-    <link href="styles/citizenos-fe.bundle.css?v=509a69c809679492919ad5b2eedbbe14" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=0a65adab2043a54cc3ab800375c0cf97" rel="stylesheet">
     <script src="js/citizenos-fe.bundle.js?v=680b7ef453230ebcb1713b364cd03631"></script>
 
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -30,7 +30,6 @@
     <meta ng-if="app.metainfo.url" property="og:url" content="{{app.metainfo.url}}">
     <meta ng-if="app.metainfo.site_name" property="og:site_name" content="{{app.metainfo.site_name}}">
     <link rel="alternate" ng-repeat="(lang, path) in app.metainfo.hreflang" hreflang="{{lang}}" href="{{path}}">
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </head>
 
 <body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" cos-resize>
@@ -114,7 +113,7 @@
             ga('send', 'pageview');
         }
     </script>
-    <script src="js/libs/template-cache.js?v=ffc0c7f5b9b33cdaa1a92e32b46a5478"></script>
+    <script src="js/libs/template-cache.js?v=1bfb4bbdcdf4627fad0401ba926a6772"></script>
     <script>
         if (/\/\/(www.)?citizenos\.com/.test(window.location.href)) {
             if (/(chrome|firefox)/.test(navigator.userAgent.toLowerCase())) {
