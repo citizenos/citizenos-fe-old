@@ -195,7 +195,7 @@
                                 </div>
                                 <div class="item_content">
                                     <div class="item_text">
-                                        {{topic.vote.createdAt  | amDateFormat:'L'}}
+                                        {{topic.vote.createdAt | amDateFormat:'L'}}
                                         <span class="separator">|</span>
                                         <span class="item_link blue_link" ui-sref="topics.view({topicId: topic.id})" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_FINAL_DOCUMENT">
                                             view final document
@@ -211,9 +211,10 @@
                                 </div>
                                 <div class="item_content">
                                     <div class="item_text">
-                                        {{topic.vote.endsAt  | amDateFormat:'L'}}
+                                        {{topic.vote.endsAt | amDateFormat:'L'}}
                                         <span class="separator">|</span>
-                                        <span class="item_link blue_link" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_VOTE_RESULTS">
+                                        <span class="item_link blue_link" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})"
+                                              translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_VOTE_RESULTS">
                                             view vote results
                                         </span>
                                     </div>
@@ -244,7 +245,8 @@
                         <div class="create_a_milestone_content">
                             <div class="voting_platform_section">
 
-                                <input id="create_milestone_title" ng-model="eventForm.subject" ng-class="{'error_input': eventForm.errors.subject}" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_SUBJECT" class="gray_borders" maxlength="{{maxLengthSubject}}" required>
+                                <input id="create_milestone_title" ng-model="eventForm.subject" ng-class="{'error_input': eventForm.errors.subject}" translate
+                                       translate-attr-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_SUBJECT" class="gray_borders" maxlength="{{maxLengthSubject}}" required>
                                 <label for="create_milestone_title" class="error_label" ng-if="eventForm.errors.subject">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -252,7 +254,8 @@
                                     </div>
                                 </label>
 
-                                <textarea id="create_milestone_textarea" class="gray_borders" ng-class="{'error_input': eventForm.errors.text}" ng-model="eventForm.text" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_TEXT" maxlength="{{maxLengthText}}" required></textarea>
+                                <textarea id="create_milestone_textarea" class="gray_borders" ng-class="{'error_input': eventForm.errors.text}" ng-model="eventForm.text" translate
+                                          translate-attr-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_TEXT" maxlength="{{maxLengthText}}" required></textarea>
 
                                 <label for="create_milestone_textarea" class="error_label" ng-if="eventForm.errors.text">
                                     <div class="table_cell">
@@ -304,7 +307,9 @@
                                     This is what we will do in our second step of our 5-year plan
                                 </div>
                                 <div class="milestone_description_text" ng-bind-html="event.text | linky">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                    unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                                    typesetting, remaining essentially unchanged.
                                 </div>
                             </div>
                         </div>
@@ -943,7 +948,7 @@
                                                                 <div class="v_line"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="exclamation">
+                                                        <div class="exclamation" ng-click="doCommentReport(comment)">
                                                             <div class="table_cell">
                                                                 <div class="sprite mobile_fix sprite-icon-reportmessage-default2x">
                                                                 </div>
@@ -957,7 +962,8 @@
 
 
                                                 <div class="post_argument_wrap" ng-if="comment.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                                                    <textarea id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}"></textarea>
+                                                    <textarea id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-class="{'error_input': form.errors.text}"
+                                                              placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}"></textarea>
                                                     <label for="argument_con_reply_text" class="error_label" ng-if="form.errors.text">
                                                         <div class="table_cell">
                                                             <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -1045,7 +1051,7 @@
                                                                 <div class="v_line"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="exclamation">
+                                                        <div class="exclamation"  ng-click="doCommentReport(reply)">
                                                             <div class="table_cell">
                                                                 <div class="sprite mobile_fix sprite-icon-reportmessage-default2x">
                                                                 </div>
@@ -1059,7 +1065,8 @@
 
                                                 <div class="post_argument_wrap" ng-if="reply.showReply" ng-controller="TopicCommentCreateFormCtrl">
                                                     <form name="argumentReplyForm">
-                                                        <textarea id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}"
+                                                        <textarea id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-class="{'error_input': form.errors.text}"
+                                                                  placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}"
                                                                   required></textarea>
                                                         <label for="argument_pro_reply_text" class="error_label" ng-if="form.errors.text">
                                                             <div class="table_cell">
