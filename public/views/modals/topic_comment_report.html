@@ -40,9 +40,10 @@
 
 
                 <div class="lightbox_section">
-                    <b translate="MODALS.TOPIC_COMMENT_REPORT_LABEL_REASON">Reason for deleting</b> <span class="required_text" translate="MODALS.TOPIC_COMMENT_REPORT_LABEL_REASON_REQUIRED">(required)</span>
+                    <b translate="MODALS.TOPIC_COMMENT_REPORT_LABEL_REASON">Reason for deleting</b> <span class="required_text"
+                                                                                                          translate="MODALS.TOPIC_COMMENT_REPORT_LABEL_REASON_REQUIRED">(required)</span>
 
-                    <div cos-dropdown class="classic_dropdown">
+                    <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': errors.type}">
 
                         <div class="dropdown_selection">
                             <div class="dropdown_text">
@@ -67,9 +68,22 @@
                         </div>
                     </div>
 
-                    <textarea class="gray_borders" ng-model="form.text" translate translate-attr-placeholder="MODALS.TOPIC_COMMENT_REPORT_PLACEHOLDER_REPORT_TEXT" placeholder="Explain why you find this comment inappropriate..."></textarea>
-                </div>
+                    <div class="error_label" ng-if="errors.type">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            <span translate="{{errors.type}}"></span>
+                        </div>
+                    </div>
 
+                    <textarea class="gray_borders" ng-model="form.text" ng-class="{'error_input': errors.text}" translate
+                              translate-attr-placeholder="MODALS.TOPIC_COMMENT_REPORT_PLACEHOLDER_REPORT_TEXT" placeholder="Explain why you find this comment inappropriate..." xmaxlength="2048"></textarea>
+                    <div class="error_label" ng-if="errors.text">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            <span translate="{{errors.text}}"></span>
+                        </div>
+                    </div>
+                </div>
 
 
                 <div class="line lightest_line"></div>

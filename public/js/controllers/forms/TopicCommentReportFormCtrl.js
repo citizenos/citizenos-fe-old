@@ -16,15 +16,13 @@ angular
         };
 
         $scope.doReport = function () {
-            $log.debug('doReport', $scope.comment, $scope.form);
             var topicComment = new TopicComment($scope.form);
 
             topicComment.$report()
                 .then(function () {
-                    $log.debug('Report success', $scope.comment, $scope.form);
                     ngDialog.closeAll();
-                }, function () {
-                    $log.error('Failed to report comment', $scope.comment, $scope.form, arguments);
+                }, function (res) {
+                    $scope.errors = res.data.errors;
                 });
         };
 
