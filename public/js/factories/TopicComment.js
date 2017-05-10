@@ -54,6 +54,14 @@ angular
                     transformRequest: function (data) {
                         return angular.toJson(data);
                     }
+                },
+                report: {
+                    method: 'POST',
+                    params: {topicId: '@topicId', commentId: '@id'},
+                    url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/reports'),
+                    transformRequest: function (data) {
+                        return angular.toJson(data);
+                    }
                 }
             }
         );
@@ -62,6 +70,15 @@ angular
             pro: 'pro',
             con: 'con',
             reply: 'reply'
+        };
+
+        TopicComment.COMMENT_REPORT_TYPES = {
+            abuse: 'abuse', // is abusive or insulting
+            obscene: 'obscene', // contains obscene language
+            spam: 'spam', // contains spam or is unrelated to topic
+            hate: 'hate', // contains hate speech
+            netiquette: 'netiquette', // infringes (n)etiquette
+            duplicate: 'duplicate' // duplicate
         };
 
         TopicComment.COMMENT_ORDER_BY = {

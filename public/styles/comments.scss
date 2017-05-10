@@ -100,7 +100,7 @@
                             margin-right: 9px;
                             margin-top: -3px;;
                             display: inline-block;
-                            min-width:90px;
+                            min-width: 90px;
                             @media (max-width: 1200px) {
                                 float: right;
                                 margin-top: -33px;
@@ -189,7 +189,6 @@
 
                     }
 
-
                     .is_reply {
                         .argument {
                             padding-left: 46px;
@@ -220,6 +219,12 @@
                         border-left: 4px solid $nature_green;
                         margin-bottom: 20px;
 
+                        &.edit_argument {
+                            input {
+                                margin-top: 0;
+                            }
+                        }
+
                         &.deleted {
                             .argument_text_wrap {
                                 .argument_text {
@@ -243,15 +248,25 @@
                         .line_wrap {
                             float: left;
                             height: 31px;
-                            margin-right: 10px;
+                            margin: 0 10px;
                             display: table;
                             .v_line {
                                 height: 15px;
                                 background: $dark_gray;
                             }
+                            &.last_edited_line {
+                                @media (max-width: 500px) {
+                                    display: none;
+                                }
+                            }
                         }
 
                         .argument_header {
+                            .argumentator {
+                                .line_wrap {
+                                    margin: 0;
+                                }
+                            }
                             font-size: 13px;
                             margin-bottom: 3px;
                             .borderless_dropdown {
@@ -261,13 +276,13 @@
                                     opacity: 1;
                                 }
                             }
-                            .argumentator, .argument_date {
+                            .argumentator, .argument_header_widget {
                                 float: left;
                                 height: 30px;
                                 display: table;
                             }
 
-                            .argument_date {
+                            .argument_header_widget {
                                 opacity: 0.7;
                             }
                         }
@@ -295,7 +310,6 @@
                                     display: block;
                                 }
 
-
                             }
 
                             &.read_more {
@@ -321,10 +335,10 @@
                                 display: none;
                                 position: absolute;
                                 height: 62px;
-                                background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 65%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
-                                background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 65%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-                                background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 65%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
+                                background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 1) 100%); /* FF3.6-15 */
+                                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 1) 100%); /* Chrome10-25,Safari5.1-6 */
+                                background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=0);
                                 right: 0;
                                 bottom: 0;
                                 left: 0;
@@ -340,9 +354,44 @@
 
                         }
 
+                        .argument_footer_with_buttons {
+                            display: table;
+                            width: 100%;
+                            .table_cell {
+                                padding: 0 5px;
+                                height: 100%;
+                                &:first-child {
+                                    padding-left: 0;
+                                }
+                                &:last-child {
+                                    padding-right: 0;
+                                }
+                                .blue_button {
+                                    display: table;
+                                    float: none;
+                                    height: 100%;
+                                    width: 100%;
+                                }
+                            }
+                            @media (max-width: 621px) {
+                                display: block;
+                                & > .table_cell {
+                                    display: block;
+                                    padding: 0;
+                                    &:first-child {
+                                        .blue_button {
+                                            margin-top: 0;
+                                        }
+                                    }
+                                    .blue_button {
+                                        margin-top: 10px;
+                                    }
+                                }
+                            }
+                        }
+
                         .argument_footer {
                             font-size: 13px;
-
                             .line_wrap {
                                 margin: 0;
                             }
@@ -360,11 +409,41 @@
                                 }
                             }
 
+                            .argument_footer_widget {
+                                display: table;
+                                height: 30px;
+                                padding: 0 10px;
+                                @media (max-width: 500px) {
+                                    width: 100%;
+                                    padding: 0;
+                                }
+                            }
+
                             &.delete_reasons {
                                 .link_wrap {
                                     opacity: 1;
+                                    &:first-child {
+                                        .active_red_triangle_wrap {
+                                            padding-right: 10px;
+                                        }
+                                    }
                                     .blue_link {
                                         font-size: 14px;
+                                        &.active_red {
+                                            color: $pinky_red;
+                                            text-decoration: underline;
+                                        }
+                                    }
+                                    .active_red_triangle_wrap {
+                                        width: 14px;
+                                        margin: 0 auto;
+                                        .active_red_triangle {
+                                            width: 0;
+                                            height: 0;
+                                            border-bottom: 9px solid $pinky_red;;
+                                            border-left: 7px solid transparent;
+                                            border-right: 7px solid transparent;
+                                        }
                                     }
                                 }
                             }
@@ -405,6 +484,15 @@
                                 }
                             }
 
+                        }
+
+                        .alert_argument {
+                            font-size: 14px;
+                            line-height: 20px;
+                            background: $old_pink;
+                            padding: 10px 15px;
+                            border: 1px solid $pinky_red;
+                            margin-bottom: 4px;
                         }
 
                     }
@@ -478,8 +566,11 @@
 
             }
 
-        }
+            .edit_argument {
+                @extend .post_argument_wrap;
+            }
 
+        }
 
         .social_mentions_container {
             @media (max-width: 1200px) {
@@ -531,19 +622,19 @@
             .social_mentions_wrap {
                 padding: 40px 0 40px;
                 @media (max-width: 1200px) {
-                   padding: 20px 0;
+                    padding: 20px 0;
                 }
                 @media (max-width: 1024px) {
                     padding: 40px 0 40px;
                 }
                 @media (max-width: 621px) {
-                   padding: 20px 0;
+                    padding: 20px 0;
                 }
                 .social_mentions_message_info {
-                    font-weight:bold;
-                    text-align:center;
+                    font-weight: bold;
+                    text-align: center;
                     .blue_button {
-                        max-width:180px;
+                        max-width: 180px;
                         margin-left: auto;
                         margin-right: auto;
                         margin-top: 40px;
@@ -656,9 +747,6 @@
 
         }
 
-
-
     }
-
 
 }

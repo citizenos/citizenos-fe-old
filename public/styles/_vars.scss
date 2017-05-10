@@ -65,6 +65,7 @@ $purpule: #f1d9ff;
 $yellow: #fef78d;
 $red: #e64100;
 
+$old_pink: #FFDAE0;
 $pinky_red: #ff1d42;
 $pinky_red_dark: #e22645;
 $pinky_red_border: #e6193b;
@@ -237,11 +238,9 @@ $aqua_marine_text: #00ce8f;;
     padding-right: 20px;
     border-radius: 4px;
     &:hover {
-        background: $nature_green_dark !important;
-        border: 1px solid $nature_green_border_dark;
-        @media (max-width: 1024px) {
-            background: $nature_green;
-            border: 1px solid $nature_green_border;
+        @media (min-width: 1025px) {
+            background: $nature_green_dark !important;
+            border: 1px solid $nature_green_border_dark;
         }
     }
     &.disabled {
@@ -255,11 +254,25 @@ $aqua_marine_text: #00ce8f;;
     color: $white;
     border: 1px solid $pinky_red_border;
     &:hover {
-        background: $pinky_red_dark_hover !important;
-        border: 1px solid $pinky_red_dark_border;
-        @media (max-width: 1024px) {
-            background: $pinky_red;
-            border: 1px solid $pinky_red_border;
+        @media (min-width: 1025px) {
+            background: $pinky_red_dark_hover !important;
+            border: 1px solid $pinky_red_dark_border;
+        }
+    }
+    &.disabled {
+        background: $pinky_red;
+    }
+}
+
+.blue_white_button {
+    @extend .nature_green_button;
+    background: $white;
+    color: $deep_sky_blue;
+    border: 1px solid $lightest_gray;
+    &:hover {
+        @media (min-width: 1025px) {
+            background: $medium_gray !important;
+            border: 1px solid $mobile_border_gray;
         }
     }
     &.disabled {
