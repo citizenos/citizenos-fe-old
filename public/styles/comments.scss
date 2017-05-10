@@ -100,7 +100,7 @@
                             margin-right: 9px;
                             margin-top: -3px;;
                             display: inline-block;
-                            min-width:90px;
+                            min-width: 90px;
                             @media (max-width: 1200px) {
                                 float: right;
                                 margin-top: -33px;
@@ -189,7 +189,6 @@
 
                     }
 
-
                     .is_reply {
                         .argument {
                             padding-left: 46px;
@@ -263,8 +262,10 @@
                         }
 
                         .argument_header {
-                            .argumentator + .line_wrap {
-                                margin-left: 0;
+                            .argumentator {
+                                .line_wrap {
+                                    margin: 0;
+                                }
                             }
                             font-size: 13px;
                             margin-bottom: 3px;
@@ -309,7 +310,6 @@
                                     display: block;
                                 }
 
-
                             }
 
                             &.read_more {
@@ -335,10 +335,10 @@
                                 display: none;
                                 position: absolute;
                                 height: 62px;
-                                background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 65%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
-                                background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 65%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-                                background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 65%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
+                                background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 1) 100%); /* FF3.6-15 */
+                                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 1) 100%); /* Chrome10-25,Safari5.1-6 */
+                                background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=0);
                                 right: 0;
                                 bottom: 0;
                                 left: 0;
@@ -495,7 +495,6 @@
                             margin-bottom: 4px;
                         }
 
-
                     }
 
                     .post_argument_wrap {
@@ -573,7 +572,6 @@
 
         }
 
-
         .social_mentions_container {
             @media (max-width: 1200px) {
                 padding: 19px 0 0;
@@ -624,19 +622,19 @@
             .social_mentions_wrap {
                 padding: 40px 0 40px;
                 @media (max-width: 1200px) {
-                   padding: 20px 0;
+                    padding: 20px 0;
                 }
                 @media (max-width: 1024px) {
                     padding: 40px 0 40px;
                 }
                 @media (max-width: 621px) {
-                   padding: 20px 0;
+                    padding: 20px 0;
                 }
                 .social_mentions_message_info {
-                    font-weight:bold;
-                    text-align:center;
+                    font-weight: bold;
+                    text-align: center;
                     .blue_button {
-                        max-width:180px;
+                        max-width: 180px;
                         margin-left: auto;
                         margin-right: auto;
                         margin-top: 40px;
@@ -749,9 +747,6 @@
 
         }
 
-
-
     }
-
 
 }
