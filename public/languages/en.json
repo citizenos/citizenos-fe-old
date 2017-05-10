@@ -552,6 +552,8 @@
   "MSG_ERROR_POST_API_TOPICS_VOTES_40026": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40026",
   "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT": "Statement text can be 1 to 2048 characters long.",
   "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT": "Main statement can be 1 to 128 characters long.",
+  "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Comment report reason is required",
+  "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Explanation text can be 1 to 2048 characters long.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "You have cancelled the signing flow and your vote was not counted.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "The signing request has expired. To vote, please start over.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "The signature is invalid. Your vote was not counted.",
