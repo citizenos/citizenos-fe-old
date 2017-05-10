@@ -22,6 +22,7 @@ angular
             description: 'META_DEFAULT_DESCRIPTION',
             keywords: 'META_DEFAULT_KEYWORDS',
             icon: sLocation.getAbsoluteUrl('/imgs/favicon.ico'),
+            iconHires: sLocation.getAbsoluteUrl('/imgs/icon_hires.png'),
             author: null,
             image: sLocation.getAbsoluteUrl('/imgs/logo_dark_seo.png'),
             url: null,
