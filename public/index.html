@@ -16,10 +16,12 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
     <link href="styles/citizenos-fe.bundle.css?v=fd25993b99c0e072d28d49b47444ce46" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=686791f98e4d012dfe8a8fba86ba9cb2"></script>
+    <script src="js/citizenos-fe.bundle.js?v=53bb8623019c80b2e6c2cf1daaf4f86b"></script>
 
+    <meta name="theme-color" content="#1a1a1a">
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
+    <link ng-if="app.metainfo.iconHires" rel="icon" ng-href="{{app.metainfo.iconHires}}" sizes="192x192" type="image/png">
     <meta ng-if="app.metainfo.description" translate translate-attr-content="{{app.metainfo.description}}" content="Citizen OS enables participative discussion and voting for groups, when getting together offline or online at the same time is not an option." name="description">
     <meta ng-if="app.metainfo.keywords" name="keywords" translate translate-attr-content="{{app.metainfo.keywords}}" content="e-decisionmaking, e-governance, e-democracy, democracy, direct democracy, liquid democracy">
     <meta ng-if="app.metainfo.author" name="author" content="{{app.metainfo.author}}">
