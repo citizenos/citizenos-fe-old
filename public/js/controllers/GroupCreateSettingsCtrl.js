@@ -110,6 +110,10 @@ angular
             }
         };
 
+        $scope.addNewGroupMemberTopic = function (title) {
+            $state.go('topics.create', {groupId: $scope.group.id, title: title});
+        }
+
         $scope.removeGroupMemberTopic = function (topic) {
             $scope.memberTopics.splice($scope.memberTopics.indexOf(topic), 1);
         };

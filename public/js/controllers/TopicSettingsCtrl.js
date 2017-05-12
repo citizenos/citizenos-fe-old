@@ -55,6 +55,8 @@ angular
         };
 
         $scope.search = function (str) {
+            $scope.searchString = str; // TODO: Hackish - Typeahead has term="searchString" but somehow the 2 way binding does not work there, investigate when time
+
             if (str && str.length >= 2) {
                 var include = ['my.group', 'public.user'];
                 sSearch
