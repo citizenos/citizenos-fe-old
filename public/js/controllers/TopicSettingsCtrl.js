@@ -55,6 +55,8 @@ angular
         };
 
         $scope.search = function (str) {
+            $scope.searchString = str; // TODO: Hackish - Typeahead has term="searchString" but somehow the 2 way binding does not work there, investigate when time
+
             if (str && str.length >= 2) {
                 var include = ['my.group', 'public.user'];
                 sSearch
@@ -85,10 +87,10 @@ angular
         $scope.checkHashtag = function () {
             var length = 0;
             var str = $scope.form.topic.hashtag;
-            var bytesLeft = 0;
             var hashtagMaxLength = 59;
+
             if (str) {
-                var length = str.length;
+                length = str.length;
                 for (var i = 0; i < str.length; i++) {
                     var code = str.charCodeAt(i);
                     if (code > 0x7f && code <= 0x7ff) length++;
@@ -97,7 +99,6 @@ angular
                 }
             }
 
-            bytesLeft = (((hashtagMaxLength - length) > 0) ? (hashtagMaxLength - length) : 0);
             if ((hashtagMaxLength - length) < 0) {
                 $scope.errors = {hashtag: 'MSG_ERROR_40000_TOPIC_HASHTAG'};
             }
@@ -157,7 +158,7 @@ angular
         };
 
         $scope.addTopicMember = function (member) {
-            if (member.hasOwnProperty('company')) {
+            if (!member || member.hasOwnProperty('company')) {
                 $scope.addTopicMemberUser(member);
             } else {
                 $scope.addTopicMemberGroup(member);
@@ -222,7 +223,7 @@ angular
                 }
             } else {
                 // Assume e-mail was entered.
-                if (validator.isEmail($scope.searchStringUser)) {
+                if (validator.isEmail($scope.searchString)) {
                     // Ignore duplicates
                     if (!_.find($scope.searchResults.results, {userId: $scope.searchString})) {
                         $scope.members.emails.push({
@@ -294,7 +295,7 @@ angular
                             var member = {
                                 id: group.id,
                                 topicId: $scope.topic.id,
-                                level: group.permission.level
+                                level: group.level
                             };
                             var topicMemberGroup = new TopicMemberGroup(member);
                             savePromises.push(
