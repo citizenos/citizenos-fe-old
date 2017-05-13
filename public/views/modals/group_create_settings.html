@@ -125,6 +125,10 @@
             <!-- ADD TOPICS -->
             <div class="lightbox_content padding_bottom_zero" ng-if="tabSelected === 'topics'">
                 <div class="lightbox_section">
+                    <div class="pretend_table" style="height: 40px;"cos-disabled="!form.group.canUpdate()">
+                        <input translate translate-attr-placeholder="MODALS.GROUP_CREATE_SETTINGS_TOPIC_TITLE" ng-model="form.newMemberTopicTitle" />
+                        <a cos-disabled="!form.newMemberTopicTitle" class="blue_link" style="float: right;position:absolute;right:30px;margin-top:5px;z-index:5;" ng-click="addNewGroupMemberTopic(form.newMemberTopicTitle)" translate="MODALS.GROUP_CREATE_SETTINGS_ADD_CREATE_TOPIC">Create new topic</a>
+                    </div>
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_ADD_TOPICS">Add topics searching by title</div>
                     <div cos-dropdown ng-class="{search_with_dropdown : searchResults.topics.length, dropdown_active : searchResults.topics.length}">
                         <typeahead cos-disabled="!form.group.canUpdate()" class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
