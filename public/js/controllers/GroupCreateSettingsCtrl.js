@@ -56,6 +56,7 @@ angular
             $scope.searchStringUser = null;
             $scope.searchStringTopic = null;
             $scope.searchResults = {};
+            $scope.form.newMemberTopicTitle = null;
 
             $scope.errors = null;
         };
