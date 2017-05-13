@@ -318,7 +318,7 @@
                                 } else {
                                     $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
                                 }
-                            });
+                          });
                     }]
                 })
                 .state('topics.view', {
