@@ -1357,6 +1357,10 @@
                         padding-left: 20px;
                     }
 
+                    &.with_dropdown {
+                        padding: 0;
+                    }
+
                     .setting_title {
                         font-size: 16px;
                         font-weight: $bold;
@@ -1371,10 +1375,28 @@
                         width: 180px;
                     }
 
+                    .lbl_input_no_margin {
+                        margin-bottom: 0px;
+                    }
+
+                    .left_input {
+                        float: left;
+                        width: 270px;
+                    }
+
+                    .groups_settings_dropdown {
+                        float: left;
+                        width: 150px;
+                    }
+
                     .blue_button, .gray_button {
                         width: 110px;
                         float: right;
                         font-size: 14px;
+                    }
+
+                    .create_topic_btn {
+                        width:100px;
                     }
 
                     &.hashtag_cell {
@@ -1409,6 +1431,10 @@
                         display: block;
                         width: 100%;
 
+                        .left_input {
+                            width: 100%;
+                        }
+
                         &:last-child {
                             padding-left: 0;
                         }
@@ -1418,6 +1444,7 @@
                             float: none;
                             margin-top: 10px;
                         }
+
                         &.hashtag_cell {
                             width: 100%;
                         }

@@ -92,7 +92,7 @@ angular
                     }
                 })
                 .then(function () {
-                    var index = group.members.topics.rows.indexOf(groupMemberTopic);
+                    var index = $scope.group.members.topics.rows.indexOf(groupMemberTopic);
                     groupMemberTopic
                         .$delete({groupId: $scope.group.id})
                         .then(function () {

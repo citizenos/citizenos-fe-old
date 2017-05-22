@@ -286,19 +286,39 @@
                     template: '<div ui-view></div>'
                 })
                 .state('topics.create', {
-                    url: '/create',
+                    url: '/create?title&groupId&groupLevel',
                     parent: 'topics',
-                    controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', function ($scope, $state, $stateParams, sAuth, Topic) {
+                    controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', 'GroupMemberTopic', function ($scope, $state, $stateParams, sAuth, Topic, GroupMemberTopic) {
                         if (!sAuth.user.loggedIn) {
                             return $state.go('account.login', null, {location: false});
                         }
 
                         var topic = new Topic();
+
+                        if($stateParams.title) {
+                            topic.description = '<html><head></head><body><h1>'+$stateParams.title+'</h1></body></html>';
+                        }
+
                         topic
                             .$save()
-                            .then(function () {
-                                $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
-                            });
+                            .then(function (topic) {
+                                if($stateParams.groupId) {
+                                    var level = $stateParams.groupLevel || GroupMemberTopic.LEVELS.read;
+                                    var member = {
+                                        groupId: $stateParams.groupId,
+                                        id: topic.id,
+                                        level: level
+                                    };
+                                    var groupMemberTopic = new GroupMemberTopic(member);
+                                    groupMemberTopic
+                                        .$save()
+                                        .then(function () {
+                                            $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
+                                        });
+                                } else {
+                                    $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
+                                }
+                          });
                     }]
                 })
                 .state('topics.view', {
@@ -382,9 +402,15 @@
                     controller: 'MyCtrl',
                     resolve: {
                         // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$q', '$window', 'Topic', 'Group', 'sAuth', 'sAuthResolve', function ($state, $stateParams, $q, $window, Topic, Group, sAuth, sAuthResolve) {
+                        rItems: ['$state', '$stateParams', '$location', '$q', '$window', 'Topic', 'Group', 'sAuth', 'sAuthResolve', function ($state, $stateParams, $location, $q, $window, Topic, Group, sAuth, sAuthResolve) {
                             var filterParam = $stateParams.filter || 'all';
                             var urlParams = {prefix: null, userId: null};
+                            var path = $location.path();
+
+                            if(!$stateParams.filter && (path.indexOf('groups') > -1)) {
+                                    $stateParams.filter = 'grouped';
+                                    filterParam = 'grouped';
+                            }
 
                             if(sAuthResolve || sAuth.user.loggedIn) {
                                 urlParams = {prefix: 'users', userId : 'self'}

@@ -56,6 +56,8 @@ angular
             $scope.searchStringUser = null;
             $scope.searchStringTopic = null;
             $scope.searchResults = {};
+            $scope.form.newMemberTopicTitle = null;
+            $scope.form.newMemberTopicLevel = GroupMemberTopic.LEVELS.read;
 
             $scope.errors = null;
         };
@@ -109,6 +111,10 @@ angular
                 $scope.memberTopics.push(topic);
             }
         };
+
+        $scope.addNewGroupMemberTopic = function (title, newMemberTopicLevel) {
+            $state.go('topics.create', {groupId: $scope.group.id, title: title, groupLevel: newMemberTopicLevel});
+        }
 
         $scope.removeGroupMemberTopic = function (topic) {
             $scope.memberTopics.splice($scope.memberTopics.indexOf(topic), 1);
