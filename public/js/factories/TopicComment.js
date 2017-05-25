@@ -34,6 +34,16 @@ angular
                         }
                     }
                 },
+                get: {
+                    params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
+                    transformResponse: function (data, headerGetter, status) {
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
+                            return angular.fromJson(data).data.rows;
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
+                },
                 update: {
                     method: 'PUT',
                     params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
@@ -44,7 +54,7 @@ angular
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;
                         } else {
-                            return angular.toJson(data);
+                            return angular.fromJson(data);
                         }
                     }
                 },
@@ -59,6 +69,14 @@ angular
                     method: 'POST',
                     params: {topicId: '@topicId', commentId: '@id'},
                     url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/reports'),
+                    transformRequest: function (data) {
+                        return angular.toJson(data);
+                    }
+                },
+                moderate: {
+                    method: 'POST',
+                    params: {topicId: '@topicId', commentId: '@id', reportId: '@reportId'},
+                    url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/reports/:reportId'),
                     transformRequest: function (data) {
                         return angular.toJson(data);
                     }
