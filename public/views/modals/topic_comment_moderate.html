@@ -6,25 +6,12 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title" translate="MODALS.TOPIC_COMMENT_REPORT_HEADING">Report comment</div>
+                    <div class="title" translate="MODALS.TOPIC_COMMENT_MODERATE_HEADING">Moderate comment</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="confirm_description_wrap">
-                    <div class="confirm_description">
-                        <i>
-                            <b translate="MODALS.TOPIC_COMMENT_REPORT_DESCRIPTION" translate-values="{usersFullName: comment.creator.name}">Comment by John Smith</b>
-                        </i>
-                        <div class="confirm_description_under_text">
-                            <i>
-                                {{(comment.subject || comment.text) | cosEllipsis}}
-                            </i>
                         </div>
                     </div>
                 </div>
@@ -38,8 +25,11 @@
             <!-- CONFIRM CONTENT -->
             <div class="lightbox_content">
 
-
                 <div class="lightbox_section">
+                    <b>Comment</b>
+                    <p><i>{{comment.subject}}</i></p>
+                    <p><i>{{comment.text}}</i></p>
+
                     <b translate="MODALS.TOPIC_COMMENT_REPORT_LABEL_REASON">Reason for deleting</b> <span class="required_text"
                                                                                                           translate="MODALS.TOPIC_COMMENT_REPORT_LABEL_REASON_REQUIRED">(required)</span>
 

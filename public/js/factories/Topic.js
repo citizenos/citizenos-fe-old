@@ -9,7 +9,7 @@ angular
                 prefix = '@prefix';
             }
             return prefix;
-        }
+        };
 
         var getUrlUser = function () {
             var userId = sAuth.getUrlUserId();
@@ -17,7 +17,7 @@ angular
                 userId = '@userId';
             }
             return userId;
-        }
+        };
 
         var Topic = $resource(
             sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId'),

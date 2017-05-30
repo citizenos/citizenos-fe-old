@@ -62,11 +62,6 @@ angular
             $scope.topic.vote.$get();
         }
 
-        if ($scope.topic.voteId || $scope.topic.vote) {
-            $scope.topic.vote = new TopicVote({id: $scope.topic.voteId, topicId: $scope.topic.id});
-            $scope.topic.vote.$get();
-        }
-
         $scope.showVoteCreate = function () {
             $scope.showVoteCreateForm = !$scope.showVoteCreateForm;
         };

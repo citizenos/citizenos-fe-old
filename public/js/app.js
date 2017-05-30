@@ -356,7 +356,7 @@
                     parent: 'topics.view',
                     resolve: {
                         rTopicComment: ['$stateParams', 'TopicComment', function ($stateParams, TopicComment) {
-                            return TopicComment.get({topicId: $stateParams.topicId, commentId: $stateParams.commentId}).$promise;
+                            return TopicComment.get({topicId: $stateParams.topicId, commentId: $stateParams.commentId});
                         }]
                     },
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', 'rTopicComment', function ($scope, $state, $stateParams, ngDialog, rTopicComment) {

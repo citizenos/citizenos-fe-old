@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCommentReportFormCtrl', ['$scope', '$log', 'ngDialog', 'TopicComment', 'rTopicComment', function ($scope, $log, ngDialog, TopicComment) {
+    .controller('TopicCommentReportFormCtrl', ['$scope', '$log', 'ngDialog', 'TopicComment', function ($scope, $log, ngDialog, TopicComment) {
         $log.debug('TopicCommentReportFormCtrl');
 
         $scope.comment = $scope.ngDialogData.comment;

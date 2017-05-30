@@ -3,7 +3,7 @@
 angular
     .module('citizenos')
     .controller('TopicCommentModerateFormCtrl', ['$scope', '$log', 'ngDialog', 'TopicComment', function ($scope, $log, ngDialog, TopicComment) {
-        $log.debug('TopicCommentModerateFormCtrl', $scope.ngDialogData);
+        $log.debug('TopicCommentModerateFormCtrl', $scope.ngDialogData.comment, $scope.ngDialogData.comment.text);
 
         $scope.comment = $scope.ngDialogData.comment;
         $scope.reportTypes = TopicComment.COMMENT_REPORT_TYPES;
