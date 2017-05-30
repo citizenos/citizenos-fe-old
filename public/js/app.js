@@ -359,11 +359,15 @@
                             return TopicComment.get({topicId: $stateParams.topicId, commentId: $stateParams.commentId});
                         }]
                     },
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', 'rTopicComment', function ($scope, $state, $stateParams, ngDialog, rTopicComment) {
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', 'rTopicComment', 'rTopic', function ($scope, $state, $stateParams, ngDialog, rTopicComment, rTopic) {
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_comment_moderate.html',
                             data: {
-                                comment: rTopicComment
+                                comment: rTopicComment,
+                                topic: rTopic,
+                                report: {
+                                    id: $stateParams.reportId
+                                }
                             }
                         });
                         dialog.closePromise.then(function (data) {

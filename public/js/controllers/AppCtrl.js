@@ -182,6 +182,14 @@ angular
             }, 0);
         };
 
+        $rootScope.$on('ngDialog.opened', function () {
+            sNotification.removeAll();
+        });
+
+        $rootScope.$on('ngDialog.closed', function () {
+            sNotification.removeAll();
+        });
+
         $rootScope.$on('$translateChangeSuccess', function () {
             $scope.app.language = sTranslate.currentLanguage;
             amMoment.changeLocale($scope.app.language);

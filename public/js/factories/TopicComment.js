@@ -77,7 +77,7 @@ angular
                 moderate: {
                     method: 'POST',
                     params: {topicId: '@topicId', commentId: '@id', reportId: '@reportId'},
-                    url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/reports/:reportId'),
+                    url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/reports/:reportId/moderate'),
                     transformRequest: function (data) {
                         return angular.toJson(data);
                     }
