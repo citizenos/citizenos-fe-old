@@ -5,6 +5,20 @@ angular
 
         var path = '/api/:prefix/:userId/topics/:topicId/comments/:commentId';
 
+        function findReplies(parentNode, currentNode) {
+            if (currentNode.replies.rows.length > 0) {
+                if(parentNode != currentNode) {
+                    parentNode.replies.rows = parentNode.replies.rows.concat(currentNode.replies.rows);
+                }
+                currentNode.replies.rows.forEach(function(reply) {
+                    findReplies(parentNode, reply);
+                });
+            }
+            else {
+                return;
+            }
+        }
+
         var TopicComment = $resource(
             sLocation.getAbsoluteUrlApi(path),
             {topicId: '@topicId', commentId: '@id'},
@@ -25,10 +39,17 @@ angular
                 },
                 query: {
                     isArray: true,
+                    url: sLocation.getAbsoluteUrlApi('/api/v2/:prefix/:userId/topics/:topicId/comments'),
                     params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformResponse: function (data, headerGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
-                            return angular.fromJson(data).data.rows;
+                            var result = angular.fromJson(data).data.rows;
+                            result.forEach(function(row, k) {
+                                findReplies(row, row)
+                                console.log(row)
+                            });
+
+                            return result;
                         } else {
                             return angular.fromJson(data);
                         }
@@ -38,7 +59,13 @@ angular
                     method: 'PUT',
                     params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformRequest: function (data) {
-                        return angular.toJson({level: data.level});
+                        var requestObject = {};
+                        _.forEach(data.toJSON(), function (value, key) { // Remove all object properties as we have none we care about in the server side
+                            if (!_.isObject(value)) {
+                                requestObject[key] = value;
+                            }
+                        });
+                        return angular.toJson(requestObject);
                     },
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....

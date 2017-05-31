@@ -875,7 +875,7 @@
                                     <div class="arguments_content" id="arguments" ng-if="topicComments.rows.length">
 
                                         <!-- FIRST COMMENT -->
-                                        <div class="argument_wrap" ng-class="{is_con:comment.type=='con'}" ng-repeat="comment in topicComments.rows | orderBy: topicComments.orderBy">
+                                        <div id="{{comment.id}}" class="argument_wrap" ng-class="{is_con:comment.type=='con'}" ng-repeat="comment in topicComments.rows | orderBy: topicComments.orderBy">
                                             <div class="single_argument">
                                                 <div class="argument">
                                                     <div class="argument_header">
@@ -899,18 +899,22 @@
                                                         <div class="clearer"></div>
                                                     </div>
                                                     <div class="argument_title">
-                                                        {{comment.subject}}
+                                                        <input class="argument_title" style="border:none;" type="text" ng-model="comment.subject" ng-if="comment.editComment"/>
+                                                        <span ng-if="!comment.editComment">{{comment.subject}}</span>
                                                     </div>
 
                                                     <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
-                                                        <div class="argument_text" ng-bind-html="comment.text | linky">
+                                                        <div ng-if="!comment.editComment" class="argument_text" ng-bind-html="comment.text | linky">
                                                         </div>
+                                                        <textarea ng-if="comment.editComment" class="argument_text" ng-model="comment.text">
+                                                        </textarea>
                                                         <div class="argument_overlay">
                                                         </div>
                                                         <div class="read_more_link" ng-click="$parent.readMore = !$parent.readMore"
                                                              translate="{{($parent.readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_READ_MORE'}}">Read more
                                                         </div>
                                                     </div>
+                                                    <div ng-if="comment.editComment" class="blue_button ng-scope" ng-click="updateComment(comment)" translate="VIEWS.TOPICS_TOPICID.BTN_SUBMIT">UPDATE</div>
 
                                                     <div class="argument_footer">
                                                         <div class="link_wrap">
@@ -956,6 +960,18 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="line_wrap">
+                                                            <div class="table_cell">
+                                                                <div class="v_line"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="link_wrap">
+                                                            <div class="table_cell">
+                                                                <div class="blue_link black_text" ng-click="comment.editComment = !comment.editComment" translate="VIEWS.TOPICS_TOPICID.LNK_COMMENT_EDIT">
+                                                                    EDIT
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="clearer"></div>
                                                     </div>
                                                 </div>
@@ -970,7 +986,7 @@
                                                             <span translate="{{form.errors.text}}"></span>
                                                         </div>
                                                     </label>
-                                                    <div class="blue_button" cos-disabled="!form.text" ng-click="submitReply(comment.id)" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_REPLY">Post
+                                                    <div class="blue_button" cos-disabled="!form.text" ng-click="submitReply(comment.id, (comment.edits.length-1))" translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_REPLY">Post
                                                         reply
                                                     </div>
                                                     <div class="clearer"></div>
@@ -979,7 +995,7 @@
                                             </div>
 
                                             <!-- SECOND COMMENT REPLY -->
-                                            <div class="single_argument is_reply" ng-repeat="reply in comment.replies.rows">
+                                            <div id="{{reply.id}}" class="single_argument is_reply" ng-if="comment.replies.rows.length" ng-style="{background: hashStringToColor(reply.parent.id)}" ng-click="app.scrollToAnchor(reply.parent.id)" ng-repeat="reply in comment.replies.rows" ng-click="">
                                                 <div class="argument">
                                                     <div class="argument_header">
                                                         <div class="reply_icon sprite sprite-icon-arrow-reply2x">
@@ -1074,7 +1090,7 @@
                                                                 <span translate="{{form.errors.text}}"></span>
                                                             </div>
                                                         </label>
-                                                        <div class="blue_button" cos-disabled="argumentReplyForm.$invalid" ng-click="submitReply(comment.id)"
+                                                        <div class="blue_button" cos-disabled="argumentReplyForm.$invalid" ng-click="submitReply(reply.id, (reply.edits.length-1))"
                                                              translate="VIEWS.TOPICS_TOPICID.BTN_COMMENT_REPLY_POST_REPLY">
                                                             Post reply
                                                         </div>

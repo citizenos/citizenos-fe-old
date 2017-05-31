@@ -23,9 +23,10 @@ angular
             $scope.charactersLeft = $scope.maxLengthText - ($scope.form.text ? $scope.form.text.length : 0);
         });
 
-        var saveComment = function (parentId, type) {
+        var saveComment = function (parentId, type, parentVersion) {
             var comment = new TopicComment();
             comment.parentId = parentId;
+            comment.parentVersion = parentVersion;
             comment.type = type;
             comment.subject = $scope.form.subject;
             comment.text = $scope.form.text;
@@ -53,10 +54,13 @@ angular
             saveComment(null, TopicComment.COMMENT_TYPES.con);
         };
 
-        $scope.submitReply = function (parentId) {
+        $scope.submitReply = function (parentId, parentVersion) {
             $scope.form.subject = null;
-            saveComment(parentId, $scope.form.type);
+            saveComment(parentId, $scope.form.type, parentVersion);
         };
 
+        $scope.submitUpdate = function () {
+
+        };
 
     }]);
