@@ -355,8 +355,20 @@
                     url: '/comments/:commentId/reports/:reportId/moderate?token',
                     parent: 'topics.view',
                     resolve: {
-                        rTopicComment: ['$stateParams', 'TopicComment', function ($stateParams, TopicComment) {
-                            return TopicComment.get({topicId: $stateParams.topicId, commentId: $stateParams.commentId});
+                        rTopicComment: ['$stateParams', '$http', 'sLocation', function ($stateParams, $http, sLocation) {
+                            var path = sLocation.getAbsoluteUrlApi(
+                                '/api/topics/:topicId/comments/:commentId/reports/:reportId',
+                                $stateParams
+                            );
+
+                            var config = {
+                                headers: {
+                                    'Authorization': 'Bearer ' + $stateParams.token
+                                }
+                            };
+
+                            return $http
+                                .get(path, config);
                         }]
                     },
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', 'rTopicComment', 'rTopic', function ($scope, $state, $stateParams, ngDialog, rTopicComment, rTopic) {
