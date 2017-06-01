@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCommentModerateFormCtrl', ['$scope', '$log', 'ngDialog', 'TopicComment', function ($scope, $log, ngDialog, TopicComment) {
+    .controller('TopicCommentModerateFormCtrl', ['$scope', '$http', '$log', 'ngDialog', 'sLocation', 'TopicComment', function ($scope, $http, $log, ngDialog, sLocation, TopicComment) {
         $log.debug('TopicCommentModerateFormCtrl', $scope.ngDialogData);
 
         $scope.comment = $scope.ngDialogData.comment;
@@ -10,22 +10,36 @@ angular
 
         $scope.form = {
             type: null,
-            text: null,
-            id: $scope.comment.id,
-            topicId: $scope.ngDialogData.topic.id,
-            reportId: $scope.ngDialogData.report.id
+            text: null
         };
 
         $scope.doModerate = function () {
-            var topicComment = new TopicComment($scope.form);
+            //FYI:  Did not use TopicComment $resource here cause did not figure out how to pass custom authorization headers for single request
+            var path = sLocation.getAbsoluteUrlApi(
+                '/api/topics/:topicId/comments/:commentId/reports/:reportId/moderate',
+                {
+                    topicId: $scope.ngDialogData.topic.id,
+                    commentId: $scope.comment.id,
+                    reportId: $scope.ngDialogData.report.id
+                }
+            );
 
-            topicComment
-                .$moderate()
-                .then(function () {
-                    ngDialog.closeAll();
-                }, function (res) {
-                    $scope.errors = res.data.errors;
-                });
+            var config = {
+                headers: {
+                    'Authorization': 'Bearer ' + $scope.ngDialogData.token
+                }
+            };
+
+            $http
+                .post(path, $scope.form, config)
+                .then(
+                    function () {
+                        ngDialog.closeAll();
+                    },
+                    function (res) {
+                        $scope.errors = res.data.errors;
+                    }
+                );
         };
 
     }]);

@@ -10,7 +10,7 @@ angular
             {topicId: '@topicId', commentId: '@id'},
             {
                 save: {
-                    method:'POST',
+                    method: 'POST',
                     params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformRequest: function (data) {
                         return angular.toJson(data);
@@ -70,14 +70,6 @@ angular
                     method: 'POST',
                     params: {topicId: '@topicId', commentId: '@id'},
                     url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/reports'),
-                    transformRequest: function (data) {
-                        return angular.toJson(data);
-                    }
-                },
-                moderate: {
-                    method: 'POST',
-                    params: {topicId: '@topicId', commentId: '@id', reportId: '@reportId'},
-                    url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/reports/:reportId/moderate'),
                     transformRequest: function (data) {
                         return angular.toJson(data);
                     }

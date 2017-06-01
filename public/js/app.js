@@ -352,7 +352,7 @@
                     }]
                 })
                 .state('topics.view.commentsReportsModerate', {
-                    url: '/comments/:commentId/reports/:reportId/moderate',
+                    url: '/comments/:commentId/reports/:reportId/moderate?token',
                     parent: 'topics.view',
                     resolve: {
                         rTopicComment: ['$stateParams', 'TopicComment', function ($stateParams, TopicComment) {
@@ -367,7 +367,8 @@
                                 topic: rTopic,
                                 report: {
                                     id: $stateParams.reportId
-                                }
+                                },
+                                token: $stateParams.token
                             }
                         });
                         dialog.closePromise.then(function (data) {
