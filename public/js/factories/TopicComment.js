@@ -10,7 +10,7 @@ angular
             {topicId: '@topicId', commentId: '@id'},
             {
                 save: {
-                    method:'POST',
+                    method: 'POST',
                     params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformRequest: function (data) {
                         return angular.toJson(data);
@@ -44,7 +44,7 @@ angular
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;
                         } else {
-                            return angular.toJson(data);
+                            return angular.fromJson(data);
                         }
                     }
                 },
