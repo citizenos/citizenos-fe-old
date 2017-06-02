@@ -106,7 +106,7 @@
                         returnLink = '/' + locationPath[1] + '/';
                         useLang = locationPath[1];
                     } else if (locationPath.length > 1) {
-                        returnLink = '/' + useLang + locationUrl;
+                        returnLink = '/' + useLang + $location.path();
                     }
 
                     var statesList = $state.get();
