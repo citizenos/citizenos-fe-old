@@ -71,7 +71,7 @@
 
                 var langkeys = Object.keys(cosConfig.language.list);
                 var clientLang = $translate.resolveClientLocale() || $translate.use();
-                ;
+
                 var useLang = cosConfig.language.default;
                 if (langkeys.indexOf(clientLang) > -1) {
                     useLang = clientLang;
@@ -368,14 +368,17 @@
                             };
 
                             return $http
-                                .get(path, config);
+                                .get(path, config)
+                                .then(function(res){
+                                    return res.data.data;
+                                });
                         }]
                     },
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', 'rTopicComment', 'rTopic', function ($scope, $state, $stateParams, ngDialog, rTopicComment, rTopic) {
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_comment_moderate.html',
                             data: {
-                                comment: rTopicComment,
+                                comment: rTopicComment.comment,
                                 topic: rTopic,
                                 report: {
                                     id: $stateParams.reportId
