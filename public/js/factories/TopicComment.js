@@ -34,17 +34,6 @@ angular
                         }
                     }
                 },
-                get: {
-                    method: 'GET',
-                    params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
-                    transformResponse: function (data, headerGetter, status) {
-                        if (status > 0 && status < 400) { // TODO: think this error handling through....
-                            return angular.fromJson(data).data;
-                        } else {
-                            return angular.fromJson(data);
-                        }
-                    }
-                },
                 update: {
                     method: 'PUT',
                     params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
