@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCommentModerateFormCtrl', ['$scope', '$http', '$log', 'ngDialog', 'sLocation', 'TopicComment', function ($scope, $http, $log, ngDialog, sLocation, TopicComment) {
+    .controller('TopicCommentModerateFormCtrl', ['$scope', '$state', '$http', '$log', 'ngDialog', 'sLocation', 'TopicComment', function ($scope, $state, $http, $log, ngDialog, sLocation, TopicComment) {
         $log.debug('TopicCommentModerateFormCtrl', $scope.ngDialogData);
 
         $scope.comment = $scope.ngDialogData.comment;
