@@ -46,7 +46,6 @@ angular
                             var result = angular.fromJson(data).data.rows;
                             result.forEach(function(row, k) {
                                 findReplies(row, row)
-                                console.log(row)
                             });
 
                             return result;
@@ -109,7 +108,19 @@ angular
         };
 
         TopicComment.prototype.isVisible = function () {
-            return (!this.deleteAt && !this.showDeletedComment) || (this.deleteAt && this.showDeletedComment);
+            return (!this.deletedAt && !this.showDeletedComment) || (this.deletedAt && this.showDeletedComment);
+        };
+
+        TopicComment.prototype.canEdit = function () {
+            return (this.creator.id === sAuth.user.id && !this.deletedAt);
+        };
+
+        TopicComment.prototype.canDelete = function () {
+            return this.canEdit();
+        };
+
+        TopicComment.prototype.isVisible = function () {
+            return (!this.deletedAt && !this.showDeletedComment) || (this.deletedAt && this.showDeletedComment);
         };
 
         TopicComment.COMMENT_TYPES = {

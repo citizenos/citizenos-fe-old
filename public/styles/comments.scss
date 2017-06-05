@@ -152,6 +152,10 @@
                 .argument_wrap {
                     padding-right: 20%;
 
+                    .argument_edit_wrap {
+                        padding-bottom: 20px;
+                    }
+
                     @media (max-width: 1200px) {
                         padding-right: 0;
                     }
@@ -218,6 +222,13 @@
                         padding: 5px 0 4px 16px;
                         border-left: 4px solid $nature_green;
                         margin-bottom: 20px;
+                        -webkit-transition-duration: 2s;
+                        -webkit-transition-timing-function: linear;
+                        -webkit-transition-property: background;
+                        /* Standard syntax */
+                        transition-duration: 2s;
+                        transition-timing-function: linear;
+                        transition-property: background;
 
                         &.edit_argument {
                             input {
@@ -231,6 +242,10 @@
                                     margin-bottom: 0;
                                 }
                             }
+                        }
+
+                        &.highlight {
+                            background: #A1A1A1;
                         }
 
                         @media (max-width: 1200px) {
