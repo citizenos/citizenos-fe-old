@@ -875,9 +875,9 @@
                                     <div class="arguments_content" id="arguments" ng-if="topicComments.rows.length">
 
                                         <!-- FIRST COMMENT -->
-                                        <div id="{{comment.id}}" class="argument_wrap" ng-class="{is_con:comment.type=='con'}" ng-repeat="comment in topicComments.rows | orderBy: topicComments.orderBy">
+                                        <div id="{{comment.id+(comment.edits.length-1)}}" class="argument_wrap" ng-class="{is_con:comment.type=='con'}" ng-repeat="comment in topicComments.rows | orderBy: topicComments.orderBy">
                                             <div class="single_argument">
-                                                <div class="argument">
+                                                <div class="argument" ng-class="{edit_argument: comment.showEdit}">
                                                     <div class="argument_header">
                                                         <div class="argumentator">
                                                             <div class="line_wrap">
@@ -896,25 +896,75 @@
                                                                 {{comment.createdAt | amTimeAgo}}
                                                             </div>
                                                         </div>
+                                                        <div class="line_wrap">
+                                                            <div class="table_cell">
+                                                                <div class="v_line"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="argument_header_widget underline_link">
+                                                            <div class="table_cell" ng-click="commentEditMode(comment)">
+                                                                Edit
+                                                            </div>
+                                                        </div>
+                                                        <div class="line_wrap">
+                                                            <div class="table_cell">
+                                                                <div class="v_line"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="argument_header_widget underline_link" ng-click="doShowDeleteComment(comment)">
+                                                            <div class="table_cell">
+                                                                Delete
+                                                            </div>
+                                                        </div>
                                                         <div class="clearer"></div>
                                                     </div>
+                                                    <input ng-if="comment.showEdit" placeholder="Edit your argument subject..." ng-model="comment.editSubject" class="gray_borders">
+
+                                                    <textarea ng-if="comment.showEdit" class="gray_borders" placeholder="Edit your reply here..." ng-model="comment.editText"></textarea>
+
+                                                    <div class="argument_footer_with_buttons" ng-if="comment.showEdit">
+                                                        <div class="table_cell">
+                                                            <div class="blue_button nature_green_button" ng-click="updateComment(comment, COMMENT_TYPES.pro)">
+                                                                <div class="table_cell">
+                                                                    Post as a pro argument
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="table_cell">
+                                                            <div class="blue_button pinky_red_button" ng-click="updateComment(comment, COMMENT_TYPES.con)">
+                                                                <div class="table_cell">
+                                                                    Post as a con argument
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="table_cell">
+                                                            <div class="blue_button blue_white_button" ng-click="commentEditMode(comment)">
+                                                                <div class="table_cell">
+                                                                    Cancel edit
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="argument_title">
-                                                        <input class="argument_title" style="border:none;" type="text" ng-model="comment.subject" ng-if="comment.editComment"/>
-                                                        <span ng-if="!comment.editComment">{{comment.subject}}</span>
+                                                        <span>{{comment.subject}}</span>
                                                     </div>
 
                                                     <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
-                                                        <div ng-if="!comment.editComment" class="argument_text" ng-bind-html="comment.text | linky">
+                                                        <div class="argument_text" ng-bind-html="comment.text | linky">
                                                         </div>
-                                                        <textarea ng-if="comment.editComment" class="argument_text" ng-model="comment.text">
-                                                        </textarea>
                                                         <div class="argument_overlay">
                                                         </div>
                                                         <div class="read_more_link" ng-click="$parent.readMore = !$parent.readMore"
                                                              translate="{{($parent.readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_READ_MORE'}}">Read more
                                                         </div>
                                                     </div>
-                                                    <div ng-if="comment.editComment" class="blue_button ng-scope" ng-click="updateComment(comment)" translate="VIEWS.TOPICS_TOPICID.BTN_SUBMIT">UPDATE</div>
+
+                                                    <div id="{{comment.id+version}}" class="argument" ng-if="comment.isEdited() && !$last" ng-repeat="(version, edit) in comment.edits">
+                                                        <div class="argument_header">{{edit.createdAt | amDateFormat : 'L LT'}}</div>
+                                                        <div class="argument_text_wrap">
+                                                            <div class="argument_text italic" ng-bind-html="edit.text | linky"></div>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="argument_footer">
                                                         <div class="link_wrap">
@@ -960,16 +1010,22 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="line_wrap">
+                                                        <div class="exclamation"  ng-click="doCommentReport(reply)">
+                                                            <div class="table_cell">
+                                                                <div class="sprite mobile_fix sprite-icon-reportmessage-default2x">
+                                                                </div>
+                                                                <div class="sprite desktop_fix sprite-icon-reportmessage-default2x">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-if="comment.isEdited()" class="line_wrap last_edited_line">
                                                             <div class="table_cell">
                                                                 <div class="v_line"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="link_wrap">
+                                                        <div ng-if="comment.isEdited()" class="argument_footer_widget">
                                                             <div class="table_cell">
-                                                                <div class="blue_link black_text" ng-click="comment.editComment = !comment.editComment" translate="VIEWS.TOPICS_TOPICID.LNK_COMMENT_EDIT">
-                                                                    EDIT
-                                                                </div>
+                                                                <i>Last edited {{comment.edits[(comment.edits.length-1)].createdAt | amTimeAgo}}</i>
                                                             </div>
                                                         </div>
                                                         <div class="clearer"></div>
@@ -994,9 +1050,9 @@
 
                                             </div>
 
-                                            <!-- SECOND COMMENT REPLY -->
-                                            <div id="{{reply.id}}" class="single_argument is_reply" ng-if="comment.replies.rows.length" ng-style="{background: hashStringToColor(reply.parent.id)}" ng-click="app.scrollToAnchor(reply.parent.id)" ng-repeat="reply in comment.replies.rows" ng-click="">
-                                                <div class="argument">
+                                            <!-- COMMENT REPLY -->
+                                            <div id="{{reply.id+(reply.edits.length-1)}}" class="single_argument is_reply" ng-if="comment.replies.rows.length" ng-repeat="reply in comment.replies.rows" ng-click="">
+                                                <div class="argument" ng-class="{edit_argument: reply.showEdit}">
                                                     <div class="argument_header">
                                                         <div class="reply_icon sprite sprite-icon-arrow-reply2x">
                                                         </div>
@@ -1017,10 +1073,54 @@
                                                                 {{reply.createdAt | amTimeAgo}}
                                                             </div>
                                                         </div>
+                                                        <div class="line_wrap">
+                                                            <div class="table_cell">
+                                                                <div class="v_line"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="argument_header_widget underline_link">
+                                                            <div class="table_cell" ng-click="commentEditMode(reply)">
+                                                                Edit
+                                                            </div>
+                                                        </div>
+                                                        <div class="line_wrap">
+                                                            <div class="table_cell">
+                                                                <div class="v_line"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="argument_header_widget underline_link" ng-click="doShowDeleteComment(reply)">
+                                                            <div class="table_cell">
+                                                                Delete
+                                                            </div>
+                                                        </div>
                                                         <div class="clearer"></div>
                                                     </div>
+                                                    <textarea ng-if="reply.showEdit" class="gray_borders" placeholder="Edit your reply here..." ng-model="reply.editText"></textarea>
 
+                                                    <div ng-if="reply.showEdit" class="argument_footer_with_buttons">
+                                                        <div class="table_cell">
+                                                            <div class="blue_button" ng-click="updateComment(reply)">
+                                                                <div class="table_cell">
+                                                                    Save
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="table_cell">
+                                                            <div class="blue_button blue_white_button" ng-click="commentEditMode(reply)">
+                                                                <div class="table_cell">
+                                                                    Cancel
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="{{reply.id+(version-1)}}" class="argument" ng-if="reply.isEdited() && !$last" ng-repeat="(version, edit) in reply.edits">
+                                                        <div class="argument_header">{{edit.createdAt | amDateFormat : 'L LT'}}</div>
+                                                        <div class="argument_text_wrap">
+                                                            <div class="argument_text italic" ng-bind-html="edit.text | linky"></div>
+                                                        </div>
+                                                    </div>
                                                     <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
+                                                        <div class="argument_text"><span class="replys_reply" ng-click="goToParentComment(comment, reply.parent)">@{{getParentAuthor(comment, reply.parent.id)}}</span></div>
                                                         <div class="argument_text" ng-bind-html="reply.text | linky">
                                                         </div>
                                                         <div class="argument_overlay">
@@ -1073,6 +1173,16 @@
                                                                 </div>
                                                                 <div class="sprite desktop_fix sprite-icon-reportmessage-default2x">
                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-if="reply.isEdited()" class="line_wrap last_edited_line">
+                                                            <div class="table_cell">
+                                                                <div class="v_line"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-if="reply.isEdited()" class="argument_footer_widget">
+                                                            <div class="table_cell">
+                                                                <i>Last edited {{reply.edits[(reply.edits.length-1)].createdAt | amTimeAgo}}</i>
                                                             </div>
                                                         </div>
                                                         <div class="clearer"></div>

@@ -59,8 +59,4 @@ angular
             saveComment(parentId, $scope.form.type, parentVersion);
         };
 
-        $scope.submitUpdate = function () {
-
-        };
-
     }]);

@@ -89,9 +89,24 @@ angular
                     transformRequest: function (data) {
                         return angular.toJson(data);
                     }
+                },
+                delete: {
+                    method: 'DELETE',
+                    params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.toJson(data);
+                        }
+                    }
                 }
             }
         );
+
+        TopicComment.prototype.isEdited = function () {
+            return this.edits.length > 1;
+        };
 
         TopicComment.COMMENT_TYPES = {
             pro: 'pro',

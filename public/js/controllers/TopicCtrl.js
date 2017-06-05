@@ -7,6 +7,7 @@ angular
 
         $scope.topic = rTopic;
 
+        $scope.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
         $scope.generalInfo = {
             isVisible: true
         };
@@ -161,6 +162,12 @@ angular
                         $scope.topicComments.count.pro = _.filter(comments, {type: TopicComment.COMMENT_TYPES.pro}).length;
                         $scope.topicComments.count.con = _.filter(comments, {type: TopicComment.COMMENT_TYPES.con}).length;
                         $scope.topicComments.rows = comments;
+                        $scope.topicComments.rows.forEach(function (comment, key) {
+                            comment.replies.rows.forEach( function (reply,rkey) {
+                                reply = new TopicComment(reply);
+                                $scope.topicComments.rows[key].replies.rows[rkey] = reply;
+                            })
+                        });
                     } else {
                         $scope.topicComments.rows = [];
                         $scope.topicComments.count = {
@@ -406,16 +413,80 @@ angular
                 }, angular.noop);
         };
 
-        $scope.updateComment = function (comment) {
+        $scope.updateComment = function (comment, editType) {
+            console.log(editType);
+            if(comment.editType != comment.type || comment.subject != comment.editSubject || comment.text != comment.editText){
+                comment.subject = comment.editSubject;
+                comment.text = comment.editText;
+
+                if (editType) {
+                    comment.type = editType;
+                }
+                console.log(comment.type);
+                comment.topicId = $scope.topic.id;
+
+                comment
+                    .$update()
+                    .then(function (res) {
+                        console.log(res);
+                        $scope.commentEditMode(comment);
+                    }, function (err) {
+                        console.log('err', err)
+                    });
+            } else {
+                $scope.commentEditMode(comment);
+            }
+        };
+
+        $scope.commentEditMode = function (comment) {
+            comment.editSubject = comment.subject;
+            comment.editText = comment.text;
+            comment.showEdit = !comment.showEdit;
+        };
+
+        $scope.getParentAuthor = function (rootComment, parentId) {
+            if(parentId === rootComment.id) {
+                return rootComment.creator.name;
+            } else {
+                for(var i = 0; i < rootComment.replies.rows.length; i++) {
+                    if(rootComment.replies.rows[i].id === parentId) {
+                        return rootComment.replies.rows[i].creator.name;
+                        break;
+                    }
+                }
+            }
+
+
+        };
+
+        $scope.doShowDeleteComment = function (comment) {
+            $log.debug('TopicCtrl.doShowDeleteComment()');
+
+            ngDialog.openConfirm({
+                template: '/views/modals/topic_delete_comment.html',
+                data: {
+                    comment: comment,
+                    topic: $scope.topic
+                }
+            })
+            .then(function () {
+                comment.topicId = $scope.topic.id;
+                comment.$delete()
+                    .then(function () {
+                        $scope.loadTopicComments($scope.topicComments.orderBy);
+                    }, angular.noop);
+            });
+        };
+
+        $scope.goToParentComment = function (rootComment, parent) {
+
+            if(!parent.id || !parent.hasOwnProperty('version')) {
+                return
+            }
+
+            var comment = angular.element(document.getElementById(parent.id+parent.version));
             console.log(comment);
-            comment.topicId = $scope.topic.id;
-            comment
-                .$update()
-                .then(function (res) {
-                    console.log(res);
-                }, function (err) {
-                    console.log('err', err)
-                });
+
         };
 
         function djb2(str){
