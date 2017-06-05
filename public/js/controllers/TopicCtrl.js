@@ -63,11 +63,6 @@ angular
             $scope.topic.vote.$get();
         }
 
-        if ($scope.topic.voteId || $scope.topic.vote) {
-            $scope.topic.vote = new TopicVote({id: $scope.topic.voteId, topicId: $scope.topic.id});
-            $scope.topic.vote.$get();
-        }
-
         $scope.showVoteCreate = function () {
             $scope.showVoteCreateForm = !$scope.showVoteCreateForm;
         };
@@ -414,7 +409,6 @@ angular
         };
 
         $scope.updateComment = function (comment, editType) {
-            console.log(editType);
             if(comment.editType != comment.type || comment.subject != comment.editSubject || comment.text != comment.editText){
                 comment.subject = comment.editSubject;
                 comment.text = comment.editText;
@@ -422,14 +416,14 @@ angular
                 if (editType) {
                     comment.type = editType;
                 }
-                console.log(comment.type);
                 comment.topicId = $scope.topic.id;
 
                 comment
                     .$update()
                     .then(function (res) {
-                        console.log(res);
+                        $scope.loadTopicComments($scope.topicComments.orderBy);
                         $scope.commentEditMode(comment);
+
                     }, function (err) {
                         console.log('err', err)
                     });
@@ -520,21 +514,5 @@ angular
                 }, 500);
             }
         };
-
-        function djb2(str){
-          var hash = 5381;
-          for (var i = 0; i < str.length; i++) {
-            hash = ((hash << 5) + hash) + str.charCodeAt(i); /* hash * 33 + c */
-          }
-          return hash;
-        }
-
-        $scope.hashStringToColor = function (str) {
-          var hash = djb2(str);
-          var r = (hash & 0xFF0000) >> 16;
-          var g = (hash & 0x00FF00) >> 8;
-          var b = hash & 0x0000FF;
-          return "#" + ("0" + r.toString(16)).substr(-2) + ("0" + g.toString(16)).substr(-2) + ("0" + b.toString(16)).substr(-2);
-        }
 
     }]);

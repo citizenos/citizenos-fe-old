@@ -962,12 +962,12 @@
                                                     </div>
                                                     <!-- END EDIT COMMENT -->
                                                     <!-- COMMENT CONTENT -->
+                                                    <div class="argument_text_wrap"><div ng-if="comment.isEdited()" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_EDITED">This comment has been edited</div></div>
                                                     <div class="argument_title">
                                                         <span ng-if="comment.isVisible()">{{comment.subject}}</span>
                                                     </div>
 
                                                     <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
-                                                        <div ng-if="comment.isEdited()" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_EDITED">This comment has been edited</div>
                                                         <div ng-if="comment.isVisible()" class="argument_text" ng-bind-html="comment.text | linky"></div>
                                                         <div ng-if="!comment.isVisible()" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY" translate-values="{userFullName: comment.deletedBy.name}">This comment has been deleted by {{comment.deletedBy.name}}</div>
                                                         <div class="argument_overlay">

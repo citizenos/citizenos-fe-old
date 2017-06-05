@@ -515,7 +515,7 @@
       "ARGUMENT_EDIT_BTN_POST_AS_PRO": "@:VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_PRO",
       "ARGUMENT_EDIT_BTN_POST_AS_CON": "@:VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_CON",
       "ARGUMENT_EDIT_BTN_CANCEL_EDIT": "@:LNK_CANCEL",
-      "ARGUMENT_ARGUMENT_HAS_BEEN_EDITED": "This argument has been edited",
+      "ARGUMENT_HAS_BEEN_EDITED": "This argument has been edited",
       "ARGUMENT_HAS_BEEN_DELETED_BY": "This argument has been deleted by {{userFullName}}",
       "ARGUMENT_WHY": "Why?",
       "ARGUMENT_VIEW_COMMENT_ANYWAY": "View argument anyway",

@@ -41,6 +41,7 @@ angular
             '/views/modals/password_reset.html',
             '/views/modals/sign_up.html',
             '/views/modals/topic_close_confirm.html',
+            '/views/modals/topic_comment_moderate.html',
             '/views/modals/topic_comment_report.html',
             '/views/modals/topic_delete_comment.html',
             '/views/modals/topic_delete_confirm.html',

@@ -70,7 +70,8 @@
                 var locationPath = locationUrl.split('/');
 
                 var langkeys = Object.keys(cosConfig.language.list);
-                var clientLang = $translate.resolveClientLocale() || $translate.use();;
+                var clientLang = $translate.resolveClientLocale() || $translate.use();
+
                 var useLang = cosConfig.language.default;
                 if (langkeys.indexOf(clientLang) > -1) {
                     useLang = clientLang;
@@ -105,7 +106,7 @@
                         returnLink = '/' + locationPath[1] + '/';
                         useLang = locationPath[1];
                     } else if (locationPath.length > 1) {
-                        returnLink = '/' + useLang + locationUrl;
+                        returnLink = '/' + useLang + $location.path();
                     }
 
                     var statesList = $state.get();
@@ -295,14 +296,14 @@
 
                         var topic = new Topic();
 
-                        if($stateParams.title) {
-                            topic.description = '<html><head></head><body><h1>'+$stateParams.title+'</h1></body></html>';
+                        if ($stateParams.title) {
+                            topic.description = '<html><head></head><body><h1>' + $stateParams.title + '</h1></body></html>';
                         }
 
                         topic
                             .$save()
                             .then(function (topic) {
-                                if($stateParams.groupId) {
+                                if ($stateParams.groupId) {
                                     var level = $stateParams.groupLevel || GroupMemberTopic.LEVELS.read;
                                     var member = {
                                         groupId: $stateParams.groupId,
@@ -318,7 +319,7 @@
                                 } else {
                                     $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
                                 }
-                          });
+                            });
                     }]
                 })
                 .state('topics.view', {
@@ -342,6 +343,48 @@
                             template: '/views/modals/topic_settings.html',
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
+                .state('topics.view.commentsReportsModerate', {
+                    url: '/comments/:commentId/reports/:reportId/moderate?token',
+                    parent: 'topics.view',
+                    resolve: {
+                        rTopicComment: ['$stateParams', '$http', 'sLocation', function ($stateParams, $http, sLocation) {
+                            var path = sLocation.getAbsoluteUrlApi(
+                                '/api/topics/:topicId/comments/:commentId/reports/:reportId',
+                                $stateParams
+                            );
+
+                            var config = {
+                                headers: {
+                                    'Authorization': 'Bearer ' + $stateParams.token
+                                }
+                            };
+
+                            return $http
+                                .get(path, config)
+                                .then(function(res){
+                                    return res.data.data;
+                                });
+                        }]
+                    },
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', 'rTopicComment', 'rTopic', function ($scope, $state, $stateParams, ngDialog, rTopicComment, rTopic) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_comment_moderate.html',
+                            data: {
+                                comment: rTopicComment.comment,
+                                topic: rTopic,
+                                report: {
+                                    id: $stateParams.reportId
+                                },
+                                token: $stateParams.token
+                            }
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
@@ -385,11 +428,11 @@
                     url: '/followUp',
                     template: '<div ui-view></div>',
                     resolve: {
-                        status: ['rTopic','$q', '$state', '$stateParams', 'Topic', function (rTopic, $q, $state, $stateParams, Topic) {
-                            if([Topic.STATUSES.closed, Topic.STATUSES.followUp].indexOf(rTopic.status) > -1) {
+                        status: ['rTopic', '$q', '$state', '$stateParams', 'Topic', function (rTopic, $q, $state, $stateParams, Topic) {
+                            if ([Topic.STATUSES.closed, Topic.STATUSES.followUp].indexOf(rTopic.status) > -1) {
                                 return $q.resolve();
                             } else {
-                                 $state.go('topics.view', {language: $stateParams.language, topicId: rTopic.id}); //if topic editing or voting is still in progress
+                                $state.go('topics.view', {language: $stateParams.language, topicId: rTopic.id}); //if topic editing or voting is still in progress
                             }
                         }]
                     },
@@ -407,13 +450,13 @@
                             var urlParams = {prefix: null, userId: null};
                             var path = $location.path();
 
-                            if(!$stateParams.filter && (path.indexOf('groups') > -1)) {
-                                    $stateParams.filter = 'grouped';
-                                    filterParam = 'grouped';
+                            if (!$stateParams.filter && (path.indexOf('groups') > -1)) {
+                                $stateParams.filter = 'grouped';
+                                filterParam = 'grouped';
                             }
 
-                            if(sAuthResolve || sAuth.user.loggedIn) {
-                                urlParams = {prefix: 'users', userId : 'self'}
+                            if (sAuthResolve || sAuth.user.loggedIn) {
+                                urlParams = {prefix: 'users', userId: 'self'}
                             }
 
                             switch (filterParam) {
@@ -448,7 +491,7 @@
                     resolve: {
                         rTopic: ['$stateParams', '$anchorScroll', 'Topic', 'sAuthResolve', function ($stateParams, $anchorScroll, Topic, sAuthResolve) {
                             var urlParams = {topicId: $stateParams.topicId, include: 'vote'};
-                            if(sAuthResolve) {
+                            if (sAuthResolve) {
                                 urlParams.prefix = 'users';
                                 urlParams.userId = 'self';
                             }
