@@ -108,6 +108,10 @@ angular
             return this.edits.length > 1;
         };
 
+        TopicComment.prototype.isVisible = function () {
+            return (!this.deleteAt && !this.showDeletedComment) || (this.deleteAt && this.showDeletedComment);
+        };
+
         TopicComment.COMMENT_TYPES = {
             pro: 'pro',
             con: 'con',

@@ -946,12 +946,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="argument_title">
-                                                        <span>{{comment.subject}}</span>
+                                                        <span ng-if="comment.isVisible()">{{comment.subject}}</span>
                                                     </div>
 
                                                     <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
-                                                        <div class="argument_text" ng-bind-html="comment.text | linky">
-                                                        </div>
+                                                        <div ng-if="comment.isVisible()" class="argument_text" ng-bind-html="comment.text | linky"></div>
+                                                        <div ng-if="!comment.isVisible()" class="argument_text">Comment deleted</div>
                                                         <div class="argument_overlay">
                                                         </div>
                                                         <div class="read_more_link" ng-click="$parent.readMore = !$parent.readMore"
@@ -959,7 +959,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div id="{{comment.id+version}}" class="argument" ng-if="comment.isEdited() && !$last" ng-repeat="(version, edit) in comment.edits">
+                                                    <div id="{{comment.id+version}}" class="argument" ng-if="comment.showEdits && comment.isEdited() && !$last" ng-repeat="(version, edit) in comment.edits">
                                                         <div class="argument_header">{{edit.createdAt | amDateFormat : 'L LT'}}</div>
                                                         <div class="argument_text_wrap">
                                                             <div class="argument_text italic" ng-bind-html="edit.text | linky"></div>
