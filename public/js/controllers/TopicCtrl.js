@@ -7,6 +7,7 @@ angular
 
         $scope.topic = rTopic;
 
+        $scope.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
         $scope.generalInfo = {
             isVisible: true
         };
@@ -56,11 +57,6 @@ angular
         $scope.showVoteArea = false;
 
         $scope.STATUSES = Topic.STATUSES;
-
-        if ($scope.topic.voteId || $scope.topic.vote) {
-            $scope.topic.vote = new TopicVote({id: $scope.topic.voteId, topicId: $scope.topic.id});
-            $scope.topic.vote.$get();
-        }
 
         if ($scope.topic.voteId || $scope.topic.vote) {
             $scope.topic.vote = new TopicVote({id: $scope.topic.voteId, topicId: $scope.topic.id});
@@ -161,6 +157,12 @@ angular
                         $scope.topicComments.count.pro = _.filter(comments, {type: TopicComment.COMMENT_TYPES.pro}).length;
                         $scope.topicComments.count.con = _.filter(comments, {type: TopicComment.COMMENT_TYPES.con}).length;
                         $scope.topicComments.rows = comments;
+                        $scope.topicComments.rows.forEach(function (comment, key) {
+                            comment.replies.rows.forEach( function (reply,rkey) {
+                                reply = new TopicComment(reply);
+                                $scope.topicComments.rows[key].replies.rows[rkey] = reply;
+                            })
+                        });
                     } else {
                         $scope.topicComments.rows = [];
                         $scope.topicComments.count = {
@@ -404,6 +406,119 @@ angular
                             return loadTopicMemberUserList(); // Good old topic.members.users.splice wont work due to group permission inheritance
                         });
                 }, angular.noop);
+        };
+
+        $scope.updateComment = function (comment, editType) {
+            if(comment.editType != comment.type || comment.subject != comment.editSubject || comment.text != comment.editText){
+                comment.subject = comment.editSubject;
+                comment.text = comment.editText;
+
+                if (editType) {
+                    comment.type = editType;
+                }
+                comment.topicId = $scope.topic.id;
+
+                comment
+                    .$update()
+                    .then(function (res) {
+                        $scope.loadTopicComments($scope.topicComments.orderBy);
+                        $scope.commentEditMode(comment);
+
+                    }, function (err) {
+                        console.log('err', err)
+                    });
+            } else {
+                $scope.commentEditMode(comment);
+            }
+        };
+
+        $scope.commentEditMode = function (comment) {
+            comment.editSubject = comment.subject;
+            comment.editText = comment.text;
+            comment.showEdit = !comment.showEdit;
+        };
+
+        $scope.getParentAuthor = function (rootComment, parentId) {
+            if(parentId === rootComment.id) {
+                return rootComment.creator.name;
+            } else {
+                for(var i = 0; i < rootComment.replies.rows.length; i++) {
+                    if(rootComment.replies.rows[i].id === parentId) {
+                        return rootComment.replies.rows[i].creator.name;
+                        break;
+                    }
+                }
+            }
+
+
+        };
+
+        $scope.doShowDeleteComment = function (comment) {
+            $log.debug('TopicCtrl.doShowDeleteComment()');
+
+            ngDialog.openConfirm({
+                template: '/views/modals/topic_delete_comment.html',
+                data: {
+                    comment: comment,
+                    topic: $scope.topic
+                }
+            })
+            .then(function () {
+                comment.topicId = $scope.topic.id;
+                comment.$delete()
+                    .then(function () {
+                        $scope.loadTopicComments($scope.topicComments.orderBy);
+                    }, angular.noop);
+            });
+        };
+
+        $scope.goToParentComment = function (rootComment, parent) {
+
+            if(!parent.id || !parent.hasOwnProperty('version')) {
+                return
+            }
+
+            var comment = angular.element(document.getElementById(parent.id+parent.version));
+
+            if(comment.length === 0) {
+                for(var i = 0; i < $scope.topicComments.rows.length; i++) {
+                    if($scope.topicComments.rows[i].id === parent.id ) {
+                        $scope.topicComments.rows[i].showEdits = true;
+                        $timeout(function () {
+                            comment = angular.element(document.getElementById(parent.id+parent.version));
+                            $scope.app.scrollToAnchor(comment[0].id);
+                            comment.addClass('highlight');
+                            $timeout(function() {
+                                comment.removeClass('highlight');
+                        }, 500);
+                        },100);
+                        break;
+                    } else {
+                        for(var j = 0; j < $scope.topicComments.rows[i].replies.rows.length; j++ ) {
+                            if ($scope.topicComments.rows[i].replies.rows[j].id === parent.id) {
+                                $scope.topicComments.rows[i].replies.rows[j].showEdits = true;
+                                i = $scope.topicComments.rows.length;
+                                $timeout(function () {
+                                    comment = angular.element(document.getElementById(parent.id+parent.version));
+                                    $scope.app.scrollToAnchor(comment[0].id);
+                                    comment.addClass('highlight');
+                                    $timeout(function() {
+                                        comment.removeClass('highlight');
+                                }, 500);
+                                },100);
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            } else {
+                $scope.app.scrollToAnchor(comment[0].id);
+                comment.addClass('highlight');
+                $timeout(function() {
+                    comment.removeClass('highlight');
+                }, 500);
+            }
         };
 
     }]);

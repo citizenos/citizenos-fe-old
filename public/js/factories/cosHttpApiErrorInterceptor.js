@@ -88,22 +88,24 @@ angular
             var translationKey = getGeneralErrorTranslationKey(errorResponse);
 
             var data = errorResponse.data;
-            var statusCode = data.status.code;
+            var statusCode = data.status ? data.status.code : errorResponse.status;
 
             var translationKeyFallback = GENERAL_ERROR_FALLBACK_KEY_PATTERN
                 .replace(':statusCode', statusCode);
 
             // The key exists
-            if (translationKey !== translate(translationKey)) {
+            if (translationKey !== translate(translationKey) && errorResponse.data.status) {
                 errorResponse.data.status.message = translationKey;
                 sNotification.addError(translationKey);
                 // Use fallback to generic error
             } else if (translationKeyFallback !== translate(translationKeyFallback)) {
-                errorResponse.data.status.message = translationKeyFallback;
+                if (errorResponse.data.status) {
+                    errorResponse.data.status.message = translationKeyFallback;
+                }
                 sNotification.addError(translationKeyFallback);
             } else {
-                $log.error('cosHttpApiErrorInterceptor.generalErrorToKey', 'No translation for', translationKey, translationKeyFallback, errorResponse);
-                sNotification.addError(data.status.message + ' *');
+                $log.warn('cosHttpApiErrorInterceptor.generalErrorToKey', 'No translation for', translationKey, translationKeyFallback, errorResponse);
+                sNotification.addError(data.status ? data.status.message + ' *' : errorResponse.data + ' - '  + errorResponse.statusText + ' *');
             }
         };
 
@@ -120,7 +122,7 @@ angular
                         errorsToKeys(response);
                     } catch (err) {
                         // Catch all so that promise get rejected later with response to continue interceptor chain
-                        $log.error('cosHttpApiErrorInterceptor.responseError', 'Failed to translate errors', response, err);
+                        $log.warn('cosHttpApiErrorInterceptor.responseError', 'Failed to translate errors', response, err);
                     }
                 }
 
