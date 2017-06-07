@@ -483,14 +483,20 @@ angular
             if(comment.length === 0) {
                 for(var i = 0; i < $scope.topicComments.rows.length; i++) {
                     if($scope.topicComments.rows[i].id === parent.id ) {
-                        $scope.topic.comments.rows[i].showEdits = true;
-                        comment = angular.element(document.getElementById(parent.id+parent.version));
+                        $scope.topicComments.rows[i].showEdits = true;
+                        $timeout(function () {
+                            comment = angular.element(document.getElementById(parent.id+parent.version));
+                            $scope.app.scrollToAnchor(comment[0].id);
+                            comment.addClass('highlight');
+                            $timeout(function() {
+                                comment.removeClass('highlight');
+                        }, 500);
+                        },100);
                         break;
                     } else {
                         for(var j = 0; j < $scope.topicComments.rows[i].replies.rows.length; j++ ) {
                             if ($scope.topicComments.rows[i].replies.rows[j].id === parent.id) {
                                 $scope.topicComments.rows[i].replies.rows[j].showEdits = true;
-                                //j = $scope.topicComments.rows[i].replies.rows.length;
                                 i = $scope.topicComments.rows.length;
                                 $timeout(function () {
                                     comment = angular.element(document.getElementById(parent.id+parent.version));

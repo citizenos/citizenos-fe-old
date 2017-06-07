@@ -962,7 +962,6 @@
                                                     </div>
                                                     <!-- END EDIT COMMENT -->
                                                     <!-- COMMENT CONTENT -->
-                                                    <div class="argument_text_wrap"><div ng-if="comment.isEdited()" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_EDITED">This comment has been edited</div></div>
                                                     <div class="argument_title">
                                                         <span ng-if="comment.isVisible()">{{comment.subject}}</span>
                                                     </div>
@@ -1011,8 +1010,8 @@
 
                                                     <div class="alert_argument" ng-if="comment.showDeleteReason" ng-click="comment.showDeleteReason = !comment.showDeleteReason">
                                                         <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_FOUND_INAPPRIOPRIATE_BY" translate-values="{userFullName: comment.deletedBy.name}">This comment was found inappriopriate by <b>{{comment.deletedBy.name}}</b></span><span ng-if="comment.deletedReasonType || comment.deleteReasonText">:</span>
-                                                        <b ng-if="comment.deletedReasonType">{{('TXT_REPORT_TYPES_' + comment.deletedReasonType | uppercase) | translate}}</b>
-                                                        <b ng-if="comment.deletedReasonText">{{comment.deletedReasonText}}</b>
+                                                        <b ng-if="comment.deletedReasonType">{{('TXT_REPORT_TYPES_' + comment.deletedReasonType | uppercase) | translate}}</b><br>
+                                                        <b ng-if="comment.deletedReasonText" class="italic">{{comment.deletedReasonText}}</b>
                                                         <br>
                                                         <br>
                                                         <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT">Read our <a class="underlined_link" href="">code of conduct</a> for more information</span>
@@ -1023,7 +1022,7 @@
                                                     </div>
                                                     <!-- END COMMENT DELETED-->
                                                     <!-- COMMENT EDITS -->
-                                                    <div id="{{comment.id+version}}" class="argument" ng-if="comment.showEdits && comment.isEdited() && !$last" ng-repeat="(version, edit) in comment.edits">
+                                                    <div id="{{comment.id+version}}" class="argument" ng-class="{is_con:edit.type=='con', is_pro: edit.type=='pro'}" ng-if="comment.showEdits && comment.isEdited() && !$last" ng-repeat="(version, edit) in comment.edits">
                                                         <div class="argument_header">{{edit.createdAt | amDateFormat : 'L LT'}}</div>
                                                         <div class="argument_text_wrap">
                                                             <div class="argument_text italic" ng-bind-html="edit.text | linky"></div>
@@ -1196,7 +1195,6 @@
                                                     </div>
                                                     <!-- END REPLY EDITS -->
                                                     <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
-                                                        <div ng-if="reply.isEdited()" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_REPLY_HAS_BEEN_EDITED">This reply has been edited</div>
                                                         <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text"><span class="replys_reply" ng-click="goToParentComment(comment, reply.parent)">@{{getParentAuthor(comment, reply.parent.id)}}</span></div>
                                                         <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text" ng-bind-html="reply.text | linky"></div>
                                                         <div ng-if="!reply.isVisible()" class="argument_text italic" >This comment has been deleted by {{reply.deletedBy.name}}</div>
@@ -1241,8 +1239,8 @@
 
                                                     <div class="alert_argument" ng-if="reply.showDeleteReason" ng-click="reply.showDeleteReason = !reply.showDeleteReason">
                                                         <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY" translate-values="{userFullName: reply.deletedBy.name}">This comment was found inappriopriate by <b>{{reply.deletedBy.name}}</b></span><span ng-if="reply.deletedReasonType || reply.deletedReasonText">:</span>
-                                                        <b ng-if="reply.deletedReasonType">{{('TXT_REPORT_TYPES_' + reply.deletedReasonType | uppercase) | translate}}</b>
-                                                        <b ng-if="reply.deletedReasonText">{{reply.deletedReasonText}}</b>
+                                                        <b ng-if="reply.deletedReasonType">{{('TXT_REPORT_TYPES_' + reply.deletedReasonType | uppercase) | translate}}</b><br>
+                                                        <b class="italic" ng-if="reply.deletedReasonText">{{reply.deletedReasonText}}</b><br>
                                                         <br>
                                                         <br>
                                                         <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT">Read our <a class="underlined_link" href="">code of conduct</a> for more information</span>

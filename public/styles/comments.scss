@@ -150,7 +150,6 @@
                 }
 
                 .argument_wrap {
-                    padding-right: 20%;
 
                     .argument_edit_wrap {
                         padding-bottom: 20px;
@@ -229,6 +228,25 @@
                         transition-duration: 2s;
                         transition-timing-function: linear;
                         transition-property: background;
+
+                        &.is_pro {
+                            padding: 5px 0 4px 16px;
+                            border-left: 4px solid $nature_green;
+                            margin-bottom: 20px;
+                            -webkit-transition-duration: 2s;
+                            -webkit-transition-timing-function: linear;
+                            -webkit-transition-property: background;
+                            /* Standard syntax */
+                            transition-duration: 2s;
+                            transition-timing-function: linear;
+                            transition-property: background;
+                            border-right:none;
+                        }
+
+                        &.is_con {
+                            border-right: 4px solid $pinky_red;
+                            border-left: none;
+                        }
 
                         &.edit_argument {
                             input {
