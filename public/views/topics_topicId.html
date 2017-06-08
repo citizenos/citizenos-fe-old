@@ -863,7 +863,7 @@
 
                                                 </div>
 
-                                                <div class="blue_button" ng-click="app.scrollToAnchor('post_argument_wrap')" translate="VIEWS.TOPICS_TOPICID.BTN_ADD_ARGUMENT">Add argument</div>
+                                                <div class="blue_button" ng-click="(app.user.loggedIn && app.scrollToAnchor('post_argument_wrap')) || !app.user.loggedIn && app.doShowLogin()" translate="VIEWS.TOPICS_TOPICID.BTN_ADD_ARGUMENT">Add argument</div>
 
                                             </div>
                                         </div>
@@ -1336,7 +1336,10 @@
                                     </div>
 
                                     <div id="post_argument_wrap" class="post_argument_wrap" ng-controller="TopicCommentCreateFormCtrl">
-                                        <form name="argumentForm">
+                                        <div class="post_argument_overlay" ng-if="!app.user.loggedIn">
+                                            <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_COMMENT">You need to <div class="blue_link">log in </div> to comment</h3>
+                                        </div>
+                                        <form cos-disabled="!app.user.loggedIn" name="argumentForm">
                                             <div class="line lightest_line" ng-if="topicComments.rows.length"></div>
                                             <input id="argument_subject" ng-model="form.subject" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}"
                                                    class="gray_borders" ng-class="{'error_input': form.errors.subject}" required>
@@ -1471,7 +1474,7 @@
                         <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="app.dotoggleEditMode()"
                              ng-bind="(app.editMode ? 'View topic' : 'Edit topic')" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC">Edit topic
                         </div>
-                        <div class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
+                        <div cos-disabled="!topic.canLeave()" class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
                     </div>
                 </div>
             </div>

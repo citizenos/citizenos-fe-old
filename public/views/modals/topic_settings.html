@@ -132,7 +132,7 @@
                         </div>
 
                         <div class="settings_cell">
-                            <div class="gray_button" ng-click="doLeaveTopic(topic)" translate="MODALS.TOPIC_SETTINGS_BTN_LEAVE_TOPIC">Leave topic</div>
+                            <div cos-disabled="!topic.canLeave()" class="gray_button" ng-click="doLeaveTopic(topic)" translate="MODALS.TOPIC_SETTINGS_BTN_LEAVE_TOPIC">Leave topic</div>
                         </div>
 
                     </div>

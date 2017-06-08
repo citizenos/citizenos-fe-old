@@ -551,6 +551,7 @@
             .post_argument_wrap {
 
                 padding-bottom: 60px;
+                position: relative;
 
                 @media (max-width: 621px) {
                     padding: 0 20px 30px;
@@ -576,6 +577,22 @@
                     &.error_input {
                         margin-bottom: 0px;
                     }
+                }
+
+                .post_argument_overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(255,255,255,0.5);
+                        z-index: 2;
+                        text-align: center;
+                        padding: 2em;
+
+                        a {
+                            color: $deep_sky_blue;
+                        }
                 }
 
                 .error_label {

@@ -168,6 +168,10 @@ angular
             return this.canUpdate() && [Topic.STATUSES.voting, Topic.STATUSES.closed].indexOf(this.status) < 0;
         };
 
+        Topic.prototype.canLeave = function () {
+            return sAuth.user.loggedIn;
+        };
+
         Topic.prototype.hasVoteEnded = function () {
             if ([Topic.STATUSES.followUp, Topic.STATUSES.closed].indexOf(this.status) > -1) {
                 return true;
