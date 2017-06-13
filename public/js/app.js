@@ -13,8 +13,8 @@
                 default: 'en',
                 list: {
                     en: 'English',
-                    fr: 'Français',
                     et: 'Eesti',
+                    fr: 'Français',
                     //lv: 'Latviešu',
                     //lt: 'Lietuvių',
                     ru: 'Pусский'
