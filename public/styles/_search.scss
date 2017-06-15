@@ -14,7 +14,6 @@
 #search_area {
     position: absolute;
     overflow: hidden;
-    z-index: 3;
     top: 0;
     right: 0;
     left: 190px;
@@ -41,7 +40,7 @@
         top: 0;
         left: 0;
         right: 0;
-        z-index: 2;
+        z-index: 4;
 
         @include tablet {
             background: $medium_black;
@@ -59,6 +58,8 @@
         }
 
         #search_results_area {
+            z-index: 5;
+
             @include tablet {
                 left: 0;
                 width: 100%;
