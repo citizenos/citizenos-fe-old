@@ -64,7 +64,7 @@ angular
                 update: {
                     method: 'PUT',
                     transformRequest: function(data, headersGetter) {
-                        var updateFields = ['visibility', 'status', 'categories', 'endsAt', 'hashtag', 'randomtest'];
+                        var updateFields = ['visibility', 'status', 'categories', 'endsAt', 'hashtag'];
                         var postData = {};
 
                         updateFields.forEach(function (field) {
