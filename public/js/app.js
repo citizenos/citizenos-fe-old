@@ -202,6 +202,13 @@
                     parent: 'error',
                     templateUrl: '/views/401.html'
                 })
+                .state('error.404', {
+                    url: '/404',
+                    parent: 'error',
+                    controller: ['$state', function($state) {
+                        return $state.go('home');
+                    }]
+                })
                 .state('account', {
                     url: '/account',
                     abstract: true,
