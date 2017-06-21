@@ -205,8 +205,10 @@
                 .state('error.404', {
                     url: '/404',
                     parent: 'error',
-                    controller: ['$state', function($state) {
-                        return $state.go('home');
+                    template: '<div ui-view></div>',
+                    controller: ['$scope', '$state', 'sNotification', function($scope, $state, sNotification) {
+                        $scope.app.notifications.messages['error'] = {'MSG_ERROR_40400':'MSG_ERROR_40400'};
+                        $state.go('home');
                     }]
                 })
                 .state('account', {
@@ -555,9 +557,15 @@
                     parent: 'my.groups',
                     templateUrl: '/views/my_groups_groupId.html',
                     resolve: {
-                        rGroup: ['$stateParams', '$anchorScroll', 'Group', 'rItems', function ($stateParams, $anchorScroll, Group, rItems) {
+                        rGroup: ['$state','$stateParams', '$anchorScroll', 'Group', 'rItems', function ($state, $stateParams, $anchorScroll, Group, rItems) {
                             $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
-                            return _.find(rItems, {id: $stateParams.groupId});
+                            var group = _.find(rItems, {id: $stateParams.groupId});
+
+                            if(!group) {
+                                $state.go('error.404');
+                            } else {
+                                return group;
+                            }
                         }]
                     },
                     controller: 'GroupCtrl'
