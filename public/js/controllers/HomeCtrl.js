@@ -23,6 +23,8 @@ angular
                 tabSelected: 'categories' // Mobile view has tabs where the filters are selected, indicates which filter tab is visible
             };
 
+            $log.debug('Filters', $scope.filters);
+
             $scope.topicList = [];
             $scope.topicCountTotal = null;
             $scope.isTopicListLoading = null; // Bool, but for initial load using null.
