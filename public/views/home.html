@@ -219,7 +219,7 @@
             </div>
         </a>
 
-        <a ui-sref="topics.view({topicId: topic.id})" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : topic.categories[0] || 'varia'">
+        <a ui-sref="topics.view({topicId: topic.id})" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
                     <div class="date" ng-bind="topic.createdAt | amDateFormat : 'L'">12/12/2015</div>
@@ -237,7 +237,7 @@
                 <div class="text_small" ng-if="wWidth > 667">
                     <!-- FIXME: translate! -->
                     <span ng-repeat="category in topic.categories">
-                        {{'TXT_TOPIC_CATEGORY_' + category | uppercase | translate}}<span ng-show="!$last">, </span>
+                        <span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}"></span><span ng-show="!$last">, </span>
                     </span>
                 </div>
             </div>
