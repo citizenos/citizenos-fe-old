@@ -360,6 +360,23 @@
                         });
                     }]
                 })
+                .state('topics.view.files', {
+                    url: '/files',
+                    parent: 'topics.view',
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_manage_files.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
                 .state('topics.view.commentsReportsModerate', {
                     url: '/comments/:commentId/reports/:reportId/moderate?token',
                     parent: 'topics.view',
