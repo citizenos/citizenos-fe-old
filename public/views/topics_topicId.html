@@ -783,7 +783,8 @@
 
                             <div class="info_sections_wrap" ng-if="wWidth > 767 || app.more_info_button">
                                 <div class="info_section">
-                                    <span translate="VIEWS.TOPICS_TOPICID.LBL_CATEGORIES">Categories:</span> <span ng-repeat="category in topic.categories">{{'TXT_TOPIC_CATEGORY_' + category | uppercase | translate}}<span
+                                    <span translate="VIEWS.TOPICS_TOPICID.LBL_CATEGORIES">Categories:</span>
+                                    <span ng-repeat="category in topic.categories"><span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}">Poliitika</span><span
                                     ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none <span ng-if="topic.canEdit()"
                                                                                                                                                                          class="blue_link"
                                                                                                                                                                          ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})"
