@@ -737,6 +737,13 @@ table, .pretend_table {
             height: inherit;
         }
 
+        #profileImage{
+            position:absolute;
+            z-index: -1;
+            width:1px;
+            height:1px;
+        }
+
         .profile_image_filler {
             width: inherit;
             height: inherit;

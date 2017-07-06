@@ -161,7 +161,7 @@
                     <div class="selected_categories">
                         <div class="category_wrap" ng-repeat="topicCategory in form.topic.categories" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
                             <div class="category_cell category_title">
-                                {{'TXT_TOPIC_CATEGORY_' + topicCategory | uppercase | translate}}
+                                <span translate="{{'TXT_TOPIC_CATEGORY_' + topicCategory | uppercase}}" translate-default="{{topicCategory}}">Sport</span>
                             </div>
                             <div class="category_cell category_control" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
                                 <div class="sprite sprite-icon-category-delete2x"></div>
