@@ -221,6 +221,18 @@ table, .pretend_table {
     }
 }
 
+.btn_wrap.edit_btn:not(.disabled) {
+    background-color: $white;
+    &:hover {
+        border: solid 1px $lightest_gray;
+        background: $lightest_gray;
+
+        @include tablet {
+            background: $white !important;
+        }
+    }
+}
+
 .btn_wrap.check.yes {
 
     &:hover {
