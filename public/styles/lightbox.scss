@@ -517,6 +517,12 @@
                     padding: 0 20px;
                 }
 
+                .file_name {
+                    @media(max-width : 560px) {
+                        display:none;
+                    }
+                }
+
                 .line_files_sepparator {
                     height: 80px;
                     width: 1px;

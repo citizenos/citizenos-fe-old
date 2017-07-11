@@ -81,6 +81,7 @@ gulp.task('jshint', function () {
 
 gulp.task('uglify', function () {
     return gulp.src([
+            'public/js/libs/OneDrive.js',
             'public/js/libs/moment-with-locales.js',
             'public/js/libs/hwcrypto-legacy.js',
             'public/js/libs/hwcrypto.js',
