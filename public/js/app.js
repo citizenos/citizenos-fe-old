@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'cosUserVoice']);
+    var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'cosUserVoice']);
 
     module
         .constant('cosConfig', {
@@ -26,6 +26,18 @@
                     en: 'http://citizenos.uservoice.com/knowledgebase/articles/741585',
                     et: 'http://citizenos.uservoice.com/knowledgebase/articles/741582',
                     ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798'
+                }
+            },
+            storage: {
+                dropbox: {
+                    appKey: 'lkk7j6f41sfpm5b'
+                },
+                googleDrive: {
+                    developerKey: 'AIzaSyA0xj8l1tAjKqbDZcIGHnNugHK1gAelH7Y',
+                    clientId: '886504024570-r7c3eo6ftjcoenserup7e712jkvd7uu7.apps.googleusercontent.com',
+                },
+                oneDrive: {
+                    clientId: 'deb735fe-1c3d-489c-93f4-0a8927101d09'
                 }
             }
         });
@@ -716,10 +728,10 @@
             UserVoiceProvider.setApiKey('f7Trszzveus2InvLcEelw');
         }]);
 })();
-Dropbox.appKey = 'lkk7j6f41sfpm5b';
-/*Raven
+
+Raven
     .config('https://8a7192ea412a489e8107a7f23cbd3b47@sentry.io/160293', {
         debug: true
     })
     .addPlugin(Raven.Plugins.Angular)
-    .install();*/
+    .install();
