@@ -570,7 +570,9 @@
       "NAV_LNK_INVITE_USERS": "ПОЗВАТЬ ПОЛЬЗОВАТЕЛЕЙ",
       "NAV_LNK_SHARE": "Поделиться темой",
       "NAV_LNK_EDIT_TOPIC": "Изменить тему",
-      "NAV_LNK_LEAVE_TOPIC": "ПОКИНУТЬ ТЕМУ"
+      "NAV_LNK_LEAVE_TOPIC": "ПОКИНУТЬ ТЕМУ",
+      "HEADER_FILES": "ATTACHMENTS",
+      "LNK_ADD_MANAGE_FILES": "Add/manage attachments"
     }
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ошибка в адресе e-mail.",

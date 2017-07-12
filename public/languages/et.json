@@ -570,7 +570,9 @@
       "NAV_LNK_INVITE_USERS": "KUTSU KASUTAJAID",
       "NAV_LNK_SHARE": "Jaga teemat",
       "NAV_LNK_EDIT_TOPIC": "Muuda teemat",
-      "NAV_LNK_LEAVE_TOPIC": "LAHKU TEEMAST"
+      "NAV_LNK_LEAVE_TOPIC": "LAHKU TEEMAST",
+      "HEADER_FILES": "MANUSED",
+      "LNK_ADD_MANAGE_FILES": "Lisa/muuda manuseid"
     }
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Viga e-posti aadressis.",

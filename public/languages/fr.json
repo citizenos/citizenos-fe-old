@@ -492,7 +492,9 @@
       "NAV_LNK_INVITE_USERS": "Inviter utilisateurs",
       "NAV_LNK_SHARE": "Paratager le sujet",
       "NAV_LNK_EDIT_TOPIC": "Editer le sujet",
-      "NAV_LNK_LEAVE_TOPIC": "Quitter le sujet"
+      "NAV_LNK_LEAVE_TOPIC": "Quitter le sujet",
+      "HEADER_FILES": "ATTACHMENTS",
+      "LNK_ADD_MANAGE_FILES": "Add/manage attachments"
     }
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Email non valide.",

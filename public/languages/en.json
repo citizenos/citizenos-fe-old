@@ -570,7 +570,9 @@
       "NAV_LNK_INVITE_USERS": "Invite users",
       "NAV_LNK_SHARE": "Share topic",
       "NAV_LNK_EDIT_TOPIC": "Edit topic",
-      "NAV_LNK_LEAVE_TOPIC": "Leave topic"
+      "NAV_LNK_LEAVE_TOPIC": "Leave topic",
+      "HEADER_FILES": "ATTACHMENTS",
+      "LNK_ADD_MANAGE_FILES": "Add/manage attachments"
     }
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Invalid email.",
