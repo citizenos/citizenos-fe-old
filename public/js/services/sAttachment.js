@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('sAttachment', ['$http', '$q','cosConfig', 'sLocation', 'TopicAttachment', function ($http, $q, cosConfig, sLocation, TopicAttachment) {
+app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'TopicAttachment', function ($http, $q, $log, cosConfig, sLocation, TopicAttachment) {
 
     var sAttachment = this;
  /*GOOGLE API*/
@@ -23,7 +23,7 @@ app.service('sAttachment', ['$http', '$q','cosConfig', 'sLocation', 'TopicAttach
                 .then(function (res) {
                     window.gapi.auth.authorize(
                     {
-                      'client_id': cosConfig.googleDrive.clientId,
+                      'client_id': cosConfig.storage.googleDrive.clientId,
                       'scope': ['https://www.googleapis.com/auth/drive.readonly'],
                       'immediate': false
                     },
@@ -62,7 +62,7 @@ app.service('sAttachment', ['$http', '$q','cosConfig', 'sLocation', 'TopicAttach
                 var picker = new google.picker.PickerBuilder().
                     addView(google.picker.ViewId.DOCS).
                     setOAuthToken(oauthToken).
-                    setDeveloperKey(cosConfig.googleDrive.developerKey).
+                    setDeveloperKey(cosConfig.storage.googleDrive.developerKey).
                     setCallback(pickerCallback).
                     build();
                     picker.setVisible(true);
@@ -102,7 +102,7 @@ app.service('sAttachment', ['$http', '$q','cosConfig', 'sLocation', 'TopicAttach
     sAttachment.oneDriveSelect = function () {
         return new Promise(function (resolve, reject) {
                 OneDrive.open({
-                clientId: cosConfig.oneDrive.clientId,
+                clientId: cosConfig.storage.oneDrive.clientId,
                 action: 'share',
                 advanced: {
                     redirectUri: sLocation.getAbsoluteUrl('/onedrive')

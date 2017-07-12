@@ -36,7 +36,7 @@ angular
                 size: element.files[0].size,
                 file: element.files[0]
             };
-            console.log(attachment.size);
+
             if(attachment.size > 50000000){
                 $scope.$apply(function () {
                     sNotification.addError('MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT');
@@ -100,8 +100,12 @@ angular
                                 topicAttachment
                                     .$save()
                                     .then(function () {
-                                        console.log('SAVED')
                                         return resolve();
+                                    }, function (err) {
+                                        var keys = Object.keys(err.data.errors);
+                                        keys.forEach(function (key) {
+                                            sNotification.addError(err.data.errors[key]);
+                                        })
                                     });
                             });
                     });
@@ -116,7 +120,7 @@ angular
                     }
                 }
             });
-            console.log(savePromises);
+
             Promise
                 .all(savePromises)
                 .then(function() {

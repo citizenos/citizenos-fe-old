@@ -4,7 +4,7 @@ app.service('sUpload', ['$http', '$q', 'sLocation', function ($http, $q, sLocati
 
     var sUpload = this;
 
-    sUpload.ALLOWED_FILE_TYPES = ['pdf', 'doc', 'docx', 'ddoc', 'bdoc'];
+    sUpload.ALLOWED_FILE_TYPES = ['pdf', 'doc', 'docx', 'ddoc', 'bdoc', 'odf', 'odt','jpg', 'jpeg', 'img', 'png', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx', 'pps', 'xlt'];
 
     sUpload.getSignedRequest = function (file, folder) {
         var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload/sign');

@@ -378,7 +378,7 @@
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({
-                            template: '/views/modals/topic_manage_files.html',
+                            template: '/views/modals/topic_attachments.html',
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });

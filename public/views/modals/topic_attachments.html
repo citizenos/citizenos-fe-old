@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" cos-disabled="!topic.canEdit() || saveInProgress" ng-click="doSaveFiles()">Save attachments</div>
+                            <div class="blue_button" cos-disabled="!topic.canEdit() || saveInProgress" ng-click="doSaveFiles()" translate="MODALS.TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS">Save attachments</div>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                                 <div class="file_add_btn">
                                     <div class="sprite sprite-topic-file-upload2x"></div>
                                 </div>
-                                <div class="file_add_btn_description">Computer</div>
+                                <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_COMPUTER">Computer</div>
                             </div>
                         </div>
                         <div class="line_files_sepparator"></div>
@@ -54,7 +54,7 @@
                                 <div class="file_add_btn">
                                     <div class="sprite sprite-topic-file-dropbox2x"></div>
                                 </div>
-                                <div class="file_add_btn_description">Dropbox</div>
+                                <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_DROPBOX">Dropbox</div>
                             </div>
                         </div>
                         <div class="line_files_sepparator"></div>
@@ -63,7 +63,7 @@
                                 <div class="file_add_btn">
                                     <div class="sprite sprite-topic-file-googledrive2x"></div>
                                 </div>
-                                <div class="file_add_btn_description">Google Drive</div>
+                                <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_GOOGLE_DRIVE">Google Drive</div>
                             </div>
                         </div>
                         <div class="line_files_sepparator"></div>
@@ -72,7 +72,7 @@
                                 <div class="file_add_btn">
                                     <div class="sprite sprite-topic-file-onedrive2x"></div>
                                 </div>
-                                <div class="file_add_btn_description">OneDrive</div>
+                                <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_ONEDRIVE">OneDrive</div>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                     <div>
 
                         <div class="category_title">
-                            <div class="table_cell">
+                            <div class="table_cell" translate="MODALS.TOPIC_ATTACHMENTS_TITLE_FILES">
                                 Files
                             </div>
                         </div>
@@ -156,11 +156,6 @@
 
                 </div>
 
-            </div>
-
-            <!-- MOBILE SAVE BUTTON -->
-            <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
-                <div class="blue_button" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()" translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_SETTINGS">Save settings</div>
             </div>
 
         </div>
