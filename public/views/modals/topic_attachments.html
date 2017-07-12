@@ -127,7 +127,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="file_buttons">
                                     <div class="btn_wrap edit_btn" ng-click="file.editMode = !file.editMode">
                                         <div class="btn">
                                             <div class="table_cell">
@@ -136,8 +136,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </td>
-                                <td>
                                     <div class="btn_wrap recycle_bin white_bg">
                                         <div class="btn" ng-click="deleteAttachment(key, file)">
                                             <div class="table_cell">
@@ -156,6 +154,11 @@
 
                 </div>
 
+            </div>
+
+             <!-- MOBILE SAVE BUTTON -->
+            <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
+                <div class="blue_button" cos-disabled="!topic.canEdit() || saveInProgress" ng-click="doSaveFiles()" translate="MODALS.TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS">Save attachments</div>
             </div>
 
         </div>

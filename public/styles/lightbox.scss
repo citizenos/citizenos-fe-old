@@ -564,6 +564,18 @@
                     }
                 }
 
+                .file_buttons {
+                    .edit_btn {
+                        float: left;
+                        margin: 0px 0 0 15px;
+                    }
+                    .recycle_bin {
+                        margin: 0 10px 0px 0px;
+                        right: 0;
+                        float: right;
+                    }
+                }
+
                 #addFile {
                     width: 1px;
                     height: 1px;

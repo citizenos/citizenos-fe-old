@@ -115,9 +115,7 @@ angular
 
                     var topicAttachment = new TopicAttachment(attachment);
 
-                    if (!attachment.id) {
-                        savePromises.push(topicAttachment.$save());
-                    }
+                    savePromises.push(topicAttachment.$update());
                 }
             });
 
