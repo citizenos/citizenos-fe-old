@@ -268,45 +268,41 @@ angular
             if ($scope.form.topic.endsAt && $scope.topic.endsAt === $scope.form.topic.endsAt) { //Remove endsAt field so that topics with endsAt value set could be updated if endsAt is not changed
                 delete $scope.form.topic.endsAt;
             }
-            var topicSavePromise = $scope.form.topic.$update();
+            $scope.form.topic
+                .$update()
+                .then( function (data) {
+                    var savePromises = [];
+                    // Users
+                    var topicMemberUsersToSave = [];
+                    $scope.members.users.concat($scope.members.emails).forEach(function (member) {
+                        topicMemberUsersToSave.push({
+                            userId: member.userId,
+                            level: member.level
+                        })
+                    });
 
+                    if (topicMemberUsersToSave.length) {
+                        savePromises.push(
+                            TopicMemberUser.save({topicId: $scope.topic.id}, topicMemberUsersToSave)
+                        );
+                    }
 
-            topicSavePromise
-                .then(
-                    function (data) {
-                        var savePromises = [];
-                        // Users
-                        var topicMemberUsersToSave = [];
-                        $scope.members.users.concat($scope.members.emails).forEach(function (member) {
-                            topicMemberUsersToSave.push({
-                                userId: member.userId,
-                                level: member.level
-                            })
-                        });
+                    // Groups
+                    $scope.members.groups.forEach(function (group) {
+                        var member = {
+                            id: group.id,
+                            topicId: $scope.topic.id,
+                            level: group.level
+                        };
+                        var topicMemberGroup = new TopicMemberGroup(member);
+                        savePromises.push(
+                            topicMemberGroup.$save()
+                        )
+                    });
 
-                        if (topicMemberUsersToSave.length) {
-                            savePromises.push(
-                                TopicMemberUser.save({topicId: $scope.topic.id}, topicMemberUsersToSave)
-                            );
-                        }
-
-                        // Groups
-                        $scope.members.groups.forEach(function (group) {
-                            var member = {
-                                id: group.id,
-                                topicId: $scope.topic.id,
-                                level: group.level
-                            };
-                            var topicMemberGroup = new TopicMemberGroup(member);
-                            savePromises.push(
-                                topicMemberGroup.$save()
-                            )
-                        });
-
-                        return Promise.all(savePromises)
-                    })
-                .then(
-                    function () {
+                    return Promise.all(savePromises)
+                })
+                .then( function () {
                         $state.go($state.current.parent, {topicId: $scope.topic.id}, {reload: true});
                     },
                     function (errorResponse) {

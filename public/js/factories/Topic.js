@@ -68,7 +68,7 @@ angular
                         var postData = {};
 
                         updateFields.forEach(function (field) {
-                            if(data[field]) {
+                            if(field in data) {
                                 postData[field] = data[field];
                             }
                         });
