@@ -30,7 +30,6 @@ angular
                     transformResponse: function (data, headerGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             var result = angular.fromJson(data).data.rows;
-                            console.log(result);
                             return result;
                         } else {
                             return angular.fromJson(data);
