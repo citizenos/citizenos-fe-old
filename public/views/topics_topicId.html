@@ -1485,7 +1485,7 @@
                     <div class="options_content">
                         <div class="blue_link" ng-repeat="attachment in topicAttachments"><a class="blue_link" href="{{attachment.link}}">{{attachment.name}}</a></div>
                         <div class="line lightest_line" ng-if="topicAttachments.length"></div>
-                        <div ui-sref="topics.view.files" cos-disabled="!topic.canUpdate()"class="blue_link" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
+                        <div ui-sref="topics.view.files" cos-disabled="!topic.canEdit()"class="blue_link" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
                     </div>
                 </div>
             </div>
