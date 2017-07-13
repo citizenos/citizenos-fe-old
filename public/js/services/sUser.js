@@ -5,9 +5,9 @@ angular
     .service('sUser', ['$http', 'sLocation', function ($http, sLocation) {
         var sUser = this;
 
-        sUser.update = function (name, email, password, company) {
+        sUser.update = function (name, email, password, company, imageUrl) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self');
-            return $http.put(path, {name: name, email: email, password: password, company: company});
+            return $http.put(path, {name: name, email: email, password: password, company: company, imageUrl: imageUrl});
         };
 
         //TODO: Should also work with the User.update

@@ -7,7 +7,7 @@
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
 	.sprite {
         background-image: url('../imgs/icons_sprite2x.png');
-		background-size: 203px 2468px;
+		background-size: 203px 2603px;
 	}
 }
 
@@ -699,4 +699,39 @@
 	width: 150px;
 	height: 132px;
 	background-position: 0 -2336px;
+}
+
+.sprite-icon-edit2x {
+    width: 12px;
+    height: 13px;
+    background-position: 0 -2468px;
+}
+
+.sprite-topic-file-upload2x {
+    width: 34px;
+    height: 34px;
+    background-position: 0px -2480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sprite-topic-file-dropbox2x {
+    width: 35px;
+    height: 30px;
+    background-position: 0px -2515px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sprite-topic-file-onedrive2x {
+    width: 40px;
+    height: 25px;
+    background-position: 0 -2578px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sprite-topic-file-googledrive2x {
+    width: 37px;
+    height: 33px;
+    background-position: 0 -2545px;
+    margin-left: auto;
+    margin-right: auto;
 }

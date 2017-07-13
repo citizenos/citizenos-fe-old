@@ -27,6 +27,18 @@
                     et: 'http://citizenos.uservoice.com/knowledgebase/articles/741582',
                     ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798'
                 }
+            },
+            storage: {
+                dropbox: {
+                    appKey: 'lkk7j6f41sfpm5b'
+                },
+                googleDrive: {
+                    developerKey: 'AIzaSyDDLcjyYs4-9FWm386X65N1fux30_sSzOQ',
+                    clientId: '536950271512-rn8eglnevkab84sn9jjdfft1qv1lhett.apps.googleusercontent.com',
+                },
+                oneDrive: {
+                    clientId: '703640f9-f482-4349-8b6f-97993a91ea64'
+                }
             }
         });
 
@@ -359,6 +371,27 @@
                             }
                         });
                     }]
+                })
+                .state('topics.view.files', {
+                    url: '/files',
+                    parent: 'topics.view',
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_attachments.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
+                .state('onedrive', {
+                    url: '/onedrive',
+                    templateUrl: '<div></div>'
                 })
                 .state('topics.view.commentsReportsModerate', {
                     url: '/comments/:commentId/reports/:reportId/moderate?token',

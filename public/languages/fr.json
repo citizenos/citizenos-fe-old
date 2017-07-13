@@ -116,6 +116,18 @@
     "SIGN_UP_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
     "SIGN_UP_BTN_SAVE": "@:MODALS.SIGN_UP_HEADING",
     "SIGN_UP_LNK_CANCEL": "@:LNK_CANCEL",
+    "TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS": "Save attachments",
+    "TOPIC_ATTACHMENTS_LBL_COMPUTER": "Computer",
+    "TOPIC_ATTACHMENTS_LBL_DROPBOX": "Dropbox",
+    "TOPIC_ATTACHMENTS_LBL_GOOGLE_DRIVE": "Google drive",
+    "TOPIC_ATTACHMENTS_LBL_ONEDRIVE": "OneDrive",
+    "TOPIC_ATTACHMENTS_TITLE_FILES": "Attachments",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_HEADING": "Delete attachment",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to delete this attachment?",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_TXT_ATTACHMENT_DELETED": "The attachment will be deleted.",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_BTN_NO": "NO, KEEP THIS ATTACHMENT",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_BTN_YES": "YES, DELETE THIS ATTACHMENT",
     "TOPIC_SETTINGS_TAB_SETTINGS": "PARAMETRES",
     "TOPIC_SETTINGS_TAB_CATEGORIES": "CATEGORIES",
     "TOPIC_SETTINGS_TAB_INVITE": "INVITEZ",
@@ -480,7 +492,9 @@
       "NAV_LNK_INVITE_USERS": "Inviter utilisateurs",
       "NAV_LNK_SHARE": "Paratager le sujet",
       "NAV_LNK_EDIT_TOPIC": "Editer le sujet",
-      "NAV_LNK_LEAVE_TOPIC": "Quitter le sujet"
+      "NAV_LNK_LEAVE_TOPIC": "Quitter le sujet",
+      "HEADER_FILES": "ATTACHMENTS",
+      "LNK_ADD_MANAGE_FILES": "Add/manage attachments"
     }
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Email non valide.",
@@ -558,5 +572,9 @@
   "MSG_ERROR_PUT_API_USERS_TOPICS_MEMBERS_USERS_40000": "Vous ne pouvez pas supprimer les droits d'administration du dernier administrateur. Veuillez assigner des droits d'administration à un autre utilisateur afin de pouvoir changer les priviligès de l'utlisateur en cours.",
   "MSG_ERROR_40300": "Vous ne disposez pas des privilèges nécessaires pour accomplir cette opération.",
   "MSG_ERROR_50000": "Nous sommes désolés. Une erreur inattendue est survenue dans nos systèmes. Veuiller réessayer une deuxième fois. Si l'erreur persiste, veuillez contacter notre équipe de support client.",
-  "MSG_ERROR_NETWORK_PROBLEMS": "Problèmes de connexion réseau. Veuillez vérifier que votre connexion Internet fonctionne correctement."
+  "MSG_ERROR_NETWORK_PROBLEMS": "Problèmes de connexion réseau. Veuillez vérifier que votre connexion Internet fonctionne correctement.",
+  "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Attachment is too big! Maximum size allowed is 50MB.",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed!",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Attachment link is undefined!",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Attachment name is undefined!"
 }

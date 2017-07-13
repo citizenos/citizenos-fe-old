@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'rTopic', function ($scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
 
         $scope.topic = rTopic;
@@ -172,6 +172,12 @@ angular
                     }
                 });
         };
+
+        $scope.loadTopicAttachments = function () {
+            $scope.topicAttachments = TopicAttachment.query({topicId: $scope.topic.id});
+        };
+
+        $scope.loadTopicAttachments();
 
         $scope.orderComments = function (order) {
             $scope.topicComments.orderBy = order;
@@ -521,4 +527,9 @@ angular
             }
         };
 
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams){
+            if(fromState.name == 'topics.view.files') {
+                $scope.loadTopicAttachments();
+            };
+        });
     }]);

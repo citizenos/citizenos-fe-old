@@ -23,30 +23,30 @@
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section">
-
+                        <form name="myAccountForm" ng-controller="MyAccountFormCtrl">
                         <div id="image_edit_section">
                             <div class="profile_image_wrapper dark big">
                                 <!--div class="profile_moon sprite sprite-icon-certified-google-2-x2x"></div-->
                                 <div class="account_picture">
                                     <!-- NB Remember to use image that has 2x size, meaning 160x160px for this <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">-->
-                                    <img ng-if="!app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">
-                                    <div class="profile_image_filler" ng-if="!!app.user.imageUrl">
-                                        <div class="table_cell" cos-initials="app.user.name">
+                                    <img ng-if="form.imageUrl" ng-src="{{form.imageUrl}}">
+                                    <input type="file" id="profileImage" name="image" onchange="angular.element(this).scope().switchImage(this)" />
+                                    <div class="profile_image_filler" ng-if="!form.imageUrl">
+                                        <div class="table_cell" cos-initials="form.name">
                                             ML
                                         </div>
                                         <div class="profile_circle"></div>
                                     </div>
                                 </div>
                             </div>
-                            <!--div id="edit_image_properties">
-                                <div class="blue_link" translate="">Upload new</div> |
-                                <div class="blue_link" translate="">Delete</div>
+                            <div id="edit_image_properties">
+                                <div class="blue_link" translate="" ng-click="uploadImage()">Upload new</div> |
+                                <div class="blue_link" translate="" ng-click="deleteProfileImage()">Delete</div>
                                 <br>
                                 <span translate="">Max 500kb jpg, gif or png</span>
-                            </div-->
+                            </div>
                         </div>
 
-                        <form name="myAccountForm" ng-controller="MyAccountFormCtrl">
                             <input id="name" ng-model="form.name" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NAME' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" maxlength="255" required>
                             <label for="name" class="error_label" ng-if="errors.name">
                                 <div class="table_cell">

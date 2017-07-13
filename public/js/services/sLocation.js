@@ -5,13 +5,12 @@ angular
 
         sLocation.getBaseUrl = function () {
             var port;
-
-            if ($location.protocol === 'https' && $location.port !== 443) {
-                port = $location.port;
+            if ($location.protocol() === 'https' && $location.port() !== 443) {
+                port = $location.port();
             }
 
-            if ($location.protocol === 'http' && $location.port !== 80) {
-                port = $location.port;
+            if ($location.protocol() === 'http' && $location.port() !== 80) {
+                port = $location.port();
             }
 
             return $location.protocol() + "://" + $location.host() + (port ? ':' + port : '');

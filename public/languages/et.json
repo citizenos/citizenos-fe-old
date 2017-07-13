@@ -150,6 +150,18 @@
     "SIGN_UP_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
     "SIGN_UP_BTN_SAVE": "@:MODALS.SIGN_UP_HEADING",
     "SIGN_UP_LNK_CANCEL": "@:LNK_CANCEL",
+    "TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS": "Salvesta manused",
+    "TOPIC_ATTACHMENTS_LBL_COMPUTER": "Lae üles",
+    "TOPIC_ATTACHMENTS_LBL_DROPBOX": "Dropbox",
+    "TOPIC_ATTACHMENTS_LBL_GOOGLE_DRIVE": "Google drive",
+    "TOPIC_ATTACHMENTS_LBL_ONEDRIVE": "OneDrive",
+    "TOPIC_ATTACHMENTS_TITLE_FILES": "Manused",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_HEADING": "Eemalda manus",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Oled sa kindel, et soovid manuse eemaldada?.",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_TXT_ATTACHMENT_DELETED": "Manus eemaldatakse",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_BTN_NO": "EI, JÄTAN MANUS ALLES",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_BTN_YES": "JAH, EEMALDA MANUS",
     "TOPIC_SETTINGS_TAB_SETTINGS": "SEADED",
     "TOPIC_SETTINGS_TAB_CATEGORIES": "KATEGOORIAD",
     "TOPIC_SETTINGS_TAB_INVITE": "KUTSU",
@@ -558,7 +570,9 @@
       "NAV_LNK_INVITE_USERS": "KUTSU KASUTAJAID",
       "NAV_LNK_SHARE": "Jaga teemat",
       "NAV_LNK_EDIT_TOPIC": "Muuda teemat",
-      "NAV_LNK_LEAVE_TOPIC": "LAHKU TEEMAST"
+      "NAV_LNK_LEAVE_TOPIC": "LAHKU TEEMAST",
+      "HEADER_FILES": "MANUSED",
+      "LNK_ADD_MANAGE_FILES": "Lisa/muuda manuseid"
     }
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Viga e-posti aadressis.",
@@ -642,5 +656,9 @@
   "MSG_ERROR_PUT_API_USERS_TOPICS_MEMBERS_USERS_40000": "Viimase admin õigustega kasutaja õigusi pole võimalik muuta. Määra uus administraator, et antud kasutaja õigusi muuta.",
   "MSG_ERROR_40300": "Teil puuduvad toimingu jaoks vajalikud õigused.",
   "MSG_ERROR_50000": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega.",
-  "MSG_ERROR_NETWORK_PROBLEMS": "Internetiühendus puudub, palun kontrolli ühendust."
+  "MSG_ERROR_NETWORK_PROBLEMS": "Internetiühendus puudub, palun kontrolli ühendust.",
+  "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Manus on liiga suur! Maksimaalne lubatud suurus on 50MB.",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Faili tüüp ei ole lubatud",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Manuse link on puudu!",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Manuse nimi on puudu!"
 }

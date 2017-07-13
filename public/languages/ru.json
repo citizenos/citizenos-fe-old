@@ -150,6 +150,18 @@
     "SIGN_UP_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
     "SIGN_UP_BTN_SAVE": "@:MODALS.SIGN_UP_HEADING",
     "SIGN_UP_LNK_CANCEL": "@:LNK_CANCEL",
+    "TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS": "Save attachments",
+    "TOPIC_ATTACHMENTS_LBL_COMPUTER": "Computer",
+    "TOPIC_ATTACHMENTS_LBL_DROPBOX": "Dropbox",
+    "TOPIC_ATTACHMENTS_LBL_GOOGLE_DRIVE": "Google drive",
+    "TOPIC_ATTACHMENTS_LBL_ONEDRIVE": "OneDrive",
+    "TOPIC_ATTACHMENTS_TITLE_FILES": "Attachments",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_HEADING": "Delete attachment",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to delete this attachment?",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_TXT_ATTACHMENT_DELETED": "The attachment will be deleted.",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_BTN_NO": "NO, KEEP THIS ATTACHMENT",
+    "TOPIC_ATTACHMENT_DELETE_CONFIRM_BTN_YES": "YES, DELETE THIS ATTACHMENT",
     "TOPIC_SETTINGS_TAB_SETTINGS": "НАСТРОЙКИ",
     "TOPIC_SETTINGS_TAB_CATEGORIES": "КАТЕГОРИИ",
     "TOPIC_SETTINGS_TAB_INVITE": "ПРИГЛАСИТЬ",
@@ -558,7 +570,9 @@
       "NAV_LNK_INVITE_USERS": "ПОЗВАТЬ ПОЛЬЗОВАТЕЛЕЙ",
       "NAV_LNK_SHARE": "Поделиться темой",
       "NAV_LNK_EDIT_TOPIC": "Изменить тему",
-      "NAV_LNK_LEAVE_TOPIC": "ПОКИНУТЬ ТЕМУ"
+      "NAV_LNK_LEAVE_TOPIC": "ПОКИНУТЬ ТЕМУ",
+      "HEADER_FILES": "ATTACHMENTS",
+      "LNK_ADD_MANAGE_FILES": "Add/manage attachments"
     }
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ошибка в адресе e-mail.",
@@ -642,5 +656,9 @@
   "MSG_ERROR_PUT_API_USERS_TOPICS_MEMBERS_USERS_40000": "Права последнего пользователя с правами администратора невозможно изменить. Назначьте нового администратора, чтобы изменить права данного пользователя.",
   "MSG_ERROR_40300": "Для данного действия у Вас нет необходимых прав.",
   "MSG_ERROR_50000": "В нашей системе что-то пошло неверно. Приносим свои извинения! Пожалуйста, попробуйте еще раз. Если ошибка повторится, обратитесь в техническую поддержку.",
-  "MSG_ERROR_NETWORK_PROBLEMS": "Отсутствует связь с интернетом, пожалуйста, проверьте связь."
+  "MSG_ERROR_NETWORK_PROBLEMS": "Отсутствует связь с интернетом, пожалуйста, проверьте связь.",
+  "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Attachment is too big! Maximum size allowed is 50MB.",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed!",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Attachment link is undefined!",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Attachment name is undefined!"
 }

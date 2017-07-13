@@ -221,6 +221,18 @@ table, .pretend_table {
     }
 }
 
+.btn_wrap.edit_btn:not(.disabled) {
+    background-color: $white;
+    &:hover {
+        border: solid 1px $lightest_gray;
+        background: $lightest_gray;
+
+        @include tablet {
+            background: $white !important;
+        }
+    }
+}
+
 .btn_wrap.check.yes {
 
     &:hover {
@@ -735,6 +747,13 @@ table, .pretend_table {
         img {
             width: inherit;
             height: inherit;
+        }
+
+        #profileImage{
+            position:absolute;
+            z-index: -1;
+            width:1px;
+            height:1px;
         }
 
         .profile_image_filler {
