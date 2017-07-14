@@ -7,16 +7,16 @@
     module
         .constant('cosConfig', {
             api: {
-                baseUrl: 'https://citizenos-citizenos-api-test.herokuapp.com' // FIXME: Environment based!
+                baseUrl: 'https://api.citizenos.com' // FIXME: Environment based!
             },
             language: {
                 default: 'en',
                 list: {
                     en: 'English',
-                    fr: 'Français',
                     et: 'Eesti',
-                    lv: 'Latviešu',
-                    lt: 'Lietuvių',
+                    fr: 'Français',
+                    //lv: 'Latviešu',
+                    //lt: 'Lietuvių',
                     ru: 'Pусский'
                 },
                 debug: 'dbg'
@@ -33,11 +33,11 @@
                     appKey: 'lkk7j6f41sfpm5b'
                 },
                 googleDrive: {
-                    developerKey: 'AIzaSyA0xj8l1tAjKqbDZcIGHnNugHK1gAelH7Y',
-                    clientId: '886504024570-r7c3eo6ftjcoenserup7e712jkvd7uu7.apps.googleusercontent.com',
+                    developerKey: 'AIzaSyDDLcjyYs4-9FWm386X65N1fux30_sSzOQ',
+                    clientId: '536950271512-rn8eglnevkab84sn9jjdfft1qv1lhett.apps.googleusercontent.com',
                 },
                 oneDrive: {
-                    clientId: 'deb735fe-1c3d-489c-93f4-0a8927101d09'
+                    clientId: '703640f9-f482-4349-8b6f-97993a91ea64'
                 }
             }
         });
@@ -730,8 +730,6 @@
 })();
 
 Raven
-    .config('https://8a7192ea412a489e8107a7f23cbd3b47@sentry.io/160293', {
-        debug: true
-    })
+    .config('https://053c9e29e7324dcaa220dd3bced63d22@sentry.io/160591')
     .addPlugin(Raven.Plugins.Angular)
     .install();
