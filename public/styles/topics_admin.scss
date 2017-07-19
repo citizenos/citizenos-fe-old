@@ -519,6 +519,34 @@
                             .orange {
                                 color: orange;
                             }
+                            .center {
+                                width: 100%;
+                                margin: 0 auto;
+                                list-style-position: inside;
+                                display: block;
+                                text-align: center;
+                            }
+                            .justify {
+                                width: 100%;
+                                margin: 0 auto;
+                                list-style-position: inside;
+                                display: block;
+                                text-align: justify;
+                            }
+                            .left {
+                                width: 100%;
+                                margin: 0 auto;
+                                list-style-position: inside;
+                                display: block;
+                                text-align: left;
+                            }
+                            .right {
+                                width: 100%;
+                                margin: 0 auto;
+                                list-style-position: inside;
+                                display: block;
+                                text-align: right;
+                            }
                         }
                     }
 
