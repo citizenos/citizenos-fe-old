@@ -2,10 +2,11 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
 
         $scope.topic = rTopic;
+        $scope.ATTACHMENT_SOURCES = TopicAttachment.SOURCES;
 
         $scope.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
         $scope.generalInfo = {
@@ -65,6 +66,21 @@ angular
 
         $scope.showVoteCreate = function () {
             $scope.showVoteCreateForm = !$scope.showVoteCreateForm;
+        };
+
+        $scope.downloadAttachment = function (attachment) {
+
+            sUpload.getSignedDownload(attachment.link, attachment.name, attachment.type).then(function (res) {
+                var anchor = document.createElement('a');
+                document.body.appendChild(anchor);
+                anchor.href = res.data.data.url;
+
+                var evObj = document.createEvent('MouseEvents');
+                evObj.initMouseEvent('click', true, true, window);
+
+                anchor.dispatchEvent(evObj);
+                document.body.removeChild(anchor);
+            });
         };
 
         $scope.sendToVote = function () {
