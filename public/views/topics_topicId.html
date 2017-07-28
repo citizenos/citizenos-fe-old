@@ -790,7 +790,10 @@
                                                                                                                                                                          ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})"
                                                                                                                                                                          translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span></span>
                                 </div>
-                                <div class="info_section"><span translate="VIEWS.TOPICS_TOPICID.LBL_AUTHORS">Authors:</span> {{topic.creator.name}}</div>
+                                <div class="info_section"><span translate="VIEWS.TOPICS_TOPICID.LBL_AUTHORS">Authors:</span> <span ng-if="topic.creator.email" class="blue_link"
+                                    tooltips tooltip-class="tooltip_author"
+                                    tooltip-template="<a class='blue_link' ng-href={{topic.creator.email}}>{{topic.creator.email}}</a>"
+                                    tooltip-smart="true">{{topic.creator.name}}</span><span ng-if="!topic.creator.email">{{topic.creator.name}}</span></div>
                                 <div class="info_section">
                                     <span translate="VIEWS.TOPICS_TOPICID.LBL_ACTIVITY">Activity:</span> <span class="blue_link"
                                                                                                                ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')"
@@ -882,9 +885,30 @@
                                                     <!-- COMMENT HEADER -->
                                                     <div class="argument_header">
                                                         <div class="argumentator">
-                                                            <div class="line_wrap">
-                                                                <div class="table_cell">
-                                                                    {{comment.creator.name}}
+                                                            <div class="table_cell">
+                                                                <div cos-dropdown class="classic_dropdown borderless_dropdown">
+
+                                                                    <div class="dropdown_selection">
+                                                                        <div class="dropdown_text data_item">
+                                                                            {{comment.creator.name}}
+                                                                        </div>
+
+                                                                        <div class="arrow_holder" ng-if="comment.creator.email">
+                                                                            <div class="table_cell">
+                                                                                <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="dropdown comment_creator_dropdown" ng-if="comment.creator.email">
+                                                                        <!-- NO CATEGORY -->
+                                                                        <div class="dropdown_item">
+                                                                            <div class="item_name">
+                                                                                <a ng-href="mailto:{{comment.creator.email}}">{{comment.creator.email}}</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1116,9 +1140,30 @@
                                                         <div class="reply_icon sprite sprite-icon-arrow-reply2x">
                                                         </div>
                                                         <div class="argumentator">
-                                                            <div class="line_wrap">
-                                                                <div class="table_cell">
-                                                                    {{reply.creator.name}}
+                                                            <div class="table_cell">
+                                                                <div cos-dropdown class="classic_dropdown borderless_dropdown">
+
+                                                                    <div class="dropdown_selection">
+                                                                        <div class="dropdown_text data_item">
+                                                                            {{reply.creator.name}}
+                                                                        </div>
+
+                                                                        <div class="arrow_holder" ng-if="reply.creator.email">
+                                                                            <div class="table_cell">
+                                                                                <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="dropdown comment_creator_dropdown" ng-if="comment.creator.email">
+                                                                        <!-- NO CATEGORY -->
+                                                                        <div class="dropdown_item">
+                                                                            <div class="item_name">
+                                                                                <a ng-href="mailto:{{comment.creator.email}}">{{reply.creator.email}}</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
                                                                 </div>
                                                             </div>
                                                         </div>

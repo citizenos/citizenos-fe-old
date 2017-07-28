@@ -1792,6 +1792,10 @@ a:link, a:visited {
 
     }
 
+    .comment_creator_dropdown {
+        width:inherit;
+    }
+
     &.borderless_dropdown {
         border: none;
         background: none;
