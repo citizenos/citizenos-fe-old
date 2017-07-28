@@ -477,8 +477,9 @@
                         </div>
                         <div class="name_wrap">
                             <div class="table_cell">
-                                <div ng-bind="user.name">user.name</div>
-                                <div class="via" ng-if="user.email"><a class="blue_link" ng-href="mailto:{{user.email}}">{{user.email}}</a></div>
+                                <div ng-bind="user.name" tooltips tooltip-hidden="{{(!user.email && !user.pid && !user.phoneNumber)}}" tooltip-class="tooltip_author"
+                                    tooltip-template="<span class='creator_data_tooltip_row'>{{user.email}}</span><span class='creator_data_tooltip_row'>{{user.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{user.pid}}</span>"
+                                    tooltip-smart="true">user.name</div>
                                 <div class="via" ng-if="user.groups.rows.length && !user.levelUser"><span translate="VIEWS.MY_TOPICS_TOPICID.LBL_VIA">via</span> <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}})</span><span
                                     ng-if="!group.name" class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP" translate-values="{level: {{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}}}">&lt;Inaccessible Group&gt; (read)</span></span>
                                 </div>
