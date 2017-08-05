@@ -478,6 +478,7 @@
       "VOTE_HEADING_VOTE_CLOSED": "Hääletamine on lõppenud.",
       "VOTE_TXT_VOTE_CLOSED": "Kõik on hääletanud. Saad valmis dokumendi alla laadida siit.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Lae alla allkirjadega fail (BDOC)",
+      "BTN_DOWNLOAD_FINAL_ZIP": "Lae alla allkirjadega fail (ZIP)",
       "VOTE_HEADING_CREATE": "Määra hääletamisseaded",
       "VOTE_HEADING_STEP1": "Samm 1: vali hääletamise tüüp",
       "VOTE_BTN_TYPE_REGULAR": "TAVALINE",

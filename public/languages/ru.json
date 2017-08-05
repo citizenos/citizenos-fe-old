@@ -478,6 +478,7 @@
       "VOTE_HEADING_VOTE_CLOSED": "Голосование окончено.",
       "VOTE_TXT_VOTE_CLOSED": "Все проголосовали. Здесь можете скачать готовый документ",
       "BTN_DOWNLOAD_FINAL_BDOC": "Загрузить конечный файл с подписями (BDOC) ",
+      "BTN_DOWNLOAD_FINAL_ZIP": "Загрузить конечный файл с подписями (ZIP) ",
       "VOTE_HEADING_CREATE": "Определите настройки для голосования",
       "VOTE_HEADING_STEP1": "Шаг 1: Выберите тип голосования",
       "VOTE_BTN_TYPE_REGULAR": "ОБЫЧНЫЙ",

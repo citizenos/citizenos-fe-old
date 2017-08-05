@@ -420,6 +420,7 @@
       "VOTE_HEADING_VOTE_CLOSED": "Le vote est fermé!",
       "VOTE_TXT_VOTE_CLOSED": "Tout le monde a voté. Vous pouvez maintenant rélécharger tout le document",
       "BTN_DOWNLOAD_FINAL_BDOC": "Télécharger le ficher signé (DBOC)",
+      "BTN_DOWNLOAD_FINAL_ZIP": "Télécharger le ficher signé (ZIP)",
       "VOTE_HEADING_CREATE": "Créez une palteforme de vote",
       "VOTE_HEADING_STEP1": "Etape 1: Choisissez un type de vote",
       "VOTE_BTN_TYPE_REGULAR": "REGULIER",
