@@ -77,7 +77,19 @@ angular
                     }
                 },
                 patch: {
-                    method: 'PATCH'
+                    method: 'PATCH',
+                    transformRequest: function(data, headersGetter) {
+                        var updateFields = ['visibility', 'status', 'categories', 'endsAt', 'hashtag'];
+                        var postData = {};
+
+                        updateFields.forEach(function (field) {
+                            if(field in data) {
+                                postData[field] = data[field];
+                            }
+                        });
+                        console.log(postData);
+                        return angular.toJson(postData);
+                    }
                 },
                 save: {
                     method: 'POST',
