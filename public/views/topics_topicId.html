@@ -427,7 +427,7 @@
 
 
                         <!-- Statistics graph start -->
-                        <div class="vote_casting_message" ng-if="topic.canUpdate() && topic.hasVoteEnded() && topic.vote.authType===voteAuthTypes.hard">
+                        <div class="vote_casting_message" ng-if="topic.canUpdate() && topic.hasVoteEnded()">
 
                             <div class="message_header">
                                 <div class="message_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_VOTE_CLOSED">Voting has ended!</div>
@@ -435,11 +435,17 @@
                             </div>
 
                             <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
-                            <a ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank">
+                            <a ng-if="topic.vote.authType===voteAuthTypes.hard" ng-href="{{topic.vote.downloads.bdocFinal}}" target="_parent">
                                 <div class="voting_button voting_button_blue">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
                                 </div>
                             </a>
+                            <a ng-if="topic.vote.authType===voteAuthTypes.soft" ng-href="{{topic.vote.downloads.zipFinal}}" target="_parent">
+                                <div class="voting_button voting_button_blue">
+                                    <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_ZIP">Download full ZIP</div>
+                                </div>
+                            </a>
+
                         </div>
 
                         <!-- Regular graph -->
