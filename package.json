@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "concurrently": "2.2.0",
-    "gulp": "3.9.1",
+    "gulp": "^3.9.1",
     "gulp-angular-templatecache": "2.0.0",
     "gulp-batch": "1.0.5",
     "gulp-cache-bust": "1.1.0",
