@@ -36,6 +36,7 @@ angular
             '/views/modals/group_member_user_leave_confirm.html',
             '/views/modals/login.html',
             '/views/modals/login_esteid.html',
+            '/views/modals/login_smartid.html',
             '/views/modals/my_account.html',
             '/views/modals/password_forgot.html',
             '/views/modals/password_reset.html',
