@@ -33,8 +33,8 @@
                     appKey: 'lkk7j6f41sfpm5b'
                 },
                 googleDrive: {
-                    developerKey: 'AIzaSyA0xj8l1tAjKqbDZcIGHnNugHK1gAelH7Y',
-                    clientId: '886504024570-r7c3eo6ftjcoenserup7e712jkvd7uu7.apps.googleusercontent.com',
+                    developerKey: 'AIzaSyC3oZa5HN4OkbLOHYznR4Q0xkkB8oVx9zA',
+                    clientId: '11623449066-36uc2m24ej7vgqq7s8g92psvhcmjmfql.apps.googleusercontent.com'
                 },
                 oneDrive: {
                     clientId: 'deb735fe-1c3d-489c-93f4-0a8927101d09'
