@@ -401,8 +401,9 @@
             .milestone_description_text {
                 font-size: 16px;
                 line-height: 28px;
-                font-family: "Noto Serif";
+                font-family: "Noto Serif", serif;
                 word-break: break-word;
+                white-space: pre-line;
 
                 @media (max-width: 760px) {
                     font-size: 15px;
