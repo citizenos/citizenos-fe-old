@@ -13,7 +13,8 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
         });
         var pickerPromise = new Promise(function (resolve, reject) {
             gapi.load('picker', {'callback': resolve});
-        })
+        });
+
         return new Promise (function (resolve, reject) {
             if(googlePickerApiLoaded) {
                 return resolve();
@@ -24,7 +25,7 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
                     window.gapi.auth.authorize(
                     {
                       'client_id': cosConfig.storage.googleDrive.clientId,
-                      'scope': ['https://www.googleapis.com/auth/drive.readonly'],
+                      'scope': ['https://www.googleapis.com/auth/drive.file'],
                       'immediate': false
                     },
                     function (authResult) {
@@ -92,7 +93,7 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
                     reject();
                 },
                 linkType: 'preview',
-                multiselect: false,
+                multiselect: false
             });
         });
     };
