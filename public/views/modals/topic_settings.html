@@ -188,7 +188,7 @@
             </div>
 
             <!-- INVITE USERS -->
-            <div class="lightbox_content padding_bottom_zero" ng-if="tabSelected === 'invite'">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'invite'">
 
                 <div class="lightbox_section">
 
@@ -238,7 +238,7 @@
                 </div>
 
 
-                <div class="lightbox_section double_row_list user_list">
+                <div class="lightbox_section double_row_list user_list" ng-if="members.users.length || members.groups.length || members.emails.length">
 
                     <div ng-repeat="(key, members) in members" ng-if="members.length">
 

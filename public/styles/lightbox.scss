@@ -634,8 +634,6 @@
         padding: 0 !important;
         text-align: center;
         overflow-y: auto;
-        margin-top: 20px;
-
     }
 
     .lightbox_section.double_row_list {
@@ -1381,7 +1379,6 @@
     .lightbox_content.settings_section_wrap {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
-        overflow: hidden !important;
 
         @media (max-width: 560px) {
             overflow: auto !important;
@@ -1391,7 +1388,7 @@
             max-height: 381px;
             padding-top: 20px !important;
             padding-bottom: 20px !important;
-            overflow-y: auto;
+            overflow-y: visible;
 
             @media (max-width: 640px) {
                 max-height: 279px;
