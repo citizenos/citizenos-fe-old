@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', '$document', 'ngDialog', 'sAuth', 'sUser', 'sUpload', function ($scope, $log, $stateParams, $filter, $document, ngDialog, sAuth, sUser, sUpload) {
+    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', '$document', '$location', '$window','ngDialog', 'sAuth', 'sUser', 'sUpload', 'sLocation', function ($scope, $log, $stateParams, $filter, $document, $location, $window, ngDialog, sAuth, sUser, sUpload, sLocation) {
         $log.debug('MyAccountFormCtrl');
 
         $scope.form = {
@@ -12,6 +12,10 @@ angular
             company: null,
             imageUrl: null
         };
+
+        $scope.linkedAccounts = {}
+
+        $scope.tabSelected = $stateParams.tab || 'linking';
 
         $scope.imageFile = null;
         angular.extend($scope.form, sAuth.user);
@@ -71,5 +75,34 @@ angular
                     });
             }
         };
+
+        $scope.selectTab = function (tab) {
+            $scope.tabSelected = tab;
+            $location.search({tab: tab});
+        };
+
+        $scope.mergePartner = function (partnerId) {
+            console.log(partnerId);
+            var url = '/api/auth/link/:target'
+                .replace(':target', partnerId);
+            console.log(url);
+             $window.location.href = url;
+        };
+
+        $scope.linkAccount = function (target) {
+            console.log(target);
+            var url = '/api/auth/link/:target'
+                .replace(':target', target);
+            console.log(url);
+             $window.location.href = sLocation.getAbsoluteUrlApi(url);
+        };
+
+        $scope.unlinkAccount = function (target) {
+
+        };
+
+        $scope.isLinked = function (target) {
+            return !!$scope.linkedAccounts[target];
+        }
 
     }]);

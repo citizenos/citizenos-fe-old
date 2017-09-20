@@ -1603,6 +1603,68 @@
 
             }
 
+            .settings_section{
+                .left {
+                    display: inline-block;
+                    width: 34%;
+                    height: 200px;
+
+                    #profile_image_edit_section {
+                        display: block;
+                        width: 170px;
+                        height: 210px;
+                        text-align: center;
+
+                        .profile_image_wrapper {
+                            margin-right: auto;
+                            margin-left: auto;
+                            padding-bottom: 20px;
+                            width: 140px;
+                            height: 140px;
+                            float:none;
+                        }
+
+                        #edit_image_properties {
+
+                            .blue_link {
+                                display: inline-block;
+                                margin-bottom: 3px;
+                            }
+
+                            span {
+                                opacity: .69;
+                            }
+
+                        }
+                    }
+                }
+                .right {
+                    display: inline-block;
+                    position: absolute;
+                    width: 64%;
+                    height: 200px;
+
+                    .v_line {
+                        height: 200px;
+                        width: 1px;
+                        position:absolute;
+                        background-color: $lightest_gray;
+
+
+                        @media (max-width: 550px) {
+                            display: none;
+                        }
+                    }
+
+                    .input_section {
+                        margin-left: 20px;
+                        input {
+                            width: 340px;
+                        }
+                    }
+                }
+            }
+
             .settings_section.full_width {
                 .settings_cell {
                     width: 100%;

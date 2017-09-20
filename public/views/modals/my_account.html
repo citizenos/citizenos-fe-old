@@ -1,6 +1,6 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox">
-    <div id="lightbox" class="my_account_lightbox">
+<div id="root_lightbox" class="full_screen ng-scope" ng-controller="MyAccountFormCtrl">
+    <div id="lightbox" class="wide_lightbox with_title_description with_header_menu">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
@@ -16,79 +16,170 @@
                     </div>
                 </div>
 
-            </div>
+                <div class="clearer"></div>
 
-            <div class="lightbox_content">
-                <div id="login_lightbox">
-                    <div class="line lightest_line"></div>
-
-                    <div class="lightbox_section">
-                        <form name="myAccountForm" ng-controller="MyAccountFormCtrl">
-                        <div id="image_edit_section">
-                            <div class="profile_image_wrapper dark big">
-                                <!--div class="profile_moon sprite sprite-icon-certified-google-2-x2x"></div-->
-                                <div class="account_picture">
-                                    <!-- NB Remember to use image that has 2x size, meaning 160x160px for this <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">-->
-                                    <img ng-if="form.imageUrl" ng-src="{{form.imageUrl}}">
-                                    <input type="file" id="profileImage" name="image" onchange="angular.element(this).scope().switchImage(this)" />
-                                    <div class="profile_image_filler" ng-if="!form.imageUrl">
-                                        <div class="table_cell" cos-initials="form.name">
-                                            ML
-                                        </div>
-                                        <div class="profile_circle"></div>
-                                    </div>
-                                </div>
+                <div class="header_row_wrap">
+                    <div class="header_row" slide-controller identifier="topicSettingsSlider" start_slide_at="329">
+                        <div class="tab_button" ng-click="selectTab('settings')" ng-class="tabSelected === 'settings' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_SETTINGS">SETTINGS</div>
+                                <div class="blue_bottom_line"></div>
                             </div>
-                            <div id="edit_image_properties">
-                                <div class="blue_link" translate="" ng-click="uploadImage()">Upload new</div> |
-                                <div class="blue_link" translate="" ng-click="deleteProfileImage()">Delete</div>
-                                <br>
-                                <span translate="">Max 500kb jpg, gif or png</span>
+                        </div>
+                        <!--div class="tab_button" ng-click="selectTab('privacy')" ng-class="tabSelected === 'privacy' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_PRIVACY">PRIVACY</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div-->
+                        <div class="tab_button" ng-click="selectTab('linking')" ng-class="tabSelected === 'linking' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_LINKING">LINKING</div>
+                                <div class="blue_bottom_line"></div>
                             </div>
                         </div>
 
-                            <input id="name" ng-model="form.name" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NAME' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" maxlength="255" required>
-                            <label for="name" class="error_label" ng-if="errors.name">
-                                <div class="table_cell">
-                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.name}}"></span>
-                                </div>
-                            </label>
-                            <input id="company" ng-model="form.company" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_COMPANY' | translate}}" ng-class="{'error_input': errors.company}" maxlength="255">
-                            <label for="company" class="error_label" ng-if="errors.company">
-                                <div class="table_cell">
-                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.company}}"></span>
-                                </div>
-                            </label>
-                            <input id="email" ng-model="form.email" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_EMAIL' | translate}}" ng-class="{'error_input': errors.email}"  maxlength="254" required>
-                            <label for="email" class="error_label" ng-if="errors.email">
-                                <div class="table_cell">
-                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.email}}"></span>
-                                </div>
-                            </label>
-                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64" required>
-                            <label for="password" class="error_label" ng-if="errors.password">
-                                <div class="table_cell">
-                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.password}}"></span>
-                                </div>
-                            </label>
-                            <button type="submit" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button" translate="">Save changes</button>
-                            <div class="link_section">
-                                <a class="lightbox_link" href="" ng-click="closeThisDialog()" translate="">Cancel</a>
+                        <div ng-if="wWidth > 560" class="blue_button_wrap">
+                            <div class="blue_button" ng-click="doUpdateProfile()"
+                                 translate="MODALS.MY_ACCOUNT_BTN_SAVE">UPDATE PROFILE
                             </div>
-                        </form>
-                    </div>
+                        </div>
 
+                    </div>
                 </div>
             </div>
 
-        </div>
+
+            <div class="line lightest_line"></div>
+
+            <!-- SETTINGS -->
+            <div class="lightbox_content settings_section_wrap" ng-if="tabSelected === 'settings'">
+                <div class="lightbox_section">
+                    <div class="settings_section">
+                        <div class="left">
+                            <div id="profile_image_edit_section">
+                                <div class="profile_image_wrapper dark big">
+                                    <!--div class="profile_moon sprite sprite-icon-certified-google-2-x2x"></div-->
+                                    <div class="account_picture">
+                                        <!-- NB Remember to use image that has 2x size, meaning 160x160px for this <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">-->
+                                        <img ng-if="form.imageUrl" ng-src="{{form.imageUrl}}">
+                                        <input type="file" id="profileImage" name="image" onchange="angular.element(this).scope().switchImage(this)" />
+                                        <div class="profile_image_filler" ng-if="!form.imageUrl">
+                                            <div class="table_cell" cos-initials="form.name">
+                                                ML
+                                            </div>
+                                            <div class="profile_circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="edit_image_properties">
+                                    <div class="blue_link" translate="" ng-click="uploadImage()">Upload new</div> |
+                                    <div class="blue_link" translate="" ng-click="deleteProfileImage()">Delete</div>
+                                    <br>
+                                    <span translate="">Max 500kb jpg, gif or png</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="right">
+                            <div class="v_line"></div>
+                            <div class="input_section">
+                                <input id="name" ng-model="form.name" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NAME' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" maxlength="255" required>
+                                <label for="name" class="error_label" ng-if="errors.name">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                        <span translate="{{errors.name}}"></span>
+                                    </div>
+                                </label>
+                                <input id="company" ng-model="form.company" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_COMPANY' | translate}}" ng-class="{'error_input': errors.company}" maxlength="255">
+                                <label for="company" class="error_label" ng-if="errors.company">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                        <span translate="{{errors.company}}"></span>
+                                    </div>
+                                </label>
+                                <input id="email" ng-model="form.email" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_EMAIL' | translate}}" ng-class="{'error_input': errors.email}"  maxlength="254" required>
+                                <label for="email" class="error_label" ng-if="errors.email">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                        <span translate="{{errors.email}}"></span>
+                                    </div>
+                                </label>
+                                <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64" required>
+                                <label for="password" class="error_label" ng-if="errors.password">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                        <span translate="{{errors.password}}"></span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRIVACY >
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'privacy'">
+
+                <div class="lightbox_section">
+
+                    <div class="input_text_margin_bottom" translate="MODALS.MY_ACCOUNT_TXT_PRIVACY">Invite users and groups via name or e-mail address</div>
+
+                </div>
+            </div-->
+
+            <!-- LINKING -->
+            <div class="lightbox_content settings_section_wrap" ng-if="tabSelected === 'linking'">
+                <div class="lightbox_section">
+
+                    <div class="settings_section">
+                        <div class="setting_description" translate="MODALS.MY_ACCOUNT_TXT_LINKING">Link this account with other existing CitizenOS account. Be aware this will merge existing data into one account</div>
+                    </div>
+
+                    <div class="line lightest_line"></div>
+
+                    <div class="settings_section">
+                        <div class="settings_cell">
+                            <div class="setting_title"><div class="sprite sprite-icon-certified-fb-2-x2x "></div> <span translate="MODALS.MY_ACCOUNT_TITLE_FACEBOOK">Facebook</span></div>
+                        </div>
+                        <div class="settings_cell">
+                            <div class="blue_button" ng-if="!isLinked('facebook')" ng-click="linkAccount('facebook')" translate="MODALS.MY_ACCOUNT_BTN_LINK">Link</div>
+                            <div class="blue_button" ng-if="isLinked('facebook')" ng-click="unlinkAccount('facebook')" translate="MODALS.MY_ACCOUNT_BTN_UNLINK">Unlink</div>
+                        </div>
+                    </div>
+
+                    <div class="line lightest_line"></div>
+
+                    <div class="settings_section">
+                        <div class="settings_cell">
+                            <div class="setting_title"><div class="sprite sprite-icon-certified-google-2-x2x"></div> <span translate="MODALS.MY_ACCOUNT_TITLE_GOOGLE">GOOGLE</span></div>
+                        </div>
+                        <div class="settings_cell">
+                            <div class="blue_button" ng-if="!isLinked('google')" ng-click="linkAccount('google')" translate="MODALS.MY_ACCOUNT_BTN_LINK">Link</div>
+                            <div class="blue_button" ng-if="isLinked('google')" ng-click="unlinkAccount('google')" translate="MODALS.MY_ACCOUNT_BTN_UNLINK">Unlink</div>
+                        </div>
+                    </div>
+
+                    <div class="line lightest_line"></div>
+
+                    <div class="settings_section">
+                        <div class="settings_cell">
+                            <div class="setting_title"><div class="sprite sprite-login-icon-id2x"></div> <span translate="MODALS.MY_ACCOUNT_TITLE_ID">ID</span></div>
+                        </div>
+                        <div class="settings_cell">
+                            <div class="blue_button" ng-if="!isLinked('esteid')" ng-click="linkAccount('esteid')" translate="MODALS.MY_ACCOUNT_BTN_LINK">Link</div>
+                            <div class="blue_button" ng-if="isLinked('esteid')" ng-click="unlinkAccount('esteid')" translate="MODALS.MY_ACCOUNT_BTN_UNLINK">Unlink</div>
+                        </div>
+                    </div>
+
+                    <div class="line lightest_line"></div>
+
+
+                </div>
+            </div>
     </div>
 
-    <div id="close_lightbox" ng-click="closeThisDialog()">
-    </div>
+    <!--div id="close_lightbox" ng-click="closeThisDialog()">
+    </div-->
 
 </div>
