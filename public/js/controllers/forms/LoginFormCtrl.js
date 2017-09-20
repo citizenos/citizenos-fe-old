@@ -92,6 +92,17 @@ angular
         };
 
         /**
+         * Login with Smart-ID
+         */
+        $scope.doLoginSmartId = function () {
+            ngDialog
+                .open({
+                    template: '/views/modals/login_smartid.html',
+                    scope: $scope // Pass on $scope so that I can access AppCtrl
+                });
+        };
+
+        /**
          * Password reset
          */
         $scope.doResetPassword = function () {

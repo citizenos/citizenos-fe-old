@@ -74,6 +74,34 @@ angular
             return $http.get(path, {params: {token: token}}).then(success, defaultError);
         };
 
+        sAuth.loginSmartIdInit = function (pid, countryCode) {
+            var data = {
+                pid: pid,
+                countryCode:countryCode
+            };
+
+            var success = function (response) {
+                return response.data.data;
+            };
+
+
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/smartid/init');
+            return $http.post(path, data).then(success, defaultError);
+        };
+
+        sAuth.loginSmartIdStatus = function (token) {
+            var success = function (response) {
+                if ([20002, 20003].indexOf(response.data.status.code) > -1) {
+                    sAuth.user.loggedIn = true;
+                    angular.extend(sAuth.user, response.data.data);
+                }
+                return response;
+            };
+
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/smartid/status');
+            return $http.get(path, {params: {token: token}}).then(success, defaultError);
+        };
+
         sAuth.loginIdCard = function () {
             var success = function (response) {
                 $log.debug('Auth.loginId', 'success');

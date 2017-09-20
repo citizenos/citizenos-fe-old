@@ -1,13 +1,13 @@
 /* Generated data URIs used for preview purposes only */
 /* Be sure that you replace data URIs with generated images */
 .sprite {
-    background-image: url('../imgs/icons_sprite.png?v2');
+    background-image: url('../imgs/icons_sprite.png?v3');
 }
 
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
 	.sprite {
-        background-image: url('../imgs/icons_sprite2x.png?v2');
-		background-size: 203px 2603px;
+        background-image: url('../imgs/icons_sprite2x.png?v3');
+		background-size: 203px 2653px;
 	}
 }
 
@@ -509,6 +509,12 @@
 	background-position: 0 -1751px;
 }
 
+.sprite-login-icon-smartid2x {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -2603px;
+}
+
 .sprite-menu-icon-about2x {
 	width: 18px;
 	height: 15px;
@@ -567,6 +573,12 @@
 	width: 149px;
 	height: 34px;
 	background-position: 0 -1916px;
+}
+
+.sprite-smart-i-d2x {
+    width: 149px;
+    height: 34px;
+    background-position: 0 -2619px;
 }
 
 .sprite-mytopics-icon-closed2x {

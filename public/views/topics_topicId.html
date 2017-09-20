@@ -358,7 +358,7 @@
                                 <div class="message_title" translate="VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED">Your vote has been registered!</div>
                                 <div class="float_wrap">
                                     <div class="blue_link" ng-show="topic.vote.authType === voteAuthTypes.hard"><a ng-href="{{topic.vote.downloads.bdocVote}}"
-                                                                                                                   translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_USER_BDOC">Download your DDOC</a></div>
+                                                                                                                   translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_USER_BDOC" target="_blank" download>Download your DDOC</a></div>
                                 </div>
                                 <div class="clearer"></div>
                             </div>
@@ -435,12 +435,12 @@
                             </div>
 
                             <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
-                            <a ng-if="topic.vote.authType===voteAuthTypes.hard" ng-href="{{topic.vote.downloads.bdocFinal}}" target="_parent">
+                            <a ng-if="topic.vote.authType===voteAuthTypes.hard" ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank" download>
                                 <div class="voting_button voting_button_blue">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
                                 </div>
                             </a>
-                            <a ng-if="topic.vote.authType===voteAuthTypes.soft" ng-href="{{topic.vote.downloads.zipFinal}}" target="_parent">
+                            <a ng-if="topic.vote.authType===voteAuthTypes.soft" ng-href="{{topic.vote.downloads.zipFinal}}" target="_blank" download>
                                 <div class="voting_button voting_button_blue">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_ZIP">Download full ZIP</div>
                                 </div>
@@ -597,15 +597,6 @@
                                         <input class="gray_borders" ng-model="option.value" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER' | translate}}">
                                         <div class="icon_table">
                                             <div class="icon_cell" ng-click="removeOption(key)">
-                                                <div class="sprite sprite-inputfield-icon-delete2x"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="input_with_icon clickable">
-                                        <input class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER' | translate}}">
-                                        <div class="icon_table">
-                                            <div class="icon_cell">
                                                 <div class="sprite sprite-inputfield-icon-delete2x"></div>
                                             </div>
                                         </div>
@@ -1055,8 +1046,11 @@
                                                     </div>
                                                     <!-- END COMMENT DELETED-->
                                                     <!-- COMMENT EDITS -->
-                                                    <div id="{{comment.id+version}}" class="argument" ng-class="{is_con:edit.type=='con', is_pro: edit.type=='pro'}" ng-if="comment.showEdits && comment.isEdited() && !$last" ng-repeat="(version, edit) in comment.edits">
+                                                    <div id="{{comment.id + version}}" class="argument" ng-class="{is_con:edit.type=='con', is_pro: edit.type=='pro'}" ng-if="comment.showEdits && comment.isEdited() && !$last" ng-repeat="(version, edit) in comment.edits">
                                                         <div class="argument_header">{{edit.createdAt | amDateFormat : 'L LT'}}</div>
+                                                        <div class="argument_title" ng-if="edit.subject">
+                                                            {{edit.subject}}
+                                                        </div>
                                                         <div class="argument_text_wrap">
                                                             <div class="argument_text italic" ng-bind-html="edit.text | linky"></div>
                                                         </div>
