@@ -58,7 +58,7 @@
                         <div ng-if="formMobile.isLoading"  class="loader_wrap">
                             <div class="loader"></div>
                         </div>
-                        <button ng-if="wWidth <= 550" class="blue_button" ng-click="doSignWithMobile()" cos-disabled="formMobileSign.$invalid" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_MID">Sign with Mobiil-ID</button>
+                        <button ng-if="wWidth <= 550" class="blue_button" ng-click="doSignWithMobile()" cos-disabled="formMobileSign.$invalid || formMobile.isLoading || isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_MID">Sign with Mobiil-ID</button>
                     </form>
                 </div>
 
@@ -69,17 +69,17 @@
                 <div class="sign_in_section">
                     <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
                     <div class="sprite_big sprite sprite-img-idkaart2x"></div>
-                    <button ng-if="wWidth <= 550" class="blue_button" cos-disabled="isLoadingIdCard" ng-click="doSignWithCard()" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_CARD">Sign with ID-Card</button>
+                    <button ng-if="wWidth <= 550" class="blue_button" cos-disabled="isLoadingIdCard || formMobile.isLoading" ng-click="doSignWithCard()" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_CARD">Sign with ID-Card</button>
                 </div>
 
                 <div class="clearer"></div>
 
                 <div ng-if="wWidth > 550" class="sign_in_section">
-                    <button class="blue_button" ng-click="doSignWithMobile()" cos-disabled="formMobileSign.$invalid" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_MID">Sign with Mobiil-ID</button>
+                    <button class="blue_button" ng-click="doSignWithMobile()" cos-disabled="formMobileSign.$invalid || formMobile.isLoading || isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_MID">Sign with Mobiil-ID</button>
                 </div>
 
                 <div ng-if="wWidth > 550" class="sign_in_section">
-                    <button class="blue_button" cos-disabled="isLoadingIdCard" ng-click="doSignWithCard()" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_CARD">Sign with ID-Card</button>
+                    <button class="blue_button" cos-disabled="isLoadingIdCard || formMobile.isLoading" ng-click="doSignWithCard()" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_CARD">Sign with ID-Card</button>
                 </div>
 
                 <div class="clearer"></div>
