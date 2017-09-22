@@ -17,6 +17,7 @@ angular
                 ],
                 multiple: [
                     {value: null},
+                    {value: null},
                     {value: null}
                 ]
             },

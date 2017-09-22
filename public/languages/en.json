@@ -364,7 +364,7 @@
     },
     "MY": {
       "LBL_GROUPS_COUNT": "{{count}} groups",
-      "HEADING_NOT_IN_GROUP": "You are not yet part of a group. It's highschool all over again!",
+      "HEADING_NOT_IN_GROUP": "You are not yet part of a group.",
       "HEADING_AT_LEAST_WE_HELP": "At least you still have us to help you by",
       "TXT_CREATING_A NEW_GROUP": "Creating a new group",
       "HEADING_NOT_PARTICIPATED": "You have not participated in a topic yet. Try it, it’s really cool!",

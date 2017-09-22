@@ -89,6 +89,11 @@ angular
             return $http.post(path, data).then(success, defaultError);
         };
 
+        sAuth.linkInfo = function (target, token) {
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/link/:target/info').replace(':target', target);
+            return $http.get(path, {params: {token: token}}).then(defaultSuccess, defaultError);
+        };
+
         sAuth.loginSmartIdStatus = function (token) {
             var success = function (response) {
                 if ([20002, 20003].indexOf(response.data.status.code) > -1) {

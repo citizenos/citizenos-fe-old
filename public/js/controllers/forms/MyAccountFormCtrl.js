@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', '$document', '$location', '$window','ngDialog', 'sAuth', 'sUser', 'sUpload', 'sLocation', function ($scope, $log, $stateParams, $filter, $document, $location, $window, ngDialog, sAuth, sUser, sUpload, sLocation) {
+    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', '$document', '$location', '$window', '$cookies','ngDialog', 'sAuth', 'sUser', 'sUpload', 'sLocation', function ($scope, $log, $stateParams, $filter, $document, $location, $window, $cookies, ngDialog, sAuth, sUser, sUpload, sLocation) {
         $log.debug('MyAccountFormCtrl');
 
         $scope.form = {
@@ -93,7 +93,9 @@ angular
             console.log(target);
             var url = '/api/auth/link/:target'
                 .replace(':target', target);
-            console.log(url);
+            var now = new Date();
+            now.setMinutes(now.getMinutes() + 5);
+            $cookies.put('linkToTarget', target, {expires: now});
              $window.location.href = sLocation.getAbsoluteUrlApi(url);
         };
 

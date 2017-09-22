@@ -223,6 +223,28 @@
                         $state.go('home');
                     }]
                 })
+                .state('link', {
+                    parent: 'main',
+                    url: '/link?token',
+                    controller: ['$scope', '$state', '$stateParams', '$cookies', 'sAuth', 'ngDialog', function ($scope, $state, $stateParams, $cookies, sAuth, ngDialog) {
+                        var target = $cookies.get('linkToTarget');
+                        sAuth
+                            .linkInfo(target, $stateParams.token)
+                            .then(function(response) {
+                                console.log(response);
+                                ngDialog
+                                    .openConfirm({
+                                        template: '/views/modals/my_account_link_confirm.html',
+                                        data: response.data
+                                    })
+                                    .then(function () {
+
+                                        console.log($stateParams.token);
+                                    }, angular.noop);
+                            })
+
+                    }]
+                })
                 .state('account', {
                     url: '/account',
                     abstract: true,
