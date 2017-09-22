@@ -35,8 +35,8 @@
                                 </div>
                             </label>
                             <input id="pid" name="pid" type="text" inputmode="numeric" ng-model="formSmartId.pid" placeholder="{{'MODALS.LOGIN_SMARTID_PLACEHOLDER_PID' | translate}}"
-                                   ng-class="{'error_input': loginSmartIdForm.pid.$error.pattern && loginSmartIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
-                            <label for="pid" class="error_label" ng-if="loginSmartIdForm.pid.$error.pattern && loginSmartIdForm.pid.$touched">
+                                   ng-class="{'error_input': loginSmartIdForm.pid.$touched}" required>
+                            <label for="pid" class="error_label" ng-if="loginSmartIdForm.pid.$touched">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="MODALS.LOGIN_SMARTID_ERROR_PID">Invalid personal identification code</span>
