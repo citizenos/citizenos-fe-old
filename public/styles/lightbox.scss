@@ -916,6 +916,10 @@
                     text-align: center;
                     height: 100%;
 
+                    &.sid {
+                        width: 100%;
+                    }
+
                     @media (max-width: 550px) {
                         width: 100%;
                         float: none;
