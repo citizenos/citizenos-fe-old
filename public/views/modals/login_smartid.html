@@ -51,10 +51,7 @@
                                 <div class="loader"></div>
                             </div>
                         </div>
-                        <button type="submit" ng-click="doLoginMobiilId()" ng-if="wWidth <= 550" cos-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading || isLoadingIdCard"
-                                class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_MID">Log in with Mobiil-ID
-                        </button>
-                        <button ng-click="doLoginSmartId()" cos-disabled="loginMobiilIdForm.$invalid || formSmartId.isLoading || isLoadingIdCard" class="blue_button"
+                        <button type="submit" ng-click="doLoginSmartId()" cos-disabled="formSmartId.$invalid || formSmartId.isLoading" class="blue_button"
                                 translate="MODALS.LOGIN_SMARTID_BTN_LOG_IN_SID">Log in with Smart-ID
                         </button>
                     </div>
