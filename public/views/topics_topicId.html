@@ -449,7 +449,7 @@
                         </div>
 
                         <!-- Regular graph -->
-                        <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular">
+                        <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular && topic.hasVoteEnded()">
 
                             <div class="graph_row" ng-class="option.selected ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                 <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
@@ -471,7 +471,7 @@
                         </div>
 
                         <!-- Big graph -->
-                        <div class="big_graph" ng-if="topic.vote.type === voteTypes.multiple">
+                        <div class="big_graph" ng-if="topic.vote.type === voteTypes.multiple && topic.hasVoteEnded()">
                             <div class="long_text_holder">
                                 <div class="long_text" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                     <span class="bold">{{getOptionLetter(key)}}.</span> <span translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
