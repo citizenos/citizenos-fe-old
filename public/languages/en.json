@@ -463,7 +463,7 @@
       "BAR_TOOLTIP_PHASE": "Status:",
       "BAR_TOOLTIP_IN_PROGRESS": "in progress",
       "BAR_TOOLTIP_VOTING": "in voting",
-      "BAR_SIGNING_DEADLINE": "Signing deadline: {{deadline | amDateFormat:'L'}}",
+      "BAR_SIGNING_DEADLINE": "Signing deadline:",
       "BAR_CURRENT_PHASE": "Current status:",
       "TAB_VIEW": "View",
       "TAB_VOTE": "Vote",
