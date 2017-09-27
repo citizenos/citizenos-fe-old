@@ -278,7 +278,6 @@
             box-sizing: border-box;
             position: relative;
 
-
             .main_panel {
                 box-sizing: border-box;
                 display: table-cell;
@@ -402,7 +401,7 @@
                                     margin-bottom: 7px;
                                 }
                                 tooltip, .tooltip_author {
-                                    display:inline;
+                                    display: inline;
                                 }
                             }
 
@@ -459,6 +458,24 @@
                                 font-size: 16px;
                             }
 
+                            @include mobile {
+                                h1 {
+                                    font-size: 30px;
+                                }
+
+                                h2 {
+                                    font-size: 24px;
+                                }
+
+                                h3 {
+                                    font-size: 18px;
+                                }
+
+                                h4, h5, h6 {
+                                    font-size: 16px;
+                                }
+                            }
+
                             a {
                                 color: $deep_sky_blue;
                             }
@@ -468,43 +485,43 @@
                             }
 
                             .fs8 {
-                                font-size:8px
+                                font-size: 8px
                             }
                             .fs9 {
-                                font-size:9px
+                                font-size: 9px
                             }
                             .fs10 {
-                                font-size:10px;
+                                font-size: 10px;
                             }
                             .fs11 {
-                                font-size:11px;
+                                font-size: 11px;
                             }
                             .fs12 {
-                                font-size:12px;
+                                font-size: 12px;
                             }
                             .fs13 {
-                                font-size:13px;
+                                font-size: 13px;
                             }
                             .fs14 {
-                                font-size:14px;
+                                font-size: 14px;
                             }
                             .fs15 {
-                                font-size:15px;
+                                font-size: 15px;
                             }
                             .fs16 {
-                                font-size:16px;
+                                font-size: 16px;
                             }
                             .fs17 {
-                                font-size:17px;
+                                font-size: 17px;
                             }
                             .fs18 {
-                                font-size:18px;
+                                font-size: 18px;
                             }
                             .fs19 {
-                                font-size:19px;
+                                font-size: 19px;
                             }
                             .fs20 {
-                                font-size:20px;
+                                font-size: 20px;
                             }
                             .black {
                                 color: black;

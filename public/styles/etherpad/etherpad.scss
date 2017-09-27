@@ -72,6 +72,25 @@ $deep_sky_blue: #0680FC;
         font-size: 16px;
     }
 
+    /** MOBILE **/
+    @media (max-width: 535px) {
+        h1 * {
+            font-size: 30px;
+        }
+
+        h2 * {
+            font-size: 24px;
+        }
+
+        h3 * {
+            font-size: 18px;
+        }
+
+        h4 *, h5 *, h6 * {
+            font-size: 16px;
+        }
+    }
+
     a {
         color: $deep_sky_blue;
     }
