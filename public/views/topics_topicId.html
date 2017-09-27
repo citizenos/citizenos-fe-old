@@ -372,7 +372,7 @@
 
                         <div class="voting_platform_buttons" ng-if="!topic.hasVoteEnded()">
 
-                            <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows"
+                            <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? '' : 'active'" ng-repeat="(key, option) in topic.vote.options.rows"
                                  ng-click="doVote(option)">
                                 <div class="table_cell left_side">
                                     {{getOptionLetter(key)}}.
@@ -386,7 +386,7 @@
                         <div class="delegation_section" ng-if="!topic.hasVoteEnded()">
 
                             <div class="voting_button voting_button_blue" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)"
-                                 ng-class="topic.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
+                                 ng-class="topic.vote.delegation ? '' : 'active'" ng-click="doDelegate()">
                                 <div class="table_cell left_side">
                                     <div class="sprite sprite-icon-delegate2x"></div>
                                 </div>
