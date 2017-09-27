@@ -72,7 +72,7 @@
         </div>
 
         <div class="additional_info signing_deadline" ng-if="topic.vote.endsAt">
-            <span translate="VIEWS.TOPICS_TOPICID.BAR_SIGNING_DEADLINE">Signing deadline</span>: <span class="bold">{{topic.vote.endsAt | amDateFormat:'L'}}</span>
+            <span translate="VIEWS.TOPICS_TOPICID.BAR_SIGNING_DEADLINE">Signing deadline</span> <span class="bold">{{topic.vote.endsAt | amDateFormat:'L'}}</span>
         </div>
 
 
@@ -372,7 +372,7 @@
 
                         <div class="voting_platform_buttons" ng-if="!topic.hasVoteEnded()">
 
-                            <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows"
+                            <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? '' : 'active'" ng-repeat="(key, option) in topic.vote.options.rows"
                                  ng-click="doVote(option)">
                                 <div class="table_cell left_side">
                                     {{getOptionLetter(key)}}.
@@ -386,7 +386,7 @@
                         <div class="delegation_section" ng-if="!topic.hasVoteEnded()">
 
                             <div class="voting_button voting_button_blue" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)"
-                                 ng-class="topic.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
+                                 ng-class="topic.vote.delegation ? '' : 'active'" ng-click="doDelegate()">
                                 <div class="table_cell left_side">
                                     <div class="sprite sprite-icon-delegate2x"></div>
                                 </div>
@@ -449,7 +449,7 @@
                         </div>
 
                         <!-- Regular graph -->
-                        <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular">
+                        <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular && topic.hasVoteEnded()">
 
                             <div class="graph_row" ng-class="option.selected ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                 <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
@@ -471,7 +471,7 @@
                         </div>
 
                         <!-- Big graph -->
-                        <div class="big_graph" ng-if="topic.vote.type === voteTypes.multiple">
+                        <div class="big_graph" ng-if="topic.vote.type === voteTypes.multiple && topic.hasVoteEnded()">
                             <div class="long_text_holder">
                                 <div class="long_text" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                     <span class="bold">{{getOptionLetter(key)}}.</span> <span translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"

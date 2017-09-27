@@ -463,7 +463,7 @@
       "BAR_TOOLTIP_PHASE": "СТАТУС:",
       "BAR_TOOLTIP_IN_PROGRESS": "создается",
       "BAR_TOOLTIP_VOTING": "на голосовании",
-      "BAR_SIGNING_DEADLINE": "Срок голосования: {{deadline | amDateFormat:'L'}}",
+      "BAR_SIGNING_DEADLINE": "Срок голосования:",
       "BAR_CURRENT_PHASE": "Действующий статус:",
       "TAB_VIEW": "Просмотреть",
       "TAB_VOTE": "Голосовать",
