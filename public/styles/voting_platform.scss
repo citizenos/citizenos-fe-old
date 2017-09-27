@@ -534,10 +534,11 @@
                 float: left;
                 display: table;
                 text-align: center;
+                cursor: pointer;
 
                 &:not(.active):hover {
                     background: $medium_gray;
-                    cursor: pointer;
+                    cursor: initial;
                 }
 
                 .button_title {
