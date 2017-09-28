@@ -1066,7 +1066,7 @@
                     }
                 }
 
-                #delete_info_wrap {
+                .delete_info_wrap {
                     width: 410px;
                     margin: 0 auto;
                     padding: 40px;
@@ -1096,6 +1096,9 @@
                                 display: table-cell;
                                 padding-left: 10px;
                             }
+                        }
+                        &.margin_bottom_check {
+                            margin-bottom: 20px;
                         }
                     }
 
@@ -1128,6 +1131,24 @@
 
                 }
 
+                .padding_all_zero {
+                    padding: 0;
+                }
+
+                .padding_top_check {
+                    padding-top: 30px;
+                }
+
+                .padding_bottom_check {
+                    padding-bottom: 30px;
+                }
+
+                .padding_check_info {
+                    padding: 10px;
+                }
+                .padding_check_button {
+                    padding: 20px;
+                }
             }
 
         }

@@ -89,9 +89,20 @@ angular
             return $http.post(path, data).then(success, defaultError);
         };
 
+        sAuth.linkedAccounts = function () {
+            var path = '/api/:userId/auth/link'.replace(':userId',sAuth.user.id);
+            var path = sLocation.getAbsoluteUrlApi(path);
+            return $http.get(path).then(defaultSuccess, defaultError);
+        };
+
         sAuth.linkInfo = function (target, token) {
             var path = sLocation.getAbsoluteUrlApi('/api/auth/link/:target/info').replace(':target', target);
             return $http.get(path, {params: {token: token}}).then(defaultSuccess, defaultError);
+        };
+
+        sAuth.confirmLinkAccount = function (target, token) {
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/link/:target?token=:token').replace(':target', target).replace(':token', token);
+            return $http.post(path).then(defaultSuccess, defaultError);
         };
 
         sAuth.loginSmartIdStatus = function (token) {

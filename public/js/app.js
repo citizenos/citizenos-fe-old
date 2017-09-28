@@ -226,22 +226,69 @@
                 .state('link', {
                     parent: 'main',
                     url: '/link?token',
-                    controller: ['$scope', '$state', '$stateParams', '$cookies', 'sAuth', 'ngDialog', function ($scope, $state, $stateParams, $cookies, sAuth, ngDialog) {
+                    template:'<div ui-view></div>',
+                    resolve: {
+                        linkData: function ($state, $q, $stateParams, $cookies, sAuth, $log) {
+                            var target = $cookies.get('linkToTarget');
+                            console.log('RESOLVE', target);
+                            if(!target) {
+                                return ;
+                            }
+                            return sAuth
+                                    .linkInfo(target, $stateParams.token)
+                                    .then(function (res) {
+                                        console.log(res);
+                                        return $q.resolve(res.data);
+                                    },
+                                    function () {
+                                        return $q.resolve(false);
+                                    });
+                        }
+                    },
+                    controller: ['$state', '$stateParams', '$cookies', '$timeout', 'sAuth', 'ngDialog', 'linkData', function ($state, $stateParams, $cookies, $timeout, sAuth, ngDialog, linkData) {
+                        console.log(linkData)
                         var target = $cookies.get('linkToTarget');
-                        sAuth
+                        if(!target) {
+                            $state.go('home');
+                        }
+                        ngDialog
+                            .openConfirm({
+                                template: '/views/modals/my_account_link_confirm.html',
+                                data: linkData
+                            })
+                            .then(function () {
+                                sAuth
+                                    .confirmLinkAccount(target ,$stateParams.token)
+                                    .then(function (res) {
+                                        $state.go('home');
+                                    })
+                            }, function () {
+                                $state.go('home');
+                            });
+                        /*sAuth
                             .linkInfo(target, $stateParams.token)
                             .then(function(response) {
-                                console.log(response);
-                                ngDialog
+
+                                /*ngDialog
                                     .openConfirm({
                                         template: '/views/modals/my_account_link_confirm.html',
                                         data: response.data
                                     })
                                     .then(function () {
-
-                                        console.log($stateParams.token);
-                                    }, angular.noop);
-                            })
+                                        sAuth
+                                            .confirmLinkAccount(target ,$stateParams.token)
+                                            .then(function (res) {
+                                                $timeout(function () {
+                                                    console.log('TIMEOUT');
+                                                    $state.go('home');
+                                                });
+                                            })
+                                    }, function () {
+                                        $timeout(function () {
+                                            $state.go('home');
+                                        });
+                                    });*/
+                        //    })
 
                     }]
                 })
@@ -293,7 +340,8 @@
                 })
                 .state('account.profile', { // TODO: Naming inconsistency but /account/myaccount would be funny. Maybe rename all related files to profile?
                     url: '/profile',
-                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog, sAuthResolve) {
+                        console.log(sAuthResolve);
                         ngDialog.open({
                             template: '/views/modals/my_account.html',
                             data: $stateParams,

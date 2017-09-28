@@ -18,6 +18,10 @@
   left: 0;
 }
 
+.padding_all_zero {
+    padding: 0;
+}
+
 .input_small {
   width: 100%;
   box-sizing: border-box;
@@ -83,7 +87,7 @@
 
 
 @mixin table_mobile_view {
-                                
+
     .pretend_th {
         float: left;
         width: initial !important;

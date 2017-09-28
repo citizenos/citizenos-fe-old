@@ -151,7 +151,7 @@ table, .pretend_table {
     }
 }
 
-.btn_wrap.white_bg {
+.btn_wrap.white_bg, .check_wrap.white_bg {
     background-color: $white;
 }
 
@@ -244,6 +244,24 @@ table, .pretend_table {
         .sprite {
             @extend .sprite-voted-check2x;
         }
+    }
+}
+
+.table_cell{
+    &.check_cell {
+        vertical-align: top;
+        padding-right: 10px;
+    }
+}
+
+.check_wrap {
+    border-radius: 4px;
+    border: 1px solid #e5e5e5;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    .sprite {
+        margin: auto;
     }
 }
 

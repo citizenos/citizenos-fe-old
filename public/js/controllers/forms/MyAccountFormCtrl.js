@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', '$document', '$location', '$window', '$cookies','ngDialog', 'sAuth', 'sUser', 'sUpload', 'sLocation', function ($scope, $log, $stateParams, $filter, $document, $location, $window, $cookies, ngDialog, sAuth, sUser, sUpload, sLocation) {
+    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', '$document', '$location', '$window', '$cookies','ngDialog', 'UserConnection', 'sAuth', 'sUser', 'sUpload', 'sLocation', function ($scope, $log, $stateParams, $filter, $document, $location, $window, $cookies, ngDialog, UserConnection, sAuth, sUser, sUpload, sLocation) {
         $log.debug('MyAccountFormCtrl');
 
         $scope.form = {
@@ -19,6 +19,12 @@ angular
 
         $scope.imageFile = null;
         angular.extend($scope.form, sAuth.user);
+
+        $scope.getLinkedAccounts = function () {
+            $scope.linkedAccounts = UserConnection.query();
+        };
+
+        $scope.getLinkedAccounts();
 
         $scope.doUpdateProfile = function () {
             $scope.errors = null;
@@ -82,29 +88,29 @@ angular
         };
 
         $scope.mergePartner = function (partnerId) {
-            console.log(partnerId);
             var url = '/api/auth/link/:target'
                 .replace(':target', partnerId);
-            console.log(url);
              $window.location.href = url;
         };
 
         $scope.linkAccount = function (target) {
-            console.log(target);
             var url = '/api/auth/link/:target'
                 .replace(':target', target);
             var now = new Date();
             now.setMinutes(now.getMinutes() + 5);
             $cookies.put('linkToTarget', target, {expires: now});
-             $window.location.href = sLocation.getAbsoluteUrlApi(url);
+            $window.location.href = sLocation.getAbsoluteUrlApi(url);
         };
 
         $scope.unlinkAccount = function (target) {
-
+            console.log(target);
         };
 
         $scope.isLinked = function (target) {
-            return !!$scope.linkedAccounts[target];
+            var item = _.find($scope.linkedAccounts, function (item) {
+                return item.connectionId === target;
+            });
+            return !!item;
         }
 
     }]);
