@@ -361,6 +361,7 @@ table, .pretend_table {
         width: 100%;
         font-weight: $bold;
         text-align: center;
+        cursor: pointer;
 
         &:not(:last-child) {
             margin-bottom: 10px;
@@ -396,7 +397,7 @@ table, .pretend_table {
         }
 
         &:not(.active):hover {
-            cursor: pointer;
+            cursor: initial;
             @media (min-width: 1025px) {
                 .table_cell {
                     &:first-child {
@@ -411,10 +412,10 @@ table, .pretend_table {
         }
 
         &.voting_button_blue {
-            cursor: pointer;
+            cursor: initial;
 
             &.active {
-                cursor: initial;
+                cursor: pointer;
                 .table_cell {
                     &.right_side {
                         color: $white;
@@ -1458,7 +1459,8 @@ a:link, a:visited {
         content: "";
         position: absolute;
         top: 100%;
-        margin-left: -35px;
+        left: 50%;
+        margin-left: -4px;
         border-width: 4px;
         border-style: solid;
         border-color: $transparent_black transparent transparent transparent;
