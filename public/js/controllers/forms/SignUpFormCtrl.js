@@ -24,8 +24,8 @@ angular
             $log.debug('SignUpFormCtrl.doSignUp()');
 
             var success = function () {
-                sNotification.addInfo('MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT');
                 ngDialog.closeAll(); // Close all dialogs, including the one open now...
+                sNotification.addInfo('MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT');
             };
 
             var error = function (res) {
