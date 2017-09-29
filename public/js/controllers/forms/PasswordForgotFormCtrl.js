@@ -15,8 +15,8 @@ angular
             $scope.errors = null;
 
             var success = function (res) {
-                sNotification.addInfo('MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT');
                 ngDialog.closeAll(); // Close all dialogs, including this one..
+                sNotification.addInfo('MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT');
             };
 
             var error = function (res) {
