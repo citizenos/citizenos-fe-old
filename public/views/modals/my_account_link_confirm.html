@@ -1,0 +1,114 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing delete_topic wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_DELETE_CONFIRM_HEADING">Delete topic</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="line lightest_line"></div>
+
+            </div>
+
+
+            <div class="lightbox_content">
+
+                <div class="second_header">
+
+                    <div class="sprite sprite-icon-delete-topic2x"></div>
+                    <div class="delete_title" satranslate="MODALS.TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to merge your {{target}} account with CitizenOS account?</div>
+                    <div class="delete_description" satranslate="MODALS.TOPIC_DELETE_CONFIRM_TXT_NO_UNDO">Please keep in mind you cannot undo this action.</div>
+
+                    <div id="lightbox_close" ng-click="closeThisDialog()">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+                <div class="sprite_big sprite sprite-link-accounts-d2x"></div>
+                <div class="delete_info_wrap padding_all_zero">
+                    <div class="delete_info_text_wrap margin_bottom_check">
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" satranslate="MODALS.TOPIC_DELETE_CONFIRM_TXT_TOPIC_DELETED">All your account topics ({{ngDialogData.topics.count}}) will be moved to your account with the appropriate permissions</div>
+                        </div>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" satranslate="MODALS.TOPIC_DELETE_CONFIRM_TXT_DISCUSSION_DELETED">All your account groups ({{ngDialogData.groups.count}}) and access rights will be transfered to your account.</div>
+                        </div>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" satranslate="MODALS.TOPIC_DELETE_CONFIRM_TXT_TOPIC_REMOVED_FROM_GROUPS">All your accounts future and historical actions will be reflected as CitizenOS accounts actions</div>
+                        </div>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" satranslate="MODALS.TOPIC_DELETE_CONFIRM_TXT_TOPIC_REMOVED_FROM_GROUPS">Your facebook account will cease to exist on CitizenOS. You will always have to log in with your CitizenOS account which has access to all data previously belonging to your facebook account</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+                <div class="delete_info_wrap padding_check_info">
+                     <div class="delete_info">
+                        <div class="table_cell check_cell" ng-click="confirmLink = !confirmLink">
+                            <div class="check_wrap white_bg table_cell">
+                                <div class="check">
+                                    <div class="sprite" ng-class="{'sprite-checkmark2x': !!confirmLink}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table_cell">
+                            <div class="delete_info_text">
+                               <span  satranslate="MODALS.TOPIC_DELETE_CONFIRM_TXT_TOPIC_REMOVED_FROM_GROUPS">I understand that this acction is irreversible and may cause harm when done without care.</span>
+                           </div>
+                       </div>
+                    </div>
+                </div>
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+                <div class="delete_info_wrap padding_check_button">
+                    <div class="delete_info_button_wrap">
+
+                        <div class="table_cell">
+                            <div class="blue_button no" ng-click="closeThisDialog()" satranslate="MODALS.TOPIC_DELETE_CONFIRM_NO">NO, DO NOT LINK</div>
+                        </div>
+
+                        <div class="table_cell" cos-disabled="!confirmLink">
+                            <div class="blue_button yes" ng-click="confirm()" satranslate="MODALS.TOPIC_DELETE_CONFIRM_YES">YES, LINK ACCOUNTS</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
+
+</div>
