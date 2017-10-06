@@ -61,6 +61,21 @@ angular
             return $http.post(path, data).then(success, defaultError);
         };
 
+        sAuth.linkMobiilIdInit = function (pid, phoneNumber) {
+            var data = {
+                pid: pid,
+                phoneNumber: phoneNumber
+            };
+
+            var success = function (response) {
+                return response.data.data;
+            };
+
+
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/link/mid');
+            return $http.post(path, data).then(success, defaultError);
+        };
+
         sAuth.loginMobiilIdStatus = function (token) {
             var success = function (response) {
                 if ([20002, 20003].indexOf(response.data.status.code) > -1) {
@@ -71,6 +86,19 @@ angular
             };
 
             var path = sLocation.getAbsoluteUrlApi('/api/auth/mobile/status');
+            return $http.get(path, {params: {token: token}}).then(success, defaultError);
+        };
+
+        sAuth.linkMobiilIdStatus = function (token) {
+            var success = function (response) {
+                if ([20002, 20003].indexOf(response.data.status.code) > -1) {
+                    sAuth.user.loggedIn = true;
+                    angular.extend(sAuth.user, response.data.data);
+                }
+                return response;
+            };
+
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/link/mid/callback');
             return $http.get(path, {params: {token: token}}).then(success, defaultError);
         };
 
@@ -95,13 +123,13 @@ angular
             return $http.get(path).then(defaultSuccess, defaultError);
         };
 
-        sAuth.linkInfo = function (target, token) {
-            var path = sLocation.getAbsoluteUrlApi('/api/auth/link/:target/info').replace(':target', target);
+        sAuth.linkInfo = function (connectionId, token) {
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/link/:connectionId/info').replace(':connectionId', connectionId);
             return $http.get(path, {params: {token: token}}).then(defaultSuccess, defaultError);
         };
 
-        sAuth.confirmLinkAccount = function (target, token) {
-            var path = sLocation.getAbsoluteUrlApi('/api/auth/link/:target?token=:token').replace(':target', target).replace(':token', token);
+        sAuth.confirmLinkAccount = function (connectionId, token) {
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/link/:connectionId?token=:token').replace(':connectionId', connectionId).replace(':token', token);
             return $http.post(path).then(defaultSuccess, defaultError);
         };
 
@@ -132,6 +160,26 @@ angular
                 .get('https://id.citizenos.com/authorize', {withCredentials: true}) // withCredentials so that client certificate is sent
                 .then(function (response) {
                     var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
+                    return $http.post(path, response.data.data);
+                })
+                .then(success, defaultError);
+        };
+
+        sAuth.linkIdCard = function () {
+            var success = function (response) {
+                console.log(response.data);
+                $log.debug('Auth.linkId', 'success');
+                if ([20002, 20003].indexOf(response.data.status.code) > -1) {
+                    /*sAuth.user.loggedIn = true;
+                    angular.extend(sAuth.user, response.data.data);*/
+                }
+                return response;
+            };
+
+            return $http
+                .get('https://id.citizenos.com/authorize', {withCredentials: true}) // withCredentials so that client certificate is sent
+                .then(function (response) {
+                    var path = sLocation.getAbsoluteUrlApi('/api/auth/link/id');
                     return $http.post(path, response.data.data);
                 })
                 .then(success, defaultError);

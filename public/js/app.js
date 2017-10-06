@@ -225,17 +225,17 @@
                 })
                 .state('link', {
                     parent: 'main',
-                    url: '/link?token',
+                    url: '/link/:connectionId?token',
                     template:'<div ui-view></div>',
                     resolve: {
                         linkData: function ($state, $q, $stateParams, $cookies, sAuth, $log) {
-                            var target = $cookies.get('linkToTarget');
-                            console.log('RESOLVE', target);
-                            if(!target) {
+                            var connectionId = $stateParams.connectionId;// $cookies.get('linkToTarget');
+                            console.log('RESOLVE', connectionId);
+                            if(!connectionId) {
                                 return ;
                             }
                             return sAuth
-                                    .linkInfo(target, $stateParams.token)
+                                    .linkInfo(connectionId, $stateParams.token)
                                     .then(function (res) {
                                         console.log(res);
                                         return $q.resolve(res.data);
@@ -247,8 +247,10 @@
                     },
                     controller: ['$state', '$stateParams', '$cookies', '$timeout', 'sAuth', 'ngDialog', 'linkData', function ($state, $stateParams, $cookies, $timeout, sAuth, ngDialog, linkData) {
                         console.log(linkData)
-                        var target = $cookies.get('linkToTarget');
-                        if(!target) {
+                        var connectionId = $stateParams.connectionId; //$cookies.get('linkToTarget');
+                        if(!connectionId) {
+                            $state.go('home');
+                        } else if (!$stateParams.token) {
                             $state.go('home');
                         }
                         ngDialog
@@ -258,37 +260,13 @@
                             })
                             .then(function () {
                                 sAuth
-                                    .confirmLinkAccount(target ,$stateParams.token)
+                                    .confirmLinkAccount(connectionId ,$stateParams.token)
                                     .then(function (res) {
                                         $state.go('home');
                                     })
                             }, function () {
                                 $state.go('home');
                             });
-                        /*sAuth
-                            .linkInfo(target, $stateParams.token)
-                            .then(function(response) {
-
-                                /*ngDialog
-                                    .openConfirm({
-                                        template: '/views/modals/my_account_link_confirm.html',
-                                        data: response.data
-                                    })
-                                    .then(function () {
-                                        sAuth
-                                            .confirmLinkAccount(target ,$stateParams.token)
-                                            .then(function (res) {
-                                                $timeout(function () {
-                                                    console.log('TIMEOUT');
-                                                    $state.go('home');
-                                                });
-                                            })
-                                    }, function () {
-                                        $timeout(function () {
-                                            $state.go('home');
-                                        });
-                                    });*/
-                        //    })
 
                     }]
                 })

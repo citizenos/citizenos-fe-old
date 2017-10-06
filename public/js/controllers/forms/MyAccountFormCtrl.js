@@ -87,28 +87,37 @@ angular
             $location.search({tab: tab});
         };
 
-        $scope.mergePartner = function (partnerId) {
-            var url = '/api/auth/link/:target'
-                .replace(':target', partnerId);
+        $scope.mergePartner = function (connectionId) {
+            var url = '/api/auth/link/:connectionId'
+                .replace(':connectionId', connectionId);
              $window.location.href = url;
         };
 
-        $scope.linkAccount = function (target) {
-            var url = '/api/auth/link/:target'
-                .replace(':target', target);
-            var now = new Date();
-            now.setMinutes(now.getMinutes() + 5);
-            $cookies.put('linkToTarget', target, {expires: now});
-            $window.location.href = sLocation.getAbsoluteUrlApi(url);
+        $scope.linkAccount = function (connectionId) {
+            if(connectionId === 'esteid') {
+                ngDialog
+                    .open({
+                        template: '/views/modals/link_esteid.html',
+                        scope: $scope // Pass on $scope so that I can access AppCtrl
+                    });
+            } else {
+                var url = '/api/auth/link/:connectionId'
+                .replace(':connectionId', connectionId);
+                var now = new Date();
+                now.setMinutes(now.getMinutes() + 5);
+                $cookies.put('linkToTarget', connectionId, {expires: now});
+                $window.location.href = sLocation.getAbsoluteUrlApi(url);
+            }
+
         };
 
-        $scope.unlinkAccount = function (target) {
-            console.log(target);
+        $scope.unlinkAccount = function (connectionId) {
+            console.log(connectionId);
         };
 
-        $scope.isLinked = function (target) {
+        $scope.isLinked = function (connectionId) {
             var item = _.find($scope.linkedAccounts, function (item) {
-                return item.connectionId === target;
+                return item.connectionId === connectionId;
             });
             return !!item;
         }
