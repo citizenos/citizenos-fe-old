@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'UserVoice', function ($scope, $rootScope, $log, $state, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, UserVoice) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'UserVoice', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, UserVoice) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -200,6 +200,13 @@ angular
             $timeout(function () {
                 $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady', $state.$current.name);
                 window.prerenderReady = true;
+
+                if ($window.ga) {
+                    $window.ga('send', {
+                        hitType: 'pageview',
+                        page: $location.url()
+                    });
+                }
 
                 $scope.app.showSearch = false;
                 $scope.app.showSearchResults = false;
