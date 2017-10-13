@@ -130,7 +130,7 @@ angular
 
         sAuth.confirmLinkAccount = function (connectionId, token) {
             var path = sLocation.getAbsoluteUrlApi('/api/auth/link/:connectionId?token=:token').replace(':connectionId', connectionId).replace(':token', token);
-            return $http.post(path).then(defaultSuccess, defaultError);
+            return $http.get(path).then(defaultSuccess, defaultError);
         };
 
         sAuth.loginSmartIdStatus = function (token) {
@@ -183,6 +183,19 @@ angular
                     return $http.post(path, response.data.data);
                 })
                 .then(success, defaultError);
+        };
+
+        sAuth.link = function (connectionId) {
+            var path = sLocation.getAbsoluteUrlApi('/api/auth/link/:connectionId/init'.replace(':connectionId', connectionId));
+            location.href = path;
+        }
+
+        sAuth.unLink = function (connectionId, connectionUserId) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/connections/:connectionId/:connectionUserId'.replace(':connectionId', connectionId).replace(':connectionUserId', connectionUserId));
+
+            return $http
+                .delete(path)
+                .then(defaultSuccess, defaultError);
         };
 
         sAuth.logout = function () {

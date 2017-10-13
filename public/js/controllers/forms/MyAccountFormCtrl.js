@@ -13,7 +13,7 @@ angular
             imageUrl: null
         };
 
-        $scope.linkedAccounts = {}
+        $scope.linkedAccounts = [];
 
         $scope.tabSelected = $stateParams.tab || 'linking';
 
@@ -22,6 +22,7 @@ angular
 
         $scope.getLinkedAccounts = function () {
             $scope.linkedAccounts = UserConnection.query();
+            console.log($scope.linkedAccounts);
         };
 
         $scope.getLinkedAccounts();
@@ -101,18 +102,24 @@ angular
                         scope: $scope // Pass on $scope so that I can access AppCtrl
                     });
             } else {
-                var url = '/api/auth/link/:connectionId'
-                .replace(':connectionId', connectionId);
-                var now = new Date();
-                now.setMinutes(now.getMinutes() + 5);
-                $cookies.put('linkToTarget', connectionId, {expires: now});
-                $window.location.href = sLocation.getAbsoluteUrlApi(url);
+                sAuth
+                    .link(connectionId)
             }
 
         };
 
         $scope.unlinkAccount = function (connectionId) {
-            console.log(connectionId);
+            var connectionUser= _.find($scope.linkedAccounts, function (connection ) {
+                return connection.connectionId === connectionId;
+            });
+            if(connectionUser) {
+               sAuth
+                .unLink(connectionId, connectionUser.connectionUserId)
+                .then(function () {
+                    $scope.getLinkedAccounts();
+                });
+            }
+
         };
 
         $scope.isLinked = function (connectionId) {
