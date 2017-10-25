@@ -401,10 +401,10 @@
                                         <div class="profile_image_wrapper dark">
                                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
                                             <div class="account_picture">
-                                                <img ng-src="{{topic.vote.delegation.imageUrl}}">
-                                                <div class="profile_image_filler">
-                                                    <div class="table_cell">
-                                                        ML
+                                                <img ng-if="topic.vote.delegation.imageUrl" ng-src="{{topic.vote.delegation.imageUrl}}">
+                                                <div ng-if="!topic.vote.delegation.imageUrl" class="profile_image_filler">
+                                                    <div class="table_cell" cos-initials="topic.vote.delegation.name | limitTo: 1">
+                                                        C
                                                     </div>
                                                     <div class="profile_circle"></div>
                                                 </div>
@@ -435,13 +435,13 @@
                             </div>
 
                             <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
-                            <a ng-if="topic.vote.authType===voteAuthTypes.hard" ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank" download>
-                                <div class="voting_button voting_button_blue">
+                            <a ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank" download>
+                                <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
                                 </div>
                             </a>
-                            <a ng-if="topic.vote.authType===voteAuthTypes.soft" ng-href="{{topic.vote.downloads.zipFinal}}" target="_blank" download>
-                                <div class="voting_button voting_button_blue">
+                            <a ng-if="topic.vote.authType===voteAuthTypes.soft && topic.vote.downloads.zipFinal" ng-href="{{topic.vote.downloads.zipFinal}}" target="_blank" download>
+                                <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_ZIP">Download full ZIP</div>
                                 </div>
                             </a>
