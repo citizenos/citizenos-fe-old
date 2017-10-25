@@ -87,54 +87,79 @@ angular
             ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_send_to_vote_confirm.html'
-                }).then(function () {
-                if (!$scope.topic.voteId && !$scope.topic.vote) {
-                    $scope.app.topics_settings = false;
-                    $state.go('topics.view.votes.create', {topicId: $scope.topic.id});
-                } else if (($scope.topic.voteId || ($scope.topic.vote && $scope.topic.vote.id)) && $scope.topic.status !== $scope.STATUSES.voting) {
-                    $log.debug('sendToVote');
-                    $scope.topic.status = $scope.STATUSES.voting;
-                    $scope.topic
-                        .$patch()
-                        .then(function () {
-                            $scope.app.topics_settings = false;
-                            if ($state.is('topics.view')) {
-                                $state.go('topics.view.votes.view', {topicId: $scope.topic.id, voteId: $scope.topic.vote.id, editMode: null}, {reload: true});
-                            }
-                        });
-                }
-            }, angular.noop);
+                })
+                .then(function () {
+                    if (!$scope.topic.voteId && !$scope.topic.vote) {
+                        $scope.app.topics_settings = false;
+                        $state.go('topics.view.votes.create', {topicId: $scope.topic.id});
+                    } else if (($scope.topic.voteId || ($scope.topic.vote && $scope.topic.vote.id)) && $scope.topic.status !== $scope.STATUSES.voting) {
+                        $log.debug('sendToVote');
+                        var oldStatus = $scope.topic.status;
+                        $scope.topic.status = $scope.STATUSES.voting;
+                        return $scope.topic
+                            .$patch()
+                            .then(
+                                function () {
+                                    $scope.app.topics_settings = false;
+                                    if ($state.is('topics.view')) {
+                                        $state.go('topics.view.votes.view', {topicId: $scope.topic.id, voteId: $scope.topic.vote.id, editMode: null}, {reload: true});
+                                    }
+                                }, function (err) {
+                                    $log.error('Failed to update Topic status', err);
+                                    $scope.topic.status = oldStatus;
+                                });
+                    }
+                }, angular.noop);
         };
 
         $scope.sendToFollowUp = function () {
             ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_send_to_followUp_confirm.html'
-                }).then(function () {
-                $scope.topic.status = $scope.STATUSES.followUp;
-                $scope.topic
-                    .$patch()
-                    .then(function () {
-                        $scope.app.topics_settings = false;
-                        if ($state.is('topics.view.votes.view')) {
-                            $state.go('topics.view', {topicId: $scope.topic.id, editMode: null}, {reload: true});
-                        }
-                    })
-            }, angular.noop);
+                })
+                .then(function () {
+                    var oldStatus = $scope.topic.status;
+                    $scope.topic.status = $scope.STATUSES.followUp;
+                    return $scope.topic
+                        .$patch()
+                        .then(
+                            function () {
+                                $scope.app.topics_settings = false;
+                                if ($state.is('topics.view.votes.view')) {
+                                    $state.go('topics.view', {topicId: $scope.topic.id, editMode: null}, {reload: true});
+                                }
+                            },
+                            function (err) {
+                                $log.error('Failed to update Topic status', err);
+                                $scope.topic.status = oldStatus;
+                            }
+                        );
+                }, angular.noop);
         };
 
         $scope.closeTopic = function () {
             ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_close_confirm.html'
-                }).then(function () {
-                $scope.topic.status = $scope.STATUSES.closed;
-                $scope.topic.$patch();
-                $scope.app.topics_settings = false;
-                if ($state.is('topics.view.votes.view')) {
-                    $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true});
-                }
-            }, angular.noop);
+                })
+                .then(function () {
+                    var oldStatus = $scope.topic.status;
+                    $scope.topic.status = $scope.STATUSES.closed;
+                    return $scope.topic
+                        .$patch()
+                        .then(
+                            function () {
+                                $scope.app.topics_settings = false;
+                                if ($state.is('topics.view.votes.view')) {
+                                    $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true});
+                                }
+                            },
+                            function (err) {
+                                $log.error('Failed to update Topic status', err);
+                                $scope.topic.status = oldStatus;
+                            }
+                        );
+                }, angular.noop);
         };
 
         $scope.loadTopicSocialMentions = function () {
@@ -174,7 +199,7 @@ angular
                         $scope.topicComments.count.con = _.filter(comments, {type: TopicComment.COMMENT_TYPES.con}).length;
                         $scope.topicComments.rows = comments;
                         $scope.topicComments.rows.forEach(function (comment, key) {
-                            comment.replies.rows.forEach( function (reply,rkey) {
+                            comment.replies.rows.forEach(function (reply, rkey) {
                                 reply = new TopicComment(reply);
                                 $scope.topicComments.rows[key].replies.rows[rkey] = reply;
                             })
@@ -431,7 +456,7 @@ angular
         };
 
         $scope.updateComment = function (comment, editType) {
-            if(comment.editType != comment.type || comment.subject != comment.editSubject || comment.text != comment.editText){
+            if (comment.editType != comment.type || comment.subject != comment.editSubject || comment.text != comment.editText) {
                 comment.subject = comment.editSubject;
                 comment.text = comment.editText;
 
@@ -461,11 +486,11 @@ angular
         };
 
         $scope.getParentAuthor = function (rootComment, parentId) {
-            if(parentId === rootComment.id) {
+            if (parentId === rootComment.id) {
                 return rootComment.creator.name;
             } else {
-                for(var i = 0; i < rootComment.replies.rows.length; i++) {
-                    if(rootComment.replies.rows[i].id === parentId) {
+                for (var i = 0; i < rootComment.replies.rows.length; i++) {
+                    if (rootComment.replies.rows[i].id === parentId) {
                         return rootComment.replies.rows[i].creator.name;
                         break;
                     }
@@ -479,55 +504,55 @@ angular
             $log.debug('TopicCtrl.doShowDeleteComment()');
 
             ngDialog.openConfirm({
-                template: '/views/modals/topic_delete_comment.html',
-                data: {
-                    comment: comment,
-                    topic: $scope.topic
-                }
-            })
-            .then(function () {
-                comment.topicId = $scope.topic.id;
-                comment.$delete()
-                    .then(function () {
-                        $scope.loadTopicComments($scope.topicComments.orderBy);
-                    }, angular.noop);
-            });
+                    template: '/views/modals/topic_delete_comment.html',
+                    data: {
+                        comment: comment,
+                        topic: $scope.topic
+                    }
+                })
+                .then(function () {
+                    comment.topicId = $scope.topic.id;
+                    comment.$delete()
+                        .then(function () {
+                            $scope.loadTopicComments($scope.topicComments.orderBy);
+                        }, angular.noop);
+                });
         };
 
         $scope.goToParentComment = function (rootComment, parent) {
 
-            if(!parent.id || !parent.hasOwnProperty('version')) {
+            if (!parent.id || !parent.hasOwnProperty('version')) {
                 return
             }
 
-            var comment = angular.element(document.getElementById(parent.id+parent.version));
+            var comment = angular.element(document.getElementById(parent.id + parent.version));
 
-            if(comment.length === 0) {
-                for(var i = 0; i < $scope.topicComments.rows.length; i++) {
-                    if($scope.topicComments.rows[i].id === parent.id ) {
+            if (comment.length === 0) {
+                for (var i = 0; i < $scope.topicComments.rows.length; i++) {
+                    if ($scope.topicComments.rows[i].id === parent.id) {
                         $scope.topicComments.rows[i].showEdits = true;
                         $timeout(function () {
-                            comment = angular.element(document.getElementById(parent.id+parent.version));
+                            comment = angular.element(document.getElementById(parent.id + parent.version));
                             $scope.app.scrollToAnchor(comment[0].id);
                             comment.addClass('highlight');
-                            $timeout(function() {
+                            $timeout(function () {
                                 comment.removeClass('highlight');
-                        }, 500);
-                        },100);
+                            }, 500);
+                        }, 100);
                         break;
                     } else {
-                        for(var j = 0; j < $scope.topicComments.rows[i].replies.rows.length; j++ ) {
+                        for (var j = 0; j < $scope.topicComments.rows[i].replies.rows.length; j++) {
                             if ($scope.topicComments.rows[i].replies.rows[j].id === parent.id) {
                                 $scope.topicComments.rows[i].replies.rows[j].showEdits = true;
                                 i = $scope.topicComments.rows.length;
                                 $timeout(function () {
-                                    comment = angular.element(document.getElementById(parent.id+parent.version));
+                                    comment = angular.element(document.getElementById(parent.id + parent.version));
                                     $scope.app.scrollToAnchor(comment[0].id);
                                     comment.addClass('highlight');
-                                    $timeout(function() {
+                                    $timeout(function () {
                                         comment.removeClass('highlight');
-                                }, 500);
-                                },100);
+                                    }, 500);
+                                }, 100);
 
                                 break;
                             }
@@ -537,15 +562,16 @@ angular
             } else {
                 $scope.app.scrollToAnchor(comment[0].id);
                 comment.addClass('highlight');
-                $timeout(function() {
+                $timeout(function () {
                     comment.removeClass('highlight');
                 }, 500);
             }
         };
 
-        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams){
-            if(fromState.name == 'topics.view.files') {
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            if (fromState.name == 'topics.view.files') {
                 $scope.loadTopicAttachments();
-            };
+            }
+            ;
         });
     }]);
