@@ -94,20 +94,17 @@ angular
                         $state.go('topics.view.votes.create', {topicId: $scope.topic.id});
                     } else if (($scope.topic.voteId || ($scope.topic.vote && $scope.topic.vote.id)) && $scope.topic.status !== $scope.STATUSES.voting) {
                         $log.debug('sendToVote');
-                        var oldStatus = $scope.topic.status;
-                        $scope.topic.status = $scope.STATUSES.voting;
-                        return $scope.topic
+                        return new Topic({id: $scope.topic.id, status: $scope.STATUSES.voting})
                             .$patch()
                             .then(
-                                function () {
+                                function (topicPatched) {
+                                    $scope.topic.status = topicPatched.status;
                                     $scope.app.topics_settings = false;
                                     if ($state.is('topics.view')) {
                                         $state.go('topics.view.votes.view', {topicId: $scope.topic.id, voteId: $scope.topic.vote.id, editMode: null}, {reload: true});
                                     }
-                                }, function (err) {
-                                    $log.error('Failed to update Topic status', err);
-                                    $scope.topic.status = oldStatus;
-                                });
+                                }
+                            );
                     }
                 }, angular.noop);
         };
@@ -118,20 +115,15 @@ angular
                     template: '/views/modals/topic_send_to_followUp_confirm.html'
                 })
                 .then(function () {
-                    var oldStatus = $scope.topic.status;
-                    $scope.topic.status = $scope.STATUSES.followUp;
-                    return $scope.topic
+                    return new Topic({id: $scope.topic.id, status: $scope.STATUSES.followUp})
                         .$patch()
                         .then(
-                            function () {
+                            function (topicPatched) {
+                                $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
                                 if ($state.is('topics.view.votes.view')) {
                                     $state.go('topics.view', {topicId: $scope.topic.id, editMode: null}, {reload: true});
                                 }
-                            },
-                            function (err) {
-                                $log.error('Failed to update Topic status', err);
-                                $scope.topic.status = oldStatus;
                             }
                         );
                 }, angular.noop);
@@ -143,20 +135,15 @@ angular
                     template: '/views/modals/topic_close_confirm.html'
                 })
                 .then(function () {
-                    var oldStatus = $scope.topic.status;
-                    $scope.topic.status = $scope.STATUSES.closed;
-                    return $scope.topic
+                    return new Topic({id: $scope.topic.id, status: $scope.STATUSES.closed})
                         .$patch()
                         .then(
-                            function () {
+                            function (topicPatched) {
+                                $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
                                 if ($state.is('topics.view.votes.view')) {
                                     $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true});
                                 }
-                            },
-                            function (err) {
-                                $log.error('Failed to update Topic status', err);
-                                $scope.topic.status = oldStatus;
                             }
                         );
                 }, angular.noop);
