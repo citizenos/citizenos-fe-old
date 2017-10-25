@@ -1508,10 +1508,10 @@
                         <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.NAV_HEADING">OPTIONS</div>
                     </div>
                     <div class="options_content">
-                        <div ng-if="!(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToVote()" ng-click="sendToVote()"
+                        <div ng-if="!(topic.vote.id && topic.status===STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToVote()" ng-click="sendToVote()"
                              translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_VOTE">Send to vote
                         </div>
-                        <div ng-if="(topic.vote.id && topic.status==STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToFollowUp()" ng-click="sendToFollowUp()"
+                        <div ng-if="(topic.vote.id && topic.status===STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToFollowUp()" ng-click="sendToFollowUp()"
                              translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow up
                         </div>
                         <div class="blue_link" cos-disabled="!topic.canUpdate()" ng-click="closeTopic()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_CLOSE_TOPIC">Close topic</div>
