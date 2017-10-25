@@ -417,8 +417,9 @@ table, .pretend_table {
             &.active {
                 cursor: pointer;
                 .table_cell {
+                    color: $white;
+                    background: $deep_sky_blue;
                     &.right_side {
-                        color: $white;
                         background: $deep_sky_blue;
                     }
                 }
@@ -439,7 +440,7 @@ table, .pretend_table {
                 }
 
                 &.right_side {
-                    background: none;
+                    background: transparent;
                     border-top: 2px solid $deep_sky_blue;
                     border-right: 2px solid $deep_sky_blue;
                     border-bottom: 2px solid $deep_sky_blue;
