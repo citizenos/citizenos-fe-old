@@ -11,7 +11,7 @@ angular
             },
             'responseError': function (response) {
                 if (response.config.url.match(API_REQUEST_REGEX) && response.status === 401) {
-                    $window.location = sLocation.getAbsoluteUrl('/account/login') + '?redirectSuccess=' + $window.location.pathname + '?' + $window.location.search;
+                    $window.location = sLocation.getAbsoluteUrl('/account/login', null, {redirectSuccess: sLocation.getAbsoluteUrl($window.location.pathname)}) + '?redirectSuccess=' + $window.location.search;
                     return;
                 }
 
