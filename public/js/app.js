@@ -56,6 +56,7 @@
             // Send cookies with API request
             $httpProvider.defaults.withCredentials = true;
 
+            $httpProvider.interceptors.push('cosHttpApiUnauthorizedInterceptor');
             $httpProvider.interceptors.push('cosHttpApiErrorInterceptor');
 
             // This is to enable resolving link to state later
