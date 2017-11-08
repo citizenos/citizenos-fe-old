@@ -117,7 +117,7 @@ angular
             'responseError': function (response) {
                 sNotification.removeAll();
 
-                if (response.config.url.match(API_REQUEST_REGEX)) {
+                if (response.config.url.match(API_REQUEST_REGEX) && response) {
                     try {
                         errorsToKeys(response);
                     } catch (err) {
