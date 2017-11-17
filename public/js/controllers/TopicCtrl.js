@@ -6,6 +6,9 @@ angular
         $log.debug('TopicCtrl', $scope);
 
         $scope.topic = rTopic;
+        if($scope.topic) {
+            $scope.topic.padUrl = $scope.topic.padUrl+'&theme=default';
+        }
         $scope.ATTACHMENT_SOURCES = TopicAttachment.SOURCES;
 
         $scope.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
