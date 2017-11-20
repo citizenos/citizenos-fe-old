@@ -21,13 +21,14 @@ angular
         init();
 
         sTranslate.setLanguage = function (language) {
-            $log.debug('sTranslate', 'setLanguage', language);
-            if (sTranslate.checkLanguageIsValid(language) && $translate.use() !== language) {
-                $log.debug('setLanguage', language);
-                sTranslate.currentLanguage = language;
-                return $translate.use(language);
-            }
-            return $translate.use();
+            $translate.onReady(function () {
+                if (sTranslate.checkLanguageIsValid(language) && $translate.use() !== language) {
+                    $log.debug('setLanguage', language);
+                    sTranslate.currentLanguage = language;
+                    return $translate.use(language);
+                }
+                return $translate.use();
+            });
         };
 
         sTranslate.switchLanguage = function (language) {
@@ -40,11 +41,13 @@ angular
         };
 
         sTranslate.debugMode = function () {
-            if ($translate.use() !== debugLang) {
-                $translate.use(debugLang);
-            } else {
-                $translate.use(sTranslate.currentLanguage);
-            }
+            $translate.onReady(function () {
+                if ($translate.use() !== debugLang) {
+                    $translate.use(debugLang);
+                } else {
+                    $translate.use(sTranslate.currentLanguage);
+                }
+            });
         };
 
         sTranslate.checkLanguageIsValid = function (language) {
