@@ -23,7 +23,6 @@ angular
         sTranslate.setLanguage = function (language) {
             $translate.onReady(function () {
                 if (sTranslate.checkLanguageIsValid(language) && $translate.use() !== language) {
-                    console.log('SWITCH');
                     $log.debug('setLanguage', language);
                     sTranslate.currentLanguage = language;
                     return $translate.use(language);
@@ -48,7 +47,7 @@ angular
                 } else {
                     $translate.use(sTranslate.currentLanguage);
                 }
-            }
+            });
         };
 
         sTranslate.checkLanguageIsValid = function (language) {
