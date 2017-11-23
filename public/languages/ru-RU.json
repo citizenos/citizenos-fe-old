@@ -21,7 +21,7 @@
   "TXT_REPORT_TYPES_NULL": "Select a report reason",
   "TXT_REPORT_TYPES_ABUSE": "Is abusive or insulting",
   "TXT_REPORT_TYPES_OBSCENE": "Contains obscene language",
-  "TXT_REPORT_TYPES_SPAM": "Contains spam or is unrelated to topic",
+  "TXT_REPORT_TYPES_SPAM": "Содержит спам или не имеет отношения к теме",
   "TXT_REPORT_TYPES_HATE": "Contains hate speech",
   "TXT_REPORT_TYPES_NETIQUETTE": "Infringes (n)etiquette",
   "TXT_REPORT_TYPES_DUPLICATE": "Is a duplicate",
