@@ -1,0 +1,20 @@
+<div class="table">
+    <div class="v_align_cell">
+        <div class="title_area">
+            <h1 translate="MSG_ERROR_40400">Sorry, you haven't got sufficient permissions to access the resource :(</h1>
+            <h2 translate="VIEWS.401.HEADING_YOU_MAY_RECOVER" ng-if="!app.user.loggedIn">Still you may recover from the unfortunate event by</h2>
+        </div>
+        <div class="button_area">
+            <div class="big_button" ng-if="!app.user.loggedIn">
+                <div class="button_cell" ng-click="app.doShowLogin()">
+                    <div class="topic_text" translate="VIEWS.401.BTN_LOGIN">Logging in</div>
+                </div>
+            </div>
+            <!--div class="big_button" ng-if="app.user.loggedIn" cos-disabled="true">
+                <div class="button_cell">
+                    <div class="topic_text" translate="VIEWS.401.BTN_REQUEST_ACCESS">Requesting access to the resource</div>
+                </div>
+            </div-->
+        </div>
+    </div>
+</div>

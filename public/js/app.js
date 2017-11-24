@@ -149,7 +149,7 @@
                     if (stateNext) {
                         $state.go(stateNext.name, stateNext.params);
                     } else {
-                        $state.go('home', {language: useLang});
+                        $state.go('error.404', {language: useLang});
                     }
                 }
             });
@@ -218,11 +218,7 @@
                 .state('error.404', {
                     url: '/404',
                     parent: 'error',
-                    template: '<div ui-view></div>',
-                    controller: ['$scope', '$state', 'sNotification', function($scope, $state, sNotification) {
-                        $scope.app.notifications.messages['error'] = {'MSG_ERROR_40400':'MSG_ERROR_40400'};
-                        $state.go('home');
-                    }]
+                    templateUrl: '/views/404.html'
                 })
                 .state('account', {
                     url: '/account',

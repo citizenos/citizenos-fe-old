@@ -36,6 +36,11 @@ angular
             return _getAbsoluteUrl(baseUrlApi, path, params, query);
         };
 
+        sLocation.currentUrl = function () {
+            var baseUrl = sLocation.getBaseUrl();
+            return baseUrl + $location.url();
+        };
+
         function _getAbsoluteUrl(baseUrl, path, params, query) {
 
             if (params) {
