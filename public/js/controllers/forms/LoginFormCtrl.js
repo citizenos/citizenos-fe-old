@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', 'ngDialog', 'sAuth', 'sLocation', 'sNotification', function ($scope, $log, $state, $stateParams, $window, ngDialog, sAuth, sLocation, sNotification) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$location', 'ngDialog', 'sAuth', 'sLocation', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $location, ngDialog, sAuth, sLocation, sNotification) {
         $log.debug('LoginFormCtrl');
 
         $scope.LOGIN_PARTNERS = {
@@ -69,11 +69,11 @@ angular
             }
 
             var url = sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', {partnerId: partnerId});
-
             if ($stateParams.redirectSuccess) {
                 url += '?redirectSuccess=' + encodeURIComponent($stateParams.redirectSuccess);
             } else {
-                url += '?redirectSuccess=' + $state.href($state.current.name, $state.params, {absolute: true}) + '?'; // HACK: + '?' avoids digest loop on Angular side for Google callbacks.
+                var redirectSuccess = sLocation.currentUrl();
+                url += '?redirectSuccess=' + redirectSuccess + '?'; // HACK: + '?' avoids digest loop on Angular side for Google callbacks.
             }
 
             $window.location.href = url;
