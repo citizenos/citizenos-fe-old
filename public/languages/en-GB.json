@@ -683,5 +683,6 @@
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Attachment is too big! Maximum size allowed is 50MB.",
   "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Attachment link is undefined!",
-  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Attachment name is undefined!"
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Attachment name is undefined!",
+  "CROWDIN_TEST_ADD_KEY_AND_DELETE_LATER": "TEMP TRANSLATION key will be deleted"
 }
