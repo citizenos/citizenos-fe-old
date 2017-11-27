@@ -620,7 +620,7 @@
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40017": "Your certificate has been revoked. Please contact your service provider.",
   "MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020": "Incorrect phone number and/or personal identification code. Phone number has to include the country code.",
   "MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021": "Mobile-ID functionality not supported. Please double check phone number and/or id code.",
-  "MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022": "Your certificate has been suspended or revoked. Please contact your service provider.",
+  "MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022": "Your certficate has been suspended or revoked. Please contact your service provider.",
   "MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40023": "Your certificate has not been activated. Please try again later. If the problem persists, contact your service provider.",
   "MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40024": "Your certificate has been suspended. Please contact your service provider.",
   "MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40025": "Your certificate has expired. Please contact your service provider.",
@@ -683,5 +683,6 @@
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Attachment is too big! Maximum size allowed is 50MB.",
   "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Attachment link is undefined!",
-  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Attachment name is undefined!"
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Attachment name is undefined!",
+  "CROWDIN_TEST": "NEW KEY TEST"
 }
