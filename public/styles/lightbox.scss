@@ -856,7 +856,11 @@
                 #lightbox_header_text {
                     height: 80px !important;
                     .title_description {
-                        font-style: initial !important;
+                        margin-top: 25px;
+                        overflow: hidden;
+                        position: absolute;
+                        padding-right: 77px;
+                        font-style: italic;
                     }
                 }
 

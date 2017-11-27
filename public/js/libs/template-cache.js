@@ -5,6 +5,7 @@ angular
     .run(['$log', '$http', '$templateCache', function ($log, $http, $templateCache) {
         var templates = [
             '/views/401.html',
+            '/views/404.html',
             '/views/about.html',
             '/views/home.html',
             '/views/my.html',
