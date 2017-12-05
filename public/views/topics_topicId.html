@@ -955,10 +955,24 @@
                                                     </div>
                                                     <!-- END COMMENT HEADER -->
                                                     <!-- EDIT COMMENT -->
-                                                    <div class="argument_edit_wrap" ng-if="comment.showEdit">
-                                                        <input ng-if="comment.showEdit" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_SUBJECT" ng-model="comment.editSubject" class="gray_borders">
+                                                    <div class="argument_edit_wrap" ng-if="comment.showEdit"  ng-controller="TopicCommentCreateFormCtrl">
+                                                        <input id="comment_edit_subject" ng-if="comment.showEdit" ng-keyup="commentSubjectLengthCheck(comment, comment.editSubject)" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_SUBJECT" ng-model="comment.editSubject" class="gray_borders" ng-class="{'error_input': comment.errors.subject}" maxlength="{{maxLengthSubject}}">
 
-                                                        <textarea ng-if="comment.showEdit" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_TEXT" class="gray_borders" placeholder="Edit your reply here..." ng-model="comment.editText"></textarea>
+                                                        <label for="comment_edit_subject" class="error_label" ng-if="comment.errors.subject">
+                                                            <div class="table_cell">
+                                                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                                                <span translate="{{comment.errors.subject}}"></span>
+                                                            </div>
+                                                        </label>
+
+                                                        <textarea id="comment_edit" ng-if="comment.showEdit" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_TEXT" class="gray_borders" placeholder="Edit your reply here..." ng-model="comment.editText" ng-keyup="commentTextLengthCheck(comment, comment.editText)" ng-class="{'error_input': comment.errors.text}" maxlength="{{maxLengthText}}"></textarea>
+
+                                                        <label for="comment_edit" class="error_label" ng-if="comment.errors.text">
+                                                            <div class="table_cell">
+                                                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                                                <span translate="{{comment.errors.text}}"></span>
+                                                            </div>
+                                                        </label>
 
                                                         <div class="argument_footer_with_buttons" ng-if="comment.showEdit">
                                                             <div class="table_cell">
@@ -1118,8 +1132,8 @@
 
                                                 <!-- REPLY TO COMMENT  -->
                                                 <div class="post_argument_wrap" ng-if="comment.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                                                    <textarea id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-class="{'error_input': form.errors.text}"
-                                                              placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}"></textarea>
+                                                    <textarea id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-keyup="commentTextLengthCheck(form, form.editText)"  ng-class="{'error_input': form.errors.text}"
+                                                              placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" maxlength="{{maxLengthText}}"></textarea>
                                                     <label for="argument_con_reply_text" class="error_label" ng-if="form.errors.text">
                                                         <div class="table_cell">
                                                             <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -1215,9 +1229,14 @@
                                                     </div>
                                                     <!-- END REPLY HEADER -->
                                                     <!-- REPLY EDIT-->
-                                                    <div class="argument_edit_wrap" ng-if="reply.showEdit">
-                                                        <textarea class="gray_borders" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_REPLY" placeholder="Edit your reply here..." ng-model="reply.editText"></textarea>
-
+                                                    <div class="argument_edit_wrap" ng-if="reply.showEdit" ng-controller="TopicCommentCreateFormCtrl">
+                                                        <textarea id="reply_edit" class="gray_borders" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_REPLY" ng-keyup="commentTextLengthCheck(reply, reply.editText)" ng-class="{'error_input': reply.errors.text}" placeholder="Edit your reply here..." ng-model="reply.editText" maxlength="{{maxLengthText}}"></textarea>
+                                                        <label for="reply_edit" class="error_label" ng-if="reply.errors.text">
+                                                            <div class="table_cell">
+                                                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                                                <span translate="{{reply.errors.text}}"></span>
+                                                            </div>
+                                                        </label>
                                                         <div ng-if="reply.showEdit" class="argument_footer_with_buttons">
                                                             <div class="table_cell">
                                                                 <div class="blue_button" ng-click="updateComment(reply)">
@@ -1362,9 +1381,9 @@
                                                 <!-- REPLY TO REPLY -->
                                                 <div class="post_argument_wrap" ng-if="reply.showReply" ng-controller="TopicCommentCreateFormCtrl">
                                                     <form name="argumentReplyForm">
-                                                        <textarea id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-class="{'error_input': form.errors.text}"
+                                                        <textarea id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-keyup="commentTextLengthCheck(form, form.text)" ng-class="{'error_input': form.errors.text}"
                                                                   placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}"
-                                                                  required></textarea>
+                                                                  required maxlength="{{maxLengthText}}"></textarea>
                                                         <label for="argument_pro_reply_text" class="error_label" ng-if="form.errors.text">
                                                             <div class="table_cell">
                                                                 <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -1392,7 +1411,7 @@
                                         <form cos-disabled="!app.user.loggedIn" name="argumentForm">
                                             <div class="line lightest_line" ng-if="topicComments.rows.length"></div>
                                             <input id="argument_subject" ng-model="form.subject" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}"
-                                                   class="gray_borders" ng-class="{'error_input': form.errors.subject}" required>
+                                                   class="gray_borders" ng-class="{'error_input': form.errors.subject}" required ng-keyup="commentSubjectLengthCheck(form, form.subject)" maxlength="{{maxLengthSubject}}">
                                             <label for="argument_subject" class="error_label" ng-if="form.errors.subject">
                                                 <div class="table_cell">
                                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -1400,7 +1419,7 @@
                                                 </div>
                                             </label>
                                             <textarea id="argument_text" ng-model="form.text" class="gray_borders"
-                                                      placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-class="{'error_input': form.errors.text}"
+                                                      placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-keyup="commentTextLengthCheck(form, form.text)" ng-class="{'error_input': form.errors.text}" maxlength="{{maxLengthText}}"
                                                       required></textarea>
                                             <label for="argument_text" class="error_label" ng-if="form.errors.text">
                                                 <div class="table_cell">

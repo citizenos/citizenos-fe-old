@@ -572,6 +572,8 @@
       "TXT_COMMENT_ORDER_BY_DATE": "kuupäev",
       "TXT_COMMENT_ORDER_BY_POPULARITY": "populaarsus",
       "TXT_COMMENT_ORDER_BY_RATING": "hinne",
+      "TXT_COMMENT_ERROR_SUBJECT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT",
+      "TXT_COMMENT_ERROR_TEXT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT",
       "LOG_IN_TO_COMMENT": "Osalemiseks pead <a class=\"underlined_link\" ng-click=\"app.doShowLogin()\">sisse logima</a>.",
       "TAB_SOCIAL_MENTIONS_HEADING": "@:VIEWS.TOPICS_TOPICID.LBL_TAB_MENTIONS",
       "TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED": "Me ei saa näidata postitusi sotsiaalmeediast, kuna puudub otsitav teemaviide. Teemaviite saavad lisada kirjutamisõigusega kasutajad.",
