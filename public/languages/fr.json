@@ -495,6 +495,8 @@
       "TXT_COMMENT_ORDER_BY_DATE": "date",
       "TXT_COMMENT_ORDER_BY_POPULARITY": "popularité",
       "TXT_COMMENT_ORDER_BY_RATING": "évaluation",
+      "TXT_COMMENT_ERROR_SUBJECT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT",
+      "TXT_COMMENT_ERROR_TEXT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT",
       "TAB_SOCIAL_MENTIONS_HEADING": "@:VIEWS.TOPICS_TOPICID.LBL_TAB_MENTIONS",
       "TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED": "Sorry, we cannot show you the social mentions as there is no hashtag defined for this Topic. Users with editor permissions can add the hashtag to fetch social mentions.",
       "TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG": "@:VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG",
