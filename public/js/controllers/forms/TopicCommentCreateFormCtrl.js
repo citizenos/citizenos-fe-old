@@ -16,13 +16,6 @@ angular
         };
         init();
 
-
-        $scope.$watch(function () {
-            return $scope.form.text;
-        }, function () {
-            $scope.charactersLeft = $scope.maxLengthText - ($scope.form.text ? $scope.form.text.length : 0);
-        });
-
         var saveComment = function (parentId, type, parentVersion) {
             var comment = new TopicComment();
             comment.parentId = parentId;
@@ -44,6 +37,32 @@ angular
                         $scope.form.errors = res.data.errors;
                     }
                 );
+        };
+
+        $scope.commentTextLengthCheck = function (comment, text) {
+            if(text && text.length > $scope.maxLengthText) {
+                if(!comment.errors) {
+                    comment.errors = {};
+                }
+                comment.errors.text = 'VIEWS.TOPICS_TOPICID.TXT_COMMENT_ERROR_TEXT_TOO_LONG';
+            } else {
+                if(comment.errors && comment.errors.text) {
+                    comment.errors.text = null;
+                }
+            }
+        };
+
+        $scope.commentSubjectLengthCheck = function (comment, subject) {
+            if(subject && subject.length > $scope.maxLengthSubject) {
+                if(!comment.errors) {
+                    comment.errors = {};
+                }
+                comment.errors.subject = 'VIEWS.TOPICS_TOPICID.TXT_COMMENT_ERROR_SUBJECT_TOO_LONG';
+            } else {
+                if(comment.errors && comment.errors.subject) {
+                    comment.errors.subject = null;
+                }
+            }
         };
 
         $scope.submitPro = function () {
