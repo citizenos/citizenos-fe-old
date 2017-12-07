@@ -15,8 +15,6 @@
                     en: 'English',
                     et: 'Eesti',
                     fr: 'Français',
-                    //lv: 'Latviešu',
-                    //lt: 'Lietuvių',
                     ru: 'Pусский'
                 },
                 debug: 'dbg'
