@@ -721,7 +721,8 @@
                 .determinePreferredLanguage()
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
                 .useLocalStorage()
-                .useMissingTranslationHandlerLog();
+                .useMissingTranslationHandlerLog()
+                .translations(cosConfig.language.debug, {});
 
             UserVoiceProvider.setApiKey('f7Trszzveus2InvLcEelw');
         }]);
