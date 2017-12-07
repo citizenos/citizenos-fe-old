@@ -72,8 +72,6 @@
             });
 
             $urlRouterProvider.otherwise(function ($injector, $location) {
-                console.log('$urlRouterProvider.otherwise', $location.absUrl());
-
                 var sAuth = $injector.get('sAuth');
                 var $state = $injector.get('$state');
                 var $translate = $injector.get('$translate');
@@ -114,7 +112,6 @@
                     });
 
                 function resolveOtherwise() {
-                    console.log('resolveOtherwise', locationUrl, useLang);
                     returnLink = '/' + useLang + '/';
                     if (langkeys.indexOf(locationPath[1]) > -1) {
                         returnLink = '/' + locationPath[1] + '/';
@@ -147,7 +144,6 @@
                         }
                     }
 
-                    console.log('stateNext', stateNext);
                     if (stateNext) {
                         if (stateNext.params && stateNext.params.language === 'aa') { // Crowdin language selected, we need a full page reload for the in-context script to work.
                             window.location.href = $state.href(stateNext.name, stateNext.params);
