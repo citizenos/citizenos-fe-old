@@ -14,7 +14,6 @@
                 list: {
                     en: 'English',
                     et: 'Eesti',
-                    fr: 'Français',
                     ru: 'Pусский'
                 },
                 debug: 'dbg'
@@ -69,8 +68,6 @@
             });
 
             $urlRouterProvider.otherwise(function ($injector, $location) {
-                console.log('$urlRouterProvider.otherwise', $location.absUrl());
-
                 var sAuth = $injector.get('sAuth');
                 var $state = $injector.get('$state');
                 var $translate = $injector.get('$translate');
@@ -111,7 +108,6 @@
                     });
 
                 function resolveOtherwise() {
-                    console.log('resolveOtherwise', locationUrl, useLang);
                     returnLink = '/' + useLang + '/';
                     if (langkeys.indexOf(locationPath[1]) > -1) {
                         returnLink = '/' + locationPath[1] + '/';
@@ -145,9 +141,13 @@
                     }
 
                     if (stateNext) {
-                        $state.go(stateNext.name, stateNext.params);
+                        if (stateNext.params && stateNext.params.language === 'aa') { // Crowdin language selected, we need a full page reload for the in-context script to work.
+                            window.location.href = $state.href(stateNext.name, stateNext.params);
+                        } else {
+                            $state.go(stateNext.name, stateNext.params);
+                        }
                     } else {
-                        $state.go('home', {language: useLang});
+                        $state.go('error.404', {language: useLang});
                     }
                 }
             });
@@ -216,11 +216,7 @@
                 .state('error.404', {
                     url: '/404',
                     parent: 'error',
-                    template: '<div ui-view></div>',
-                    controller: ['$scope', '$state', 'sNotification', function($scope, $state, sNotification) {
-                        $scope.app.notifications.messages['error'] = {'MSG_ERROR_40400':'MSG_ERROR_40400'};
-                        $state.go('home');
-                    }]
+                    templateUrl: '/views/404.html'
                 })
                 .state('account', {
                     url: '/account',
@@ -410,7 +406,7 @@
 
                             return $http
                                 .get(path, config)
-                                .then(function(res){
+                                .then(function (res) {
                                     return res.data.data;
                                 });
                         }]
@@ -589,11 +585,11 @@
                     parent: 'my.groups',
                     templateUrl: '/views/my_groups_groupId.html',
                     resolve: {
-                        rGroup: ['$state','$stateParams', '$anchorScroll', 'Group', 'rItems', function ($state, $stateParams, $anchorScroll, Group, rItems) {
+                        rGroup: ['$state', '$stateParams', '$anchorScroll', 'Group', 'rItems', function ($state, $stateParams, $anchorScroll, Group, rItems) {
                             $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
                             var group = _.find(rItems, {id: $stateParams.groupId});
 
-                            if(!group) {
+                            if (!group) {
                                 $state.go('error.404');
                             } else {
                                 return group;
@@ -717,12 +713,12 @@
             // https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translateProvider
             $translateProvider
                 .preferredLanguage(cosConfig.language.default)
-                .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list).push(cosConfig.language.debug)) //et
+                .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list).push(cosConfig.language.debug))
                 .determinePreferredLanguage()
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
                 .useLocalStorage()
                 .useMissingTranslationHandlerLog()
-                .translations('dbg', {});
+                .translations(cosConfig.language.debug, {});
 
             UserVoiceProvider.setApiKey('f7Trszzveus2InvLcEelw');
         }]);

@@ -21,30 +21,37 @@ angular
         init();
 
         sTranslate.setLanguage = function (language) {
-            $log.debug('sTranslate', 'setLanguage', language);
-            if (sTranslate.checkLanguageIsValid(language) && $translate.use() !== language) {
-                $log.debug('setLanguage', language);
-                sTranslate.currentLanguage = language;
-                return $translate.use(language);
-            }
-            return $translate.use();
+            $translate.onReady(function () {
+                if (sTranslate.checkLanguageIsValid(language) && $translate.use() !== language) {
+                    $log.debug('setLanguage', language);
+                    sTranslate.currentLanguage = language;
+                    return $translate.use(language);
+                }
+                return $translate.use();
+            });
         };
 
         sTranslate.switchLanguage = function (language) {
             $log.debug('switch language', language);
             if (sTranslate.checkLanguageIsValid(language)) {
                 $stateParams.language = language;
-                $state.transitionTo($state.current.name, $stateParams);
+                if (language === 'aa') { // Crowdin language selected, we need a full page reload for the in-context script to work.
+                    window.location.href = $state.href($state.current.name, $stateParams);
+                } else {
+                    $state.transitionTo($state.current.name, $stateParams);
+                }
             }
             sTranslate.setLanguage(language);
         };
 
         sTranslate.debugMode = function () {
-            if ($translate.use() !== debugLang) {
-                $translate.use(debugLang);
-            } else {
-                $translate.use(sTranslate.currentLanguage);
-            }
+            $translate.onReady(function () {
+                if ($translate.use() !== debugLang) {
+                    $translate.use(debugLang);
+                } else {
+                    $translate.use(sTranslate.currentLanguage);
+                }
+            });
         };
 
         sTranslate.checkLanguageIsValid = function (language) {

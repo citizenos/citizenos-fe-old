@@ -15,8 +15,19 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
-    <link href="styles/citizenos-fe.bundle.css?v=54aa1c2e075be6e341747fc1a6859aa1" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=20800100078b97f033dc21916dbfd2be"></script>
+    <script type="text/javascript">
+        if (window.location.pathname.match(/^\/aa\/.*/)) {
+            var _jipt = [];
+            _jipt.push(['project', 'citizenos-fe']);
+
+            var crowdinScriptElement = document.createElement('script');
+            crowdinScriptElement.src = '//cdn.crowdin.com/jipt/jipt.js';
+            crowdinScriptElement.type = 'text/javascript';
+            document.getElementsByTagName('head')[0].appendChild(crowdinScriptElement);
+        }
+    </script>
+    <link href="styles/citizenos-fe.bundle.css?v=6b32bcfa7e031553f679fa8dfdd79a3e" rel="stylesheet">
+    <script src="js/citizenos-fe.bundle.js?v=f1922080ba38c1c8adbb41c98ff3f17e"></script>
 
     <meta name="theme-color" content="#1a1a1a">
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -114,8 +125,7 @@
             ga('create', 'UA-67049149-1', 'auto');
         }
     </script>
-
-    <script src="js/libs/template-cache.js?v=d6ddbad8cb10c6c93474cbc9857ada8c"></script>
+    <script src="js/libs/template-cache.js?v=8410bd0c022adfc9ac1a87a1cf313560"></script>
     <script>
         if (/\/\/(www.)?citizenos\.com/.test(window.location.href)) {
             if (/(chrome|firefox)/.test(navigator.userAgent.toLowerCase())) {
