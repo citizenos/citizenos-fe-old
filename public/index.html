@@ -15,8 +15,20 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
+    <script type="text/javascript">
+        if (window.location.pathname.match(/^\/aa\/.*/)) {
+            var _jipt = [];
+            _jipt.push(['project', 'citizenos-fe']);
+
+            var crowdinScriptElement = document.createElement('script');
+            crowdinScriptElement.src = '//cdn.crowdin.com/jipt/jipt.js';
+            crowdinScriptElement.type = 'text/javascript';
+            document.getElementsByTagName('head')[0].appendChild(crowdinScriptElement);
+        }
+    </script>
+
     <link href="styles/citizenos-fe.bundle.css?v=6b32bcfa7e031553f679fa8dfdd79a3e" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=7ea3df16cb3ff4aa03d004705162f8b4"></script>
+    <script src="js/citizenos-fe.bundle.js?v=87510a1cdbb5b6450425721a8de7035b"></script>
 
     <meta name="theme-color" content="#1a1a1a">
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>

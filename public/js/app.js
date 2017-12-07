@@ -17,7 +17,8 @@
                     et: 'Eesti',
                     lv: 'Latviešu',
                     lt: 'Lietuvių',
-                    ru: 'Pусский'
+                    ru: 'Pусский',
+                    aa: 'Crowdin'
                 },
                 debug: 'dbg'
             },
@@ -146,8 +147,13 @@
                         }
                     }
 
+                    console.log('stateNext', stateNext);
                     if (stateNext) {
-                        $state.go(stateNext.name, stateNext.params);
+                        if (stateNext.params && stateNext.params.language === 'aa') { // Crowdin language selected, we need a full page reload for the in-context script to work.
+                            window.location.href = $state.href(stateNext.name, stateNext.params);
+                        } else {
+                            $state.go(stateNext.name, stateNext.params);
+                        }
                     } else {
                         $state.go('error.404', {language: useLang});
                     }
@@ -408,7 +414,7 @@
 
                             return $http
                                 .get(path, config)
-                                .then(function(res){
+                                .then(function (res) {
                                     return res.data.data;
                                 });
                         }]
@@ -587,11 +593,11 @@
                     parent: 'my.groups',
                     templateUrl: '/views/my_groups_groupId.html',
                     resolve: {
-                        rGroup: ['$state','$stateParams', '$anchorScroll', 'Group', 'rItems', function ($state, $stateParams, $anchorScroll, Group, rItems) {
+                        rGroup: ['$state', '$stateParams', '$anchorScroll', 'Group', 'rItems', function ($state, $stateParams, $anchorScroll, Group, rItems) {
                             $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
                             var group = _.find(rItems, {id: $stateParams.groupId});
 
-                            if(!group) {
+                            if (!group) {
                                 $state.go('error.404');
                             } else {
                                 return group;
@@ -715,12 +721,11 @@
             // https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translateProvider
             $translateProvider
                 .preferredLanguage(cosConfig.language.default)
-                .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list).push(cosConfig.language.debug)) //et
+                .registerAvailableLanguageKeys(Object.keys(cosConfig.language.list).push(cosConfig.language.debug))
                 .determinePreferredLanguage()
                 .useSanitizeValueStrategy('escaped') // null, 'escaped' - http://angular-translate.github.io/docs/#/guide/19_security
                 .useLocalStorage()
-                .useMissingTranslationHandlerLog()
-                .translations('dbg', {});
+                .useMissingTranslationHandlerLog();
 
             UserVoiceProvider.setApiKey('f7Trszzveus2InvLcEelw');
         }]);
