@@ -55,7 +55,7 @@
     "TOPIC_CLOSE_CONFIRM_HEADING_CLOSE_TOPIC": "Close topic",
     "TOPIC_CLOSE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to continue?",
     "TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO": "Please keep in mind you cannot undo this action.",
-    "TOPIC_CLOSE_CONFIRM_TXT_NO_EDIT": "The topic will close, it's contents can no longer be edited.",
+    "TOPIC_CLOSE_CONFIRM_TXT_NO_EDIT": "The topic will close, its contents can no longer be edited.",
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Voting will end, further voting will not be possible.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "NO, DON'T CLOSE THE TOPIC",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "YES, CLOSE THE TOPIC",
