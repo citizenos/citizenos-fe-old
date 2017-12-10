@@ -412,7 +412,7 @@
       "LNK_EDIT": "изменить",
       "LNK_LEAVE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_LEAVE",
       "LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
-      "HEADING_CURRENT_VOTE_RESULTS": "Текущий результат настроек",
+      "HEADING_CURRENT_VOTE_RESULTS": "Текущие результаты голосования",
       "LBL_RESULTS": "Результаты",
       "LBL_VOTES_COUNTED": "Подсчитано голосов",
       "LBL_VOTE_DEADLINE": "Срок голосования",
