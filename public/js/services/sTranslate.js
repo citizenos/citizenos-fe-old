@@ -35,7 +35,11 @@ angular
             $log.debug('switch language', language);
             if (sTranslate.checkLanguageIsValid(language)) {
                 $stateParams.language = language;
-                $state.transitionTo($state.current.name, $stateParams);
+                if (language === 'aa') { // Crowdin language selected, we need a full page reload for the in-context script to work.
+                    window.location.href = $state.href($state.current.name, $stateParams);
+                } else {
+                    $state.transitionTo($state.current.name, $stateParams);
+                }
             }
             sTranslate.setLanguage(language);
         };
