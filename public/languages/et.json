@@ -56,7 +56,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_ARE_YOU_SURE": "Soovid kindlasti jätkata?",
     "TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO": "Meenutame, et seda tegevust ei saa tagasi võtta.",
     "TOPIC_CLOSE_CONFIRM_TXT_NO_EDIT": "Teema arutelu lõpetatakse ja teema sisu enam muuta ei saa.",
-    "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Hääletamine suletakse.",
+    "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Hääletamine suletakse, uued hääled ei lähe enam arvesse.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "EI, JÄTAN TEEMA AVATUKS",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "JAH, SULGEN TEEMA",
     "TOPIC_DELETE_CONFIRM_HEADING": "Kustuta teema",
