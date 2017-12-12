@@ -28,9 +28,7 @@ angular
 
         var buildActivityString = function (activity) {
             var keys = Object.keys(activity.data);
-            var stringparts = [];
-            console.log(activity);
-            console.log(keys);
+            var stringparts = ['ACTIVITY'];
             if (keys.indexOf('actor') > -1) {
                 console.log('ACTOR', Object.keys(activity.data['actor']));
                 stringparts.push(activity.data['actor']['type']);
@@ -50,7 +48,7 @@ angular
             if (keys.indexOf('target') > -1) {
                 stringparts.push(activity.data['target']['@type']);
             }
-            activity.string = stringparts.join('_').toUpperCase();;
+            activity.string = 'ACTIVITY_FEED.' + stringparts.join('_').toUpperCase();;
         };
 
         return Activity;
