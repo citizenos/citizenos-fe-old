@@ -603,7 +603,7 @@
   "MSG_ERROR_POST_API_AUTH_SMARTID_INIT_40001": "Для идентификации с помощью Smart-ID нужно ввести персональный идентификационный код",
   "MSG_ERROR_POST_API_AUTH_SMARTID_INIT_40400": "Не найдено",
   "MSG_ERROR_GET_API_AUTH_SMARTID_STATUS_40010": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40010",
-  "MSG_ERROR_GET_API_AUTH_SMARTID_STATUS_40011": "The transaction has expired",
+  "MSG_ERROR_GET_API_AUTH_SMARTID_STATUS_40011": "Срок действия сеанса истек",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40010": "Вы прервали процесс аутентификации.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40013": "В Вашем мобильном еще не заработала функции предоставления подписи по мобильному. Попробуйте через некоторое время снова. Если проблема повторится, пожалуйста, свяжитесь с оператором.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40014": "Ваш телефон выключен или находится вне зоны доступа сети.",
