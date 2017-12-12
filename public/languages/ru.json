@@ -125,7 +125,7 @@
     "LOGIN_ESTEID_PLACEHOLDER_PID": "Личный код",
     "LOGIN_ESTEID_ERROR_PID": "Ошибка в личном коде.",
     "LOGIN_ESTEID_TXT_CONTROL_CODE": "Контрольный код: {{code}}",
-    "LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE": "Убедитесь, что контрольный код совпадает с тем, что появился на экране, до введения Mobile-ID PIN.",
+    "LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE": "До введения Mobile-ID PIN-кода, убедитесь, что контрольный код совпадает с тем, что появился на экране телефона.",
     "LOGIN_ESTEID_BTN_LOG_IN_MID": "Зайти с MOBIIL-ID",
     "LOGIN_ESTEID_BTN_LOG_IN_ID": "Зайти с ID-KAART",
     "LOGIN_SMARTID_HEADING": "@:MODALS.LOGIN_BTN_LOGIN_SMARTID",
