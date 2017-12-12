@@ -134,7 +134,7 @@
     "LOGIN_SMARTID_PLACEHOLDER_PID": "@:MODALS.LOGIN_ESTEID_PLACEHOLDER_PID",
     "LOGIN_SMARTID_ERROR_PID": "@:MODALS.LOGIN_ESTEID_ERROR_PID",
     "LOGIN_SMARTID_TXT_CONTROL_CODE": "@:MODALS.LOGIN_ESTEID_TXT_CONTROL_CODE",
-    "LOGIN_SMARTID_TXT_CHECK_CONTROL_CODE": "Veendu, et kontrollkood kattub telefoni ekraanil olevaga enne, kui sisestad PIN-i.",
+    "LOGIN_SMARTID_TXT_CHECK_CONTROL_CODE": "Veendu, et kontrollkood kattub telefoni ekraanil olevaga enne, kui sisestad PIN1-koodi.",
     "LOGIN_SMARTID_BTN_LOG_IN_SID": "@:MODALS.LOGIN_BTN_LOGIN_SMARTID",
     "MY_ACCOUNT_HEADING": "Minu konto",
     "MY_ACCOUNT_PLACEHOLDER_NAME": "Ees- ja perenimi",
