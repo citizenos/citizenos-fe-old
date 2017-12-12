@@ -536,7 +536,7 @@
       "ARGUMENT_EDIT_BTN_POST_AS_CON": "@:VIEWS.TOPICS_TOPICID.BTN_COMMENT_POST_AS_CON",
       "ARGUMENT_EDIT_BTN_CANCEL_EDIT": "@:LNK_CANCEL",
       "ARGUMENT_HAS_BEEN_DELETED_BY": "Этот аргумент был удален пользователем: {{userFullName}}",
-      "ARGUMENT_WHY": "Why?",
+      "ARGUMENT_WHY": "Причина",
       "ARGUMENT_VIEW_COMMENT_ANYWAY": "Просмотреть аргумент",
       "ARGUMENT_FOUND_INAPPRIOPRIATE_BY": "This argument was found inappropriate by <b>{{userFullName}}</b>",
       "ARGUMENT_READ_CODE_OF_CONDUCT": "Читайте наш <a class=\"underlined_link\" href=\"\">кодекс поведения</a> для получения дополнительной информации",
