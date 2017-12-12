@@ -599,7 +599,7 @@
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Пароль изменен. Войти в систему с новым паролем.",
   "MSG_ERROR_PUT_API_USERS_SELF_40000_PASSWORD": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD",
   "MSG_ERROR_PUT_API_USERS_SELF_40000_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL",
-  "MSG_ERROR_POST_API_USERS_GROUPS_40000_NAME": "Название группы может содержать от 2 до 255 символов. ",
+  "MSG_ERROR_POST_API_USERS_GROUPS_40000_NAME": "Название группы должно содержать от 2 до 255 символов.",
   "MSG_ERROR_POST_API_AUTH_SMARTID_INIT_40001": "Для идентификации с помощью Smart-ID нужно ввести персональный идентификационный код",
   "MSG_ERROR_POST_API_AUTH_SMARTID_INIT_40400": "Не найдено",
   "MSG_ERROR_GET_API_AUTH_SMARTID_STATUS_40010": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40010",
