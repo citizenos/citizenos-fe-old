@@ -119,7 +119,7 @@
     "LOGIN_LNK_FORGOT_PASSWORD": "Забыли пароль?",
     "LOGIN_PLACEHOLDER_EMAIL": "E-mail",
     "LOGIN_PLACEHOLDER_PASSWORD": "Пароль",
-    "LOGIN_ESTEID_HEADING": "Выберите метод аутентификации",
+    "LOGIN_ESTEID_HEADING": "Выберите способ входа в систему",
     "LOGIN_ESTEID_PLACEHOLDER_PHONE": "Номер телефона с кодом страны (+372 xxx xxxx)",
     "LOGIN_ESTEID_ERROR_PHONE": "Неверный номер телефона. Пожалуйста, укажите номер вместе с кодом страны (+372 xxx xxxx).",
     "LOGIN_ESTEID_PLACEHOLDER_PID": "Личный код",
