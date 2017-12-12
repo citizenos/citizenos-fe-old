@@ -374,7 +374,7 @@
       "LNK_SETTINGS": "настройки",
       "LNK_LEAVE": "покинуть",
       "LNK_DELETE": "удалить",
-      "HEADING_TOPIC_LIST": "Тем ({{count}})",
+      "HEADING_TOPIC_LIST": "Кол-во тем: ({{count}})",
       "LNK_FILTER": "отфильтровать",
       "PLACEHOLDER_TOPIC_TITLE_PERMISSION": "Заголовок темы, права",
       "PLACEHOLDER_NAME_PERMISSION": "Имя, права",
