@@ -472,7 +472,7 @@
       "ADD_MILESTONE_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
       "VOTE_CAST_YOUR_VOTE": "Проголосуйте",
       "VOTE_VOTES_COUNTED": "голосов посчитано",
-      "VOTE_HEADING_REQUIRE_HARD_ID": "Голосование по данному вопросу требует дигитальной подписи с помощью ID-карты или Mobiil ID.",
+      "VOTE_HEADING_REQUIRE_HARD_ID": "Голосование по данному вопросу требует дигитальной подписи с помощью ID-карты или Mobiil-ID.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Голос будет засчитан только в том случае, если Вы зарегистрируетесь при помощи ID-карты или Mobiil ID.",
       "HEADING_VOTE_REGISTERED": "Ваш голос засчитан!",
       "BTN_DOWNLOAD_USER_BDOC": "Загрузить свой дигитально подписанный голос (файл BDOC)",
