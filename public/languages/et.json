@@ -348,7 +348,7 @@
       "HEADING_GET_STARTED": "Alustuseks pakume järgmiseid võimalusi",
       "BTN_CREATING_A_NEW_TOPIC": "Uue teema loomine",
       "HEADING_BEGINNERS_GUIDE": "CitizenOS kasutusõpetuse vaatamine",
-      "TXT_BEGINNERS_GUIDE": "Teretulemast CitizenOS lehele! Altpoolt saad lugeda, mida ja kuidas siin teha saab.",
+      "TXT_BEGINNERS_GUIDE": "Tere tulemast CitizenOS lehele! Altpoolt saad lugeda, mida ja kuidas siin teha saab.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Juhendmaterjal",
       "BTN_LOAD_MORE_TOPICS": "Näita rohkem teemasid"
     },
@@ -374,7 +374,7 @@
       "LNK_SETTINGS": "seaded",
       "LNK_LEAVE": "lahku",
       "LNK_DELETE": "kustuta",
-      "HEADING_TOPIC_LIST": "Teemasid ({{count}})",
+      "HEADING_TOPIC_LIST": "Teemasid: ({{count}})",
       "LNK_FILTER": "filtreeri",
       "PLACEHOLDER_TOPIC_TITLE_PERMISSION": "Teema pealkiri, õigused",
       "PLACEHOLDER_NAME_PERMISSION": "Nimi, õigused",
