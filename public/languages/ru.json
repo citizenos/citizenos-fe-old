@@ -201,7 +201,7 @@
     "TOPIC_SETTINGS_PLACEHOLDER_CREATE_NEW_LINK": "Для того, чтобы поделиться, создайте ссылку",
     "TOPIC_SETTINGS_BTN_COPY_LINK": "Скопируйте ссылку",
     "TOPIC_SETTINGS_BTN_SAVE_SETTINGS": "Сохраните настройки",
-    "GROUP_CREATE_SETTINGS_HEADING_CREATE": "Создайте группу",
+    "GROUP_CREATE_SETTINGS_HEADING_CREATE": "Создать группу",
     "GROUP_CREATE_SETTINGS_HEADING_EDIT": "Измените настройки группы",
     "GROUP_CREATE_SETTINGS_TAB_SETTINGS": "@:MODALS.TOPIC_SETTINGS_TAB_SETTINGS",
     "GROUP_CREATE_SETTINGS_TAB_ADD_TOPICS": "ДОБАВЬТЕ ТЕМЫ",
@@ -272,7 +272,7 @@
   "TXT_TOPIC_CATEGORY_COMMUNITIES": "Сообщества и городское планирование",
   "TXT_TOPIC_CATEGORY_DEFENSE": "Гособорона и безопасность",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Интеграция и права человека",
-  "TXT_TOPIC_CATEGORY_VARIA": "Другое",
+  "TXT_TOPIC_CATEGORY_VARIA": "Разное",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Ищите темы, пользователей, группы..."
@@ -283,7 +283,7 @@
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
       "HEADING_TOPICS": "Темы",
-      "LNK_CREATE_TOPICS": "Создайте тему",
+      "LNK_CREATE_TOPICS": "Создать тему",
       "LNK_MY_TOPICS": "Мои темы",
       "LNK_PUBLIC_TOPICS": "Открытые темы",
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
