@@ -429,7 +429,7 @@
       "LBL_VIA": "via"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "Rahvaalgatus.ee would like to access following data from Your account:",
+      "HEADING": "Rahvaalgatus.ee would like to access the following data from your account:",
       "TXT_VIEW_PROFILE": "View and edit Your CitizenOS profile - name, company, email, picture.",
       "TXT_VIEW_TOPICS": "View and edit Your CitizenOS public Topics and Topics created via the Rahvaalgatus.ee website.",
       "TXT_VIEW_VOTES": "View and edit Your CitizenOS Votes in public Topics and Topics created via the Rahvaalgatus.ee website.",
