@@ -158,7 +158,7 @@
     "SIGN_UP_BTN_SAVE": "@:MODALS.SIGN_UP_HEADING",
     "SIGN_UP_LNK_CANCEL": "@:LNK_CANCEL",
     "TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS": "Сохранить файлы",
-    "TOPIC_ATTACHMENTS_LBL_COMPUTER": "Computer",
+    "TOPIC_ATTACHMENTS_LBL_COMPUTER": "С компьютера",
     "TOPIC_ATTACHMENTS_LBL_DROPBOX": "Dropbox",
     "TOPIC_ATTACHMENTS_LBL_GOOGLE_DRIVE": "Google drive",
     "TOPIC_ATTACHMENTS_LBL_ONEDRIVE": "OneDrive",
@@ -290,7 +290,7 @@
       "LNK_CREATE_GROUPS": "Создать группу",
       "LNK_MY_GROUPS": "Мои группы",
       "LNK_ABOUT": "О сервисе",
-      "LNK_FAQ": "ЧаВо",
+      "LNK_FAQ": "Вопросы и ответы",
       "LNK_HELP": "Помощь",
       "LNK_LOG_OUT": "Выйти"
     },
