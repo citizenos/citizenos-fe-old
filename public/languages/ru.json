@@ -356,7 +356,7 @@
       "LBL_GROUPS_COUNT": "Групп: {{count}}",
       "HEADING_NOT_IN_GROUP": "Вы пока не состоите ни в одной группе",
       "HEADING_AT_LEAST_WE_HELP": "Мы можем Вам помочь",
-      "TXT_CREATING_A NEW_GROUP": "Создайте новую группу",
+      "TXT_CREATING_A NEW_GROUP": "Создать новую группу",
       "HEADING_NOT_PARTICIPATED": "Вы пока не участвуете ни в одной теме. Попробуйте, это здорово!",
       "HEADING_GET_INVOLVED": "Для участия имеются следующие возможности",
       "MY_CREATING_A_NEW_TOPIC": "Создать новую тему"
@@ -396,7 +396,7 @@
       "LBL_USERS": "Пользователи",
       "LNK_VIEW": "просмотреть",
       "LBL_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
-      "LBL_STATUS": "СТАТУС:",
+      "LBL_STATUS": "Статус",
       "LBL_TOPIC_ACTIONS": "Действия темы",
       "LNK_SETTINGS": "настройки",
       "LNK_EDIT": "изменить",
