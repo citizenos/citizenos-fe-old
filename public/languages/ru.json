@@ -309,11 +309,11 @@
       "TXT_MAYBE_TYPO": "Может, в Ваш запрос закралась опечатка? <br>Мы все же нашли что-то похожее в разных частях платформы CitizenOS - проверьте, пожалуйста, результаты поиска."
     }
   },
-  "LBL_CONTEXT_MY_TOPICS": "из Ваших тем",
+  "LBL_CONTEXT_MY_TOPICS": "мои темы",
   "LBL_CONTEXT_MY_GROUPS": "мои группы",
   "LBL_CONTEXT_MY_USERS": "из Ваших контактов",
-  "LBL_CONTEXT_PUBLIC_TOPICS": "из открытых тем",
-  "LBL_CONTEXT_PUBLIC_GROUPS": "из открытых групп",
+  "LBL_CONTEXT_PUBLIC_TOPICS": "публичные темы",
+  "LBL_CONTEXT_PUBLIC_GROUPS": "публичные группы",
   "LBL_CONTEXT_PUBLIC_USERS": "из числа пользователей",
   "DIRECTIVES": {
     "COS_MODAL": {
