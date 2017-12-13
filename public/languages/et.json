@@ -443,7 +443,7 @@
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",
       "PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
       "PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
-      "LOGIN_REGISTER": "Sisene/liitu CitizenOS",
+      "LOGIN_REGISTER": "Sisene/loo CitizenOS'i konto",
       "FORGOT_PASSWORD": "Unustasid salasõna?"
     },
     "TOPICS_TOPICID": {
