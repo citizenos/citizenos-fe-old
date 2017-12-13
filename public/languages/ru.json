@@ -447,7 +447,7 @@
       "FORGOT_PASSWORD": "Забыли пароль?"
     },
     "TOPICS_TOPICID": {
-      "BAR_MILESTONES": "{{count}} ",
+      "BAR_MILESTONES": "Этапов: {{count}}",
       "BAR_TOOLTIP_PHASE": "СТАТУС:",
       "BAR_TOOLTIP_IN_PROGRESS": "создается",
       "BAR_TOOLTIP_VOTING": "на голосовании",
