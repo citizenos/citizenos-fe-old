@@ -309,11 +309,11 @@
       "TXT_MAYBE_TYPO": "Äkki tegid otsisõnas trükivea?<br>Üht-teist vastavat me siiski CitizenOS platvormi eri otstest leidsime, vaata üle."
     }
   },
-  "LBL_CONTEXT_MY_TOPICS": "sinu teemadest",
+  "LBL_CONTEXT_MY_TOPICS": "minu teemad",
   "LBL_CONTEXT_MY_GROUPS": "minu rühmad",
   "LBL_CONTEXT_MY_USERS": "sinu kontaktidest",
-  "LBL_CONTEXT_PUBLIC_TOPICS": "avalikest teemadest",
-  "LBL_CONTEXT_PUBLIC_GROUPS": "avalikest rühmadest",
+  "LBL_CONTEXT_PUBLIC_TOPICS": "avalikud teemad",
+  "LBL_CONTEXT_PUBLIC_GROUPS": "avalikud rühmad",
   "LBL_CONTEXT_PUBLIC_USERS": "kasutajate hulgast",
   "DIRECTIVES": {
     "COS_MODAL": {
