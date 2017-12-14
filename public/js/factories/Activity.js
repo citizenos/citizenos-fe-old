@@ -39,7 +39,11 @@ angular
             }
 
             if (keys.indexOf('object') > -1) {
-                stringparts.push(activity.data['object']['@type']);
+                if(Array.isArray(activity.data['object'])) {
+                    stringparts.push(activity.data['object'][0]['@type']);
+                } else {
+                    stringparts.push(activity.data['object']['@type']);
+                }
             }
 
             if (keys.indexOf('origin') > -1) {
@@ -47,6 +51,11 @@ angular
             }
             if (keys.indexOf('target') > -1) {
                 stringparts.push(activity.data['target']['@type']);
+            }
+
+            if(keys.indexOf('inReplyTo') > -1) {
+                stringparts.push('IN_REPLY_TO');
+                stringparts.push(activity.data['inReplyTo']['@type'])
             }
             activity.string = 'ACTIVITY_FEED.' + stringparts.join('_').toUpperCase();;
         };
