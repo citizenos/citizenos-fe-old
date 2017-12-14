@@ -263,7 +263,7 @@
     "TOPIC_VOTE_SIGN_TXT_CHECK_CONTROL_CODE": "@:MODALS.LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE",
     "TOPIC_VOTE_SIGN_BTN_SIGN_MID": "Allkirjasta mobiil-ID-ga",
     "TOPIC_VOTE_SIGN_BTN_SIGN_CARD": "Allkirjasta ID-kaardiga",
-    "TOPIC_EVENT_CONFIRM_HEADING": "Eemalda samm",
+    "TOPIC_EVENT_DELETE_CONFIRM_HEADING": "Eemalda samm",
     "TOPIC_EVENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Oled sa kindel, et soovid sammu eemaldada?",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES"
@@ -612,7 +612,7 @@
   "MSG_ERROR_POST_API_USERS_GROUPS_40000_NAME": "Rühma nime pikkus 2-255 tähemärki.",
   "MSG_ERROR_POST_API_AUTH_SMARTID_INIT_40001": "Smart-ID athentication requires users pid",
   "MSG_ERROR_POST_API_AUTH_SMARTID_INIT_40400": "Not Found",
-  "MSG_ERROR_GET_API_AUTH_SMARTID_STATUS_40010 ": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40010",
+  "MSG_ERROR_GET_API_AUTH_SMARTID_STATUS_40010": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40010",
   "MSG_ERROR_GET_API_AUTH_SMARTID_STATUS_40011": "The transaction has expired",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40010": "Olete katkestanud sisselogimise.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40013": "Allkirjastamine ei ole teie telefonis veel tööle hakanud. Palun proovige hiljem uuesti. Probleem püsimisel võtke palun ühendust oma teenusepakkujaga.",
