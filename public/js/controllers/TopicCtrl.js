@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'Activity', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, Activity, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
 
         $scope.topic = rTopic;
@@ -39,8 +39,6 @@ angular
             }
         };
 
-        $scope.activitiesList = [];
-
         $scope.topicComments = {
             rows: [],
             count: {
@@ -68,13 +66,6 @@ angular
             $scope.topic.vote = new TopicVote({id: $scope.topic.voteId, topicId: $scope.topic.id});
             $scope.topic.vote.$get();
         }
-
-        $scope.loadActivities = function () {
-            $scope.activities = Activity.query({topicId: $scope.topic.id});
-            console.log('activities', $scope.activities);
-        };
-
-        $scope.loadActivities();
 
         $scope.showVoteCreate = function () {
             $scope.showVoteCreateForm = !$scope.showVoteCreateForm;
