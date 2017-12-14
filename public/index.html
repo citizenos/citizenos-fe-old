@@ -15,8 +15,20 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
+    <script type="text/javascript">
+        if (window.location.pathname.match(/^\/aa\/.*/)) {
+            var _jipt = [];
+            _jipt.push(['project', 'citizenos-fe']);
+
+            var crowdinScriptElement = document.createElement('script');
+            crowdinScriptElement.src = '//cdn.crowdin.com/jipt/jipt.js';
+            crowdinScriptElement.type = 'text/javascript';
+            document.getElementsByTagName('head')[0].appendChild(crowdinScriptElement);
+        }
+    </script>
+
     <link href="styles/citizenos-fe.bundle.css?v=6b32bcfa7e031553f679fa8dfdd79a3e" rel="stylesheet">
-    <script src="js/citizenos-fe.bundle.js?v=0f8408d87477454ac720a4a0c0dcaea1"></script>
+    <script src="js/citizenos-fe.bundle.js?v=933bce1a76e5261f0e7ef897adbca784"></script>
 
     <meta name="theme-color" content="#1a1a1a">
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -114,7 +126,7 @@
             ga('create', 'UA-67049149-1', 'auto');
         }
     </script>
-    <script src="js/libs/template-cache.js?v=713f6b66e1c6a697d1b2cd9268773413"></script>
+    <script src="js/libs/template-cache.js?v=8410bd0c022adfc9ac1a87a1cf313560"></script>
     <script>
         if (/\/\/(www.)?citizenos\.com/.test(window.location.href)) {
             if (/(chrome|firefox)/.test(navigator.userAgent.toLowerCase())) {

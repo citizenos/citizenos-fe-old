@@ -149,11 +149,11 @@ angular
                         sTranslate.switchLanguage(language);
                     });
             } else {
-                sTranslate.switchLanguage(language);
                 if (sTranslate.checkLanguageIsValid(language)) {
                     $cookies.put('language', language);
                     $log.debug('langCookie', $cookies.get('language'));
                 }
+                sTranslate.switchLanguage(language);
             }
         };
 
