@@ -31,7 +31,7 @@
                 },
                 googleDrive: {
                     developerKey: 'AIzaSyC3oZa5HN4OkbLOHYznR4Q0xkkB8oVx9zA',
-                    clientId: '11623449066-36uc2m24ej7vgqq7s8g92psvhcmjmfql.apps.googleusercontent.com'
+                    clientId: '11623449066-0pdp3p7mp4l4f3e7vm43pr7okjpmddmc.apps.googleusercontent.com'
                 },
                 oneDrive: {
                     clientId: '703640f9-f482-4349-8b6f-97993a91ea64'
