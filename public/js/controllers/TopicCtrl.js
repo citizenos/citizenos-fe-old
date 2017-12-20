@@ -567,6 +567,28 @@ angular
             }
         };
 
+        $scope.getActivityValues = function (activity, topic) {
+            var values = {};
+            if (activity.actor && activity.actor.name) {
+                values.userName = activity.actor.name;
+            }
+
+            if (topic) {
+                values.topicTitle = '"' + topic.title + '"';
+            }
+            if(activity.type === 'Update') {
+
+                values.fieldName = activity.result.path.replace('/', '');
+                values.previousValue = '"' + (activity.origin[values.fieldName] || '') + '"';
+                values.newValue = '"' + activity.result.value + '"';
+            }
+            return values;
+        };
+
+        $scope.getActivityDescription = function (activity) {
+
+        };
+
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             if (fromState.name == 'topics.view.files') {
                 $scope.loadTopicAttachments();

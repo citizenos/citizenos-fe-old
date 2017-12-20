@@ -139,7 +139,7 @@
     <div class="info_container">
 
         <div class="container_header">
-            <div class="header_text">
+            <div class="header_text" translate="VIEWS.MY_TOPICS_TOPICID.HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS">
                 Activity feed & notifications
             </div>
             <div class="minimize_container" ng-click="app.activityFeed = !app.activityFeed">
@@ -152,15 +152,16 @@
             <div class="activity" ng-repeat="(key, activity) in activities">
 
                 <div class="activity_left">
-                    <div class="activiy_time" ng-bind="activity.updatedAt">55.07.2056 11:23</div>
+                    <div class="activiy_time" ng-bind="activity.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
                 </div>
 
                 <div class="activity_right">
-                    <div class="activity_icon">
+                    <!--div class="activity_icon">
                         <div class="sprite sprite-icon-inputfield-error2x"></div>
-                    </div>
-                    <div class="activiy_title"><span ng-bind="activity.data.actor.name">Kristian Lember</span> <span ng-bind="activity.data.type" class="highlight aqua_marine_background">added</span> a <span class="highlight dark_yellow_background" ng-bind="activity.data.object['@type'] || activity.data.origin['@type']">comment</span> <span> {{activity.string}}</span>:</div>
-                    <div class="activiy_description">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
+                    </div -->
+                    {{activity}}
+                    <div class="activiy_title"><span translate="{{activity.string}}" translate-values="getActivityValues(activity.data, topic)"> </span></div>
+                    <div class="activiy_description" ng-if="getActivityDescription(activity)" ng-bind="activity.description">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
                         home office combo? First off, you will need to set a budget for your new ...
                     </div>
                 </div>
@@ -171,7 +172,7 @@
             <div class="activity">
 
                 <div class="activity_left">
-                    <div class="view_older blue_link">View older</div>
+                    <div class="view_older blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW_OLDER">View older</div>
                 </div>
 
                 <div class="activity_right">
