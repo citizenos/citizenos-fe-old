@@ -583,24 +583,6 @@
       "LNK_ADD_MANAGE_FILES": "crwdns10704:0crwdne10704:0"
     }
   },
-  "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "crwdns10824:0{{userName}}crwdnd10824:0{{topicTitle}}crwdne10824:0",
-    "ACTIVITY_USER_UPDATE_TOPIC": "crwdns10825:0{{userName}}crwdnd10825:0{{fieldName}}crwdnd10825:0{{topicTitle}}crwdnd10825:0{{previousValue}}crwdnd10825:0{{newValue}}crwdne10825:0",
-    "ACTIVITY_USER_DELETE_TOPIC": "crwdns10826:0{{userName}}crwdnd10826:0{{topicTitle}}crwdne10826:0",
-    "ACTIVITY_USER_ADD_TOPIC_TOPICMEMBERUSER": "crwdns10827:0{{userName}}crwdnd10827:0{{userNameInvited}}crwdnd10827:0{{topicTitle}}crwdne10827:0",
-    "ACTIVITY_USER_UPDATE_TOPICMEMBERUSER": "crwdns10828:0{{userName}}crwdnd10828:0{{userNameEdited}}crwdnd10828:0{{topicTitle}}crwdnd10828:0{{previousValue}}crwdnd10828:0{{newValue}}crwdne10828:0",
-    "ACTIVITY_FEED.ACTIVITY_USER_JOIN_TOPIC": "crwdns10829:0{{userName}}crwdnd10829:0{{topicTitle}}crwdnd10829:0{{accessLevel}}crwdne10829:0",
-    "ACTIVITY_USER_LEAVE_TOPIC": "crwdns10830:0{{userName}}crwdnd10830:0{{topicTitle}}crwdne10830:0",
-    "ACTIVITY_USER_CREATE_VOTE_TOPIC": "crwdns10831:0{{userName}}crwdnd10831:0{{topicTitle}}crwdne10831:0",
-    "ACTIVITY_USER_UPDATE_VOTE_TOPIC": "crwdns10832:0{{userName}}crwdnd10832:0{{topicTitle}}crwdnd10832:0{{previousValue}}crwdnd10832:0{{newValue}}crwdne10832:0",
-    "ACTIVITY_USER_CREATE_VOTELIST_TOPIC": "crwdns10833:0{{userName}}crwdnd10833:0{{topicTitle}}crwdne10833:0",
-    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "crwdns10834:0{{userName}}crwdnd10834:0{{topicTitle}}crwdne10834:0",
-    "ACTIVITY_USER_CREATE_COMMENT_TOPIC": "crwdns10835:0{{userName}}crwdnd10835:0{{topicTitle}}crwdnd10835:0{{commentContent}}crwdne10835:0",
-    "ACTIVITY_USER_UPDATE_COMMENT_TOPIC": "crwdns10836:0{{userName}}crwdnd10836:0{{topicTitle}}crwdnd10836:0{{previousValue}}crwdnd10836:0{{newValue}}crwdne10836:0",
-    "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "crwdns10837:0{{userName}}crwdnd10837:0{{topicTitle}}crwdnd10837:0{{replyContent}}crwdne10837:0",
-    "ACTIVITY_USER_ADD_TOPIC_TOPICMEMBERGROUP": "crwdns10838:0{{userName}}crwdnd10838:0{{topicTitle}}crwdnd10838:0{{groupName}}crwdne10838:0",
-    "ACTIVITY_USER_DELETE_GROUP_TOPIC": "crwdns10839:0{{userName}}crwdnd10839:0{{topicTitle}}crwdnd10839:0{{groupName}}crwdne10839:0"
-  },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "crwdns10705:0crwdne10705:0",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "crwdns10706:0crwdne10706:0",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "crwdns10707:0crwdne10707:0",
