@@ -30,7 +30,7 @@
                     appKey: 'lkk7j6f41sfpm5b'
                 },
                 googleDrive: {
-                    developerKey: 'AIzaSyC3oZa5HN4OkbLOHYznR4Q0xkkB8oVx9zA',
+                    developerKey: 'AIzaSyBuEp5_A9tMjIZbIWzZ3pyh9wzLVcikD6I',
                     clientId: '11623449066-0pdp3p7mp4l4f3e7vm43pr7okjpmddmc.apps.googleusercontent.com'
                 },
                 oneDrive: {
