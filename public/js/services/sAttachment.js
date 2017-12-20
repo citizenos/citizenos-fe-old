@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'TopicAttachment', function ($http, $q, $log, cosConfig, sLocation, TopicAttachment) {
+app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'TopicAttachment', 'angularLoad', function ($http, $q, $log, cosConfig, sLocation, TopicAttachment, angularLoad) {
 
     var sAttachment = this;
  /*GOOGLE API*/
@@ -8,38 +8,43 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
     var oauthToken;
 
     var initializeGoogleDrive = function () {
-        var authPromise = new Promise(function (resolve, reject) {
-            gapi.load('auth', {'callback': resolve});
-        });
-        var pickerPromise = new Promise(function (resolve, reject) {
-            gapi.load('picker', {'callback': resolve});
-        });
+        return angularLoad.loadScript('https://apis.google.com/js/api.js?onload=onApiLoad').then(function() {
+            var authPromise = new Promise(function (resolve, reject) {
+                gapi.load('auth', {'callback': resolve});
+            });
+            var pickerPromise = new Promise(function (resolve, reject) {
+                gapi.load('picker', {'callback': resolve});
+            });
 
-        return new Promise (function (resolve, reject) {
-            if(googlePickerApiLoaded) {
-                return resolve();
-            }
-            Promise
-                .all([authPromise, pickerPromise])
-                .then(function (res) {
-                    window.gapi.auth.authorize(
-                    {
-                      'client_id': cosConfig.storage.googleDrive.clientId,
-                      'scope': ['https://www.googleapis.com/auth/drive.file'],
-                      'immediate': false
-                    },
-                    function (authResult) {
-                        if (authResult && !authResult.error) {
-                            oauthToken = authResult.access_token;
-                            googlePickerApiLoaded = true;
-                            resolve();
-                        }
-                        reject();
-                    });
-                })
-                .catch(function (e) {
-                    $log.error(e);
-                })
+            return new Promise (function (resolve, reject) {
+                if(googlePickerApiLoaded) {
+                    return resolve();
+                }
+                Promise
+                    .all([authPromise, pickerPromise])
+                    .then(function (res) {
+                        window.gapi.auth.authorize(
+                        {
+                          'client_id': cosConfig.storage.googleDrive.clientId,
+                          'scope': ['https://www.googleapis.com/auth/drive.file'],
+                          'immediate': false
+                        },
+                        function (authResult) {
+                            if (authResult && !authResult.error) {
+                                oauthToken = authResult.access_token;
+                                googlePickerApiLoaded = true;
+                                resolve();
+                            }
+                            reject();
+                        });
+                    })
+                    .catch(function (e) {
+                        $log.error(e);
+                    })
+            });
+        }).catch(function(e) {
+            // There was some error loading the script. Meh
+            $log.error(e);
         });
     };
 
