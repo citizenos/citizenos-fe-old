@@ -565,7 +565,7 @@
       "TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED": "Мы не можем показать публикации в социальных сетях, поскольку к теме не был задан хэштег. Хэштег могут добавить пользователи, обладающие правом редактирования. ",
       "TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG": "@:VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG",
       "TAB_SOCIAL_MENTIONS_NO_MENTIONS_FOUND": "К сожалению, не найдено ни одного упоминания в Twitter по хэштегу",
-      "TAB_SOCIAL_MENTIONS_BTN_CHANGE_HASHTAG": "Изменить ссылку на тему",
+      "TAB_SOCIAL_MENTIONS_BTN_CHANGE_HASHTAG": "Изменить хэштег темы",
       "TAB_SOCIAL_MENTIONS_POSTED_VIA": "Опубликовано через",
       "NAV_HEADING": "ОПЦИИ",
       "NAV_LNK_SEND_TO_VOTE": "Начать голосование",
@@ -581,10 +581,10 @@
       "LNK_ADD_MANAGE_FILES": "Добавить/редактировать файлы"
     }
   },
-  "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ошибка в адресе e-mail.",
+  "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ошибка в e-mail адресе.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Данный e-mail уже используется.",
-  "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Длина названия должна составлять 1-255 знаков.",
-  "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Пользователя с таким e-mail нет в системе.",
+  "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Длина имени должна составлять 1-255 знаков.",
+  "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Пользователя с таким e-mail адресом в системе не существует.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Пароль должен быть длиной минимум в 6 знаков, содержать 1 цифру и 1 заглавную и строчную букву.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40003_PASSWORD": "Неверный пароль.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Аккаунт еще не подтвержден. Пожалуйста, проверьте свой e-mail.",
