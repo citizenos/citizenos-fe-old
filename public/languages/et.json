@@ -604,7 +604,7 @@
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40013": "The Mobiil-ID functionality of your phone is not yet ready. Please try again later. If the problem persists, contact your service provider.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40014": "Telefon on välja lülitatud või ei ole levialas.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40015": "Telefon ei ole tehniliselt allkirjastamiseks sobiv või on võrgu töö ajutiselt häiritud.",
-  "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40016": "SIM kaardi rakenduse viga. Proovige palun uuesti. Probleem püsimisel võtke palun ühendust oma teenusepakkujaga.",
+  "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40016": "SIM-kaardi rakenduse viga. Proovige palun uuesti. Probleem püsimisel võtke palun ühendust oma teenusepakkujaga.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40017": "Teie digiallkiri on tühistatud. Palun võtke ühendust oma teenusepakkujaga.",
   "MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020": "Viga telefoninumbris ja/või isikukoodis. Telefoninumber peab sisaldama ka riigikoodi (+372 xxx xxxx).",
   "MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021": "Mobiil-ID functionality not supported. Please double check phone number and/or id code.",
