@@ -600,7 +600,7 @@
   "MSG_ERROR_POST_API_AUTH_SMARTID_INIT_40400": "Not Found",
   "MSG_ERROR_GET_API_AUTH_SMARTID_STATUS_40010": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40010",
   "MSG_ERROR_GET_API_AUTH_SMARTID_STATUS_40011": "The transaction has expired",
-  "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40010": "You have cancelled the log in flow.",
+  "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40010": "You have cancelled the login flow.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40013": "The Mobiil-ID functionality of your phone is not yet ready. Please try again later. If the problem persists, contact your service provider.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40014": "Your phone is either switched off or out of coverage.",
   "MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40015": "Your phone is either incapable of receiving the message or there is a problem with messaging service.",
