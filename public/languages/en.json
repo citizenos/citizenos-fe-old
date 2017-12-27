@@ -253,7 +253,7 @@
     "TOPIC_VOTE_SIGN_TXT_CHECK_CONTROL_CODE": "@:MODALS.LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE",
     "TOPIC_VOTE_SIGN_BTN_SIGN_MID": "Sign with Mobiil-ID",
     "TOPIC_VOTE_SIGN_BTN_SIGN_CARD": "Sign with ID-card",
-    "TOPIC_EVENT_DELETE_CONFIRM_HEADING": "Remove event",
+    "TOPIC_EVENT_DELETE_CONFIRM_HEADING": "Delete event",
     "TOPIC_EVENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to remove this event?",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES"
@@ -424,7 +424,7 @@
       "HEADING_USERS_LIST": "User list",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Profile",
-      "LBL_VIA": "via"
+      "LBL_VIA": "via group"
     },
     "PARTNERS_CONSENT": {
       "HEADING": "Rahvaalgatus.ee would like to access the following data from your account:",
@@ -487,9 +487,9 @@
       "VOTE_HEADING_CREATE": "Create a voting platform",
       "VOTE_HEADING_STEP1": "Step 1: Choose voting-type",
       "VOTE_BTN_TYPE_REGULAR": "REGULAR",
-      "VOTE_BTN_TYPE_REGULAR_EXPLANATION": "(ie. yes/no/neutral/...)",
+      "VOTE_BTN_TYPE_REGULAR_EXPLANATION": "(i.e. yes/no/neutral/...)",
       "VOTE_BTN_TYPE_MULTIPLECHOICE": "CUSTOM VOTE",
-      "VOTE_BTN_TYPE_MULTIPLECHOICE_EXPLANATION": "(ie. A/B/C/D/...)",
+      "VOTE_BTN_TYPE_MULTIPLECHOICE_EXPLANATION": "(i.e. A/B/C/D/...)",
       "VOTE_HEADING_STEP2": "Step 2: Define answers",
       "VOTE_LBL_OPTION_YES": "Yes",
       "VOTE_LBL_OPTION_NO": "No",
@@ -497,8 +497,6 @@
       "VOTE_LBL_OPTION_VETO": "Veto",
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "Enter a possible answer",
       "VOTE_BTB_ADD_OPTION": "Add another answer",
-      "VOTE_LBL_NEUTRAL": "Neutral",
-      "VOTE_LBL_VETO": "Veto",
       "VOTE_HEADING_STEP3": "Step 3: Set up voting rights",
       "VOTE_LBL_AUTH_SOFT_ID": "Soft-ID",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "CITIZENOS LOGIN IS REQUIRED",
@@ -538,7 +536,7 @@
       "ARGUMENT_VIEW_COMMENT_ANYWAY": "View argument anyway",
       "ARGUMENT_FOUND_INAPPRIOPRIATE_BY": "This argument was found inappropriate by user <b>{{userFullName}}</b>",
       "ARGUMENT_READ_CODE_OF_CONDUCT": "Read our <a class=\"underlined_link\" href=\"\">code of conduct</a> for more information",
-      "ARGUMENT_LAST_EDITED": "Last edited {{edittime}}",
+      "ARGUMENT_LAST_EDITED": "Last edited: {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Edit your reply here...",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
