@@ -497,8 +497,6 @@
       "VOTE_LBL_OPTION_VETO": "Véto",
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "Entrez une réponse possible",
       "VOTE_BTB_ADD_OPTION": "Ajouter une autre réponse",
-      "VOTE_LBL_NEUTRAL": "Neutre",
-      "VOTE_LBL_VETO": "Véto",
       "VOTE_HEADING_STEP3": "Etape 3: Configurez les droits de vote",
       "VOTE_LBL_AUTH_SOFT_ID": "Soft-ID",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "LOGIN CITIZENOS OBLIGATOIRE",
