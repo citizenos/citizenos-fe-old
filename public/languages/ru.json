@@ -467,7 +467,7 @@
       "ADD_MILESTONES_CREATE_A_MILESTONE": "Создать новый этап",
       "ADD_MILESTONES_PLACEHOLDER_SUBJECT": "Что сделано для реализации решения?",
       "ADD_MILESTONES_PLACEHOLDER_TEXT": "Пожалуйста, добавьте дополнительную информацию и ссылки.",
-      "ADD_MILESTONES_ADD_MILESTONE": "СОХРАНИТЬ ПУБЛИКАЦИЮ",
+      "ADD_MILESTONES_ADD_MILESTONE": "ОПУБЛИКОВАТЬ",
       "ADD_MILESTONES_MILESTONE": "{{number}} milestone",
       "ADD_MILESTONE_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
       "VOTE_CAST_YOUR_VOTE": "Проголосуйте",
