@@ -275,7 +275,7 @@
   "TXT_TOPIC_CATEGORY_VARIA": "Разное",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Ищите темы, пользователей, группы..."
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Ищите темы, пользователей, группы…"
     }
   },
   "DEFAULT": {
@@ -285,7 +285,7 @@
       "HEADING_TOPICS": "Темы",
       "LNK_CREATE_TOPICS": "Создать тему",
       "LNK_MY_TOPICS": "Мои темы",
-      "LNK_PUBLIC_TOPICS": "Открытые темы",
+      "LNK_PUBLIC_TOPICS": "Публичные темы",
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
       "LNK_CREATE_GROUPS": "Создать группу",
       "LNK_MY_GROUPS": "Мои группы",
@@ -299,11 +299,11 @@
       "BTN_OVERVIEW": "Обзор",
       "BTN_EDIT": "Изменить",
       "BTN_SETTINGS": "Настройки",
-      "BTN_MENU": "Варианты",
+      "BTN_MENU": "Меню",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "В результате поиска нашли",
+      "HEADING_RESULTS_IN": "В результате поиска найдено",
       "LNK_VIEW_MORE_RESULTS": "Показать больше результатов",
       "TXT_OOPS_NO_RESULTS": "Ой, мы не нашли результатов, соответствующих запросу :(",
       "TXT_MAYBE_TYPO": "Может, в Ваш запрос закралась опечатка? <br>Мы все же нашли что-то похожее в разных частях платформы CitizenOS - проверьте, пожалуйста, результаты поиска."
@@ -326,7 +326,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Извините, у Вас нет права входа.",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Извините, у Вас нет права входа. :(",
       "HEADING_YOU_MAY_RECOVER": "Для разрешения ситуации имеются следующие возможности",
       "BTN_LOGIN": "Вход",
       "BTN_REQUEST_ACCESS": "Запрос доступа"
@@ -340,9 +340,9 @@
       "LBL_CATEGORY": "Категория:",
       "LBL_STATUS": "Статус:",
       "BTN_CATEGORY": "КАТЕГОРИЯ",
-      "BTN_STATUS": "СТАТУС:",
+      "BTN_STATUS": "СТАТУС",
       "BTN_SUBMIT_FILTER": "Включить фильтр",
-      "HEADING_NO_RESUTS": "Извините, мы не нашли соответствующих результатов.",
+      "HEADING_NO_RESUTS": "Извините, мы не нашли соответствующих результатов. :(",
       "HEADING_GET_STARTED": "Для начала предлагаем следующие возможности",
       "BTN_CREATING_A_NEW_TOPIC": "Создание новой темы",
       "HEADING_BEGINNERS_GUIDE": "Просмотр руководства по использованию CitizenOS",
@@ -352,8 +352,8 @@
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Групп: {{count}}",
-      "HEADING_NOT_IN_GROUP": "Вы пока не состоите ни в одной группе",
-      "HEADING_AT_LEAST_WE_HELP": "Мы можем Вам помочь",
+      "HEADING_NOT_IN_GROUP": "Вы пока не состоите ни в одной группе.",
+      "HEADING_AT_LEAST_WE_HELP": "Мы все же можем Вам помочь",
       "TXT_CREATING_A NEW_GROUP": "Создать новую группу",
       "HEADING_NOT_PARTICIPATED": "Вы пока не участвуете ни в одной теме. Попробуйте, это здорово!",
       "HEADING_GET_INVOLVED": "Для участия имеются следующие возможности",
