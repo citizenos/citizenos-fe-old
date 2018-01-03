@@ -41,7 +41,6 @@ angular
         };
 
         $scope.activities = [];
-
         $scope.topicComments = {
             rows: [],
             count: {
@@ -75,7 +74,7 @@ angular
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 10;
 
-        var getActivityValues = function (activity, topic) {
+        var getActivityValues = function (activity) {
             var values = {};
             if (activity.data.actor && activity.data.actor.name) {
                 values.userName = activity.data.actor.name;
@@ -201,6 +200,7 @@ angular
                                 }
                             );
                     }
+                    return false;
                 }, angular.noop);
         };
 

@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'cosUserVoice']);
+    var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'cosUserVoice', 'angularLoad']);
 
     module
         .constant('cosConfig', {
@@ -34,8 +34,8 @@
                     appKey: 'lkk7j6f41sfpm5b'
                 },
                 googleDrive: {
-                    developerKey: 'AIzaSyC3oZa5HN4OkbLOHYznR4Q0xkkB8oVx9zA',
-                    clientId: '11623449066-36uc2m24ej7vgqq7s8g92psvhcmjmfql.apps.googleusercontent.com'
+                    developerKey: 'AIzaSyBuEp5_A9tMjIZbIWzZ3pyh9wzLVcikD6I',
+                    clientId: '11623449066-0pdp3p7mp4l4f3e7vm43pr7okjpmddmc.apps.googleusercontent.com'
                 },
                 oneDrive: {
                     clientId: 'deb735fe-1c3d-489c-93f4-0a8927101d09'
