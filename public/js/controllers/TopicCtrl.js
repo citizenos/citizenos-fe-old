@@ -110,7 +110,7 @@ angular
             return activity;
         };
         $scope.getActivityDescription = function (activity) {
-            if (activity.data.object['@type'] === 'Comment' || activity.data.object.text) {
+            if (activity.data && activity.data.object && (activity.data.object['@type'] === 'Comment' || activity.data.object.text)) {
                 return true;
             }
             return false;

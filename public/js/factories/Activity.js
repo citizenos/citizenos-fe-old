@@ -3,9 +3,25 @@
 angular
     .module('citizenos')
     .factory('Activity', [
-'$log', '$resource', 'sLocation', 'sAuth', function ($log, $resource, sLocation) {
+'$log', '$resource', 'sLocation', 'sAuth', function ($log, $resource, sLocation, sAuth) {
         $log.debug('citizenos.factory.Activity');
         var actStrings = [];
+
+        var getUrlPrefix = function () {
+            var prefix = sAuth.getUrlPrefix();
+            if(!prefix) {
+                prefix = '@prefix';
+            }
+            return prefix;
+        };
+
+        var getUrlUser = function () {
+            var userId = sAuth.getUrlUserId();
+            if(!userId) {
+                userId = '@userId';
+            }
+            return userId;
+        };
 
         var buildActivityString = function (activity) {
             var keys = Object.keys(activity.data);
@@ -81,8 +97,8 @@ angular
         };
 
         var Activity = $resource(
-            sLocation.getAbsoluteUrlApi('/api/topics/:topicId/activities'),
-            {topicId: '@topicId'},
+            sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId/activities'),
+            {topicId: '@topicId', prefix: getUrlPrefix, userId: getUrlUser},
             {
                 query: {
                     params: {topicId: '@topicId'},

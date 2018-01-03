@@ -149,7 +149,7 @@
 
         <div class="container_content activity_container" ng-if="app.activityFeed">
 
-            <div class="activity" ng-repeat="(key, this) in ['1', '2']">
+            <div class="activity" ng-repeat="(key, activity) in activities">
 
                 <div class="activity_left">
                     <div class="activiy_time" ng-bind="activity.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
