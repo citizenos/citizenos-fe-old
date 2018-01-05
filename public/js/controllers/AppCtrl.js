@@ -15,7 +15,12 @@ angular
         };
 
         $scope.app.user = sAuth.user;
-        $scope.app.language = sTranslate.currentLanguage;
+        
+        sTranslate
+            .getCurrentLanguage()
+            .then(function (language) {
+                $scope.app.language = language;
+            });
 
         $scope.app.metainfo = {
             title: 'META_DEFAULT_TITLE',

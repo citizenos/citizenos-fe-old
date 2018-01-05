@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sTranslate', ['$state', '$stateParams', '$translate', '$log', '$filter', '$cookies', 'cosConfig', function ($state, $stateParams, $translate, $log, $filter, $cookies, cosConfig) {
+    .service('sTranslate', ['$state', '$stateParams', '$translate', '$log', '$filter', '$cookies', '$q', 'cosConfig', function ($state, $stateParams, $translate, $log, $filter, $cookies, $q, cosConfig) {
         var sTranslate = this;
 
         sTranslate.LANGUAGES = Object.keys(cosConfig.language.list);
@@ -10,13 +10,15 @@ angular
         var debugLang = cosConfig.language.debug;
 
         var init = function () {
-            var clientLang = $translate.resolveClientLocale();
-            if ($cookies.get('language')) {
-                clientLang = $cookies.get('language');
-            }
-            if (sTranslate.LANGUAGES.indexOf(clientLang) > -1) {
-                sTranslate.currentLanguage = clientLang;
-            }
+            $translate.onReady(function () {
+                var clientLang = $translate.resolveClientLocale();
+                if ($cookies.get('language')) {
+                    clientLang = $cookies.get('language');
+                }
+                if (sTranslate.LANGUAGES.indexOf(clientLang) > -1) {
+                    sTranslate.currentLanguage = clientLang;
+                }
+            });
         };
         init();
 
@@ -32,8 +34,8 @@ angular
         };
 
         sTranslate.switchLanguage = function (language) {
+            $log.debug('switch language', language);
             $translate.onReady(function () {
-                $log.debug('switch language', language);
                 if (sTranslate.checkLanguageIsValid(language)) {
                     $stateParams.language = language;
                     if (language === 'aa') { // Crowdin language selected, we need a full page reload for the in-context script to work.
@@ -48,10 +50,10 @@ angular
 
         sTranslate.debugMode = function () {
             $translate.onReady(function () {
-                if ($translate.use() === debugLang) {
-                    $translate.use(sTranslate.currentLanguage);
-                } else {
+                if ($translate.use() !== debugLang) {
                     $translate.use(debugLang);
+                } else {
+                    $translate.use(sTranslate.currentLanguage);
                 }
             });
         };
@@ -62,5 +64,13 @@ angular
             }
             return sTranslate.LANGUAGES.indexOf(language) !== -1;
         };
+
+        sTranslate.getCurrentLanguage = function () {
+            return $q(function(resolve, reject) {
+                $translate.onReady(function () {
+                    return resolve($translate.use());
+                });
+            });
+        }
 
     }]);
