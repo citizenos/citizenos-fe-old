@@ -1,6 +1,6 @@
 {
-  "META_DEFAULT_TITLE": "CitizenOS - an e-decisionmaking platform for communities.",
-  "META_DEFAULT_DESCRIPTION": "CitizenOS enables participative discussion and voting for groups, when getting together offline or online at the same time is not an option.",
+  "META_DEFAULT_TITLE": "CitizenOS - kogukondlik e-otsustamise platvorm.",
+  "META_DEFAULT_DESCRIPTION": "CitizenOS võimaldab kaasavat arutelu ja otsustamist tingimustes, kus kõigil osalistel samal ajal online või offline kohtuda ei ole võimalik.",
   "META_DEFAULT_KEYWORDS": "kaasamine, e-otsustamine, e-valitsemine, e-demokraatia, demokraatia, valgdemokraatia, otsedemokraatia",
   "BTN_YES": "JAH",
   "BTN_NO": "EI",
@@ -10,7 +10,7 @@
   "TXT_TOPIC_STATUS_ALL": "kõiki",
   "TXT_TOPIC_STATUS_INPROGRESS": "ühisloomes",
   "TXT_TOPIC_STATUS_VOTING": "hääletamisel",
-  "TXT_TOPIC_STATUS_FOLLOWUP": "in follow-up",
+  "TXT_TOPIC_STATUS_FOLLOWUP": "elluviimisel",
   "TXT_TOPIC_STATUS_CLOSED": "suletud",
   "TXT_TOPIC_LEVELS_ADMIN": "haldamine",
   "TXT_TOPIC_LEVELS_EDIT": "muutmine",
