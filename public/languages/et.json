@@ -475,7 +475,7 @@
       "VOTE_CAST_YOUR_VOTE": "Anna oma hääl",
       "VOTE_VOTES_COUNTED": "häält loetud",
       "VOTE_HEADING_REQUIRE_HARD_ID": "Hääl vajab allkirjastamist ID-kaardi või Mobiil ID-ga",
-      "VOTE_TXT_REQUIRE_HARD_ID": "This document needs to be signed with an ID-card or Mobiil-ID to be registered. You cannot vote unless you identify yourself.",
+      "VOTE_TXT_REQUIRE_HARD_ID": "Hääletamiseks on vaja kasutada ID-kaarti või mobiil ID-d. Kui te oma isikut ei tuvasta, ei saa antud küsimuses hääletada.",
       "HEADING_VOTE_REGISTERED": "Sinu hääl on loetud.",
       "BTN_DOWNLOAD_USER_BDOC": "Lae alla oma allkirjastatud hääl (BDOC fail)",
       "VOTE_TXT_VOTE_REGISTERED": "Täname hääletamast! Võid veel oma häält muuta, otsustades mõne teise valiku kasuks.",
