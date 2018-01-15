@@ -351,7 +351,7 @@
       "BTN_LOAD_MORE_TOPICS": "Показать больше тем"
     },
     "MY": {
-      "LBL_GROUPS_COUNT": "Groups: {{count}}",
+      "LBL_GROUPS_COUNT": "Групп: {{count}}",
       "HEADING_NOT_IN_GROUP": "Вы пока не состоите ни в одной группе.",
       "HEADING_AT_LEAST_WE_HELP": "Мы все же можем Вам помочь",
       "TXT_CREATING_A NEW_GROUP": "Создать новую группу",
