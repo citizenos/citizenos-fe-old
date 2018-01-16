@@ -81,13 +81,18 @@ angular
             }
 
             if ($scope.topic) {
-                values.topicTitle = '"' + $scope.topic.title + '"';
+                values.topicTitle = $scope.topic.title;
             }
 
             if (activity.data.type === 'Update') {
                 values.fieldName = activity.data.result[0].path.split('/')[1];
-                values.previousValue = '"' + (activity.data.origin[values.fieldName] || '') + '"';
-                values.newValue = '"' + (activity.data.result[0].value || '') + '"';
+                var previousValue = activity.data.origin[values.fieldName];
+                if (Array.isArray(previousValue) && previousValue.length === 0) {
+                    previousValue = '';
+                }
+
+                values.previousValue = previousValue || '';
+                values.newValue = activity.data.result[0].value || '';
             }
             if (activity.data.object) {
                 if (activity.data.object['@type'] === 'Group' || activity.data.object.groupName) {
