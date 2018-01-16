@@ -1,6 +1,6 @@
 # CitizenOS-FE
 
-CitizenOS front-end web application - https://citizenos.com
+CitizenOS front-end web application - https://app.citizenos.com
 
 ## Contributing
 
