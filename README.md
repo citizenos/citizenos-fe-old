@@ -1,3 +1,6 @@
+
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/citizenos-fe/localized.svg)](https://crowdin.com/project/citizenos-fe)
+
 # CitizenOS-FE
 
 CitizenOS front-end web application - https://app.citizenos.com
