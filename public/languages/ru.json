@@ -622,7 +622,7 @@
     "ACTIVITY_TOPIC_FIELD_HASHTAG": "хэштег",
     "ACTIVITY_TOPIC_FIELD_TITLE": "заголовок",
     "ACTIVITY_TOPIC_FIELD_CATEGORIES": "категории",
-    "ACTIVITY_TOPIC_FIELD_TOKENJOIN": "invite link",
+    "ACTIVITY_TOPIC_FIELD_TOKENJOIN": "ссылка для приглашения",
     "ACTIVITY_TOPIC_FIELD_VISIBILITY": "доступность к просмотру",
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PRIVATE": "приватная",
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PUBLIC": "публичная",
