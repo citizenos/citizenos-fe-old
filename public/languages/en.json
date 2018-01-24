@@ -645,7 +645,7 @@
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "The email address is already in use.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Name can be 1 to 255 characters long.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Account with this email does not exist.",
-  "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Password must be at least 6 character long, containing at least 1 digit, 1 lower and upper case character.",
+  "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Password must be at least 6 characters long, containing at least 1 digit, 1 lower and 1 upper case character.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40003_PASSWORD": "Wrong password.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "The account verification has not been completed. Please check your e-mail.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "Invalid email, password or password reset code.",
