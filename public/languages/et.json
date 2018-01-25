@@ -254,7 +254,7 @@
     "TOPIC_VOTE_SIGN_BTN_SIGN_MID": "Allkirjasta mobiil-ID-ga",
     "TOPIC_VOTE_SIGN_BTN_SIGN_CARD": "Allkirjasta ID-kaardiga",
     "TOPIC_EVENT_DELETE_CONFIRM_HEADING": "Kustuta teadaanne",
-    "TOPIC_EVENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to delete this update?",
+    "TOPIC_EVENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Kas oled kindel, et soovid selle teadaande kustutada?",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES"
   },
@@ -351,7 +351,7 @@
       "BTN_LOAD_MORE_TOPICS": "Näita rohkem teemasid"
     },
     "MY": {
-      "LBL_GROUPS_COUNT": "Groups: {{count}}",
+      "LBL_GROUPS_COUNT": "Rühmi: {{count}}",
       "HEADING_NOT_IN_GROUP": "Sa ei ole veel ühegi rühma liige.",
       "HEADING_AT_LEAST_WE_HELP": "Me saame sind aidata",
       "TXT_CREATING_A NEW_GROUP": "Loo uus grupp",
