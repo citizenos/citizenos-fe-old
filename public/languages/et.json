@@ -474,7 +474,7 @@
       "ADD_MILESTONE_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
       "VOTE_CAST_YOUR_VOTE": "Anna oma hääl",
       "VOTE_VOTES_COUNTED": "häält loetud",
-      "VOTE_HEADING_REQUIRE_HARD_ID": "Hääl vajab allkirjastamist ID-kaardi või Mobiil ID-ga",
+      "VOTE_HEADING_REQUIRE_HARD_ID": "Hääl vajab allkirjastamist ID-kaardi või Mobiil ID-ga.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Hääletamiseks on vaja kasutada ID-kaarti või mobiil-ID'd. Kui te oma isikut ei tuvasta, ei saa antud küsimuses hääletada.",
       "HEADING_VOTE_REGISTERED": "Sinu hääl on loetud.",
       "BTN_DOWNLOAD_USER_BDOC": "Lae alla oma allkirjastatud hääl (BDOC fail)",
