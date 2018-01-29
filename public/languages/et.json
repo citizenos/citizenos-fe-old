@@ -303,10 +303,10 @@
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "Otsingu tulemusel leiti",
+      "HEADING_RESULTS_IN": "Otsingu tulemused",
       "LNK_VIEW_MORE_RESULTS": "Vaata rohkem tulemusi",
       "TXT_OOPS_NO_RESULTS": "Oih, me ei leidnud otsisõnale vastavaid tulemusi :(",
-      "TXT_MAYBE_TYPO": "Äkki tegid otsisõnas trükivea?<br>Üht-teist vastavat me siiski Citizen OS platvormi eri otstest leidsime, vaata üle."
+      "TXT_MAYBE_TYPO": "Äkki tegid otsisõnas trükivea?<br>Üht-teist vastavat me siiski Citizen OS-i platvormi eri otstest leidsime, vaata üle."
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "minu teemad",
@@ -326,9 +326,9 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Vabandust, sul ei ole õiguseid siia sisenemiseks.",
-      "HEADING_YOU_MAY_RECOVER": "Olukorra lahendamiseks on järgmised võimalused",
-      "BTN_LOGIN": "Sisselogimine",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Vabandust, sul ei ole sisenemisõigust :(",
+      "HEADING_YOU_MAY_RECOVER": "Olukorra lahendamiseks on järgmised võimalused:",
+      "BTN_LOGIN": "Sisenemine",
       "BTN_REQUEST_ACCESS": "Juurdepääsu taotlemine"
     },
     "HOME": {
