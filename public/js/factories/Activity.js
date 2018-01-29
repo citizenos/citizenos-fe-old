@@ -9,7 +9,7 @@ angular
 
         var getUrlPrefix = function () {
             var prefix = sAuth.getUrlPrefix();
-            if(!prefix) {
+            if (!prefix) {
                 prefix = '@prefix';
             }
             return prefix;
@@ -17,7 +17,7 @@ angular
 
         var getUrlUser = function () {
             var userId = sAuth.getUrlUserId();
-            if(!userId) {
+            if (!userId) {
                 userId = '@userId';
             }
             return userId;
@@ -74,6 +74,29 @@ angular
                     if (activity.data) {
                         if (activity.data.type === 'Update' && Array.isArray(activity.data.result)) {
                             var i = 0;
+                            var resultItems = [];
+                            if (activity.data.origin['@type'] === 'Topic') {
+                                activity.data.origin.description = null;
+                            }
+                            var resultObject = _.cloneDeep(activity.data.origin);
+                            activity.data.resultObject = jsonpatch.apply(resultObject, activity.data.result);
+                            activity.data.result.forEach(function (item) {
+                                var field = item.path.split('/')[1];
+
+                                var change = _.find(resultItems, function (resItem) {
+                                    return resItem.path.indexOf(field) > -1;
+                                });
+
+                                if (!change) {
+                                    resultItems.push(item);
+                                } else if (item.value) {
+                                    if (!Array.isArray(change.value)) {
+                                        change.value = [change.value];
+                                    }
+                                    change.value.push(item.value);
+                                }
+                            });
+                            activity.data.result = resultItems;
                             while (i < activity.data.result.length) {
                                 var act = _.cloneDeep(activity);
                                 var change = activity.data.result[i];
@@ -81,7 +104,6 @@ angular
                                 buildActivityString(act);
                                 parsedResult.push(act);
                                 i++;
-
                             }
                         } else {
                             buildActivityString(activity);
@@ -98,7 +120,11 @@ angular
 
         var Activity = $resource(
             sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId/activities'),
-            {topicId: '@topicId', prefix: getUrlPrefix, userId: getUrlUser},
+            {
+                topicId: '@topicId',
+                prefix: getUrlPrefix,
+                userId: getUrlUser
+            },
             {
                 query: {
                     params: {topicId: '@topicId'},

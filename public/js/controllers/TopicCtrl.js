@@ -3,7 +3,7 @@
 angular
     .module('citizenos')
     .controller('TopicCtrl', [
-'$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'Activity', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, ngDialog, sAuth, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, Activity, rTopic) {
+'$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'Activity', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, ngDialog, sAuth, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, Activity, rTopic) {
         $log.debug('TopicCtrl', $scope);
 
         $scope.topic = rTopic;
@@ -74,6 +74,82 @@ angular
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 10;
 
+        var getCategoryTranslationKeys = function (catInput) {            
+            if (Array.isArray(catInput)) {
+                var translationKeys = [];
+                catInput.forEach(function (category) {
+                    translationKeys.push('TXT_TOPIC_CATEGORY_' + category.toUpperCase());
+                });
+
+                return translationKeys;
+            }
+
+            return 'TXT_TOPIC_CATEGORY_' + catInput.toUpperCase();
+        };
+
+        var getUpdatedTranslations = function (activity) {
+            var fieldName = activity.data.result[0].path.split('/')[1];
+            activity.values.fieldName = fieldName;
+            var previousValue = activity.data.origin[fieldName];
+            var newValue = activity.data.resultObject[fieldName];
+            var previousValueKey = null
+            var newValueKey = null;
+
+            if (activity.data.origin['@type'] === 'Topic') {
+                var fieldNameKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_FIELD_' + fieldName.toUpperCase();
+                $translate(fieldNameKey)
+                    .then(function (translatedField) {
+                        activity.values.fieldName = translatedField;
+                    })
+            }
+
+            if (Array.isArray(previousValue) && previousValue.length === 0) {
+                previousValue = '';
+            }
+
+            if (previousValue || newValue) {
+                if (activity.data.origin['@type'] === 'Topic') {
+                    if (fieldName === 'status' || fieldName === 'visibility') {
+                        if (previousValue) {
+                            previousValueKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_FIELD_' + fieldName.toUpperCase() + '_' + previousValue.toUpperCase();
+                        }
+                        if (newValue) {
+                            newValueKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_FIELD_' + fieldName.toUpperCase() + '_' + newValue.toUpperCase();
+                        }
+                    }
+                    if (fieldName === 'categories') {
+                        if (previousValue) {
+                            previousValueKey = getCategoryTranslationKeys(previousValue);
+                        }
+                        if (newValue) {
+                            newValueKey = getCategoryTranslationKeys(newValue);
+                        }
+                    }
+                }
+            }
+            if (previousValueKey) {
+                $translate(previousValueKey)
+                .then(function (prev) {
+                    activity.values.previousValue = prev;
+                    if (typeof prev === 'object') {
+                        activity.values.previousValue = Object.values(prev).join(';');
+                    }
+                });
+            } else {
+                activity.values.previousValue = previousValue;
+            }
+            if (newValueKey) {
+                $translate(newValueKey)
+                .then(function (newVal) {
+                    activity.values.newValue = newVal;
+                    if (typeof newVal === 'object') {                        
+                        activity.values.newValue = Object.values(newVal).join(';');
+                    }
+                });
+            } else {
+                activity.values.newValue = newValue;
+            }
+        }
         var getActivityValues = function (activity) {
             var values = {};
             if (activity.data.actor && activity.data.actor.name) {
@@ -84,38 +160,33 @@ angular
                 values.topicTitle = $scope.topic.title;
             }
 
-            if (activity.data.type === 'Update') {
-                values.fieldName = activity.data.result[0].path.split('/')[1];
-                var previousValue = activity.data.origin[values.fieldName];
-                if (Array.isArray(previousValue) && previousValue.length === 0) {
-                    previousValue = '';
-                }
-
-                values.previousValue = previousValue || '';
-                values.newValue = activity.data.result[0].value || '';
-            }
             if (activity.data.object) {
-                if (activity.data.object['@type'] === 'Group' || activity.data.object.groupName) {
-                    values.groupName = activity.data.object.name || activity.data.object.groupName;
+                if (Array.isArray(activity.data.object) && (activity.data.object[0]['@type'] === 'Group' || activity.data.object[0].groupName) || activity.data.object['@type'] === 'Group' || activity.data.object.groupName) {
+                    values.groupName = activity.data.object.name || activity.data.object.groupName || activity.data.object[0].name || activity.data.object[0].groupName;
                 }
 
-                if (activity.data.object['@type'] === 'User' || activity.data.object.userName) {
-                    values.userName2 = activity.data.object.name || activity.data.object.userName;
+                if (Array.isArray(activity.data.object) && (activity.data.object[0]['@type'] === 'User' || activity.data.object[0].userName) || activity.data.object['@type'] === 'User' || activity.data.object.userName) {
+                    values.userName2 = activity.data.object.name || activity.data.object.userName || activity.data.object[0].name || activity.data.object[0].userName;
                 }
 
-                if (activity.data.object['@type'] === 'Attachment' || activity.data.object.name) {
-                    values.attachmentName = activity.data.object.name;
+                if (Array.isArray(activity.data.object) && (activity.data.object[0]['@type'] === 'Attachment' || activity.data.object[0].name) || activity.data.object['@type'] === 'Attachment' || activity.data.object.name) {
+                    values.attachmentName = activity.data.object.name || activity.data.object[0].name ;
                 }
 
-                if (activity.data.object['@type'] === 'Comment' || activity.data.object.text) {
-                    values.description = activity.data.object.text;
+                if (Array.isArray(activity.data.object) && (activity.data.object[0]['@type'] === 'Comment' || activity.data.object[0].text) || activity.data.object['@type'] === 'Comment' || activity.data.object.text) {
+                    values.description = activity.data.object.text || activity.data.object.text ;
                 }
             }
             activity.values = values;
+            if (activity.data.type === 'Update') {
+                getUpdatedTranslations(activity);
+            }
+
             return activity;
         };
+
         $scope.getActivityDescription = function (activity) {
-            if (activity.data && activity.data.object && (activity.data.object['@type'] === 'Comment' || activity.data.object.text)) {
+            if (activity.data && activity.data.object && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Comment' || activity.data.object['@type'] === 'Comment' || activity.data.object.text)) {
                 return true;
             }
             return false;
@@ -677,9 +748,12 @@ angular
 
         $scope.showActivityUpdateVersions = function (activity) {
             if (activity.data.type === 'Update') {
+                if (activity.data.result && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1 || !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1)) {
+                    return false;
+                }
+
                 if (
-                    (activity.data.result && activity.data.object['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1) ||
-                    (activity.data.result && activity.data.object['@type'] === 'TopicMemberUser' && activity.data.result[0].path.indexOf('level') > -1 && activity.data.result[0].value === 'none')
+                    activity.data.result && !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'TopicMemberUser' && activity.data.result[0].path.indexOf('level') > -1 && activity.data.result[0].value === 'none'
                 ) {
                     return false;
                 }
