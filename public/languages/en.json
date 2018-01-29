@@ -1,6 +1,6 @@
 {
-  "META_DEFAULT_TITLE": "CitizenOS - an e-decisionmaking platform for communities.",
-  "META_DEFAULT_DESCRIPTION": "CitizenOS enables participative discussion and voting for groups, when getting together offline or online at the same time is not an option.",
+  "META_DEFAULT_TITLE": "Citizen OS - an e-decisionmaking platform for communities.",
+  "META_DEFAULT_DESCRIPTION": "Citizen OS enables participative discussion and voting for groups, when getting together offline or online at the same time is not an option.",
   "META_DEFAULT_KEYWORDS": "e-decisionmaking, e-governance, e-democracy, democracy, direct democracy, liquid democracy",
   "BTN_YES": "YES",
   "BTN_NO": "NO",
@@ -306,7 +306,7 @@
       "HEADING_RESULTS_IN": "Context search results in",
       "LNK_VIEW_MORE_RESULTS": "View more results",
       "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
-      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?<br>We did find some things scattered throughout the CitizenOS platform, so feel free to check them out."
+      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?<br>We did find some things scattered throughout the Citizen OS platform, so feel free to check them out."
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "my topics",
@@ -345,8 +345,8 @@
       "HEADING_NO_RESUTS": "We’re sorry, but we couldn’t find any results :(",
       "HEADING_GET_STARTED": "Maybe you can get the first discussion initiated by",
       "BTN_CREATING_A_NEW_TOPIC": "Creating a new topic",
-      "HEADING_BEGINNERS_GUIDE": "A beginner’s guide to CitizenOS.",
-      "TXT_BEGINNERS_GUIDE": "Hi there, welcome to CitizenOS! Read this topic to find out how everything works.",
+      "HEADING_BEGINNERS_GUIDE": "A beginner’s guide to Citizen OS.",
+      "TXT_BEGINNERS_GUIDE": "Hi there, welcome to Citizen OS! Read this topic to find out how everything works.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Tutorial and explanation",
       "BTN_LOAD_MORE_TOPICS": "Load more topics"
     },
@@ -430,22 +430,22 @@
     },
     "PARTNERS_CONSENT": {
       "HEADING": "Rahvaalgatus.ee would like to access the following data from your account:",
-      "TXT_VIEW_PROFILE": "View and edit Your CitizenOS profile - name, company, email, profile picture.",
-      "TXT_VIEW_TOPICS": "View and edit Your CitizenOS public Topics and Topics created via the Rahvaalgatus.ee website.",
-      "TXT_VIEW_VOTES": "View and edit Your CitizenOS Votes in public Topics and Topics created via the Rahvaalgatus.ee website.",
-      "TXT_VIEW_GROUPS": "View and edit Your CitizenOS Groups.",
+      "TXT_VIEW_PROFILE": "View and edit Your Citizen OS profile - name, company, email, picture.",
+      "TXT_VIEW_TOPICS": "View and edit Your Citizen OS public Topics and Topics created via the Rahvaalgatus.ee website.",
+      "TXT_VIEW_VOTES": "View and edit Your Citizen OS Votes in public Topics and Topics created via the Rahvaalgatus.ee website.",
+      "TXT_VIEW_GROUPS": "View and edit Your Citizen OS Groups.",
       "TXT_POLICY": "Rahvaalgatus.ee will use this information in accordance with their respective <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">terms of service and privacy policies</a>.",
       "_AGREE": "Accept",
       "DISAGREE": "Cancel"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "<strong>Rahvaalgatus.ee works together with CitizenOS</strong> to offer you a great experience. If you want to use the platform to its fullest, <strong>please login to CitizenOS or register.</strong>",
+      "HEADING": "<strong>Rahvaalgatus.ee works together with Citizen OS</strong> to offer you a great experience. If you want to use the platform to its fullest, <strong>please login to Citizen OS or register.</strong>",
       "BTN_LOGIN_FACEBOOK": "@:MODALS.LOGIN_BTN_LOGIN_FACEBOOK",
       "BTN_LOGIN_GOOGLE": "@:MODALS.LOGIN_BTN_LOGIN_GOOGLE",
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",
       "PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
       "PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
-      "LOGIN_REGISTER": "Log in/register to CitizenOS",
+      "LOGIN_REGISTER": "Log in/register to Citizen OS",
       "FORGOT_PASSWORD": "Forgot password?"
     },
     "TOPICS_TOPICID": {
@@ -500,13 +500,13 @@
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "Enter a possible answer",
       "VOTE_BTB_ADD_OPTION": "Add another answer",
       "VOTE_HEADING_STEP3": "Step 3: Set up voting rights",
-      "VOTE_LBL_AUTH_SOFT_ID": "Soft-ID",
-      "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "CITIZENOS LOGIN IS REQUIRED",
-      "VOTE_LBL_AUTH_HARD_ID": "Hard-ID",
+      "VOTE_LBL_AUTH_SOFT_ID": "Social login",
+      "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "Citizen OS LOGIN IS REQUIRED",
+      "VOTE_LBL_AUTH_HARD_ID": "eID",
       "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "ID-CARD- OR MOBILE SIGNING IS REQUIRED",
       "VOTE_LBL_DELEGATION": "Delegation",
       "VOTE_LBL_DELEGATION_EXPLANATION": "ALLOW USERS TO PASS ON THEIR VOTING RIGHT.",
-      "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "When Hard-ID is the chosen method of voting, delegation is not allowed.",
+      "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "When eID is the chosen method of voting, delegation is not allowed.",
       "VOTE_HEADING_STEP4": "Step 4: Voting deadline",
       "VOTE_LBL_DEADLINE": "Deadline",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "{{numberOfDaysLeft}} days left",
