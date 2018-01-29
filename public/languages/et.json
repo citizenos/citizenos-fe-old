@@ -20,7 +20,7 @@
   "TXT_TOPIC_VISIBILITY_PRIVATE": "Privaatne teema",
   "TXT_REPORT_TYPES_NULL": "Vali teavituse põhjus",
   "TXT_REPORT_TYPES_ABUSE": "Mõjub mulle / kellelegi solvavalt",
-  "TXT_REPORT_TYPES_OBSCENE": "Sisaldab ebatsensuurseid väljendeid",
+  "TXT_REPORT_TYPES_OBSCENE": "Sisaldab sündsusetuid väljendeid",
   "TXT_REPORT_TYPES_SPAM": "Sisaldab reklaami või pole seotud teemaga",
   "TXT_REPORT_TYPES_HATE": "Õhutab vaenu",
   "TXT_REPORT_TYPES_NETIQUETTE": "Ei vasta headele tavadele",
