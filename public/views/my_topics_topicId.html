@@ -156,9 +156,20 @@
                 </div>
 
                 <div class="activity_right">
-                    <div class="activiy_title"><span translate="{{activity.string}}" translate-values="activity.values"> </span><span ng-if="showActivityUpdateVersions(activity)"><br><span translate="ACTIVITY_FEED.ACTIVITY_PREVIOUS_VERSION" translate-values="activity.values"></span><br><span translate="ACTIVITY_FEED.ACTIVITY_NEW_VERSION" translate-values="activity.values"></span></span></div>
-                    <div class="activiy_description" ng-if="getActivityDescription(activity)" ng-bind="activity.values.description">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
-                        home office combo? First off, you will need to set a budget for your new ...
+                    <div class="activiy_title" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
+                        <span translate="{{activity.string}}" translate-values="activity.values"> </span>
+                        <div ng-if="showActivityUpdateVersions(activity)">
+                            <div class="activity_previous" translate="ACTIVITY_FEED.ACTIVITY_PREVIOUS_VERSION" translate-values="activity.values"></div>
+                            <div class="activity_overlay"></div>
+                            <div class="activity_new" translate="ACTIVITY_FEED.ACTIVITY_NEW_VERSION" translate-values="activity.values"></div>
+                            <div class="activity_overlay"></div>
+                        </div>
+                    </div>
+                    <div class="activiy_description" ng-if="getActivityDescription(activity)" check-height ng-class="{overheight: offsetHeight > 80, read_more: readMore}" >
+                        <div class="activity_description_text" ng-bind="activity.values.description">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
+                            home office combo? First off, you will need to set a budget for your new ...
+                        </div>
+                        <div class="activity_description_overlay"></div>
                     </div>
                 </div>
 

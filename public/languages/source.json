@@ -593,7 +593,7 @@
     "ACTIVITY_USER_ADD_USER_TOPIC": "User {{userName}} has invited user {{userName2}} to participate in topic {{topicTitle}}",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERUSER": "User {{userName}} has changed user’s {{userName2}} access level to topic {{topicTitle}}.",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERUSER_NONE": "User {{userName}} has revoked user’s {{userName2}} access to topic {{topicTitle}}",
-    "ACTIVITY_FEED.ACTIVITY_USER_JOIN_TOPIC": "User {{userName}} has joined topic {{topicTitle}} with access level: {{accessLevel}}.",
+    "ACTIVITY_USER_JOIN_TOPIC": "User {{userName}} has joined topic {{topicTitle}} with access level: {{accessLevel}}.",
     "ACTIVITY_USER_LEAVE_TOPIC": "User {{userName}} has left topic: {{topicTitle}}",
     "ACTIVITY_USER_CREATE_VOTE_TOPIC": "User {{userName}} has opened voting for topic: {{topicTitle}}",
     "ACTIVITY_USER_UPDATE_VOTE_TOPIC": "User {{userName}} has updated topic’s {{topicTitle}} voting deadline.",
