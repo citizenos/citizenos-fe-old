@@ -439,7 +439,7 @@
       "DISAGREE": "Отменить"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "<strong>Rahvaalgatus.ee сотрудничает с Citizen OS</strong>, чтобы Вы смогли получить полноценный опыт использования системы. Если Вы хотите узнать максимальные возможности платформы, <strong>пожалуйста, войдите в систему Citizen OS или зарегистрируйтесь.</strong>",
+      "HEADING": "<strong>Rahvaalgatus.ee сотрудничает с Citizen OS</strong>, чтобы Вы смогли получить полноценный опыт использования системы. Чтобы узнать о максимальных возможностях платформы, <strong>пожалуйста, войдите в систему Citizen OS или зарегистрируйтесь.</strong>",
       "BTN_LOGIN_FACEBOOK": "@:MODALS.LOGIN_BTN_LOGIN_FACEBOOK",
       "BTN_LOGIN_GOOGLE": "@:MODALS.LOGIN_BTN_LOGIN_GOOGLE",
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",
