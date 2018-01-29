@@ -7,14 +7,18 @@
     module
         .constant('cosConfig', {
             api: {
-                baseUrl: 'https://api.citizenos.com' // FIXME: Environment based!
+                baseUrl: 'https://citizenos-citizenos-api-test.herokuapp.com' // FIXME: Environment based!
             },
             language: {
                 default: 'en',
                 list: {
                     en: 'English',
+                    fr: 'Français',
                     et: 'Eesti',
-                    ru: 'Pусский'
+                    lv: 'Latviešu',
+                    lt: 'Lietuvių',
+                    ru: 'Pусский',
+                    aa: 'Crowdin'
                 },
                 debug: 'dbg'
             },
@@ -34,7 +38,7 @@
                     clientId: '11623449066-0pdp3p7mp4l4f3e7vm43pr7okjpmddmc.apps.googleusercontent.com'
                 },
                 oneDrive: {
-                    clientId: '703640f9-f482-4349-8b6f-97993a91ea64'
+                    clientId: 'deb735fe-1c3d-489c-93f4-0a8927101d09'
                 }
             }
         });
@@ -725,6 +729,8 @@
 })();
 
 Raven
-    .config('https://053c9e29e7324dcaa220dd3bced63d22@sentry.io/160591')
+    .config('https://8a7192ea412a489e8107a7f23cbd3b47@sentry.io/160293', {
+        debug: true
+    })
     .addPlugin(Raven.Plugins.Angular)
     .install();
