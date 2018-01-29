@@ -500,7 +500,7 @@
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "LIsa vastusevariant",
       "VOTE_BTB_ADD_OPTION": "Lisa järgmine variant",
       "VOTE_HEADING_STEP3": "Samm 3: määra õigused",
-      "VOTE_LBL_AUTH_SOFT_ID": "Social login",
+      "VOTE_LBL_AUTH_SOFT_ID": "Harilik login",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "HÄÄLETAMISEKS ON VAJALIK SISSELOGIMINE CITIZEN OS SÜSTEEMI",
       "VOTE_LBL_AUTH_HARD_ID": "digiallkirjastamine",
       "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "KOHUSTUSLIK DIGIALLKIRJASTAMINE",
