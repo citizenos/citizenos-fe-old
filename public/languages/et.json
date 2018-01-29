@@ -19,7 +19,7 @@
   "TXT_TOPIC_VISIBILITY_PUBLIC": "Avalik teema",
   "TXT_TOPIC_VISIBILITY_PRIVATE": "Privaatne teema",
   "TXT_REPORT_TYPES_NULL": "Vali teavituse põhjus",
-  "TXT_REPORT_TYPES_ABUSE": "Mõjub mulle / kellelegi solvavalt",
+  "TXT_REPORT_TYPES_ABUSE": "On solvav",
   "TXT_REPORT_TYPES_OBSCENE": "Sisaldab sündsusetuid väljendeid",
   "TXT_REPORT_TYPES_SPAM": "Sisaldab reklaami või pole seotud teemaga",
   "TXT_REPORT_TYPES_HATE": "Õhutab vaenu",
@@ -34,7 +34,7 @@
   "TXT_MODERATION_TYPES_DUPLICATE": "@:TXT_REPORT_TYPES_DUPLICATE",
   "MODALS": {
     "GROUP_DELETE_CONFIRM_HEADING": "Kustuta rühm",
-    "GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Tahad kindlasti selle rühma kustutada?",
+    "GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Kas tahad kindlasti selle rühma kustutada?",
     "GROUP_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
     "GROUP_DELETE_CONFIRM_TXT_GROUP_DELETED": "See rühm kustutatakse.",
     "GROUP_DELETE_CONFIRM_TXT_LOSE_ACCESS": "Kõik rühma liikmed kaotavad juurdepääsu rühmaga seotud teemadele.",
