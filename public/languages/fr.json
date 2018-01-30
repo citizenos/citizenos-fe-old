@@ -639,8 +639,7 @@
     "USER_DELETE_USER_GROUP": "User {{userName}} has removed {{userName2}} from group {{groupName}}",
     "ACTIVITY_USER_ADD_USERCONNECTION": "User {{userName}} has added new log-in method {{connectionName}}",
     "ACTIVITY_USER_CREATE_USER": "User {{userName}} has been created",
-    "ACTIVITY_USER_DELETE_CONSENT": "",
-    "ACTIVITY_UNDEFINED": "undefined activity"
+    "ACTIVITY_USER_DELETE_CONSENT": ""
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Email non valide.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Cette adresse email est déjà utilisée.",
