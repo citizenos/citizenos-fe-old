@@ -400,7 +400,7 @@
       "LNK_EDIT": "muuda",
       "LNK_LEAVE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_LEAVE",
       "LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
-      "HEADING_CURRENT_VOTE_RESULTS": "Jooksev hääletustulemus",
+      "HEADING_CURRENT_VOTE_RESULTS": "Hääletuse esialgne tulemus",
       "LBL_RESULTS": "Tulemused",
       "LBL_VOTES_COUNTED": "Loetud hääli",
       "LBL_VOTE_DEADLINE": "Hääletamise tähtaeg",
@@ -424,7 +424,7 @@
       "HEADING_USERS_LIST": "Kasutajaid",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Kasutaja",
-      "LBL_VIA": "grupist",
+      "LBL_VIA": "rühmast",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Tegevusvoog ja teadaanded",
       "LNK_VIEW_OLDER": "Vaata varasemaid"
     },
