@@ -639,8 +639,7 @@
     "USER_DELETE_USER_GROUP": "Пользователь {{userName}} удалил пользователя {{userName2}} из группы {{groupName}}",
     "ACTIVITY_USER_ADD_USERCONNECTION": "Пользователь {{userName}} добавил новый способ входа в систему: {{connectionName}}",
     "ACTIVITY_USER_CREATE_USER": "Пользователь {{userName}} создан",
-    "ACTIVITY_USER_DELETE_CONSENT": "",
-    "ACTIVITY_UNDEFINED": "undefined activity"
+    "ACTIVITY_USER_DELETE_CONSENT": ""
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ошибка в адресе эл. почты.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Данный адрес эл. почты уже используется.",
