@@ -501,7 +501,7 @@
       "VOTE_BTB_ADD_OPTION": "Добавить дополнительный вариант",
       "VOTE_HEADING_STEP3": "Шаг 3: определите права",
       "VOTE_LBL_AUTH_SOFT_ID": "Вход через социальные сети",
-      "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "CITIZEN OS LOGIN IS REQUIRED",
+      "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "ГОЛОСОВАНИЕ ТРЕБУЕТ ВХОДА В СИСТЕМУ CITIZEN OS",
       "VOTE_LBL_AUTH_HARD_ID": "идентификация с помощью электронного удостоверения личности",
       "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "ТРЕБУЕТСЯ ДИГИТАЛЬНАЯ ПОДПИСЬ С ПОМОЩЬЮ ID-КАРТЫ ИЛИ МОБИЛЬНОГО ТЕЛЕФОНА",
       "VOTE_LBL_DELEGATION": "Передать полномочия",
