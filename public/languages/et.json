@@ -449,7 +449,7 @@
       "FORGOT_PASSWORD": "Kas unustasid salasõna?"
     },
     "TOPICS_TOPICID": {
-      "BAR_MILESTONES": "{{count}} VERSTAPOSTI",
+      "BAR_MILESTONES": "{{count}} ETAPPI",
       "BAR_TOOLTIP_PHASE": "Olek:",
       "BAR_TOOLTIP_IN_PROGRESS": "ühisloomes",
       "BAR_TOOLTIP_VOTING": "hääletamisel",
