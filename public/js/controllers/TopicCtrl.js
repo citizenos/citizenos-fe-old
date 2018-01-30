@@ -2,8 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', [
-'$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'Activity', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, ngDialog, sAuth, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, Activity, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'Activity', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, ngDialog, sAuth, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, Activity, rTopic) {
         $log.debug('TopicCtrl', $scope);
 
         $scope.topic = rTopic;
@@ -58,7 +57,7 @@ angular
         };
 
         $scope.topic.padUrl = $sce.trustAsResourceUrl($scope.topic.padUrl);
-        $scope.app.editMode = $stateParams.editMode && $stateParams.editMode === 'true' || false;
+        $scope.app.editMode = ($stateParams.editMode && $stateParams.editMode === 'true') || false;
         $scope.showInfoEdit = $scope.app.editMode;
         $scope.showVoteArea = false;
 
@@ -155,26 +154,22 @@ angular
             if (activity.data.actor && activity.data.actor.name) {
                 values.userName = activity.data.actor.name;
             }
-
             if ($scope.topic) {
                 values.topicTitle = $scope.topic.title;
             }
-
             if (activity.data.object) {
-                if (Array.isArray(activity.data.object) && (activity.data.object[0]['@type'] === 'Group' || activity.data.object[0].groupName) || activity.data.object['@type'] === 'Group' || activity.data.object.groupName) {
-                    values.groupName = activity.data.object.name || activity.data.object.groupName || activity.data.object[0].name || activity.data.object[0].groupName;
+                var dataobject = activity.data.object
+                if (Array.isArray(dataobject) && (dataobject[0]['@type'] === 'Group' || dataobject[0].groupName) || dataobject['@type'] === 'Group' || dataobject.groupName) {
+                    values.groupName = dataobject.name || dataobject.groupName || dataobject[0].name || dataobject[0].groupName;
                 }
-
-                if (Array.isArray(activity.data.object) && (activity.data.object[0]['@type'] === 'User' || activity.data.object[0].userName) || activity.data.object['@type'] === 'User' || activity.data.object.userName) {
-                    values.userName2 = activity.data.object.name || activity.data.object.userName || activity.data.object[0].name || activity.data.object[0].userName;
+                if (Array.isArray(dataobject) && (dataobject[0]['@type'] === 'User' || dataobject[0].userName) || dataobject['@type'] === 'User' || dataobject.userName) {
+                    values.userName2 = dataobject.name || dataobject.userName || dataobject[0].name || dataobject[0].userName;
                 }
-
-                if (Array.isArray(activity.data.object) && (activity.data.object[0]['@type'] === 'Attachment' || activity.data.object[0].name) || activity.data.object['@type'] === 'Attachment' || activity.data.object.name) {
-                    values.attachmentName = activity.data.object.name || activity.data.object[0].name ;
+                if (Array.isArray(dataobject) && (dataobject[0]['@type'] === 'Attachment' || dataobject[0].name) || dataobject['@type'] === 'Attachment' || dataobject.name) {
+                    values.attachmentName = dataobject.name || dataobject[0].name ;
                 }
-
-                if (Array.isArray(activity.data.object) && (activity.data.object[0]['@type'] === 'Comment' || activity.data.object[0].text) || activity.data.object['@type'] === 'Comment' || activity.data.object.text) {
-                    values.description = activity.data.object.text || activity.data.object.text ;
+                if (Array.isArray(dataobject) && (dataobject[0]['@type'] === 'Comment' || dataobject[0].text) || dataobject['@type'] === 'Comment' || dataobject.text) {
+                    values.description = dataobject.text || dataobject.text ;
                 }
             }
             activity.values = values;
