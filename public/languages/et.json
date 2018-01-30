@@ -639,8 +639,7 @@
     "USER_DELETE_USER_GROUP": "Kasutaja {{userName}} eemaldas rühmast \"{{groupName}}\" kasutaja {{userName2}}",
     "ACTIVITY_USER_ADD_USERCONNECTION": "Kasutaja {{userName}} saab nüüd sisse logida {{connectionName}} kaudu",
     "ACTIVITY_USER_CREATE_USER": "Citizen OS-ga liitus kasutaja {{userName}}",
-    "ACTIVITY_USER_DELETE_CONSENT": "",
-    "ACTIVITY_UNDEFINED": "undefined activity"
+    "ACTIVITY_USER_DELETE_CONSENT": ""
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Viga e-posti aadressis.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "See e-posti aadress on juba kasutusel.",
