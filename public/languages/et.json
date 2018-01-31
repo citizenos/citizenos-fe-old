@@ -651,7 +651,7 @@
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "Viga e-posti aadressis, salasõnas või salasõna lähtestamise koodis.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Palun vaata e-postiga saadetud kinnituskirja.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "Sellise e-posti aadressiga kasutajat süsteemis ei ole.",
-  "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Tehtud. Salasõna muutmiseks loe palun sulle saadetud e-kirja.",
+  "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Tehtud! Salasõna muutmiseks loe palun sulle saadetud e-kirja.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Salasõna muudetud. Sisene süsteemi uue salasõnaga.",
   "MSG_ERROR_PUT_API_USERS_SELF_40000_PASSWORD": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD",
   "MSG_ERROR_PUT_API_USERS_SELF_40000_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL",
