@@ -23,7 +23,6 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
                 Promise
                     .all([authPromise, pickerPromise])
                     .then(function (res) {
-                        console.log('clientId', cosConfig.storage.googleDrive.clientId)
                         window.gapi.auth.authorize(
                         {
                           'client_id': cosConfig.storage.googleDrive.clientId,
@@ -66,13 +65,11 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
                         resolve(attachment);
                     }
                 };
-                console.log('developerKey', cosConfig.storage.googleDrive.developerKey)
-                var picker = new google.picker.PickerBuilder().
-                    addView(google.picker.ViewId.DOCS).
-                    setOAuthToken(oauthToken).
-                    setDeveloperKey(cosConfig.storage.googleDrive.developerKey).
-                    setCallback(pickerCallback).
-                    build();
+                var picker = new google.picker.PickerBuilder()
+                    .addView(google.picker.ViewId.DOCS)
+                    .setOAuthToken(oauthToken)
+                    .setCallback(pickerCallback)
+                    .build();
                     picker.setVisible(true);
                 });
         })
