@@ -17,34 +17,38 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
             });
 
             return new Promise (function (resolve, reject) {
-                if(googlePickerApiLoaded) {
+                if (googlePickerApiLoaded) {
                     return resolve();
                 }
-                Promise
-                    .all([authPromise, pickerPromise])
-                    .then(function (res) {
-                        window.gapi.auth.authorize(
-                        {
-                          'client_id': cosConfig.storage.googleDrive.clientId,
-                          'scope': ['https://www.googleapis.com/auth/drive.file'],
-                          'immediate': false
-                        },
-                        function (authResult) {
-                            if (authResult && !authResult.error) {
-                                oauthToken = authResult.access_token;
-                                googlePickerApiLoaded = true;
-                                resolve();
-                            }
-                            reject();
-                        });
+                return authPromise
+                    .then(function () {
+                        return pickerPromise
+                        .then(function () {
+                            window.gapi.auth.authorize(
+                            {
+                              'client_id': cosConfig.storage.googleDrive.clientId,
+                              'scope': ['https://www.googleapis.com/auth/drive.file'],
+                              'immediate': false
+                            },
+                            function (authResult) {
+                                if (authResult && !authResult.error) {
+                                    oauthToken = authResult.access_token;
+                                    googlePickerApiLoaded = true;
+                                    return resolve();
+                                }
+
+                                return reject();
+                            });
+                        })
                     })
-                    .catch(function (e) {
-                        $log.error(e);
+                    .catch(function (err) {
+                        $log.error(err);
                     })
             });
-        }).catch(function(e) {
+        })
+        .catch(function(err) {
             // There was some error loading the script. Meh
-            $log.error(e);
+            $log.error(err);
         });
     };
 
