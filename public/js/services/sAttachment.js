@@ -1,50 +1,54 @@
 'use strict';
 
-app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'TopicAttachment', 'angularLoad', function ($http, $q, $log, cosConfig, sLocation, TopicAttachment, angularLoad) {
+app.service('sAttachment', ['$http', '$q', '$log', '$timeout', 'cosConfig', 'sLocation', 'TopicAttachment', 'angularLoad', function ($http, $q, $log, $timeout, cosConfig, sLocation, TopicAttachment, angularLoad) {
 
     var sAttachment = this;
  /*GOOGLE API*/
     var googlePickerApiLoaded = false;
     var oauthToken;
-
+    
     var initializeGoogleDrive = function () {
-        return angularLoad.loadScript('https://apis.google.com/js/api.js?onload=onApiLoad').then(function() {
-            var authPromise = new Promise(function (resolve, reject) {
-                gapi.load('auth', {'callback': resolve});
-            });
-            var pickerPromise = new Promise(function (resolve, reject) {
-                gapi.load('picker', {'callback': resolve});
-            });
-
-            return new Promise (function (resolve, reject) {
-                if (googlePickerApiLoaded) {
-                    return resolve();
-                }
-                return authPromise
-                    .then(function () {
-                        return pickerPromise
-                        .then(function () {
-                            window.gapi.auth.authorize(
-                            {
-                              'client_id': cosConfig.storage.googleDrive.clientId,
-                              'scope': ['https://www.googleapis.com/auth/drive.file'],
-                              'immediate': false
-                            },
-                            function (authResult) {
-                                if (authResult && !authResult.error) {
-                                    oauthToken = authResult.access_token;
-                                    googlePickerApiLoaded = true;
-                                    return resolve();
-                                }
-
-                                return reject();
-                            });
-                        })
-                    })
-                    .catch(function (err) {
-                        $log.error(err);
-                    })
-            });
+        return angularLoad
+            .loadScript('https://apis.google.com/js/api.js?onload=onApiLoad')
+            .then(function () {
+                $timeout(function () {
+                    var authPromise = new Promise(function (resolve, reject) {
+                        gapi.load('auth', {'callback': resolve});
+                    });
+                    var pickerPromise = new Promise(function (resolve, reject) {
+                        gapi.load('picker', {'callback': resolve});
+                    });
+            
+                    return new Promise (function (resolve, reject) {
+                        if (googlePickerApiLoaded) {
+                            return resolve();
+                        }
+                        return authPromise
+                            .then(function () {
+                                return pickerPromise
+                                .then(function () {
+                                    window.gapi.auth.authorize(
+                                    {
+                                        'client_id': cosConfig.storage.googleDrive.clientId,
+                                        'scope': ['https://www.googleapis.com/auth/drive.file'],
+                                        'immediate': false
+                                    },
+                                    function (authResult) {
+                                        if (authResult && !authResult.error) {
+                                            oauthToken = authResult.access_token;
+                                            googlePickerApiLoaded = true;
+                                            return resolve();
+                                        }
+            
+                                        return reject();
+                                    });
+                                })
+                            })
+                            .catch(function (err) {
+                                $log.error(err);
+                            })
+                    });
+                });
         })
         .catch(function(err) {
             // There was some error loading the script. Meh
@@ -56,26 +60,28 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
         return new Promise(function (resolve, reject) {
             initializeGoogleDrive()
             .then(function () {
-                function pickerCallback(data) {
-                    if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
-                        var doc = data[google.picker.Response.DOCUMENTS][0];
-                        var attachment = {
-                            name: doc[google.picker.Document.NAME],
-                            type: doc[google.picker.Document.TYPE],
-                            source: TopicAttachment.SOURCES.googledrive,
-                            size: doc.sizeBytes || 0,
-                            link: doc[google.picker.Document.URL]
-                        };
-                        resolve(attachment);
-                    }
-                };
-                var picker = new google.picker.PickerBuilder()
-                    .addView(google.picker.ViewId.DOCS)
-                    .setOAuthToken(oauthToken)
-                    .setCallback(pickerCallback)
-                    .build();
-                    picker.setVisible(true);
+                $timeout(function () {
+                    var pickerCallback = function (data) {
+                        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+                            var doc = data[google.picker.Response.DOCUMENTS][0];
+                            var attachment = {
+                                name: doc[google.picker.Document.NAME],
+                                type: doc[google.picker.Document.TYPE],
+                                source: TopicAttachment.SOURCES.googledrive,
+                                size: doc.sizeBytes || 0,
+                                link: doc[google.picker.Document.URL]
+                            };
+                            resolve(attachment);
+                        }
+                    };
+                    var picker = new google.picker.PickerBuilder()
+                        .addView(google.picker.ViewId.DOCS)
+                        .setOAuthToken(oauthToken)
+                        .setCallback(pickerCallback)
+                        .build();
+                        picker.setVisible(true);
                 });
+            });
         })
         .catch(function (e) {
             $log.error(e);
