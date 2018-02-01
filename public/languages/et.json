@@ -682,7 +682,7 @@
   "MSG_ERROR_POST_API_TOPICS_VOTES_40026": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40026",
   "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT": "Väite selgitus ja tõestus võib olla 1 kuni 2048 tähemärki pikk.",
   "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT": "Väide võib olla 1 kuni 128 tähemärki pikk.",
-  "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Kommentaari teavitamise põhjus on vajalik",
+  "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Vaja on lisada kommentaarist teatamise põhjus",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Selgitus võib olla 1 kuni 2048 tähemärki pikk.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Kommentaari teavitamise järel on kommentaari muudetud seetõttu ei saa antud kommentaari modereerida.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Oled katkestanud allkirjastamise ja su häält ei loetud.",
