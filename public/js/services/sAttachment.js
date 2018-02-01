@@ -8,28 +8,31 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
     var oauthToken;
 
     var createPicker = function () {
-        var pickerCallback = function (data) {
-            if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
-                var doc = data[google.picker.Response.DOCUMENTS][0];
-                var attachment = {
-                    name: doc[google.picker.Document.NAME],
-                    type: doc[google.picker.Document.TYPE],
-                    source: TopicAttachment.SOURCES.googledrive,
-                    size: doc.sizeBytes || 0,
-                    link: doc[google.picker.Document.URL]
-                };
-                resolve(attachment);
-            }
-        };
-        var picker = new google.picker.PickerBuilder()
-            .addView(google.picker.ViewId.DOCS)
-            .setOAuthToken(oauthToken)
-            .setDeveloperKey(cosConfig.storage.googleDrive.developerKey)
-            .setCallback(pickerCallback)
-            .build();
-            picker.setVisible(true);
+        return new Promise (function (resolve) {
+            var pickerCallback = function (data) {
+                if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+                    var doc = data[google.picker.Response.DOCUMENTS][0];
+                    var attachment = {
+                        name: doc[google.picker.Document.NAME],
+                        type: doc[google.picker.Document.TYPE],
+                        source: TopicAttachment.SOURCES.googledrive,
+                        size: doc.sizeBytes || 0,
+                        link: doc[google.picker.Document.URL]
+                    };
+                    return resolve(attachment);
+                }
+            };
+            var picker = new google.picker.PickerBuilder()
+                .addView(google.picker.ViewId.DOCS)
+                .setOAuthToken(oauthToken)
+                .setDeveloperKey(cosConfig.storage.googleDrive.developerKey)
+                .setCallback(pickerCallback)
+                .build();
+                picker.setVisible(true);
+        });
     }
     sAttachment.googleDriveSelect = function () {
+        return new Promise(function (resolve, reject) {
             return angularLoad.loadScript('https://apis.google.com/js/api.js?onload=onApiLoad').then(function() {
                 var onAuthApiLoad = function () {
                     window.gapi.auth.authorize(
@@ -42,8 +45,9 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
                         if (authResult && !authResult.error && googlePickerApiLoaded) {
                             oauthToken = authResult.access_token;
                             googlePickerApiLoaded = true;
-                            createPicker();
+                            return resolve(createPicker());
                         }
+                        return resolve();
                     });
                 };
 
@@ -54,8 +58,8 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
                 gapi.load('client', {'callback': onAuthApiLoad});
                 gapi.load('picker', {'callback': onPickerApiLoad});
             })
+        })
         .catch(function(e) {
-            // There was some error loading the script. Meh
             $log.error(e);
         });
     };
