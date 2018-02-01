@@ -469,7 +469,7 @@
       "ADD_MILESTONES_CREATE_A_MILESTONE": "Lisa etapp",
       "ADD_MILESTONES_PLACEHOLDER_SUBJECT": "Mis sai tehtud otsuse elluviimiseks?",
       "ADD_MILESTONES_PLACEHOLDER_TEXT": "Palun selgita, täpsusta, lisa linke.",
-      "ADD_MILESTONES_ADD_MILESTONE": "SALVESTA POSTITUS",
+      "ADD_MILESTONES_ADD_MILESTONE": "AVALDA",
       "ADD_MILESTONES_MILESTONE": "Teade #{{number}}",
       "ADD_MILESTONE_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
       "VOTE_CAST_YOUR_VOTE": "Hääleta",
@@ -724,12 +724,12 @@
   "MSG_ERROR_DELETE_API_USERS_GROUPS_MEMBERS_USERS_40000": "Sa ei saa rühmast lahkuda, sest oled viimane administraatori õigustega kasutaja. Lahkumiseks palun määra enda asemele uus administraator.",
   "MSG_ERROR_DELETE_API_USERS_TOPICS_MEMBERS_USERS_40010": "Viimast administraatori õigustega kasutajat pole võimalik kustutada. Määra uus administraator, et see kasutaja kustutada.",
   "MSG_ERROR_PUT_API_USERS_TOPICS_MEMBERS_USERS_40000": "Viimase administraatori õigustega kasutaja õigusi pole võimalik muuta. Määra uus administraator, et selle kasutaja õigusi muuta.",
-  "MSG_ERROR_40300": "Teil puuduvad toimingu jaoks vajalikud õigused.",
+  "MSG_ERROR_40300": "Sul puuduvad toiminguks vajalikud õigused.",
   "MSG_ERROR_40400": "@:MSG_ERROR_POST_API_AUTH_SMARTID_INIT_40400",
-  "MSG_ERROR_50000": "Midagi meie süsteemis ei toiminud. Palun vabandust! Proovige palun üks kord veel. Kui viga kordub, võtke ühendust kasutajatoega.",
+  "MSG_ERROR_50000": "Midagi läks meie süsteemis valesti. Palun vabandust! Proovi palun veel kord. Kui viga kordub, võta ühendust kasutajatoega.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Internetiühendus puudub, palun kontrolli ühendust.",
-  "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Manus on liiga suur! Maksimaalne lubatud suurus on 50MB.",
+  "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Manus on liiga suur! Maksimaalne lubatud suurus on 50 MB.",
   "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Faili tüüp ei ole lubatud",
-  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Manuse link on puudu!",
-  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Manuse nimi on puudu!"
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Manuse link puudub!",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Manuse nimi puudub!"
 }
