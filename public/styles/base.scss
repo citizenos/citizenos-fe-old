@@ -1982,3 +1982,16 @@ a:link, a:visited {
         transform: rotate(360deg);
     }
 }
+
+.notch {
+    box-sizing: border-box;
+    content: "";
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    position: absolute;
+    border-right: 10px solid #fff;
+    &.border-notch {
+        border-right-color: rgba(148,148,148,.21);
+    }
+}

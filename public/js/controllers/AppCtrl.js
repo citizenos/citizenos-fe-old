@@ -101,6 +101,16 @@ angular
         };
 
         // TODO: REMOVE - temporary for templates
+        $scope.app.doShowActivityModal = function () {
+            $log.debug('AppCtrl.doShowActivityModal()');
+
+            ngDialog.open({
+                template: '/views/_templates/modals/activity_modal.html',
+                scope: $scope
+            });
+        };
+
+        // TODO: REMOVE - temporary for templates
         $scope.app.doShowInviteUsers = function () {
             $log.debug('AppCtrl.doShowInviteUsers()');
 

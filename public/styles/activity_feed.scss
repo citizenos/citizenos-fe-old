@@ -1,0 +1,138 @@
+@import 'vars';
+@import 'mixins_n_extends';
+@import 'icons';
+
+.activity_wrap {
+    .activity_area {
+        .activity_content {
+            position: relative;
+            overflow: hidden;
+            @media (max-width: 1024px) {
+                border-bottom: solid 1px $lightest_gray;
+                margin-bottom: 20px;
+            }
+            &:not(:first-child) {
+                .left_side {
+                    .line_top {
+                        top: 6px;
+                        height: 50px;
+                    }
+                }
+            }
+            &:last-child {
+                .left_side {
+                    .line_bottom {
+                        height: 10px;
+                        bottom: initial;
+                    }
+                }
+            }
+            .left_side {
+                position: absolute;
+                width: 82px;
+                top: 0;
+                bottom: 0;
+                @media (max-width: 1024px) {
+                    width: 30px;
+                }
+                .line_top {
+                    height: 56px;
+                    background: $light_gray;
+                    z-index: 1;
+                }
+                .icon {
+                    margin-top: 11px;
+                    position: relative;
+                    z-index: 1;
+                    @media (max-width: 1024px) {
+                        margin-top: 0;
+                    }
+                    .sprite {
+                        margin-left: auto;
+                        margin-right: auto;
+                        @media (max-width: 1024px) {
+                            margin-left: -5px;
+                            margin-right: initial;
+                            transform: scale(.75);
+                        }
+                    }
+                }
+                .line_bottom {
+                    background: $lightest_gray;
+                    bottom: 0;
+
+                }
+                .line_top, .line_bottom {
+                    width: 1px;
+                    top: 0;
+                    position: absolute;
+                    left: 50%;
+                    @media (max-width: 1024px) {
+                        display: none;
+                    }
+                }
+            }
+
+            .right_side {
+                width: 100%;
+                box-sizing: border-box;
+                padding-left: 82px;
+                @media (max-width: 1024px) {
+                    padding-left: 30px;
+                }
+                .text_box {
+                    margin-bottom: 10px;
+                    background: $white;
+                    box-shadow: inset 0 2px 6px 0 rgba(0,0,0,.01), 0 2px 3px 0 rgba(0,0,0,.1);
+                    padding: 20px 21px;
+                    box-sizing: border-box;
+                    position: relative;
+                    @media (max-width: 1024px) {
+                        background: none;
+                        box-shadow: none;
+                        margin-bottom: 20px;
+                        padding: 0 20px 0 10px;
+                    }
+                    @media (max-width: 1024px) {
+                        .activity_link, .activity_conjunctive {
+                            display: none;
+                        }
+                        .activity_action {
+                            color: $deep_sky_blue;
+                            cursor: pointer;
+                        }
+                    }
+                    .description_area {
+                        margin-top: 6px;
+                        @media (max-width: 1024px) {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: box;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            line-clamp: 3;
+                            box-orient: vertical;
+                        }
+                    }
+                    .date_area {
+                        margin-top: 6px;
+                        font-size: 13px;
+                        opacity: .7;
+                    }
+                    .notch {
+                        left: -18px;
+                        top: 21px;
+                        &.border-notch {
+                            top: 22px;
+                        }
+                        @media (max-width: 1024px) {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

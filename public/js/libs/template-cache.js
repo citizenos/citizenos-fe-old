@@ -59,6 +59,7 @@ angular
             '/views/_templates/no_groups.html',
             '/views/_templates/no_topics.html',
             '/views/_templates/topics_topicId.html',
+            '/views/_templates/modals/activity_modal.html',
             '/views/_templates/modals/add_topics.html',
             '/views/_templates/modals/confirm.html',
             '/views/_templates/modals/date_picker.html',
