@@ -371,6 +371,59 @@
 
     </div>
 
+    <!-- ACTIVITY FEED & NOTIFICATIONS -->
+    <div class="info_container">
+
+        <div class="container_header">
+            <div class="header_text">
+                Activity feed & notifications
+            </div>
+            <div class="minimize_container" ng-click="app.activityFeed = !app.activityFeed">
+                <div ng-class="app.activityFeed ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+            </div>
+        </div>
+
+        <div class="container_content activity_container" ng-if="!app.activityFeed">
+            
+                <div class="activity_wrap">
+                        <div class="activity_area">
+                            
+                            <div class="activity_content" ng-repeat="(key, this) in ['1', '2', '3', '4']">
+
+                                <div class="left_side">
+                                    <div class="line_top"></div>
+                                    <div class="icon">
+                                        <div class="sprite sprite-icon-activity-vote-2x"></div>
+                                    </div>
+                                    <div class="line_bottom"></div>
+                                </div>
+                                
+                                <div class="right_side">
+                                    <div class="text_box">
+                                        <span class="activity_action">Kristian Lember added a comment</span> <span class="activity_conjunctive">in</span> <a href="" class="blue_link activity_link">Ettepanek seadusega keelata kõrvklappide kandmine tänaval</a>
+                                        <div class="description_area italic">
+                                            If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new ... 
+                                        </div>
+                                        <div class="date_area">
+                                            12.07.2016 11:23
+                                        </div>
+                                        <b class="notch border-notch"></b>
+                                        <b class="notch"></b>
+                                    </div>
+                                </div>
+
+                                <div class="clearer"></div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+        </div>
+
+
+    </div>
+
     <!-- CURRENT VOTE RESULTS -->
     <div class="info_container vote_results">
 
