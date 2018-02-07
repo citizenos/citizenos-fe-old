@@ -3,14 +3,11 @@
 @import 'icons';
 
 .activity_wrap {
+    // Overall styles for activity area
     .activity_area {
         .activity_content {
             position: relative;
             overflow: hidden;
-            @media (max-width: 1024px) {
-                border-bottom: solid 1px $lightest_gray;
-                margin-bottom: 20px;
-            }
             &:not(:first-child) {
                 .left_side {
                     .line_top {
@@ -32,9 +29,6 @@
                 width: 82px;
                 top: 0;
                 bottom: 0;
-                @media (max-width: 1024px) {
-                    width: 30px;
-                }
                 .line_top {
                     height: 56px;
                     background: $light_gray;
@@ -44,17 +38,9 @@
                     margin-top: 11px;
                     position: relative;
                     z-index: 1;
-                    @media (max-width: 1024px) {
-                        margin-top: 0;
-                    }
                     .sprite {
                         margin-left: auto;
                         margin-right: auto;
-                        @media (max-width: 1024px) {
-                            margin-left: -5px;
-                            margin-right: initial;
-                            transform: scale(.75);
-                        }
                     }
                 }
                 .line_bottom {
@@ -67,9 +53,6 @@
                     top: 0;
                     position: absolute;
                     left: 50%;
-                    @media (max-width: 1024px) {
-                        display: none;
-                    }
                 }
             }
 
@@ -77,9 +60,6 @@
                 width: 100%;
                 box-sizing: border-box;
                 padding-left: 82px;
-                @media (max-width: 1024px) {
-                    padding-left: 30px;
-                }
                 .text_box {
                     margin-bottom: 10px;
                     background: $white;
@@ -87,33 +67,12 @@
                     padding: 20px 21px;
                     box-sizing: border-box;
                     position: relative;
-                    @media (max-width: 1024px) {
-                        background: none;
-                        box-shadow: none;
-                        margin-bottom: 20px;
-                        padding: 0 20px 0 10px;
-                    }
-                    @media (max-width: 1024px) {
-                        .activity_link, .activity_conjunctive {
-                            display: none;
-                        }
-                        .activity_action {
-                            color: $deep_sky_blue;
-                            cursor: pointer;
-                        }
+                    .main_text {
+                        font-size: 14px !important;
                     }
                     .description_area {
                         margin-top: 6px;
-                        @media (max-width: 1024px) {
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            display: box;
-                            display: -webkit-box;
-                            -webkit-line-clamp: 3;
-                            -webkit-box-orient: vertical;
-                            line-clamp: 3;
-                            box-orient: vertical;
-                        }
+                        font-size: 14px !important;
                     }
                     .date_area {
                         margin-top: 6px;
@@ -126,13 +85,125 @@
                         &.border-notch {
                             top: 22px;
                         }
-                        @media (max-width: 1024px) {
-                            display: none;
-                        }
                     }
                 }
             }
 
         }
     }
+
+    // Compact view styles
+    @media (min-width: 750px) {
+        &.compact {
+            .activity_area {
+                .activity_content {
+                    .left_side {
+                        .line_top {
+                            background: $white;
+                        }
+                    }
+                    .right_side {
+                        .text_box {
+                            border: 1px solid $lightest_gray;
+                            .notch {
+                                top: 19px;
+                                &.border-notch {
+                                    top: 20px;
+                                    left: -21px;
+                                }
+                            }
+                            .activity_link, .activity_conjunctive {
+                                display: none !important;
+                            }
+                            .activity_action {
+                                color: $deep_sky_blue;
+                                cursor: pointer;
+                                &:hover {
+                                    @media (min-width: 1025px) {
+                                        text-decoration: underline;
+                                    }
+                                }
+                            }
+                            .description_area {
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: box;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                line-clamp: 2;
+                                box-orient: vertical;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Mobile view
+    @mixin mobile {
+        .activity_area {
+            .activity_content {
+                border-bottom: solid 1px $lightest_gray;
+                margin-bottom: 20px;
+                .left_side {
+                    width: 30px;
+                    .icon {
+                        margin-top: 0;
+                    }
+                    .sprite {
+                        margin-left: -5px;
+                        margin-right: initial;
+                        transform: scale(.75);
+                    }
+                    .line_top, .line_bottom {
+                        display: none;
+                    }
+                }
+                .right_side {
+                    padding-left: 30px;
+                    .text_box {
+                        background: none;
+                        box-shadow: none;
+                        margin-bottom: 20px;
+                        padding: 0 20px 0 10px;
+                        .activity_link, .activity_conjunctive {
+                            display: none !important;;
+                        }
+                        .activity_action {
+                            color: $deep_sky_blue;
+                            cursor: pointer;
+                        }
+                        .description_area {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: box;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            line-clamp: 3;
+                            box-orient: vertical;
+                        }
+                        .notch {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1024px) {
+        &.modal {
+            @include mobile();
+        }
+    }
+
+    @media (max-width: 750px) {
+        &.compact {
+            @include mobile();
+        }
+    }
+
 }
