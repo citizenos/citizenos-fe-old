@@ -73,7 +73,7 @@ angular
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 10;
 
-        $scope.getActivityDescription = function (activity) {
+        $scope.showActivityDescription = function (activity) {
             if (activity.data && activity.data.object && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Comment' || activity.data.object['@type'] === 'Comment' || activity.data.object.text)) {
                 return true;
             }
@@ -81,16 +81,13 @@ angular
         };
 
         $scope.loadActivities = function (offset, limit) {
-            offset = 0;
-            limit = 50;
             $scope.activitiesOffset = offset || $scope.activitiesOffset;
             $scope.activitiesLimit = limit || $scope.activitiesLimit;
             if ($scope.activities.length && !offset && !limit) {
                 $scope.activitiesOffset += $scope.activitiesLimit;
             }
-            if($scope.topic) {
-                console.log($scope.activitiesOffset, $scope.activitiesLimit)
-                sActivity.getActivities($scope.activitiesOffset, $scope.activitiesLimit)
+            if ($scope.topic) {
+                sActivity.getTopicActivities($scope.topic.id, $scope.activitiesOffset, $scope.activitiesLimit)
                     .then(function (activities) {
                         activities.forEach(function (activity) {
                             activity.values.topicTitle = $scope.topic.title;
@@ -98,7 +95,7 @@ angular
                         $scope.showLoadMoreActivities = !(activities.length < $scope.activitiesLimit);
                         $scope.activities = $scope.activities.concat(activities);
                     });
-            }            
+            }
         };
 
         $scope.doToggleActivities = function () {

@@ -1,13 +1,13 @@
 /* Generated data URIs used for preview purposes only */
 /* Be sure that you replace data URIs with generated images */
 .sprite {
-    background-image: url('../imgs/icons_sprite.png?v3');
+    background-image: url('../imgs/icons_sprite.png?v4');
 }
 
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
 	.sprite {
-        background-image: url('../imgs/icons_sprite2x.png?v3');
-		background-size: 203px 2653px;
+        background-image: url('../imgs/icons_sprite2x.png?v4');
+		background-size: 203px 3053px;
 	}
 }
 
@@ -746,4 +746,66 @@
     background-position: 0 -2545px;
     margin-left: auto;
     margin-right: auto;
+}
+
+///Activiy feed icons
+
+.sprite-icon-activity-comment-2x {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -2653px;
+}
+
+.sprite-icon-activity-comment-new-2x {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -2693px;
+}
+
+.sprite-icon-activity-group-2x {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -2733px;
+}
+
+.sprite-icon-activity-group-new-2x {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -2773px;
+}
+
+.sprite-icon-activity-personal-2x {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -2813px;
+}
+
+.sprite-icon-activity-personal-new-2x {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -2853px;
+}
+
+.sprite-icon-activity-topic-2x {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -2893px;
+}
+
+.sprite-icon-activity-topic-new-2x {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -2933px;
+}
+
+.sprite-icon-activity-vote-2x {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -2973px;
+}
+
+.sprite-icon-activity-vote-new-2x {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -3013px;
 }

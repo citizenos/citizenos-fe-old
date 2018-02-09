@@ -198,23 +198,31 @@ angular
             }
             if (activity.data.object) {
                 var dataobject = activity.data.object
-                if(Array.isArray(dataobject)) {
+                if (Array.isArray(dataobject)) {
                     dataobject = dataobject[0];
+                }
+                if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser') {
+                    values.className = 'topic';
                 }
                 if (dataobject['@type'] === 'Topic' || activity.data.target && activity.data.target['@type'] === 'Topic') {
                     values.topicTitle = dataobject.title;
                 }
                 if (dataobject['@type'] === 'Group' || dataobject.groupName) {
                     values.groupName = dataobject.name || dataobject.groupName;
+                    values.className = 'group';
                 }
-                if (dataobject['@type'] === 'User' || dataobject.userName) {
-                    values.userName2 = dataobject.name || dataobject.userName;
+                if (dataobject['@type'] === 'Vote' || dataobject['@type'] === 'VoteList' || dataobject['@type'] === 'VoteOption' || dataobject['@type'] === 'CommentVote') {
+                    values.className = 'vote';
                 }
                 if (dataobject['@type'] === 'Attachment' || dataobject.name) {
                     values.attachmentName = dataobject.name;
                 }
                 if (dataobject['@type'] === 'Comment' || dataobject.text) {
+                    values.className = 'comment';
                     values.description = dataobject.text;
+                }
+                if (dataobject['@type'] === 'User' || dataobject.text) {
+                    values.className = 'personal';
                 }
             }
             activity.values = values;

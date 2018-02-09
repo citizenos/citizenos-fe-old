@@ -619,6 +619,16 @@
                         });
                     }]
                 })
+                .state('activities', {
+                    url:'/activities?filter',
+                    parent: 'main',
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/activity_modal.html',
+                            scope: $scope
+                        });
+                    }]
+                })
                 .state('about', {
                     url: '/about',
                     parent: 'main',
