@@ -1,0 +1,109 @@
+<!-- LIGHTBOX SKELETON -->
+<div class="line lightest_line"></div>
+<div id="root_lightbox" class="full_screen left_menu_visible" ng-controller="ActivitiesCtrl">
+    <div id="lightbox" class="aligned_left_top">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title">Full activity</div>
+
+                    <div cos-dropdown class="classic_dropdown">
+
+                        <div class="dropdown_selection">
+                            <div class="dropdown_text medium">
+                                Show all activity ordered by time
+                            </div>
+    
+                            <div class="arrow_holder">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+    
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="dropdown">
+    
+                            <!-- NO CATEGORY -->
+                            <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
+                                <div class="item_name medium">
+                                    Show all activity ordered by time
+                                </div>
+                            </div>
+    
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="line lightest_line"></div>
+
+
+            <!-- CONFIRM CONTENT -->
+            <div class="lightbox_content" scroll on-scroll="loadActivities">
+                <div class="lightbox_section">
+                    <div class="activity_wrap modal">
+                        <div class="activity_area">
+                            
+                            <div class="activity_content" ng-repeat="(key, activity) in activities">
+
+                                <div class="left_side">
+                                    <div class="line_top"></div>
+                                    <div class="icon">
+                                        <div ng-class="'sprite sprite-icon-activity-{{activity.values.className}}-new-2x'"></div>
+                                    </div>
+                                    <div class="line_bottom"></div>
+                                </div>
+                                
+                                <div class="right_side">
+                                    <div class="text_box">
+                                        <div class="main_text">
+                                            <span class="activity_action" translate="{{activity.string}}" translate-values="activity.values">Kristian Lember added a comment</span>
+                                        </div>
+                                        <div class="description_area italic" ng-if="showActivityDescription(activity)">
+                                            <span ng-bind="activity.values.description">
+                                                If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new ... 
+                                            </span>
+                                        </div>
+                                        <div class="date_area" ng-bind="activity.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">
+                                            12.07.2016 11:23
+                                        </div>
+                                        <b class="notch border-notch"></b>
+                                        <b class="notch"></b>
+                                    </div>
+                                </div>
+
+                                <div class="clearer"></div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lightbox_background"></div>
+
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()">
+    </div>
+
+</div>
