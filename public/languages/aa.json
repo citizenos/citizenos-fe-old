@@ -609,7 +609,7 @@
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP": "crwdns10995:0{{userName}}crwdne10995:0",
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_DOWN": "crwdns10996:0crwdne10996:0",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_DOWN": "crwdns10997:0crwdne10997:0",
-    "ACTIVITY_USER_DELETE_COMMENTVOTE_COMMENT": "crwdns10998:0{{userName}}crwdne10998:0",
+    "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_REMOVE": "crwdns11000:0{{userName}}crwdne11000:0",
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "crwdns10999:0{{userName}}crwdnd10999:0{{topicTitle}}crwdne10999:0",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "crwdns10860:0{{userName}}crwdnd10860:0{{topicTitle}}crwdnd10860:0{{groupName}}crwdne10860:0",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "crwdns10861:0{{userName}}crwdnd10861:0{{topicTitle}}crwdnd10861:0{{groupName}}crwdne10861:0",
@@ -642,7 +642,12 @@
     "USER_DELETE_USER_GROUP": "crwdns10928:0{{userName}}crwdnd10928:0{{userName2}}crwdnd10928:0{{groupName}}crwdne10928:0",
     "ACTIVITY_USER_ADD_USERCONNECTION": "crwdns10929:0{{userName}}crwdnd10929:0{{connectionName}}crwdne10929:0",
     "ACTIVITY_USER_CREATE_USER": "crwdns10930:0{{userName}}crwdne10930:0",
-    "ACTIVITY_USER_DELETE_CONSENT": "crwdns10931:0crwdne10931:0"
+    "ACTIVITY_USER_DELETE_CONSENT": "crwdns10931:0crwdne10931:0",
+    "FILTER_ALL": "crwdns11001:0crwdne11001:0",
+    "FILTER_TOPICS": "crwdns11002:0crwdne11002:0",
+    "FILTER_GROUPS": "crwdns11003:0crwdne11003:0",
+    "FILTER_USER": "crwdns11004:0crwdne11004:0",
+    "FILTER_SELF": "crwdns11005:0crwdne11005:0"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "crwdns10705:0crwdne10705:0",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "crwdns10706:0crwdne10706:0",
