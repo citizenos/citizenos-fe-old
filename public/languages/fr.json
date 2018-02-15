@@ -609,7 +609,7 @@
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP": "User {{userName}} has updated his/her reaction on argument.",
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_DOWN": "@:ACTIVITY_FEED.ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_DOWN": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP",
-    "ACTIVITY_USER_DELETE_COMMENTVOTE_COMMENT": "User {{userName}} has removed his/her reaction on argument: ",
+    "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_REMOVE": "User {{userName}} has removed his/her reaction on argument: ",
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "User {{userName}} has left a reply to a argument in topic {{topicTitle}}: ",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "User {{userName}} has added topic {{topicTitle}} to group {{groupName}}.",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "User {{userName}} has removed topic {{topicTitle}} from group {{groupName}}.",
@@ -642,7 +642,12 @@
     "USER_DELETE_USER_GROUP": "User {{userName}} has removed {{userName2}} from group {{groupName}}",
     "ACTIVITY_USER_ADD_USERCONNECTION": "User {{userName}} has added new log-in method {{connectionName}}",
     "ACTIVITY_USER_CREATE_USER": "User {{userName}} has been created",
-    "ACTIVITY_USER_DELETE_CONSENT": ""
+    "ACTIVITY_USER_DELETE_CONSENT": "",
+    "FILTER_ALL": "All activities",
+    "FILTER_TOPICS": "Activities related to my topics",
+    "FILTER_GROUPS": "Activities related to my groups",
+    "FILTER_USER": "Activities related to user",
+    "FILTER_SELF": "Activities where user is actor"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Email non valide.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Cette adresse email est déjà utilisée.",
