@@ -12,7 +12,7 @@
                     <div cos-dropdown class="classic_dropdown">
 
                         <div class="dropdown_selection">
-                            <div class="dropdown_text medium">
+                            <div class="dropdown_text medium" translate="ACTIVITY_FEED.FILTER_{{filter.toUpperCase()}}">
                                 Show all activity ordered by time
                             </div>
     
@@ -28,8 +28,8 @@
                         <div class="dropdown">
     
                             <!-- NO CATEGORY -->
-                            <div class="dropdown_item" ng-repeat="(key, this) in ['1', '2']">
-                                <div class="item_name medium">
+                            <div class="dropdown_item" ng-repeat="(key, filter) in activityfilters" ng-click="filterActivities(filter)">
+                                <div class="item_name medium" translate="ACTIVITY_FEED.FILTER_{{filter.toUpperCase()}}">
                                     Show all activity ordered by time
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
 
 
             <!-- CONFIRM CONTENT -->
-            <div class="lightbox_content" scroll on-scroll="loadActivities">
+            <div class="lightbox_content" cos-scroll on-scroll="loadActivities">
                 <div class="lightbox_section">
                     <div class="activity_wrap modal">
                         <div class="activity_area">
@@ -64,24 +64,27 @@
                                 <div class="left_side">
                                     <div class="line_top"></div>
                                     <div class="icon">
-                                        <div ng-class="'sprite sprite-icon-activity-{{activity.values.className}}-new-2x'"></div>
+                                        <div ng-class="'sprite sprite-icon-activity-{{activity.values.className}}-2x'"></div>
                                     </div>
                                     <div class="line_bottom"></div>
                                 </div>
                                 
                                 <div class="right_side">
-                                    <div class="text_box">
+                                    <div class="text_box">                    
                                         <div class="main_text">
-                                            <span class="activity_action" translate="{{activity.string}}" translate-values="activity.values">Kristian Lember added a comment</span>
+                                            <span translate="{{activity.string}}" translate-values="activity.values"> </span>
                                         </div>
-                                        <div class="description_area italic" ng-if="showActivityDescription(activity)">
-                                            <span ng-bind="activity.values.description">
-                                                If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new ... 
+                                        <div class="description_area italic">
+                                            <span ng-if="showActivityUpdateVersions(activity)">
+                                                <span class="activity_previous" translate="ACTIVITY_FEED.ACTIVITY_PREVIOUS_VERSION" translate-values="{previousValue: '{{(activity.values.previousValue | limitTo: 200) + (activity.values.previousValue.length > 200 ? '...' : '')}}'}"></span>
+                                                <br>
+                                                <span class="activity_new" translate="ACTIVITY_FEED.ACTIVITY_NEW_VERSION" translate-values="{newValue: '{{(activity.values.newValue | limitTo: 200) + (activity.values.newValue.length > 200 ? '...' : '')}}'}"></span>
+                                            </span>
+                                            <span ng-if="showActivityDescription(activity) && !showActivityUpdateVersions(activity)" class="activity_description_text" ng-bind="'{{(activity.values.description | limitTo: 200) + (activity.values.description.length > 200 ? '...' : '')}}'">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
+                                                home office combo? First off, you will need to set a budget for your new ...
                                             </span>
                                         </div>
-                                        <div class="date_area" ng-bind="activity.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">
-                                            12.07.2016 11:23
-                                        </div>
+                                        <div class="date_area" ng-bind="activity.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
                                         <b class="notch border-notch"></b>
                                         <b class="notch"></b>
                                     </div>

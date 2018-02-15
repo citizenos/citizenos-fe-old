@@ -16,9 +16,12 @@ angular
         var success = function (data) {
             var result = angular.fromJson(data).data;
             var parsedResult = [];
-            result.data.forEach(function (activity) {
+            result.data.forEach(function (activity, key) {
                 if (activity.data) {
-                    if (activity.data.type === 'Update' && Array.isArray(activity.data.result)) {
+                    if (activity.data.type === 'Create' && !activity.data.target && activity.data.object && (activity.data.object['@type'] === 'Vote' || Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'VoteOption')) {
+                        result.data.splice(key, 1);
+                    }
+                    else if (activity.data.type === 'Update' && Array.isArray(activity.data.result)) {
                         var i = 0;
                         var resultItems = [];
                         if (activity.data.origin['@type'] === 'Topic') {
@@ -64,27 +67,6 @@ angular
             return parsedResult;
         };
 
-        sActivity.getTopicActivities = function (topicId, offset, limit) {
-            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/activities'.replace(':topicId', topicId));
-            return $http.get(path, {params: {offset: offset, limit: limit}}).then(success, defaultError);
-        }
-        sActivity.getActivities = function (offset, limit) {
-            var path = sLocation.getAbsoluteUrlApi('/api/users/self/activities');
-            return $http.get(path, {params: {offset: offset, limit: limit}}).then(success, defaultError);
-        };
-
-        var getCategoryTranslationKeys = function (catInput) {            
-            if (Array.isArray(catInput)) {
-                var translationKeys = [];
-                catInput.forEach(function (category) {
-                    translationKeys.push('TXT_TOPIC_CATEGORY_' + category.toUpperCase());
-                });
-
-                return translationKeys;
-            }
-
-            return 'TXT_TOPIC_CATEGORY_' + catInput.toUpperCase();
-        };
         var buildActivityString = function (activity) {
             var keys = Object.keys(activity.data);
             var stringparts = ['ACTIVITY'];
@@ -124,7 +106,50 @@ angular
                 stringparts.push('IN_REPLY_TO');
                 stringparts.push(activity.data.inReplyTo['@type'])
             }
+
+            if (activity.data.object && activity.data.object['@type'] && activity.data.object['@type'] === 'CommentVote' && activity.data.type !== 'Delete') {
+                var val = 'up';
+                if (activity.data.object.value === -1) {
+                    val = 'down';
+                }
+                if (activity.data.object.value === 0) {
+                    val = 'remove';
+                }
+                stringparts.push(val);
+            }
             activity.string = 'ACTIVITY_FEED.' + stringparts.join('_').toUpperCase();
+        };
+
+        sActivity.getTopicActivities = function (topicId, offsetNr, limitNr) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/activities'.replace(':topicId', topicId));
+
+            return $http.get(path, {params: {
+                offset: offsetNr,
+                limit: limitNr}}).then(success, defaultError);
+        }
+
+        sActivity.getActivities = function (offsetNr, limitNr, filter) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/activities');
+            var paramsObj = {offset: offsetNr,
+                limit: limitNr};
+            if (filter) {
+                paramsObj.include = filter;
+            }
+
+            return $http.get(path, {params: paramsObj}).then(success, defaultError);
+        };
+
+        var getCategoryTranslationKeys = function (catInput) {
+            if (Array.isArray(catInput)) {
+                var translationKeys = [];
+                catInput.forEach(function (category) {
+                    translationKeys.push('TXT_TOPIC_CATEGORY_' + category.toUpperCase());
+                });
+
+                return translationKeys;
+            }
+
+            return 'TXT_TOPIC_CATEGORY_' + catInput.toUpperCase();
         };
 
         sActivity.getUpdatedTranslations = function (activity) {

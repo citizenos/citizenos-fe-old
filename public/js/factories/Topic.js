@@ -87,7 +87,6 @@ angular
                                 postData[field] = data[field];
                             }
                         });
-                        console.log(postData);
                         return angular.toJson(postData);
                     }
                 },
