@@ -14,7 +14,7 @@ angular
                             return scope.onScroll();
                         }
                     }
-                    var scrollFunc = _.debounce(definedAction, 200);
+                    var scrollFunc = _.debounce(definedAction, 100);
                     elem.on('scroll', function (e) {
                             scrollFunc();
                     });

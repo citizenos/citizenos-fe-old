@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', 'ngDialog', 'sAuth', 'sUpload', 'sActivity', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, ngDialog, sAuth, sUpload, sActivity, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', 'ngDialog', 'sAuth', 'sUpload', 'sActivity', 'sLocation', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, ngDialog, sAuth, sUpload, sActivity, sLocation, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
 
         $scope.topic = rTopic;
@@ -581,20 +581,18 @@ angular
                 });
         };
 
-        $scope.goToParentComment = function (rootComment, parent) {
-
-            if (!parent.id || !parent.hasOwnProperty('version')) {
-                return
-            }
-
-            var comment = angular.element(document.getElementById(parent.id + parent.version));
-
+        $scope.gotToComment = function (commentId, version) {
+            if (version !== 0 && !version) {
+                version = '';
+            };
+            
+            var comment = angular.element(document.getElementById(commentId + version));
             if (comment.length === 0) {
                 for (var i = 0; i < $scope.topicComments.rows.length; i++) {
                     if ($scope.topicComments.rows[i].id === parent.id) {
                         $scope.topicComments.rows[i].showEdits = true;
                         $timeout(function () {
-                            comment = angular.element(document.getElementById(parent.id + parent.version));
+                            comment = angular.element(document.getElementById(commentId + version));
                             $scope.app.scrollToAnchor(comment[0].id);
                             comment.addClass('highlight');
                             $timeout(function () {
@@ -604,11 +602,11 @@ angular
                         break;
                     } else {
                         for (var j = 0; j < $scope.topicComments.rows[i].replies.rows.length; j++) {
-                            if ($scope.topicComments.rows[i].replies.rows[j].id === parent.id) {
+                            if ($scope.topicComments.rows[i].replies.rows[j].id === commentId) {
                                 $scope.topicComments.rows[i].replies.rows[j].showEdits = true;
                                 i = $scope.topicComments.rows.length;
                                 $timeout(function () {
-                                    comment = angular.element(document.getElementById(parent.id + parent.version));
+                                    comment = angular.element(document.getElementById(commentId + version));
                                     $scope.app.scrollToAnchor(comment[0].id);
                                     comment.addClass('highlight');
                                     $timeout(function () {
@@ -628,6 +626,20 @@ angular
                     comment.removeClass('highlight');
                 }, 500);
             }
+        }
+        $timeout(function () {
+            var hash = sLocation.getLocationHash();
+            if (hash) {
+                $scope.gotToComment(hash);
+            }
+        });
+
+        $scope.goToParentComment = function (rootComment, parent) {
+
+            if (!parent.id || !parent.hasOwnProperty('version')) {
+                return
+            }
+            $scope.gotToComment(parent.id, parent.version)
         };
 
         $scope.showActivityUpdateVersions = function (activity) {
@@ -644,6 +656,10 @@ angular
                 return true;
             }
             return false;
+        };
+
+        $scope.activityRedirect = function (activity) {
+            return sActivity.handleActivityRedirect(activity);
         };
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {

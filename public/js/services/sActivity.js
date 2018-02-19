@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sActivity', ['$http', '$q', '$log', '$translate', 'sLocation', function ($http, $q, $log, $translate, sLocation) {
+    .service('sActivity', ['$http', '$state', '$stateParams', '$window', '$q', '$log', '$translate', 'sLocation', 'ngDialog', function ($http, $state, $stateParams, $window, $q, $log, $translate, sLocation, ngDialog) {
         var sActivity = this;
 
         var defaultSuccess = function (response) {
@@ -109,7 +109,7 @@ angular
 
             if (activity.data.object && activity.data.object['@type'] && activity.data.object['@type'] === 'CommentVote' && activity.data.type !== 'Delete') {
                 var val = 'up';
-                if (activity.data.object.value === -1) {
+                if ((activity.data.resultObject && activity.data.resultObject.value === -1) || (!activity.data.resultObject && activity.data.object.value === -1)) {
                     val = 'down';
                 }
                 if (activity.data.object.value === 0) {
@@ -191,6 +191,34 @@ angular
                         }
                     }
                 }
+
+                if (activity.data.origin['@type'] === 'CommentVote') {
+                    if (fieldName === 'value') {
+                        if (previousValue === 0 || previousValue) {
+                            
+                            if (previousValue === 1) {
+                                previousValue = 'up';
+                            } else if (previousValue === -1) {
+                                previousValue = 'down';
+                            } else if (previousValue === 0) {
+                                previousValue = 'remove';
+                            }
+
+                            previousValueKey = 'ACTIVITY_FEED.ACTIVITY_COMMENTVOTE_FIELD_VALUE_' + previousValue.toUpperCase();
+                        }
+                        if (newValue === 0 || previousValue) {
+                            if (newValue === 1) {
+                                newValue = 'up';
+                            } else if (newValue === -1) {
+                                newValue = 'down';
+                            } else if (newValue === 0) {
+                                newValue = 'remove';
+                            }
+                            
+                            newValueKey = 'ACTIVITY_FEED.ACTIVITY_COMMENTVOTE_FIELD_VALUE_' + newValue.toUpperCase();
+                        }
+                    }
+                }
             }
             if (previousValueKey) {
                 $translate(previousValueKey)
@@ -257,4 +285,47 @@ angular
 
             return activity;
         };
+
+        sActivity.handleActivityRedirect = function (activity) {
+            if (!activity.data) {
+                return;
+            }
+            var stateName = '';
+            var params = {};
+            var hash = '';
+            var object = activity.data.object;
+            if (Array.isArray(object)) {
+                object = object[0];
+            }
+            var type = activity.data.type;
+
+            if (object['@type'] === 'Topic') {
+                stateName = 'topics.view';
+                params.topicId = object.id;
+            } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote' || (object['@type'] === 'User' && activity.data.target && activity.data.target['@type'] === 'Topic')) {
+                if (activity.data.target) {
+                    if (activity.data.target['@type'] === 'Topic' || activity.data.target.topicId) {
+                        stateName = 'topics.view';
+                        params.topicId = activity.data.target.topicId || activity.data.target.id;
+                        hash = object.commentId || object.id;
+                    }
+                }
+            } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteList') {
+                stateName = 'topics.view.votes.view';
+                params.topicId = activity.data.target.topicId || activity.data.target.id;
+                params.voteId = object.voteId || object.id;
+            } else if (object['@type'] === 'Group') {
+                stateName = 'my.groups.groupId';
+                params.groupId = object.id;
+            }
+
+            if (stateName) {
+                ngDialog.closeAll();
+                var link = $state.href(stateName, params);
+                if (hash) {
+                    link = link + '#' + hash;
+                }
+                $window.location.href = link;
+            }
+        }
     }]);

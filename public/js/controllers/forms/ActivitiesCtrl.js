@@ -57,6 +57,7 @@ angular
             }
             return false;
         };
+
         $scope.showActivityUpdateVersions = function (activity) {
             if (activity.data.type === 'Update') {
                 if (activity.data.result && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1 || !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1)) {
@@ -71,6 +72,10 @@ angular
                 return true;
             }
             return false;
+        };
+
+        $scope.activityRedirect = function (activity) {
+            return sActivity.handleActivityRedirect(activity);
         };
     }
 ]);
