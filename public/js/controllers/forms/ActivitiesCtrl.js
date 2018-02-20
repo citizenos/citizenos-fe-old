@@ -55,6 +55,9 @@ angular
             if (activity.data && activity.data.object && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Comment' || activity.data.object['@type'] === 'Comment' || activity.data.object.text)) {
                 return true;
             }
+            if (activity.data && activity.data.target && activity.data.target['@type'] === 'Comment') {
+                return true;
+            }
             return false;
         };
 

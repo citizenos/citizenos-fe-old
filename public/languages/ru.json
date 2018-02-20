@@ -256,7 +256,8 @@
     "TOPIC_EVENT_DELETE_CONFIRM_HEADING": "Удалить обновление",
     "TOPIC_EVENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Вы уверены, что хотите удалить это обновление?",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
-    "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES"
+    "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES",
+    "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Все существующие",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Бизнес и промышленность",
@@ -293,7 +294,7 @@
       "LNK_FAQ": "Вопросы и ответы",
       "LNK_HELP": "Помощь",
       "LNK_LOG_OUT": "Выйти",
-      "LNK_ACTIVITY": "Activity"
+      "LNK_ACTIVITY": "Activity feed"
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "Поиск",
@@ -610,10 +611,10 @@
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP": "Пользователь {{userName}} обновил свою реакцию на аргумент.",
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_DOWN": "@:ACTIVITY_FEED.ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_DOWN": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP",
-    "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_REMOVE": "User {{userName}} has removed his/her reaction on argument: ",
-    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_UP": "up",
-    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_DOWN": "down",
-    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_REMOVE": "remove",
+    "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_REMOVE": "Пользователь {{userName}} удалил свою реакцию на аргумент: ",
+    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_UP": "поддерживаю",
+    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_DOWN": "не поддерживаю",
+    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_REMOVE": "удалить",
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "Пользователь {{userName}} оставил ответ на аргумент в теме: {{topicTitle}}",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "Пользователь {{userName}} добавил тему {{topicTitle}} в группу {{groupName}}.",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "Пользователь {{userName}} удалил тему {{topicTitle}} из группы {{groupName}}.",
@@ -647,10 +648,10 @@
     "ACTIVITY_USER_ADD_USERCONNECTION": "Пользователь {{userName}} добавил новый способ входа в систему: {{connectionName}}",
     "ACTIVITY_USER_CREATE_USER": "Пользователь {{userName}} создан",
     "ACTIVITY_USER_DELETE_CONSENT": "",
-    "FILTER_ALL": "All activities",
-    "FILTER_TOPICS": "Activities related to my topics",
-    "FILTER_GROUPS": "Activities related to my groups",
-    "FILTER_USER": "Activities related to user",
+    "FILTER_ALL": "Все обновления",
+    "FILTER_TOPICS": "Обновления, связанные с моими темами",
+    "FILTER_GROUPS": "Обновления, связанные с моими группами",
+    "FILTER_USER": "Обновления, связанные с пользователем",
     "FILTER_SELF": "Activities where user is actor"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ошибка в адресе эл. почты.",
