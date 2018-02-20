@@ -292,7 +292,8 @@
       "LNK_ABOUT": "A propos",
       "LNK_FAQ": "FAQ",
       "LNK_HELP": "Aide",
-      "LNK_LOG_OUT": "Déconnexion"
+      "LNK_LOG_OUT": "Déconnexion",
+      "LNK_ACTIVITY": "Activity"
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "Chercher",
