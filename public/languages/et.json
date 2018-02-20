@@ -613,7 +613,7 @@
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_REMOVE": "Kasutaja {{userName}} eemaldas oma tagasiside argumendi kohta: ",
     "ACTIVITY_COMMENTVOTE_FIELD_VALUE_UP": "toetan",
     "ACTIVITY_COMMENTVOTE_FIELD_VALUE_DOWN": "ei toeta",
-    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_REMOVE": "remove",
+    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_REMOVE": "tühistan tagasiside",
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "Kasutaja {{userName}} vastas argumendile teemal \"{{topicTitle}}\": ",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "Kasutaja {{userName}} lisas rühmas {{groupName}} teema \"{{topicTitle}}\".",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "Kasutaja {{userName}} eemaldas rühmast {{groupName}} teema \"{{topicTitle}}\".",
