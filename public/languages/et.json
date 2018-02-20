@@ -256,7 +256,8 @@
     "TOPIC_EVENT_DELETE_CONFIRM_HEADING": "Kustuta teadaanne",
     "TOPIC_EVENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Kas soovid kindlasti selle teadaande kustutada?",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
-    "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES"
+    "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES",
+    "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY"
   },
   "TXT_TOPIC_CATEGORY_ALL": "iga kategooria",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Äri ja tööstus",
@@ -293,7 +294,7 @@
       "LNK_FAQ": "KKK",
       "LNK_HELP": "Abi",
       "LNK_LOG_OUT": "Välju",
-      "LNK_ACTIVITY": "Tegevusvoog"
+      "LNK_ACTIVITY": "Activity feed"
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "Otsi",
