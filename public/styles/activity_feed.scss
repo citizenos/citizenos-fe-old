@@ -60,6 +60,7 @@
                 width: 100%;
                 box-sizing: border-box;
                 padding-left: 82px;
+                cursor: pointer;
                 .text_box {
                     margin-bottom: 10px;
                     background: $white;
@@ -103,6 +104,7 @@
                         }
                     }
                     .right_side {
+                        cursor: pointer;
                         .text_box {
                             border: 1px solid $lightest_gray;
                             .notch {
@@ -162,6 +164,7 @@
                     }
                 }
                 .right_side {
+                    cursor: pointer;
                     padding-left: 30px;
                     .text_box {
                         background: none;

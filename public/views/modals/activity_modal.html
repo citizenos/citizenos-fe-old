@@ -59,7 +59,7 @@
                     <div class="activity_wrap modal">
                         <div class="activity_area">
                             
-                            <div ng-click="activityRedirect(activity)" class="activity_content" ng-repeat="(key, activity) in activities">
+                            <div class="activity_content" ng-repeat="(key, activity) in activities">
 
                                 <div class="left_side">
                                     <div class="line_top"></div>
@@ -69,7 +69,7 @@
                                     <div class="line_bottom"></div>
                                 </div>
                                 
-                                <div class="right_side">
+                                <div class="right_side" ng-click="activityRedirect(activity)">
                                     <div class="text_box">                    
                                         <div class="main_text">
                                             <span translate="{{activity.string}}" translate-values="activity.values"> </span>
