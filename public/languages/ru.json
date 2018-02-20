@@ -650,7 +650,7 @@
     "FILTER_ALL": "Все обновления",
     "FILTER_TOPICS": "Обновления, связанные с моими темами",
     "FILTER_GROUPS": "Обновления, связанные с моими группами",
-    "FILTER_USER": "Activities related to user",
+    "FILTER_USER": "Обновления, связанные с пользователем",
     "FILTER_SELF": "Activities where user is actor"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ошибка в адресе эл. почты.",
