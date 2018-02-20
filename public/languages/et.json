@@ -292,7 +292,8 @@
       "LNK_ABOUT": "Meist",
       "LNK_FAQ": "KKK",
       "LNK_HELP": "Abi",
-      "LNK_LOG_OUT": "Välju"
+      "LNK_LOG_OUT": "Välju",
+      "LNK_ACTIVITY": "Activity"
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "Otsi",
