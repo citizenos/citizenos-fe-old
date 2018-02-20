@@ -256,7 +256,8 @@
     "TOPIC_EVENT_DELETE_CONFIRM_HEADING": "crwdns10955:0crwdne10955:0",
     "TOPIC_EVENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "crwdns10956:0crwdne10956:0",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "crwdns10414:0crwdne10414:0",
-    "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "crwdns10415:0crwdne10415:0"
+    "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "crwdns10415:0crwdne10415:0",
+    "ACTIVITY_MODAL_HEADING": "crwdns11010:0crwdne11010:0"
   },
   "TXT_TOPIC_CATEGORY_ALL": "crwdns10416:0crwdne10416:0",
   "TXT_TOPIC_CATEGORY_BUSINESS": "crwdns10417:0crwdne10417:0",
@@ -293,7 +294,7 @@
       "LNK_FAQ": "crwdns10442:0crwdne10442:0",
       "LNK_HELP": "crwdns10443:0crwdne10443:0",
       "LNK_LOG_OUT": "crwdns10444:0crwdne10444:0",
-      "LNK_ACTIVITY": "crwdns11009:0crwdne11009:0"
+      "LNK_ACTIVITY": "crwdns11011:0crwdne11011:0"
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "crwdns10445:0crwdne10445:0",
