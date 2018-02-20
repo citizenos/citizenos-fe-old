@@ -292,7 +292,8 @@
       "LNK_ABOUT": "A propos",
       "LNK_FAQ": "FAQ",
       "LNK_HELP": "Aide",
-      "LNK_LOG_OUT": "Déconnexion"
+      "LNK_LOG_OUT": "Déconnexion",
+      "LNK_ACTIVITY": "Activity"
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "Chercher",
@@ -610,6 +611,9 @@
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_DOWN": "@:ACTIVITY_FEED.ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_DOWN": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_REMOVE": "User {{userName}} has removed his/her reaction on argument: ",
+    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_UP": "up",
+    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_DOWN": "down",
+    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_REMOVE": "remove",
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "User {{userName}} has left a reply to a argument in topic {{topicTitle}}: ",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "User {{userName}} has added topic {{topicTitle}} to group {{groupName}}.",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "User {{userName}} has removed topic {{topicTitle}} from group {{groupName}}.",

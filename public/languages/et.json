@@ -292,7 +292,8 @@
       "LNK_ABOUT": "Meist",
       "LNK_FAQ": "KKK",
       "LNK_HELP": "Abi",
-      "LNK_LOG_OUT": "Välju"
+      "LNK_LOG_OUT": "Välju",
+      "LNK_ACTIVITY": "Tegevusvoog"
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "Otsi",
@@ -610,6 +611,9 @@
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_DOWN": "@:ACTIVITY_FEED.ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_DOWN": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_REMOVE": "Kasutaja {{userName}} eemaldas oma tagasiside argumendi kohta: ",
+    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_UP": "toetan",
+    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_DOWN": "ei toeta",
+    "ACTIVITY_COMMENTVOTE_FIELD_VALUE_REMOVE": "tühistan tagasiside",
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "Kasutaja {{userName}} vastas argumendile teemal \"{{topicTitle}}\": ",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "Kasutaja {{userName}} lisas rühmas {{groupName}} teema \"{{topicTitle}}\".",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "Kasutaja {{userName}} eemaldas rühmast {{groupName}} teema \"{{topicTitle}}\".",
@@ -643,11 +647,11 @@
     "ACTIVITY_USER_ADD_USERCONNECTION": "Kasutaja {{userName}} saab nüüd siseneda {{connectionName}} kaudu",
     "ACTIVITY_USER_CREATE_USER": "Citizen OS-ga liitus kasutaja {{userName}}",
     "ACTIVITY_USER_DELETE_CONSENT": "",
-    "FILTER_ALL": "Kõik tegevused",
-    "FILTER_TOPICS": "Minu teemadega seotud tegevused",
-    "FILTER_GROUPS": "Minu rühmadega seotud tegevused",
-    "FILTER_USER": "Kasutajaga seotud tegevused",
-    "FILTER_SELF": "Kasutaja poolt tehtud tegevused"
+    "FILTER_ALL": "Kõik toimingud",
+    "FILTER_TOPICS": "Minu teemadega seotud toimingud",
+    "FILTER_GROUPS": "Minu rühmadega seotud toimingud",
+    "FILTER_USER": "Kasutajaga seotud toimingud",
+    "FILTER_SELF": "Kasutaja sooritatud toimingud"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Viga e-posti aadressis.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "See e-posti aadress on juba kasutusel.",
