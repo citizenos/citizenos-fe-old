@@ -112,7 +112,7 @@ angular
                 if ((activity.data.resultObject && activity.data.resultObject.value === -1) || (!activity.data.resultObject && activity.data.object.value === -1)) {
                     val = 'down';
                 }
-                if (activity.data.object.value === 0) {
+                if (activity.data.resultObject && activity.data.resultObject.value === 0) {
                     val = 'remove';
                 }
                 stringparts.push(val);
@@ -276,6 +276,18 @@ angular
                 }
                 if (dataobject['@type'] === 'User' || dataobject.text) {
                     values.className = 'personal';
+                }
+                if (dataobject['@type'] === 'CommentVote' && activity.data.type === 'Create') {
+                    var str = 'ACTIVITY_COMMENTVOTE_FIELD_VALUE_'
+                    var val = 'UP';
+                    if (dataobject.value === -1) {
+                        val = 'DOWN';
+                    } else if (dataobject.value === 0) {
+                        val = 'REMOVE';
+                    }
+                    $translate(str+val).then(function (value) {
+                        values.reaction = value;
+                    });
                 }
             }
             activity.values = values;
