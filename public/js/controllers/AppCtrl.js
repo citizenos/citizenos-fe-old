@@ -101,6 +101,21 @@ angular
         };
 
         // TODO: REMOVE - temporary for templates
+        $scope.app.doShowActivityModal = function () {
+            $log.debug('AppCtrl.doShowActivityModal()');
+            var openDias = ngDialog.getOpenDialogs();
+
+            if (openDias.length) {
+                ngDialog.closeAll();
+            } else {
+                ngDialog.open({
+                    template: '/views/modals/activity_modal.html',
+                    scope: $scope
+                });
+            }
+        };
+
+        // TODO: REMOVE - temporary for templates
         $scope.app.doShowInviteUsers = function () {
             $log.debug('AppCtrl.doShowInviteUsers()');
 

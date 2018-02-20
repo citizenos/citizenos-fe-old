@@ -48,7 +48,6 @@ angular
                 };
 
                 $scope.switch = function () {
-                    console.log('switch', $scope.model, $scope.value)
                     if($scope.value && $scope.model === $scope.value) {
                         $scope.enabled = true;
                     } else if ($scope.value && $scope.model != $scope.value) {

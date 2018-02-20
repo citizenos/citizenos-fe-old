@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'Activity', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, ngDialog, sAuth, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, Activity, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', 'ngDialog', 'sAuth', 'sUpload', 'sActivity', 'sLocation', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, ngDialog, sAuth, sUpload, sActivity, sLocation, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
 
         $scope.topic = rTopic;
@@ -73,114 +73,7 @@ angular
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 10;
 
-        var getCategoryTranslationKeys = function (catInput) {            
-            if (Array.isArray(catInput)) {
-                var translationKeys = [];
-                catInput.forEach(function (category) {
-                    translationKeys.push('TXT_TOPIC_CATEGORY_' + category.toUpperCase());
-                });
-
-                return translationKeys;
-            }
-
-            return 'TXT_TOPIC_CATEGORY_' + catInput.toUpperCase();
-        };
-
-        var getUpdatedTranslations = function (activity) {
-            var fieldName = activity.data.result[0].path.split('/')[1];
-            activity.values.fieldName = fieldName;
-            var previousValue = activity.data.origin[fieldName];
-            var newValue = activity.data.resultObject[fieldName];
-            var previousValueKey = null
-            var newValueKey = null;
-
-            if (activity.data.origin['@type'] === 'Topic') {
-                var fieldNameKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_FIELD_' + fieldName.toUpperCase();
-                $translate(fieldNameKey)
-                    .then(function (translatedField) {
-                        activity.values.fieldName = translatedField;
-                    })
-            }
-
-            if (Array.isArray(previousValue) && previousValue.length === 0) {
-                previousValue = '';
-            }
-
-            if (previousValue || newValue) {
-                if (activity.data.origin['@type'] === 'Topic') {
-                    if (fieldName === 'status' || fieldName === 'visibility') {
-                        if (previousValue) {
-                            previousValueKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_FIELD_' + fieldName.toUpperCase() + '_' + previousValue.toUpperCase();
-                        }
-                        if (newValue) {
-                            newValueKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_FIELD_' + fieldName.toUpperCase() + '_' + newValue.toUpperCase();
-                        }
-                    }
-                    if (fieldName === 'categories') {
-                        if (previousValue) {
-                            previousValueKey = getCategoryTranslationKeys(previousValue);
-                        }
-                        if (newValue) {
-                            newValueKey = getCategoryTranslationKeys(newValue);
-                        }
-                    }
-                }
-            }
-            if (previousValueKey) {
-                $translate(previousValueKey)
-                .then(function (prev) {
-                    activity.values.previousValue = prev;
-                    if (typeof prev === 'object') {
-                        activity.values.previousValue = Object.values(prev).join(';');
-                    }
-                });
-            } else {
-                activity.values.previousValue = previousValue;
-            }
-            if (newValueKey) {
-                $translate(newValueKey)
-                .then(function (newVal) {
-                    activity.values.newValue = newVal;
-                    if (typeof newVal === 'object') {                        
-                        activity.values.newValue = Object.values(newVal).join(';');
-                    }
-                });
-            } else {
-                activity.values.newValue = newValue;
-            }
-        }
-        var getActivityValues = function (activity) {
-            var values = {};
-            if (activity.data.actor && activity.data.actor.name) {
-                values.userName = activity.data.actor.name;
-            }
-            if ($scope.topic) {
-                values.topicTitle = $scope.topic.title;
-            }
-            if (activity.data.object) {
-                var dataobject = activity.data.object
-                if (Array.isArray(dataobject) && (dataobject[0]['@type'] === 'Group' || dataobject[0].groupName) || dataobject['@type'] === 'Group' || dataobject.groupName) {
-                    values.groupName = dataobject.name || dataobject.groupName || dataobject[0].name || dataobject[0].groupName;
-                }
-                if (Array.isArray(dataobject) && (dataobject[0]['@type'] === 'User' || dataobject[0].userName) || dataobject['@type'] === 'User' || dataobject.userName) {
-                    values.userName2 = dataobject.name || dataobject.userName || dataobject[0].name || dataobject[0].userName;
-                }
-                if (Array.isArray(dataobject) && (dataobject[0]['@type'] === 'Attachment' || dataobject[0].name) || dataobject['@type'] === 'Attachment' || dataobject.name) {
-                    values.attachmentName = dataobject.name || dataobject[0].name ;
-                }
-                if (Array.isArray(dataobject) && (dataobject[0]['@type'] === 'Comment' || dataobject[0].text) || dataobject['@type'] === 'Comment' || dataobject.text) {
-                    values.description = dataobject.text || dataobject.text ;
-                }
-            }
-            activity.values = values;
-            if (activity.data.type === 'Update') {
-                getUpdatedTranslations(activity);
-            }
-
-            return activity;
-        };
-
-        $scope.getActivityDescription = function (activity) {
+        $scope.showActivityDescription = function (activity) {
             if (activity.data && activity.data.object && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Comment' || activity.data.object['@type'] === 'Comment' || activity.data.object.text)) {
                 return true;
             }
@@ -193,20 +86,16 @@ angular
             if ($scope.activities.length && !offset && !limit) {
                 $scope.activitiesOffset += $scope.activitiesLimit;
             }
-
-            Activity.query({
-                topicId: $scope.topic.id,
-                offset: $scope.activitiesOffset,
-                limit: $scope.activitiesLimit
-            })
-            .$promise
-            .then(function (activities) {
-                $scope.showLoadMoreActivities = !(activities.length < $scope.activitiesLimit);
-                activities.forEach(function (activity) {
-                    activity = getActivityValues(activity);
-                })
-                $scope.activities = $scope.activities.concat(activities);
-            });
+            if ($scope.topic) {
+                sActivity.getTopicActivities($scope.topic.id, $scope.activitiesOffset, $scope.activitiesLimit)
+                    .then(function (activities) {
+                        activities.forEach(function (activity) {
+                            activity.values.topicTitle = $scope.topic.title;
+                        });
+                        $scope.showLoadMoreActivities = !(activities.length < $scope.activitiesLimit);
+                        $scope.activities = $scope.activities.concat(activities);
+                    });
+            }
         };
 
         $scope.doToggleActivities = function () {
@@ -692,20 +581,18 @@ angular
                 });
         };
 
-        $scope.goToParentComment = function (rootComment, parent) {
-
-            if (!parent.id || !parent.hasOwnProperty('version')) {
-                return
-            }
-
-            var comment = angular.element(document.getElementById(parent.id + parent.version));
-
+        $scope.gotToComment = function (commentId, version) {
+            if (version !== 0 && !version) {
+                version = '';
+            };
+            
+            var comment = angular.element(document.getElementById(commentId + version));
             if (comment.length === 0) {
                 for (var i = 0; i < $scope.topicComments.rows.length; i++) {
                     if ($scope.topicComments.rows[i].id === parent.id) {
                         $scope.topicComments.rows[i].showEdits = true;
                         $timeout(function () {
-                            comment = angular.element(document.getElementById(parent.id + parent.version));
+                            comment = angular.element(document.getElementById(commentId + version));
                             $scope.app.scrollToAnchor(comment[0].id);
                             comment.addClass('highlight');
                             $timeout(function () {
@@ -715,11 +602,11 @@ angular
                         break;
                     } else {
                         for (var j = 0; j < $scope.topicComments.rows[i].replies.rows.length; j++) {
-                            if ($scope.topicComments.rows[i].replies.rows[j].id === parent.id) {
+                            if ($scope.topicComments.rows[i].replies.rows[j].id === commentId) {
                                 $scope.topicComments.rows[i].replies.rows[j].showEdits = true;
                                 i = $scope.topicComments.rows.length;
                                 $timeout(function () {
-                                    comment = angular.element(document.getElementById(parent.id + parent.version));
+                                    comment = angular.element(document.getElementById(commentId + version));
                                     $scope.app.scrollToAnchor(comment[0].id);
                                     comment.addClass('highlight');
                                     $timeout(function () {
@@ -739,6 +626,20 @@ angular
                     comment.removeClass('highlight');
                 }, 500);
             }
+        }
+        $timeout(function () {
+            var hash = sLocation.getLocationHash();
+            if (hash) {
+                $scope.gotToComment(hash);
+            }
+        });
+
+        $scope.goToParentComment = function (rootComment, parent) {
+
+            if (!parent.id || !parent.hasOwnProperty('version')) {
+                return
+            }
+            $scope.gotToComment(parent.id, parent.version)
         };
 
         $scope.showActivityUpdateVersions = function (activity) {
@@ -746,7 +647,9 @@ angular
                 if (activity.data.result && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1 || !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1)) {
                     return false;
                 }
-
+                if (activity.data.object['@type'] === 'CommentVote' && activity.data.type === 'Update' && activity.data.resultObject && activity.data.resultObject.value === 0) {
+                    return false;
+                }
                 if (
                     activity.data.result && !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'TopicMemberUser' && activity.data.result[0].path.indexOf('level') > -1 && activity.data.result[0].value === 'none'
                 ) {
@@ -755,6 +658,10 @@ angular
                 return true;
             }
             return false;
+        };
+
+        $scope.activityRedirect = function (activity) {
+            return sActivity.handleActivityRedirect(activity);
         };
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {

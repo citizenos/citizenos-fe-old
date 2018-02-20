@@ -147,47 +147,44 @@
             </div>
         </div>
 
-        <div class="container_content activity_container" ng-if="app.activityFeed">
+        <div class="container_content activity_container" ng-if="app.activityFeed" cos-scroll on-scroll="loadActivities">
+            <div class="activity_wrap compact">
+                <div class="activity_area">
 
-            <div class="activity" ng-repeat="(key, activity) in activities">
+                    <div ng-click="activityRedirect(activity)" class="activity_content" ng-repeat="(key, activity) in activities">
 
-                <div class="activity_left">
-                    <div class="activiy_time" ng-bind="activity.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
-                </div>
-
-                <div class="activity_right">
-                    <div class="activiy_title" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
-                        <span translate="{{activity.string}}" translate-values="activity.values"> </span>
-                        <div ng-if="showActivityUpdateVersions(activity)">
-                            <div class="activity_previous" translate="ACTIVITY_FEED.ACTIVITY_PREVIOUS_VERSION" translate-values="activity.values"></div>
-                            <div class="activity_overlay"></div>
-                            <div class="activity_new" translate="ACTIVITY_FEED.ACTIVITY_NEW_VERSION" translate-values="activity.values"></div>
-                            <div class="activity_overlay"></div>
+                        <div class="left_side">
+                        <div class="line_top"></div>
+                            <div class="icon">
+                                <div ng-class="'sprite sprite-icon-activity-{{activity.values.className}}-2x'"></div>
+                            </div>
+                            <div class="line_bottom"></div>
                         </div>
-                    </div>
-                    <div class="activiy_description" ng-if="getActivityDescription(activity)" check-height ng-class="{overheight: offsetHeight > 80, read_more: readMore}" >
-                        <div class="activity_description_text" ng-bind="activity.values.description">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
-                            home office combo? First off, you will need to set a budget for your new ...
+
+                        <div class="right_side">
+                            <div class="text_box">                    
+                                <div class="main_text">
+                                    <span translate="{{activity.string}}" translate-values="activity.values"> </span>
+                                </div>
+                                <div class="description_area italic">
+                                    <span ng-if="showActivityUpdateVersions(activity)">
+                                        <span class="activity_previous" translate="ACTIVITY_FEED.ACTIVITY_PREVIOUS_VERSION" translate-values="{previousValue: '{{(activity.values.previousValue | limitTo: 200) + (activity.values.previousValue.length > 200 ? '...' : '')}}'}"></span>
+                                        <br>
+                                        <span class="activity_new" translate="ACTIVITY_FEED.ACTIVITY_NEW_VERSION" translate-values="{newValue: '{{(activity.values.newValue | limitTo: 200) + (activity.values.newValue.length > 200 ? '...' : '')}}'}"></span>
+                                    </span>
+                                    <span ng-if="showActivityDescription(activity) && !showActivityUpdateVersions(activity)" class="activity_description_text" ng-bind="'{{(activity.values.description | limitTo: 200) + (activity.values.description.length > 200 ? '...' : '')}}'">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
+                                        home office combo? First off, you will need to set a budget for your new ...
+                                    </span>
+                                </div>
+                                <div class="date_area" ng-bind="activity.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
+                                <b class="notch border-notch"></b>
+                                <b class="notch"></b>
+                            </div>
                         </div>
-                        <div class="activity_description_overlay"></div>
+                        <div class="clearer"></div>
                     </div>
                 </div>
-
-                <div class="clearer"></div>
             </div>
-
-            <div class="activity">
-
-                <div class="activity_left" ng-if="showLoadMoreActivities">
-                    <div class="view_older blue_link" ng-click="loadActivities()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW_OLDER">View older</div>
-                </div>
-
-                <div class="activity_right">
-                    &nbsp;
-                </div>
-
-            </div>
-
         </div>
 
     </div>
