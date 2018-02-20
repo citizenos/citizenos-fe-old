@@ -292,7 +292,8 @@
       "LNK_ABOUT": "crwdns10441:0crwdne10441:0",
       "LNK_FAQ": "crwdns10442:0crwdne10442:0",
       "LNK_HELP": "crwdns10443:0crwdne10443:0",
-      "LNK_LOG_OUT": "crwdns10444:0crwdne10444:0"
+      "LNK_LOG_OUT": "crwdns10444:0crwdne10444:0",
+      "LNK_ACTIVITY": "crwdns11009:0crwdne11009:0"
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "crwdns10445:0crwdne10445:0",
