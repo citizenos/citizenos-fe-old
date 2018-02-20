@@ -278,7 +278,7 @@ angular
                     values.className = 'personal';
                 }
                 if (dataobject['@type'] === 'CommentVote' && activity.data.type === 'Create') {
-                    var str = 'ACTIVITY_COMMENTVOTE_FIELD_VALUE_'
+                    var str = 'ACTIVITY_FEED.ACTIVITY_COMMENTVOTE_FIELD_VALUE_'
                     var val = 'UP';
                     if (dataobject.value === -1) {
                         val = 'DOWN';
