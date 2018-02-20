@@ -254,7 +254,7 @@ angular
                 if (Array.isArray(dataobject)) {
                     dataobject = dataobject[0];
                 }
-                if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser') {
+                if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || activity.data.target && activity.data.target['@type'] === ' Topic') {
                     values.className = 'topic';
                 }
                 if (dataobject['@type'] === 'Topic' || activity.data.target && activity.data.target['@type'] === 'Topic') {
@@ -264,15 +264,19 @@ angular
                     values.groupName = dataobject.name || dataobject.groupName;
                     values.className = 'group';
                 }
-                if (dataobject['@type'] === 'Vote' || dataobject['@type'] === 'VoteList' || dataobject['@type'] === 'VoteOption' || dataobject['@type'] === 'CommentVote') {
+                if (dataobject['@type'] === 'Vote' || dataobject['@type'] === 'VoteList' || dataobject['@type'] === 'VoteUserContainer' || dataobject['@type'] === 'VoteOption') {
                     values.className = 'vote';
                 }
                 if (dataobject['@type'] === 'Attachment' || dataobject.name) {
+                    values.className = 'topic';
                     values.attachmentName = dataobject.name;
                 }
                 if (dataobject['@type'] === 'Comment' || dataobject.text) {
                     values.className = 'comment';
                     values.description = dataobject.text;
+                }
+                if (activity.data.target && activity.data.target['@type'] === 'Comment') {
+                    values.description = activity.data.target.text;
                 }
                 if (dataobject['@type'] === 'User' || dataobject.text) {
                     values.className = 'personal';

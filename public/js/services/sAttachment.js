@@ -29,7 +29,7 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
                 .setCallback(pickerCallback)
                 .build();
                 picker.setVisible(true);
-        });        
+        });
     }
     sAttachment.googleDriveSelect = function () {
         return new Promise(function (resolve, reject) {
