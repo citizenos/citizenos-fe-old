@@ -292,7 +292,8 @@
       "LNK_ABOUT": "О сервисе",
       "LNK_FAQ": "Вопросы и ответы",
       "LNK_HELP": "Помощь",
-      "LNK_LOG_OUT": "Выйти"
+      "LNK_LOG_OUT": "Выйти",
+      "LNK_ACTIVITY": "Activity"
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "Поиск",
