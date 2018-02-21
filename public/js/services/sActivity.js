@@ -260,6 +260,12 @@ angular
                 if (dataobject['@type'] === 'Topic' || activity.data.target && activity.data.target['@type'] === 'Topic') {
                     values.topicTitle = dataobject.title;
                 }
+                if (dataobject.topicTitle) {
+                    values.topicTitle = dataobject.topicTitle;
+                }
+                if (activity.data.target && (activity.data.target.title || activity.data.target.topicTitle)) {
+                    values.topicTitle = activity.data.target.title || activity.data.target.topicTitle;
+                }
                 if (dataobject['@type'] === 'Group' || dataobject.groupName) {
                     values.groupName = dataobject.name || dataobject.groupName;
                     values.className = 'group';
@@ -323,7 +329,8 @@ angular
                     if (activity.data.target['@type'] === 'Topic' || activity.data.target.topicId) {
                         stateName = 'topics.view';
                         params.topicId = activity.data.target.topicId || activity.data.target.id;
-                        hash = object.commentId || object.id;
+                        params.commentId = object.commentId || object.id;
+                       // hash = object.commentId || object.id;
                     }
                 }
             } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteList') {
@@ -336,7 +343,7 @@ angular
             }
 
             if (stateName) {
-                ngDialog.closeAll();
+              //  ngDialog.closeAll();
                 var link = $state.href(stateName, params);
                 if (hash) {
                     link = link + '#' + hash;

@@ -271,6 +271,12 @@ angular
                             con: 0
                         };
                     }
+                    $timeout(function () {
+                        console.log('COUD', $stateParams.commentId)
+                        if ($stateParams.commentId) {
+                            $scope.gotToComment($stateParams.commentId);
+                        }
+                    });
                 });
         };
 
@@ -583,10 +589,11 @@ angular
 
         $scope.gotToComment = function (commentId, version) {
             if (version !== 0 && !version) {
-                version = '';
-            };
-            
+                version = 0;
+            }
+
             var comment = angular.element(document.getElementById(commentId + version));
+            console.log(comment);
             if (comment.length === 0) {
                 for (var i = 0; i < $scope.topicComments.rows.length; i++) {
                     if ($scope.topicComments.rows[i].id === parent.id) {
@@ -627,12 +634,6 @@ angular
                 }, 500);
             }
         }
-        $timeout(function () {
-            var hash = sLocation.getLocationHash();
-            if (hash) {
-                $scope.gotToComment(hash);
-            }
-        });
 
         $scope.goToParentComment = function (rootComment, parent) {
 

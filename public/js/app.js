@@ -343,7 +343,7 @@
                     }]
                 })
                 .state('topics.view', {
-                    url: '/:topicId?editMode',
+                    url: '/:topicId?editMode&commentId',
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {
