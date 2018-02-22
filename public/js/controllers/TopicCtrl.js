@@ -90,7 +90,7 @@ angular
             if ($scope.topic) {
                 sActivity.getTopicActivities($scope.topic.id, $scope.activitiesOffset, $scope.activitiesLimit)
                     .then(function (activities) {
-                        activities.forEach(function (activity) {
+                        activities.forEach(function (activity, key) {
                             activity.values.topicTitle = $scope.topic.title;
                             if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
                                 if (!lastViewTime || activity.updatedAt > lastViewTime) {
