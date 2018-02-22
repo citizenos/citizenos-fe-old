@@ -9,6 +9,7 @@ angular
         $scope.activities = [];
         $scope.filter = 'all';
         $scope.activityfilters = ['all', 'topics', 'groups', 'user', 'self'];
+        var lastViewTime = null;
 
         $scope.loadActivities = function (offset, limit) {
             $scope.activitiesOffset = offset || $scope.activitiesOffset;
@@ -29,6 +30,17 @@ angular
             sActivity
                 .getActivities($scope.activitiesOffset, $scope.activitiesLimit, filterValue)
                 .then(function (activities) {
+                    activities.forEach(function (activity, key) {
+                        if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
+                            if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                                lastViewTime = activity.updatedAt;
+                            }
+                            activities.splice(key, 1);
+                        } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                            activity.isNew = '-new';
+                        }
+                    });
+
                     $scope.showLoadMoreActivities = !(activities.length < $scope.activitiesLimit);
                     $scope.activities = $scope.activities.concat(activities);
 

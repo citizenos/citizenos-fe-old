@@ -4,6 +4,7 @@ angular
     .module('citizenos')
     .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', 'ngDialog', 'sAuth', 'sUpload', 'sActivity', 'sLocation', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicComment', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, ngDialog, sAuth, sUpload, sActivity, sLocation, Topic, TopicMemberGroup, TopicMemberUser, TopicComment, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
+        var lastViewTime = null;
 
         $scope.topic = rTopic;
         if ($scope.topic) {
@@ -89,8 +90,16 @@ angular
             if ($scope.topic) {
                 sActivity.getTopicActivities($scope.topic.id, $scope.activitiesOffset, $scope.activitiesLimit)
                     .then(function (activities) {
-                        activities.forEach(function (activity) {
+                        activities.forEach(function (activity, key) {
                             activity.values.topicTitle = $scope.topic.title;
+                            if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
+                                if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                                    lastViewTime = activity.updatedAt;
+                                }
+                                activities.splice(key, 1);
+                            } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                                activity.isNew = '-new';
+                            }
                         });
                         $scope.showLoadMoreActivities = !(activities.length < $scope.activitiesLimit);
                         $scope.activities = $scope.activities.concat(activities);
