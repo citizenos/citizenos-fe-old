@@ -271,6 +271,11 @@ angular
                             con: 0
                         };
                     }
+                    $timeout(function () {
+                        if ($stateParams.commentId) {
+                            $scope.gotToComment($stateParams.commentId);
+                        }
+                    });
                 });
         };
 
@@ -583,9 +588,9 @@ angular
 
         $scope.gotToComment = function (commentId, version) {
             if (version !== 0 && !version) {
-                version = '';
-            };
-            
+                version = 0;
+            }
+
             var comment = angular.element(document.getElementById(commentId + version));
             if (comment.length === 0) {
                 for (var i = 0; i < $scope.topicComments.rows.length; i++) {
@@ -627,12 +632,6 @@ angular
                 }, 500);
             }
         }
-        $timeout(function () {
-            var hash = sLocation.getLocationHash();
-            if (hash) {
-                $scope.gotToComment(hash);
-            }
-        });
 
         $scope.goToParentComment = function (rootComment, parent) {
 
