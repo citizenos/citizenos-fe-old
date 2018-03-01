@@ -652,7 +652,7 @@
     "FILTER_TOPICS": "crwdns11002:0crwdne11002:0",
     "FILTER_GROUPS": "crwdns11003:0crwdne11003:0",
     "FILTER_USER": "crwdns11004:0crwdne11004:0",
-    "FILTER_SELF": "crwdns11005:0crwdne11005:0"
+    "FILTER_SELF": "crwdns11012:0crwdne11012:0"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "crwdns10705:0crwdne10705:0",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "crwdns10706:0crwdne10706:0",
