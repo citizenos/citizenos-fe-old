@@ -294,7 +294,7 @@
       "LNK_FAQ": "Вопросы и ответы",
       "LNK_HELP": "Помощь",
       "LNK_LOG_OUT": "Выйти",
-      "LNK_ACTIVITY": "Activity feed"
+      "LNK_ACTIVITY": "Лента новостей"
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "Поиск",
@@ -652,7 +652,7 @@
     "FILTER_TOPICS": "Обновления, связанные с моими темами",
     "FILTER_GROUPS": "Обновления, связанные с моими группами",
     "FILTER_USER": "Обновления, связанные с пользователем",
-    "FILTER_SELF": "Activities where user is actor"
+    "FILTER_SELF": "Обзор деятельности пользователя"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ошибка в адресе эл. почты.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Данный адрес эл. почты уже используется.",
