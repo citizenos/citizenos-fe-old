@@ -5,7 +5,7 @@ angular
     .controller('ActivitiesCtrl', [
         '$scope', '$stateParams', '$document', 'sActivity', function ($scope, $stateParams, $document, sActivity) {
         $scope.activitiesOffset = 0;
-        $scope.activitiesLimit = 10;
+        $scope.activitiesLimit = 25;
         $scope.activities = [];
         $scope.filter = 'all';
         $scope.activityfilters = ['all', 'topics', 'groups', 'user', 'self'];

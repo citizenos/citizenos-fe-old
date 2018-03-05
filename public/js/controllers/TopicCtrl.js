@@ -72,7 +72,7 @@ angular
             $scope.topic.vote.$get();
         }
         $scope.activitiesOffset = 0;
-        $scope.activitiesLimit = 10;
+        $scope.activitiesLimit = 25;
 
         $scope.showActivityDescription = function (activity) {
             if (activity.data && activity.data.object && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Comment' || activity.data.object['@type'] === 'Comment' || activity.data.object.text)) {
