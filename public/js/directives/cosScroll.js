@@ -16,7 +16,9 @@ angular
                     }
                     var scrollFunc = _.debounce(definedAction, 100);
                     elem.on('scroll', function (e) {
+                        if ((elem[0].scrollTop + elem[0].offsetHeight) >= elem[0].scrollHeight) {
                             scrollFunc();
+                        }
                     });
                 }
             }
