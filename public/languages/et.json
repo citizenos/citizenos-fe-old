@@ -522,7 +522,7 @@
       "LNK_MENTIONS_COUNT": "Sotsiaalmeedias: {{mentionsCount}}",
       "LNK_MENTIONS_COUNT_ADD_HASHTAG": "lisa teemaviide",
       "LBL_TAB_ARGUMENTS": "Argumendid",
-      "LBL_TAB_MENTIONS": "Sotsiaalmeedias",
+      "LBL_TAB_MENTIONS": "Sotsiaalmeedia postitust",
       "TAB_ARGUMENTS_HEADING": "@:VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT",
       "LBL_ARGUMENTS_COUNT_PRO": "poolt: {{countPro}}",
       "LBL_ARGUMENTS_COUNT_CON": "vastu: {{countCon}}",
@@ -652,7 +652,7 @@
     "FILTER_TOPICS": "Minu teemadega seotud toimingud",
     "FILTER_GROUPS": "Minu rühmadega seotud toimingud",
     "FILTER_USER": "Kasutajaga seotud toimingud",
-    "FILTER_SELF": "User's activities"
+    "FILTER_SELF": "Kasutaja tegevused"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Viga e-posti aadressis.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "See e-posti aadress on juba kasutusel.",

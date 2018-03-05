@@ -244,49 +244,131 @@ angular
             }
         };
 
-        sActivity.getActivityValues = function (activity) {
-            var values = {};
+        var getActivityTopicTitle = function (activity) {
+            var dataobject = activity.data.object;
+            if (Array.isArray(dataobject)) {
+                dataobject = dataobject[0];
+            }
+            if (dataobject['@type'] === 'Topic') {
+                return dataobject.title;
+            } else if (dataobject.topicTitle) {
+                return dataobject.topicTitle;
+            } else if (activity.data.target && activity.data.target.title) {
+                return activity.data.target.title;
+            } else if (activity.data.target && activity.data.target.topicTitle) {
+                return activity.data.target.topicTitle;
+            }
+        };
+
+        var getActivityClassName = function (activity) {
+            var dataobject = activity.data.object;
+            if (Array.isArray(dataobject)) {
+                dataobject = dataobject[0];
+            }
+
+            if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject.name || activity.data.target && activity.data.target['@type'] === ' Topic') {
+                return 'topic';
+            } else if (dataobject['@type'] === 'Group' || dataobject.groupName) {
+                return 'group';
+            } else if (dataobject['@type'] === 'Vote' || dataobject['@type'] === 'VoteList' || dataobject['@type'] === 'VoteUserContainer' || dataobject['@type'] === 'VoteOption') {
+                return 'vote';
+            } else if (dataobject['@type'] === 'Comment' || dataobject.text) {
+                return 'comment';
+            } else if (dataobject['@type'] === 'User' || dataobject.text) {
+                return 'personal';
+            }
+        };
+
+        var getActivityDescription = function (activity) {
+            var dataobject = activity.data.object;
+            if (Array.isArray(dataobject)) {
+                dataobject = dataobject[0];
+            }
+
+            if (dataobject['@type'] === 'Comment' || dataobject.text) {
+                return dataobject.text;
+            }
+            if (activity.data.target && activity.data.target['@type'] === 'Comment') {
+                return activity.data.target.text;
+            }
+        };
+
+        var getActivityGroupName = function (activity) {
+            var dataobject = activity.data.object;
+            if (Array.isArray(dataobject)) {
+                dataobject = dataobject[0];
+            }
+
+            if (dataobject['@type'] === 'Group' ) {
+                return dataobject.name;
+            } else if (dataobject.groupName) {
+                return dataobject.groupName;
+            } else if (activity.data.target && activity.data.target['@type'] === 'Group') {
+                return activity.data.target.name;
+            } else if (activity.data.target && activity.data.target.groupName) {
+                return activity.data.target.groupName;
+            }
+        };
+
+        var getActivityAttachmentName = function (activity) {
+            var dataobject = activity.data.object;
+            if (Array.isArray(dataobject)) {
+                dataobject = dataobject[0];
+            }
+
+            if (dataobject['@type'] === 'Attachment' || dataobject.name) {
+                return dataobject.name;
+            }
+        };
+
+        var getActivityUsers = function (activity, values) {
+            var dataobject = activity.data.object;
+            if (Array.isArray(dataobject)) {
+                dataobject = dataobject[0];
+            }
             if (activity.data.actor && activity.data.actor.name) {
                 values.userName = activity.data.actor.name;
             }
+            if (dataobject['@type'] === 'User') {
+                values.userName2 = dataobject.name;
+            } else if (dataobject.userName) {
+                values.userName2 = dataobject.userName;
+            } else if (activity.data.target && activity.data.target['@type'] === 'User') {
+                values.userName2 = activity.data.target.name;
+            } else if (activity.data.target && activity.data.target.userName) {
+                values.userName2 = activity.data.target.userName;
+            }
+        };
+
+        var getActivityUserLevel = function (activity, values) {
+            var levelKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_LEVELS_';
+
+            if (activity.data.actor && activity.data.actor.level) {
+                levelKey += activity.data.actor.level;
+            }
+
+            $translate(levelKey.toUpperCase()).then(function (value) {
+                values.accessLevel = value;
+            })
+        };
+
+        sActivity.getActivityValues = function (activity) {
+            var values = {};
+
             if (activity.data.object) {
-                var dataobject = activity.data.object
+                getActivityUsers(activity, values);
+                values.topicTitle = getActivityTopicTitle(activity);
+                values.className = getActivityClassName(activity);
+                values.description = getActivityDescription(activity);
+                values.groupName = getActivityGroupName(activity);
+                values.attachmentName = getActivityAttachmentName(activity);
+                getActivityUserLevel(activity, values); 
+
+                var dataobject = activity.data.object;
                 if (Array.isArray(dataobject)) {
                     dataobject = dataobject[0];
                 }
-                if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || activity.data.target && activity.data.target['@type'] === ' Topic') {
-                    values.className = 'topic';
-                }
-                if (dataobject['@type'] === 'Topic' || activity.data.target && activity.data.target['@type'] === 'Topic') {
-                    values.topicTitle = dataobject.title;
-                }
-                if (dataobject.topicTitle) {
-                    values.topicTitle = dataobject.topicTitle;
-                }
-                if (activity.data.target && (activity.data.target.title || activity.data.target.topicTitle)) {
-                    values.topicTitle = activity.data.target.title || activity.data.target.topicTitle;
-                }
-                if (dataobject['@type'] === 'Group' || dataobject.groupName) {
-                    values.groupName = dataobject.name || dataobject.groupName;
-                    values.className = 'group';
-                }
-                if (dataobject['@type'] === 'Vote' || dataobject['@type'] === 'VoteList' || dataobject['@type'] === 'VoteUserContainer' || dataobject['@type'] === 'VoteOption') {
-                    values.className = 'vote';
-                }
-                if (dataobject['@type'] === 'Attachment' || dataobject.name) {
-                    values.className = 'topic';
-                    values.attachmentName = dataobject.name;
-                }
-                if (dataobject['@type'] === 'Comment' || dataobject.text) {
-                    values.className = 'comment';
-                    values.description = dataobject.text;
-                }
-                if (activity.data.target && activity.data.target['@type'] === 'Comment') {
-                    values.description = activity.data.target.text;
-                }
-                if (dataobject['@type'] === 'User' || dataobject.text) {
-                    values.className = 'personal';
-                }
+                
                 if (dataobject['@type'] === 'CommentVote' && activity.data.type === 'Create') {
                     var str = 'ACTIVITY_FEED.ACTIVITY_COMMENTVOTE_FIELD_VALUE_'
                     var val = 'UP';
