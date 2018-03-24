@@ -294,30 +294,30 @@
       "LNK_FAQ": "Часті питання",
       "LNK_HELP": "Допомога",
       "LNK_LOG_OUT": "Вийти",
-      "LNK_ACTIVITY": "Activity feed"
+      "LNK_ACTIVITY": "Стрічка подій"
     },
     "NAV_MOBILE": {
-      "BTN_SEARCH": "Search",
-      "BTN_OVERVIEW": "Overview",
-      "BTN_EDIT": "Edit",
-      "BTN_SETTINGS": "Settings",
-      "BTN_MENU": "Menu",
+      "BTN_SEARCH": "Пошук",
+      "BTN_OVERVIEW": "Огляд",
+      "BTN_EDIT": "Редагувати",
+      "BTN_SETTINGS": "Налаштування",
+      "BTN_MENU": "Меню",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "Context search results in",
-      "LNK_VIEW_MORE_RESULTS": "View more results",
-      "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
-      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?<br>We did find some things scattered throughout the Citizen OS platform, so feel free to check them out."
+      "HEADING_RESULTS_IN": "Результати пошуку",
+      "LNK_VIEW_MORE_RESULTS": "Показати більше результатів",
+      "TXT_OOPS_NO_RESULTS": "Ой, ми не знайшли нічого, що відповідає Вашому запиту :(",
+      "TXT_MAYBE_TYPO": "Можливо, Ви зробили помилку у запиті?<br>Ми знайшли на Citizen OS дещо інше, що може відповідати Вашому пошуку, будь-ласка, перевірте."
     }
   },
-  "LBL_CONTEXT_MY_TOPICS": "my topics",
-  "LBL_CONTEXT_MY_GROUPS": "my groups",
-  "LBL_CONTEXT_PUBLIC_TOPICS": "public topics",
-  "LBL_CONTEXT_PUBLIC_GROUPS": "public groups",
+  "LBL_CONTEXT_MY_TOPICS": "мої теми",
+  "LBL_CONTEXT_MY_GROUPS": "мої групи",
+  "LBL_CONTEXT_PUBLIC_TOPICS": "публічні теми",
+  "LBL_CONTEXT_PUBLIC_GROUPS": "публічні групи",
   "DIRECTIVES": {
     "COS_MODAL": {
-      "BTN_SAVE": "Save",
+      "BTN_SAVE": "Зберегти",
       "BTN_CANCEL": "@:LNK_CANCEL"
     },
     "COS_MODAL_DATEPICKER": {
@@ -328,7 +328,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Вибачте, у Вас немає достатніх прав для доступу до цього ресурсу :(",
       "HEADING_YOU_MAY_RECOVER": "Still, you may recover from the unfortunate event by",
       "BTN_LOGIN": "Logging in",
       "BTN_REQUEST_ACCESS": "Requesting access to the resource"
