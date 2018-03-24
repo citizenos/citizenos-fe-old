@@ -425,20 +425,20 @@
       "LBL_USERS_COUNT": "@:VIEWS.MY_GROUPS_GROUPID.LBL_USERS_COUNT",
       "HEADING_USERS_LIST": "Список користувачів",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
-      "LNK_PROFILE": "Profile",
-      "LBL_VIA": "via",
-      "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Activity feed & notifications",
-      "LNK_VIEW_OLDER": "View older"
+      "LNK_PROFILE": "Користувач",
+      "LBL_VIA": "з групи",
+      "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Стрічка подій та сповіщень",
+      "LNK_VIEW_OLDER": "Дивитися попередні"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "Rahvaalgatus.ee would like to access following data from Your account:",
-      "TXT_VIEW_PROFILE": "View and edit Your Citizen OS profile - name, company, email, picture.",
-      "TXT_VIEW_TOPICS": "View and edit Your Citizen OS public Topics and Topics created via the Rahvaalgatus.ee website.",
-      "TXT_VIEW_VOTES": "View and edit Your Citizen OS Votes in public Topics and Topics created via the Rahvaalgatus.ee website.",
-      "TXT_VIEW_GROUPS": "View and edit Your Citizen OS Groups.",
-      "TXT_POLICY": "Rahvaalgatus.ee will use this information in accordance with their respective <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">terms of service and privacy policies</a>.",
-      "_AGREE": "Accept",
-      "DISAGREE": "Cancel"
+      "HEADING": "Rahvaalgatus.ee просить надати доступ до наступної інформації з Вашого облікового запису:",
+      "TXT_VIEW_PROFILE": "Продивитися та редагувати Ваш профіль у Citizen OS - ім'я, компанія, електронна пошта, фото.",
+      "TXT_VIEW_TOPICS": "Продивтися та редагувати Ваші публічні теми у Citizen OS та теми створені через Rahvaalgatus.ee.",
+      "TXT_VIEW_VOTES": "Продивтися та редагувати Ваші голосування у публічних темах Citizen OS та темах створені через Rahvaalgatus.ee.",
+      "TXT_VIEW_GROUPS": "Продивитися та редагувати Ваші групи у Citizen OS.",
+      "TXT_POLICY": "Rahvaalgatus.ee буде використовувати цю інформацію відповідно до їх <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">умов надання послуги та політики конфіденційності</a>.",
+      "_AGREE": "Прийняти",
+      "DISAGREE": "Відмінити"
     },
     "PARTNERS_LOGIN": {
       "HEADING": "<strong>Rahvaalgatus.ee works together with Citizen OS</strong> to offer you a great experience. If you want to use the platform to its fullest, <strong>please login to Citizen OS or register.</strong>",
