@@ -695,7 +695,7 @@
   "MSG_ERROR_POST_API_TOPICS_VOTES_40026": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40026",
   "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT": "Твердження може мати довжину від 1 до 2048 символів.",
   "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT": "Головне твердження може мати довжину від 1 до 128 символів.",
-  "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Необхідно вказати причину сповіщення",
+  "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Необхідно вказати причину сповіщення про коментар",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Текст пояснення може мати довжину від 1 до 2048 символів.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Повідомлення стало недійсним, оскільки коментар було відредаговано після сповіщення.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Ви відмінили підписання і Ваш голос не було враховано.",
