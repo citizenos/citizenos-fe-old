@@ -18,6 +18,7 @@
                     lv: 'Latviešu',
                     lt: 'Lietuvių',
                     ru: 'Pусский',
+                    uk: 'Українська',
                     aa: 'Crowdin'
                 },
                 debug: 'dbg'
