@@ -615,7 +615,7 @@
     "ACTIVITY_COMMENTVOTE_FIELD_VALUE_UP": "up",
     "ACTIVITY_COMMENTVOTE_FIELD_VALUE_DOWN": "down",
     "ACTIVITY_COMMENTVOTE_FIELD_VALUE_REMOVE": "remove",
-    "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "User {{userName}} has left a reply to a argument in topic {{topicTitle}}: ",
+    "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "User {{userName}} has left a reply to an argument in topic {{topicTitle}}: ",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "User {{userName}} has added topic {{topicTitle}} to group {{groupName}}.",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "User {{userName}} has removed topic {{topicTitle}} from group {{groupName}}.",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "User {{userName}} has changed group’s {{groupNameEdited}} access level to topic {{topicTitle}}.",
