@@ -335,7 +335,7 @@
     },
     "HOME": {
       "HEADINGS_SHOW_ME_TOPICS_ABOUT": "Показать мне темы из категории",
-      "LNK_SHOW": "Показать",
+      "LNK_SHOW": "Со статусом:",
       "LNK_CLEAR_FILTERS": "Очистить фильтры",
       "LBL_FILTER_THE_TOPICS": "Отфильтровать темы",
       "LNK_EDIT_FILTER": "Редактировать фильтр",
