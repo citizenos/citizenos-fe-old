@@ -15,7 +15,6 @@ CitizenOS front-end web application - https://app.citizenos.com.
 
 * Get the source - `git clone git@github.com:citizenos/citizenos-fe.git`
 * Go to the source directory - `cd citizenos-fe`
-* Install dependencies - `npm install`
 * Run the application - `npm run dev`
 * Add to dev.citizenos.com to your hosts file - `sudo -- sh -c -e "echo '127.0.0.1 dev.citizenos.com' >> /etc/hosts"`
 * Open https://dev.citizenos.com:3001 or http://dev.citizenos.com:3000 in your browser.
