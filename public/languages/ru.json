@@ -110,7 +110,7 @@
     "TOPIC_DELETE_COMMENT_TXT_ARE_YOU_SURE": "Вы уверены, что хотите удалить этот комментарий? Это действие необратимо.",
     "TOPIC_DELETE_COMMENT_BTN_NO": "@:MODALS.TOPIC_COMMENT_REPORT_BTN_NO",
     "TOPIC_DELETE_COMMENT_BTN_YES": "ДА, УДАЛИТЬ",
-    "LOGIN_HEADING": "Войти / Зарегистрироваться",
+    "LOGIN_HEADING": "Вход / Регистрация",
     "LOGIN_BTN_LOGIN_FACEBOOK": "Войти через Facebook",
     "LOGIN_BTN_LOGIN_GOOGLE": "Войти через Google",
     "LOGIN_BTN_LOGIN_ESTEID": "Войти с ID-картой / Mobiil-ID",
