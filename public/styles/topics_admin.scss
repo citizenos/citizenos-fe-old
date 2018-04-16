@@ -569,6 +569,12 @@
                                 display: block;
                                 text-align: right;
                             }
+                            ul.indent li{
+                                list-style: none;
+                            }
+                            img {
+                                max-width: 100%;
+                            }
                         }
                     }
 
