@@ -165,6 +165,8 @@ nav {
                 .dropdown_active .dropdown {
                     visibility: visible;
                     height: initial;
+                    height: 150px;
+                    overflow-y: auto;
                 }
 
                 .dropdown {
