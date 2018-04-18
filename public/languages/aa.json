@@ -640,7 +640,7 @@
     "ACTIVITY_TOPIC_LEVELS_NONE": "crwdns10921:0crwdne10921:0",
     "ACTIVITY_USER_CREATE_GROUP": "crwdns10922:0{{userName}}crwdnd10922:0{{groupName}}crwdne10922:0",
     "ACTIVITY_USER_UPDATE_GROUP": "crwdns10923:0{{userName}}crwdnd10923:0{{fieldName}}crwdnd10923:0{{groupName}}crwdne10923:0",
-    "ACTIVITY_USER_DELETE_GROUP": "crwdns10924:0{{userName}}crwdnd10924:0{{groupName}}crwdne10924:0",
+    "ACTIVITY_USER_DELETE_GROUP": "crwdns11014:0{{userName}}crwdnd11014:0{{groupName}}crwdne11014:0",
     "ACTIVITY_USER_ADD_USER_GROUP": "crwdns10925:0{{userName}}crwdnd10925:0{{userName2}}crwdnd10925:0{{groupName}}crwdne10925:0",
     "ACTIVITY_USER_UPDATE_GROUPMEMBER": "crwdns10926:0{{userName}}crwdnd10926:0{{userName2}}crwdnd10926:0{{groupName}}crwdne10926:0",
     "ACTIVITY_USER_UPDATE_GROUPMEMBER_NONE": "crwdns10927:0{{userName}}crwdnd10927:0{{userName2}}crwdnd10927:0{{groupName}}crwdne10927:0",
