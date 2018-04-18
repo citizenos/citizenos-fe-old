@@ -20,8 +20,8 @@
             },
             links: {
                 help: {
-                    en: 'http://citizenos.uservoice.com/knowledgebase/articles/741585',
-                    et: 'http://citizenos.uservoice.com/knowledgebase/articles/741582',
+                    en: 'https://citizenos.uservoice.com/knowledgebase/articles/741585-help',
+                    et: 'https://citizenos.uservoice.com/knowledgebase/articles/741582-abi',
                     ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798'
                 }
             },
