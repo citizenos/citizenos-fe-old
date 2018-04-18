@@ -917,7 +917,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="argument_header_widget">
-                                                            <div class="table_cell">
+                                                            <div class="table_cell" ng-attr-title="{{comment.createdAt | amDateFormat : 'L LT'}}">
                                                                 {{comment.createdAt | amTimeAgo}}
                                                             </div>
                                                         </div>
@@ -1061,7 +1061,7 @@
                                                     <!-- END COMMENT DELETED-->
                                                     <!-- COMMENT EDITS -->
                                                     <div id="{{comment.id + version}}" class="argument" ng-class="{is_con:edit.type=='con', is_pro: edit.type=='pro'}" ng-if="comment.showEdits && comment.isEdited() && !$last" ng-repeat="(version, edit) in comment.edits">
-                                                        <div class="argument_header">{{edit.createdAt | amDateFormat : 'L LT'}}</div>
+                                                        <div class="argument_header" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">{{edit.createdAt | amTimeAgo}}</div>
                                                         <div class="argument_title" ng-if="edit.subject">
                                                             {{edit.subject}}
                                                         </div>
@@ -1191,7 +1191,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="argument_header_widget">
-                                                            <div class="table_cell">
+                                                            <div class="table_cell" ng-attr-title="{{reply.createdAt | amDateFormat : 'L LT'}}">
                                                                 {{reply.createdAt | amTimeAgo}}
                                                             </div>
                                                         </div>
@@ -1257,7 +1257,7 @@
                                                     <!--END REPLY EDIT-->
                                                     <!-- REPLY EDITS -->
                                                     <div id="{{reply.id+(version-1)}}" class="argument" ng-if="reply.showEdits && reply.isEdited() && !$last" ng-repeat="(version, edit) in reply.edits">
-                                                        <div class="argument_header">{{edit.createdAt | amDateFormat : 'L LT'}}</div>
+                                                        <div class="argument_header" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">{{edit.createdAt | amTimeAgo}}</div>
                                                         <div class="argument_text_wrap">
                                                             <div class="argument_text italic" ng-bind-html="edit.text | linky"></div>
                                                         </div>
