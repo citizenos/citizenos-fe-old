@@ -454,7 +454,7 @@
       "BAR_MILESTONES": "Етапів: {{count}}",
       "BAR_TOOLTIP_PHASE": "Статус:",
       "BAR_TOOLTIP_IN_PROGRESS": "створюється",
-      "BAR_TOOLTIP_VOTING": "на голосування",
+      "BAR_TOOLTIP_VOTING": "на голосуванні",
       "BAR_SIGNING_DEADLINE": "Кінцевий срок для пдіписання:",
       "BAR_CURRENT_PHASE": "Поточний статус:",
       "TAB_VIEW": "Переглянути",
