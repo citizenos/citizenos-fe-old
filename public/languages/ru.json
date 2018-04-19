@@ -426,7 +426,7 @@
       "HEADING_USERS_LIST": "Список пользователей",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Пользователь",
-      "LBL_VIA": "via group \"{{groupName}}\"",
+      "LBL_VIA": "через группу \"{{groupName}}\"",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Лента новостей и уведомлений",
       "LNK_VIEW_OLDER": "См. предыдущие"
     },
@@ -451,7 +451,7 @@
       "FORGOT_PASSWORD": "Забыли пароль?"
     },
     "TOPICS_TOPICID": {
-      "BAR_MILESTONES": "UPDATES: {{count}}",
+      "BAR_MILESTONES": "ОБНОВЛЕНИЙ: {{count}}",
       "BAR_TOOLTIP_PHASE": "Статус:",
       "BAR_TOOLTIP_IN_PROGRESS": "создается",
       "BAR_TOOLTIP_VOTING": "на голосовании",
