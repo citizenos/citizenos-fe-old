@@ -15,7 +15,7 @@ angular
         };
 
         $scope.app.user = sAuth.user;
-        
+
         sTranslate
             .getCurrentLanguage()
             .then(function (language) {
@@ -56,101 +56,6 @@ angular
 
             ngDialog.open({
                 template: '/views/modals/my_account.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowConfirm = function () {
-            $log.debug('AppCtrl.doShowConfirm()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/confirm.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowDeleteComment = function () {
-            $log.debug('AppCtrl.doShowDeleteComment()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/delete_comment.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowSetNumber = function () {
-            $log.debug('AppCtrl.doShowSetNumber()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/set_number.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowDatePicker = function () {
-            $log.debug('AppCtrl.doShowDatePicker()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/date_picker.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowActivityModal = function () {
-            $log.debug('AppCtrl.doShowActivityModal()');
-            var openDias = ngDialog.getOpenDialogs();
-
-            if (openDias.length) {
-                ngDialog.closeAll();
-            } else {
-                ngDialog.open({
-                    template: '/views/modals/activity_modal.html',
-                    scope: $scope
-                });
-            }
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowInviteUsers = function () {
-            $log.debug('AppCtrl.doShowInviteUsers()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/invite_users.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowAddTopics = function () {
-            $log.debug('AppCtrl.doShowAddTopic()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/add_topics.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowTopicSettings = function () {
-            $log.debug('AppCtrl.doShowTopicSettings()');
-
-            ngDialog.open({
-                template: '/views/modals/topic_settings.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowDeleteTopic = function () {
-            $log.debug('AppCtrl.doShowDeleteTopic()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/topic_delete_confirm.html',
                 scope: $scope
             });
         };
