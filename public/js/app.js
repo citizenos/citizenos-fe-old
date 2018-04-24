@@ -14,7 +14,8 @@
                 list: {
                     en: 'English',
                     et: 'Eesti',
-                    ru: 'Pусский'
+                    ru: 'Pусский',
+                    uk: 'Українська'
                 },
                 debug: 'dbg'
             },
@@ -22,7 +23,8 @@
                 help: {
                     en: 'https://citizenos.uservoice.com/knowledgebase/articles/741585-help',
                     et: 'https://citizenos.uservoice.com/knowledgebase/articles/741582-abi',
-                    ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798'
+                    ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798',
+                    uk: 'https://citizenos.uservoice.com/knowledgebase/articles/741585-help'
                 }
             },
             storage: {
