@@ -60,6 +60,29 @@ angular
             });
         };
 
+        $scope.app.doShowActivityModal = function () {
+            $log.debug('AppCtrl.doShowActivityModal()');
+            var openDias = ngDialog.getOpenDialogs();
+
+            if (openDias.length) {
+                ngDialog.closeAll();
+            } else {
+                ngDialog.open({
+                    template: '/views/modals/activity_modal.html',
+                    scope: $scope
+                });
+            }
+        };
+
+        $scope.app.doShowTopicSettings = function () {
+            $log.debug('AppCtrl.doShowTopicSettings()');
+
+            ngDialog.open({
+                template: '/views/modals/topic_settings.html',
+                scope: $scope
+            });
+        };
+
         $scope.app.doSwitchLanguage = function (language) {
             $log.debug('AppCtrl.doSwitchLanguage()', language);
             if (language === $scope.app.language) {
