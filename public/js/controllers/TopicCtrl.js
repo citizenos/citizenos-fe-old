@@ -567,7 +567,7 @@ angular
         $scope.getParentAuthor = function (rootComment, parentId) {
             if (parentId === rootComment.id) {
                 return rootComment.creator.name;
-            } 
+            }
                 for (var i = 0; i < rootComment.replies.rows.length; i++) {
                     if (rootComment.replies.rows[i].id === parentId) {
                         return rootComment.replies.rows[i].creator.name;
@@ -581,6 +581,25 @@ angular
 
             ngDialog.openConfirm({
                     template: '/views/modals/topic_delete_comment.html',
+                    data: {
+                        comment: comment,
+                        topic: $scope.topic
+                    }
+                })
+                .then(function () {
+                    comment.topicId = $scope.topic.id;
+                    comment.$delete()
+                        .then(function () {
+                            $scope.loadTopicComments($scope.topicComments.orderBy);
+                        }, angular.noop);
+                });
+        };
+
+        $scope.doShowDeleteReply = function (comment) {
+            $log.debug('TopicCtrl.doShowDeleteReply()');
+
+            ngDialog.openConfirm({
+                    template: '/views/modals/topic_delete_reply.html',
                     data: {
                         comment: comment,
                         topic: $scope.topic
@@ -676,7 +695,7 @@ angular
             if (fromState.name === 'topics.view.files') {
                 $scope.loadTopicAttachments();
             }
-            
+
         });
     }
 ]);
