@@ -228,14 +228,13 @@
                 </div>
 
                 <div class="main_text">
-                    <div class="text_big" ng-bind-html="topic.title">Open Governance Workshop: Public decision-making in 2025</div>
-                    <div class="text_small" ng-if="wWidth > 667" ng-bind-html="topic.description">Discussions, lectures and a mini-hackathon to change experiences and ideas, to get inspired and boost ope…</div>
+                    <div class="text_big" ng-bind-html="topic.title | cosRemoveNbsp">Open Governance Workshop: Public decision-making in 2025</div>
+                    <div class="text_small" ng-if="wWidth > 667" ng-bind-html="topic.description | cosRemoveNbsp">Discussions, lectures and a mini-hackathon to change experiences and ideas, to get inspired and boost ope…</div>
                 </div>
 
                 <div class="line"></div>
 
                 <div class="text_small" ng-if="wWidth > 667">
-                    <!-- FIXME: translate! -->
                     <span ng-repeat="category in topic.categories">
                         <span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}"></span><span ng-show="!$last">, </span>
                     </span>
