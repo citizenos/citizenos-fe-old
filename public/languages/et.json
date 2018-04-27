@@ -110,7 +110,7 @@
     "TOPIC_DELETE_COMMENT_TXT_ARE_YOU_SURE": "Kas oled kindel, et soovid argumendi kustutada? Toimingut ei saa tagasi võtta.",
     "TOPIC_DELETE_COMMENT_BTN_NO": "@:MODALS.TOPIC_COMMENT_REPORT_BTN_NO",
     "TOPIC_DELETE_COMMENT_BTN_YES": "JAH, EEMALDA ARGUMENT",
-    "TOPIC_DELETE_REPLY_TITLE": "Delete reply",
+    "TOPIC_DELETE_REPLY_TITLE": "Kustuta vastus",
     "TOPIC_DELETE_REPLY_DESCRIPTION": "Vastuse autor: {{usersFullName}}",
     "TOPIC_DELETE_REPLY_TXT_ARE_YOU_SURE": "Kas oled kindel, et soovid vastuse kustutada? Toimingut ei saa tagasi võtta.",
     "TOPIC_DELETE_REPLY_BTN_NO": "@:MODALS.TOPIC_COMMENT_REPORT_BTN_NO",
@@ -456,7 +456,7 @@
       "FORGOT_PASSWORD": "Kas unustasid salasõna?"
     },
     "TOPICS_TOPICID": {
-      "BAR_MILESTONES": "UPDATES: {{count}}",
+      "BAR_MILESTONES": "TEATEID: {{count}}",
       "BAR_TOOLTIP_PHASE": "Olek:",
       "BAR_TOOLTIP_IN_PROGRESS": "ühisloomes",
       "BAR_TOOLTIP_VOTING": "hääletamisel",
@@ -473,7 +473,7 @@
       "TOPIC_SUMMARY_VIEW_FINAL_DOCUMENT": "vaata lõplikku versiooni",
       "TOPIC_SUMMARY_VIEW_VOTING_ENDED_ON": "Hääletamise lõpp",
       "TOPIC_SUMMARY_VIEW_VOTE_RESULTS": "vaata hääletustulemusi",
-      "ADD_MILESTONES_CREATE_A_MILESTONE": "Create an update",
+      "ADD_MILESTONES_CREATE_A_MILESTONE": "Teate lisamine",
       "ADD_MILESTONES_PLACEHOLDER_SUBJECT": "Mis sai tehtud otsuse elluviimiseks?",
       "ADD_MILESTONES_PLACEHOLDER_TEXT": "Palun selgita, täpsusta, lisa linke.",
       "ADD_MILESTONES_ADD_MILESTONE": "AVALDA",
