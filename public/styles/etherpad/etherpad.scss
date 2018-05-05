@@ -129,6 +129,12 @@ $deep_sky_blue: #0680FC;
         font-size: 16px;
     }
 
+    .image {
+        img {
+            width: auto;
+            max-width: 100%;
+        }
+    }
     /** MOBILE **/
     @media (max-width: 535px) {
         h1 * {
