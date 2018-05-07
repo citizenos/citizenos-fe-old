@@ -365,7 +365,15 @@
       "TXT_CREATING_A NEW_GROUP": "crwdns10490:0crwdne10490:0",
       "HEADING_NOT_PARTICIPATED": "crwdns10491:0crwdne10491:0",
       "HEADING_GET_INVOLVED": "crwdns10492:0crwdne10492:0",
-      "MY_CREATING_A_NEW_TOPIC": "crwdns10493:0crwdne10493:0"
+      "MY_CREATING_A_NEW_TOPIC": "crwdns10493:0crwdne10493:0",
+      "FILTERS": {
+        "SHOW_ALL_MY_TOPICS": "crwdns11034:0crwdne11034:0",
+        "SHOW_ONLY": "crwdns11035:0crwdne11035:0",
+        "MY_PUBLIC_TOPICS": "crwdns11036:0crwdne11036:0",
+        "MY_PRIVATE_TOPICS": "crwdns11037:0crwdne11037:0",
+        "TOPICS_I_CREATED": "crwdns11038:0crwdne11038:0",
+        "TOPICS_ORDERED_BY_GROUPS": "crwdns11039:0crwdne11039:0"
+      }
     },
     "MY_GROUPS_GROUPID": {
       "HEADING_GENERAL_INFORMATION": "crwdns10494:0crwdne10494:0",
