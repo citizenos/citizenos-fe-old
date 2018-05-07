@@ -420,7 +420,7 @@
       "LBL_RESULTS": "crwdns10533:0crwdne10533:0",
       "LBL_VOTES_COUNTED": "crwdns10534:0crwdne10534:0",
       "LBL_VOTE_DEADLINE": "crwdns10535:0crwdne10535:0",
-      "LBL_VOTE_DEADLINE_NOTE": "crwdns11040:0crwdne11040:0",
+      "LBL_VOTE_DEADLINE_NONE": "crwdns11041:0crwdne11041:0",
       "VOTE_CAST_YOUR_VOTE": "crwdns10536:0crwdne10536:0",
       "VOTE_HEADING_DELEGATE": "crwdns10537:0crwdne10537:0",
       "VOTE_DELEGATED_TO": "crwdns10538:0crwdne10538:0",
