@@ -365,7 +365,15 @@
       "TXT_CREATING_A NEW_GROUP": "Loo uus rühm",
       "HEADING_NOT_PARTICIPATED": "Sa ei osale veel üheski teemas. Proovi järele, see on lahe!",
       "HEADING_GET_INVOLVED": "Osalemiseks on järgmised võimalused",
-      "MY_CREATING_A_NEW_TOPIC": "Loo uus teema"
+      "MY_CREATING_A_NEW_TOPIC": "Loo uus teema",
+      "FILTERS": {
+        "SHOW_ALL_MY_TOPICS": "Näita kõiki minu teemasid",
+        "SHOW_ONLY": "Näita ainult:",
+        "MY_PUBLIC_TOPICS": "Minu avalikke teemasid",
+        "MY_PRIVATE_TOPICS": "Minu privaatseid teemasid",
+        "TOPICS_I_CREATED": "Teemad, mille olen loonud",
+        "TOPICS_ORDERED_BY_GROUPS": "Näite teemasid gruppide kaupa"
+      }
     },
     "MY_GROUPS_GROUPID": {
       "HEADING_GENERAL_INFORMATION": "Üldinfo",

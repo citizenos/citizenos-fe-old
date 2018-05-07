@@ -365,7 +365,15 @@
       "TXT_CREATING_A NEW_GROUP": "Створення нової групи",
       "HEADING_NOT_PARTICIPATED": "Ви поки що не приймали участь у жодній темі. Спробуйте, це справді круто!",
       "HEADING_GET_INVOLVED": "Ви можете прийняти участь наступним чином",
-      "MY_CREATING_A_NEW_TOPIC": "Створення нової теми"
+      "MY_CREATING_A_NEW_TOPIC": "Створення нової теми",
+      "FILTERS": {
+        "SHOW_ALL_MY_TOPICS": "Show all my topics",
+        "SHOW_ONLY": "Show only:",
+        "MY_PUBLIC_TOPICS": "My public topics",
+        "MY_PRIVATE_TOPICS": "My private topics",
+        "TOPICS_I_CREATED": "Topics I created",
+        "TOPICS_ORDERED_BY_GROUPS": "Show topics ordered by groups"
+      }
     },
     "MY_GROUPS_GROUPID": {
       "HEADING_GENERAL_INFORMATION": "Загальна інформація",
