@@ -367,12 +367,12 @@
       "HEADING_GET_INVOLVED": "Osalemiseks on järgmised võimalused",
       "MY_CREATING_A_NEW_TOPIC": "Loo uus teema",
       "FILTERS": {
-        "SHOW_ALL_MY_TOPICS": "Show all my topics",
-        "SHOW_ONLY": "Show only:",
-        "MY_PUBLIC_TOPICS": "My public topics",
-        "MY_PRIVATE_TOPICS": "My private topics",
-        "TOPICS_I_CREATED": "Topics I created",
-        "TOPICS_ORDERED_BY_GROUPS": "Show topics ordered by groups"
+        "SHOW_ALL_MY_TOPICS": "Näita kõiki minu teemasid",
+        "SHOW_ONLY": "Näita ainult:",
+        "MY_PUBLIC_TOPICS": "Minu avalikke teemasid",
+        "MY_PRIVATE_TOPICS": "Minu privaatseid teemasid",
+        "TOPICS_I_CREATED": "Teemad, mille olen loonud",
+        "TOPICS_ORDERED_BY_GROUPS": "Näite teemasid gruppide kaupa"
       }
     },
     "MY_GROUPS_GROUPID": {
