@@ -162,7 +162,7 @@
                         </div>
 
                         <div class="right_side" ng-click="activityRedirect(activity)">
-                            <div class="text_box">                    
+                            <div class="text_box">
                                 <div class="main_text">
                                     <span translate="{{activity.string}}" translate-values="activity.values"> </span>
                                 </div>
@@ -312,7 +312,7 @@
                             <div class="item_text">
                                 <span ng-bind="(topic.vote.endsAt | amDateFormat : 'L') || 'none'">12/12/2017</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt"><span translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span></span>
+                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE' | translate" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt"><span translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span></span>
                             </div>
                         </div>
                     </div>
