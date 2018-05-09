@@ -13,10 +13,8 @@
                 default: 'en',
                 list: {
                     en: 'English',
-                    fr: 'Français',
                     et: 'Eesti',
-                    lv: 'Latviešu',
-                    lt: 'Lietuvių',
+                    fr: 'Français',
                     ru: 'Pусский',
                     uk: 'Українська'
                 },
@@ -25,6 +23,7 @@
             links: {
                 help: {
                     en: 'https://citizenos.uservoice.com/knowledgebase/articles/741585-help',
+                    fr: 'https://citizenos.uservoice.com/knowledgebase/articles/741585-help',
                     et: 'https://citizenos.uservoice.com/knowledgebase/articles/741582-abi',
                     ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798',
                     uk: 'https://citizenos.uservoice.com/knowledgebase/articles/741585-help'
