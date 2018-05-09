@@ -11,8 +11,8 @@
                 <div cos-dropdown class="classic_dropdown">
 
                     <div class="dropdown_selection">
-                        <div class="dropdown_text">
-                            {{filters.selected.name}}
+                        <div class="dropdown_text" translate="{{filters.selected.name}}">
+                            Selected filter
                         </div>
 
                         <div class="arrow_holder">
@@ -28,19 +28,19 @@
 
                         <div class="dropdown_item" ng-repeat="item in filters.items">
                             <div ng-if="item.children">
-                                <div class="item_category">
-                                    {{item.name}}
+                                <div class="item_category" translate="{{item.name}}">
+                                    Item category
                                 </div>
                                 <div class="item_names_wrap">
                                     <div ng-repeat="child in item.children" class="item_name" ng-click="child.onSelect(item)" ng-class="child === filters.selected ? 'bold' : ''">
-                                        {{child.name}}
+                                        <span translate="{{child.name}}">Child name</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div ng-if="!item.children">
-                                <div class="item_name" ng-click="item.onSelect()" ng-class="item === filters.selected ? 'bold' : ''">
-                                    {{item.name}}
+                                <div class="item_name" ng-click="item.onSelect()" ng-class="item === filters.selected ? 'bold' : ''" translate="{{item.name}}">
+                                    Item name
                                 </div>
                             </div>
 

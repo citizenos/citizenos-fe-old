@@ -110,7 +110,7 @@
     "TOPIC_DELETE_COMMENT_DESCRIPTION": "Kasutaja {{usersFullName}} lisatud argument",
     "TOPIC_DELETE_COMMENT_TXT_ARE_YOU_SURE": "Kas oled kindel, et soovid argumendi kustutada? Toimingut ei saa tagasi võtta.",
     "TOPIC_DELETE_COMMENT_BTN_NO": "@:MODALS.TOPIC_COMMENT_REPORT_BTN_NO",
-    "TOPIC_DELETE_COMMENT_BTN_YES": "JAH, EEMALDA ARGUMENT",
+    "TOPIC_DELETE_COMMENT_BTN_YES": "JAH, KUSTUTA ARGUMENT",
     "TOPIC_DELETE_REPLY_TITLE": "Kustuta vastus",
     "TOPIC_DELETE_REPLY_DESCRIPTION": "Vastuse autor: {{usersFullName}}",
     "TOPIC_DELETE_REPLY_TXT_ARE_YOU_SURE": "Kas oled kindel, et soovid vastuse kustutada? Toimingut ei saa tagasi võtta.",
@@ -147,6 +147,11 @@
     "MY_ACCOUNT_PLACEHOLDER_COMPANY": "Organisatsioon",
     "MY_ACCOUNT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "MY_ACCOUNT_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
+    "MY_ACCOUNT_UPLOAD_AVATAR": "Laadi üles",
+    "MY_ACCOUNT_DELETE_AVATAR": "Kustuta",
+    "MY_ACCOUNT_AVATAR_RESTRICTIONS": "Maksimaalselt 500 kb jpg, gif või png",
+    "MY_ACCOUNT_BTN_SAVE": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
+    "MY_ACCOUNT_BTN_CANCEL": "@:LNK_CANCEL",
     "PASSWORD_FORGOT_HEADING": "Kas unustasid salasõna?",
     "PASSWORD_FORGOT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "PASSWORD_FORGOT_SEND_RESET": "Saada muutmiskood",
@@ -365,7 +370,15 @@
       "TXT_CREATING_A NEW_GROUP": "Loo uus rühm",
       "HEADING_NOT_PARTICIPATED": "Sa ei osale veel üheski teemas. Proovi järele, see on lahe!",
       "HEADING_GET_INVOLVED": "Osalemiseks on järgmised võimalused",
-      "MY_CREATING_A_NEW_TOPIC": "Loo uus teema"
+      "MY_CREATING_A_NEW_TOPIC": "Loo uus teema",
+      "FILTERS": {
+        "SHOW_ALL_MY_TOPICS": "Näita kõiki minu teemasid",
+        "SHOW_ONLY": "Näita ainult:",
+        "MY_PUBLIC_TOPICS": "Minu avalikke teemasid",
+        "MY_PRIVATE_TOPICS": "Minu privaatseid teemasid",
+        "TOPICS_I_CREATED": "Minu loodud teemad",
+        "TOPICS_ORDERED_BY_GROUPS": "Näite teemasid rühmade kaupa"
+      }
     },
     "MY_GROUPS_GROUPID": {
       "HEADING_GENERAL_INFORMATION": "Üldinfo",
@@ -412,6 +425,7 @@
       "LBL_RESULTS": "Tulemused",
       "LBL_VOTES_COUNTED": "Loetud hääli",
       "LBL_VOTE_DEADLINE": "Hääletamise tähtaeg",
+      "LBL_VOTE_DEADLINE_NONE": "puudub",
       "VOTE_CAST_YOUR_VOTE": "@:VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE",
       "VOTE_HEADING_DELEGATE": "@:VIEWS.TOPICS_TOPICID.VOTE_HEADING_DELEGATE",
       "VOTE_DELEGATED_TO": "@:VIEWS.TOPICS_TOPICID.VOTE_DELEGATED_TO",
@@ -432,7 +446,7 @@
       "HEADING_USERS_LIST": "Kasutajaid",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Kasutaja",
-      "LBL_VIA": "{{groupName}} grupi kaudu",
+      "LBL_VIA": "gruppide kaudu:",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Tegevusvoog ja teated",
       "LNK_VIEW_OLDER": "Vaata varasemaid"
     },
@@ -474,7 +488,7 @@
       "TOPIC_SUMMARY_VIEW_FINAL_DOCUMENT": "vaata lõplikku versiooni",
       "TOPIC_SUMMARY_VIEW_VOTING_ENDED_ON": "Hääletamise lõpp",
       "TOPIC_SUMMARY_VIEW_VOTE_RESULTS": "vaata hääletustulemusi",
-      "ADD_MILESTONES_CREATE_A_MILESTONE": "Teate lisamine",
+      "ADD_MILESTONES_CREATE_A_MILESTONE": "Teadaande lisamine",
       "ADD_MILESTONES_PLACEHOLDER_SUBJECT": "Mis sai tehtud otsuse elluviimiseks?",
       "ADD_MILESTONES_PLACEHOLDER_TEXT": "Palun selgita, täpsusta, lisa linke.",
       "ADD_MILESTONES_ADD_MILESTONE": "AVALDA",

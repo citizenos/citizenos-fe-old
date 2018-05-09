@@ -147,6 +147,11 @@
     "MY_ACCOUNT_PLACEHOLDER_COMPANY": "crwdns10287:0crwdne10287:0",
     "MY_ACCOUNT_PLACEHOLDER_EMAIL": "crwdns10288:0crwdne10288:0",
     "MY_ACCOUNT_PLACEHOLDER_PASSWORD": "crwdns10289:0crwdne10289:0",
+    "MY_ACCOUNT_UPLOAD_AVATAR": "crwdns11042:0crwdne11042:0",
+    "MY_ACCOUNT_DELETE_AVATAR": "crwdns11043:0crwdne11043:0",
+    "MY_ACCOUNT_AVATAR_RESTRICTIONS": "crwdns11044:0crwdne11044:0",
+    "MY_ACCOUNT_BTN_SAVE": "crwdns11045:0crwdne11045:0",
+    "MY_ACCOUNT_BTN_CANCEL": "crwdns11046:0crwdne11046:0",
     "PASSWORD_FORGOT_HEADING": "crwdns10300:0crwdne10300:0",
     "PASSWORD_FORGOT_PLACEHOLDER_EMAIL": "crwdns10301:0crwdne10301:0",
     "PASSWORD_FORGOT_SEND_RESET": "crwdns10302:0crwdne10302:0",
@@ -365,7 +370,15 @@
       "TXT_CREATING_A NEW_GROUP": "crwdns10490:0crwdne10490:0",
       "HEADING_NOT_PARTICIPATED": "crwdns10491:0crwdne10491:0",
       "HEADING_GET_INVOLVED": "crwdns10492:0crwdne10492:0",
-      "MY_CREATING_A_NEW_TOPIC": "crwdns10493:0crwdne10493:0"
+      "MY_CREATING_A_NEW_TOPIC": "crwdns10493:0crwdne10493:0",
+      "FILTERS": {
+        "SHOW_ALL_MY_TOPICS": "crwdns11034:0crwdne11034:0",
+        "SHOW_ONLY": "crwdns11035:0crwdne11035:0",
+        "MY_PUBLIC_TOPICS": "crwdns11036:0crwdne11036:0",
+        "MY_PRIVATE_TOPICS": "crwdns11037:0crwdne11037:0",
+        "TOPICS_I_CREATED": "crwdns11038:0crwdne11038:0",
+        "TOPICS_ORDERED_BY_GROUPS": "crwdns11039:0crwdne11039:0"
+      }
     },
     "MY_GROUPS_GROUPID": {
       "HEADING_GENERAL_INFORMATION": "crwdns10494:0crwdne10494:0",
@@ -412,6 +425,7 @@
       "LBL_RESULTS": "crwdns10533:0crwdne10533:0",
       "LBL_VOTES_COUNTED": "crwdns10534:0crwdne10534:0",
       "LBL_VOTE_DEADLINE": "crwdns10535:0crwdne10535:0",
+      "LBL_VOTE_DEADLINE_NONE": "crwdns11041:0crwdne11041:0",
       "VOTE_CAST_YOUR_VOTE": "crwdns10536:0crwdne10536:0",
       "VOTE_HEADING_DELEGATE": "crwdns10537:0crwdne10537:0",
       "VOTE_DELEGATED_TO": "crwdns10538:0crwdne10538:0",
@@ -432,7 +446,7 @@
       "HEADING_USERS_LIST": "crwdns10553:0crwdne10553:0",
       "LNK_INVITE": "crwdns10554:0crwdne10554:0",
       "LNK_PROFILE": "crwdns10555:0crwdne10555:0",
-      "LBL_VIA": "crwdns11017:0{{groupName}}crwdne11017:0",
+      "LBL_VIA": "crwdns11047:0crwdne11047:0",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "crwdns10840:0crwdne10840:0",
       "LNK_VIEW_OLDER": "crwdns10841:0crwdne10841:0"
     },

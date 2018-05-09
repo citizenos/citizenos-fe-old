@@ -40,10 +40,10 @@
                                 </div>
                             </div>
                             <div id="edit_image_properties">
-                                <div class="blue_link" translate="" ng-click="uploadImage()">Upload new</div> |
-                                <div class="blue_link" translate="" ng-click="deleteProfileImage()">Delete</div>
+                                <div class="blue_link" ng-click="uploadImage()" translate="MODALS.MY_ACCOUNT_UPLOAD_AVATAR">Upload new</div> |
+                                <div class="blue_link" ng-click="deleteProfileImage()" translate="MODALS.MY_ACCOUNT_DELETE_AVATAR">Delete</div>
                                 <br>
-                                <span translate="">Max 500kb jpg, gif or png</span>
+                                <span translate="MODALS.MY_ACCOUNT_AVATAR_RESTRICTIONS">Max 500kb jpg, gif or png</span>
                             </div>
                         </div>
 
@@ -75,9 +75,9 @@
                                     <span translate="{{errors.password}}"></span>
                                 </div>
                             </label>
-                            <button type="submit" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button" translate="">Save changes</button>
+                            <button type="submit" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button" translate="MODALS.MY_ACCOUNT_BTN_SAVE">Save changes</button>
                             <div class="link_section">
-                                <a class="lightbox_link" href="" ng-click="closeThisDialog()" translate="">Cancel</a>
+                                <a class="lightbox_link" href="" ng-click="closeThisDialog()" translate="MODALS.MY_ACCOUNT_BTN_CANCEL">Cancel</a>
                             </div>
                         </form>
                     </div>

@@ -147,6 +147,11 @@
     "MY_ACCOUNT_PLACEHOLDER_COMPANY": "Company",
     "MY_ACCOUNT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "MY_ACCOUNT_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
+    "MY_ACCOUNT_UPLOAD_AVATAR": "Upload new",
+    "MY_ACCOUNT_DELETE_AVATAR": "Delete",
+    "MY_ACCOUNT_AVATAR_RESTRICTIONS": "Max 500kb jpg, gif or png",
+    "MY_ACCOUNT_BTN_SAVE": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
+    "MY_ACCOUNT_BTN_CANCEL": "@:LNK_CANCEL",
     "PASSWORD_FORGOT_HEADING": "Forgot your password?",
     "PASSWORD_FORGOT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "PASSWORD_FORGOT_SEND_RESET": "Send reset code",
@@ -365,7 +370,15 @@
       "TXT_CREATING_A NEW_GROUP": "Creating a new group",
       "HEADING_NOT_PARTICIPATED": "You have not participated in a topic yet. Try it, it’s really cool!",
       "HEADING_GET_INVOLVED": "You can get involved by",
-      "MY_CREATING_A_NEW_TOPIC": "Creating a new topic"
+      "MY_CREATING_A_NEW_TOPIC": "Creating a new topic",
+      "FILTERS": {
+        "SHOW_ALL_MY_TOPICS": "Show all my topics",
+        "SHOW_ONLY": "Show only:",
+        "MY_PUBLIC_TOPICS": "My public topics",
+        "MY_PRIVATE_TOPICS": "My private topics",
+        "TOPICS_I_CREATED": "Topics I created",
+        "TOPICS_ORDERED_BY_GROUPS": "Show topics ordered by groups"
+      }
     },
     "MY_GROUPS_GROUPID": {
       "HEADING_GENERAL_INFORMATION": "General information",
@@ -412,6 +425,7 @@
       "LBL_RESULTS": "Results",
       "LBL_VOTES_COUNTED": "Votes counted",
       "LBL_VOTE_DEADLINE": "Vote deadline",
+      "LBL_VOTE_DEADLINE_NONE": "none",
       "VOTE_CAST_YOUR_VOTE": "@:VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE",
       "VOTE_HEADING_DELEGATE": "@:VIEWS.TOPICS_TOPICID.VOTE_HEADING_DELEGATE",
       "VOTE_DELEGATED_TO": "@:VIEWS.TOPICS_TOPICID.VOTE_DELEGATED_TO",
@@ -432,7 +446,7 @@
       "HEADING_USERS_LIST": "User list",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Profile",
-      "LBL_VIA": "via group \"{{groupName}}\"",
+      "LBL_VIA": "via group",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Activity feed & notifications",
       "LNK_VIEW_OLDER": "View older"
     },

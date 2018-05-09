@@ -17,6 +17,7 @@ angular
                 }
                 if (sTranslate.LANGUAGES.indexOf(clientLang) > -1) {
                     sTranslate.currentLanguage = clientLang;
+                    $translate.use(clientLang);
                 }
             });
         };
@@ -25,7 +26,6 @@ angular
         sTranslate.setLanguage = function (language) {
             $translate.onReady(function () {
                 if (sTranslate.checkLanguageIsValid(language) && $translate.use() !== language) {
-                    $log.debug('setLanguage', language);
                     sTranslate.currentLanguage = language;
                     amMoment.changeLocale(language);
                     return $translate.use(language);
@@ -35,7 +35,6 @@ angular
         };
 
         sTranslate.switchLanguage = function (language) {
-            $log.debug('switch language', language);
             $translate.onReady(function () {
                 if (sTranslate.checkLanguageIsValid(language)) {
                     $stateParams.language = language;

@@ -98,7 +98,7 @@
                         </div>
                     </div>
                     <div class="tabs_rails">
-                        <div class="tabs_train" slide-controller identifier="tabsTrain" start_slide_at="1024" ng-style="{'margin-left' : trainPosition + 'px'}">
+                        <div class="tabs_train" slide-controller identifier="tabsTrain" ng-style="{'margin-left' : trainPosition + 'px'}" dimensions>
                             <div class="tab" ui-sref="topics.view({topicId: topic.id})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
                                  ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
