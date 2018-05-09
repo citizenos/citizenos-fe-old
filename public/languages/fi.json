@@ -446,7 +446,7 @@
       "HEADING_USERS_LIST": "Käyttäjäluettelo",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Profiili",
-      "LBL_VIA": "ryhmästä {{groupName}}",
+      "LBL_VIA": "via group",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Toimintasyöte ja ilmoitukset",
       "LNK_VIEW_OLDER": "Näytä vanhemmat"
     },

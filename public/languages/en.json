@@ -446,7 +446,7 @@
       "HEADING_USERS_LIST": "User list",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Profile",
-      "LBL_VIA": "via group \"{{groupName}}\"",
+      "LBL_VIA": "via group",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Activity feed & notifications",
       "LNK_VIEW_OLDER": "View older"
     },
