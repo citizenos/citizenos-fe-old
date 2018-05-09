@@ -201,7 +201,7 @@
             </div>
         </div>
 
-        <a ng-href="{{app.config.links.help[app.language]}}" class="big white_text blue_background topic" ng-if="isTutorialVisible()">
+        <a ng-href="{{app.config.links.help[app.language] || app.config.links.help['en']}}" class="big white_text blue_background topic" ng-if="isTutorialVisible()">
             <div class="topic_wrap">
                 <div class="text_area">
 

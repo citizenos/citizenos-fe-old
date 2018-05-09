@@ -26,7 +26,7 @@
             },
             links: {
                 help: {
-                    en: 'https://citizenos.uservoice.com/knowledgebase/articles/741585-help',
+                    en: 'https://citizenos.uservoice.com/knowledgebase/articles/741585-help', // Used by default, if there is no language specific override
                     et: 'https://citizenos.uservoice.com/knowledgebase/articles/741582-abi',
                     ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798'
                 }
