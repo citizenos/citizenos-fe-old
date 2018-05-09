@@ -136,6 +136,7 @@ angular
                         });
 
                         var onWindowResize = function () {
+                            element[0].style.marginLeft = '0px';
                             element_max_distance_left = getElementMaxDistanceLeft(element);
                         };
 
