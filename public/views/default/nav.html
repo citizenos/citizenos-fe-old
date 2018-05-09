@@ -151,7 +151,7 @@
             <span translate="DEFAULT.NAV.LNK_FAQ">FAQ</span>
         </a>
 
-        <a class="section_item" ng-href="{{app.config.links.help[app.language] || app.config.links.help['en']}}">
+        <a class="section_item" ng-href="{{app.config.links.help[app.language] || app.config.links.help[app.config.language.default]}}">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-help2x"></div>
