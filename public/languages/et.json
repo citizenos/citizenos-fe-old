@@ -446,7 +446,7 @@
       "HEADING_USERS_LIST": "Kasutajaid",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Kasutaja",
-      "LBL_VIA": "via group",
+      "LBL_VIA": "gruppide kaudu:",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Tegevusvoog ja teated",
       "LNK_VIEW_OLDER": "Vaata varasemaid"
     },
