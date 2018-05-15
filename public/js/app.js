@@ -16,6 +16,7 @@
                     et: 'Eesti',
                     fr: 'Français',
                     ru: 'Pусский',
+                    fi: 'Suomi',
                     uk: 'Українська'
                 },
                 debug: 'dbg'
