@@ -138,9 +138,12 @@ angular
             sNotification.removeAll();
         });
 
-        $rootScope.$on('$translateChangeSuccess', function () {
+        $rootScope.$on('$translateChangeEnd', function () {
+            $log.debug('AppCtrl.$translateChangeSuccess', sTranslate.currentLanguage);
             $scope.app.language = sTranslate.currentLanguage;
-            amMoment.changeLocale($scope.app.language);
+            $timeout(function () {
+                amMoment.changeLocale($scope.app.language);
+            }, 0);
             UserVoice.push(['set', 'locale', $scope.app.language]);
         });
 
@@ -173,7 +176,7 @@ angular
             }
         });
 
-        function createRelUrls() {
+        function createRelUrls () {
             angular.forEach(sTranslate.LANGUAGES, function (language) {
                 var url = $location.url().split('/');
                 url[1] = language;
@@ -208,6 +211,9 @@ angular
             trigger_background_color: 'rgba(46, 49, 51, 0.6)'
         }]);
 
-        UserVoice.push(['addTrigger', {mode: 'contact', trigger_position: 'bottom-right'}]);
+        UserVoice.push(['addTrigger', {
+            mode: 'contact',
+            trigger_position: 'bottom-right'
+        }]);
 
     }]);

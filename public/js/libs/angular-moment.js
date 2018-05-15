@@ -1,4 +1,4 @@
-/* angular-moment.js / v1.0.0 / (c) 2013, 2014, 2015, 2016 Uri Shaked / MIT Licence */
+/* angular-moment.js / v1.2.0 / (c) 2013, 2014, 2015, 2016, 2017 Uri Shaked / MIT Licence */
 
 'format amd';
 /* global define */
@@ -20,10 +20,10 @@
 
     function angularMoment(angular, moment) {
 
-        if (typeof moment === 'undefined') {
-            if (typeof require === 'function') {
+        if(typeof moment === 'undefined') {
+            if(typeof require === 'function') {
                 moment = requireMoment();
-            } else {
+            }else{
                 throw new Error('Moment cannot be found by angular-moment! Please reference to: https://github.com/urish/angular-moment'); // Add wiki/troubleshooting section?
             }
         }
@@ -625,11 +625,6 @@
                     if (!date.isValid()) {
                         return '';
                     }
-                    // Quickhax for getting Moment not to get into troubles with server and client time differences.
-                    // TODO: Need a decent fix - https://github.com/moment/moment/issues/537
-                    if(moment().isBefore(date)) {
-                        date = moment();
-                    }
 
                     dateFrom = moment(from);
                     if (!isUndefinedOrNull(from) && dateFrom.isValid()) {
@@ -731,11 +726,12 @@
         return 'angularMoment';
     }
 
+    var isElectron = window && window.process && window.process.type;
     if (typeof define === 'function' && define.amd) {
         define(['angular', 'moment'], angularMoment);
-    } else if (typeof module !== 'undefined' && module && module.exports && (typeof require === 'function')) {
+    } else if (typeof module !== 'undefined' && module && module.exports && (typeof require === 'function') && !isElectron) {
         module.exports = angularMoment(require('angular'), require('moment'));
     } else {
-        angularMoment(angular, (typeof global !== 'undefined' ? global : window).moment);
+        angularMoment(angular, (typeof global !== 'undefined' && typeof global.moment !== 'undefined' ? global : window).moment);
     }
 })();
