@@ -319,7 +319,7 @@
       "HEADING_RESULTS_IN": "Context search results in",
       "LNK_VIEW_MORE_RESULTS": "View more results",
       "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
-      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?<br>We did find some things scattered throughout the Citizen OS platform, so feel free to check them out."
+      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "my topics",
