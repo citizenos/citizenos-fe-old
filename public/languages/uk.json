@@ -319,7 +319,7 @@
       "HEADING_RESULTS_IN": "Результати пошуку",
       "LNK_VIEW_MORE_RESULTS": "Показати більше результатів",
       "TXT_OOPS_NO_RESULTS": "Ой, ми не знайшли нічого, що відповідає Вашому запиту :(",
-      "TXT_MAYBE_TYPO": "Можливо, Ви зробили помилку у запиті?<br>Ми знайшли на Citizen OS дещо інше, що може відповідати Вашому запиту, будь-ласка, перевірте."
+      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мої теми",
