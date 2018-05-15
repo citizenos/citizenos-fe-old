@@ -2,35 +2,24 @@
 
 angular
     .module('citizenos')
-    .service('sTranslate', ['$state', '$stateParams', '$translate', '$log', '$filter', '$cookies', '$q', 'cosConfig', 'amMoment', function ($state, $stateParams, $translate, $log, $filter, $cookies, $q, cosConfig, amMoment) {
+    .service('sTranslate', ['$state', '$stateParams', '$translate', '$log', '$filter', '$cookies', '$q', '$timeout', 'cosConfig', 'amMoment', function ($state, $stateParams, $translate, $log, $filter, $cookies, $q, $timeout, cosConfig, amMoment) {
         var sTranslate = this;
 
         sTranslate.LANGUAGES = Object.keys(cosConfig.language.list);
         sTranslate.currentLanguage = cosConfig.language.default;
         var debugLang = cosConfig.language.debug;
 
-        var init = function () {
-            $translate.onReady(function () {
-                var clientLang = $translate.resolveClientLocale();
-                if ($cookies.get('language')) {
-                    clientLang = $cookies.get('language');
-                }
-                if (sTranslate.LANGUAGES.indexOf(clientLang) > -1) {
-                    sTranslate.currentLanguage = clientLang;
-                    $translate.use(clientLang);
-                }
-            });
-        };
-        init();
-
         sTranslate.setLanguage = function (language) {
-            $translate.onReady(function () {
-                if (sTranslate.checkLanguageIsValid(language) && $translate.use() !== language) {
-                    sTranslate.currentLanguage = language;
-                    amMoment.changeLocale(language);
-                    return $translate.use(language);
-                }
-                return $translate.use();
+            $log.debug('sTranslate.setLanguage', language);
+            return $q(function (resolve, reject) {
+                $translate.onReady(function () {
+                    $log.debug('sTranslate.setLanguage', 'onReady', language, $translate.use(), $translate.use() !== language);
+                    if (sTranslate.checkLanguageIsValid(language) && $translate.use() !== language) {
+                        sTranslate.currentLanguage = language;
+                        return resolve($translate.use(language));
+                    }
+                    return resolve($translate.use());
+                });
             });
         };
 
@@ -66,7 +55,7 @@ angular
         };
 
         sTranslate.getCurrentLanguage = function () {
-            return $q(function(resolve, reject) {
+            return $q(function (resolve, reject) {
                 $translate.onReady(function () {
                     return resolve($translate.use());
                 });
