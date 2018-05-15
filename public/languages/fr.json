@@ -319,7 +319,7 @@
       "HEADING_RESULTS_IN": "Résultats de la recherche contextuelle dans",
       "LNK_VIEW_MORE_RESULTS": "Voir plus de résultats",
       "TXT_OOPS_NO_RESULTS": "Oups, nous n'avons pas pu trouvé de résultats correspondant à votre recherche :(",
-      "TXT_MAYBE_TYPO": "Vous avez peut-être une faute d'orthographe dans votre recherche?<br>Nous avons trouvé quelques résultats éparpillés à travers la plateforme CitizenOS, n'hésitez pas à les consulter."
+      "TXT_MAYBE_TYPO": "Vous avez peut-être une faute d'orthographe dans votre recherche?"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "mes sujets",

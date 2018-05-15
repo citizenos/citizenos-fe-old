@@ -2,11 +2,11 @@
   "META_DEFAULT_TITLE": "Citizen OS – sähköisen päätöksenteon alusta yhteisöille.",
   "META_DEFAULT_DESCRIPTION": "Citizen OS sallii osallistuvan keskustelun ja äänestämisen ryhmille silloin, kun kokoontuminen verkossa tai sen ulkopuolella samaan aikaan ei ole mahdollista.",
   "META_DEFAULT_KEYWORDS": "sähköinen päätöksenteko, sähköinen hallinto, sähköinen demokratia, suora demokratia, delegatiivinen demokratia",
-  "BTN_YES": "KYLLÄ",
-  "BTN_NO": "EI",
+  "BTN_YES": "✔",
+  "BTN_NO": "✘",
   "LNK_CANCEL": "Peruuta",
-  "TOGGLE_ON": "PÄÄLLÄ",
-  "TOGGLE_OFF": "POIS PÄÄLTÄ",
+  "TOGGLE_ON": "✔",
+  "TOGGLE_OFF": "✘",
   "TXT_TOPIC_STATUS_ALL": "kaikki",
   "TXT_TOPIC_STATUS_INPROGRESS": "kesken",
   "TXT_TOPIC_STATUS_VOTING": "äänestyksessä",
@@ -147,9 +147,9 @@
     "MY_ACCOUNT_PLACEHOLDER_COMPANY": "Yritys",
     "MY_ACCOUNT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "MY_ACCOUNT_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
-    "MY_ACCOUNT_UPLOAD_AVATAR": "Upload new",
-    "MY_ACCOUNT_DELETE_AVATAR": "Delete",
-    "MY_ACCOUNT_AVATAR_RESTRICTIONS": "Max 500kb jpg, gif or png",
+    "MY_ACCOUNT_UPLOAD_AVATAR": "Lataa uusi",
+    "MY_ACCOUNT_DELETE_AVATAR": "Poista",
+    "MY_ACCOUNT_AVATAR_RESTRICTIONS": "Max 500kb jpg, gif tai png",
     "MY_ACCOUNT_BTN_SAVE": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
     "MY_ACCOUNT_BTN_CANCEL": "@:LNK_CANCEL",
     "PASSWORD_FORGOT_HEADING": "Unohditko salasanasi?",
@@ -319,7 +319,7 @@
       "HEADING_RESULTS_IN": "Hakutulokset",
       "LNK_VIEW_MORE_RESULTS": "Näytä lisää tuloksia",
       "TXT_OOPS_NO_RESULTS": "Hupsis! Emme onnistuneet löytämään hakuasi vastaavia tuloksia :(",
-      "TXT_MAYBE_TYPO": "Sisältyikö hakuusi kenties lyöntivirhe?<br>Löysimme kuitenkin jotakin eri puolilta Citizen OS -alustaa. Voit vilkaista tuloksia aivan vapaasti."
+      "TXT_MAYBE_TYPO": "Ehkä hakussasi on kirjoitusvirhee?"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "omat aiheeni",
@@ -372,12 +372,12 @@
       "HEADING_GET_INVOLVED": "Voit osallistua",
       "MY_CREATING_A_NEW_TOPIC": "Luomalla uuden aiheen",
       "FILTERS": {
-        "SHOW_ALL_MY_TOPICS": "Show all my topics",
-        "SHOW_ONLY": "Show only:",
-        "MY_PUBLIC_TOPICS": "My public topics",
-        "MY_PRIVATE_TOPICS": "My private topics",
-        "TOPICS_I_CREATED": "Topics I created",
-        "TOPICS_ORDERED_BY_GROUPS": "Show topics ordered by groups"
+        "SHOW_ALL_MY_TOPICS": "Näytä kaikki aiheeni",
+        "SHOW_ONLY": "Näytä vain:",
+        "MY_PUBLIC_TOPICS": "Omat julkiset aiheet",
+        "MY_PRIVATE_TOPICS": "Omat yksityiset aiheet",
+        "TOPICS_I_CREATED": "Luomani aiheet",
+        "TOPICS_ORDERED_BY_GROUPS": "Näyta aiheet järjesteltynä ryhmän mukaan"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -446,7 +446,7 @@
       "HEADING_USERS_LIST": "Käyttäjäluettelo",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Profiili",
-      "LBL_VIA": "via group",
+      "LBL_VIA": "ryhmän kautta",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Toimintasyöte ja ilmoitukset",
       "LNK_VIEW_OLDER": "Näytä vanhemmat"
     },
