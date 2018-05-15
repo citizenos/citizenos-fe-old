@@ -541,7 +541,7 @@
       "LNK_ARGUMENTS_COUNT": "Kannanottoja: {{count}}",
       "LNK_MENTIONS_COUNT": "Sosiaalisia mainintoja: {{mentionsCount}}",
       "LNK_MENTIONS_COUNT_ADD_HASHTAG": "Lisää aihetunniste",
-      "LBL_TAB_ARGUMENTS": "kannanottoa",
+      "LBL_TAB_ARGUMENTS": "Kannanottoa",
       "LBL_TAB_MENTIONS": "Sosiaaliset maininnat",
       "TAB_ARGUMENTS_HEADING": "@:VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT",
       "LBL_ARGUMENTS_COUNT_PRO": "puolesta: {{countPro}}",
