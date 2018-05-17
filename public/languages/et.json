@@ -638,7 +638,7 @@
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "Kasutaja {{userName}} vastas argumendile teemal \"{{topicTitle}}\": ",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "Kasutaja {{userName}} lisas rühmas {{groupName}} teema \"{{topicTitle}}\".",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "Kasutaja {{userName}} eemaldas rühmast {{groupName}} teema \"{{topicTitle}}\".",
-    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "Kasutaja {{userName}} muutis rühma {{groupNameEdited}} õiguseid teemas \"{{topicTitle}}\".",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "User {{userName}} has changed group’s {{groupName}} access level to topic {{topicTitle}}.",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "Kasutaja {{userName}} muutis teemat \"{{topicTitle}}\":",
     "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC": "Kasutaja {{userName}} lisas manuse {{attachmentName}} teemale \"{{topicTitle}}\"",
     "ACTIVITY_TOPIC_FIELD_DESCRIPTION": "kirjeldus",
