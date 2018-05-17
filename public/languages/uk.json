@@ -638,7 +638,7 @@
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "Користувач {{userName}} залишив відповідь на аргумент в темі {{topicTitle}}: ",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "Користувач {{userName}} додав тему {{topicTitle}} до групи {{groupName}}.",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "Користувач {{userName}} видалив тему {{topicTitle}} з групи {{groupName}}.",
-    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "Користувач {{userName}} змінив рівень доступу групи {{groupNameEdited}} до теми {{topicTitle}}.",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "User {{userName}} has changed group’s {{groupName}} access level to topic {{topicTitle}}.",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "Користувач {{userName}} створив оновлення теми {{topicTitle}}:",
     "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC": "Користувач {{userName}} додав файл {{attachmentName}} до теми {{topicTitle}}",
     "ACTIVITY_TOPIC_FIELD_DESCRIPTION": "опис",
