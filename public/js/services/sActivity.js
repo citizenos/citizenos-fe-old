@@ -307,6 +307,10 @@ angular
                 return activity.data.target.name;
             } else if (activity.data.target && activity.data.target.groupName) {
                 return activity.data.target.groupName;
+            } else if (activity.data.origin && activity.data.origin['@type'] === 'Group') {
+                return activity.data.origin.name;
+            } else if (activity.data.origin && activity.data.origin.groupName) {
+                return activity.data.origin.groupName;
             }
         };
 
