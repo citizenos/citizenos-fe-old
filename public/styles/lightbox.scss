@@ -1458,6 +1458,9 @@
             padding-bottom: 20px !important;
             overflow-y: visible;
 
+            &.language_section {
+                padding-left: 25px !important;
+            }
             @media (max-width: 640px) {
                 max-height: 279px;
             }
@@ -1549,6 +1552,19 @@
                     .error_label {
                         width: 100%;
                     }
+                }
+                .language_cell {
+                    @extend .table_cell;
+                    width: 23%;
+                    float: left;
+                    padding: 5px;
+
+                    .blue_button, .gray_button {
+                        width: 110px;
+                        float: right;
+                        font-size: 14px;
+                    }
+                    
                 }
 
                 @media (max-width: 560px) {
