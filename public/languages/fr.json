@@ -269,7 +269,7 @@
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
-    "LANGUAGES_MODAL_HEADING": "Sélectionnez votre langue"
+    "LANGUAGES_MODAL_HEADING": "Select Your Language"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Toute catégorie",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Business et industrie",
