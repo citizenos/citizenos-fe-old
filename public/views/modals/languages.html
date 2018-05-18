@@ -1,0 +1,50 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+
+    <div id="lightbox" class="wide_lightbox with_header_menu">
+
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.LANGUAGES_MODAL_HEADING">Languages</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <!-- SETTINGS -->
+            <div class="lightbox_content settings_section_wrap">
+
+                <div class="lightbox_section language_section">
+
+                    <div class="settings_section full_width">
+                        <div class="language_cell" ng-repeat="(key, value) in app.languagesArray | orderBy: 'key'" ng-click='(app.language !== value.key) ? app.doSwitchLanguage(value.key): ""' >
+                            <label>
+                                <div class="table_cell">
+                                    <span class="item_text " ng-class="(app.language !== value.key) ? 'blue_link' : 'gray_link'">{{value.val}}</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()"></div>
+
+</div>

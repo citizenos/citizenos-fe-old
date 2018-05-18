@@ -83,6 +83,20 @@ angular
             });
         };
 
+        $scope.app.doShowLanguageSelect = function () {
+            $log.debug('AppCtrl.doShowLanguageSelect()');
+
+            $scope.app.languagesArray = [];
+            angular.forEach($scope.app.config.language.list, function (val, key) {
+                $scope.app.languagesArray.push({key: key, val: val});
+            });
+
+            ngDialog.open({
+                template: '/views/modals/languages.html',
+                scope: $scope
+            });
+        };
+
         $scope.app.doSwitchLanguage = function (language) {
             $log.debug('AppCtrl.doSwitchLanguage()', language);
             if (language === $scope.app.language) {

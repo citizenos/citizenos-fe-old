@@ -36,6 +36,7 @@ angular
             '/views/modals/group_member_topic_delete_confirm.html',
             '/views/modals/group_member_user_delete_confirm.html',
             '/views/modals/group_member_user_leave_confirm.html',
+            '/views/modals/languages.html',
             '/views/modals/login.html',
             '/views/modals/login_esteid.html',
             '/views/modals/login_smartid.html',
