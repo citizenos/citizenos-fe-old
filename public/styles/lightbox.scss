@@ -1609,6 +1609,20 @@
                         }
 
                     }
+
+                    .language_cell {
+                        width: 45%;
+                        float: left;
+                        padding: 5px;
+                        text-align:center;
+    
+                        .blue_button, .gray_button {
+                            width: 110px;
+                            float: right;
+                            font-size: 14px;
+                        }
+                        
+                    }
                 }
             }
 
