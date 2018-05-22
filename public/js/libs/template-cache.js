@@ -14,6 +14,8 @@ angular
             '/views/partners_consent.html',
             '/views/partners_login.html',
             '/views/topics_topicId.html',
+            '/views/topics_topicId_comments.html',
+            '/views/topics_topicId_mentions.html',
             '/views/unknown_device.html',
             '/views/_templates/cos_input_test.html',
             '/views/_templates/groups.html',

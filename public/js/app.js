@@ -203,6 +203,12 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('widgets', {
+                    url: '/widgets',
+                    parent: 'index',
+                    abstract: true,
+                    template: '<div ui-view style="height: 100%"></div>'
+                })
                 .state('error', {
                     url: '/error',
                     parent: 'main',

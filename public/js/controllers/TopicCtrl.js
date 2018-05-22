@@ -151,9 +151,9 @@ angular
                     } else if (($scope.topic.voteId || $scope.topic.vote && $scope.topic.vote.id) && $scope.topic.status !== $scope.STATUSES.voting) {
                         $log.debug('sendToVote');
                         return new Topic({
-                                id: $scope.topic.id,
-                                status: $scope.STATUSES.voting
-                            })
+                            id: $scope.topic.id,
+                            status: $scope.STATUSES.voting
+                        })
                             .$patch()
                             .then(
                                 function (topicPatched) {
@@ -161,9 +161,10 @@ angular
                                     $scope.app.topics_settings = false;
                                     if ($state.is('topics.view')) {
                                         $state.go('topics.view.votes.view', {
-                                            topicId: $scope.topic.id,
-                                            voteId: $scope.topic.vote.id,
-                                            editMode: null},
+                                                topicId: $scope.topic.id,
+                                                voteId: $scope.topic.vote.id,
+                                                editMode: null
+                                            },
                                             {reload: true});
                                     }
                                 }
@@ -180,9 +181,9 @@ angular
                 })
                 .then(function () {
                     return new Topic({
-                            id: $scope.topic.id,
-                            status: $scope.STATUSES.followUp
-                        })
+                        id: $scope.topic.id,
+                        status: $scope.STATUSES.followUp
+                    })
                         .$patch()
                         .then(
                             function (topicPatched) {
@@ -207,9 +208,9 @@ angular
                 })
                 .then(function () {
                     return new Topic({
-                            id: $scope.topic.id,
-                            status: $scope.STATUSES.closed
-                        })
+                        id: $scope.topic.id,
+                        status: $scope.STATUSES.closed
+                    })
                         .$patch()
                         .then(
                             function (topicPatched) {
@@ -242,8 +243,9 @@ angular
                 });
             } else {
                 $state.go('topics.view', {
-                    topicId: $scope.topic.id,
-                    editMode: null},
+                        topicId: $scope.topic.id,
+                        editMode: null
+                    },
                     {reload: true});
             }
         };
@@ -568,12 +570,12 @@ angular
             if (parentId === rootComment.id) {
                 return rootComment.creator.name;
             }
-                for (var i = 0; i < rootComment.replies.rows.length; i++) {
-                    if (rootComment.replies.rows[i].id === parentId) {
-                        return rootComment.replies.rows[i].creator.name;
-                        break;
-                    }
+            for (var i = 0; i < rootComment.replies.rows.length; i++) {
+                if (rootComment.replies.rows[i].id === parentId) {
+                    return rootComment.replies.rows[i].creator.name;
+                    break;
                 }
+            }
         };
 
         $scope.doShowDeleteComment = function (comment) {
@@ -659,7 +661,7 @@ angular
                     comment.removeClass('highlight');
                 }, 500);
             }
-        }
+        };
 
         $scope.goToParentComment = function (rootComment, parent) {
 
@@ -677,9 +679,7 @@ angular
                 if (activity.data.object['@type'] === 'CommentVote' && activity.data.type === 'Update' && activity.data.resultObject && activity.data.resultObject.value === 0) {
                     return false;
                 }
-                if (
-                    activity.data.result && !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'TopicMemberUser' && activity.data.result[0].path.indexOf('level') > -1 && activity.data.result[0].value === 'none'
-                ) {
+                if (activity.data.result && !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'TopicMemberUser' && activity.data.result[0].path.indexOf('level') > -1 && activity.data.result[0].value === 'none') {
                     return false;
                 }
                 return true;
@@ -698,4 +698,4 @@ angular
 
         });
     }
-]);
+    ]);
