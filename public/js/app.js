@@ -209,6 +209,11 @@
                     abstract: true,
                     template: '<div ui-view style="height: 100%"></div>'
                 })
+                .state('widgets.arguments', {
+                    url: '/topics/:topicId/arguments',
+                    parent: 'widgets',
+                    template: '<div class="comments_section"><div class="comments_content"><div ng-include="\'views/topics_topicId_comments.html\'"></div></div></div>'
+                })
                 .state('error', {
                     url: '/error',
                     parent: 'main',

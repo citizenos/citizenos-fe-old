@@ -3,7 +3,9 @@
 angular
     .module('citizenos')
     .controller('TopicCommentCtrl', ['$scope', '$stateParams', '$timeout', '$log', 'ngDialog', 'TopicComment', function ($scope, $stateParams, $timeout, $log, ngDialog, TopicComment) {
-        $log.debug('TopicCommentCtrl', $scope);
+        $log.debug('TopicCommentCtrl', $scope, $scope.topic, $stateParams.topicId);
+
+        $scope.topic = $scope.topic || {id: $stateParams.topicId};
 
         $scope.topicComments = {
             rows: [],
@@ -81,7 +83,9 @@ angular
                     template: '/views/modals/topic_comment_report.html',
                     data: {
                         comment: comment,
-                        topic: $scope.topic
+                        topic: {
+                            id: topic.id
+                        }
                     }
                 });
         };
@@ -131,13 +135,12 @@ angular
         };
 
         $scope.doShowDeleteComment = function (comment) {
-            $log.debug('TopicCtrl.doShowDeleteComment()');
+            $log.debug('TopicCommentCtrl.doShowDeleteComment()');
 
             ngDialog.openConfirm({
                     template: '/views/modals/topic_delete_comment.html',
                     data: {
-                        comment: comment,
-                        topic: $scope.topic
+                        comment: comment
                     }
                 })
                 .then(function () {
@@ -150,13 +153,12 @@ angular
         };
 
         $scope.doShowDeleteReply = function (comment) {
-            $log.debug('TopicCtrl.doShowDeleteReply()');
+            $log.debug('TopicCommentCtrl.doShowDeleteReply()');
 
             ngDialog.openConfirm({
                     template: '/views/modals/topic_delete_reply.html',
                     data: {
-                        comment: comment,
-                        topic: $scope.topic
+                        comment: comment
                     }
                 })
                 .then(function () {
