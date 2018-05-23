@@ -7,7 +7,7 @@
     module
         .constant('cosConfig', {
             api: {
-                baseUrl: 'https://citizenos-citizenos-api-test.herokuapp.com' // FIXME: Environment based!
+                baseUrl: 'https://dev.api.citizenos.com:3003' // FIXME: Environment based!
             },
             language: {
                 default: 'en',
@@ -213,6 +213,14 @@
                     url: '/topics/:topicId/arguments',
                     parent: 'widgets',
                     template: '<div class="comments_section"><div class="comments_content"><div ng-include="\'views/topics_topicId_comments.html\'"></div></div></div>'
+                })
+                .state('widgets.authCallback', { // Callback page for the "popup" style (facebook, google) authentication flow.
+                    url: '/auth/callback',
+                    parent: 'widgets',
+                    template: '<h1>Widget Auth Callback</h1>',
+                    controller: ['$window', function ($window) {
+                        $window.opener.postMessage({status: 'success'}, $window.origin);
+                    }]
                 })
                 .state('error', {
                     url: '/error',
