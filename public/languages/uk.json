@@ -43,9 +43,10 @@
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_HEADING": "Видалити тему",
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Ви впевнені, що хочете видалити цю тему?",
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
+    "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YTOPIC_DELETE_COMMENT_TITLEES": "YES, REMOVE",
-    "GROUP_MEMBER_USER_DELETE_CONFIRM_HEADING": "Видалити користувача",
-    "GROUP_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Ви впевнені, що хочете видалити цього користувача?",
+    "GROUP_MEMBER_USER_DELETE_CONFIRM_HEADING": "Remove user",
+    "GROUP_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to remove this user?",
     "GROUP_MEMBER_USER_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
     "GROUP_MEMBER_USER_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
     "GROUP_MEMBER_USER_LEAVE_CONFIRM_HEADING": "Залишити групу",
@@ -70,7 +71,7 @@
     "TOPIC_MEMBER_GROUP_DELETE_CONFIRM_HEADING": "Видалити групу з теми",
     "TOPIC_MEMBER_GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Ви впевнені, що хочете видалити цю групу з теми?",
     "TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
-    "TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES",
+    "TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_HEADING": "@:MODALS.GROUP_MEMBER_USER_DELETE_CONFIRM_HEADING",
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "@:MODALS.GROUP_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE",
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_NO": "@:BTN_NO",
@@ -146,6 +147,11 @@
     "MY_ACCOUNT_PLACEHOLDER_COMPANY": "Компанія",
     "MY_ACCOUNT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "MY_ACCOUNT_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
+    "MY_ACCOUNT_UPLOAD_AVATAR": "Upload new",
+    "MY_ACCOUNT_DELETE_AVATAR": "Delete",
+    "MY_ACCOUNT_AVATAR_RESTRICTIONS": "Max 500kb jpg, gif or png",
+    "MY_ACCOUNT_BTN_SAVE": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
+    "MY_ACCOUNT_BTN_CANCEL": "@:LNK_CANCEL",
     "PASSWORD_FORGOT_HEADING": "Забули Ваш пароль?",
     "PASSWORD_FORGOT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "PASSWORD_FORGOT_SEND_RESET": "Відправити код скидання",
@@ -261,8 +267,9 @@
     "TOPIC_EVENT_DELETE_CONFIRM_HEADING": "Видалити оновлення",
     "TOPIC_EVENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Ви впевнені, що бажаєте видалити це оновлення?",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
-    "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES",
-    "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY"
+    "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
+    "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
+    "LANGUAGES_MODAL_HEADING": "Виберіть мову"
   },
   "TXT_TOPIC_CATEGORY_ALL": "всі категорії",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Бізнес та промисловість",
@@ -313,7 +320,7 @@
       "HEADING_RESULTS_IN": "Результати пошуку",
       "LNK_VIEW_MORE_RESULTS": "Показати більше результатів",
       "TXT_OOPS_NO_RESULTS": "Ой, ми не знайшли нічого, що відповідає Вашому запиту :(",
-      "TXT_MAYBE_TYPO": "Можливо, Ви зробили помилку у запиті?<br>Ми знайшли на Citizen OS дещо інше, що може відповідати Вашому запиту, будь-ласка, перевірте."
+      "TXT_MAYBE_TYPO": "Можливо, Ви зробили помилку у запиті?"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мої теми",
@@ -364,7 +371,15 @@
       "TXT_CREATING_A NEW_GROUP": "Створення нової групи",
       "HEADING_NOT_PARTICIPATED": "Ви поки що не приймали участь у жодній темі. Спробуйте, це справді круто!",
       "HEADING_GET_INVOLVED": "Ви можете прийняти участь наступним чином",
-      "MY_CREATING_A_NEW_TOPIC": "Створення нової теми"
+      "MY_CREATING_A_NEW_TOPIC": "Створення нової теми",
+      "FILTERS": {
+        "SHOW_ALL_MY_TOPICS": "Show all my topics",
+        "SHOW_ONLY": "Show only:",
+        "MY_PUBLIC_TOPICS": "My public topics",
+        "MY_PRIVATE_TOPICS": "My private topics",
+        "TOPICS_I_CREATED": "Topics I created",
+        "TOPICS_ORDERED_BY_GROUPS": "Show topics ordered by groups"
+      }
     },
     "MY_GROUPS_GROUPID": {
       "HEADING_GENERAL_INFORMATION": "Загальна інформація",
@@ -411,6 +426,7 @@
       "LBL_RESULTS": "Результати",
       "LBL_VOTES_COUNTED": "Підраховано голосів",
       "LBL_VOTE_DEADLINE": "Крайній срок голосування",
+      "LBL_VOTE_DEADLINE_NONE": "немає",
       "VOTE_CAST_YOUR_VOTE": "@:VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE",
       "VOTE_HEADING_DELEGATE": "@:VIEWS.TOPICS_TOPICID.VOTE_HEADING_DELEGATE",
       "VOTE_DELEGATED_TO": "@:VIEWS.TOPICS_TOPICID.VOTE_DELEGATED_TO",
@@ -431,7 +447,7 @@
       "HEADING_USERS_LIST": "Список користувачів",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Користувач",
-      "LBL_VIA": "via group \"{{groupName}}\"",
+      "LBL_VIA": "via group",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Стрічка подій та сповіщень",
       "LNK_VIEW_OLDER": "Дивитися попередні"
     },
@@ -623,7 +639,7 @@
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "Користувач {{userName}} залишив відповідь на аргумент в темі {{topicTitle}}: ",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "Користувач {{userName}} додав тему {{topicTitle}} до групи {{groupName}}.",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "Користувач {{userName}} видалив тему {{topicTitle}} з групи {{groupName}}.",
-    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "Користувач {{userName}} змінив рівень доступу групи {{groupNameEdited}} до теми {{topicTitle}}.",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "User {{userName}} has changed group’s {{groupName}} access level to topic {{topicTitle}}.",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "Користувач {{userName}} створив оновлення теми {{topicTitle}}:",
     "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC": "Користувач {{userName}} додав файл {{attachmentName}} до теми {{topicTitle}}",
     "ACTIVITY_TOPIC_FIELD_DESCRIPTION": "опис",
@@ -647,6 +663,7 @@
     "ACTIVITY_USER_UPDATE_GROUP": "Користувач {{userName}} оновив поле {{fieldName}} у групі {{groupName}}",
     "ACTIVITY_USER_DELETE_GROUP": "Користувач {{userName}} видалив групу {{groupName}}",
     "ACTIVITY_USER_ADD_USER_GROUP": "Користувач {{userName}} запросив користувача {{userName2}} до групи {{groupName}}",
+    "ACTIVITY_USER_DELETE_USER_GROUP": "User {{userName}} has removed {{userName2}} from group \"{{groupName}}\"",
     "ACTIVITY_USER_UPDATE_GROUPMEMBER": "Користувач {{userName}} змінив рівень прав доступу користувача {{userName2}} до групи {{groupName}}.",
     "ACTIVITY_USER_UPDATE_GROUPMEMBER_NONE": "Користувач {{userName}} відкликав доступ користувача {{userName2}} до групи {{groupName}}",
     "USER_DELETE_USER_GROUP": "Користувач {{userName}} видалив користувача {{userName2}} з групи {{groupName}}",

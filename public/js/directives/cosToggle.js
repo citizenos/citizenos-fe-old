@@ -22,7 +22,8 @@ angular
                 value: '=?ngValue',
                 offvalue: '=?offValue',
                 cosToggleTextOn: '=?',
-                cosToggleTextOff: '=?'
+                cosToggleTextOff: '=?',
+                cosToggleDatepickerToggle: '=?'
             },
             controller: ['$scope', '$element', function ($scope, $element) {
                 $scope.enabled = false;
@@ -36,7 +37,6 @@ angular
                 }
 
                 $scope.cosToggle = function () {
-                    console.log('cosTOGGL', $scope.value, $scope.model);
                     if($scope.value){
                         if($scope.model === $scope.value && $scope.offvalue){
                             $scope.model = $scope.offvalue;
@@ -46,11 +46,9 @@ angular
                     } else {
                         $scope.model = !$scope.model;
                     }
-                    console.log('MODEL', $scope.model);
                 };
 
                 $scope.switch = function () {
-                    console.log('SWITCH BEFORE', $scope.enabled);
                     if($scope.value && $scope.model === $scope.value) {
                         $scope.enabled = true;
                     } else if ($scope.value && $scope.model != $scope.value) {
@@ -58,13 +56,12 @@ angular
                     } else {
                         $scope.enabled = !$scope.enabled;
                     }
-                    console.log('SWITCH AFTER', $scope.enabled);
                 };
 
                 $scope.$watch(function(scope) { return scope.model },
                     function(newValue, oldValue) {
-                        console.log('WATCH', newValue, oldValue);
-                        if(newValue != oldValue) {
+                        if ($scope.cosToggleDatepickerToggle && (oldValue === true && angular.isDate(newValue) || newValue instanceof moment)) {}
+                        else if (newValue != oldValue) {
                             $scope.switch();
                         }
                     }

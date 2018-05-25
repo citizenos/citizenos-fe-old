@@ -11,31 +11,31 @@ angular
         var filters = [
             {
                 id: 'all',
-                name: 'Show all my topics',
+                name: 'VIEWS.MY.FILTERS.SHOW_ALL_MY_TOPICS',
                 onSelect: function () {
                     $state.go('my.topics', {filter: this.id}, {reload: true});
                 }
             },
             {
-                name: 'Show only:',
+                name: 'VIEWS.MY.FILTERS.SHOW_ONLY',
                 children: [
                     {
                         id: 'public',
-                        name: 'My public topics',
+                        name: 'VIEWS.MY.FILTERS.MY_PUBLIC_TOPICS',
                         onSelect: function () {
                             $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'private',
-                        name: 'My private topics',
+                        name: 'VIEWS.MY.FILTERS.MY_PRIVATE_TOPICS',
                         onSelect: function () {
                             $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'iCreated',
-                        name: 'Topics I created',
+                        name: 'VIEWS.MY.FILTERS.TOPICS_I_CREATED',
                         onSelect: function () {
                             $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
@@ -44,7 +44,7 @@ angular
             },
             {
                 id: 'grouped',
-                name: 'Show topics ordered by groups',
+                name: 'VIEWS.MY.FILTERS.TOPICS_ORDERED_BY_GROUPS',
                 onSelect: function () {
                     $state.go('my.groups', {filter: this.id}, {reload: true});
                 }

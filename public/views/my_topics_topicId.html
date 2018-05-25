@@ -162,7 +162,7 @@
                         </div>
 
                         <div class="right_side" ng-click="activityRedirect(activity)">
-                            <div class="text_box">                    
+                            <div class="text_box">
                                 <div class="main_text">
                                     <span translate="{{activity.string}}" translate-values="activity.values"> </span>
                                 </div>
@@ -277,8 +277,8 @@
                         <div class="results_table">
 
                             <div class="item_content" ng-repeat="voteOption in topic.vote.options.rows | orderBy: 'voteCount'">
-                                <div class="item_text" ng-bind="voteOption.value">voteOption.value</div>
-                                <div class="item_text" ng-bind="voteOption.voteCount || 0">0</div>
+                                <div class="item_text" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + voteOption.value | linky | uppercase}}" translate-default="{{voteOption.value | linky}}">voteOption.value</div>
+                                <div class="item_text">{{voteOption.voteCount || 0}}</div>
                             </div>
 
                         </div>
@@ -310,9 +310,9 @@
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE">Vote deadline</div>
                         <div class="item_content">
                             <div class="item_text">
-                                <span ng-bind="(topic.vote.endsAt | amDateFormat : 'L') || 'none'">12/12/2017</span>
+                                <span ng-bind="(topic.vote.endsAt | amDateFormat : 'L') || ('VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE_NONE' | translate)">12/12/2017</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt"><span translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span></span>
+                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE' | translate" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt"><span translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span></span>
                             </div>
                         </div>
                     </div>
@@ -404,7 +404,7 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <span class="pretend_table_mobile_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_USERS_COUNT" translate-values="{count: group.members.users.count}">Users: </span> 0
+                        <span class="pretend_table_mobile_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_USERS_COUNT" translate-values="{count: group.members.users.count}">Users: 0</span>
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin">

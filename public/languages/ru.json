@@ -43,9 +43,10 @@
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_HEADING": "Удалить тему",
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Вы точно хотите удалить эту тему?",
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
+    "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YTOPIC_DELETE_COMMENT_TITLEES": "ДА, УДАЛИТЬ",
     "GROUP_MEMBER_USER_DELETE_CONFIRM_HEADING": "Удалить пользователя",
-    "GROUP_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Вы точно хотите удалить этого пользователя?",
+    "GROUP_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Вы уверены, что хотите удалить этого пользователя?",
     "GROUP_MEMBER_USER_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
     "GROUP_MEMBER_USER_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
     "GROUP_MEMBER_USER_LEAVE_CONFIRM_HEADING": "Покинуть группу",
@@ -70,7 +71,7 @@
     "TOPIC_MEMBER_GROUP_DELETE_CONFIRM_HEADING": "Удалить доступ группы к теме",
     "TOPIC_MEMBER_GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Вы точно хотите удалить доступ этой группы к теме?",
     "TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
-    "TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES",
+    "TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_HEADING": "@:MODALS.GROUP_MEMBER_USER_DELETE_CONFIRM_HEADING",
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "@:MODALS.GROUP_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE",
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_NO": "@:BTN_NO",
@@ -146,6 +147,11 @@
     "MY_ACCOUNT_PLACEHOLDER_COMPANY": "Организация",
     "MY_ACCOUNT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "MY_ACCOUNT_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
+    "MY_ACCOUNT_UPLOAD_AVATAR": "Добавить новую",
+    "MY_ACCOUNT_DELETE_AVATAR": "Удалить",
+    "MY_ACCOUNT_AVATAR_RESTRICTIONS": "JPG, PNG или GIF, не более 500 КБ",
+    "MY_ACCOUNT_BTN_SAVE": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
+    "MY_ACCOUNT_BTN_CANCEL": "@:LNK_CANCEL",
     "PASSWORD_FORGOT_HEADING": "Забыли свой пароль?",
     "PASSWORD_FORGOT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "PASSWORD_FORGOT_SEND_RESET": "Отправить код сброса",
@@ -261,8 +267,9 @@
     "TOPIC_EVENT_DELETE_CONFIRM_HEADING": "Удалить обновление",
     "TOPIC_EVENT_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Вы уверены, что хотите удалить это обновление?",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
-    "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES",
-    "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY"
+    "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
+    "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
+    "LANGUAGES_MODAL_HEADING": "Выберите язык"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Все существующие",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Бизнес и промышленность",
@@ -313,7 +320,7 @@
       "HEADING_RESULTS_IN": "В результате поиска найдено",
       "LNK_VIEW_MORE_RESULTS": "Показать больше результатов",
       "TXT_OOPS_NO_RESULTS": "Ой, мы не нашли результатов, соответствующих запросу :(",
-      "TXT_MAYBE_TYPO": "Возможно, Вы опечатались в запросе?<br>Мы нашли кое-что соответствующее в разных частях платформы Citizen OS, посмотрите."
+      "TXT_MAYBE_TYPO": "Возможно, в ваш запрос закралась опечатка?"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мои темы",
@@ -364,7 +371,15 @@
       "TXT_CREATING_A NEW_GROUP": "Создать новую группу",
       "HEADING_NOT_PARTICIPATED": "Вы пока не участвуете ни в одной теме. Попробуйте, это здорово!",
       "HEADING_GET_INVOLVED": "Для участия имеются следующие возможности",
-      "MY_CREATING_A_NEW_TOPIC": "Создать новую тему"
+      "MY_CREATING_A_NEW_TOPIC": "Создать новую тему",
+      "FILTERS": {
+        "SHOW_ALL_MY_TOPICS": "Показать все мои темы",
+        "SHOW_ONLY": "Показывать только:",
+        "MY_PUBLIC_TOPICS": "Мои публичные темы",
+        "MY_PRIVATE_TOPICS": "Мои приватные темы",
+        "TOPICS_I_CREATED": "Темы, созданные мной",
+        "TOPICS_ORDERED_BY_GROUPS": "Сортировать темы по группам"
+      }
     },
     "MY_GROUPS_GROUPID": {
       "HEADING_GENERAL_INFORMATION": "Общая информация",
@@ -411,6 +426,7 @@
       "LBL_RESULTS": "Результаты",
       "LBL_VOTES_COUNTED": "Подсчитано голосов",
       "LBL_VOTE_DEADLINE": "Срок голосования",
+      "LBL_VOTE_DEADLINE_NONE": "отсутствует",
       "VOTE_CAST_YOUR_VOTE": "@:VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE",
       "VOTE_HEADING_DELEGATE": "@:VIEWS.TOPICS_TOPICID.VOTE_HEADING_DELEGATE",
       "VOTE_DELEGATED_TO": "@:VIEWS.TOPICS_TOPICID.VOTE_DELEGATED_TO",
@@ -431,7 +447,7 @@
       "HEADING_USERS_LIST": "Список пользователей",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Пользователь",
-      "LBL_VIA": "через группу \"{{groupName}}\"",
+      "LBL_VIA": "через группу",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Лента новостей и уведомлений",
       "LNK_VIEW_OLDER": "См. предыдущие"
     },
@@ -623,7 +639,7 @@
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "Пользователь {{userName}} оставил ответ на аргумент в теме {{topicTitle}}:",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "Пользователь {{userName}} добавил тему {{topicTitle}} в группу {{groupName}}.",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "Пользователь {{userName}} удалил тему {{topicTitle}} из группы {{groupName}}.",
-    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "Пользователь {{userName}} изменил уровень доступа группы {{groupNameEdited}} к теме {{topicTitle}}.",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "Пользователь {{userName}} изменил уровень доступа группы {{groupName}} к теме {{topicTitle}}.",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "Пользователь {{userName}} создал обновление по теме {{topicTitle}}:",
     "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC": "Пользователь {{userName}} добавил файл {{attachmentName}} к теме {{topicTitle}}",
     "ACTIVITY_TOPIC_FIELD_DESCRIPTION": "описание",
@@ -647,6 +663,7 @@
     "ACTIVITY_USER_UPDATE_GROUP": "Пользователь {{userName}} обновил поле {{fieldName}} в группе: {{groupName}}",
     "ACTIVITY_USER_DELETE_GROUP": "Пользователь {{userName}} удалил группу: {{groupName}}",
     "ACTIVITY_USER_ADD_USER_GROUP": "Пользователь {{userName}} пригласил пользователя {{userName2}} в группу {{groupName}}",
+    "ACTIVITY_USER_DELETE_USER_GROUP": "Пользователь {{userName}} удалил пользователя {{userName2}} из группы \"{{groupName}}\"",
     "ACTIVITY_USER_UPDATE_GROUPMEMBER": "Пользователь {{userName}} изменил уровень доступа пользователя {{userName2}} к группе {{groupName}}.",
     "ACTIVITY_USER_UPDATE_GROUPMEMBER_NONE": "Пользователь {{userName}} отменил доступ пользователя {{userName2}} к группе {{groupName}}",
     "USER_DELETE_USER_GROUP": "Пользователь {{userName}} удалил пользователя {{userName2}} из группы {{groupName}}",
