@@ -22,7 +22,8 @@ angular
                 value: '=?ngValue',
                 offvalue: '=?offValue',
                 cosToggleTextOn: '=?',
-                cosToggleTextOff: '=?'
+                cosToggleTextOff: '=?',
+                cosToggleDatepickerToggle: '=?'
             },
             controller: ['$scope', '$element', function ($scope, $element) {
                 $scope.enabled = false;
@@ -59,7 +60,8 @@ angular
 
                 $scope.$watch(function(scope) { return scope.model },
                     function(newValue, oldValue) {
-                        if(newValue != oldValue) {
+                        if ($scope.cosToggleDatepickerToggle && (oldValue === true && angular.isDate(newValue) || newValue instanceof moment)) {}
+                        else if (newValue != oldValue) {
                             $scope.switch();
                         }
                     }
