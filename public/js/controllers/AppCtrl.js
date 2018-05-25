@@ -67,10 +67,17 @@ angular
             if (openDias.length) {
                 ngDialog.closeAll();
             } else {
-                ngDialog.open({
+                var dialog = ngDialog.open({
                     template: '/views/modals/activity_modal.html',
                     scope: $scope
                 });
+
+                $scope.app.isShowActivityModal = true;
+
+                dialog.closePromise
+                    .then(function(){
+                        $scope.app.isShowActivityModal = false;
+                    });
             }
         };
 

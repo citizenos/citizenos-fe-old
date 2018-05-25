@@ -113,7 +113,7 @@
                         resolveOtherwise();
                     });
 
-                function resolveOtherwise() {
+                function resolveOtherwise () {
                     returnLink = '/' + useLang + '/';
                     if (langkeys.indexOf(locationPath[1]) > -1) {
                         returnLink = '/' + locationPath[1] + '/';
@@ -336,10 +336,18 @@
                                     groupMemberTopic
                                         .$save()
                                         .then(function () {
-                                            $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
+                                            $state.go('topics.view', {
+                                                language: $stateParams.language,
+                                                topicId: topic.id,
+                                                editMode: true
+                                            });
                                         });
                                 } else {
-                                    $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
+                                    $state.go('topics.view', {
+                                        language: $stateParams.language,
+                                        topicId: topic.id,
+                                        editMode: true
+                                    });
                                 }
                             });
                     }]
@@ -451,7 +459,11 @@
                         rVote: ['rTopic', '$state', '$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
                             if (rTopic.voteId) {
                                 $timeout(function () {
-                                    $state.go('topics.view.votes.view', {language: $stateParams.language, topicId: rTopic.id, voteId: rTopic.voteId}); //if vote is allready created redirect to voting
+                                    $state.go('topics.view.votes.view', {
+                                        language: $stateParams.language,
+                                        topicId: rTopic.id,
+                                        voteId: rTopic.voteId
+                                    }); //if vote is allready created redirect to voting
                                 }, 0);
                                 return $q.reject();
                             } else {
@@ -475,7 +487,10 @@
                             if ([Topic.STATUSES.closed, Topic.STATUSES.followUp].indexOf(rTopic.status) > -1) {
                                 return $q.resolve();
                             } else {
-                                $state.go('topics.view', {language: $stateParams.language, topicId: rTopic.id}); //if topic editing or voting is still in progress
+                                $state.go('topics.view', {
+                                    language: $stateParams.language,
+                                    topicId: rTopic.id
+                                }); //if topic editing or voting is still in progress
                             }
                         }]
                     },
@@ -490,7 +505,10 @@
                         // Array of Topics / Groups
                         rItems: ['$state', '$stateParams', '$location', '$q', '$window', 'Topic', 'Group', 'sAuth', 'sAuthResolve', function ($state, $stateParams, $location, $q, $window, Topic, Group, sAuth, sAuthResolve) {
                             var filterParam = $stateParams.filter || 'all';
-                            var urlParams = {prefix: null, userId: null};
+                            var urlParams = {
+                                prefix: null,
+                                userId: null
+                            };
                             var path = $location.path();
 
                             if (!$stateParams.filter && (path.indexOf('groups') > -1)) {
@@ -499,7 +517,10 @@
                             }
 
                             if (sAuthResolve || sAuth.user.loggedIn) {
-                                urlParams = {prefix: 'users', userId: 'self'}
+                                urlParams = {
+                                    prefix: 'users',
+                                    userId: 'self'
+                                }
                             }
 
                             switch (filterParam) {
@@ -533,7 +554,10 @@
                     templateUrl: '/views/my_topics_topicId.html',
                     resolve: {
                         rTopic: ['$stateParams', '$anchorScroll', 'Topic', 'sAuthResolve', function ($stateParams, $anchorScroll, Topic, sAuthResolve) {
-                            var urlParams = {topicId: $stateParams.topicId, include: 'vote'};
+                            var urlParams = {
+                                topicId: $stateParams.topicId,
+                                include: 'vote'
+                            };
                             if (sAuthResolve) {
                                 urlParams.prefix = 'users';
                                 urlParams.userId = 'self';

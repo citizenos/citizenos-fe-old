@@ -620,12 +620,10 @@ angular
             }
 
             var comment = angular.element(document.getElementById(commentId + version));
-            console.log(comment, comment.length);
             if (comment.length === 0) {
                 for (var i = 0; i < $scope.topicComments.rows.length; i++) {
                     if ($scope.topicComments.rows[i].id === commentId) {
                         $scope.topicComments.rows[i].showEdits = true;
-                        console.log('SHOW EDITS');
                         $timeout(function () {
                             comment = angular.element(document.getElementById(commentId + version));
                             $scope.app.scrollToAnchor(comment[0].id);
@@ -664,9 +662,6 @@ angular
         }
 
         $scope.goToParentComment = function (rootComment, parent) {
-            console.log(rootComment, 'Root');
-            console.log(parent, 'PARENT');
-
             if (!parent.id || !parent.hasOwnProperty('version')) {
                 return
             }
