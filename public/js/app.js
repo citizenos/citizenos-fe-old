@@ -7,7 +7,7 @@
     module
         .constant('cosConfig', {
             api: {
-                baseUrl: 'https://dev.api.citizenos.com:3003' //'https://citizenos-citizenos-api-test.herokuapp.com' // FIXME: Environment based!
+                baseUrl: 'https://citizenos-citizenos-api-test.herokuapp.com' // FIXME: Environment based!
             },
             language: {
                 default: 'en',
