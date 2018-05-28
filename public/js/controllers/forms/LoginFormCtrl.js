@@ -121,6 +121,7 @@ angular
 
             var messageHandler = function () {
                 loginWindow.close();
+                $window.focus();
                 $window.location.href = redirectSuccess;
             };
             $window.addEventListener('message', messageHandler, false);
