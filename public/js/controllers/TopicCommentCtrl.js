@@ -84,7 +84,7 @@ angular
                     data: {
                         comment: comment,
                         topic: {
-                            id: topic.id
+                            id: $scope.topic.id
                         }
                     }
                 });
