@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'UserVoice', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, UserVoice) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -165,7 +165,6 @@ angular
             $timeout(function () {
                 amMoment.changeLocale($scope.app.language);
             }, 0);
-            UserVoice.push(['set', 'locale', $scope.app.language]);
         });
 
         $rootScope.$on('$stateChangeSuccess', function () {
@@ -213,28 +212,8 @@ angular
                 Raven.setUserContext({
                     id: $scope.app.user.id
                 });
-
-                UserVoice.push(['identify', {
-                    email: $scope.app.user.email || '',
-                    id: $scope.app.user.id,
-                    name: $scope.app.user.name
-                }]);
             } else {
                 Raven.setUserContext();
-                UserVoice.push(['identify', {}]);
             }
         });
-        // Set up UserVoice - https://developer.uservoice.com/docs/widgets/options/
-        // TODO: Ideally this should be in provider.config...
-        UserVoice.push(['set', {
-            accent_color: '#808283',
-            trigger_color: 'white',
-            trigger_background_color: 'rgba(46, 49, 51, 0.6)'
-        }]);
-
-        UserVoice.push(['addTrigger', {
-            mode: 'contact',
-            trigger_position: 'bottom-right'
-        }]);
-
     }]);

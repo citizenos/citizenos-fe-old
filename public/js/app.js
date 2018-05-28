@@ -2,12 +2,12 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'cosUserVoice', 'angularLoad']);
+    var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'angularLoad']);
 
     module
         .constant('cosConfig', {
             api: {
-                baseUrl: 'https://dev.api.citizenos.com:3003' // FIXME: Environment based!
+                baseUrl: 'https://citizenos-citizenos-api-test2.herokuapp.com' // FIXME: Environment based!
             },
             language: {
                 default: 'en',
@@ -26,9 +26,9 @@
             },
             links: {
                 help: {
-                    en: 'https://citizenos.uservoice.com/knowledgebase/articles/741585-help', // Used by default, if there is no language specific override
-                    et: 'https://citizenos.uservoice.com/knowledgebase/articles/741582-abi',
-                    ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798'
+                    en: 'https://app.citizenos.com/en/topics/c6b6d06a-e8cf-4297-9654-8c1cf01b133b', // Used by default, if there is no language specific override
+                    et: 'https://app.citizenos.com/en/topics/fd8c4e13-6c5f-4423-9408-cf97c30727d7',
+                    ru: 'https://app.citizenos.com/en/topics/bd15b9e8-7de4-42c2-a394-78ed95a735cd'
                 }
             },
             storage: {
@@ -46,7 +46,7 @@
         });
 
     module
-        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'UserVoiceProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, UserVoiceProvider, cosConfig) {
+        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
 
             var langReg = Object.keys(cosConfig.language.list).join('|');
 
@@ -207,7 +207,7 @@
                     url: '/widgets',
                     parent: 'index',
                     abstract: true,
-                    template: '<div ui-view style="height: 100%"></div>'
+                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view style="height: 100%"></div>'
                 })
                 .state('widgets.arguments', {
                     url: '/topics/:topicId/arguments',
@@ -768,8 +768,6 @@
                 .useLocalStorage()
                 .useMissingTranslationHandlerLog()
                 .translations(cosConfig.language.debug, {});
-
-            UserVoiceProvider.setApiKey('f7Trszzveus2InvLcEelw');
         }]);
 })();
 
