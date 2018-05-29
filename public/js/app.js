@@ -217,7 +217,7 @@
                 .state('widgets.authCallback', { // Callback page for the "popup" style (facebook, google) authentication flow.
                     url: '/auth/callback',
                     parent: 'widgets',
-                    template: '<h1>Widget Auth Callback</h1>',
+                    template: '<h1>Working...</h1>',
                     controller: ['$window', function ($window) {
                         $window.opener.postMessage({status: 'success'}, $window.origin);
                     }]
