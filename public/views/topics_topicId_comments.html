@@ -549,10 +549,13 @@
                     </div>
                     <!-- REPLY TO REPLY -->
                     <div class="post_argument_wrap" ng-if="reply.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                        <form name="argumentReplyForm">
-                                                        <textarea id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-keyup="commentTextLengthCheck(form, form.text)" ng-class="{'error_input': form.errors.text}"
-                                                                  placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}"
-                                                                  required maxlength="{{maxLengthText}}"></textarea>
+                        <div class="post_argument_overlay" ng-if="!app.user.loggedIn">
+                            <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_COMMENT">You need to <div class="blue_link">log in </div> to comment</h3>
+                        </div>
+                        <form cos-disabled="!app.user.loggedIn" name="argumentReplyForm">
+                            <textarea id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-keyup="commentTextLengthCheck(form, form.text)" ng-class="{'error_input': form.errors.text}"
+                                      placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}"
+                                      required maxlength="{{maxLengthText}}"></textarea>
                             <label for="argument_pro_reply_text" class="error_label" ng-if="form.errors.text">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -587,9 +590,9 @@
                         <span translate="{{form.errors.subject}}"></span>
                     </div>
                 </label>
-                                            <textarea id="argument_text" ng-model="form.text" class="gray_borders"
-                                                      placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-keyup="commentTextLengthCheck(form, form.text)" ng-class="{'error_input': form.errors.text}" maxlength="{{maxLengthText}}"
-                                                      required></textarea>
+                <textarea id="argument_text" ng-model="form.text" class="gray_borders"
+                          placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}" ng-keyup="commentTextLengthCheck(form, form.text)" ng-class="{'error_input': form.errors.text}" maxlength="{{maxLengthText}}"
+                          required></textarea>
                 <label for="argument_text" class="error_label" ng-if="form.errors.text">
                     <div class="table_cell">
                         <div class="sprite sprite-icon-inputfield-error2x"></div>
