@@ -174,7 +174,7 @@
                         </div>
 
                         <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
-                            <div ng-if="comment.isVisible()" class="argument_text" ng-bind-html="comment.text | linky"></div>
+                            <div ng-if="comment.isVisible()" class="argument_text" ng-bind-html="comment.text | linky : '_blank'"></div>
                             <div ng-if="!comment.isVisible()" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY" translate-values="{userFullName: comment.deletedBy.name}">This comment has been deleted by {{comment.deletedBy.name}}</div>
                             <div class="argument_overlay">
                             </div>
@@ -225,7 +225,7 @@
                         </div>
                         <div class="alert_argument" ng-if="comment.deletedAt && comment.isVisible()">
                             <span class="replys_reply italic"><b>{{comment.subject}}</b></span><br>
-                            <span class="italic" ng-click="comment.showDeletedComment = !comment.showDeletedComment" ng-bind-html="comment.text | linky">{{comment.text}}</span>
+                            <span class="italic" ng-click="comment.showDeletedComment = !comment.showDeletedComment" ng-bind-html="comment.text | linky : '_blank'">{{comment.text}}</span>
                         </div>
                         <!-- END COMMENT DELETED-->
                         <!-- COMMENT EDITS -->
@@ -235,7 +235,7 @@
                                 {{edit.subject}}
                             </div>
                             <div class="argument_text_wrap">
-                                <div class="argument_text italic" ng-bind-html="edit.text | linky"></div>
+                                <div class="argument_text italic" ng-bind-html="edit.text | linky : '_blank'"></div>
                             </div>
                         </div>
                         <!-- END COMMENT EDITS -->
@@ -428,13 +428,13 @@
                         <div id="{{reply.id+(version-1)}}" class="argument" ng-if="reply.showEdits && reply.isEdited() && !$last" ng-repeat="(version, edit) in reply.edits">
                             <div class="argument_header" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">{{edit.createdAt | amTimeAgo}}</div>
                             <div class="argument_text_wrap">
-                                <div class="argument_text italic" ng-bind-html="edit.text | linky"></div>
+                                <div class="argument_text italic" ng-bind-html="edit.text | linky : '_blank'"></div>
                             </div>
                         </div>
                         <!-- END REPLY EDITS -->
                         <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
                             <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text"><span class="replys_reply" ng-click="goToParentComment(comment, reply.parent)">@{{getParentAuthor(comment, reply.parent.id)}}</span></div>
-                            <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text" ng-bind-html="reply.text | linky"></div>
+                            <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text" ng-bind-html="reply.text | linky : '_blank'"></div>
                             <div ng-if="!reply.isVisible()" class="argument_text italic" >This comment has been deleted by {{reply.deletedBy.name}}</div>
                             <div class="argument_overlay">
                             </div>
