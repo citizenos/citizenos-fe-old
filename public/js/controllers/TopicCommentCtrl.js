@@ -178,7 +178,7 @@ angular
             var comment = angular.element(document.getElementById(commentId + version));
             if (comment.length === 0) {
                 for (var i = 0; i < $scope.topicComments.rows.length; i++) {
-                    if ($scope.topicComments.rows[i].id === parent.id) {
+                    if ($scope.topicComments.rows[i].id === commentId) {
                         $scope.topicComments.rows[i].showEdits = true;
                         $timeout(function () {
                             comment = angular.element(document.getElementById(commentId + version));
