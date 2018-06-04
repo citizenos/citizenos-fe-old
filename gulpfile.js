@@ -64,6 +64,7 @@ gulp.task('default', function () {
         'uglify',
         'sass',
         'sass_etherpad',
+        'sass_widgets',
         'cachebreaker',
         'watch'
     );
@@ -117,13 +118,14 @@ gulp.task('uglify', function () {
 gulp.task('cachebreaker', function () {
     return gulp.src('public/index.html')
         .pipe(cachebust({
-            type: 'MD5'
+            type: 'MD5',
+            showLog: true
         }))
         .pipe(gulp.dest('public/'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch(['public/js/**/*.js', '!public/js/*.bundle.js'], function () {
+    gulp.watch(['public/js/**/*.js', '!public/js/*.bundle.js', '!public/js/widgets.arguments.js'], function () {
         return runSequence(
             'uglify',
             'cachebreaker'
@@ -133,6 +135,7 @@ gulp.task('watch', function () {
         return runSequence(
             'sass',
             'sass_etherpad',
+            'sass_widgets',
             'cachebreaker'
         );
     });
@@ -160,6 +163,16 @@ gulp.task('sass', function () {
 
 gulp.task('sass_etherpad', function() {
     gulp.src(['public/styles/etherpad/etherpad.scss'])
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(cleanCSS())
+        .pipe(sourcemaps.write('maps'))
+        .pipe(gulp.dest('public/styles/'))
+});
+
+gulp.task('sass_widgets', function() {
+    gulp.src(['public/styles/widgets/widgets.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())

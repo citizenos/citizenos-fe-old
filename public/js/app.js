@@ -200,6 +200,46 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('widgets', {
+                    url: '/widgets?widgetId',
+                    parent: 'index',
+                    abstract: true,
+                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view style="height: 100%"></div>',
+                    controller: ['$scope', '$window', '$document', '$stateParams', '$interval', '$log', function ($scope, $window, $document, $stateParams, $interval, $log) {
+                        if ($window.self !== $window.parent) { // Inside iframe
+                            var heightPrev;
+                            var interval = $interval(function () {
+                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight;
+                                if (heightPrev !== heightCurrent) {
+                                    heightPrev = heightCurrent;
+                                    var msg = {citizenos: {}};
+                                    msg.citizenos['widgets.arguments'] = {};
+                                    msg.citizenos['widgets.arguments'][$stateParams.widgetId] = {
+                                        height: heightCurrent + 'px'
+                                    };
+                                    $window.top.postMessage(msg, '*');
+                                }
+                            }, 100);
+
+                            $scope.$on('$destroy', function () {
+                                interval.cancel();
+                            });
+                        }
+                    }]
+                })
+                .state('widgets.arguments', {
+                    url: '/topics/:topicId/arguments',
+                    parent: 'widgets',
+                    template: '<div class="comments_section"><div class="comments_content"><div ng-include="\'views/topics_topicId_comments.html\'"></div></div></div>'
+                })
+                .state('widgets.authCallback', { // Callback page for the "popup" style (facebook, google) authentication flow.
+                    url: '/auth/callback',
+                    parent: 'widgets',
+                    template: '<h1>Working...</h1>',
+                    controller: ['$window', function ($window) {
+                        $window.opener.postMessage({status: 'success'}, $window.origin);
+                    }]
+                })
                 .state('error', {
                     url: '/error',
                     parent: 'main',
