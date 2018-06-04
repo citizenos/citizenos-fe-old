@@ -200,6 +200,25 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('widgets', {
+                    url: '/widgets',
+                    parent: 'index',
+                    abstract: true,
+                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view style="height: 100%"></div>'
+                })
+                .state('widgets.arguments', {
+                    url: '/topics/:topicId/arguments',
+                    parent: 'widgets',
+                    template: '<div class="comments_section"><div class="comments_content"><div ng-include="\'views/topics_topicId_comments.html\'"></div></div></div>'
+                })
+                .state('widgets.authCallback', { // Callback page for the "popup" style (facebook, google) authentication flow.
+                    url: '/auth/callback',
+                    parent: 'widgets',
+                    template: '<h1>Working...</h1>',
+                    controller: ['$window', function ($window) {
+                        $window.opener.postMessage({status: 'success'}, $window.origin);
+                    }]
+                })
                 .state('error', {
                     url: '/error',
                     parent: 'main',

@@ -1,0 +1,1 @@
+{"version":3,"sources":["widgets.scss"],"names":[],"mappings":"AAAA,KAEI,WAAY,KAGhB,kBACI,OAAQ","file":"widgets.css","sourcesContent":["body {\n    background-color: #fff;\n    background: #ffffff;\n}\n\n.comments_section {\n    margin: 0;\n}\n"],"sourceRoot":"/source/"}
