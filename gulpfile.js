@@ -125,7 +125,7 @@ gulp.task('cachebreaker', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch(['public/js/**/*.js', '!public/js/*.bundle.js'], function () {
+    gulp.watch(['public/js/**/*.js', '!public/js/*.bundle.js', '!public/js/widgets.arguments.js'], function () {
         return runSequence(
             'uglify',
             'cachebreaker'
