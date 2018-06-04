@@ -117,7 +117,7 @@ angular
 
             var redirectSuccess = $stateParams.redirectSuccess || sLocation.currentUrl(); // Final url to land after successful login
 
-            var loginWindow = popupCenter(url, 'CitizenOS Facebook Login', 500, 450);
+            var loginWindow = popupCenter(url, 'CitizenOS Facebook Login', 600, 600);
 
             var messageHandler = function () {
                 loginWindow.close();
