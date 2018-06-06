@@ -567,7 +567,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Näytä silti vastaus",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "<b>{{userFullName}}</b> piti tätä vastausta sopimattomana",
-      "LNK_COMMENT_CLOSE": "Sulje kommentti",
+      "LNK_COMMENT_CLOSE": "Collapse argument",
       "LNK_COMMENT_READ_MORE": "Lue lisää",
       "LNK_COMMENT_REPLY": "Vastaa",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Kirjoita vastauksesi tähän...",
