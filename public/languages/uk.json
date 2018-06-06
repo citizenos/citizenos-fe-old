@@ -567,7 +567,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Переглянути відповідь у будь-якому випадку",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "Користувач <b>{{userFullName}}</b> вважає цю відповідь недоречною",
-      "LNK_COMMENT_CLOSE": "Закрити коментар",
+      "LNK_COMMENT_CLOSE": "Collapse argument",
       "LNK_COMMENT_READ_MORE": "Читати більше",
       "LNK_COMMENT_REPLY": "Відповісти",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Напишіть Вашу відповідь тут...",
