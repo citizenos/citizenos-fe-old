@@ -567,7 +567,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "View reply anyway",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "This reply was found inappropriate by <b>{{userFullName}}</b>",
-      "LNK_COMMENT_CLOSE": "Close comment",
+      "LNK_COMMENT_CLOSE": "Collapse argument",
       "LNK_COMMENT_READ_MORE": "Read more",
       "LNK_COMMENT_REPLY": "Reply",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Write your reply here...",
