@@ -567,7 +567,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Просмотреть ответ",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "Пользователь <b>{{userFullName}}</b> пометил этот ответ, как неуместный",
-      "LNK_COMMENT_CLOSE": "Collapse argument",
+      "LNK_COMMENT_CLOSE": "Свернуть аргумент",
       "LNK_COMMENT_READ_MORE": "Читайте дальше",
       "LNK_COMMENT_REPLY": "Ответить",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Напишите здесь свой ответ...",
