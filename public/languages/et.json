@@ -567,7 +567,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Vaata vastust",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "<b>{{userFullName}}</b> leidis, et see vastus ei sobi",
-      "LNK_COMMENT_CLOSE": "Sulge kommentaar",
+      "LNK_COMMENT_CLOSE": "Collapse argument",
       "LNK_COMMENT_READ_MORE": "Loe edasi",
       "LNK_COMMENT_REPLY": "Vasta",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Kirjuta vastus siia...",
