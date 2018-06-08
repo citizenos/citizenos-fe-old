@@ -212,7 +212,7 @@
                         if ($window.self !== $window.parent) { // Inside iframe
                             var heightPrev;
                             var interval = $interval(function () {
-                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight;
+                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight - ($document[0].getElementById('widget_header').scrollHeight);
                                 if (heightPrev !== heightCurrent) {
                                     heightPrev = heightCurrent;
                                     var msg = {citizenos: {}};
