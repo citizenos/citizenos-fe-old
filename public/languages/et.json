@@ -321,6 +321,10 @@
       "LNK_VIEW_MORE_RESULTS": "Vaata rohkem tulemusi",
       "TXT_OOPS_NO_RESULTS": "Oih, me ei leidnud otsisõnale vastavaid tulemusi :(",
       "TXT_MAYBE_TYPO": "Äkki tegid otsisõnas trükivea?"
+    },
+    "WIDGET": {
+      "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
+      "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "minu teemad",
