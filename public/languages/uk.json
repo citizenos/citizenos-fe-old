@@ -321,6 +321,10 @@
       "LNK_VIEW_MORE_RESULTS": "Показати більше результатів",
       "TXT_OOPS_NO_RESULTS": "Ой, ми не знайшли нічого, що відповідає Вашому запиту :(",
       "TXT_MAYBE_TYPO": "Можливо, Ви зробили помилку у запиті?"
+    },
+    "WIDGET": {
+      "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
+      "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мої теми",
