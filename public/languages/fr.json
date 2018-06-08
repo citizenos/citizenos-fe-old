@@ -321,6 +321,10 @@
       "LNK_VIEW_MORE_RESULTS": "Voir plus de résultats",
       "TXT_OOPS_NO_RESULTS": "Oups, nous n'avons pas pu trouvé de résultats correspondant à votre recherche :(",
       "TXT_MAYBE_TYPO": "Vous avez peut-être une faute d'orthographe dans votre recherche?"
+    },
+    "WIDGET": {
+      "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
+      "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "mes sujets",
