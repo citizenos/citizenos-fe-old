@@ -1,0 +1,37 @@
+<style type="text/css">@import url("/styles/widgets.css");</style>
+<div id="widget_header">
+    <div id="widget_logo" class="sprite sprite-cos-logo-small-positive2x"></div>
+    <div id="widget_user">
+        <div id="account_area" class="table_row">
+            <div ng-if="app.user.loggedIn" class="profile_image_wrapper">
+                <!--div class="profile_moon sprite sprite-icon-certified-google2x"></div-->
+                <div id="widget_user_image" class="account_picture">
+                    <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">
+                    <div class="profile_image_filler" ng-if="!app.user.imageUrl">
+                        <div class="table_cell" cos-initials="app.user.name">
+                            ML
+                        </div>
+                        <div class="profile_circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="app.user.loggedIn"  id="user_name" class="table_cell">
+                <div class="section_header bold_white">{{app.user.name}}</div>
+            </div>
+            <div id="login" class="table_cell" ng-if="!app.user.loggedIn" ng-click="app.doShowLogin()">
+                <a>
+                    <span translate="DEFAULT.NAV.LNK_LOG_IN_REGISTER">Log in / register</span>
+                </a>
+            </div>
+            <div id="log_out" class="table_cell" ng-if="app.user.loggedIn" >
+                <a ng-click="app.doWidgetLogout();" class="section_item" href="">
+                    <span translate="DEFAULT.NAV.LNK_LOG_OUT">Log out</span>
+                </a>
+            </div>
+        </div>
+        
+
+        
+    </div>
+</div>
+<div ui-view style="height: 100%"></div>
