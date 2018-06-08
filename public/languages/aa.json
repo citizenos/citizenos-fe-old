@@ -321,6 +321,10 @@
       "LNK_VIEW_MORE_RESULTS": "crwdns10452:0crwdne10452:0",
       "TXT_OOPS_NO_RESULTS": "crwdns10453:0crwdne10453:0",
       "TXT_MAYBE_TYPO": "crwdns11048:0crwdne11048:0"
+    },
+    "WIDGET": {
+      "LNK_LOG_IN_REGISTER": "crwdns11055:0crwdne11055:0",
+      "LNK_LOG_OUT": "crwdns11056:0crwdne11056:0"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "crwdns10455:0crwdne10455:0",
