@@ -46,7 +46,7 @@
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YTOPIC_DELETE_COMMENT_TITLEES": "JAH, EEMALDA",
     "GROUP_MEMBER_USER_DELETE_CONFIRM_HEADING": "Eemalda kasutaja",
-    "GROUP_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Oled Sa kindel, et soovid selle kasutaja kustutada?",
+    "GROUP_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Kas oled kindel, et soovid selle kasutaja kustutada?",
     "GROUP_MEMBER_USER_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
     "GROUP_MEMBER_USER_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
     "GROUP_MEMBER_USER_LEAVE_CONFIRM_HEADING": "Lahku rühmast",
@@ -321,6 +321,10 @@
       "LNK_VIEW_MORE_RESULTS": "Vaata rohkem tulemusi",
       "TXT_OOPS_NO_RESULTS": "Oih, me ei leidnud otsisõnale vastavaid tulemusi :(",
       "TXT_MAYBE_TYPO": "Äkki tegid otsisõnas trükivea?"
+    },
+    "WIDGET": {
+      "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
+      "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "minu teemad",
@@ -567,7 +571,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Vaata vastust",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "<b>{{userFullName}}</b> leidis, et see vastus ei sobi",
-      "LNK_COMMENT_CLOSE": "Sulge kommentaar",
+      "LNK_COMMENT_CLOSE": "Collapse argument",
       "LNK_COMMENT_READ_MORE": "Loe edasi",
       "LNK_COMMENT_REPLY": "Vasta",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Kirjuta vastus siia...",

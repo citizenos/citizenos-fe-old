@@ -321,6 +321,10 @@
       "LNK_VIEW_MORE_RESULTS": "crwdns10452:0crwdne10452:0",
       "TXT_OOPS_NO_RESULTS": "crwdns10453:0crwdne10453:0",
       "TXT_MAYBE_TYPO": "crwdns11048:0crwdne11048:0"
+    },
+    "WIDGET": {
+      "LNK_LOG_IN_REGISTER": "crwdns11055:0crwdne11055:0",
+      "LNK_LOG_OUT": "crwdns11056:0crwdne11056:0"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "crwdns10455:0crwdne10455:0",
@@ -567,7 +571,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "crwdns10667:0crwdne10667:0",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "crwdns10668:0crwdne10668:0",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "crwdns10803:0{{userFullName}}crwdne10803:0",
-      "LNK_COMMENT_CLOSE": "crwdns10670:0crwdne10670:0",
+      "LNK_COMMENT_CLOSE": "crwdns11054:0crwdne11054:0",
       "LNK_COMMENT_READ_MORE": "crwdns10671:0crwdne10671:0",
       "LNK_COMMENT_REPLY": "crwdns10672:0crwdne10672:0",
       "PLACEHOLDER_WRITE_REPLY_HERE": "crwdns10673:0crwdne10673:0",

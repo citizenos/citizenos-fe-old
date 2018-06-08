@@ -321,6 +321,10 @@
       "LNK_VIEW_MORE_RESULTS": "Показать больше результатов",
       "TXT_OOPS_NO_RESULTS": "Ой, мы не нашли результатов, соответствующих запросу :(",
       "TXT_MAYBE_TYPO": "Возможно, в ваш запрос закралась опечатка?"
+    },
+    "WIDGET": {
+      "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
+      "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мои темы",
@@ -567,7 +571,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Просмотреть ответ",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "Пользователь <b>{{userFullName}}</b> пометил этот ответ, как неуместный",
-      "LNK_COMMENT_CLOSE": "Закрыть комментарий",
+      "LNK_COMMENT_CLOSE": "Свернуть аргумент",
       "LNK_COMMENT_READ_MORE": "Читайте дальше",
       "LNK_COMMENT_REPLY": "Ответить",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Напишите здесь свой ответ...",
