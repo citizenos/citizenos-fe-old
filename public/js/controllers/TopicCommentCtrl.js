@@ -27,10 +27,12 @@ angular
                 con: 0
             };
 
-            TopicComment.query({
-                topicId: $scope.topic.id,
-                orderBy: $scope.topicComments.orderBy
-            }).$promise
+            TopicComment
+                .query({
+                    topicId: $scope.topic.id,
+                    orderBy: $scope.topicComments.orderBy
+                })
+                .$promise
                 .then(function (comments) {
                     if (comments) {
                         $scope.topicComments.count.pro = _.filter(comments, {type: TopicComment.COMMENT_TYPES.pro}).length;
@@ -48,6 +50,11 @@ angular
                             con: 0
                         };
                     }
+
+                    if ($scope.topic) { // For the arguments count on the /topics/:topicId, not beautiful. Will do until /topics/:topicId API returns comments count.
+                        $scope.topic.comments = $scope.topicComments;
+                    }
+
                     $timeout(function () {
                         if ($stateParams.commentId) {
                             $scope.gotToComment($stateParams.commentId);
