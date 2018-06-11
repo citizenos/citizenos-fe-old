@@ -204,12 +204,12 @@
                     url: '/widgets?widgetId',
                     parent: 'index',
                     abstract: true,
-                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view style="height: 100%"></div>',
+                    templateUrl: '/views/layouts/widget.html',
                     controller: ['$scope', '$window', '$document', '$stateParams', '$interval', '$log', function ($scope, $window, $document, $stateParams, $interval, $log) {
                         if ($window.self !== $window.parent) { // Inside iframe
                             var heightPrev;
                             var interval = $interval(function () {
-                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight;
+                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight - ($document[0].getElementById('widget_header').scrollHeight);
                                 if (heightPrev !== heightCurrent) {
                                     heightPrev = heightCurrent;
                                     var msg = {citizenos: {}};

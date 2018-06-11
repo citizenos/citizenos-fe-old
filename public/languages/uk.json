@@ -321,6 +321,10 @@
       "LNK_VIEW_MORE_RESULTS": "Показати більше результатів",
       "TXT_OOPS_NO_RESULTS": "Ой, ми не знайшли нічого, що відповідає Вашому запиту :(",
       "TXT_MAYBE_TYPO": "Можливо, Ви зробили помилку у запиті?"
+    },
+    "WIDGET": {
+      "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
+      "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мої теми",
@@ -567,7 +571,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Переглянути відповідь у будь-якому випадку",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "Користувач <b>{{userFullName}}</b> вважає цю відповідь недоречною",
-      "LNK_COMMENT_CLOSE": "Закрити коментар",
+      "LNK_COMMENT_CLOSE": "Collapse argument",
       "LNK_COMMENT_READ_MORE": "Читати більше",
       "LNK_COMMENT_REPLY": "Відповісти",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Напишіть Вашу відповідь тут...",

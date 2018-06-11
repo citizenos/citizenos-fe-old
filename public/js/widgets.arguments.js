@@ -1,16 +1,28 @@
 (function () {
     window.CITIZENOS = window.CITIZENOS || {widgets: {}};
 
+    var scripts = document.getElementsByTagName('script');
+    var src = scripts[scripts.length - 1].src;
+    var scriptOrigin = src.match(/https?:\/\/[^/]*/)[0];
+
+    window.CITIZENOS.config = {
+        url: {
+            fe: scriptOrigin
+        }
+    };
+
+
     if (!window.CITIZENOS.widgets.Argument) {
         /**
          * Argument
          *
+         * @param {string} language 2 letter language code (ISO 639-1 Code)
          * @param {string} topicId CitizenOS Topic ID
-         * @param {string} targetId Containing pages target element id
+         * @param {string} [targetId=undefined] Containing pages target element id
          *
          * @constructor
          */
-        window.CITIZENOS.widgets.Argument = function (topicId, targetId) {
+        window.CITIZENOS.widgets.Argument = function (language, topicId, targetId) {
             document.addEventListener('DOMContentLoaded', function () {
                 var targetElementId = targetId || 'citizenos-widget-argument-' + Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 5);
 
@@ -24,7 +36,7 @@
 
                 var widgetFrame = document.createElement('iframe');
                 widgetFrame.id = targetElementId + '-frame';
-                widgetFrame.src = 'https://dev.citizenos.com:3001/en/widgets/topics/' + encodeURIComponent(topicId) + '/arguments?widgetId=' + encodeURIComponent(targetElementId) ; // FIXME: Env specific url!
+                widgetFrame.src = window.CITIZENOS.config.url.fe + '/' + encodeURIComponent(language) + '/widgets/topics/' + encodeURIComponent(topicId) + '/arguments?widgetId=' + encodeURIComponent(targetElementId) ; // FIXME: Env specific url!
                 widgetFrame.setAttribute('scrolling', 'no');
                 widgetFrame.style.height = '1px';
                 widgetFrame.style.width = '1px';

@@ -32,6 +32,7 @@ angular
             '/views/directives/date_picker.html',
             '/views/layouts/main.html',
             '/views/layouts/partner.html',
+            '/views/layouts/widget.html',
             '/views/modals/activity_modal.html',
             '/views/modals/group_create_settings.html',
             '/views/modals/group_delete_confirm.html',

@@ -321,6 +321,10 @@
       "LNK_VIEW_MORE_RESULTS": "Näytä lisää tuloksia",
       "TXT_OOPS_NO_RESULTS": "Hupsis! Emme onnistuneet löytämään hakuasi vastaavia tuloksia :(",
       "TXT_MAYBE_TYPO": "Ehkä hakussasi on kirjoitusvirhee?"
+    },
+    "WIDGET": {
+      "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
+      "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "omat aiheeni",
@@ -567,7 +571,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Näytä silti vastaus",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "<b>{{userFullName}}</b> piti tätä vastausta sopimattomana",
-      "LNK_COMMENT_CLOSE": "Sulje kommentti",
+      "LNK_COMMENT_CLOSE": "Collapse argument",
       "LNK_COMMENT_READ_MORE": "Lue lisää",
       "LNK_COMMENT_REPLY": "Vastaa",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Kirjoita vastauksesi tähän...",

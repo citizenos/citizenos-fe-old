@@ -795,7 +795,7 @@
                                     <span translate="VIEWS.TOPICS_TOPICID.LBL_ACTIVITY">Activity:</span> <span class="blue_link"
                                                                                                                ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')"
                                                                                                                translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT"
-                                                                                                               translate-values="{count: topicComments.rows.length}">0 arguments</span> | <span
+                                                                                                               translate-values="{count: topic.comments.rows.length || 0}">0 arguments</span> | <span
                                     class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')" translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT"
                                     translate-values="{mentionsCount: (topicSocialMentions.length ||0)}">0 social mentions</span> <span ng-if="!topic.hashtag && topic.canEdit()"> | </span><span class="blue_link" ng-if="!topic.hashtag && topic.canEdit()"
                                                                                                                                         ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"

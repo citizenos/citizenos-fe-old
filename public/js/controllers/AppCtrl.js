@@ -139,6 +139,19 @@ angular
                 );
         };
 
+        $scope.app.doWidgetLogout = function () {
+            sAuth
+                .logout()
+                .then(
+                    function () {
+                        $state.reload();
+                    },
+                    function (err) {
+                        $log.error('AppCtrl.doLogout()', 'Logout failed', err);
+                    }
+                );
+        };
+
         $scope.app.scrollToAnchor = function (anchor) {
             // TODO: Probably not the most elegant way but works for now. Probably should be a directive, which calculates the yOffset (https://docs.angularjs.org/api/ng/service/$anchorScroll#yOffset)
             $timeout(function () {
