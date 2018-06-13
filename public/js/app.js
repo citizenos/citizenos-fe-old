@@ -169,7 +169,7 @@
                     template: '<div ui-view style="height: 100%"></div>',
                     resolve: {
                         /* @ngInject */
-                        sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {
+                        sTranslateResolve: function ($stateParams, $log, sTranslate) {
                             $log.debug('Resolve language', $stateParams.language);
                             return sTranslate.setLanguage($stateParams.language);
                         },
