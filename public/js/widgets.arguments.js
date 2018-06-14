@@ -36,7 +36,7 @@
 
                 var widgetFrame = document.createElement('iframe');
                 widgetFrame.id = targetElementId + '-frame';
-                widgetFrame.src = window.CITIZENOS.config.url.fe + '/' + encodeURIComponent(language) + '/widgets/topics/' + encodeURIComponent(topicId) + '/arguments?widgetId=' + encodeURIComponent(targetElementId) ; // FIXME: Env specific url!
+                widgetFrame.src = window.CITIZENOS.config.url.fe + '/' + encodeURIComponent(language) + '/widgets/topics/' + encodeURIComponent(topicId) + '/arguments?widgetId=' + encodeURIComponent(targetElementId);
                 widgetFrame.setAttribute('scrolling', 'no');
                 widgetFrame.style.height = '1px';
                 widgetFrame.style.width = '1px';

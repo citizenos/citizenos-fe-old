@@ -96,9 +96,13 @@
 
             .container_header {
                 margin-top: 20px;
+                .header_text {
+                    color: initial;
+                }
             }
 
             .small_topic {
+                display: block;
                 height: 120px;
                 background: $white;
                 padding: 13px 20px 17px 20px;
@@ -107,6 +111,7 @@
                 cursor: pointer;
                 box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
                 position: relative;
+                color: inherit;
 
                 .favorite_container {
                     position: absolute;

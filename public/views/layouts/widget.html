@@ -19,9 +19,7 @@
                 <div class="section_header bold_white">{{app.user.name}}</div>
             </div>
             <div id="login" class="table_cell" ng-if="!app.user.loggedIn" ng-click="app.doShowLogin()">
-                <a>
-                    <span translate="DEFAULT.WIDGET.LNK_LOG_IN_REGISTER">Log in / register</span>
-                </a>
+                <a href="#" translate="DEFAULT.WIDGET.LNK_LOG_IN_REGISTER"></a>
             </div>
             <div id="log_out" class="table_cell" ng-if="app.user.loggedIn" >
                 <a ng-click="app.doWidgetLogout();" class="section_item" href="">
@@ -29,9 +27,6 @@
                 </a>
             </div>
         </div>
-        
-
-        
     </div>
 </div>
 <div ui-view style="height: 100%"></div>

@@ -75,7 +75,7 @@ angular
                 $scope.app.isShowActivityModal = true;
 
                 dialog.closePromise
-                    .then(function(){
+                    .then(function () {
                         $scope.app.isShowActivityModal = false;
                     });
             }
@@ -95,7 +95,10 @@ angular
 
             $scope.app.languagesArray = [];
             angular.forEach($scope.app.config.language.list, function (val, key) {
-                $scope.app.languagesArray.push({key: key, val: val});
+                $scope.app.languagesArray.push({
+                    key: key,
+                    val: val
+                });
             });
 
             ngDialog.open({
@@ -218,15 +221,17 @@ angular
         }
 
         // Update UserVoice data when User changes
-        $scope.$watch(function () {
-            return $scope.app.user.loggedIn;
-        }, function (loggedIn) {
-            if (loggedIn) {
-                Raven.setUserContext({
-                    id: $scope.app.user.id
-                });
-            } else {
-                Raven.setUserContext();
-            }
-        });
+        $scope.$watch(
+            function () {
+                return $scope.app.user.loggedIn;
+            },
+            function (loggedIn) {
+                if (loggedIn) {
+                    Raven.setUserContext({
+                        id: $scope.app.user.id
+                    });
+                } else {
+                    Raven.setUserContext();
+                }
+            });
     }]);

@@ -1,6 +1,9 @@
 body {
-    background-color: #fff;
     background: #ffffff;
+}
+
+#root_lightbox {
+    background-color: rgba(200, 200, 200, 0.6);
 }
 
 .comments_section {
@@ -29,7 +32,7 @@ body {
         top: 0;
         right: 20px;
         height: 60px;
-        
+
         .profile_image_wrapper {
             width: 28px;
 
@@ -43,7 +46,7 @@ body {
         #user_name {
             height: 60px;
             color: #252525;
-            font-family: "Open Sans";
+            font-family: "Open Sans", sans-serif;
             font-size: 14px;
             font-weight: bold;
             line-height: 19px;
@@ -53,8 +56,8 @@ body {
         #login, #log_out {
             height: 19px;
             color: #0680FC;
-            font-family: "Open Sans";
-            font-size: 13px;	
+            font-family: "Open Sans", sans-serif;
+            font-size: 13px;
             line-height: 19px;
         }
     }
