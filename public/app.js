@@ -207,7 +207,7 @@
                     url: '/widgets',
                     parent: 'index',
                     abstract: true,
-                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view style="height: 100%"></div>'
+                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view></div>'
                 })
                 .state('widgets.arguments', {
                     url: '/topics/:topicId/arguments',
