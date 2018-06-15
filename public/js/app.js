@@ -230,6 +230,30 @@
                         }
                     }]
                 })
+                .state('widgets.partnerArguments', {
+                    url: '/partners/:partnerId/topics/:sourcePartnerObjectId/arguments',
+                    parent: 'widgets',
+                    resolve: {
+                        /* @ngInject */
+                        TopicResolve: function ($http, $state, $stateParams, sLocation) {
+                            var path = sLocation.getAbsoluteUrlApi(
+                                '/api/partners/:partnerId/topics/:sourcePartnerObjectId',
+                                $stateParams
+                            );
+                            return $http
+                                .get(path)
+                                .then(function(res){
+                                    return res.data.data;
+                                });
+                        }
+                    },
+                    controller: ['$state', '$stateParams', 'TopicResolve', function($state, $stateParams, TopicResolve) {
+                        $state.go('widgets.arguments', {
+                            topicId: TopicResolve.id,
+                            widgetId: $stateParams.widgetId
+                        });
+                    }]
+                })
                 .state('widgets.arguments', {
                     url: '/topics/:topicId/arguments',
                     parent: 'widgets',
@@ -238,7 +262,7 @@
                 .state('widgets.authCallback', { // Callback page for the "popup" style (facebook, google) authentication flow.
                     url: '/auth/callback',
                     parent: 'widgets',
-                    template: '<h1>Working...</h1>',
+                    template: '<h1>Redirecting...</h1>',
                     controller: ['$window', function ($window) {
                         $window.opener.postMessage({status: 'success'}, $window.origin);
                     }]
