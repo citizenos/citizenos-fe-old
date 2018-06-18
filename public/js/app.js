@@ -7,7 +7,8 @@
     module
         .constant('cosConfig', {
             api: {
-                baseUrl: 'https://citizenos-citizenos-api-test2.herokuapp.com' // FIXME: Environment based & think of new better testenv url that FB has not blocked
+                xbaseUrl: 'https://citizenos-citizenos-api-test2.herokuapp.com', // FIXME: Environment based & think of new better testenv url that FB has not blocked
+                baseUrl: 'https://dev.api.citizenos.com:3003' // FIXME: Environment based & think of new better testenv url that FB has not blocked
             },
             language: {
                 default: 'en',
@@ -47,7 +48,6 @@
 
     module
         .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
-
             var langReg = Object.keys(cosConfig.language.list).join('|');
 
             $locationProvider.html5Mode({
@@ -208,17 +208,22 @@
                     parent: 'index',
                     abstract: true,
                     templateUrl: '/views/layouts/widget.html',
-                    controller: ['$scope', '$window', '$document', '$stateParams', '$interval', '$log', function ($scope, $window, $document, $stateParams, $interval, $log) {
+                    controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log) {
                         if ($window.self !== $window.parent) { // Inside iframe
                             var heightPrev;
                             var interval = $interval(function () {
                                 var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight - ($document[0].getElementById('widget_header').scrollHeight);
+                                var lightbox = document.getElementById('root_lightbox');
+                                if (lightbox && lightbox.scrollHeight) {
+                                    heightCurrent = Math.max(heightCurrent, lightbox.scrollHeight);
+                                }
+
                                 if (heightPrev !== heightCurrent) {
                                     heightPrev = heightCurrent;
                                     var msg = {citizenos: {}};
                                     msg.citizenos['widgets.arguments'] = {};
                                     msg.citizenos['widgets.arguments'][$stateParams.widgetId] = {
-                                        height: heightCurrent + 'px'
+                                        height: heightCurrent
                                     };
                                     $window.top.postMessage(msg, '*');
                                 }
@@ -226,6 +231,24 @@
 
                             $scope.$on('$destroy', function () {
                                 interval.cancel();
+                            });
+
+                            $rootScope.$on('ngDialog.opened', function () {
+                                // If widgets are in iframe, we should inform about dialog positon for parent page to scroll to the right place
+                                if ($window.self !== $window.parent) {
+                                    var dialogElement = document.getElementById('lightbox');
+                                    var dialogElementPosition = dialogElement.getBoundingClientRect();
+
+                                    var msg = {citizenos: {}};
+                                    msg.citizenos['widgets.arguments'] = {};
+                                    msg.citizenos['widgets.arguments'][$stateParams.widgetId] = {
+                                        overlay: {
+                                            top: dialogElementPosition.top
+                                        },
+                                        height: document.getElementById('root_lightbox').scrollHeight
+                                    };
+                                    $window.top.postMessage(msg, '*');
+                                }
                             });
                         }
                     }]
@@ -242,12 +265,12 @@
                             );
                             return $http
                                 .get(path)
-                                .then(function(res){
+                                .then(function (res) {
                                     return res.data.data;
                                 });
                         }
                     },
-                    controller: ['$state', '$stateParams', 'TopicResolve', function($state, $stateParams, TopicResolve) {
+                    controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
                         $state.go('widgets.arguments', {
                             topicId: TopicResolve.id,
                             widgetId: $stateParams.widgetId

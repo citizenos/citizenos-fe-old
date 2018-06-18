@@ -166,7 +166,6 @@
                 .state('index', {
                     url: '/{language:' + langReg + '}',
                     abstract: true,
-                    template: '<div ui-view style="height: 100%"></div>',
                     resolve: {
                         /* @ngInject */
                         sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {

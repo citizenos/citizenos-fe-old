@@ -45,10 +45,11 @@ angular
         $scope.app.doShowLogin = function () {
             $log.debug('AppCtrl.doShowLogin()');
 
-            ngDialog.open({
-                template: '/views/modals/login.html',
-                scope: $scope
-            });
+            ngDialog
+                .open({
+                    template: '/views/modals/login.html',
+                    scope: $scope
+                });
         };
 
         $scope.app.doShowMyAccount = function () {
