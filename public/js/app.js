@@ -207,7 +207,7 @@
                     parent: 'index',
                     abstract: true,
                     templateUrl: '/views/layouts/widget.html',
-                    controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log) {
+                    controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', 'ngDialog', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log, ngDialog) {
                         if ($window.self !== $window.parent) { // Inside iframe
                             var heightPrev;
                             var interval = $interval(function () {
@@ -249,6 +249,12 @@
                                     $window.top.postMessage(msg, '*');
                                 }
                             });
+
+                            $scope.doShowWidgetHowItWorks = function() {
+                                ngDialog.open({
+                                    template: '/views/modals/widgets_how_it_works.html'
+                                });
+                            }
                         }
                     }]
                 })
