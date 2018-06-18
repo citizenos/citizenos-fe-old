@@ -7,8 +7,7 @@
     module
         .constant('cosConfig', {
             api: {
-                xbaseUrl: 'https://citizenos-citizenos-api-test2.herokuapp.com', // FIXME: Environment based & think of new better testenv url that FB has not blocked
-                baseUrl: 'https://dev.api.citizenos.com:3003' // FIXME: Environment based & think of new better testenv url that FB has not blocked
+                baseUrl: 'https://citizenos-citizenos-api-test2.herokuapp.com' // FIXME: Environment based & think of new better testenv url that FB has not blocked
             },
             language: {
                 default: 'en',
