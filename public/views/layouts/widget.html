@@ -20,13 +20,16 @@
             <div ng-if="!app.user.loggedIn" id="login" class="table_cell">
                 <div class="blue_button" ng-click="app.doShowLogin()" translate="DEFAULT.WIDGET.LNK_LOG_IN_REGISTER"></div>
             </div>
-            <div id="log_out" class="table_cell" ng-if="app.user.loggedIn" >
+            <div id="log_out" class="table_cell" ng-if="app.user.loggedIn">
                 <div class="blue_link" ng-click="app.doWidgetLogout();">
                     <span translate="DEFAULT.WIDGET.LNK_LOG_OUT">Log out</span>
                 </div>
             </div>
             <div class="table_cell">
-                <div class="white_button" ng-click="doShowWidgetHowItWorks()" translate="DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK">How does it work?</div>
+                <div class="white_button" ng-click="doShowWidgetHowItWorks()">
+                    <span ng-if="wWidth >= 800" translate="DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK">How does it work?</span>
+                    <span ng-if="wWidth < 800">?</span>
+                </div>
             </div>
         </div>
     </div>
