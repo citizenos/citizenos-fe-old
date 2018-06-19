@@ -271,7 +271,7 @@
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
     "LANGUAGES_MODAL_HEADING": "Vali keel",
     "WIDGETS_HOW_DOES_IT_WORK_HEADING": "@:DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK",
-    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Lisa oma argument, et ühineda aruteluga"
+    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Lisa argument, et ühineda aruteluga"
   },
   "TXT_TOPIC_CATEGORY_ALL": "iga kategooria",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Äri ja tööstus",
