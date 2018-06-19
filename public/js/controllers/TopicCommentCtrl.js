@@ -231,5 +231,14 @@ angular
             }
             $scope.gotToComment(parent.id, parent.version)
         };
+
+        $scope.doAddComment = function () {
+            if ($scope.app.user.loggedIn) {
+                $scope.app.scrollToAnchor('post_argument_wrap');
+                $scope.focusArgumentSubject = true;
+            } else {
+                $scope.app.doShowLogin();
+            }
+        };
     }
     ]);

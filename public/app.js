@@ -166,7 +166,6 @@
                 .state('index', {
                     url: '/{language:' + langReg + '}',
                     abstract: true,
-                    template: '<div ui-view style="height: 100%"></div>',
                     resolve: {
                         /* @ngInject */
                         sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {
@@ -207,7 +206,7 @@
                     url: '/widgets',
                     parent: 'index',
                     abstract: true,
-                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view style="height: 100%"></div>'
+                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view></div>'
                 })
                 .state('widgets.arguments', {
                     url: '/topics/:topicId/arguments',
@@ -689,54 +688,6 @@
                     url: '/consent',
                     parent: 'partners',
                     templateUrl: '/views/partners_consent.html'
-                })
-                .state('_templates', { // TODO: From here below are the template path relevant in development
-                    url: '/_templates',
-                    abstract: true,
-                    parent: 'main',
-                    template: '<div ui-view></div>'
-                })
-                .state('_templates.topics', {
-                    url: '/my/topics',
-                    parent: '_templates',
-                    templateUrl: '/views/_templates/mytopics.html'
-                })
-                .state('_templates.topics.topicId', {
-                    url: '/:topicId',
-                    parent: '_templates.topics',
-                    templateUrl: '/views/_templates/mytopics_view.html'
-                })
-                .state('_templates.topics.topicId.settings', {
-                    url: '/settings?tab',
-                    parent: '_templates.topics.topicId',
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        $scope.tabSelected = 'settings';
-                        var dialog = ngDialog.open({
-                            template: '/views/_templates/modals/topic_settings.html',
-                            data: $stateParams,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                        dialog.closePromise.then(function (data) {
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
-                            }
-                        });
-                    }]
-                })
-                .state('_templates.topics.view', {
-                    url: '/topics/:topicId',
-                    parent: '_templates',
-                    templateUrl: '/views/_templates/topics_topicId.html'
-                })
-                .state('_templates.groups', {
-                    url: '/groups',
-                    parent: '_templates',
-                    templateUrl: '/views/_templates/groups.html'
-                })
-                .state('cos_input_test', {
-                    url: '/cos_input_test',
-                    parent: 'main',
-                    templateUrl: '/views/_templates/cos_input_test.html'
                 });
 
             $translateProvider.useStaticFilesLoader({

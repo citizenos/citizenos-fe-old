@@ -44,7 +44,6 @@
 
     module
         .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
-
             var langReg = Object.keys(cosConfig.language.list).join('|');
 
             $locationProvider.html5Mode({
@@ -205,17 +204,22 @@
                     parent: 'index',
                     abstract: true,
                     templateUrl: '/views/layouts/widget.html',
-                    controller: ['$scope', '$window', '$document', '$stateParams', '$interval', '$log', function ($scope, $window, $document, $stateParams, $interval, $log) {
+                    controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', 'ngDialog', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log, ngDialog) {
                         if ($window.self !== $window.parent) { // Inside iframe
                             var heightPrev;
                             var interval = $interval(function () {
-                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight - ($document[0].getElementById('widget_header').scrollHeight);
+                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight;
+                                var lightbox = document.getElementById('root_lightbox');
+                                if (lightbox && lightbox.scrollHeight) {
+                                    heightCurrent = Math.max(heightCurrent, lightbox.scrollHeight);
+                                }
+
                                 if (heightPrev !== heightCurrent) {
                                     heightPrev = heightCurrent;
                                     var msg = {citizenos: {}};
                                     msg.citizenos['widgets.arguments'] = {};
                                     msg.citizenos['widgets.arguments'][$stateParams.widgetId] = {
-                                        height: heightCurrent + 'px'
+                                        height: heightCurrent
                                     };
                                     $window.top.postMessage(msg, '*');
                                 }
@@ -224,21 +228,61 @@
                             $scope.$on('$destroy', function () {
                                 interval.cancel();
                             });
+
+                            $rootScope.$on('ngDialog.opened', function () {
+                                // If widgets are in iframe, we should inform about dialog positon for parent page to scroll to the right place
+                                if ($window.self !== $window.parent) {
+                                    var dialogElement = document.getElementById('lightbox');
+                                    var dialogElementPosition = dialogElement.getBoundingClientRect();
+
+                                    var msg = {citizenos: {}};
+                                    msg.citizenos['widgets.arguments'] = {};
+                                    msg.citizenos['widgets.arguments'][$stateParams.widgetId] = {
+                                        overlay: {
+                                            top: dialogElementPosition.top
+                                        },
+                                        height: document.getElementById('root_lightbox').scrollHeight
+                                    };
+                                    $window.top.postMessage(msg, '*');
+                                }
+                            });
+
+                            $scope.doShowWidgetHowItWorks = function() {
+                                ngDialog.open({
+                                    template: '/views/modals/widgets_how_it_works.html'
+                                });
+                            }
                         }
+                    }]
+                })
+                .state('widgets.partnerArguments', {
+                    url: '/partners/:partnerId/topics/:sourcePartnerObjectId/arguments',
+                    parent: 'widgets',
+                    resolve: {
+                        /* @ngInject */
+                        TopicResolve: function ($http, $state, $stateParams, sLocation) {
+                            var path = sLocation.getAbsoluteUrlApi(
+                                '/api/partners/:partnerId/topics/:sourcePartnerObjectId',
+                                $stateParams
+                            );
+                            return $http
+                                .get(path)
+                                .then(function (res) {
+                                    return res.data.data;
+                                });
+                        }
+                    },
+                    controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
+                        $state.go('widgets.arguments', {
+                            topicId: TopicResolve.id,
+                            widgetId: $stateParams.widgetId
+                        });
                     }]
                 })
                 .state('widgets.arguments', {
                     url: '/topics/:topicId/arguments',
                     parent: 'widgets',
                     template: '<div class="comments_section"><div class="comments_content"><div ng-include="\'views/topics_topicId_comments.html\'"></div></div></div>'
-                })
-                .state('widgets.authCallback', { // Callback page for the "popup" style (facebook, google) authentication flow.
-                    url: '/auth/callback',
-                    parent: 'widgets',
-                    template: '<h1>Working...</h1>',
-                    controller: ['$window', function ($window) {
-                        $window.opener.postMessage({status: 'success'}, $window.origin);
-                    }]
                 })
                 .state('error', {
                     url: '/error',
@@ -708,53 +752,12 @@
                     parent: 'partners',
                     templateUrl: '/views/partners_consent.html'
                 })
-                .state('_templates', { // TODO: From here below are the template path relevant in development
-                    url: '/_templates',
-                    abstract: true,
-                    parent: 'main',
-                    template: '<div ui-view></div>'
-                })
-                .state('_templates.topics', {
-                    url: '/my/topics',
-                    parent: '_templates',
-                    templateUrl: '/views/_templates/mytopics.html'
-                })
-                .state('_templates.topics.topicId', {
-                    url: '/:topicId',
-                    parent: '_templates.topics',
-                    templateUrl: '/views/_templates/mytopics_view.html'
-                })
-                .state('_templates.topics.topicId.settings', {
-                    url: '/settings?tab',
-                    parent: '_templates.topics.topicId',
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        $scope.tabSelected = 'settings';
-                        var dialog = ngDialog.open({
-                            template: '/views/_templates/modals/topic_settings.html',
-                            data: $stateParams,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                        dialog.closePromise.then(function (data) {
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
-                            }
-                        });
+                .state('authCallback', { // Callback page for the "popup" style (facebook, google) authentication flow.
+                    url: '/auth/callback',
+                    template: '<h1>Redirecting...</h1>',
+                    controller: ['$window', function ($window) {
+                        $window.opener.postMessage({status: 'success'}, $window.origin);
                     }]
-                })
-                .state('_templates.topics.view', {
-                    url: '/topics/:topicId',
-                    parent: '_templates',
-                    templateUrl: '/views/_templates/topics_topicId.html'
-                })
-                .state('_templates.groups', {
-                    url: '/groups',
-                    parent: '_templates',
-                    templateUrl: '/views/_templates/groups.html'
-                })
-                .state('cos_input_test', {
-                    url: '/cos_input_test',
-                    parent: 'main',
-                    templateUrl: '/views/_templates/cos_input_test.html'
                 });
 
             $translateProvider.useStaticFilesLoader({

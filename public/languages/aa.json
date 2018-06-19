@@ -269,7 +269,9 @@
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "crwdns10414:0crwdne10414:0",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "crwdns11032:0crwdne11032:0",
     "ACTIVITY_MODAL_HEADING": "crwdns11010:0crwdne11010:0",
-    "LANGUAGES_MODAL_HEADING": "crwdns11053:0crwdne11053:0"
+    "LANGUAGES_MODAL_HEADING": "crwdns11053:0crwdne11053:0",
+    "WIDGETS_HOW_DOES_IT_WORK_HEADING": "crwdns11057:0crwdne11057:0",
+    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "crwdns11058:0crwdne11058:0"
   },
   "TXT_TOPIC_CATEGORY_ALL": "crwdns10416:0crwdne10416:0",
   "TXT_TOPIC_CATEGORY_BUSINESS": "crwdns10417:0crwdne10417:0",
@@ -324,7 +326,8 @@
     },
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "crwdns11055:0crwdne11055:0",
-      "LNK_LOG_OUT": "crwdns11056:0crwdne11056:0"
+      "LNK_LOG_OUT": "crwdns11056:0crwdne11056:0",
+      "BTN_HOW_DOES_IT_WORK": "crwdns11059:0crwdne11059:0"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "crwdns10455:0crwdne10455:0",

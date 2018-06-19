@@ -1,9 +1,18 @@
 body {
     background: #ffffff;
+    height: initial !important;
+    min-height: initial !important;
 }
 
 #root_lightbox {
     background-color: rgba(200, 200, 200, 0.6);
+
+    #lightbox {
+        top: 10px;
+        -webkit-transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+    }
 }
 
 .comments_section {
@@ -30,8 +39,12 @@ body {
         display: table;
         position: absolute;
         top: 0;
-        right: 20px;
+        right: 10px;
         height: 60px;
+
+        .table_cell {
+            padding-right: 10px;
+        }
 
         .profile_image_wrapper {
             width: 28px;
@@ -50,7 +63,6 @@ body {
             font-size: 14px;
             font-weight: bold;
             line-height: 19px;
-            padding-right: 10px;
         }
 
         #login, #log_out {
@@ -59,6 +71,10 @@ body {
             font-family: "Open Sans", sans-serif;
             font-size: 13px;
             line-height: 19px;
+        }
+
+        a {
+            color: #0680FC;
         }
     }
 }

@@ -269,7 +269,9 @@
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_EVENT_DELETE_CONFIRM_BTN_YES": "@:BTN_YES",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
-    "LANGUAGES_MODAL_HEADING": "Выберите язык"
+    "LANGUAGES_MODAL_HEADING": "Выберите язык",
+    "WIDGETS_HOW_DOES_IT_WORK_HEADING": "@:DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK",
+    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Чтобы принять участие в обсуждении, добавьте ваш аргумент"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Все существующие",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Бизнес и промышленность",
@@ -324,7 +326,8 @@
     },
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
-      "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT"
+      "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
+      "BTN_HOW_DOES_IT_WORK": "Как это работает?"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мои темы",

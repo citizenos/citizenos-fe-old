@@ -4,7 +4,6 @@
     <div id="widget_user">
         <div id="account_area" class="table_row">
             <div ng-if="app.user.loggedIn" class="profile_image_wrapper">
-                <!--div class="profile_moon sprite sprite-icon-certified-google2x"></div-->
                 <div id="widget_user_image" class="account_picture">
                     <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">
                     <div class="profile_image_filler" ng-if="!app.user.imageUrl">
@@ -15,18 +14,24 @@
                     </div>
                 </div>
             </div>
-            <div ng-if="app.user.loggedIn"  id="user_name" class="table_cell">
+            <div ng-if="app.user.loggedIn" id="user_name" class="table_cell">
                 <div class="section_header bold_white">{{app.user.name}}</div>
             </div>
-            <div id="login" class="table_cell" ng-if="!app.user.loggedIn" ng-click="app.doShowLogin()">
-                <a href="#" translate="DEFAULT.WIDGET.LNK_LOG_IN_REGISTER"></a>
+            <div ng-if="!app.user.loggedIn" id="login" class="table_cell">
+                <div class="blue_button" ng-click="app.doShowLogin()" translate="DEFAULT.WIDGET.LNK_LOG_IN_REGISTER"></div>
             </div>
-            <div id="log_out" class="table_cell" ng-if="app.user.loggedIn" >
-                <a ng-click="app.doWidgetLogout();" class="section_item" href="">
+            <div id="log_out" class="table_cell" ng-if="app.user.loggedIn">
+                <div class="blue_link" ng-click="app.doWidgetLogout();">
                     <span translate="DEFAULT.WIDGET.LNK_LOG_OUT">Log out</span>
-                </a>
+                </div>
+            </div>
+            <div class="table_cell">
+                <div class="white_button" ng-click="doShowWidgetHowItWorks()">
+                    <span ng-if="wWidth >= 800" translate="DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK">How does it work?</span>
+                    <span ng-if="wWidth < 800">?</span>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div ui-view style="height: 100%"></div>
+<div ui-view></div>

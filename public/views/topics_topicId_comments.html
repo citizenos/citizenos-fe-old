@@ -9,7 +9,6 @@
                 </div>
                 <div class="data_right">
                     <div cos-dropdown class="classic_dropdown borderless_dropdown">
-
                         <div class="dropdown_selection">
                             <div class="dropdown_text data_item">
                                 {{'VIEWS.TOPICS_TOPICID.TXT_COMMENT_ORDER_BY_' + topicComments.orderBy | uppercase | translate}}
@@ -33,7 +32,7 @@
 
                     </div>
 
-                    <div class="blue_button" ng-click="(app.user.loggedIn && app.scrollToAnchor('post_argument_wrap')) || !app.user.loggedIn && app.doShowLogin()" translate="VIEWS.TOPICS_TOPICID.BTN_ADD_ARGUMENT">Add argument</div>
+                    <div class="blue_button" ng-click="doAddComment()" translate="VIEWS.TOPICS_TOPICID.BTN_ADD_ARGUMENT">Add argument</div>
 
                 </div>
             </div>
@@ -132,7 +131,7 @@
                             <form cos-disabled="!app.user.loggedIn" name="postArgument">
                                 <input id="comment_edit_subject" ng-if="comment.showEdit" ng-keyup="commentSubjectLengthCheck(comment, comment.editSubject)" translate
                                        translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_SUBJECT" ng-model="comment.editSubject" class="gray_borders"
-                                       ng-class="{'error_input': comment.errors.subject}" maxlength="{{maxLengthSubject}}">
+                                       ng-class="{'error_input': comment.errors.subject}" maxlength="{{maxLengthSubject}}" focus-if>
 
                                 <label for="comment_edit_subject" class="error_label" ng-if="comment.errors.subject">
                                     <div class="table_cell">
@@ -314,7 +313,7 @@
                         <form cos-disabled="!app.user.loggedIn" name="argumentConReply">
                             <textarea id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-keyup="commentTextLengthCheck(form, form.editText)"
                                   ng-class="{'error_input': form.errors.text}"
-                                  placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" maxlength="{{maxLengthText}}"></textarea>
+                                  placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" maxlength="{{maxLengthText}}" focus-if></textarea>
                             <label for="argument_con_reply_text" class="error_label" ng-if="form.errors.text">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -418,7 +417,7 @@
                                 </div>
                                 <textarea id="reply_edit" class="gray_borders" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_REPLY"
                                           ng-keyup="commentTextLengthCheck(reply, reply.editText)" ng-class="{'error_input': reply.errors.text}" placeholder="Edit your reply here..."
-                                          ng-model="reply.editText" maxlength="{{maxLengthText}}"></textarea>
+                                          ng-model="reply.editText" maxlength="{{maxLengthText}}" focus-if></textarea>
                                 <label for="reply_edit" class="error_label" ng-if="reply.errors.text">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -576,7 +575,7 @@
                             <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_COMMENT">You need to <div class="blue_link">log in</div> to comment</h3>
                         </div>
                         <form cos-disabled="!app.user.loggedIn" name="argumentReplyForm">
-                            <textarea id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-keyup="commentTextLengthCheck(form, form.text)" ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" required maxlength="{{maxLengthText}}"></textarea>
+                            <textarea id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-keyup="commentTextLengthCheck(form, form.text)" ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" required maxlength="{{maxLengthText}}" focus-if></textarea>
                             <label for="argument_pro_reply_text" class="error_label" ng-if="form.errors.text">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -604,7 +603,7 @@
             <form cos-disabled="!app.user.loggedIn" name="argumentForm">
                 <div class="line lightest_line" ng-if="topicComments.rows.length"></div>
                 <input id="argument_subject" ng-model="form.subject" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}"
-                       class="gray_borders" ng-class="{'error_input': form.errors.subject}" required ng-keyup="commentSubjectLengthCheck(form, form.subject)" maxlength="{{maxLengthSubject}}">
+                       class="gray_borders" ng-class="{'error_input': form.errors.subject}" required ng-keyup="commentSubjectLengthCheck(form, form.subject)" maxlength="{{maxLengthSubject}}" focus-if="focusArgumentSubject">
                 <label for="argument_subject" class="error_label" ng-if="form.errors.subject">
                     <div class="table_cell">
                         <div class="sprite sprite-icon-inputfield-error2x"></div>

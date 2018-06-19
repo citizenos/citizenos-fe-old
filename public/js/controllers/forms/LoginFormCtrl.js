@@ -111,7 +111,7 @@ angular
                     partnerId: partnerId
                 },
                 {
-                    redirectSuccess: sLocation.getAbsoluteUrl('/widgets/auth/callback')
+                    redirectSuccess: sLocation.getAbsoluteUrl('/auth/callback')
                 }
             );
 
