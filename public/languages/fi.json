@@ -327,7 +327,7 @@
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
-      "BTN_HOW_DOES_IT_WORK": "How does it work?"
+      "BTN_HOW_DOES_IT_WORK": "Miten se toimii?"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "omat aiheeni",
