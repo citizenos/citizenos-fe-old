@@ -116,7 +116,7 @@
     "TOPIC_DELETE_REPLY_TXT_ARE_YOU_SURE": "Êtes-vous sûr de vouloir supprimer cette réponse ? Vous ne pouvez pas annuler cette action.",
     "TOPIC_DELETE_REPLY_BTN_NO": "@:MODALS.TOPIC_COMMENT_REPORT_BTN_NO",
     "TOPIC_DELETE_REPLY_BTN_YES": "OUI, SUPPRIMER CETTE RÉPONSE",
-    "LOGIN_HEADING": "Connexion / Inscription",
+    "LOGIN_HEADING": "Log in / Register to Citizen OS",
     "LOGIN_BTN_LOGIN_FACEBOOK": "Connexion Facebook",
     "LOGIN_BTN_LOGIN_GOOGLE": "Connexion Google",
     "LOGIN_BTN_LOGIN_ESTEID": "Connexion avec ID-card / Mobiil-ID",
