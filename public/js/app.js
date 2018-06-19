@@ -211,7 +211,7 @@
                         if ($window.self !== $window.parent) { // Inside iframe
                             var heightPrev;
                             var interval = $interval(function () {
-                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight - ($document[0].getElementById('widget_header').scrollHeight);
+                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight;
                                 var lightbox = document.getElementById('root_lightbox');
                                 if (lightbox && lightbox.scrollHeight) {
                                     heightCurrent = Math.max(heightCurrent, lightbox.scrollHeight);
