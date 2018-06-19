@@ -271,7 +271,7 @@
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
     "LANGUAGES_MODAL_HEADING": "Valitse kielesi",
     "WIDGETS_HOW_DOES_IT_WORK_HEADING": "@:DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK",
-    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "You can participate in a discussion by adding your arguments"
+    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Voit osallistua keskusteluun lisäämällä kannanotoja"
   },
   "TXT_TOPIC_CATEGORY_ALL": "kaikki luokat",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Kauppa ja teollisuus",
