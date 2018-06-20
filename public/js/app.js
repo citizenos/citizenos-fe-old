@@ -250,7 +250,7 @@
                                 }
                             });
 
-                            $scope.doShowWidgetHowItWorks = function() {
+                            $scope.doShowWidgetHowItWorks = function () {
                                 ngDialog.open({
                                     template: '/views/modals/widgets_how_it_works.html'
                                 });
@@ -286,6 +286,11 @@
                     url: '/topics/:topicId/arguments',
                     parent: 'widgets',
                     template: '<div class="comments_section"><div class="comments_content"><div ng-include="\'views/topics_topicId_comments.html\'"></div></div></div>'
+                })
+                .state('widgets.activities', {
+                    url: '/activities',
+                    parent: 'widgets',
+                    templateUrl: '/views/widgets/activities.html'
                 })
                 .state('error', {
                     url: '/error',

@@ -88,8 +88,9 @@ angular
 
             if (keys.indexOf('origin') > -1) {
                 if (keys.indexOf('object') > -1 && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === activity.data.origin['@type']
-                    || activity.data.object['@type'] === activity.data.origin['@type'])) {} else if (Array.isArray(activity.data.origin)) {
-                        stringparts.push(activity.data.origin[0]['@type']);
+                    || activity.data.object['@type'] === activity.data.origin['@type'])) {
+                } else if (Array.isArray(activity.data.origin)) {
+                    stringparts.push(activity.data.origin[0]['@type']);
                 } else {
                     stringparts.push(activity.data.origin['@type']);
                 }
@@ -123,20 +124,44 @@ angular
         sActivity.getTopicActivities = function (topicId, offsetNr, limitNr) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/activities'.replace(':topicId', topicId));
 
-            return $http.get(path, {params: {
-                offset: offsetNr,
-                limit: limitNr}}).then(success, defaultError);
-        }
+            return $http
+                .get(path, {
+                    params: {
+                        offset: offsetNr,
+                        limit: limitNr
+                    }
+                })
+                .then(success, defaultError);
+        };
 
         sActivity.getActivities = function (offsetNr, limitNr, filter) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/activities');
-            var paramsObj = {offset: offsetNr,
-                limit: limitNr};
+            var paramsObj = {
+                offset: offsetNr,
+                limit: limitNr
+            };
             if (filter) {
                 paramsObj.include = filter;
             }
 
-            return $http.get(path, {params: paramsObj}).then(success, defaultError);
+            return $http
+                .get(path, {params: paramsObj})
+                .then(success, defaultError);
+        };
+
+        sActivity.getActivitiesUnauth = function (offsetNr, limitNr, filter) {
+            var path = sLocation.getAbsoluteUrlApi('/api/activities');
+            var paramsObj = {
+                offset: offsetNr,
+                limit: limitNr
+            };
+            if (filter) {
+                paramsObj.include = filter;
+            }
+
+            return $http
+                .get(path, {params: paramsObj})
+                .then(success, defaultError);
         };
 
         var getCategoryTranslationKeys = function (catInput) {
@@ -157,7 +182,7 @@ angular
             activity.values.fieldName = fieldName;
             var previousValue = activity.data.origin[fieldName];
             var newValue = activity.data.resultObject[fieldName];
-            var previousValueKey = null
+            var previousValueKey = null;
             var newValueKey = null;
 
             if (activity.data.origin['@type'] === 'Topic') {
@@ -195,7 +220,7 @@ angular
                 if (activity.data.origin['@type'] === 'CommentVote') {
                     if (fieldName === 'value') {
                         if (previousValue === 0 || previousValue) {
-                            
+
                             if (previousValue === 1) {
                                 previousValue = 'up';
                             } else if (previousValue === -1) {
@@ -214,7 +239,7 @@ angular
                             } else if (newValue === 0) {
                                 newValue = 'remove';
                             }
-                            
+
                             newValueKey = 'ACTIVITY_FEED.ACTIVITY_COMMENTVOTE_FIELD_VALUE_' + newValue.toUpperCase();
                         }
                     }
@@ -222,23 +247,23 @@ angular
             }
             if (previousValueKey) {
                 $translate(previousValueKey)
-                .then(function (prev) {
-                    activity.values.previousValue = prev;
-                    if (typeof prev === 'object') {
-                        activity.values.previousValue = Object.values(prev).join(';');
-                    }
-                });
+                    .then(function (prev) {
+                        activity.values.previousValue = prev;
+                        if (typeof prev === 'object') {
+                            activity.values.previousValue = Object.values(prev).join(';');
+                        }
+                    });
             } else {
                 activity.values.previousValue = previousValue;
             }
             if (newValueKey) {
                 $translate(newValueKey)
-                .then(function (newVal) {
-                    activity.values.newValue = newVal;
-                    if (typeof newVal === 'object') {                        
-                        activity.values.newValue = Object.values(newVal).join(';');
-                    }
-                });
+                    .then(function (newVal) {
+                        activity.values.newValue = newVal;
+                        if (typeof newVal === 'object') {
+                            activity.values.newValue = Object.values(newVal).join(';');
+                        }
+                    });
             } else {
                 activity.values.newValue = newValue;
             }
@@ -299,7 +324,7 @@ angular
                 dataobject = dataobject[0];
             }
 
-            if (dataobject['@type'] === 'Group' ) {
+            if (dataobject['@type'] === 'Group') {
                 return dataobject.name;
             } else if (dataobject.groupName) {
                 return dataobject.groupName;
@@ -366,13 +391,13 @@ angular
                 values.description = getActivityDescription(activity);
                 values.groupName = getActivityGroupName(activity);
                 values.attachmentName = getActivityAttachmentName(activity);
-                getActivityUserLevel(activity, values); 
+                getActivityUserLevel(activity, values);
 
                 var dataobject = activity.data.object;
                 if (Array.isArray(dataobject)) {
                     dataobject = dataobject[0];
                 }
-                
+
                 if (dataobject['@type'] === 'CommentVote' && activity.data.type === 'Create') {
                     var str = 'ACTIVITY_FEED.ACTIVITY_COMMENTVOTE_FIELD_VALUE_'
                     var val = 'UP';
@@ -381,7 +406,7 @@ angular
                     } else if (dataobject.value === 0) {
                         val = 'REMOVE';
                     }
-                    $translate(str+val).then(function (value) {
+                    $translate(str + val).then(function (value) {
                         values.reaction = value;
                     });
                 }
@@ -392,6 +417,37 @@ angular
             }
 
             return activity;
+        };
+
+        sActivity.showActivityDescription = function (activity) {
+            if (activity.data && activity.data.object && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Comment' || activity.data.object['@type'] === 'Comment' || activity.data.object.text)) {
+                return true;
+            }
+
+            if (activity.data && activity.data.target && activity.data.target['@type'] === 'Comment') {
+                return true;
+            }
+
+            return false;
+        };
+
+        sActivity.showActivityUpdateVersions = function (activity) {
+            if (activity.data.type === 'Update') {
+                if (activity.data.result && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1 || !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1)) {
+                    return false;
+                }
+
+                if (activity.data.object['@type'] === 'CommentVote' && activity.data.type === 'Update' && activity.data.resultObject && activity.data.resultObject.value === 0) {
+                    return false;
+                }
+
+                if (activity.data.result && !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'TopicMemberUser' && activity.data.result[0].path.indexOf('level') > -1 && activity.data.result[0].value === 'none') {
+                    return false;
+                }
+
+                return true;
+            }
+            return false;
         };
 
         sActivity.handleActivityRedirect = function (activity) {
@@ -416,7 +472,7 @@ angular
                         stateName = 'topics.view';
                         params.topicId = activity.data.target.topicId || activity.data.target.id;
                         params.commentId = object.commentId || object.id;
-                       // hash = object.commentId || object.id;
+                        // hash = object.commentId || object.id;
                     }
                 }
             } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteList') {
@@ -429,7 +485,7 @@ angular
             }
 
             if (stateName) {
-              //  ngDialog.closeAll();
+                //  ngDialog.closeAll();
                 var link = $state.href(stateName, params);
                 if (hash) {
                     link = link + '#' + hash;
