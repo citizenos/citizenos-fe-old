@@ -752,16 +752,8 @@
                     templateUrl: '/views/widgets/activities.html',
                     resolve: {
                         /* @ngInject */
-                        ActivitiesResolve: function ($http, $stateParams, sLocation) {
-                            var path = sLocation.getAbsoluteUrlApi(
-                                '/api/activities',
-                                $stateParams
-                            );
-                            return $http
-                                .get(path)
-                                .then(function (res) {
-                                    return res.data.data;
-                                });
+                        ActivitiesResolve: function ($http, $stateParams, sActivity) {
+                            return sActivity.getActivitiesUnauth(0, 100);
                         }
                     },
                     controller: 'ActivitiesWidgetCtrl'
@@ -772,17 +764,8 @@
                     templateUrl: '/views/widgets/activities.html',
                     resolve: {
                         /* @ngInject */
-                        ActivitiesResolve: function ($http, $stateParams, sLocation) {
-                            var path = sLocation.getAbsoluteUrlApi(
-                                '/api/topics/:topicId/activities',
-                                $stateParams
-                            );
-                            return $http
-                                .get(path)
-                                .then(function (res) {
-                                    console.log('ActivitiesResolve', 'widgets.topicActivities', res);
-                                    return res.data.data;
-                                });
+                        ActivitiesResolve: function ($http, $stateParams, sActivity) {
+                            return sActivity.getTopicActivitiesUnauth($stateParams.topicId);
                         }
                     },
                     controller: 'ActivitiesWidgetCtrl'
@@ -793,20 +776,8 @@
                     templateUrl: '/views/widgets/activities.html',
                     resolve: {
                         /* @ngInject */
-                        ActivitiesResolve: function ($http, $stateParams, sLocation) {
-                            var path = sLocation.getAbsoluteUrlApi(
-                                '/api/activities',
-                                $stateParams
-                            );
-                            return $http
-                                .get(path, {
-                                    params: {
-                                        sourcePartnerId: $stateParams.partnerId
-                                    }
-                                })
-                                .then(function (res) {
-                                    return res.data.data;
-                                });
+                        ActivitiesResolve: function ($http, $stateParams, sActivity) {
+                            return sActivity.getActivitiesUnauth(0, 50, null, $stateParams.partnerId);
                         }
                     },
                     controller: 'ActivitiesWidgetCtrl'

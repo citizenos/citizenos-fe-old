@@ -134,6 +134,20 @@ angular
                 .then(success, defaultError);
         };
 
+        sActivity.getTopicActivitiesUnauth = function (topicId, offsetNr, limitNr) {
+            var path = sLocation.getAbsoluteUrlApi('/api/topics/:topicId/activities'.replace(':topicId', topicId));
+
+            return $http
+                .get(path, {
+                    params: {
+                        offset: offsetNr,
+                        limit: limitNr
+                    }
+                })
+                .then(success, defaultError);
+        };
+
+
         sActivity.getActivities = function (offsetNr, limitNr, filter) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/activities');
             var paramsObj = {
@@ -149,11 +163,12 @@ angular
                 .then(success, defaultError);
         };
 
-        sActivity.getActivitiesUnauth = function (offsetNr, limitNr, filter) {
+        sActivity.getActivitiesUnauth = function (offsetNr, limitNr, filter, sourcePartnerId) {
             var path = sLocation.getAbsoluteUrlApi('/api/activities');
             var paramsObj = {
                 offset: offsetNr,
-                limit: limitNr
+                limit: limitNr,
+                sourcePartnerId: sourcePartnerId
             };
             if (filter) {
                 paramsObj.include = filter;
