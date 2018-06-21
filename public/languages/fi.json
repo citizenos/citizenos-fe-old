@@ -116,7 +116,7 @@
     "TOPIC_DELETE_REPLY_TXT_ARE_YOU_SURE": "Haluatko varmasti poistaa tämän vastauksen? Toimenpidettä ei voi peruuttaa.",
     "TOPIC_DELETE_REPLY_BTN_NO": "@:MODALS.TOPIC_COMMENT_REPORT_BTN_NO",
     "TOPIC_DELETE_REPLY_BTN_YES": "KYLLÄ, POISTA TÄMÄ VASTAUS",
-    "LOGIN_HEADING": "Log in / Register to Citizen OS",
+    "LOGIN_HEADING": "Kirjaudu sisään / rekisteröidy Citizen OS:ään",
     "LOGIN_BTN_LOGIN_FACEBOOK": "Kirjaudu sisään Facebook-tililläsi",
     "LOGIN_BTN_LOGIN_GOOGLE": "Kirjaudu sisään Google-tililläsi",
     "LOGIN_BTN_LOGIN_ESTEID": "Kirjaudu sisään henkilökortilla / Mobiil-ID:llä",
