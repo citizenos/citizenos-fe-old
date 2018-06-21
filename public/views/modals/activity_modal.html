@@ -15,27 +15,27 @@
                             <div class="dropdown_text medium" translate="ACTIVITY_FEED.FILTER_{{filter.toUpperCase()}}">
                                 Show all activity ordered by time
                             </div>
-    
+
                             <div class="arrow_holder">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
-    
+
                                     <div class="v_line"></div>
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="dropdown">
-    
+
                             <!-- NO CATEGORY -->
                             <div class="dropdown_item" ng-repeat="(key, filter) in activityfilters" ng-click="filterActivities(filter)">
                                 <div class="item_name medium" translate="ACTIVITY_FEED.FILTER_{{filter.toUpperCase()}}">
                                     Show all activity ordered by time
                                 </div>
                             </div>
-    
+
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -58,7 +58,7 @@
                 <div class="lightbox_section">
                     <div class="activity_wrap modal">
                         <div class="activity_area">
-                            
+
                             <div class="activity_content" ng-repeat="(key, activity) in activities">
 
                                 <div class="left_side">
@@ -68,11 +68,11 @@
                                     </div>
                                     <div class="line_bottom"></div>
                                 </div>
-                                
+
                                 <div class="right_side" ng-click="activityRedirect(activity)">
-                                    <div class="text_box">                    
+                                    <div class="text_box">
                                         <div class="main_text">
-                                            <span translate="{{activity.string}}" translate-values="activity.values"> </span>
+                                            <span translate="{{activity.string}}" translate-values="activity.values">User Tom has added a new argument for topic: HELP.</span>
                                         </div>
                                         <div class="description_area italic">
                                             <span ng-if="showActivityUpdateVersions(activity)">
