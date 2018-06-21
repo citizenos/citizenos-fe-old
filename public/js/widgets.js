@@ -131,16 +131,23 @@
             var argumentsData = event.data.citizenos['widgets'];
             if (argumentsData) {
                 var widgetId = Object.keys(argumentsData)[0];
-                var widgetFrameId = widgetId + '-frame';
+                var widgetElement = document.getElementById(widgetId);
 
+                var widgetFrameId = widgetId + '-frame';
                 var widgetFrame = document.getElementById(widgetFrameId);
+
+                var widgetFrameHeight = widgetElement.getAttribute('data-height') || 'auto';
 
                 if (widgetFrame) {
                     // height change message
                     if (argumentsData[widgetId].height) {
                         widgetFrame.style.visibility = 'visible';
                         widgetFrame.style.width = '100%';
-                        widgetFrame.style.height = argumentsData[widgetId].height + 'px';
+                        if (widgetFrameHeight === 'auto') {
+                            widgetFrame.style.height = argumentsData[widgetId].height + 'px';
+                        } else {
+                            widgetFrame.style.height = widgetFrameHeight;
+                        }
                     }
 
                     // overlay is shown in frame
