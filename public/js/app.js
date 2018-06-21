@@ -202,117 +202,6 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
-                .state('widgets', {
-                    url: '/widgets?widgetId',
-                    parent: 'index',
-                    abstract: true,
-                    templateUrl: '/views/layouts/widget.html',
-                    controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', 'ngDialog', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log, ngDialog) {
-                        if ($window.self !== $window.parent) { // Inside iframe
-                            var heightPrev;
-                            var interval = $interval(function () {
-                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight;
-                                var lightbox = document.getElementById('root_lightbox');
-                                if (lightbox && lightbox.scrollHeight) {
-                                    heightCurrent = Math.max(heightCurrent, lightbox.scrollHeight);
-                                }
-
-                                if (heightPrev !== heightCurrent) {
-                                    heightPrev = heightCurrent;
-                                    var msg = {citizenos: {}};
-                                    msg.citizenos['widgets.arguments'] = {};
-                                    msg.citizenos['widgets.arguments'][$stateParams.widgetId] = {
-                                        height: heightCurrent
-                                    };
-                                    $window.top.postMessage(msg, '*');
-                                }
-                            }, 100);
-
-                            $scope.$on('$destroy', function () {
-                                interval.cancel();
-                            });
-
-                            $rootScope.$on('ngDialog.opened', function () {
-                                // If widgets are in iframe, we should inform about dialog positon for parent page to scroll to the right place
-                                if ($window.self !== $window.parent) {
-                                    var dialogElement = document.getElementById('lightbox');
-                                    var dialogElementPosition = dialogElement.getBoundingClientRect();
-
-                                    var msg = {citizenos: {}};
-                                    msg.citizenos['widgets.arguments'] = {};
-                                    msg.citizenos['widgets.arguments'][$stateParams.widgetId] = {
-                                        overlay: {
-                                            top: dialogElementPosition.top
-                                        },
-                                        height: document.getElementById('root_lightbox').scrollHeight
-                                    };
-                                    $window.top.postMessage(msg, '*');
-                                }
-                            });
-
-                            $scope.doShowWidgetHowItWorks = function () {
-                                ngDialog.open({
-                                    template: '/views/modals/widgets_how_it_works.html'
-                                });
-                            }
-                        }
-                    }]
-                })
-                .state('widgets.partnerArguments', {
-                    url: '/partners/:partnerId/topics/:sourcePartnerObjectId/arguments',
-                    parent: 'widgets',
-                    resolve: {
-                        /* @ngInject */
-                        TopicResolve: function ($http, $state, $stateParams, sLocation) {
-                            var path = sLocation.getAbsoluteUrlApi(
-                                '/api/partners/:partnerId/topics/:sourcePartnerObjectId',
-                                $stateParams
-                            );
-                            return $http
-                                .get(path)
-                                .then(function (res) {
-                                    return res.data.data;
-                                });
-                        }
-                    },
-                    controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
-                        $state.go('widgets.arguments', {
-                            topicId: TopicResolve.id,
-                            widgetId: $stateParams.widgetId
-                        });
-                    }]
-                })
-                .state('widgets.arguments', {
-                    url: '/topics/:topicId/arguments',
-                    parent: 'widgets',
-                    template: '<div class="comments_section"><div class="comments_content"><div ng-include="\'views/topics_topicId_comments.html\'"></div></div></div>'
-                })
-                .state('widgets.activities', {
-                    url: '/activities',
-                    parent: 'widgets',
-                    templateUrl: '/views/widgets/activities.html'
-                })
-                .state('error', {
-                    url: '/error',
-                    parent: 'main',
-                    abstract: true,
-                    template: '<div ui-view style="height: 100%"></div>'
-                })
-                .state('error.401', {
-                    url: '/401',
-                    parent: 'error',
-                    templateUrl: '/views/401.html'
-                })
-                .state('error.403', {
-                    url: '/403',
-                    parent: 'error',
-                    templateUrl: '/views/401.html'
-                })
-                .state('error.404', {
-                    url: '/404',
-                    parent: 'error',
-                    templateUrl: '/views/404.html'
-                })
                 .state('account', {
                     url: '/account',
                     abstract: true,
@@ -760,12 +649,205 @@
                     parent: 'partners',
                     templateUrl: '/views/partners_consent.html'
                 })
+                .state('widgets', {
+                    url: '/widgets?widgetId',
+                    parent: 'index',
+                    abstract: true,
+                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view></div>',
+                    controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', 'ngDialog', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log, ngDialog) {
+                        if ($window.self !== $window.parent) { // Inside iframe
+                            var heightPrev;
+                            var interval = $interval(function () {
+                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight;
+                                var lightbox = document.getElementById('root_lightbox');
+                                if (lightbox && lightbox.scrollHeight) {
+                                    heightCurrent = Math.max(heightCurrent, lightbox.scrollHeight);
+                                }
+
+                                if (heightPrev !== heightCurrent) {
+                                    heightPrev = heightCurrent;
+                                    var msg = {citizenos: {}};
+                                    msg.citizenos['widgets'] = {};
+                                    msg.citizenos['widgets'][$stateParams.widgetId] = {
+                                        height: heightCurrent
+                                    };
+                                    $window.top.postMessage(msg, '*');
+                                }
+                            }, 100);
+
+                            $scope.$on('$destroy', function () {
+                                interval.cancel();
+                            });
+
+                            $rootScope.$on('ngDialog.opened', function () {
+                                // If widgets are in iframe, we should inform about dialog positon for parent page to scroll to the right place
+                                if ($window.self !== $window.parent) {
+                                    var dialogElement = document.getElementById('lightbox');
+                                    var dialogElementPosition = dialogElement.getBoundingClientRect();
+
+                                    var msg = {citizenos: {}};
+                                    msg.citizenos['widgets'] = {};
+                                    msg.citizenos['widgets'][$stateParams.widgetId] = {
+                                        overlay: {
+                                            top: dialogElementPosition.top
+                                        },
+                                        height: document.getElementById('root_lightbox').scrollHeight
+                                    };
+                                    $window.top.postMessage(msg, '*');
+                                }
+                            });
+
+                            $scope.doShowWidgetHowItWorks = function () {
+                                ngDialog.open({
+                                    template: '/views/modals/widgets_how_it_works.html'
+                                });
+                            }
+                        }
+                    }]
+                })
+                .state('widgets.wrapped', {
+                    url: null,
+                    parent: 'widgets',
+                    abstract: true,
+                    templateUrl: '/views/layouts/widget.html'
+                })
+                .state('widgets.wrapped.sourcePartnerObjectId', {
+                    url: '/partners/:partnerId/topics/:sourcePartnerObjectId',
+                    parent: 'widgets',
+                    abstract: true,
+                    template: '<div ui-view></div>',
+                    resolve: {
+                        /* @ngInject */
+                        TopicResolve: function ($http, $state, $stateParams, sLocation) {
+                            var path = sLocation.getAbsoluteUrlApi(
+                                '/api/partners/:partnerId/topics/:sourcePartnerObjectId',
+                                $stateParams
+                            );
+                            return $http
+                                .get(path)
+                                .then(function (res) {
+                                    return res.data.data;
+                                });
+                        }
+                    }
+                })
+                .state('widgets.wrapped.sourcePartnerObjectId.arguments', {
+                    url: '/arguments',
+                    parent: 'widgets.wrapped.sourcePartnerObjectId',
+                    controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
+                        $state.go('widgets.wrapped.arguments', {
+                            topicId: TopicResolve.id,
+                            widgetId: $stateParams.widgetId
+                        });
+                    }]
+                })
+                .state('widgets.wrapped.arguments', {
+                    url: '/topics/:topicId/arguments',
+                    parent: 'widgets.wrapped',
+                    template: '<div class="comments_section"><div class="comments_content"><div ng-include="\'views/topics_topicId_comments.html\'"></div></div></div>'
+                })
+                .state('widgets.activities', {
+                    url: '/activities',
+                    parent: 'widgets',
+                    templateUrl: '/views/widgets/activities.html',
+                    resolve: {
+                        /* @ngInject */
+                        ActivitiesResolve: function ($http, $stateParams, sLocation) {
+                            var path = sLocation.getAbsoluteUrlApi(
+                                '/api/activities',
+                                $stateParams
+                            );
+                            return $http
+                                .get(path)
+                                .then(function (res) {
+                                    return res.data.data;
+                                });
+                        }
+                    },
+                    controller: 'ActivitiesWidgetCtrl'
+                })
+                .state('widgets.topicActivities', {
+                    url: '/topics/:topicId/activities',
+                    parent: 'widgets',
+                    templateUrl: '/views/widgets/activities.html',
+                    resolve: {
+                        /* @ngInject */
+                        ActivitiesResolve: function ($http, $stateParams, sLocation) {
+                            var path = sLocation.getAbsoluteUrlApi(
+                                '/api/topics/:topicId/activities',
+                                $stateParams
+                            );
+                            return $http
+                                .get(path)
+                                .then(function (res) {
+                                    console.log('ActivitiesResolve', 'widgets.topicActivities', res);
+                                    return res.data.data;
+                                });
+                        }
+                    },
+                    controller: 'ActivitiesWidgetCtrl'
+                })
+                .state('widgets.partnerActivities', {
+                    url: '/partners/:partnerId/activities',
+                    parent: 'widgets',
+                    templateUrl: '/views/widgets/activities.html',
+                    resolve: {
+                        /* @ngInject */
+                        ActivitiesResolve: function ($http, $stateParams, sLocation) {
+                            var path = sLocation.getAbsoluteUrlApi(
+                                '/api/activities',
+                                $stateParams
+                            );
+                            return $http
+                                .get(path, {
+                                    params: {
+                                        sourcePartnerId: $stateParams.partnerId
+                                    }
+                                })
+                                .then(function (res) {
+                                    return res.data.data;
+                                });
+                        }
+                    },
+                    controller: 'ActivitiesWidgetCtrl'
+                })
+                .state('widgets.partnerTopicActivities', {
+                    url: '/activities',
+                    parent: 'widgets.wrapped.sourcePartnerObjectId',
+                    controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
+                        $state.go('widgets.topicActivities', {
+                            topicId: TopicResolve.id,
+                            widgetId: $stateParams.widgetId
+                        });
+                    }]
+                })
                 .state('authCallback', { // Callback page for the "popup" style (facebook, google) authentication flow.
                     url: '/auth/callback',
                     template: '<h1>Redirecting...</h1>',
                     controller: ['$window', function ($window) {
                         $window.opener.postMessage({status: 'success'}, $window.origin);
                     }]
+                })
+                .state('error', {
+                    url: '/error',
+                    parent: 'main',
+                    abstract: true,
+                    template: '<div ui-view style="height: 100%"></div>'
+                })
+                .state('error.401', {
+                    url: '/401',
+                    parent: 'error',
+                    templateUrl: '/views/401.html'
+                })
+                .state('error.403', {
+                    url: '/403',
+                    parent: 'error',
+                    templateUrl: '/views/401.html'
+                })
+                .state('error.404', {
+                    url: '/404',
+                    parent: 'error',
+                    templateUrl: '/views/404.html'
                 });
 
             $translateProvider.useStaticFilesLoader({
