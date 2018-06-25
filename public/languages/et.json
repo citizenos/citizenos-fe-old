@@ -271,7 +271,7 @@
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
     "LANGUAGES_MODAL_HEADING": "Vali keel",
     "WIDGETS_HOW_DOES_IT_WORK_HEADING": "@:DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK",
-    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Lisa argument, et ühineda aruteluga"
+    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Osale e-arutelus, lisades allapoole oma argument. Festivali arutelude panelistid võivad näha, mis toimub siin e-arutelus, seega saab siin neile küsimusi postitada. Kui sa pole kindel, kumma nupu abil postitada, palun vali roheline nupp.\nE-arutelu jääb avatuks ka pärast festivali, et tekkinud sisu pinnalt saaks luua uusi artikleid, petitsioone, rahvaalgatusi või liikumisi.\nHead e-arutelus osalemist!"
   },
   "TXT_TOPIC_CATEGORY_ALL": "iga kategooria",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Äri ja tööstus",
