@@ -24,44 +24,44 @@
          * @constructor
          */
         window.CITIZENOS.widgets.Argument = function (language, topicId, partnerId, targetId) {
-            document.addEventListener('DOMContentLoaded', function () {
-                var targetElementId = targetId || 'citizenos-widget-argument-' + Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 5);
+            var targetElementId = targetId || 'citizenos-widget-argument-' + Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 5);
 
-                var targetElement = document.getElementById(targetElementId);
+            var targetElement = document.getElementById(targetElementId);
 
-                if (!targetElement) {
-                    targetElement = document.createElement('div');
-                    targetElement.id = targetElementId;
-                    document.getElementsByTagName('body')[0].appendChild(targetElement);
-                }
+            if (!targetElement) {
+                targetElement = document.createElement('div');
+                targetElement.id = targetElementId;
+                document.getElementsByTagName('body')[0].appendChild(targetElement);
+            }
 
-                var widgetFrame = document.createElement('iframe');
-                widgetFrame.id = targetElementId + '-frame';
-                widgetFrame.setAttribute('scrolling', 'no');
-                widgetFrame.style.height = '1px';
-                widgetFrame.style.width = '1px';
-                widgetFrame.style.visibility = 'hidden';
+            var widgetFrame = document.createElement('iframe');
+            widgetFrame.id = targetElementId + '-frame';
+            widgetFrame.setAttribute('scrolling', 'no');
+            widgetFrame.style.height = '1px';
+            widgetFrame.style.width = '1px';
+            widgetFrame.style.visibility = 'hidden';
 
-                var path;
-                if (partnerId) {
-                    path = '/:language/widgets/partners/:partnerId/topics/:sourcePartnerObjectId/arguments'
-                        .replace(':language', encodeURIComponent(language))
-                        .replace(':partnerId', encodeURIComponent(partnerId))
-                        .replace(':sourcePartnerObjectId', encodeURIComponent(topicId));
-                } else {
-                    path = '/:language/widgets/topics/:topicId/arguments'
-                        .replace(':language', encodeURIComponent(language))
-                        .replace(':topicId', encodeURIComponent(topicId));
-                }
+            var path;
+            if (partnerId) {
+                path = '/:language/widgets/partners/:partnerId/topics/:sourcePartnerObjectId/arguments'
+                    .replace(':language', encodeURIComponent(language))
+                    .replace(':partnerId', encodeURIComponent(partnerId))
+                    .replace(':sourcePartnerObjectId', encodeURIComponent(topicId));
+            } else {
+                path = '/:language/widgets/topics/:topicId/arguments'
+                    .replace(':language', encodeURIComponent(language))
+                    .replace(':topicId', encodeURIComponent(topicId));
+            }
 
-                if (targetElementId) {
-                    path += '?widgetId=' + encodeURIComponent(targetElementId);
-                }
+            if (targetElementId) {
+                path += '?widgetId=' + encodeURIComponent(targetElementId);
+            }
 
-                widgetFrame.src = window.CITIZENOS.config.url.fe + path;
+            widgetFrame.src = window.CITIZENOS.config.url.fe + path;
 
-                targetElement.appendChild(widgetFrame);
-            });
+            targetElement.appendChild(widgetFrame);
+
+            return targetElement;
         };
     }
 
@@ -77,50 +77,50 @@
      */
     if (!window.CITIZENOS.widgets.ActivityFeed) {
         window.CITIZENOS.widgets.ActivityFeed = function (language, topicId, partnerId, targetId) {
-            document.addEventListener('DOMContentLoaded', function () {
-                var targetElementId = targetId || 'citizenos-widget-argument-' + Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 5);
+            var targetElementId = targetId || 'citizenos-widget-argument-' + Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 5);
 
-                var targetElement = document.getElementById(targetElementId);
+            var targetElement = document.getElementById(targetElementId);
 
-                if (!targetElement) {
-                    targetElement = document.createElement('div');
-                    targetElement.id = targetElementId;
-                    document.getElementsByTagName('body')[0].appendChild(targetElement);
-                }
+            if (!targetElement) {
+                targetElement = document.createElement('div');
+                targetElement.id = targetElementId;
+                document.getElementsByTagName('body')[0].appendChild(targetElement);
+            }
 
-                var widgetFrame = document.createElement('iframe');
-                widgetFrame.id = targetElementId + '-frame';
-                widgetFrame.style.height = '1px';
-                widgetFrame.style.width = '1px';
-                widgetFrame.style.visibility = 'hidden';
+            var widgetFrame = document.createElement('iframe');
+            widgetFrame.id = targetElementId + '-frame';
+            widgetFrame.style.height = '1px';
+            widgetFrame.style.width = '1px';
+            widgetFrame.style.visibility = 'hidden';
 
-                var path;
-                if (partnerId && topicId) {
-                    path = '/:language/widgets/partners/:partnerId/topics/:sourcePartnerObjectId/activities'
-                        .replace(':language', encodeURIComponent(language))
-                        .replace(':partnerId', encodeURIComponent(partnerId))
-                        .replace(':sourcePartnerObjectId', encodeURIComponent(topicId));
-                } else if (partnerId) {
-                    path = '/:language/widgets/partners/:partnerId/activities'
-                        .replace(':language', encodeURIComponent(language))
-                        .replace(':partnerId', encodeURIComponent(partnerId));
-                } else if (topicId) {
-                    path = '/:language/widgets/topics/:topicId/activities'
-                        .replace(':language', encodeURIComponent(language))
-                        .replace(':topicId', encodeURIComponent(topicId));
-                } else {
-                    path = '/:language/widgets/activities'
-                        .replace(':language', encodeURIComponent(language));
-                }
+            var path;
+            if (partnerId && topicId) {
+                path = '/:language/widgets/partners/:partnerId/topics/:sourcePartnerObjectId/activities'
+                    .replace(':language', encodeURIComponent(language))
+                    .replace(':partnerId', encodeURIComponent(partnerId))
+                    .replace(':sourcePartnerObjectId', encodeURIComponent(topicId));
+            } else if (partnerId) {
+                path = '/:language/widgets/partners/:partnerId/activities'
+                    .replace(':language', encodeURIComponent(language))
+                    .replace(':partnerId', encodeURIComponent(partnerId));
+            } else if (topicId) {
+                path = '/:language/widgets/topics/:topicId/activities'
+                    .replace(':language', encodeURIComponent(language))
+                    .replace(':topicId', encodeURIComponent(topicId));
+            } else {
+                path = '/:language/widgets/activities'
+                    .replace(':language', encodeURIComponent(language));
+            }
 
-                if (targetElementId) {
-                    path += '?widgetId=' + encodeURIComponent(targetElementId);
-                }
+            if (targetElementId) {
+                path += '?widgetId=' + encodeURIComponent(targetElementId);
+            }
 
-                widgetFrame.src = window.CITIZENOS.config.url.fe + path;
+            widgetFrame.src = window.CITIZENOS.config.url.fe + path;
 
-                targetElement.appendChild(widgetFrame);
-            });
+            targetElement.appendChild(widgetFrame);
+
+            return targetElement;
         }
     }
 
@@ -153,6 +153,14 @@
                     // overlay is shown in frame
                     if (argumentsData[widgetId].overlay) {
                         document.documentElement.scrollTop = argumentsData[widgetId].overlay.top + widgetFrame.getBoundingClientRect().top + window.scrollY;
+                    }
+
+                    // click event
+                    if (argumentsData[widgetId].click) {
+                        var event = new CustomEvent('citizenos.widget.click', {
+                            detail: argumentsData[widgetId].click
+                        });
+                        widgetElement.dispatchEvent(event);
                     }
                 }
             }

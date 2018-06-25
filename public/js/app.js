@@ -652,6 +652,17 @@
                     abstract: true,
                     template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view></div>',
                     controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', 'ngDialog', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log, ngDialog) {
+                        $scope.widgetPostMessage = function (data) {
+                            if ($window.self !== $window.parent) {
+                                var msg = {citizenos: {}};
+                                msg.citizenos['widgets'] = {};
+                                msg.citizenos['widgets'][$stateParams.widgetId] = data;
+                                $window.top.postMessage(msg, '*');
+                            } else {
+                                // SKIP, as not in a frame
+                            }
+                        };
+
                         if ($window.self !== $window.parent) { // Inside iframe
                             var heightPrev;
                             var interval = $interval(function () {
@@ -663,12 +674,10 @@
 
                                 if (heightPrev !== heightCurrent) {
                                     heightPrev = heightCurrent;
-                                    var msg = {citizenos: {}};
-                                    msg.citizenos['widgets'] = {};
-                                    msg.citizenos['widgets'][$stateParams.widgetId] = {
+
+                                    $scope.widgetPostMessage({
                                         height: heightCurrent
-                                    };
-                                    $window.top.postMessage(msg, '*');
+                                    });
                                 }
                             }, 100);
 
@@ -682,15 +691,12 @@
                                     var dialogElement = document.getElementById('lightbox');
                                     var dialogElementPosition = dialogElement.getBoundingClientRect();
 
-                                    var msg = {citizenos: {}};
-                                    msg.citizenos['widgets'] = {};
-                                    msg.citizenos['widgets'][$stateParams.widgetId] = {
+                                    $scope.widgetPostMessage({
                                         overlay: {
                                             top: dialogElementPosition.top
                                         },
                                         height: document.getElementById('root_lightbox').scrollHeight
-                                    };
-                                    $window.top.postMessage(msg, '*');
+                                    });
                                 }
                             });
 
