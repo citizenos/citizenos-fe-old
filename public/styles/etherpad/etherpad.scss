@@ -538,7 +538,7 @@ $bold: 700;
     z-index: -1;
 }
 
-.comment-modal, #comments {
+.comment-modal {
     width: -moz-calc(100% - 40px) !important;
     width: -webkit-calc(100% - 40px) !important;
     width: -o-calc(100% - 40px) !important;
@@ -892,141 +892,72 @@ $bold: 700;
                 }
             } 
         }
-        .reply-suggestion {
-            &.active {
+
+        .comment-reply{
+            note {
+                padding: 0;
+            }
+            margin-left: 0;
+            .comment-reply-input-label {
                 display: block;
-                margin-top: 20px;
-    
-                p {
+
+                .comment-reply-input {
+                    display: block;
+                }
+
+                span {
+                    height: 20px;
                     width: initial;
                     color: #252525;
                     font-family: "Open Sans";
                     font-size: 16px;
                     font-weight: bold;
                     line-height: 20px;
+                    margin: 0 20px 0 0;
+                    padding: 0;
+                    clear: both;
+                    float: none;
                 }
-                .reply-comment-suggest-to, .reply-comment-changeFrom-value {
-                    display: block;
-                    height: auto;
-                    width: -moz-calc(100% - 20px);
-                    width: -webkit-calc(100% - 20px);
-                    width: -o-calc(100% - 20px);
-                    width: calc(100% - 20px);
+
+                .comment-reply-input {
+                    font-family: 'Open Sans',sans-serif;
+                    font-size: 13px;
+                    background-color: $white;
                     border: 1px solid #E5E5E5;
                     border-radius: 4px;
-                    background-color: #FFFFFF;
+                    width: -moz-calc(100% - 40px);
+                    width: -webkit-calc(100% - 40px);
+                    width: -o-calc(100% - 40px);
+                    width: calc(100% - 40px);
+                    padding: 6px 10px;
+                    clear: both;
+                    float:none;
+                }
+            }
+            .reply-comment-suggest {
+                display: block;
+
+                .reply-suggestion-checkbox {
+                    display: inline;
+                    border: 1px solid #E5E5E5;
+                    border-radius: 4px;
+                    background-color: $white !important;
+                    margin: 0 20px 0 0;
+                    vertical-align:middle;
+                }
+                label {
+                    height: 20px;
+                    width: 169px;
+                    opacity: 0.7;
+                    color: #252525;
                     font-family: "Open Sans";
                     font-size: 14px;
-                    line-height: 20px;
-                    margin-top: 12px;
-                    margin-bottom: 16px;
-                    padding: 6px 10px;
-                    font-weight: normal;
-                }
-                input {
-                    display: block!important;
+                    line-height: 30px;
+                    vertical-align: middle;
+                    display: inline-block;
                 }
             }
-            
         }
-        input[type="submit"] {
-            height: 30px;
-            width: 149px;
-            border: 1px solid #0574E3;
-            border-radius: 4px;
-            background-color: #0680FC;
-            color: #FFFFFF;
-            font-family: "Open Sans";
-            font-size: 14px;
-            font-weight: bold;
-            line-height: 20px;
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .comment-reply {
-        note {
-            display: block!important;
-            height: max-content;
-            width: 100% !important;
-            margin-left: -20px !important;
-            padding: 20px !important;
-            
-            .comment-reply-text {
-                display: block;
-                clear: both;
-                width: 100%;
-                color: #252525;
-                font-family: "Open Sans";
-                font-size: 14px;
-                line-height: 20px;
-                margin-top: 2px;
-                margin-bottom: 11px;
-                font-weight: normal!important;
-            }
-
-            .comment-changeTo-form {
-                p, .comment-changeFrom, .comment-changeTo {
-                    span.comment-changeFrom-label, span.comment-changeTo-label, .reply-comment-suggest-from-p{
-                        height: 20px;
-                        width: initial;
-                        color: #252525;
-                        font-family: "Open Sans";
-                        font-size: 16px;
-                        font-weight: bold;
-                        line-height: 20px;
-                        margin: 0 20px 0 0;
-                        padding: 0;
-                        clear: both;
-                    }
-    
-                    .comment-changeFrom-value, .comment-changeTo-value, .comment-changeTo-value {
-                        display: block;
-                        height: auto;
-                        width: -moz-calc(100% - 20px);
-                        width: -webkit-calc(100% - 20px);
-                        width: -o-calc(100% - 20px);
-                        width: calc(100% - 20px);
-                        border: 1px solid #E5E5E5;
-                        border-radius: 4px;
-                        background-color: #FFFFFF;
-                        font-family: "Open Sans";
-                        font-size: 14px;
-                        line-height: 20px;
-                        margin-top: 12px;
-                        margin-bottom: 16px;
-                        padding: 6px 10px;
-                    }
-                }
-                
-    
-                .comment-suggest-from-p {
-                    margin-top: 20px;
-                }
-                
-                .comment-changeTo-approve {
-                    height: 20px;
-    
-                    input {
-                        height: 30px;
-                        width: 149px;
-                        border: 1px solid #0574E3;
-                        border-radius: 4px;
-                        background-color: #0680FC;
-                        color: #FFFFFF;
-                        font-family: "Open Sans";
-                        font-size: 14px;
-                        font-weight: bold;
-                        line-height: 20px;
-                        text-align: center;
-                    }
-                } 
-            }
-        }
-        note:nth-child(odd) {
-            background-color: #F6F6F6!important;
-        }
-    }
     }
     .comment-edit-form {
         textarea {
@@ -1047,6 +978,7 @@ $bold: 700;
             padding: 6px 10px;
             font-weight: normal;   
         }
+        
         p {
             display: inline-block;
             
