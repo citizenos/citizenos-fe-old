@@ -538,7 +538,7 @@ $bold: 700;
     z-index: -1;
 }
 
-.comment-modal {
+.comment-modal, #comments {
     width: -moz-calc(100% - 40px) !important;
     width: -webkit-calc(100% - 40px) !important;
     width: -o-calc(100% - 40px) !important;
