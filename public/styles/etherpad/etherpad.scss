@@ -444,7 +444,7 @@ $bold: 700;
     width: max-content;
     height: auto;
     right: 0;
-    margin-top: 31px;
+    margin-top: 45px;
 
     .menu_inline {
         margin-left: 15px;
@@ -559,6 +559,8 @@ $bold: 700;
         width: -webkit-calc(100% - 40px);
         width: -o-calc(100% - 40px);
         width: calc(100% - 40px);
+        height: max-content;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2)
     }
     .reply-comment-suggest {
         .reply-suggestion-checkbox:after {
@@ -676,6 +678,10 @@ $bold: 700;
                         margin-bottom: 16px;
                         padding: 6px 10px;
                     }
+
+                    .comment-changeFrom-value {
+                        width: 100%;
+                    }
                 }
                 
     
@@ -747,30 +753,70 @@ $bold: 700;
             .comment-options-button {
                 float: none;
                 display: inline-block;
-                left: 20px;
-                margin-left: 69px;
+                margin-left: 140px;
                 position: absolute;
 
                 .comment-options-button--icon {
-                    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAAXNSR0IArs4c6QAAAAxJREFUCB1jYBgCAAAApQAB3xSzQAAAAABJRU5ErkJggg==)
+                    background-image: none;
+                }
+                .comment-options-button--icon:before {
+                    font-family: "fontawesome-etherpad";
+                    content: "\f107"
+                }
+                .comment-options-button--icon:after {
+                    height: 15px;
+                    width: 1px;
+                    background-color: #A1A1A1;
+                    content: ' ';
+                    display: inline-block;
+                    margin-left: 10px;
+                    vertical-align: middle;
                 }
             }
             .comment-options {
-                position: relative;
-                background-color: #dcdcdc;
-                margin-left: 108px;
-                top: 24px;
-                right: 5px;
-                z-index: 999;
+                border-left: solid 1px #e5e5e5;
+                border-right: solid 1px #e5e5e5;
+                border-bottom: solid 1px #e5e5e5;
+                border-radius: 0 0 4px 4px;
+                background-color: #FFF;
+                width: 100%;
+                left: -1px;
+                top: 29px;
+                position: absolute;
+                color: #252525;
+                max-height: 500px;
+                overflow-y: auto;
+                box-shadow: 0 2px 6px 0 rgba(0,0,0,.1);
+                padding: 5px 0;
+                margin-bottom: 20px;
+                width: min-content;
 
                 &.hidden {
                     display: none;
                 }
+                .comment-options-selected {
+                    background: $white!important;
+                }
+                .comment-delete, .comment-edit {
+                    display: block;
+                    font-family: 'Open Sans';
+                    font-weight: normal!important;
+                    cursor: pointer;
+                    color: #252525!important;
+                    margin-top: 1px;
+                    padding: 0 18px;
+                    &:hover {
+                        color: #0680FC!important;
+                        background: $white!important;
+                    }
+                }
             }
         }
+
         .comment-author-name, time {
             height: 18px;
             width: auto;
+            max-width:170px;
             opacity: 0.7;
             color: #252525;
             font-family: "Open Sans";
@@ -784,7 +830,7 @@ $bold: 700;
             margin-left: 10px;
             position: absolute;
             top: 22px;
-            left: 150px;
+            left: 185px;
         }
         .comment-text {
             display: block;
@@ -799,15 +845,15 @@ $bold: 700;
             font-weight: normal;
         }
 
-        .comment-author-name:after {
-            height: 15px;
-            width: 1px;
-            background-color: #A1A1A1;
+        .comment-changeTo-form:before, .comment-reply-input-label:before{
+            display: block;
             content: ' ';
-            display: inline-block;
-            margin-left: 10px;
-            vertical-align: middle;
+            height: 1px;
+            width: 100%;
+            margin: 20px 0;
+            background-color: #E5E5E5;
         }
+
         .comment-changeTo-form {
             .comment-changeFrom, .comment-changeTo {
                 span.comment-changeFrom-label, span.comment-changeTo-label{
@@ -978,7 +1024,7 @@ $bold: 700;
             padding: 6px 10px;
             font-weight: normal;   
         }
-        
+
         p {
             display: inline-block;
             
