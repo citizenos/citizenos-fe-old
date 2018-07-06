@@ -560,6 +560,7 @@ $bold: 700;
         width: -o-calc(100% - 40px);
         width: calc(100% - 40px);
         height: max-content;
+        position: initial!important;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2)
     }
     .reply-comment-suggest {
@@ -726,6 +727,7 @@ $bold: 700;
     border-color: transparent transparent transparent $white;
   //  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
+
 #comments, .comment-modal {
     right: 0;
     left: 0;
@@ -749,6 +751,7 @@ $bold: 700;
         -webkit-box-shadow: none;
         box-shadow: none;
         
+
         .comment-options-wrapper {
             .comment-options-button {
                 float: none;
