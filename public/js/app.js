@@ -718,7 +718,7 @@
                     templateUrl: '/views/layouts/widget.html'
                 })
                 .state('widgets.wrapped.sourcePartnerObjectId', {
-                    url: '/partners/:partnerId/topics/:sourcePartnerObjectId',
+                    url: '/partners/:partnerId/topics/:sourcePartnerObjectId?title',
                     parent: 'widgets',
                     abstract: true,
                     template: '<div ui-view></div>',
@@ -743,7 +743,10 @@
                     controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
                         $state.go('widgets.wrapped.arguments', {
                             topicId: TopicResolve.id,
-                            widgetId: $stateParams.widgetId
+                            widgetId: $stateParams.widgetId,
+                            widget: {
+                                title: $stateParams.title
+                            }
                         });
                     }]
                 })

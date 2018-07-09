@@ -2,8 +2,11 @@ body, html {
     background: #ffffff;
     height: initial !important;
     min-height: initial !important;
+    width:100%;
 }
-
+#widget_wrapper {
+    border: 1px solid #E5E5E5;
+}
 #root_lightbox {
     background-color: rgba(200, 200, 200, 0.6);
 
@@ -26,13 +29,41 @@ body, html {
     width: 100%;
     height: 60px;
     background: #F5F5F5;
+    
+    .widget_user_cell{
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 10px;
+    }
 
-    #widget_logo {
-        position: relative;
-        height: 28px;
-        width: 150px;
+    #widget_header_logo_wrapper {
         margin-left: 20px;
-        top: 16px;
+        
+        .widget_text_header {
+            position: relative;
+            display: inline-block;            
+            color: #252525;
+            font-family: "Open Sans";
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 60px;
+            height: 60px;
+            vertical-align: middle;
+            top: 0px;
+        }
+        #widget_header_logo_items {
+            position: relative;
+            display: inline-block;
+
+            #widget_logo {
+                position: relative;
+                display: inline-block;
+                height: 28px;
+                width: 150px;
+                top: 10px;
+            }
+        }        
     }
 
     #widget_user {
@@ -42,8 +73,10 @@ body, html {
         right: 10px;
         height: 60px;
 
-        .table_cell {
+        #account_area {
+            display: table-cell;
             padding-right: 10px;
+            vertical-align: middle;
         }
 
         .profile_image_wrapper {
@@ -66,7 +99,6 @@ body, html {
         }
 
         #login, #log_out {
-            height: 19px;
             color: #0680FC;
             font-family: "Open Sans", sans-serif;
             font-size: 13px;
@@ -75,6 +107,124 @@ body, html {
 
         a {
             color: #0680FC;
+        }
+    }
+    @media (max-width: 535px) {
+        height: 120px;
+
+        #widget_header_logo_wrapper {
+            width: 100%;
+            float: right;
+            
+            #widget_title {
+                margin-left: 20px;
+            }
+        }
+
+        #widget_user {
+            right: 0;
+            left: 20px;
+            width: 100%;
+            position: relative;
+            float: right;
+
+            #account_area {
+                display: block;
+            }
+        }
+        .widget_user_cell{
+            display: inline-block;
+            line-height: 60px !important;
+            &:last-child {
+                right: 40px;
+                position: absolute;
+                top: 15px;
+            }
+        }
+        .white_button {
+            line-height: initial;
+            height: 30px;
+            width: 40px;
+        }
+        .blue_button {
+            line-height: initial;
+            margin-top: 15px;
+        }
+    }
+
+    @media (max-width: 310px) {
+        #widget_header_logo_items {
+            margin-left: 20px;
+        }
+    }
+}
+
+#widget_footer {
+    height: 60px;
+    width: 100%;
+    background-color: #F5F5F5;
+    
+    .widget_footer_link {
+        vertical-align: middle;
+        float:left;
+        padding: 20px 0px 20px 20px;
+
+        a {
+            color: #0680FC;
+            font-family: "Open Sans";
+            font-size: 13px;
+            line-height: 19px;
+        }
+    }    
+
+    #widget_footer_logo_wrapper {
+        float: right;
+        margin: 0 20px;
+        padding: 0;
+        
+        .widget_text_footer {
+            color: #252525;
+            font-family: "Open Sans";
+            font-size: 13px;
+            vertical-align: middle;
+            display: inline-block;
+            top: 0px;
+            margin: 0px 0 20px 0px;
+        }
+
+        #widget_footer_logo_items {
+            display: inline-block;
+            margin: 18px 0px 0px 0px;
+            background-repeat: no-repeat;
+            a {
+                display: inline-block;
+            }
+        }
+    }
+
+    @media (max-width: 535px) {
+        height: 156px;
+
+        #widget_footer_logo_wrapper, .widget_footer_link {
+            width:  100%;
+            float: left;
+            text-align: center;
+            margin: 0;
+            padding: 20px 0 0px 0px;
+        }
+
+        #widget_footer_logo_wrapper {
+            margin-top: 0px;
+            padding: 0;
+        }
+    }
+
+    @media (max-width: 310px) {
+        #widget_title_footer {
+            margin: 20px 0 0!important;
+        }
+        #widget_footer_logo_items {
+            margin: 18px 0 -20px !important;
         }
     }
 }
