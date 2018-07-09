@@ -327,7 +327,9 @@
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "crwdns11055:0crwdne11055:0",
       "LNK_LOG_OUT": "crwdns11056:0crwdne11056:0",
-      "BTN_HOW_DOES_IT_WORK": "crwdns11059:0crwdne11059:0"
+      "BTN_HOW_DOES_IT_WORK": "crwdns11059:0crwdne11059:0",
+      "LNK_PRIVACY_POLICY": "crwdns11061:0crwdne11061:0",
+      "LNK_CITIZENOS_WEBSITE": "crwdns11062:0crwdne11062:0"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "crwdns10455:0crwdne10455:0",
