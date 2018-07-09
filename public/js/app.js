@@ -650,11 +650,12 @@
                     templateUrl: '/views/partners_consent.html'
                 })
                 .state('widgets', {
-                    url: '/widgets?widgetId',
+                    url: '/widgets?widgetId&widgeTitle',
                     parent: 'index',
                     abstract: true,
                     template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view></div>',
                     controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', 'ngDialog', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log, ngDialog) {
+                        $scope.app.widgetTitle = $stateParams.widgeTitle;
                         $scope.widgetPostMessage = function (data) {
                             if ($window.self !== $window.parent) {
                                 var msg = {citizenos: {}};
@@ -718,7 +719,7 @@
                     templateUrl: '/views/layouts/widget.html'
                 })
                 .state('widgets.wrapped.sourcePartnerObjectId', {
-                    url: '/partners/:partnerId/topics/:sourcePartnerObjectId?title',
+                    url: '/partners/:partnerId/topics/:sourcePartnerObjectId',
                     parent: 'widgets',
                     abstract: true,
                     template: '<div ui-view></div>',
@@ -743,10 +744,7 @@
                     controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
                         $state.go('widgets.wrapped.arguments', {
                             topicId: TopicResolve.id,
-                            widgetId: $stateParams.widgetId,
-                            widget: {
-                                title: $stateParams.title
-                            }
+                            widgetId: $stateParams.widgetId
                         });
                     }]
                 })
