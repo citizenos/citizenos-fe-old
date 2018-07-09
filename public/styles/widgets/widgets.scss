@@ -56,6 +56,9 @@ body, html {
             position: relative;
             display: inline-block;
 
+            #widget_header_powered_by {
+                margin-right: 5px;
+            }
             #widget_logo {
                 position: relative;
                 display: inline-block;
@@ -196,6 +199,10 @@ body, html {
             display: inline-block;
             margin: 18px 0px 0px 0px;
             background-repeat: no-repeat;
+
+            #widget_footer_powered_by {
+                margin-right: 5px;
+            }
             a {
                 display: inline-block;
             }
