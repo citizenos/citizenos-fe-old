@@ -36,6 +36,11 @@ body, html {
         padding-left: 10px;
     }
 
+    .tabel_cell {
+        vertical-align: middle;
+        line-height: 27px;
+    }
+
     #widget_header_logo_wrapper {
         margin-left: 20px;
         
@@ -90,6 +95,14 @@ body, html {
                 height: 28px;
                 margin-top: 16px;
             }
+
+            .profile_image_filler {
+                color: #E5E5E5;
+            }
+
+            .profile_circle {
+                border-color: #E5E5E5;
+            }
         }
 
         #user_name {
@@ -116,12 +129,12 @@ body, html {
         height: 120px;
 
         #widget_header_logo_wrapper {
-            width: 100%;
+            width: calc(100% - 40px);
             float: right;
+            margin-left: 20px;
+            margin-right: 20px;
+            border-bottom: 1px solid #E5E5E5;
             
-            #widget_title {
-                margin-left: 20px;
-            }
         }
 
         #widget_user {
