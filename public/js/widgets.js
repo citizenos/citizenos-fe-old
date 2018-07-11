@@ -23,7 +23,7 @@
          *
          * @constructor
          */
-        window.CITIZENOS.widgets.Argument = function (language, topicId, partnerId, targetId) {
+        window.CITIZENOS.widgets.Argument = function (language, topicId, partnerId, targetId, widgetTitle) {
             var targetElementId = targetId || 'citizenos-widget-argument-' + Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 5);
 
             var targetElement = document.getElementById(targetElementId);
@@ -52,9 +52,19 @@
                     .replace(':language', encodeURIComponent(language))
                     .replace(':topicId', encodeURIComponent(topicId));
             }
-
+            var queryParams = [];
+            var queryString = '';
             if (targetElementId) {
-                path += '?widgetId=' + encodeURIComponent(targetElementId);
+                queryParams.push('widgetId=' + encodeURIComponent(targetElementId));
+            }
+
+            if (widgetTitle) {
+                queryParams.push('widgetTitle=' + encodeURIComponent(widgetTitle));
+            }
+            queryString = queryParams.join('&');
+
+            if (queryString.length) {
+                path += '?' + queryString;
             }
 
             widgetFrame.src = window.CITIZENOS.config.url.fe + path;
@@ -76,7 +86,7 @@
      * @constructor
      */
     if (!window.CITIZENOS.widgets.ActivityFeed) {
-        window.CITIZENOS.widgets.ActivityFeed = function (language, topicId, partnerId, targetId) {
+        window.CITIZENOS.widgets.ActivityFeed = function (language, topicId, partnerId, targetId, widgetTitle) {
             var targetElementId = targetId || 'citizenos-widget-argument-' + Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 5);
 
             var targetElement = document.getElementById(targetElementId);
@@ -112,8 +122,19 @@
                     .replace(':language', encodeURIComponent(language));
             }
 
+            var queryParams = [];
+            var queryString = '';
             if (targetElementId) {
-                path += '?widgetId=' + encodeURIComponent(targetElementId);
+                queryParams.push('widgetId=' + encodeURIComponent(targetElementId));
+            }
+
+            if (widgetTitle) {
+                queryParams.push('widgetTitle=' + encodeURIComponent(widgetTitle));
+            }
+            queryString = queryParams.join('&');
+
+            if (queryString.length) {
+                path += '?' + queryString;
             }
 
             widgetFrame.src = window.CITIZENOS.config.url.fe + path;

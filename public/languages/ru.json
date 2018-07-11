@@ -116,7 +116,7 @@
     "TOPIC_DELETE_REPLY_TXT_ARE_YOU_SURE": "Вы уверены, что хотите удалить этот ответ? Это действие необратимо.",
     "TOPIC_DELETE_REPLY_BTN_NO": "@:MODALS.TOPIC_COMMENT_REPORT_BTN_NO",
     "TOPIC_DELETE_REPLY_BTN_YES": "ДА, УДАЛИТЬ ЭТОТ ОТВЕТ",
-    "LOGIN_HEADING": "Войти или зарегистрироваться в Citizen OS",
+    "LOGIN_HEADING": "Вход или регистрация в Citizen OS",
     "LOGIN_BTN_LOGIN_FACEBOOK": "Войти через Facebook",
     "LOGIN_BTN_LOGIN_GOOGLE": "Войти через Google",
     "LOGIN_BTN_LOGIN_ESTEID": "Войти с ID-картой / Mobiil-ID",
@@ -327,7 +327,9 @@
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
-      "BTN_HOW_DOES_IT_WORK": "Как это работает?"
+      "BTN_HOW_DOES_IT_WORK": "Как это работает?",
+      "LNK_PRIVACY_POLICY": "Citizen OS Privacy Policy",
+      "LNK_CITIZENOS_WEBSITE": "Citizen OS Website"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мои темы",
