@@ -328,8 +328,8 @@
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
       "BTN_HOW_DOES_IT_WORK": "Как это работает?",
-      "LNK_PRIVACY_POLICY": "Citizen OS Privacy Policy",
-      "LNK_CITIZENOS_WEBSITE": "Citizen OS Website"
+      "LNK_PRIVACY_POLICY": "Политика конфиденциальности Citizen OS",
+      "LNK_CITIZENOS_WEBSITE": "Сайт Citizen OS"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мои темы",
