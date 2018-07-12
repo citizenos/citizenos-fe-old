@@ -182,6 +182,7 @@ body, html {
     height: 60px;
     width: 100%;
     background-color: #F5F5F5;
+    display: inline-block;
     
     .widget_footer_link {
         vertical-align: middle;
@@ -197,57 +198,63 @@ body, html {
     }    
 
     #widget_footer_logo_wrapper {
+        margin-left: 20px;
+        margin-right: 20px;
         float: right;
-        margin: 0 20px;
-        padding: 0;
         
         .widget_text_footer {
+            position: relative;
+            display: inline-block;            
             color: #252525;
             font-family: "Open Sans";
             font-size: 13px;
+            text-align: center;
+            line-height: 60px;
+            height: 60px;
             vertical-align: middle;
-            display: inline-block;
             top: 0px;
-            margin: 0px 0 20px 0px;
         }
-
         #widget_footer_logo_items {
+            position: relative;
             display: inline-block;
-            margin: 18px 0px 0px 0px;
-            background-repeat: no-repeat;
 
-            #widget_footer_powered_by {
-                margin-right: 5px;
-            }
-            a {
+            #widget_footer_logo {
+                position: relative;
                 display: inline-block;
+                height: 28px;
+                width: 150px;
+                top: 10px;
+                margin-left: 5px;
             }
         }
     }
 
     @media (max-width: 650px) {
-        height: 156px;
+        height: initial;
 
         #widget_footer_logo_wrapper, .widget_footer_link {
+            float: none;
             width:  100%;
-            float: left;
             text-align: center;
             margin: 0;
             padding: 20px 0 0px 0px;
+        //    height: 60px;
+            position: relative;
         }
-
+        .widget_footer_link {
+            display: inline-block;            
+            padding: 0;
+            vertical-align: middle;
+            line-height: 60px;
+        }
         #widget_footer_logo_wrapper {
-            margin-top: 0px;
             padding: 0;
         }
     }
 
     @media (max-width: 310px) {
-        #widget_title_footer {
-            margin: 20px 0 0!important;
-        }
         #widget_footer_logo_items {
-            margin: 18px 0 -20px !important;
+            height: 60px;
         }
     }
 }
