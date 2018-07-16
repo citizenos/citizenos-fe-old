@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$location', 'ngDialog', 'sAuth', 'sLocation', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $location, ngDialog, sAuth, sLocation, sNotification) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'ngDialog', 'sAuth', 'sLocation', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $document, $interval, ngDialog, sAuth, sLocation, sNotification) {
         $log.debug('LoginFormCtrl');
 
         $scope.LOGIN_PARTNERS = {
@@ -119,7 +119,23 @@ angular
 
             var loginWindow = popupCenter(url, 'CitizenOS Facebook Login', 470, 500);
 
-            var messageHandler = function () {
+            if ($document[0].documentMode || $window.navigator.userAgent.indexOf('Edge') > -1) {
+                var popupCheck = $interval(function() {
+                    if (loginWindow.closed) {
+                        $interval.cancel(popupCheck);
+                        $window.focus();
+                        sAuth
+                            .status()
+                            .then(function (user) {
+                                if (user) {
+                                    $window.location.href = redirectSuccess;
+                                }   
+                            });
+                    }
+                }, 250);
+            }
+            
+            var messageHandler = function (message) {
                 loginWindow.close();
                 $window.focus();
                 $window.location.href = redirectSuccess;
