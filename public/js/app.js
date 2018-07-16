@@ -7,7 +7,7 @@
     module
         .constant('cosConfig', {
             api: {
-                baseUrl: 'https://citizenos-citizenos-api-test2.herokuapp.com' // FIXME: Environment based & think of new better testenv url that FB has not blocked
+                baseUrl: 'https://dev.api.citizenos.com:3003'//'https://citizenos-citizenos-api-test2.herokuapp.com' // FIXME: Environment based & think of new better testenv url that FB has not blocked
             },
             language: {
                 default: 'en',
@@ -802,8 +802,12 @@
                 .state('authCallback', { // Callback page for the "popup" style (facebook, google) authentication flow.
                     url: '/auth/callback',
                     template: '<h1>Redirecting...</h1>',
-                    controller: ['$window', function ($window) {
-                        $window.opener.postMessage({status: 'success'}, $window.origin);
+                    controller: ['$window', '$document', function ($window, $document) {
+                        if ($document[0].documentMode) {
+                            return $window.close();
+                        } else {
+                            $window.opener.postMessage({status: 'success'}, $window.origin);
+                        }
                     }]
                 })
                 .state('error', {
