@@ -124,7 +124,13 @@ angular
                     if (loginWindow.closed) {
                         $interval.cancel(popupCheck);
                         $window.focus();
-                        $window.location.href = redirectSuccess;
+                        sAuth
+                            .status()
+                            .then(function (user) {
+                                if (user) {
+                                    $window.location.href = redirectSuccess;
+                                }   
+                            });
                     }
                 }, 250);
             }
