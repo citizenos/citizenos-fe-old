@@ -803,7 +803,7 @@
                     url: '/auth/callback',
                     template: '<h1>Redirecting...</h1>',
                     controller: ['$window', '$document', function ($window, $document) {
-                        if ($document[0].documentMode) {
+                        if ($document[0].documentMode || $window.navigator.userAgent.indexOf('Edge') > -1) {
                             return $window.close();
                         } else {
                             $window.opener.postMessage({status: 'success'}, $window.origin);

@@ -119,7 +119,7 @@ angular
 
             var loginWindow = popupCenter(url, 'CitizenOS Facebook Login', 470, 500);
 
-            if ($document[0].documentMode) {
+            if ($document[0].documentMode || $window.navigator.userAgent.indexOf('Edge') > -1) {
                 var popupCheck = $interval(function() {
                     if (loginWindow.closed) {
                         $interval.cancel(popupCheck);
