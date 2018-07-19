@@ -34,8 +34,8 @@
                 </div>
                 <div class="widget_user_cell">
                     <div class="white_button" ng-click="doShowWidgetHowItWorks()">
-                        <span ng-if="wWidth >= 800" translate="DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK">How does it work?</span>
-                        <span ng-if="wWidth < 800">?</span>
+                        <span ng-if="(wWidth >= 800 || wWidth <= 370)" translate="DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK">How does it work?</span>
+                        <span ng-if="(wWidth < 800 && wWidth > 370)">?</span>
                     </div>
                 </div>
             </div>
