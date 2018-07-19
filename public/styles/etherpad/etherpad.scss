@@ -444,7 +444,7 @@ $bold: 700;
     width: max-content;
     height: auto;
     right: 0;
-    margin-top: 45px;
+    padding: 0;
 
     .menu_inline {
         margin-left: 15px;
@@ -562,6 +562,18 @@ $bold: 700;
         height: max-content;
         position: initial!important;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2)
+    }
+
+    #newComments, #newComment {
+        display: inline-block;
+    }
+
+    #newComment {
+        .comment-buttons {
+            input[type="submit"] {
+                margin: 0;
+            }
+        }
     }
     .reply-comment-suggest {
         .reply-suggestion-checkbox:after {
