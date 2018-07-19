@@ -175,6 +175,22 @@ body, html {
             margin-top: 15px;
         }
     }
+    
+    @media (max-width: 370px) {
+        .widget_user_cell:last-child {
+            position: initial;
+            right: 0;
+            padding-left: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            .white_button {
+                line-height: initial;
+                height: 30px;
+                width: auto;
+            }
+        }
+    }
 
 }
 
