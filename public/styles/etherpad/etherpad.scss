@@ -625,6 +625,8 @@ $bold: 700;
         
     }
     input[type="submit"] {
+        display: inline-block;
+        position: relative;
         height: 30px;
         width: 149px;
         border: 1px solid #0574E3;
@@ -639,6 +641,8 @@ $bold: 700;
         margin: 20px 0;
     }
     input[type="reset"]  {
+        display: inline-block;
+        position: relative;
         height: 30px;
         width: 44px;
         color: #0680FC;
@@ -646,10 +650,9 @@ $bold: 700;
         font-size: 14px;
         line-height: 20px;
         text-align: right;
-        float: left;
         border: none;
         background: none;
-        
+        margin-left: 20px;        
     }
     .comment-reply {
         note {
@@ -761,7 +764,7 @@ $bold: 700;
     margin: 0;
 
     input {
-        display: block;
+        display: inline-block;
     }
     note {
         height: auto;
