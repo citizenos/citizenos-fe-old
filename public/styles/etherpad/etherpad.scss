@@ -638,6 +638,19 @@ $bold: 700;
         text-align: center;
         margin: 20px 0;
     }
+    input[type="reset"]  {
+        height: 30px;
+        width: 44px;
+        color: #0680FC;
+        font-family: "Open Sans";
+        font-size: 14px;
+        line-height: 20px;
+        text-align: right;
+        float: left;
+        border: none;
+        background: none;
+        
+    }
     .comment-reply {
         note {
             display: block!important;
