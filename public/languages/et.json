@@ -778,8 +778,6 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Manuse link puudub!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Manuse nimi puudub!",
   "ep_comments_page": {
-    "comment": "Comment",
-    "comments": "Comments",
     "show_comments": "Show Comments",
     "add_comment": {
       "title": "Add new comment on selection"
@@ -791,82 +789,19 @@
       "title": "Edit this comment"
     },
     "comments_template": {
-      "suggested_change": "Suggested Change:",
+      "suggested_change": "Suggested change:",
+      "accept_change.value": "Accept change",
+      "revert_change.value": "Revert change",
+      "suggest_change": "Suggest change:",
       "from": "From:",
-      "accept_change.value": "Accept Change",
-      "revert_change.value": "Revert Change",
-      "suggested_change_from": "Suggested change From:",
-      "suggest_change_from": "Suggest change From:",
       "to": "To:",
       "include_suggestion": "Include suggested change",
-      "comment.value": "Comment",
+      "comment.value": "Add comment",
       "cancel.value": "Cancel",
-      "reply_input_label": "Your Reply (hit ENTER to send)",
+      "reply_input_label": "Your reply",
       "edit_comment": {
         "save": "save",
         "cancel": "cancel"
-      }
-    },
-    "time": {
-      "seconds": {
-        "past": "{{count}} seconds ago",
-        "future": "{{count}} seconds from now"
-      },
-      "one_minute": {
-        "past": "1 minute ago",
-        "future": "1 minute from now"
-      },
-      "minutes": {
-        "past": "{{count}} minutes ago",
-        "future": "{{count}} minutes from now"
-      },
-      "one_hour": {
-        "past": "1 hour ago",
-        "future": "1 hour from now"
-      },
-      "hours": {
-        "past": "{{count}} hours ago",
-        "future": "{{count}} hours from now"
-      },
-      "one_day": {
-        "past": "yesterday",
-        "future": "tomorrow"
-      },
-      "days": {
-        "past": "{{count}} days ago",
-        "future": "{{count}} days from now"
-      },
-      "one_week": {
-        "past": "last week",
-        "future": "next week"
-      },
-      "weeks": {
-        "past": "{{count}} weeks ago",
-        "future": "{{count}} weeks from now"
-      },
-      "one_month": {
-        "past": "last month",
-        "future": "next month"
-      },
-      "months": {
-        "past": "{{count}} months ago",
-        "future": "{{count}} months from now"
-      },
-      "one_year": {
-        "past": "last year",
-        "future": "next year"
-      },
-      "years": {
-        "past": "{{count}} years ago",
-        "future": "{{count}} years from now"
-      },
-      "one_century": {
-        "past": "last century",
-        "future": "next century"
-      },
-      "centuries": {
-        "past": "{{count}} centuries ago",
-        "future": "{{count}} centuries from now"
       }
     }
   }
