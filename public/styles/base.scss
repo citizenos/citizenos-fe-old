@@ -919,7 +919,12 @@ a:link, a:visited {
             background: $medium_gray !important;
         }
     }
+}
 
+.white_button {
+    @extend .gray_button;
+    background: $white;
+    color: $medium_black;
 }
 
 .blue_button.no, .blue_button.yes {
@@ -1980,5 +1985,18 @@ a:link, a:visited {
     100% {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
+    }
+}
+
+.notch {
+    box-sizing: border-box;
+    content: "";
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    position: absolute;
+    border-right: 10px solid #fff;
+    &.border-notch {
+        border-right-color: rgba(148,148,148,.21);
     }
 }

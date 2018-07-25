@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'UserVoice', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, UserVoice) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -15,7 +15,12 @@ angular
         };
 
         $scope.app.user = sAuth.user;
-        $scope.app.language = sTranslate.currentLanguage;
+
+        sTranslate
+            .getCurrentLanguage()
+            .then(function (language) {
+                $scope.app.language = language;
+            });
 
         $scope.app.metainfo = {
             title: 'META_DEFAULT_TITLE',
@@ -40,10 +45,11 @@ angular
         $scope.app.doShowLogin = function () {
             $log.debug('AppCtrl.doShowLogin()');
 
-            ngDialog.open({
-                template: '/views/modals/login.html',
-                scope: $scope
-            });
+            ngDialog
+                .open({
+                    template: '/views/modals/login.html',
+                    scope: $scope
+                });
         };
 
         $scope.app.doShowMyAccount = function () {
@@ -55,67 +61,27 @@ angular
             });
         };
 
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowConfirm = function () {
-            $log.debug('AppCtrl.doShowConfirm()');
+        $scope.app.doShowActivityModal = function () {
+            $log.debug('AppCtrl.doShowActivityModal()');
+            var openDias = ngDialog.getOpenDialogs();
 
-            ngDialog.open({
-                template: '/views/_templates/modals/confirm.html',
-                scope: $scope
-            });
+            if (openDias.length) {
+                ngDialog.closeAll();
+            } else {
+                var dialog = ngDialog.open({
+                    template: '/views/modals/activity_modal.html',
+                    scope: $scope
+                });
+
+                $scope.app.isShowActivityModal = true;
+
+                dialog.closePromise
+                    .then(function () {
+                        $scope.app.isShowActivityModal = false;
+                    });
+            }
         };
 
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowDeleteComment = function () {
-            $log.debug('AppCtrl.doShowDeleteComment()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/delete_comment.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowSetNumber = function () {
-            $log.debug('AppCtrl.doShowSetNumber()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/set_number.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowDatePicker = function () {
-            $log.debug('AppCtrl.doShowDatePicker()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/date_picker.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowInviteUsers = function () {
-            $log.debug('AppCtrl.doShowInviteUsers()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/invite_users.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowAddTopics = function () {
-            $log.debug('AppCtrl.doShowAddTopic()');
-
-            ngDialog.open({
-                template: '/views/_templates/modals/add_topics.html',
-                scope: $scope
-            });
-        };
-
-        // TODO: REMOVE - temporary for templates
         $scope.app.doShowTopicSettings = function () {
             $log.debug('AppCtrl.doShowTopicSettings()');
 
@@ -125,12 +91,19 @@ angular
             });
         };
 
-        // TODO: REMOVE - temporary for templates
-        $scope.app.doShowDeleteTopic = function () {
-            $log.debug('AppCtrl.doShowDeleteTopic()');
+        $scope.app.doShowLanguageSelect = function () {
+            $log.debug('AppCtrl.doShowLanguageSelect()');
+
+            $scope.app.languagesArray = [];
+            angular.forEach($scope.app.config.language.list, function (val, key) {
+                $scope.app.languagesArray.push({
+                    key: key,
+                    val: val
+                });
+            });
 
             ngDialog.open({
-                template: '/views/_templates/modals/topic_delete_confirm.html',
+                template: '/views/modals/languages.html',
                 scope: $scope
             });
         };
@@ -170,6 +143,19 @@ angular
                 );
         };
 
+        $scope.app.doWidgetLogout = function () {
+            sAuth
+                .logout()
+                .then(
+                    function () {
+                        $state.reload();
+                    },
+                    function (err) {
+                        $log.error('AppCtrl.doLogout()', 'Logout failed', err);
+                    }
+                );
+        };
+
         $scope.app.scrollToAnchor = function (anchor) {
             // TODO: Probably not the most elegant way but works for now. Probably should be a directive, which calculates the yOffset (https://docs.angularjs.org/api/ng/service/$anchorScroll#yOffset)
             $timeout(function () {
@@ -190,10 +176,12 @@ angular
             sNotification.removeAll();
         });
 
-        $rootScope.$on('$translateChangeSuccess', function () {
+        $rootScope.$on('$translateChangeEnd', function () {
+            $log.debug('AppCtrl.$translateChangeSuccess', sTranslate.currentLanguage);
             $scope.app.language = sTranslate.currentLanguage;
-            amMoment.changeLocale($scope.app.language);
-            UserVoice.push(['set', 'locale', $scope.app.language]);
+            $timeout(function () {
+                amMoment.changeLocale($scope.app.language);
+            }, 0);
         });
 
         $rootScope.$on('$stateChangeSuccess', function () {
@@ -225,7 +213,7 @@ angular
             }
         });
 
-        function createRelUrls() {
+        function createRelUrls () {
             angular.forEach(sTranslate.LANGUAGES, function (language) {
                 var url = $location.url().split('/');
                 url[1] = language;
@@ -234,32 +222,17 @@ angular
         }
 
         // Update UserVoice data when User changes
-        $scope.$watch(function () {
-            return $scope.app.user.loggedIn;
-        }, function (loggedIn) {
-            if (loggedIn) {
-                Raven.setUserContext({
-                    id: $scope.app.user.id
-                });
-
-                UserVoice.push(['identify', {
-                    email: $scope.app.user.email || '',
-                    id: $scope.app.user.id,
-                    name: $scope.app.user.name
-                }]);
-            } else {
-                Raven.setUserContext();
-                UserVoice.push(['identify', {}]);
-            }
-        });
-        // Set up UserVoice - https://developer.uservoice.com/docs/widgets/options/
-        // TODO: Ideally this should be in provider.config...
-        UserVoice.push(['set', {
-            accent_color: '#808283',
-            trigger_color: 'white',
-            trigger_background_color: 'rgba(46, 49, 51, 0.6)'
-        }]);
-
-        UserVoice.push(['addTrigger', {mode: 'contact', trigger_position: 'bottom-right'}]);
-
+        $scope.$watch(
+            function () {
+                return $scope.app.user.loggedIn;
+            },
+            function (loggedIn) {
+                if (loggedIn) {
+                    Raven.setUserContext({
+                        id: $scope.app.user.id
+                    });
+                } else {
+                    Raven.setUserContext();
+                }
+            });
     }]);

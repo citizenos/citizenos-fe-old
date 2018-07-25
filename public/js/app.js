@@ -2,12 +2,12 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'cosUserVoice']);
+    var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'angularLoad']);
 
     module
         .constant('cosConfig', {
             api: {
-                baseUrl: 'https://citizenos-citizenos-api-test.herokuapp.com' // FIXME: Environment based!
+                baseUrl: 'https://citizenos-citizenos-api-test2.herokuapp.com' // FIXME: Environment based & think of new better testenv url that FB has not blocked
             },
             language: {
                 default: 'en',
@@ -18,15 +18,17 @@
                     lv: 'Latviešu',
                     lt: 'Lietuvių',
                     ru: 'Pусский',
+                    fi: 'Suomi',
+                    uk: 'Українська',
                     aa: 'Crowdin'
                 },
                 debug: 'dbg'
             },
             links: {
                 help: {
-                    en: 'http://citizenos.uservoice.com/knowledgebase/articles/741585',
-                    et: 'http://citizenos.uservoice.com/knowledgebase/articles/741582',
-                    ru: 'http://citizenos.uservoice.com/knowledgebase/articles/741798'
+                    en: 'https://app.citizenos.com/en/topics/c6b6d06a-e8cf-4297-9654-8c1cf01b133b', // Used by default, if there is no language specific override
+                    et: 'https://app.citizenos.com/en/topics/fd8c4e13-6c5f-4423-9408-cf97c30727d7',
+                    ru: 'https://app.citizenos.com/en/topics/bd15b9e8-7de4-42c2-a394-78ed95a735cd'
                 }
             },
             storage: {
@@ -34,8 +36,8 @@
                     appKey: 'lkk7j6f41sfpm5b'
                 },
                 googleDrive: {
-                    developerKey: 'AIzaSyC3oZa5HN4OkbLOHYznR4Q0xkkB8oVx9zA',
-                    clientId: '11623449066-36uc2m24ej7vgqq7s8g92psvhcmjmfql.apps.googleusercontent.com'
+                    developerKey: 'AIzaSyBuEp5_A9tMjIZbIWzZ3pyh9wzLVcikD6I',
+                    clientId: '11623449066-0pdp3p7mp4l4f3e7vm43pr7okjpmddmc.apps.googleusercontent.com'
                 },
                 oneDrive: {
                     clientId: 'deb735fe-1c3d-489c-93f4-0a8927101d09'
@@ -44,8 +46,7 @@
         });
 
     module
-        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'UserVoiceProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, UserVoiceProvider, cosConfig) {
-
+        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
             var langReg = Object.keys(cosConfig.language.list).join('|');
 
             $locationProvider.html5Mode({
@@ -111,7 +112,7 @@
                         resolveOtherwise();
                     });
 
-                function resolveOtherwise() {
+                function resolveOtherwise () {
                     returnLink = '/' + useLang + '/';
                     if (langkeys.indexOf(locationPath[1]) > -1) {
                         returnLink = '/' + locationPath[1] + '/';
@@ -167,7 +168,7 @@
                     template: '<div ui-view style="height: 100%"></div>',
                     resolve: {
                         /* @ngInject */
-                        sTranslateResolve: function ($stateParams, $log, sTranslate, sAuth) {
+                        sTranslateResolve: function ($stateParams, $log, sTranslate) {
                             $log.debug('Resolve language', $stateParams.language);
                             return sTranslate.setLanguage($stateParams.language);
                         },
@@ -200,27 +201,6 @@
                     url: '/',
                     parent: 'main',
                     templateUrl: '/views/home.html'
-                })
-                .state('error', {
-                    url: '/error',
-                    parent: 'main',
-                    abstract: true,
-                    template: '<div ui-view style="height: 100%"></div>'
-                })
-                .state('error.401', {
-                    url: '/401',
-                    parent: 'error',
-                    templateUrl: '/views/401.html'
-                })
-                .state('error.403', {
-                    url: '/403',
-                    parent: 'error',
-                    templateUrl: '/views/401.html'
-                })
-                .state('error.404', {
-                    url: '/404',
-                    parent: 'error',
-                    templateUrl: '/views/404.html'
                 })
                 .state('account', {
                     url: '/account',
@@ -334,16 +314,24 @@
                                     groupMemberTopic
                                         .$save()
                                         .then(function () {
-                                            $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
+                                            $state.go('topics.view', {
+                                                language: $stateParams.language,
+                                                topicId: topic.id,
+                                                editMode: true
+                                            });
                                         });
                                 } else {
-                                    $state.go('topics.view', {language: $stateParams.language, topicId: topic.id, editMode: true});
+                                    $state.go('topics.view', {
+                                        language: $stateParams.language,
+                                        topicId: topic.id,
+                                        editMode: true
+                                    });
                                 }
                             });
                     }]
                 })
                 .state('topics.view', {
-                    url: '/:topicId?editMode',
+                    url: '/:topicId?editMode&commentId',
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {
@@ -449,7 +437,11 @@
                         rVote: ['rTopic', '$state', '$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
                             if (rTopic.voteId) {
                                 $timeout(function () {
-                                    $state.go('topics.view.votes.view', {language: $stateParams.language, topicId: rTopic.id, voteId: rTopic.voteId}); //if vote is allready created redirect to voting
+                                    $state.go('topics.view.votes.view', {
+                                        language: $stateParams.language,
+                                        topicId: rTopic.id,
+                                        voteId: rTopic.voteId
+                                    }); //if vote is allready created redirect to voting
                                 }, 0);
                                 return $q.reject();
                             } else {
@@ -473,7 +465,10 @@
                             if ([Topic.STATUSES.closed, Topic.STATUSES.followUp].indexOf(rTopic.status) > -1) {
                                 return $q.resolve();
                             } else {
-                                $state.go('topics.view', {language: $stateParams.language, topicId: rTopic.id}); //if topic editing or voting is still in progress
+                                $state.go('topics.view', {
+                                    language: $stateParams.language,
+                                    topicId: rTopic.id
+                                }); //if topic editing or voting is still in progress
                             }
                         }]
                     },
@@ -488,7 +483,10 @@
                         // Array of Topics / Groups
                         rItems: ['$state', '$stateParams', '$location', '$q', '$window', 'Topic', 'Group', 'sAuth', 'sAuthResolve', function ($state, $stateParams, $location, $q, $window, Topic, Group, sAuth, sAuthResolve) {
                             var filterParam = $stateParams.filter || 'all';
-                            var urlParams = {prefix: null, userId: null};
+                            var urlParams = {
+                                prefix: null,
+                                userId: null
+                            };
                             var path = $location.path();
 
                             if (!$stateParams.filter && (path.indexOf('groups') > -1)) {
@@ -497,7 +495,10 @@
                             }
 
                             if (sAuthResolve || sAuth.user.loggedIn) {
-                                urlParams = {prefix: 'users', userId: 'self'}
+                                urlParams = {
+                                    prefix: 'users',
+                                    userId: 'self'
+                                }
                             }
 
                             switch (filterParam) {
@@ -531,7 +532,10 @@
                     templateUrl: '/views/my_topics_topicId.html',
                     resolve: {
                         rTopic: ['$stateParams', '$anchorScroll', 'Topic', 'sAuthResolve', function ($stateParams, $anchorScroll, Topic, sAuthResolve) {
-                            var urlParams = {topicId: $stateParams.topicId, include: 'vote'};
+                            var urlParams = {
+                                topicId: $stateParams.topicId,
+                                include: 'vote'
+                            };
                             if (sAuthResolve) {
                                 urlParams.prefix = 'users';
                                 urlParams.userId = 'self';
@@ -645,53 +649,187 @@
                     parent: 'partners',
                     templateUrl: '/views/partners_consent.html'
                 })
-                .state('_templates', { // TODO: From here below are the template path relevant in development
-                    url: '/_templates',
+                .state('widgets', {
+                    url: '/widgets?widgetId&widgetTitle',
+                    parent: 'index',
                     abstract: true,
-                    parent: 'main',
-                    template: '<div ui-view></div>'
-                })
-                .state('_templates.topics', {
-                    url: '/my/topics',
-                    parent: '_templates',
-                    templateUrl: '/views/_templates/mytopics.html'
-                })
-                .state('_templates.topics.topicId', {
-                    url: '/:topicId',
-                    parent: '_templates.topics',
-                    templateUrl: '/views/_templates/mytopics_view.html'
-                })
-                .state('_templates.topics.topicId.settings', {
-                    url: '/settings?tab',
-                    parent: '_templates.topics.topicId',
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        $scope.tabSelected = 'settings';
-                        var dialog = ngDialog.open({
-                            template: '/views/_templates/modals/topic_settings.html',
-                            data: $stateParams,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                        dialog.closePromise.then(function (data) {
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
+                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view></div>',
+                    controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', 'ngDialog', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log, ngDialog) {
+                        $scope.app.widgetTitle = $stateParams.widgetTitle;
+                        $scope.widgetPostMessage = function (data) {
+                            if ($window.self !== $window.parent) {
+                                var msg = {citizenos: {}};
+                                msg.citizenos['widgets'] = {};
+                                msg.citizenos['widgets'][$stateParams.widgetId] = data;
+                                $window.top.postMessage(msg, '*');
+                            } else {
+                                // SKIP, as not in a frame
                             }
+                        };
+
+                        if ($window.self !== $window.parent) { // Inside iframe
+                            var heightPrev;
+                            var interval = $interval(function () {
+                                var heightCurrent = $document[0].getElementsByTagName('body')[0].scrollHeight;
+                                var lightbox = document.getElementById('root_lightbox');
+                                if (lightbox && lightbox.scrollHeight) {
+                                    heightCurrent = Math.max(heightCurrent, lightbox.scrollHeight);
+                                }
+
+                                if (heightPrev !== heightCurrent) {
+                                    heightPrev = heightCurrent;
+
+                                    $scope.widgetPostMessage({
+                                        height: heightCurrent
+                                    });
+                                }
+                            }, 100);
+
+                            $scope.$on('$destroy', function () {
+                                interval.cancel();
+                            });
+
+                            $rootScope.$on('ngDialog.opened', function () {
+                                // If widgets are in iframe, we should inform about dialog positon for parent page to scroll to the right place
+                                if ($window.self !== $window.parent) {
+                                    var dialogElement = document.getElementById('lightbox');
+                                    var dialogElementPosition = dialogElement.getBoundingClientRect();
+
+                                    $scope.widgetPostMessage({
+                                        overlay: {
+                                            top: dialogElementPosition.top
+                                        },
+                                        height: document.getElementById('root_lightbox').scrollHeight
+                                    });
+                                }
+                            });
+
+                            $scope.doShowWidgetHowItWorks = function () {
+                                ngDialog.open({
+                                    template: '/views/modals/widgets_how_it_works.html'
+                                });
+                            }
+                        }
+                    }]
+                })
+                .state('widgets.wrapped', {
+                    url: null,
+                    parent: 'widgets',
+                    abstract: true,
+                    templateUrl: '/views/layouts/widget.html'
+                })
+                .state('widgets.wrapped.sourcePartnerObjectId', {
+                    url: '/partners/:partnerId/topics/:sourcePartnerObjectId',
+                    parent: 'widgets',
+                    abstract: true,
+                    template: '<div ui-view></div>',
+                    resolve: {
+                        /* @ngInject */
+                        TopicResolve: function ($http, $state, $stateParams, sLocation) {
+                            var path = sLocation.getAbsoluteUrlApi(
+                                '/api/partners/:partnerId/topics/:sourcePartnerObjectId',
+                                $stateParams
+                            );
+                            return $http
+                                .get(path)
+                                .then(function (res) {
+                                    return res.data.data;
+                                });
+                        }
+                    }
+                })
+                .state('widgets.wrapped.sourcePartnerObjectId.arguments', {
+                    url: '/arguments',
+                    parent: 'widgets.wrapped.sourcePartnerObjectId',
+                    controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
+                        $state.go('widgets.wrapped.arguments', {
+                            topicId: TopicResolve.id,
+                            widgetId: $stateParams.widgetId
                         });
                     }]
                 })
-                .state('_templates.topics.view', {
-                    url: '/topics/:topicId',
-                    parent: '_templates',
-                    templateUrl: '/views/_templates/topics_topicId.html'
+                .state('widgets.wrapped.arguments', {
+                    url: '/topics/:topicId/arguments',
+                    parent: 'widgets.wrapped',
+                    template: '<div class="comments_section"><div class="comments_content"><div ng-include="\'views/topics_topicId_comments.html\'"></div></div></div>'
                 })
-                .state('_templates.groups', {
-                    url: '/groups',
-                    parent: '_templates',
-                    templateUrl: '/views/_templates/groups.html'
+                .state('widgets.activities', {
+                    url: '/activities',
+                    parent: 'widgets',
+                    templateUrl: '/views/widgets/activities.html',
+                    resolve: {
+                        /* @ngInject */
+                        ActivitiesResolve: function ($http, $stateParams, sActivity) {
+                            return sActivity.getActivitiesUnauth(0, 100);
+                        }
+                    },
+                    controller: 'ActivitiesWidgetCtrl'
                 })
-                .state('cos_input_test', {
-                    url: '/cos_input_test',
+                .state('widgets.topicActivities', {
+                    url: '/topics/:topicId/activities',
+                    parent: 'widgets',
+                    templateUrl: '/views/widgets/activities.html',
+                    resolve: {
+                        /* @ngInject */
+                        ActivitiesResolve: function ($http, $stateParams, sActivity) {
+                            return sActivity.getTopicActivitiesUnauth($stateParams.topicId);
+                        }
+                    },
+                    controller: 'ActivitiesWidgetCtrl'
+                })
+                .state('widgets.partnerActivities', {
+                    url: '/partners/:partnerId/activities',
+                    parent: 'widgets',
+                    templateUrl: '/views/widgets/activities.html',
+                    resolve: {
+                        /* @ngInject */
+                        ActivitiesResolve: function ($http, $stateParams, sActivity) {
+                            return sActivity.getActivitiesUnauth(0, 50, null, $stateParams.partnerId);
+                        }
+                    },
+                    controller: 'ActivitiesWidgetCtrl'
+                })
+                .state('widgets.partnerTopicActivities', {
+                    url: '/activities',
+                    parent: 'widgets.wrapped.sourcePartnerObjectId',
+                    controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
+                        $state.go('widgets.topicActivities', {
+                            topicId: TopicResolve.id,
+                            widgetId: $stateParams.widgetId
+                        });
+                    }]
+                })
+                .state('authCallback', { // Callback page for the "popup" style (facebook, google) authentication flow.
+                    url: '/auth/callback',
+                    template: '<h1>Redirecting...</h1>',
+                    controller: ['$window', '$document', function ($window, $document) {
+                        if ($document[0].documentMode || $window.navigator.userAgent.indexOf('Edge') > -1) {
+                            return $window.close();
+                        } else {
+                            $window.opener.postMessage({status: 'success'}, $window.origin);
+                        }
+                    }]
+                })
+                .state('error', {
+                    url: '/error',
                     parent: 'main',
-                    templateUrl: '/views/_templates/cos_input_test.html'
+                    abstract: true,
+                    template: '<div ui-view style="height: 100%"></div>'
+                })
+                .state('error.401', {
+                    url: '/401',
+                    parent: 'error',
+                    templateUrl: '/views/401.html'
+                })
+                .state('error.403', {
+                    url: '/403',
+                    parent: 'error',
+                    templateUrl: '/views/401.html'
+                })
+                .state('error.404', {
+                    url: '/404',
+                    parent: 'error',
+                    templateUrl: '/views/404.html'
                 });
 
             $translateProvider.useStaticFilesLoader({
@@ -723,8 +861,6 @@
                 .useLocalStorage()
                 .useMissingTranslationHandlerLog()
                 .translations(cosConfig.language.debug, {});
-
-            UserVoiceProvider.setApiKey('f7Trszzveus2InvLcEelw');
         }]);
 })();
 

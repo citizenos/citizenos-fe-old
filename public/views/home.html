@@ -71,7 +71,7 @@
             <div cos-dropdown class="bar_section">
                 <div class="bar_text" translate="VIEWS.HOME.LNK_SHOW">Show</div>
                 <div class="bar_select">
-                    {{filters.statuses.value}}
+                    {{'TXT_TOPIC_STATUS_' + filters.statuses.value | uppercase | translate}}
                     <div class="icon_holder">
                         <div class="table_cell">
                             <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
@@ -122,7 +122,7 @@
             <div class="line lightest_line"></div>
             <div class="filter_topics_bottom">
                 <div class="filter_text"><span translate="VIEWS.HOME.LBL_CATEGORY">Category:</span> {{'TXT_TOPIC_CATEGORY_' + filters.categories.value | uppercase | translate}}</div>
-                <div class="filter_text"><span translate="VIEWS.HOME.LBL_STATUS">Status:</span> {{filters.statuses.value}}</div>
+                <div class="filter_text"><span translate="VIEWS.HOME.LBL_STATUS">Status:</span> {{'TXT_TOPIC_STATUS_' + filters.statuses.value | uppercase | translate}}</div>
             </div>
         </div>
 
@@ -163,7 +163,12 @@
             <div id="fi_selection_area">
                 <a href="" class="fi_link" ng-repeat="option in filters[filters.tabSelected].options" ng-click="doSetFilter(filters[filters.tabSelected], option)"
                    ng-class="option === filters[filters.tabSelected].value ? 'bold' : ''">
-                    {{option}}
+                    <span ng-if="filters.tabSelected === 'categories'">
+                        {{'TXT_TOPIC_CATEGORY_' + option | uppercase | translate}}
+                    </span>
+                    <span ng-if="filters.tabSelected === 'statuses'">
+                        {{'TXT_TOPIC_STATUS_' + option | uppercase | translate}}
+                    </span>
                 </a>
             </div>
 
@@ -201,7 +206,7 @@
             </div>
         </div>
 
-        <a ng-href="https://citizenos.com" class="big white_text blue_background topic" ng-if="isTutorialVisible()">
+        <a ng-href="{{app.config.links.help[app.language] || app.config.links.help[app.config.language.default]}}" class="big white_text blue_background topic" ng-if="isTutorialVisible()">
             <div class="topic_wrap">
                 <div class="text_area">
 

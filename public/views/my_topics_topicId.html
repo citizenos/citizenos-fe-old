@@ -136,53 +136,58 @@
     </div>
 
     <!-- ACTIVITY FEED & NOTIFICATIONS -->
-    <!--div class="info_container">
+    <div class="info_container">
 
         <div class="container_header">
-            <div class="header_text">
+            <div class="header_text" translate="VIEWS.MY_TOPICS_TOPICID.HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS">
                 Activity feed & notifications
             </div>
-            <div class="minimize_container" ng-click="app.activityFeed = !app.activityFeed">
-                <div ng-class="app.activityFeed ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+            <div class="minimize_container" ng-click="doToggleActivities()">
+                <div ng-class="!app.activityFeed ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
 
-        <div class="container_content activity_container" ng-if="!app.activityFeed">
+        <div class="container_content activity_container" ng-if="app.activityFeed" cos-scroll on-scroll="loadActivities">
+            <div class="activity_wrap compact">
+                <div class="activity_area">
 
-            <div class="activity" ng-repeat="(key, this) in ['1', '2']">
+                    <div class="activity_content" ng-repeat="(key, activity) in activities">
 
-                <div class="activity_left">
-                    <div class="activiy_time">55.07.2056 11:23</div>
-                </div>
+                        <div class="left_side">
+                        <div class="line_top"></div>
+                            <div class="icon">
+                                <div ng-class="'sprite sprite-icon-activity-{{activity.values.className}}{{activity.isNew}}-2x'"></div>
+                            </div>
+                            <div class="line_bottom"></div>
+                        </div>
 
-                <div class="activity_right">
-                    <div class="activity_icon">
-                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                        <div class="right_side" ng-click="activityRedirect(activity)">
+                            <div class="text_box">
+                                <div class="main_text">
+                                    <span translate="{{activity.string}}" translate-values="activity.values"> </span>
+                                </div>
+                                <div class="description_area italic">
+                                    <span ng-if="showActivityUpdateVersions(activity)">
+                                        <span class="activity_previous" translate="ACTIVITY_FEED.ACTIVITY_PREVIOUS_VERSION" translate-values="{previousValue: '{{(activity.values.previousValue | limitTo: 200) + (activity.values.previousValue.length > 200 ? '...' : '')}}'}"></span>
+                                        <br>
+                                        <span class="activity_new" translate="ACTIVITY_FEED.ACTIVITY_NEW_VERSION" translate-values="{newValue: '{{(activity.values.newValue | limitTo: 200) + (activity.values.newValue.length > 200 ? '...' : '')}}'}"></span>
+                                    </span>
+                                    <span ng-if="showActivityDescription(activity) && !showActivityUpdateVersions(activity)" class="activity_description_text" ng-bind="(activity.values.description | limitTo: 200) + (activity.values.description.length > 200 ? '...' : '')">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
+                                        home office combo? First off, you will need to set a budget for your new ...
+                                    </span>
+                                </div>
+                                <div class="date_area" ng-bind="activity.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
+                                <b class="notch border-notch"></b>
+                                <b class="notch"></b>
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
                     </div>
-                    <div class="activiy_title">Kristian Lember <span class="highlight aqua_marine_background">added</span> a <span class="highlight dark_yellow_background">comment</span>:</div>
-                    <div class="activiy_description">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
-                        home office combo? First off, you will need to set a budget for your new ...
-                    </div>
                 </div>
-
-                <div class="clearer"></div>
             </div>
-
-            <div class="activity">
-
-                <div class="activity_left">
-                    <div class="view_older blue_link">View older</div>
-                </div>
-
-                <div class="activity_right">
-                    &nbsp;
-                </div>
-
-            </div>
-
         </div>
 
-    </div-->
+    </div>
 
     <!-- CURRENT VOTE WITH VOTING -->
 
@@ -272,8 +277,8 @@
                         <div class="results_table">
 
                             <div class="item_content" ng-repeat="voteOption in topic.vote.options.rows | orderBy: 'voteCount'">
-                                <div class="item_text" ng-bind="voteOption.value">voteOption.value</div>
-                                <div class="item_text" ng-bind="voteOption.voteCount || 0">0</div>
+                                <div class="item_text" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + voteOption.value | linky | uppercase}}" translate-default="{{voteOption.value | linky}}">voteOption.value</div>
+                                <div class="item_text">{{voteOption.voteCount || 0}}</div>
                             </div>
 
                         </div>
@@ -305,9 +310,9 @@
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE">Vote deadline</div>
                         <div class="item_content">
                             <div class="item_text">
-                                <span ng-bind="(topic.vote.endsAt | amDateFormat : 'L') || 'none'">12/12/2017</span>
+                                <span ng-bind="(topic.vote.endsAt | amDateFormat : 'L') || ('VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE_NONE' | translate)">12/12/2017</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'Vote deadline'" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt"><span translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span></span>
+                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE' | translate" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt"><span translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span></span>
                             </div>
                         </div>
                     </div>
@@ -399,7 +404,7 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <span class="pretend_table_mobile_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_USERS_COUNT" translate-values="{count: group.members.users.count}">Users: </span> 0
+                        <span class="pretend_table_mobile_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_USERS_COUNT" translate-values="{count: group.members.users.count}">Users: 0</span>
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin">

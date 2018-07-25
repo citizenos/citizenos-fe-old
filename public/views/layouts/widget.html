@@ -1,0 +1,57 @@
+<div id="widget_wrapper">
+    <div id="widget_header">
+        <div id="widget_header_logo_wrapper">
+            <div id="widget_title_items" class="widget_text_header"><span id="widget_title">{{app.widgetTitle}}</span> <span id="widget_header_powered_by">empowered by</span></div>
+            <div id="widget_header_logo_items">
+                <a href="https://citizenos.com" target="_blank">
+                    <div id="widget_logo" class="sprite sprite-cos-logo-small-positive2x"></div>
+                </a>
+            </div>
+        </div>        
+        <div id="widget_user">
+            <div id="account_area">
+                <div ng-if="app.user.loggedIn" class="profile_image_wrapper">
+                    <div id="widget_user_image" class="account_picture">
+                        <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">
+                        <div class="profile_image_filler" ng-if="!app.user.imageUrl">
+                            <div class="tabel_cell" cos-initials="app.user.name">
+                                ML
+                            </div>
+                            <div class="profile_circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="app.user.loggedIn" id="user_name" class="widget_user_cell">
+                    <div class="section_header bold_white">{{app.user.name}}</div>
+                </div>
+                <div ng-if="!app.user.loggedIn" id="login" class="widget_user_cell">
+                    <div class="blue_button" ng-click="app.doShowLogin()" translate="DEFAULT.WIDGET.LNK_LOG_IN_REGISTER"></div>
+                </div>
+                <div id="log_out" class="widget_user_cell" ng-if="app.user.loggedIn">
+                    <div class="blue_link" ng-click="app.doWidgetLogout();">
+                        <span translate="DEFAULT.WIDGET.LNK_LOG_OUT">Log out</span>
+                    </div>
+                </div>
+                <div class="widget_user_cell">
+                    <div class="white_button" ng-click="doShowWidgetHowItWorks()">
+                        <span ng-if="(wWidth >= 800 || wWidth <= 370)" translate="DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK">How does it work?</span>
+                        <span ng-if="(wWidth < 800 && wWidth > 370)">?</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ui-view></div>
+    <div id="widget_footer">
+        <div id="widget_footer_logo_wrapper">
+            <div class="widget_text_footer"><span id="widget_title_footer">{{app.widgetTitle}}</span> <span id="widget_footer_powered_by">empowered by</span></div>
+            <div id="widget_footer_logo_items">
+                <a href="https://citizenos.com" target="_blank">
+                    <div id="widget_footer_logo" class="sprite sprite-cos-logo-small-positive2x"></div>
+                </a>
+            </div>            
+        </div>
+        <div id="link_policy" class="widget_footer_link"><a href="https://app.citizenos.com/topics/70374889-986a-4487-a072-cbdd6375e3de" target="_blank" translate="DEFAULT.WIDGET.LNK_PRIVACY_POLICY">CitizenOS Privacy Policy</a></div>
+        <div id="link_site" class="widget_footer_link"><a href="https://citizenos.com/" target="_blank" translate="DEFAULT.WIDGET.LNK_CITIZENOS_WEBSITE">CitizenOS Website</a></div>
+    </div>
+</div>

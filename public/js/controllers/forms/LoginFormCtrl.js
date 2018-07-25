@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$location', 'ngDialog', 'sAuth', 'sLocation', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $location, ngDialog, sAuth, sLocation, sNotification) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'ngDialog', 'sAuth', 'sLocation', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $document, $interval, ngDialog, sAuth, sLocation, sNotification) {
         $log.debug('LoginFormCtrl');
 
         $scope.LOGIN_PARTNERS = {
@@ -20,6 +20,43 @@ angular
         init();
 
         angular.extend($scope.form, $stateParams, $scope.$parent.ngDialogData);
+
+        var popupCenter = function (url, title, w, h) {
+            var userAgent = navigator.userAgent,
+                mobile = function () {
+                    return /\b(iPhone|iP[ao]d)/.test(userAgent) ||
+                        /\b(iP[ao]d)/.test(userAgent) ||
+                        /Android/i.test(userAgent) ||
+                        /Mobile/i.test(userAgent);
+                },
+                screenX = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft,
+                screenY = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop,
+                outerWidth = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.documentElement.clientWidth,
+                outerHeight = typeof window.outerHeight != 'undefined' ? window.outerHeight : document.documentElement.clientHeight - 22,
+                targetWidth = mobile() ? null : w,
+                targetHeight = mobile() ? null : h,
+                V = screenX < 0 ? window.screen.width + screenX : screenX,
+                left = parseInt(V + (outerWidth - targetWidth) / 2, 10),
+                right = parseInt(screenY + (outerHeight - targetHeight) / 2.5, 10),
+                features = [];
+            if (targetWidth !== null) {
+                features.push('width=' + targetWidth);
+            }
+            if (targetHeight !== null) {
+                features.push('height=' + targetHeight);
+            }
+            features.push('left=' + left);
+            features.push('top=' + right);
+            features.push('scrollbars=1');
+
+            var newWindow = window.open(url, title, features.join(','));
+
+            if (window.focus) {
+                newWindow.focus();
+            }
+
+            return newWindow;
+        };
 
         $scope.doLogin = function () {
             $log.debug('LoginFormCtrl.doLogin()');
@@ -68,15 +105,42 @@ angular
                 throw new Error('LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', partnerId);
             }
 
-            var url = sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', {partnerId: partnerId});
-            if ($stateParams.redirectSuccess) {
-                url += '?redirectSuccess=' + encodeURIComponent($stateParams.redirectSuccess);
-            } else {
-                var redirectSuccess = sLocation.currentUrl();
-                url += '?redirectSuccess=' + redirectSuccess + '?'; // HACK: + '?' avoids digest loop on Angular side for Google callbacks.
-            }
+            var url = sLocation.getAbsoluteUrlApi(
+                '/api/auth/:partnerId',
+                {
+                    partnerId: partnerId
+                },
+                {
+                    redirectSuccess: sLocation.getAbsoluteUrl('/auth/callback')
+                }
+            );
 
-            $window.location.href = url;
+            var redirectSuccess = $stateParams.redirectSuccess || sLocation.currentUrl(); // Final url to land after successful login
+
+            var loginWindow = popupCenter(url, 'CitizenOS Facebook Login', 470, 500);
+
+            if ($document[0].documentMode || $window.navigator.userAgent.indexOf('Edge') > -1) {
+                var popupCheck = $interval(function() {
+                    if (loginWindow.closed) {
+                        $interval.cancel(popupCheck);
+                        $window.focus();
+                        sAuth
+                            .status()
+                            .then(function (user) {
+                                if (user) {
+                                    $window.location.href = redirectSuccess;
+                                }   
+                            });
+                    }
+                }, 250);
+            }
+            
+            var messageHandler = function (message) {
+                loginWindow.close();
+                $window.focus();
+                $window.location.href = redirectSuccess;
+            };
+            $window.addEventListener('message', messageHandler, false);
         };
 
 

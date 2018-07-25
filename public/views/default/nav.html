@@ -48,6 +48,20 @@
 
         <!-- Nav section -->
         <div class="section">
+            <a ng-click="app.doShowActivityModal()" class="section_item" ng-class="{active: app.isShowActivityModal}">
+                <div class="section_icon">
+                    <div class="table_cell">
+                        <div class="sprite sprite-menu-icon-activities2x"></div>
+                    </div>
+                </div>
+                <span translate="DEFAULT.NAV.LNK_ACTIVITY">Activity</span>
+            </a>
+        </div>
+
+        <div class="line dark_line"></div>
+        <div class="line light_line"></div>
+
+        <div class="section">
             <div class="section_item section_header bold_white">
                 <div class="section_icon">
                     <div class="table_cell">
@@ -128,16 +142,7 @@
             <span translate="DEFAULT.NAV.LNK_ABOUT">About</span>
         </a>
 
-        <a class="section_item" href="https://citizenos.uservoice.com/">
-            <div class="section_icon">
-                <div class="table_cell">
-                    <div class="sprite sprite-menu-icon-faq2x"></div>
-                </div>
-            </div>
-            <span translate="DEFAULT.NAV.LNK_FAQ">FAQ</span>
-        </a>
-
-        <a class="section_item" ng-href="{{app.config.links.help[app.language]}}">
+        <a class="section_item" ng-href="{{app.config.links.help[app.language] || app.config.links.help[app.config.language.default]}}">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-help2x"></div>
@@ -145,28 +150,14 @@
             </div>
             <span translate="DEFAULT.NAV.LNK_HELP">Help</span>
         </a>
-
-        <div cos-dropdown id="dropdown_wrap">
-            <div class="section_item">
+        <a class="section_item" ng-click="app.doShowLanguageSelect()">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-x0-menu-icon-help2x"></div>
                     </div>
                 </div>
-                <div class="section_icon arrow_down">
-                    <div class="table_cell">
-                        <div class="sprite sprite-x4-icon-language-dropdown2x"></div>
-                    </div>
-                </div>
                 {{app.config.language.list[app.language]}}
-            </div>
-            <div class="dropdown">
-                <div class="section_item" ng-repeat="(language, languageText) in app.config.language.list" ng-click='app.doSwitchLanguage(language)'>
-                    {{languageText}}
-                </div>
-            </div>
-        </div>
-
+        </a>
     </div>
 
 

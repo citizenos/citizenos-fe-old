@@ -11,8 +11,8 @@
                 <div cos-dropdown class="classic_dropdown">
 
                     <div class="dropdown_selection">
-                        <div class="dropdown_text">
-                            {{filters.selected.name}}
+                        <div class="dropdown_text" translate="{{filters.selected.name}}">
+                            Selected filter
                         </div>
 
                         <div class="arrow_holder">
@@ -28,19 +28,19 @@
 
                         <div class="dropdown_item" ng-repeat="item in filters.items">
                             <div ng-if="item.children">
-                                <div class="item_category">
-                                    {{item.name}}
+                                <div class="item_category" translate="{{item.name}}">
+                                    Item category
                                 </div>
                                 <div class="item_names_wrap">
                                     <div ng-repeat="child in item.children" class="item_name" ng-click="child.onSelect(item)" ng-class="child === filters.selected ? 'bold' : ''">
-                                        {{child.name}}
+                                        <span translate="{{child.name}}">Child name</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div ng-if="!item.children">
-                                <div class="item_name" ng-click="item.onSelect()" ng-class="item === filters.selected ? 'bold' : ''">
-                                    {{item.name}}
+                                <div class="item_name" ng-click="item.onSelect()" ng-class="item === filters.selected ? 'bold' : ''" translate="{{item.name}}">
+                                    Item name
                                 </div>
                             </div>
 
@@ -62,16 +62,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="header_text" ui-sref="my.groups.groupId({groupId: item.id, filter: 'grouped'})" ng-bind="item.name+' ('+item.members.topics.count+')'">
+                    <a class="header_text" ui-sref="my.groups.groupId({groupId: item.id, filter: 'grouped'})" ng-bind="item.name+' ('+item.members.topics.count+')'">
                         item (0)
-                    </div>
+                    </a>
                     <div class="minimize_container" ng-if="item.members.topics.count" ng-click="doToggleGroupTopicList(item)">
                         <div ng-class="!isGroupMemberTopicsVisible(item) ?  'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                     </div>
                 </div>
 
                 <!-- Group member Topic -->
-                <div ng-if="isGroupMemberTopicsVisible(item)" ng-repeat="groupMemberTopic in item.members.topics.rows" class="small_topic" ui-sref="my.topics.topicId({topicId: groupMemberTopic.id})" ui-sref-active="active">
+                <a ng-if="isGroupMemberTopicsVisible(item)" ng-repeat="groupMemberTopic in item.members.topics.rows" class="small_topic" ui-sref="my.topics.topicId({topicId: groupMemberTopic.id})" ui-sref-active="active">
                     <div class="small_topic_header">
                         <div class="small_topic_left_cont">
                             <div class="small_topic_icon">
@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="small_topic_title">
-                        <span ng-bind="groupMemberTopic.title">title<span/> <span class="lock_icon_wrap" ng-show="groupMemberTopic.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
+                        <span ng-bind="groupMemberTopic.title">title</span> <span class="lock_icon_wrap" ng-show="groupMemberTopic.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
                     </div>
 
                     <div class="line lightest_line"></div>
@@ -100,10 +100,10 @@
                             <div class="small_topic_small_text" ng-bind="(groupMemberTopic.updatedAt || groupMemberTopic.createdAt) | amDateFormat : 'L LT'">12/12/2012</div>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- Topics -->
-                <div ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
+                <a ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
                     <div class="small_topic_header">
                         <div class="small_topic_left_cont">
                             <div class="small_topic_icon">
@@ -132,7 +132,7 @@
                             <div class="small_topic_small_text" ng-bind="(item.updatedAt || item.createdAt) | amDateFormat : 'L LT'">12/12/2015</div>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <div ng-repeat-end></div>
 

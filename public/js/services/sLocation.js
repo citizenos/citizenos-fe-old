@@ -61,4 +61,8 @@ angular
 
             return baseUrl + path + queryString;
         }
+
+        sLocation.getLocationHash = function () {
+            return $location.hash();
+        }
     }]);

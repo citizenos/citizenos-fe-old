@@ -1384,6 +1384,66 @@
 
 #root_lightbox.full_screen {
 
+    &.left_menu_visible {
+        left: 190px;
+        @media (max-width: 1024px) {
+            left: 0;
+        }
+    }
+
+    #lightbox.aligned_left_top {
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin-right: initial;
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none;
+        width: 804px;
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
+        #lightbox_wrap {
+            #lightbox_header {
+                border-radius: 0;
+                height: 96px;
+
+                #lightbox_header_text {
+                    padding: 15px 20px 15px 20px;
+                    .title {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+            .lightbox_content {
+                border-radius: 0;
+                margin: 0;
+                position: absolute;
+                top: 97px;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch;
+                overflow-scrolling: touch;
+                .lightbox_section {
+                    @media (max-width: 1024px) {
+                        padding-top: 15px;
+                    }
+                }
+        
+            }
+        
+            #lightbox_close {
+                height: 42px;
+                border-radius: 0 4px;
+                position: absolute;
+                float: none;
+                right: 0;
+            }
+        }
+    }
+
     .lightbox_content.settings_section_wrap {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
@@ -1398,6 +1458,9 @@
             padding-bottom: 20px !important;
             overflow-y: visible;
 
+            &.language_section {
+                padding-left: 25px !important;
+            }
             @media (max-width: 640px) {
                 max-height: 279px;
             }
@@ -1490,6 +1553,19 @@
                         width: 100%;
                     }
                 }
+                .language_cell {
+                    @extend .table_cell;
+                    width: 23%;
+                    float: left;
+                    padding: 5px;
+
+                    .blue_button, .gray_button {
+                        width: 110px;
+                        float: right;
+                        font-size: 14px;
+                    }
+                    
+                }
 
                 @media (max-width: 560px) {
                     display: block;
@@ -1532,6 +1608,20 @@
                             }
                         }
 
+                    }
+
+                    .language_cell {
+                        width: 45%;
+                        float: left;
+                        padding: 5px;
+                        text-align:center;
+    
+                        .blue_button, .gray_button {
+                            width: 110px;
+                            float: right;
+                            font-size: 14px;
+                        }
+                        
                     }
                 }
             }

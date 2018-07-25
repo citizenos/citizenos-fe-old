@@ -21,8 +21,6 @@ angular
             $log.debug('LoginEsteIdFormCtrl.doLoginMobiilId()');
 
             $scope.formSmartId.isLoading = true;
-            console.log($scope.formSmartId.countryCode);
-            console.log($scope.formSmartId.pid);
 
             sAuth
                 .loginSmartIdInit($scope.formSmartId.pid, $scope.formSmartId.countryCode)
