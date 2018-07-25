@@ -776,5 +776,32 @@
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Размер файла является слишком большим! Максимальный допустимый размер равен 50 МБ.",
   "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Тип файла не допускается!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Отсутствует ссылка на файл!",
-  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Отсутствует название файла!"
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Отсутствует название файла!",
+  "ep_comments_page": {
+    "show_comments": "Show Comments",
+    "add_comment": {
+      "title": "Add new comment on selection"
+    },
+    "delete_comment": {
+      "title": "Delete this comment"
+    },
+    "edit_comment": {
+      "title": "Edit this comment"
+    },
+    "comments_template": {
+      "suggested_change": "Suggested change:",
+      "accept_change.value": "Accept change",
+      "revert_change.value": "Revert change",
+      "suggest_change": "Suggest change:",
+      "from": "From:",
+      "to": "To:",
+      "include_suggestion": "Include suggested change",
+      "comment.value": "Add comment",
+      "reply_input_label": "Your reply",
+      "edit_comment": {
+        "save": "Save",
+        "cancel": "@:LNK_CANCEL"
+      }
+    }
+  }
 }
