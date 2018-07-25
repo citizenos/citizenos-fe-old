@@ -797,11 +797,10 @@
       "to" : "To:",
       "include_suggestion" : "Include suggested change",
       "comment.value" : "Add comment",
-      "cancel.value" : "Cancel",
       "reply_input_label":"Your reply",
       "edit_comment": {
-        "save" : "save",
-        "cancel" :"cancel"
+        "save" : "Save",
+        "cancel" :"@:LNK_CANCEL"
       }
     }
   }
