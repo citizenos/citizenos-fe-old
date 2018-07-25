@@ -814,7 +814,7 @@
       },
       "one_minute": {
         "past" : "1 minute ago",
-        "future" : "1 minute from now",
+        "future" : "1 minute from now"
       },
       "minutes": {
         "past" : "{{count}} minutes ago",
