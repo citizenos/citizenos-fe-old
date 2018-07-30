@@ -776,5 +776,32 @@
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Manus on liiga suur! Maksimaalne lubatud suurus on 50 MB.",
   "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Faili tüüp ei ole lubatud",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Manuse link puudub!",
-  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Manuse nimi puudub!"
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Manuse nimi puudub!",
+  "ep_comments_page": {
+    "show_comments": "Show Comments",
+    "add_comment": {
+      "title": "Add new comment on selection"
+    },
+    "delete_comment": {
+      "title": "Delete this comment"
+    },
+    "edit_comment": {
+      "title": "Edit this comment"
+    },
+    "comments_template": {
+      "suggested_change": "Suggested change:",
+      "accept_change.value": "Accept change",
+      "revert_change.value": "Revert change",
+      "suggest_change": "Suggest change:",
+      "from": "From:",
+      "to": "To:",
+      "include_suggestion": "Include suggested change",
+      "comment.value": "Add comment",
+      "reply_input_label": "Your reply",
+      "edit_comment": {
+        "save": "Save",
+        "cancel": "@:LNK_CANCEL"
+      }
+    }
+  }
 }
