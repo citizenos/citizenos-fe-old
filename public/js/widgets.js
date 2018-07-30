@@ -20,10 +20,12 @@
          * @param {string} topicId CitizenOS Topic ID OR Partner entity ID IF "partnerId" is provided.
          * @param {string|null} [partnerId=undefined] Partner id for the Topic. If used, the "topicId" is considered to be Partner entity id and will be internally mapped to CitizenOS Topic id
          * @param {string} [targetId=undefined] Containing pages target element id
-         *
+         * @param {string} [widgetTitle=undefined] Containing custom title for widget
+         * @param {string} [style=undefined] Containing link to custom style file
+         * 
          * @constructor
          */
-        window.CITIZENOS.widgets.Argument = function (language, topicId, partnerId, targetId, widgetTitle) {
+        window.CITIZENOS.widgets.Argument = function (language, topicId, partnerId, targetId, widgetTitle, style) {
             var targetElementId = targetId || 'citizenos-widget-argument-' + Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 5);
 
             var targetElement = document.getElementById(targetElementId);
@@ -61,6 +63,11 @@
             if (widgetTitle) {
                 queryParams.push('widgetTitle=' + encodeURIComponent(widgetTitle));
             }
+
+            if (style) {
+                queryParams.push('style=' + encodeURIComponent(style));
+            }
+
             queryString = queryParams.join('&');
 
             if (queryString.length) {
@@ -82,11 +89,13 @@
      * @param {string|null} [topicId=undefined] CitizenOS Topic ID OR Partner entity ID IF "partnerId" is provided. If not provided, all events of Topics for that "partnerId" are fetched.
      * @param {string|null} [partnerId=undefined] Partner id for the Topic. If used, the "topicId" is considered to be Partner entity id and will be internally mapped to CitizenOS Topic id
      * @param {string} [targetId=undefined] Containing pages target element id
+     * @param {string} [widgetTitle=undefined] Containing custom title for widget
+     * @param {string} [style=undefined] Containing link to custom style file
      *
      * @constructor
      */
     if (!window.CITIZENOS.widgets.ActivityFeed) {
-        window.CITIZENOS.widgets.ActivityFeed = function (language, topicId, partnerId, targetId, widgetTitle) {
+        window.CITIZENOS.widgets.ActivityFeed = function (language, topicId, partnerId, targetId, widgetTitle, style) {
             var targetElementId = targetId || 'citizenos-widget-argument-' + Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, 5);
 
             var targetElement = document.getElementById(targetElementId);
@@ -138,6 +147,10 @@
             }
 
             widgetFrame.src = window.CITIZENOS.config.url.fe + path;
+
+            if (style) {
+                queryParams.push('style=' + encodeURIComponent(style));
+            }
 
             targetElement.appendChild(widgetFrame);
 

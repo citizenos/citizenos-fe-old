@@ -721,7 +721,6 @@ $bold: 700;
                 }
                 
                 .comment-changeTo-approve {
-                    height: 20px;
     
                     input {
                         height: 30px;
@@ -735,6 +734,7 @@ $bold: 700;
                         font-weight: bold;
                         line-height: 20px;
                         text-align: center;
+                        display: inline-block;
                     }
                 } 
             }
@@ -954,7 +954,6 @@ $bold: 700;
             }
             
             .comment-changeTo-approve {
-                height: 20px;
 
                 input {
                     height: 30px;
@@ -968,6 +967,7 @@ $bold: 700;
                     font-weight: bold;
                     line-height: 20px;
                     text-align: center;
+                    display: inline-block!important;
                 }
             } 
         }

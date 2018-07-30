@@ -650,12 +650,13 @@
                     templateUrl: '/views/partners_consent.html'
                 })
                 .state('widgets', {
-                    url: '/widgets?widgetId&widgetTitle',
+                    url: '/widgets?widgetId&widgetTitle&style',
                     parent: 'index',
                     abstract: true,
-                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view></div>',
+                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><style ng-if="customWidgetStyle" type="text/css">@import url("{{customWidgetStyle}}");</style><div ui-view></div>',
                     controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', 'ngDialog', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log, ngDialog) {
                         $scope.app.widgetTitle = $stateParams.widgetTitle;
+                        $scope.customWidgetStyle = $stateParams.style;
                         $scope.widgetPostMessage = function (data) {
                             if ($window.self !== $window.parent) {
                                 var msg = {citizenos: {}};
