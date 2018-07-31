@@ -148,30 +148,35 @@ angular
         };
 
 
-        sActivity.getActivities = function (offsetNr, limitNr, filter) {
+        sActivity.getActivities = function (offsetNr, limitNr, include, filter) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/activities');
             var paramsObj = {
                 offset: offsetNr,
                 limit: limitNr
             };
-            if (filter) {
-                paramsObj.include = filter;
+            if (include) {
+                paramsObj.include = include;
             }
-
+            if (filter) {
+                paramsObj.filter = filter;
+            }
             return $http
                 .get(path, {params: paramsObj})
                 .then(success, defaultError);
         };
 
-        sActivity.getActivitiesUnauth = function (offsetNr, limitNr, filter, sourcePartnerId) {
+        sActivity.getActivitiesUnauth = function (offsetNr, limitNr, include, filter, sourcePartnerId) {
             var path = sLocation.getAbsoluteUrlApi('/api/activities');
             var paramsObj = {
                 offset: offsetNr,
                 limit: limitNr,
                 sourcePartnerId: sourcePartnerId
             };
+            if (include) {
+                paramsObj.include = include;
+            }
             if (filter) {
-                paramsObj.include = filter;
+                paramsObj.filter = filter;
             }
 
             return $http

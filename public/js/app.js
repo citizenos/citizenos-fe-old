@@ -779,13 +779,14 @@
                     controller: 'ActivitiesWidgetCtrl'
                 })
                 .state('widgets.partnerActivities', {
-                    url: '/partners/:partnerId/activities',
+                    url: '/partners/:partnerId/activities?filter',
                     parent: 'widgets',
                     templateUrl: '/views/widgets/activities.html',
                     resolve: {
                         /* @ngInject */
                         ActivitiesResolve: function ($http, $stateParams, sActivity) {
-                            return sActivity.getActivitiesUnauth(0, 50, null, $stateParams.partnerId);
+                            var filters = $stateParams.filter;
+                            return sActivity.getActivitiesUnauth(0, 50, null, filters, $stateParams.partnerId);
                         }
                     },
                     controller: 'ActivitiesWidgetCtrl'
