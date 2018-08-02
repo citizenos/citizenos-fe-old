@@ -721,7 +721,8 @@ $bold: 700;
                 }
                 
                 .comment-changeTo-approve {
-    
+                    display: block;
+
                     input {
                         height: 30px;
                         width: 149px;
@@ -954,6 +955,7 @@ $bold: 700;
             }
             
             .comment-changeTo-approve {
+                display: block;
 
                 input {
                     height: 30px;
