@@ -680,7 +680,7 @@ $bold: 700;
             .comment-changeTo-form {
                 p, .comment-changeFrom, .comment-changeTo {
                     span.comment-changeFrom-label, span.comment-changeTo-label, .reply-comment-suggest-from-p{
-                        height: 20px;
+                        height: auto;
                         width: initial;
                         color: #252525;
                         font-family: "Open Sans";
@@ -721,7 +721,8 @@ $bold: 700;
                 }
                 
                 .comment-changeTo-approve {
-    
+                    display: block;
+
                     input {
                         height: 30px;
                         width: 149px;
@@ -954,6 +955,7 @@ $bold: 700;
             }
             
             .comment-changeTo-approve {
+                display: block;
 
                 input {
                     height: 30px;
@@ -1037,56 +1039,56 @@ $bold: 700;
                 }
             }
         }
-    }
-    .comment-edit-form {
-        textarea {
-            display: block;
-            height: auto;
-            width: -moz-calc(100% - 20px);
-            width: -webkit-calc(100% - 20px);
-            width: -o-calc(100% - 20px);
-            width: calc(100% - 20px);
-            border: 1px solid #E5E5E5;
-            border-radius: 4px;
-            background-color: #FFFFFF;
-            font-family: "Open Sans";
-            font-size: 14px;
-            line-height: 20px;
-            margin-top: 12px;
-            margin-bottom: 16px;
-            padding: 6px 10px;
-            font-weight: normal;   
-        }
-
-        p {
-            display: inline-block;
-            
-            .comment-edit-cancel {
-                height: 30px;
-                width: 44px;
-                color: #0680FC;
-                font-family: "Open Sans";
-                font-size: 14px;
-                line-height: 20px;
-                text-align: right;
-                float: left;
-                border: none;
-                background: none;
-            }
-            .comment-edit-submit {
-                height: 30px;
-                width: 149px;
-                border: 1px solid #0574E3;
+    
+        .comment-edit-form {
+            textarea {
+                display: block;
+                height: auto;
+                width: -moz-calc(100% - 20px);
+                width: -webkit-calc(100% - 20px);
+                width: -o-calc(100% - 20px);
+                width: calc(100% - 20px);
+                border: 1px solid #E5E5E5;
                 border-radius: 4px;
-                background-color: #0680FC;
-                float: right;
-                color: #FFFFFF;
+                background-color: #FFFFFF;
                 font-family: "Open Sans";
                 font-size: 14px;
-                font-weight: bold;
                 line-height: 20px;
-                text-align: center;
-                margin-left: 20px;
+                margin-top: 12px;
+                margin-bottom: 16px;
+                padding: 6px 10px;
+                font-weight: normal;   
+            }
+
+            div {
+                display: inline-block;
+                
+                .comment-edit-cancel {
+                    height: 30px;
+                    width: 44px;
+                    color: #0680FC;
+                    font-family: "Open Sans";
+                    font-size: 14px;
+                    line-height: 20px;
+                    text-align: right;
+                    border: none;
+                    background: none;
+                    margin-left: 20px;
+                }
+
+                .comment-edit-submit {
+                    height: 30px;
+                    width: 149px;
+                    border: 1px solid #0574E3;
+                    border-radius: 4px;
+                    background-color: #0680FC;
+                    color: #FFFFFF;
+                    font-family: "Open Sans";
+                    font-size: 14px;
+                    font-weight: bold;
+                    line-height: 20px;
+                    text-align: center;
+                }
             }
         }
     }
@@ -1273,6 +1275,22 @@ $bold: 700;
                 background: none;
                 
             }
+        }
+    }
+}
+
+.readonly {
+    .comment-modal {
+        input[type="submit"], button {
+            pointer-events: none;
+        }
+    }
+}
+
+.pageViewDisabled  {
+    .comment-modal {
+        input[type="submit"], button {
+            pointer-events: none;
         }
     }
 }
