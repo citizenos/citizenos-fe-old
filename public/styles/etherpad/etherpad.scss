@@ -1286,11 +1286,3 @@ $bold: 700;
         }
     }
 }
-
-.pageViewDisabled  {
-    .comment-modal {
-        input[type="submit"], button {
-            pointer-events: none;
-        }
-    }
-}
