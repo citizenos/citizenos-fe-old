@@ -1276,6 +1276,17 @@ $bold: 700;
                 
             }
         }
+
+        @media (max-width: 535px) {
+            .comment-buttons {
+                margin: 0;
+                width: auto;
+                position: initial;
+                display: block;
+                left: 0;
+                margin-top: 20px;
+            }
+        }
     }
 }
 
