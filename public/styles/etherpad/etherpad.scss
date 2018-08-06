@@ -629,8 +629,8 @@ $bold: 700;
     input[type="submit"] {
         display: inline-block;
         position: relative;
+        width: initial!important;
         height: 30px;
-        width: 149px;
         border: 1px solid #0574E3;
         border-radius: 4px;
         background-color: #0680FC;
@@ -641,12 +641,12 @@ $bold: 700;
         line-height: 20px;
         text-align: center;
         margin: 20px 0;
+        padding: 0 20px;
     }
     input[type="reset"]  {
         display: inline-block;
         position: relative;
         height: 30px;
-        width: 44px;
         color: #0680FC;
         font-family: "Open Sans";
         font-size: 14px;
@@ -725,7 +725,6 @@ $bold: 700;
 
                     input {
                         height: 30px;
-                        width: 149px;
                         border: 1px solid #0574E3;
                         border-radius: 4px;
                         background-color: #0680FC;
@@ -959,7 +958,6 @@ $bold: 700;
 
                 input {
                     height: 30px;
-                    width: 149px;
                     border: 1px solid #0574E3;
                     border-radius: 4px;
                     background-color: #0680FC;
@@ -1028,7 +1026,6 @@ $bold: 700;
                 }
                 label {
                     height: 20px;
-                    width: 169px;
                     opacity: 0.7;
                     color: #252525;
                     font-family: "Open Sans";
@@ -1065,7 +1062,6 @@ $bold: 700;
                 
                 .comment-edit-cancel {
                     height: 30px;
-                    width: 44px;
                     color: #0680FC;
                     font-family: "Open Sans";
                     font-size: 14px;
@@ -1078,7 +1074,6 @@ $bold: 700;
 
                 .comment-edit-submit {
                     height: 30px;
-                    width: 149px;
                     border: 1px solid #0574E3;
                     border-radius: 4px;
                     background-color: #0680FC;
@@ -1088,6 +1083,7 @@ $bold: 700;
                     font-weight: bold;
                     line-height: 20px;
                     text-align: center;
+                    padding: 0 20px;
                 }
             }
         }
@@ -1247,8 +1243,6 @@ $bold: 700;
             right: 0;
 
             input:first-child {
-                height: 30px;
-                width: 149px;
                 border: 1px solid #0574E3;
                 border-radius: 4px;
                 background-color: #0680FC;
@@ -1263,8 +1257,6 @@ $bold: 700;
             }
 
             input#comment-reset {
-                height: 30px;
-                width: 44px;
                 color: #0680FC;
                 font-family: "Open Sans";
                 font-size: 14px;
