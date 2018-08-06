@@ -11,3 +11,5 @@ Thumbs.db
 *.iml
 /.idea/*
 /.vscode/*
+public/settings.js
+config/local.json

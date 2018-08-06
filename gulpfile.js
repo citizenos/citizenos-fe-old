@@ -95,7 +95,7 @@ gulp.task('uglify', function () {
             'public/js/libs/raven-console.js',
             'public/js/libs/angular-raven.js',
             'public/js/libs/**/*.js',
-            '!public/js/libs/template-cache.js',
+            '!public/js/libs/template-cache.js',            
             'public/js/app.js',
             'public/js/factories/**/*.js',
             'public/js/services/**/*.js',
