@@ -1182,9 +1182,9 @@ $bold: 700;
         }
 
         .suggestion {
-            margin: 0 20px;
 
-            label {
+            label, div:first-child {
+                display: block;
                 height: 20px;
                 width: initial;
                 color: #252525;
@@ -1192,7 +1192,7 @@ $bold: 700;
                 font-size: 16px;
                 font-weight: bold;
                 line-height: 20px;
-                margin: 0 20px 0 0;
+                margin: 20px 20px 20px 0;
                 padding: 0;
                 clear: both;
             }
@@ -1210,10 +1210,10 @@ $bold: 700;
                     font-family: 'Open Sans',sans-serif;
                     font-size: 13px;
                     background-color: $base;
-                    width: -moz-calc(100% - 40px);
-                    width: -webkit-calc(100% - 40px);
-                    width: -o-calc(100% - 40px);
-                    width: calc(100% - 40px);                    
+                    width: -moz-calc(100% - 20px);
+                    width: -webkit-calc(100% - 20px);
+                    width: -o-calc(100% - 20px);
+                    width: calc(100% - 20px);                    
                     padding: 0;
                     border: 1px solid #E5E5E5;
                     border-radius: 4px;
@@ -1226,10 +1226,10 @@ $bold: 700;
                     background-color: $white;
                     border: 1px solid #E5E5E5;
                     border-radius: 4px;
-                    width: -moz-calc(100% - 40px);
-                    width: -webkit-calc(100% - 40px);
-                    width: -o-calc(100% - 40px);
-                    width: calc(100% - 40px);
+                    width: -moz-calc(100% - 20px);
+                    width: -webkit-calc(100% - 20px);
+                    width: -o-calc(100% - 20px);
+                    width: calc(100% - 20px);
                     padding: 0;
                     padding: 6px 10px;
                 }
