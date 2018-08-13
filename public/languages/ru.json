@@ -216,7 +216,7 @@
     "GROUP_CREATE_SETTINGS_HEADING_EDIT": "Изменить настройки группы",
     "GROUP_CREATE_SETTINGS_TAB_SETTINGS": "@:MODALS.TOPIC_SETTINGS_TAB_SETTINGS",
     "GROUP_CREATE_SETTINGS_TAB_ADD_TOPICS": "ДОБАВЬТЕ ТЕМЫ",
-    "GROUP_CREATE_SETTINGS_TAB_INVITE_USERS": "ПРИГЛАСИТЕ ПОЛЬЗОВАТЕЛЕЙ",
+    "GROUP_CREATE_SETTINGS_TAB_INVITE_USERS": "ПРИГЛАСИТЬ",
     "GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP": "Сохранить группу",
     "GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP_AND_INVITE": "Сохранить группу и разослать приглашения",
     "GROUP_CREATE_SETTINGS_LBL_GROUP_NAME": "Название группы",
