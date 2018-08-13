@@ -594,7 +594,7 @@ $bold: 700;
             display: block;
             margin-top: 20px;
 
-            p {
+            label {
                 width: initial;
                 color: #252525;
                 font-family: "Open Sans";
@@ -984,7 +984,7 @@ $bold: 700;
                     display: block;
                 }
 
-                span {
+                label {
                     height: 20px;
                     width: initial;
                     color: #252525;
@@ -1115,20 +1115,20 @@ $bold: 700;
         position: relative;
         margin-left: 0;
         display: inline-block;
-
-        p:first-child { 
-            height: 20px;
-            width: initial;
-            color: #252525;
-            font-family: "Open Sans";
-            font-size: 16px;
-            font-weight: bold;
-            line-height: 20px;
-        }
         
         .comment-text {
             height: 100px;
             width: initial;
+
+            label { 
+                height: 20px;
+                width: initial;
+                color: #252525;
+                font-family: "Open Sans";
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 20px;
+            }
 
             .comment-content {
                 font-family: 'Open Sans',sans-serif;
@@ -1184,7 +1184,7 @@ $bold: 700;
         .suggestion {
             margin: 0 20px;
 
-            p {
+            label {
                 height: 20px;
                 width: initial;
                 color: #252525;

@@ -789,10 +789,10 @@
       "title": "Edit this comment"
     },
     "comments_template": {
-      "suggested_change": "Suggested change:",
+      "suggested_change": "Suggested change",
       "accept_change.value": "Accept change",
       "revert_change.value": "Revert change",
-      "suggest_change": "Suggest change:",
+      "suggest_change": "Suggest change",
       "from": "From:",
       "to": "To:",
       "include_suggestion": "Include suggested change",
