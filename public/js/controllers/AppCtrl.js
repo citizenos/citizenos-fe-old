@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity',  function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $interval, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -11,7 +11,8 @@ angular
             showSearchResults: false,
             showNav: false,
             showSearchFiltersMobile: false,
-            isLoading: true
+            isLoading: true,
+            unreadActivitiesCount: 0
         };
 
         $scope.app.user = sAuth.user;
@@ -221,7 +222,8 @@ angular
             });
         }
 
-        // Update UserVoice data when User changes
+        // Update UserVoice data when User changes and read new acitivites count
+        var newActivitiesWatcher = null;
         $scope.$watch(
             function () {
                 return $scope.app.user.loggedIn;
@@ -231,8 +233,24 @@ angular
                     Raven.setUserContext({
                         id: $scope.app.user.id
                     });
+
+                    newActivitiesWatcher = $interval(function () {
+                        sActivity
+                            .getUnreadActivities()
+                            .then(function (count) {
+                                $scope.app.unreadActivitiesCount = count;
+                            });
+                        
+                    }, 15000);
                 } else {
                     Raven.setUserContext();
+
+                    if (newActivitiesWatcher) {
+                        $interval.cancel(newActivitiesWatcher);
+                        newActivitiesWatcher = undefined;
+                        $scope.app.unreadActivitiesCount = 0;
+                    }
                 }
             });
+
     }]);

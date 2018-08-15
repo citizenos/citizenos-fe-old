@@ -5,6 +5,7 @@ angular
     .service('sActivity', ['$http', '$state', '$stateParams', '$window', '$q', '$log', '$translate', 'sLocation', 'ngDialog', function ($http, $state, $stateParams, $window, $q, $log, $translate, sLocation, ngDialog) {
         var sActivity = this;
 
+        sActivity.unread = 0;
         var defaultSuccess = function (response) {
             return response.data;
         };
@@ -147,6 +148,17 @@ angular
                 .then(success, defaultError);
         };
 
+        sActivity.getUnreadActivities = function () {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/activities/unread');
+            return $http
+                .get(path)
+                .then(function (response) {
+                    var body = response.data;
+                    sActivity.unread = body.data.count;
+
+                    return $q.resolve(body.data.count);
+                }, defaultError);
+        };
 
         sActivity.getActivities = function (offsetNr, limitNr, include, filter) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/activities');

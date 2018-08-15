@@ -164,7 +164,20 @@
                     url: null,
                     abstract: true,
                     parent: 'index',
-                    templateUrl: '/views/layouts/main.html'
+                    templateUrl: '/views/layouts/main.html',
+                    resolve: {
+                        /* @ngInject */
+                        sActivitiesResolve: function ($log, $q, sAuthResolve, sAuth, sActivity) {                            
+                            $log.debug('Resolve unreadActivities');
+                            if (sAuth.user.loggedIn) {
+                                return sActivity
+                                    .getUnreadActivities();
+                            } else {
+                                return $q.resolve(false);
+                            }
+                            
+                        },
+                    }
                 })
                 .state('home', {
                     url: '/',

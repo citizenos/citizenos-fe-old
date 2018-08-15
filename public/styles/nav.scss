@@ -218,6 +218,24 @@ nav {
                 }
 
         }
+        .activities_counter_wrap {
+            right: 14px;
+            margin-top: -23px;
+            float: right;
+
+            .activities_counter {
+                height: 17px;
+                width: 17px;
+                border-radius: 8px;
+                background-color: #0680FC;
+                color: #FFFFFF;
+                font-family: "Open Sans";
+                font-size: 10px;
+                font-weight: bold;
+                line-height: 17px;
+                text-align: center;
+            }
+        }
 
     }
 
