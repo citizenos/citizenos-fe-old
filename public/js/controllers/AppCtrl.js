@@ -241,7 +241,7 @@ angular
                                 $scope.app.unreadActivitiesCount = count;
                             });
                         
-                    }, 15000);
+                    }, 30000);
                 } else {
                     Raven.setUserContext();
 
