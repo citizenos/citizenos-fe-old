@@ -55,9 +55,15 @@
                     </div>
                 </div>
                 <span translate="DEFAULT.NAV.LNK_ACTIVITY">Activity</span>
-            </a>
+            </a>            
         </div>
-
+        <div class="activities_counter_wrap" ng-if="app.unreadActivitiesCount">
+            <div class="table_cell">
+                <div class="activities_counter">
+                    {{app.unreadActivitiesCount}}
+                </div>
+            </div>
+        </div>
         <div class="line dark_line"></div>
         <div class="line light_line"></div>
 
