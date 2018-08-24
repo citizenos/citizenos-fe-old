@@ -787,7 +787,7 @@
   "ep_comments_page.comments_template.accept_change.value": "Прийняти зміну",
   "ep_comments_page.comments_template.revert_change.value": "Скасувати зміну",
   "ep_comments_page.comments_template.suggest_change": "Запропонувати зміну",
-  "ep_comments_page.comments_template.from": "Від:",
+  "ep_comments_page.comments_template.from": "From:",
   "ep_comments_page.comments_template.to": "To:",
   "ep_comments_page.comments_template.include_suggestion": "Включити запропоновану зміну",
   "ep_comments_page.comments_template.comment.value": "Додати коментар",
