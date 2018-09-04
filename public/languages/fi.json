@@ -786,13 +786,13 @@
   "ep_comments_page.comments_template.suggested_change": "Ehdotettu muutos",
   "ep_comments_page.comments_template.accept_change.value": "Hyväksy muutos",
   "ep_comments_page.comments_template.revert_change.value": "Peru muutos",
-  "ep_comments_page.comments_template.suggest_change": "Suggest change",
+  "ep_comments_page.comments_template.suggest_change": "Ehdottaa muutosta",
   "ep_comments_page.comments_template.from": "From:",
   "ep_comments_page.comments_template.to": "To:",
   "ep_comments_page.comments_template.include_suggestion": "Include suggested change",
-  "ep_comments_page.comments_template.comment.value": "Add comment",
+  "ep_comments_page.comments_template.comment.value": "Lisää kommentti",
   "ep_comments_page.comments_template.cancel.value": "@:LNK_CANCEL",
-  "ep_comments_page.comments_template.reply_input_label": "Your reply",
-  "ep_comments_page.comments_template.edit_comment.save": "Save",
+  "ep_comments_page.comments_template.reply_input_label": "Vastauksesi",
+  "ep_comments_page.comments_template.edit_comment.save": "Tallenna",
   "ep_comments_page.comments_template.edit_comment.cancel": "@:LNK_CANCEL"
 }
