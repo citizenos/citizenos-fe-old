@@ -681,8 +681,8 @@
     "ACTIVITY_USER_CREATE_USER": "Пользователь {{userName}} создан",
     "ACTIVITY_USER_DELETE_CONSENT": "",
     "FILTER_ALL": "Все обновления",
-    "FILTER_TOPICS": "Обновления, связанные с моими темами",
-    "FILTER_GROUPS": "Обновления, связанные с моими группами",
+    "FILTER_USERTOPICS": "Обновления, связанные с моими темами",
+    "FILTER_USERGROUPS": "Обновления, связанные с моими группами",
     "FILTER_USER": "Обновления, связанные с пользователем",
     "FILTER_SELF": "Обзор деятельности пользователя"
   },
@@ -777,31 +777,22 @@
   "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Тип файла не допускается!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Отсутствует ссылка на файл!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Отсутствует название файла!",
-  "ep_comments_page": {
-    "show_comments": "Show Comments",
-    "add_comment": {
-      "title": "Add new comment on selection"
-    },
-    "delete_comment": {
-      "title": "Delete this comment"
-    },
-    "edit_comment": {
-      "title": "Edit this comment"
-    },
-    "comments_template": {
-      "suggested_change": "Suggested change:",
-      "accept_change.value": "Accept change",
-      "revert_change.value": "Revert change",
-      "suggest_change": "Suggest change:",
-      "from": "From:",
-      "to": "To:",
-      "include_suggestion": "Include suggested change",
-      "comment.value": "Add comment",
-      "reply_input_label": "Your reply",
-      "edit_comment": {
-        "save": "Save",
-        "cancel": "@:LNK_CANCEL"
-      }
-    }
-  }
+  "ep_comments_page.comment": "Добавить комментарий",
+  "ep_comments_page.comments": "Комментарии",
+  "ep_comments_page.add_comment.title": "Добавить новый комментарий",
+  "ep_comments_page.delete_comment.title": "Удалить комментарий",
+  "ep_comments_page.edit_comment.title": "Редактировать комментарий",
+  "ep_comments_page.show_comments": "Показать комментарии",
+  "ep_comments_page.comments_template.suggested_change": "Предложенная версия",
+  "ep_comments_page.comments_template.accept_change.value": "Применить предложенную версию",
+  "ep_comments_page.comments_template.revert_change.value": "Вернуть прежнюю версию",
+  "ep_comments_page.comments_template.suggest_change": "Предложить изменения",
+  "ep_comments_page.comments_template.from": "Изначальная версия:",
+  "ep_comments_page.comments_template.to": "Предложенная версия:",
+  "ep_comments_page.comments_template.include_suggestion": "Предложить свою версию",
+  "ep_comments_page.comments_template.comment.value": "Добавить комментарий",
+  "ep_comments_page.comments_template.cancel.value": "@:LNK_CANCEL",
+  "ep_comments_page.comments_template.reply_input_label": "Ваш ответ",
+  "ep_comments_page.comments_template.edit_comment.save": "Сохранить",
+  "ep_comments_page.comments_template.edit_comment.cancel": "@:LNK_CANCEL"
 }
