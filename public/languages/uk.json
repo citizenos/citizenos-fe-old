@@ -681,8 +681,8 @@
     "ACTIVITY_USER_CREATE_USER": "Було створено користувача {{userName}}",
     "ACTIVITY_USER_DELETE_CONSENT": "",
     "FILTER_ALL": "Всі події",
-    "FILTER_USERTOPICS": "Activities related to my topics",
-    "FILTER_USERGROUPS": "Activities related to my groups",
+    "FILTER_USERTOPICS": "Події пов'язані з моїми темами",
+    "FILTER_USERGROUPS": "Події пов'язані з моїми групами",
     "FILTER_USER": "Події пов'язані з користувачем",
     "FILTER_SELF": "Дії користувача"
   },
