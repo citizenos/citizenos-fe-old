@@ -24,7 +24,7 @@
   "TXT_REPORT_TYPES_SPAM": "Змяшчае спам або не мае дачынення да тэмы",
   "TXT_REPORT_TYPES_HATE": "Змяшчае распальванне нянавісці",
   "TXT_REPORT_TYPES_NETIQUETTE": "Парушае (н)этыкет",
-  "TXT_REPORT_TYPES_DUPLICATE": "Is a duplicate",
+  "TXT_REPORT_TYPES_DUPLICATE": "З'яўляецца дублікатам",
   "TXT_MODERATION_TYPES_NULL": "Абярыце прычыну мадэрацыі",
   "TXT_MODERATION_TYPES_ABUSE": "@:TXT_REPORT_TYPES_ABUSE",
   "TXT_MODERATION_TYPES_OBSCENE": "@:TXT_REPORT_TYPES_OBSCENE",
@@ -58,7 +58,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO": "Калі ласка, майце на ўвазе, вы не можаце адмяніць гэтае дзеянне.",
     "TOPIC_CLOSE_CONFIRM_TXT_NO_EDIT": "The topic will close, its contents can no longer be edited.",
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Voting will end, further voting will not be possible.",
-    "TOPIC_CLOSE_CONFIRM_BTN_NO": "NO, DON'T CLOSE THE TOPIC",
+    "TOPIC_CLOSE_CONFIRM_BTN_NO": "НЕ, НЕ ЗАЧЫНЯЦЬ ТЕМУ",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "ТАК, ЗАЧЫНІЦЬ ГЭТУЯ ТЭМУ",
     "TOPIC_DELETE_CONFIRM_HEADING": "Выдаліць тэму",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Вы ўпэўненыя, што жадаеце выдаліць гэтую тэму?",
@@ -130,7 +130,7 @@
     "LOGIN_ESTEID_ERROR_PHONE": "Invalid phone number. Please enter phone number with country code.",
     "LOGIN_ESTEID_PLACEHOLDER_PID": "Personal identification code",
     "LOGIN_ESTEID_ERROR_PID": "Invalid personal identification code.",
-    "LOGIN_ESTEID_TXT_CONTROL_CODE": "Control code: {{code}}",
+    "LOGIN_ESTEID_TXT_CONTROL_CODE": "Кантрольны код: {{code}}",
     "LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE": "Make sure control code matches with one in the phone screen and enter Mobiil-ID PIN1.",
     "LOGIN_ESTEID_BTN_LOG_IN_MID": "Log in with Mobiil-ID",
     "LOGIN_ESTEID_BTN_LOG_IN_ID": "Log in with ID-card",
@@ -148,7 +148,7 @@
     "MY_ACCOUNT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "MY_ACCOUNT_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
     "MY_ACCOUNT_UPLOAD_AVATAR": "Upload new",
-    "MY_ACCOUNT_DELETE_AVATAR": "Delete",
+    "MY_ACCOUNT_DELETE_AVATAR": "Выдаліць",
     "MY_ACCOUNT_AVATAR_RESTRICTIONS": "Max 500kb jpg, gif or png",
     "MY_ACCOUNT_BTN_SAVE": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
     "MY_ACCOUNT_BTN_CANCEL": "@:LNK_CANCEL",
@@ -681,8 +681,8 @@
     "ACTIVITY_USER_CREATE_USER": "User {{userName}} has been created",
     "ACTIVITY_USER_DELETE_CONSENT": "",
     "FILTER_ALL": "All activities",
-    "FILTER_TOPICS": "Activities related to my topics",
-    "FILTER_GROUPS": "Activities related to my groups",
+    "FILTER_USERTOPICS": "Activities related to my topics",
+    "FILTER_USERGROUPS": "Activities related to my groups",
     "FILTER_USER": "Activities related to user",
     "FILTER_SELF": "User's activities"
   },
@@ -777,31 +777,22 @@
   "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Attachment link is undefined!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Attachment name is undefined!",
-  "ep_comments_page": {
-    "show_comments": "Show Comments",
-    "add_comment": {
-      "title": "Add new comment on selection"
-    },
-    "delete_comment": {
-      "title": "Delete this comment"
-    },
-    "edit_comment": {
-      "title": "Edit this comment"
-    },
-    "comments_template": {
-      "suggested_change": "Suggested change:",
-      "accept_change.value": "Accept change",
-      "revert_change.value": "Revert change",
-      "suggest_change": "Suggest change:",
-      "from": "From:",
-      "to": "To:",
-      "include_suggestion": "Include suggested change",
-      "comment.value": "Add comment",
-      "reply_input_label": "Your reply",
-      "edit_comment": {
-        "save": "Save",
-        "cancel": "@:LNK_CANCEL"
-      }
-    }
-  }
+  "ep_comments_page.comment": "Comment",
+  "ep_comments_page.comments": "Comments",
+  "ep_comments_page.add_comment.title": "Add new comment on selection",
+  "ep_comments_page.delete_comment.title": "Delete this comment",
+  "ep_comments_page.edit_comment.title": "Edit this comment",
+  "ep_comments_page.show_comments": "Show Comments",
+  "ep_comments_page.comments_template.suggested_change": "Suggested Change",
+  "ep_comments_page.comments_template.accept_change.value": "Accept Change",
+  "ep_comments_page.comments_template.revert_change.value": "Revert Change",
+  "ep_comments_page.comments_template.suggest_change": "Suggest change",
+  "ep_comments_page.comments_template.from": "From:",
+  "ep_comments_page.comments_template.to": "To:",
+  "ep_comments_page.comments_template.include_suggestion": "Include suggested change",
+  "ep_comments_page.comments_template.comment.value": "Add comment",
+  "ep_comments_page.comments_template.cancel.value": "@:LNK_CANCEL",
+  "ep_comments_page.comments_template.reply_input_label": "Your reply",
+  "ep_comments_page.comments_template.edit_comment.save": "Save",
+  "ep_comments_page.comments_template.edit_comment.cancel": "@:LNK_CANCEL"
 }
