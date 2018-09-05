@@ -2,48 +2,17 @@
 
 (function () {
 
+    var __env = {};
+    
+    // Import variables if present
+    if(window){
+        Object.assign(__env, window.__config);
+    }
+    
     var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'angularLoad']);
 
     module
-        .constant('cosConfig', {
-            api: {
-                baseUrl: 'https://citizenos-citizenos-api-test2.herokuapp.com' // FIXME: Environment based & think of new better testenv url that FB has not blocked
-            },
-            language: {
-                default: 'en',
-                list: {
-                    en: 'English',
-                    fr: 'Français',
-                    et: 'Eesti',
-                    lv: 'Latviešu',
-                    lt: 'Lietuvių',
-                    ru: 'Pусский',
-                    fi: 'Suomi',
-                    uk: 'Українська',
-                    aa: 'Crowdin'
-                },
-                debug: 'dbg'
-            },
-            links: {
-                help: {
-                    en: 'https://app.citizenos.com/en/topics/c6b6d06a-e8cf-4297-9654-8c1cf01b133b', // Used by default, if there is no language specific override
-                    et: 'https://app.citizenos.com/en/topics/fd8c4e13-6c5f-4423-9408-cf97c30727d7',
-                    ru: 'https://app.citizenos.com/en/topics/bd15b9e8-7de4-42c2-a394-78ed95a735cd'
-                }
-            },
-            storage: {
-                dropbox: {
-                    appKey: 'lkk7j6f41sfpm5b'
-                },
-                googleDrive: {
-                    developerKey: 'AIzaSyBuEp5_A9tMjIZbIWzZ3pyh9wzLVcikD6I',
-                    clientId: '11623449066-0pdp3p7mp4l4f3e7vm43pr7okjpmddmc.apps.googleusercontent.com'
-                },
-                oneDrive: {
-                    clientId: 'deb735fe-1c3d-489c-93f4-0a8927101d09'
-                }
-            }
-        });
+        .constant('cosConfig', __env);
 
     module
         .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
@@ -195,7 +164,20 @@
                     url: null,
                     abstract: true,
                     parent: 'index',
-                    templateUrl: '/views/layouts/main.html'
+                    templateUrl: '/views/layouts/main.html',
+                    resolve: {
+                        /* @ngInject */
+                        sActivitiesResolve: function ($log, $q, sAuthResolve, sAuth, sActivity) {                            
+                            $log.debug('Resolve unreadActivities');
+                            if (sAuth.user.loggedIn) {
+                                return sActivity
+                                    .getUnreadActivities();
+                            } else {
+                                return $q.resolve(false);
+                            }
+                            
+                        },
+                    }
                 })
                 .state('home', {
                     url: '/',
@@ -650,12 +632,13 @@
                     templateUrl: '/views/partners_consent.html'
                 })
                 .state('widgets', {
-                    url: '/widgets?widgetId&widgetTitle',
+                    url: '/widgets?widgetId&widgetTitle&style',
                     parent: 'index',
                     abstract: true,
-                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><div ui-view></div>',
+                    template: '<style type="text/css">@import url("/styles/widgets.css");</style><style ng-if="customWidgetStyle" type="text/css">@import url("{{customWidgetStyle}}");</style><div ui-view></div>',
                     controller: ['$rootScope', '$scope', '$window', '$document', '$stateParams', '$timeout', '$interval', '$log', 'ngDialog', function ($rootScope, $scope, $window, $document, $stateParams, $timeout, $interval, $log, ngDialog) {
                         $scope.app.widgetTitle = $stateParams.widgetTitle;
+                        $scope.customWidgetStyle = $stateParams.style;
                         $scope.widgetPostMessage = function (data) {
                             if ($window.self !== $window.parent) {
                                 var msg = {citizenos: {}};
@@ -778,13 +761,14 @@
                     controller: 'ActivitiesWidgetCtrl'
                 })
                 .state('widgets.partnerActivities', {
-                    url: '/partners/:partnerId/activities',
+                    url: '/partners/:partnerId/activities?filter',
                     parent: 'widgets',
                     templateUrl: '/views/widgets/activities.html',
                     resolve: {
                         /* @ngInject */
                         ActivitiesResolve: function ($http, $stateParams, sActivity) {
-                            return sActivity.getActivitiesUnauth(0, 50, null, $stateParams.partnerId);
+                            var filters = $stateParams.filter;
+                            return sActivity.getActivitiesUnauth(0, 50, null, filters, $stateParams.partnerId);
                         }
                     },
                     controller: 'ActivitiesWidgetCtrl'

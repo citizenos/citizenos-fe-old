@@ -8,7 +8,7 @@ angular
             $scope.activitiesLimit = 25;
             $scope.activities = [];
             $scope.filter = 'all';
-            $scope.activityfilters = ['all', 'topics', 'groups', 'user', 'self'];
+            $scope.activityfilters = ['all', 'userTopics', 'userGroups', 'user', 'self'];
             var lastViewTime = null;
 
             $scope.loadActivities = function (offset, limit) {
@@ -30,6 +30,7 @@ angular
                 sActivity
                     .getActivities($scope.activitiesOffset, $scope.activitiesLimit, filterValue)
                     .then(function (activities) {
+                        $scope.app.unreadActivitiesCount = 0;
                         activities.forEach(function (activity, key) {
                             if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
                                 if (!lastViewTime || activity.updatedAt > lastViewTime) {

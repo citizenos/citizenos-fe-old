@@ -17,6 +17,7 @@
   "dependencies": {
     "angular-datepicker": "^1.0.5",
     "angular-moment": "^1.0.0",
+    "config": "2.0.1",
     "express": "4.14.0",
     "moment": "^2.15.2",
     "prerender-node": "2.5.0",

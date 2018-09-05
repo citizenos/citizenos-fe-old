@@ -1,12 +1,29 @@
 'use strict';
 
+var config = require('config');
 var express = require('express');
 var app = express();
 var https = require('https');
+var path = require('path');
 var http = require('http');
 var fs = require('fs');
+var _ = require('lodash');
 
 var prerender = require('prerender-node');
+
+var pathSettings = path.resolve('./public/settings.js');
+try {
+    var settingsFileTxt = '(function (window) { window.__config = window.__config || {};';
+    _(config).forEach(function (value, key) {
+        settingsFileTxt += ' window.__config.' + key + ' = ' + JSON.stringify(value) + ';';
+    });
+    settingsFileTxt += '}(this));';
+    fs.writeFileSync(pathSettings, settingsFileTxt);
+} catch (err) {
+    console.log('Settings.json write FAILED to ' + pathSettings, err);
+    process.exit(1);
+}
+
 app.use(prerender.set('prerenderToken', 'CrrAflHAEiF44KMFkrs7'));
 
 app.use(express.static(__dirname + '/public'));
