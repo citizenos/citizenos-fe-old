@@ -681,8 +681,8 @@
     "ACTIVITY_USER_CREATE_USER": "crwdns10930:0{{userName}}crwdne10930:0",
     "ACTIVITY_USER_DELETE_CONSENT": "crwdns10931:0crwdne10931:0",
     "FILTER_ALL": "crwdns11001:0crwdne11001:0",
-    "FILTER_TOPICS": "crwdns11002:0crwdne11002:0",
-    "FILTER_GROUPS": "crwdns11003:0crwdne11003:0",
+    "FILTER_USERTOPICS": "crwdns11164:0crwdne11164:0",
+    "FILTER_USERGROUPS": "crwdns11165:0crwdne11165:0",
     "FILTER_USER": "crwdns11004:0crwdne11004:0",
     "FILTER_SELF": "crwdns11012:0crwdne11012:0"
   },
@@ -777,31 +777,22 @@
   "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "crwdns10793:0crwdne10793:0",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "crwdns10794:0crwdne10794:0",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "crwdns10795:0crwdne10795:0",
-  "ep_comments_page": {
-    "show_comments": "crwdns11087:0crwdne11087:0",
-    "add_comment": {
-      "title": "crwdns11088:0crwdne11088:0"
-    },
-    "delete_comment": {
-      "title": "crwdns11089:0crwdne11089:0"
-    },
-    "edit_comment": {
-      "title": "crwdns11090:0crwdne11090:0"
-    },
-    "comments_template": {
-      "suggested_change": "crwdns11136:0crwdne11136:0",
-      "accept_change.value": "crwdns11137:0crwdne11137:0",
-      "revert_change.value": "crwdns11138:0crwdne11138:0",
-      "suggest_change": "crwdns11139:0crwdne11139:0",
-      "from": "crwdns11092:0crwdne11092:0",
-      "to": "crwdns11097:0crwdne11097:0",
-      "include_suggestion": "crwdns11098:0crwdne11098:0",
-      "comment.value": "crwdns11140:0crwdne11140:0",
-      "reply_input_label": "crwdns11141:0crwdne11141:0",
-      "edit_comment": {
-        "save": "crwdns11142:0crwdne11142:0",
-        "cancel": "crwdns11143:0crwdne11143:0"
-      }
-    }
-  }
+  "ep_comments_page.comment": "crwdns11144:0crwdne11144:0",
+  "ep_comments_page.comments": "crwdns11145:0crwdne11145:0",
+  "ep_comments_page.add_comment.title": "crwdns11146:0crwdne11146:0",
+  "ep_comments_page.delete_comment.title": "crwdns11147:0crwdne11147:0",
+  "ep_comments_page.edit_comment.title": "crwdns11148:0crwdne11148:0",
+  "ep_comments_page.show_comments": "crwdns11149:0crwdne11149:0",
+  "ep_comments_page.comments_template.suggested_change": "crwdns11150:0crwdne11150:0",
+  "ep_comments_page.comments_template.accept_change.value": "crwdns11151:0crwdne11151:0",
+  "ep_comments_page.comments_template.revert_change.value": "crwdns11152:0crwdne11152:0",
+  "ep_comments_page.comments_template.suggest_change": "crwdns11153:0crwdne11153:0",
+  "ep_comments_page.comments_template.from": "crwdns11154:0crwdne11154:0",
+  "ep_comments_page.comments_template.to": "crwdns11155:0crwdne11155:0",
+  "ep_comments_page.comments_template.include_suggestion": "crwdns11156:0crwdne11156:0",
+  "ep_comments_page.comments_template.comment.value": "crwdns11157:0crwdne11157:0",
+  "ep_comments_page.comments_template.cancel.value": "crwdns11158:0crwdne11158:0",
+  "ep_comments_page.comments_template.reply_input_label": "crwdns11159:0crwdne11159:0",
+  "ep_comments_page.comments_template.edit_comment.save": "crwdns11160:0crwdne11160:0",
+  "ep_comments_page.comments_template.edit_comment.cancel": "crwdns11161:0crwdne11161:0"
 }

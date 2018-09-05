@@ -1,5 +1,6 @@
 'use strict';
 
+var config = require('config');
 var express = require('express');
 var app = express();
 var https = require('https');
@@ -10,38 +11,11 @@ var _ = require('lodash');
 
 var prerender = require('prerender-node');
 
-var settingsLocal = null; // Your local config in '/config/local.json'
-var settingsEnv = null; // Settings defined in environment variable 'ETHERPAD_SETTINGS'
-
-try {
-    settingsLocal = require('./config/local.json');
-} catch (err) {
-    console.log('local.json NOT found!', err)
-}
-
-if (process.env.COS_CONFIG) {
-    try {
-        settingsEnv = JSON.parse(process.env.COS_CONFIG);
-    } catch (err) {
-        console.error('COS_CONFIG INVALID! Please make sure defined value is a valid JSON string!', err);
-        process.exit(1);
-    }
-} else {
-    console.log('COS_CONFIG NOT found!');
-}
-
-if (!settingsLocal && !settingsEnv) {
-    console.log('No configuration provided! You must provide at least one in "/config/local.json" file or "COS_CONFIG" environment variable.');
-    process.exit(1);
-}
-
-var settings = _.merge(settingsLocal || {}, settingsEnv || {});
-
 var pathSettings = path.resolve('./public/settings.js');
 try {
     var settingsFileTxt = '(function (window) { window.__config = window.__config || {};';
-    _(settings).forEach(function (value, key) {
-        settingsFileTxt += ' window.__config.'+key+' = ' + JSON.stringify(value) + ';';
+    _(config).forEach(function (value, key) {
+        settingsFileTxt += ' window.__config.' + key + ' = ' + JSON.stringify(value) + ';';
     });
     settingsFileTxt += '}(this));';
     fs.writeFileSync(pathSettings, settingsFileTxt);

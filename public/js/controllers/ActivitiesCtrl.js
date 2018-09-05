@@ -8,7 +8,7 @@ angular
             $scope.activitiesLimit = 25;
             $scope.activities = [];
             $scope.filter = 'all';
-            $scope.activityfilters = ['all', 'topics', 'groups', 'user', 'self'];
+            $scope.activityfilters = ['all', 'userTopics', 'userGroups', 'user', 'self'];
             var lastViewTime = null;
 
             $scope.loadActivities = function (offset, limit) {
