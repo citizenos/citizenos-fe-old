@@ -363,12 +363,12 @@
                     templateUrl: '<div></div>'
                 })
                 .state('topics.view.commentsReportsModerate', {
-                    url: '/comments/:commentId/reports/:reportId/moderate?token',
+                    url: '/comments/:reportedCommentId/reports/:reportId/moderate?token',
                     parent: 'topics.view',
                     resolve: {
                         rTopicComment: ['$stateParams', '$http', 'sLocation', function ($stateParams, $http, sLocation) {
                             var path = sLocation.getAbsoluteUrlApi(
-                                '/api/topics/:topicId/comments/:commentId/reports/:reportId',
+                                '/api/topics/:topicId/comments/:reportedCommentId/reports/:reportId',
                                 $stateParams
                             );
 
