@@ -95,7 +95,7 @@ gulp.task('uglify', function () {
             'public/js/libs/raven-console.js',
             'public/js/libs/angular-raven.js',
             'public/js/libs/**/*.js',
-            '!public/js/libs/template-cache.js',            
+            '!public/js/libs/template-cache.js',
             'public/js/app.js',
             'public/js/factories/**/*.js',
             'public/js/services/**/*.js',
@@ -161,7 +161,7 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('public/styles/'))
 });
 
-gulp.task('sass_etherpad', function() {
+gulp.task('sass_etherpad', function () {
     gulp.src(['public/styles/etherpad/etherpad.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
@@ -171,7 +171,7 @@ gulp.task('sass_etherpad', function() {
         .pipe(gulp.dest('public/styles/'))
 });
 
-gulp.task('sass_widgets', function() {
+gulp.task('sass_widgets', function () {
     gulp.src(['public/styles/widgets/widgets.scss'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
