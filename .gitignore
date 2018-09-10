@@ -12,4 +12,10 @@ Thumbs.db
 /.idea/*
 /.vscode/*
 public/settings.js
+public/config/styles/*.css
+!public/config/styles/local.example.css
+public/config/imgs/*.png
+!public/config/imgs/mylogo_big.example.png
+!public/config/imgs/mylogo_small.example.png
 config/local.json
+
