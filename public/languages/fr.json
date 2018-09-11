@@ -652,7 +652,7 @@
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "L'utilisateur {{userName}} a changé le niveau d'accès du groupe {{groupName}} au sujet {{topicTitle}} .",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "L’utilisateur {{userName}} a créé une mise à jour du sujet {{topicTitle}}:",
     "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC": "L'utilisateur {{userName}} a ajouté une pièce jointe {{attachmentName}} au sujet {{topicTitle}}",
-    "ACTIVITY_USER_DELETE_ATTACHMENT_TOPIC": "User {{userName}} has deleted {{attachmentName}} from topic {{topicTitle}}",
+    "ACTIVITY_USER_DELETE_ATTACHMENT_TOPIC": "User {{userName}} has deleted attachment {{attachmentName}} from topic {{topicTitle}}",
     "ACTIVITY_TOPIC_FIELD_DESCRIPTION": "description",
     "ACTIVITY_TOPIC_FIELD_STATUS": "statut",
     "ACTIVITY_TOPIC_FIELD_STATUS_INPROGRESS": "@:TXT_TOPIC_STATUS_INPROGRESS",
