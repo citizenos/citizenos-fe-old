@@ -11,10 +11,12 @@ var _ = require('lodash');
 
 var prerender = require('prerender-node');
 
+var configFe = config.util.loadFileConfigs('./public/config');
+
 var pathSettings = path.resolve('./public/settings.js');
 try {
     var settingsFileTxt = '(function (window) { window.__config = window.__config || {};';
-    _(config).forEach(function (value, key) {
+    _(configFe).forEach(function (value, key) {
         settingsFileTxt += ' window.__config.' + key + ' = ' + JSON.stringify(value) + ';';
     });
     settingsFileTxt += '}(this));';
