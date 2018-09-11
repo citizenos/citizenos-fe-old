@@ -1349,7 +1349,7 @@
                         }
                     }
 
-                    #id_card {
+                    #id_card, #smart_id {
                         .social_text .table_cell {
                             background: $id_medium;
                             color: $medium_black;
@@ -1359,7 +1359,7 @@
                         }
                     }
 
-                    #id_card:hover {
+                    #id_card:hover, #smart_id:hover{
                         .social_text .table_cell {
                             background: $id_light;
                             @include tablet {
@@ -1431,9 +1431,9 @@
                         padding-top: 15px;
                     }
                 }
-        
+
             }
-        
+
             #lightbox_close {
                 height: 42px;
                 border-radius: 0 4px;
@@ -1564,7 +1564,7 @@
                         float: right;
                         font-size: 14px;
                     }
-                    
+
                 }
 
                 @media (max-width: 560px) {
@@ -1615,13 +1615,13 @@
                         float: left;
                         padding: 5px;
                         text-align:center;
-    
+
                         .blue_button, .gray_button {
                             width: 110px;
                             float: right;
                             font-size: 14px;
                         }
-                        
+
                     }
                 }
             }
