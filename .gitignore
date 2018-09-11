@@ -18,4 +18,4 @@ public/config/imgs/*.png
 !public/config/imgs/mylogo_big.example.png
 !public/config/imgs/mylogo_small.example.png
 config/local.json
-
+public/config/local.json
