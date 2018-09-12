@@ -29,7 +29,7 @@ angular
                             activity.data.origin.description = null;
                         }
                         var resultObject = _.cloneDeep(activity.data.origin);
-                        activity.data.resultObject = jsonpatch.apply(resultObject, activity.data.result);
+                        activity.data.resultObject = jsonpatch.applyPatch(resultObject, activity.data.result);
                         activity.data.result.forEach(function (item) {
                             var field = item.path.split('/')[1];
 
