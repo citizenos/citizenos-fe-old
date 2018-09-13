@@ -184,7 +184,8 @@
 
                         <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
                             <div ng-if="comment.isVisible()" class="argument_text" ng-bind-html="comment.text | linky : '_blank'"></div>
-                            <div ng-if="!comment.isVisible()" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY" translate-values="{userFullName: comment.deletedBy.name}">This comment has been deleted by {{comment.deletedBy.name}}</div>
+                            <div ng-if="!comment.isVisible() && comment.deletedBy.id === comment.creator.id" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY" translate-values="{usersFullName: comment.deletedBy.name}">This comment has been deleted by {{comment.deletedBy.name}}</div>
+                            <div ng-if="!comment.isVisible() && comment.deletedBy.id !== comment.creator.id" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY_MODERATOR" translate-values="{usersFullName: comment.deletedBy.name}">This comment has been deleted by {{comment.deletedBy.name}} (moderator)</div>
                             <div class="argument_overlay"></div>
                             <div class="read_more_link" ng-click="$parent.readMore = !$parent.readMore" translate="{{($parent.readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_COMMENT_READ_MORE'}}">Read more</div>
                         </div>
@@ -222,7 +223,7 @@
                         </div>
 
                         <div class="alert_argument" ng-if="comment.showDeleteReason" ng-click="comment.showDeleteReason = !comment.showDeleteReason">
-                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_FOUND_INAPPRIOPRIATE_BY" translate-values="{userFullName: comment.deletedBy.name}">This comment was found inappriopriate by <b>{{comment.deletedBy.name}}</b></span><span ng-if="comment.deletedReasonType || comment.deleteReasonText">:</span>
+                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_FOUND_INAPPRIOPRIATE_BY" translate-values="{usersFullName: comment.deletedBy.name}">This comment was found inappriopriate by <b>{{comment.deletedBy.name}}</b></span><span ng-if="comment.deletedReasonType || comment.deleteReasonText">:</span>
                             <b ng-if="comment.deletedReasonType">{{('TXT_REPORT_TYPES_' + comment.deletedReasonType | uppercase) | translate}}</b><br>
                             <b ng-if="comment.deletedReasonText" class="italic">{{comment.deletedReasonText}}</b>
                             <br>
@@ -496,7 +497,7 @@
                         </div>
 
                         <div class="alert_argument" ng-if="reply.showDeleteReason" ng-click="reply.showDeleteReason = !reply.showDeleteReason">
-                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY" translate-values="{userFullName: reply.deletedBy.name}">This comment was found inappriopriate by <b>{{reply.deletedBy.name}}</b></span><span
+                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY" translate-values="{usersFullName: reply.deletedBy.name}">This comment was found inappriopriate by <b>{{reply.deletedBy.name}}</b></span><span
                             ng-if="reply.deletedReasonType || reply.deletedReasonText">:</span>
                             <b ng-if="reply.deletedReasonType">{{('TXT_REPORT_TYPES_' + reply.deletedReasonType | uppercase) | translate}}</b><br>
                             <b class="italic" ng-if="reply.deletedReasonText">{{reply.deletedReasonText}}</b><br>
