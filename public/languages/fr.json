@@ -274,6 +274,7 @@
     "WIDGETS_HOW_DOES_IT_WORK_TEXT": "You can participate in a discussion by adding your arguments"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Toute catégorie",
+  "TXT_TOPIC_CATEGORY_KEEPITCLEAN": "Keep It Clean",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Business et industrie",
   "TXT_TOPIC_CATEGORY_TRANSPORT": "Transport public et sécurité routière",
   "TXT_TOPIC_CATEGORY_TAXES": "Taxes et budgetisation",
@@ -639,6 +640,7 @@
     "ACTIVITY_USER_UPDATE_COMMENT_TOPIC": "L'utilisateur {{userName}} a mis à jour son argument sur le sujet : {{topicTitle}}.",
     "ACTIVITY_MODERATOR_UPDATE_COMMENT_TOPIC": "User {{userName}} (moderator) has updated argument field {{fieldName}} in topic {{topicTitle}}.",
     "ACTIVITY_USER_DELETE_COMMENT_TOPIC": "L'utilisateur {{userName}} a supprimé son argument sur le sujet : {{topicTitle}}.",
+    "ACTIVITY_MODERATOR_DELETE_COMMENT_TOPIC": "User {{userName}} (moderator) has deleted argument for topic: {{topicTitle}}.",
     "ACTIVITY_USER_ADD_REPORT_COMMENT": "L'utilisateur {{userName}} a signalé un argument : ",
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP": "L'utilisateur {{userName}} a laissé une réaction à l'argument : {{reaction}}.",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP": "L'utilisateur {{userName}} a mis à jour sa réaction à l'argument.",
