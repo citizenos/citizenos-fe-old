@@ -29,10 +29,12 @@ angular
                             activity.data.origin.description = null;
                         }
                         var resultObject = _.cloneDeep(activity.data.origin);
-                        activity.data.resultObject = jsonpatch.applyPatch(resultObject, activity.data.result);
+                        activity.data.resultObject = jsonpatch.applyPatch(resultObject, activity.data.result).newDocument;
                         activity.data.result.forEach(function (item) {
                             var field = item.path.split('/')[1];
-
+                            if (field === 'deletedById' || field  === 'deletedByReportId') {
+                                delete item;
+                            } else {
                             var change = _.find(resultItems, function (resItem) {
                                 return resItem.path.indexOf(field) > -1;
                             });
@@ -44,7 +46,7 @@ angular
                                     change.value = [change.value];
                                 }
                                 change.value.push(item.value);
-                            }
+                            }}
                         });
                         activity.data.result = resultItems;
                         while (i < activity.data.result.length) {
@@ -216,13 +218,14 @@ angular
             var newValue = activity.data.resultObject[fieldName];
             var previousValueKey = null;
             var newValueKey = null;
+            var originType = activity.data.origin['@type'];
 
-            if (activity.data.origin['@type'] === 'Topic') {
-                var fieldNameKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_FIELD_' + fieldName.toUpperCase();
+            if (originType === 'Topic' || originType === 'Comment') {
+                var fieldNameKey = 'ACTIVITY_FEED.ACTIVITY_' + originType.toUpperCase() + '_FIELD_' + fieldName.toUpperCase();
                 $translate(fieldNameKey)
                     .then(function (translatedField) {
                         activity.values.fieldName = translatedField;
-                    })
+                    });
             }
 
             if (Array.isArray(previousValue) && previousValue.length === 0) {
@@ -230,7 +233,7 @@ angular
             }
 
             if (previousValue || newValue) {
-                if (activity.data.origin['@type'] === 'Topic') {
+                if (originType === 'Topic') {
                     if (fieldName === 'status' || fieldName === 'visibility') {
                         if (previousValue) {
                             previousValueKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_FIELD_' + fieldName.toUpperCase() + '_' + previousValue.toUpperCase();
@@ -249,7 +252,7 @@ angular
                     }
                 }
 
-                if (activity.data.origin['@type'] === 'CommentVote') {
+                if (originType === 'CommentVote') {
                     if (fieldName === 'value') {
                         if (previousValue === 0 || previousValue) {
 
@@ -274,6 +277,12 @@ angular
 
                             newValueKey = 'ACTIVITY_FEED.ACTIVITY_COMMENTVOTE_FIELD_VALUE_' + newValue.toUpperCase();
                         }
+                    }
+                }
+
+                if (originType === 'Comment') {
+                    if (fieldName === 'deletedReasonType') {
+                        newValueKey = 'ACTIVITY_FEED.ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_' + newValue.toUpperCase();
                     }
                 }
             }
@@ -314,6 +323,10 @@ angular
                 return activity.data.target.title;
             } else if (activity.data.target && activity.data.target.topicTitle) {
                 return activity.data.target.topicTitle;
+            } else if (activity.data.origin && activity.data.origin.title) {
+                return activity.data.origin.title;
+            } else if (activity.data.origin && activity.data.origin.topicTitle) {
+                return activity.data.origin.topicTitle;
             }
         };
 
