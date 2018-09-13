@@ -3,12 +3,12 @@
 (function () {
 
     var __env = {};
-    
+
     // Import variables if present
-    if(window){
+    if (window) {
         Object.assign(__env, window.__config);
     }
-    
+
     var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'angularLoad']);
 
     module
@@ -167,7 +167,7 @@
                     templateUrl: '/views/layouts/main.html',
                     resolve: {
                         /* @ngInject */
-                        sActivitiesResolve: function ($log, $q, sAuthResolve, sAuth, sActivity) {                            
+                        sActivitiesResolve: function ($log, $q, sAuthResolve, sAuth, sActivity) {
                             $log.debug('Resolve unreadActivities');
                             if (sAuth.user.loggedIn) {
                                 return sActivity
@@ -175,12 +175,17 @@
                             } else {
                                 return $q.resolve(false);
                             }
-                            
-                        },
+
+                        }
                     }
                 })
                 .state('home', {
                     url: '/',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
+                .state('keepitclean', { //TODO: Special project with https://www.letsdoitworld.org/, remove when over.
+                    url: '/keepitclean',
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
