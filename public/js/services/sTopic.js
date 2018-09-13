@@ -1,36 +1,15 @@
 angular
     .module('citizenos')
-    .service('sTopic', ['$http', '$log', '$q', 'sLocation', function ($http, $log, $q, sLocation) {
+    .service('sTopic', ['$http', '$log', '$q', 'sLocation', 'Topic', function ($http, $log, $q, sLocation, Topic) {
+        // TODO: Remove and make all use Topic?
+
         var sTopic = this;
 
-        sTopic.STATUSES = {
-            inProgress: 'inProgress', // Being worked on
-            voting: 'voting', // Is being voted which means the Topic is locked and cannot be edited.
-            followUp: 'followUp', // Done editing Topic and executing on the follow up plan.
-            closed: 'closed' // Final status - Topic is completed and no editing/reopening/voting can occur.
-        };
+        sTopic.STATUSES = Topic.STATUSES;
 
-        sTopic.VISIBILITY = {
-            public: 'public', // Everyone has read-only on the Topic.  Pops up in the searches..
-            private: 'private' // No-one can see except collaborators
-        };
+        sTopic.VISIBILITY = Topic.VISIBILITY;
 
-        sTopic.CATEGORIES = {
-            business: 'business', // Business and industry
-            transport: 'transport', // Public transport and road safety
-            taxes: 'taxes', // Taxes and budgeting
-            agriculture: 'agriculture', // Agriculture
-            environment: 'environment', // Environment, animal protection
-            culture: 'culture', // Culture, media and sports
-            health: 'health', // Health care and social care
-            work: 'work', // Work and employment
-            education: 'education', // Education
-            politics: 'politics', // Politics and public administration
-            communities: 'communities', // Communities and urban development
-            defense: 'defense', //  Defense and security
-            integration: 'integration', // Integration and human rights
-            varia: 'varia' // Varia
-        };
+        sTopic.CATEGORIES = Topic.CATEGORIES;
 
         sTopic.listUnauth = function (statuses, categories, offset, limit) {
             var path = sLocation.getAbsoluteUrlApi('/api/topics');
