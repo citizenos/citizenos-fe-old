@@ -2,8 +2,8 @@
 
 angular
     .module('citizenos')
-    .controller('HomeCtrl', ['$scope', '$log', 'sTopic', function ($scope, $log, sTopic) {
-        $log.debug('HomeCtrl');
+    .controller('HomeCtrl', ['$scope', '$log', '$state', 'sTopic', function ($scope, $log, $state, sTopic) {
+        $log.debug('HomeCtrl', $state);
 
         // Constant marking the "clear" or all options will do
         $scope.FILTERS_ALL = 'all';
@@ -11,7 +11,7 @@ angular
         var init = function () {
             $scope.filters = {
                 categories: {
-                    value: $scope.FILTERS_ALL,
+                    value: sTopic.CATEGORIES[$state.current.name] ? $state.current.name : $scope.FILTERS_ALL,
                     options: [$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))
                 },
                 statuses: {

@@ -141,6 +141,7 @@ angular
         };
 
         Topic.CATEGORIES = {
+            keepitclean: 'keepitclean', // //TODO: Special project with https://www.letsdoitworld.org/, remove when over.
             business: 'business', // Business and industry
             transport: 'transport', // Public transport and road safety
             taxes: 'taxes', // Taxes and budgeting
