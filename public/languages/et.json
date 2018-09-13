@@ -639,6 +639,7 @@
     "ACTIVITY_USER_UPDATE_COMMENT_TOPIC": "Kasutaja {{userName}} muutis oma argumenti teemal \"{{topicTitle}}\".",
     "ACTIVITY_MODERATOR_UPDATE_COMMENT_TOPIC": "User {{userName}} (moderator) has updated argument field {{fieldName}} in topic {{topicTitle}}.",
     "ACTIVITY_USER_DELETE_COMMENT_TOPIC": "Kasutaja {{userName}} eemaldas oma argumendi teemal \"{{topicTitle}}\".",
+    "ACTIVITY_MODERATOR_DELETE_COMMENT_TOPIC": "User {{userName}} (moderator) has deleted argument for topic: {{topicTitle}}.",
     "ACTIVITY_USER_ADD_REPORT_COMMENT": "Kasutaja {{userName}} teatas sobimatust argumendist: ",
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP": "Kasutaja {{userName}} andis argumendile järgmist tagasisidet: \"{{reaction}}\".",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP": "Kasutaja {{userName}} muutis oma tagasisidet argumendi kohta.",
