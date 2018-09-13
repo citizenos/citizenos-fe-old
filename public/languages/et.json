@@ -274,6 +274,7 @@
     "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Osale e-arutelus, lisades allapoole oma argument. Festivali arutelude panelistid võivad näha, mis toimub siin e-arutelus, seega saab siin neile küsimusi postitada. Kui sa pole kindel, kumma nupu abil postitada, palun vali roheline nupp.\nE-arutelu jääb avatuks ka pärast festivali, et tekkinud sisu pinnalt saaks luua uusi artikleid, petitsioone, rahvaalgatusi või liikumisi.\nHead e-arutelus osalemist!"
   },
   "TXT_TOPIC_CATEGORY_ALL": "iga kategooria",
+  "TXT_TOPIC_CATEGORY_KEEPITCLEAN": "Keep It Clean",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Äri ja tööstus",
   "TXT_TOPIC_CATEGORY_TRANSPORT": "Ühistransport ja liiklusohutus",
   "TXT_TOPIC_CATEGORY_TAXES": "Maksud ja riigieelarve",
