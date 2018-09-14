@@ -1289,3 +1289,53 @@ $bold: 700;
         }
     }
 }
+
+#footNotePopup {
+    width: 100% !important;
+    height: auto;
+    right: 0;
+    left: 0;
+    border: none;
+    padding: 20px;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    #fnInput {
+        font-family: 'Open Sans',sans-serif;
+        font-size: 13px;
+        background-color: $white;
+        border: 1px solid #E5E5E5;
+        border-radius: 4px;
+        width: -moz-calc(100% - 20px);
+        width: -webkit-calc(100% - 20px);
+        width: -o-calc(100% - 20px);
+        width: calc(100% - 20px);
+        padding: 0;
+        padding: 6px 10px;
+    }
+
+    input[type="button"] {
+        border: 1px solid #0574E3;
+        border-radius: 4px;
+        font-family: "Open Sans";
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 20px;
+        text-align: center;
+        padding: 5px;
+    }
+    #fnAdd {
+        background-color: #0680FC;
+        color: #FFFFFF;
+    }
+    #fnCancel {
+        color: #0680FC;
+        border: none;
+        background: none;
+        
+    }
+}
