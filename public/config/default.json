@@ -6,14 +6,11 @@
     "default": "en",
     "list": {
       "en": "English",
-      "fr": "Français",
       "et": "Eesti",
-      "lv": "Latviešu",
-      "lt": "Lietuvių",
+      "fr": "Français",
       "ru": "Pусский",
       "fi": "Suomi",
-      "uk": "Українська",
-      "aa": "Crowdin"
+      "uk": "Українська"
     },
     "debug": "dbg"
   },

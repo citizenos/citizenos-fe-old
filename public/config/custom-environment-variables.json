@@ -3,19 +3,7 @@
     "baseUrl": "CITIZENOS_URL_API"
   },
   "language": {
-    "default": "DEFAULT_LANG_KEY",
-    "list": {
-      "en": "English",
-      "fr": "Français",
-      "et": "Eesti",
-      "lv": "Latviešu",
-      "lt": "Lietuvių",
-      "ru": "Pусский",
-      "fi": "Suomi",
-      "uk": "Українська",
-      "aa": "Crowdin"
-    },
-    "debug": "dbg"
+    "default": "DEFAULT_LANG_KEY"
   },
   "links": {
     "help": {
