@@ -628,6 +628,7 @@
     "ACTIVITY_USER_ADD_USER_TOPIC": "Користувач {{userName}} запросив користувача {{userName2}} прийняти участі у темі {{topicTitle}}",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERUSER": "Користувач {{userName}} змінив рівень доступу користувача {{userName2}} до теми {{topicTitle}}.",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERUSER_NONE": "Користувач {{userName}} відкликав права доступу користувача {{userName2}} до теми {{topicTitle}}",
+    "ACTIVITY_USER_DELETE_USER_TOPIC": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_TOPICMEMBERUSER_NONE",
     "ACTIVITY_USER_JOIN_TOPIC": "Користувач {{userName}} приєднався до теми {{topicTitle}} з рівнем доступу: {{accessLevel}}.",
     "ACTIVITY_USER_LEAVE_TOPIC": "Користувач {{userName}} залишив тему: {{topicTitle}}",
     "ACTIVITY_USER_CREATE_VOTE_TOPIC": "Користувач {{userName}} відкрив голосування по темі: {{topicTitle}}",
