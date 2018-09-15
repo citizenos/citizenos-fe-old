@@ -16,7 +16,7 @@ app.service('sUpload', ['$http', '$q', 'sLocation', function ($http, $q, sLocati
         filename = urlParts.pop();
         folder = urlParts.pop();
         filename = filename.split('#')[0].split('?')[0];
-        var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload/signdownload');
+        var path = sLocation.getAbsoluteUrlApi('/api/upload/signdownload');
         return $http.get(path, {params: {filename: filename, folder: folder, downloadName: name, filetype: type}});
     };
 
