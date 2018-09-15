@@ -184,8 +184,8 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
-                .state('keepitclean', { //TODO: Special project with https://www.letsdoitworld.org/, remove when over.
-                    url: '/keepitclean',
+                .state('keepitcleanplan', { //TODO: Special project with https://www.letsdoitworld.org/, remove when over.
+                    url: '/keepitcleanplan',
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
