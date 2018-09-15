@@ -628,6 +628,7 @@
     "ACTIVITY_USER_ADD_USER_TOPIC": "crwdns10848:0{{userName}}crwdnd10848:0{{userName2}}crwdnd10848:0{{topicTitle}}crwdne10848:0",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERUSER": "crwdns10849:0{{userName}}crwdnd10849:0{{userName2}}crwdnd10849:0{{topicTitle}}crwdne10849:0",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERUSER_NONE": "crwdns10850:0{{userName}}crwdnd10850:0{{userName2}}crwdnd10850:0{{topicTitle}}crwdne10850:0",
+    "ACTIVITY_USER_DELETE_USER_TOPIC": "crwdns11193:0crwdne11193:0",
     "ACTIVITY_USER_JOIN_TOPIC": "crwdns10988:0{{userName}}crwdnd10988:0{{topicTitle}}crwdnd10988:0{{accessLevel}}crwdne10988:0",
     "ACTIVITY_USER_LEAVE_TOPIC": "crwdns10852:0{{userName}}crwdnd10852:0{{topicTitle}}crwdne10852:0",
     "ACTIVITY_USER_CREATE_VOTE_TOPIC": "crwdns10853:0{{userName}}crwdnd10853:0{{topicTitle}}crwdne10853:0",
