@@ -255,6 +255,12 @@ $bold: 700;
     background: none;
 }
 
+@media (min-width: 947px) { /* 955 - 8 (8 is #innerdocbody left position) */
+  #innerdocbody.comments:not(.innerPV){
+    margin-right: 30px;
+  }
+}
+
 /** iframe #ace_inner **/
 #innerdocbody, #padcontent {
     background: none;
@@ -500,6 +506,12 @@ $bold: 700;
         bottom: auto;
         border: 15px solid;
         border-color: $medium_black transparent transparent transparent;
+    }
+}
+
+@media (min-width: 955px) {
+    #outerdocbody.pageViewDisabled #commentIcons {
+        margin-left: calc(100% - 140px);
     }
 }
 .comment-icon {
