@@ -307,29 +307,29 @@
       "LNK_MY_GROUPS": "Meine Gruppen",
       "LNK_ABOUT": "Über uns",
       "LNK_FAQ": "FAQ",
-      "LNK_HELP": "Help",
-      "LNK_LOG_OUT": "Log out",
-      "LNK_ACTIVITY": "Activity feed"
+      "LNK_HELP": "Hilfe",
+      "LNK_LOG_OUT": "Abmelden",
+      "LNK_ACTIVITY": "Aktivitäten-Feed"
     },
     "NAV_MOBILE": {
-      "BTN_SEARCH": "Search",
-      "BTN_OVERVIEW": "Overview",
-      "BTN_EDIT": "Edit",
-      "BTN_SETTINGS": "Settings",
-      "BTN_MENU": "Menu",
+      "BTN_SEARCH": "Suche",
+      "BTN_OVERVIEW": "Übersicht",
+      "BTN_EDIT": "Bearbeiten",
+      "BTN_SETTINGS": "Einstellungen",
+      "BTN_MENU": "Menü",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "Context search results in",
-      "LNK_VIEW_MORE_RESULTS": "View more results",
-      "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
-      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?"
+      "HEADING_RESULTS_IN": "Suchergebnisse",
+      "LNK_VIEW_MORE_RESULTS": "Zeige weitere Ergebnisse",
+      "TXT_OOPS_NO_RESULTS": "Hoppla, wir konnten keine passenden Ergebnisse zu Ihrer Suchanfrage finden :(",
+      "TXT_MAYBE_TYPO": "Haben Sie sich vielleicht bei der Eingabe vertippt?"
     },
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
-      "BTN_HOW_DOES_IT_WORK": "How does it work?",
-      "LNK_PRIVACY_POLICY": "Citizen OS Privacy Policy",
+      "BTN_HOW_DOES_IT_WORK": "Wie funktioniert es?",
+      "LNK_PRIVACY_POLICY": "Citizen OS - Datenschutzbestimmungen",
       "LNK_CITIZENOS_WEBSITE": "Citizen OS Website"
     }
   },
