@@ -465,11 +465,11 @@
       "HEADING": "Unser Partner Rahvaalgatus.ee würde gerne auf folgende Daten von Ihrem Konto zugreifen:",
       "TXT_VIEW_PROFILE": "Anzeigen und Bearbeiten Ihres Citizen-OS-Profils - Name, Organisation, E-Mail, Profilbild.",
       "TXT_VIEW_TOPICS": "Anzeigen und bearbeiten Ihrer Citizen OS - öffentlicher Themen sowie über die Website Rahvaalgatus.ee erstellter Themen.",
-      "TXT_VIEW_VOTES": "View and edit Your Citizen OS Votes in public Topics and Topics created via the Rahvaalgatus.ee website.",
-      "TXT_VIEW_GROUPS": "View and edit Your Citizen OS Groups.",
-      "TXT_POLICY": "Rahvaalgatus.ee will use this information in accordance with their respective <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">terms of service and privacy policies</a>.",
-      "_AGREE": "Accept",
-      "DISAGREE": "Cancel"
+      "TXT_VIEW_VOTES": "Anzeigen und bearbeiten Ihrer Citizen OS - Abstimmungen in öffentlichen Themen sowie in Themen, die über die Website Rahvaalgatus.ee erstellt wurden.",
+      "TXT_VIEW_GROUPS": "Anzeigen und bearbeiten Ihrer Citizen OS - Gruppen.",
+      "TXT_POLICY": "Rahvaalgatus.ee nutzt diese Information in Übereinstimmung mit den jeweiligen <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">Nutzungsbedingungen und Datenschutzrichtlinien</a>.",
+      "_AGREE": "Zustimmen",
+      "DISAGREE": "Abbrechen"
     },
     "PARTNERS_LOGIN": {
       "HEADING": "<strong>Rahvaalgatus.ee works together with Citizen OS</strong> to offer you a great experience. If you want to use the platform to its fullest, <strong>please login to Citizen OS or register.</strong>",
