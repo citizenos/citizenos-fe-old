@@ -288,24 +288,24 @@
   "TXT_TOPIC_CATEGORY_COMMUNITIES": "Gemeinschaften und Stadtentwicklung",
   "TXT_TOPIC_CATEGORY_DEFENSE": "Schutz und Sicherheit",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integration und Menschenrechte",
-  "TXT_TOPIC_CATEGORY_VARIA": "Varia",
+  "TXT_TOPIC_CATEGORY_VARIA": "Verschiedenes",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Search topics, users, groups…"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Suche Themen, Benutzer, Gruppen…"
     }
   },
   "DEFAULT": {
     "NAV": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
-      "HEADING_TOPICS": "Topics",
-      "LNK_CREATE_TOPICS": "Create topic",
-      "LNK_MY_TOPICS": "My topics",
-      "LNK_PUBLIC_TOPICS": "Public topics",
+      "HEADING_TOPICS": "Themen",
+      "LNK_CREATE_TOPICS": "Thema erstellen",
+      "LNK_MY_TOPICS": "Meine Themen",
+      "LNK_PUBLIC_TOPICS": "Öffentliche Themen",
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
-      "LNK_CREATE_GROUPS": "Create groups",
-      "LNK_MY_GROUPS": "My groups",
-      "LNK_ABOUT": "About",
+      "LNK_CREATE_GROUPS": "Gruppe erstellen",
+      "LNK_MY_GROUPS": "Meine Gruppen",
+      "LNK_ABOUT": "Über uns",
       "LNK_FAQ": "FAQ",
       "LNK_HELP": "Help",
       "LNK_LOG_OUT": "Log out",
