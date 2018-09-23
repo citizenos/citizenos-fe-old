@@ -472,21 +472,21 @@
       "DISAGREE": "Abbrechen"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "<strong>Rahvaalgatus.ee works together with Citizen OS</strong> to offer you a great experience. If you want to use the platform to its fullest, <strong>please login to Citizen OS or register.</strong>",
+      "HEADING": "<strong>Rahvaalgatus.ee arbeitet zusammen mit Citizen OS</strong>, um Ihnen eine tolle Erfahrung zu ermöglichen. Wenn Sie die Plattform in vollem Umfang nutzen möchten,<strong> melden Sie sich an oder registrieren Sie sich bitte bei Citizen OS.</strong>",
       "BTN_LOGIN_FACEBOOK": "@:MODALS.LOGIN_BTN_LOGIN_FACEBOOK",
       "BTN_LOGIN_GOOGLE": "@:MODALS.LOGIN_BTN_LOGIN_GOOGLE",
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",
       "PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
       "PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
-      "LOGIN_REGISTER": "Log in/register to Citizen OS",
-      "FORGOT_PASSWORD": "Forgot password?"
+      "LOGIN_REGISTER": "Bei Citizen OS anmelden / registrieren",
+      "FORGOT_PASSWORD": "Passwort vergessen?"
     },
     "TOPICS_TOPICID": {
       "BAR_MILESTONES": "UPDATES: {{count}}",
       "BAR_TOOLTIP_PHASE": "Status:",
-      "BAR_TOOLTIP_IN_PROGRESS": "in progress",
-      "BAR_TOOLTIP_VOTING": "in voting",
-      "BAR_SIGNING_DEADLINE": "Signing deadline:",
+      "BAR_TOOLTIP_IN_PROGRESS": "in Bearbeitung",
+      "BAR_TOOLTIP_VOTING": "in Abstimmung",
+      "BAR_SIGNING_DEADLINE": "Abstimmungsfrist:",
       "BAR_CURRENT_PHASE": "Current status:",
       "TAB_VIEW": "View",
       "TAB_VOTE": "Vote",
