@@ -330,11 +330,11 @@
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
       "BTN_HOW_DOES_IT_WORK": "Wie funktioniert es?",
       "LNK_PRIVACY_POLICY": "Citizen OS - Datenschutzbestimmungen",
-      "LNK_CITIZENOS_WEBSITE": "Citizen OS Website"
+      "LNK_CITIZENOS_WEBSITE": "Citizen OS - Website"
     }
   },
-  "LBL_CONTEXT_MY_TOPICS": "my topics",
-  "LBL_CONTEXT_MY_GROUPS": "my groups",
+  "LBL_CONTEXT_MY_TOPICS": "meine Themen",
+  "LBL_CONTEXT_MY_GROUPS": "meine Gruppen",
   "LBL_CONTEXT_PUBLIC_TOPICS": "public topics",
   "LBL_CONTEXT_PUBLIC_GROUPS": "public groups",
   "DIRECTIVES": {
