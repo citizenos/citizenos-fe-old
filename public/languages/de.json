@@ -350,7 +350,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Entschuldigung, Sie haben nicht genügend Berechtigungen, um auf die Ressource zuzugreifen :(",
       "HEADING_YOU_MAY_RECOVER": "Still, you may recover from the unfortunate event by",
       "BTN_LOGIN": "Logging in",
       "BTN_REQUEST_ACCESS": "Requesting access to the resource"
