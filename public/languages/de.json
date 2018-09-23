@@ -23,7 +23,7 @@
   "TXT_REPORT_TYPES_OBSCENE": "Enthält obszöne Sprache",
   "TXT_REPORT_TYPES_SPAM": "Enthält Spam oder hat keinen Bezug zum Thema",
   "TXT_REPORT_TYPES_HATE": "Enthält Hassrede",
-  "TXT_REPORT_TYPES_NETIQUETTE": "Infringes (n)etiquette",
+  "TXT_REPORT_TYPES_NETIQUETTE": "Verstößt gegen die (N)Etikette",
   "TXT_REPORT_TYPES_DUPLICATE": "Is a duplicate",
   "TXT_MODERATION_TYPES_NULL": "Select a moderation reason",
   "TXT_MODERATION_TYPES_ABUSE": "@:TXT_REPORT_TYPES_ABUSE",
