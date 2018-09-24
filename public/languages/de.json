@@ -130,7 +130,7 @@
     "LOGIN_ESTEID_ERROR_PHONE": "Ungültige Telefonnummer. Bitte geben Sie die Telefonnummer mit Landesvorwahl ein.",
     "LOGIN_ESTEID_PLACEHOLDER_PID": "Persönlicher Identifikations-Code",
     "LOGIN_ESTEID_ERROR_PID": "Ungültiger persönlicher Identifikations-Code.",
-    "LOGIN_ESTEID_TXT_CONTROL_CODE": "Control code: {{code}}",
+    "LOGIN_ESTEID_TXT_CONTROL_CODE": "Prüfcode: {{code}}",
     "LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE": "Make sure control code matches with one in the phone screen and enter Mobiil-ID PIN1.",
     "LOGIN_ESTEID_BTN_LOG_IN_MID": "Log in with Mobiil-ID",
     "LOGIN_ESTEID_BTN_LOG_IN_ID": "Log in with ID-card",
