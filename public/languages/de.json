@@ -539,7 +539,7 @@
       "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "UNTERZEICHNUNG MIT DEM PERSONALAUSWEIS ODER MOBILE UNTERSCHRIFT SIND ERFORDERLICH",
       "VOTE_LBL_DELEGATION": "Befugnis zur Stimmabgabe",
       "VOTE_LBL_DELEGATION_EXPLANATION": "BENUTZERN ERLAUBEN IHR STIMMRECHT ZU ÜBERTRAGEN.",
-      "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "When eID is the chosen method of voting, delegation is not allowed.",
+      "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "Wenn Sie für die Abstimmung sich elektronisch identifizieren lassen, ist die Übertragung der Stimmabgabe nicht erlaubt.",
       "VOTE_HEADING_STEP4": "Step 4: End of voting system",
       "VOTE_LBL_DEADLINE": "Deadline",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Days left: {{numberOfDaysLeft}}",
