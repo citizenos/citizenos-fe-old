@@ -77,7 +77,7 @@ angular
         sAuth.loginSmartIdInit = function (pid, countryCode) {
             var data = {
                 pid: pid,
-                countryCode:countryCode
+                countryCode: countryCode
             };
 
             var success = function (response) {
@@ -115,8 +115,12 @@ angular
             return $http
                 .get(cosConfig.features.authentication.idCard.url, {withCredentials: true}) // withCredentials so that client certificate is sent
                 .then(function (response) {
-                    var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
-                    return $http.post(path, response.data.data);
+                    if (response.data.data.token) { // id-auth proxy used
+                        var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
+                        return $http.post(path, response.data.data);
+                    } else { // Not using id-auth proxy
+                        return response;
+                    }
                 })
                 .then(success, defaultError);
         };
@@ -163,18 +167,22 @@ angular
 
         sAuth.passwordReset = function (email, password, passwordResetCode) {
             var path = sLocation.getAbsoluteUrlApi('/api/auth/password/reset');
-            return $http.post(path, {email: email, password: password, passwordResetCode: passwordResetCode}).then(defaultSuccess, defaultError);
+            return $http.post(path, {
+                email: email,
+                password: password,
+                passwordResetCode: passwordResetCode
+            }).then(defaultSuccess, defaultError);
         };
 
         sAuth.getUrlPrefix = function () {
-            if(sAuth.user.loggedIn) {
+            if (sAuth.user.loggedIn) {
                 return 'users';
             }
             return null;
         };
 
         sAuth.getUrlUserId = function () {
-            if(sAuth.user.loggedIn) {
+            if (sAuth.user.loggedIn) {
                 return 'self';
             }
             return null;
