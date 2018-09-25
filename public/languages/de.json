@@ -76,7 +76,7 @@
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "@:MODALS.GROUP_MEMBER_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE",
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_NO": "@:BTN_NO",
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_YES": "@:BTN_YES",
-    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_HEADING": "Thema lassen",
+    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_HEADING": "Thema verlassen",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE": "Sind Sie sicher, dass Sie dieses Thema verlassen wollen?",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_YES": "@:BTN_YES",
@@ -133,7 +133,7 @@
     "LOGIN_ESTEID_TXT_CONTROL_CODE": "Prüfcode: {{code}}",
     "LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE": "Stellen Sie sicher, dass der Prüfcode mit dem im Telefonbildschirm übereinstimmt, und geben Sie die Mobiil-ID PIN1 ein.",
     "LOGIN_ESTEID_BTN_LOG_IN_MID": "Mit Mobiil-ID einloggen",
-    "LOGIN_ESTEID_BTN_LOG_IN_ID": "Mit ID-Card anmelden",
+    "LOGIN_ESTEID_BTN_LOG_IN_ID": "Mit einer ID-Karte anmelden",
     "LOGIN_SMARTID_HEADING": "@:MODALS.LOGIN_BTN_LOGIN_SMARTID",
     "LOGIN_SMARTID_PLACEHOLDER_COUNTRY_CODE": "Ländercode (2 Buchstaben)",
     "LOGIN_SMARTID_ERROR_COUNTRY_CODE": "Ungültiger Ländercode",
@@ -286,7 +286,7 @@
   "TXT_TOPIC_CATEGORY_EDUCATION": "Bildung",
   "TXT_TOPIC_CATEGORY_POLITICS": "Politik und öffentliche Verwaltung",
   "TXT_TOPIC_CATEGORY_COMMUNITIES": "Gemeinschaften und Stadtentwicklung",
-  "TXT_TOPIC_CATEGORY_DEFENSE": "Schutz und Sicherheit",
+  "TXT_TOPIC_CATEGORY_DEFENSE": "Verteidigung und Sicherheit",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integration und Menschenrechte",
   "TXT_TOPIC_CATEGORY_VARIA": "Verschiedenes",
   "LAYOUTS": {
@@ -351,7 +351,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Entschuldigung, Sie haben nicht genügend Berechtigungen, um auf die Ressource zuzugreifen :(",
-      "HEADING_YOU_MAY_RECOVER": "Sie können dennoch den unglücklichen Vorfall lösen",
+      "HEADING_YOU_MAY_RECOVER": "Sie können dennoch den unglücklichen Vorfall lösen, indem Sie sich",
       "BTN_LOGIN": "Anmelden",
       "BTN_REQUEST_ACCESS": "Zugriff auf die Ressource anfordern"
     },
@@ -404,7 +404,7 @@
       "LNK_SETTINGS": "Einstellungen",
       "LNK_LEAVE": "verlassen",
       "LNK_DELETE": "löschen",
-      "HEADING_TOPIC_LIST": "Themen ({{count}})",
+      "HEADING_TOPIC_LIST": "Themenliste ({{count}})",
       "LNK_FILTER": "filtern",
       "PLACEHOLDER_TOPIC_TITLE_PERMISSION": "Titel des Themas, Berechtigung",
       "PLACEHOLDER_NAME_PERMISSION": "Name, Berechtigung",
@@ -533,7 +533,7 @@
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "Geben Sie eine mögliche Antwort ein",
       "VOTE_BTB_ADD_OPTION": "Weitere Antwort hinzufügen",
       "VOTE_HEADING_STEP3": "Schritt 3: Einrichten der Abstimmrechte",
-      "VOTE_LBL_AUTH_SOFT_ID": "Offene Anmeldung",
+      "VOTE_LBL_AUTH_SOFT_ID": "Soziale Anmeldung",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "CITIZEN OS - ANMELDUNG ST ERFORDERLICH",
       "VOTE_LBL_AUTH_HARD_ID": "e-Identifikation",
       "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "UNTERZEICHNUNG MIT DEM PERSONALAUSWEIS ODER MOBILE UNTERSCHRIFT SIND ERFORDERLICH",
