@@ -698,7 +698,7 @@
     "FILTER_ALL": "Alle Aktivitäten",
     "FILTER_USERTOPICS": "Themenbezogene Aktivitäten",
     "FILTER_USERGROUPS": "Gruppenbezogene Aktivitäten",
-    "FILTER_USER": "Activities related to user",
+    "FILTER_USER": "Benutzeraktivitäten",
     "FILTER_SELF": "User's activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Invalid email.",
