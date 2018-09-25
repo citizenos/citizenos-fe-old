@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sAuth', ['$http', '$q', '$log', 'sLocation', function ($http, $q, $log, sLocation) {
+    .service('sAuth', ['$http', '$q', '$log', 'sLocation', 'cosConfig', function ($http, $q, $log, sLocation, cosConfig) {
         var sAuth = this;
 
         sAuth.user = {
@@ -113,7 +113,7 @@ angular
             };
 
             return $http
-                .get('https://id.citizenos.com/authorize', {withCredentials: true}) // withCredentials so that client certificate is sent
+                .get(cosConfig.features.authentication.idCard.url, {withCredentials: true}) // withCredentials so that client certificate is sent
                 .then(function (response) {
                     var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
                     return $http.post(path, response.data.data);
