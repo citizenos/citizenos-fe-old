@@ -288,10 +288,10 @@
   "TXT_TOPIC_CATEGORY_COMMUNITIES": "Gemeinschaften und Stadtentwicklung",
   "TXT_TOPIC_CATEGORY_DEFENSE": "Verteidigung und Sicherheit",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integration und Menschenrechte",
-  "TXT_TOPIC_CATEGORY_VARIA": "Sonstiges",
+  "TXT_TOPIC_CATEGORY_VARIA": "Verschiedenes",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Suche nach Themen, Benutzer, Gruppen…"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Suche nach Themen, Benutzern, Gruppen…"
     }
   },
   "DEFAULT": {
@@ -350,7 +350,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Entschuldigung, Sie haben nicht genügend Berechtigungen, um auf die Ressource zuzugreifen :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Entschuldigung, Sie haben nicht genügend Rechte, um auf die Ressource zuzugreifen :(",
       "HEADING_YOU_MAY_RECOVER": "Sie können dennoch den unglücklichen Vorfall lösen, indem Sie sich",
       "BTN_LOGIN": "Anmelden",
       "BTN_REQUEST_ACCESS": "Zugriff auf die Ressource anfordern"
@@ -367,7 +367,7 @@
       "BTN_STATUS": "STATUS",
       "BTN_SUBMIT_FILTER": "Filter anwenden",
       "HEADING_NO_RESUTS": "Es tut uns leid, aber wir konnten keine Ergebnisse finden :(",
-      "HEADING_GET_STARTED": "Vielleicht könnten Sie die erste Diskussion einleiten",
+      "HEADING_GET_STARTED": "Vielleicht können Sie die erste Diskussion einleiten",
       "BTN_CREATING_A_NEW_TOPIC": "Neues Thema erstellen",
       "HEADING_BEGINNERS_GUIDE": "Das Einsteigerhandbuch zu Citizen OS.",
       "TXT_BEGINNERS_GUIDE": "Hallo und willkommen bei Citizen OS! Lesen Sie dieses Thema und erfahren Sie, wie alles funktioniert.",
@@ -377,9 +377,9 @@
     "MY": {
       "LBL_GROUPS_COUNT": "Gruppen: {{count}}",
       "HEADING_NOT_IN_GROUP": "Sie gehören bisher zu keiner Gruppe.",
-      "HEADING_AT_LEAST_WE_HELP": "Zumindest sind wir da, um Ihnen zu helfen",
+      "HEADING_AT_LEAST_WE_HELP": "Zumindest sind wir erst einmal da, um Ihnen zu helfen",
       "TXT_CREATING_A NEW_GROUP": "Neue Gruppe erstellen",
-      "HEADING_NOT_PARTICIPATED": "Sie haben sich noch nicht an einem Thema beteiligt. Probieren Sie es, es ist wirklich cool!",
+      "HEADING_NOT_PARTICIPATED": "Sie haben sich noch nicht an einem Thema beteiligt. Probieren Sie es aus, es ist wirklich cool!",
       "HEADING_GET_INVOLVED": "Sie können sich auf folgende Weisen beteiligen",
       "MY_CREATING_A_NEW_TOPIC": "Neues Thema erstellen",
       "FILTERS": {
