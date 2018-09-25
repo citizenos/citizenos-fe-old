@@ -39,7 +39,9 @@
       "google": true,
       "smartId": true,
       "mobiilId": true,
-      "idCard": true,
+      "idCard": {
+        "url": "https://id.citizenos.com/authorize"
+      },
       "citizenos": true
     }
   }
