@@ -113,7 +113,7 @@ angular
             };
 
             return $http
-                .get(cosConfig.features.authentication.idCard.url, {withCredentials: true}) // withCredentials so that client certificate is sent
+                .post(cosConfig.features.authentication.idCard.url, {withCredentials: true}) // withCredentials so that client certificate is sent
                 .then(function (response) {
                     if (response.data.data.token) { // id-auth proxy used
                         var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
