@@ -117,7 +117,7 @@ angular
 
             var redirectSuccess = $stateParams.redirectSuccess || sLocation.currentUrl(); // Final url to land after successful login
 
-            var loginWindow = popupCenter(url, 'CitizenOS Facebook Login', 470, 500);
+            var loginWindow = popupCenter(url, 'CitizenOS Partner Login', 470, 500);
 
             if ($document[0].documentMode || $window.navigator.userAgent.indexOf('Edge') > -1) {
                 var popupCheck = $interval(function() {
@@ -129,12 +129,12 @@ angular
                             .then(function (user) {
                                 if (user) {
                                     $window.location.href = redirectSuccess;
-                                }   
+                                }
                             });
                     }
                 }, 250);
             }
-            
+
             var messageHandler = function (message) {
                 loginWindow.close();
                 $window.focus();
@@ -143,6 +143,24 @@ angular
             $window.addEventListener('message', messageHandler, false);
         };
 
+
+        // No-popup partner login version. Used for /partners/{partnerId}/login pages where the popup version would add too much extra complexity with the redirect urls.
+        // Popup version was initially needed only for the widget logins. Maybe worth making an exception for the widgets and revert everything else to normal.
+        $scope.doLoginPartnerNoPopup = function (partnerId) {
+            if (_.values($scope.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
+                throw new Error('LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', partnerId);
+            }
+
+            var url = sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', {partnerId: partnerId});
+            if ($stateParams.redirectSuccess) {
+                url += '?redirectSuccess=' + encodeURIComponent($stateParams.redirectSuccess);
+            } else {
+                var redirectSuccess = sLocation.currentUrl();
+                url += '?redirectSuccess=' + redirectSuccess + '?'; // HACK: + '?' avoids digest loop on Angular side for Google callbacks.
+            }
+
+            $window.location.href = url;
+        };
 
         /**
          * Login with Estonian ID-Card
