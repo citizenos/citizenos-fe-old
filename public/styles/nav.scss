@@ -129,6 +129,10 @@ nav {
                     padding-left: 37px;
                 }
 
+                #activity_feed_link_text {
+                    width: 84px;
+                }
+
                 @include tablet {
                     padding: 8px 0 8px 12px ;
                     box-sizing: border-box;
