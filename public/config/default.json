@@ -10,7 +10,9 @@
       "fr": "Français",
       "ru": "Pусский",
       "fi": "Suomi",
-      "uk": "Українська"
+      "uk": "Українська",
+      "de": "Deutsch",
+      "es": "Español"
     },
     "debug": "dbg"
   },
