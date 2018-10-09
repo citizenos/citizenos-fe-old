@@ -372,7 +372,11 @@
       "HEADING_BEGINNERS_GUIDE": "Vos premiers pas avec CitizenOS.",
       "TXT_BEGINNERS_GUIDE": "Bonjour et bienvenue à CitizenOS! Lisez ce sujet pour comprendre comment ça marche.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Explications pas à pas",
-      "BTN_LOAD_MORE_TOPICS": "Charger plus de sujets"
+      "BTN_LOAD_MORE_TOPICS": "Charger plus de sujets",
+      "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
+      "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
+      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
+      "LBL_ENVIRONMENT": "Environment"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Groupes : {{count}}",
