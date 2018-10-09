@@ -372,7 +372,11 @@
       "HEADING_BEGINNERS_GUIDE": "A beginner’s guide to Citizen OS.",
       "TXT_BEGINNERS_GUIDE": "Hi there, welcome to Citizen OS! Read this topic to find out how everything works.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Tutorial and explanation",
-      "BTN_LOAD_MORE_TOPICS": "Load more topics"
+      "BTN_LOAD_MORE_TOPICS": "Load more topics",
+      "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
+      "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
+      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
+      "LBL_ENVIRONMENT": "Environment"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Groups: {{count}}",
