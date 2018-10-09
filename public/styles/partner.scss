@@ -196,17 +196,19 @@
 
             .social_icon {
                 height: 40px;
-                width: 30px;
+                width: 40px;
                 display: table;
-                border-radius: 4px 0 0 4px;
+                border-radius: 2px 0 0 2px;
                 position: absolute;
+                background: $white;
+                background-size: cover;
 
                 .sprite {
                     margin: 0 auto;
                 }
             }
             .social_text {
-                padding-left: 30px;
+                padding-left: 40px;
                 box-sizing: border-box;
                 width: 100%;
                 display: table;
@@ -214,7 +216,7 @@
                 .table_cell {
                     width: 100%;
                     height: 40px;
-                    border-radius: 0 4px 4px 0;
+                    border-radius: 0 2px 2px 0;
                     padding-left: 10px;
                 }
             }
@@ -223,48 +225,34 @@
         #facebook {
             .social_text .table_cell {
                 background: $facebook_medium;
+                border: 1px solid $facebook_dark;
             }
+
             .social_icon {
-                background: $facebook_dark;
+                border: 1px solid $facebook_dark;
             }
         }
 
         #facebook:hover {
             .social_text .table_cell {
                 background: $facebook_light;
-                @include tablet {
-                    background: $facebook_medium;
-                }
-            }
-            .social_icon {
-                background: $facebook_medium;
-                @include tablet {
-                    background: $facebook_dark;
-                }
             }
         }
 
         #google {
             .social_text .table_cell {
                 background: $google_medium;
+                border: 1px solid $google_dark;
             }
+
             .social_icon {
-                background: $google_dark;
+                border: 1px solid $google_dark;
             }
         }
 
         #google:hover {
             .social_text .table_cell {
                 background: $google_light;
-                @include tablet {
-                    background: $google_medium;
-                }
-            }
-            .social_icon {
-                background: $google_medium;
-                @include tablet {
-                    background: $google_dark;
-                }
             }
         }
 
@@ -272,24 +260,17 @@
             .social_text .table_cell {
                 background: $id_medium;
                 color: $medium_black;
+                border: 1px solid $id_dark;
             }
+
             .social_icon {
-                background: $id_dark;
+                border: 1px solid $id_dark;
             }
         }
 
         #id_card:hover, #smart_id:hover {
             .social_text .table_cell {
-                background: $light_gray;
-                @include tablet {
-                    background: $id_medium;
-                }
-            }
-            .social_icon {
-                background: $side_panel_gray;
-                @include tablet {
-                    background: $id_dark;
-                }
+                background: $id_light;
             }
         }
 
