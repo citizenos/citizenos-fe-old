@@ -426,7 +426,7 @@
 
             @media (max-width: 1920px) {
 
-                &:nth-child(4n) {
+                &:nth-child(3n) {
                     margin-left: -40px;
                 }
 
@@ -447,7 +447,7 @@
                     margin-left: 0;
                 }
 
-                &:nth-child(4n) {
+                &:nth-child(3n) {
                     margin-left: 10px;
                 }
 
@@ -641,7 +641,13 @@
                 width: 65%;
             }
 
-            & {
+            &.tutorial {
+                background-image: url('../imgs/tutorial.png');
+                background-repeat: no-repeat;
+                background-position: right -100px top;
+            }
+
+            &.keep_it_clean_plan {
                 background-image: url('../imgs/tutorial.png');
                 background-repeat: no-repeat;
                 background-position: right -100px top;

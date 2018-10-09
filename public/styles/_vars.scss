@@ -77,7 +77,7 @@ $nature_green_border: #AED92E;
 $nature_green_dark: #b0dc2e;
 $nature_green_border_dark: #a5cc30;
 
-$dark_yellow: #fedc32;
+$dark_yellow: #fedc32; 
 $favorite_yellow: #ffc600;
 
 $aqua_marine: #2eecb4;
@@ -179,6 +179,10 @@ $aqua_marine_text: #00ce8f;;
 
 .blue_background {
     background: $deep_sky_blue;
+}
+
+.keep_it_clean_background {
+    background: #FFD100;
 }
 
 .dark_gray_background {
