@@ -400,7 +400,7 @@
             }
 
             @media (max-width: 1350px) {
-                width: 48%;
+                width: calc(50% - 15px);
             }
 
             @media (max-width: 667px) {
@@ -607,7 +607,7 @@
                 .text_area {
                     width: 60%;
                 }
-                width: 48%;
+                width: calc(50% - 15px);
                 & {
                     background-position: right -150px top;
                 }
@@ -623,7 +623,7 @@
             }
 
             @media (max-width: 880px) {
-                width: calc(100% - 20px);
+                width: calc(100% - 30px);
                 padding-right: 10px;
                 & {
                     background-position: right -100px top;
