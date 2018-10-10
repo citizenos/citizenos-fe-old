@@ -644,13 +644,13 @@
             &.tutorial {
                 background-image: url('../imgs/tutorial.png');
                 background-repeat: no-repeat;
-                background-position: right -100px top;
+                background-position: right -50px top;
             }
 
             &.keep_it_clean_plan {
-                background-image: url('../imgs/tutorial.png');
+                background-image: url('../imgs/wcd.png');
                 background-repeat: no-repeat;
-                background-position: right -100px top;
+                background-position: right -50px top;
             }
 
             @media (max-width: 2480px) {
