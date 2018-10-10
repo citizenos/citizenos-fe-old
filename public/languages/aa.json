@@ -372,7 +372,11 @@
       "HEADING_BEGINNERS_GUIDE": "crwdns10970:0crwdne10970:0",
       "TXT_BEGINNERS_GUIDE": "crwdns10971:0crwdne10971:0",
       "LBL_TUTORIAL_AND_EXPLANATION": "crwdns10485:0crwdne10485:0",
-      "BTN_LOAD_MORE_TOPICS": "crwdns10486:0crwdne10486:0"
+      "BTN_LOAD_MORE_TOPICS": "crwdns10486:0crwdne10486:0",
+      "HEADING_LETS_DO_IT_WORLD": "crwdns11194:0crwdne11194:0",
+      "TXT_KEEP_IT_CLEAN_PLAN": "crwdns11196:0crwdne11196:0",
+      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "crwdns11198:0crwdne11198:0",
+      "LBL_ENVIRONMENT": "crwdns11200:0crwdne11200:0"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "crwdns10957:0{{count}}crwdne10957:0",

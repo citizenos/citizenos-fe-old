@@ -372,7 +372,11 @@
       "HEADING_BEGINNERS_GUIDE": "Посібник по платформі Citizen OS.",
       "TXT_BEGINNERS_GUIDE": "Вітаємо, ласкаво просимо до Citizen OS! Прочитайте цю тему, щоб дізнатися як платформа працює.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Навчальні матеріали та пояснення",
-      "BTN_LOAD_MORE_TOPICS": "Завантажити більше тем"
+      "BTN_LOAD_MORE_TOPICS": "Завантажити більше тем",
+      "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
+      "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
+      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
+      "LBL_ENVIRONMENT": "Environment"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Групи: {{count}}",
