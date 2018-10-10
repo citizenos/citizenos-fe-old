@@ -361,15 +361,7 @@
         background: $light_gray;
         text-align: left;
         box-sizing: border-box;
-        padding-left: 90px;
-
-        @media (max-width: 2480px) {
-            padding-left: 50px;
-        }
-
-        @media (max-width: 1350px) {
-            padding-left: 30px;
-        }
+        padding-left: 0px;
 
         @media (max-width: 767px) {
             margin-top: 10px;
@@ -389,8 +381,7 @@
             }
 
         }
-
-        .topic {
+        .fixed_topic, .topic {
             height: 300px;
             margin: 0 0 10px 10px;
             float: left;
@@ -402,74 +393,14 @@
                 overflow: hidden;
             }
 
-            width: 12.5%;
-
-            &:nth-child(1) {
-                margin-left: -80px;
-            }
-
-            &:nth-child(8n) {
-                margin-left: -80px;
-            }
+            width: 12%;
 
             @media (max-width: 2480px) {
-                width: 25%;
-
-                &:nth-child(4n+1) {
-                    margin-left: -40px;
-                }
-
-                &:nth-child(4n) {
-                    margin-left: 10px;
-                }
-            }
-
-            @media (max-width: 1920px) {
-
-                &:nth-child(3n) {
-                    margin-left: -40px;
-                }
-
-                &:nth-child(4n+1) {
-                    margin-left: 10px;
-                }
-
-                &:nth-child(1) {
-                    margin-left: -40px;
-                }
-
+                width: 24%;
             }
 
             @media (max-width: 1350px) {
-                width: 50%;
-
-                &:nth-child(1) {
-                    margin-left: 0;
-                }
-
-                &:nth-child(3n) {
-                    margin-left: 10px;
-                }
-
-                &:nth-child(2n+1) {
-                    margin-left: -20px;
-                }
-            }
-
-            @media (max-width: 880px) {
-
-                &:nth-child(2n) {
-                    margin-left: -20px;
-                }
-
-                &:nth-child(2n+1) {
-                    margin-left: 10px;
-                }
-
-                &:nth-child(1) {
-                    margin-left: -20px;
-                }
-
+                width: 48%;
             }
 
             @media (max-width: 667px) {
@@ -635,7 +566,7 @@
 
         .big {
             padding-right: 10px;
-            width: 25%;
+            width: 24%;
 
             .text_area {
                 width: 65%;
@@ -644,13 +575,13 @@
             &.tutorial {
                 background-image: url('../imgs/tutorial.png');
                 background-repeat: no-repeat;
-                background-position: right -50px top;
+                background-position: right -50px  top;
             }
 
             &.keep_it_clean_plan {
                 background-image: url('../imgs/wcd.png');
                 background-repeat: no-repeat;
-                background-position: right -50px top;
+                background-position: right -50px  top;
             }
 
             @media (max-width: 2480px) {
@@ -664,7 +595,7 @@
             }
 
             @media (max-width: 1920px) {
-                width: 50%;
+                width: 48%;
                 padding-right: 10px;
                 & {
                     background-position: right -100px top;
@@ -676,7 +607,7 @@
                 .text_area {
                     width: 60%;
                 }
-                width: 50%;
+                width: 48%;
                 & {
                     background-position: right -150px top;
                 }
@@ -692,7 +623,7 @@
             }
 
             @media (max-width: 880px) {
-                width: 100%;
+                width: calc(100% - 20px);
                 padding-right: 10px;
                 & {
                     background-position: right -100px top;
@@ -709,6 +640,7 @@
             }
 
             @media (max-width: 500px) {
+                width: 100%;
                 padding-right: 0;
             }
 
@@ -728,80 +660,6 @@
             border-radius: 4px;
             @media (max-width: 500px) {
                 margin-top: 0;
-            }
-        }
-    }
-
-    #topics_area.no_tutorial_topic {
-
-        .topic {
-
-            &:nth-child(8n) {
-                margin-left: 10px;
-            }
-
-            &:nth-child(8n+1) {
-                margin-left: -80px;
-            }
-
-            @media (max-width: 2480px) {
-
-                &:nth-child(4n+1) {
-                    margin-left: -40px;
-                }
-
-                &:nth-child(4n) {
-                    margin-left: 10px;
-                }
-            }
-
-            @media (max-width: 1920px) {
-
-                &:nth-child(4n) {
-                    margin-left: 10px;
-                }
-
-                &:nth-child(4n+1) {
-                    margin-left: -40px;
-                }
-
-            }
-
-            @media (max-width: 1350px) {
-
-                &:nth-child(1) {
-                    margin-left: 0;
-                }
-
-                &:nth-child(4n) {
-                    margin-left: 10px;
-                }
-
-                &:nth-child(2n+1) {
-                    margin-left: -20px;
-                }
-            }
-
-            @media (max-width: 880px) {
-
-                &:nth-child(2n) {
-                    margin-left: 10px;
-                }
-
-                &:nth-child(2n+1) {
-                    margin-left: -20px;
-                }
-
-            }
-
-
-            @media (max-width: 500px) {
-
-                &:nth-child(2n+1), &:nth-child(2n), &:nth-child(1) {
-                    margin-left: 0;
-                }
-
-
             }
         }
     }
