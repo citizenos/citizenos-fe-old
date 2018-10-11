@@ -372,7 +372,11 @@
       "HEADING_BEGINNERS_GUIDE": "Citizen OS – aloittelijan opas.",
       "TXT_BEGINNERS_GUIDE": "Hei ja tervetuloa Citizen OS:ään! Lue tämä aihe, niin saat selville, miten kaikki toimii.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Opetusohjelma ja selitys",
-      "BTN_LOAD_MORE_TOPICS": "Lataa lisää aiheita"
+      "BTN_LOAD_MORE_TOPICS": "Lataa lisää aiheita",
+      "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
+      "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
+      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
+      "LBL_ENVIRONMENT": "Environment"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Ryhmiä: {{count}}",

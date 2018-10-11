@@ -372,7 +372,11 @@
       "HEADING_BEGINNERS_GUIDE": "Citizen OS-i kasutusõpetuse vaatamine.",
       "TXT_BEGINNERS_GUIDE": "Tere tulemast Citizen OS-i lehele! Altpoolt saad lugeda, mida ja kuidas siin teha saab.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Juhendmaterjal",
-      "BTN_LOAD_MORE_TOPICS": "Näita rohkem teemasid"
+      "BTN_LOAD_MORE_TOPICS": "Näita rohkem teemasid",
+      "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
+      "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
+      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
+      "LBL_ENVIRONMENT": "Environment"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Rühmi: {{count}}",
