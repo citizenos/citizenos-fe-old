@@ -442,6 +442,9 @@
                 font-size: 13px;
                 color: inherit;
                 font-weight: inherit;
+                @media (max-width: 1150px) {
+                    width: 200px;
+                }
 
                 * {
                     font-size: inherit;
@@ -575,13 +578,20 @@
             &.tutorial {
                 background-image: url('../imgs/tutorial.png');
                 background-repeat: no-repeat;
-                background-position: right -50px  top;
+                background-position: right -100px  top;
+                @media (max-width: 667px) {                   
+                    background-image: none;
+                }
             }
 
             &.keep_it_clean_plan {
                 background-image: url('../imgs/wcd.png');
                 background-repeat: no-repeat;
-                background-position: right -50px  top;
+                background-position: right -50px  bottom -2px;
+                background-size: 300px;
+                @media (max-width: 667px) {                   
+                     background-image: none;
+                }
             }
 
             @media (max-width: 2480px) {
