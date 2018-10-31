@@ -4,7 +4,7 @@ app.service('sUpload', ['$http', '$q', 'sLocation', function ($http, $q, sLocati
 
     var sUpload = this;
 
-    sUpload.ALLOWED_FILE_TYPES = ['txt','pdf', 'doc', 'docx', 'ddoc', 'bdoc', 'odf', 'odt','jpg', 'jpeg', 'img', 'png', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx', 'pps', 'xlt'];
+    sUpload.ALLOWED_FILE_TYPES = ['txt', 'pdf', 'doc', 'docx', 'ddoc', 'bdoc', 'odf', 'odt', 'jpg', 'jpeg', 'img', 'png', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx', 'pps', 'xlt'];
 
     sUpload.getSignedRequest = function (file, folder) {
         var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload/sign');
@@ -36,7 +36,22 @@ app.service('sUpload', ['$http', '$q', 'sLocation', function ($http, $q, sLocati
 
     sUpload.upload = function (file, folder) {
         var fileUrl = null;
-        return sUpload.getSignedRequest(file, folder)
+        var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload');
+
+        var fd=new FormData();
+  //      angular.forEach($scope.files,function(file){
+        fd.append('file', file);
+    //    });
+       return $http.post(path, fd, {
+        withCredentials:true
+       }).success(function(d)
+                {
+                    console.log(d);
+                    return d;
+                })
+
+
+        /*return sUpload.getSignedRequest(file, folder)
             .then(function (result) {
                 var data = result.data.data;
                 fileUrl = data.url;
@@ -44,13 +59,13 @@ app.service('sUpload', ['$http', '$q', 'sLocation', function ($http, $q, sLocati
                     .then(function () {
                         return fileUrl;
                     })
-            });
+            });*/
     };
 
     sUpload.delete = function(filepath, folder) {
         var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload');
         var filename = filepath.split('/').pop();
-        return  $http.delete(path, {params: {filename:filename, folder: folder}});
+        return  $http.delete(path, {params: {filename: filename, folder: folder}});
     };
 
 }]);

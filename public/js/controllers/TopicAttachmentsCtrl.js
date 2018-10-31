@@ -9,14 +9,12 @@ angular
             files: []
         }
 
-        var startingAttachments = [];
         $scope.saveInProgress = false;
 
         $scope.init = function () {
             TopicAttachment
                 .query({topicId: $scope.topic.id}).$promise
                 .then(function (attachments) {
-                    startingAttachments = attachments;
                     $scope.form.files = attachments;
                 });
         };
@@ -37,12 +35,12 @@ angular
                 file: element.files[0]
             };
 
-            if(attachment.size > 50000000){
+            if (attachment.size > 50000000) {
                 $scope.$apply(function () {
                     sNotification.addError('MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT');
                 });
 
-            } else if(sUpload.ALLOWED_FILE_TYPES.indexOf(attachment.type) === -1) {
+            } else if (sUpload.ALLOWED_FILE_TYPES.indexOf(attachment.type) === -1) {
                 $scope.$apply(function () {
                     sNotification.addError('MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED');
                 });
@@ -76,7 +74,7 @@ angular
         };
 
         $scope.appendAttachment = function (attachment) {
-            if($scope.form.files.length < TopicAttachment.LIMIT) {
+            if ($scope.form.files.length < TopicAttachment.LIMIT) {
                 $scope.$apply(function () {
                     $scope.form.files.push(attachment);
                 });
@@ -85,14 +83,13 @@ angular
 
         $scope.doSaveFiles = function () {
             $scope.saveInProgress = true;
-            var done = [];
             var savePromises = [];
             $scope.form.files.forEach(function (attachment, key) {
-                if(attachment.file) {
+                if (attachment.file) {
                     var savePromise = new Promise(function (resolve, reject) {
                         return sUpload
                             .upload(attachment.file, 'topics')
-                            .then(function (fileUrl){
+                            .then(function (fileUrl) {
                                 attachment.topicId = $scope.topic.id;
                                 attachment.link = fileUrl;
                                 var topicAttachment = new TopicAttachment(attachment);
@@ -135,7 +132,7 @@ angular
                 })
                 .then(function () {
                     $scope.form.files.splice(key, 1);
-                    if(attachment.id) {
+                    if (attachment.id) {
                         TopicAttachment.delete({attachmentId: attachment.id, topicId: $scope.topic.id});
                     }
                 }, angular.noop);
