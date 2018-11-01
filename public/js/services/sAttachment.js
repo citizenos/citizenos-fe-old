@@ -3,7 +3,7 @@
 app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'TopicAttachment', 'angularLoad', function ($http, $q, $log, cosConfig, sLocation, TopicAttachment, angularLoad) {
 
     var sAttachment = this;
- /*GOOGLE API*/
+    /*GOOGLE API*/
     var googlePickerApiLoaded = false;
     var oauthToken;
 
@@ -32,7 +32,7 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
         });
     }
     sAttachment.googleDriveSelect = function () {
-        return new Promise(function (resolve, reject) {
+        return new Promise(function (resolve) {
             return angularLoad.loadScript('https://apis.google.com/js/api.js?onload=onApiLoad').then(function() {
                 var onAuthApiLoad = function () {
                     window.gapi.auth.authorize(

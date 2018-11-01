@@ -872,7 +872,7 @@
                     </div>
                     <div class="options_content">
                         <div class="blue_link" ng-repeat="attachment in topicAttachments">
-                            <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link" href="{{attachment.link}}" ng-click="downloadAttachment(attachment)">{{attachment.name}} <span class="btn blue_button file_type">.{{attachment.type}}</span></a>
+                            <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link" href="{{attachment.link}}" target="_blank">{{attachment.name}} <span class="btn blue_button file_type">.{{attachment.type}}</span></a>
                             <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link" href="{{attachment.link}}" >{{attachment.name}} <span class="btn blue_button file_type">{{attachment.type}}</span></a>
                         </div>
                         <div class="line lightest_line" ng-if="topicAttachments.length"></div>

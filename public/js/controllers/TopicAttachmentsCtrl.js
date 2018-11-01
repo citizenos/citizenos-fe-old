@@ -84,12 +84,13 @@ angular
         $scope.doSaveFiles = function () {
             $scope.saveInProgress = true;
             var savePromises = [];
-            $scope.form.files.forEach(function (attachment, key) {
+            $scope.form.files.forEach(function (attachment) {
                 if (attachment.file) {
-                    var savePromise = new Promise(function (resolve, reject) {
+                    var savePromise = new Promise(function (resolve) {
                         return sUpload
-                            .upload(attachment.file, 'topics')
-                            .then(function (fileUrl) {
+                            .upload(attachment.file, $scope.topic.id)
+                            .then(function (data) {
+                                var fileUrl = data.data;
                                 attachment.topicId = $scope.topic.id;
                                 attachment.link = fileUrl;
                                 var topicAttachment = new TopicAttachment(attachment);
@@ -121,7 +122,10 @@ angular
             Promise
                 .all(savePromises)
                 .then(function() {
-                     $state.go('topics.view', {topicId: $scope.topic.id, editMode: null}, {reload: true});
+                     $state.go('topics.view', {
+                        topicId: $scope.topic.id,
+                        editMode: null
+                    }, {reload: true});
                 });
         };
 
