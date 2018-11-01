@@ -3,7 +3,7 @@
 app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'TopicAttachment', 'angularLoad', function ($http, $q, $log, cosConfig, sLocation, TopicAttachment, angularLoad) {
 
     var sAttachment = this;
- /*GOOGLE API*/
+    /*GOOGLE API*/
     var googlePickerApiLoaded = false;
     var oauthToken;
 
@@ -25,19 +25,19 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
             var picker = new google.picker.PickerBuilder()
                 .addView(google.picker.ViewId.DOCS)
                 .setOAuthToken(oauthToken)
-                .setDeveloperKey(cosConfig.storage.googleDrive.developerKey)
+                .setDeveloperKey(cosConfig.attachments.googleDrive.developerKey)
                 .setCallback(pickerCallback)
                 .build();
                 picker.setVisible(true);
         });
     }
     sAttachment.googleDriveSelect = function () {
-        return new Promise(function (resolve, reject) {
+        return new Promise(function (resolve) {
             return angularLoad.loadScript('https://apis.google.com/js/api.js?onload=onApiLoad').then(function() {
                 var onAuthApiLoad = function () {
                     window.gapi.auth.authorize(
                     {
-                      'client_id': cosConfig.storage.googleDrive.clientId,
+                      'client_id': cosConfig.attachments.googleDrive.clientId,
                       'scope': ['https://www.googleapis.com/auth/drive.file'],
                       'immediate': false
                     },
@@ -66,7 +66,7 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
 
     /*DROPBOX*/
     sAttachment.dropboxSelect = function () {
-        Dropbox.appKey = cosConfig.storage.dropbox.appKey;
+        Dropbox.appKey = cosConfig.attachments.dropbox.appKey;
         return new Promise(function (resolve, reject) {
             return Dropbox.choose({
                 success: function(files) {
@@ -93,7 +93,7 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
     sAttachment.oneDriveSelect = function () {
         return new Promise(function (resolve, reject) {
                 OneDrive.open({
-                clientId: cosConfig.storage.oneDrive.clientId,
+                clientId: cosConfig.attachments.oneDrive.clientId,
                 action: 'share',
                 advanced: {
                     redirectUri: sLocation.getAbsoluteUrl('/onedrive')

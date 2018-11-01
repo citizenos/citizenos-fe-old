@@ -114,21 +114,6 @@ angular
             $scope.showVoteCreateForm = !$scope.showVoteCreateForm;
         };
 
-        $scope.downloadAttachment = function (attachment) {
-
-            sUpload.getSignedDownload(attachment.link, attachment.name, attachment.type).then(function (res) {
-                var anchor = document.createElement('a');
-                document.body.appendChild(anchor);
-                anchor.href = res.data.data.url;
-
-                var evObj = document.createEvent('MouseEvents');
-                evObj.initMouseEvent('click', true, true, window);
-
-                anchor.dispatchEvent(evObj);
-                document.body.removeChild(anchor);
-            });
-        };
-
         $scope.sendToVote = function () {
             ngDialog
                 .openConfirm({

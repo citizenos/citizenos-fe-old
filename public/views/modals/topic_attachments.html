@@ -39,7 +39,7 @@
 
                 <div class="table file_upload_table">
                     <div class="table_row">
-                        <div class="file_add_cell">
+                        <div class="file_add_cell" ng-if="app.config.attachments.upload">
                             <input id="addFile" type="file" name="lisa fail" onchange="angular.element(this).scope().selectFile(this)"/>
                             <div class="file_add_btn_wrap" ng-click="uploadFile()">
                                 <div class="file_add_btn">
@@ -48,8 +48,8 @@
                                 <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_COMPUTER">Computer</div>
                             </div>
                         </div>
-                        <div class="line_files_sepparator"></div>
-                        <div class="file_add_cell">
+                        <div class="line_files_sepparator" ng-if="app.config.attachments.upload"></div>
+                        <div class="file_add_cell" ng-if="app.config.attachments.dropbox">
                             <div class="file_add_btn_wrap" ng-click="dropboxSelect()">
                                 <div class="file_add_btn">
                                     <div class="sprite sprite-topic-file-dropbox2x"></div>
@@ -57,8 +57,8 @@
                                 <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_DROPBOX">Dropbox</div>
                             </div>
                         </div>
-                        <div class="line_files_sepparator"></div>
-                        <div class="file_add_cell">
+                        <div class="line_files_sepparator" ng-if="app.config.attachments.dropbox"></div>
+                        <div class="file_add_cell" ng-if="app.config.attachments.googleDrive">
                             <div class="file_add_btn_wrap" ng-click="googleDriveSelect()">
                                 <div class="file_add_btn">
                                     <div class="sprite sprite-topic-file-googledrive2x"></div>
@@ -66,8 +66,8 @@
                                 <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_GOOGLE_DRIVE">Google Drive</div>
                             </div>
                         </div>
-                        <div class="line_files_sepparator"></div>
-                        <div class="file_add_cell">
+                        <div class="line_files_sepparator" ng-if="app.config.attachments.googleDrive"></div>
+                        <div class="file_add_cell" ng-if="app.config.attachments.oneDrive">
                             <div class="file_add_btn_wrap" ng-click="oneDriveSelect();">
                                 <div class="file_add_btn">
                                     <div class="sprite sprite-topic-file-onedrive2x"></div>

@@ -4,53 +4,31 @@ app.service('sUpload', ['$http', '$q', 'sLocation', function ($http, $q, sLocati
 
     var sUpload = this;
 
-    sUpload.ALLOWED_FILE_TYPES = ['txt','pdf', 'doc', 'docx', 'ddoc', 'bdoc', 'odf', 'odt','jpg', 'jpeg', 'img', 'png', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx', 'pps', 'xlt'];
-
-    sUpload.getSignedRequest = function (file, folder) {
-        var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload/sign');
-        return $http.get(path, {params: {filename: file.name, filetype: file.type, folder: folder}});
-    };
-
-    sUpload.getSignedDownload = function (uploadLink, name, type) {
-        var urlParts = uploadLink.split('/');
-        filename = urlParts.pop();
-        folder = urlParts.pop();
-        filename = filename.split('#')[0].split('?')[0];
-        var path = sLocation.getAbsoluteUrlApi('/api/upload/signdownload');
-        return $http.get(path, {params: {filename: filename, folder: folder, downloadName: name, filetype: type}});
-    };
-
-    sUpload.doUploadFile = function (file, signedRequest, url) {
-        return $http({
-                    method: 'PUT',
-                    url: signedRequest,
-                    data: file,
-                    headers: {
-                        'Content-Type': undefined
-                    },
-                    transformRequest : function (data, headersGetter) {
-                        return data;
-                    }
-                });
-    };
+    sUpload.ALLOWED_FILE_TYPES = ['txt', 'pdf', 'doc', 'docx', 'ddoc', 'bdoc', 'odf', 'odt', 'jpg', 'jpeg', 'img', 'png', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx', 'pps', 'xlt'];
 
     sUpload.upload = function (file, folder) {
-        var fileUrl = null;
-        return sUpload.getSignedRequest(file, folder)
-            .then(function (result) {
-                var data = result.data.data;
-                fileUrl = data.url;
-                return sUpload.doUploadFile(file, data.signedRequest, fileUrl)
-                    .then(function () {
-                        return fileUrl;
-                    })
-            });
+        var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload');
+
+        var formData = new FormData();
+        if (folder) {
+            formData.append('folder', folder);
+        }
+        formData.append('file', file);
+
+        return $http({
+            url: path,
+            method: 'POST',
+            data: formData,
+            headers: {'Content-Type': undefined}
+        }).success(function (response) {
+            return response.data;
+        });
     };
 
     sUpload.delete = function(filepath, folder) {
         var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload');
         var filename = filepath.split('/').pop();
-        return  $http.delete(path, {params: {filename:filename, folder: folder}});
+        return $http.delete(path, {params: {'filename': filename, 'folder': folder}});
     };
 
 }]);

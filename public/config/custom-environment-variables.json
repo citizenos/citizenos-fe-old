@@ -12,7 +12,7 @@
       "ru": "HELP_LINK_RU"
     }
   },
-  "storage": {
+  "attachments": {
     "dropbox": {
       "appKey": "DROPBOX_APP_KEY"
     },

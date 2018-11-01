@@ -545,14 +545,13 @@
 
                         .file_add_btn_description {
                             height: 20px;
-                            width: 81px;
+                            width: auto;
                             color: $medium_black;
                             font-size: 16px;
                             font-weight: bold;
                             line-height: 20px;
                             text-align: center;
                             margin-top: 15px;
-                            width: 145px;
                             @media (max-width: 600px) {
                                 width: auto;
                             }
