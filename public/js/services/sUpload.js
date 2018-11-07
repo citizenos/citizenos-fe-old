@@ -20,8 +20,8 @@ app.service('sUpload', ['$http', '$q', 'sLocation', function ($http, $q, sLocati
             method: 'POST',
             data: formData,
             headers: {'Content-Type': undefined}
-        }).success(function (response) {
-            return response.data;
+        }).then(function (result) {
+            return result.data;
         });
     };
 
