@@ -89,8 +89,7 @@ angular
                     var savePromise = new Promise(function (resolve) {
                         return sUpload
                             .upload(attachment.file, $scope.topic.id)
-                            .then(function (data) {
-                                var fileUrl = data.data;
+                            .then(function (fileUrl) {
                                 attachment.topicId = $scope.topic.id;
                                 attachment.link = fileUrl;
                                 var topicAttachment = new TopicAttachment(attachment);
