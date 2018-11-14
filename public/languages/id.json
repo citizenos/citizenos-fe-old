@@ -246,7 +246,7 @@
     "TOPIC_VOTE_DELEGATE_TAB": "Delegate",
     "TOPIC_VOTE_DELEGATE_BTN_DELEGATE": "Delegate vote",
     "TOPIC_VOTE_DELEGATE_LBL_SEARCH_MEMBERS": "You can delegate your vote only to other members of this topic. Search topic members by their name.",
-    "TOPIC_VOTE_DELEGATE_PLACEHOLDER_SEARCH_BY_NAME": "Search members by name",
+    "TOPIC_VOTE_DELEGATE_PLACEHOLDER_SEARCH_BY_NAME": "Cari anggota berdasarkan nama",
     "TOPIC_VOTE_DELEGATE_TXT_PRESS_ENTER_OR_CLICK_TO_ADD": "@:MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD",
     "TOPIC_VOTE_DELEGATE_TXT_PRESS_ENTER_TO_ADD": "@:MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_TO_ADD",
     "TOPIC_VOTE_DELEGATE_TH_USERS": "@:MODALS.TOPIC_SETTINGS_TH_USERS",
@@ -379,8 +379,8 @@
       "LBL_ENVIRONMENT": "Environment"
     },
     "MY": {
-      "LBL_GROUPS_COUNT": "Groups: {{count}}",
-      "HEADING_NOT_IN_GROUP": "You are not yet part of a group.",
+      "LBL_GROUPS_COUNT": "Grup: {{count}}",
+      "HEADING_NOT_IN_GROUP": "Anda belum menjadi bagian dari grup.",
       "HEADING_AT_LEAST_WE_HELP": "At least you still have us to help you by",
       "TXT_CREATING_A NEW_GROUP": "Creating a new group",
       "HEADING_NOT_PARTICIPATED": "You have not participated in a topic yet. Try it, it’s really cool!",
@@ -447,7 +447,7 @@
       "VOTE_REVOKE_DELEGATION": "@:VIEWS.TOPICS_TOPICID.VOTE_REVOKE_DELEGATION",
       "HEADING_GROUP_LIST": "Daftar grup",
       "LNK_FILTER": "@:VIEWS.MY_GROUPS_GROUPID.LNK_FILTER",
-      "PLACEHOLDER_TOPIC_TITLE_PERMISSION": "Group name, permission",
+      "PLACEHOLDER_TOPIC_TITLE_PERMISSION": "Nama grup, izin",
       "PLACEHOLDER_NAME_PERMISSION": "@:VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION",
       "LNK_ADD": "@:VIEWS.MY_GROUPS_GROUPID.LNK_ADD",
       "LNK_CLEAR_FILTER": "@:VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER",
