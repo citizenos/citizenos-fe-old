@@ -439,7 +439,7 @@
       "HEADING_CURRENT_VOTE_RESULTS": "Hasil suara saat ini",
       "LBL_RESULTS": "Hasil",
       "LBL_VOTES_COUNTED": "Suara yang terhitung",
-      "LBL_VOTE_DEADLINE": "Vote deadline",
+      "LBL_VOTE_DEADLINE": "Batas waktu memilih",
       "LBL_VOTE_DEADLINE_NONE": "tidak ada",
       "VOTE_CAST_YOUR_VOTE": "@:VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE",
       "VOTE_HEADING_DELEGATE": "@:VIEWS.TOPICS_TOPICID.VOTE_HEADING_DELEGATE",
