@@ -313,7 +313,7 @@
     },
     "NAV_MOBILE": {
       "BTN_SEARCH": "Cari",
-      "BTN_OVERVIEW": "Overview",
+      "BTN_OVERVIEW": "Ikhtisar",
       "BTN_EDIT": "Edit",
       "BTN_SETTINGS": "Pengaturan",
       "BTN_MENU": "Menu",
@@ -321,25 +321,25 @@
     },
     "SEARCH": {
       "HEADING_RESULTS_IN": "Context search results in",
-      "LNK_VIEW_MORE_RESULTS": "View more results",
-      "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
-      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?"
+      "LNK_VIEW_MORE_RESULTS": "Lihat lebih banyak hasil",
+      "TXT_OOPS_NO_RESULTS": "Ups, kami tidak dapat menemukan hasil apapun yang sesuai pencarian Anda :(",
+      "TXT_MAYBE_TYPO": "Mungkin ada kesalahan pengetikan dalam pencarian Anda?"
     },
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
       "BTN_HOW_DOES_IT_WORK": "How does it work?",
-      "LNK_PRIVACY_POLICY": "Citizen OS Privacy Policy",
-      "LNK_CITIZENOS_WEBSITE": "Citizen OS Website"
+      "LNK_PRIVACY_POLICY": "Kebijakan Privasi Citizen OS",
+      "LNK_CITIZENOS_WEBSITE": "Website Citizen OS"
     }
   },
-  "LBL_CONTEXT_MY_TOPICS": "my topics",
-  "LBL_CONTEXT_MY_GROUPS": "my groups",
-  "LBL_CONTEXT_PUBLIC_TOPICS": "public topics",
-  "LBL_CONTEXT_PUBLIC_GROUPS": "public groups",
+  "LBL_CONTEXT_MY_TOPICS": "topik saya",
+  "LBL_CONTEXT_MY_GROUPS": "grup saya",
+  "LBL_CONTEXT_PUBLIC_TOPICS": "topik umum",
+  "LBL_CONTEXT_PUBLIC_GROUPS": "grup umum",
   "DIRECTIVES": {
     "COS_MODAL": {
-      "BTN_SAVE": "Save",
+      "BTN_SAVE": "Simpan",
       "BTN_CANCEL": "@:LNK_CANCEL"
     },
     "COS_MODAL_DATEPICKER": {
@@ -350,15 +350,15 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Maaf, Anda tidak punya cukup izin untuk mengakses :(",
       "HEADING_YOU_MAY_RECOVER": "Still, you may recover from the unfortunate event by",
-      "BTN_LOGIN": "Logging in",
-      "BTN_REQUEST_ACCESS": "Requesting access to the resource"
+      "BTN_LOGIN": "Masuk",
+      "BTN_REQUEST_ACCESS": "Meminta akses"
     },
     "HOME": {
-      "HEADINGS_SHOW_ME_TOPICS_ABOUT": "Show me topics about",
-      "LNK_SHOW": "Show",
-      "LNK_CLEAR_FILTERS": "Clear filters",
+      "HEADINGS_SHOW_ME_TOPICS_ABOUT": "Tampilkan topik tentang",
+      "LNK_SHOW": "Tampilkan",
+      "LNK_CLEAR_FILTERS": "Hapus filter",
       "LBL_FILTER_THE_TOPICS": "Filter the topics",
       "LNK_EDIT_FILTER": "Edit filter",
       "LBL_CATEGORY": "Kategori:",
@@ -370,9 +370,9 @@
       "HEADING_GET_STARTED": "Maybe you can get the first discussion initiated by",
       "BTN_CREATING_A_NEW_TOPIC": "Creating a new topic",
       "HEADING_BEGINNERS_GUIDE": "Panduan pemula untuk Citizen OS.",
-      "TXT_BEGINNERS_GUIDE": "Hi there, welcome to Citizen OS! Read this topic to find out how everything works.",
+      "TXT_BEGINNERS_GUIDE": "Hai, selamat datang di Citizen OS! Baca topik ini untuk mencari tahu bagaimana semuanya bekerja.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Tutorial dan penjelasan",
-      "BTN_LOAD_MORE_TOPICS": "Load more topics",
+      "BTN_LOAD_MORE_TOPICS": "Muat lebih banyak topik",
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
       "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
