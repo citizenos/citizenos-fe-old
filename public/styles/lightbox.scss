@@ -601,7 +601,7 @@
                 padding: 0;
 
                 .lightbox_section {
-                    padding: 0;
+                    padding: 20px;
 
                     form {
                         padding: 20px 0px 0px;
@@ -1247,10 +1247,11 @@
                 #image_edit_section {
                     display: inline-block;
                     width: 210px;
-                    height: 210px;
+                    height: auto;
                     text-align: center;
-                    top: -20px;
-                    position: relative;                
+                    top: -23px;
+                    position: relative;
+                    margin-left: -20px;
 
                     .profile_image_wrapper {
                         margin-left: 38px;
@@ -1274,14 +1275,14 @@
                 .profile_line {
                     position: relative;
                     display: inline-block;
-                    height: 200px;
+                    height: 197px;
                 }
 
                 #profile_edit_section {
-                    width: 340px;
+                    width: auto;
                     display: inline-block;
-                    margin-top: 20px;
                     margin-left: 20px;
+                    margin-right: 20px;
                     position: absolute;
                 }
 
