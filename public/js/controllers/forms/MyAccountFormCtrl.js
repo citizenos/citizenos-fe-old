@@ -5,6 +5,7 @@ angular
     .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', '$document', 'ngDialog', 'sAuth', 'sUser', 'sUpload', function ($scope, $log, $stateParams, $filter, $document, ngDialog, sAuth, sUser, sUpload) {
         $log.debug('MyAccountFormCtrl');
 
+        $scope.tabSelected = 'profile';
         $scope.form = {
             name: null,
             email: null,
@@ -28,7 +29,14 @@ angular
             var error = function (res) {
                 $scope.errors = res.data.errors;
             };
-
+            if ($scope.form.password) {
+                if ($scope.form.password !== $scope.form.passwordConfirm) {
+                    $scope.errors = {
+                        password: 'MSG_ERROR_PASSWORD_MISMATCH'
+                    };
+                    return;
+                }
+            }
             if ($scope.imageFile) {
                 sUpload
                     .upload($scope.imageFile, 'users')
@@ -72,5 +80,11 @@ angular
                     });
             }
         };
+
+        $scope.selectTab = function (tab) {
+         //   $scope.$apply(function () {
+                $scope.tabSelected = tab;
+           // });           
+        }
 
     }]);

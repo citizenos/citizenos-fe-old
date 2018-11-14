@@ -1280,8 +1280,13 @@
                 #profile_edit_section {
                     width: 340px;
                     display: inline-block;
+                    margin-top: 20px;
                     margin-left: 20px;
                     position: absolute;
+                }
+
+                #account_edit_section {
+                    padding: 20px;
                 }
 
                 .lightbox_section {
