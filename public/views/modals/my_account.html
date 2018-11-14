@@ -1,12 +1,12 @@
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox">
-    <div id="lightbox" class="my_account_lightbox">
+    <div id="lightbox" class="my_account_lightbox wide_lightbox with_title_description with_header_menu">
         <div id="lightbox_wrap">
-
+            <form name="myAccountForm" ng-controller="MyAccountFormCtrl">
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <span translate="MODALS.MY_ACCOUNT_HEADING">My account</span>
+                    <div class="title" translate="MODALS.MY_ACCOUNT_HEADING">My account</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -15,7 +15,25 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="clearer"></div>
 
+                <div class="header_row_wrap">
+                    <div class="header_row" slide-controller identifier="topicSettingsSlider">
+                        <div class="tab_button" ng-click="selectTab('settings')" ng-class="tabSelected === 'settings' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text" translate="MODALS.TOPIC_SETTINGS_TAB_SETTINGS">SETTINGS</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+
+                        <div ng-if="wWidth > 560" class="blue_button_wrap">
+                            <div class="blue_button" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button" 
+                                 translate="MODALS.MY_ACCOUNT_BTN_SAVE">Save changes
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="lightbox_content">
@@ -23,7 +41,7 @@
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section">
-                        <form name="myAccountForm" ng-controller="MyAccountFormCtrl">
+                        
                         <div id="image_edit_section">
                             <div class="profile_image_wrapper dark big">
                                 <!--div class="profile_moon sprite sprite-icon-certified-google-2-x2x"></div-->
@@ -47,6 +65,9 @@
                             </div>
                         </div>
 
+                        <div class="profile_line v_line lightest_line"></div>
+                        
+                        <div id="profile_edit_section">
                             <input id="name" ng-model="form.name" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NAME' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" maxlength="255" required>
                             <label for="name" class="error_label" ng-if="errors.name">
                                 <div class="table_cell">
@@ -68,23 +89,26 @@
                                     <span translate="{{errors.email}}"></span>
                                 </div>
                             </label>
-                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64" required>
+                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64">
                             <label for="password" class="error_label" ng-if="errors.password">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.password}}"></span>
                                 </div>
                             </label>
-                            <button type="submit" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button" translate="MODALS.MY_ACCOUNT_BTN_SAVE">Save changes</button>
-                            <div class="link_section">
-                                <a class="lightbox_link" href="" ng-click="closeThisDialog()" translate="MODALS.MY_ACCOUNT_BTN_CANCEL">Cancel</a>
-                            </div>
-                        </form>
+                            <input id="password_confirm" ng-model="form.passwordConfirm" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD_CONFIRM' | translate}}" ng-class="{'error_input': errors.passwordConfirm}" maxlength="64">
+                            <label for="password_confirm" class="error_label" ng-if="errors.passwordConfirm">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.passwordConfirm}}"></span>
+                                </div>
+                            </label>
+                        </div>
                     </div>
 
                 </div>
             </div>
-
+            </form>
         </div>
     </div>
 

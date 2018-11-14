@@ -10,7 +10,8 @@ angular
             email: null,
             password: null,
             company: null,
-            imageUrl: null
+            imageUrl: null,
+            passwordConfirm: null
         };
 
         $scope.imageFile = null;
@@ -28,7 +29,7 @@ angular
                 $scope.errors = res.data.errors;
             };
 
-            if($scope.imageFile) {
+            if ($scope.imageFile) {
                 sUpload
                     .upload($scope.imageFile, 'users')
                     .then(function (url) {
