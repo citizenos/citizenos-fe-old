@@ -7,7 +7,17 @@ angular
 
         sUser.update = function (name, email, password, company, imageUrl) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self');
-            return $http.put(path, {name: name, email: email, password: password, company: company, imageUrl: imageUrl});
+            var userData = {
+                name: name, 
+                email: email, 
+                company: company, 
+                imageUrl: imageUrl
+            }
+
+            if (password) {
+                userData.password = password;
+            }
+            return $http.put(path, userData);
         };
 
         //TODO: Should also work with the User.update

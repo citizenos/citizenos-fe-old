@@ -79,12 +79,6 @@
         }
     }
 
-    #lightbox.my_account_lightbox {
-        .blue_button {
-            margin-top: 20px;
-        }
-    }
-
     #lightbox.date_picker_wrap {
         #lightbox_wrap {
             #lightbox_header {
@@ -599,6 +593,22 @@
             }
         }
 
+    }
+
+    #lightbox.my_account_lightbox {
+        #lightbox_wrap {
+            .lightbox_content {
+                padding: 0;
+
+                .lightbox_section {
+                    padding: 0;
+
+                    form {
+                        padding: 20px 0px 0px;
+                    }
+                }
+            }                    
+        }
     }
 
     #lightbox.with_title_description {
@@ -1235,16 +1245,19 @@
                 }
 
                 #image_edit_section {
-                    display: table;
-                    width: 100%;
-                    margin-bottom: 20px;
+                    display: inline-block;
+                    width: 210px;
+                    height: 210px;
+                    text-align: center;
+                    top: -20px;
+                    position: relative;                
 
                     .profile_image_wrapper {
-                        margin-right: 12px;
+                        margin-left: 38px;
                     }
 
                     #edit_image_properties {
-                        @extend .table_cell;
+                        display: block;
 
                         .blue_link {
                             display: inline-block;
@@ -1256,6 +1269,24 @@
                         }
 
                     }
+                }
+
+                .profile_line {
+                    position: relative;
+                    display: inline-block;
+                    height: 200px;
+                }
+
+                #profile_edit_section {
+                    width: 340px;
+                    display: inline-block;
+                    margin-top: 20px;
+                    margin-left: 20px;
+                    position: absolute;
+                }
+
+                #account_edit_section {
+                    padding: 20px;
                 }
 
                 .lightbox_section {
