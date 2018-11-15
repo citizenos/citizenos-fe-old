@@ -109,6 +109,76 @@
         }
     }
 
+    #raa_notification {
+        background: $white;
+        position: fixed;
+        bottom: 0;
+        padding: 20px 25px 20px 25px;
+
+        #raa_logo_wrapper {
+            display: table-cell;
+            padding-right: 25px;
+            white-space: nowrap;
+            text-align: center;
+            vertical-align: middle;
+
+            @media (max-width: 1024px) {
+                width: 100%;
+                display: inline-block;
+            }
+
+            .raa_logo_container {
+                display: inline-block;
+                height: 100%;
+                vertical-align: middle;
+            }
+            
+        }
+
+        #raa_content_wrapper{
+            width: calc(100% - 290px);
+            display: table-cell;
+
+            @media (max-width: 1024px) {
+                width: 100%;
+                display: inline-block;
+            }
+
+            #notification_title {
+                color: #313131;
+                font-family: "Open Sans";
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+
+                @media (max-width: 1024px) {
+                    text-align: center;
+                }
+            }
+
+            #notification_text {
+                color: #313131;
+                font-family: "Open Sans";
+                font-size: 14px;
+                line-height: 19px;
+                @media (max-width: 1024px) {
+                    text-align: center;
+                }
+            }
+        }
+
+        #raa_close_wrapper{
+            display: table-cell;
+            vertical-align: middle;
+            width: 190px;
+            margin-top: 25px;
+
+            @media (max-width: 1024px) {
+                width: 100%;
+                display: inline-block;
+            }
+        }
+    }
 }
 /* SEARCH AREA (Search bar styles in nav.scss) */
 @import 'search';
