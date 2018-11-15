@@ -79,12 +79,6 @@
         }
     }
 
-    #lightbox.my_account_lightbox {
-        .blue_button {
-            margin-top: 20px;
-        }
-    }
-
     #lightbox.date_picker_wrap {
         #lightbox_wrap {
             #lightbox_header {
@@ -599,6 +593,27 @@
             }
         }
 
+    }
+
+    #lightbox.my_account_lightbox {
+        #lightbox_wrap {
+
+            @media (max-width: 560px) {
+                padding: 0;
+            }
+
+            .lightbox_content {
+                padding: 0;
+
+                .lightbox_section {
+                    padding: 20px;
+
+                    form {
+                        padding: 20px 0px 0px;
+                    }
+                }
+            }                    
+        }
     }
 
     #lightbox.with_title_description {
@@ -1235,16 +1250,32 @@
                 }
 
                 #image_edit_section {
-                    display: table;
-                    width: 100%;
-                    margin-bottom: 20px;
+                    display: inline-block;
+                    width: 210px;
+                    height: auto;
+                    text-align: center;
+                    top: -23px;
+                    position: relative;
+                    margin-left: -20px;
 
                     .profile_image_wrapper {
-                        margin-right: 12px;
+                        margin-left: 38px;
+
+                        @media (max-width: 560px) {
+                            width: 100%;
+                            margin-left: 20px;
+                            margin-right: 20px;
+
+                            .account_picture {
+                                width: 140px;
+                                margin-left: auto;
+                                margin-right: auto;
+                            }
+                        }
                     }
 
                     #edit_image_properties {
-                        @extend .table_cell;
+                        display: block;
 
                         .blue_link {
                             display: inline-block;
@@ -1255,6 +1286,37 @@
                             opacity: .69;
                         }
 
+                        @media (max-width: 560px) {
+                            //text-align: center;
+                            margin-left: 20px;
+                        }
+                    }
+                    @media (max-width: 560px) {
+                        width: 100%;
+                        position: relative;
+                    }
+                }
+
+                .profile_line {
+                    position: relative;
+                    display: inline-block;
+                    height: 197px;
+                    @media (max-width: 560px) {
+                        display: none;
+                    }
+                }
+
+                #profile_edit_section {
+                    width: auto;
+                    display: inline-block;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    position: absolute;
+                    
+                    @media (max-width: 560px) {
+                        position: relative;
+                        margin-left: 0;
+                        margin-right: 0;
                     }
                 }
 
