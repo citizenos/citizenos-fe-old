@@ -169,6 +169,22 @@ angular
             }, 0);
         };
 
+        $scope.app.closeRaaNotification = function () {
+            var expires = new Date();
+            expires.setDate(expires.getDate() + 365);
+            $cookies.put('FEATURE_RAA_PROMOTION', true, {expires: expires});
+        };
+
+        $scope.app.displayRaaNotification = function () {
+            var show = $cookies.get('FEATURE_RAA_PROMOTION');
+
+            if ($scope.app.config.showRaaNotification && $scope.app.language === 'et' && !show) {
+                return true;
+            }
+
+            return false;
+        };
+
         $rootScope.$on('ngDialog.opened', function () {
             sNotification.removeAll();
         });

@@ -23,5 +23,6 @@
     "oneDrive": {
       "clientId": "ONEDRIVE_CLIENT_ID"
     }
-  }
+  },
+  "showRaaNotification": "SHOW_RAA_NOTIFICATION"
 }
