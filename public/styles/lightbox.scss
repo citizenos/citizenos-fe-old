@@ -597,6 +597,11 @@
 
     #lightbox.my_account_lightbox {
         #lightbox_wrap {
+
+            @media (max-width: 560px) {
+                padding: 0;
+            }
+
             .lightbox_content {
                 padding: 0;
 
@@ -1255,6 +1260,18 @@
 
                     .profile_image_wrapper {
                         margin-left: 38px;
+
+                        @media (max-width: 560px) {
+                            width: 100%;
+                            margin-left: 20px;
+                            margin-right: 20px;
+
+                            .account_picture {
+                                width: 140px;
+                                margin-left: auto;
+                                margin-right: auto;
+                            }
+                        }
                     }
 
                     #edit_image_properties {
@@ -1269,6 +1286,14 @@
                             opacity: .69;
                         }
 
+                        @media (max-width: 560px) {
+                            //text-align: center;
+                            margin-left: 20px;
+                        }
+                    }
+                    @media (max-width: 560px) {
+                        width: 100%;
+                        position: relative;
                     }
                 }
 
@@ -1276,6 +1301,9 @@
                     position: relative;
                     display: inline-block;
                     height: 197px;
+                    @media (max-width: 560px) {
+                        display: none;
+                    }
                 }
 
                 #profile_edit_section {
@@ -1284,10 +1312,12 @@
                     margin-left: 20px;
                     margin-right: 20px;
                     position: absolute;
-                }
-
-                #account_edit_section {
-                    padding: 20px;
+                    
+                    @media (max-width: 560px) {
+                        position: relative;
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
                 }
 
                 .lightbox_section {
