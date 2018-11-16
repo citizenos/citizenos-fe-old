@@ -172,11 +172,11 @@ angular
         $scope.app.closeRaaNotification = function () {
             var expires = new Date();
             expires.setDate(expires.getDate() + 365);
-            $cookies.put('FEATURE_RAA_PROMOTION', true, {expires: expires});
+            $cookies.put('SHOW_RAA_NOTIFICATION', true, {expires: expires});
         };
 
         $scope.app.displayRaaNotification = function () {
-            var show = $cookies.get('FEATURE_RAA_PROMOTION');
+            var show = $cookies.get('SHOW_RAA_NOTIFICATION');
 
             if ($scope.app.config.showRaaNotification && $scope.app.language === 'et' && !show) {
                 return true;
