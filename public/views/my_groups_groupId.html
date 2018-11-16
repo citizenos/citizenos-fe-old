@@ -6,9 +6,9 @@
     <!-- GENERAL INFO GROUPS VIEW -->
     <div class="info_container group_detail">
 
-        <div class="container_header">
+        <div class="container_header" ng-click="generalInfo.isVisible = !generalInfo.isVisible">
             <div class="header_text" translate="VIEWS.MY_GROUPS_GROUPID.HEADING_GENERAL_INFORMATION">General information</div>
-            <div class="minimize_container" ng-click="generalInfo.isVisible = !generalInfo.isVisible">
+            <div class="minimize_container">
                 <div ng-class="!generalInfo.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -177,15 +177,15 @@
 
     <!-- TOPIC LIST -->
     <div class="info_container group_list" id="topic_list">
-        <div class="container_header">
+        <div class="container_header" ng-click="doToggleMemberTopicList(group)">
             <div class="header_text">
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_TOPIC_LIST" translate-values="{count: group.members.topics.count}">Topic list ({{group.members.topics.count}})</span>
                 |
-                <div class="blue_link" cos-disabled="!group.members.topics.count" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doShowMemberTopicList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter</div>
+                <div class="blue_link" cos-disabled="!group.members.topics.count" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doShowMemberTopicList(group); $event.stopPropagation();" translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter</div>
                 |
-                <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</div>
+                <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</div>
             </div>
-            <div class="minimize_container" ng-if="group.members.topics.count" ng-click="doToggleMemberTopicList(group)">
+            <div class="minimize_container" ng-if="group.members.topics.count">
                 <div ng-class="!topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -271,15 +271,15 @@
 
     <!-- USER LIST -->
     <div class="info_container group_list user_list" id="user_list">
-        <div class="container_header">
+        <div class="container_header" ng-click="doToggleMemberUserList(group)">
             <div class="header_text">
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_USERS_LIST" translate-values="{count: (group.members.users.count || 0)}">User list (0)</span>
                 |
-                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter</div>
+                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(group); $event.stopPropagation();" translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter</div>
                 |
-                <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</div>
+                <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</div>
             </div>
-            <div class="minimize_container" ng-click="doToggleMemberUserList(group)">
+            <div class="minimize_container">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
