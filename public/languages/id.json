@@ -284,7 +284,7 @@
   "TXT_TOPIC_CATEGORY_AGRICULTURE": "Pertanian",
   "TXT_TOPIC_CATEGORY_ENVIRONMENT": "Lingkungan, perlindungan hewan",
   "TXT_TOPIC_CATEGORY_CULTURE": "Kebudayaan, media dan olahraga",
-  "TXT_TOPIC_CATEGORY_HEALTH": "Health care and social care",
+  "TXT_TOPIC_CATEGORY_HEALTH": "Kepedulian kesehatan dan sosial",
   "TXT_TOPIC_CATEGORY_WORK": "Pekerjaan dan ketenagakerjaan",
   "TXT_TOPIC_CATEGORY_EDUCATION": "Pendidikan",
   "TXT_TOPIC_CATEGORY_POLITICS": "Politik dan Administrasi Publik",
@@ -323,7 +323,7 @@
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "Context search results in",
+      "HEADING_RESULTS_IN": "Buka hasil pencarian di",
       "LNK_VIEW_MORE_RESULTS": "Lihat lebih banyak hasil",
       "TXT_OOPS_NO_RESULTS": "Ups, kami tidak dapat menemukan hasil apapun yang sesuai pencarian Anda :(",
       "TXT_MAYBE_TYPO": "Mungkin ada kesalahan pengetikan dalam pencarian Anda?"
@@ -331,7 +331,7 @@
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
-      "BTN_HOW_DOES_IT_WORK": "How does it work?",
+      "BTN_HOW_DOES_IT_WORK": "Bagaimana cara kerjanya?",
       "LNK_PRIVACY_POLICY": "Kebijakan Privasi Citizen OS",
       "LNK_CITIZENOS_WEBSITE": "Website Citizen OS"
     }
@@ -354,7 +354,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Maaf, Anda tidak punya cukup izin untuk mengakses :(",
-      "HEADING_YOU_MAY_RECOVER": "Still, you may recover from the unfortunate event by",
+      "HEADING_YOU_MAY_RECOVER": "Namun, Anda dapat memperbarui kondisi ini dengan",
       "BTN_LOGIN": "Masuk",
       "BTN_REQUEST_ACCESS": "Meminta akses"
     },
@@ -362,16 +362,16 @@
       "HEADINGS_SHOW_ME_TOPICS_ABOUT": "Tampilkan topik tentang",
       "LNK_SHOW": "Tampilkan",
       "LNK_CLEAR_FILTERS": "Hapus filter",
-      "LBL_FILTER_THE_TOPICS": "Filter the topics",
-      "LNK_EDIT_FILTER": "Edit filter",
+      "LBL_FILTER_THE_TOPICS": "Filter berdasarkan topik",
+      "LNK_EDIT_FILTER": "Mengatur filter",
       "LBL_CATEGORY": "Kategori:",
       "LBL_STATUS": "Status:",
       "BTN_CATEGORY": "KATEGORI",
       "BTN_STATUS": "STATUS",
-      "BTN_SUBMIT_FILTER": "Submit filter",
+      "BTN_SUBMIT_FILTER": "Memasukkan filter",
       "HEADING_NO_RESUTS": "Mohon maaf, tapi kami tidak dapat menemukan hasil apapun :(",
-      "HEADING_GET_STARTED": "Maybe you can get the first discussion initiated by",
-      "BTN_CREATING_A_NEW_TOPIC": "Creating a new topic",
+      "HEADING_GET_STARTED": "Mungkin Anda bisa mendapatkan diskusi pertama yang dimulai oleh",
+      "BTN_CREATING_A_NEW_TOPIC": "Membuat topik baru",
       "HEADING_BEGINNERS_GUIDE": "Panduan pemula untuk Citizen OS.",
       "TXT_BEGINNERS_GUIDE": "Hai, selamat datang di Citizen OS! Baca topik ini untuk mencari tahu bagaimana semuanya bekerja.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Tutorial dan penjelasan",
@@ -386,7 +386,7 @@
       "HEADING_NOT_IN_GROUP": "Anda belum menjadi bagian dari grup.",
       "HEADING_AT_LEAST_WE_HELP": "Setidaknya kami dapat membantu Anda dengan",
       "TXT_CREATING_A NEW_GROUP": "Membuat grup baru",
-      "HEADING_NOT_PARTICIPATED": "You have not participated in a topic yet. Try it, it’s really cool!",
+      "HEADING_NOT_PARTICIPATED": "Anda belum berpartisipasi dalam sebuah topik. Cobalah, ino sangat keren!",
       "HEADING_GET_INVOLVED": "Anda dapat terlibat dengan",
       "MY_CREATING_A_NEW_TOPIC": "Membuat topik baru",
       "FILTERS": {
@@ -395,7 +395,7 @@
         "MY_PUBLIC_TOPICS": "Topik umum saya",
         "MY_PRIVATE_TOPICS": "Topik pribadi saya",
         "TOPICS_I_CREATED": "Topik yang saya buat",
-        "TOPICS_ORDERED_BY_GROUPS": "Show topics ordered by groups"
+        "TOPICS_ORDERED_BY_GROUPS": "Tampilkan topik yang dipesan oleh kelompok"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -407,7 +407,7 @@
       "LNK_INVITE": "undang",
       "LBL_YOUR_RIGHTS": "Hak Anda",
       "LBL_LATEST": "Terbaru",
-      "LBL_GROUP_ACTIONS": "Group actions",
+      "LBL_GROUP_ACTIONS": "Kegiatan Grup",
       "LNK_SETTINGS": "pengaturan",
       "LNK_LEAVE": "tinggalkan",
       "LNK_DELETE": "hapus",
@@ -415,8 +415,8 @@
       "LNK_FILTER": "filter",
       "PLACEHOLDER_TOPIC_TITLE_PERMISSION": "Judul topik, izin",
       "PLACEHOLDER_NAME_PERMISSION": "Nama, izin",
-      "LNK_CLEAR_FILTER": "clear filter",
-      "LBL_ORDER_BY": "Order by:",
+      "LNK_CLEAR_FILTER": "hapus filter",
+      "LBL_ORDER_BY": "Pesan oleh:",
       "LNK_TITLE": "Judul",
       "LNK_RIGHTS": "Hak",
       "LNK_USERS": "Pengguna",
@@ -434,7 +434,7 @@
       "LNK_VIEW": "lihat",
       "LBL_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
       "LBL_STATUS": "Status",
-      "LBL_TOPIC_ACTIONS": "Topic actions",
+      "LBL_TOPIC_ACTIONS": "Topik kegiatan",
       "LNK_SETTINGS": "pengaturan",
       "LNK_EDIT": "edit",
       "LNK_LEAVE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_LEAVE",
@@ -469,7 +469,7 @@
       "LNK_VIEW_OLDER": "Lihat topik sebelumnya"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "Rahvaalgatus.ee would like to access following data from Your account:",
+      "HEADING": "Rahvaalgatus.ee ingin mengakses data-data berikut dari akun anda:",
       "TXT_VIEW_PROFILE": "View and edit Your Citizen OS profile - name, company, email, picture.",
       "TXT_VIEW_TOPICS": "View and edit Your Citizen OS public Topics and Topics created via the Rahvaalgatus.ee website.",
       "TXT_VIEW_VOTES": "View and edit Your Citizen OS Votes in public Topics and Topics created via the Rahvaalgatus.ee website.",
