@@ -470,9 +470,9 @@
     },
     "PARTNERS_CONSENT": {
       "HEADING": "Rahvaalgatus.ee ingin mengakses data-data berikut dari akun anda:",
-      "TXT_VIEW_PROFILE": "View and edit Your Citizen OS profile - name, company, email, picture.",
-      "TXT_VIEW_TOPICS": "View and edit Your Citizen OS public Topics and Topics created via the Rahvaalgatus.ee website.",
-      "TXT_VIEW_VOTES": "View and edit Your Citizen OS Votes in public Topics and Topics created via the Rahvaalgatus.ee website.",
+      "TXT_VIEW_PROFILE": "Lihat dan edit profil Citizen Os - nama perusahaan, email, foto.",
+      "TXT_VIEW_TOPICS": "Lihat dan edit topik umum di CItizen Os dan topik yang dibuat melalui Rahvaalgatus.ee website.",
+      "TXT_VIEW_VOTES": "Lihat dan edit topik umum di CItizen Os dan topik yang dibuat melalui Rahvaalgatus.ee website.",
       "TXT_VIEW_GROUPS": "Lihat dan atur grup Citizen Os.",
       "TXT_POLICY": "Rahvaalgatus.ee will use this information in accordance with their respective <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">terms of service and privacy policies</a>.",
       "_AGREE": "Terima",
