@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', 'ngDialog', 'sAuth', 'sUpload', 'sActivity', 'sLocation', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, ngDialog, sAuth, sUpload, sActivity, sLocation, Topic, TopicMemberGroup, TopicMemberUser, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', '$location', 'ngDialog', 'sAuth', 'sUpload', 'sActivity', 'sLocation', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, $location, ngDialog, sAuth, sUpload, sActivity, sLocation, Topic, TopicMemberGroup, TopicMemberUser, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
@@ -461,11 +461,72 @@ angular
             return sActivity.handleActivityRedirect(activity);
         };
 
+        $scope.toggleTab = function (tabName) {
+            var items = $location.search();
+
+            if (!items.openTabs) {
+                items.openTabs = [];
+            } else if (!Array.isArray(items.openTabs)) {
+                items.openTabs = items.openTabs.split(',');
+            }
+
+            if (items.openTabs.indexOf(tabName) > -1) {
+                items.openTabs.splice(items.openTabs.indexOf(tabName), 1);
+            } else {
+                items.openTabs.push(tabName);
+            }
+            items.openTabs = items.openTabs.join(',');
+            var newParams = $stateParams;
+            Object.keys(items).forEach(function(key) {
+                newParams[key] = items[key];
+            });
+            $state.go($state.current.name, newParams, {location: true});
+        };
+
+        var checkTabs = function () {
+            var tabsToOpen = $location.search();
+            if (tabsToOpen.openTabs) {
+                tabsToOpen.openTabs = tabsToOpen.openTabs.split(',');
+
+                $scope.app.activityFeed = false;
+                $scope.voteResults.isVisible = false;
+                $scope.groupList.isVisible = false;
+                $scope.userList.isVisible = false;
+
+                tabsToOpen.openTabs.forEach(function (tabName) {
+                    switch (tabName) {
+                        case 'activities':
+                            $scope.doToggleActivities();
+                            break;
+                        case 'vote_results':
+                            $scope.doToggleVoteResults();
+                        break;
+                        case 'group_list':
+                            $scope.doToggleMemberGroupList();
+                        break;
+                        case 'user_list':
+                            $scope.doToggleMemberUserList();
+                        break;
+                        default:
+                        break;
+                    }
+                });
+            }
+        };
+        checkTabs();
+
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
             if (fromState.name === 'topics.view.files') {
                 $scope.loadTopicAttachments();
             }
+        });
 
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
+            if (fromState.name.indexOf('my.topics') > -1 && toState.name.indexOf('my.groups') > -1 || toState.name.indexOf('my.topics') > -1 && fromState.name.indexOf('my.groups') > -1) {
+                if (fromParams.openTabs && toParams.openTabs) {
+                    delete toParams.openTabs;
+                }
+            }
         });
     }
     ]);

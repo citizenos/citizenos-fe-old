@@ -455,7 +455,7 @@
                     controller: 'TopicFollowUpCtrl'
                 })
                 .state('my', {
-                    url: '/my?filter',
+                    url: '/my?filter&openTabs',
                     parent: 'main',
                     templateUrl: '/views/my.html',
                     controller: 'MyCtrl',
