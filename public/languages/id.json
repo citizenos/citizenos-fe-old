@@ -479,7 +479,7 @@
       "DISAGREE": "Batal"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "<strong>Rahvaalgatus.ee works together with Citizen OS</strong> to offer you a great experience. If you want to use the platform to its fullest, <strong>please login to Citizen OS or register.</strong>",
+      "HEADING": "<strong>Rahvaalgatus.ee bekerja sama dengan Citizen OS </strong> untuk memberikan pengalaman yang hebat kepada Anda. Jika Anda ingin menggunakan platform secara penuh, <strong>silahkan login ke Citizen OS atau mendaftar.</strong>",
       "BTN_LOGIN_FACEBOOK": "@:MODALS.LOGIN_BTN_LOGIN_FACEBOOK",
       "BTN_LOGIN_GOOGLE": "@:MODALS.LOGIN_BTN_LOGIN_GOOGLE",
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",
@@ -489,7 +489,7 @@
       "FORGOT_PASSWORD": "Lupa kata sandi?"
     },
     "TOPICS_TOPICID": {
-      "BAR_MILESTONES": "UPDATES: {{count}}",
+      "BAR_MILESTONES": "Update: {{count}}",
       "BAR_TOOLTIP_PHASE": "Status:",
       "BAR_TOOLTIP_IN_PROGRESS": "sedang berjalan",
       "BAR_TOOLTIP_VOTING": "dalam proses pemilihan",
@@ -530,13 +530,13 @@
       "VOTE_HEADING_STEP1": "Langkah 1: Pilih jenis pilihan",
       "VOTE_BTN_TYPE_REGULAR": "REGULER",
       "VOTE_BTN_TYPE_REGULAR_EXPLANATION": "(seperti, ya/tidak/netral /...)",
-      "VOTE_BTN_TYPE_MULTIPLECHOICE": "CUSTOM VOTE",
-      "VOTE_BTN_TYPE_MULTIPLECHOICE_EXPLANATION": "(i.e. A/B/C/D/...)",
-      "VOTE_HEADING_STEP2": "Step 2: Define answers",
+      "VOTE_BTN_TYPE_MULTIPLECHOICE": "CUSTOM PILIHAN",
+      "VOTE_BTN_TYPE_MULTIPLECHOICE_EXPLANATION": "(seperti A/B/C/D /...)",
+      "VOTE_HEADING_STEP2": "Langkah 2: Menentukan jawaban",
       "VOTE_LBL_OPTION_YES": "Ya",
       "VOTE_LBL_OPTION_NO": "Tidak",
       "VOTE_LBL_OPTION_NEUTRAL": "Netral",
-      "VOTE_LBL_OPTION_VETO": "Veto",
+      "VOTE_LBL_OPTION_VETO": "Hak veto",
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "Enter a possible answer",
       "VOTE_BTB_ADD_OPTION": "Add another answer",
       "VOTE_HEADING_STEP3": "Step 3: Set up voting rights",
