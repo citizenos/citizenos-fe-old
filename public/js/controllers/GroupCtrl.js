@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', 'rGroup', function ($scope, $state, $stateParams, $log, $location, ngDialog, sAuth, GroupMemberUser, GroupMemberTopic, rGroup) {
+    .controller('GroupCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', 'rGroup', function ($rootScope, $scope, $state, $stateParams, $log, $location, ngDialog, sAuth, GroupMemberUser, GroupMemberTopic, rGroup) {
         $log.debug('GroupCtrl');
 
         $scope.group = rGroup;
@@ -45,13 +45,32 @@ angular
 
         $scope.GroupMemberTopic = GroupMemberTopic;
 
+        var loadMemberTopicsList = function () {
+            return GroupMemberTopic
+                .query({groupId: $scope.group.id}).$promise
+                .then(function (topics) {
+                    $scope.group.members.topics.rows = topics;
+                    $scope.group.members.topics.count = topics.length;
+
+                    return topics;
+                });
+        };
+
+        var loadMemberUsersList = function () {
+            return GroupMemberUser
+                    .query({groupId: $scope.group.id}).$promise
+                    .then(function (users) {
+                        $scope.group.members.users.rows = users;
+                        $scope.group.members.users.count = users.length;
+
+                        return users;
+                    });
+        };
+
         $scope.doShowMemberTopicList = function () {
             if (!$scope.topicList.isVisible) {
-                GroupMemberTopic
-                    .query({groupId: $scope.group.id}).$promise
-                    .then(function (topics) {
-                        $scope.group.members.topics.rows = topics;
-                        $scope.group.members.topics.count = topics.length;
+                loadMemberTopicsList()
+                    .then(function () {
                         $scope.topicList.isVisible = true;
                         $scope.app.scrollToAnchor('topic_list');
                     });
@@ -92,12 +111,10 @@ angular
                     }
                 })
                 .then(function () {
-                    var index = $scope.group.members.topics.rows.indexOf(groupMemberTopic);
                     groupMemberTopic
                         .$delete({groupId: $scope.group.id})
                         .then(function () {
-                            $scope.group.members.topics.rows.splice(index, 1);
-                            $scope.group.members.topics.count = $scope.group.members.topics.rows.length;
+                            loadMemberTopicsList();
                         });
                 }, angular.noop);
         };
@@ -106,11 +123,8 @@ angular
 
         $scope.doShowMemberUserList = function () {
             if (!$scope.userList.isVisible) {
-                GroupMemberUser
-                    .query({groupId: $scope.group.id}).$promise
-                    .then(function (users) {
-                        $scope.group.members.users.rows = users;
-                        $scope.group.members.users.count = users.length;
+                loadMemberUsersList()
+                    .then(function () {
                         $scope.userList.isVisible = true;
                         $scope.app.scrollToAnchor('user_list');
                     });
@@ -153,8 +167,7 @@ angular
                     groupMemberUser
                         .$delete({groupId: $scope.group.id})
                         .then(function () {
-                            $scope.group.members.users.rows.splice($scope.group.members.users.rows.indexOf(groupMemberUser), 1);
-                            $scope.group.members.users.count = $scope.group.members.users.rows.length;
+                            loadMemberUsersList();
                         });
                 }, angular.noop);
         };
@@ -223,4 +236,6 @@ angular
         };
         checkTabs();
 
+        loadMemberTopicsList();
+        loadMemberUsersList();
     }]);

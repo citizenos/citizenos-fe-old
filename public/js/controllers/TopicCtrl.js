@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', '$q', '$log', '$sce', '$translate', '$location', 'ngDialog', 'sAuth', 'sUpload', 'sActivity', 'sLocation', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $timeout, $q, $log, $sce, $translate, $location, ngDialog, sAuth, sUpload, sActivity, sLocation, Topic, TopicMemberGroup, TopicMemberUser, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $log, $sce, $location, ngDialog, sAuth, sActivity, Topic, TopicMemberGroup, TopicMemberUser, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
@@ -70,6 +70,28 @@ angular
             }
             return false;
         };
+
+        var loadTopicMemberUserList = function () {
+            return TopicMemberUser
+                .query({topicId: $scope.topic.id}).$promise
+                .then(function (users) {
+                    $scope.topic.members.users.rows = users;
+                    $scope.topic.members.users.count = users.length;
+
+                    return users;
+                });
+        };
+
+        var loadTopicMemberGroupList = function () {
+            return TopicMemberGroup
+                .query({topicId: $scope.topic.id}).$promise
+                .then(function (groups) {
+                    $scope.topic.members.groups.rows = groups;
+                    $scope.topic.members.groups.count = groups.length;
+
+                    return groups;
+                });
+        }
 
         $scope.loadActivities = function (offset, limit) {
             $scope.activitiesOffset = offset || $scope.activitiesOffset;
@@ -325,11 +347,8 @@ angular
             if ($scope.groupList.isVisible) {
                 $scope.app.scrollToAnchor('group_list');
             } else {
-                TopicMemberGroup
-                    .query({topicId: $scope.topic.id}).$promise
-                    .then(function (groups) {
-                        $scope.topic.members.groups.rows = groups;
-                        $scope.topic.members.groups.count = groups.length;
+                loadTopicMemberGroupList()
+                    .then(function () {
                         $scope.groupList.isVisible = true;
                         $scope.app.scrollToAnchor('group_list');
                     });
@@ -373,26 +392,18 @@ angular
                         .then(function () {
                             $scope.topic.members.groups.rows.splice($scope.topic.members.groups.rows.indexOf(topicMemberGroup), 1);
                             $scope.topic.members.groups.count = $scope.topic.members.groups.rows.length;
+                            loadTopicMemberUserList();
                         });
                 }, angular.noop);
         };
 
         $scope.TopicMemberUser = TopicMemberUser;
 
-        var loadTopicMemberUserList = function () {
-            return TopicMemberUser
-                .query({topicId: $scope.topic.id}).$promise
-                .then(function (users) {
-                    $scope.topic.members.users.rows = users;
-                    $scope.topic.members.users.count = users.length;
-                    $scope.userList.isVisible = true;
-                });
-        };
-
         $scope.doShowMemberUserList = function () {
             if (!$scope.userList.isVisible) {
                 loadTopicMemberUserList()
                     .then(function () {
+                        $scope.userList.isVisible = true;
                         $scope.app.scrollToAnchor('user_list');
                     });
             } else {
@@ -514,6 +525,9 @@ angular
             }
         };
         checkTabs();
+
+        loadTopicMemberUserList();
+        loadTopicMemberGroupList();
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
             if (fromState.name === 'topics.view.files') {
