@@ -526,8 +526,10 @@ angular
         };
         checkTabs();
 
-        loadTopicMemberUserList();
-        loadTopicMemberGroupList();
+        if (sAuth.user.loggedIn) {
+            loadTopicMemberUserList();
+            loadTopicMemberGroupList();
+        }
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
             if (fromState.name === 'topics.view.files') {

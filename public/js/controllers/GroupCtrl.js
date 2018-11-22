@@ -235,7 +235,8 @@ angular
             }
         };
         checkTabs();
-
-        loadMemberTopicsList();
-        loadMemberUsersList();
+        if (sAuth.user.loggedIn) {
+            loadMemberTopicsList();
+            loadMemberUsersList();
+        }
     }]);
