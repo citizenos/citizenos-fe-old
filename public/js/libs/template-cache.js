@@ -6,7 +6,6 @@ angular
         var templates = [
             '/views/401.html',
             '/views/404.html',
-            '/views/about.html',
             '/views/home.html',
             '/views/my.html',
             '/views/my_groups_groupId.html',
