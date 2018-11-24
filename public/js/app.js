@@ -455,7 +455,7 @@
                     controller: 'TopicFollowUpCtrl'
                 })
                 .state('my', {
-                    url: '/my?filter',
+                    url: '/my?filter&openTabs',
                     parent: 'main',
                     templateUrl: '/views/my.html',
                     controller: 'MyCtrl',
@@ -606,7 +606,16 @@
                 .state('about', {
                     url: '/about',
                     parent: 'main',
-                    templateUrl: '/views/about.html'
+                    controller: ['$state', '$window', 'cosConfig', function ($state, $window, cosConfig) {
+                        var aboutPage = cosConfig.links.about;
+                        console.log(cosConfig, aboutPage);
+                        if (aboutPage) {
+                            $window.location.href = aboutPage;
+                            
+                            return;
+                        }
+                        $state.go('error.404');
+                    }]
                 })
                 .state('join', { // Join a Topic via shared url
                     url: '/join/:tokenJoin',
