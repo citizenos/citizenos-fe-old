@@ -141,6 +141,7 @@ angular
         };
 
         Topic.CATEGORIES = {
+            tenislandproject: 'tenislandproject',
             keepitcleanplan: 'keepitcleanplan', // //TODO: Special project with https://www.letsdoitworld.org/, remove when over.
             business: 'business', // Business and industry
             transport: 'transport', // Public transport and road safety

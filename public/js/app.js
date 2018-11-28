@@ -182,6 +182,11 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('tenislandproject', {
+                    url: '/tenislandproject',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
                 .state('account', {
                     url: '/account',
                     abstract: true,
