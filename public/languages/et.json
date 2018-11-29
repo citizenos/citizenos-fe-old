@@ -647,7 +647,7 @@
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "Kasutaja {{userName}} laadis alla teema \"{{topicTitle}}\" hääletustulemused.",
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC": "Kasutaja {{userName}} lisas teemal \"{{topicTitle}}\" uue argumendi.",
     "ACTIVITY_USER_UPDATE_COMMENT_TOPIC": "Kasutaja {{userName}} muutis oma argumenti teemal \"{{topicTitle}}\".",
-    "ACTIVITY_MODERATOR_UPDATE_COMMENT_TOPIC": "Kasutaja {{userName}} (moderaator) uuendas teemas \"{{topicTitle}}\" argumendi välja {{fieldName}}.",
+    "ACTIVITY_MODERATOR_UPDATE_COMMENT_TOPIC": "Kasutaja {{userName}} (moderaator) uuendas teemas \"{{topicTitle}}\" argumendivälja {{fieldName}}.",
     "ACTIVITY_USER_DELETE_COMMENT_TOPIC": "Kasutaja {{userName}} eemaldas oma argumendi teemal \"{{topicTitle}}\".",
     "ACTIVITY_MODERATOR_DELETE_COMMENT_TOPIC": "Kasutaja {{userName}} (moderaator) eemaldas argumendi teemast \"{{topicTitle}}\".",
     "ACTIVITY_USER_ADD_REPORT_COMMENT": "Kasutaja {{userName}} teatas sobimatust argumendist: ",
