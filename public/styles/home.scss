@@ -598,7 +598,7 @@
             &.ten_island_project {
                 background-image: url('../imgs/ldi_indonesia.png');
                 background-repeat: no-repeat;
-                background-position: right -90px  top;
+                background-position: right -90px  top -15px;
                 @media (max-width: 667px) {                   
                      background-image: none;
                 }
