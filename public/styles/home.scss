@@ -494,7 +494,7 @@
                 background: #003373;
             }
 
-            &.environment, &.keepitcleanplan {
+            &.environment, &.keepitcleanplan, &.tenislandproject {
                 background: #00b23b;
             }
 
@@ -519,6 +519,7 @@
             &.defense,
             &.environment,
             &.keepitcleanplan,
+            &.tenislandproject,
             &.agriculture,
             &.culture,
             &.communities,
@@ -589,6 +590,15 @@
                 background-repeat: no-repeat;
                 background-position: right -50px  bottom -2px;
                 background-size: 300px;
+                @media (max-width: 667px) {                   
+                     background-image: none;
+                }
+            }
+
+            &.ten_island_project {
+                background-image: url('../imgs/ldi_indonesia.png');
+                background-repeat: no-repeat;
+                background-position: right -90px  top -15px;
                 @media (max-width: 667px) {                   
                      background-image: none;
                 }

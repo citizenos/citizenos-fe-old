@@ -243,6 +243,25 @@
             </div>
         </a>
 
+        <!--a ng-href="https://app.citizenos.com/tenislandproject" class="big ten_island_project black_text ten_island_project_background fixed_topic" ng-if="isTutorialVisible()">
+            <div class="topic_wrap">
+                <div class="text_area">
+
+                    <div class="top text_small" translate="VIEWS.HOME.HEADING_LETS_DO_IT_WORLD">Let's Do It! Indonesia</div>
+
+                    <div class="main_text">
+                        <div class="text_big">10 island project oleh Let's Do It Indonesia</div>
+                        <div class="text_small">10 island project bersifat terbuka bagi seluruh pihak, baik masyarakat, organisasi, dan pemerintah di Indonesia dengan tujuan menampung ide untuk mengimplementasikan rencana lingkungan yang berkelanjutan dalam Keep It Clean plan di Indonesia.</div>
+                    </div>
+
+                    <div class="line black_line"></div>
+
+                    <div class="text_small" ng-if="wWidth > 667">10 island project</div>
+
+                </div>
+            </div>
+        </a-->
+
         <a ui-sref="topics.view({topicId: topic.id})" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">

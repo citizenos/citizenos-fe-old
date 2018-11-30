@@ -44,7 +44,7 @@ angular
                 if(!comment.errors) {
                     comment.errors = {};
                 }
-                comment.errors.text = 'VIEWS.TOPICS_TOPICID.TXT_COMMENT_ERROR_TEXT_TOO_LONG';
+                comment.errors.text = 'VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ERROR_TEXT_TOO_LONG';
             } else {
                 if(comment.errors && comment.errors.text) {
                     comment.errors.text = null;
@@ -57,7 +57,7 @@ angular
                 if(!comment.errors) {
                     comment.errors = {};
                 }
-                comment.errors.subject = 'VIEWS.TOPICS_TOPICID.TXT_COMMENT_ERROR_SUBJECT_TOO_LONG';
+                comment.errors.subject = 'VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ERROR_SUBJECT_TOO_LONG';
             } else {
                 if(comment.errors && comment.errors.subject) {
                     comment.errors.subject = null;
