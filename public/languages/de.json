@@ -93,7 +93,7 @@
     "TOPIC_ARGUMENT_REPORT_HEADING": "Argument melden",
     "TOPIC_ARGUMENT_REPORT_DESCRIPTION": "Argument von Benutzer {{usersFullName}}",
     "TOPIC_ARGUMENT_REPORT_LABEL_REASON": "Grund für die Meldung",
-    "TOPIC_ARGUMENT_REPORT_LABEL_REASON_REQUIRED": "(Erforderlich)",
+    "TOPIC_ARGUMENT_REPORT_LABEL_REASON_REQUIRED": "(erforderlich)",
     "TOPIC_ARGUMENT_REPORT_PLACEHOLDER_REPORT_TEXT": "Erklären Sie, warum Sie dieses Argument unpassend finden...",
     "TOPIC_ARGUMENT_REPORT_TXT_ARE_YOU_SURE": "Sind Sie sicher, dass Sie dieses Argument melden möchten? Sie können diese Handlung nicht rückgängig machen.",
     "TOPIC_ARGUMENT_REPORT_BTN_YES": "JA, DIESES ARGUMENT MELDEN",
