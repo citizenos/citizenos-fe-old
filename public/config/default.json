@@ -12,7 +12,8 @@
       "fi": "Suomi",
       "uk": "Українська",
       "de": "Deutsch",
-      "es": "Español"
+      "es": "Español",
+      "id": "Bahasa Indonesia"
     },
     "debug": "dbg"
   },
@@ -46,7 +47,7 @@
       "smartId": true,
       "mobiilId": true,
       "idCard": {
-        "url": "https://id.citizenos.com/authorize"
+        "url": "https://id-test.citizenos.com/authorize"
       },
       "citizenos": true
     }
