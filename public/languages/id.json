@@ -627,7 +627,7 @@
   },
   "ACTIVITY_FEED": {
     "ACTIVITY_USER_CREATE_TOPIC": "Pengguna {{userName}} telah membuat topik: {{topicTitle}}",
-    "ACTIVITY_USER_UPDATE_TOPIC": "Pengguna{{userName}} telah memperbarui bidang {{fieldName}} dalam topik {{topicTitle}}",
+    "ACTIVITY_USER_UPDATE_TOPIC": "Pengguna {{userName}} telah memperbarui bidang {{fieldName}} dalam topik {{topicTitle}}",
     "ACTIVITY_PREVIOUS_VERSION": "Versi sebelumnya: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Versi baru: {{newValue}}",
     "ACTIVITY_SYSTEM_UPDATE_TOPIC": "Sistem telah memperbarui bidang {{fieldName}} dalam topik {{topicTitle}}.",
@@ -691,7 +691,7 @@
     "ACTIVITY_TOPIC_LEVELS_READ": "@:TXT_TOPIC_LEVELS_READ",
     "ACTIVITY_TOPIC_LEVELS_NONE": "@:TXT_TOPIC_LEVELS_NONE",
     "ACTIVITY_USER_CREATE_GROUP": "Pengguna {{userName}} telah membuat group: {{groupName}}",
-    "ACTIVITY_USER_UPDATE_GROUP": "Pengguna{{userName}} telah memperbarui bidang {{fieldName}} dalam grup {{groupName}}",
+    "ACTIVITY_USER_UPDATE_GROUP": "Pengguna {{userName}} telah memperbarui bidang {{fieldName}} dalam grup {{groupName}}",
     "ACTIVITY_USER_DELETE_GROUP": "Pengguna {{userName}} telah menghapus group: {{groupName}}",
     "ACTIVITY_USER_ADD_USER_GROUP": "Pengguna {{userName}} telah mengundang pengguna {{userName2}} dalam grup {{groupName}}",
     "ACTIVITY_USER_DELETE_USER_GROUP": "Pengguna {{userName}} telah menghapus topik {{userName2}} dari grup {{groupName}}\"",
