@@ -395,7 +395,11 @@
         "MY_PUBLIC_TOPICS": "Meine öffentlichen Themen",
         "MY_PRIVATE_TOPICS": "Meine geschlossenen Themen",
         "TOPICS_I_CREATED": "Themen, die ich erstellt habe",
-        "TOPICS_ORDERED_BY_GROUPS": "Themen nach Gruppen sortiert anzeigen"
+        "TOPICS_ORDERED_BY_GROUPS": "Themen nach Gruppen sortiert anzeigen",
+        "TOPICS_IN_PROGRESS": "Topics in progress",
+        "TOPICS_IN_VOTING": "Topics in voting",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow up",
+        "TOPICS_CLOSED": "Closed topics"
       }
     },
     "MY_GROUPS_GROUPID": {
