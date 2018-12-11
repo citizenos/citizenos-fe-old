@@ -1,3 +1,7 @@
+## 11.12.2018
+
+* Add options to filter my topics by status
+
 ## 06.12.2018
 
 * hwcrypto library update 0.0.10 -> 0.0.13
