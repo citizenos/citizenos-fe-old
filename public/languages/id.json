@@ -395,7 +395,11 @@
         "MY_PUBLIC_TOPICS": "Topik umum saya",
         "MY_PRIVATE_TOPICS": "Topik pribadi saya",
         "TOPICS_I_CREATED": "Topik yang saya buat",
-        "TOPICS_ORDERED_BY_GROUPS": "Tampilkan topik yang dipesan oleh kelompok"
+        "TOPICS_ORDERED_BY_GROUPS": "Tampilkan topik yang dipesan oleh kelompok",
+        "TOPICS_IN_PROGRESS": "Topics in progress",
+        "TOPICS_IN_VOTING": "Topics in voting",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow up",
+        "TOPICS_CLOSED": "Closed topics"
       }
     },
     "MY_GROUPS_GROUPID": {
