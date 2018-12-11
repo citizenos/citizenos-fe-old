@@ -498,6 +498,18 @@
                                 case 'iCreated':
                                     urlParams.creatorId = sAuth.user.id;
                                     return Topic.query(urlParams).$promise;
+                                case 'inProgress':
+                                    urlParams.statuses = Topic.STATUSES.inProgress;
+                                    return Topic.query(urlParams).$promise;
+                                case 'voting':
+                                    urlParams.statuses = Topic.STATUSES.voting;
+                                    return Topic.query(urlParams).$promise;
+                                case 'followUp':
+                                    urlParams.statuses = Topic.STATUSES.followUp;
+                                    return Topic.query(urlParams).$promise;
+                                case 'closed':
+                                    urlParams.statuses = Topic.STATUSES.closed;
+                                    return Topic.query(urlParams).$promise;
                                 case 'grouped':
                                     return Group.query().$promise;
                                 default:

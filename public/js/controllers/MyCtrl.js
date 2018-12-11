@@ -39,6 +39,34 @@ angular
                         onSelect: function () {
                             $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
+                    },
+                    {
+                        id: 'inProgress',
+                        name: 'VIEWS.MY.FILTERS.TOPICS_IN_PROGRESS',
+                        onSelect: function () {
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                        }
+                    },
+                    {
+                        id: 'voting',
+                        name: 'VIEWS.MY.FILTERS.TOPICS_IN_VOTING',
+                        onSelect: function () {
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                        }
+                    },
+                    {
+                        id: 'followUp',
+                        name: 'VIEWS.MY.FILTERS.TOPICS_IN_FOLLOW_UP',
+                        onSelect: function () {
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                        }
+                    },
+                    {
+                        id: 'closed',
+                        name: 'VIEWS.MY.FILTERS.TOPICS_CLOSED',
+                        onSelect: function () {
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                        }
                     }
                 ]
             },
