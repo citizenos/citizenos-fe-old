@@ -395,7 +395,11 @@
         "MY_PUBLIC_TOPICS": "Minu avalikke teemasid",
         "MY_PRIVATE_TOPICS": "Minu privaatseid teemasid",
         "TOPICS_I_CREATED": "Minu loodud teemad",
-        "TOPICS_ORDERED_BY_GROUPS": "Näite teemasid rühmade kaupa"
+        "TOPICS_ORDERED_BY_GROUPS": "Näite teemasid rühmade kaupa",
+        "TOPICS_IN_PROGRESS": "Topics in progress",
+        "TOPICS_IN_VOTING": "Topics in voting",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow up",
+        "TOPICS_CLOSED": "Closed topics"
       }
     },
     "MY_GROUPS_GROUPID": {
