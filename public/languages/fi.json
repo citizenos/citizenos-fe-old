@@ -396,9 +396,9 @@
         "MY_PRIVATE_TOPICS": "Omat yksityiset aiheet",
         "TOPICS_I_CREATED": "Luomani aiheet",
         "TOPICS_ORDERED_BY_GROUPS": "Näyta aiheet järjesteltynä ryhmän mukaan",
-        "TOPICS_IN_PROGRESS": "Topics in progress",
-        "TOPICS_IN_VOTING": "Topics in voting",
-        "TOPICS_IN_FOLLOW_UP": "Topics in follow up",
+        "TOPICS_IN_PROGRESS": "Kesken olevat aiheet",
+        "TOPICS_IN_VOTING": "Äänestyksessä olevat aiheet",
+        "TOPICS_IN_FOLLOW_UP": "Seurannassa olevat aiheet",
         "TOPICS_CLOSED": "Suljetut aiheet"
       }
     },
