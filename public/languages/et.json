@@ -94,7 +94,7 @@
     "TOPIC_ARGUMENT_REPORT_DESCRIPTION": "Argumendi autor {{usersFullName}}",
     "TOPIC_ARGUMENT_REPORT_LABEL_REASON": "Teavituse põhjus",
     "TOPIC_ARGUMENT_REPORT_LABEL_REASON_REQUIRED": "(kohustuslik)",
-    "TOPIC_ARGUMENT_REPORT_PLACEHOLDER_REPORT_TEXT": "Selgita, miks see argument on ebasobiv ...",
+    "TOPIC_ARGUMENT_REPORT_PLACEHOLDER_REPORT_TEXT": "Selgita, miks see argument ei sobi...",
     "TOPIC_ARGUMENT_REPORT_TXT_ARE_YOU_SURE": "Kas oled kindel, et soovid teatada sobimatust argumendist? Toimingut ei saa tagasi võtta.",
     "TOPIC_ARGUMENT_REPORT_BTN_YES": "TEATA",
     "TOPIC_ARGUMENT_REPORT_BTN_NO": "LOOBUN",
