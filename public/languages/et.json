@@ -755,7 +755,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT": "Väide võib olla 1 kuni 128 tähemärki pikk.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Vaja on valida argumendist teatamise põhjus",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Selgitus võib olla 1 kuni 2048 tähemärki pikk.",
-  "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Argumendi teavitamise järel on argumenti muudetud seetõttu ei saa antud argumenti modereerida.",
+  "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Argumendist teavitamise järel on argumenti muudetud ja seetõttu ei saa seda argumenti modereerida.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Oled katkestanud allkirjastamise ja su häält ei loetud.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Allkirjastamine võttis liiga kaua aega. Häält ei loetud. Palun alusta uuesti.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Allkiri ei ole korrektne. Su häält ei loetud.",
