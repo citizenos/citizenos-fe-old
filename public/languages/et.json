@@ -399,7 +399,8 @@
         "TOPICS_IN_PROGRESS": "Ühisloomes teemad",
         "TOPICS_IN_VOTING": "Hääletamisel teemad",
         "TOPICS_IN_FOLLOW_UP": "Elluviimisel teemad",
-        "TOPICS_CLOSED": "Suletud teemad"
+        "TOPICS_CLOSED": "Suletud teemad",
+        "TOPICS_FAVOURITES": "Favourite topics"
       }
     },
     "MY_GROUPS_GROUPID": {
