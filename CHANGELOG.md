@@ -1,6 +1,10 @@
+## 2018-12-18
+
+* Mark topics as favourites, filter my topics by favourite https://github.com/citizenos/citizenos-fe/issues/122
+
 ## 2018-12-11
 
-* Add options to filter my topics by status
+* Add options to filter my topics by status https://github.com/citizenos/citizenos-fe/issues/122
 
 ## 2018-12-06
 

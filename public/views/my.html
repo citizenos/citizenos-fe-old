@@ -104,6 +104,9 @@
 
                 <!-- Topics -->
                 <a ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
+                    <div class="favorite_container" ng-if="item.favourite">
+                        <div class="sprite sprite-icon-favourite2x"></div>
+                    </div>
                     <div class="small_topic_header">
                         <div class="small_topic_left_cont">
                             <div class="small_topic_icon">
