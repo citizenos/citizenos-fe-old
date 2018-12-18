@@ -399,7 +399,8 @@
         "TOPICS_IN_PROGRESS": "Topics in progress",
         "TOPICS_IN_VOTING": "Topics in voting",
         "TOPICS_IN_FOLLOW_UP": "Topics in follow up",
-        "TOPICS_CLOSED": "Closed topics"
+        "TOPICS_CLOSED": "Closed topics",
+        "TOPICS_FAVOURITES": "Favourite topics"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -564,7 +565,7 @@
       "LNK_MENTIONS_COUNT": "Disebutkan di media sosial: {{mentionsCount}}",
       "LNK_MENTIONS_COUNT_ADD_HASHTAG": "menambahkan hashtag",
       "LBL_TAB_ARGUMENTS": "Argumen",
-      "LBL_TAB_MENTIONS": "Social mentions",
+      "LBL_TAB_MENTIONS": "Disebutkan di media sosial",
       "TAB_ARGUMENTS_HEADING": "@:VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT",
       "LBL_ARGUMENTS_COUNT_PRO": "pro: {{countPro}}",
       "LBL_ARGUMENTS_COUNT_CON": "con: {{countCon}}",

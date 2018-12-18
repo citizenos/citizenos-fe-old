@@ -94,7 +94,7 @@
     "TOPIC_ARGUMENT_REPORT_DESCRIPTION": "Argumendi autor {{usersFullName}}",
     "TOPIC_ARGUMENT_REPORT_LABEL_REASON": "Teavituse põhjus",
     "TOPIC_ARGUMENT_REPORT_LABEL_REASON_REQUIRED": "(kohustuslik)",
-    "TOPIC_ARGUMENT_REPORT_PLACEHOLDER_REPORT_TEXT": "Selgita, miks see argument on ebasobiv ...",
+    "TOPIC_ARGUMENT_REPORT_PLACEHOLDER_REPORT_TEXT": "Selgita, miks see argument ei sobi...",
     "TOPIC_ARGUMENT_REPORT_TXT_ARE_YOU_SURE": "Kas oled kindel, et soovid teatada sobimatust argumendist? Toimingut ei saa tagasi võtta.",
     "TOPIC_ARGUMENT_REPORT_BTN_YES": "TEATA",
     "TOPIC_ARGUMENT_REPORT_BTN_NO": "LOOBUN",
@@ -396,10 +396,11 @@
         "MY_PRIVATE_TOPICS": "Minu privaatseid teemasid",
         "TOPICS_I_CREATED": "Minu loodud teemad",
         "TOPICS_ORDERED_BY_GROUPS": "Näite teemasid rühmade kaupa",
-        "TOPICS_IN_PROGRESS": "Topics in progress",
-        "TOPICS_IN_VOTING": "Topics in voting",
-        "TOPICS_IN_FOLLOW_UP": "Topics in follow up",
-        "TOPICS_CLOSED": "Closed topics"
+        "TOPICS_IN_PROGRESS": "Ühisloomes teemad",
+        "TOPICS_IN_VOTING": "Hääletamisel teemad",
+        "TOPICS_IN_FOLLOW_UP": "Elluviimisel teemad",
+        "TOPICS_CLOSED": "Suletud teemad",
+        "TOPICS_FAVOURITES": "Favourite topics"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -564,7 +565,7 @@
       "LNK_MENTIONS_COUNT": "Sotsiaalmeedias: {{mentionsCount}}",
       "LNK_MENTIONS_COUNT_ADD_HASHTAG": "lisa teemaviide",
       "LBL_TAB_ARGUMENTS": "Argumendid",
-      "LBL_TAB_MENTIONS": "Sotsiaalmeedia postitust",
+      "LBL_TAB_MENTIONS": "Sotsiaalmeedias",
       "TAB_ARGUMENTS_HEADING": "@:VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT",
       "LBL_ARGUMENTS_COUNT_PRO": "poolt: {{countPro}}",
       "LBL_ARGUMENTS_COUNT_CON": "vastu: {{countCon}}",
@@ -755,7 +756,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT": "Väide võib olla 1 kuni 128 tähemärki pikk.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Vaja on valida argumendist teatamise põhjus",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Selgitus võib olla 1 kuni 2048 tähemärki pikk.",
-  "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Argumendi teavitamise järel on argumenti muudetud seetõttu ei saa antud argumenti modereerida.",
+  "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Argumendist teavitamise järel on argumenti muudetud ja seetõttu ei saa seda argumenti modereerida.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Oled katkestanud allkirjastamise ja su häält ei loetud.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Allkirjastamine võttis liiga kaua aega. Häält ei loetud. Palun alusta uuesti.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Allkiri ei ole korrektne. Su häält ei loetud.",
