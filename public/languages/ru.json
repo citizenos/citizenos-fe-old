@@ -399,7 +399,8 @@
         "TOPICS_IN_PROGRESS": "Темы в стадии создания",
         "TOPICS_IN_VOTING": "Темы в стадии голосования",
         "TOPICS_IN_FOLLOW_UP": "Темы в стадии применения решения",
-        "TOPICS_CLOSED": "Закрытые темы"
+        "TOPICS_CLOSED": "Закрытые темы",
+        "TOPICS_FAVOURITES": "Favourite topics"
       }
     },
     "MY_GROUPS_GROUPID": {
