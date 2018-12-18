@@ -399,7 +399,8 @@
         "TOPICS_IN_PROGRESS": "crwdns15438:0crwdne15438:0",
         "TOPICS_IN_VOTING": "crwdns15440:0crwdne15440:0",
         "TOPICS_IN_FOLLOW_UP": "crwdns15442:0crwdne15442:0",
-        "TOPICS_CLOSED": "crwdns15444:0crwdne15444:0"
+        "TOPICS_CLOSED": "crwdns15444:0crwdne15444:0",
+        "TOPICS_FAVOURITES": "crwdns15736:0crwdne15736:0"
       }
     },
     "MY_GROUPS_GROUPID": {
