@@ -67,6 +67,13 @@ angular
                         onSelect: function () {
                             $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
+                    },
+                    {
+                        id: 'favouriteTopics',
+                        name: 'VIEWS.MY.FILTERS.TOPICS_FAVOURITES',
+                        onSelect: function () {
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                        }
                     }
                 ]
             },
