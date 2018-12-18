@@ -531,6 +531,28 @@ angular
             loadTopicMemberGroupList();
         }
 
+        $scope.toggleFavourite = function () {
+            if ($scope.topic.favourite === true) {
+                $scope.topic.$removeFromFavourites()
+                .then(function () {
+                    $scope.topic.favourite = false;
+                    if ($state.current.name.indexOf('my') > -1) {
+                        $state.reload();
+                    }
+                });
+            } else {
+                $scope.topic.$addToFavourites()
+                .then(function () {
+                    $scope.topic.favourite = true;
+                    if ($state.current.name.indexOf('my') > -1) {
+                        $state.reload();
+                    }
+                });
+            }
+            
+            
+        }
+
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
             if (fromState.name === 'topics.view.files') {
                 $scope.loadTopicAttachments();

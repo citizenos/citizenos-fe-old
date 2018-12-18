@@ -510,6 +510,9 @@
                                 case 'closed':
                                     urlParams.statuses = Topic.STATUSES.closed;
                                     return Topic.query(urlParams).$promise;
+                                case 'favouriteTopics':
+                                    urlParams.favourite = true;
+                                    return Topic.query(urlParams).$promise;
                                 case 'grouped':
                                     return Group.query().$promise;
                                 default:
@@ -625,7 +628,7 @@
                     parent: 'main',
                     controller: ['$state', '$window', 'cosConfig', function ($state, $window, cosConfig) {
                         var aboutPage = cosConfig.links.about;
-                        console.log(cosConfig, aboutPage);
+                        
                         if (aboutPage) {
                             $window.location.href = aboutPage;
                             
