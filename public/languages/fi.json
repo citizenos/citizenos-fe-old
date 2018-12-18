@@ -399,7 +399,8 @@
         "TOPICS_IN_PROGRESS": "Kesken olevat aiheet",
         "TOPICS_IN_VOTING": "Äänestyksessä olevat aiheet",
         "TOPICS_IN_FOLLOW_UP": "Seurannassa olevat aiheet",
-        "TOPICS_CLOSED": "Suljetut aiheet"
+        "TOPICS_CLOSED": "Suljetut aiheet",
+        "TOPICS_FAVOURITES": "Favourite topics"
       }
     },
     "MY_GROUPS_GROUPID": {
