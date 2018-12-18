@@ -399,7 +399,8 @@
         "TOPICS_IN_PROGRESS": "Themen in Bearbeitung",
         "TOPICS_IN_VOTING": "Themen in Abstimmung",
         "TOPICS_IN_FOLLOW_UP": "Themen in der Nachverfolgung",
-        "TOPICS_CLOSED": "Geschlossene Themen"
+        "TOPICS_CLOSED": "Geschlossene Themen",
+        "TOPICS_FAVOURITES": "Favourite topics"
       }
     },
     "MY_GROUPS_GROUPID": {
