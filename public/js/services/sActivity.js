@@ -336,7 +336,7 @@ angular
                 dataobject = dataobject[0];
             }
 
-            if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject.name || activity.data.target && activity.data.target['@type'] === ' Topic') {
+            if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject['@type'] === 'TopicFavourite' || dataobject.name || activity.data.target && activity.data.target['@type'] === ' Topic') {
                 return 'topic';
             } else if (dataobject['@type'] === 'Group' || dataobject.groupName) {
                 return 'group';
