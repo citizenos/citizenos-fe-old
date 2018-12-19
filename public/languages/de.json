@@ -400,7 +400,7 @@
         "TOPICS_IN_VOTING": "Themen in Abstimmung",
         "TOPICS_IN_FOLLOW_UP": "Themen in der Nachverfolgung",
         "TOPICS_CLOSED": "Geschlossene Themen",
-        "TOPICS_FAVOURITES": "Lieblingsthemen"
+        "TOPICS_FAVOURITES": "Favoriten"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -644,7 +644,7 @@
     "ACTIVITY_USER_JOIN_TOPIC": "Benutzer {{userName}} beteiligt sich am Thema {{topicTitle}} mit folgenden Zugangsrechten: {{accessLevel}}.",
     "ACTIVITY_USER_LEAVE_TOPIC": "Benutzer {{userName}} hat das Thema {{topicTitle}} verlassen",
     "ACTIVITY_USER_DELETE_TOPICFAVOURITE_TOPIC": "Benutzer {{userName}} hat das Thema {{topicTitle}} aus Favoriten entfernt",
-    "ACTIVITY_USER_ADD_TOPIC_TOPICFAVOURITE": "User {{userName}} has added topic {{topicTitle}} to favourites",
+    "ACTIVITY_USER_ADD_TOPIC_TOPICFAVOURITE": "Benutzer {{userName}} hat das Thema {{topicTitle}} zu Favoriten hinzugefügt",
     "ACTIVITY_USER_CREATE_VOTE_TOPIC": "Benutzer {{userName}} startete eine Abstimmung zum Thema: {{topicTitle}}",
     "ACTIVITY_USER_UPDATE_VOTE_TOPIC": "Benutzer {{userName}} aktualisierte die Abstimmungsfrist vom Thema {{topicTitle}}.",
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC": "Benutzer hat zu folgendem Thema abgestimmt: {{topicTitle}}",
@@ -685,7 +685,7 @@
     "ACTIVITY_TOPIC_FIELD_VISIBILITY": "Sichbarkeit",
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PRIVATE": "geschlossen",
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PUBLIC": "öffentlich",
-    "ACTIVITY_GROUP_FIELD_NAME": "name",
+    "ACTIVITY_GROUP_FIELD_NAME": "Name",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTEXT": "gelöschte Begründung",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE": "Begründung",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_ABUSE": "@:TXT_REPORT_TYPES_ABUSE",
