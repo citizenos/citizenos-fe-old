@@ -72,6 +72,9 @@
 
                 <!-- Group member Topic -->
                 <a ng-if="isGroupMemberTopicsVisible(item)" ng-repeat="groupMemberTopic in item.members.topics.rows" class="small_topic" ui-sref="my.topics.topicId({topicId: groupMemberTopic.id})" ui-sref-active="active">
+                    <div class="pin_container" ng-if="groupMemberTopic.pinned">
+                        <div class="sprite sprite-icon-favourite2x"></div>
+                    </div>
                     <div class="small_topic_header">
                         <div class="small_topic_left_cont">
                             <div class="small_topic_icon">
