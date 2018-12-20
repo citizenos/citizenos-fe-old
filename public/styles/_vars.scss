@@ -78,7 +78,7 @@ $nature_green_dark: #b0dc2e;
 $nature_green_border_dark: #a5cc30;
 
 $dark_yellow: #fedc32; 
-$favorite_yellow: #ffc600;
+$pin_yellow: #ffc600;
 
 $aqua_marine: #2eecb4;
 $green_medium:  #28c798;
@@ -98,7 +98,7 @@ $aqua_marine_text: #00ce8f;;
 }
 
 .yellow_progress_bar {
-    background: $favorite_yellow;
+    background: $pin_yellow;
 }
 
 /* INFO BAR COLORS */
@@ -169,8 +169,8 @@ $aqua_marine_text: #00ce8f;;
     background: $light_gray;
 }
 
-.favorite_yellow_background {
-    background: $favorite_yellow;
+.pin_yellow_background {
+    background: $pin_yellow;
 }
 
 .red_background {
@@ -296,7 +296,7 @@ $aqua_marine_text: #00ce8f;;
 }
 
 .bullet_yellow {
-    background: $favorite_yellow;
+    background: $pin_yellow;
 }
 
 .bullet_aqua_marine {

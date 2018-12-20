@@ -268,7 +268,7 @@ table, .pretend_table {
 
 //Overall button styles and other general items
 
-.container_favorite {
+.container_pin {
     position: absolute;
     width: 22px;
     height: 22px;
@@ -313,7 +313,7 @@ table, .pretend_table {
         @include tablet {
             transition: none !important;
         }
-        background: $favorite_yellow;
+        background: $pin_yellow;
         border-radius: 50%;
         width: 0;
         height: 0;
@@ -330,7 +330,7 @@ table, .pretend_table {
 
 }
 
-.container_favorite.favorited {
+.container_pin.pinned {
     .yellow_bg {
         transition: none;
         width: 24px !important;

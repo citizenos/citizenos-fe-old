@@ -531,19 +531,19 @@ angular
             loadTopicMemberGroupList();
         }
 
-        $scope.toggleFavourite = function () {
-            if ($scope.topic.favourite === true) {
-                $scope.topic.$removeFromFavourites()
+        $scope.togglePin = function () {
+            if ($scope.topic.pinned === true) {
+                $scope.topic.$removeFromPinned()
                 .then(function () {
-                    $scope.topic.favourite = false;
+                    $scope.topic.pinned = false;
                     if ($state.current.name.indexOf('my') > -1) {
                         $state.reload();
                     }
                 });
             } else {
-                $scope.topic.$addToFavourites()
+                $scope.topic.$addToPinned()
                 .then(function () {
-                    $scope.topic.favourite = true;
+                    $scope.topic.pinned = true;
                     if ($state.current.name.indexOf('my') > -1) {
                         $state.reload();
                     }
