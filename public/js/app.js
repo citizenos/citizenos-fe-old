@@ -510,8 +510,8 @@
                                 case 'closed':
                                     urlParams.statuses = Topic.STATUSES.closed;
                                     return Topic.query(urlParams).$promise;
-                                case 'favouriteTopics':
-                                    urlParams.favourite = true;
+                                case 'pinnedTopics':
+                                    urlParams.pinned = true;
                                     return Topic.query(urlParams).$promise;
                                 case 'grouped':
                                     return Group.query().$promise;
