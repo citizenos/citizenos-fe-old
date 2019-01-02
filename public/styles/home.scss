@@ -446,6 +446,10 @@
                     width: 200px;
                 }
 
+                @media (max-width: 667px) {
+                    width: 100%;
+                }
+
                 * {
                     font-size: inherit;
                     color: inherit;
@@ -604,8 +608,13 @@
                 }
             }
 
-            &.eesti_jazzi_arengusuunad {
-                /** TODO: Graphics here once present - https://github.com/citizenos/citizenos-api/issues/73 **/
+            &.eesti_jazzi_arengusuunad { /** https://github.com/citizenos/citizenos-api/issues/73 **/
+                background-image: url('../imgs/eestijazziarengusuunad.png');
+                background-repeat: no-repeat;
+                background-position: right -100px  top;
+                @media (max-width: 667px) {
+                    background-image: none;
+                }
             }
 
             @media (max-width: 2480px) {
