@@ -580,7 +580,7 @@
                 background-image: url('../imgs/tutorial.png');
                 background-repeat: no-repeat;
                 background-position: right -100px  top;
-                @media (max-width: 667px) {                   
+                @media (max-width: 667px) {
                     background-image: none;
                 }
             }
@@ -590,7 +590,7 @@
                 background-repeat: no-repeat;
                 background-position: right -50px  bottom -2px;
                 background-size: 300px;
-                @media (max-width: 667px) {                   
+                @media (max-width: 667px) {
                      background-image: none;
                 }
             }
@@ -599,9 +599,13 @@
                 background-image: url('../imgs/ldi_indonesia.png');
                 background-repeat: no-repeat;
                 background-position: right -90px  top -15px;
-                @media (max-width: 667px) {                   
+                @media (max-width: 667px) {
                      background-image: none;
                 }
+            }
+
+            &.eesti_jazzi_arengusuunad {
+                /** TODO: Graphics here once present - https://github.com/citizenos/citizenos-api/issues/73 **/
             }
 
             @media (max-width: 2480px) {

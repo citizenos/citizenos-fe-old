@@ -187,6 +187,11 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('eestijazziarengusuunad', {
+                    url: '/eestijazziarengusuunad',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
                 .state('account', {
                     url: '/account',
                     abstract: true,
@@ -628,10 +633,10 @@
                     parent: 'main',
                     controller: ['$state', '$window', 'cosConfig', function ($state, $window, cosConfig) {
                         var aboutPage = cosConfig.links.about;
-                        
+
                         if (aboutPage) {
                             $window.location.href = aboutPage;
-                            
+
                             return;
                         }
                         $state.go('error.404');
