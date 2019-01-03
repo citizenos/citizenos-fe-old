@@ -30,12 +30,12 @@
                  ng-style="STATUSES.voting === topic.status && {'width':'50%'} || {'width': '66%'}">
             </div>
 
-            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting, STATUSES.inProgress].indexOf(topic.status) > -1" class="progress_line favorite_yellow_background"
+            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting, STATUSES.inProgress].indexOf(topic.status) > -1" class="progress_line pin_yellow_background"
                  ng-style="STATUSES.inProgress === topic.status && {'width':'25%'} || {'width': '33%'}">
             </div>
 
             <div class="days_left_wrap"
-                 ng-class="{favorite_yellow_background: topic.status === STATUSES.inProgress, bar_green: topic.status === STATUSES.voting, bar_blue: topic.status === STATUSES.followUp,timeline_gray_background: topic.status === STATUSES.closed }"
+                 ng-class="{pin_yellow_background: topic.status === STATUSES.inProgress, bar_green: topic.status === STATUSES.voting, bar_blue: topic.status === STATUSES.followUp,timeline_gray_background: topic.status === STATUSES.closed }"
                  ng-style="topic.status === STATUSES.inProgress && {'left':'25%'}  || topic.status === STATUSES.voting && {'left':'50%'} || topic.status === STATUSES.followUp && {'left': '75%'} || topic.status === STATUSES.closed && {'left': '99%'}">
                 <div class="table_cell">
                     {{'TXT_TOPIC_STATUS_' + topic.status | uppercase | translate}}
@@ -753,7 +753,7 @@
 
                         <div class="topic_info" ng-class="app.more_info_button ? 'open' : ''">
 
-                            <div class="container_favorite" ng-class="topic.favourite ? 'favorited' : ''" ng-click="toggleFavourite()">
+                            <div class="container_pin" ng-class="topic.pinned ? 'pinned' : ''" ng-click="togglePin()">
                                 <div class="ff_table_fix">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-favourite2x-white"></div>
@@ -872,7 +872,7 @@
                     </div>
                     <div class="options_content">
                         <div class="blue_link" ng-repeat="attachment in topicAttachments">
-                            <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link" href="{{attachment.link}}" target="_blank">{{attachment.name}} <span class="btn blue_button file_type">.{{attachment.type}}</span></a>
+                            <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link" ng-click="$event.preventDefault(); downloadAttachment(attachment);" href="{{attachment.link}}">{{attachment.name}}<span class="btn blue_button file_type">.{{attachment.type}}</span></a>
                             <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link" href="{{attachment.link}}" >{{attachment.name}} <span class="btn blue_button file_type">{{attachment.type}}</span></a>
                         </div>
                         <div class="line lightest_line" ng-if="topicAttachments.length"></div>

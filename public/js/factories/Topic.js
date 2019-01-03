@@ -125,10 +125,10 @@ angular
                         }
                     }
                 },
-                addToFavourites: {
+                addToPinned: {
                     method: 'POST',
                     params: {topicId: '@id'},
-                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/favourites'),
+                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/pin'),
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) { // IF patch is working then make it return data again, for now return nothing to stop from overwriting all fields but topkenJoin
                         } else {
@@ -136,10 +136,10 @@ angular
                         }
                     }
                 },
-                removeFromFavourites: {
+                removeFromPinned: {
                     method: 'DELETE',
                     params: {topicId: '@id'},
-                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/favourites'),
+                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/pin'),
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) { // IF patch is working then make it return data again, for now return nothing to stop from overwriting all fields but topkenJoin
                         } else {
@@ -164,7 +164,8 @@ angular
 
         Topic.CATEGORIES = {
             tenislandproject: 'tenislandproject',
-            keepitcleanplan: 'keepitcleanplan', // //TODO: Special project with https://www.letsdoitworld.org/, remove when over.
+            keepitcleanplan: 'keepitcleanplan', // TODO: Special project with https://www.letsdoitworld.org/, remove when over.
+            eestijazziarengusuunad: 'eestijazziarengusuunad', // Special project with http://www.jazz.ee/ - https://github.com/citizenos/citizenos-api/issues/73
             business: 'business', // Business and industry
             transport: 'transport', // Public transport and road safety
             taxes: 'taxes', // Taxes and budgeting

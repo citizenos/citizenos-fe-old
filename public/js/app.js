@@ -187,6 +187,11 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('eestijazziarengusuunad', {
+                    url: '/eestijazziarengusuunad',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
                 .state('account', {
                     url: '/account',
                     abstract: true,
@@ -510,8 +515,8 @@
                                 case 'closed':
                                     urlParams.statuses = Topic.STATUSES.closed;
                                     return Topic.query(urlParams).$promise;
-                                case 'favouriteTopics':
-                                    urlParams.favourite = true;
+                                case 'pinnedTopics':
+                                    urlParams.pinned = true;
                                     return Topic.query(urlParams).$promise;
                                 case 'grouped':
                                     return Group.query().$promise;
@@ -628,10 +633,10 @@
                     parent: 'main',
                     controller: ['$state', '$window', 'cosConfig', function ($state, $window, cosConfig) {
                         var aboutPage = cosConfig.links.about;
-                        
+
                         if (aboutPage) {
                             $window.location.href = aboutPage;
-                            
+
                             return;
                         }
                         $state.go('error.404');

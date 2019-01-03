@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $log, $sce, $location, ngDialog, sAuth, sActivity, Topic, TopicMemberGroup, TopicMemberUser, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $log, $sce, $location, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
@@ -531,27 +531,29 @@ angular
             loadTopicMemberGroupList();
         }
 
-        $scope.toggleFavourite = function () {
-            if ($scope.topic.favourite === true) {
-                $scope.topic.$removeFromFavourites()
+        $scope.togglePin = function () {
+            if ($scope.topic.pinned === true) {
+                $scope.topic.$removeFromPinned()
                 .then(function () {
-                    $scope.topic.favourite = false;
+                    $scope.topic.pinned = false;
                     if ($state.current.name.indexOf('my') > -1) {
                         $state.reload();
                     }
                 });
             } else {
-                $scope.topic.$addToFavourites()
+                $scope.topic.$addToPinned()
                 .then(function () {
-                    $scope.topic.favourite = true;
+                    $scope.topic.pinned = true;
                     if ($state.current.name.indexOf('my') > -1) {
                         $state.reload();
                     }
                 });
             }
-            
-            
         }
+
+        $scope.downloadAttachment = function (attachment) {
+            return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
+        };
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
             if (fromState.name === 'topics.view.files') {

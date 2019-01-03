@@ -278,6 +278,7 @@
   "TXT_TOPIC_CATEGORY_ALL": "crwdns10416:0crwdne10416:0",
   "TXT_TOPIC_CATEGORY_KEEPITCLEANPLAN": "crwdns11192:0crwdne11192:0",
   "TXT_TOPIC_CATEGORY_TENISLANDPROJECT": "crwdns14672:0crwdne14672:0",
+  "TXT_TOPIC_CATEGORY_EESTIJAZZIARENGUSUUNAD": "crwdns15754:0crwdne15754:0",
   "TXT_TOPIC_CATEGORY_BUSINESS": "crwdns10417:0crwdne10417:0",
   "TXT_TOPIC_CATEGORY_TRANSPORT": "crwdns10418:0crwdne10418:0",
   "TXT_TOPIC_CATEGORY_TAXES": "crwdns10419:0crwdne10419:0",
@@ -400,7 +401,7 @@
         "TOPICS_IN_VOTING": "crwdns15440:0crwdne15440:0",
         "TOPICS_IN_FOLLOW_UP": "crwdns15442:0crwdne15442:0",
         "TOPICS_CLOSED": "crwdns15444:0crwdne15444:0",
-        "TOPICS_FAVOURITES": "crwdns15736:0crwdne15736:0"
+        "TOPICS_PINNED": "crwdns15748:0crwdne15748:0"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -643,8 +644,8 @@
     "ACTIVITY_USER_DELETE_USER_TOPIC": "crwdns11193:0crwdne11193:0",
     "ACTIVITY_USER_JOIN_TOPIC": "crwdns10988:0{{userName}}crwdnd10988:0{{topicTitle}}crwdnd10988:0{{accessLevel}}crwdne10988:0",
     "ACTIVITY_USER_LEAVE_TOPIC": "crwdns10852:0{{userName}}crwdnd10852:0{{topicTitle}}crwdne10852:0",
-    "ACTIVITY_USER_DELETE_TOPICFAVOURITE_TOPIC": "crwdns15738:0{{userName}}crwdnd15738:0{{topicTitle}}crwdne15738:0",
-    "ACTIVITY_USER_ADD_TOPIC_TOPICFAVOURITE": "crwdns15740:0{{userName}}crwdnd15740:0{{topicTitle}}crwdne15740:0",
+    "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "crwdns15750:0{{userName}}crwdnd15750:0{{topicTitle}}crwdne15750:0",
+    "ACTIVITY_USER_ADD_TOPIC_TOPICPIN": "crwdns15752:0{{userName}}crwdnd15752:0{{topicTitle}}crwdne15752:0",
     "ACTIVITY_USER_CREATE_VOTE_TOPIC": "crwdns10853:0{{userName}}crwdnd10853:0{{topicTitle}}crwdne10853:0",
     "ACTIVITY_USER_UPDATE_VOTE_TOPIC": "crwdns10854:0{{userName}}crwdnd10854:0{{topicTitle}}crwdne10854:0",
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC": "crwdns10855:0{{topicTitle}}crwdne10855:0",

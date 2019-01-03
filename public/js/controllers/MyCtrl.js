@@ -69,8 +69,8 @@ angular
                         }
                     },
                     {
-                        id: 'favouriteTopics',
-                        name: 'VIEWS.MY.FILTERS.TOPICS_FAVOURITES',
+                        id: 'pinnedTopics',
+                        name: 'VIEWS.MY.FILTERS.TOPICS_PINNED',
                         onSelect: function () {
                             $state.go('my.topics', {filter: this.id}, {reload: true});
                         }

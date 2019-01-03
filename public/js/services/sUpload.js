@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('sUpload', ['$http', '$q', 'sLocation', function ($http, $q, sLocation) {
+app.service('sUpload', ['$http', '$window', 'sLocation', function ($http, $window, sLocation) {
 
     var sUpload = this;
 
@@ -29,6 +29,18 @@ app.service('sUpload', ['$http', '$q', 'sLocation', function ($http, $q, sLocati
         var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload');
         var filename = filepath.split('/').pop();
         return $http.delete(path, {params: {'filename': filename, 'folder': folder}});
+    };
+
+    sUpload.download = function (topicId, attachmentId, userId) {
+        var path = sLocation.getAbsoluteUrlApi('/api/topics/:topicId/attachments/:attachmentId');
+
+        if (userId) {
+            path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/attachments/:attachmentId')
+        }
+        path = path.replace(':topicId', topicId)
+            .replace(':attachmentId', attachmentId);
+
+        $window.location.href = path + '?download=true';
     };
 
 }]);

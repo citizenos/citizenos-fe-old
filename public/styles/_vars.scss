@@ -77,8 +77,8 @@ $nature_green_border: #AED92E;
 $nature_green_dark: #b0dc2e;
 $nature_green_border_dark: #a5cc30;
 
-$dark_yellow: #fedc32; 
-$favorite_yellow: #ffc600;
+$dark_yellow: #fedc32;
+$pin_yellow: #ffc600;
 
 $aqua_marine: #2eecb4;
 $green_medium:  #28c798;
@@ -98,7 +98,7 @@ $aqua_marine_text: #00ce8f;;
 }
 
 .yellow_progress_bar {
-    background: $favorite_yellow;
+    background: $pin_yellow;
 }
 
 /* INFO BAR COLORS */
@@ -169,8 +169,8 @@ $aqua_marine_text: #00ce8f;;
     background: $light_gray;
 }
 
-.favorite_yellow_background {
-    background: $favorite_yellow;
+.pin_yellow_background {
+    background: $pin_yellow;
 }
 
 .red_background {
@@ -182,11 +182,15 @@ $aqua_marine_text: #00ce8f;;
 }
 
 .keep_it_clean_background {
-    background: #FFD100;
+    background: #ffd100;
 }
 
 .ten_island_project_background {
-    background: #BED73D;
+    background: #bed73d;
+}
+
+.eesti_jazzi_arengusuunad_project_background {
+    background: #00ff02;
 }
 
 .dark_gray_background {
@@ -296,7 +300,7 @@ $aqua_marine_text: #00ce8f;;
 }
 
 .bullet_yellow {
-    background: $favorite_yellow;
+    background: $pin_yellow;
 }
 
 .bullet_aqua_marine {
@@ -304,7 +308,7 @@ $aqua_marine_text: #00ce8f;;
 }
 
 .bullet_orange {
-    background: #F5762D;
+    background: #f5762d;
 }
 
 .bullet_sky_blue {
