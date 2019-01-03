@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $log, $sce, $location, ngDialog, sAuth, sActivity, Topic, TopicMemberGroup, TopicMemberUser, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $log, $sce, $location, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
@@ -549,9 +549,11 @@ angular
                     }
                 });
             }
-            
-            
         }
+
+        $scope.downloadAttachment = function (attachment) {
+            return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
+        };
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
             if (fromState.name === 'topics.view.files') {

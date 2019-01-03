@@ -6,7 +6,8 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title">{{topic.title}}</div>
+                    <div class="title" translate="MODALS.TOPIC_ATTACHMENTS_TITLE">Add/edit files for</div>
+                    <div class="title_description">{{topic.title}}</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -18,17 +19,6 @@
 
                 <div class="clearer"></div>
 
-                <div class="header_row_wrap">
-                    <div class="header_row">
-                        <div class="tab_button">
-                            <div class="tab_buttom_wrap">
-                            </div>
-                        </div>
-                        <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" cos-disabled="!topic.canEdit() || saveInProgress" ng-click="doSaveFiles()" translate="MODALS.TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS">Save attachments</div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
 
@@ -117,7 +107,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="btn_wrap edit_btn" ng-click="file.editMode = !file.editMode">
+                                            <div class="btn_wrap edit_btn" ng-click="editAttachment(file)">
                                                 <div class="btn">
                                                     <div class="table_cell">
                                                         <div class="sprite sprite-icon-edit2x"></div>
@@ -128,7 +118,7 @@
                                     </div>
                                 </td>
                                 <td class="file_buttons">
-                                    <div class="btn_wrap edit_btn" ng-click="file.editMode = !file.editMode">
+                                    <div class="btn_wrap edit_btn" ng-click="editAttachment(file)">
                                         <div class="btn">
                                             <div class="table_cell">
                                                 <div class="sprite desktop_fix sprite-icon-edit2x"></div>
