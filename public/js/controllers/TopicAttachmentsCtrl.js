@@ -76,56 +76,51 @@ angular
         $scope.appendAttachment = function (attachment) {
             if ($scope.form.files.length < TopicAttachment.LIMIT) {
                 $scope.$apply(function () {
-                    $scope.form.files.push(attachment);
+                    $scope.doSaveAttachment(attachment);
                 });
             }
         };
 
-        $scope.doSaveFiles = function () {
-            $scope.saveInProgress = true;
-            var savePromises = [];
-            $scope.form.files.forEach(function (attachment) {
-                if (attachment.file) {
-                    var savePromise = new Promise(function (resolve) {
-                        return sUpload
-                            .upload(attachment.file, $scope.topic.id)
-                            .then(function (fileUrl) {
-                                attachment.topicId = $scope.topic.id;
-                                attachment.link = fileUrl;
-                                var topicAttachment = new TopicAttachment(attachment);
+        $scope.doSaveAttachment = function (attachment) {
+            if (attachment.file) {
+                return sUpload
+                    .upload(attachment.file, $scope.topic.id)
+                    .then(function (fileUrl) {
+                        attachment.topicId = $scope.topic.id;
+                        attachment.link = fileUrl;
+                        var topicAttachment = new TopicAttachment(attachment);
 
-                                topicAttachment
-                                    .$save()
-                                    .then(function () {
-                                        return resolve();
-                                    }, function (err) {
-                                        var keys = Object.keys(err.data.errors);
-                                        keys.forEach(function (key) {
-                                            sNotification.addError(err.data.errors[key]);
-                                        })
-                                    });
+                        topicAttachment
+                            .$save()
+                            .catch(function (err) {
+                                var keys = Object.keys(err.data.errors);
+                                keys.forEach(function (key) {
+                                    sNotification.addError(err.data.errors[key]);
+                                });
                             });
+                        
+                        $scope.form.files.push(topicAttachment);
                     });
-                    savePromises.push(savePromise);
-                } else {
-                    attachment.topicId = $scope.topic.id;
-                    var topicAttachment = new TopicAttachment(attachment);
-                    if (topicAttachment.id) {
-                        savePromises.push(topicAttachment.$update());
-                    } else {
-                        savePromises.push(topicAttachment.$save());
-                    }
-                }
-            });
+            }
 
-            Promise
-                .all(savePromises)
-                .then(function() {
-                     $state.go('topics.view', {
-                        topicId: $scope.topic.id,
-                        editMode: null
-                    }, {reload: true});
-                });
+            attachment.topicId = $scope.topic.id;
+            var topicAttachment = new TopicAttachment(attachment);
+            if (topicAttachment.id) {
+                topicAttachment.$update();
+            } else {
+                topicAttachment.$save();
+            }
+
+            $scope.form.files.push(topicAttachment);
+        };
+
+        $scope.editAttachment = function (attachment) {
+            attachment.editMode = !attachment.editMode;
+            attachment.topicId = $scope.topic.id;
+            var topicAttachment = new TopicAttachment(attachment);
+            if (!attachment.editMode && attachment.id) {
+                topicAttachment.$update();
+            }
         };
 
         $scope.deleteAttachment = function (key, attachment) {
