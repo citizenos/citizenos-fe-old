@@ -558,12 +558,17 @@
                 background: #f1d9ff;
             }
 
+            &.eestijazziarengusuunad {
+                background: #00ff02;
+            }
+
             &.business,
             &.work,
             &.transport,
             &.health,
             &.education,
-            &.varia {
+            &.varia,
+            &.eestijazziarengusuunad {
                 color: $black;
                 .line {
                     background: $black;
