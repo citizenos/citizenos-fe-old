@@ -675,6 +675,7 @@
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "Benutzer {{userName}} erstellte ein Update für das Thema {{topicTitle}}:",
     "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC": "Benutzer {{userName}} fügte einen Anhang {{attachmentName}} zum Thema {{topicTitle}} hinzu",
     "ACTIVITY_USER_DELETE_ATTACHMENT_TOPIC": "Benutzer {{userName}} löschte den Anhang {{attachmentName}} aus dem Thema {{topicTitle}}",
+    "ACTIVITY_USER_UPDATE_ATTACHMENT_TOPIC": "User {{userName}} has updated an attachment in topic {{topicTitle}}",
     "ACTIVITY_TOPIC_FIELD_DESCRIPTION": "Beschreibung",
     "ACTIVITY_TOPIC_FIELD_STATUS": "Status",
     "ACTIVITY_TOPIC_FIELD_STATUS_INPROGRESS": "@:TXT_TOPIC_STATUS_INPROGRESS",
