@@ -592,7 +592,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Просмотреть ответ",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "Пользователь <b>{{usersFullName}}</b> пометил этот ответ, как неуместный",
-      "ARGUMENT_DELETED_COMMENT_TOOLTIP": "This argument has been deleted",
+      "ARGUMENT_DELETED_COMMENT_TOOLTIP": "Этот аргумент был удален",
       "LNK_ARGUMENT_CLOSE": "Свернуть аргумент",
       "LNK_ARGUMENT_READ_MORE": "Читайте дальше",
       "LNK_ARGUMENT_REPLY": "Ответить",
