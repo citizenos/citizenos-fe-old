@@ -247,7 +247,7 @@
                         </div>
                         <!-- END COMMENT EDITS -->
                         <!-- COMMENT FOOTER -->
-                        <div class="argument_footer">
+                        <div class="argument_footer" cos-disabled="!!comment.deletedAt" cos-disabled-tooltip="{{'VIEWS.TOPICS_TOPICID.ARGUMENT_DELETED_COMMENT_TOOLTIP' | translate}}">
                             <div class="link_wrap">
                                 <div class="table_cell">
                                     <div class="blue_link black_text" ng-click="comment.showReply=!comment.showReply" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_REPLY">
@@ -511,7 +511,7 @@
                         </div>
                         <!-- END REPLY DELETED -->
                         <!-- REPLY FOOTER -->
-                        <div class="argument_footer">
+                        <div class="argument_footer" style="width:200px;" cos-disabled="!!reply.deletedAt" cos-disabled-tooltip="{{'VIEWS.TOPICS_TOPICID.ARGUMENT_DELETED_COMMENT_TOOLTIP' | translate}}">
                             <div class="link_wrap">
                                 <div class="table_cell">
                                     <div class="blue_link black_text" ng-click="reply.showReply = !reply.showReply"
