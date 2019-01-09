@@ -710,7 +710,7 @@
     "ACTIVITY_USER_UPDATE_GROUPMEMBER": "Пользователь {{userName}} изменил уровень доступа пользователя {{userName2}} к группе {{groupName}}.",
     "ACTIVITY_USER_UPDATE_GROUPMEMBER_NONE": "Пользователь {{userName}} отменил доступ пользователя {{userName2}} к группе {{groupName}}",
     "USER_DELETE_USER_GROUP": "Пользователь {{userName}} удалил пользователя {{userName2}} из группы {{groupName}}",
-    "ACTIVITY_USER_ADD_USERCONNECTION": "Пользователь {{userName}} добавил новый способ входа в систему: {{connectionName}}",
+    "ACTIVITY_USER_ADD_USERCONNECTION_USER": "User {{userName}} has added new log-in method {{connectionName}}",
     "ACTIVITY_USER_CREATE_USER": "Пользователь {{userName}} создан",
     "ACTIVITY_USER_CREATE_USERCONSENT": "",
     "ACTIVITY_USER_DELETE_CONSENT": "",
