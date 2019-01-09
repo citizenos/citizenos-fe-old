@@ -710,7 +710,7 @@
     "ACTIVITY_USER_UPDATE_GROUPMEMBER": "Benutzer {{userName}} hat die Zugriffsrechte des Benutzers {{userName2}} für die Gruppe {{groupName}} geändert.",
     "ACTIVITY_USER_UPDATE_GROUPMEMBER_NONE": "Benutzer {{userName}} hat den Zugang von Benutzer {{userName2}} zur Gruppe {{groupName}} widerrufen",
     "USER_DELETE_USER_GROUP": "Benutzer {{userName}} hat den Benutzer {{userName2}} aus der Gruppe {{groupName}} entfernt",
-    "ACTIVITY_USER_ADD_USERCONNECTION": "Benutzer {{userName}} hat eine neue Anmeldemethode {{connectionName}} hinzugefügt",
+    "ACTIVITY_USER_ADD_USERCONNECTION_USER": "User {{userName}} has added new log-in method {{connectionName}}",
     "ACTIVITY_USER_CREATE_USER": "Benutzer {{userName}} wurde erstellt",
     "ACTIVITY_USER_CREATE_USERCONSENT": "",
     "ACTIVITY_USER_DELETE_CONSENT": "",
