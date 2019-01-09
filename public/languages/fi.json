@@ -710,7 +710,7 @@
     "ACTIVITY_USER_UPDATE_GROUPMEMBER": "Käyttäjä {{userName}} on muuttanut käyttäjän {{userName2}} käyttöoikeuksien tasoa ryhmässä {{groupName}}.",
     "ACTIVITY_USER_UPDATE_GROUPMEMBER_NONE": "Käyttäjä {{userName}} on kumonnut käyttäjän {{userName2}} käyttöoikeudet ryhmään {{groupName}}",
     "USER_DELETE_USER_GROUP": "Käyttäjä {{userName}} on poistanut käyttäjän {{userName2}} ryhmästä {{groupName}}",
-    "ACTIVITY_USER_ADD_USERCONNECTION": "Käyttäjä {{userName}} on lisännyt uuden kirjautumismenetelmän: {{connectionName}}",
+    "ACTIVITY_USER_ADD_USERCONNECTION_USER": "User {{userName}} has added new log-in method {{connectionName}}",
     "ACTIVITY_USER_CREATE_USER": "Käyttäjä {{userName}} on luotu",
     "ACTIVITY_USER_CREATE_USERCONSENT": "",
     "ACTIVITY_USER_DELETE_CONSENT": "",
