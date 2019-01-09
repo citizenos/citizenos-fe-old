@@ -1,4 +1,8 @@
-## 2018-01-04
+## 2019-01-09
+
+* Disable replying, voting and reporting on deleted arguments
+
+## 2019-01-04
 
 * Update topic attachments modal view, also trigger uploaded attachments download with attachment name https://github.com/citizenos/citizenos-fe/issues/117
 
