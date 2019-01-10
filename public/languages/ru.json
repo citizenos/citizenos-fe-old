@@ -170,7 +170,7 @@
     "SIGN_UP_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
     "SIGN_UP_BTN_SAVE": "@:MODALS.SIGN_UP_HEADING",
     "SIGN_UP_LNK_CANCEL": "@:LNK_CANCEL",
-    "TOPIC_ATTACHMENTS_TITLE": "Add/edit files for topic:",
+    "TOPIC_ATTACHMENTS_TITLE": "Добавить/редактировать файлы по теме:",
     "TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS": "Сохранить файлы",
     "TOPIC_ATTACHMENTS_LBL_COMPUTER": "С компьютера",
     "TOPIC_ATTACHMENTS_LBL_DROPBOX": "Dropbox",
@@ -402,7 +402,7 @@
         "TOPICS_IN_VOTING": "Темы в стадии голосования",
         "TOPICS_IN_FOLLOW_UP": "Темы в стадии применения решения",
         "TOPICS_CLOSED": "Закрытые темы",
-        "TOPICS_PINNED": "Pinned topics"
+        "TOPICS_PINNED": "Избранные темы"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -646,8 +646,8 @@
     "ACTIVITY_USER_DELETE_USER_TOPIC": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_TOPICMEMBERUSER_NONE",
     "ACTIVITY_USER_JOIN_TOPIC": "Пользователь {{userName}} присоединился к теме {{topicTitle}} с уровнем доступа: {{accessLevel}}.",
     "ACTIVITY_USER_LEAVE_TOPIC": "Пользователь {{userName}} покинул тему {{topicTitle}}",
-    "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "User {{userName}} has removed pin from topic {{topicTitle}}",
-    "ACTIVITY_USER_ADD_TOPIC_TOPICPIN": "User {{userName}} has pinned topic {{topicTitle}}",
+    "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "Пользователь {{userName}} удалил тему {{topicTitle}} из избранных",
+    "ACTIVITY_USER_ADD_TOPIC_TOPICPIN": "Пользователь {{userName}} добавил тему {{topicTitle}} к избранным",
     "ACTIVITY_USER_CREATE_VOTE_TOPIC": "Пользователь {{userName}} открыл голосование по теме {{topicTitle}}",
     "ACTIVITY_USER_UPDATE_VOTE_TOPIC": "Пользователь {{userName}} обновил срок окончания голосования по теме {{topicTitle}}.",
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC": "Пользователь проголосовал по теме {{topicTitle}}",
@@ -675,7 +675,7 @@
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "Пользователь {{userName}} создал обновление по теме {{topicTitle}}:",
     "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC": "Пользователь {{userName}} добавил файл {{attachmentName}} к теме {{topicTitle}}",
     "ACTIVITY_USER_DELETE_ATTACHMENT_TOPIC": "Пользователь {{userName}} удалил файл {{attachmentName}} в теме {{topicTitle}}",
-    "ACTIVITY_USER_UPDATE_ATTACHMENT_TOPIC": "User {{userName}} has updated an attachment in topic {{topicTitle}}",
+    "ACTIVITY_USER_UPDATE_ATTACHMENT_TOPIC": "Пользователь {{userName}} обновил прикрепленный файл в теме: {{topicTitle}}",
     "ACTIVITY_TOPIC_FIELD_DESCRIPTION": "описание",
     "ACTIVITY_TOPIC_FIELD_STATUS": "статус",
     "ACTIVITY_TOPIC_FIELD_STATUS_INPROGRESS": "@:TXT_TOPIC_STATUS_INPROGRESS",
