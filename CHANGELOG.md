@@ -1,3 +1,7 @@
+## 2019-01-11
+
+* Add Empowered by CitizenOS logo to partnersites
+
 ## 2019-01-09
 
 * Disable replying, voting and reporting on deleted arguments
