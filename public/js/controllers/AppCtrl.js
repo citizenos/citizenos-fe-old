@@ -185,6 +185,14 @@ angular
             return false;
         };
 
+        $scope.app.displayEmpoweredIcon = function () {
+            if (!/citizenos\.com/.test($location.href)) {
+                return true;
+            }
+
+            return false;
+        };
+
         $rootScope.$on('ngDialog.opened', function () {
             sNotification.removeAll();
         });

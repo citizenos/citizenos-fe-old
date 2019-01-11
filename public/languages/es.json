@@ -710,7 +710,7 @@
     "ACTIVITY_USER_UPDATE_GROUPMEMBER": "El usuario {{userName}} cambió el nivel de acceso del usuario {{userName2}} al grupo {{groupName}}.",
     "ACTIVITY_USER_UPDATE_GROUPMEMBER_NONE": "El usuario {{userName}} revocó el acceso del usuario {{userName2}} al grupo {{groupName}}",
     "USER_DELETE_USER_GROUP": "El usuario {{userName}} quitó al usuario {{userName2}} del grupo {{groupName}}",
-    "ACTIVITY_USER_ADD_USERCONNECTION": "El usuario {{userName}} agregó un nuevo método de inicio de sesión {{connectionName}}",
+    "ACTIVITY_USER_ADD_USERCONNECTION_USER": "User {{userName}} has added new log-in method {{connectionName}}",
     "ACTIVITY_USER_CREATE_USER": "Se creó el usuario {{userName}}",
     "ACTIVITY_USER_CREATE_USERCONSENT": "",
     "ACTIVITY_USER_DELETE_CONSENT": "",

@@ -243,7 +243,39 @@ nav {
 
     }
 
+    #nav_partner_wrap {
+        height: 50px;
+        width: 190px;
+        background-color: #1A1A1A;
+        position: absolute;
+        left:0;
+        bottom:0;
+        text-align: center;
+        @media (max-width: '1024px') {
+            right: 0;
+            width: 230px;
+        }
+        
+        #nav_partner_items {
+            display: table-cell;
+            height: 50px;
+            vertical-align: middle;
 
+            span {
+                font-size: 12px;
+                float: left;
+            }
+            .nav_partner_logo{
+                background: url('../imgs/cos_logo_small_negative.png');
+                width: 88px;
+                height: 16px;
+                background-repeat: no-repeat;
+                background-size: 88px 16px;
+                margin-left: 5px;
+            }
+        }
+        
+    }
 }
 
 
