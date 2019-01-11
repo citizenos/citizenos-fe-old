@@ -186,7 +186,7 @@ angular
         };
 
         $scope.app.displayEmpoweredIcon = function () {
-            if (!/citizenos\.com/.test($location.href)) {
+            if (!/citizenos\.com/.test($location.absUrl())) {
                 return true;
             }
 
