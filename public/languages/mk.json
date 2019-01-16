@@ -293,18 +293,18 @@
   "TXT_TOPIC_CATEGORY_COMMUNITIES": "Заедници и урбано напредување ",
   "TXT_TOPIC_CATEGORY_DEFENSE": "Одбрана и безбедност",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Интеграција и човекови права",
-  "TXT_TOPIC_CATEGORY_VARIA": "Varia",
+  "TXT_TOPIC_CATEGORY_VARIA": "Различности",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Search topics, users, groups…"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Пребарај теми, корисници, групи…"
     }
   },
   "DEFAULT": {
     "NAV": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
-      "HEADING_TOPICS": "Topics",
-      "LNK_CREATE_TOPICS": "Create topic",
+      "HEADING_TOPICS": "Теми",
+      "LNK_CREATE_TOPICS": "Создади тема",
       "LNK_MY_TOPICS": "My topics",
       "LNK_PUBLIC_TOPICS": "Public topics",
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
