@@ -558,6 +558,7 @@
       "VOTE_LBL_DEADLINE": "Batas Waktu",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Sisa hari: {{numberOfDaysLeft}}",
       "VOTE_BTN_CREATE_VOTE": "MULAI MASA PEMILIHAN",
+      "LNK_TOPIC_DETAILS": "Topic details",
       "LBL_CATEGORIES": "Kategori:",
       "LBL_NO_CATEGORIES": "tidak ada",
       "LNK_ADD_CATEGORIES": "tambah Kategori",
