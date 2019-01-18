@@ -558,6 +558,7 @@
       "VOTE_LBL_DEADLINE": "Frist",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Verbleibende Tage: {{numberOfDaysLeft}}",
       "VOTE_BTN_CREATE_VOTE": "ABSTIMMUNG STARTEN",
+      "LNK_TOPIC_DETAILS": "Topic details",
       "LBL_CATEGORIES": "Kategorien:",
       "LBL_NO_CATEGORIES": "keine",
       "LNK_ADD_CATEGORIES": "Kategorien hinzufügen",
