@@ -558,6 +558,7 @@
       "VOTE_LBL_DEADLINE": "Краен рок",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Преостанати денови: {{numberOfDaysLeft}}",
       "VOTE_BTN_CREATE_VOTE": "ПОЧНИ СО ГЛАСАЊЕ",
+      "LNK_TOPIC_DETAILS": "Topic details",
       "LBL_CATEGORIES": "Категории:",
       "LBL_NO_CATEGORIES": "ништо",
       "LNK_ADD_CATEGORIES": "додади категории",
