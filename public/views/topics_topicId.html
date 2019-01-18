@@ -763,44 +763,75 @@
                             </div>
 
                             <div class="more_info_button" ng-click="app.more_info_button = !app.more_info_button">
+                                
                                 <div class="table_cell">
-                                    <div class="circle_holder">
-                                        <div class="circle_wrap">
-                                            <div class="circle"></div>
+                                    <div class="more_info_button_text_wrap">
+                                        <div class="arrow_down_wrap">
+                                            <div class="arrow_down_blue sprite sprite-dropdown-arrowdown-blue2x"></div>
                                         </div>
-                                        <div class="circle_wrap">
-                                            <div class="circle"></div>
-                                        </div>
-                                        <div class="circle_wrap">
-                                            <div class="circle"></div>
-                                        </div>
+                                        <span>Topic details</span>
+                                    </div>
+                                    <div class="more_info_attachment_wrap">
+                                        <div class="more_info_attachment_icon sprite sprite-icon-attachment"></div>
+                                        <span class="more_info_attachment_count">{{topicAttachments.length}}</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="info_sections_wrap" ng-if="wWidth > 767 || app.more_info_button">
                                 <div class="info_section">
-                                    <span translate="VIEWS.TOPICS_TOPICID.LBL_CATEGORIES">Categories:</span>
-                                    <span ng-repeat="category in topic.categories"><span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}">Poliitika</span><span
-                                    ng-if="!$last"> | </span></span><span ng-if="!topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none <span ng-if="topic.canEdit()"
-                                                                                                                                                                         class="blue_link"
-                                                                                                                                                                         ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})"
-                                                                                                                                                                         translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span></span>
+                                    <div class="info_section_title">
+                                        <span translate="VIEWS.TOPICS_TOPICID.LBL_CATEGORIES">Categories:</span>
+                                    </div>
+                                    <div class="info_section_content">
+                                        <span ng-repeat="category in topic.categories">
+                                            <span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}">Poliitika</span>
+                                            <span ng-if="!$last" class="info_section_separator"> | </span>
+                                        </span>
+                                        <span ng-if="!topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none 
+                                            <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span>
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="info_section"><span translate="VIEWS.TOPICS_TOPICID.LBL_AUTHORS">Authors:</span> <span ng-if="topic.creator.email" class="blue_link"
+                                <div class="info_section">
+                                    <div class="info_section_title">
+                                        <span translate="VIEWS.TOPICS_TOPICID.LBL_AUTHORS">Authors:</span>
+                                    </div>
+                                    <div class="info_section_content"><span ng-if="topic.creator.email" class="blue_link"
                                     tooltips tooltip-class="tooltip_author"
                                     tooltip-template="<span class='creator_data_tooltip_row'>{{topic.creator.email}}</span><span class='creator_data_tooltip_row'>{{topic.creator.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{topic.creator.pid}}</span>"
-                                    tooltip-smart="true">{{topic.creator.name}}</span><span ng-if="!topic.creator.email">{{topic.creator.name}}</span></div>
+                                    tooltip-smart="true">{{topic.creator.name}}</span><span ng-if="!topic.creator.email">{{topic.creator.name}}</span>
+                                    </div>
+                                </div>
                                 <div class="info_section">
-                                    <span translate="VIEWS.TOPICS_TOPICID.LBL_ACTIVITY">Activity:</span> <span class="blue_link"
-                                                                                                               ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')"
-                                                                                                               translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT"
-                                                                                                               translate-values="{count: topic.comments.rows.length || 0}">0 arguments</span> | <span
-                                    class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')" translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT"
-                                    translate-values="{mentionsCount: (topicSocialMentions.length ||0)}">0 social mentions</span> <span ng-if="!topic.hashtag && topic.canEdit()"> | </span><span class="blue_link" ng-if="!topic.hashtag && topic.canEdit()"
-                                                                                                                                        ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"
-                                                                                                                                        translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG"> add hashtag</span><span
-                                    ng-if="topic.hashtag"> #{{topic.hashtag}}</span>
+                                    <div class="info_section_title">
+                                        <span translate="VIEWS.TOPICS_TOPICID.LBL_ACTIVITY">Activity:</span>
+                                    </div>
+                                    <div class="info_section_content">
+                                        <span class="blue_link" ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')"
+                                                translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT"
+                                                translate-values="{count: topic.comments.rows.length || 0}">0 arguments</span>
+                                        <span class="info_section_separator"> | </span>
+                                        <span class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')" translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT"
+                                                translate-values="{mentionsCount: (topicSocialMentions.length ||0)}">0 social mentions</span>
+                                                <span ng-if="!topic.hashtag && topic.canEdit()" class="info_section_separator"> | </span>
+                                                <span class="blue_link" ng-if="!topic.hashtag && topic.canEdit()"
+                                                    ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"
+                                                    translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG"> add hashtag</span>
+                                        <span ng-if="topic.hashtag" class="black_text"> #{{topic.hashtag}}</span>
+                                    </div>
+                                </div>
+                                <div class="info_section" ng-if="wWidth < 767">
+                                    <div class="info_section_title">
+                                        <span translate="VIEWS.TOPICS_TOPICID.LBL_ATTACHMENTS">Attachments:</span>
+                                    </div>
+                                    <div class="info_section_content">
+                                        <div class="blue_link" ng-repeat="attachment in topicAttachments">
+                                            <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment" ng-click="$event.preventDefault(); downloadAttachment(attachment);" href="{{attachment.link}}">{{attachment.name}}<span class="btn blue_button file_type">.{{attachment.type}}</span></a>
+                                            <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment" href="{{attachment.link}}" >{{attachment.name}} <span class="btn blue_button file_type">{{attachment.type}}</span></a>
+                                        </div>
+                                        <div ui-sref="topics.view.files" cos-disabled="!topic.canEdit()"class="blue_link info_section_add_attachments" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -866,7 +897,7 @@
                         <div cos-disabled="!topic.canLeave()" class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
                     </div>
                 </div>
-                <div class="options_wrap">
+                <div class="options_wrap" ng-if="wWidth > 767">
                     <div class="options_header">
                         <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.HEADER_FILES">FILES</div>
                     </div>
