@@ -563,6 +563,7 @@
       "LNK_ADD_CATEGORIES": "добавить категории",
       "LBL_AUTHORS": "Авторы: {{topic.creator.name}}",
       "LBL_ACTIVITY": "Обсуждение:",
+      "LBL_ATTACHMENTS": "Attachments:",
       "LNK_ARGUMENTS_COUNT": "Аргументов: {{count}}",
       "LNK_MENTIONS_COUNT": "Упоминаний в соц. сетях: {{mentionsCount}}",
       "LNK_MENTIONS_COUNT_ADD_HASHTAG": "Добавить хэштег",
