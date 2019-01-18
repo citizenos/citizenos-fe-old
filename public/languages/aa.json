@@ -558,6 +558,7 @@
       "VOTE_LBL_DEADLINE": "crwdns10634:0crwdne10634:0",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "crwdns11020:0{{numberOfDaysLeft}}crwdne11020:0",
       "VOTE_BTN_CREATE_VOTE": "crwdns10636:0crwdne10636:0",
+      "LNK_TOPIC_DETAILS": "crwdns16106:0crwdne16106:0",
       "LBL_CATEGORIES": "crwdns10637:0crwdne10637:0",
       "LBL_NO_CATEGORIES": "crwdns10638:0crwdne10638:0",
       "LNK_ADD_CATEGORIES": "crwdns10639:0crwdne10639:0",
