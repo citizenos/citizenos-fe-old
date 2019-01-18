@@ -1,10 +1,14 @@
+## 2019-01-18
+
+* Place attachments more conveniently on mobile device https://github.com/citizenos/citizenos-fe/issues/103
+
 ## 2019-01-11
 
-* Add Empowered by CitizenOS logo to partnersites
+* Add Empowered by CitizenOS logo to partnersites https://github.com/citizenos/citizenos-fe/issues/104
 
 ## 2019-01-09
 
-* Disable replying, voting and reporting on deleted arguments
+* Disable replying, voting and reporting on deleted arguments https://github.com/citizenos/citizenos-api/issues/27
 
 ## 2019-01-04
 
