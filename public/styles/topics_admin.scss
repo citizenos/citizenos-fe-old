@@ -338,6 +338,7 @@
                         .topic_info {
                             position: relative;
                             margin-bottom: 29px;
+                            display: block;
 
                             .container_pin {
                                 top: -4px;
@@ -347,8 +348,8 @@
                                     right: -42px;
                                 }
                                 @media (max-width: 767px) {
+                                    display: blocK;
                                     top: auto;
-                                    bottom: 20px;
                                     right: 0;
                                     &:active {
                                         top: auto;
@@ -359,13 +360,11 @@
                             }
 
                             .more_info_button {
-                                width: 36px;
-                                height: 20px;
-                                background-color: $mobile_gray;
-                                border: 1px solid $mobile_border_gray;
-                                border-radius: 4px;
-                                position: absolute;
-                                bottom: 21px;
+                                margin-bottom: 21px;
+                                font-family: "Open Sans";
+                                font-size: 14px;
+                                line-height: 22px;
+                                color: $deep_sky_blue;
                                 display: none;
                                 @media (max-width: 767px) {
                                     display: table;
@@ -373,24 +372,35 @@
                                 .table_cell {
                                     width: 100%;
                                     height: 100%;
-                                    .circle_holder {
-                                        width: 20px;
-                                        margin: 0 auto;
-                                        .circle_wrap {
-                                            float: left;
-                                            height: 4px;
-                                            width: 4px;
-                                            position: relative;
-                                            &:not(:first-child) {
-                                                margin-left: 4px;
+
+                                    .more_info_button_text_wrap {
+                                        display: inline-block;
+
+                                        .arrow_down_wrap {
+                                            display: inline-block;
+                                            margin-right: 5px;
+
+                                            .arrow_down_blue {
+                                                width: 8px;
+                                                height: 5px;
+                                                display: inline-block;
+                                                vertical-align: middle;
                                             }
-                                            .circle {
-                                                position: absolute;
-                                                height: 4px;
-                                                width: 4px;
-                                                border-radius: 50%;
-                                                background: $circle_gray;
-                                            }
+                                        }
+                                    }
+
+                                    .more_info_attachment_wrap {
+                                        background-color: $deep_sky_blue;
+                                        color:$white;
+                                        height: 22px;
+                                        width: 38px;
+                                        border-radius: 11px;
+                                        margin-left: 7px;
+                                        display: inline-block;
+
+                                        .more_info_attachment_icon {
+                                            margin-left: 6px;
+                                            display: inline-block;
                                         }
                                     }
                                 }
@@ -399,6 +409,43 @@
                             .info_sections_wrap {
                                 .info_section {
                                     margin-bottom: 7px;
+                                    font-size: 13px;
+                                    line-height: 30px;
+
+                                    @media (min-width: 767px) {
+                                        line-height: 18px;
+                                    }
+                                    
+                                    .info_section_title {
+                                        font-weight: bold;
+
+                                        @media (min-width: 767px) {
+                                            display: inline-block;
+                                            font-weight: 400;
+                                        }
+                                    }
+                                    .info_section_content {
+                                        color: $deep_sky_blue;
+
+                                        @media (min-width: 767px) {
+                                            display: inline-block;
+
+                                            .blue_link {
+                                                line-height: 18px;
+                                            }
+                                        }
+                                    }
+                                    .info_section_separator {
+                                        color: $medium_black;
+                                    }
+                                    .file_type {
+                                        padding: 0 3px 0px 3px;
+                                        font-size: 12px;
+                                        margin-left: 10px;
+                                    }
+                                    .info_section_add_attachments {
+                                        margin-top: 15px;
+                                    }
                                 }
                                 tooltip, .tooltip_author {
                                     display: inline;
@@ -412,7 +459,8 @@
                                 }
                             }
                             .info_section, .blue_link {
-                                font-size: 13px;
+                                font-size: 14px;
+                                line-height: 30px;
                             }
                             .creator_data_tooltip_row {
                                 display: table-row;
