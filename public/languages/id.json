@@ -563,6 +563,7 @@
       "LNK_ADD_CATEGORIES": "tambah Kategori",
       "LBL_AUTHORS": "Penulis: {{topik.pembuat.nama}}",
       "LBL_ACTIVITY": "Diskusi:",
+      "LBL_ATTACHMENTS": "Attachments:",
       "LNK_ARGUMENTS_COUNT": "Argumen: {{count}}",
       "LNK_MENTIONS_COUNT": "Disebutkan di media sosial: {{mentionsCount}}",
       "LNK_MENTIONS_COUNT_ADD_HASHTAG": "menambahkan hashtag",
