@@ -563,6 +563,7 @@
       "LNK_ADD_CATEGORIES": "lisää luokkia",
       "LBL_AUTHORS": "Tekijät: {{topic.creator.name}}",
       "LBL_ACTIVITY": "Keskustelu:",
+      "LBL_ATTACHMENTS": "Attachments:",
       "LNK_ARGUMENTS_COUNT": "Kannanottoja: {{count}}",
       "LNK_MENTIONS_COUNT": "Sosiaalisia mainintoja: {{mentionsCount}}",
       "LNK_MENTIONS_COUNT_ADD_HASHTAG": "Lisää aihetunniste",
