@@ -74,11 +74,9 @@ angular
         };
 
         $scope.appendAttachment = function (attachment) {
-            if ($scope.form.files.length < TopicAttachment.LIMIT) {
-                $scope.$apply(function () {
-                    $scope.doSaveAttachment(attachment);
-                });
-            }
+            $scope.$apply(function () {
+                $scope.doSaveAttachment(attachment);
+            });
         };
 
         $scope.doSaveAttachment = function (attachment) {
@@ -92,14 +90,15 @@ angular
 
                         topicAttachment
                             .$save()
+                            .then(function () {
+                                $scope.form.files.push(topicAttachment);
+                            })
                             .catch(function (err) {
                                 var keys = Object.keys(err.data.errors);
                                 keys.forEach(function (key) {
                                     sNotification.addError(err.data.errors[key]);
                                 });
                             });
-                        
-                        $scope.form.files.push(topicAttachment);
                     });
             }
 
