@@ -1,6 +1,10 @@
+## 2019-01-29
+
+* Removed attachments limit from FE side to display proper erros to users  https://github.com/citizenos/citizenos-fe/issues/181
+
 ## 2019-01-18
 
-* Place attachments more conveniently on mobile device https://github.com/citizenos/citizenos-fe/issues/103
+* Place attachments more conveniently on mobile device https://github.com/citizenos/citizensos-fe/issues/103
 
 ## 2019-01-11
 
