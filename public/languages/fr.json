@@ -766,6 +766,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Argument report reason is required",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Le texte d'explication doit contenir entre 1 et 2048 caractères.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Report has become invalid cause argument has been updated after the report.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Topic attachment limit reached",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Vous avez abandonné le processus de signature en cours de route et votre vote n'a pas été comptabilisé.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "La requête de signature a expiré. Pour voter, veuiller recommencer.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "La signature n'est pas valide. Votre vote n'est pas comptabilisé.",
