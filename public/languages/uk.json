@@ -766,6 +766,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Argument report reason is required",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Текст пояснення може мати довжину від 1 до 2048 символів.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Report has become invalid cause argument has been updated after the report.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Topic attachment limit reached",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Ви відмінили підписання і Ваш голос не було враховано.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Строк дії запиту на підписання закінчився. Для того щоб проголосувати, будь-ласка, розпочніть з початку.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Підпис недійсний. Ваш голос не було враховано.",
