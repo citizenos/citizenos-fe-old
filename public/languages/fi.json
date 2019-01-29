@@ -766,6 +766,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Syy kommentista ilmoittamiseen on pakollinen",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Selitysteksti voi olla 1–2 048 merkin pituinen.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Ilmoitus ei enää kelpaa, koska kommenttia on päivitetty ilmoittamisen jälkeen.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Topic attachment limit reached",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Olet keskeyttänyt allekirjoituksen kulun, eikä ääntäsi laskettu.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Allekirjoituspyyntö on vanhentunut. Jos haluat äänestää, ole hyvä ja aloita alusta.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Allekirjoitus on virheellinen. Ääntäsi ei laskettu.",
