@@ -766,6 +766,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Alasan pelaporan argumen diperlukan",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Penjelasan teks dapat 1-2048 karakter.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Laporan menjadi tidak valid karena argumen telah diperbarui setelah adanya pelaporan.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Topic attachment limit reached",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Anda telah membatalkan proses penandatanganan dan suara Anda tidak dihitung.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Permintaan penandatanganan telah berakhir. Untuk memilih, silahkan mulai dari awal.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Tanda tangan ini tidak valid. Suara Anda tidak dihitung.",
