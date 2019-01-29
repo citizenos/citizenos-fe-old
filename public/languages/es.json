@@ -766,6 +766,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Argument report reason is required",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "El texto de la explicación puede tener de 1 a 2048 caracteres de longitud.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Report has become invalid cause argument has been updated after the report.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Topic attachment limit reached",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Canceló el flujo de firma y no se contabilizó el voto.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "La solicitud de firma caducó. Para votar, vuelva a empezar.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "La firma no es válida. No se contabilizó el voto.",
