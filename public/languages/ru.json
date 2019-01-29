@@ -766,6 +766,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Нужно выбрать причину сообщения об аргументе",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Описание может быть длиной от 1 до 2048 знаков.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Сообщение стало недействительным, так как аргумент был обновлен.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Topic attachment limit reached",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Вы прервали процесс подписания и Ваш голос не засчитан.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Процесс подписания занял слишком много времени и голос остался не засчитан. Пожалуйста, начните сначала.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Подпись недействительна. Ваш голос не засчитан.",
