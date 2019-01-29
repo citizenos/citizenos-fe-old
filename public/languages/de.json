@@ -766,6 +766,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Ein Grund für die Meldung des Arguments ist erforderlich",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Erklärungstext kann 1 bis 2048 Zeichen lang sein.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Die Meldung ist nun ungültig, weil das Argument nach der Meldung aktualisiert wurde.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Topic attachment limit reached",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Sie haben die Unterzeichnung abgebrochen und Ihre Stimme wurde nicht gezählt.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Die Anfrage zum Unterzeichnen ist abgelaufen. Um abzustimmen, fangen Sie bitte neu an.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Die Unterschrift ist ungültig. Ihre Stimme wurde nicht gezählt.",
