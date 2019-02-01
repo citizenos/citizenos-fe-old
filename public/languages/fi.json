@@ -170,7 +170,7 @@
     "SIGN_UP_PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
     "SIGN_UP_BTN_SAVE": "@:MODALS.SIGN_UP_HEADING",
     "SIGN_UP_LNK_CANCEL": "@:LNK_CANCEL",
-    "TOPIC_ATTACHMENTS_TITLE": "Add/edit files for topic:",
+    "TOPIC_ATTACHMENTS_TITLE": "Lisää / muokkaa tiedostoja aiheelle:",
     "TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS": "Tallenna liitteet",
     "TOPIC_ATTACHMENTS_LBL_COMPUTER": "Tietokone",
     "TOPIC_ATTACHMENTS_LBL_DROPBOX": "Dropbox",
@@ -402,7 +402,7 @@
         "TOPICS_IN_VOTING": "Äänestyksessä olevat aiheet",
         "TOPICS_IN_FOLLOW_UP": "Seurannassa olevat aiheet",
         "TOPICS_CLOSED": "Suljetut aiheet",
-        "TOPICS_PINNED": "Pinned topics"
+        "TOPICS_PINNED": "Kiinnitä aihe"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -558,13 +558,13 @@
       "VOTE_LBL_DEADLINE": "Määräaika",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Päiviä jäljellä: {{numberOfDaysLeft}}",
       "VOTE_BTN_CREATE_VOTE": "ALOITA ÄÄNESTYS",
-      "LNK_TOPIC_DETAILS": "Topic details",
+      "LNK_TOPIC_DETAILS": "Aiheen tiedot",
       "LBL_CATEGORIES": "Luokat:",
       "LBL_NO_CATEGORIES": "ei mitään",
       "LNK_ADD_CATEGORIES": "lisää luokkia",
       "LBL_AUTHORS": "Tekijät: {{topic.creator.name}}",
       "LBL_ACTIVITY": "Keskustelu:",
-      "LBL_ATTACHMENTS": "Attachments:",
+      "LBL_ATTACHMENTS": "Liitetiedostot:",
       "LNK_ARGUMENTS_COUNT": "Kannanottoja: {{count}}",
       "LNK_MENTIONS_COUNT": "Sosiaalisia mainintoja: {{mentionsCount}}",
       "LNK_MENTIONS_COUNT_ADD_HASHTAG": "Lisää aihetunniste",
@@ -594,7 +594,7 @@
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Näytä silti vastaus",
       "ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY": "Käyttäjä <b>{{usersFullName}}</b> piti tätä vastausta sopimattomana",
-      "ARGUMENT_DELETED_COMMENT_TOOLTIP": "This argument has been deleted",
+      "ARGUMENT_DELETED_COMMENT_TOOLTIP": "Kannanotto on poistettu",
       "LNK_ARGUMENT_CLOSE": "Näytä vähemmän",
       "LNK_ARGUMENT_READ_MORE": "Lue lisää",
       "LNK_ARGUMENT_REPLY": "Vastaa",
