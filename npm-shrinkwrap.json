@@ -273,9 +273,9 @@
       "resolved": "https://registry.npmjs.org/jsprim/-/jsprim-1.4.1.tgz"
     },
     "lodash": {
-      "version": "4.17.10",
-      "from": "lodash@4.17.10",
-      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.10.tgz"
+      "version": "4.17.11",
+      "from": "lodash@4.17.11",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz"
     },
     "media-typer": {
       "version": "0.3.0",
