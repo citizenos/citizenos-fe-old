@@ -675,6 +675,7 @@
     "ACTIVITY_USER_DELETE_GROUP_TOPIC": "El usuario {{userName}} quitó el tema {{topicTitle}} del grupo {{groupName}}.",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "El usuario {{userName}} cambió el nivel de acceso del grupo {{groupName}} al tema {{topicTitle}}.",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "El usuario {{userName}} creó una actualización para el tema {{topicTitle}}:",
+    "ACTIVITY_USER_DELETE_TOPICEVENT_TOPIC": "User {{userName}} has deleted an update from topic {{topicTitle}}.",
     "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC": "El usuario {{userName}} agregó el adjunto {{attachmentName}} al tema {{topicTitle}}",
     "ACTIVITY_USER_DELETE_ATTACHMENT_TOPIC": "El usuario {{userName}} eliminó el adjunto {{attachmentName}} del tema {{topicTitle}}",
     "ACTIVITY_USER_UPDATE_ATTACHMENT_TOPIC": "User {{userName}} has updated an attachment in topic {{topicTitle}}",
