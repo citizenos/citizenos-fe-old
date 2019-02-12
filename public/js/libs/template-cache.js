@@ -25,7 +25,6 @@ angular
             '/views/directives/cos_modal.html',
             '/views/directives/cos_modal_datepicker.html',
             '/views/directives/date_picker.html',
-            '/views/widgets/activities.html',
             '/views/modals/activity_modal.html',
             '/views/modals/group_create_settings.html',
             '/views/modals/group_delete_confirm.html',
@@ -59,6 +58,7 @@ angular
             '/views/modals/topic_vote_revoke_delegation_confirm.html',
             '/views/modals/topic_vote_sign.html',
             '/views/modals/widgets_how_it_works.html',
+            '/views/widgets/activities.html',
         ];
         var i = 0;
         if (templates.length) {

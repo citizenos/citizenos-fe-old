@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .factory('TopicAttachment', ['$log', '$resource', 'sLocation', 'sAuth', function ($log, $resource, sLocation, sAuth) {
+    .factory('TopicAttachment', ['$log', '$resource', 'sLocation', 'sAuth', 'cosConfig', function ($log, $resource, sLocation, sAuth, cosConfig) {
         $log.debug('citizenos.factory.TopicAttachment');
 
         var path = '/api/:prefix/:userId/topics/:topicId/attachments/:attachmentId';
@@ -76,8 +76,6 @@ angular
             onedrive: 'onedrive',
             googledrive: 'googledrive'
         };
-
-        TopicAttachment.LIMIT = 5;
 
         return TopicAttachment;
     }]);

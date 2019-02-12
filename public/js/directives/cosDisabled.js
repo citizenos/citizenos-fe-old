@@ -16,11 +16,18 @@ angular
                     var cosDisabled = scope.$eval(attrs.cosDisabled);
                     var cosDisabledTooltip = attrs.cosDisabledTooltip;
 
+                    scope.isVisible = false;
+
                     if (cosDisabledTooltip) {
                         elem.attr('tooltips', '');
                         elem.attr('tooltip-template', cosDisabledTooltip);
                         elem.attr('tooltip-smart', true);
                         elem.attr('tooltip-show-trigger', 'mouseover click');
+                        elem.attr('tooltip-show','{{isVisible}}');
+
+                        elem.parent().on('mouseover', function () {
+                            scope.isVisible = !scope.isVisible;
+                        });
                     }
 
                     $compile(elem)(scope);

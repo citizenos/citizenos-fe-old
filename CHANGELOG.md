@@ -1,4 +1,20 @@
-## 2018-01-04
+## 2019-01-29
+
+* Removed attachments limit from FE side to display proper erros to users  https://github.com/citizenos/citizenos-fe/issues/181
+
+## 2019-01-18
+
+* Place attachments more conveniently on mobile device https://github.com/citizenos/citizensos-fe/issues/103
+
+## 2019-01-11
+
+* Add Empowered by CitizenOS logo to partnersites https://github.com/citizenos/citizenos-fe/issues/104
+
+## 2019-01-09
+
+* Disable replying, voting and reporting on deleted arguments https://github.com/citizenos/citizenos-api/issues/27
+
+## 2019-01-04
 
 * Update topic attachments modal view, also trigger uploaded attachments download with attachment name https://github.com/citizenos/citizenos-fe/issues/117
 
