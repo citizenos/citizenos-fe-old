@@ -142,7 +142,7 @@ angular
                 comment
                     .$update()
                     .then(function () {
-                        $scope.loadTopicComments($scope.topicComments.orderBy);
+                        $scope.loadTopicComments();
                         $scope.commentEditMode(comment);
 
                     }, function (err) {
@@ -184,7 +184,7 @@ angular
                     comment.topicId = $scope.topic.id;
                     comment.$delete()
                         .then(function () {
-                            $scope.loadTopicComments($scope.topicComments.orderBy);
+                            $scope.loadTopicComments();
                         }, angular.noop);
                 });
         };
@@ -202,7 +202,7 @@ angular
                     comment.topicId = $scope.topic.id;
                     comment.$delete()
                         .then(function () {
-                            $scope.loadTopicComments($scope.topicComments.orderBy);
+                            $scope.loadTopicComments();
                         }, angular.noop);
                 });
         };
