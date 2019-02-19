@@ -829,9 +829,9 @@
   "ep_comments_page.comments_template.from": "De :",
   "ep_comments_page.comments_template.to": "À :",
   "ep_comments_page.comments_template.include_suggestion": "Inclure la modification suggérée",
-  "ep_comments_page.comments_template.comment.value": "Add comment",
+  "ep_comments_page.comments_template.comment.value": "Ajouter un commentaire",
   "ep_comments_page.comments_template.cancel.value": "@:LNK_CANCEL",
-  "ep_comments_page.comments_template.reply_input_label": "Your reply",
-  "ep_comments_page.comments_template.edit_comment.save": "Save",
+  "ep_comments_page.comments_template.reply_input_label": "Votre réponse",
+  "ep_comments_page.comments_template.edit_comment.save": "Enregistrer",
   "ep_comments_page.comments_template.edit_comment.cancel": "@:LNK_CANCEL"
 }
