@@ -39,12 +39,13 @@ angular
                 },
                 query: {
                     isArray: true,
-                    url: sLocation.getAbsoluteUrlApi('/api/v2/:prefix/:userId/topics/:topicId/comments'),
+                    url: sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId/comments'),
                     params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformResponse: function (data, headerGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             var result = angular.fromJson(data).data.rows;
                             result.forEach(function(row, k) {
+                                row.count = angular.fromJson(data).data.count;
                                 findReplies(row, row)
                             });
 
