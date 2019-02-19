@@ -598,6 +598,8 @@
       "LNK_ARGUMENT_CLOSE": "Contraer argumento",
       "LNK_ARGUMENT_READ_MORE": "Leer más",
       "LNK_ARGUMENT_REPLY": "Responder",
+      "LNK_ARGUMENT_SHOW_REPLIES": "Show replies",
+      "LNK_ARGUMENT_HIDE_REPLIES": "Hide replies",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Escriba aquí su respuesta…",
       "PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT": "Realice su declaración principal aquí…",
       "PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT": "Explique y demuestre su declaración aquí…",
