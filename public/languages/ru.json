@@ -598,7 +598,7 @@
       "LNK_ARGUMENT_CLOSE": "Свернуть аргумент",
       "LNK_ARGUMENT_READ_MORE": "Читайте дальше",
       "LNK_ARGUMENT_REPLY": "Ответить",
-      "LNK_ARGUMENT_SHOW_REPLIES": "Show replies ({{count}})",
+      "LNK_ARGUMENT_SHOW_REPLIES": "Показать ответы ({{count}})",
       "LNK_ARGUMENT_HIDE_REPLIES": "Hide replies",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Напишите здесь свой ответ...",
       "PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT": "В чем состоит Ваше утверждение?",
