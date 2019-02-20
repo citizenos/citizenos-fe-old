@@ -2,10 +2,12 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCommentCtrl', ['$scope', '$stateParams', '$timeout', '$log', 'ngDialog', 'TopicComment', function ($scope, $stateParams, $timeout, $log, ngDialog, TopicComment) {
+    .controller('TopicCommentCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$translate', 'ngDialog', 'TopicComment', function ($scope, $state, $stateParams, $timeout, $log, $translate, ngDialog, TopicComment) {
         $log.debug('TopicCommentCtrl', $scope, $scope.topic, $stateParams.topicId);
 
         $scope.topic = $scope.topic || {id: $stateParams.topicId};
+
+        var commentsLimit = 10;
 
         $scope.topicComments = {
             rows: [],
@@ -13,41 +15,68 @@ angular
                 pro: 0,
                 con: 0
             },
+            page: 1,
+            totalPages: 0,
             orderBy: TopicComment.COMMENT_ORDER_BY.date,
+            orderByTranslation: $translate.instant('VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ORDER_BY_DATE'),
             orderByOptions: TopicComment.COMMENT_ORDER_BY
 
         };
+        Object.keys($scope.topicComments.orderByOptions).forEach(function (option, key) {
+            var translation = $translate.instant('VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ORDER_BY_' + option.toUpperCase());
+            $scope.topicComments.orderByOptions[option] = {value: option, translation: translation};
+        });
 
         $scope.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
 
-        $scope.loadTopicComments = function () {
-            $scope.topicComments.rows = [];
-            $scope.topicComments.count = {
-                pro: 0,
-                con: 0
-            };
+        $scope.loadPage = function (page) {
+            var offset = (page - 1) * commentsLimit;
+            $scope.loadTopicComments(offset, commentsLimit);
+        };
+
+        $scope.loadTopicComments = function (offset, limit) {
+            if (!limit) {
+                limit = commentsLimit;
+            }
+            if (!offset) {
+                offset = 0;
+            }
 
             TopicComment
                 .query({
                     topicId: $scope.topic.id,
-                    orderBy: $scope.topicComments.orderBy
+                    orderBy: $scope.topicComments.orderBy,
+                    offset: offset,
+                    limit: limit
                 })
                 .$promise
                 .then(function (comments) {
-                    if (comments) {
-                        $scope.topicComments.count.pro = _.filter(comments, {type: TopicComment.COMMENT_TYPES.pro}).length;
-                        $scope.topicComments.count.con = _.filter(comments, {type: TopicComment.COMMENT_TYPES.con}).length;
+                    if (comments && comments.length) {
+                        $scope.topicComments.count = comments[0].count;
+                        $scope.topicComments.totalPages = Math.ceil($scope.topicComments.count.total / limit);
+                        $scope.topicComments.page = Math.ceil((offset + limit) / limit);
+
+                        $stateParams.argumentsPage = $scope.topicComments.page;
+                        $state.transitionTo($state.current.name, $stateParams, {notify: false, reload: false});
+                        
                         $scope.topicComments.rows = comments;
                         $scope.topicComments.rows.forEach(function (comment, key) {
+                            if (comment.deletedReasonType) {
+                                $scope.topicComments.rows[key].deletedReasonType = $translate.instant('TXT_REPORT_TYPES_' + comment.deletedReasonType.toUpperCase());
+                            }
                             comment.replies.rows.forEach(function (reply, rkey) {
                                 $scope.topicComments.rows[key].replies.rows[rkey] = new TopicComment(reply);
+                                if (reply.deletedReasonType) {
+                                    $scope.topicComments.rows[key].replies.rows[rkey].deletedReasonType = $translate.instant('TXT_REPORT_TYPES_' + comment.deletedReasonType.toUpperCase());
+                                }
                             })
                         });
                     } else {
                         $scope.topicComments.rows = [];
                         $scope.topicComments.count = {
                             pro: 0,
-                            con: 0
+                            con: 0,
+                            total: 0
                         };
                     }
 
@@ -65,6 +94,7 @@ angular
 
         $scope.orderComments = function (order) {
             $scope.topicComments.orderBy = order;
+            $scope.topicComments.orderByTranslation = $translate.instant('VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ORDER_BY_' + order.toUpperCase());
             $scope.loadTopicComments();
         };
 
@@ -97,7 +127,7 @@ angular
                 });
         };
 
-        $scope.loadTopicComments();
+        $scope.loadPage($stateParams.argumentsPage || 1);
 
         $scope.updateComment = function (comment, editType) {
             if (comment.editType != comment.type || comment.subject != comment.editSubject || comment.text != comment.editText) {
@@ -111,8 +141,8 @@ angular
 
                 comment
                     .$update()
-                    .then(function (res) {
-                        $scope.loadTopicComments($scope.topicComments.orderBy);
+                    .then(function () {
+                        $scope.loadTopicComments();
                         $scope.commentEditMode(comment);
 
                     }, function (err) {
@@ -154,7 +184,7 @@ angular
                     comment.topicId = $scope.topic.id;
                     comment.$delete()
                         .then(function () {
-                            $scope.loadTopicComments($scope.topicComments.orderBy);
+                            $scope.loadTopicComments();
                         }, angular.noop);
                 });
         };
@@ -172,7 +202,7 @@ angular
                     comment.topicId = $scope.topic.id;
                     comment.$delete()
                         .then(function () {
-                            $scope.loadTopicComments($scope.topicComments.orderBy);
+                            $scope.loadTopicComments();
                         }, angular.noop);
                 });
         };

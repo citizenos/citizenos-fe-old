@@ -257,7 +257,7 @@ $bold: 700;
 
 @media (min-width: 947px) { /* 955 - 8 (8 is #innerdocbody left position) */
   #innerdocbody.comments:not(.innerPV){
-    margin-right: 30px;
+    margin-right: 30px !important;
   }
 }
 

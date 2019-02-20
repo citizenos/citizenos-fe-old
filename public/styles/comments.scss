@@ -143,7 +143,7 @@
             }
 
             .arguments_content {
-                padding: 41px 0 21px;
+                padding: 41px 0 50px;
 
                 @media (max-width: 621px) {
                     padding-top: 20px;
@@ -521,7 +521,7 @@
                         }
 
                         .tooltips {
-                            width: 200px;
+                            width: max-content;
                         }
 
                         .alert_argument {
@@ -554,8 +554,8 @@
             }
 
             .post_argument_wrap {
-
-                padding-bottom: 60px;
+                background: #F6F6F6;
+                padding: 20px;
                 position: relative;
 
                 @media (max-width: 621px) {
@@ -570,7 +570,7 @@
                 }
 
                 input {
-                    margin: 19px 0 10px;
+                    margin: 0 0 10px;
                     &.error_input {
                         margin: 19px 0 0;
                     }

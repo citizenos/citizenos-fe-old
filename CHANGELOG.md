@@ -1,3 +1,8 @@
+## 2019-02-19
+
+* optimized watchers in topic view
+* Added pagination to topic arguments https://github.com/citizenos/citizenos-fe/issues/188
+
 ## 2019-01-29
 
 * Removed attachments limit from FE side to display proper erros to users  https://github.com/citizenos/citizenos-fe/issues/181

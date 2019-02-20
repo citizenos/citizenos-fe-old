@@ -810,7 +810,7 @@
                                     <div class="info_section_content">
                                         <span class="blue_link" ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')"
                                                 translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT"
-                                                translate-values="{count: topic.comments.rows.length || 0}">0 arguments</span>
+                                                translate-values="{count: topic.comments.count.total || 0}">0 arguments</span>
                                         <span class="info_section_separator"> | </span>
                                         <span class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')" translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT"
                                                 translate-values="{mentionsCount: (topicSocialMentions.length ||0)}">0 social mentions</span>

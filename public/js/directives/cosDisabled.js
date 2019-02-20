@@ -15,7 +15,9 @@ angular
                 return function (scope, elem, attrs) {
                     var cosDisabled = scope.$eval(attrs.cosDisabled);
                     var cosDisabledTooltip = attrs.cosDisabledTooltip;
+
                     scope.isVisible = false;
+
                     if (cosDisabledTooltip) {
                         elem.attr('tooltips', '');
                         elem.attr('tooltip-template', cosDisabledTooltip);
@@ -23,13 +25,9 @@ angular
                         elem.attr('tooltip-show-trigger', 'mouseover click');
                         elem.attr('tooltip-show','{{isVisible}}');
 
-                        console.log(elem);
                         elem.parent().on('mouseover', function () {
-                      //      scope.$apply(function () {
-                                scope.isVisible = !scope.isVisible;
-                      //      })
+                            scope.isVisible = !scope.isVisible;
                         });
-                        
                     }
 
                     $compile(elem)(scope);
