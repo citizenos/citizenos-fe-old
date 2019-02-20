@@ -598,7 +598,7 @@
       "LNK_ARGUMENT_CLOSE": "Argumentationsbaum zuklappen",
       "LNK_ARGUMENT_READ_MORE": "Lesen Sie mehr",
       "LNK_ARGUMENT_REPLY": "Antworten",
-      "LNK_ARGUMENT_SHOW_REPLIES": "Show replies",
+      "LNK_ARGUMENT_SHOW_REPLIES": "Show replies ({{count}})",
       "LNK_ARGUMENT_HIDE_REPLIES": "Hide replies",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Geben Sie Ihre Antwort hier ein...",
       "PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT": "Erläutern Sie hier Ihre wichtigste Behauptung...",
