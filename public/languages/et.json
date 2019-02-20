@@ -598,7 +598,7 @@
       "LNK_ARGUMENT_CLOSE": "Näita vähem",
       "LNK_ARGUMENT_READ_MORE": "Loe edasi",
       "LNK_ARGUMENT_REPLY": "Vasta",
-      "LNK_ARGUMENT_SHOW_REPLIES": "Näita vastuseid",
+      "LNK_ARGUMENT_SHOW_REPLIES": "Näita vastuseid ({{count}})",
       "LNK_ARGUMENT_HIDE_REPLIES": "Peida vastused",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Kirjuta vastus siia...",
       "PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT": "Mis on sinu väide?",
