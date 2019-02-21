@@ -514,7 +514,7 @@ $bold: 700;
 
 @media (min-width: 955px) {
     #outerdocbody.pageViewDisabled #commentIcons {
-        margin-left: calc(100% - 140px);
+        margin-left: calc(100% - 140px)!important;
     }
 }
 .comment-icon {
