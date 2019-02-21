@@ -1,3 +1,7 @@
+## 2019-02-21
+
+* Add informative number to config to display attachments limit to users.
+
 ## 2019-02-19
 
 * optimized watchers in topic view
