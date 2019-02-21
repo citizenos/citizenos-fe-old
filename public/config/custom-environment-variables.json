@@ -13,6 +13,7 @@
     }
   },
   "attachments": {
+    "limit": "CITIZENOS_ATTACHMENTS_LIMIT",
     "dropbox": {
       "appKey": "DROPBOX_APP_KEY"
     },

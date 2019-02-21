@@ -27,6 +27,7 @@
     "about": "https://citizenos.com/product"
   },
   "attachments": {
+    "limit": 10,
     "upload": {
       "type": "local"
     },
