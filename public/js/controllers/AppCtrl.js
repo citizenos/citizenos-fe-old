@@ -169,22 +169,6 @@ angular
             }, 0);
         };
 
-        $scope.app.closeRaaNotification = function () {
-            var expires = new Date();
-            expires.setDate(expires.getDate() + 365);
-            $cookies.put('SHOW_RAA_NOTIFICATION', true, {expires: expires});
-        };
-
-        $scope.app.displayRaaNotification = function () {
-            var show = $cookies.get('SHOW_RAA_NOTIFICATION');
-
-            if ($scope.app.config.showRaaNotification && $scope.app.language === 'et' && !show) {
-                return true;
-            }
-
-            return false;
-        };
-
         $scope.app.displayEmpoweredIcon = function () {
             if (!/citizenos\.com/.test($location.absUrl())) {
                 return true;
@@ -264,7 +248,7 @@ angular
                             .then(function (count) {
                                 $scope.app.unreadActivitiesCount = count;
                             });
-                        
+
                     }, 30000);
                 } else {
                     Raven.setUserContext();
