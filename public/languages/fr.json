@@ -400,7 +400,7 @@
         "TOPICS_ORDERED_BY_GROUPS": "Montrer les sujets classés par groupes",
         "TOPICS_IN_PROGRESS": "Sujets en cours",
         "TOPICS_IN_VOTING": "Sujets en vote",
-        "TOPICS_IN_FOLLOW_UP": "Sujets en suivi",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow-up",
         "TOPICS_CLOSED": "Sujets fermés",
         "TOPICS_PINNED": "Sujets épinglés"
       }
@@ -504,7 +504,7 @@
       "BAR_CURRENT_PHASE": "Etat actuel:",
       "TAB_VIEW": "Voir",
       "TAB_VOTE": "Voter",
-      "TAB_FOLLOW_UP": "Suivi",
+      "TAB_FOLLOW_UP": "Follow-Up",
       "TAB_INFO_TXT_EDIT": "Vous êtes maintenant dans le mode d'édition. Vous pouvez ajouter du texte ou en changer. Tous les changement seront automatiquement sauvegardés.",
       "TAB_INFO_TXT_VOTE": "Il y a un vote en cours sur ce sujet. Il n'est plus possible de l'éditer!",
       "TOPIC_SUMMARY_HEADER": "Résumé de la discussion",
