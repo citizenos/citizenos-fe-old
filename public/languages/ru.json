@@ -400,7 +400,7 @@
         "TOPICS_ORDERED_BY_GROUPS": "Сортировать темы по группам",
         "TOPICS_IN_PROGRESS": "Темы в стадии создания",
         "TOPICS_IN_VOTING": "Темы в стадии голосования",
-        "TOPICS_IN_FOLLOW_UP": "Topics in follow-up",
+        "TOPICS_IN_FOLLOW_UP": "Темы в стадии применения решения",
         "TOPICS_CLOSED": "Закрытые темы",
         "TOPICS_PINNED": "Избранные темы"
       }
@@ -504,7 +504,7 @@
       "BAR_CURRENT_PHASE": "Статус на данный момент:",
       "TAB_VIEW": "Просмотреть",
       "TAB_VOTE": "Голосовать",
-      "TAB_FOLLOW_UP": "Follow-Up",
+      "TAB_FOLLOW_UP": "Стадия применения решения",
       "TAB_INFO_TXT_EDIT": "Статус редактирования. Можете добавить или изменить текст. Все изменения сохраняются автоматически.",
       "TAB_INFO_TXT_VOTE": "Тема находится на голосовании, ее содержание изменить нельзя!",
       "TOPIC_SUMMARY_HEADER": "Краткая сводка по теме",
