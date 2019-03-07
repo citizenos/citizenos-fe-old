@@ -400,7 +400,7 @@
         "TOPICS_ORDERED_BY_GROUPS": "Прикажи теми подредени по групи",
         "TOPICS_IN_PROGRESS": "Теми во тек",
         "TOPICS_IN_VOTING": "Теми за гласање",
-        "TOPICS_IN_FOLLOW_UP": "Теми во стадиум на следење",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow-up",
         "TOPICS_CLOSED": "Затворни теми",
         "TOPICS_PINNED": "Закачени теми"
       }
@@ -504,7 +504,7 @@
       "BAR_CURRENT_PHASE": "Моментален стадиум:",
       "TAB_VIEW": "Преглед",
       "TAB_VOTE": "Гласај",
-      "TAB_FOLLOW_UP": "Стадиум на следење",
+      "TAB_FOLLOW_UP": "Follow-Up",
       "TAB_INFO_TXT_EDIT": "Моментално сте во режим на ажурирање. Можете да додавате текст или да правите промени. Сите промени се автоматски зачувани.",
       "TAB_INFO_TXT_VOTE": "Моментално се гласа на оваа тема така што нејзиното ажурирање е невозможно!",
       "TOPIC_SUMMARY_HEADER": "Резиме на темата",
