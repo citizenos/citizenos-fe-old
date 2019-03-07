@@ -400,7 +400,7 @@
         "TOPICS_ORDERED_BY_GROUPS": "Näite teemasid rühmade kaupa",
         "TOPICS_IN_PROGRESS": "Ühisloomes teemad",
         "TOPICS_IN_VOTING": "Hääletamisel teemad",
-        "TOPICS_IN_FOLLOW_UP": "Elluviimisel teemad",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow-up",
         "TOPICS_CLOSED": "Suletud teemad",
         "TOPICS_PINNED": "Esiletõstetud teemad"
       }
@@ -504,7 +504,7 @@
       "BAR_CURRENT_PHASE": "Kehtiv olek:",
       "TAB_VIEW": "Vaata",
       "TAB_VOTE": "Hääleta",
-      "TAB_FOLLOW_UP": "Vii ellu",
+      "TAB_FOLLOW_UP": "Follow-Up",
       "TAB_INFO_TXT_EDIT": "Toimetamisolek. Saad teksti lisada või muuta. Kõik muudatused salvestatakse automaatselt.",
       "TAB_INFO_TXT_VOTE": "Teema on hääletamisel, sisu ei saa enam muuta!",
       "TOPIC_SUMMARY_HEADER": "Teema kokkuvõte",
