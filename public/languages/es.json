@@ -400,7 +400,7 @@
         "TOPICS_ORDERED_BY_GROUPS": "Mostrar temas ordenados por grupos",
         "TOPICS_IN_PROGRESS": "Temas en curso",
         "TOPICS_IN_VOTING": "Temas en votación",
-        "TOPICS_IN_FOLLOW_UP": "Temas en seguimiento",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow-up",
         "TOPICS_CLOSED": "Temas cerrados",
         "TOPICS_PINNED": "Temas anclados"
       }
@@ -504,7 +504,7 @@
       "BAR_CURRENT_PHASE": "Estado actual:",
       "TAB_VIEW": "Ver",
       "TAB_VOTE": "Voto",
-      "TAB_FOLLOW_UP": "Seguimiento",
+      "TAB_FOLLOW_UP": "Follow-Up",
       "TAB_INFO_TXT_EDIT": "Ahora está en el modo de edición. Puede agregar texto o realizar cambios en el texto. Todos los cambios se guardan automáticamente.",
       "TAB_INFO_TXT_VOTE": "Este tema está en proceso de votación, ya no se permite la edición.",
       "TOPIC_SUMMARY_HEADER": "Resumen del tema",
