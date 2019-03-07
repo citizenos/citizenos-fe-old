@@ -400,7 +400,7 @@
         "TOPICS_ORDERED_BY_GROUPS": "Tampilkan topik yang dipesan oleh kelompok",
         "TOPICS_IN_PROGRESS": "Topics in progress",
         "TOPICS_IN_VOTING": "Topics in voting",
-        "TOPICS_IN_FOLLOW_UP": "Topics in follow up",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow-up",
         "TOPICS_CLOSED": "Closed topics",
         "TOPICS_PINNED": "Pinned topics"
       }
@@ -504,7 +504,7 @@
       "BAR_CURRENT_PHASE": "Status terkini:",
       "TAB_VIEW": "Lihat",
       "TAB_VOTE": "Pilih",
-      "TAB_FOLLOW_UP": "Kelanjutan",
+      "TAB_FOLLOW_UP": "Follow-Up",
       "TAB_INFO_TXT_EDIT": "Anda sekarang berada di mode edit. Anda dapat menambahkan atau membuat perubahan pada teks. Semua perubahan secara otomatis akan disimpan.",
       "TAB_INFO_TXT_VOTE": "Topik ini sedang berjalan, kegiatan edit tidak memungkin lagi!",
       "TOPIC_SUMMARY_HEADER": "Rangkuman topik",
