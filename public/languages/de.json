@@ -400,7 +400,7 @@
         "TOPICS_ORDERED_BY_GROUPS": "Themen nach Gruppen sortiert anzeigen",
         "TOPICS_IN_PROGRESS": "Themen in Bearbeitung",
         "TOPICS_IN_VOTING": "Themen in Abstimmung",
-        "TOPICS_IN_FOLLOW_UP": "Themen in der Nachverfolgung",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow-up",
         "TOPICS_CLOSED": "Geschlossene Themen",
         "TOPICS_PINNED": "Fixierte Themen"
       }
@@ -504,7 +504,7 @@
       "BAR_CURRENT_PHASE": "Aktueller Status:",
       "TAB_VIEW": "Ansicht",
       "TAB_VOTE": "Abstimmen",
-      "TAB_FOLLOW_UP": "Nachverfolgung",
+      "TAB_FOLLOW_UP": "Follow-Up",
       "TAB_INFO_TXT_EDIT": "Sie sind jetzt im Bearbeitungsmodus. Sie können Text hinzufügen oder Änderungen vorschlagen. Alle Änderungen werden automatisch gespeichert.",
       "TAB_INFO_TXT_VOTE": "Über dieses Thema wird bereits abgestimmt, die Bearbeitung ist nicht mehr möglich!",
       "TOPIC_SUMMARY_HEADER": "Zusammenfassung des Themas",
