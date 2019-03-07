@@ -400,7 +400,7 @@
         "TOPICS_ORDERED_BY_GROUPS": "Показати теми, впорядковані за групами",
         "TOPICS_IN_PROGRESS": "Topics in progress",
         "TOPICS_IN_VOTING": "Topics in voting",
-        "TOPICS_IN_FOLLOW_UP": "Topics in follow up",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow-up",
         "TOPICS_CLOSED": "Closed topics",
         "TOPICS_PINNED": "Pinned topics"
       }
@@ -504,7 +504,7 @@
       "BAR_CURRENT_PHASE": "Поточний статус:",
       "TAB_VIEW": "Переглянути",
       "TAB_VOTE": "Голосування",
-      "TAB_FOLLOW_UP": "Реалізація рішення",
+      "TAB_FOLLOW_UP": "Follow-Up",
       "TAB_INFO_TXT_EDIT": "Тепер Ви в режимі редагування. Ви можете додати текст або внести зміни до нього. Всі зміни зберігаються автоматично.",
       "TAB_INFO_TXT_VOTE": "Ця тема знаходиться на голосування, редагування більше неможливе!",
       "TOPIC_SUMMARY_HEADER": "Підсумок теми",
