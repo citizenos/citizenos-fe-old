@@ -400,7 +400,7 @@
         "TOPICS_ORDERED_BY_GROUPS": "Näyta aiheet järjesteltynä ryhmän mukaan",
         "TOPICS_IN_PROGRESS": "Kesken olevat aiheet",
         "TOPICS_IN_VOTING": "Äänestyksessä olevat aiheet",
-        "TOPICS_IN_FOLLOW_UP": "Seurannassa olevat aiheet",
+        "TOPICS_IN_FOLLOW_UP": "Topics in follow-up",
         "TOPICS_CLOSED": "Suljetut aiheet",
         "TOPICS_PINNED": "Kiinnitä aihe"
       }
@@ -504,7 +504,7 @@
       "BAR_CURRENT_PHASE": "Nykyinen tila:",
       "TAB_VIEW": "Näytä",
       "TAB_VOTE": "Äänestä",
-      "TAB_FOLLOW_UP": "Seuranta",
+      "TAB_FOLLOW_UP": "Follow-Up",
       "TAB_INFO_TXT_EDIT": "Olet nyt muokkaustilassa. Voit lisätä tai muuttaa tekstiä. Kaikki muutokset tallennetaan automaattisesti.",
       "TAB_INFO_TXT_VOTE": "Aiheesta äänestetään parhaillaan. Muokkaaminen ei ole enää mahdollista!",
       "TOPIC_SUMMARY_HEADER": "Yhteenveto aiheesta",
