@@ -111,10 +111,10 @@
                         if (stateNext.params && stateNext.params.language === 'aa') { // Crowdin language selected, we need a full page reload for the in-context script to work.
                             window.location.href = $state.href(stateNext.name, stateNext.params);
                         } else {
-                            $state.go(stateNext.name, stateNext.params);
+                            $state.go(stateNext.name, stateNext.params, {location: 'replace'});
                         }
                     } else {
-                        $state.go('error.404', {language: useLang});
+                        $state.go('error.404', {language: useLang}, {location: 'replace'});
                     }
                 }
             });
