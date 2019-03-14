@@ -162,7 +162,8 @@ angular
                                                 voteId: $scope.topic.vote.id,
                                                 editMode: null
                                             },
-                                            {reload: true});
+                                            {reload: true}
+                                        );
                                     }
                                 }
                             );
@@ -549,8 +550,8 @@ angular
                     }
                 });
             }
-            
-            
+
+
         }
 
         $scope.downloadAttachment = function (attachment) {
