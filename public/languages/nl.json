@@ -286,65 +286,65 @@
   "TXT_TOPIC_CATEGORY_AGRICULTURE": "Agriculture",
   "TXT_TOPIC_CATEGORY_ENVIRONMENT": "Environment, animal protection",
   "TXT_TOPIC_CATEGORY_CULTURE": "Culture, media and sports",
-  "TXT_TOPIC_CATEGORY_HEALTH": "Health care and social care",
-  "TXT_TOPIC_CATEGORY_WORK": "Work and employment",
-  "TXT_TOPIC_CATEGORY_EDUCATION": "Education",
-  "TXT_TOPIC_CATEGORY_POLITICS": "Politics and public administration",
-  "TXT_TOPIC_CATEGORY_COMMUNITIES": "Communities and urban development",
-  "TXT_TOPIC_CATEGORY_DEFENSE": "Defence and security",
-  "TXT_TOPIC_CATEGORY_INTEGRATION": "Integration and human rights",
+  "TXT_TOPIC_CATEGORY_HEALTH": "Gezondheidszorg en maatschappelijke dienstverlening",
+  "TXT_TOPIC_CATEGORY_WORK": "Werk en werkgelegenheid",
+  "TXT_TOPIC_CATEGORY_EDUCATION": "Onderwijs",
+  "TXT_TOPIC_CATEGORY_POLITICS": "Politiek en openbaar bestuur",
+  "TXT_TOPIC_CATEGORY_COMMUNITIES": "Gemeenschappen en stedelijke ontwikkeling",
+  "TXT_TOPIC_CATEGORY_DEFENSE": "Defensie en veiligheid",
+  "TXT_TOPIC_CATEGORY_INTEGRATION": "Integratie en mensenrechten",
   "TXT_TOPIC_CATEGORY_VARIA": "Varia",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Search topics, users, groups…"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Zoek onderwerpen, gebruikers, groepen …"
     }
   },
   "DEFAULT": {
     "NAV": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
-      "HEADING_TOPICS": "Topics",
-      "LNK_CREATE_TOPICS": "Create topic",
-      "LNK_MY_TOPICS": "My topics",
-      "LNK_PUBLIC_TOPICS": "Public topics",
+      "HEADING_TOPICS": "Onderwerpen",
+      "LNK_CREATE_TOPICS": "Onderwerp maken",
+      "LNK_MY_TOPICS": "Mijn onderwerpen",
+      "LNK_PUBLIC_TOPICS": "Publieke onderwerpen",
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
-      "LNK_CREATE_GROUPS": "Create groups",
-      "LNK_MY_GROUPS": "My groups",
-      "LNK_ABOUT": "About",
+      "LNK_CREATE_GROUPS": "Groep maken",
+      "LNK_MY_GROUPS": "Mijn groepen",
+      "LNK_ABOUT": "Over",
       "LNK_FAQ": "FAQ",
-      "LNK_HELP": "Help",
-      "LNK_LOG_OUT": "Log out",
-      "LNK_ACTIVITY": "Activity feed"
+      "LNK_HELP": "Hulp",
+      "LNK_LOG_OUT": "Uitloggen",
+      "LNK_ACTIVITY": "Activiteitenfeed"
     },
     "NAV_MOBILE": {
-      "BTN_SEARCH": "Search",
-      "BTN_OVERVIEW": "Overview",
-      "BTN_EDIT": "Edit",
-      "BTN_SETTINGS": "Settings",
+      "BTN_SEARCH": "Zoeken",
+      "BTN_OVERVIEW": "Overzicht",
+      "BTN_EDIT": "Bewerken",
+      "BTN_SETTINGS": "Instellingen",
       "BTN_MENU": "Menu",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "Context search results in",
-      "LNK_VIEW_MORE_RESULTS": "View more results",
-      "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
-      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?"
+      "HEADING_RESULTS_IN": "Resultaten contextuele zoekopdracht in",
+      "LNK_VIEW_MORE_RESULTS": "Meer resultaten bekijken",
+      "TXT_OOPS_NO_RESULTS": "Oeps, we vonden geen resultaten die overeenkomen met uw zoekopdracht :(",
+      "TXT_MAYBE_TYPO": "Misschien is uw zoekopdracht verkeerd gespeld?"
     },
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
-      "BTN_HOW_DOES_IT_WORK": "How does it work?",
-      "LNK_PRIVACY_POLICY": "Citizen OS Privacy Policy",
-      "LNK_CITIZENOS_WEBSITE": "Citizen OS Website"
+      "BTN_HOW_DOES_IT_WORK": "Hoe werkt het?",
+      "LNK_PRIVACY_POLICY": "Privacybeleid van Citizen OS",
+      "LNK_CITIZENOS_WEBSITE": "Website van Citizen OS"
     }
   },
-  "LBL_CONTEXT_MY_TOPICS": "my topics",
-  "LBL_CONTEXT_MY_GROUPS": "my groups",
-  "LBL_CONTEXT_PUBLIC_TOPICS": "public topics",
-  "LBL_CONTEXT_PUBLIC_GROUPS": "public groups",
+  "LBL_CONTEXT_MY_TOPICS": "mijn onderwerpen",
+  "LBL_CONTEXT_MY_GROUPS": "mijn groepen",
+  "LBL_CONTEXT_PUBLIC_TOPICS": "publieke onderwerpen",
+  "LBL_CONTEXT_PUBLIC_GROUPS": "publieke groepen",
   "DIRECTIVES": {
     "COS_MODAL": {
-      "BTN_SAVE": "Save",
+      "BTN_SAVE": "Opslaan",
       "BTN_CANCEL": "@:LNK_CANCEL"
     },
     "COS_MODAL_DATEPICKER": {
