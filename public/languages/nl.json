@@ -37,7 +37,7 @@
     "GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Weet u zeker dat u deze groep wilt verwijderen?",
     "GROUP_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
     "GROUP_DELETE_CONFIRM_TXT_GROUP_DELETED": "De groep wordt verwijderd.",
-    "GROUP_DELETE_CONFIRM_TXT_LOSE_ACCESS": "Alle leden van de groep verliezen toegang tot onderwerpen die gerelateerd zijn aan deze groep.",
+    "GROUP_DELETE_CONFIRM_TXT_LOSE_ACCESS": "Alle leden van de groep verliezen toegang tot topics die gerelateerd zijn aan deze groep.",
     "GROUP_DELETE_CONFIRM_BTN_NO": "NEE, DEZE GROEP BEHOUDEN",
     "GROUP_DELETE_CONFIRM_BTN_YES": "JA, DEZE GROEP VERWIJDEREN",
     "GROUP_MEMBER_TOPIC_DELETE_CONFIRM_HEADING": "Onderwerp verwijderen",
@@ -296,7 +296,7 @@
   "TXT_TOPIC_CATEGORY_VARIA": "Varia",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Zoek onderwerpen, gebruikers, groepen …"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Zoek topics, gebruikers, groepen …"
     }
   },
   "DEFAULT": {
@@ -305,8 +305,8 @@
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
       "HEADING_TOPICS": "Onderwerpen",
       "LNK_CREATE_TOPICS": "Onderwerp maken",
-      "LNK_MY_TOPICS": "Mijn onderwerpen",
-      "LNK_PUBLIC_TOPICS": "Publieke onderwerpen",
+      "LNK_MY_TOPICS": "Mijn topics",
+      "LNK_PUBLIC_TOPICS": "Publieke topics",
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
       "LNK_CREATE_GROUPS": "Groep maken",
       "LNK_MY_GROUPS": "Mijn groepen",
@@ -338,9 +338,9 @@
       "LNK_CITIZENOS_WEBSITE": "Website van Citizen OS"
     }
   },
-  "LBL_CONTEXT_MY_TOPICS": "mijn onderwerpen",
+  "LBL_CONTEXT_MY_TOPICS": "mijn topics",
   "LBL_CONTEXT_MY_GROUPS": "mijn groepen",
-  "LBL_CONTEXT_PUBLIC_TOPICS": "publieke onderwerpen",
+  "LBL_CONTEXT_PUBLIC_TOPICS": "publieke topics",
   "LBL_CONTEXT_PUBLIC_GROUPS": "publieke groepen",
   "DIRECTIVES": {
     "COS_MODAL": {
@@ -377,7 +377,7 @@
       "HEADING_BEGINNERS_GUIDE": "Aan de slag met Citizen OS.",
       "TXT_BEGINNERS_GUIDE": "Hallo, welkom bij Citizen OS! Lees dit onderwerp om te weten hoe alles werkt.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Tutorial en uitleg",
-      "BTN_LOAD_MORE_TOPICS": "Meer onderwerpen laden",
+      "BTN_LOAD_MORE_TOPICS": "Meer topics laden",
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
       "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
@@ -392,17 +392,17 @@
       "HEADING_GET_INVOLVED": "U kunt deelnemen door",
       "MY_CREATING_A_NEW_TOPIC": "Een nieuw onderwerp maken",
       "FILTERS": {
-        "SHOW_ALL_MY_TOPICS": "Toon al mijn onderwerpen",
+        "SHOW_ALL_MY_TOPICS": "Toon al mijn topics",
         "SHOW_ONLY": "Toon alleen:",
-        "MY_PUBLIC_TOPICS": "Mijn publieke onderwerpen",
-        "MY_PRIVATE_TOPICS": "Mijn private onderwerpen",
+        "MY_PUBLIC_TOPICS": "Mijn publieke topics",
+        "MY_PRIVATE_TOPICS": "Mijn private topics",
         "TOPICS_I_CREATED": "Onderwerpen die ik heb gemaakt",
-        "TOPICS_ORDERED_BY_GROUPS": "Toon onderwerpen gerangschikt volgens groep",
+        "TOPICS_ORDERED_BY_GROUPS": "Toon topics gerangschikt volgens groep",
         "TOPICS_IN_PROGRESS": "Onderwerpen in behandeling",
         "TOPICS_IN_VOTING": "Onderwerpen in stemming",
         "TOPICS_IN_FOLLOW_UP": "Onderwerpen in opvolging",
-        "TOPICS_CLOSED": "Gesloten onderwerpen",
-        "TOPICS_PINNED": "Vastgemaakte onderwerpen"
+        "TOPICS_CLOSED": "Gesloten topics",
+        "TOPICS_PINNED": "Vastgemaakte topics"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -478,36 +478,36 @@
     "PARTNERS_CONSENT": {
       "HEADING": "Rahvaalgatus.ee wil toegang krijgen tot de volgende gegevens van uw account:",
       "TXT_VIEW_PROFILE": "Bekijk en bewerk uw Citizen OS-profiel - naam, bedrijf, e-mailadres, foto.",
-      "TXT_VIEW_TOPICS": "Bekijk en bewerk uw publieke onderwerpen op Citizen OS en onderwerpen gemaakt via de website Rahvaalglgatus.ee.",
-      "TXT_VIEW_VOTES": "Bekijk en bewerk uw stemmen in publieke onderwerpen op Citizen OS en in onderwerpen gemaakt via de website Rahvaalgatus.ee.",
+      "TXT_VIEW_TOPICS": "Bekijk en bewerk uw publieke topics op Citizen OS en topics gemaakt via de website Rahvaalglgatus.ee.",
+      "TXT_VIEW_VOTES": "Bekijk en bewerk uw stemmen in publieke topics op Citizen OS en in topics gemaakt via de website Rahvaalgatus.ee.",
       "TXT_VIEW_GROUPS": "Bekijk en bewerk uw groepen op Citizen OS.",
       "TXT_POLICY": "Rahvaalgatus.ee zal deze informatie gebruiken overeenkomstig de <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">gebruiksvoorwaarden en het privacybeleid</a> van de website.",
       "_AGREE": "Accepteren",
       "DISAGREE": "Annuleren"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "<strong>Rahvaalgatus.ee works together with Citizen OS</strong> to offer you a great experience. If you want to use the platform to its fullest, <strong>please login to Citizen OS or register.</strong>",
+      "HEADING": "<strong>Rahvaalgatus.ee werkt samen met Citizen OS</strong> om u een uitstekende ervaring te bieden. <strong>Log in op Citizen OS of registreer u</strong> om het platform optimaal te benutten.",
       "BTN_LOGIN_FACEBOOK": "@:MODALS.LOGIN_BTN_LOGIN_FACEBOOK",
       "BTN_LOGIN_GOOGLE": "@:MODALS.LOGIN_BTN_LOGIN_GOOGLE",
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",
       "PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
       "PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
-      "LOGIN_REGISTER": "Log in/register to Citizen OS",
-      "FORGOT_PASSWORD": "Forgot password?"
+      "LOGIN_REGISTER": "Inloggen/Registreren op Citizen OS",
+      "FORGOT_PASSWORD": "Wachtwoord vergeten?"
     },
     "TOPICS_TOPICID": {
       "BAR_MILESTONES": "UPDATES: {{count}}",
       "BAR_TOOLTIP_PHASE": "Status:",
-      "BAR_TOOLTIP_IN_PROGRESS": "in progress",
-      "BAR_TOOLTIP_VOTING": "in voting",
-      "BAR_SIGNING_DEADLINE": "Signing deadline:",
-      "BAR_CURRENT_PHASE": "Current status:",
-      "TAB_VIEW": "View",
-      "TAB_VOTE": "Vote",
-      "TAB_FOLLOW_UP": "Follow-Up",
-      "TAB_INFO_TXT_EDIT": "You are now in edit mode. You can add text or make changes to it. All changes are automatically saved.",
-      "TAB_INFO_TXT_VOTE": "This topic is being voted on, editing is no longer possible!",
-      "TOPIC_SUMMARY_HEADER": "Topic summary",
+      "BAR_TOOLTIP_IN_PROGRESS": "in behandeling",
+      "BAR_TOOLTIP_VOTING": "stemming",
+      "BAR_SIGNING_DEADLINE": "Uiterste datum voor ondertekening:",
+      "BAR_CURRENT_PHASE": "Huidige status:",
+      "TAB_VIEW": "Weergeven",
+      "TAB_VOTE": "Stemmen",
+      "TAB_FOLLOW_UP": "Opvolgen",
+      "TAB_INFO_TXT_EDIT": "U bent nu in e bewerkingsmodus. U kunt tekst toevoegen of wijzigingen aanbrengen. Alle wijzigingen worden automatisch opgeslagen.",
+      "TAB_INFO_TXT_VOTE": "Over dit onderwerp wordt gestemd, bewerken is niet meer mogelijk!",
+      "TOPIC_SUMMARY_HEADER": "Samenvatting onderwerp",
       "TOPIC_SUMMARY_TITLE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_TITLE",
       "TOPIC_SUMMARY_FINALIZED_ON": "Document finalised on",
       "TOPIC_SUMMARY_VIEW_FINAL_DOCUMENT": "view final document",
