@@ -9,6 +9,11 @@ angular
         $scope.topic = rTopic;
         if ($scope.topic) {
             $scope.topic.padUrl += '&theme=default';
+            if (!$scope.topic.canEdit() &&  ($stateParams.editMode && $stateParams.editMode === 'true')) {
+                $scope.app.editMode = false;
+                delete $stateParams.editMode; 
+                $state.transitionTo($state.current.name, $stateParams, {notify: false, reload: false});
+            }
         }
         $scope.ATTACHMENT_SOURCES = TopicAttachment.SOURCES;
 
@@ -83,6 +88,7 @@ angular
         };
 
         var loadTopicMemberGroupList = function () {
+            console.log($scope.topic);
             return TopicMemberGroup
                 .query({topicId: $scope.topic.id}).$promise
                 .then(function (groups) {
@@ -162,7 +168,8 @@ angular
                                                 voteId: $scope.topic.vote.id,
                                                 editMode: null
                                             },
-                                            {reload: true});
+                                            {reload: true}
+                                        );
                                     }
                                 }
                             );
@@ -301,7 +308,7 @@ angular
         };
 
         $scope.doShowVoteResults = function () {
-            if (!$scope.voteResults.isVisible) {
+            if (!$scope.voteResults.isVisible && ($scope.topic.voteId || $scope.topic.vote && $scope.topic.vote.id)) {
                 $scope.topic.vote
                     .$get({topicId: $scope.topic.id})
                     .then(function (topicVote) {
@@ -525,11 +532,6 @@ angular
             }
         };
         checkTabs();
-
-        if (sAuth.user.loggedIn) {
-            loadTopicMemberUserList();
-            loadTopicMemberGroupList();
-        }
 
         $scope.togglePin = function () {
             if ($scope.topic.pinned === true) {

@@ -57,8 +57,10 @@ angular
                         $scope.topicComments.page = Math.ceil((offset + limit) / limit);
 
                         $stateParams.argumentsPage = $scope.topicComments.page;
-                        $state.transitionTo($state.current.name, $stateParams, {notify: false, reload: false});
-                        
+                        var location = ($stateParams.argumentsPage === 1) ? 'replace' : true; // Replace location only on the first load, so that back navigation would work. When direct linking or navigating pages, dont replace.
+
+                        $state.transitionTo($state.current.name, $stateParams, {notify: false, reload: false, location: location});
+
                         $scope.topicComments.rows = comments;
                         $scope.topicComments.rows.forEach(function (comment, key) {
                             if (comment.deletedReasonType) {

@@ -32,21 +32,22 @@ angular
                         activity.data.resultObject = jsonpatch.applyPatch(resultObject, activity.data.result).newDocument;
                         activity.data.result.forEach(function (item) {
                             var field = item.path.split('/')[1];
-                            if (field === 'deletedById' || field  === 'deletedByReportId') {
+                            if (field === 'deletedById' || field === 'deletedByReportId') {
                                 delete item;
                             } else {
-                            var change = _.find(resultItems, function (resItem) {
-                                return resItem.path.indexOf(field) > -1;
-                            });
+                                var change = _.find(resultItems, function (resItem) {
+                                    return resItem.path.indexOf(field) > -1;
+                                });
 
-                            if (!change) {
-                                resultItems.push(item);
-                            } else if (item.value) {
-                                if (!Array.isArray(change.value)) {
-                                    change.value = [change.value];
+                                if (!change) {
+                                    resultItems.push(item);
+                                } else if (item.value) {
+                                    if (!Array.isArray(change.value)) {
+                                        change.value = [change.value];
+                                    }
+                                    change.value.push(item.value);
                                 }
-                                change.value.push(item.value);
-                            }}
+                            }
                         });
                         activity.data.result = resultItems;
                         while (i < activity.data.result.length) {
@@ -153,13 +154,21 @@ angular
         sActivity.getUnreadActivities = function () {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/activities/unread');
             return $http
-                .get(path)
-                .then(function (response) {
-                    var body = response.data;
-                    sActivity.unread = body.data.count;
+                .get(
+                    path,
+                    {
+                        ignoreLoadingBar: true
+                    }
+                )
+                .then(
+                    function (response) {
+                        var body = response.data;
+                        sActivity.unread = body.data.count;
 
-                    return $q.resolve(body.data.count);
-                }, defaultError);
+                        return $q.resolve(body.data.count);
+                    },
+                    defaultError
+                );
         };
 
         sActivity.getActivities = function (offsetNr, limitNr, include, filter) {

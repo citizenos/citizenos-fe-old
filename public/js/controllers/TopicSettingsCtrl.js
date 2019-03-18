@@ -107,6 +107,26 @@ angular
             }
         };
 
+        var loadTopicMemberUserList = function () {
+            return TopicMemberUser
+                .query({topicId: $scope.topic.id}).$promise
+                .then(function (users) {
+                    $scope.members.users = users;
+                    console.log(users);
+                    return users;
+                });
+        };
+
+        var loadTopicMemberGroupList = function () {
+            return TopicMemberGroup
+                .query({topicId: $scope.topic.id}).$promise
+                .then(function (groups) {
+                    $scope.members.groups = groups;
+                    console.log(groups);
+                    return groups;
+                });
+        };
+
         $scope.doDeleteHashtag = function () {
             $scope.form.topic.hashtag = null;
         };
@@ -126,10 +146,20 @@ angular
                         });
                 });
         };
-
+        
+        var loadMembersList = function () {
+            if ($scope.topic.canUpdate()) {
+                loadTopicMemberGroupList();
+                loadTopicMemberUserList();
+            }
+        };
+        
         $scope.selectTab = function (tab) {
             $scope.tabSelected = tab;
             $location.search({tab: tab});
+            if ($scope.tabSelected  === 'invite') {
+                loadMembersList();
+            }
         };
 
         $scope.copyInviteLink = function () {
