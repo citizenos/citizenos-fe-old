@@ -289,11 +289,11 @@
   "TXT_TOPIC_CATEGORY_HEALTH": "Veselības aprūpe un sociālā aprūpe",
   "TXT_TOPIC_CATEGORY_WORK": "Darbs un nodarbinātība",
   "TXT_TOPIC_CATEGORY_EDUCATION": "Izglītība",
-  "TXT_TOPIC_CATEGORY_POLITICS": "Politics and public administration",
-  "TXT_TOPIC_CATEGORY_COMMUNITIES": "Communities and urban development",
-  "TXT_TOPIC_CATEGORY_DEFENSE": "Defence and security",
-  "TXT_TOPIC_CATEGORY_INTEGRATION": "Integration and human rights",
-  "TXT_TOPIC_CATEGORY_VARIA": "Varia",
+  "TXT_TOPIC_CATEGORY_POLITICS": "Politika un valsts pārvalde",
+  "TXT_TOPIC_CATEGORY_COMMUNITIES": "Komunikācija un pilsētvides attīstība",
+  "TXT_TOPIC_CATEGORY_DEFENSE": "Aizsardzība un drošība",
+  "TXT_TOPIC_CATEGORY_INTEGRATION": "Integrācija un cilvēktiesības",
+  "TXT_TOPIC_CATEGORY_VARIA": "Dažādi",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Search topics, users, groups…"
