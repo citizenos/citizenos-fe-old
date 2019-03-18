@@ -551,7 +551,7 @@ angular
                     }
                 });
             }
-        }
+        };
 
         $scope.downloadAttachment = function (attachment) {
             return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
