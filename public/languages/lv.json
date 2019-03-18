@@ -587,7 +587,7 @@
       "ARGUMENT_WHY": "Kāpēc?",
       "ARGUMENT_VIEW_ARGUMENT_ANYWAY": "Apskatīt argumentu",
       "ARGUMENT_FOUND_INAPPRIOPRIATE_BY": "Šo argumentu par neatbilstošu atzina lietotājs <b>{{usersFullName}}</b>",
-      "ARGUMENT_READ_CODE_OF_CONDUCT": "Read our <a class=\"underlined_link\" href=\"\">code of conduct</a> for more information",
+      "ARGUMENT_READ_CODE_OF_CONDUCT": "Lasiet mūsu <a class=\"underlined_link\" href=\"\">uzvedības kodeksu</a>, lai uzzinātu vairāk",
       "ARGUMENT_LAST_EDITED": "Last edited {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Edit your reply here...",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
