@@ -327,24 +327,24 @@
     "SEARCH": {
       "HEADING_RESULTS_IN": "Konteksta meklēšanas rezultāti",
       "LNK_VIEW_MORE_RESULTS": "Apskatīt vairāk rezultātu",
-      "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
-      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?"
+      "TXT_OOPS_NO_RESULTS": "Ups, neizdevās atrast atbilstošus rezultātus :(",
+      "TXT_MAYBE_TYPO": "Varbūt ir kļūda meklēšanas tekstā?"
     },
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
-      "BTN_HOW_DOES_IT_WORK": "How does it work?",
-      "LNK_PRIVACY_POLICY": "Citizen OS Privacy Policy",
-      "LNK_CITIZENOS_WEBSITE": "Citizen OS Website"
+      "BTN_HOW_DOES_IT_WORK": "Kā tas strādā?",
+      "LNK_PRIVACY_POLICY": "Citizen OS Privātuma politika",
+      "LNK_CITIZENOS_WEBSITE": "Citizen OS Vietne"
     }
   },
-  "LBL_CONTEXT_MY_TOPICS": "my topics",
-  "LBL_CONTEXT_MY_GROUPS": "my groups",
-  "LBL_CONTEXT_PUBLIC_TOPICS": "public topics",
-  "LBL_CONTEXT_PUBLIC_GROUPS": "public groups",
+  "LBL_CONTEXT_MY_TOPICS": "mani temati",
+  "LBL_CONTEXT_MY_GROUPS": "manas grupas",
+  "LBL_CONTEXT_PUBLIC_TOPICS": "publiskie temati",
+  "LBL_CONTEXT_PUBLIC_GROUPS": "publiskās grupas",
   "DIRECTIVES": {
     "COS_MODAL": {
-      "BTN_SAVE": "Save",
+      "BTN_SAVE": "Saglabāt",
       "BTN_CANCEL": "@:LNK_CANCEL"
     },
     "COS_MODAL_DATEPICKER": {
