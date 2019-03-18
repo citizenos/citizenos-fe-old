@@ -1,3 +1,12 @@
+## 2019-03-18
+
+* Fix issues: 
+ - https://github.com/citizenos/citizenos-fe/issues/165
+ - https://github.com/citizenos/citizenos-fe/issues/214
+ - https://github.com/citizenos/citizenos-fe/issues/201
+ - https://github.com/citizenos/citizenos-fe/issues/164
+ - https://github.com/citizenos/citizenos-fe/issues/193
+ 
 ## 2019-02-21
 
 * Add informative number to config to display attachments limit to users.
