@@ -153,7 +153,11 @@ angular
                 loadTopicMemberUserList();
             }
         };
-        
+
+        if ($scope.tabSelected  === 'invite') {
+            loadMembersList();
+        }
+
         $scope.selectTab = function (tab) {
             $scope.tabSelected = tab;
             $location.search({tab: tab});
