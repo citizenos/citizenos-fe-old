@@ -296,37 +296,37 @@
   "TXT_TOPIC_CATEGORY_VARIA": "Dažādi",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Search topics, users, groups…"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Meklēt tematus, lietotājus, grupas…"
     }
   },
   "DEFAULT": {
     "NAV": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
-      "HEADING_TOPICS": "Topics",
-      "LNK_CREATE_TOPICS": "Create topic",
-      "LNK_MY_TOPICS": "My topics",
-      "LNK_PUBLIC_TOPICS": "Public topics",
+      "HEADING_TOPICS": "Temati",
+      "LNK_CREATE_TOPICS": "Izveidot tematu",
+      "LNK_MY_TOPICS": "Mani temati",
+      "LNK_PUBLIC_TOPICS": "Publiskie temati",
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
-      "LNK_CREATE_GROUPS": "Create groups",
-      "LNK_MY_GROUPS": "My groups",
-      "LNK_ABOUT": "About",
-      "LNK_FAQ": "FAQ",
-      "LNK_HELP": "Help",
-      "LNK_LOG_OUT": "Log out",
-      "LNK_ACTIVITY": "Activity feed"
+      "LNK_CREATE_GROUPS": "Izveidot grupas",
+      "LNK_MY_GROUPS": "Manas grupas",
+      "LNK_ABOUT": "Apraksts",
+      "LNK_FAQ": "BUJ",
+      "LNK_HELP": "Palīdzība",
+      "LNK_LOG_OUT": "Izrakstīties",
+      "LNK_ACTIVITY": "Aktivitātes plūsma"
     },
     "NAV_MOBILE": {
-      "BTN_SEARCH": "Search",
-      "BTN_OVERVIEW": "Overview",
-      "BTN_EDIT": "Edit",
-      "BTN_SETTINGS": "Settings",
-      "BTN_MENU": "Menu",
+      "BTN_SEARCH": "Meklēt",
+      "BTN_OVERVIEW": "Pārskats",
+      "BTN_EDIT": "Rediģēt",
+      "BTN_SETTINGS": "Iestatījumi",
+      "BTN_MENU": "Izvēlne",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "Context search results in",
-      "LNK_VIEW_MORE_RESULTS": "View more results",
+      "HEADING_RESULTS_IN": "Konteksta meklēšanas rezultāti",
+      "LNK_VIEW_MORE_RESULTS": "Apskatīt vairāk rezultātu",
       "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
       "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?"
     },
