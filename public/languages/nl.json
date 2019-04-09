@@ -355,7 +355,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, u beschikt niet over de nodige rechten om toegang te krijgen tot de bron :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, u beschikt niet over de nodige rechten om toegang te krijgen tot dit onderdeel :(",
       "HEADING_YOU_MAY_RECOVER": "U kunt dit misschien verhelpen door",
       "BTN_LOGIN": "In te loggen",
       "BTN_REQUEST_ACCESS": "Verzoek voor toegang tot de bron"
@@ -373,7 +373,7 @@
       "BTN_SUBMIT_FILTER": "Filter bevestigen",
       "HEADING_NO_RESUTS": "Het spijt ons, maar we hebben geen resultaten gevonden :(",
       "HEADING_GET_STARTED": "Misschien kun je eerste discussie starten door",
-      "BTN_CREATING_A_NEW_TOPIC": "Een nieuwe topic maken",
+      "BTN_CREATING_A_NEW_TOPIC": "Een nieuwe topic te maken",
       "HEADING_BEGINNERS_GUIDE": "Aan de slag met Citizen OS.",
       "TXT_BEGINNERS_GUIDE": "Hallo, welkom bij Citizen OS! Lees deze topic om te weten hoe alles werkt.",
       "LBL_TUTORIAL_AND_EXPLANATION": "Tutorial en uitleg",
@@ -387,7 +387,7 @@
       "LBL_GROUPS_COUNT": "Groepen: {{count}}",
       "HEADING_NOT_IN_GROUP": "U maakt nog geen deel uit van een groep.",
       "HEADING_AT_LEAST_WE_HELP": "Gelukkig zijn wij er nog om u te helpen door",
-      "TXT_CREATING_A NEW_GROUP": "Een nieuwe groep aanmaken",
+      "TXT_CREATING_A NEW_GROUP": "Een nieuwe groep aan te maken",
       "HEADING_NOT_PARTICIPATED": "U hebt nog niet deelgenomen aan een topic. Probeer het, het is echt cool!",
       "HEADING_GET_INVOLVED": "U kunt deelnemen door",
       "MY_CREATING_A_NEW_TOPIC": "Een nieuwe topic maken",
