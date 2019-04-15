@@ -15,6 +15,7 @@
     "precommit": "./bin/hooks/no-unresolved-conflicts.sh"
   },
   "dependencies": {
+    "@sentry/browser": "^5.0.7",
     "angular-datepicker": "^1.0.5",
     "angular-moment": "^1.0.0",
     "config": "2.0.1",

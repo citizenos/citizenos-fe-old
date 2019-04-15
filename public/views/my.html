@@ -1,12 +1,12 @@
-<div style="height: 100%;">
+<div class="full_height">
     <div id="topics_root" ng-if="itemList.length">
 
-        <div class="v_line separator absolute_separator" ng-show="wWidth > 750"></div>
+        <div class="v_line separator absolute_separator" ng-class="{hidden: (wWidth < 750)}"></div>
 
         <div id="topics_wrap">
 
             <!-- LEFT SIDE -->
-            <div class="topics_left" ng-hide="wWidth <= 750 && (('my.groups.groupId' | isState) || ('my.topics.topicId' | isState))">
+            <div class="topics_left" ng-class="{hidden: (wWidth <= 750 && (('my.groups.groupId' | isState) || ('my.topics.topicId' | isState)))}">
 
                 <div cos-dropdown class="classic_dropdown">
 
@@ -93,7 +93,7 @@
                     </div>
 
                     <div class="small_topic_title">
-                        <span ng-bind="groupMemberTopic.title">title</span> <span class="lock_icon_wrap" ng-show="groupMemberTopic.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
+                        <span ng-bind="groupMemberTopic.title">title</span> <span class="lock_icon_wrap" ng-class="{hidden: !groupMemberTopic.isPrivate()}"><div class="sprite sprite-icon-lock2x"></div></span>
                     </div>
 
                     <div class="line lightest_line"></div>
@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="small_topic_title">
-                        <span ng-bind="item.title">title</span><span class="lock_icon_wrap" ng-show="item.isPrivate()"><div class="sprite sprite-icon-lock2x"></div></span>
+                        <span ng-bind="item.title">title</span><span class="lock_icon_wrap" ng-class="{hidden: !item.isPrivate()}"><div class="sprite sprite-icon-lock2x"></div></span>
                     </div>
 
                     <div class="line lightest_line"></div>

@@ -171,7 +171,7 @@
                             <div class="search_text" ng-click="addGroupMemberTopic(item)">
                                 <div class="table_cell blue_link" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter to add</div>
                             </div>
-                            <div class="search_area_wrap" ng-show="searchResults.topics.length">
+                            <div class="search_area_wrap" ng-class="{hidden: !searchResults.topics.length}">
                                 <div class="search_dropdown_area">
                                     <div class="search_dropdown_item" typeahead-item="topic" ng-repeat="topic in searchResults.topics">
                                         <div class="table_cell search_item_text">
@@ -268,7 +268,7 @@
                             <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
                                        select="addGroupMemberUser(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_BY_NAME_EMAIL' | translate}}">
                                 <div class="search_area_wrap">
-                                    <div class="search_dropdown_area" ng-show="searchResults.users.length">
+                                    <div class="search_dropdown_area" ng-class="{hidden: !searchResults.users.length}">
                                         <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
                                             <div class="table_cell search_item_text">
                                                 <b>{{user.name}}</b> {{user.company}}

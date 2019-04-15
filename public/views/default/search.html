@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div id="close_search_icon" ng-click="closeSearchArea()" ng-style="{'display': app.showSearchResults ? 'relative' : 'none'}">
+            <div id="close_search_icon" ng-click="closeSearchArea()" ng-class="{hidden: !app.showSearchResults}">
                 <div class="table_cell">
                     <div class="sprite sprite-icon-closemenu-b-2x"></div>
                 </div>

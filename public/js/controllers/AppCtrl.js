@@ -232,16 +232,19 @@ angular
 
         // Update UserVoice data when User changes and read new acitivites count
         var newActivitiesWatcher = null;
+        window.onerror =function (e) {
+            console.log('ERROR', e);
+        };
+
         $scope.$watch(
             function () {
                 return $scope.app.user.loggedIn;
             },
             function (loggedIn) {
                 if (loggedIn) {
-                    Raven.setUserContext({
-                        id: $scope.app.user.id
-                    });
-
+                 /*   Sentry.configureScope(function (scope) {
+                        scope.setUser({id: $scope.app.user.id});
+                    });*/
                     newActivitiesWatcher = $interval(function () {
                         sActivity
                             .getUnreadActivities()
@@ -251,8 +254,6 @@ angular
 
                     }, 30000);
                 } else {
-                    Raven.setUserContext();
-
                     if (newActivitiesWatcher) {
                         $interval.cancel(newActivitiesWatcher);
                         newActivitiesWatcher = undefined;

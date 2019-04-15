@@ -1,6 +1,18 @@
 <!doctype html>
-<html ng-app="citizenos" ng-strict-di="true" lang="{{app.language}}" ng-controller="AppCtrl">
+<html ng-app="citizenos" ng-strict-di="true" lang="{{app.language}}" ng-controller="AppCtrl" ng-csp>
 <head>
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self' *.citizenos.com:3001; img-src *;
+        script-src *.citizenos.com *.citizenos.com:3001 *.citizenos.com  
+        https://cdn.crowdin.com https://api.onedrive.com https://graph.microsoft.com/
+        'nonce-aa9weasd+09sdg' 'nonce-gsdg08832sdtJ4' 'nonce-b30a01fd6e6e'
+        'nonce-23tsdgvsdZpfo' 'nonce-22kimnsdfbaone' 'nonce-dspfisdpfipoi23';
+        style-src 'self' https://fonts.googleapis.com 
+        'sha256-1PxuDsPyGK6n+LZsMv0gG4lMX3i3XigG6h0CzPIjwrE=' 'sha256-DQEih0FM6BmHGTyLU+AQaMO9vM7dpviKtjEYQoGyR/Q='
+        'sha256-nR5hyLltSjfvi2rqC26RbcredWrJvTaPA1yqPX96jpY=';
+        font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;
+        connect-src 'self' *.citizenos.com *.citizenos.com:3003;
+        frame-src *.citizenos.com:9001">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <base href="/">
@@ -11,26 +23,26 @@
         window.location.href = '/views/unknown_device.html';
     </script>
     <![endif]-->
-    <script>window.prerenderReady = false;</script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
+    <script nonce="gsdg08832sdtJ4">window.prerenderReady = false;</script>
+    <link nonce="sdfg34534" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link nonce="sdfg34534" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
-    <script type="text/javascript">
-        if (window.location.pathname.match(/^\/aa\/.*/)) {
-            var _jipt = [];
-            _jipt.push(['project', 'citizenos-fe']);
+    <script nonce="23tsdgvsdZpfo" type="text/javascript">
+    if (window.location.pathname.match(/^\/aa\/.*/)) {
+        var _jipt = [];
+        _jipt.push(['project', 'citizenos-fe']);
 
-            var crowdinScriptElement = document.createElement('script');
-            crowdinScriptElement.src = '//cdn.crowdin.com/jipt/jipt.js';
-            crowdinScriptElement.type = 'text/javascript';
-            document.getElementsByTagName('head')[0].appendChild(crowdinScriptElement);
-        }
+        var crowdinScriptElement = document.createElement('script');
+        crowdinScriptElement.src = '//cdn.crowdin.com/jipt/jipt.js';
+        crowdinScriptElement.type = 'text/javascript';
+        document.getElementsByTagName('head')[0].appendChild(crowdinScriptElement);
+    }
     </script>
 
-    <link href="styles/citizenos-fe.bundle.css?v=9cde27419e64c11c44d594bc2cf1d565" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=7908edddfffdeb27564cd324b7c10f14" rel="stylesheet">
     <link href="config/styles/local.css?v=d41d8cd98f00b204e9800998ecf8427e" rel="stylesheet">
     <script src="settings.js?v=3be522862eca691df0ccc09d99860566"></script>
-    <script src="js/citizenos-fe.bundle.js?v=6edd154916ab2d3f3cf4211540c0890c"></script>
+    <script nonce="22kimnsdfbaone" src="js/citizenos-fe.bundle.js?v=ec8556e6243dfe5a89293818fe8f8faa"></script>
 
     <meta name="theme-color" content="#1a1a1a">
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -54,8 +66,7 @@
     <!-- INFO BAR - base.scss -->
     <div class="info_bar_wrap">
         <!-- RED MESSAGE -->
-        <!-- Using ng-hide and ng-show instead of ng-if so that screen flicker would not occur on page load -->
-        <div class="info_bar bar_red ng-hide" ng-show="app.notifications.messages[app.notifications.levels.ERROR].length">
+        <div class="info_bar bar_red" ng-class="{'hidden': !app.notifications.messages[app.notifications.levels.ERROR].length}" >
             <div class="info_icon">
                 <div class="sprite sprite-icon-notification-error2x"></div>
             </div>
@@ -72,7 +83,7 @@
         </div>
 
         <!-- BLUE MESSAGE -->
-        <div class="info_bar bar_blue ng-hide" ng-show="app.notifications.messages[app.notifications.levels.INFO].length">
+        <div class="info_bar bar_blue"  ng-class="{'hidden': !app.notifications.messages[app.notifications.levels.INFO].length}">
             <div class="info_icon">
                 <div class="sprite sprite-icon-notification-info2x"></div>
             </div>
@@ -89,7 +100,7 @@
         </div>
 
         <!-- GREEN MESSAGE -->
-        <div class="info_bar bar_green ng-hide" ng-show="app.notifications.messages[app.notifications.levels.SUCCESS].length">
+        <div class="info_bar bar_green" ng-class="{'hidden': !app.notifications.messages[app.notifications.levels.SUCCESS].length}">
             <div class="info_icon">
                 <div class="sprite sprite-icon-notification-check2x"></div>
             </div>
@@ -108,10 +119,10 @@
 
     <!-- CONTENT -->
     <!-- Cant have ui-view without a wrapper element. Search results depend on the outer element height, thus the style -->
-    <div ui-view style="height:100%"></div>
+    <div ui-view class="full_height"></div>
 
     <!-- GOOGLE ANALYTICS -->
-    <script>
+    <script nonce="dspfisdpfipoi23">
         if (/\/\/(www.)?app\.citizenos\.com/.test(window.location.href)) {
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
@@ -128,9 +139,9 @@
             ga('create', 'UA-67049149-1', 'auto');
         }
     </script>
-    <script src="js/libs/template-cache.js?v=fee1e2a4714a2c20ef2baf85b9d8e721"></script>
+    <script src="js/libs/template-cache.js?v=627ad0f2fb2ac29ad3328bd16bece2b9"></script>
 
-    <script>
+    <script nonce="aa9weasd+09sdg">
         if (/\/\/(www.)?citizenos\.com/.test(window.location.href)) {
             if (/(chrome|firefox)/.test(navigator.userAgent.toLowerCase())) {
                 var notified = false;

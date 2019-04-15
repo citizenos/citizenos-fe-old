@@ -200,7 +200,7 @@
                             <typeahead id="userSearch" class="auto-complete" items="searchResults.combined" term="searchString" search="search(term, 'user')"
                                        select="addTopicMember(item)" placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_INVITE_USERS_AND_GROUPS' | translate}}">
                                 <div class="search_area_wrap">
-                                    <div class="search_dropdown_area" ng-show="searchResults.users.length || searchResults.groups.length">
+                                    <div class="search_dropdown_area" ng-class="{hidden: (!searchResults.users.length && !searchResults.groups.length)">
                                         <div class="search_dropdown_item" ng-if="searchResults.users.length">
                                             <div class="table_cell" translate="MODALS.TOPIC_SETTINGS_TH_USERS">Users</div>
                                         </div>
