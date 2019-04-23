@@ -8,6 +8,7 @@ var path = require('path');
 var http = require('http');
 var fs = require('fs');
 var _ = require('lodash');
+var csp = require('express-csp-header');
 
 var prerender = require('prerender-node');
 
@@ -25,6 +26,37 @@ try {
     console.log('Settings.json write FAILED to ' + pathSettings, err);
     process.exit(1);
 }
+//TODO: list whitelisted urls to github with description
+var cspConfig = config.csp;
+var cspOptions = _.cloneDeep(cspConfig);
+if (cspConfig) {
+    if (cspConfig.policies) {
+        if (typeof cspConfig.policies === 'string') {
+            console.log(Object.values(JSON.parse(cspConfig.policies)));
+            cspConfig.policies = JSON.parse(cspConfig.policies);
+            cspOptions.policies = {};
+        }
+        Object.keys(cspConfig.policies).forEach(function(key, index) {
+            cspConfig.policies[key].forEach(function (value, k) {
+                if (k === 0) {
+                    cspOptions.policies[key] = [];
+                }
+                if (value === 'none') {
+                    cspOptions.policies[key].push(csp.NONE);
+                } else if (value === 'self') {
+                    cspOptions.policies[key].push(csp.SELF);
+                } else if (value === 'inline') {
+                    cspOptions.policies[key].push(csp.INLINE);
+                } else {
+                    cspOptions.policies[key].push(value);
+                }
+            });
+        });
+    }
+    var cspHeader = csp(cspOptions);
+    app.use(cspHeader);
+}
+
 
 app.use(prerender.set('prerenderToken', 'CrrAflHAEiF44KMFkrs7'));
 

@@ -101,17 +101,17 @@
                         </div>
                     </div>
                     <div class="tabs_rails">
-                        <div class="tabs_train" slide-controller identifier="tabsTrain" ng-style="{'margin-left' : trainPosition + 'px'}" dimensions>
+                        <div class="tabs_train" slide-controller identifier="tabsTrain" dimensions cos-styles='{"margin-left" : "{{trainPosition}}px"}'>
                             <div class="tab" ui-sref="topics.view({topicId: topic.id})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
-                                 ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                dimensions cos-styles='{"width" : "{{tabFinalLength}}px"}'>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
                             </div>
                             <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})"
-                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" dimensions cos-styles='{"width" : "{{tabFinalLength}}px"}'>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VOTE">Vote</div>
                             </div>
                             <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="tab" ui-sref="topics.view.followUp({topicId: topic.id})"
-                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.followUp' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.followUp' | isState)}" dimensions cos-styles='{"width" : "{{tabFinalLength}}px"}'>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_FOLLOW_UP">Follow up</div>
                             </div>
                         </div>
@@ -456,7 +456,7 @@
 
                             <div class="graph_row" ng-class="option.selected ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                 <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
-                                <div class="graph_row_fill" ng-style="{width: getVoteValuePercentage(option.voteCount) + '%'}" tooltips
+                                <div class="graph_row_fill" cos-styles='{"width" : "{{getVoteValuePercentage(option.voteCount)}}%"}' tooltips
                                      tooltip-template="{{((optionTranslation = ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase | translate)) != ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase)) ? optionTranslation : (option.value | linky)}}"
                                      tooltip-smart="true">
                                     <div class="graph_row_text_wrap">
@@ -486,7 +486,7 @@
 
                                 <div class="graph_row" ng-class="option.selected ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                     <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
-                                    <div class="graph_row_fill" ng-style="{width: getVoteValuePercentage(option.voteCount) + '%'}" tooltips
+                                    <div class="graph_row_fill" cos-styles='{"width" : "{{getVoteValuePercentage(option.voteCount)}}%"}' tooltips
                                          tooltip-template="{{((optionTranslation = ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase | translate)) != ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase)) ? optionTranslation : (option.value | linky)}}"
                                          tooltip-smart="true">
                                         <div class="graph_row_text_wrap">

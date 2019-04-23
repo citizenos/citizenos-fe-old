@@ -33,7 +33,7 @@ angular
                         activity.data.result.forEach(function (item) {
                             var field = item.path.split('/')[1];
                             if (field === 'deletedById' || field === 'deletedByReportId') {
-                                delete item;
+                                item = null;
                             } else {
                                 var change = _.find(resultItems, function (resItem) {
                                     return resItem.path.indexOf(field) > -1;
