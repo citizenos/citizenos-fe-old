@@ -10,6 +10,7 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
     var createPicker = function () {
         return new Promise (function (resolve) {
             var pickerCallback = function (data) {
+                console.log('CALLBACK', data);
                 if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
                     var doc = data[google.picker.Response.DOCUMENTS][0];
                     var attachment = {
@@ -22,18 +23,41 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
                     return resolve(attachment);
                 }
             };
+            console.log('PICKER', google.picker);
+            /*
             var picker = new google.picker.PickerBuilder()
                 .addView(google.picker.ViewId.DOCS)
                 .setOAuthToken(oauthToken)
                 .setDeveloperKey(cosConfig.attachments.googleDrive.developerKey)
                 .setCallback(pickerCallback)
+                .setOrigin(window.location.protocol + '//' + window.location.host) // Note the setOrigin
                 .build();
+            picker.setVisible(true);*/
+
+      ///  function createPicker(token) {
+       //    if (pickerApiLoaded && token) {
+                var picker = new google.picker.PickerBuilder()
+                    // Instruct Picker to display only spreadsheets in Drive. For other
+                    // views, see https://developers.google.com/picker/docs/#otherviews
+                    .addView(google.picker.ViewId.DOCUMENTS)
+                    // Hide the navigation panel so that Picker fills more of the dialog.
+                    .enableFeature(google.picker.Feature.NAV_HIDDEN)
+                    // Hide the title bar since an Apps Script dialog already has a title.
+                    .hideTitleBar()
+                    .setOAuthToken(oauthToken)
+                    .setDeveloperKey(cosConfig.attachments.googleDrive.developerKey)
+                    .setCallback(pickerCallback)
+                    .setOrigin(window.location.protocol + '//' + window.location.host)
+                    // Instruct Picker to fill the dialog, minus 2 pixels for the border.
+                    .setSize(600, 400)
+                    .build();
                 picker.setVisible(true);
+   //         }
         });
     }
     sAttachment.googleDriveSelect = function () {
         return new Promise(function (resolve) {
-            return angularLoad.loadScript('https://apis.google.com/js/api.js?onload=onApiLoad').then(function() {
+            //return angularLoad.loadScript('https://apis.google.com/js/api.js?onload=onApiLoad').then(function() {
                 var onAuthApiLoad = function () {
                     window.gapi.auth.authorize(
                     {
@@ -57,7 +81,7 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
 
                 gapi.load('client', {'callback': onAuthApiLoad});
                 gapi.load('picker', {'callback': onPickerApiLoad});
-            })
+         //   })
         })
         .catch(function(e) {
             $log.error(e);

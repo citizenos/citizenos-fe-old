@@ -4,7 +4,7 @@
   "dependencies": {
     "@sentry/browser": {
       "version": "5.0.7",
-      "from": "@sentry/browser@latest",
+      "from": "https://registry.npmjs.org/@sentry/browser/-/browser-5.0.7.tgz",
       "resolved": "https://registry.npmjs.org/@sentry/browser/-/browser-5.0.7.tgz"
     },
     "@sentry/core": {
@@ -779,6 +779,11 @@
       "resolved": "https://registry.npmjs.org/crypt/-/crypt-0.0.2.tgz",
       "dev": true
     },
+    "csp-header": {
+      "version": "1.3.2",
+      "from": "csp-header@>=1.2.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/csp-header/-/csp-header-1.3.2.tgz"
+    },
     "css-select": {
       "version": "1.0.0",
       "from": "css-select@~1.0.0",
@@ -1111,6 +1116,11 @@
       "version": "4.14.0",
       "from": "express@4.14.0",
       "resolved": "https://registry.npmjs.org/express/-/express-4.14.0.tgz"
+    },
+    "express-csp-header": {
+      "version": "2.2.0",
+      "from": "express-csp-header@latest",
+      "resolved": "https://registry.npmjs.org/express-csp-header/-/express-csp-header-2.2.0.tgz"
     },
     "extend": {
       "version": "3.0.2",
@@ -3068,6 +3078,11 @@
       "from": "osenv@0",
       "resolved": "https://registry.npmjs.org/osenv/-/osenv-0.1.5.tgz",
       "dev": true
+    },
+    "parse-domain": {
+      "version": "0.2.2",
+      "from": "parse-domain@>=0.2.1 <0.3.0",
+      "resolved": "https://registry.npmjs.org/parse-domain/-/parse-domain-0.2.2.tgz"
     },
     "parse-filepath": {
       "version": "1.0.2",

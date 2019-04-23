@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'angularLoad']);
+    var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'angularLoad']);
 
     module
         .constant('cosConfig', window.__config || {});
@@ -127,7 +127,7 @@
                 .state('index', {
                     url: '/{language:' + langReg + '}',
                     abstract: true,
-                    template: '<div ui-view style="height: 100%"></div>',
+                    template: '<div ui-view class="full_height"></div>',
                     resolve: {
                         /* @ngInject */
                         sTranslateResolve: function ($stateParams, $log, sTranslate) {
@@ -830,7 +830,7 @@
                     url: '/error',
                     parent: 'main',
                     abstract: true,
-                    template: '<div ui-view style="height: 100%"></div>'
+                    template: '<div ui-view class="full_height"></div>'
                 })
                 .state('error.401', {
                     url: '/401',
@@ -879,3 +879,8 @@
                 .translations(cosConfig.language.debug, {});
         }]);
 })();
+
+Raven
+    .config('https://053c9e29e7324dcaa220dd3bced63d22@sentry.io/160591')
+    .addPlugin(Raven.Plugins.Angular)
+    .install();

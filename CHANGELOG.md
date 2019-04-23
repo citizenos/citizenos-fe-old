@@ -1,3 +1,7 @@
+## 2019-04-23
+
+* Add CSP configuration to server side https://github.com/citizenos/citizenos-fe/issues/101
+
 ## 2019-03-18
 
 * Fix issues: 
