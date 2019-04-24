@@ -13,7 +13,6 @@ angular
                         if (typeof styles === 'object') {
                             var keys = Object.keys(styles);
                             keys.forEach(function (key, prop) {
-                                console.log(elem[0].style);
                                 elem[0].style[prop] = styles[prop]; 
                             });
                         }

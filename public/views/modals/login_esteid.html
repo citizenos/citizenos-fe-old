@@ -69,7 +69,7 @@
                     <div ng-if="app.config.features.authentication.idCard" class="sign_in_section" ng-class="{'single_section': !app.config.features.authentication.mobiilId}">
                         <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
                         <div ng-if="!isLoadingIdCard" class="sprite_big sprite sprite-img-idkaart2x"></div>
-                        <div ng-if="isLoadingIdCard" class="loader_wrap" style="padding-bottom: 64px;"><!-- TODO: Fix stylesheets so that this inner CSS is not needed -->
+                        <div ng-if="isLoadingIdCard" class="loader_wrap id_card_loader">
                             <div class="loader"></div>
                         </div>
                         <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard && wWidth <= 550" cos-disabled="formMobile.isLoading || isLoadingIdCard" class="blue_button"
@@ -79,7 +79,7 @@
 
                     <div class="clearer"></div>
 
-                    <div ng-if="app.config.features.authentication.mobiilId && wWidth > 550" class="sign_in_section" ng-class="{'single_section': !app.config.features.authentication.IdCard}">
+                    <div ng-if="app.config.features.authentication.mobiilId && wWidth > 550" class="sign_in_section" ng-class="{'single_section': !app.config.features.authentication.idCard}">
                         <button ng-click="doLoginMobiilId()" cos-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading || isLoadingIdCard" class="blue_button"
                                 ng-class="{margin_mobile_id: !app.config.features.authentication.idCard}"
                                 translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_MID">Log in with Mobiil-ID

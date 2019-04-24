@@ -174,7 +174,6 @@ angular
 
                             //Get the length of widest tab (and set it to all tabs <= in DOM)
                             $rootScope.tabFinalLength = $rootScope.tabLength + 2;
-                            console.log($rootScope.tabFinalLength, 'FINAL');
 
                             //Get the number of elements in ng-repeat
                             var numberOfElements = scope.$index + 1;
