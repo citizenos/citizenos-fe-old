@@ -1862,8 +1862,12 @@ a:link, a:visited {
     .info_bar {
         height: 100%;
         width: 100%;
-        display: table;
+        display: none;
 
+        &.info_bar_show {
+            display: table;
+        }
+        
         .info_row {
             display: table-row;
         }
