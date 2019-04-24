@@ -22,21 +22,24 @@
             <div class="background_line timeline_gray_background">
             </div>
 
-            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="progress_line bar_blue"
-                 ng-style="STATUSES.followUp === topic.status && {'width':'75%'} || {'width': '100%'}">
+            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="progress_line bar_blue follow_up_line"
+                 ng-class="{in_follow_up_line: STATUSES.followUp === topic.status}">
             </div>
 
             <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting].indexOf(topic.status) > -1" class="progress_line bar_green"
-                 ng-style="STATUSES.voting === topic.status && {'width':'50%'} || {'width': '66%'}">
+                ng-class="{in_voting_line: STATUSES.voting === topic.status}">
             </div>
 
-            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting, STATUSES.inProgress].indexOf(topic.status) > -1" class="progress_line pin_yellow_background"
-                 ng-style="STATUSES.inProgress === topic.status && {'width':'25%'} || {'width': '33%'}">
+            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting, STATUSES.inProgress].indexOf(topic.status) > -1" class="progress_line pin_yellow_background progress_status_line"
+                ng-class="{in_progress_line: STATUSES.inProgress === topic.status}">
             </div>
 
             <div class="days_left_wrap"
-                 ng-class="{pin_yellow_background: topic.status === STATUSES.inProgress, bar_green: topic.status === STATUSES.voting, bar_blue: topic.status === STATUSES.followUp,timeline_gray_background: topic.status === STATUSES.closed }"
-                 ng-style="topic.status === STATUSES.inProgress && {'left':'25%'}  || topic.status === STATUSES.voting && {'left':'50%'} || topic.status === STATUSES.followUp && {'left': '75%'} || topic.status === STATUSES.closed && {'left': '99%'}">
+                 ng-class="{'pin_yellow_background days_left_in_progress': topic.status === STATUSES.inProgress, 
+                    'bar_green days_left_voting': topic.status === STATUSES.voting, 
+                    'bar_blue days_left_follow_up': topic.status === STATUSES.followUp,
+                    'timeline_gray_background days_left_closed': topic.status === STATUSES.closed,
+                 }">
                 <div class="table_cell">
                     {{'TXT_TOPIC_STATUS_' + topic.status | uppercase | translate}}
                 </div>
@@ -49,7 +52,7 @@
                 </div>
             </div>
 
-            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting].indexOf(topic.status) > -1" class="checkmark" ng-style="{'left': '32%'}">
+            <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting].indexOf(topic.status) > -1" class="checkmark checkmark_in_progress">
                 <div class="table_cell">
                     <div class="sprite sprite-check-timeline-yellow2x">
                     </div>
@@ -59,7 +62,7 @@
                 </div>
             </div>
 
-            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="checkmark" ng-style="{'left': '65%'}">
+            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="checkmark checkmark_voting">
                 <div class="table_cell">
                     <div class="sprite sprite-check-timeline-green2x">
                     </div>
@@ -98,17 +101,17 @@
                         </div>
                     </div>
                     <div class="tabs_rails">
-                        <div class="tabs_train" slide-controller identifier="tabsTrain" ng-style="{'margin-left' : trainPosition + 'px'}" dimensions>
+                        <div class="tabs_train" slide-controller identifier="tabsTrain" dimensions cos-styles='{"margin-left" : "{{trainPosition}}px"}'>
                             <div class="tab" ui-sref="topics.view({topicId: topic.id})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
-                                 ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                dimensions cos-styles='{"width" : "{{tabFinalLength}}px"}'>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
                             </div>
                             <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})"
-                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" dimensions cos-styles='{"width" : "{{tabFinalLength}}px"}'>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VOTE">Vote</div>
                             </div>
                             <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="tab" ui-sref="topics.view.followUp({topicId: topic.id})"
-                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.followUp' | isState)}" ng-style="{'width' : tabFinalLength + 'px'}" dimensions>
+                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.followUp' | isState)}" dimensions cos-styles='{"width" : "{{tabFinalLength}}px"}'>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_FOLLOW_UP">Follow up</div>
                             </div>
                         </div>
@@ -357,13 +360,13 @@
                             <div class="message_header">
                                 <div class="message_title" translate="VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED">Your vote has been registered!</div>
                                 <div class="float_wrap">
-                                    <div class="blue_link" ng-show="topic.vote.authType === voteAuthTypes.hard"><a ng-href="{{topic.vote.downloads.bdocVote}}"
+                                    <div class="blue_link" ng-class="{hidden: topic.vote.authType !== voteAuthTypes.hard}"><a ng-href="{{topic.vote.downloads.bdocVote}}"
                                                                                                                    translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_USER_BDOC" target="_blank" download>Download your DDOC</a></div>
                                 </div>
                                 <div class="clearer"></div>
                             </div>
 
-                            <div class="message_content" ng-show="topic.vote.authType === voteAuthTypes.hard" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_REGISTERED">This document needs a signing by
+                            <div class="message_content" ng-class="{hidden: topic.vote.authType !== voteAuthTypes.hard}" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_REGISTERED">This document needs a signing by
                                 ID card or Mobile ID to be registered. You can not vote if you don’t identify yourself.
                             </div>
 
@@ -453,7 +456,7 @@
 
                             <div class="graph_row" ng-class="option.selected ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                 <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
-                                <div class="graph_row_fill" ng-style="{width: getVoteValuePercentage(option.voteCount) + '%'}" tooltips
+                                <div class="graph_row_fill" cos-styles='{"width" : "{{getVoteValuePercentage(option.voteCount)}}%"}' tooltips
                                      tooltip-template="{{((optionTranslation = ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase | translate)) != ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase)) ? optionTranslation : (option.value | linky)}}"
                                      tooltip-smart="true">
                                     <div class="graph_row_text_wrap">
@@ -483,7 +486,7 @@
 
                                 <div class="graph_row" ng-class="option.selected ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                     <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
-                                    <div class="graph_row_fill" ng-style="{width: getVoteValuePercentage(option.voteCount) + '%'}" tooltips
+                                    <div class="graph_row_fill" cos-styles='{"width" : "{{getVoteValuePercentage(option.voteCount)}}%"}' tooltips
                                          tooltip-template="{{((optionTranslation = ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase | translate)) != ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase)) ? optionTranslation : (option.value | linky)}}"
                                          tooltip-smart="true">
                                         <div class="graph_row_text_wrap">
@@ -840,7 +843,7 @@
 
 
                         <div id="topic_content_area" class="topic_content">
-                            <iframe cos-etherpad ng-if="topic.canEdit() && app.editMode" frameborder="0" scrolling="no" ng-show="topic.padUrl && !('topics.view.followUp' | isState)"
+                            <iframe cos-etherpad ng-if="topic.canEdit() && app.editMode" frameborder="0" scrolling="no" ng-class="{hidden: !topic.padUrl || ('topics.view.followUp' | isState)}"
                                     ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
                             <ng-bind-html ng-if="!app.editMode" ng-bind-html="topic.description"></ng-bind-html>
                         </div>

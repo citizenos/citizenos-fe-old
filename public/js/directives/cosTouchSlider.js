@@ -169,13 +169,12 @@ angular
                         if ($rootScope.tabLength < elem[0].offsetWidth) {
                             $rootScope.tabLength = elem[0].offsetWidth;
                         }
-
                         //If last element in ng-repeat is reached execute
-                        if (scope.$last === true) {
+     //                   if (scope.$last === true) {
 
                             //Get the length of widest tab (and set it to all tabs <= in DOM)
                             $rootScope.tabFinalLength = $rootScope.tabLength + 2;
-
+                            console.log($rootScope.tabFinalLength, 'FINAL');
 
                             //Get the number of elements in ng-repeat
                             var numberOfElements = scope.$index + 1;
@@ -203,7 +202,7 @@ angular
                             }
 
 
-                        }
+        //                }
 
                     }, 0);
                 }

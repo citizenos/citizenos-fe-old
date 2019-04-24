@@ -127,7 +127,7 @@
                 .state('index', {
                     url: '/{language:' + langReg + '}',
                     abstract: true,
-                    template: '<div ui-view style="height: 100%"></div>',
+                    template: '<div ui-view class="full_height"></div>',
                     resolve: {
                         /* @ngInject */
                         sTranslateResolve: function ($stateParams, $log, sTranslate) {
@@ -830,7 +830,7 @@
                     url: '/error',
                     parent: 'main',
                     abstract: true,
-                    template: '<div ui-view style="height: 100%"></div>'
+                    template: '<div ui-view class="full_height"></div>'
                 })
                 .state('error.401', {
                     url: '/401',

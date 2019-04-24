@@ -300,7 +300,7 @@
                 <div class="text_small" ng-if="wWidth > 667">
                     <!-- FIXME: translate! -->
                     <span ng-repeat="category in topic.categories">
-                        <span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}"></span><span ng-show="!$last">, </span>
+                        <span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}"></span><span ng-class="{hidden: $last}">, </span>
                     </span>
                 </div>
             </div>

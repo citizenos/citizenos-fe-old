@@ -13,11 +13,11 @@
     <!-- CONTENT WRAP -->
     <div id="content_wrap">
         <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
-             ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+             ></div>
 
 
         <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"
-             ng-style="{'background' : app.showNav ? 'rgba(0,0,0,.3)' : 'rgba(0,0,0,0)' }"></div>
+             ></div>
 
 
         <div id="content">
@@ -27,7 +27,7 @@
             </div>
             <div id="content_cell">
                 <!-- CLOSE SEARCH AREA -->
-                <div ng-click="app.showSearchResults = false" id="search_area_close" ng-style="{'display' : app.showSearchResults ? 'block' : 'none' }"></div>
+                <div ng-click="app.showSearchResults = false" id="search_area_close" ng-class="{hidden: !app.showSearchResults}"></div>
 
                 <!-- ROUTES CONTENT -->
                 <div id="view" ui-view></div>

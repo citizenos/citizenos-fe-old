@@ -66,6 +66,30 @@
 
             .progress_line {
                 @extend .background_line;
+
+                &.progress_status_line {
+                    width: 33%;
+                }
+
+                &.in_progress_line {
+                    width: 25%;
+                }
+
+                &.voting_line {
+                    width: 66%;
+                }
+
+                &.in_voting_line {
+                    width: 50%;
+                }
+
+                &.follow_up_line {
+                    width: 100%;
+                }
+
+                &.in_follow_up_line {
+                    width: 75%;
+                }
             }
 
             .days_left_wrap {
@@ -76,6 +100,22 @@
                 padding: 0 10px;
                 position: absolute;
                 margin-top: -12px;
+
+                &.days_left_in_progress {
+                    left: 25%;
+                }
+
+                &.days_left_voting {
+                    left: 50%;
+                }
+
+                &.days_left_follow_up {
+                    left: 75%;
+                }
+
+                &.days_left_closed {
+                    left: 99%;
+                }
             }
 
             .checkmark {
@@ -108,6 +148,13 @@
                 }
             }
 
+            .checkmark_in_progress {
+                left: 32%;
+            }
+
+            .checkmark_voting {
+                left: 65%;
+            }
         }
 
         .additional_info {
