@@ -3,7 +3,7 @@
     </div>
 </div>
 
-<div class="header_button search" ng-click="app.showSearch = !app.showSearch;" ng-style="{'display': app.showSearch ? 'none ' : 'relative'}" ng-class="1>0 ? 'overview_active' : ''">
+<div class="header_button search" ng-click="app.showSearch = !app.showSearch;" ng-class="{hidden: !app.showSearch, 'overview_active': 1>0}">
     <div class="header_button_icon">
         <div class="sprite sprite-icon-search2x">
         </div>
@@ -81,6 +81,6 @@
     <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_MENU">Menu</div>
 </div>
 
-<div id="search_area" ng-style="{'display': app.showSearch ? 'relative' : 'none'}">
+<div id="search_area" ng-class="{hidden: !app.showSearch}">
     <div ng-include="'views/default/search.html'"></div>
 </div>

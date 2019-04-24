@@ -425,6 +425,11 @@
                         }
 
                         .argument_footer {
+
+                            &.reply_footer {
+                                width: 200px;
+                            }
+                            
                             font-size: 13px;
                             .line_wrap {
                                 margin: 0;

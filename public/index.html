@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="citizenos" ng-strict-di="true" lang="{{app.language}}" ng-controller="AppCtrl">
+<html ng-app="citizenos" ng-strict-di="true" lang="{{app.language}}" ng-controller="AppCtrl" ng-csp>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
@@ -7,31 +7,18 @@
     <meta name="fragment" content="!">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <!--[if lte IE 9]>
-    <script>
+    <script nonce="gsdg08832sdtJ4">
         window.location.href = '/views/unknown_device.html';
     </script>
     <![endif]-->
-    <script>window.prerenderReady = false;</script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
+    <link nonce="gsdg08832sdtJ4" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link nonce="gsdg08832sdtJ4" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700" rel="stylesheet">
 
-    <script type="text/javascript">
-        if (window.location.pathname.match(/^\/aa\/.*/)) {
-            var _jipt = [];
-            _jipt.push(['project', 'citizenos-fe']);
-
-            var crowdinScriptElement = document.createElement('script');
-            crowdinScriptElement.src = '//cdn.crowdin.com/jipt/jipt.js';
-            crowdinScriptElement.type = 'text/javascript';
-            document.getElementsByTagName('head')[0].appendChild(crowdinScriptElement);
-        }
-    </script>
-
-    <link href="styles/citizenos-fe.bundle.css?v=9cde27419e64c11c44d594bc2cf1d565" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=8504b0da549d92557ea6edc13bcd2a28" rel="stylesheet">
     <link href="config/styles/local.css?v=d41d8cd98f00b204e9800998ecf8427e" rel="stylesheet">
     <script src="settings.js?v=3be522862eca691df0ccc09d99860566"></script>
-    <script src="js/citizenos-fe.bundle.js?v=6edd154916ab2d3f3cf4211540c0890c"></script>
-
+    <script src="js/citizenos-fe.bundle.js?v=a2888a6efb28270f52194a4ebfcabb72"></script>
+    
     <meta name="theme-color" content="#1a1a1a">
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
     <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
@@ -54,8 +41,7 @@
     <!-- INFO BAR - base.scss -->
     <div class="info_bar_wrap">
         <!-- RED MESSAGE -->
-        <!-- Using ng-hide and ng-show instead of ng-if so that screen flicker would not occur on page load -->
-        <div class="info_bar bar_red ng-hide" ng-show="app.notifications.messages[app.notifications.levels.ERROR].length">
+        <div class="info_bar bar_red" ng-class="{'hidden': !app.notifications.messages[app.notifications.levels.ERROR].length}" >
             <div class="info_icon">
                 <div class="sprite sprite-icon-notification-error2x"></div>
             </div>
@@ -72,7 +58,7 @@
         </div>
 
         <!-- BLUE MESSAGE -->
-        <div class="info_bar bar_blue ng-hide" ng-show="app.notifications.messages[app.notifications.levels.INFO].length">
+        <div class="info_bar bar_blue"  ng-class="{'hidden': !app.notifications.messages[app.notifications.levels.INFO].length}">
             <div class="info_icon">
                 <div class="sprite sprite-icon-notification-info2x"></div>
             </div>
@@ -89,7 +75,7 @@
         </div>
 
         <!-- GREEN MESSAGE -->
-        <div class="info_bar bar_green ng-hide" ng-show="app.notifications.messages[app.notifications.levels.SUCCESS].length">
+        <div class="info_bar bar_green" ng-class="{'hidden': !app.notifications.messages[app.notifications.levels.SUCCESS].length}">
             <div class="info_icon">
                 <div class="sprite sprite-icon-notification-check2x"></div>
             </div>
@@ -108,50 +94,9 @@
 
     <!-- CONTENT -->
     <!-- Cant have ui-view without a wrapper element. Search results depend on the outer element height, thus the style -->
-    <div ui-view style="height:100%"></div>
-
-    <!-- GOOGLE ANALYTICS -->
-    <script>
-        if (/\/\/(www.)?app\.citizenos\.com/.test(window.location.href)) {
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-            ga('create', 'UA-67049149-1', 'auto');
-        }
-    </script>
-    <script src="js/libs/template-cache.js?v=627ad0f2fb2ac29ad3328bd16bece2b9"></script>
-
-    <script>
-        if (/\/\/(www.)?citizenos\.com/.test(window.location.href)) {
-            if (/(chrome|firefox)/.test(navigator.userAgent.toLowerCase())) {
-                var notified = false;
-                window.addEventListener('devtoolschange', function (e) {
-                    var o = e.detail.open;
-                    if (o && !notified) {
-                        if ('function' == typeof console.group) {
-                            console.group('We\'re open source. Contribute on Github - https://github.com/citizenos/citizenos-fe!');
-                        }
-
-                        console.log('%c' + '    Found a bug? Need a feature?', 'background-image: url("https://app.citizenos.com/imgs/citizenos_logo_black.png"); background-repeat: no-repeat; background-size: 58px 50px; font-size:30px; line-height: 2; font-weight: bold;');
-                        console.log('%c' + 'We\'re open source. Contribute on GitHub - https://github.com/citizenos/citizenos-fe', 'font-size:15px; line-height: 2');
-                        notified = true;
-
-                        if ('function' == typeof console.groupEnd) {
-                            console.groupEnd();
-                        }
-                    }
-                });
-            }
-        }
-    </script>
+    <div ui-view class="full_height"></div>
+    
+    <script src="js/libs/template-cache.js?v=95d820074007a563003e4936ce1f04fd"></script>
+    <script src="js/home.js?v=49dfc673706f2719403a29088552e7dc"></script>
 </body>
 </html>

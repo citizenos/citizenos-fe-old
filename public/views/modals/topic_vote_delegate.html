@@ -49,7 +49,7 @@
                             <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
                                        select="addUser(item)" placeholder="{{'MODALS.TOPIC_VOTE_DELEGATE_PLACEHOLDER_SEARCH_BY_NAME' | translate}}">
                                 <div class="search_area_wrap">
-                                    <div class="search_dropdown_area" ng-show="searchResults.users.length">
+                                    <div class="search_dropdown_area" ng-class="{hidden: !searchResults.users.length}">
                                         <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
                                             <div class="table_cell search_item_text">
                                                 <b>{{user.name}}</b> {{user.company}}
