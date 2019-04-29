@@ -734,6 +734,7 @@
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Die Kontoverifizierung wurde nicht abgeschlossen. Bitte überprüfen Sie Ihre E-Mails.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "E-Mail, Passwort oder Rücksetz-Code ungültig.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Überprüfen Sie Ihre E-Mails, um Ihr Konto zu verifizieren.",
+  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS": "Your e-mail address has been updated. Check your email to verify your new e-mail address. From now on, you use this address to log in.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "Ein Konto mit dieser E-Mail existiert nicht.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Geschafft! Bitte überprüfen Sie Ihre E-Mails, um Ihr Passwort wiederherzustellen.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Geschafft! Ihr Passwort wurde zurückgesetzt. Melden Sie sich mit Ihrem neuen Passwort an.",
