@@ -734,6 +734,7 @@
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "De accountverificatie is niet voltooid. Controleer uw e-mail.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "E-mailadres, wachtwoord of resetcode voor wachtwoord ongeldig.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Controleer uw e-mail om uw account te verifiëren.",
+  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS": "Your e-mail address has been updated. Check your email to verify your new e-mail address. From now on, you use this address to log in.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "Er bestaat geen account met dit e-mailadres.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Gelukt! Controleer uw e-mail om uw wachtwoordherstel te voltooien.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Gelukt! Uw wachtwoord is gereset. Log in met uw nieuwe wachtwoord.",

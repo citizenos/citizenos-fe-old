@@ -734,6 +734,7 @@
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Верифікацію облікового запису не було завершено. Будь-ласка, перевірте свою електронну пошту.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "Недійсна електронна пошта, пароль або код скидання паролю.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Перевірте Вашу електронну пошту для того щоб верифікувати обліковий запис.",
+  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS": "Your e-mail address has been updated. Check your email to verify your new e-mail address. From now on, you use this address to log in.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "Обліковий запис з такою електронною поштою не існує.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Готово! Будь-ласка, перевірте Вашу електронну пошту, щоб завершити відновлення пароля.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Готово! Ваш пароль було скинуто. Увійдіть до платформи з Вашим новим паролем.",

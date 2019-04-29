@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', '$document', 'ngDialog', 'sAuth', 'sUser', 'sUpload', function ($scope, $log, $stateParams, $filter, $document, ngDialog, sAuth, sUser, sUpload) {
+    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', '$document', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', function ($scope, $log, $stateParams, $filter, $document, ngDialog, sNotification, sAuth, sUser, sUpload) {
         $log.debug('MyAccountFormCtrl');
 
         $scope.tabSelected = 'profile';
@@ -22,13 +22,19 @@ angular
             $scope.errors = null;
 
             var success = function (res) {
+                // E-mail address was changed!
+                var emailChanged = sAuth.user.email !== $scope.form.email;
                 angular.extend(sAuth.user, res.data.data);
                 ngDialog.closeAll(); // Close all dialogs, including the one open now...
+                if (emailChanged) {
+                    sNotification.addInfo('MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS');
+                }
             };
 
             var error = function (res) {
                 $scope.errors = res.data.errors;
             };
+
             if ($scope.form.password) {
                 if ($scope.form.password !== $scope.form.passwordConfirm) {
                     $scope.errors = {
@@ -37,15 +43,16 @@ angular
                     return;
                 }
             }
+
             if ($scope.imageFile) {
                 sUpload
                     .upload($scope.imageFile, 'users')
                     .then(function (url) {
-                            $scope.form.imageUrl = url;
-                            sUser
-                                .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, url)
-                                .then(success, error);
-                        });
+                        $scope.form.imageUrl = url;
+                        sUser
+                            .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, url)
+                            .then(success, error);
+                    });
 
             } else {
                 sUser
@@ -61,30 +68,36 @@ angular
         $scope.switchImage = function (element) {
             $scope.imageFile = element.files[0];
             var reader = new FileReader();
-            reader.onload = (function() { return function(e) {
-                $scope.$apply(function () {
-                    $scope.form.imageUrl = e.target.result;
-                });
-            };
+            reader.onload = (function () {
+                return function (e) {
+                    $scope.$apply(function () {
+                        $scope.form.imageUrl = e.target.result;
+                    });
+                };
             })();
             reader.readAsDataURL(element.files[0]);
         };
 
         $scope.deleteProfileImage = function () {
-            if($scope.form.imageUrl.indexOf('amazonaws') > -1) {
+            if ($scope.form.imageUrl.indexOf('amazonaws') > -1) {
                 sUpload.delete($scope.form.imageUrl, 'users')
                     .then(function () {
                         sUser
                             .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, '')
-                            .then(function (res) { angular.extend(sAuth.user, res.data.data);}, function (res) { $scope.errors = res.data.errors;})
+                            .then(
+                                function (res) {
+                                    angular.extend(sAuth.user, res.data.data);
+                                },
+                                function (res) {
+                                    $scope.errors = res.data.errors;
+                                }
+                            );
                     });
             }
         };
 
         $scope.selectTab = function (tab) {
-         //   $scope.$apply(function () {
-                $scope.tabSelected = tab;
-           // });           
+            $scope.tabSelected = tab;
         }
 
     }]);
