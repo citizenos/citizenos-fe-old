@@ -734,6 +734,7 @@
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Konta verifikācija nav pabeigta. Lūdzu, pārbaudiet savu e-pastu.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "Nepareizi norādīts e-pasts, parole vai paroles atiestatīšanas kods.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Pārbaudiet savu e-pastu, lai verificētu kontu.",
+  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS": "Your e-mail address has been updated. Check your email to verify your new e-mail address. From now on, you use this address to log in.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "Konts ar šādu e-pastu neeksistē.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Izdevās! Lūdzu, pārbaudiet savu e-pastu, lai pabeigtu paroles maiņu.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Izdevās! Jūsu parole ir atiestatīta. Piesakieties ar jauno paroli.",
