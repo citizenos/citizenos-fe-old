@@ -734,6 +734,7 @@
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Аккаунт еще не подтвержден. Пожалуйста, проверьте свой e-mail.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "Ошибка в адресе электронной почты, пароле или коде сброса пароля.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Пожалуйста, проверьте свою эл. почту на наличие подтверждающего регистрацию письма.",
+  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS": "Your e-mail address has been updated. Check your email to verify your new e-mail address. From now on, you use this address to log in.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "Пользователя с таким адресом эл. почты не существует.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Готово! Указания по изменению Вашего пароля высланы на эл. почту.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Пароль изменен. Войдите в систему с Вашим новым паролем.",

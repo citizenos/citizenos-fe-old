@@ -734,6 +734,7 @@
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Tiliä ei ole vielä vahvistettu. Ole hyvä ja tarkista sähköpostisi.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "Virheellinen sähköposti, salasana tai salasanan nollauskoodi.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Tarkista sähköpostisi vahvistaaksesi tilisi.",
+  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS": "Your e-mail address has been updated. Check your email to verify your new e-mail address. From now on, you use this address to log in.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "Tähän sähköpostiosoitteeseen liittyvää tiliä ei ole olemassa.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Onnistui! Ole hyvä ja tarkista sähköpostisi suorittaaksesi salasanasi palauttamisen loppuun.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Onnistui! Salasanasi on nollattu. Kirjaudu sisään käyttäen uutta salasanaasi.",

@@ -734,6 +734,7 @@
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "No se completó la verificación de la cuenta. Consulte su correo electrónico.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "Correo electrónico, contraseña o código de restablecimiento de contraseña no válidos.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Consulte su correo electrónico para verificar la cuenta.",
+  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS": "Your e-mail address has been updated. Check your email to verify your new e-mail address. From now on, you use this address to log in.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "No existe ninguna cuenta con este correo electrónico.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Operación correcta. Consulte su correo electrónico para completar la recuperación de contraseña.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Operación correcta. Se restableció la contraseña. Inicie sesión con una nueva contraseña.",
