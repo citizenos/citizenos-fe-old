@@ -734,6 +734,7 @@
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "La vérification du compte n'a pu être finalisée. Veuillez vérifier votre e-mail.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "E-mail, mot de passe ou code de réinitialisation du mot de passe non valide.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Consultez vos e-mails pour vérifier votre compte.",
+  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS": "Your e-mail address has been updated. Check your email to verify your new e-mail address. From now on, you use this address to log in.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "Aucun compte existant n'utilise cet e-mail.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "C'est bon ! Veuillez consulter vos e-mails pour finaliser la récupération de mot de passe.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "C'est bon ! Votre mot de passe a été réinitialisé. Connectez-vous avec votre nouveau mot de passe.",
