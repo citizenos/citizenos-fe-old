@@ -14,7 +14,7 @@ angular
         $scope.form = {
             topic: null,
             description: null,
-            urlJoin:null
+            urlJoin: null
         };
         $scope.cosToggleTextOn = 'public';
         $scope.tabSelected = $stateParams.tab || 'settings';
@@ -31,7 +31,7 @@ angular
             $scope.form = {
                 topic: null,
                 description: null,
-                urlJoin:null
+                urlJoin: null
             };
             $scope.form.topic = angular.copy($scope.topic);
             $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
@@ -107,26 +107,6 @@ angular
             }
         };
 
-        var loadTopicMemberUserList = function () {
-            return TopicMemberUser
-                .query({topicId: $scope.topic.id}).$promise
-                .then(function (users) {
-                    $scope.members.users = users;
-                    console.log(users);
-                    return users;
-                });
-        };
-
-        var loadTopicMemberGroupList = function () {
-            return TopicMemberGroup
-                .query({topicId: $scope.topic.id}).$promise
-                .then(function (groups) {
-                    $scope.members.groups = groups;
-                    console.log(groups);
-                    return groups;
-                });
-        };
-
         $scope.doDeleteHashtag = function () {
             $scope.form.topic.hashtag = null;
         };
@@ -146,24 +126,10 @@ angular
                         });
                 });
         };
-        
-        var loadMembersList = function () {
-            if ($scope.topic.canUpdate()) {
-                loadTopicMemberGroupList();
-                loadTopicMemberUserList();
-            }
-        };
-
-        if ($scope.tabSelected  === 'invite') {
-            loadMembersList();
-        }
 
         $scope.selectTab = function (tab) {
             $scope.tabSelected = tab;
             $location.search({tab: tab});
-            if ($scope.tabSelected  === 'invite') {
-                loadMembersList();
-            }
         };
 
         $scope.copyInviteLink = function () {
@@ -304,7 +270,7 @@ angular
             }
             $scope.form.topic
                 .$update()
-                .then( function (data) {
+                .then(function (data) {
                     var savePromises = [];
                     // Users
                     var topicMemberUsersToSave = [];
@@ -336,7 +302,8 @@ angular
 
                     return Promise.all(savePromises)
                 })
-                .then( function () {
+                .then(
+                    function () {
                         $state.go($state.current.parent, {topicId: $scope.topic.id}, {reload: true});
                     },
                     function (errorResponse) {

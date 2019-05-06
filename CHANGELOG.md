@@ -1,16 +1,20 @@
+## 2019-05-06
+
+* Remove the bugged Topic settings invitation user experience for existing members. There is no quick fix, we need to rethink the implementation - https://github.com/citizenos/citizenos-fe/issues/253
+
 ## 2019-04-23
 
 * Add CSP configuration to server side https://github.com/citizenos/citizenos-fe/issues/101
 
 ## 2019-03-18
 
-* Fix issues: 
- - https://github.com/citizenos/citizenos-fe/issues/165
- - https://github.com/citizenos/citizenos-fe/issues/214
- - https://github.com/citizenos/citizenos-fe/issues/201
- - https://github.com/citizenos/citizenos-fe/issues/164
- - https://github.com/citizenos/citizenos-fe/issues/193
- 
+* Fix issues:
+    * https://github.com/citizenos/citizenos-fe/issues/165
+    * https://github.com/citizenos/citizenos-fe/issues/214
+    * https://github.com/citizenos/citizenos-fe/issues/201
+    * https://github.com/citizenos/citizenos-fe/issues/164
+    * https://github.com/citizenos/citizenos-fe/issues/193
+
 ## 2019-02-21
 
 * Add informative number to config to display attachments limit to users.

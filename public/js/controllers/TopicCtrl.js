@@ -11,7 +11,7 @@ angular
             $scope.topic.padUrl += '&theme=default';
             if (!$scope.topic.canEdit() &&  ($stateParams.editMode && $stateParams.editMode === 'true')) {
                 $scope.app.editMode = false;
-                delete $stateParams.editMode; 
+                delete $stateParams.editMode;
                 $state.transitionTo($state.current.name, $stateParams, {notify: false, reload: false});
             }
         }
@@ -88,7 +88,6 @@ angular
         };
 
         var loadTopicMemberGroupList = function () {
-            console.log($scope.topic);
             return TopicMemberGroup
                 .query({topicId: $scope.topic.id}).$promise
                 .then(function (groups) {
