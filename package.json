@@ -49,5 +49,9 @@
   "bugs": {
     "url": "https://github.com/citizenos/citizenos-fe/issues"
   },
-  "author": ""
+  "author": "",
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  }
 }
