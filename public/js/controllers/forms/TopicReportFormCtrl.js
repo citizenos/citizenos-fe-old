@@ -2,10 +2,10 @@
 
 angular
     .module('citizenos')
-    .controller('TopicReportFormCtrl', ['$scope', '$log', 'ngDialog', 'TopicComment', function ($scope, $log, ngDialog, TopicComment) {
+    .controller('TopicReportFormCtrl', ['$scope', '$log', 'ngDialog', 'Topic', function ($scope, $log, ngDialog, Topic) {
         $log.debug('TopicReportFormCtrl', $scope.topic);
 
-        $scope.reportTypes = TopicComment.COMMENT_REPORT_TYPES; // FIXME!
+        $scope.reportTypes = Topic.REPORT_TYPES; // FIXME! Should they be in Topic?
 
         $scope.form = {
             type: null,

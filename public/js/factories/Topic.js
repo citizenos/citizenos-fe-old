@@ -182,6 +182,16 @@ angular
             varia: 'varia' // Varia
         };
 
+        Topic.REPORT_TYPES = {
+            abuse: 'abuse', // is abusive or insulting
+            obscene: 'obscene', // contains obscene language
+            spam: 'spam', // contains spam or is unrelated to topic
+            hate: 'hate', // contains hate speech
+            netiquette: 'netiquette', // infringes (n)etiquette
+            duplicate: 'duplicate' // duplicate
+        };
+
+
         Topic.CATEGORIES_COUNT_MAX = 3; // Maximum of 3 categories allowed at the time.
 
         Topic.prototype.isPrivate = function () {
