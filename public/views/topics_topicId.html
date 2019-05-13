@@ -35,8 +35,8 @@
             </div>
 
             <div class="days_left_wrap"
-                 ng-class="{'pin_yellow_background days_left_in_progress': topic.status === STATUSES.inProgress, 
-                    'bar_green days_left_voting': topic.status === STATUSES.voting, 
+                 ng-class="{'pin_yellow_background days_left_in_progress': topic.status === STATUSES.inProgress,
+                    'bar_green days_left_voting': topic.status === STATUSES.voting,
                     'bar_blue days_left_follow_up': topic.status === STATUSES.followUp,
                     'timeline_gray_background days_left_closed': topic.status === STATUSES.closed,
                  }">
@@ -766,7 +766,7 @@
                             </div>
 
                             <div class="more_info_button" ng-click="app.more_info_button = !app.more_info_button">
-                                
+
                                 <div class="table_cell">
                                     <div class="more_info_button_text_wrap">
                                         <div class="arrow_down_wrap">
@@ -791,7 +791,7 @@
                                             <span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}">Poliitika</span>
                                             <span ng-if="!$last" class="info_section_separator"> | </span>
                                         </span>
-                                        <span ng-if="!topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none 
+                                        <span ng-if="!topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none
                                             <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span>
                                         </span>
                                     </div>
@@ -891,6 +891,7 @@
                         <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_CATEGORIES">Categories</div>
                         <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'invite'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_INVITE_USERS">Invite users</div>
                         <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'share'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SHARE">Share topic</div>
+                        <div class="blue_link" ui-sref="topics.view.report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report topic</div>
                         <div class="line lightest_line"></div>
                         <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="app.dotoggleEditMode()"
                              ng-if="!app.editMode" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC">Edit topic
