@@ -777,6 +777,8 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT": "Main statement can be 1 to 128 characters long.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TYPE": "Argument report reason is required",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT": "Explanation text can be 1 to 2048 characters long.",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TYPE": "Topic report reason is required",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TEXT": "Explanation text can be 1 to 2048 characters long.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Report has become invalid, as the argument has been updated after the report.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Topic attachment limit reached",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "You have cancelled the signing flow and your vote was not counted.",

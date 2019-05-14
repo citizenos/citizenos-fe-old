@@ -40,7 +40,7 @@
                     <b translate="MODALS.TOPIC_REPORT_LABEL_REASON">Reason for reporting</b> <span class="required_text"
                                                                                                           translate="MODALS.TOPIC_REPORT_LABEL_REASON_REQUIRED">(required)</span>
 
-                    <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': errors.type}">
+                    <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': form.errors.type}">
 
                         <div class="dropdown_selection">
                             <div class="dropdown_text">
@@ -65,19 +65,19 @@
                         </div>
                     </div>
 
-                    <div class="error_label" ng-if="errors.type">
+                    <div class="error_label" ng-if="form.errors.type">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-inputfield-error2x"></div>
-                            <span translate="{{errors.type}}"></span>
+                            <span translate="{{form.errors.type}}"></span>
                         </div>
                     </div>
 
-                    <textarea class="gray_borders" ng-model="form.text" ng-class="{'error_input': errors.text}" translate
+                    <textarea class="gray_borders" ng-model="form.text" ng-class="{'error_input': form.errors.text}" translate
                               translate-attr-placeholder="MODALS.TOPIC_REPORT_PLACEHOLDER_REPORT_TEXT" placeholder="Explain why you find this topic inappropriate..." maxlength="2048"></textarea>
-                    <div class="error_label" ng-if="errors.text">
+                    <div class="error_label" ng-if="form.errors.text">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-inputfield-error2x"></div>
-                            <span translate="{{errors.text}}"></span>
+                            <span translate="{{form.errors.text}}"></span>
                         </div>
                     </div>
                 </div>
