@@ -162,16 +162,19 @@
                 </div>
 
                 <!-- FIXME: Translate, moderator conditions, regular User conditions-->
-                <div class="info_bar_wrap">
+                <!-- Show this in 2 cases - topic has been moderated OR topic has been reported && User is a moderator -->
+                <!-- topic.report.type is returned for Moderators only -->
+                <!-- topic.report.moderatedReasonType is returned in case Topic has been moderated -->
+                <div class="info_bar_wrap" ng-if="topic.report.moderatedReasonType || (topic.report.type && !topic.report.moderatedReasonType)">
                     <div class="info_bar bar_red info_bar_show">
                         <div class="info_icon">
                             <div class="sprite sprite-icon-notification-info2x"></div>
                         </div>
 
                         <div class="info_bar_text">
-                            <div class="info_row" ng-if="topic.report.type"><!-- topic.report.type is returned for Moderators only -->
+                            <div class="info_row">
                                 <!-- FIXME: translate -->
-                                This topic has been reported. <a ui-sref="topics.view.reports({topicId: topic.id, reportId: topic.report.id})">View details</a>
+                                This topic has been reported. <a ui-sref="topics.view.reports({topicId: topic.id, reportId: topic.report.id})">View details</a><span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsModerate({topicId: topic.id, reportId: topic.report.id})">Moderate</a></span>
                             </div>
                         </div>
                     </div>
