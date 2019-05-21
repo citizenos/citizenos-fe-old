@@ -8,8 +8,8 @@ angular
         $scope.reportTypes = TopicReport.TYPES;
 
         $scope.form = {
-            type: null,
-            text: null,
+            moderatedReasonType: null,
+            moderatedReasonText: null,
             topicId: $scope.topic.id,
             errors: null
         };
@@ -18,8 +18,8 @@ angular
             //FIXME: Implement!
             var topicReport = new TopicReport();
 
-            topicReport.type = $scope.form.type;
-            topicReport.text = $scope.form.text;
+            topicReport.type = $scope.form.moderatedReasonType;
+            topicReport.text = $scope.form.moderatedReasonText;
 
             $scope.form.errors = null;
 

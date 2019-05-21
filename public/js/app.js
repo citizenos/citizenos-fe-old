@@ -325,9 +325,8 @@
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', function ($stateParams, Topic, sAuthResolve) {
-                            var topic = new Topic({id: $stateParams.topicId});
-                            return topic.$get();
+                        rTopic: ['$stateParams', 'Topic', function ($stateParams, Topic) {
+                            return new Topic({id: $stateParams.topicId}).$get();
                         }]
                     },
                     controller: 'TopicCtrl'

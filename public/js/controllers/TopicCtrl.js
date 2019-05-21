@@ -7,14 +7,37 @@ angular
         var lastViewTime = null;
 
         $scope.topic = rTopic;
+
         if ($scope.topic) {
             $scope.topic.padUrl += '&theme=default';
-            if (!$scope.topic.canEdit() &&  ($stateParams.editMode && $stateParams.editMode === 'true')) {
+            if (!$scope.topic.canEdit() && ($stateParams.editMode && $stateParams.editMode === 'true')) {
                 $scope.app.editMode = false;
                 delete $stateParams.editMode;
-                $state.transitionTo($state.current.name, $stateParams, {notify: false, reload: false});
+                $state.transitionTo($state.current.name, $stateParams, {
+                    notify: false,
+                    reload: false
+                });
             }
         }
+
+        // Topic has been moderated, we need to show User warning AND hide Topic content
+        // FIXME: Hide Topic content!
+        //if ($scope.topic.report && $scope.topic.report.moderatedReasonType) {
+        //    console.log('REDIRECT');
+        //    return $state.go(
+        //        'topics.view.reports',
+        //        {
+        //            reportId: $scope.topic.report.id,
+        //            topicId: $scope.topic.id
+        //        },
+        //        {
+        //            location: false, // Do not update location on the url
+        //            notify: false
+        //        }
+        //    );
+        //}
+
+
         $scope.ATTACHMENT_SOURCES = TopicAttachment.SOURCES;
 
         $scope.generalInfo = {
@@ -494,7 +517,7 @@ angular
             }
             items.openTabs = items.openTabs.join(',');
             var newParams = $stateParams;
-            Object.keys(items).forEach(function(key) {
+            Object.keys(items).forEach(function (key) {
                 newParams[key] = items[key];
             });
             $state.go($state.current.name, newParams, {location: true});
@@ -517,15 +540,15 @@ angular
                             break;
                         case 'vote_results':
                             $scope.doToggleVoteResults();
-                        break;
+                            break;
                         case 'group_list':
                             $scope.doToggleMemberGroupList();
-                        break;
+                            break;
                         case 'user_list':
                             $scope.doToggleMemberUserList();
-                        break;
+                            break;
                         default:
-                        break;
+                            break;
                     }
                 });
             }
@@ -535,24 +558,22 @@ angular
         $scope.togglePin = function () {
             if ($scope.topic.pinned === true) {
                 $scope.topic.$removeFromPinned()
-                .then(function () {
-                    $scope.topic.pinned = false;
-                    if ($state.current.name.indexOf('my') > -1) {
-                        $state.reload();
-                    }
-                });
+                    .then(function () {
+                        $scope.topic.pinned = false;
+                        if ($state.current.name.indexOf('my') > -1) {
+                            $state.reload();
+                        }
+                    });
             } else {
                 $scope.topic.$addToPinned()
-                .then(function () {
-                    $scope.topic.pinned = true;
-                    if ($state.current.name.indexOf('my') > -1) {
-                        $state.reload();
-                    }
-                });
+                    .then(function () {
+                        $scope.topic.pinned = true;
+                        if ($state.current.name.indexOf('my') > -1) {
+                            $state.reload();
+                        }
+                    });
             }
-
-
-        }
+        };
 
         $scope.downloadAttachment = function (attachment) {
             return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
@@ -564,7 +585,7 @@ angular
             }
         });
 
-        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
             if (fromState.name.indexOf('my.topics') > -1 && toState.name.indexOf('my.groups') > -1 || toState.name.indexOf('my.topics') > -1 && fromState.name.indexOf('my.groups') > -1) {
                 if (fromParams.openTabs && toParams.openTabs) {
                     delete toParams.openTabs;

@@ -39,11 +39,11 @@
                 <div class="lightbox_section">
                     <b translate="MODALS.TOPIC_REPORT_MODERATE_LABEL_REASON">Reason for moderating</b> <span class="required_text" translate="MODALS.TOPIC_REPORT_MODERATE_LABEL_REASON_REQUIRED">(required)</span>
 
-                    <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': form.errors.type}">
+                    <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': form.errors.moderatedReasonType}">
 
                         <div class="dropdown_selection">
                             <div class="dropdown_text">
-                                {{('TXT_MODERATION_TYPES_' + form.type | uppercase) | translate}}
+                                {{('TXT_MODERATION_TYPES_' + form.moderatedReasonType | uppercase) | translate}}
                             </div>
 
                             <div class="arrow_holder">
@@ -57,26 +57,26 @@
 
                         <div class="dropdown">
                             <div class="dropdown_item" ng-repeat="type in reportTypes">
-                                <div class="item_name" ng-click="form.type = type">
+                                <div class="item_name" ng-click="form.moderatedReasonType = type">
                                     {{('TXT_MODERATION_TYPES_' + type | uppercase) | translate}}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="error_label" ng-if="form.errors.type">
+                    <div class="error_label" ng-if="form.errors.moderatedReasonType">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-inputfield-error2x"></div>
-                            <span translate="{{form.errors.type}}"></span>
+                            <span translate="{{form.errors.moderatedReasonType}}"></span>
                         </div>
                     </div>
 
-                    <textarea class="gray_borders" ng-model="form.text" ng-class="{'error_input': form.errors.text}" translate
+                    <textarea class="gray_borders" ng-model="form.moderatedReasonText" ng-class="{'error_input': form.errors.moderatedReasonText}" translate
                               translate-attr-placeholder="MODALS.TOPIC_REPORT_MODERATE_PLACEHOLDER_REPORT_TEXT" placeholder="Explain why you find this topic inappropriate..." maxlength="2048"></textarea>
-                    <div class="error_label" ng-if="form.errors.text">
+                    <div class="error_label" ng-if="form.errors.moderatedReasonText">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-inputfield-error2x"></div>
-                            <span translate="{{form.errors.text}}"></span>
+                            <span translate="{{form.errors.moderatedReasonText}}"></span>
                         </div>
                     </div>
                 </div>
