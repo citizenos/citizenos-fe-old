@@ -23,7 +23,7 @@ angular
                 )
                 .$promise
                 .then(
-                    function (data) {
+                    function () {
                         ngDialog.closeAll();
                     },
                     function (res) {

@@ -15,18 +15,22 @@ angular
         };
 
         $scope.doModerate = function () {
-            //FIXME: Implement!
-            var topicReport = new TopicReport();
-
-            topicReport.type = $scope.form.moderatedReasonType;
-            topicReport.text = $scope.form.moderatedReasonText;
-
             $scope.form.errors = null;
 
-            topicReport
-                .$moderate({topicId: $scope.topic.id, id: $scope.topic.report.id})
+            TopicReport
+                .moderate(
+                    {
+                        topicId: $scope.topic.id, id: $scope.topic.report.id
+                    },
+                    {
+                        type: $scope.form.moderatedReasonType,
+                        text: $scope.form.moderatedReasonText
+                    }
+                )
+                .$promise
                 .then(
-                    function () {
+                    function (report) {
+                        $scope.topic.report = report;
                         ngDialog.closeAll();
                     },
                     function (res) {
