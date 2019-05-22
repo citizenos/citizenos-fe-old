@@ -25,7 +25,8 @@ angular
             topicReport
                 .$save({topicId: $scope.topic.id})
                 .then(
-                    function () {
+                    function (report) {
+                        $scope.topic.report = report;
                         ngDialog.closeAll();
                     },
                     function (res) {

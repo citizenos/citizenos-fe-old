@@ -81,6 +81,7 @@ angular
         $scope.showVoteArea = false;
 
         $scope.STATUSES = Topic.STATUSES;
+        $scope.VISIBILITY = Topic.VISIBILITY;
 
         if ($scope.topic.voteId || $scope.topic.vote) {
             $scope.topic.vote = new TopicVote({
