@@ -3,7 +3,7 @@
 angular
     .module('citizenos')
     .controller('TopicReportReviewFormCtrl', ['$scope', '$log', 'ngDialog', 'TopicReport', function ($scope, $log, ngDialog, TopicReport) {
-        $log.debug('TopicReportReviewFormCtrl', $scope.topic);
+        $log.debug(' ', $scope.topic);
 
         $scope.form = {
             text: null,
@@ -11,7 +11,25 @@ angular
         };
 
         $scope.doReview = function () {
-            console.log('DO REVIEW!');
+            TopicReport
+                .review(
+                    {
+                        topicId: $scope.topic.id,
+                        id: $scope.topic.report.id
+                    },
+                    {
+                        text: $scope.form.text
+                    }
+                )
+                .$promise
+                .then(
+                    function (data) {
+                        ngDialog.closeAll();
+                    },
+                    function (res) {
+                        $scope.form.errors = res.data.errors;
+                    }
+                );
         };
 
     }]);
