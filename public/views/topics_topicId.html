@@ -893,7 +893,7 @@
 
             <div class="side_panel" ng-if="wWidth > 1024 || app.topics_settings">
                 <div ng-if="topic.canEdit() && topic.report.moderatedReasonType" class="options_wrap">
-                    <div class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_SUBMIT_FOR_REVIEW">Submit for review</div>
+                    <div class="blue_button" ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})">Submit for review</div>
                 </div>
                 <div class="options_wrap">
                     <div class="options_header">

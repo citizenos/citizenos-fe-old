@@ -54,6 +54,7 @@ angular
             '/views/modals/topic_report.html',
             '/views/modals/topic_reports_reportId.html',
             '/views/modals/topic_reports_reportId_moderate.html',
+            '/views/modals/topic_reports_reportId_review.html',
             '/views/modals/topic_send_to_followUp_confirm.html',
             '/views/modals/topic_send_to_vote_confirm.html',
             '/views/modals/topic_settings.html',
