@@ -3,8 +3,6 @@
 angular
     .module('citizenos')
     .controller('TopicReportReviewFormCtrl', ['$scope', '$log', 'ngDialog', 'TopicReport', function ($scope, $log, ngDialog, TopicReport) {
-        $log.debug(' ', $scope.topic);
-
         $scope.form = {
             text: null,
             errors: null

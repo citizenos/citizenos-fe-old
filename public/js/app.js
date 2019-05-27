@@ -433,6 +433,23 @@
                         });
                     }]
                 })
+                .state('topics.view.reportsResolve', {
+                    url: '/reports/:reportId/resolve',
+                    parent: 'topics.view',
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_reports_reportId_resolve.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
                 .state('onedrive', {
                     url: '/onedrive',
                     templateUrl: '<div></div>'

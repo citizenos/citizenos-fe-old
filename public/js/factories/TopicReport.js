@@ -49,7 +49,20 @@ angular
                     method: 'POST',
                     url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/reports/:id/review'),
                     transformRequest: function (data) {
-                        console.log('TopicReport.review', 'transformRequest', data);
+                        return angular.toJson(data);
+                    },
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
+                },
+                resolve: {
+                    method: 'POST',
+                    url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/reports/:id/resolve'),
+                    transformRequest: function (data) {
                         return angular.toJson(data);
                     },
                     transformResponse: function (data, headersGetter, status) {

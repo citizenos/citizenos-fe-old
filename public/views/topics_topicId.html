@@ -174,7 +174,9 @@
                         <div class="info_bar_text">
                             <div class="info_row">
                                 <!-- FIXME: translate -->
-                                This topic has been reported. <a ui-sref="topics.view.reports({topicId: topic.id, reportId: topic.report.id})">View details</a><span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsModerate({topicId: topic.id, reportId: topic.report.id})">Moderate</a></span>
+                                This topic has been reported. <a ui-sref="topics.view.reports({topicId: topic.id, reportId: topic.report.id})">View details</a>
+                                <span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsModerate({topicId: topic.id, reportId: topic.report.id})">Moderate</a></span>
+                                <span ng-if="topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsResolve({topicId: topic.id, reportId: topic.report.id})">Mark as resolved</a></span>
                             </div>
                         </div>
                     </div>
