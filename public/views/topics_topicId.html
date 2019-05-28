@@ -176,7 +176,7 @@
                                 <!-- FIXME: translate -->
                                 This topic has been reported. <a ui-sref="topics.view.reports({topicId: topic.id, reportId: topic.report.id})">View details</a>
                                 <span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsModerate({topicId: topic.id, reportId: topic.report.id})">Moderate</a></span>
-                                <span ng-if="topic.report.type && topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsResolve({topicId: topic.id, reportId: topic.report.id})">Mark as resolved</a></span>
+                                <span ng-if="topic.report.type">&nbsp;<a ui-sref="topics.view.reportsResolve({topicId: topic.id, reportId: topic.report.id})">Mark as resolved</a></span>
                                 <span ng-if="topic.canEdit() && topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})">Submit for review</a></span>
                             </div>
                         </div>
