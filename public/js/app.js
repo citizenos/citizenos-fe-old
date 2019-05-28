@@ -325,9 +325,13 @@
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', function ($stateParams, Topic, sAuthResolve) {
+                        rTopic: ['$state', '$stateParams', 'Topic', 'sAuthResolve', function ($state, $stateParams, Topic, sAuthResolve) {
                             // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
-                            return new Topic({id: $stateParams.topicId}).$get();
+                            return new Topic({id: $stateParams.topicId})
+                                .$get()
+                                .then(function (topic) {
+                                    return topic;
+                                });
                         }]
                     },
                     controller: 'TopicCtrl'
@@ -388,12 +392,22 @@
                     parent: 'topics.view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        var dialog = ngDialog.open({
-                            template: '/views/modals/topic_reports_reportId.html',
-                            data: $stateParams,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
+                        var dialog = ngDialog.openConfirm({
+                                template: '/views/modals/topic_reports_reportId.html',
+                                data: $stateParams,
+                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                            })
+                            .then(
+                                function () {
+                                    return $state.go('^');
+                                },
+                                function () {
+                                    return $state.go('home');
+                                }
+                            );
+
                         dialog.closePromise.then(function (data) {
+                            console.log('topics.view.reports', 'dialog.closePromise', data);
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
                                 $state.go('^');
                             }

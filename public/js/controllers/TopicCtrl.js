@@ -7,6 +7,31 @@ angular
         var lastViewTime = null;
 
         $scope.topic = rTopic;
+        $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
+        $scope.hideTopicContent = true;
+
+        // Topic has been moderated, we need to show User warning AND hide Topic content
+        // As the controller is used both in /my/topics/:topicId and /topics/:topicId the dialog is directly opened
+        if ($scope.isTopicReported) {
+            ngDialog.openConfirm({
+                    template: '/views/modals/topic_reports_reportId.html',
+                    data: $stateParams,
+                    scope: $scope, // Pass on $scope so that I can access AppCtrl,
+                    closeByEscape: false
+                })
+                .then(
+                    function () {
+                        // User wants to view the Topic
+                        $scope.hideTopicContent = false;
+                    },
+                    function () {
+                        // User clicked away to safety
+                        $state.go('home');
+                    }
+                );
+        } else {
+            $scope.hideTopicContent = false;
+        }
 
         if ($scope.topic) {
             $scope.topic.padUrl += '&theme=default';
@@ -19,23 +44,6 @@ angular
                 });
             }
         }
-
-        // Topic has been moderated, we need to show User warning AND hide Topic content
-        // FIXME: Hide Topic content!
-        //if ($scope.topic.report && $scope.topic.report.moderatedReasonType) {
-        //    console.log('REDIRECT');
-        //    return $state.go(
-        //        'topics.view.reports',
-        //        {
-        //            reportId: $scope.topic.report.id,
-        //            topicId: $scope.topic.id
-        //        },
-        //        {
-        //            location: false, // Do not update location on the url
-        //            notify: false
-        //        }
-        //    );
-        //}
 
 
         $scope.ATTACHMENT_SOURCES = TopicAttachment.SOURCES;
