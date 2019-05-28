@@ -16,6 +16,8 @@ angular
                 .$promise
                 .then(
                     function () {
+                        delete $scope.topic.report;
+
                         ngDialog.closeAll();
                     },
                     function (res) {
@@ -25,3 +27,4 @@ angular
         };
 
     }]);
+

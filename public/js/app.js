@@ -142,11 +142,11 @@
                                 .status()
                                 .then(
                                     function () {
-                                        $log.debug('Resolve user', sAuth.user);
+                                        $log.debug('Resolve user', sAuth.user, 'LOGGED IN');
                                         return $q.resolve(true);
                                     },
                                     function () {
-                                        $log.debug('Resolve user', sAuth.user);
+                                        $log.debug('Resolve user', sAuth.user, 'NOT LOGGED IN');
                                         return $q.resolve(false);
                                     }
                                 );
@@ -274,7 +274,7 @@
                     url: '/topics',
                     abstract: true,
                     parent: 'main',
-                    template: '<div ui-view></div>'
+                    template: '<div ui-view></div>',
                 })
                 .state('topics.create', {
                     url: '/create?title&groupId&groupLevel',
@@ -325,7 +325,8 @@
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', 'Topic', function ($stateParams, Topic) {
+                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', function ($stateParams, Topic, sAuthResolve) {
+                            // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
                             return new Topic({id: $stateParams.topicId}).$get();
                         }]
                     },
