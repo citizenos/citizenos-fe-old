@@ -10,42 +10,6 @@ angular
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
         $scope.hideTopicContent = true;
 
-        // Topic has been moderated, we need to show User warning AND hide Topic content
-        // As the controller is used both in /my/topics/:topicId and /topics/:topicId the dialog is directly opened
-        if ($scope.isTopicReported) {
-            ngDialog.openConfirm({
-                    template: '/views/modals/topic_reports_reportId.html',
-                    data: $stateParams,
-                    scope: $scope, // Pass on $scope so that I can access AppCtrl,
-                    closeByEscape: false
-                })
-                .then(
-                    function () {
-                        // User wants to view the Topic
-                        $scope.hideTopicContent = false;
-                    },
-                    function () {
-                        // User clicked away to safety
-                        $state.go('home');
-                    }
-                );
-        } else {
-            $scope.hideTopicContent = false;
-        }
-
-        if ($scope.topic) {
-            $scope.topic.padUrl += '&theme=default';
-            if (!$scope.topic.canEdit() && ($stateParams.editMode && $stateParams.editMode === 'true')) {
-                $scope.app.editMode = false;
-                delete $stateParams.editMode;
-                $state.transitionTo($state.current.name, $stateParams, {
-                    notify: false,
-                    reload: false
-                });
-            }
-        }
-
-
         $scope.ATTACHMENT_SOURCES = TopicAttachment.SOURCES;
 
         $scope.generalInfo = {
@@ -100,6 +64,49 @@ angular
         }
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 25;
+
+        $scope.doShowReportOverlay = function () {
+            ngDialog.openConfirm({
+                    template: '/views/modals/topic_reports_reportId.html',
+                    data: $stateParams,
+                    scope: $scope, // Pass on $scope so that I can access AppCtrl,
+                    closeByEscape: false
+                })
+                .then(
+                    function () {
+                        // User wants to view the Topic
+                        $scope.hideTopicContent = false;
+                    },
+                    function () {
+                        // User clicked away to safety
+                        $state.go('home');
+                    }
+                );
+        };
+
+        // Topic has been moderated, we need to show User warning AND hide Topic content
+        // As the controller is used both in /my/topics/:topicId and /topics/:topicId the dialog is directly opened
+        if ($scope.isTopicReported) {
+            // NOTE: Well.. all views that are under the topics.view would trigger doble overlays which we don't want
+            // Not nice, but I guess the problem starts with the 2 views using same controller. Ideally they should have a parent controller and extend that with their specific functionality
+            if ($state.is('topics.view') || $state.is('my.topics.topicId')) {
+                $scope.doShowReportOverlay();
+            }
+        } else {
+            $scope.hideTopicContent = false;
+        }
+
+        if ($scope.topic) {
+            $scope.topic.padUrl += '&theme=default';
+            if (!$scope.topic.canEdit() && ($stateParams.editMode && $stateParams.editMode === 'true')) {
+                $scope.app.editMode = false;
+                delete $stateParams.editMode;
+                $state.transitionTo($state.current.name, $stateParams, {
+                    notify: false,
+                    reload: false
+                });
+            }
+        }
 
         $scope.showActivityDescription = function (activity) {
             if (activity.data && activity.data.object && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Comment' || activity.data.object['@type'] === 'Comment' || activity.data.object.text)) {

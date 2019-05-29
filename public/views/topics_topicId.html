@@ -174,10 +174,10 @@
                         <div class="info_bar_text">
                             <div class="info_row">
                                 <!-- FIXME: translate -->
-                                This topic has been reported. <a ui-sref="topics.view.reports({topicId: topic.id, reportId: topic.report.id})">View details</a>
-                                <span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsModerate({topicId: topic.id, reportId: topic.report.id})">Moderate</a></span>
-                                <span ng-if="topic.report.type">&nbsp;<a ui-sref="topics.view.reportsResolve({topicId: topic.id, reportId: topic.report.id})">Mark as resolved</a></span>
-                                <span ng-if="topic.canEdit() && topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})">Submit for review</a></span>
+                                This topic has been reported. <a ng-click="doShowReportOverlay()" href="">View details</a>
+                                <span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsModerate({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}">Moderate</a></span>
+                                <span ng-if="topic.report.type">&nbsp;<a ui-sref="topics.view.reportsResolve({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}">Mark as resolved</a></span>
+                                <span ng-if="topic.canEdit() && topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}">Submit for review</a></span>
                             </div>
                         </div>
                     </div>
@@ -897,7 +897,7 @@
 
             <div class="side_panel" ng-if="wWidth > 1024 || app.topics_settings">
                 <div ng-if="topic.canEdit() && topic.report.moderatedReasonType" class="options_wrap">
-                    <div class="blue_button" ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})">Submit for review</div>
+                    <div class="blue_button" ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}">Submit for review</div>
                 </div>
                 <div class="options_wrap">
                     <div class="options_header">

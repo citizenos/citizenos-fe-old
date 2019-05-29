@@ -387,33 +387,6 @@
                         });
                     }]
                 })
-                .state('topics.view.reports', {
-                    url: '/reports/:reportId',
-                    parent: 'topics.view',
-                    reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        var dialog = ngDialog.openConfirm({
-                                template: '/views/modals/topic_reports_reportId.html',
-                                data: $stateParams,
-                                scope: $scope // Pass on $scope so that I can access AppCtrl
-                            })
-                            .then(
-                                function () {
-                                    return $state.go('^');
-                                },
-                                function () {
-                                    return $state.go('home');
-                                }
-                            );
-
-                        dialog.closePromise.then(function (data) {
-                            console.log('topics.view.reports', 'dialog.closePromise', data);
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
-                            }
-                        });
-                    }]
-                })
                 .state('topics.view.reportsModerate', { // Cant use topics.view.reports.moderate as that would assume this route is child of topics.view.reports which it is not
                     url: '/reports/:reportId/moderate',
                     parent: 'topics.view',
