@@ -34,7 +34,7 @@
   "TXT_MODERATION_TYPES_DUPLICATE": "@:TXT_REPORT_TYPES_DUPLICATE",
   "MODALS": {
     "GROUP_DELETE_CONFIRM_HEADING": "Kustuta rühm",
-    "GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Kas tahad kindlasti selle rühma kustutada?",
+    "GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Oled kindel, et tahad selle rühma kustutada?",
     "GROUP_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
     "GROUP_DELETE_CONFIRM_TXT_GROUP_DELETED": "Rühm kustutatakse.",
     "GROUP_DELETE_CONFIRM_TXT_LOSE_ACCESS": "Kõik rühma liikmed kaotavad juurdepääsu rühmaga seotud teemadele.",
@@ -734,7 +734,7 @@
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Konto on veel kinnitamata. Palun vaata oma e-postkasti.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_40000": "Viga e-posti aadressis, salasõnas või salasõna lähtestamise koodis.",
   "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_ACCOUNT": "Palun vaata e-postiga saadetud kinnituskirja.",
-  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS": "Your email address has been updated. Check your email to verify your new email address. From now on, you use this address to log in.",
+  "MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS": "Uuendasime su e-posti aadressi - varsti leiad oma e-postkastist kirja, kus tuleb uuendus kinnitada. Nüüdsest saad sisse logida uue e-posti aadressiga.",
   "MSG_ERROR_POST_API_AUTH_PASSWORD_RESET_SEND_40002_EMAIL": "Sellise e-posti aadressiga kasutajat süsteemis ei ole.",
   "MSG_INFO_PASSWORD_RECOVERY_EMAIL_SENT": "Tehtud! Salasõna muutmiseks loe palun sulle saadetud e-kirja.",
   "MSG_INFO_PASSWORD_RESET_SUCCESS": "Salasõna muudetud. Sisene süsteemi uue salasõnaga.",
