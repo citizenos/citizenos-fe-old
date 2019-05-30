@@ -56,6 +56,8 @@ angular
         $scope.app.editMode = ($stateParams.editMode && $stateParams.editMode === 'true') || false;
         $scope.showInfoEdit = $scope.app.editMode;
         $scope.showVoteArea = false;
+        $scope.multipleWinners = false;
+        $scope.showInfoWinners = false;
 
         $scope.STATUSES = Topic.STATUSES;
 
@@ -64,7 +66,20 @@ angular
                 id: $scope.topic.voteId,
                 topicId: $scope.topic.id
             });
-            $scope.topic.vote.$get();
+            $scope.topic.vote.$get()
+            .then(function (voteResults) {
+                var winnerCount = 0;
+                voteResults.options.rows.forEach(function (option) {
+                    if (option.winner) {
+                        winnerCount++;
+                        if (winnerCount > 1) {
+                            $scope.showInfoWinners = true;
+                            $scope.multipleWinners = true;
+                        }
+                    }
+                });
+            });
+            
         }
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 25;
@@ -306,30 +321,6 @@ angular
             }
         };
 
-        $scope.doShowVoteResults = function () {
-            if (!$scope.voteResults.isVisible && ($scope.topic.voteId || $scope.topic.vote && $scope.topic.vote.id)) {
-                $scope.topic.vote
-                    .$get({topicId: $scope.topic.id})
-                    .then(function (topicVote) {
-                        $scope.topic.vote = topicVote;
-                        var voteCount = 0;
-                        topicVote.options.rows.forEach(function (voteOption) {
-                            voteCount += voteOption.voteCount || 0;
-                        });
-                        $scope.voteResults.countTotal = voteCount;
-                        $scope.voteResults.isVisible = true;
-                    });
-            }
-        };
-
-        $scope.doToggleVoteResults = function () {
-            if ($scope.voteResults.isVisible) {
-                $scope.voteResults.isVisible = false;
-            } else {
-                $scope.doShowVoteResults();
-            }
-        };
-
         $scope.doSaveVoteEndsAt = function () {
             return $scope.topic.vote
                 .$update({topicId: $scope.topic.id})
@@ -499,38 +490,6 @@ angular
             });
             $state.go($state.current.name, newParams, {location: true});
         };
-
-        var checkTabs = function () {
-            var tabsToOpen = $location.search();
-            if (tabsToOpen.openTabs) {
-                tabsToOpen.openTabs = tabsToOpen.openTabs.split(',');
-
-                $scope.app.activityFeed = false;
-                $scope.voteResults.isVisible = false;
-                $scope.groupList.isVisible = false;
-                $scope.userList.isVisible = false;
-
-                tabsToOpen.openTabs.forEach(function (tabName) {
-                    switch (tabName) {
-                        case 'activities':
-                            $scope.doToggleActivities();
-                            break;
-                        case 'vote_results':
-                            $scope.doToggleVoteResults();
-                        break;
-                        case 'group_list':
-                            $scope.doToggleMemberGroupList();
-                        break;
-                        case 'user_list':
-                            $scope.doToggleMemberUserList();
-                        break;
-                        default:
-                        break;
-                    }
-                });
-            }
-        };
-        checkTabs();
 
         $scope.togglePin = function () {
             if ($scope.topic.pinned === true) {
