@@ -109,13 +109,13 @@
         }
     }
 
-    #raa_notification {
+    #footer_notification {
         background: $white;
         position: fixed;
         bottom: 0;
         padding: 20px 25px 20px 25px;
 
-        #raa_logo_wrapper {
+        #footer_notification_logo_wrapper {
             display: table-cell;
             padding-right: 25px;
             white-space: nowrap;
@@ -127,7 +127,7 @@
                 display: inline-block;
             }
 
-            .raa_logo_container {
+            .footer_notification_logo_container {
                 display: inline-block;
                 height: 100%;
                 vertical-align: middle;
@@ -135,7 +135,7 @@
             
         }
 
-        #raa_content_wrapper{
+        #footer_notification_content_wrapper{
             width: calc(100% - 290px);
             display: table-cell;
 
@@ -167,7 +167,7 @@
             }
         }
 
-        #raa_close_wrapper{
+        #footer_notification_close_wrapper{
             display: table-cell;
             vertical-align: middle;
             width: 190px;

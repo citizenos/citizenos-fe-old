@@ -336,6 +336,11 @@
       "BTN_HOW_DOES_IT_WORK": "How does it work?",
       "LNK_PRIVACY_POLICY": "Citizen OS Privacy Policy",
       "LNK_CITIZENOS_WEBSITE": "Citizen OS Website"
+    },
+    "COOKIE_POLICY_NOTIFICATION": {
+      "TITLE": "Cookie policy",
+      "CONTENT": "We use cookies and other tracking technologies to improve your browsing experience on our site, show personalized content and targeted ads, analyze site traffic, and understand where our audience is coming from. To find out more or to opt-out, please read our Cookie Policy. In addition, please read our Privacy Policy, which has also been updated and became effective May 23rd, 2018.",
+      "BTN_ACCEPT": "I accept"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "my topics",

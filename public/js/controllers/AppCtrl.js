@@ -177,6 +177,22 @@ angular
             return false;
         };
 
+        $scope.app.closeFooterNotification = function () {
+            var expires = new Date();
+            expires.setDate(expires.getDate() + 365);
+            $cookies.put('COOKIE_NOTIFICATION', true, {expires: expires});
+        };
+
+         $scope.app.displayFooterNotification = function () {
+            var show = $cookies.get('COOKIE_NOTIFICATION');
+
+            if (!show) {
+                return true;
+            }
+
+             return false;
+        };
+
         $rootScope.$on('ngDialog.opened', function () {
             sNotification.removeAll();
         });

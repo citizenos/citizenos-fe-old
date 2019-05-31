@@ -33,5 +33,19 @@
                 <div id="view" ui-view></div>
             </div>
         </div>
+        <div id="footer_notification" ng-if="app.displayFooterNotification()">
+            <div id="footer_notification_logo_wrapper">
+                <div id="footer_notification_logo_container">
+                    <img src="../imgs/icon_cookie.png">
+                </div>
+            </div>
+            <div id="footer_notification_content_wrapper">
+                <div id="notification_title" translate="DEFAULT.COOKIE_POLICY_NOTIFICATION.TITLE">Cookie policy</div>
+                <div id="notification_text" translate="DEFAULT.COOKIE_POLICY_NOTIFICATION.CONTENT">We use cookies and other tracking technologies to improve your browsing experience on our site, show personalized content and targeted ads, analyze site traffic, and understand where our audience is coming from. To find out more or to opt-out, please read our Cookie Policy. In addition, please read our Privacy Policy, which has also been updated and became effective May 23rd, 2018.</div>
+            </div>
+            <div id="footer_notification_close_wrapper">
+                <div class="blue_button" ng-click="app.closeFooterNotification()" class="blue_button" translate="DEFAULT.COOKIE_POLICY_NOTIFICATION.BTN_ACCEPT">I Accept</div>
+            </div>
+        </div>
     </div>
 </div>
