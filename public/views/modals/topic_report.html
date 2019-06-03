@@ -90,10 +90,10 @@
 
                     <div class="yes_no_buttons">
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.TOPIC_REPORT_BTN_NO">NO, I CHANGED MY MIND</div>
+                            <div class="gray_button no" cos-disabled="form.isLoading" ng-click="closeThisDialog()" translate="MODALS.TOPIC_REPORT_BTN_NO">NO, I CHANGED MY MIND</div>
                         </div>
                         <div class="table_cell">
-                            <div class="blue_button yes" ng-click="doReport()" translate="MODALS.TOPIC_REPORT_BTN_YES">YES, REPORT THIS TOPIC</div>
+                            <div class="blue_button yes" cos-disabled="form.isLoading" ng-click="doReport()" translate="MODALS.TOPIC_REPORT_BTN_YES">YES, REPORT THIS TOPIC</div>
                         </div>
                     </div>
 

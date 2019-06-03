@@ -966,6 +966,11 @@ a:link, a:visited {
     cursor: initial;
 }
 
+.gray_button[disabled], .gray_button.disabled {
+    background: $disabled_gray;
+    cursor: initial;
+}
+
 .blue_button.yes[disabled], .blue_button.yes.disabled {
     background: $pinky_red;
     cursor: initial;
@@ -1867,7 +1872,7 @@ a:link, a:visited {
         &.info_bar_show {
             display: table;
         }
-        
+
         .info_row {
             display: table-row;
         }
@@ -1941,7 +1946,7 @@ a:link, a:visited {
             text-align: center;
             font-size: 14px;
             padding: 5px;
-            
+
             &:hover {
                 cursor: pointer;
                 color: $dark_blue;

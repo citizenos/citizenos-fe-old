@@ -11,11 +11,13 @@ angular
             moderatedReasonType: null,
             moderatedReasonText: null,
             topicId: $scope.topic.id,
-            errors: null
+            errors: null,
+            isLoading: false
         };
 
         $scope.doModerate = function () {
             $scope.form.errors = null;
+            $scope.form.isLoading = true;
 
             TopicReport
                 .moderate(
@@ -34,6 +36,7 @@ angular
                         ngDialog.closeAll();
                     },
                     function (res) {
+                        $scope.form.isLoading = false;
                         $scope.form.errors = res.data.errors;
                     }
                 );

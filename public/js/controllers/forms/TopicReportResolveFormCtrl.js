@@ -3,8 +3,13 @@
 angular
     .module('citizenos')
     .controller('TopicReportResolveFormCtrl', ['$scope', '$log', 'ngDialog', 'TopicReport', function ($scope, $log, ngDialog, TopicReport) {
+        $scope.form = {
+            isLoading: false
+        };
 
         $scope.doResolve = function () {
+            $scope.form.isLoading = true;
+
             TopicReport
                 .resolve(
                     {
@@ -21,6 +26,7 @@ angular
                         ngDialog.closeAll();
                     },
                     function (res) {
+                        $scope.form.isLoading = false;
                         $log.error('Failed to resolve the report', res);
                     }
                 );

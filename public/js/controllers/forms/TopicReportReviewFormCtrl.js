@@ -5,10 +5,13 @@ angular
     .controller('TopicReportReviewFormCtrl', ['$scope', '$log', 'ngDialog', 'TopicReport', function ($scope, $log, ngDialog, TopicReport) {
         $scope.form = {
             text: null,
-            errors: null
+            errors: null,
+            isLoading: false
         };
 
         $scope.doReview = function () {
+            $scope.form.isLoading = true;
+
             TopicReport
                 .review(
                     {
@@ -25,6 +28,7 @@ angular
                         ngDialog.closeAll();
                     },
                     function (res) {
+                        $scope.form.isLoading = false;
                         $scope.form.errors = res.data.errors;
                     }
                 );
