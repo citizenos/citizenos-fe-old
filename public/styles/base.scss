@@ -275,7 +275,6 @@ table, .pretend_table {
 }
 
 //Overall button styles and other general items
-
 .container_pin {
     position: absolute;
     width: 22px;
@@ -345,6 +344,15 @@ table, .pretend_table {
         height: 24px !important;
         top: 0;
         right: 0;
+    }
+}
+
+.container_report {
+    @extend .container_pin;
+
+    .red_bg {
+        @extend .yellow_bg;
+        background: $pinky_red;
     }
 }
 

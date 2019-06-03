@@ -375,6 +375,15 @@
                     parent: 'topics.view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        if (!$scope.app.user.loggedIn) {
+                            var dialogLogin = $scope.app.doShowLogin();
+                            dialogLogin.closePromise
+                                .then(function(){
+                                    $state.go('^');
+                                });
+                            return;
+                        }
+
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_report.html',
                             data: $stateParams,
@@ -392,6 +401,15 @@
                     parent: 'topics.view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        if (!$scope.app.user.loggedIn) {
+                            var dialogLogin = $scope.app.doShowLogin();
+                            dialogLogin.closePromise
+                                .then(function(){
+                                    $state.go('^');
+                                });
+                            return;
+                        }
+
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_reports_reportId_moderate.html',
                             data: $stateParams,
@@ -409,6 +427,15 @@
                     parent: 'topics.view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        if (!$scope.app.user.loggedIn) {
+                            var dialogLogin = $scope.app.doShowLogin();
+                            dialogLogin.closePromise
+                                .then(function(){
+                                    $state.go('^');
+                                });
+                            return;
+                        }
+
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_reports_reportId_review.html',
                             data: $stateParams,
@@ -426,6 +453,15 @@
                     parent: 'topics.view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        if (!$scope.app.user.loggedIn) {
+                            var dialogLogin = $scope.app.doShowLogin();
+                            dialogLogin.closePromise
+                                .then(function(){
+                                    $state.go('^');
+                                });
+                            return;
+                        }
+
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_reports_reportId_resolve.html',
                             data: $stateParams,

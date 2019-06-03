@@ -16,7 +16,6 @@ angular
         };
 
         $scope.doReport = function () {
-
             var topicReport = new TopicReport();
 
             topicReport.type = $scope.form.type;

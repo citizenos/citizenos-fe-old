@@ -531,6 +531,11 @@ angular
         };
 
         $scope.togglePin = function () {
+            if (!$scope.app.user.loggedIn) {
+                $scope.app.doShowLogin();
+                return;
+            }
+
             if ($scope.topic.pinned === true) {
                 $scope.topic.$removeFromPinned()
                     .then(function () {

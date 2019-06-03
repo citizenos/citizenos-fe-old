@@ -193,7 +193,7 @@
 
                         <div class="info_bar_text">
                             <div class="info_row">
-                                <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_REPORTED">This topic has been reported.</span> <a ng-click="doShowReportOverlay()" href="" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_VIEW_REPORT_DETAILS">View details</a>
+                                <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_REPORTED">This topic has been reported.</span>&nbsp;<a ng-click="doShowReportOverlay()" href="" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_VIEW_REPORT_DETAILS">View details</a>
                                 <span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsModerate({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_MODERATE">Moderate</a></span>
                                 <span ng-if="topic.report.type">&nbsp;<a ui-sref="topics.view.reportsResolve({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_RESOLVE">Mark as resolved</a></span>
                                 <span ng-if="topic.canEdit() && topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_SUBMIT_FOR_REVIEW">Submit for review</a></span>
@@ -796,6 +796,15 @@
                     <div class="iframe_content_wrap" ng-if="!('topics.view.followUp' | isState)">
 
                         <div class="topic_info" ng-class="app.more_info_button ? 'open' : ''">
+
+                            <div class="container_report" ng-if="topic.visibility === VISIBILITY.public && !topic.report" ui-sref="topics.view.report">
+                                <div class="ff_table_fix">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-exclamation2x-white"></div>
+                                        <div class="red_bg"></div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="container_pin" ng-class="topic.pinned ? 'pinned' : ''" ng-click="togglePin()">
                                 <div class="ff_table_fix">

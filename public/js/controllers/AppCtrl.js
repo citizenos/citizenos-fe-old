@@ -46,7 +46,7 @@ angular
         $scope.app.doShowLogin = function () {
             $log.debug('AppCtrl.doShowLogin()');
 
-            ngDialog
+            return ngDialog
                 .open({
                     template: '/views/modals/login.html',
                     scope: $scope
