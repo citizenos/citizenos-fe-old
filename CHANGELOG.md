@@ -1,3 +1,7 @@
+## 2019-06-03
+
+* Report a Topic - https://github.com/citizenos/citizenos-api/issues/5
+
 ## 2019-05-30
 
 * Fix issues:
