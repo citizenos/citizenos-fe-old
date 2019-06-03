@@ -1,5 +1,4 @@
 <!-- LIGHTBOX SKELETON -->
-<!-- FIXME: TRANSLATE -->
 <div id="root_lightbox" class="full_screen" ng-controller="TopicReportReviewFormCtrl">
     <div id="lightbox" class="delete_comment">
         <div id="lightbox_wrap">
@@ -7,7 +6,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title" translate="MODALS.TOPIC_REPORT_REVIEW_HEADING">Review topic</div>
+                    <div class="title" translate="MODALS.TOPIC_REPORT_REPORTID_REVIEW_HEADING">Review topic</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -39,7 +38,7 @@
 
                 <div class="lightbox_section">
                     <textarea class="gray_borders" ng-model="form.text" ng-class="{'error_input': form.errors.text}" translate
-                              translate-attr-placeholder="MODALS.TOPIC_REPORT_REVIEW_PLACEHOLDER_REPORT_TEXT" placeholder="Explain why you think this topic meets the community standards..." maxlength="2048"></textarea>
+                              translate-attr-placeholder="MODALS.TOPIC_REPORT_REPORTID_REVIEW_PLACEHOLDER_REPORT_TEXT" placeholder="Explain why you think this topic meets the community standards..." maxlength="2048"></textarea>
                     <div class="error_label" ng-if="form.errors.text">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -52,14 +51,14 @@
                 <div class="line lightest_line"></div>
 
                 <div class="lightbox_section confirm_area">
-                    <span translate="MODALS.TOPIC_REPORT_REVIEW_TXT_ARE_YOU_SURE">Are you sure you want to send this topic for a review?</span>
+                    <span translate="MODALS.TOPIC_REPORT_REPORTID_REVIEW_TXT_ARE_YOU_SURE">Are you sure you want to send this topic for a review?</span>
 
                     <div class="yes_no_buttons">
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.TOPIC_REPORT_REVIEW_BTN_NO">NO, I CHANGED MY MIND</div>
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.TOPIC_REPORT_REPORTID_REVIEW_BTN_NO">NO, I CHANGED MY MIND</div>
                         </div>
                         <div class="table_cell">
-                            <div class="blue_button" ng-click="doReview()" translate="MODALS.TOPIC_REPORT_REVIEW_BTN_YES">YES, REVIEW THIS TOPIC</div>
+                            <div class="blue_button" ng-click="doReview()" translate="MODALS.TOPIC_REPORT_REPORTID_REVIEW_BTN_YES">YES, REVIEW THIS TOPIC</div>
                         </div>
                     </div>
 

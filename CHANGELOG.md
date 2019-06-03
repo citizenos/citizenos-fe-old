@@ -1,3 +1,11 @@
+## 2019-05-30
+
+* Fix issues:
+    * https://github.com/citizenos/citizenos-fe/issues/261
+    * https://github.com/citizenos/citizenos-fe/issues/262
+    * Fixed cos-styles directive
+    * Removed raven.js
+
 ## 2019-05-06
 
 * Remove the bugged Topic settings invitation user experience for existing members. There is no quick fix, we need to rethink the implementation - https://github.com/citizenos/citizenos-fe/issues/253

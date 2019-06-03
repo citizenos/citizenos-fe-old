@@ -1,6 +1,4 @@
 <!-- LIGHTBOX SKELETON -->
-<!-- FIXME: Translate! -->
-<!-- FIXME: Link to moderation guidelines! -->
 <div id="root_lightbox">
     <div id="lightbox" class="id_signing delete_topic wide_lightbox">
         <div id="lightbox_wrap">
@@ -9,8 +7,8 @@
 
 
                 <div id="lightbox_header_text">
-                    <div class="title" translate="MODALS.TOPIC_REPORT_REPORTID_HEADING">This topic has been reported.
-                        Are you sure you want to read it?</div>
+                    <div class="title" translate="MODALS.TOPIC_REPORT_REPORTID_HEADING">This topic has been reported.</div>
+                    <div class="title" translate="MODALS.TOPIC_REPORT_REPORTID_HEADING_2">Are you sure you want to read it?</div>
                 </div>
 
                 <div class="line lightest_line"></div>
@@ -23,8 +21,8 @@
                 <div class="second_header">
 
                     <div class="sprite sprite-icon-delete-topic2x"></div>
-                    <div class="delete_title" translate="">This topic has been reported.</div>
-                    <div class="delete_title" translate="">Are you sure you want to read it?</div>
+                    <div class="delete_title" translate="MODALS.TOPIC_REPORT_REPORTID_HEADING">This topic has been reported.</div>
+                    <div class="delete_title" translate="MODALS.TOPIC_REPORT_REPORTID_HEADING_2">Are you sure you want to read it?</div>
 
                 </div>
 
@@ -33,26 +31,26 @@
                 </div>
 
                 <div id="delete_info_wrap">
-                    <h3>Reason</h3>
+                    <h3 translate="MODALS.TOPIC_REPORT_REPORTID_HEADING_REASON">Reason</h3>
                     <div class="text-block">
                         <h4>{{topic.report.moderatedReasonType || topic.report.type}}</h4>
                         {{topic.report.moderatedReasonText || topic.report.text}}
                     </div>
 
-                    <h3>Current status</h3>
+                    <h3 translate="MODALS.TOPIC_REPORT_REPORTID_HEADING_CURRENT_STATUS">Current status</h3>
                     <div class="text-block">
-                        <h4>Waiting for update & review request.</h4>
-                        You can find more details about Citizen OS moderation process <a href="#">here</a>.
+                        <h4 translate="MODALS.TOPIC_REPORT_REPORTID_TXT_STATUS_WAITING_FOR_UPDATE_AND_REVIEW">Waiting for update & review request.</h4>
+                        <span translate="MODALS.TOPIC_REPORT_REPORTID_TXT_FIND_MORE_DETAILS">You can find more details about Citizen OS moderation process <a href="https://app.citizenos.com/en/topics/ac8b66a4-ca56-4d02-8406-5e19da73d7ce">here</a>.</span>
                     </div>
 
                     <div class="delete_info_button_wrap">
 
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="closeThisDialog()" translate="">NO, TAKE ME BACK</div><!-- FIXME: History BACK? -->
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.TOPIC_REPORT_REPORTID_BTN_NO">NO, TAKE ME BACK</div>
                         </div>
 
                         <div class="table_cell">
-                            <div class="blue_button yes" ng-click="confirm()" translate="">YES, READ ANYWAY</div>
+                            <div class="blue_button yes" ng-click="confirm()" translate="MODALS.TOPIC_REPORT_REPORTID_BTN_YES">YES, READ ANYWAY</div>
                         </div>
 
                     </div>

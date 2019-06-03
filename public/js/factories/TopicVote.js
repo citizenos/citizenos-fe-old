@@ -30,8 +30,20 @@ angular
                     method: 'GET',
                     params: {topicId: '@topicId', voteId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformResponse: function (data, headersGetter, status) {
-                        if (status > 0 && status < 400) { // TODO: think this error handling through....
-                            return angular.fromJson(data).data;
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....                            
+                            var returndata = angular.fromJson(data).data;
+                            var maxVotes = 0;
+                            returndata.options.rows.forEach(function (voteOption) {
+                                if (voteOption.voteCount > maxVotes) {
+                                    maxVotes = voteOption.voteCount;
+                                }
+                            });
+                            returndata.options.rows.forEach(function (voteOption) {
+                                if (maxVotes && voteOption.voteCount === maxVotes ) {
+                                    voteOption.winner = true;
+                                }
+                            });
+                            return returndata;
                         } else {
                             return angular.fromJson(data);
                         }

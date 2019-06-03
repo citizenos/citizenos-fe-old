@@ -1,6 +1,4 @@
 <!-- LIGHTBOX SKELETON -->
-<!-- FIXME: Translate! -->
-<!-- FIXME: Link to moderation guidelines! -->
 <div id="root_lightbox" ng-controller="TopicReportResolveFormCtrl">
     <div id="lightbox" class="id_signing delete_topic wide_lightbox">
         <div id="lightbox_wrap">
@@ -9,8 +7,8 @@
 
 
                 <div id="lightbox_header_text">
-                    <div class="title" translate="MODALS.TOPIC_REPORT_REPORTID_HEADING">This topic has been reported.
-                        Are you sure you want to mark the issue resolved?</div>
+                    <div class="title" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_HEADING">This topic has been reported.</div>
+                    <div class="title" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_HEADING_2">Are you sure you want to mark the issue resolved?</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -30,8 +28,8 @@
                 <div class="second_header">
 
                     <div class="sprite sprite-icon-delete-topic2x"></div>
-                    <div class="delete_title" translate="">This topic has been reported.</div>
-                    <div class="delete_title" translate="">Are you sure you want to mark the issue resolved?</div>
+                    <div class="delete_title" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_HEADING">This topic has been reported.</div>
+                    <div class="delete_title" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_HEADING_2">Are you sure you want to mark the issue resolved?</div>
 
                     <div id="lightbox_close" ng-click="closeThisDialog()">
                         <div class="table_cell">
@@ -55,18 +53,18 @@
 
                     <h3>Current status</h3>
                     <div class="text-block">
-                        <h4>Waiting for update & review request.</h4>
-                        You can find more details about Citizen OS moderation process <a href="#">here</a>.
+                        <h4 translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_TXT_STATUS_WAITING_FOR_UPDATE_AND_REVIEW">Waiting for update & review request.</h4>
+                        <span translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_TXT_FIND_MORE_DETAILS">You can find more details about Citizen OS moderation process <a href="#">here</a>.</span>
                     </div>
 
                     <div class="delete_info_button_wrap">
 
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="closeThisDialog()" translate="">NO, TAKE ME BACK</div>
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_BTN_NO">NO, TAKE ME BACK</div>
                         </div>
 
                         <div class="table_cell">
-                            <div class="blue_button yes" ng-click="doResolve()" translate="">YES, MARK AS RESOLVED</div>
+                            <div class="blue_button yes" ng-click="doResolve()" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_BTN_YES">YES, MARK AS RESOLVED</div>
                         </div>
 
                     </div>
