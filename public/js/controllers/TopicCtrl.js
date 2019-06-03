@@ -7,14 +7,52 @@ angular
         var lastViewTime = null;
 
         $scope.topic = rTopic;
+        $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
+        $scope.hideTopicContent = true;
+
+        $scope.doShowReportOverlay = function () {
+            ngDialog.openConfirm({
+                    template: '/views/modals/topic_reports_reportId.html',
+                    data: $stateParams,
+                    scope: $scope, // Pass on $scope so that I can access AppCtrl,
+                    closeByEscape: false
+                })
+                .then(
+                    function () {
+                        // User wants to view the Topic
+                        $scope.hideTopicContent = false;
+                    },
+                    function () {
+                        // User clicked away to safety
+                        $state.go('home');
+                    }
+                );
+        };
+
+        // Topic has been moderated, we need to show User warning AND hide Topic content
+        // As the controller is used both in /my/topics/:topicId and /topics/:topicId the dialog is directly opened
+        if ($scope.isTopicReported) {
+            // NOTE: Well.. all views that are under the topics.view would trigger doble overlays which we don't want
+            // Not nice, but I guess the problem starts with the 2 views using same controller. Ideally they should have a parent controller and extend that with their specific functionality
+            if ($state.is('topics.view') || $state.is('my.topics.topicId')) {
+                $scope.doShowReportOverlay();
+            }
+        } else {
+            $scope.hideTopicContent = false;
+        }
+
         if ($scope.topic) {
-            $scope.topic.padUrl += '&theme=default';
-            if (!$scope.topic.canEdit() &&  ($stateParams.editMode && $stateParams.editMode === 'true')) {
+            $scope.topic.padUrl += '&theme=default'; // Change of PAD URL here has to be before $sce.trustAsResourceUrl($scope.topic.padUrl);
+            if (!$scope.topic.canEdit() && ($stateParams.editMode && $stateParams.editMode === 'true')) {
                 $scope.app.editMode = false;
                 delete $stateParams.editMode;
-                $state.transitionTo($state.current.name, $stateParams, {notify: false, reload: false});
+                $state.transitionTo($state.current.name, $stateParams, {
+                    notify: false,
+                    reload: false
+                });
             }
         }
+
         $scope.ATTACHMENT_SOURCES = TopicAttachment.SOURCES;
 
         $scope.generalInfo = {
@@ -60,6 +98,7 @@ angular
         $scope.showInfoWinners = false;
 
         $scope.STATUSES = Topic.STATUSES;
+        $scope.VISIBILITY = Topic.VISIBILITY;
 
         if ($scope.topic.voteId || $scope.topic.vote) {
             $scope.topic.vote = new TopicVote({
@@ -79,8 +118,8 @@ angular
                     }
                 });
             });
-            
         }
+
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 25;
 
@@ -485,7 +524,7 @@ angular
             }
             items.openTabs = items.openTabs.join(',');
             var newParams = $stateParams;
-            Object.keys(items).forEach(function(key) {
+            Object.keys(items).forEach(function (key) {
                 newParams[key] = items[key];
             });
             $state.go($state.current.name, newParams, {location: true});
@@ -494,24 +533,22 @@ angular
         $scope.togglePin = function () {
             if ($scope.topic.pinned === true) {
                 $scope.topic.$removeFromPinned()
-                .then(function () {
-                    $scope.topic.pinned = false;
-                    if ($state.current.name.indexOf('my') > -1) {
-                        $state.reload();
-                    }
-                });
+                    .then(function () {
+                        $scope.topic.pinned = false;
+                        if ($state.current.name.indexOf('my') > -1) {
+                            $state.reload();
+                        }
+                    });
             } else {
                 $scope.topic.$addToPinned()
-                .then(function () {
-                    $scope.topic.pinned = true;
-                    if ($state.current.name.indexOf('my') > -1) {
-                        $state.reload();
-                    }
-                });
+                    .then(function () {
+                        $scope.topic.pinned = true;
+                        if ($state.current.name.indexOf('my') > -1) {
+                            $state.reload();
+                        }
+                    });
             }
-
-
-        }
+        };
 
         $scope.downloadAttachment = function (attachment) {
             return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
@@ -523,7 +560,7 @@ angular
             }
         });
 
-        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
             if (fromState.name.indexOf('my.topics') > -1 && toState.name.indexOf('my.groups') > -1 || toState.name.indexOf('my.topics') > -1 && fromState.name.indexOf('my.groups') > -1) {
                 if (fromParams.openTabs && toParams.openTabs) {
                     delete toParams.openTabs;

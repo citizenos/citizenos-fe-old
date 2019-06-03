@@ -25,7 +25,6 @@ angular
             '/views/layouts/main.html',
             '/views/layouts/partner.html',
             '/views/layouts/widget.html',
-            '/views/widgets/activities.html',
             '/views/modals/activity_modal.html',
             '/views/modals/group_create_settings.html',
             '/views/modals/group_delete_confirm.html',
@@ -52,6 +51,11 @@ angular
             '/views/modals/topic_member_group_delete_confirm.html',
             '/views/modals/topic_member_user_delete_confirm.html',
             '/views/modals/topic_member_user_leave_confirm.html',
+            '/views/modals/topic_report.html',
+            '/views/modals/topic_reports_reportId.html',
+            '/views/modals/topic_reports_reportId_moderate.html',
+            '/views/modals/topic_reports_reportId_resolve.html',
+            '/views/modals/topic_reports_reportId_review.html',
             '/views/modals/topic_send_to_followUp_confirm.html',
             '/views/modals/topic_send_to_vote_confirm.html',
             '/views/modals/topic_settings.html',
@@ -59,6 +63,7 @@ angular
             '/views/modals/topic_vote_revoke_delegation_confirm.html',
             '/views/modals/topic_vote_sign.html',
             '/views/modals/widgets_how_it_works.html',
+            '/views/widgets/activities.html',
         ];
         var i = 0;
         if (templates.length) {
