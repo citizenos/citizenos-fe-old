@@ -46,7 +46,7 @@ angular
         $scope.app.doShowLogin = function () {
             $log.debug('AppCtrl.doShowLogin()');
 
-            ngDialog
+            return ngDialog
                 .open({
                     template: '/views/modals/login.html',
                     scope: $scope
@@ -238,10 +238,6 @@ angular
             },
             function (loggedIn) {
                 if (loggedIn) {
-                    Raven.setUserContext({
-                        id: $scope.app.user.id
-                    });
-
                     newActivitiesWatcher = $interval(function () {
                         sActivity
                             .getUnreadActivities()
@@ -250,14 +246,10 @@ angular
                             });
 
                     }, 30000);
-                } else {
-                    Raven.setUserContext();
-
-                    if (newActivitiesWatcher) {
-                        $interval.cancel(newActivitiesWatcher);
-                        newActivitiesWatcher = undefined;
-                        $scope.app.unreadActivitiesCount = 0;
-                    }
+                } else if (newActivitiesWatcher) {
+                    $interval.cancel(newActivitiesWatcher);
+                    newActivitiesWatcher = undefined;
+                    $scope.app.unreadActivitiesCount = 0;
                 }
             });
 

@@ -7,14 +7,52 @@ angular
         var lastViewTime = null;
 
         $scope.topic = rTopic;
+        $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
+        $scope.hideTopicContent = true;
+
+        $scope.doShowReportOverlay = function () {
+            ngDialog.openConfirm({
+                    template: '/views/modals/topic_reports_reportId.html',
+                    data: $stateParams,
+                    scope: $scope, // Pass on $scope so that I can access AppCtrl,
+                    closeByEscape: false
+                })
+                .then(
+                    function () {
+                        // User wants to view the Topic
+                        $scope.hideTopicContent = false;
+                    },
+                    function () {
+                        // User clicked away to safety
+                        $state.go('home');
+                    }
+                );
+        };
+
+        // Topic has been moderated, we need to show User warning AND hide Topic content
+        // As the controller is used both in /my/topics/:topicId and /topics/:topicId the dialog is directly opened
+        if ($scope.isTopicReported) {
+            // NOTE: Well.. all views that are under the topics.view would trigger doble overlays which we don't want
+            // Not nice, but I guess the problem starts with the 2 views using same controller. Ideally they should have a parent controller and extend that with their specific functionality
+            if ($state.is('topics.view') || $state.is('my.topics.topicId')) {
+                $scope.doShowReportOverlay();
+            }
+        } else {
+            $scope.hideTopicContent = false;
+        }
+
         if ($scope.topic) {
-            $scope.topic.padUrl += '&theme=default';
-            if (!$scope.topic.canEdit() &&  ($stateParams.editMode && $stateParams.editMode === 'true')) {
+            $scope.topic.padUrl += '&theme=default'; // Change of PAD URL here has to be before $sce.trustAsResourceUrl($scope.topic.padUrl);
+            if (!$scope.topic.canEdit() && ($stateParams.editMode && $stateParams.editMode === 'true')) {
                 $scope.app.editMode = false;
                 delete $stateParams.editMode;
-                $state.transitionTo($state.current.name, $stateParams, {notify: false, reload: false});
+                $state.transitionTo($state.current.name, $stateParams, {
+                    notify: false,
+                    reload: false
+                });
             }
         }
+
         $scope.ATTACHMENT_SOURCES = TopicAttachment.SOURCES;
 
         $scope.generalInfo = {
@@ -56,16 +94,32 @@ angular
         $scope.app.editMode = ($stateParams.editMode && $stateParams.editMode === 'true') || false;
         $scope.showInfoEdit = $scope.app.editMode;
         $scope.showVoteArea = false;
+        $scope.multipleWinners = false;
+        $scope.showInfoWinners = false;
 
         $scope.STATUSES = Topic.STATUSES;
+        $scope.VISIBILITY = Topic.VISIBILITY;
 
         if ($scope.topic.voteId || $scope.topic.vote) {
             $scope.topic.vote = new TopicVote({
                 id: $scope.topic.voteId,
                 topicId: $scope.topic.id
             });
-            $scope.topic.vote.$get();
+            $scope.topic.vote.$get()
+            .then(function (voteResults) {
+                var winnerCount = 0;
+                voteResults.options.rows.forEach(function (option) {
+                    if (option.winner) {
+                        winnerCount++;
+                        if (winnerCount > 1) {
+                            $scope.showInfoWinners = true;
+                            $scope.multipleWinners = true;
+                        }
+                    }
+                });
+            });
         }
+
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 25;
 
@@ -306,30 +360,6 @@ angular
             }
         };
 
-        $scope.doShowVoteResults = function () {
-            if (!$scope.voteResults.isVisible && ($scope.topic.voteId || $scope.topic.vote && $scope.topic.vote.id)) {
-                $scope.topic.vote
-                    .$get({topicId: $scope.topic.id})
-                    .then(function (topicVote) {
-                        $scope.topic.vote = topicVote;
-                        var voteCount = 0;
-                        topicVote.options.rows.forEach(function (voteOption) {
-                            voteCount += voteOption.voteCount || 0;
-                        });
-                        $scope.voteResults.countTotal = voteCount;
-                        $scope.voteResults.isVisible = true;
-                    });
-            }
-        };
-
-        $scope.doToggleVoteResults = function () {
-            if ($scope.voteResults.isVisible) {
-                $scope.voteResults.isVisible = false;
-            } else {
-                $scope.doShowVoteResults();
-            }
-        };
-
         $scope.doSaveVoteEndsAt = function () {
             return $scope.topic.vote
                 .$update({topicId: $scope.topic.id})
@@ -494,61 +524,34 @@ angular
             }
             items.openTabs = items.openTabs.join(',');
             var newParams = $stateParams;
-            Object.keys(items).forEach(function(key) {
+            Object.keys(items).forEach(function (key) {
                 newParams[key] = items[key];
             });
             $state.go($state.current.name, newParams, {location: true});
         };
 
-        var checkTabs = function () {
-            var tabsToOpen = $location.search();
-            if (tabsToOpen.openTabs) {
-                tabsToOpen.openTabs = tabsToOpen.openTabs.split(',');
-
-                $scope.app.activityFeed = false;
-                $scope.voteResults.isVisible = false;
-                $scope.groupList.isVisible = false;
-                $scope.userList.isVisible = false;
-
-                tabsToOpen.openTabs.forEach(function (tabName) {
-                    switch (tabName) {
-                        case 'activities':
-                            $scope.doToggleActivities();
-                            break;
-                        case 'vote_results':
-                            $scope.doToggleVoteResults();
-                        break;
-                        case 'group_list':
-                            $scope.doToggleMemberGroupList();
-                        break;
-                        case 'user_list':
-                            $scope.doToggleMemberUserList();
-                        break;
-                        default:
-                        break;
-                    }
-                });
-            }
-        };
-        checkTabs();
-
         $scope.togglePin = function () {
+            if (!$scope.app.user.loggedIn) {
+                $scope.app.doShowLogin();
+                return;
+            }
+
             if ($scope.topic.pinned === true) {
                 $scope.topic.$removeFromPinned()
-                .then(function () {
-                    $scope.topic.pinned = false;
-                    if ($state.current.name.indexOf('my') > -1) {
-                        $state.reload();
-                    }
-                });
+                    .then(function () {
+                        $scope.topic.pinned = false;
+                        if ($state.current.name.indexOf('my') > -1) {
+                            $state.reload();
+                        }
+                    });
             } else {
                 $scope.topic.$addToPinned()
-                .then(function () {
-                    $scope.topic.pinned = true;
-                    if ($state.current.name.indexOf('my') > -1) {
-                        $state.reload();
-                    }
-                });
+                    .then(function () {
+                        $scope.topic.pinned = true;
+                        if ($state.current.name.indexOf('my') > -1) {
+                            $state.reload();
+                        }
+                    });
             }
         };
 
@@ -562,7 +565,7 @@ angular
             }
         });
 
-        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
             if (fromState.name.indexOf('my.topics') > -1 && toState.name.indexOf('my.groups') > -1 || toState.name.indexOf('my.topics') > -1 && fromState.name.indexOf('my.groups') > -1) {
                 if (fromParams.openTabs && toParams.openTabs) {
                     delete toParams.openTabs;

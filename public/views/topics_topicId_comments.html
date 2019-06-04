@@ -263,12 +263,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="line_wrap">
+                                <div class="line_wrap" ng-if="app.user.loggedIn">
                                     <div class="table_cell">
                                         <div class="v_line"></div>
                                     </div>
                                 </div>
-                                <div class="thumbs_up" ng-click="doCommentVote(comment.id, 1)">
+                                <div class="thumbs_up" ng-if="app.user.loggedIn" ng-click="doCommentVote(comment.id, 1)">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-thumbsup-hover2x">
                                         </div>
@@ -277,7 +277,7 @@
                                         {{::comment.votes.up.count}}
                                     </div>
                                 </div>
-                                <div class="thumbs_down" ng-click="doCommentVote(comment.id, -1)">
+                                <div class="thumbs_down" ng-if="app.user.loggedIn" ng-click="doCommentVote(comment.id, -1)">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-thumbsdown-hover2x">
                                         </div>
@@ -286,12 +286,12 @@
                                         {{::comment.votes.down.count}}
                                     </div>
                                 </div>
-                                <div class="line_wrap">
+                                <div class="line_wrap" ng-if="app.user.loggedIn">
                                     <div class="table_cell">
                                         <div class="v_line"></div>
                                     </div>
                                 </div>
-                                <div class="exclamation" ng-click="doCommentReport(comment)">
+                                <div class="exclamation" ng-if="app.user.loggedIn" ng-click="doCommentReport(comment)">
                                     <div class="table_cell">
                                         <div class="sprite mobile_fix sprite-icon-reportmessage-default2x">
                                         </div>
@@ -543,12 +543,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="line_wrap">
+                            <div class="line_wrap" ng-if="app.user.loggedIn">
                                 <div class="table_cell">
                                     <div class="v_line"></div>
                                 </div>
                             </div>
-                            <div class="thumbs_up" ng-click="doCommentVote(reply.id, 1)">
+                            <div class="thumbs_up" ng-if="app.user.loggedIn" ng-click="doCommentVote(reply.id, 1)">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-thumbsup-hover2x">
                                     </div>
@@ -557,7 +557,7 @@
                                     {{reply.votes.up.count}}
                                 </div>
                             </div>
-                            <div class="thumbs_down" ng-click="doCommentVote(reply.id, -1)">
+                            <div class="thumbs_down" ng-if="app.user.loggedIn" ng-click="doCommentVote(reply.id, -1)">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-thumbsdown-hover2x">
                                     </div>
@@ -566,12 +566,12 @@
                                     {{reply.votes.down.count}}
                                 </div>
                             </div>
-                            <div class="line_wrap">
+                            <div class="line_wrap" ng-if="app.user.loggedIn">
                                 <div class="table_cell">
                                     <div class="v_line"></div>
                                 </div>
                             </div>
-                            <div class="exclamation" ng-click="doCommentReport(reply)">
+                            <div class="exclamation" ng-if="app.user.loggedIn" ng-click="doCommentReport(reply)">
                                 <div class="table_cell">
                                     <div class="sprite mobile_fix sprite-icon-reportmessage-default2x">
                                     </div>

@@ -7,12 +7,12 @@ angular
             return {
                 replace: false,
                 link: function (scope, elem, attrs) {
-                    
+
                     scope.$watch(attrs.cosStyles, function (newValue, oldValue) {
                         var styles = JSON.parse(attrs.cosStyles);
                         if (typeof styles === 'object') {
                             var keys = Object.keys(styles);
-                            keys.forEach(function (key, prop) {
+                            keys.forEach(function (prop) {
                                 elem[0].style[prop] = styles[prop]; 
                             });
                         }

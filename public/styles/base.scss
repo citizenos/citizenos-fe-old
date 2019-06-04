@@ -275,7 +275,6 @@ table, .pretend_table {
 }
 
 //Overall button styles and other general items
-
 .container_pin {
     position: absolute;
     width: 22px;
@@ -345,6 +344,15 @@ table, .pretend_table {
         height: 24px !important;
         top: 0;
         right: 0;
+    }
+}
+
+.container_report {
+    @extend .container_pin;
+
+    .red_bg {
+        @extend .yellow_bg;
+        background: $pinky_red;
     }
 }
 
@@ -963,6 +971,11 @@ a:link, a:visited {
 
 .blue_button[disabled], .blue_button.disabled {
     background: $disabled_blue;
+    cursor: initial;
+}
+
+.gray_button[disabled], .gray_button.disabled {
+    background: $disabled_gray;
     cursor: initial;
 }
 
@@ -1867,7 +1880,7 @@ a:link, a:visited {
         &.info_bar_show {
             display: table;
         }
-        
+
         .info_row {
             display: table-row;
         }
@@ -1941,7 +1954,7 @@ a:link, a:visited {
             text-align: center;
             font-size: 14px;
             padding: 5px;
-            
+
             &:hover {
                 cursor: pointer;
                 color: $dark_blue;

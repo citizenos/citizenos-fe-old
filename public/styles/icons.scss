@@ -7,7 +7,7 @@
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
     .sprite {
         background-image: url('../imgs/icons_sprite2x.png?v6');
-        background-size: 203px 3158px;
+        background-size: 203px 3171px;
     }
 }
 
@@ -387,6 +387,12 @@
     width: 12px;
     height: 12px;
     background-position: 0 -1339px;
+}
+
+.sprite-icon-exclamation2x-white {
+    width: 12px;
+    height: 12px;
+    background-position: 5px -3159px;
 }
 
 .sprite-icon-favourite-notfilled2x {

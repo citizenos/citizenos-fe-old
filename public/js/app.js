@@ -2,7 +2,7 @@
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'ngRaven', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'angularLoad']);
+    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', 'angularLoad']);
 
     module
         .constant('cosConfig', window.__config || {});
@@ -142,11 +142,11 @@
                                 .status()
                                 .then(
                                     function () {
-                                        $log.debug('Resolve user', sAuth.user);
+                                        $log.debug('Resolve user', sAuth.user, 'LOGGED IN');
                                         return $q.resolve(true);
                                     },
                                     function () {
-                                        $log.debug('Resolve user', sAuth.user);
+                                        $log.debug('Resolve user', sAuth.user, 'NOT LOGGED IN');
                                         return $q.resolve(false);
                                     }
                                 );
@@ -274,7 +274,7 @@
                     url: '/topics',
                     abstract: true,
                     parent: 'main',
-                    template: '<div ui-view></div>'
+                    template: '<div ui-view></div>',
                 })
                 .state('topics.create', {
                     url: '/create?title&groupId&groupLevel',
@@ -325,9 +325,13 @@
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {
-                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', function ($stateParams, Topic, sAuthResolve) {
-                            var topic = new Topic({id: $stateParams.topicId});
-                            return topic.$get();
+                        rTopic: ['$state', '$stateParams', 'Topic', 'sAuthResolve', function ($state, $stateParams, Topic, sAuthResolve) {
+                            // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
+                            return new Topic({id: $stateParams.topicId})
+                                .$get()
+                                .then(function (topic) {
+                                    return topic;
+                                });
                         }]
                     },
                     controller: 'TopicCtrl'
@@ -356,6 +360,110 @@
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_attachments.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
+                .state('topics.view.report', {
+                    url: '/report',
+                    parent: 'topics.view',
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        if (!$scope.app.user.loggedIn) {
+                            var dialogLogin = $scope.app.doShowLogin();
+                            dialogLogin.closePromise
+                                .then(function(){
+                                    $state.go('^');
+                                });
+                            return;
+                        }
+
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_report.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
+                .state('topics.view.reportsModerate', { // Cant use topics.view.reports.moderate as that would assume this route is child of topics.view.reports which it is not
+                    url: '/reports/:reportId/moderate',
+                    parent: 'topics.view',
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        if (!$scope.app.user.loggedIn) {
+                            var dialogLogin = $scope.app.doShowLogin();
+                            dialogLogin.closePromise
+                                .then(function(){
+                                    $state.go('^');
+                                });
+                            return;
+                        }
+
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_reports_reportId_moderate.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
+                .state('topics.view.reportsReview', { // Cant use topics.view.reports.moderate as that would assume this route is child of topics.view.reports which it is not
+                    url: '/reports/:reportId/review',
+                    parent: 'topics.view',
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        if (!$scope.app.user.loggedIn) {
+                            var dialogLogin = $scope.app.doShowLogin();
+                            dialogLogin.closePromise
+                                .then(function(){
+                                    $state.go('^');
+                                });
+                            return;
+                        }
+
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_reports_reportId_review.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
+                .state('topics.view.reportsResolve', {
+                    url: '/reports/:reportId/resolve',
+                    parent: 'topics.view',
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        if (!$scope.app.user.loggedIn) {
+                            var dialogLogin = $scope.app.doShowLogin();
+                            dialogLogin.closePromise
+                                .then(function(){
+                                    $state.go('^');
+                                });
+                            return;
+                        }
+
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_reports_reportId_resolve.html',
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
@@ -879,8 +987,3 @@
                 .translations(cosConfig.language.debug, {});
         }]);
 })();
-
-Raven
-    .config('https://053c9e29e7324dcaa220dd3bced63d22@sentry.io/160591')
-    .addPlugin(Raven.Plugins.Angular)
-    .install();
