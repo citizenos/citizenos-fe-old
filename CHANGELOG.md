@@ -1,3 +1,7 @@
+## 2019-06-11
+
+* https://github.com/citizenos/citizenos-fe/issues/261 add updated info box
+
 ## 2019-06-03
 
 * Report a Topic - https://github.com/citizenos/citizenos-api/issues/5
