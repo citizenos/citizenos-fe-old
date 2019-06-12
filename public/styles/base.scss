@@ -4,7 +4,7 @@
 @import 'icons';
 
 body, html {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
     padding: 0;
     margin: 0;
     height: 100%;
@@ -72,7 +72,7 @@ h2 {
 }
 
 input, textarea {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
     font-size: 14px;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -1909,6 +1909,64 @@ a:link, a:visited {
 
     }
 
+}
+
+.info_box_wrap {
+    position: relative;
+    z-index: 9999;
+    font-size: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #BADCFF;
+    background-color: #D5EAFF;
+
+    @include tablet {
+        margin-top: 60px;
+    }
+
+    .info_box {
+        height: 100%;
+        width: 100%;
+        display: none;
+
+        &.info_box_show {
+            display: block;
+        }
+
+        .info_row {
+            p:first-child {
+                padding-top: 0;
+                margin-top: 0;
+            }
+            p:last-child {
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+        }
+
+        .info_box_heading {
+            font-weight: $bold;
+        }
+        .info_box_text {
+        }
+
+        .info_icon {
+            width: 22px;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+
+            .sprite {
+                margin: 0 auto;
+            }
+        }
+
+        .info_icon:last-child {
+            cursor: pointer;
+            height: 100%;
+        }
+
+    }
 }
 
 .content_wrap {

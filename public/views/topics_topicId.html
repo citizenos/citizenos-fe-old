@@ -127,29 +127,6 @@
 
         <div class="content">
             <div class="main_panel">
-                <div class="info_bar_wrap" ng-if="multipleWinners && (topic.status === STATUSES.followUp) && ('topics.view.votes.view' | isState) && showInfoWinners">
-                    <div class="info_bar bar_blue" ng-class="{'info_bar_show': multipleWinners && (topic.status === STATUSES.followUp) && ('topics.view.votes.view' | isState)}">
-                        <div class="info_icon">
-                            <div class="sprite sprite-icon-notification-info2x"></div>
-                        </div>
-
-                        <div class="info_bar_text">
-                            <div class="info_row">
-                                <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_MULTIPLE_WINNERS">Looks like you've got multiple winners and your voting process resulted in a draw! Sometimes having several winning options is a good thing, but there are times, when you just really need one clear winner - we feel you.
-                                </span><br>
-                                <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_MULTIPLE_WINNERS_WHAT_NEXT">
-                                    Here's what you could do now:
-                                    Depending on the size and location of your voting (committee?), it might be possible to talk things through offline - for example, a co-located team could flip a coin, or have a quick additional argumentation to arrive at a decision - people sometimes change their opinions when more (or more convincing) facts are presented.
-                                    However, if it's not possible, we suggest starting a new vote, and perhaps trying to bring all possible pros and cons together in the topic to make deciding easier and clearer for the users to decide.
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="info_icon" ng-click="hideInfoEdit()">
-                            <div class="sprite sprite-icon-closemenu2x"></div>
-                        </div>
-                    </div>
-                </div>
                 <div class="info_bar_wrap" ng-if="app.editMode && showInfoEdit && topic.canEdit() && (topic.status === STATUSES.inProgress)">
                     <div class="info_bar bar_blue info_bar_show">
                         <div class="info_icon">
@@ -479,6 +456,33 @@
                             </div>
 
                             <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
+                            
+                            <div class="info_box_wrap" ng-if="multipleWinners && (topic.status === STATUSES.followUp) && ('topics.view.votes.view' | isState) && showInfoWinners">
+                                <div class="info_box" ng-class="{'info_box_show': multipleWinners && (topic.status === STATUSES.followUp) && ('topics.view.votes.view' | isState)}">
+                                    <div class="info_icon">
+                                        <div class="sprite sprite-icon-box-info2x"></div>
+                                    </div>
+            
+                                    <div>
+                                        <div class="info_row">
+                                            <p class="info_box_heading" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TITLE_DRAW">
+                                                Looks like your voting process resulted in a draw.
+                                            </p>
+                                            <p class="info_bar_text" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_DRAW_DESCRIPTION">
+                                                Sometimes having several winning options is a good thing, but there are times, when you just really need one clear winner.
+                                            </p>
+                                            <p class="info_box_heading" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TITLE_DRAW_WHAT_NOW">
+                                                Here's what you could do now:
+                                            </p>
+                                            <p class="info_bar_text" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_DRAW_WHAT_NOW">
+                                                    It might be possible to solve this offline - for example, a co-located team could flip a coin between the two winning options.
+                                                    Also, if you had votes going to non-winning options, we suggest you run another vote between the two previously winning options only. This time, you could pre-determine a tie-breaker in case you have another draw: a coin flip, a default winning option (usually status quo wins in a draw), a person whose vote is decisive etc.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <a ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank" download>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
@@ -495,7 +499,7 @@
                         <!-- Regular graph -->
                         <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular && topic.hasVoteEnded()">
 
-                            <div class="graph_row" ng-class="option.selected ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
+                            <div class="graph_row" ng-class="option.winner ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                 <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
                                 <div class="graph_row_fill" cos-styles='{"width" : "{{getVoteValuePercentage(option.voteCount)}}%"}' tooltips
                                      tooltip-template="{{((optionTranslation = ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase | translate)) != ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase)) ? optionTranslation : (option.value | linky)}}"
@@ -524,7 +528,6 @@
                             </div>
 
                             <div class="graph_wrap">
-
                                 <div class="graph_row" ng-class="option.winner ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                     <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
                                     <div class="graph_row_fill" cos-styles='{"width" : "{{getVoteValuePercentage(option.voteCount)}}%"}' tooltips
