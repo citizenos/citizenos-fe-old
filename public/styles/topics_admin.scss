@@ -426,7 +426,7 @@
 
                             .more_info_button {
                                 margin-bottom: 21px;
-                                font-family: "Open Sans";
+                                font-family: "Noto Sans";
                                 font-size: 14px;
                                 line-height: 22px;
                                 color: $deep_sky_blue;
@@ -533,14 +533,14 @@
                         }
 
                         .topic_content {
-                            font-family: 'Noto Serif', serif;
+                            font-family: 'Noto Sans', sans-serif;
                             font-size: 16px;
                             font-weight: normal;
                             line-height: 175%;
                             word-break: break-word;
 
                             h1, h2, h3, h4, h5, h6 {
-                                font-family: 'Open Sans', sans-serif;
+                                font-family: 'Noto Sans', sans-serif;
                                 color: $medium_black;
                                 margin: 20px 0;
                                 line-height: 135%;
