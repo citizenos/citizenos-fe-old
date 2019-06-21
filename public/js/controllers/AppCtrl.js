@@ -254,6 +254,14 @@ angular
             },
             function (loggedIn) {
                 if (loggedIn) {
+                    console.log(sAuth.user);
+                    if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/privacy_policy.html',
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }
+                    
                     newActivitiesWatcher = $interval(function () {
                         sActivity
                             .getUnreadActivities()

@@ -114,6 +114,11 @@
         position: fixed;
         bottom: 0;
         padding: 20px 25px 20px 25px;
+        width: calc(100% - 240px);
+
+        @media (max-width: 1024px) {
+            width: calc(100% - 50px);
+        }
 
         #footer_notification_logo_wrapper {
             display: table-cell;
@@ -136,8 +141,9 @@
         }
 
         #footer_notification_content_wrapper{
-            width: calc(100% - 290px);
+            width: 100%;
             display: table-cell;
+            padding-right: 10px;
 
             @media (max-width: 1024px) {
                 width: 100%;
@@ -164,15 +170,34 @@
                 @media (max-width: 1024px) {
                     text-align: center;
                 }
+
+                a {
+                    color: #0680FC;
+
+                    &:hover {
+                        color: #0574e3;
+                    }
+                }
             }
         }
 
-        #footer_notification_close_wrapper{
+        #footer_notification_close_wrapper {
             display: table-cell;
             vertical-align: middle;
             width: 190px;
             margin-top: 25px;
 
+            .blue_button {
+                width: 190px;
+                height: 40px;
+                padding: 10px 6px 6px;
+
+                @media (max-width: 1024px) {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+            
             @media (max-width: 1024px) {
                 width: 100%;
                 display: inline-block;

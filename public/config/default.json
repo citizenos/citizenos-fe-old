@@ -28,6 +28,11 @@
     },
     "about": "https://citizenos.com/product"
   },
+  "legal": {
+    "termsOfUse": "",
+    "privacyPolicy": "https://dev.citizenos.com:3001/topics/123",
+    "version": "2"
+  },
   "attachments": {
     "limit": 10,
     "upload": {
