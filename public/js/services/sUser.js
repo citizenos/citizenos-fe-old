@@ -31,6 +31,12 @@ angular
             var path = sLocation.getAbsoluteUrlApi('/api/users/self');
             return $http.put(path, {termsVersion: termsVersion});
         };
+
+        sUser.deleteUser = function () {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self');
+            return $http.delete(path);
+        };
+
         sUser.consentsCreate = function (partnerId) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/consents');
 

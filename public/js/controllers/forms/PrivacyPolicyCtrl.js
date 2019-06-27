@@ -6,8 +6,12 @@ angular
         $log.debug('PrivacyPolicyCtrl');
 
         $scope.reject = function () {
-            sAuth.logout();
-            ngDialog.closeAll();
+            sUser
+                .deleteUser()
+                .then(function () {
+                    sAuth.logout();
+                    ngDialog.closeAll();
+                });
         };
         
         $scope.accept = function () {
