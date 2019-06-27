@@ -502,6 +502,10 @@
                 background: #00b23b;
             }
 
+            &.thetwelvemovie {
+                background: #6192ce;
+            }
+
             &.agriculture {
                 background: #858116;
             }
@@ -527,6 +531,7 @@
             &.agriculture,
             &.culture,
             &.communities,
+            &.thetwelvemovie,
             &.integration {
                 color: $white;
                 .line {
