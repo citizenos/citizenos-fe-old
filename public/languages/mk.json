@@ -310,6 +310,7 @@
     "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Можете да се вклучите во дискусија така што ќе додадете свои аргументи"
   },
   "TXT_TOPIC_CATEGORY_ALL": "секоја категорија",
+  "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
   "TXT_TOPIC_CATEGORY_KEEPITCLEANPLAN": "Keep It Clean Plan",
   "TXT_TOPIC_CATEGORY_TENISLANDPROJECT": "10 island project",
   "TXT_TOPIC_CATEGORY_EESTIJAZZIARENGUSUUNAD": "Eesti Jazzi Arengusuunad",
@@ -509,17 +510,17 @@
       "LNK_VIEW_OLDER": "Види постаро"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "Rahvaalgatus.ee би сакал да има пристап до следните податоци од Вашиот налог:",
+      "HEADING": "{{website}} would like to access following data from Your account:",
       "TXT_VIEW_PROFILE": "Погледнете и ажурирајте го Вашиот Citizen OS профил - име, компанија, е-пошта, слика.",
-      "TXT_VIEW_TOPICS": "Погледнете и ажурирајте ги Вашите Citizen OS јавни Теми и Теми создадени преку Rahvaalgatus.ee веб-страницата.",
-      "TXT_VIEW_VOTES": "Погледнете и ажурирајте ги Вашите Citizen OS Гласови во јавни Теми и Теми создадени на Rahvaalgatus.ee веб-страницата.",
+      "TXT_VIEW_TOPICS": "View and edit Your Citizen OS public Topics and Topics created via the {{website}} website.",
+      "TXT_VIEW_VOTES": "View and edit Your Citizen OS Votes in public Topics and Topics created via the {{website}} website.",
       "TXT_VIEW_GROUPS": "Погледнете и ажурирајте ги Вашите Citizen OS Групи.",
-      "TXT_POLICY": "Rahvaalgatus.ee ќе ја користи оваа информација во согласност со нивните <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">услови за користење и политики за приватност</a>.",
+      "TXT_POLICY": "{{website}} will use this information in accordance with their respective <a href=\"{{linkPrivacyPolicy}}\" target=\"_blank\">terms of service and privacy policies</a>.",
       "_AGREE": "Прифати",
       "DISAGREE": "Откажи"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "<strong>Rahvaalgatus.ee работи заедно со Citizen OS</strong> со цел да Ви принуди добро искуство. Доколку сакате целосно да ја користите оваа платформа, <strong>ве молиме најавете или регистрирајте се на Citizen OS.</strong>",
+      "HEADING": "<strong>{{website}} works together with Citizen OS</strong> to offer you a great experience. If you want to use the platform to its fullest, <strong>please login to Citizen OS or register.</strong>",
       "BTN_LOGIN_FACEBOOK": "@:MODALS.LOGIN_BTN_LOGIN_FACEBOOK",
       "BTN_LOGIN_GOOGLE": "@:MODALS.LOGIN_BTN_LOGIN_GOOGLE",
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",

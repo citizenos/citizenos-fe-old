@@ -310,6 +310,7 @@
     "WIDGETS_HOW_DOES_IT_WORK_TEXT": "crwdns11058:0crwdne11058:0"
   },
   "TXT_TOPIC_CATEGORY_ALL": "crwdns10416:0crwdne10416:0",
+  "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "crwdns20106:0crwdne20106:0",
   "TXT_TOPIC_CATEGORY_KEEPITCLEANPLAN": "crwdns11192:0crwdne11192:0",
   "TXT_TOPIC_CATEGORY_TENISLANDPROJECT": "crwdns14672:0crwdne14672:0",
   "TXT_TOPIC_CATEGORY_EESTIJAZZIARENGUSUUNAD": "crwdns15754:0crwdne15754:0",
@@ -509,17 +510,17 @@
       "LNK_VIEW_OLDER": "crwdns10841:0crwdne10841:0"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "crwdns10557:0crwdne10557:0",
+      "HEADING": "crwdns20108:0{{website}}crwdne20108:0",
       "TXT_VIEW_PROFILE": "crwdns10972:0crwdne10972:0",
-      "TXT_VIEW_TOPICS": "crwdns10973:0crwdne10973:0",
-      "TXT_VIEW_VOTES": "crwdns10974:0crwdne10974:0",
+      "TXT_VIEW_TOPICS": "crwdns20110:0{{website}}crwdne20110:0",
+      "TXT_VIEW_VOTES": "crwdns20112:0{{website}}crwdne20112:0",
       "TXT_VIEW_GROUPS": "crwdns10975:0crwdne10975:0",
-      "TXT_POLICY": "crwdns10562:0crwdne10562:0",
+      "TXT_POLICY": "crwdns20114:0{{website}}crwdnd20114:0{{linkPrivacyPolicy}}crwdne20114:0",
       "_AGREE": "crwdns10563:0crwdne10563:0",
       "DISAGREE": "crwdns10564:0crwdne10564:0"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "crwdns10976:0crwdne10976:0",
+      "HEADING": "crwdns20116:0{{website}}crwdne20116:0",
       "BTN_LOGIN_FACEBOOK": "crwdns10566:0crwdne10566:0",
       "BTN_LOGIN_GOOGLE": "crwdns10567:0crwdne10567:0",
       "ID": "crwdns10568:0crwdne10568:0",
