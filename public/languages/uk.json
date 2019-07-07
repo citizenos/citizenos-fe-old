@@ -856,7 +856,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_EVENTS_40000_TEXT": "Текстове поле не може бути порожнім.",
   "MSG_ERROR_HWCRYPTO_USER_CANCEL": "You have cancelled the login flow.",
   "MSG_ERROR_HWCRYPTO_NO_CERTIFICATES": "No card in reader. Check if the ID-card is inserted correctly into the reader. New ID-cards have a chip on the back side of the card.",
-  "MSG_ERROR_HWCRYPTO_NO_IMPLEMENTATION": "Не встановлено програмне забезчення необхідне для цифрового підпису. Будь-ласка, встановіть відповідне програмне забезпечення.",
+  "MSG_ERROR_HWCRYPTO_NO_IMPLEMENTATION": "Не встановлено програмне забезпечення необхідне для цифрового підпису. Будь-ласка, встановіть відповідне програмне забезпечення.",
   "MSG_ERROR_HWCRYPTO_TECHNICAL_ERROR": "Щось сталося не так в нашій системі. Нам дуже шкода! Будь-ласка, спробуйте ще раз. Якщо помилка не зникне, будь-ласка, зверніться до нашої служби підтримки.",
   "MSG_ERROR_PUT_API_USERS_GROUPS_MEMBERS_USERS_40000": "Неможливо відкликати права адміністратор у останнього адміністратора у групі. Призначте нового адміністратора для того щоб змінити права поточного користувача.",
   "MSG_ERROR_DELETE_API_USERS_GROUPS_MEMBERS_USERS_40000": "Ви не можете покинути цю групу, тому що Ви останній адміністратор цієї групи. Будь-ласка, призначте нового адміністратора, щоб залишити групу.",
