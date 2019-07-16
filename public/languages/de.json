@@ -310,6 +310,7 @@
     "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Sie können sich an der Diskussion beteiligen, indem Sie Ihre Argumente hinzufügen"
   },
   "TXT_TOPIC_CATEGORY_ALL": "alle Kategorien",
+  "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
   "TXT_TOPIC_CATEGORY_KEEPITCLEANPLAN": "Keep It Clean Plan",
   "TXT_TOPIC_CATEGORY_TENISLANDPROJECT": "10 island project",
   "TXT_TOPIC_CATEGORY_EESTIJAZZIARENGUSUUNAD": "Eesti Jazzi Arengusuunad",
@@ -509,17 +510,17 @@
       "LNK_VIEW_OLDER": "Ältere anzeigen"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "Unser Partner Rahvaalgatus.ee würde gerne auf folgende Daten von Ihrem Konto zugreifen:",
+      "HEADING": "{{website}} would like to access following data from Your account:",
       "TXT_VIEW_PROFILE": "Anzeigen und Bearbeiten Ihres Citizen-OS-Profils - Name, Organisation, E-Mail, Profilbild.",
-      "TXT_VIEW_TOPICS": "Anzeigen und bearbeiten Ihrer Citizen OS - öffentlicher Themen sowie über die Website Rahvaalgatus.ee erstellter Themen.",
-      "TXT_VIEW_VOTES": "Anzeigen und bearbeiten Ihrer Citizen OS - Abstimmungen in öffentlichen Themen sowie in Themen, die über die Website Rahvaalgatus.ee erstellt wurden.",
+      "TXT_VIEW_TOPICS": "View and edit Your Citizen OS public Topics and Topics created via the {{website}} website.",
+      "TXT_VIEW_VOTES": "View and edit Your Citizen OS Votes in public Topics and Topics created via the {{website}} website.",
       "TXT_VIEW_GROUPS": "Anzeigen und bearbeiten Ihrer Citizen OS - Gruppen.",
-      "TXT_POLICY": "Rahvaalgatus.ee wird diese Information in Übereinstimmung mit den jeweiligen <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">Nutzungsbedingungen und Datenschutzrichtlinien</a> nutzen.",
+      "TXT_POLICY": "{{website}} will use this information in accordance with their respective <a href=\"{{linkPrivacyPolicy}}\" target=\"_blank\">terms of service and privacy policies</a>.",
       "_AGREE": "Zustimmen",
       "DISAGREE": "Abbrechen"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "<strong>Rahvaalgatus.ee arbeitet zusammen mit Citizen OS</strong>, um Ihnen ein tolles Nutzererlebnis zu ermöglichen. Wenn Sie die Plattform in vollem Umfang nutzen möchten,<strong> melden Sie sich an oder registrieren Sie sich bitte bei Citizen OS.</strong>",
+      "HEADING": "<strong>{{website}} works together with Citizen OS</strong> to offer you a great experience. If you want to use the platform to its fullest, <strong>please login to Citizen OS or register.</strong>",
       "BTN_LOGIN_FACEBOOK": "@:MODALS.LOGIN_BTN_LOGIN_FACEBOOK",
       "BTN_LOGIN_GOOGLE": "@:MODALS.LOGIN_BTN_LOGIN_GOOGLE",
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",

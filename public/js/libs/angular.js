@@ -25758,7 +25758,7 @@ var ngControllerDirective = [function() {
             getAndClearSevereErrors().then(function(filteredLog) {
               expect(filteredLog.length).toEqual(0);
               if (filteredLog.length) {
-                console.log('browser console errors: ' + util.inspect(filteredLog));
+                ('browser console errors: ' + util.inspect(filteredLog));
               }
             });
           }

@@ -192,6 +192,11 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('thetwelvemovie', {
+                    url: '/thetwelvemovie',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
                 .state('account', {
                     url: '/account',
                     abstract: true,
@@ -759,6 +764,16 @@
                     url: '/partners/:partnerId',
                     abstract: true,
                     parent: 'index',
+                    resolve: {
+                        rPartner: ['$stateParams','sPartner', function ($stateParams, sPartner) {
+                            return sPartner
+                                .info($stateParams.partnerId)
+                                .then(function (partnerInfo) {
+                                    return partnerInfo;
+                                });
+                        }]
+                    },
+                    controller: 'PartnerCtrl',
                     templateUrl: '/views/layouts/partner.html'
                 })
                 .state('partners.login', {
