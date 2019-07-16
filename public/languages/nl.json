@@ -310,6 +310,7 @@
     "WIDGETS_HOW_DOES_IT_WORK_TEXT": "U kunt deelnemen aan een discussie door uw argumenten toe te voegen"
   },
   "TXT_TOPIC_CATEGORY_ALL": "elke categorie",
+  "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
   "TXT_TOPIC_CATEGORY_KEEPITCLEANPLAN": "Keep It Clean Plan",
   "TXT_TOPIC_CATEGORY_TENISLANDPROJECT": "10 island project",
   "TXT_TOPIC_CATEGORY_EESTIJAZZIARENGUSUUNAD": "Eesti Jazzi Arengusuunad",
@@ -509,17 +510,17 @@
       "LNK_VIEW_OLDER": "Oudere weergeven"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "Rahvaalgatus.ee wil toegang krijgen tot de volgende gegevens van uw account:",
+      "HEADING": "{{website}} would like to access following data from Your account:",
       "TXT_VIEW_PROFILE": "Bekijk en bewerk uw Citizen OS-profiel - naam, bedrijf, e-mailadres, foto.",
-      "TXT_VIEW_TOPICS": "Bekijk en bewerk uw publieke topics op Citizen OS en topics gemaakt via de website Rahvaalglgatus.ee.",
-      "TXT_VIEW_VOTES": "Bekijk en bewerk uw stemmen in publieke topics op Citizen OS en in topics gemaakt via de website Rahvaalgatus.ee.",
+      "TXT_VIEW_TOPICS": "View and edit Your Citizen OS public Topics and Topics created via the {{website}} website.",
+      "TXT_VIEW_VOTES": "View and edit Your Citizen OS Votes in public Topics and Topics created via the {{website}} website.",
       "TXT_VIEW_GROUPS": "Bekijk en bewerk uw groepen op Citizen OS.",
-      "TXT_POLICY": "Rahvaalgatus.ee zal deze informatie gebruiken overeenkomstig de <a href=\"https://rahvaalgatus.ee/about\" target=\"_blank\">gebruiksvoorwaarden en het privacybeleid</a> van de website.",
+      "TXT_POLICY": "{{website}} will use this information in accordance with their respective <a href=\"{{linkPrivacyPolicy}}\" target=\"_blank\">terms of service and privacy policies</a>.",
       "_AGREE": "Accepteren",
       "DISAGREE": "Annuleren"
     },
     "PARTNERS_LOGIN": {
-      "HEADING": "<strong>Rahvaalgatus.ee werkt samen met Citizen OS</strong> om u een uitstekende ervaring te bieden. <strong>Log in op Citizen OS of registreer u</strong> om het platform optimaal te benutten.",
+      "HEADING": "<strong>{{website}} works together with Citizen OS</strong> to offer you a great experience. If you want to use the platform to its fullest, <strong>please login to Citizen OS or register.</strong>",
       "BTN_LOGIN_FACEBOOK": "@:MODALS.LOGIN_BTN_LOGIN_FACEBOOK",
       "BTN_LOGIN_GOOGLE": "@:MODALS.LOGIN_BTN_LOGIN_GOOGLE",
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",
