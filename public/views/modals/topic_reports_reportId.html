@@ -32,7 +32,7 @@
                 <div id="delete_info_wrap">
                     <h3 translate="MODALS.TOPIC_REPORT_REPORTID_HEADING_REASON">Reason</h3>
                     <div class="text-block">
-                        <h4>{{topic.report.moderatedReasonType || topic.report.type}}</h4>
+                        <h4 translate="TXT_REPORT_TYPES_{{topic.report.moderatedReasonType || topic.report.type | uppercase}}">{{topic.report.moderatedReasonType || topic.report.type}}</h4>
                         {{topic.report.moderatedReasonText || topic.report.text}}
                     </div>
 
