@@ -1,3 +1,7 @@
+## 2019-07-19
+
+* Lodash security update to version 4.17.13
+
 ## 2019-06-12
 
 * https://github.com/citizenos/citizenos-fe/issues/246 font future-proofing – Open Sans to Noto Sans
