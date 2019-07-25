@@ -7,228 +7,131 @@ $bold: 700;
 
 /* cyrillic-ext */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OX-hpOqc.woff2) format('woff2');
-    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v8/o-0IIpQlx3QUlC5A4PNr6DRAW_0.woff2) format('woff2');
+unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 /* cyrillic */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OVuhpOqc.woff2) format('woff2');
-    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v8/o-0IIpQlx3QUlC5A4PNr4TRAW_0.woff2) format('woff2');
+unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v8/o-0IIpQlx3QUlC5A4PNr5DRAW_0.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
 }
 /* greek-ext */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXuhpOqc.woff2) format('woff2');
-    unicode-range: U+1F00-1FFF;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v8/o-0IIpQlx3QUlC5A4PNr6TRAW_0.woff2) format('woff2');
+unicode-range: U+1F00-1FFF;
 }
 /* greek */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OUehpOqc.woff2) format('woff2');
-    unicode-range: U+0370-03FF;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v8/o-0IIpQlx3QUlC5A4PNr5jRAW_0.woff2) format('woff2');
+unicode-range: U+0370-03FF;
 }
 /* vietnamese */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXehpOqc.woff2) format('woff2');
-    unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v8/o-0IIpQlx3QUlC5A4PNr6jRAW_0.woff2) format('woff2');
+unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXOhpOqc.woff2) format('woff2');
-    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v8/o-0IIpQlx3QUlC5A4PNr6zRAW_0.woff2) format('woff2');
+unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OUuhp.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+src: local('Noto Sans'), local('NotoSans'), url(https://fonts.gstatic.com/s/notosans/v8/o-0IIpQlx3QUlC5A4PNr5TRA.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* cyrillic-ext */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFWJ0bbck.woff2) format('woff2');
-    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 700;
+src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(https://fonts.gstatic.com/s/notosans/v8/o-0NIpQlx3QUlC5A4PNjXhFVadyB1Wk.woff2) format('woff2');
+unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 /* cyrillic */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFUZ0bbck.woff2) format('woff2');
-    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 700;
+src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(https://fonts.gstatic.com/s/notosans/v8/o-0NIpQlx3QUlC5A4PNjXhFVYNyB1Wk.woff2) format('woff2');
+unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 700;
+src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(https://fonts.gstatic.com/s/notosans/v8/o-0NIpQlx3QUlC5A4PNjXhFVZdyB1Wk.woff2) format('woff2');
+unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
 }
 /* greek-ext */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFWZ0bbck.woff2) format('woff2');
-    unicode-range: U+1F00-1FFF;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 700;
+src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(https://fonts.gstatic.com/s/notosans/v8/o-0NIpQlx3QUlC5A4PNjXhFVaNyB1Wk.woff2) format('woff2');
+unicode-range: U+1F00-1FFF;
 }
 /* greek */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFVp0bbck.woff2) format('woff2');
-    unicode-range: U+0370-03FF;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 700;
+src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(https://fonts.gstatic.com/s/notosans/v8/o-0NIpQlx3QUlC5A4PNjXhFVZ9yB1Wk.woff2) format('woff2');
+unicode-range: U+0370-03FF;
 }
 /* vietnamese */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFWp0bbck.woff2) format('woff2');
-    unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 700;
+src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(https://fonts.gstatic.com/s/notosans/v8/o-0NIpQlx3QUlC5A4PNjXhFVa9yB1Wk.woff2) format('woff2');
+unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50bbck.woff2) format('woff2');
-    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 700;
+src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(https://fonts.gstatic.com/s/notosans/v8/o-0NIpQlx3QUlC5A4PNjXhFVatyB1Wk.woff2) format('woff2');
+unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
 @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFVZ0b.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOX-hpOqc.woff2) format('woff2');
-    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOVuhpOqc.woff2) format('woff2');
-    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXuhpOqc.woff2) format('woff2');
-    unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOUehpOqc.woff2) format('woff2');
-    unicode-range: U+0370-03FF;
-}
-/* vietnamese */
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXehpOqc.woff2) format('woff2');
-    unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXOhpOqc.woff2) format('woff2');
-    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOUuhp.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Noto Serif';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Noto Serif'), local('NotoSerif'), url(https://fonts.gstatic.com/s/notoserif/v6/Q47Ro23nlKqZrOLipd3-SyEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Noto Serif';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Noto Serif'), local('NotoSerif'), url(https://fonts.gstatic.com/s/notoserif/v6/qkE6YsKPRiYUugBb1_QwHCEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
-  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Noto Serif';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Noto Serif'), local('NotoSerif'), url(https://fonts.gstatic.com/s/notoserif/v6/N2U74xxQEyaTBF6QLZRr1CEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Noto Serif';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Noto Serif'), local('NotoSerif'), url(https://fonts.gstatic.com/s/notoserif/v6/1_daFS3X6gkNOcmGmHl7UiEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
-  unicode-range: U+0370-03FF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Noto Serif';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Noto Serif'), local('NotoSerif'), url(https://fonts.gstatic.com/s/notoserif/v6/G-mm5mDezDSs-RvEL7XAECEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Noto Serif';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Noto Serif'), local('NotoSerif'), url(https://fonts.gstatic.com/s/notoserif/v6/fVu1p3782bqS2z-CaJvp9iEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Noto Serif';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Noto Serif'), local('NotoSerif'), url(https://fonts.gstatic.com/s/notoserif/v6/eCpfeMZI7q4jLksXVRWPQ_k_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 700;
+src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(https://fonts.gstatic.com/s/notosans/v8/o-0NIpQlx3QUlC5A4PNjXhFVZNyB.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 #editorcontainer {
@@ -265,21 +168,50 @@ $bold: 700;
 #innerdocbody, #padcontent {
     background: none;
     * {
-        font-family: 'Noto Serif', serif;
+        font-family: 'Noto Sans', sans-serif;
         font-size: 16px;
         font-weight: normal;
         line-height: 175%;
+        word-break: break-word;
     }
 
     h1, h2, h3, h4, h5, h6 {
+        font-family: 'Noto Sans', sans-serif;
+        color: $medium_black;
         margin: 20px 0;
+        line-height: 135%;
+        font-weight: bold;
     }
 
     h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Noto Sans', sans-serif;
         color: $medium_black;
-        font-weight: bold;
+        margin: 20px 0;
         line-height: 135%;
+        font-weight: bold;
+    }
+    h1 {
+        font-size: 46px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    h3 {
+        font-size: 34px;
+    }
+
+    h4 {
+        font-size: 28px;
+    }
+
+    h5 {
+        font-size: 22px;
+    }
+
+    h6 {
+        font-size: 16px;
     }
 
     h1 * {
@@ -474,7 +406,7 @@ $bold: 700;
                 &.link {
                     width: auto;
                     color: $white;
-                    font-family: "Open Sans";
+                    font-family: "Noto Sans";
                     font-size: 13px;
                     line-height: 18px;
                     clear: both;
@@ -487,7 +419,7 @@ $bold: 700;
                     .buttonicon {
                         width: auto;
                         height: auto;
-                        font-family: "Open Sans";
+                        font-family: "Noto Sans";
                         color: $white;
 
                         &:hover {
@@ -528,7 +460,7 @@ $bold: 700;
         height: 18px;
         width: 100%;
         color: #252525;
-        font-family: "Open Sans";
+        font-family: "Noto Sans";
         font-size: 13px;
         font-weight: bold;
         line-height: 24px;
@@ -613,7 +545,7 @@ $bold: 700;
             label {
                 width: initial;
                 color: #252525;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 16px;
                 font-weight: bold;
                 line-height: 20px;
@@ -628,7 +560,7 @@ $bold: 700;
                 border: 1px solid #E5E5E5;
                 border-radius: 4px;
                 background-color: #FFFFFF;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 14px;
                 line-height: 20px;
                 margin-top: 12px;
@@ -651,7 +583,7 @@ $bold: 700;
         border-radius: 4px;
         background-color: #0680FC;
         color: #FFFFFF;
-        font-family: "Open Sans";
+        font-family: "Noto Sans";
         font-size: 14px;
         font-weight: bold;
         line-height: 20px;
@@ -664,7 +596,7 @@ $bold: 700;
         position: relative;
         height: 30px;
         color: #0680FC;
-        font-family: "Open Sans";
+        font-family: "Noto Sans";
         font-size: 14px;
         line-height: 20px;
         text-align: right;
@@ -685,7 +617,7 @@ $bold: 700;
                 clear: both;
                 width: 100%;
                 color: #252525;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 14px;
                 line-height: 20px;
                 margin-top: 2px;
@@ -699,7 +631,7 @@ $bold: 700;
                         height: auto;
                         width: initial;
                         color: #252525;
-                        font-family: "Open Sans";
+                        font-family: "Noto Sans";
                         font-size: 16px;
                         font-weight: bold;
                         line-height: 20px;
@@ -718,7 +650,7 @@ $bold: 700;
                         border: 1px solid #E5E5E5;
                         border-radius: 4px;
                         background-color: #FFFFFF;
-                        font-family: "Open Sans";
+                        font-family: "Noto Sans";
                         font-size: 14px;
                         line-height: 20px;
                         margin-top: 12px;
@@ -745,7 +677,7 @@ $bold: 700;
                         border-radius: 4px;
                         background-color: #0680FC;
                         color: #FFFFFF;
-                        font-family: "Open Sans";
+                        font-family: "Noto Sans";
                         font-size: 14px;
                         font-weight: bold;
                         line-height: 20px;
@@ -848,7 +780,7 @@ $bold: 700;
                 }
                 .comment-delete, .comment-edit {
                     display: block;
-                    font-family: 'Open Sans';
+                    font-family: 'Noto Sans';
                     font-weight: normal!important;
                     cursor: pointer;
                     color: #252525!important;
@@ -868,7 +800,7 @@ $bold: 700;
             max-width:170px;
             opacity: 0.7;
             color: #252525;
-            font-family: "Open Sans";
+            font-family: "Noto Sans";
             font-weight: normal;
             font-style: normal;
             font-size: 13px;
@@ -886,7 +818,7 @@ $bold: 700;
             clear: both;
             width: 100%;
             color: #252525;
-            font-family: "Open Sans";
+            font-family: "Noto Sans";
             font-size: 14px;
             line-height: 20px;
             margin-top: 2px;
@@ -909,7 +841,7 @@ $bold: 700;
                     height: 20px;
                     width: initial;
                     color: #252525;
-                    font-family: "Open Sans";
+                    font-family: "Noto Sans";
                     font-size: 16px;
                     font-weight: bold;
                     line-height: 20px;
@@ -928,7 +860,7 @@ $bold: 700;
                     border: 1px solid #E5E5E5;
                     border-radius: 4px;
                     background-color: #FFFFFF;
-                    font-family: "Open Sans";
+                    font-family: "Noto Sans";
                     font-size: 14px;
                     line-height: 20px;
                     margin-top: 12px;
@@ -939,7 +871,7 @@ $bold: 700;
             p {
                 width: initial;
                 color: #252525;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 16px;
                 font-weight: bold;
                 line-height: 20px;
@@ -957,7 +889,7 @@ $bold: 700;
                 border: 1px solid #E5E5E5;
                 border-radius: 4px;
                 background-color: #FFFFFF;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 14px;
                 line-height: 20px;
                 margin-top: 12px;
@@ -978,7 +910,7 @@ $bold: 700;
                     border-radius: 4px;
                     background-color: #0680FC;
                     color: #FFFFFF;
-                    font-family: "Open Sans";
+                    font-family: "Noto Sans";
                     font-size: 14px;
                     font-weight: bold;
                     line-height: 20px;
@@ -1004,7 +936,7 @@ $bold: 700;
                     height: 20px;
                     width: initial;
                     color: #252525;
-                    font-family: "Open Sans";
+                    font-family: "Noto Sans";
                     font-size: 16px;
                     font-weight: bold;
                     line-height: 20px;
@@ -1015,7 +947,7 @@ $bold: 700;
                 }
 
                 .comment-reply-input {
-                    font-family: 'Open Sans',sans-serif;
+                    font-family: 'Noto Sans',sans-serif;
                     font-size: 13px;
                     background-color: $white;
                     border: 1px solid #E5E5E5;
@@ -1044,7 +976,7 @@ $bold: 700;
                     height: 20px;
                     opacity: 0.7;
                     color: #252525;
-                    font-family: "Open Sans";
+                    font-family: "Noto Sans";
                     font-size: 14px;
                     line-height: 30px;
                     vertical-align: middle;
@@ -1064,7 +996,7 @@ $bold: 700;
                 border: 1px solid #E5E5E5;
                 border-radius: 4px;
                 background-color: #FFFFFF;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 14px;
                 line-height: 20px;
                 margin-top: 12px;
@@ -1079,7 +1011,7 @@ $bold: 700;
                 .comment-edit-cancel {
                     height: 30px;
                     color: #0680FC;
-                    font-family: "Open Sans";
+                    font-family: "Noto Sans";
                     font-size: 14px;
                     line-height: 20px;
                     text-align: right;
@@ -1094,7 +1026,7 @@ $bold: 700;
                     border-radius: 4px;
                     background-color: #0680FC;
                     color: #FFFFFF;
-                    font-family: "Open Sans";
+                    font-family: "Noto Sans";
                     font-size: 14px;
                     font-weight: bold;
                     line-height: 20px;
@@ -1140,14 +1072,14 @@ $bold: 700;
                 height: 20px;
                 width: initial;
                 color: #252525;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 16px;
                 font-weight: bold;
                 line-height: 20px;
             }
 
             .comment-content {
-                font-family: 'Open Sans',sans-serif;
+                font-family: 'Noto Sans',sans-serif;
                 font-size: 13px;
                 border: 1px solid #E5E5E5;
                 border-radius: 4px;
@@ -1188,7 +1120,7 @@ $bold: 700;
                 height: 20px;
                 opacity: 0.7;
                 color: #252525;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 14px;
                 line-height: 30px;
                 vertical-align: middle;
@@ -1204,7 +1136,7 @@ $bold: 700;
                 height: 20px;
                 width: initial;
                 color: #252525;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 16px;
                 font-weight: bold;
                 line-height: 20px;
@@ -1223,7 +1155,7 @@ $bold: 700;
                 margin: 20px 0;
                 
                 textarea.comment-suggest-from {
-                    font-family: 'Open Sans',sans-serif;
+                    font-family: 'Noto Sans',sans-serif;
                     font-size: 13px;
                     background-color: $base;
                     width: -moz-calc(100% - 20px);
@@ -1237,7 +1169,7 @@ $bold: 700;
                 }
 
                 textarea.comment-suggest-to {
-                    font-family: 'Open Sans',sans-serif;
+                    font-family: 'Noto Sans',sans-serif;
                     font-size: 13px;
                     background-color: $white;
                     border: 1px solid #E5E5E5;
@@ -1264,7 +1196,7 @@ $bold: 700;
                 background-color: #0680FC;
                 float: right;
                 color: #FFFFFF;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 14px;
                 font-weight: bold;
                 line-height: 20px;
@@ -1274,7 +1206,7 @@ $bold: 700;
 
             input#comment-reset {
                 color: #0680FC;
-                font-family: "Open Sans";
+                font-family: "Noto Sans";
                 font-size: 14px;
                 line-height: 20px;
                 text-align: right;
@@ -1321,7 +1253,7 @@ $bold: 700;
     box-shadow: none;
 
     #fnInput {
-        font-family: 'Open Sans',sans-serif;
+        font-family: 'Noto Sans',sans-serif;
         font-size: 13px;
         background-color: $white;
         border: 1px solid #E5E5E5;
@@ -1337,7 +1269,7 @@ $bold: 700;
     input[type="button"] {
         border: 1px solid #0574E3;
         border-radius: 4px;
-        font-family: "Open Sans";
+        font-family: "Noto Sans";
         font-size: 14px;
         font-weight: bold;
         line-height: 20px;

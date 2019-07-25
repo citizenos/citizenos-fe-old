@@ -163,6 +163,7 @@ angular
         };
 
         Topic.CATEGORIES = {
+            thetwelvemovie: 'thetwelvemovie',
             tenislandproject: 'tenislandproject',
             keepitcleanplan: 'keepitcleanplan', // TODO: Special project with https://www.letsdoitworld.org/, remove when over.
             eestijazziarengusuunad: 'eestijazziarengusuunad', // Special project with http://www.jazz.ee/ - https://github.com/citizenos/citizenos-api/issues/73
@@ -181,6 +182,16 @@ angular
             integration: 'integration', // Integration and human rights
             varia: 'varia' // Varia
         };
+
+        Topic.REPORT_TYPES = {
+            abuse: 'abuse', // is abusive or insulting
+            obscene: 'obscene', // contains obscene language
+            spam: 'spam', // contains spam or is unrelated to topic
+            hate: 'hate', // contains hate speech
+            netiquette: 'netiquette', // infringes (n)etiquette
+            duplicate: 'duplicate' // duplicate
+        };
+
 
         Topic.CATEGORIES_COUNT_MAX = 3; // Maximum of 3 categories allowed at the time.
 

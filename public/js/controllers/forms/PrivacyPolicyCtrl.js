@@ -6,12 +6,23 @@ angular
         $log.debug('PrivacyPolicyCtrl');
 
         $scope.reject = function () {
-            sUser
-                .deleteUser()
-                .then(function () {
-                    sAuth.logout();
-                    ngDialog.closeAll();
-                });
+            ngDialog.openConfirm({
+                template: '/views/modals/user_delete_confirm.html',
+                data: $stateParams,
+                scope: $scope, // Pass on $scope so that I can access AppCtrl,
+                closeByEscape: false
+            })
+            .then(
+                function () {
+                    sUser
+                        .deleteUser()
+                        .then(function () {
+                            sAuth.logout();
+                            ngDialog.closeAll();
+                        });
+                }
+            );
+            
         };
         
         $scope.accept = function () {

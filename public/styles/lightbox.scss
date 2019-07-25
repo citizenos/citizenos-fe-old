@@ -748,7 +748,7 @@
                         padding: 20px 0px 0px;
                     }
                 }
-            }                    
+            }
         }
     }
 
@@ -1233,9 +1233,18 @@
                 }
 
                 #delete_info_wrap {
-                    width: 410px;
                     margin: 0 auto;
                     padding: 40px;
+
+                    :first-child {
+                        margin-top: 0;
+                    }
+
+                    .text-block {
+                        padding: 20px;
+                        background-color: $white;
+
+                    }
 
                     @media (max-width: 560px) {
                         width: 100%;
@@ -1244,8 +1253,6 @@
                     }
 
                     .delete_info_text_wrap {
-                        margin-bottom: 40px;
-
                         @media (max-width: 560px) {
                             margin-bottom: 124px;
                         }
@@ -1253,6 +1260,7 @@
                         .delete_info {
                             margin-bottom: 10px;
                             display: table;
+
                             .sprite-checkmark2x {
                                 display: table-cell;
                                 float: left;
@@ -1260,7 +1268,7 @@
                             }
                             .delete_info_text {
                                 display: table-cell;
-                                padding-left: 10px;
+                                padding-left: 20px;
                             }
                         }
                     }
@@ -1268,6 +1276,7 @@
                     .delete_info_button_wrap {
                         display: table;
                         width: 100%;
+                        margin-top: 40px;
 
                         .table_cell:first-child {
                             padding-right: 5px;
@@ -1456,7 +1465,7 @@
                     margin-left: 20px;
                     margin-right: 20px;
                     position: absolute;
-                    
+
                     @media (max-width: 560px) {
                         position: relative;
                         margin-left: 0;

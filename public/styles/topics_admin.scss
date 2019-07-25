@@ -400,15 +400,33 @@
                                     right: 0;
                                     &:active {
                                         top: auto;
-                                        bottom: 19px;
                                         right: -1px;
                                     }
                                 }
                             }
 
+                            .container_report {
+                                top: -4px;
+                                right: -12px;
+                                &:active {
+                                    top: -5px;
+                                    right: -13px;
+                                }
+                                @media (max-width: 767px) {
+                                    display: blocK;
+                                    top: auto;
+                                    right: 28px;
+                                    &:active {
+                                        top: auto;
+                                        right: 28px;
+                                    }
+                                }
+                            }
+
+
                             .more_info_button {
                                 margin-bottom: 21px;
-                                font-family: "Open Sans";
+                                font-family: "Noto Sans";
                                 font-size: 14px;
                                 line-height: 22px;
                                 color: $deep_sky_blue;
@@ -462,7 +480,7 @@
                                     @media (min-width: 767px) {
                                         line-height: 18px;
                                     }
-                                    
+
                                     .info_section_title {
                                         font-weight: bold;
 
@@ -515,14 +533,14 @@
                         }
 
                         .topic_content {
-                            font-family: 'Noto Serif', serif;
+                            font-family: 'Noto Sans', sans-serif;
                             font-size: 16px;
                             font-weight: normal;
                             line-height: 175%;
                             word-break: break-word;
 
                             h1, h2, h3, h4, h5, h6 {
-                                font-family: 'Open Sans', sans-serif;
+                                font-family: 'Noto Sans', sans-serif;
                                 color: $medium_black;
                                 margin: 20px 0;
                                 line-height: 135%;

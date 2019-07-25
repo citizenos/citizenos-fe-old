@@ -1,3 +1,25 @@
+## 2019-07-23
+
+* Lodash update to version 4.17.15 in package.json
+* moment update to version 2.24.0 in package.json
+* remove raven-js from package.json
+
+## 2019-07-19
+
+* Lodash security update to version 4.17.13
+
+## 2019-06-12
+
+* https://github.com/citizenos/citizenos-fe/issues/246 font future-proofing – Open Sans to Noto Sans
+
+## 2019-06-11
+
+* https://github.com/citizenos/citizenos-fe/issues/261 add updated info box
+
+## 2019-06-03
+
+* Report a Topic - https://github.com/citizenos/citizenos-api/issues/5
+
 ## 2019-05-30
 
 * Fix issues:

@@ -29,9 +29,9 @@
     "about": "https://citizenos.com/product"
   },
   "legal": {
-    "termsOfUse": "",
-    "privacyPolicy": "https://dev.citizenos.com:3001/topics/123",
-    "version": "3"
+    "termsOfUse": "https://app.citizenos.com/et/topics/7abdd244-d45b-40d3-997c-a6290d4e972c",
+    "privacyPolicy": "https://app.citizenos.com/et/topics/11ee3811-58bc-46bf-87b2-655af55ac639",
+    "version": "1"
   },
   "attachments": {
     "limit": 10,
