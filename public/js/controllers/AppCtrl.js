@@ -246,7 +246,7 @@ angular
             });
         }
 
-        // Update UserVoice data when User changes and read new acitivites count
+        // Update new activites count
         var newActivitiesWatcher = null;
         $scope.$watch(
             function () {
@@ -254,7 +254,6 @@ angular
             },
             function (loggedIn) {
                 if (loggedIn) {
-                    console.log(sAuth.user);
                     if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
                         var dialog = ngDialog.open({
                             template: '/views/modals/privacy_policy.html',

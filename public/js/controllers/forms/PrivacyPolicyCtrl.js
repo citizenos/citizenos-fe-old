@@ -29,7 +29,6 @@ angular
             sUser
                 .updateTermsVersion(cosConfig.legal.version)
                 .then(function (user) {
-                    console.log('UPd', user);
                     ngDialog.closeAll();
                 });
         };
