@@ -648,7 +648,7 @@
       "ARGUMENT_WHY": "Kustutamise põhjus",
       "ARGUMENT_VIEW_ARGUMENT_ANYWAY": "Vaata argumenti",
       "ARGUMENT_FOUND_INAPPRIOPRIATE_BY": "Kasutaja <b>{{usersFullName}}</b> leidis, et see argument ei sobi",
-      "ARGUMENT_READ_CODE_OF_CONDUCT": "Lisainfoks loe meie <a class=\"underlined_link\" href=\"\">käitumisjuhendit</a>",
+      "ARGUMENT_READ_CODE_OF_CONDUCT": "Read our <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">code of conduct</a> for more information",
       "ARGUMENT_LAST_EDITED": "Viimati muudetud {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Muuda oma vastust siin...",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
