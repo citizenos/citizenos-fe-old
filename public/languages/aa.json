@@ -648,7 +648,7 @@
       "ARGUMENT_WHY": "crwdns21414:0crwdne21414:0",
       "ARGUMENT_VIEW_ARGUMENT_ANYWAY": "crwdns21416:0crwdne21416:0",
       "ARGUMENT_FOUND_INAPPRIOPRIATE_BY": "crwdns21418:0{{usersFullName}}crwdne21418:0",
-      "ARGUMENT_READ_CODE_OF_CONDUCT": "crwdns21420:0crwdne21420:0",
+      "ARGUMENT_READ_CODE_OF_CONDUCT": "crwdns21942:0{{codeOfConduct}}crwdne21942:0",
       "ARGUMENT_LAST_EDITED": "crwdns21422:0{{edittime}}crwdne21422:0",
       "PLACEHOLDER_EDIT_REPLY": "crwdns21424:0crwdne21424:0",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "crwdns21426:0crwdne21426:0",
