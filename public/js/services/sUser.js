@@ -15,7 +15,7 @@ angular
                 language: language,
                 termsVersion: termsVersion
             }
-            console.log('USER', userData);
+
             if (password) {
                 userData.password = password;
             }

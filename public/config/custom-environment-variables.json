@@ -29,5 +29,8 @@
     "oneDrive": {
       "clientId": "ONEDRIVE_CLIENT_ID"
     }
+  },
+  "moderation": {
+    "codeOfConduct": "CITIZENOS_MODERATION_CODE_OF_CONDUCT_LNK"
   }
 }

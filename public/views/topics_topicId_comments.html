@@ -235,7 +235,7 @@
                             <b ng-if="comment.deletedReasonText" class="italic">{{::comment.deletedReasonText}}</b>
                             <br>
                             <br>
-                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT">Read our <a class="underlined_link" href="">code of conduct</a> for more information</span>
+                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT" translate-values="{codeOfConduct: app.config.moderation.codeOfConduct}">Read our <a class="underlined_link" href="">code of conduct</a> for more information</span>
                         </div>
                         <div class="alert_argument" ng-if="comment.deletedAt && comment.isVisible()">
                             <span class="replys_reply italic"><b>{{::comment.subject}}</b></span><br>
