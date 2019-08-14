@@ -207,7 +207,7 @@
     "TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS": "Сохранить файлы",
     "TOPIC_ATTACHMENTS_LBL_COMPUTER": "С компьютера",
     "TOPIC_ATTACHMENTS_LBL_DROPBOX": "Dropbox",
-    "TOPIC_ATTACHMENTS_LBL_GOOGLE_DRIVE": "Google Drive",
+    "TOPIC_ATTACHMENTS_LBL_GOOGLE_DRIVE": "Google Диск",
     "TOPIC_ATTACHMENTS_LBL_ONEDRIVE": "OneDrive",
     "TOPIC_ATTACHMENTS_TITLE_FILES": "Файлы",
     "TOPIC_ATTACHMENT_DELETE_CONFIRM_HEADING": "Удалить файл",
@@ -307,7 +307,20 @@
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
     "LANGUAGES_MODAL_HEADING": "Выберите язык",
     "WIDGETS_HOW_DOES_IT_WORK_HEADING": "@:DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK",
-    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Чтобы принять участие в обсуждении, добавьте ваш аргумент"
+    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Чтобы принять участие в обсуждении, добавьте ваш аргумент",
+    "PRIVACY_POLICY_HEADING": "Правила использования и политика конфиденциальности",
+    "PRIVACY_POLICY_DESCRIPTION": "Мы изменили наши Условия использования и условия Политики конфиденциальности. Пожалуйста, внимательно ознакомьтесь с ними и либо примите их, либо отвергните. Отвергая наши условия, вы не сможете далее пользоваться нашей платформой. Вам придется выйти из системы, вернуться на главную страницу и затем ваш аккаунт будет закрыт.",
+    "PRIVACY_POLICY_LNK_TERMS_OF_USE": "Правила использования",
+    "PRIVACY_POLICY_LNK_PRIVACY_POLICY": "Политика конфиденциальности",
+    "PRIVACY_POLICY_BTN_REJECT": "Отклоняю",
+    "PRIVACY_POLICY_BTN_ACCEPT": "Принимаю",
+    "USER_DELETE_CONFIRM_HEADING": "Удалить учетную запись",
+    "USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Вы уверены, что хотите удалить свою учетную запись?",
+    "USER_DELETE_CONFIRM_TXT_NO_UNDO": "Напоминаем, что Вы не сможете отменить данное действие.",
+    "USER_DELETE_CONFIRM_TXT_USER_DELETED": "Ваша учетная запись будет удалена",
+    "USER_DELETE_CONFIRM_TXT_KEEP_DATA_ANONYMOUSLY": "Все созданные пользователем данные будут анонимизированы и не подлежат восстановлению",
+    "USER_DELETE_CONFIRM_NO": "НЕТ, ОСТАВИТЬ УЧЕТНУЮ ЗАПИСЬ",
+    "USER_DELETE_CONFIRM_YES": "ДА, УДАЛИТЬ МОЮ УЧЕТНУЮ ЗАПИСЬ"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Все существующие",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "Фильм «12»",
@@ -370,6 +383,11 @@
       "BTN_HOW_DOES_IT_WORK": "Как это работает?",
       "LNK_PRIVACY_POLICY": "Политика конфиденциальности Citizen OS",
       "LNK_CITIZENOS_WEBSITE": "Сайт Citizen OS"
+    },
+    "COOKIE_POLICY_NOTIFICATION": {
+      "TITLE": "Политика cookie-файлов",
+      "CONTENT": "Мы используем файлы cookie для персонализации контента, предоставления функций социальных сетей и анализа трафика. Нажимая кнопку &quot;Принять&quot;, закрывая данный баннер или продолжая пользоваться нашими услугами, вы принимаете cookie-файлы. <a href=\"{{policyLink}}\">Читайте наши юридические положения</a>",
+      "BTN_ACCEPT": "Принять"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мои темы",
@@ -414,8 +432,8 @@
       "BTN_LOAD_MORE_TOPICS": "Показать больше тем",
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
-      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
-      "LBL_ENVIRONMENT": "Environment"
+      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Здесь вы можете найти все документы и информацию по Keep It Clean Plan.",
+      "LBL_ENVIRONMENT": "Окружающая среда"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Групп: {{count}}",
@@ -630,7 +648,7 @@
       "ARGUMENT_WHY": "Причина",
       "ARGUMENT_VIEW_ARGUMENT_ANYWAY": "Просмотреть аргумент",
       "ARGUMENT_FOUND_INAPPRIOPRIATE_BY": "Пользователь <b>{{usersFullName}}</b> пометил(-а) этот аргумент, как неуместный",
-      "ARGUMENT_READ_CODE_OF_CONDUCT": "Читайте наш <a class=\"underlined_link\" href=\"\">кодекс поведения</a> для получения дополнительной информации",
+      "ARGUMENT_READ_CODE_OF_CONDUCT": "Читайте наш <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">кодекс поведения</a> для получения дополнительной информации",
       "ARGUMENT_LAST_EDITED": "Дата последнего изменения: {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Редактировать ответ...",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
@@ -740,8 +758,8 @@
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PRIVATE": "приватная",
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PUBLIC": "публичная",
     "ACTIVITY_GROUP_FIELD_NAME": "название",
-    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTEXT": "deleted reason text",
-    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE": "причина",
+    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTEXT": "Причина удаления",
+    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE": "Причина",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_ABUSE": "@:TXT_REPORT_TYPES_ABUSE",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_OBSCENE": "@:TXT_REPORT_TYPES_OBSCENE",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_SPAM": "@:TXT_REPORT_TYPES_SPAM",
