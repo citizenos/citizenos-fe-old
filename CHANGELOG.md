@@ -1,3 +1,9 @@
+## 2019-08-16
+
+* https://github.com/citizenos/citizenos-fe/issues/179 - Cookie policy notification
+* https://github.com/citizenos/citizenos-fe/issues/178 - User has to accept Terms of Use (TOU) & Privacy Policy (PP)
+* https://github.com/citizenos/citizenos-fe/issues/278 - BUG: Code of conduct link is broken
+
 ## 2019-07-23
 
 * Lodash update to version 4.17.15 in package.json
