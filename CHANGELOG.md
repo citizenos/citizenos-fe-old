@@ -1,3 +1,9 @@
+## 2019-07-23
+
+* Lodash update to version 4.17.15 in package.json
+* moment update to version 2.24.0 in package.json
+* remove raven-js from package.json
+
 ## 2019-07-19
 
 * Lodash security update to version 4.17.13

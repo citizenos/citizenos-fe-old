@@ -177,6 +177,22 @@ angular
             return false;
         };
 
+        $scope.app.closeFooterNotification = function () {
+            var expires = new Date();
+            expires.setDate(expires.getDate() + 365);
+            $cookies.put('COOKIE_NOTIFICATION', true, {expires: expires});
+        };
+
+         $scope.app.displayFooterNotification = function () {
+            var show = $cookies.get('COOKIE_NOTIFICATION');
+
+            if (!show) {
+                return true;
+            }
+
+             return false;
+        };
+
         $rootScope.$on('ngDialog.opened', function () {
             sNotification.removeAll();
         });
@@ -230,7 +246,7 @@ angular
             });
         }
 
-        // Update UserVoice data when User changes and read new acitivites count
+        // Update new activites count
         var newActivitiesWatcher = null;
         $scope.$watch(
             function () {
@@ -238,6 +254,13 @@ angular
             },
             function (loggedIn) {
                 if (loggedIn) {
+                    if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/privacy_policy.html',
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }
+                    
                     newActivitiesWatcher = $interval(function () {
                         sActivity
                             .getUnreadActivities()

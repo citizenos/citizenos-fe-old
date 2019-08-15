@@ -307,7 +307,13 @@
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
     "LANGUAGES_MODAL_HEADING": "Select Your Language",
     "WIDGETS_HOW_DOES_IT_WORK_HEADING": "@:DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK",
-    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "You can participate in a discussion by adding your arguments"
+    "WIDGETS_HOW_DOES_IT_WORK_TEXT": "You can participate in a discussion by adding your arguments",
+    "PRIVACY_POLICY_HEADING": "Terms of Use & Privacy Policy",
+    "PRIVACY_POLICY_DESCRIPTION": "We changed our Terms of Use and Privacy Policy conditions. PLease read them through and accept or reject them. If you reject them, you will be logged out and returned to the homepage.",
+    "PRIVACY_POLICY_LNK_TERMS_OF_USE": "Terms of use",
+    "PRIVACY_POLICY_LNK_PRIVACY_POLICY": "Privacy Policy",
+    "PRIVACY_POLICY_BTN_REJECT": "Reject",
+    "PRIVACY_POLICY_BTN_ACCEPT": "Accept"
   },
   "TXT_TOPIC_CATEGORY_ALL": "every category",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
@@ -370,6 +376,11 @@
       "BTN_HOW_DOES_IT_WORK": "How does it work?",
       "LNK_PRIVACY_POLICY": "Citizen OS Privacy Policy",
       "LNK_CITIZENOS_WEBSITE": "Citizen OS Website"
+    },
+    "COOKIE_POLICY_NOTIFICATION": {
+      "TITLE": "Cookie policy",
+      "CONTENT": "We use cookies to personalize content, to provide social media features and to analyze our traffic. By clicking \"I Accept\", exiting this banner or continuing to use our services you accept our use of cookies. <a href=\"{{policyLink}}\">Our Legal Terms</a>",
+      "BTN_ACCEPT": "I accept"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "my topics",

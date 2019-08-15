@@ -12,6 +12,11 @@
       "ru": "HELP_LINK_RU"
     }
   },
+  "legal": {
+    "termsOfUse": "CITIZENOS_LEGAL_TERMS_OF_USE_LNK",
+    "privacyPolicy": "CITIZENOS_LEGAL_PRIVACY_POLICY_LNK",
+    "version": "CITIZENOS_LEGAL_VERSION"
+  },
   "attachments": {
     "limit": "CITIZENOS_ATTACHMENTS_LIMIT",
     "dropbox": {
@@ -24,5 +29,8 @@
     "oneDrive": {
       "clientId": "ONEDRIVE_CLIENT_ID"
     }
+  },
+  "moderation": {
+    "codeOfConduct": "CITIZENOS_MODERATION_CODE_OF_CONDUCT_LNK"
   }
 }
