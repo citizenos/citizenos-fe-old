@@ -308,19 +308,19 @@
     "LANGUAGES_MODAL_HEADING": "Оберіть мову",
     "WIDGETS_HOW_DOES_IT_WORK_HEADING": "@:DEFAULT.WIDGET.BTN_HOW_DOES_IT_WORK",
     "WIDGETS_HOW_DOES_IT_WORK_TEXT": "Ви можете прийняти участь у дискусії, додавши Ваші аргументи",
-    "PRIVACY_POLICY_HEADING": "Terms of Use & Privacy Policy",
-    "PRIVACY_POLICY_DESCRIPTION": "We changed our Terms of Use and Privacy Policy terms. Please review them thoroughly and either accept or reject them. By rejecting our terms you will not be able to use our platform, thus you will be logged out, returned to the homepage and your account shall be ceased.",
-    "PRIVACY_POLICY_LNK_TERMS_OF_USE": "Terms of use",
-    "PRIVACY_POLICY_LNK_PRIVACY_POLICY": "Privacy Policy",
-    "PRIVACY_POLICY_BTN_REJECT": "Reject",
-    "PRIVACY_POLICY_BTN_ACCEPT": "Accept",
-    "USER_DELETE_CONFIRM_HEADING": "Delete account",
-    "USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to delete your account?",
-    "USER_DELETE_CONFIRM_TXT_NO_UNDO": "Please keep in mind you cannot undo this action.",
-    "USER_DELETE_CONFIRM_TXT_USER_DELETED": "Your account will be deleted",
-    "USER_DELETE_CONFIRM_TXT_KEEP_DATA_ANONYMOUSLY": "All user-created data will be anonymized and will not be recoverable",
-    "USER_DELETE_CONFIRM_NO": "NO, KEEP THIS ACCOUNT",
-    "USER_DELETE_CONFIRM_YES": "YES, DELETE THIS ACCOUNT"
+    "PRIVACY_POLICY_HEADING": "Умови використання та Політика конфіденційності",
+    "PRIVACY_POLICY_DESCRIPTION": "Ми змінили наші Умови використання та Політику конфіденційності. Будь ласка, перегляньте їх уважно та погодьтеся або не погодьтеся з ними. Не погодившись на наші умови, ви не зможете використовувати нашу платформу, ваша сесія завершиться, ви повернетеся на домашню сторінку, а дію вашого облікового запису буде припинено.",
+    "PRIVACY_POLICY_LNK_TERMS_OF_USE": "Умови використання",
+    "PRIVACY_POLICY_LNK_PRIVACY_POLICY": "Політика конфіденційності",
+    "PRIVACY_POLICY_BTN_REJECT": "Відхилити",
+    "PRIVACY_POLICY_BTN_ACCEPT": "Прийняти",
+    "USER_DELETE_CONFIRM_HEADING": "Видалити обліковий запис",
+    "USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Ви впевнені, що хочете видалити свій обліковий запис?",
+    "USER_DELETE_CONFIRM_TXT_NO_UNDO": "Будь ласка, майте на увазі, що ви не зможете скасувати цю дію.",
+    "USER_DELETE_CONFIRM_TXT_USER_DELETED": "Ваш обліковий запис буде видалено",
+    "USER_DELETE_CONFIRM_TXT_KEEP_DATA_ANONYMOUSLY": "Усі дані, створені користувачем, будуть анонімізовані, і їх буде неможливо відновити",
+    "USER_DELETE_CONFIRM_NO": "НІ, ЗАЛИШИТИ ЦЕЙ ОБЛІКОВИЙ ЗАПИС",
+    "USER_DELETE_CONFIRM_YES": "ТАК, ВИДАЛИТИ ЦЕЙ ОБЛІКОВИЙ ЗАПИС"
   },
   "TXT_TOPIC_CATEGORY_ALL": "всі категорії",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "Фільм \"Дванадцять\"",
@@ -385,9 +385,9 @@
       "LNK_CITIZENOS_WEBSITE": "Вебсайт Citizen OS"
     },
     "COOKIE_POLICY_NOTIFICATION": {
-      "TITLE": "Cookie policy",
-      "CONTENT": "We use cookies to personalize content, to provide social media features and to analyze our traffic. By clicking &quot;Accept&quot;, exiting this banner or continuing to use our services you accept our use of cookies. <a href=\"{{policyLink}}\">Read our Legal Terms</a>",
-      "BTN_ACCEPT": "Accept"
+      "TITLE": "Політика cookie",
+      "CONTENT": "Ми використовуємо cookie для персоналізації вмісту, надання функцій соціальних медіа та аналізу нашого трафіку. Натискаючи на &quot;Прийняти&quot;, вимикаючи цей банер, або продовжуючи використовувати наші послуги, ви погоджуєтеся з нашим використанням cookie. <a href=\"{{policyLink}}\">Прочитайте наші Правові положення</a>",
+      "BTN_ACCEPT": "Прийняти"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "мої теми",
@@ -432,8 +432,8 @@
       "BTN_LOAD_MORE_TOPICS": "Завантажити більше тем",
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
-      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
-      "LBL_ENVIRONMENT": "Environment"
+      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Тут ви можете знайти усі документи та інформацію про план Keep It Clean.",
+      "LBL_ENVIRONMENT": "Середовище"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Групи: {{count}}",
@@ -648,7 +648,7 @@
       "ARGUMENT_WHY": "Чому?",
       "ARGUMENT_VIEW_ARGUMENT_ANYWAY": "Переглянути аргумент в будь-якому випадку",
       "ARGUMENT_FOUND_INAPPRIOPRIATE_BY": "Користувач <b>{{usersFullName}}</b> вважає цей аргумент недоречним",
-      "ARGUMENT_READ_CODE_OF_CONDUCT": "Read our <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">code of conduct</a> for more information",
+      "ARGUMENT_READ_CODE_OF_CONDUCT": "Прочитайте наші <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">правила поведінки</a> для додаткової інформації",
       "ARGUMENT_LAST_EDITED": "Востаннє відредаговано: {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Редагувати Вашу відповідь...",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
@@ -758,8 +758,8 @@
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PRIVATE": "приватна",
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PUBLIC": "публічна",
     "ACTIVITY_GROUP_FIELD_NAME": "назва",
-    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTEXT": "Why was it deleted?",
-    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE": "Reason",
+    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTEXT": "Причина видалення",
+    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE": "Причина",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_ABUSE": "@:TXT_REPORT_TYPES_ABUSE",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_OBSCENE": "@:TXT_REPORT_TYPES_OBSCENE",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_SPAM": "@:TXT_REPORT_TYPES_SPAM",
