@@ -115,6 +115,7 @@
         bottom: 0;
         padding: 20px 25px 20px 25px;
         width: calc(100% - 240px);
+        z-index: 100;
 
         @media (max-width: 1024px) {
             width: calc(100% - 50px);
@@ -137,7 +138,7 @@
                 height: 100%;
                 vertical-align: middle;
             }
-            
+
         }
 
         #footer_notification_content_wrapper{
@@ -197,7 +198,7 @@
                     margin-right: auto;
                 }
             }
-            
+
             @media (max-width: 1024px) {
                 width: 100%;
                 display: inline-block;
