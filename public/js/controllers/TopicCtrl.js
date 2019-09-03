@@ -106,18 +106,18 @@ angular
                 topicId: $scope.topic.id
             });
             $scope.topic.vote.$get()
-            .then(function (voteResults) {
-                var winnerCount = 0;
-                voteResults.options.rows.forEach(function (option) {
-                    if (option.winner) {
-                        winnerCount++;
-                        if (winnerCount > 1) {
-                            $scope.showInfoWinners = true;
-                            $scope.multipleWinners = true;
+                .then(function (voteResults) {
+                    var winnerCount = 0;
+                    voteResults.options.rows.forEach(function (option) {
+                        if (option.winner) {
+                            winnerCount++;
+                            if (winnerCount > 1) {
+                                $scope.showInfoWinners = true;
+                                $scope.multipleWinners = true;
+                            }
                         }
-                    }
+                    });
                 });
-            });
         }
 
         $scope.activitiesOffset = 0;
@@ -289,21 +289,28 @@ angular
 
         $scope.loadTopicSocialMentions();
 
-        $scope.app.dotoggleEditMode = function () {
-            $log.debug($scope.app.editMode);
+        $scope.app.doToggleEditMode = function () {
             $scope.app.editMode = !$scope.app.editMode;
             $scope.app.topics_settings = false;
             if ($scope.app.editMode === true) {
-                $state.go('topics.view', {
-                    topicId: $scope.topic.id,
-                    editMode: $scope.app.editMode
-                });
+                $state.go(
+                    'topics.view',
+                    {
+                        topicId: $scope.topic.id,
+                        editMode: $scope.app.editMode
+                    }
+                );
             } else {
-                $state.go('topics.view', {
+                $state.go(
+                    'topics.view',
+                    {
                         topicId: $scope.topic.id,
                         editMode: null
                     },
-                    {reload: true});
+                    {
+                        reload: true
+                    }
+                );
             }
         };
 

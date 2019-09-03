@@ -456,13 +456,13 @@
                             </div>
 
                             <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
-                            
+
                             <div class="info_box_wrap" ng-if="multipleWinners && (topic.status === STATUSES.followUp) && ('topics.view.votes.view' | isState) && showInfoWinners">
                                 <div class="info_box" ng-class="{'info_box_show': multipleWinners && (topic.status === STATUSES.followUp) && ('topics.view.votes.view' | isState)}">
                                     <div class="info_icon">
                                         <div class="sprite sprite-icon-box-info2x"></div>
                                     </div>
-            
+
                                     <div>
                                         <div class="info_row">
                                             <p class="info_box_heading" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TITLE_DRAW">
@@ -927,6 +927,9 @@
             </div>
 
             <div class="side_panel" ng-if="wWidth > 1024 || app.topics_settings">
+                <div ng-if="topic.canEdit() && app.editMode" class="options_wrap">
+                    <div class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_DONE_EDITING" ng-click="app.doToggleEditMode()">Done editing</div>
+                </div>
                 <div ng-if="topic.canEdit() && topic.report.moderatedReasonType" class="options_wrap">
                     <div class="blue_button" ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_SUBMIT_FOR_REVIEW">Submit for review</div>
                 </div>
@@ -949,10 +952,10 @@
                         <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'share'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SHARE">Share topic</div>
                         <div ng-if="topic.visibility === VISIBILITY.public && !topic.report" class="blue_link" ui-sref="topics.view.report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report topic</div>
                         <div class="line lightest_line"></div>
-                        <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="app.dotoggleEditMode()"
+                        <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="app.doToggleEditMode()"
                              ng-if="!app.editMode" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC">Edit topic
                         </div>
-                        <div class="blue_link" ng-if="app.editMode" ng-click="app.dotoggleEditMode()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_VIEW_TOPIC">Edit topic
+                        <div class="blue_link" ng-if="app.editMode" ng-click="app.doToggleEditMode()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_VIEW_TOPIC">Edit topic
                         </div>
                         <div cos-disabled="!topic.canLeave()" class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
                     </div>
