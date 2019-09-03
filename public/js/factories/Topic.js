@@ -203,8 +203,27 @@ angular
             return (this.permission && this.permission.level === TopicMemberUser.LEVELS.admin);
         };
 
+        /**
+         * Can one edit Topics settings and possibly description (content)?
+         * Use canEditDescription() if you only need to check if content can be edited.
+         *
+         * @returns {boolean}
+         *
+         * @see Topic.prototype.canEditDescription()
+         */
         Topic.prototype.canEdit = function () {
             return [TopicMemberUser.LEVELS.admin, TopicMemberUser.LEVELS.edit].indexOf(this.permission.level) > -1;
+        };
+
+        /**
+         * Can one edit Topics description (content)?
+         *
+         * @returns {boolean}
+         *
+         * @see Topic.prototype.canEdit()
+         */
+        Topic.prototype.canEditDescription = function () {
+            return this.canEdit() && this.status === Topic.STATUSES.inProgress;
         };
 
         Topic.prototype.canDelete = function () {

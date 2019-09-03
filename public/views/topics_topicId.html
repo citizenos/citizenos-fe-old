@@ -127,7 +127,7 @@
 
         <div class="content">
             <div class="main_panel">
-                <div class="info_bar_wrap" ng-if="app.editMode && showInfoEdit && topic.canEdit() && (topic.status === STATUSES.inProgress)">
+                <div class="info_bar_wrap" ng-if="app.editMode && showInfoEdit && topic.canEditDescription()">
                     <div class="info_bar bar_blue info_bar_show">
                         <div class="info_icon">
                             <div class="sprite sprite-icon-notification-info2x"></div>
@@ -952,11 +952,10 @@
                         <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'share'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SHARE">Share topic</div>
                         <div ng-if="topic.visibility === VISIBILITY.public && !topic.report" class="blue_link" ui-sref="topics.view.report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report topic</div>
                         <div class="line lightest_line"></div>
-                        <div class="blue_link" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" ng-click="app.doToggleEditMode()"
+                        <div class="blue_link" cos-disabled="!topic.canEditDescription()" ng-click="app.doToggleEditMode()"
                              ng-if="!app.editMode" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC">Edit topic
                         </div>
-                        <div class="blue_link" ng-if="app.editMode" ng-click="app.doToggleEditMode()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_VIEW_TOPIC">Edit topic
-                        </div>
+                        <div class="blue_link" ng-if="app.editMode" ng-click="app.doToggleEditMode()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_VIEW_TOPIC">Edit topic</div>
                         <div cos-disabled="!topic.canLeave()" class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
                     </div>
                 </div>

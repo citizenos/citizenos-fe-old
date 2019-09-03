@@ -110,7 +110,7 @@
                             <span class="separator">|</span>
                             <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
                             <span class="separator">|</span>
-                            <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id, editMode: true})" cos-disabled="!topic.canEdit() || (topic.status !== STATUSES.inProgress)" translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span>
+                            <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id, editMode: true})" cos-disabled="!topic.canEditDescription()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span>
                             <span class="separator">|</span>
                             <span class="item_text blue_link" ng-click="doLeaveTopic()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_LEAVE">leave</span>
                             <span ng-if="topic.canDelete()">
