@@ -43,7 +43,7 @@ angular
 
         if ($scope.topic) {
             $scope.topic.padUrl += '&theme=default'; // Change of PAD URL here has to be before $sce.trustAsResourceUrl($scope.topic.padUrl);
-            if (!$scope.topic.canEdit() && ($stateParams.editMode && $stateParams.editMode === 'true')) {
+            if (!$scope.topic.canEditDescription() && ($stateParams.editMode && $stateParams.editMode === 'true')) {
                 $scope.app.editMode = false;
                 delete $stateParams.editMode;
                 $state.transitionTo($state.current.name, $stateParams, {
