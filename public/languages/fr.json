@@ -385,9 +385,9 @@
       "LNK_CITIZENOS_WEBSITE": "Site Web de Citizen OS"
     },
     "COOKIE_POLICY_NOTIFICATION": {
-      "TITLE": "Cookie policy",
-      "CONTENT": "We use cookies to personalize content, to provide social media features and to analyze our traffic. By clicking &quot;Accept&quot;, exiting this banner or continuing to use our services you accept our use of cookies. <a href=\"{{policyLink}}\">Read our Legal Terms</a>",
-      "BTN_ACCEPT": "Accept"
+      "TITLE": "Politique d'utilisation des cookies",
+      "CONTENT": "Nous utilisons des cookies pour personnaliser le contenu, fournir des fonctionnalités de réseaux sociaux et analyser notre trafic. En cliquant sur &quot;Accepter&quot;, fermant cette bannière ou en continuant à utiliser nos services, vous acceptez notre utilisation des cookies. <a href=\"{{policyLink}}\">Lire nos Conditions légales</a>",
+      "BTN_ACCEPT": "Accepter"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "mes sujets",
@@ -432,8 +432,8 @@
       "BTN_LOAD_MORE_TOPICS": "Charger plus de sujets",
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
-      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
-      "LBL_ENVIRONMENT": "Environment"
+      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Vous trouverez ici tous les documents et renseignements sur le plan « Keep It Clean ».",
+      "LBL_ENVIRONMENT": "Environnement"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Groupes : {{count}}",
@@ -624,7 +624,7 @@
       "LBL_NO_CATEGORIES": "aucun",
       "LNK_ADD_CATEGORIES": "ajouter catégories",
       "LBL_AUTHORS": "Auteurs: {{topic.creator.name}}",
-      "LBL_ACTIVITY": "Discussion:",
+      "LBL_ACTIVITY": "Discussion :",
       "LBL_ATTACHMENTS": "Pièces jointes :",
       "LNK_ARGUMENTS_COUNT": "Arguments : {{count}}",
       "LNK_MENTIONS_COUNT": "Mentions sociales : {{mentionsCount}}",
@@ -648,7 +648,7 @@
       "ARGUMENT_WHY": "Pourquoi ?",
       "ARGUMENT_VIEW_ARGUMENT_ANYWAY": "Afficher quand même l'argument",
       "ARGUMENT_FOUND_INAPPRIOPRIATE_BY": "Cet argument a été jugé inapproprié par <b>{{usersFullName}}</b>",
-      "ARGUMENT_READ_CODE_OF_CONDUCT": "Read our <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">code of conduct</a> for more information",
+      "ARGUMENT_READ_CODE_OF_CONDUCT": "Lisez notre <a <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">code de conduite</a> pour obtenir plus d'informations",
       "ARGUMENT_LAST_EDITED": "Dernière modification le {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Éditez votre réponse ici...",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
@@ -684,7 +684,7 @@
       "TAB_SOCIAL_MENTIONS_BTN_CHANGE_HASHTAG": "Changer hashtag",
       "TAB_SOCIAL_MENTIONS_POSTED_VIA": "Soumis via",
       "NAV_BTN_SUBMIT_FOR_REVIEW": "Envoyer pour vérification",
-      "NAV_BTN_DONE_EDITING": "Done editing",
+      "NAV_BTN_DONE_EDITING": "Modification terminée",
       "NAV_HEADING": "OPTIONS",
       "NAV_LNK_SEND_TO_VOTE": "Envoyer au vote",
       "NAV_LNK_SEND_TO_FOLLOW_UP": "Envoyer au suivi",
@@ -759,8 +759,8 @@
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PRIVATE": "privé",
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PUBLIC": "public",
     "ACTIVITY_GROUP_FIELD_NAME": "nom",
-    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTEXT": "Why was it deleted?",
-    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE": "Reason",
+    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTEXT": "Motif de la suppression",
+    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE": "Motif",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_ABUSE": "@:TXT_REPORT_TYPES_ABUSE",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_OBSCENE": "@:TXT_REPORT_TYPES_OBSCENE",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_SPAM": "@:TXT_REPORT_TYPES_SPAM",
