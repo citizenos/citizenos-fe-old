@@ -94,13 +94,21 @@ angular
                 .then(success, error);
         };
 
+        $scope.doLoginPartner = function (partnerId) {
+            // All /widgets/* require pop-up login flow as they are in the iframe
+            if ($state.includes('widgets')) {
+                $scope.doLoginPartnerPopup(partnerId);
+            } else {
+                $scope.doLoginPartnerNoPopup(partnerId);
+            }
+        };
 
         /**
          * Login with partner
          *
          * @param {string} partnerId String representing the partner. For ex "facebook", "google".
          */
-        $scope.doLoginPartner = function (partnerId) {
+        $scope.doLoginPartnerPopup = function (partnerId) {
             if (_.values($scope.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
                 throw new Error('LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', partnerId);
             }
@@ -111,7 +119,8 @@ angular
                     partnerId: partnerId
                 },
                 {
-                    redirectSuccess: sLocation.getAbsoluteUrl('/auth/callback')
+                    redirectSuccess: sLocation.getAbsoluteUrl('/auth/callback'),
+                    display: 'popup'
                 }
             );
 
@@ -120,7 +129,7 @@ angular
             var loginWindow = popupCenter(url, 'CitizenOS Partner Login', 470, 500);
 
             if ($document[0].documentMode || $window.navigator.userAgent.indexOf('Edge') > -1) {
-                var popupCheck = $interval(function() {
+                var popupCheck = $interval(function () {
                     if (loginWindow.closed) {
                         $interval.cancel(popupCheck);
                         $window.focus();
