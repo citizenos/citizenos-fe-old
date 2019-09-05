@@ -386,8 +386,8 @@
     },
     "COOKIE_POLICY_NOTIFICATION": {
       "TITLE": "Cookiebeleid",
-      "CONTENT": "We use cookies to personalize content, to provide social media features and to analyze our traffic. By clicking &quot;Accept&quot;, exiting this banner or continuing to use our services you accept our use of cookies. <a href=\"{{policyLink}}\">Read our Legal Terms</a>",
-      "BTN_ACCEPT": "Accept"
+      "CONTENT": "Wij gebruiken cookies om inhoud te personaliseren, om sociale-mediafuncties te verzorgen en om ons verkeer te analyseren. Door op &quot;Accepteren&quot; te klikken, deze banner te sluiten of door te gaan met het gebruik van onze diensten, accepteert u ons gebruik van cookies. <a href=\"{{policyLink}}\">Lees onze juridische voorwaarden</a>",
+      "BTN_ACCEPT": "Accepteren"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "mijn topics",
@@ -432,8 +432,8 @@
       "BTN_LOAD_MORE_TOPICS": "Meer topics laden",
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
-      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Here you can find all the documents and information on the Keep It Clean Plan.",
-      "LBL_ENVIRONMENT": "Environment"
+      "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Hier vindt u alle documenten en informatie over het Keep It Clean-plan.",
+      "LBL_ENVIRONMENT": "Milieu"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Groepen: {{count}}",
@@ -648,7 +648,7 @@
       "ARGUMENT_WHY": "Waarom?",
       "ARGUMENT_VIEW_ARGUMENT_ANYWAY": "Argument toch weergeven",
       "ARGUMENT_FOUND_INAPPRIOPRIATE_BY": "Gebruiker <b>{{usersFullName}}</b> vond dit argument ongepast",
-      "ARGUMENT_READ_CODE_OF_CONDUCT": "Read our <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">code of conduct</a> for more information",
+      "ARGUMENT_READ_CODE_OF_CONDUCT": "Lees onze <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">gedragscode</a> voor meer informatie",
       "ARGUMENT_LAST_EDITED": "Laatste bewerking {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Bewerk uw antwoord hier ...",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
@@ -684,7 +684,7 @@
       "TAB_SOCIAL_MENTIONS_BTN_CHANGE_HASHTAG": "Hashtag wijzigen",
       "TAB_SOCIAL_MENTIONS_POSTED_VIA": "Gepost via",
       "NAV_BTN_SUBMIT_FOR_REVIEW": "Verzenden ter beoordeling",
-      "NAV_BTN_DONE_EDITING": "Done editing",
+      "NAV_BTN_DONE_EDITING": "Bewerken voltooid",
       "NAV_HEADING": "OPTIES",
       "NAV_LNK_SEND_TO_VOTE": "Verzenden voor stemming",
       "NAV_LNK_SEND_TO_FOLLOW_UP": "Verzenden voor opvolging",
@@ -759,8 +759,8 @@
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PRIVATE": "privaat",
     "ACTIVITY_TOPIC_FIELD_VISIBILITY_PUBLIC": "publiek",
     "ACTIVITY_GROUP_FIELD_NAME": "naam",
-    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTEXT": "Why was it deleted?",
-    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE": "Reason",
+    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTEXT": "Waarom is het verwijderd?",
+    "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE": "Reden",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_ABUSE": "@:TXT_REPORT_TYPES_ABUSE",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_OBSCENE": "@:TXT_REPORT_TYPES_OBSCENE",
     "ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_SPAM": "@:TXT_REPORT_TYPES_SPAM",
