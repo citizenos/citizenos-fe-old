@@ -318,7 +318,7 @@
     "USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Weet u zeker dat u uw account wilt verwijderen?",
     "USER_DELETE_CONFIRM_TXT_NO_UNDO": "Houd er rekening mee dat u deze actie niet ongedaan kunt maken.",
     "USER_DELETE_CONFIRM_TXT_USER_DELETED": "Uw account wordt verwijderd",
-    "USER_DELETE_CONFIRM_TXT_KEEP_DATA_ANONYMOUSLY": "Alle door u aangemaakte gegevens worden geanonimiseerd en kunnen niet worden hersteld",
+    "USER_DELETE_CONFIRM_TXT_KEEP_DATA_ANONYMOUSLY": "Alle door de gebruiker aangemaakte gegevens worden geanonimiseerd en kunnen niet worden hersteld",
     "USER_DELETE_CONFIRM_NO": "NEE, DIT ACCOUNT BEHOUDEN",
     "USER_DELETE_CONFIRM_YES": "JA, DIT ACCOUNT VERWIJDEREN"
   },
