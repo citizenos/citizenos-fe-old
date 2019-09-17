@@ -479,10 +479,6 @@
                         });
                     }]
                 })
-                .state('onedrive', {
-                    url: '/onedrive',
-                    templateUrl: '<div></div>'
-                })
                 .state('topics.view.commentsReportsModerate', {
                     url: '/comments/:reportedCommentId/reports/:reportId/moderate?token',
                     parent: 'topics.view',
@@ -760,6 +756,22 @@
                     parent: 'main',
                     controller: 'JoinCtrl'
                 })
+                .state('topicInvitesView', { // FIXME: Rename this
+                    url: '/invites/view/:tokenJoin', // FIXME: Think of a better path
+                    parent: 'main',
+                    controller: ['$state', '$stateParams', '$log', 'ngDialog', function ($state, $stateParams, $log, ngDialog) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/invites_view.html',
+                            data: $stateParams
+                        });
+
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                return $state.go('home');
+                            }
+                        });
+                    }]
+                })
                 .state('partners', {
                     url: '/partners/:partnerId',
                     abstract: true,
@@ -948,6 +960,10 @@
                             $window.opener.postMessage({status: 'success'}, $window.origin);
                         }
                     }]
+                })
+                .state('onedrive', {
+                    url: '/onedrive',
+                    templateUrl: '<div></div>'
                 })
                 .state('error', {
                     url: '/error',
