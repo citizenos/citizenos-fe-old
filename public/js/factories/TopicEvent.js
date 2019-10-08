@@ -47,8 +47,7 @@ angular
                     isArray: true,
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) {
-                            var array = angular.fromJson(data).data.rows || [];
-                            return array;
+                            return angular.fromJson(data).data.rows || [];
                         } else {
                             return angular.fromJson(data);
                         }

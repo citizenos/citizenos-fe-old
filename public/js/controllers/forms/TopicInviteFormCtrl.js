@@ -6,21 +6,33 @@ angular
         $log.debug('TopicInviteFormCtrl');
 
         var params = {
-            inviteId: $stateParams.inviteId,
+            id: $stateParams.inviteId,
             topicId: $stateParams.topicId
         };
 
-        TopicInviteUser.get(params).$promise
+        new TopicInviteUser(params)
+            .$get()
             .then(
                 function (topicInvite) {
+                    topicInvite.id = params.id;
                     $scope.invite = topicInvite;
                 }, function (err) {
-                    $log.error('TopicInviteFormCtrl', 'err', err);
+                    $log.error('TopicInviteFormCtrl', 'error loading TopicInviteUser', err);
                 }
             );
 
         $scope.doAccept = function () {
-            $log.debug('TopicInviteFormCtrl', 'doAccept()');
+            $log.debug('TopicInviteFormCtrl', 'doAccept()', $scope.invite);
+            $scope.invite
+                .$accept()
+                .then(
+                    function (res) {
+                        $log.debug('TopicInviteFormCtrl', 'doAccept()', res);
+                    },
+                    function (err) {
+                        $log.error('TopicInviteFormCtrl', 'doAccept()', err);
+                    }
+                );
         };
 
     }]);
