@@ -756,12 +756,13 @@
                     parent: 'main',
                     controller: 'JoinCtrl'
                 })
-                .state('topicInvitesView', { // FIXME: Rename this
-                    url: '/invites/view/:tokenJoin', // FIXME: Think of a better path
+                .state('topicsTopicIdInvites', { // Cannot use dot notation (topics.topicId.invites) as that would make the page child of "topics" and we don't want that.
+                    url: '/topics/:topicId/invites/:inviteId', // FIXME: Think of a better path
                     parent: 'main',
+                    templateUrl: '/views/home.html',
                     controller: ['$state', '$stateParams', '$log', 'ngDialog', function ($state, $stateParams, $log, ngDialog) {
                         var dialog = ngDialog.open({
-                            template: '/views/modals/invites_view.html',
+                            template: '/views/modals/topic_topicId_invites_inviteId.html',
                             data: $stateParams
                         });
 

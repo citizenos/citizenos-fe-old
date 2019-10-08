@@ -1,6 +1,6 @@
 <!-- LIGHTBOX SKELETON -->
 <!--FIXME: Rename the template after proper path naming has been agreed -->
-<div id="root_lightbox" class="full_screen">
+<div id="root_lightbox" class="full_screen" ng-controller="TopicInviteFormCtrl">
     <div id="lightbox" class="delete_comment">
         <div id="lightbox_wrap">
 
@@ -28,16 +28,16 @@
 
 
                 <div class="lightbox_section">
-                    You've been invited by <b>Mikk TODO</b> to: <!--FIXME - profile and styles and translation-->
-                    <h2>We need to do something about the hipsters in Telliskivi!</h2><!--FIXME: styles-->
+                    You've been invited by <b>{{invite.creator.name}}</b> to: <!--FIXME - profile and styles and translation-->
+                    <h2>{{invite.topic.title}}</h2><!--FIXME: styles-->
                 </div>
                 <div class="lightbox_section">
                     <div class="yes_no_buttons">
                         <div class="table_cell">
-                            <div class="blue_button" ng-click="" translate="">Accept invitation</div><!--FIXME translate-->
+                            <div class="blue_button" ng-click="doAccept()" translate="">Accept invitation</div><!--FIXME translate-->
                         </div>
                         <div class="table_cell">
-                            Your topic rights: <b>Read</b> <!--FIXME translate-->
+                            Your topic rights: <b>{{invite.level}}</b> <!--FIXME translate-->
                         </div>
                     </div>
                 </div>
