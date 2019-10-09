@@ -134,7 +134,7 @@
                             $log.debug('Resolve language', $stateParams.language);
                             return sTranslate.setLanguage($stateParams.language);
                         },
-                        sAuthResolve: function ($q, $log, sAuth) {
+                        sAuthResolve: function ($q, $log, sAuth, ngDialog) {
                             if (sAuth.user.loggedIn) {
                                 return;
                             }
@@ -143,7 +143,15 @@
                                 .then(
                                     function () {
                                         $log.debug('Resolve user', sAuth.user, 'LOGGED IN');
-                                        return $q.resolve(true);
+                                        if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
+                                            var dialog = ngDialog.open({
+                                                template: '/views/modals/privacy_policy.html'
+                                            });
+
+                                            return dialog.closePromise;
+                                        } else {
+                                            return $q.resolve(true);
+                                        }
                                     },
                                     function () {
                                         $log.debug('Resolve user', sAuth.user, 'NOT LOGGED IN');
@@ -383,7 +391,7 @@
                         if (!$scope.app.user.loggedIn) {
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
-                                .then(function(){
+                                .then(function () {
                                     $state.go('^');
                                 });
                             return;
@@ -409,7 +417,7 @@
                         if (!$scope.app.user.loggedIn) {
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
-                                .then(function(){
+                                .then(function () {
                                     $state.go('^');
                                 });
                             return;
@@ -435,7 +443,7 @@
                         if (!$scope.app.user.loggedIn) {
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
-                                .then(function(){
+                                .then(function () {
                                     $state.go('^');
                                 });
                             return;
@@ -461,7 +469,7 @@
                         if (!$scope.app.user.loggedIn) {
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
-                                .then(function(){
+                                .then(function () {
                                     $state.go('^');
                                 });
                             return;
@@ -778,7 +786,7 @@
                     abstract: true,
                     parent: 'index',
                     resolve: {
-                        rPartner: ['$stateParams','sPartner', function ($stateParams, sPartner) {
+                        rPartner: ['$stateParams', 'sPartner', function ($stateParams, sPartner) {
                             return sPartner
                                 .info($stateParams.partnerId)
                                 .then(function (partnerInfo) {
