@@ -134,7 +134,7 @@
                             $log.debug('Resolve language', $stateParams.language);
                             return sTranslate.setLanguage($stateParams.language);
                         },
-                        sAuthResolve: function ($q, $log, sAuth, ngDialog) {
+                        sAuthResolve: function ($q, $log, $state, $stateParams, $window, sAuth, sLocation) {
                             if (sAuth.user.loggedIn) {
                                 return;
                             }
@@ -143,15 +143,21 @@
                                 .then(
                                     function () {
                                         $log.debug('Resolve user', sAuth.user, 'LOGGED IN');
-                                        if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
-                                            var dialog = ngDialog.open({
-                                                template: '/views/modals/privacy_policy.html'
-                                            });
-
-                                            return dialog.closePromise;
-                                        } else {
-                                            return $q.resolve(true);
+                                        if (sAuth.user.loggedIn) {
+                                            if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
+                                                return $state.go(
+                                                    'account.tos',
+                                                    {
+                                                        redirectSuccess: sLocation.getAbsoluteUrl($window.location.pathname) + $window.location.search
+                                                    },
+                                                    {
+                                                        location: false
+                                                    }
+                                                );
+                                            }
                                         }
+
+                                        return $q.resolve(true);
                                     },
                                     function () {
                                         $log.debug('Resolve user', sAuth.user, 'NOT LOGGED IN');
@@ -210,6 +216,16 @@
                     abstract: true,
                     parent: 'main',
                     templateUrl: '/views/home.html'
+                })
+                .state('account.tos', {
+                    url: '/tos?redirectSuccess',
+                    controller: ['$scope', 'ngDialog', function ($scope, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/privacy_policy.html',
+                            closeByEscape: false,
+                            closeByNavigation: false
+                        });
+                    }]
                 })
                 .state('account.signup', {
                     url: '/signup?email&name&redirectSuccess',

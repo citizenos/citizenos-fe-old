@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity',  function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $interval, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $interval, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity) {
         $log.debug('AppCtrl');
 
         $scope.app = {
@@ -183,14 +183,14 @@ angular
             $cookies.put('COOKIE_NOTIFICATION', true, {expires: expires});
         };
 
-         $scope.app.displayFooterNotification = function () {
+        $scope.app.displayFooterNotification = function () {
             var show = $cookies.get('COOKIE_NOTIFICATION');
 
             if (!show) {
                 return true;
             }
 
-             return false;
+            return false;
         };
 
         $rootScope.$on('ngDialog.opened', function () {
