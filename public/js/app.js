@@ -784,10 +784,78 @@
                     url: '/topics/:topicId/invites/:inviteId', // FIXME: Think of a better path
                     parent: 'main',
                     templateUrl: '/views/home.html',
-                    controller: ['$state', '$stateParams', '$log', 'ngDialog', function ($state, $stateParams, $log, ngDialog) {
+                    resolve: {
+                        rTopicInviteUser: ['$stateParams', '$q', '$log', 'TopicInviteUser', function ($stateParams, $q, $log, TopicInviteUser) {
+                            var params = {
+                                id: $stateParams.inviteId,
+                                topicId: $stateParams.topicId
+                            };
+
+                            return new TopicInviteUser(params)
+                                .$get()
+                                .then(
+                                    function (topicInvite) {
+                                        topicInvite.id = params.id;
+
+                                        return topicInvite;
+                                    }, function (err) {
+                                        $log.error('rTopicInviteUser', 'error loading TopicInviteUser', err);
+
+                                        var error = new Error(err.statusText);
+                                        error.code = err.status;
+
+                                        return $q.resolve(error);
+                                    }
+                                );
+                        }]
+                    },
+                    controller: ['$state', '$stateParams', '$log', 'sAuth', 'ngDialog', 'rTopicInviteUser', function ($state, $stateParams, $log, sAuth, ngDialog, rTopicInviteUser) {
+                        if (rTopicInviteUser instanceof Error) {
+                            if (rTopicInviteUser.code === 404) {
+                                return $state.go('error.404');
+                            }
+                        }
+
+                        var doAccept = function () {
+
+                            return rTopicInviteUser
+                                .$accept()
+                                .then(
+                                    function () {
+                                        return $state.go(
+                                            'topics.view',
+                                            {
+                                                topicId: rTopicInviteUser.topicId
+                                            }
+                                        )
+                                    }
+                                );
+                        };
+
+                        $log.debug('sAuth.user.loggedIn && rTopicInviteUser.userId === sAuth.user.id', sAuth.user.loggedIn, rTopicInviteUser.userId, sAuth.user.id);
+
+                        // 1. The invited User is logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
+                        if (sAuth.user.loggedIn && rTopicInviteUser.userId === sAuth.user.id) {
+                            return doAccept();
+                        }
+
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_topicId_invites_inviteId.html',
-                            data: $stateParams
+                            data: $stateParams,
+                            controller: ['$scope', '$log', function ($scope, $log) {
+                                $log.debug('rTopicInviteUser', rTopicInviteUser);
+                                $scope.invite = rTopicInviteUser;
+
+                                $scope.doAccept = function () {
+                                    // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
+                                    if (!sAuth.user.loggedIn) {
+                                        var currentUrl = $state.href($state.current.name, $stateParams);
+                                        return $state.go('account.login', {redirectSuccess: currentUrl});
+                                    } else {
+                                        doAccept();
+                                    }
+                                }
+                            }]
                         });
 
                         dialog.closePromise.then(function (data) {
