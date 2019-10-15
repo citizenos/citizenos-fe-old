@@ -817,7 +817,6 @@
                         }
 
                         var doAccept = function () {
-
                             return rTopicInviteUser
                                 .$accept()
                                 .then(
@@ -832,10 +831,8 @@
                                 );
                         };
 
-                        $log.debug('sAuth.user.loggedIn && rTopicInviteUser.userId === sAuth.user.id', sAuth.user.loggedIn, rTopicInviteUser.userId, sAuth.user.id);
-
                         // 1. The invited User is logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
-                        if (sAuth.user.loggedIn && rTopicInviteUser.userId === sAuth.user.id) {
+                        if (sAuth.user.loggedIn && rTopicInviteUser.user.id === sAuth.user.id) {
                             return doAccept();
                         }
 
@@ -843,7 +840,6 @@
                             template: '/views/modals/topic_topicId_invites_inviteId.html',
                             data: $stateParams,
                             controller: ['$scope', '$log', function ($scope, $log) {
-                                $log.debug('rTopicInviteUser', rTopicInviteUser);
                                 $scope.invite = rTopicInviteUser;
 
                                 $scope.doAccept = function () {
@@ -851,10 +847,19 @@
                                     if (!sAuth.user.loggedIn) {
                                         var currentUrl = $state.href($state.current.name, $stateParams);
                                         return $state.go('account.login', {redirectSuccess: currentUrl});
-                                    } else {
-                                        doAccept();
                                     }
-                                }
+
+                                    // 2. User logged in, but opens an invite NOT meant to that account  - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
+                                    if (sAuth.user.loggedIn && $scope.invite.user.id !== sAuth.user.id) {
+                                        sAuth
+                                            .logout()
+                                            .then(function () {
+                                                var currentUrl = $state.href($state.current.name, $stateParams);
+                                                // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
+                                                return $state.go('account.login', {redirectSuccess: currentUrl}, {reload: true});
+                                            });
+                                    }
+                                };
                             }]
                         });
 
