@@ -223,7 +223,8 @@
                         ngDialog.open({
                             template: '/views/modals/privacy_policy.html',
                             closeByEscape: false,
-                            closeByNavigation: false
+                            closeByNavigation: false,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                     }]
                 })
