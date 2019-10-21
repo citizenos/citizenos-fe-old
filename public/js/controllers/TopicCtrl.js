@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $log, $sce, $location, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $q, $log, $sce, $location, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
@@ -141,6 +141,26 @@ angular
                 });
         };
 
+        var loadTopicInviteUserList = function () {
+            return TopicInviteUser
+                .query({topicId: $scope.topic.id}).$promise
+                .then(function (invites) {
+                    $log.error('loadTopicInviteUserList.then', invites);
+
+                    $scope.topic.invites = { // FIXME: Remove when Topic API returns invites?
+                        users: {
+                            rows: [],
+                            count: 0
+                        }
+                    };
+
+                    $scope.topic.invites.users.rows = invites;
+                    $scope.topic.invites.users.count = invites.length;
+
+                    return invites;
+                });
+        };
+
         var loadTopicMemberGroupList = function () {
             return TopicMemberGroup
                 .query({topicId: $scope.topic.id}).$promise
@@ -150,7 +170,7 @@ angular
 
                     return groups;
                 });
-        }
+        };
 
         $scope.loadActivities = function (offset, limit) {
             $scope.activitiesOffset = offset || $scope.activitiesOffset;
@@ -444,7 +464,8 @@ angular
 
         $scope.doShowMemberUserList = function () {
             if (!$scope.userList.isVisible) {
-                loadTopicMemberUserList()
+                $q
+                    .all([loadTopicMemberUserList(), loadTopicInviteUserList()])
                     .then(function () {
                         $scope.userList.isVisible = true;
                         $scope.app.scrollToAnchor('user_list');
@@ -491,6 +512,23 @@ angular
                         .$delete({topicId: $scope.topic.id})
                         .then(function () {
                             return loadTopicMemberUserList(); // Good old topic.members.users.splice wont work due to group permission inheritance
+                        });
+                }, angular.noop);
+        };
+
+        $scope.doDeleteInviteUser = function (topicInviteUser) {
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_invite_user_delete_confirm.html',
+                    data: {
+                        user: topicInviteUser.user
+                    }
+                })
+                .then(function () {
+                    topicInviteUser
+                        .$delete({topicId: $scope.topic.id})
+                        .then(function () {
+                            return loadTopicInviteUserList();
                         });
                 }, angular.noop);
         };

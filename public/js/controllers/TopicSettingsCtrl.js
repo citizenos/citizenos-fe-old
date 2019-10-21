@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'Topic', 'TopicMemberUser', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, Topic, TopicMemberUser, TopicMemberGroup) {
+    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup) {
         $log.debug('TopicSettingsCtrl', $state, $stateParams);
 
         $scope.levels = {
@@ -283,7 +283,7 @@ angular
 
                     if (topicMemberUsersToSave.length) {
                         savePromises.push(
-                            TopicMemberUser.save({topicId: $scope.topic.id}, topicMemberUsersToSave)
+                            TopicInviteUser.save({topicId: $scope.topic.id}, topicMemberUsersToSave)
                         );
                     }
 

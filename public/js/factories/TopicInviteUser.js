@@ -20,6 +20,20 @@ angular
                         }
                     }
                 },
+                query: {
+                    isArray: true,
+                    params: {
+                        topicId: '@topicId',
+                        inviteId: '@id'
+                    },
+                    transformResponse: function (data, headerGetter, status) {
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
+                            return angular.fromJson(data).data.rows;
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
+                },
                 accept: {
                     method: 'POST',
                     params: {
