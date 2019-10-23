@@ -240,7 +240,7 @@
                             transition-duration: 2s;
                             transition-timing-function: linear;
                             transition-property: background;
-                            border-right:none;
+                            border-right: none;
                         }
 
                         &.is_con {
@@ -429,7 +429,7 @@
                             &.reply_footer {
                                 width: 200px;
                             }
-                            
+
                             font-size: 13px;
                             .line_wrap {
                                 margin: 0;
@@ -586,19 +586,15 @@
                 }
 
                 .post_argument_overlay {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        background: rgba(255,255,255,0.5);
-                        z-index: 2;
-                        text-align: center;
-                        padding: 2em;
-
-                        a {
-                            color: $deep_sky_blue;
-                        }
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(255, 255, 255, 0.5);
+                    z-index: 2;
+                    text-align: center;
+                    padding: 2em;
                 }
 
                 .error_label {

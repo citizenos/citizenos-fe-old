@@ -6,7 +6,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title" translate="">Topic invitation</div><!--FIXME-->
+                    <div class="title" translate="MODALS.TOPIC_INVITE_VIEW_HEADING">Topic invitation</div><!--FIXME-->
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -27,26 +27,38 @@
 
 
                 <div class="lightbox_section">
-                    You've been invited by <b>{{invite.creator.name}}</b> to: <!--FIXME - profile and styles and translation-->
-                    <h2>{{invite.topic.title}}</h2><!--FIXME: styles-->
-                </div>
-                <div class="lightbox_section">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td translate="MODALS.TOPIC_INVITE_VIEW_LBL_TOPIC_TITLE">Topic title:</td>
+                                <td class="bold">{{invite.topic.title}}</td>
+                            </tr>
+                            <tr>
+                                <td translate="MODALS.TOPIC_INVITE_VIEW_LBL_INVITED_BY">Invited by:</td>
+                                <td>{{invite.creator.name}}</td>
+                            </tr>
+                            <tr>
+                                <td translate="MODALS.TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO">Invitation sent to:</td>
+                                <td>{{invite.user.email}}</td>
+                            </tr>
+                            <tr>
+                                <td translate="MODALS.TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL">Topic rights:</td>
+                                <td>{{invite.level}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div class="yes_no_buttons">
-                        <div class="table_cell">
-                            <div class="blue_button" ng-click="doAccept()" translate="">Log-in as {{invite.user.email}} to accept invitation</div><!--FIXME translate-->
-                        </div>
-                        <div class="table_cell">
-                            Your topic rights: <b>{{invite.level}}</b> <!--FIXME translate-->
-                        </div>
+                        <div class="blue_button" ng-click="doAccept()" translate="MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS">Log-in as {{invite.user.email}} to accept invitation</div>
                     </div>
                 </div>
                 <div class="line lightest_line"></div>
 
                 <div class="lightbox_section">
-                    <span translate="">You can also:</span>
+                    <span class="medium_black_seven" translate="MODALS.TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS">You can also:</span>
                     <ul>
-                        <li><a href="#">Log in or register to Citizen OS</a></li><!--FIXME action, style and translate-->
-                        <li><a href="#">Learn more about Citizen OS if you're new!</a></li><!--FIXME action, style and translate-->
+                        <li>
+                            <a ng-href="{{app.config.links.about}}" href="#" translate="MODALS.TOPIC_INVITE_VIEW_LNK_LEARN_MORE">Learn more about Citizen OS if you're new!</a>
+                        </li>
                     </ul>
                 </div>
 

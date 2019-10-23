@@ -810,7 +810,7 @@
                                 );
                         }]
                     },
-                    controller: ['$state', '$stateParams', '$log', 'sAuth', 'ngDialog', 'rTopicInviteUser', function ($state, $stateParams, $log, sAuth, ngDialog, rTopicInviteUser) {
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'sAuth', 'ngDialog', 'rTopicInviteUser', function ($scope, $state, $stateParams, $log, sAuth, ngDialog, rTopicInviteUser) {
                         if (rTopicInviteUser instanceof Error) {
                             if (rTopicInviteUser.code === 404) {
                                 return $state.go('error.404');
@@ -840,6 +840,7 @@
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_topicId_invites_inviteId.html',
                             data: $stateParams,
+                            scope: $scope, // pass on scope, so that modal has access to App scope ($scope.app)
                             controller: ['$scope', '$log', function ($scope, $log) {
                                 $scope.invite = rTopicInviteUser;
 

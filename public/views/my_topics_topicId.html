@@ -69,7 +69,7 @@
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_USERS">Users</div>
                         <div class="item_content">
                             <div class="item_text">
-                                <span ng-bind="topic.members.users.count + '/' + topic.invites.users.count">0</span>
+                                <span ng-bind="topic.members.users.count">0</span>
                                 <span class="separator">|</span>
                                 <span class="item_link blue_link" ng-click="doShowMemberUserList();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
                             </div>
@@ -425,7 +425,7 @@
     <div class="info_container group_list user_list" id="user_list">
         <div class="container_header" ng-click="doToggleMemberUserList(); toggleTab('user_list')">
             <div class="header_text">
-                <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'(' + topic.members.users.count + '/' + topic.invites.users.count + ')'">(0)</span> |
+                <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'(' + topic.members.users.count + ')'">(0)</span> |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(); $event.stopPropagation();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
                 |
                 <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my.topics.topicId.settings({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>

@@ -91,6 +91,14 @@ a img, a {
     outline: none;
 }
 
+a:link, a:visited {
+    color: $deep_sky_blue;
+}
+
+a:hover {
+    color: $dark_blue;
+}
+
 img {
     border: 0;
 }
