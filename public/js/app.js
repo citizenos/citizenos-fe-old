@@ -799,7 +799,8 @@
                                         topicInvite.id = params.id;
 
                                         return topicInvite;
-                                    }, function (err) {
+                                    },
+                                    function (err) {
                                         $log.error('rTopicInviteUser', 'error loading TopicInviteUser', err);
 
                                         var error = new Error(err.statusText);

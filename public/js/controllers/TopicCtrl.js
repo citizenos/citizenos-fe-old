@@ -145,16 +145,22 @@ angular
             return TopicInviteUser
                 .query({topicId: $scope.topic.id}).$promise
                 .then(function (invites) {
-                    $log.error('loadTopicInviteUserList.then', invites);
-
-                    $scope.topic.invites = { // FIXME: Remove when Topic API returns invites?
+                    $scope.topic.invites = {
                         users: {
                             rows: [],
                             count: 0
                         }
                     };
 
-                    $scope.topic.invites.users.rows = invites;
+                    // Need to show only 1 line per User with maximum level
+                    // NOTE: Objects don't actually guarantee order if keys parsed to number, it was better if TopicMemberUser.LEVELS was a Map
+                    var levelOrder = Object.keys(TopicMemberUser.LEVELS);
+                    var inviteListOrderedByLevel = _.orderBy(invites, function (invite) {
+                        return levelOrder.indexOf(invite.level);
+                    }, ['desc']);
+                    $scope.topic.invites.users._rows = invites; // Store the original result from server to implement DELETE ALL, need to know the ID-s of the invites to delete
+
+                    $scope.topic.invites.users.rows = _.sortedUniqBy(inviteListOrderedByLevel, 'user.id');
                     $scope.topic.invites.users.count = invites.length;
 
                     return invites;
@@ -524,9 +530,22 @@ angular
                         user: topicInviteUser.user
                     }
                 })
-                .then(function () {
-                    topicInviteUser
-                        .$delete({topicId: $scope.topic.id})
+                .then(function (isAll) {
+                    var promisesToResolve = [];
+
+                    // Delete all
+                    if (isAll) {
+                        $scope.topic.invites.users._rows.forEach(function (invite) {
+                            if (invite.user.id === topicInviteUser.user.id) {
+                                promisesToResolve.push(invite.$delete({topicId: $scope.topic.id}));
+                            }
+                        });
+                    } else { // Delete single
+                        promisesToResolve.push(topicInviteUser.$delete({topicId: $scope.topic.id}));
+                    }
+
+                    $q
+                        .all(promisesToResolve)
                         .then(function () {
                             return loadTopicInviteUserList();
                         });
