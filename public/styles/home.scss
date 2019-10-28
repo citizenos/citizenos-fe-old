@@ -442,9 +442,6 @@
                 font-size: 13px;
                 color: inherit;
                 font-weight: inherit;
-                @media (max-width: 1150px) {
-                    width: 200px;
-                }
 
                 @media (max-width: 667px) {
                     width: 100%;
@@ -587,7 +584,7 @@
             width: 24%;
 
             .text_area {
-                width: 65%;
+                width: 60%;
             }
 
             &.tutorial {
@@ -612,7 +609,8 @@
             &.ten_island_project {
                 background-image: url('../imgs/ldi_indonesia.png');
                 background-repeat: no-repeat;
-                background-position: right -90px  top -15px;
+                background-position: right -50px  bottom -45px;
+                background-size: 300px;
                 @media (max-width: 667px) {
                      background-image: none;
                 }
@@ -648,7 +646,7 @@
             @media (max-width: 1350px) {
                 padding-right: 0;
                 .text_area {
-                    width: 60%;
+                    width: 55%;
                 }
                 width: calc(50% - 15px);
                 & {
@@ -658,7 +656,7 @@
 
             @media (max-width: 1150px) {
                 .text_area {
-                    width: 280px;
+                    xwidth: 280px;
                 }
                 & {
                     background-position: right -190px top;
