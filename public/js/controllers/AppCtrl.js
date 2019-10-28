@@ -260,7 +260,7 @@ angular
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                     }
-                    
+
                     newActivitiesWatcher = $interval(function () {
                         sActivity
                             .getUnreadActivities()
