@@ -62,6 +62,34 @@
                     </form>
                 </div>
 
+                <div class="v_line lightest_line"></div>
+
+                <div class="sign_in_section">
+                    <form name="formSmartIdSign" novalidate>
+                        <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
+                        <input ng-if="!formSmartId.isLoading"  id="phone" name="countryCode" ng-class="{error_input: formSmartIdSign.countryCode.$error.pattern && formSmartIdSign.countryCode.$touched}" ng-model="formSmartId.countryCode" placeholder="{{'MODALS.TOPIC_VOTE_SIGN_PLACEHOLDER_PHONE' | translate}}" value="EE" focus-if="{{wWidth > 1024}}" ng-pattern="/^\+?[A-Z\s-]{2,}$/" required>
+                        <label ng-if="formSmartIdSign.countryCode.$error.pattern && formSmartIdSign.countryCode.$touched" for="phone" class="error_label" >
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <span translate="MODALS.TOPIC_VOTE_SIGN_ERROR_PHONE">Invalid phone number</span>
+                            </div>
+                        </label>
+                        <input ng-if="!formSmartId.isLoading" ng-model="formSmartId.pid" name="pid" type="text" inputmode="numeric" ng-class="{error_input: formSmartIdSign.pid.$error.pattern && formSmartIdSign.pid.$touched}" placeholder="{{'MODALS.TOPIC_VOTE_SIGN_PLACEHOLDER_PID' | translate}}" ng-pattern="/^[0-9]{11}$/" required>
+                        <label ng-if="formSmartIdSign.pid.$error.pattern && formSmartIdSign.pid.$touched" for="phone" class="error_label" >
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <span translate="MODALS.TOPIC_VOTE_SIGN_ERROR_PID">Invalid PID number</span>
+                            </div>
+                        </label>
+                        <div ng-if="formSmartId.isLoading && formSmartId.challengeID" class="code" translate="MODALS.TOPIC_VOTE_SIGN_TXT_CONTROL_CODE" translate-values="{code: challengeID}">Kontrollkood: 1234</div>
+                        <div ng-if="formSmartId.isLoading && formSmartId.challengeID" class="code_text" translate="MODALS.TOPIC_VOTE_SIGN_TXT_CHECK_CONTROL_CODE">Please enter the PIN in your mobile phone...</div>
+                        <div ng-if="formSmartId.isLoading"  class="loader_wrap">
+                            <div class="loader"></div>
+                        </div>
+                        <button ng-if="wWidth <= 550" class="blue_button" ng-click="doSignWithSmartId()" cos-disabled="formSmartIdSign.$invalid || formSmartId.isLoading || isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_MID">Sign with Mobiil-ID</button>
+                    </form>
+                </div>
+
                 <div class="line_wrap">
                     <div class="line lightest_line"></div>
                 </div>
@@ -69,10 +97,14 @@
                 <div class="sign_in_section">
                     <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
                     <div class="sprite_big sprite sprite-img-idkaart2x"></div>
-                    <button ng-if="wWidth <= 550" class="blue_button" cos-disabled="isLoadingIdCard || formMobile.isLoading" ng-click="doSignWithCard()" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_CARD">Sign with ID-Card</button>
+                    <button ng-if="wWidth <= 550" class="blue_button" cos-disabled="isLoadingIdCard || formSmartId.isLoading" ng-click="doSignWithCard()" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_CARD">Sign with ID-Card</button>
                 </div>
 
                 <div class="clearer"></div>
+
+                <div ng-if="wWidth > 550" class="sign_in_section">
+                    <button class="blue_button" ng-click="doSignWithSmartId()" cos-disabled="formSmartIdSign.$invalid || formSmartId.isLoading || isLoadingIdCard">Sign with Smarta-ID</button>
+                </div>
 
                 <div ng-if="wWidth > 550" class="sign_in_section">
                     <button class="blue_button" ng-click="doSignWithMobile()" cos-disabled="formMobileSign.$invalid || formMobile.isLoading || isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_MID">Sign with Mobiil-ID</button>
