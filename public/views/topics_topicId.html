@@ -379,7 +379,7 @@
                                 <div class="message_title" translate="VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED">Your vote has been registered!</div>
                                 <div class="float_wrap">
                                     <div class="blue_link" ng-class="{hidden: topic.vote.authType !== voteAuthTypes.hard}"><a ng-href="{{topic.vote.downloads.bdocVote}}"
-                                                                                                                   translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_USER_BDOC" target="_blank" download>Download your DDOC</a></div>
+                                                                                                                   translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_USER_BDOC" download>Download your DDOC</a></div>
                                 </div>
                                 <div class="clearer"></div>
                             </div>
@@ -483,12 +483,12 @@
                                 </div>
                             </div>
 
-                            <a ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" ng-href="{{topic.vote.downloads.bdocFinal}}" target="_blank" download>
+                            <a ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" ng-href="{{topic.vote.downloads.bdocFinal}}" download>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
                                 </div>
                             </a>
-                            <a ng-if="topic.vote.authType===voteAuthTypes.soft && topic.vote.downloads.zipFinal" ng-href="{{topic.vote.downloads.zipFinal}}" target="_blank" download>
+                            <a ng-if="topic.vote.authType===voteAuthTypes.soft && topic.vote.downloads.zipFinal" ng-href="{{topic.vote.downloads.zipFinal}}" download>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_ZIP">Download full ZIP</div>
                                 </div>
