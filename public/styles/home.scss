@@ -89,7 +89,7 @@
         .dropdown_active {
             background: $white;
             .animated_bg_bar {
-                width: 250px !important;
+                width: 100%;
             }
         }
 
@@ -145,7 +145,7 @@
 
                 &:hover {
                     .animated_bg_bar {
-                        width: 250px;
+                        width: 100%;
                     }
                 }
             }
