@@ -3,7 +3,7 @@
     </div>
 </div>
 
-<div class="header_button search" ng-click="app.showSearch = !app.showSearch;" ng-class="{hidden: !app.showSearch, 'overview_active': 1>0}">
+<div class="header_button search overview_active" ng-click="app.showSearch = !app.showSearch;" ng-style="{'display': app.showSearch ? 'none ' : 'relative'}">
     <div class="header_button_icon">
         <div class="sprite sprite-icon-search2x">
         </div>
@@ -40,7 +40,7 @@
 </div>
 
 <div ng-if="wWidth <= 1024">
-    <div class="header_button edit" ng-click="app.doToggleEditMode()" ng-class="app.editMode ? 'active': ''" ng-if="('topics.**' | includedByState) && app.user.loggedIn">
+    <div class="header_button edit" cos-disabled="!topic.canEdit()" ng-click="app.doToggleEditMode()" ng-class="app.editMode ? 'active': ''" ng-if="('topics.**' | includedByState) && app.user.loggedIn">
         <div class="header_button_icon">
             <div class="sprite sprite-icon-mobile-edit2x">
             </div>

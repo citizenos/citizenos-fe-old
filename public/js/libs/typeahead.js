@@ -11,7 +11,7 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
         restrict: 'E',
         transclude: true,
         replace: true,
-        template: '<div><div ng-class="{hidden: !label}" class="ac-label">{{label}}</div><div class="ac-input"><input ng-model="term" ng-change="query()" ng-model-options="{debounce:250}" type="text" autocomplete="off" placeholder="{{placeholder}}" autofocus/></div><div ng-transclude></div></div>',
+        template: '<div><div ng-class="{hidden: !label}" class="ac-label">{{label}}</div><div class="ac-input"><input ng-model="term" ng-change="query()" ng-model-options="{debounce:250}" type="text" autocomplete="off" placeholder="{{placeholder}}" focus-if autofocus/></div><div ng-transclude></div></div>',
         scope: {
             search: "&",
             select: "&",

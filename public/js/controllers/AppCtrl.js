@@ -183,14 +183,14 @@ angular
             $cookies.put('COOKIE_NOTIFICATION', true, {expires: expires});
         };
 
-        $scope.app.displayFooterNotification = function () {
+         $scope.app.displayFooterNotification = function () {
             var show = $cookies.get('COOKIE_NOTIFICATION');
 
             if (!show) {
                 return true;
             }
 
-            return false;
+             return false;
         };
 
         $rootScope.$on('ngDialog.opened', function () {
