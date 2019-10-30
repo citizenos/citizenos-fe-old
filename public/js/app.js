@@ -782,11 +782,12 @@
                     controller: 'JoinCtrl'
                 })
                 .state('topicsTopicIdInvites', { // Cannot use dot notation (topics.topicId.invites) as that would make the page child of "topics" and we don't want that.
-                    url: '/topics/:topicId/invites/:inviteId', // FIXME: Think of a better path
+                    url: '/topics/:topicId/invites/:inviteId',
                     parent: 'main',
                     templateUrl: '/views/home.html',
                     resolve: {
                         rTopicInviteUser: ['$stateParams', '$q', '$log', 'TopicInviteUser', function ($stateParams, $q, $log, TopicInviteUser) {
+                            $log.debug('rTopicInviteUser');
                             var params = {
                                 id: $stateParams.inviteId,
                                 topicId: $stateParams.topicId
@@ -801,21 +802,14 @@
                                         return topicInvite;
                                     },
                                     function (err) {
-                                        $log.error('rTopicInviteUser', 'error loading TopicInviteUser', err);
-
-                                        var error = new Error(err.statusText);
-                                        error.code = err.status;
-
-                                        return $q.resolve(error);
+                                        return $q.resolve(err); // Resolve so that the page would load
                                     }
                                 );
                         }]
                     },
-                    controller: ['$scope', '$state', '$stateParams', '$log', 'sAuth', 'ngDialog', 'rTopicInviteUser', function ($scope, $state, $stateParams, $log, sAuth, ngDialog, rTopicInviteUser) {
-                        if (rTopicInviteUser instanceof Error) {
-                            if (rTopicInviteUser.code === 404) {
-                                return $state.go('error.404');
-                            }
+                    controller: ['$scope', '$state', '$stateParams', '$log', '$timeout', 'sAuth', 'sNotification', 'ngDialog', 'TopicInviteUser', 'rTopicInviteUser', function ($scope, $state, $stateParams, $log, $timeout, sAuth, sNotification, ngDialog, TopicInviteUser, rTopicInviteUser) {
+                        if (!(rTopicInviteUser instanceof TopicInviteUser)) { // Some kind of error happened, the instance was not built
+                            return; // ERROR: Expecting cosHttpApiErrorInterceptor to tell the user what went wrong
                         }
 
                         var doAccept = function () {

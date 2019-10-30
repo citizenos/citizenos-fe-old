@@ -111,7 +111,7 @@ angular
 
         return {
             'response': function (response) {
-                sNotification.removeAll();
+                // sNotification.removeAll(); - With all the parallel requests going on, was not a good idea.
                 return response;
             },
             'responseError': function (response) {

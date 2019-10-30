@@ -6,7 +6,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title" translate="MODALS.TOPIC_INVITE_VIEW_HEADING">Topic invitation</div><!--FIXME-->
+                    <div class="title" translate="MODALS.TOPIC_INVITE_VIEW_HEADING">Topic invitation</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -24,8 +24,6 @@
 
             <!-- CONFIRM CONTENT -->
             <div class="lightbox_content">
-
-
                 <div class="lightbox_section">
                     <table>
                         <tbody>
@@ -48,7 +46,7 @@
                         </tbody>
                     </table>
                     <div class="yes_no_buttons">
-                        <div class="blue_button" ng-click="doAccept()" translate="MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS">Log-in as {{invite.user.email}} to accept invitation</div>
+                        <div class="blue_button" ng-click="doAccept()" translate="MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS" translate-values="{email: invite.user.email}">Log-in as {{invite.user.email}} to accept invitation</div>
                     </div>
                 </div>
                 <div class="line lightest_line"></div>
