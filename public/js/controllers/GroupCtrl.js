@@ -190,51 +190,6 @@ angular
                 });
         };
 
-        $scope.toggleTab = function (tabName) {
-            var items = $location.search();
-
-            if (!items.openTabs) {
-                items.openTabs = [];
-            } else if (!Array.isArray(items.openTabs)) {
-                items.openTabs = items.openTabs.split(',');
-            }
-
-            if (items.openTabs.indexOf(tabName) > -1) {
-                items.openTabs.splice(items.openTabs.indexOf(tabName), 1);
-            } else {
-                items.openTabs.push(tabName);
-            }
-            items.openTabs = items.openTabs.join(',');
-            var newParams = $stateParams;
-            Object.keys(items).forEach(function(key) {
-                newParams[key] = items[key];
-            });
-            $state.go($state.current.name, newParams, {location: true});
-        };
-
-        var checkTabs = function () {
-            var tabsToOpen = $location.search();
-            if (tabsToOpen.openTabs) {
-                tabsToOpen.openTabs = tabsToOpen.openTabs.split(',');
-
-                $scope.topicList.isVisible = false;
-                $scope.userList.isVisible = false;
-
-                tabsToOpen.openTabs.forEach(function (tabName) {
-                    switch (tabName) {
-                        case 'topic_list':
-                            $scope.doToggleMemberTopicList();
-                        break;
-                        case 'user_list':
-                            $scope.doToggleMemberUserList();
-                        break;
-                        default:
-                        break;
-                    }
-                });
-            }
-        };
-        checkTabs();
         if (sAuth.user.loggedIn) {
             loadMemberTopicsList();
             loadMemberUsersList();
