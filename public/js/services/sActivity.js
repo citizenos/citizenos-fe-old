@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sActivity', ['$http', '$state', '$stateParams', '$window', '$q', '$log', '$translate', 'sLocation', 'ngDialog', function ($http, $state, $stateParams, $window, $q, $log, $translate, sLocation, ngDialog) {
+    .service('sActivity', ['$http', '$state', '$stateParams', '$window', '$q', '$log', '$translate', 'sAuth', 'sLocation', 'ngDialog', function ($http, $state, $stateParams, $window, $q, $log, $translate, sAuth, sLocation, ngDialog) {
         var sActivity = this;
 
         sActivity.unread = 0;
@@ -536,6 +536,17 @@ angular
             } else if (object['@type'] === 'Group') {
                 stateName = 'my.groups.groupId';
                 params.groupId = object.id;
+            } else if (object['@type'] === 'TopicInviteUser') {
+                // The invited user is viewing
+                if (sAuth.user.loggedIn && sAuth.user.id === object.userId) {
+                    stateName = 'topicsTopicIdInvites';
+                    params.topicId = object.topicId;
+                    params.inviteId = object.id;
+                } else {
+                    // Creator of the invite or a person who has read permissions is viewing
+                    stateName = 'topics.view';
+                    params.topicId = object.topicId;
+                }
             }
 
             if (stateName) {
