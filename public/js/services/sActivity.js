@@ -428,6 +428,8 @@ angular
 
             if (activity.data.actor && activity.data.actor.level) {
                 levelKey += activity.data.actor.level;
+            } else if (activity.data.target && activity.data.target.level) { // Invite to Topic has target User - https://github.com/citizenos/citizenos-fe/issues/112
+                levelKey += activity.data.target.level;
             }
 
             $translate(levelKey.toUpperCase()).then(function (value) {
@@ -508,14 +510,16 @@ angular
             if (!activity.data) {
                 return;
             }
+
+            var activityType = activity.data.type;
             var stateName = '';
             var params = {};
             var hash = '';
-            var object = activity.data.object;
+            var object = activity.data.object
+            var target = activity.data.target;
             if (Array.isArray(object)) {
                 object = object[0];
             }
-            var type = activity.data.type;
 
             if (object['@type'] === 'Topic') {
                 stateName = 'topics.view';
@@ -536,7 +540,7 @@ angular
             } else if (object['@type'] === 'Group') {
                 stateName = 'my.groups.groupId';
                 params.groupId = object.id;
-            } else if (object['@type'] === 'TopicInviteUser') {
+            } else if (activityType === 'Invite' && target['@type'] === 'User' && object['@type'] === 'Topic') {
                 // The invited user is viewing
                 if (sAuth.user.loggedIn && sAuth.user.id === object.userId) {
                     stateName = 'topicsTopicIdInvites';
