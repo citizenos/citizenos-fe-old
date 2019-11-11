@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Одбрана и безбедност",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Интеграција и човекови права",
   "TXT_TOPIC_CATEGORY_VARIA": "Различности",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Пребарај теми, корисници, групи…"

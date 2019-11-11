@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Puolustus ja turvallisuus",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integraatio ja ihmisoikeudet",
   "TXT_TOPIC_CATEGORY_VARIA": "Sekalaiset",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Hae aiheita, käyttäjiä, ryhmiä..."
