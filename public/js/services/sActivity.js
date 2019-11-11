@@ -424,17 +424,18 @@ angular
         };
 
         var getActivityUserLevel = function (activity, values) {
-            var levelKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_LEVELS_';
+            var levelKeyPrefix = 'ACTIVITY_FEED.ACTIVITY_TOPIC_LEVELS_';
+            var levelKey;
 
             if (activity.data.actor && activity.data.actor.level) {
-                levelKey += activity.data.actor.level;
+                levelKey = levelKeyPrefix + activity.data.actor.level;
             } else if (activity.data.target && activity.data.target.level) { // Invite to Topic has target User - https://github.com/citizenos/citizenos-fe/issues/112
-                levelKey += activity.data.target.level;
+                levelKey = levelKeyPrefix + activity.data.target.level;
             }
 
-            $translate(levelKey.toUpperCase()).then(function (value) {
-                values.accessLevel = value;
-            })
+            if (levelKey && levelKey !== levelKeyPrefix) {
+                values.accessLevel = $translate.instant(levelKey.toUpperCase());
+            }
         };
 
         sActivity.getActivityValues = function (activity) {
@@ -521,7 +522,18 @@ angular
                 object = object[0];
             }
 
-            if (object['@type'] === 'Topic') {
+            if (activityType === 'Invite' && target['@type'] === 'User' && object['@type'] === 'Topic') { // https://github.com/citizenos/citizenos-fe/issues/112
+                // The invited user is viewing
+                if (sAuth.user.loggedIn && sAuth.user.id === target.id) {
+                    stateName = 'topicsTopicIdInvites';
+                    params.topicId = object.id;
+                    params.inviteId = target.inviteId; // HACKISH! Change once issue resolves - https://github.com/w3c/activitystreams/issues/506
+                } else {
+                    // Creator of the invite or a person who has read permissions is viewing
+                    stateName = 'topics.view';
+                    params.topicId = object.topicId;
+                }
+            } else if (object['@type'] === 'Topic') {
                 stateName = 'topics.view';
                 params.topicId = object.id;
             } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote' || (object['@type'] === 'User' && activity.data.target && activity.data.target['@type'] === 'Topic')) {
@@ -540,17 +552,6 @@ angular
             } else if (object['@type'] === 'Group') {
                 stateName = 'my.groups.groupId';
                 params.groupId = object.id;
-            } else if (activityType === 'Invite' && target['@type'] === 'User' && object['@type'] === 'Topic') {
-                // The invited user is viewing
-                if (sAuth.user.loggedIn && sAuth.user.id === object.userId) {
-                    stateName = 'topicsTopicIdInvites';
-                    params.topicId = object.topicId;
-                    params.inviteId = object.id;
-                } else {
-                    // Creator of the invite or a person who has read permissions is viewing
-                    stateName = 'topics.view';
-                    params.topicId = object.topicId;
-                }
             }
 
             if (stateName) {
