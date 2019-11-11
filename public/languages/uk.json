@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Оборона та безпека",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Інтеграція та права людини",
   "TXT_TOPIC_CATEGORY_VARIA": "Різне",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Шукати теми, користувачів, групи…"
