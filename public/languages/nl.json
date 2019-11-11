@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Defensie en veiligheid",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integratie en mensenrechten",
   "TXT_TOPIC_CATEGORY_VARIA": "Varia",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Zoek topics, gebruikers, groepen …"
