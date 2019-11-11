@@ -177,7 +177,7 @@
 
     <!-- TOPIC LIST -->
     <div class="info_container group_list" id="topic_list">
-        <div class="container_header" ng-click="doToggleMemberTopicList(group); toggleTab('topic_list')">
+        <div class="container_header" ng-click="doToggleMemberTopicList(group);">
             <div class="header_text">
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_TOPIC_LIST" translate-values="{count: group.members.topics.count}">Topic list ({{group.members.topics.count}})</span>
                 |
@@ -271,7 +271,7 @@
 
     <!-- USER LIST -->
     <div class="info_container group_list user_list" id="user_list">
-        <div class="container_header" ng-click="doToggleMemberUserList(group); toggleTab('user_list')">
+        <div class="container_header" ng-click="doToggleMemberUserList(group);">
             <div class="header_text">
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_USERS_LIST" translate-values="{count: (group.members.users.count || 0)}">User list (0)</span>
                 |
