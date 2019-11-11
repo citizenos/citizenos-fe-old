@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Defensa y seguridad",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integración y derechos humanos",
   "TXT_TOPIC_CATEGORY_VARIA": "Varios",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Buscar temas, usuarios, grupos…"
