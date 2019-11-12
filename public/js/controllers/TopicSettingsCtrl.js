@@ -140,9 +140,8 @@ angular
             var urlInputElement = document.getElementById('url_invite_topic_input');
             urlInputElement.focus();
             urlInputElement.select();
-            if (!urlInputElement.execCommand) return; // feature detection
-            var fieldRange = urlInputElement.createTextRange();
-            fieldRange.execCommand('copy');
+            urlInputElement.setSelectionRange(0, 99999);
+            document.execCommand('copy');
         };
 
         $scope.generateJoinUrl = function () {
