@@ -341,9 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Гособорона и безопасность",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Интеграция и права человека",
   "TXT_TOPIC_CATEGORY_VARIA": "Разное",
-  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
-  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
-  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Молодежь",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Наука и технология",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Демократия и гражданское общество",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Ищите темы, пользователей, группы…"
