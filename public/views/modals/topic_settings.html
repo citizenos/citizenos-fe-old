@@ -196,11 +196,11 @@
 
                     <div class="searchbox_with_icon_and_text only_text">
                         <div cos-dropdown
-                             ng-class="{search_with_dropdown : (searchResults.users.length || searchResults.groups.length), dropdown_active : (searchResults.users.length || searchResults.groups.length)}">
+                             ng-class="{search_with_dropdown : (searchResults.users.length || searchResults.groups.length || searchResults.emails.length), dropdown_active : (searchResults.users.length || searchResults.groups.length || searchResults.emails.length)}">
                             <typeahead id="userSearch" class="auto-complete" items="searchResults.combined" term="searchString" search="search(term, 'user')"
                                        select="addTopicMember(item)" placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_INVITE_USERS_AND_GROUPS' | translate}}">
                                 <div class="search_area_wrap">
-                                    <div class="search_dropdown_area" ng-class="{hidden: (!searchResults.users.length && !searchResults.groups.length)}">
+                                    <div class="search_dropdown_area" ng-class="{hidden: (!searchResults.users.length && !searchResults.groups.length && !searchResults.emails.length)}">
                                         <div class="search_dropdown_item" ng-if="searchResults.users.length">
                                             <div class="table_cell" translate="MODALS.TOPIC_SETTINGS_TH_USERS">Users</div>
                                         </div>
@@ -222,6 +222,17 @@
                                             <div class="table_cell blue_link">
                                                 <span class="submit_link" ng-click="addTopicMemberGroup(group)"
                                                       translate="MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter or click to add</span>
+                                            </div>
+                                        </div>
+                                        <div class="search_dropdown_item" ng-if="searchResults.emails.length">
+                                            <div class="table_cell" translate="MODALS.TOPIC_SETTINGS_TH_USERS">Users</div>
+                                        </div>
+                                        <div class="search_dropdown_item" typeahead-item="email" ng-repeat="email in searchResults.emails">
+                                            <div class="table_cell search_item_text">
+                                                <b>{{email}}</b>
+                                            </div>
+                                            <div class="table_cell blue_link">
+                                                <span class="submit_link" ng-click="addTopicMemberUser()" translate="MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
                                             </div>
                                         </div>
                                     </div>
