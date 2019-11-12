@@ -455,7 +455,14 @@
                                 <div class="clearer"></div>
                             </div>
 
-                            <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
+                            <div ng-if="!topic.hasVoteEndedExpired()" class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
+
+                            <div ng-if="topic.hasVoteEndedExpired()">
+                                <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED_EXPIRED">Votes have now been cast. Please send topic to follow-up, then return here to download voting results.</div>
+                                <div class="voting_button voting_button_blue active">
+                                    <div class="table_cell" ng-click="sendToFollowUp('topics.view.votes.view')" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow</div>
+                                </div>
+                            </div>
 
                             <div class="info_box_wrap" ng-if="multipleWinners && (topic.status === STATUSES.followUp) && ('topics.view.votes.view' | isState) && showInfoWinners">
                                 <div class="info_box" ng-class="{'info_box_show': multipleWinners && (topic.status === STATUSES.followUp) && ('topics.view.votes.view' | isState)}">
