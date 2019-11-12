@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCommentCreateFormCtrl', ['$scope', '$rootScope', '$state', '$log', '$q', 'TopicComment', function ($scope, $rootScope, $state, $log, $q, TopicComment) {
+    .controller('TopicCommentCreateFormCtrl', ['$scope', '$rootScope', '$state', '$stateParams', '$log', '$q', 'TopicComment', function ($scope, $rootScope, $state, $stateParams, $log, $q, TopicComment) {
         var init = function () {
             $scope.form = {
                 type: null,
@@ -29,7 +29,9 @@ angular
             comment
                 .$save({topicId: $scope.topic.id})
                 .then(
-                    function () {
+                    function (comment) {
+                        $log.debug('Comment', comment, comment.id, comment.parent);
+                        $stateParams.commentId = comment.id; // set commentId to the new one, so that UI would pull focus after comments are loaded (loadTopicComments)
                         $scope.loadTopicComments();
                         init();
                     },
@@ -40,26 +42,26 @@ angular
         };
 
         $scope.commentTextLengthCheck = function (comment, text) {
-            if(text && text.length > $scope.maxLengthText) {
-                if(!comment.errors) {
+            if (text && text.length > $scope.maxLengthText) {
+                if (!comment.errors) {
                     comment.errors = {};
                 }
                 comment.errors.text = 'VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ERROR_TEXT_TOO_LONG';
             } else {
-                if(comment.errors && comment.errors.text) {
+                if (comment.errors && comment.errors.text) {
                     comment.errors.text = null;
                 }
             }
         };
 
         $scope.commentSubjectLengthCheck = function (comment, subject) {
-            if(subject && subject.length > $scope.maxLengthSubject) {
-                if(!comment.errors) {
+            if (subject && subject.length > $scope.maxLengthSubject) {
+                if (!comment.errors) {
                     comment.errors = {};
                 }
                 comment.errors.subject = 'VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ERROR_SUBJECT_TOO_LONG';
             } else {
-                if(comment.errors && comment.errors.subject) {
+                if (comment.errors && comment.errors.subject) {
                     comment.errors.subject = null;
                 }
             }
