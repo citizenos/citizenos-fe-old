@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'Topic', 'TopicMemberUser', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, Topic, TopicMemberUser, TopicMemberGroup) {
+    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'Topic', 'TopicMemberUser', 'TopicMemberGroup', 'TopicVote', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, Topic, TopicMemberUser, TopicMemberGroup, TopicVote) {
         $log.debug('TopicSettingsCtrl', $state, $stateParams);
 
         $scope.levels = {
@@ -34,6 +34,16 @@ angular
                 urlJoin: null
             };
             $scope.form.topic = angular.copy($scope.topic);
+
+            if ($scope.topic.status === Topic.STATUSES.voting && $scope.topic.voteId) {
+                new TopicVote({topicId: $scope.topic.id, id: $scope.topic.voteId})
+                    .$get()
+                    .then(function (topicVote) {
+                        $scope.topic.vote = topicVote;
+                        $scope.form.topic.vote = angular.copy(topicVote);
+                    });
+            }
+            
             $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
             $scope.memberGroups = [];
             $scope.members = {
@@ -113,6 +123,14 @@ angular
 
         $scope.doDeleteHashtag = function () {
             $scope.form.topic.hashtag = null;
+        };
+
+        $scope.doEditVoteDeadline = function () {
+
+            console.log('ENDS AT', $scope.form.topic.vote.endsAt);
+            $scope.form.topic.vote.topicId = $scope.topic.id;
+            return $scope.form.topic.vote
+                .$update();
         };
 
         $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,
