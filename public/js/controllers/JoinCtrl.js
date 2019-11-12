@@ -7,7 +7,7 @@ angular
         joinTopic
             .$join({tokenJoin: $stateParams.tokenJoin})
             .then(function (res) {
-                $state.go('my.topics.topicId', {
+                $state.go('topics.view', {
                     topicId: res.data.id
                 });
             }, function (res) {
