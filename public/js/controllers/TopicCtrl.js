@@ -223,7 +223,7 @@ angular
                 }, angular.noop);
         };
 
-        $scope.sendToFollowUp = function () {
+        $scope.sendToFollowUp = function (stateSuccess) {
             ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_send_to_followUp_confirm.html'
@@ -233,20 +233,22 @@ angular
                         id: $scope.topic.id,
                         status: $scope.STATUSES.followUp
                     })
-                        .$patch()
-                        .then(
-                            function (topicPatched) {
-                                $scope.topic.status = topicPatched.status;
-                                $scope.app.topics_settings = false;
-                                if ($state.is('topics.view.votes.view')) {
-                                    $state.go('topics.view', {
-                                            topicId: $scope.topic.id,
-                                            editMode: null
-                                        },
-                                        {reload: true});
+                    .$patch()
+                    .then(
+                        function (topicPatched) {
+                            $scope.topic.status = topicPatched.status;
+                            $scope.app.topics_settings = false;
+                            var stateNext = stateSuccess || 'topics.view.followUp';
+                            var stateParams = angular.extend({}, $stateParams, {editMode: null});
+                            $state.go(
+                                stateNext,
+                                stateParams,
+                                {
+                                    reload: true
                                 }
-                            }
-                        );
+                            );
+                        }
+                    );
                 }, angular.noop);
         };
 
