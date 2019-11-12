@@ -261,5 +261,10 @@ angular
             return this.vote && this.vote.endsAt && new Date() > new Date(this.vote.endsAt);
         };
 
+        // Vote has ended due to expiry!
+        Topic.prototype.hasVoteEndedExpired = function () {
+            return [Topic.STATUSES.followUp, Topic.STATUSES.closed].indexOf(this.status) < 0 && this.vote && this.vote.endsAt && new Date() > new Date(this.vote.endsAt);
+        };
+
         return Topic;
     }]);
