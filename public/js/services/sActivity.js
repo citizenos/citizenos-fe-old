@@ -82,11 +82,18 @@ angular
                 stringparts.push(activity.data.type);
             }
 
+            // TODO: Maybe should implement recursive checking of "object", "origin", "target"  right now hardcoded to 2 levels because of Invite/Accept - https://github.com/citizenos/citizenos-fe/issues/112
             if (keys.indexOf('object') > -1) {
                 if (Array.isArray(activity.data.object)) {
                     stringparts.push(activity.data.object[0]['@type']);
+                } else if (activity.data.object.type) {
+                    stringparts.push(activity.data.object.type);
                 } else {
                     stringparts.push(activity.data.object['@type']);
+                }
+
+                if (activity.data.object.object) { // Originally created to support Accept activity - https://www.w3.org/TR/activitystreams-vocabulary/#dfn-accept
+                    stringparts.push(activity.data.object.object['@type']);
                 }
             }
 
@@ -320,7 +327,7 @@ angular
         };
 
         var getActivityTopicTitle = function (activity) {
-            var dataobject = activity.data.object;
+            var dataobject = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
             if (Array.isArray(dataobject)) {
                 dataobject = dataobject[0];
             }
@@ -340,7 +347,7 @@ angular
         };
 
         var getActivityClassName = function (activity) {
-            var dataobject = activity.data.object;
+            var dataobject = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
             if (Array.isArray(dataobject)) {
                 dataobject = dataobject[0];
             }
@@ -359,7 +366,7 @@ angular
         };
 
         var getActivityDescription = function (activity) {
-            var dataobject = activity.data.object;
+            var dataobject = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
             if (Array.isArray(dataobject)) {
                 dataobject = dataobject[0];
             }
@@ -516,7 +523,7 @@ angular
             var stateName = '';
             var params = {};
             var hash = '';
-            var object = activity.data.object
+            var object = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
             var target = activity.data.target;
             if (Array.isArray(object)) {
                 object = object[0];

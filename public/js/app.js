@@ -787,7 +787,6 @@
                     templateUrl: '/views/home.html',
                     resolve: {
                         rTopicInviteUser: ['$stateParams', '$q', '$log', 'TopicInviteUser', function ($stateParams, $q, $log, TopicInviteUser) {
-                            $log.debug('rTopicInviteUser');
                             var params = {
                                 id: $stateParams.inviteId,
                                 topicId: $stateParams.topicId
