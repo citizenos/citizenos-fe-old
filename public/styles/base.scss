@@ -139,7 +139,9 @@ table, .pretend_table {
 
 }
 
-
+.text-right {
+    text-align: right;
+}
 .pretend_table {
     display: table;
 }
@@ -950,6 +952,9 @@ a:link, a:visited {
     }
 }
 
+.edit_deadline_button {
+    padding: 6px 5px 5px 5px;
+}
 .white_button {
     @extend .gray_button;
     background: $white;

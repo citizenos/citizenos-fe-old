@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Verteidigung und Sicherheit",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integration und Menschenrechte",
   "TXT_TOPIC_CATEGORY_VARIA": "Verschiedenes",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Suche nach Themen, Benutzern, Gruppen…"
@@ -592,6 +595,7 @@
       "VOTE_REVOKE_DELEGATION": "Befugnisübertragung widerrufen",
       "VOTE_HEADING_VOTE_CLOSED": "Die Abstimmung ist beendet!",
       "VOTE_TXT_VOTE_CLOSED": "Alle haben ihre Stimmen abgeben. Sie können das vollständige Dokument hier herunterladen.",
+      "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Votes have now been cast. Please send topic to follow-up, then return here to download voting results.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Die unterzeichnete Datei herunterladen (BDOC)",
       "BTN_DOWNLOAD_FINAL_ZIP": "Die unterzeichnete Datei herunterladen (ZIP)",
       "VOTE_HEADING_CREATE": "Eine Abstimmungsplattform erstellen",
@@ -890,6 +894,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Der Link zum Anhang fehlt!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Der Name des Anhangs fehlt!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Passwort stimmt nicht mit dem Bestätigungspasswort überein.",
+  "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Sorry, we could not find a topic for a given token. The token may have expired or an invalid link has been copied. Contact the source of the link to fix the issue.",
   "ep_comments_page.comment": "Kommentar hinzufügen",
   "ep_comments_page.comments": "Kommentare",
   "ep_comments_page.add_comment.title": "Fügen Sie einen neuen Kommentar hinzu",

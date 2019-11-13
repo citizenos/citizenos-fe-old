@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup) {
+    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicVote', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup, TopicVote) {
         $log.debug('TopicSettingsCtrl', $state, $stateParams);
 
         $scope.levels = {
@@ -34,6 +34,16 @@ angular
                 urlJoin: null
             };
             $scope.form.topic = angular.copy($scope.topic);
+
+            if ($scope.topic.status === Topic.STATUSES.voting && $scope.topic.voteId) {
+                new TopicVote({topicId: $scope.topic.id, id: $scope.topic.voteId})
+                    .$get()
+                    .then(function (topicVote) {
+                        $scope.topic.vote = topicVote;
+                        $scope.form.topic.vote = angular.copy(topicVote);
+                    });
+            }
+
             $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
             $scope.memberGroups = [];
             $scope.members = {
@@ -56,7 +66,6 @@ angular
 
         $scope.search = function (str) {
             $scope.searchString = str; // TODO: Hackish - Typeahead has term="searchString" but somehow the 2 way binding does not work there, investigate when time
-
             if (str && str.length >= 2) {
                 var include = ['my.group', 'public.user'];
                 sSearch
@@ -64,21 +73,26 @@ angular
                     .then(function (response) {
                         $scope.searchResults.users = [];
                         $scope.searchResults.groups = [];
+                        $scope.searchResults.emails = [];
                         $scope.searchResults.combined = [];
                         if (response.data.data.results.public.users.rows.length) {
                             response.data.data.results.public.users.rows.forEach(function (user) {
                                 $scope.searchResults.users.push(user);
                             });
                         }
+                        else if (validator.isEmail(str)) {
+                            $scope.searchResults.emails.push($scope.searchString);
+                        }
                         if (response.data.data.results.my.groups.rows.length) {
                             response.data.data.results.my.groups.rows.forEach(function (group) {
                                 $scope.searchResults.groups.push(group);
                             });
                         }
-                        $scope.searchResults.combined = $scope.searchResults.users.concat($scope.searchResults.groups);
+                        $scope.searchResults.combined = $scope.searchResults.users.concat($scope.searchResults.groups).concat($scope.searchResults.emails);
                     });
             } else {
                 $scope.searchResults.users = [];
+                $scope.searchResults.emails = [];
                 $scope.searchResults.groups = [];
                 $scope.searchResults.combined = [];
             }
@@ -111,6 +125,14 @@ angular
             $scope.form.topic.hashtag = null;
         };
 
+        $scope.doEditVoteDeadline = function () {
+
+            console.log('ENDS AT', $scope.form.topic.vote.endsAt);
+            $scope.form.topic.vote.topicId = $scope.topic.id;
+            return $scope.form.topic.vote
+                .$update();
+        };
+
         $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,
             $scope.topic.$updateTokenJoin()
                 .then(function () {
@@ -136,9 +158,8 @@ angular
             var urlInputElement = document.getElementById('url_invite_topic_input');
             urlInputElement.focus();
             urlInputElement.select();
-            if (!urlInputElement.execCommand) return; // feature detection
-            var fieldRange = urlInputElement.createTextRange();
-            fieldRange.execCommand('copy');
+            urlInputElement.setSelectionRange(0, 99999);
+            document.execCommand('copy');
         };
 
         $scope.generateJoinUrl = function () {
@@ -158,7 +179,10 @@ angular
         };
 
         $scope.addTopicMember = function (member) {
-            if (!member || member.hasOwnProperty('company')) {
+            if (!member || validator.isEmail(member)) {
+                $scope.addTopicMemberUser();
+            }
+            if (member.hasOwnProperty('company')) {
                 $scope.addTopicMemberUser(member);
             } else {
                 $scope.addTopicMemberGroup(member);
@@ -169,6 +193,7 @@ angular
             $scope.searchString = null;
             $scope.searchResults.users = [];
             $scope.searchResults.groups = [];
+            $scope.searchResults.emails = [];
             $scope.searchResults.combined = [];
 
             if (!group || !group.id || !group.name) {
@@ -209,6 +234,7 @@ angular
                     $scope.searchString = null;
                     $scope.searchResults.users = [];
                     $scope.searchResults.groups = [];
+                    $scope.searchResults.emails = [];
                     $scope.searchResults.combined = [];
                     return;
                 } else {
@@ -219,6 +245,7 @@ angular
                     $scope.members.users.push(memberClone);
                     $scope.searchResults.groups = [];
                     $scope.searchResults.users = [];
+                    $scope.searchResults.emails = [];
                     $scope.searchResults.combined = [];
                 }
             } else {
@@ -233,6 +260,7 @@ angular
                         });
                         $scope.searchResults.groups = [];
                         $scope.searchResults.users = [];
+                        $scope.searchResults.emails = [];
                         $scope.searchResults.combined = [];
                     }
                 } else {

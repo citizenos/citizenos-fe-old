@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "crwdns20880:0crwdne20880:0",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "crwdns20882:0crwdne20882:0",
   "TXT_TOPIC_CATEGORY_VARIA": "crwdns20884:0crwdne20884:0",
+  "TXT_TOPIC_CATEGORY_YOUTH": "crwdns23090:0crwdne23090:0",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "crwdns23092:0crwdne23092:0",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "crwdns23094:0crwdne23094:0",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "crwdns20886:0crwdne20886:0"
@@ -592,6 +595,7 @@
       "VOTE_REVOKE_DELEGATION": "crwdns21302:0crwdne21302:0",
       "VOTE_HEADING_VOTE_CLOSED": "crwdns21304:0crwdne21304:0",
       "VOTE_TXT_VOTE_CLOSED": "crwdns21306:0crwdne21306:0",
+      "VOTE_TXT_VOTE_CLOSED_EXPIRED": "crwdns23096:0crwdne23096:0",
       "BTN_DOWNLOAD_FINAL_BDOC": "crwdns21308:0crwdne21308:0",
       "BTN_DOWNLOAD_FINAL_ZIP": "crwdns21310:0crwdne21310:0",
       "VOTE_HEADING_CREATE": "crwdns21312:0crwdne21312:0",
@@ -890,6 +894,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "crwdns21888:0crwdne21888:0",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "crwdns21890:0crwdne21890:0",
   "MSG_ERROR_PASSWORD_MISMATCH": "crwdns21892:0crwdne21892:0",
+  "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "crwdns23098:0crwdne23098:0",
   "ep_comments_page.comment": "crwdns21894:0crwdne21894:0",
   "ep_comments_page.comments": "crwdns21896:0crwdne21896:0",
   "ep_comments_page.add_comment.title": "crwdns21898:0crwdne21898:0",

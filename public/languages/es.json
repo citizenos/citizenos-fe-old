@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Defensa y seguridad",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integración y derechos humanos",
   "TXT_TOPIC_CATEGORY_VARIA": "Varios",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Buscar temas, usuarios, grupos…"
@@ -592,6 +595,7 @@
       "VOTE_REVOKE_DELEGATION": "Revocar la delegación",
       "VOTE_HEADING_VOTE_CLOSED": "¡La votación se cerró!",
       "VOTE_TXT_VOTE_CLOSED": "Todos han emitido sus votos. Puede descargar el documento completo aquí.",
+      "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Votes have now been cast. Please send topic to follow-up, then return here to download voting results.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Descargar archivo firmado (BDOC)",
       "BTN_DOWNLOAD_FINAL_ZIP": "Descargar archivo firmado (ZIP)",
       "VOTE_HEADING_CREATE": "Crear una plataforma de votación",
@@ -890,6 +894,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "No se definió el enlace del adjunto.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "No se especificó el nombre del adjunto.",
   "MSG_ERROR_PASSWORD_MISMATCH": "La contraseña no coincide con la confirmación de contraseña. ",
+  "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Sorry, we could not find a topic for a given token. The token may have expired or an invalid link has been copied. Contact the source of the link to fix the issue.",
   "ep_comments_page.comment": "Agregar comentario",
   "ep_comments_page.comments": "Comentarios",
   "ep_comments_page.add_comment.title": "Agregar nuevo comentario sobre el texto seleccionado",

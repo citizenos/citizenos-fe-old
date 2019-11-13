@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Aizsardzība un drošība",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integrācija un cilvēktiesības",
   "TXT_TOPIC_CATEGORY_VARIA": "Dažādi",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Meklēt tematus, lietotājus, grupas…"
@@ -592,6 +595,7 @@
       "VOTE_REVOKE_DELEGATION": "Atsaukt deleģējumu",
       "VOTE_HEADING_VOTE_CLOSED": "Balsošana beigusies!",
       "VOTE_TXT_VOTE_CLOSED": "Visi ir nobalsojuši. Jūs varat lejupielādēt pilnu dokumentu šeit.",
+      "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Votes have now been cast. Please send topic to follow-up, then return here to download voting results.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Lejupielādēt parakstīto failu (BDOC)",
       "BTN_DOWNLOAD_FINAL_ZIP": "Lejupielādēt parakstīto failu (ZIP)",
       "VOTE_HEADING_CREATE": "Izveidot balsošanas platformu",
@@ -890,6 +894,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Nav definēta pielikuma saite!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Nav norādīts pielikuma nosaukums!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Parole neatbilst apstiprinātajai parolei. ",
+  "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Sorry, we could not find a topic for a given token. The token may have expired or an invalid link has been copied. Contact the source of the link to fix the issue.",
   "ep_comments_page.comment": "Pievienot komentāru",
   "ep_comments_page.comments": "Komentāri",
   "ep_comments_page.add_comment.title": "Pievienot jaunu komentāru atlasītajam",

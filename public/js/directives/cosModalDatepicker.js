@@ -8,12 +8,21 @@ angular
             scope: {
                 model: '=ngModel',
                 cosModalOnSave: '&', // Expects a function that returns a Promise
-                cosModalTitle: '=',
+                cosModalTitle: '=?',
                 cosModalDescription: '=?'
             },
-            controller: ['$scope', '$element', '$document', function ($scope, $element, $document) {
+            controller: ['$scope', '$element', '$document' , '$translate', function ($scope, $element, $document, $translate) {
                 $log.debug('cosModalDatepicker.controller', arguments);
-
+                console.log('ON SAVE', $scope.cosModalOnSave);
+                console.log('MODEL', $scope.model);
+                $translate($scope.cosModalDescription)
+                    .then(function (newVal) {
+                        $scope.cosModalDescription = newVal;
+                    });
+                $translate($scope.cosModalTitle)
+                    .then(function (newVal) {
+                        $scope.cosModalTitle = newVal;
+                    });
                 $scope.cosModelValue = $scope.model ? $scope.model : new Date(); // So that original model is not modified
                 $scope.cosModalIsDateSelected = !!$scope.cosModelValue;
 

@@ -227,6 +227,11 @@
     "TOPIC_SETTINGS_LBL_HASHTAG": "Hashtag",
     "TOPIC_SETTINGS_LBL_HASHTAG_EXT": "USE THIS HASHTAG IN SOCIAL MEDIA AND THE MENTIONS WILL BE SHOWN BELOW YOUR TOPIC",
     "TOPIC_SETTINGS_PLACEHOLDER_HASHTAG": "@:MODALS.TOPIC_SETTINGS_LBL_HASHTAG",
+    "TOPIC_SETTINGS_LBL_DEADLINE": "Deadline",
+    "TOPIC_SETTINGS_LBL_DEADLINE_EXT": "WHEN THE DEADLINE IS REACHED, THE VOTE WILL BE CLOSED",
+    "TOPIC_SETTINGS_BTN_EDIT_DEADLINE": "Edit deadline",
+    "TOPIC_SETTINGS_MODAL_DEADLINE_TITLE": "Vote Deadline",
+    "TOPIC_SETTINGS_MODAL_DEADLINE_DESCRIPTION": "When the deadline is reached, the vote will be closed",
     "TOPIC_SETTINGS_LBL_LEAVE_TOPIC": "Leave topic",
     "TOPIC_SETTINGS_LBL_LEAVE_TOPIC_EXT": "LEAVING A TOPIC WILL RESULT IN GIVING UP ANY RIGHTS YOU MAY HAVE AS USER IN THAT TOPIC",
     "TOPIC_SETTINGS_BTN_LEAVE_TOPIC": "@:MODALS.TOPIC_SETTINGS_LBL_LEAVE_TOPIC",
@@ -341,6 +346,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Defence and security",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integration and human rights",
   "TXT_TOPIC_CATEGORY_VARIA": "Varia",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Search topics, users, groups…"
@@ -592,6 +600,7 @@
       "VOTE_REVOKE_DELEGATION": "Revoke your delegation",
       "VOTE_HEADING_VOTE_CLOSED": "Voting is closed!",
       "VOTE_TXT_VOTE_CLOSED": "Everyone has cast their votes. You can download the full document here.",
+      "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Votes have now been cast. Please send topic to follow-up, then return here to download voting results.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Download signed file (BDOC)",
       "BTN_DOWNLOAD_FINAL_ZIP": "Download signed file (ZIP)",
       "VOTE_HEADING_CREATE": "Create a voting platform",
@@ -890,6 +899,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Attachment link is undefined!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Attachment name is undefined!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Password does not match the confirmed password. ",
+  "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Sorry, we could not find a topic for a given token. The token may have expired or an invalid link has been copied. Contact the source of the link to fix the issue.",
   "ep_comments_page.comment": "Add comment",
   "ep_comments_page.comments": "Comments",
   "ep_comments_page.add_comment.title": "Add new comment on selection",

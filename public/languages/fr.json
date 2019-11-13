@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Défense et sécurité",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Intégration et droits de l'homme",
   "TXT_TOPIC_CATEGORY_VARIA": "Varia",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Chercher un sujet, utilisateur, groupe..."
@@ -592,6 +595,7 @@
       "VOTE_REVOKE_DELEGATION": "Révoquez votre délégation",
       "VOTE_HEADING_VOTE_CLOSED": "Le vote est fermé!",
       "VOTE_TXT_VOTE_CLOSED": "Tout le monde a voté. Vous pouvez maintenant rélécharger tout le document",
+      "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Votes have now been cast. Please send topic to follow-up, then return here to download voting results.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Télécharger le ficher signé (DBOC)",
       "BTN_DOWNLOAD_FINAL_ZIP": "Télécharger le ficher signé (ZIP)",
       "VOTE_HEADING_CREATE": "Créez une plateforme de vote",
@@ -890,6 +894,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Le lien de la pièce jointe est indéterminé !",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Le nom de la pièce jointe est indéterminé !",
   "MSG_ERROR_PASSWORD_MISMATCH": "Le mot de passe ne correspond pas au mot de passe de confirmation. ",
+  "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Sorry, we could not find a topic for a given token. The token may have expired or an invalid link has been copied. Contact the source of the link to fix the issue.",
   "ep_comments_page.comment": "Ajouter un commentaire",
   "ep_comments_page.comments": "Commentaires ",
   "ep_comments_page.add_comment.title": "Ajouter un commentaire sur la sélection",

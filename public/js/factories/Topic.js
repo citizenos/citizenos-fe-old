@@ -180,7 +180,10 @@ angular
             communities: 'communities', // Communities and urban development
             defense: 'defense', //  Defense and security
             integration: 'integration', // Integration and human rights
-            varia: 'varia' // Varia
+            varia: 'varia', // Varia
+            youth: 'youth', //Youth
+            science: 'science', //Science and Technology
+            society: 'society' //Democracy and civil society
         };
 
         Topic.REPORT_TYPES = {
@@ -256,6 +259,11 @@ angular
             }
 
             return this.vote && this.vote.endsAt && new Date() > new Date(this.vote.endsAt);
+        };
+
+        // Vote has ended due to expiry!
+        Topic.prototype.hasVoteEndedExpired = function () {
+            return [Topic.STATUSES.followUp, Topic.STATUSES.closed].indexOf(this.status) < 0 && this.vote && this.vote.endsAt && new Date() > new Date(this.vote.endsAt);
         };
 
         return Topic;

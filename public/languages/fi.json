@@ -341,6 +341,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Puolustus ja turvallisuus",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Integraatio ja ihmisoikeudet",
   "TXT_TOPIC_CATEGORY_VARIA": "Sekalaiset",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Hae aiheita, käyttäjiä, ryhmiä..."
@@ -592,6 +595,7 @@
       "VOTE_REVOKE_DELEGATION": "Kumoa äänesi delegointi",
       "VOTE_HEADING_VOTE_CLOSED": "Äänestys on päättynyt!",
       "VOTE_TXT_VOTE_CLOSED": "Kaikki ovat antaneet äänensä. Voit ladata täyden asiakirjan täältä.",
+      "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Votes have now been cast. Please send topic to follow-up, then return here to download voting results.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Lataa allekirjoitettu tiedosto (BDOC)",
       "BTN_DOWNLOAD_FINAL_ZIP": "Lataa allekirjoitettu tiedosto (ZIP)",
       "VOTE_HEADING_CREATE": "Luo äänestysalusta",
@@ -890,6 +894,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Liitteen linkkiä ei ole määritetty!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Liitteen nimeä ei ole määritetty!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Salasana ja salasanan vahvistus ovat erilaisia. ",
+  "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Sorry, we could not find a topic for a given token. The token may have expired or an invalid link has been copied. Contact the source of the link to fix the issue.",
   "ep_comments_page.comment": "Lisää kommentti",
   "ep_comments_page.comments": "Kommentit",
   "ep_comments_page.add_comment.title": "Kommentoi valittua tekstiä",

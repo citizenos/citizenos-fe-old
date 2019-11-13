@@ -228,28 +228,26 @@ angular
                             id: $scope.topic.id,
                             status: $scope.STATUSES.voting
                         })
-                            .$patch()
-                            .then(
-                                function (topicPatched) {
-                                    $scope.topic.status = topicPatched.status;
-                                    $scope.app.topics_settings = false;
-                                    if ($state.is('topics.view')) {
-                                        $state.go('topics.view.votes.view', {
-                                                topicId: $scope.topic.id,
-                                                voteId: $scope.topic.vote.id,
-                                                editMode: null
-                                            },
-                                            {reload: true}
-                                        );
-                                    }
-                                }
-                            );
+                        .$patch()
+                        .then(
+                            function (topicPatched) {
+                                $scope.topic.status = topicPatched.status;
+                                $scope.app.topics_settings = false;
+                                $state.go('topics.view.votes.view', {
+                                        topicId: $scope.topic.id,
+                                        voteId: $scope.topic.vote.id,
+                                        editMode: null
+                                    },
+                                    {reload: true}
+                                );
+                            }
+                        );
                     }
                     return false;
                 }, angular.noop);
         };
 
-        $scope.sendToFollowUp = function () {
+        $scope.sendToFollowUp = function (stateSuccess) {
             ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_send_to_followUp_confirm.html'
@@ -264,13 +262,15 @@ angular
                             function (topicPatched) {
                                 $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
-                                if ($state.is('topics.view.votes.view')) {
-                                    $state.go('topics.view', {
-                                            topicId: $scope.topic.id,
-                                            editMode: null
-                                        },
-                                        {reload: true});
-                                }
+                                var stateNext = stateSuccess || 'topics.view.followUp';
+                                var stateParams = angular.extend({}, $stateParams, {editMode: null});
+                                $state.go(
+                                    stateNext,
+                                    stateParams,
+                                    {
+                                        reload: true
+                                    }
+                                );
                             }
                         );
                 }, angular.noop);
