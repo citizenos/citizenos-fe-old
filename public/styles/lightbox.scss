@@ -208,7 +208,6 @@
         width: 500px;
 
         #lightbox_wrap {
-
             #lightbox_header {
                 height: auto;
                 #lightbox_close {
@@ -259,6 +258,21 @@
             .lightbox_content {
                 position: relative !important;
                 top: 0 !important;
+                border-radius: 0;
+                margin-bottom: 0;
+            }
+
+            .lightbox_content:last-child {
+                border-radius: 0 0 4px 4px;
+            }
+
+            #lightbox_footer {
+                display: table;
+                width: 100%;
+                box-sizing: border-box;
+                background-color: $white;
+                padding: 20px;
+                border-radius: 0 0 4px 4px;
             }
         }
     }

@@ -38,8 +38,25 @@ angular
 
         createRelUrls();
 
-        // Different global notifications that can be shown in the page header
+        // Different global notifications that can be shown in the page header OR as a dialog
         $scope.app.notifications = sNotification;
+        $scope.$watch(
+            function () {
+                return $scope.app.notifications.dialog
+            },
+            function (newVal, oldVal) {
+                if(newVal && newVal !== oldVal) {
+                    var dialog = ngDialog.open({
+                        template: '/views/modals/notification.html',
+                        data: $scope.app.notifications.dialog
+                    });
+
+                    dialog.closePromise.then(function () {
+                        $scope.app.notifications.dialog = null;
+                    });
+                }
+            }
+        );
 
         sHotkeys.add('ctrl+alt+shift+t', sTranslate.debugMode);
 
@@ -183,14 +200,14 @@ angular
             $cookies.put('COOKIE_NOTIFICATION', true, {expires: expires});
         };
 
-         $scope.app.displayFooterNotification = function () {
+        $scope.app.displayFooterNotification = function () {
             var show = $cookies.get('COOKIE_NOTIFICATION');
 
             if (!show) {
                 return true;
             }
 
-             return false;
+            return false;
         };
 
         $rootScope.$on('ngDialog.opened', function () {

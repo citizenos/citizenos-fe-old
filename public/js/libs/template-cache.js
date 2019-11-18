@@ -36,6 +36,7 @@ angular
             '/views/modals/login_esteid.html',
             '/views/modals/login_smartid.html',
             '/views/modals/my_account.html',
+            '/views/modals/notification.html',
             '/views/modals/password_forgot.html',
             '/views/modals/password_reset.html',
             '/views/modals/privacy_policy.html',

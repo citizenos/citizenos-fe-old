@@ -352,7 +352,7 @@ angular
                 dataobject = dataobject[0];
             }
 
-            if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject['@type'] === 'TopicPin' || dataobject.name || activity.data.target && activity.data.target['@type'] === ' Topic') {
+            if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject['@type'] === 'TopicPin' || activity.data.target && activity.data.target['@type'] === ' Topic') {
                 return 'topic';
             } else if (dataobject['@type'] === 'Group' || dataobject.groupName) {
                 return 'group';
@@ -360,8 +360,10 @@ angular
                 return 'vote';
             } else if (dataobject['@type'] === 'Comment' || dataobject.text) {
                 return 'comment';
-            } else if (dataobject['@type'] === 'User' || dataobject.text) {
+            } else if (dataobject['@type'] === 'User' || dataobject['@type'] === 'UserConnection' || dataobject.text) {
                 return 'personal';
+            } else {
+                return 'topic';
             }
         };
 
