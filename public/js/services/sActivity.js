@@ -531,16 +531,17 @@ angular
                 object = object[0];
             }
 
+            console.error('activityType', activityType, activity);
             if (activityType === 'Invite' && target['@type'] === 'User' && object['@type'] === 'Topic') { // https://github.com/citizenos/citizenos-fe/issues/112
                 // The invited user is viewing
                 if (sAuth.user.loggedIn && sAuth.user.id === target.id) {
-                    stateName = 'topicsTopicIdInvites';
+                    stateName = 'topicsTopicIdInvitesUsers';
                     params.topicId = object.id;
                     params.inviteId = target.inviteId; // HACKISH! Change once issue resolves - https://github.com/w3c/activitystreams/issues/506
                 } else {
                     // Creator of the invite or a person who has read permissions is viewing
                     stateName = 'topics.view';
-                    params.topicId = object.topicId;
+                    params.topicId = object.id;
                 }
             } else if (object['@type'] === 'Topic') {
                 stateName = 'topics.view';

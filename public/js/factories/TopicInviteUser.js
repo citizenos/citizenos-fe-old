@@ -4,7 +4,7 @@ angular
         $log.debug('citizenos.factory.TopicInviteUser');
 
         var TopicInviteUser = $resource(
-            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/invites/:inviteId'), // Actually Groups are added to Topic
+            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/invites/users/:inviteId'), // Actually Groups are added to Topic
             {
                 topicId: '@topicId',
                 inviteId: '@id'
@@ -46,7 +46,7 @@ angular
                         },
                         inviteId: '@id'
                     },
-                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/invites/:inviteId/accept'),
+                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/invites/users/:inviteId/accept'),
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;

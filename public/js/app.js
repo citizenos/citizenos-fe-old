@@ -781,8 +781,8 @@
                     parent: 'main',
                     controller: 'JoinCtrl'
                 })
-                .state('topicsTopicIdInvites', { // Cannot use dot notation (topics.topicId.invites) as that would make the page child of "topics" and we don't want that.
-                    url: '/topics/:topicId/invites/:inviteId',
+                .state('topicsTopicIdInvitesUsers', { // Cannot use dot notation (topics.topicId.invites.users) as that would make the page child of "topics" and we don't want that.
+                    url: '/topics/:topicId/invites/users/:inviteId',
                     parent: 'main',
                     templateUrl: '/views/home.html',
                     resolve: {
@@ -832,7 +832,7 @@
                         }
 
                         var dialog = ngDialog.open({
-                            template: '/views/modals/topic_topicId_invites_inviteId.html',
+                            template: '/views/modals/topic_topicId_invites_users_inviteId.html',
                             data: $stateParams,
                             scope: $scope, // pass on scope, so that modal has access to App scope ($scope.app)
                             controller: ['$scope', '$log', function ($scope, $log) {
