@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'Topic', 'TopicMemberUser', 'TopicMemberGroup', 'TopicVote', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, Topic, TopicMemberUser, TopicMemberGroup, TopicVote) {
+    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicVote', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup, TopicVote) {
         $log.debug('TopicSettingsCtrl', $state, $stateParams);
 
         $scope.levels = {
@@ -43,7 +43,7 @@ angular
                         $scope.form.topic.vote = angular.copy(topicVote);
                     });
             }
-            
+
             $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
             $scope.memberGroups = [];
             $scope.members = {
@@ -311,7 +311,7 @@ angular
 
                     if (topicMemberUsersToSave.length) {
                         savePromises.push(
-                            TopicMemberUser.save({topicId: $scope.topic.id}, topicMemberUsersToSave)
+                            TopicInviteUser.save({topicId: $scope.topic.id}, topicMemberUsersToSave)
                         );
                     }
 

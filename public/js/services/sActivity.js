@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sActivity', ['$http', '$state', '$stateParams', '$window', '$q', '$log', '$translate', 'sLocation', 'ngDialog', function ($http, $state, $stateParams, $window, $q, $log, $translate, sLocation, ngDialog) {
+    .service('sActivity', ['$http', '$state', '$stateParams', '$window', '$q', '$log', '$translate', 'sAuth', 'sLocation', 'ngDialog', function ($http, $state, $stateParams, $window, $q, $log, $translate, sAuth, sLocation, ngDialog) {
         var sActivity = this;
 
         sActivity.unread = 0;
@@ -82,11 +82,18 @@ angular
                 stringparts.push(activity.data.type);
             }
 
+            // TODO: Maybe should implement recursive checking of "object", "origin", "target"  right now hardcoded to 2 levels because of Invite/Accept - https://github.com/citizenos/citizenos-fe/issues/112
             if (keys.indexOf('object') > -1) {
                 if (Array.isArray(activity.data.object)) {
                     stringparts.push(activity.data.object[0]['@type']);
+                } else if (activity.data.object.type) {
+                    stringparts.push(activity.data.object.type);
                 } else {
                     stringparts.push(activity.data.object['@type']);
+                }
+
+                if (activity.data.object.object) { // Originally created to support Accept activity - https://www.w3.org/TR/activitystreams-vocabulary/#dfn-accept
+                    stringparts.push(activity.data.object.object['@type']);
                 }
             }
 
@@ -320,7 +327,7 @@ angular
         };
 
         var getActivityTopicTitle = function (activity) {
-            var dataobject = activity.data.object;
+            var dataobject = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
             if (Array.isArray(dataobject)) {
                 dataobject = dataobject[0];
             }
@@ -340,12 +347,12 @@ angular
         };
 
         var getActivityClassName = function (activity) {
-            var dataobject = activity.data.object;
+            var dataobject = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
             if (Array.isArray(dataobject)) {
                 dataobject = dataobject[0];
             }
 
-            if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject['@type'] === 'TopicPin' || dataobject.name || activity.data.target && activity.data.target['@type'] === ' Topic') {
+            if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject['@type'] === 'TopicPin' || activity.data.target && activity.data.target['@type'] === ' Topic') {
                 return 'topic';
             } else if (dataobject['@type'] === 'Group' || dataobject.groupName) {
                 return 'group';
@@ -353,13 +360,15 @@ angular
                 return 'vote';
             } else if (dataobject['@type'] === 'Comment' || dataobject.text) {
                 return 'comment';
-            } else if (dataobject['@type'] === 'User' || dataobject.text) {
+            } else if (dataobject['@type'] === 'User' || dataobject['@type'] === 'UserConnection' || dataobject.text) {
                 return 'personal';
+            } else {
+                return 'topic';
             }
         };
 
         var getActivityDescription = function (activity) {
-            var dataobject = activity.data.object;
+            var dataobject = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
             if (Array.isArray(dataobject)) {
                 dataobject = dataobject[0];
             }
@@ -424,15 +433,18 @@ angular
         };
 
         var getActivityUserLevel = function (activity, values) {
-            var levelKey = 'ACTIVITY_FEED.ACTIVITY_TOPIC_LEVELS_';
+            var levelKeyPrefix = 'ACTIVITY_FEED.ACTIVITY_TOPIC_LEVELS_';
+            var levelKey;
 
             if (activity.data.actor && activity.data.actor.level) {
-                levelKey += activity.data.actor.level;
+                levelKey = levelKeyPrefix + activity.data.actor.level;
+            } else if (activity.data.target && activity.data.target.level) { // Invite to Topic has target User - https://github.com/citizenos/citizenos-fe/issues/112
+                levelKey = levelKeyPrefix + activity.data.target.level;
             }
 
-            $translate(levelKey.toUpperCase()).then(function (value) {
-                values.accessLevel = value;
-            })
+            if (levelKey && levelKey !== levelKeyPrefix) {
+                values.accessLevel = $translate.instant(levelKey.toUpperCase());
+            }
         };
 
         sActivity.getActivityValues = function (activity) {
@@ -508,16 +520,30 @@ angular
             if (!activity.data) {
                 return;
             }
+
+            var activityType = activity.data.type;
             var stateName = '';
             var params = {};
             var hash = '';
-            var object = activity.data.object;
+            var object = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
+            var target = activity.data.target;
             if (Array.isArray(object)) {
                 object = object[0];
             }
-            var type = activity.data.type;
 
-            if (object['@type'] === 'Topic') {
+            console.error('activityType', activityType, activity);
+            if (activityType === 'Invite' && target['@type'] === 'User' && object['@type'] === 'Topic') { // https://github.com/citizenos/citizenos-fe/issues/112
+                // The invited user is viewing
+                if (sAuth.user.loggedIn && sAuth.user.id === target.id) {
+                    stateName = 'topicsTopicIdInvitesUsers';
+                    params.topicId = object.id;
+                    params.inviteId = target.inviteId; // HACKISH! Change once issue resolves - https://github.com/w3c/activitystreams/issues/506
+                } else {
+                    // Creator of the invite or a person who has read permissions is viewing
+                    stateName = 'topics.view';
+                    params.topicId = object.id;
+                }
+            } else if (object['@type'] === 'Topic') {
                 stateName = 'topics.view';
                 params.topicId = object.id;
             } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote' || (object['@type'] === 'User' && activity.data.target && activity.data.target['@type'] === 'Topic')) {

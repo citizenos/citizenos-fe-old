@@ -14,11 +14,13 @@ angular
         // FYI: One should never access this directly, but via functions.
         // At this point I have no idea how to make the object and its properties read-only.
         sNotification.messages = {};
+        sNotification.dialog = null;
 
         var init = function () {
             Object.keys(sNotification.levels).forEach(function (key) {
                 sNotification.messages[sNotification.levels[key]] = [];
             });
+            sNotification.dialog = null;
         };
         init();
 
@@ -42,6 +44,13 @@ angular
 
         sNotification.addError = function (key) {
             add(sNotification.levels.ERROR, key);
+        };
+
+        sNotification.showDialog = function (heading, content) {
+            sNotification.dialog = {
+                heading: heading,
+                content: content
+            }
         };
 
         return sNotification;

@@ -91,6 +91,14 @@ a img, a {
     outline: none;
 }
 
+a:link, a:visited {
+    color: $deep_sky_blue;
+}
+
+a:hover {
+    color: $dark_blue;
+}
+
 img {
     border: 0;
 }
@@ -606,6 +614,10 @@ table, .pretend_table {
 .via {
     font-weight: $medium;
     font-size: 13px;
+}
+
+.smooth_gray {
+    color: $smooth_gray;
 }
 
 .mobile_extra_info {

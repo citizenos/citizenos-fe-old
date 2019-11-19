@@ -425,7 +425,7 @@
     <div class="info_container group_list user_list" id="user_list">
         <div class="container_header" ng-click="doToggleMemberUserList();">
             <div class="header_text">
-                <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'('+topic.members.users.count+')'">(0)</span> |
+                <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'(' + topic.members.users.count + ')'">(0)</span> |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(); $event.stopPropagation();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
                 |
                 <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my.topics.topicId.settings({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>
@@ -466,6 +466,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- TopicMemberUsers -->
                 <div class="pretend_tr" ng-repeat="user in topic.members.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
                     <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
@@ -513,7 +514,59 @@
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin">
-                            <div class="btn" ng-click="doDeleteMemberUser(user)" cos-disabled="!topic.canUpdate() || !user.levelUser" cos-disabled-tooltip="{{ !topic.canUpdate() ? 'You don\'t have permissions to delete a member' : 'Permission via Group, remove User from the Group or override the permissions selecting appropriate value from the dropdown.'}}">
+                            <div class="btn" ng-click="doDeleteMemberUser(user)" cos-disabled="!topic.canUpdate() || !user.levelUser" cos-disabled-tooltip="{{!topic.canUpdate() ? ('VIEWS.MY_TOPICS_TOPICID.TXT_NO_PERMISSION_TO_DELETE_MEMBER' | translate) : ('VIEWS.MY_TOPICS_TOPICID.TXT_PERMISSION_VIA_GROUP' | translate)}}">
+                                <div class="table_cell">
+                                    <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                    <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- TopicInviteUsers -->
+                <div class="pretend_tr" ng-repeat="invite in topic.invites.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
+                    <div class="pretend_td">
+                        <div class="profile_image_wrapper dark">
+                            <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
+                            <div class="account_picture">
+                                <img ng-if="invite.user.imageUrl" ng-src="{{invite.user.imageUrl}}">
+                                <div ng-if="!invite.user.imageUrl" class="profile_image_filler">
+                                    <div class="table_cell" cos-initials="invite.user.name">
+                                        ML
+                                    </div>
+                                    <div class="profile_circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="name_wrap">
+                            <div class="table_cell smooth_gray">
+                                <div ng-bind="invite.user.name" tooltips tooltip-hidden="{{(!invite.user.email && !invite.user.pid && !invite.user.phoneNumber)}}" tooltip-class="tooltip_author"
+                                     tooltip-template="<span class='creator_data_tooltip_row'>{{invite.user.email}}</span><span class='creator_data_tooltip_row'>{{invite.user.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{invite.user.pid}}</span>"
+                                     tooltip-smart="true">invite.user.name</div>
+                                <div class="via" translate="VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING">
+                                    Pending invite
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pretend_td">
+                        <div cos-dropdown class="classic_dropdown" cos-disabled>
+                            <div class="dropdown_selection">
+                                <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + invite.level | uppercase | translate}}</div>
+
+                                <div class="arrow_holder">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                        <div class="v_line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pretend_td recycle_bin_wrap">
+                        <div class="btn_wrap recycle_bin">
+                            <div class="btn" ng-click="doDeleteInviteUser(invite)" cos-disabled="!topic.canUpdate()" cos-disabled-tooltip="{{'VIEWS.MY_TOPICS_TOPICID.TXT_NO_PERMISSION_TO_DELETE_MEMBER' | translate}}">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                     <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>

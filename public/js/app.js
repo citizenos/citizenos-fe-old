@@ -134,7 +134,7 @@
                             $log.debug('Resolve language', $stateParams.language);
                             return sTranslate.setLanguage($stateParams.language);
                         },
-                        sAuthResolve: function ($q, $log, sAuth) {
+                        sAuthResolve: function ($q, $log, $state, $stateParams, $window, sAuth, sLocation) {
                             if (sAuth.user.loggedIn) {
                                 return;
                             }
@@ -143,6 +143,20 @@
                                 .then(
                                     function () {
                                         $log.debug('Resolve user', sAuth.user, 'LOGGED IN');
+                                        if (sAuth.user.loggedIn) {
+                                            if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
+                                                return $state.go(
+                                                    'account.tos',
+                                                    {
+                                                        redirectSuccess: sLocation.getAbsoluteUrl($window.location.pathname) + $window.location.search
+                                                    },
+                                                    {
+                                                        location: false
+                                                    }
+                                                );
+                                            }
+                                        }
+
                                         return $q.resolve(true);
                                     },
                                     function () {
@@ -202,6 +216,17 @@
                     abstract: true,
                     parent: 'main',
                     templateUrl: '/views/home.html'
+                })
+                .state('account.tos', {
+                    url: '/tos?redirectSuccess',
+                    controller: ['$scope', 'ngDialog', function ($scope, ngDialog) {
+                        ngDialog.open({
+                            template: '/views/modals/privacy_policy.html',
+                            closeByEscape: false,
+                            closeByNavigation: false,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                    }]
                 })
                 .state('account.signup', {
                     url: '/signup?email&name&redirectSuccess',
@@ -383,7 +408,7 @@
                         if (!$scope.app.user.loggedIn) {
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
-                                .then(function(){
+                                .then(function () {
                                     $state.go('^');
                                 });
                             return;
@@ -409,7 +434,7 @@
                         if (!$scope.app.user.loggedIn) {
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
-                                .then(function(){
+                                .then(function () {
                                     $state.go('^');
                                 });
                             return;
@@ -435,7 +460,7 @@
                         if (!$scope.app.user.loggedIn) {
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
-                                .then(function(){
+                                .then(function () {
                                     $state.go('^');
                                 });
                             return;
@@ -461,7 +486,7 @@
                         if (!$scope.app.user.loggedIn) {
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
-                                .then(function(){
+                                .then(function () {
                                     $state.go('^');
                                 });
                             return;
@@ -478,10 +503,6 @@
                             }
                         });
                     }]
-                })
-                .state('onedrive', {
-                    url: '/onedrive',
-                    templateUrl: '<div></div>'
                 })
                 .state('topics.view.commentsReportsModerate', {
                     url: '/comments/:reportedCommentId/reports/:reportId/moderate?token',
@@ -760,12 +781,97 @@
                     parent: 'main',
                     controller: 'JoinCtrl'
                 })
+                .state('topicsTopicIdInvitesUsers', { // Cannot use dot notation (topics.topicId.invites.users) as that would make the page child of "topics" and we don't want that.
+                    url: '/topics/:topicId/invites/users/:inviteId',
+                    parent: 'main',
+                    templateUrl: '/views/home.html',
+                    resolve: {
+                        rTopicInviteUser: ['$stateParams', '$q', '$log', 'TopicInviteUser', function ($stateParams, $q, $log, TopicInviteUser) {
+                            var params = {
+                                id: $stateParams.inviteId,
+                                topicId: $stateParams.topicId
+                            };
+
+                            return new TopicInviteUser(params)
+                                .$get()
+                                .then(
+                                    function (topicInvite) {
+                                        topicInvite.id = params.id;
+
+                                        return topicInvite;
+                                    },
+                                    function (err) {
+                                        return $q.resolve(err); // Resolve so that the page would load
+                                    }
+                                );
+                        }]
+                    },
+                    controller: ['$scope', '$state', '$stateParams', '$log', '$timeout', 'sAuth', 'sNotification', 'ngDialog', 'TopicInviteUser', 'rTopicInviteUser', function ($scope, $state, $stateParams, $log, $timeout, sAuth, sNotification, ngDialog, TopicInviteUser, rTopicInviteUser) {
+                        if (!(rTopicInviteUser instanceof TopicInviteUser)) { // Some kind of error happened, the instance was not built
+                            return; // ERROR: Expecting cosHttpApiErrorInterceptor to tell the user what went wrong
+                        }
+
+                        var doAccept = function () {
+                            return rTopicInviteUser
+                                .$accept()
+                                .then(
+                                    function () {
+                                        return $state.go(
+                                            'topics.view',
+                                            {
+                                                topicId: rTopicInviteUser.topicId
+                                            }
+                                        )
+                                    }
+                                );
+                        };
+
+                        // 1. The invited User is logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
+                        if (sAuth.user.loggedIn && rTopicInviteUser.user.id === sAuth.user.id) {
+                            return doAccept();
+                        }
+
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_topicId_invites_users_inviteId.html',
+                            data: $stateParams,
+                            scope: $scope, // pass on scope, so that modal has access to App scope ($scope.app)
+                            controller: ['$scope', '$log', function ($scope, $log) {
+                                $scope.invite = rTopicInviteUser;
+
+                                $scope.doAccept = function () {
+                                    // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
+                                    if (!sAuth.user.loggedIn) {
+                                        var currentUrl = $state.href($state.current.name, $stateParams);
+                                        return $state.go('account.login', {redirectSuccess: currentUrl});
+                                    }
+
+                                    // 2. User logged in, but opens an invite NOT meant to that account  - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
+                                    if (sAuth.user.loggedIn && $scope.invite.user.id !== sAuth.user.id) {
+                                        sAuth
+                                            .logout()
+                                            .then(function () {
+                                                var currentUrl = $state.href($state.current.name, $stateParams);
+                                                // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
+                                                return $state.go('account.login', {redirectSuccess: currentUrl}, {reload: true});
+                                            });
+                                    }
+                                };
+                            }]
+                        });
+
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                return $state.go('home');
+                            }
+                        });
+                    }]
+                })
                 .state('partners', {
                     url: '/partners/:partnerId',
                     abstract: true,
                     parent: 'index',
                     resolve: {
-                        rPartner: ['$stateParams','sPartner', function ($stateParams, sPartner) {
+                        rPartner: ['$stateParams', 'sPartner', function ($stateParams, sPartner) {
                             return sPartner
                                 .info($stateParams.partnerId)
                                 .then(function (partnerInfo) {
@@ -948,6 +1054,10 @@
                             $window.opener.postMessage({status: 'success'}, $window.origin);
                         }
                     }]
+                })
+                .state('onedrive', {
+                    url: '/onedrive',
+                    templateUrl: '<div></div>'
                 })
                 .state('error', {
                     url: '/error',

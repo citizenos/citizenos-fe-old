@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $log, $sce, $location, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $q, $log, $sce, $location, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
@@ -130,6 +130,32 @@ angular
                     $scope.topic.members.users.count = users.length;
 
                     return users;
+                });
+        };
+
+        var loadTopicInviteUserList = function () {
+            return TopicInviteUser
+                .query({topicId: $scope.topic.id}).$promise
+                .then(function (invites) {
+                    $scope.topic.invites = {
+                        users: {
+                            rows: [],
+                            count: 0
+                        }
+                    };
+
+                    // Need to show only 1 line per User with maximum level
+                    // NOTE: Objects don't actually guarantee order if keys parsed to number, it was better if TopicMemberUser.LEVELS was a Map
+                    var levelOrder = Object.keys(TopicMemberUser.LEVELS);
+                    var inviteListOrderedByLevel = _.orderBy(invites, function (invite) {
+                        return levelOrder.indexOf(invite.level);
+                    }, ['desc']);
+                    $scope.topic.invites.users._rows = invites; // Store the original result from server to implement DELETE ALL, need to know the ID-s of the invites to delete
+
+                    $scope.topic.invites.users.rows = _.sortedUniqBy(inviteListOrderedByLevel, 'user.id');
+                    $scope.topic.invites.users.count = invites.length;
+
+                    return invites;
                 });
         };
 
@@ -436,7 +462,8 @@ angular
 
         $scope.doShowMemberUserList = function () {
             if (!$scope.userList.isVisible) {
-                loadTopicMemberUserList()
+                $q
+                    .all([loadTopicMemberUserList(), loadTopicInviteUserList()])
                     .then(function () {
                         $scope.userList.isVisible = true;
                         $scope.app.scrollToAnchor('user_list');
@@ -483,6 +510,36 @@ angular
                         .$delete({topicId: $scope.topic.id})
                         .then(function () {
                             return loadTopicMemberUserList(); // Good old topic.members.users.splice wont work due to group permission inheritance
+                        });
+                }, angular.noop);
+        };
+
+        $scope.doDeleteInviteUser = function (topicInviteUser) {
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_invite_user_delete_confirm.html',
+                    data: {
+                        user: topicInviteUser.user
+                    }
+                })
+                .then(function (isAll) {
+                    var promisesToResolve = [];
+
+                    // Delete all
+                    if (isAll) {
+                        $scope.topic.invites.users._rows.forEach(function (invite) {
+                            if (invite.user.id === topicInviteUser.user.id) {
+                                promisesToResolve.push(invite.$delete({topicId: $scope.topic.id}));
+                            }
+                        });
+                    } else { // Delete single
+                        promisesToResolve.push(topicInviteUser.$delete({topicId: $scope.topic.id}));
+                    }
+
+                    $q
+                        .all(promisesToResolve)
+                        .then(function () {
+                            return loadTopicInviteUserList();
                         });
                 }, angular.noop);
         };

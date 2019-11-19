@@ -87,6 +87,7 @@ angular
             var GENERAL_ERROR_FALLBACK_KEY_PATTERN = 'MSG_ERROR_:statusCode';
 
             var translationKey = getGeneralErrorTranslationKey(errorResponse);
+            var translationKeyHeading = translationKey + '_HEADING'; // Error/info dialog heading key
 
             var data = errorResponse.data;
             var statusCode = data.status ? data.status.code : errorResponse.status;
@@ -97,7 +98,13 @@ angular
             // The key exists
             if (translationKey !== translate(translationKey) && errorResponse.data.status) {
                 errorResponse.data.status.message = translationKey;
-                sNotification.addError(translationKey);
+                if (translationKeyHeading !== translate(translationKeyHeading)) {
+                    // We have a translation for a heading which means we want to show the error/info dialog
+                    sNotification.showDialog(translationKeyHeading, translationKey);
+                } else {
+                    // We DON'T have a translation for a heading which means we want to show the generic error bar
+                    sNotification.addError(translationKey);
+                }
                 // Use fallback to generic error
             } else if (translationKeyFallback !== translate(translationKeyFallback)) {
                 if (errorResponse.data.status) {
@@ -106,7 +113,7 @@ angular
                 sNotification.addError(translationKeyFallback);
             } else {
                 $log.warn('cosHttpApiErrorInterceptor.generalErrorToKey', 'No translation for', translationKey, translationKeyFallback, errorResponse);
-                sNotification.addError(data.status ? data.status.message + ' *' : errorResponse.data + ' - '  + errorResponse.statusText + ' *');
+                sNotification.addError(data.status ? data.status.message + ' *' : errorResponse.data + ' - ' + errorResponse.statusText + ' *');
             }
         };
 

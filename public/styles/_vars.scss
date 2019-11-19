@@ -218,11 +218,11 @@ $aqua_marine_text: #00ce8f;;
 }
 
 .white_text {
-    color: $white;
+    color: $white !important;
 }
 
 .black_text {
-    color: $medium_black;
+    color: $medium_black !important;
 }
 
 .dark_line {
@@ -333,5 +333,9 @@ $aqua_marine_text: #00ce8f;;
 
 .bullet_sky_blue {
     background: $sky_blue;
+}
+
+.medium_black_seven {
+    color: $medium_black_seven;
 }
 
