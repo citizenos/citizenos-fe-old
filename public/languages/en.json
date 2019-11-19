@@ -904,7 +904,6 @@
   "MSG_ERROR_GET_API_USERS_TOPICS_INVITES_USERS_41001": "Sorry, the invite to a topic has been deleted.",
   "MSG_ERROR_GET_API_USERS_TOPICS_INVITES_USERS_41002_HEADING": "Invitation expired",
   "MSG_ERROR_GET_API_USERS_TOPICS_INVITES_USERS_41002": "We’re sorry! This invitation has expired in the meantime. We apologize for the inconvenience. You can re-request the access to this topic.",
-  "MSG_ERROR_GET_API_USERS_TOPICS_INVITES_USERS_40400": "",
   "MSG_ERROR_POST_API_USERS_TOPICS_EVENTS_40000_TEXT": "Text cannot be empty.",
   "MSG_ERROR_HWCRYPTO_USER_CANCEL": "You have cancelled the login flow.",
   "MSG_ERROR_HWCRYPTO_NO_CERTIFICATES": "No card in reader. Check if the ID-card is inserted correctly into the reader. New ID-cards have a chip on the back side of the card.",
