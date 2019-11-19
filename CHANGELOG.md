@@ -1,3 +1,7 @@
+## 2019-11-19
+
+* Topic invitations - User to accept invitation, no auto accept - https://github.com/citizenos/citizenos-fe/issues/112
+
 ## 2019-08-16
 
 * https://github.com/citizenos/citizenos-fe/issues/179 - Cookie policy notification
