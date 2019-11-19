@@ -360,9 +360,9 @@
   "TXT_TOPIC_CATEGORY_DEFENSE": "Défense et sécurité",
   "TXT_TOPIC_CATEGORY_INTEGRATION": "Intégration et droits de l'homme",
   "TXT_TOPIC_CATEGORY_VARIA": "Varia",
-  "TXT_TOPIC_CATEGORY_YOUTH": "Youth",
-  "TXT_TOPIC_CATEGORY_SCIENCE": "Science and Technology",
-  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
+  "TXT_TOPIC_CATEGORY_YOUTH": "Jeunesse",
+  "TXT_TOPIC_CATEGORY_SCIENCE": "Science et Technologie",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "Démocratie et société civile",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Chercher un sujet, utilisateur, groupe..."
