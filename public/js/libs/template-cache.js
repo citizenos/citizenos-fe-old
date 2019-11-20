@@ -57,7 +57,7 @@ angular
             '/views/modals/topic_send_to_followUp_confirm.html',
             '/views/modals/topic_send_to_vote_confirm.html',
             '/views/modals/topic_settings.html',
-            '/views/modals/topic_topicId_invites_inviteId.html',
+            '/views/modals/topic_topicId_invites_users_inviteId.html',
             '/views/modals/topic_vote_delegate.html',
             '/views/modals/topic_vote_revoke_delegation_confirm.html',
             '/views/modals/topic_vote_sign.html',

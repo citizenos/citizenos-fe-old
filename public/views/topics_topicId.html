@@ -181,73 +181,6 @@
 
                 <div class="main_content_wrap">
 
-                    <!-- Topic summary -->
-
-                    <div class="voting_platform_wrap topic_summary_wrap" ng-if="('topics.view.followUp' | isState)">
-
-                        <div class="vote_casting_header">
-                            <div class="vote_casting_header_section">
-                                <div class="table_cell bold" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_HEADER">
-                                    Topic summary
-                                </div>
-                            </div>
-                            <div class="clearer"></div>
-                        </div>
-
-                        <div class="line lightest_line"></div>
-
-                        <div class="topic_summary_content">
-
-                            <div class="content_item topic_summary_title">
-                                <div class="item_description" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_TITLE">
-                                    Title
-                                </div>
-                                <div class="item_content">
-                                    <div class="item_text">
-                                        {{topic.title}}
-                                    </div>
-                                </div>
-                                <div class="clearer"></div>
-                            </div>
-
-                            <div class="content_item topic_summary_date">
-                                <div class="item_description" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_FINALIZED_ON">
-                                    Document finalised on
-                                </div>
-                                <div class="item_content">
-                                    <div class="item_text">
-                                        {{topic.vote.createdAt | amDateFormat:'L'}}
-                                        <span class="separator">|</span>
-                                        <span class="item_link blue_link" ui-sref="topics.view({topicId: topic.id})" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_FINAL_DOCUMENT">
-                                            view final document
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="clearer"></div>
-                            </div>
-
-                            <div class="content_item topic_summary_date" ng-if="topic.vote.endsAt">
-                                <div class="item_description" translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_VOTING_ENDED_ON">
-                                    Voting ended on
-                                </div>
-                                <div class="item_content">
-                                    <div class="item_text">
-                                        {{topic.vote.endsAt | amDateFormat:'L'}}
-                                        <span class="separator">|</span>
-                                        <span class="item_link blue_link" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})"
-                                              translate="VIEWS.TOPICS_TOPICID.TOPIC_SUMMARY_VIEW_VOTE_RESULTS">
-                                            view vote results
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="clearer"></div>
-                            </div>
-
-                            <div class="clearer"></div>
-
-                        </div>
-                    </div>
-
                     <!-- Create a milestone -->
 
                     <div class="voting_platform_wrap create_a_milestone_wrap" ng-if="('topics.view.followUp' | isState) && topic.canEdit()">
@@ -346,7 +279,7 @@
                             </div>
                             <div class="vote_casting_header_section">
                                 <div class="table_cell">
-                                    <span class="bold">{{topic.vote.getVoteCountTotal()}}</span>/{{topic.members.users.count}} <span
+                                    <span class="bold">{{topic.vote.getVoteCountTotal()}}</span><span ng-if="topic.visibility === VISIBILITY.private">/{{topic.members.users.count}}</span> <span
                                     translate="VIEWS.TOPICS_TOPICID.VOTE_VOTES_COUNTED"> votes counted</span>
                                 </div>
                             </div>

@@ -266,33 +266,6 @@
     }
 }
 
-.voting_platform_wrap.topic_summary_wrap {
-    @extend .vote_casting_wrap;
-    .content_item {
-        margin-top: 18px;
-    }
-    .topic_summary_date {
-        float: left;
-        width: 50%;
-        box-sizing: border-box;
-        &:nth-child(even) {
-            padding-right: 15px;
-        }
-        @media (max-width: 1220px) {
-            float: none;
-            width: 100%;
-        }
-        @media (max-width: 1024px) {
-            float: left;
-            width: 50%;
-        }
-        @media (max-width: 600px) {
-            float: none;
-            width: 100%;
-        }
-    }
-}
-
 .voting_platform_wrap.create_a_milestone_wrap {
     @extend .vote_casting_wrap;
     input, textarea {
