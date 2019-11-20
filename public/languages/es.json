@@ -548,7 +548,7 @@
       "LBL_VIA": "mediante grupo",
       "TXT_INVITE_PENDING": "Pending invite",
       "TXT_NO_PERMISSION_TO_DELETE_MEMBER": "You don't have permissions to delete a member",
-      "TXT_PERMISSION_VIA_GROUP": "Permission via Group, remove User from the Group or override the permissions selecting appropriate value from the dropdown.",
+      "TXT_PERMISSION_VIA_GROUP": "Permission was granted via Group - you may remove User from the Group or override permissions by selecting appropriate value from the dropdown.",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Fuente de actividades y notificaciones",
       "LNK_VIEW_OLDER": "Ver anteriores"
     },
