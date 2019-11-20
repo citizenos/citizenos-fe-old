@@ -1,3 +1,10 @@
+## 2019-11-20
+
+* Fix issues:
+    * Remove topic summary from follow-up - https://github.com/citizenos/citizenos-fe/issues/334
+    * Activity feed translation key generation fixes - https://github.com/citizenos/citizenos-fe/issues/344
+    * Vote count illogical in public topics - https://github.com/citizenos/citizenos-fe/issues/319
+
 ## 2019-11-19
 
 * Topic invitations - User to accept invitation, no auto accept - https://github.com/citizenos/citizenos-fe/issues/112
