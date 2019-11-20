@@ -86,10 +86,10 @@ angular
             if (keys.indexOf('object') > -1) {
                 if (Array.isArray(activity.data.object)) {
                     stringparts.push(activity.data.object[0]['@type']);
-                } else if (activity.data.object.type) {
-                    stringparts.push(activity.data.object.type);
-                } else {
+                } else if (activity.data.object['@type']) {
                     stringparts.push(activity.data.object['@type']);
+                } else {
+                    stringparts.push(activity.data.object.type);
                 }
 
                 if (activity.data.object.object) { // Originally created to support Accept activity - https://www.w3.org/TR/activitystreams-vocabulary/#dfn-accept
