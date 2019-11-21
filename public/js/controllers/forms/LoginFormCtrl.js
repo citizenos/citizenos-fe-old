@@ -67,7 +67,11 @@ angular
                 if ($state.is('partners.consent') || $state.is('partners.login')) {
                     return $window.location.href = sLocation.getAbsoluteUrlApi('/api/auth/openid/authorize');
                 } else {
-                    $window.location.reload();
+                    if ($stateParams.redirectSuccess) {
+                        $window.location.href = $stateParams.redirectSuccess;
+                    } else {
+                        $window.location.reload();
+                    }
                 }
             };
 
