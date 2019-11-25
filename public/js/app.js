@@ -196,8 +196,8 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
-                .state('tenislandproject', {
-                    url: '/tenislandproject',
+                .state('thirtyfourislandproject', {
+                    url: '/thirtyfourislandproject',
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
