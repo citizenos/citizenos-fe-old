@@ -1,5 +1,7 @@
 
+[![Build Status](https://travis-ci.org/citizenos/citizenos-fe.svg?branch=master)](https://travis-ci.org/citizenos/citizenos-fe)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/citizenos-fe/localized.svg)](https://crowdin.com/project/citizenos-fe)
+
 
 # CitizenOS-FE
 
