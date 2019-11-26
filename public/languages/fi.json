@@ -1,5 +1,4 @@
 {
-  "TESTFAILINGATRAVISBUILD": "Travis should fail to build and Heroku should not deploy",
   "META_DEFAULT_TITLE": "Citizen OS – sähköisen päätöksenteon alusta yhteisöille.",
   "META_DEFAULT_DESCRIPTION": "Citizen OS sallii osallistuvan keskustelun ja äänestämisen ryhmille silloin, kun kokoontuminen verkossa tai sen ulkopuolella samaan aikaan ei ole mahdollista.",
   "META_DEFAULT_KEYWORDS": "sähköinen päätöksenteko, sähköinen hallinto, sähköinen demokratia, suora demokratia, delegatiivinen demokratia",
