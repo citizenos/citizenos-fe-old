@@ -1,3 +1,7 @@
+## 2019-11-26
+
+* Add Travis CI configuration - https://github.com/citizenos/citizenos-fe/issues/294
+
 ## 2019-11-20
 
 * Fix issues:
