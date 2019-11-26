@@ -3,4 +3,5 @@ node_js:
   - 10.13.0
 branches:
   only:
+  - master
   - prod
