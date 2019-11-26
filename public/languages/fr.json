@@ -1,4 +1,5 @@
 {
+  "TESTFAILINGATRAVISBUILD": "Travis should fail to build and Heroku should not deploy",
   "META_DEFAULT_TITLE": "Citizen OS - une plateforme de prises de décisions en ligne pour communautés.",
   "META_DEFAULT_DESCRIPTION": "Citizen OS permet à des groupes de débattre et de voter, lorsque se réunir en même temps en ligne ou hors ligne n'est pas possible.",
   "META_DEFAULT_KEYWORDS": "e-prise de décision, e-gouvernance, e-démocratie, démocratie, démocratie directe, démocratie liquide",
