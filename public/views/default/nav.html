@@ -51,19 +51,16 @@
             <a ng-click="app.doShowActivityModal()" class="section_item" ng-class="{active: app.isShowActivityModal}">
                 <div class="section_icon">
                     <div class="table_cell">
-                        <div class="sprite sprite-menu-icon-activities2x"></div>
+                        <div ng-if="!app.unreadActivitiesCount" class="sprite sprite-menu-icon-activities2x"></div>
+                        <div ng-if="app.unreadActivitiesCount" class="activities_counter">
+                            {{app.unreadActivitiesCount}}
+                        </div>
                     </div>
                 </div>
                 <span id="activity_feed_link_text" translate="DEFAULT.NAV.LNK_ACTIVITY">Activity</span>
             </a>
         </div>
-        <div class="activities_counter_wrap" ng-if="app.unreadActivitiesCount">
-            <div class="table_cell">
-                <div class="activities_counter">
-                    {{app.unreadActivitiesCount}}
-                </div>
-            </div>
-        </div>
+
         <div class="line dark_line"></div>
         <div class="line light_line"></div>
 
