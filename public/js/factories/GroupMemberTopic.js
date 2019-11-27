@@ -5,7 +5,10 @@ angular
 
         var GroupMemberTopic = $resource(
             sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups/:groupId'), // Actually Groups are added to Topic
-            {topicId: '@id', groupId: '@groupId'},
+            {
+                topicId: '@id',
+                groupId: '@groupId'
+            },
             {
                 query: {
                     url: sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members/topics'),
@@ -33,10 +36,17 @@ angular
                 },
                 save: {
                     method: 'POST',
-                    params: {topicId: '@id', groupId: null},
+                    params: {
+                        topicId: '@id',
+                        groupId: null
+                    },
                     url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups'),
                     transformRequest: function (data) {
-                        return angular.toJson({topicId: data.id, groupId: data.groupId, level: data.level});
+                        return angular.toJson({
+                            topicId: data.id,
+                            groupId: data.groupId,
+                            level: data.level
+                        });
                     },
                     transformResponse: function (data, headersGetter, status) {
                         return angular.fromJson(data);
@@ -55,7 +65,7 @@ angular
             admin: 'admin'
         };
 
-        // FIXME: Should be inherited from Topic?
+        // FIXME: Yes, we're doing something wrong here... GroupMemberTopic should be Topic and I should not have to duplicate Topic functions here...
         GroupMemberTopic.prototype.isPrivate = function () {
             return this.visibility === Topic.VISIBILITY.private;
         };
@@ -66,6 +76,23 @@ angular
 
         GroupMemberTopic.prototype.canDelete = function () {
             return this.permission.level === GroupMemberTopic.LEVELS.admin;
+        };
+
+        GroupMemberTopic.prototype.togglePin = function () {
+            var self = this;
+            var topic = new Topic(this);
+
+            if (!self.pinned) {
+                return topic.$addToPinned()
+                    .then(function () {
+                        self.pinned = true;
+                    });
+            } else {
+                return topic.$removeFromPinned()
+                    .then(function () {
+                        self.pinned = false;
+                    })
+            }
         };
 
         return GroupMemberTopic;

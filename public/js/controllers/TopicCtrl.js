@@ -570,23 +570,12 @@ angular
                 return;
             }
 
-            if ($scope.topic.pinned === true) {
-                $scope.topic.$removeFromPinned()
-                    .then(function () {
-                        $scope.topic.pinned = false;
-                        if ($state.current.name.indexOf('my') > -1) {
-                            $state.reload();
-                        }
-                    });
-            } else {
-                $scope.topic.$addToPinned()
-                    .then(function () {
-                        $scope.topic.pinned = true;
-                        if ($state.current.name.indexOf('my') > -1) {
-                            $state.reload();
-                        }
-                    });
-            }
+            $scope.topic.togglePin()
+                .then(function () {
+                    if ($state.current.name.indexOf('my') > -1) {
+                        $state.reload();
+                    }
+                });
         };
 
         $scope.downloadAttachment = function (attachment) {
