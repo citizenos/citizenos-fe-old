@@ -5,7 +5,7 @@ angular
 
         var getUrlPrefix = function () {
             var prefix = sAuth.getUrlPrefix();
-            if(!prefix) {
+            if (!prefix) {
                 prefix = '@prefix';
             }
             return prefix;
@@ -13,7 +13,7 @@ angular
 
         var getUrlUser = function () {
             var userId = sAuth.getUrlUserId();
-            if(!userId) {
+            if (!userId) {
                 userId = '@userId';
             }
             return userId;
@@ -21,7 +21,11 @@ angular
 
         var Topic = $resource(
             sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId'),
-            {topicId: '@id', prefix: getUrlPrefix, userId: getUrlUser},
+            {
+                topicId: '@id',
+                prefix: getUrlPrefix,
+                userId: getUrlUser
+            },
             {
                 get: {
                     method: 'GET',
@@ -29,10 +33,13 @@ angular
                         if (status > 0 && status < 400) {
                             var topic = angular.fromJson(data).data;
                             if ((topic.vote && topic.vote.id) || topic.voteId) {
-                                if(topic.vote){
+                                if (topic.vote) {
                                     topic.vote = new TopicVote(topic.vote);
                                 } else {
-                                    topic.vote = new TopicVote({id:topic.voteId, topicId:topic.id});
+                                    topic.vote = new TopicVote({
+                                        id: topic.voteId,
+                                        topicId: topic.id
+                                    });
                                 }
                             }
                             return topic;
@@ -48,10 +55,13 @@ angular
                             var array = angular.fromJson(data).data.rows || [];
                             array.forEach(function (topic) {
                                 if ((topic.vote && topic.vote.id) || topic.voteId) {
-                                    if(topic.vote){
+                                    if (topic.vote) {
                                         topic.vote = new TopicVote(topic.vote);
                                     } else {
-                                        topic.vote = new TopicVote({topicId:topic.id, id:topic.voteId});
+                                        topic.vote = new TopicVote({
+                                            topicId: topic.id,
+                                            id: topic.voteId
+                                        });
                                     }
                                 }
                             });
@@ -63,12 +73,12 @@ angular
                 },
                 update: {
                     method: 'PUT',
-                    transformRequest: function(data, headersGetter) {
+                    transformRequest: function (data, headersGetter) {
                         var updateFields = ['visibility', 'status', 'categories', 'endsAt', 'hashtag'];
                         var postData = {};
 
                         updateFields.forEach(function (field) {
-                            if(field in data) {
+                            if (field in data) {
                                 postData[field] = data[field];
                             }
                         });
@@ -78,12 +88,12 @@ angular
                 },
                 patch: {
                     method: 'PATCH',
-                    transformRequest: function(data, headersGetter) {
+                    transformRequest: function (data, headersGetter) {
                         var updateFields = ['visibility', 'status', 'categories', 'endsAt', 'hashtag'];
                         var postData = {};
 
                         updateFields.forEach(function (field) {
-                            if(field in data) {
+                            if (field in data) {
                                 postData[field] = data[field];
                             }
                         });
@@ -264,6 +274,22 @@ angular
         // Vote has ended due to expiry!
         Topic.prototype.hasVoteEndedExpired = function () {
             return [Topic.STATUSES.followUp, Topic.STATUSES.closed].indexOf(this.status) < 0 && this.vote && this.vote.endsAt && new Date() > new Date(this.vote.endsAt);
+        };
+
+        Topic.prototype.togglePin = function () {
+            console.log('TOGGLE PIN', this);
+            var self = this;
+            if (!self.pinned) {
+                return this.$addToPinned()
+                    .then(function () {
+                        self.pinned = true;
+                    });
+            } else {
+                return this.$removeFromPinned()
+                    .then(function () {
+                        self.pinned = false;
+                    })
+            }
         };
 
         return Topic;
