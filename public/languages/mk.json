@@ -547,7 +547,7 @@
       "LNK_PROFILE": "Профил",
       "LBL_VIA": "преку група",
       "TXT_INVITE_PENDING": "Се чека покана",
-      "TXT_NO_PERMISSION_TO_DELETE_MEMBER": "You don't have permissions to delete a member",
+      "TXT_NO_PERMISSION_TO_DELETE_MEMBER": "Немате дозвола да избришете член",
       "TXT_PERMISSION_VIA_GROUP": "Permission was granted via Group - you may remove User from the Group or override permissions by selecting appropriate value from the dropdown.",
       "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Проток на активност и нотификации",
       "LNK_VIEW_OLDER": "Види постаро"
