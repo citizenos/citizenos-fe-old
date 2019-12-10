@@ -1,0 +1,22 @@
+name: L10n PR Duplicator
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - master
+jobs:
+  pr_duplicator:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: PR Duplicator
+      uses: citizenos/github-action-pr-duplicator@164b03c
+      with:
+        from: 'l10n_master'
+        base: 'master'
+        to: 'prod'
+        pr-author: 'tiblu'
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        slack-incoming-webhook-url: ${{secrets.SLACK_INCOMING_WEBHOOK_URL}}
