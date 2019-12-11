@@ -12,4 +12,3 @@ jobs:
       uses: citizenos/github-action-deployment-status-notifier-slack@master
       with:
         slack-incoming-webhook-url: ${{secrets.SLACK_INCOMING_WEBHOOK_URL}}
-        states: 'pending, success, failure, error'
