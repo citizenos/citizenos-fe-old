@@ -935,5 +935,6 @@
   "ep_comments_page.comments_template.edit_comment.save": "Save",
   "ep_comments_page.comments_template.edit_comment.cancel": "@:LNK_CANCEL",
   "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK": "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK",
-  "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK2": "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK2"
+  "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK2": "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK2",
+  "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK3": "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK3",
 }
