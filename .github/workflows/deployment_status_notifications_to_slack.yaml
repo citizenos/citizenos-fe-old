@@ -3,7 +3,7 @@ name: Deployment notifications to Slack
 on:
   deployment_status
 jobs:
-  pr_duplicator:
+  deployment_status_notifications_to_slack:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
