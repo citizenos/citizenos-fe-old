@@ -14,9 +14,9 @@ jobs:
     - name: PR Duplicator
       uses: citizenos/github-action-pr-duplicator@e6e9069
       with:
-        from: 'l10n_master'
-        base: 'master'
-        to: 'prod'
+        from: '_l10n_master'
+        base: '_master'
+        to: '_prod'
         pr-author: 'tiblu'
         github-token: ${{secrets.GITHUB_TOKEN}}
         slack-incoming-webhook-url: ${{secrets.SLACK_INCOMING_WEBHOOK_URL}}
