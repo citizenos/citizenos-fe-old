@@ -30,7 +30,7 @@ angular
             icon: sLocation.getAbsoluteUrl('/imgs/favicon.ico'),
             iconHires: sLocation.getAbsoluteUrl('/imgs/icon_hires.png'),
             author: null,
-            image: sLocation.getAbsoluteUrl('/imgs/logo_dark_seo.png'),
+            image: sLocation.getAbsoluteUrl('/imgs/logo_dark_seo.jpg'),
             url: null,
             siteName: 'CitizenOS.com',
             hreflang: {}
