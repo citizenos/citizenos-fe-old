@@ -933,7 +933,5 @@
   "ep_comments_page.comments_template.cancel.value": "crwdns21922:0crwdne21922:0",
   "ep_comments_page.comments_template.reply_input_label": "crwdns21924:0crwdne21924:0",
   "ep_comments_page.comments_template.edit_comment.save": "crwdns21926:0crwdne21926:0",
-  "ep_comments_page.comments_template.edit_comment.cancel": "crwdns21928:0crwdne21928:0",
-  "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK": "crwdns23205:0crwdne23205:0",
-  "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK2": "crwdns23207:0crwdne23207:0"
+  "ep_comments_page.comments_template.edit_comment.cancel": "crwdns21928:0crwdne21928:0"
 }
