@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [closed]
     branches:
-      - master_temp_disable
+      - master
 jobs:
   pr_duplicator:
     runs-on: ubuntu-latest
@@ -12,7 +12,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: PR Duplicator
-      uses: citizenos/github-action-pr-duplicator@e6e9069
+      uses: citizenos/github-action-pr-duplicator@a5a328c
       with:
         from: 'l10n_master'
         base: 'master'
