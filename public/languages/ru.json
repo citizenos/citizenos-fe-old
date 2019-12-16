@@ -934,5 +934,6 @@
   "ep_comments_page.comments_template.reply_input_label": "Ваш ответ",
   "ep_comments_page.comments_template.edit_comment.save": "Сохранить",
   "ep_comments_page.comments_template.edit_comment.cancel": "@:LNK_CANCEL",
-  "DO_NOT_TRANSLATE_MIKK_PR_DUPLICATOR_TEST1": "DO_NOT_TRANSLATE_MIKK_PR_DUPLICATOR_TEST1"
+  "DO_NOT_TRANSLATE_MIKK_PR_DUPLICATOR_TEST1": "DO_NOT_TRANSLATE_MIKK_PR_DUPLICATOR_TEST1",
+  "DO_NOT_TRANSLATE_MIKK_PR_DUPLICATOR_TEST2": "DO_NOT_TRANSLATE_MIKK_PR_DUPLICATOR_TEST2"
 }
