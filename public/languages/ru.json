@@ -933,7 +933,5 @@
   "ep_comments_page.comments_template.cancel.value": "@:LNK_CANCEL",
   "ep_comments_page.comments_template.reply_input_label": "Ваш ответ",
   "ep_comments_page.comments_template.edit_comment.save": "Сохранить",
-  "ep_comments_page.comments_template.edit_comment.cancel": "@:LNK_CANCEL",
-  "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK": "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK",
-  "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK2": "DO_NOT_TRANSLATE_CI_TEST_BY_MIKK2"
+  "ep_comments_page.comments_template.edit_comment.cancel": "@:LNK_CANCEL"
 }
