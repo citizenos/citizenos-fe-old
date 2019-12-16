@@ -933,5 +933,6 @@
   "ep_comments_page.comments_template.cancel.value": "@:LNK_CANCEL",
   "ep_comments_page.comments_template.reply_input_label": "Votre réponse",
   "ep_comments_page.comments_template.edit_comment.save": "Enregistrer",
-  "ep_comments_page.comments_template.edit_comment.cancel": "@:LNK_CANCEL"
+  "ep_comments_page.comments_template.edit_comment.cancel": "@:LNK_CANCEL",
+  "DO_NOT_TRANSLATE_PR_DUPLICATOR_MIKK_TESTING_AGAIN_1": "DO_NOT_TRANSLATE_PR_DUPLICATOR_MIKK_TESTING_AGAIN_1"
 }
