@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [closed]
     branches:
-      - master_temp_disable
+      - master
 jobs:
   pr_duplicator:
     runs-on: ubuntu-latest
