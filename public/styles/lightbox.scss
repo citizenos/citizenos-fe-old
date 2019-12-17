@@ -1429,15 +1429,38 @@
                 }
             }
 
-            .lightbox_content {
-                background: $light_gray;
-                font-size: 14px;
+            #lightbox_footer {
+                width: 100%;
+                height: 54px;
+                background: $white;
+                display: table;
                 border-radius: 0 0 4px 4px;
-                overflow: hidden;
+                box-sizing: border-box;
+                color: $medium_black;
+                padding: 20px;
+                border-top: 1px solid $lightest_gray;
 
                 @media (max-height: 800px) {
                     margin-bottom: 30px;
                 }
+
+                .blue_button {
+                    padding: 10px 20px;
+                    box-sizing: border-box;
+                    float: right;
+                    margin: 0 0 0 20px;
+                }
+
+                .transparent_button {
+                    @extend .blue_button;
+                    font-weight: $medium;
+                }
+            }
+
+            .lightbox_content {
+                background: $light_gray;
+                font-size: 14px;
+                overflow: hidden;
 
                 @media (max-width: 560px) {
                     border-radius: 0

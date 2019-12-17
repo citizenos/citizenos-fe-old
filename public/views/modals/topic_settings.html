@@ -46,16 +46,6 @@
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-
-                        <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
-                                 translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC">Save topic
-                            </div>
-                            <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
-                                 translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC_AND_INVITE">Save topic and send invite
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -426,9 +416,24 @@
             </div>
 
 
+            <div id="lightbox_footer" ng-if="wWidth > 560">
+                <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                     translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC">Save topic
+                </div>
+                <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                     translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC_AND_INVITE">Save topic and send invite
+                </div>
+                <div class="transparent_button" ng-click="closeThisDialog()" translate="LNK_CANCEL">Cancel</div>
+            </div>
+
             <!-- MOBILE SAVE BUTTON -->
             <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
-                <div class="blue_button" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()" translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_SETTINGS">Save settings</div>
+                <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                     translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC">Save topic
+                </div>
+                <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                     translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC_AND_INVITE">Save topic and send invite
+                </div>
             </div>
 
         </div>

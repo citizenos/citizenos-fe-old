@@ -936,6 +936,17 @@ a:link, a:visited {
     box-sizing: border-box;
 }
 
+.transparent_button {
+    @extend .blue_button;
+    background: none;
+    color: $deep_sky_blue;
+
+    &:hover {
+        background: none !important; // TODO: Clean up once we sort the abuse of @import
+        color: $dark_blue;
+    }
+};
+
 .gray_button {
     @extend .blue_button;
     background: $lightest_gray;
