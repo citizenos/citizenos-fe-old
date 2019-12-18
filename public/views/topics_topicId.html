@@ -581,12 +581,18 @@
                                 <div class="left_row">
 
                                     <div class="input_with_icon clickable" ng-repeat="(key, option) in voteForm.options">
-                                        <input class="gray_borders" ng-model="option.value" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER' | translate}}">
-                                        <div class="icon_table">
+                                        <input id="{{'voteOption' + $index}}" class="gray_borders" ng-model="option.value" ng-class="{'error_input': option.value && voteForm.errors.value}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER' | translate}}">
+                                        <div class="icon_table" ng-class="{'error': option.value && voteForm.errors.value}">
                                             <div class="icon_cell" ng-click="removeOption(key)">
                                                 <div class="sprite sprite-inputfield-icon-delete2x"></div>
                                             </div>
                                         </div>
+                                        <label for="{{'voteOption' + $index}}" class="error_label" ng-if="option.value && voteForm.errors.value">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                                <span translate="{{voteForm.errors.value}}"></span>
+                                            </div>
+                                        </label>
                                     </div>
 
                                     <div class="blue_button" ng-click="addOption()" translate="VIEWS.TOPICS_TOPICID.VOTE_BTB_ADD_OPTION">Add another answer</div>
