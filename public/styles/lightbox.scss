@@ -557,7 +557,7 @@
                             width: auto;
                             color: $medium_black;
                             font-size: 16px;
-                            font-weight: bold;
+                            font-weight: $bold;
                             line-height: 20px;
                             text-align: center;
                             margin-top: 15px;
@@ -805,10 +805,6 @@
         @extend .section_with_table;
         max-height: 381px;
 
-        @media (max-width: 640px) {
-            max-height: 279px;
-        }
-
         @media (max-width: 560px) {
             max-height: initial;
         }
@@ -975,10 +971,6 @@
     .lightbox_section.double_row_list.small_header {
         @extend .section_with_table;
         max-height: 410px;
-
-        @media (max-width: 640px) {
-            max-height: 308px !important;
-        }
 
         @media (max-width: 560px) {
             max-height: initial !important;
@@ -1444,6 +1436,14 @@
                     margin-bottom: 30px;
                 }
 
+                @media (max-width: 560px) {
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+                    left: 0;
+                    margin: 0;
+                }
+
                 .blue_button {
                     padding: 10px 20px;
                     box-sizing: border-box;
@@ -1463,7 +1463,7 @@
                 overflow: hidden;
 
                 @media (max-width: 560px) {
-                    border-radius: 0
+                    border-radius: 0;
                 }
 
                 #image_edit_section {
@@ -1719,9 +1719,6 @@
 
             &.language_section {
                 padding-left: 25px !important;
-            }
-            @media (max-width: 640px) {
-                max-height: 279px;
             }
 
             @media (max-width: 560px) {
@@ -1987,10 +1984,6 @@
             overflow-y: auto;
             padding-top: 20px !important;
             padding-bottom: 20px !important;
-
-            @media (max-width: 640px) {
-                max-height: 279px;
-            }
 
             @media (max-width: 560px) {
                 max-height: initial;

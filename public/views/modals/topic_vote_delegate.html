@@ -27,10 +27,6 @@
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveDelegate()" translate="MODALS.TOPIC_VOTE_DELEGATE_BTN_DELEGATE">Delegate vote</div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -121,9 +117,15 @@
                 </div>
 
             </div>
+
+            <div id="lightbox_footer" ng-if="wWidth > 560">
+                <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!delegateUser" ng-click="doSaveDelegate()" translate="MODALS.TOPIC_VOTE_DELEGATE_BTN_DELEGATE">Delegate vote</div>
+                <div class="transparent_button" ng-click="closeThisDialog()" translate="LNK_CANCEL">Cancel</div>
+            </div>
+
             <!-- MOBILE SAVE BUTTON -->
             <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
-                <div class="blue_button" ng-click="doSaveDelegate()" translate="MODALS.TOPIC_VOTE_DELEGATE_BTN_DELEGATE">Delegate vote</div>
+                <div class="blue_button" cos-disabled="!delegateUser" ng-click="doSaveDelegate()" translate="MODALS.TOPIC_VOTE_DELEGATE_BTN_DELEGATE">Delegate vote</div>
             </div>
 
         </div>

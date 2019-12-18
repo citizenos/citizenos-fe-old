@@ -42,11 +42,6 @@
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-
-                        <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" cos-disabled="!form.group.canUpdate()" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP">Save group</div>
-                            <div class="blue_button" cos-disabled="!form.group.canUpdate()" ng-if="members.users.length || members.emails.length" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP_AND_INVITE">Save group and send invite</div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -413,6 +408,11 @@
 
             </div>
 
+            <div id="lightbox_footer" ng-if="wWidth > 560">
+                <div class="blue_button" cos-disabled="!form.group.canUpdate()" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP">Save group</div>
+                <div class="blue_button" cos-disabled="!form.group.canUpdate()" ng-if="members.users.length || members.emails.length" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP_AND_INVITE">Save group and send invite</div>
+                <div class="transparent_button" ng-click="closeThisDialog()" translate="LNK_CANCEL">Cancel</div>
+            </div>
 
             <!-- MOBILE SAVE BUTTON -->
             <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">

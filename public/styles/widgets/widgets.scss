@@ -2,11 +2,13 @@ body, html {
     background: #ffffff;
     height: initial !important;
     min-height: initial !important;
-    width:100%;
+    width: 100%;
 }
+
 #widget_wrapper {
     border: 1px solid #E5E5E5;
 }
+
 #root_lightbox {
     background-color: rgba(200, 200, 200, 0.6);
 
@@ -29,8 +31,8 @@ body, html {
     width: 100%;
     height: 60px;
     background: #F5F5F5;
-    
-    .widget_user_cell{
+
+    .widget_user_cell {
         display: table-cell;
         vertical-align: middle;
         padding-left: 10px;
@@ -43,12 +45,12 @@ body, html {
 
     #widget_header_logo_wrapper {
         margin-left: 20px;
-        
+
         .widget_text_header {
             position: relative;
-            display: inline-block;            
+            display: inline-block;
             color: #252525;
-            font-family: "Noto Sans";
+            font-family: 'Noto Sans', sans-serif;
             font-size: 14px;
             font-weight: bold;
             text-align: center;
@@ -69,7 +71,7 @@ body, html {
                 top: 10px;
                 margin-left: 5px;
             }
-        }        
+        }
     }
 
     #widget_user {
@@ -106,7 +108,7 @@ body, html {
         #user_name {
             height: 60px;
             color: #252525;
-            font-family: "Noto Sans", sans-serif;
+            font-family: 'Noto Sans', sans-serif;
             font-size: 14px;
             font-weight: bold;
             line-height: 19px;
@@ -114,7 +116,7 @@ body, html {
 
         #login, #log_out {
             color: #0680FC;
-            font-family: "Noto Sans", sans-serif;
+            font-family: 'Noto Sans', sans-serif;
             font-size: 13px;
             line-height: 19px;
         }
@@ -138,7 +140,7 @@ body, html {
                 #widget_logo {
                     margin-left: 0px;
                 }
-            }        
+            }
         }
 
         #widget_user {
@@ -156,7 +158,7 @@ body, html {
                 padding-left: 0;
             }
         }
-        .widget_user_cell{
+        .widget_user_cell {
             display: inline-block;
             line-height: 60px !important;
             &:last-child {
@@ -175,7 +177,7 @@ body, html {
             margin-top: 15px;
         }
     }
-    
+
     @media (max-width: 370px) {
         .widget_user_cell:last-child {
             position: initial;
@@ -199,36 +201,36 @@ body, html {
     width: 100%;
     background-color: #F5F5F5;
     display: table;
-    
+
     .widget_footer_link {
         vertical-align: middle;
-        float:left;
+        float: left;
         padding: 20px 0px 20px 20px;
 
         a {
             color: #0680FC;
-            font-family: "Noto Sans";
+            font-family: 'Noto Sans', sans-serif;
             font-size: 13px;
             line-height: 19px;
         }
-    }    
+    }
 
     #widget_footer_logo_wrapper {
         margin-left: 20px;
         margin-right: 20px;
         float: right;
-        
+
         .widget_text_footer {
             position: relative;
-            display: inline-block;            
+            display: inline-block;
             color: #252525;
-            font-family: "Noto Sans";
+            font-family: 'Noto Sans', sans-serif;
             font-size: 13px;
             text-align: center;
             line-height: 60px;
             height: 60px;
             vertical-align: middle;
-            top: 0px;
+            top: 0;
         }
         #widget_footer_logo_items {
             position: relative;
@@ -250,15 +252,14 @@ body, html {
 
         #widget_footer_logo_wrapper, .widget_footer_link {
             float: none;
-            width:  100%;
+            width: 100%;
             text-align: center;
             margin: 0;
             padding: 20px 0 0px 0px;
-        //    height: 60px;
             position: relative;
         }
         .widget_footer_link {
-            display: inline-block;            
+            display: inline-block;
             padding: 0;
             vertical-align: middle;
             line-height: 60px;
