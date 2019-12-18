@@ -877,12 +877,11 @@ a:link, a:visited {
 
 
 .input_with_icon {
-    height: 45px;
     position: relative;
     margin-bottom: 10px;
 
     input {
-        height: inherit;
+        height: 43px;
         width: 100%;
         font-size: 13px;
         padding: 0 45px 0 10px;
@@ -890,8 +889,8 @@ a:link, a:visited {
     }
 
     .icon_table {
-        height: inherit;
-        width: 45px;
+        height: 43px;
+        width: 43px;
         position: absolute;
         display: table;
         top: 0;
@@ -912,13 +911,25 @@ a:link, a:visited {
     .icon_table:hover {
         @media (min-width: 1025px) {
             cursor: pointer;
-            height: 43px;
-            width: 43px;
+            height: 41px;
+            width: 41px;
             background: $light_gray;
             border-radius: 0 4px 4px 0;
             border-top: 1px solid $lightest_gray;
             border-right: 1px solid $lightest_gray;
             border-bottom: 1px solid $lightest_gray;
+        }
+    }
+    .icon_table.error:hover {
+        @media (min-width: 1025px) {
+            cursor: pointer;
+            height: 41px;
+            width: 41px;
+            background: $light_gray;
+            border-radius: 0 4px 4px 0;
+            border-top: 1px solid $pinky_red;
+            border-right: 1px solid $pinky_red;
+            border-bottom: 1px solid $pinky_red;
         }
     }
 }

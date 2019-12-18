@@ -12,8 +12,14 @@ angular
         var CONF = {
             defaultOptions: {
                 regular: [
-                    {value: 'Yes', enabled: true},
-                    {value: 'No', enabled: true}
+                    {
+                        value: 'Yes',
+                        enabled: true
+                    },
+                    {
+                        value: 'No',
+                        enabled: true
+                    }
                 ],
                 multiple: [
                     {value: null},
@@ -22,8 +28,14 @@ angular
                 ]
             },
             extraOptions: {
-                neutral: {value: 'Neutral', enabled: false}, // enabled - is the option enabled by default
-                veto: {value: 'Veto', enabled: false}
+                neutral: {
+                    value: 'Neutral',
+                    enabled: false
+                }, // enabled - is the option enabled by default
+                veto: {
+                    value: 'Veto',
+                    enabled: false
+                }
             },
             optionsMax: 10,
             optionsMin: 2
@@ -38,7 +50,8 @@ angular
             endsAt: null,
             voteType: null,
             authType: $scope.voteAuthTypes.soft,
-            numberOfDaysLeft: 0
+            numberOfDaysLeft: 0,
+            errors: null
         };
 
         $scope.$parent.$parent.setVoteType = function (voteType) {
@@ -94,8 +107,19 @@ angular
                 vote.endsAt = endsAt;
             }
 
-            vote.$save(function (vote, putResponseHeaders) {
-                $state.go('topics.view.votes.view', {topicId: $scope.topic.id, voteId: vote.id}, {reload: true});
-            });
+            vote
+                .$save(
+                    function (vote, putResponseHeaders) {
+                        $scope.$parent.$parent.voteForm.errors = null;
+                        $state.go('topics.view.votes.view', {
+                            topicId: $scope.topic.id,
+                            voteId: vote.id
+                        }, {reload: true});
+                    },
+                    function (res) {
+                        console.log('SAVE ERR', res, res.data.errors);
+                        $scope.$parent.$parent.voteForm.errors = res.data.errors;
+                    }
+                );
         };
     }]);
