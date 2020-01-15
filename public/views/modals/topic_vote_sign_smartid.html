@@ -1,0 +1,80 @@
+<!-- LIGHTBOX SKELETON -->
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <span translate="MODALS.TOPIC_VOTE_SIGN_SMARTID_HEADING">Sign with Smart-ID</span>
+                    <div class="title_description">{{ngDialogData.topic.title}}</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div class="voting_tag_padding">
+                    <div class="voting_tag">
+                        <div class="table_cell">
+                            <span translate="MODALS.TOPIC_VOTE_SIGN_SMARTID_TXT_VOTING_FOR">YOU’RE VOTING:</span> <span class="bold" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + optionSelected.value | linky | uppercase}}"
+                                                                                                                 translate-default="{{optionSelected.value | linky}}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lightbox_content">
+                <form name="signSmartIdForm" novalidate>
+                    <div class="sign_in_section sid">
+                        <div class="sprite_big sprite sprite-smart-i-d2x"></div>
+                        <div ng-if="formSmartId.isLoading && !formSmartId.challengeID" class="loader_wrap">
+                            <div class="loader"></div>
+                        </div>
+                        <div ng-if="!formSmartId.challengeID && !formSmartId.isLoading">
+                            <input id="countryCode" name="countryCode" type="text" ng-model="formSmartId.countryCode" maxlength="2" ng-maxlength="2" placeholder="{{'MODALS.TOPIC_VOTE_SIGN_SMARTID_PLACEHOLDER_COUNTRY_CODE' | translate}}"
+                                   ng-class="{'error_input': formSmartIdSign.countryCode.$error.pattern && formSmartIdSign.countryCode.$touched}" ng-pattern="/^[A-Z]{2}$/" required>
+                            <label for="pid" class="error_label" ng-if="formSmartIdSign.countryCode.$error.pattern && formSmartIdSign.countryCode.$touched">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="MODALS.TOPIC_VOTE_SIGN_SMARTID_ERROR_COUNTRY_CODE">Invalid personal identification code</span>
+                                </div>
+                            </label>
+                            <input id="pid" name="pid" type="text" inputmode="numeric" ng-model="formSmartId.pid" placeholder="{{'MODALS.TOPIC_VOTE_SIGN_SMARTID_PLACEHOLDER_PID' | translate}}"
+                                   ng-class="{'error_input': formSmartIdSign.pid.$touched}" required>
+                            <label for="pid" class="error_label" ng-if="formSmartIdSign.pid.$touched">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="MODALS.TOPIC_VOTE_SIGN_SMARTID_ERROR_PID">Invalid personal identification code</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div ng-if="formSmartId.challengeID">
+                            <div class="code" translate="MODALS.TOPIC_VOTE_SIGN_SMARTID_TXT_CONTROL_CODE" translate-values="{code: formSmartId.challengeID}">Control code: 1234</div>
+                            <div class="code_text" translate="MODALS.TOPIC_VOTE_SIGN_SMARTID_TXT_CHECK_CONTROL_CODE">Make sure control code matches with one in the phone screen and enter Mobile-ID PIN2.</div>
+                            <div class="loader_wrap">
+                                <div class="loader"></div>
+                            </div>
+                        </div>
+                        <button type="submit" ng-click="doSignWithSmartId()" cos-disabled="formSmartIdSign.$invalid || formSmartId.isLoading" class="blue_button"
+                                translate="MODALS.TOPIC_VOTE_SIGN_SMARTID_BTN_SIGN">Sign in with Smart-ID
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()">
+    </div>
+
+</div>
+

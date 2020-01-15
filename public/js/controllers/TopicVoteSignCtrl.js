@@ -60,10 +60,9 @@ angular
                     return signTopicVote.$sign();
                 })
                 .then(function (voteSignResult) {
-                    $log.debug('voteVoteSign succeeded', arguments);
                     ngDialog.closeAll({ // Pass Vote options, so we can show selected option for the unauthenticated User
                         options: [{optionId: $scope.optionSelected.id}],
-                        bdocUri: voteSignResult.bdocUri
+                        bdocUri: voteSignResult.data.bdocUri
                     });
                 }, function (err) {
                     $scope.isLoadingIdCard = false;
@@ -136,7 +135,7 @@ angular
 
         $scope.doSignWithSmartId = function () {
             $log.debug('doSignWithSmartId()');
-
+            console.log($scope.formSmartId);
             $scope.formSmartId.isLoading = true;
 
             var userVote = new TopicVote({id: topic.vote.id, topicId: topic.id});
