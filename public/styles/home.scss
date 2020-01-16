@@ -606,6 +606,15 @@
                 }
             }
 
+            &.hacktivist_community {
+                background-repeat: no-repeat;
+                background-position: right -50px  bottom -2px;
+                background-size: 300px;
+                @media (max-width: 667px) {
+                     background-image: none;
+                }
+            }
+
             &.thirty_four_island_project {
                 background-image: url('../imgs/ldi_indonesia.png');
                 background-repeat: no-repeat;
