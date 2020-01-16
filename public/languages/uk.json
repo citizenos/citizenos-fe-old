@@ -459,7 +459,8 @@
       "HEADING_HACKTIVIST_COMMUNITY": "Hacktivist Community",
       "TXT_HACKTIVIST_COMMUNITY": "Hacktivist Community",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Civic hacktivist community is a meeting space for people who stand for e-democracy and collaborative decision-making.",
-      "LBL_ENVIRONMENT": "Середовище"
+      "LBL_ENVIRONMENT": "Середовище",
+      "LBL_HACKTIVIST_COMMUNITY": "Democracy and civil society"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Групи: {{count}}",
