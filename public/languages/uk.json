@@ -344,6 +344,7 @@
   "TXT_TOPIC_CATEGORY_ALL": "всі категорії",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "Фільм \"Дванадцять\"",
   "TXT_TOPIC_CATEGORY_KEEPITCLEANPLAN": "Keep It Clean Plan",
+  "TXT_TOPIC_CATEGORY_HACKTIVISTCOMMUNITY": "Hacktivist Community",
   "TXT_TOPIC_CATEGORY_THIRTYFOURISLANDPROJECT": "34 island project",
   "TXT_TOPIC_CATEGORY_EESTIJAZZIARENGUSUUNAD": "Eesti Jazzi Arengusuunad",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Бізнес та промисловість",
@@ -455,6 +456,9 @@
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
       "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Тут ви можете знайти усі документи та інформацію про план Keep It Clean.",
+      "HEADING_HACKTIVIST_COMMUNITY": "Hacktivist Community",
+      "TXT_HACKTIVIST_COMMUNITY": "Hacktivist Community",
+      "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Civic hacktivist community is a meeting space for people who stand for e-democracy and collaborative decision-making.",
       "LBL_ENVIRONMENT": "Середовище"
     },
     "MY": {
