@@ -459,7 +459,8 @@
       "HEADING_HACKTIVIST_COMMUNITY": "crwdns23259:0crwdne23259:0",
       "TXT_HACKTIVIST_COMMUNITY": "crwdns23261:0crwdne23261:0",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "crwdns23263:0crwdne23263:0",
-      "LBL_ENVIRONMENT": "crwdns21018:0crwdne21018:0"
+      "LBL_ENVIRONMENT": "crwdns21018:0crwdne21018:0",
+      "LBL_HACKTIVIST_COMMUNITY": "crwdns23265:0crwdne23265:0"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "crwdns21020:0{{count}}crwdne21020:0",
