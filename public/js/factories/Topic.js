@@ -175,7 +175,7 @@ angular
         Topic.CATEGORIES = {
             thetwelvemovie: 'thetwelvemovie',
             thirtyfourislandproject: 'thirtyfourislandproject',
-            keepitcleanplan: 'keepitcleanplan', // TODO: Special project with https://www.letsdoitworld.org/, remove when over.
+            hacktivistcommunity: 'hacktivistcommunity',
             eestijazziarengusuunad: 'eestijazziarengusuunad', // Special project with http://www.jazz.ee/ - https://github.com/citizenos/citizenos-api/issues/73
             business: 'business', // Business and industry
             transport: 'transport', // Public transport and road safety
