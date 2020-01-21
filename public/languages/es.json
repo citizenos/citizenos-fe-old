@@ -458,9 +458,9 @@
       "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Aquí encontrará todos los documentos e información sobre el Plan de limpieza.",
       "HEADING_HACKTIVIST_COMMUNITY": "Comunidad hacktivista",
       "TXT_HACKTIVIST_COMMUNITY": "Comunidad hacktivista",
-      "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Civic hacktivist community is a meeting space for people who stand for e-democracy and collaborative decision-making.",
+      "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "La comunidad hacktivista cívica es un espacio de reunión para aquellas personas que defienden la democracia electrónica y la toma de decisiones colaborativa.",
       "LBL_ENVIRONMENT": "Medioambiente",
-      "LBL_HACKTIVIST_COMMUNITY": "Democracy and civil society"
+      "LBL_HACKTIVIST_COMMUNITY": "Democracia y sociedad civil"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Grupos: {{count}}",
@@ -879,7 +879,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40016": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40016",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40017": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40017",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "Error del servicio DigiDoc. Vuelva a intentarlo y, si el problema persiste, póngase en contacto con el servicio de atención al cliente.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Sorry, one of the vote options provided is invalid. Vote option can have maximum of 200 characters.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Una de las opciones de voto especificadas no es válida. Cada opción de voto puede tener como máximo 200 caracteres.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "La votación finalizó.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
