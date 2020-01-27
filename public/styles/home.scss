@@ -588,18 +588,19 @@
             }
 
             &.tutorial {
-                background-image: url('../imgs/tutorial.png');
+                background-image: url('../imgs/img_partner_citizenoshelp.png');
                 background-repeat: no-repeat;
-                background-position: right -100px  top;
+                background-position: right -50px bottom 0px;
+                background-size: 300px;
                 @media (max-width: 667px) {
                     background-image: none;
                 }
             }
 
             &.keep_it_clean_plan {
-                background-image: url('../imgs/wcd.png');
+                background-image: url('../imgs/img_partner_wcd.png');
                 background-repeat: no-repeat;
-                background-position: right -50px  bottom -2px;
+                background-position: right -50px bottom 0px;
                 background-size: 300px;
                 @media (max-width: 667px) {
                      background-image: none;
@@ -607,8 +608,9 @@
             }
 
             &.hacktivist_community {
+                background-image: url('../imgs/img_partner_hacktivist.png');
                 background-repeat: no-repeat;
-                background-position: right -50px  bottom -2px;
+                background-position: right -50px bottom 0px;
                 background-size: 300px;
                 @media (max-width: 667px) {
                      background-image: none;
@@ -616,9 +618,9 @@
             }
 
             &.thirty_four_island_project {
-                background-image: url('../imgs/ldi_indonesia.png');
+                background-image: url('../imgs/img_partner_ldiindonesia.png');
                 background-repeat: no-repeat;
-                background-position: right -50px  bottom -45px;
+                background-position: right -50px bottom 0px;
                 background-size: 300px;
                 @media (max-width: 667px) {
                      background-image: none;
@@ -626,9 +628,10 @@
             }
 
             &.eesti_jazzi_arengusuunad { /** https://github.com/citizenos/citizenos-api/issues/73 **/
-                background-image: url('../imgs/eestijazziarengusuunad.png');
+                background-image: url('../imgs/img_partner_jazzunion.png');
                 background-repeat: no-repeat;
-                background-position: right -100px  top;
+                background-position: right -50px bottom 0px;
+                background-size: 300px;
                 @media (max-width: 667px) {
                     background-image: none;
                 }
