@@ -344,7 +344,7 @@
   "TXT_TOPIC_CATEGORY_ALL": "iga kategooria",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
   "TXT_TOPIC_CATEGORY_KEEPITCLEANPLAN": "Keep It Clean Plan",
-  "TXT_TOPIC_CATEGORY_HACKTIVISTCOMMUNITY": "Hacktivist Community",
+  "TXT_TOPIC_CATEGORY_HACKTIVISTCOMMUNITY": "Häktivistide kogukond",
   "TXT_TOPIC_CATEGORY_THIRTYFOURISLANDPROJECT": "34 saare projekt",
   "TXT_TOPIC_CATEGORY_EESTIJAZZIARENGUSUUNAD": "Eesti Jazzi Arengusuunad",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Äri ja tööstus",
@@ -456,11 +456,11 @@
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
       "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Siin leiad infot ja dokumente teemal \"Keep it Clean Plan\".",
-      "HEADING_HACKTIVIST_COMMUNITY": "Hacktivist Community",
-      "TXT_HACKTIVIST_COMMUNITY": "Hacktivist Community",
-      "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Civic hacktivist community is a meeting space for people who stand for e-democracy and collaborative decision-making.",
+      "HEADING_HACKTIVIST_COMMUNITY": "Häktivistide kogukond",
+      "TXT_HACKTIVIST_COMMUNITY": "Häktivistide kogukond",
+      "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Tavakodanikest koosnev häktivistide kogukond ühendab inimesi, kes seisavad e-demokraatia ja koostöös otsuste tegemise eest.",
       "LBL_ENVIRONMENT": "Keskkond",
-      "LBL_HACKTIVIST_COMMUNITY": "Democracy and civil society"
+      "LBL_HACKTIVIST_COMMUNITY": "Demokraatia ja kodanikuühiskond"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Rühmi: {{count}}",
