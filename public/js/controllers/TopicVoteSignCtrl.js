@@ -14,7 +14,12 @@ angular
             challengeID: null,
             isLoading: false
         };
-
+        $scope.formSmartId = {
+            pid: null,
+            countryCode: 'EE',
+            challengeID: null,
+            isLoading: false
+        };
         $scope.challengeID = null;
         $scope.isLoadingIdCard = false;
 
@@ -55,10 +60,9 @@ angular
                     return signTopicVote.$sign();
                 })
                 .then(function (voteSignResult) {
-                    $log.debug('voteVoteSign succeeded', arguments);
                     ngDialog.closeAll({ // Pass Vote options, so we can show selected option for the unauthenticated User
                         options: [{optionId: $scope.optionSelected.id}],
-                        bdocUri: voteSignResult.bdocUri
+                        bdocUri: voteSignResult.data.bdocUri
                     });
                 }, function (err) {
                     $scope.isLoadingIdCard = false;
@@ -118,6 +122,62 @@ angular
                         case 20001:
                             return $timeout(function () {
                                 return pollVoteMobileSignStatus(topicId, voteId, token, milliseconds, retry);
+                            }, milliseconds, false);
+                        case 20002:
+                            // Done
+                            return response.data;
+                        default:
+                            $log.error('Mobile signing failed', response);
+                            return $q.defer().reject(response);
+                    }
+                });
+        };
+
+        $scope.doSignWithSmartId = function () {
+            $log.debug('doSignWithSmartId()');
+            console.log($scope.formSmartId);
+            $scope.formSmartId.isLoading = true;
+
+            var userVote = new TopicVote({id: topic.vote.id, topicId: topic.id});
+            userVote.options = [{optionId: $scope.optionSelected.id}];
+            userVote.pid = $scope.formSmartId.pid;
+            userVote.certificate = null;
+            userVote.phoneNumber = null;
+            userVote.countryCode = $scope.formSmartId.countryCode;
+            $scope.formSmartId.challengeID = null;
+
+            userVote.$save()
+                .then(function (voteInitResult) {
+                    $log.debug('voteInitSmartIdResult', voteInitResult);
+                    $scope.challengeID = voteInitResult.challengeID;
+                    $scope.formSmartId.challengeID = voteInitResult.challengeID;
+                    var token = voteInitResult.token;
+                    return pollVoteSmartIdSignStatus(topic.id, topic.vote.id, token, 3000, 80);
+                })
+                .then(function (voteStatusResult) {
+                    $log.debug('voteVoteSign succeeded', arguments);
+                    ngDialog.closeAll({ // Pass Vote options, so we can show selected option for the unauthenticated User
+                        options: [{optionId: $scope.optionSelected.id}],
+                        bdocUri: voteStatusResult.bdocUri
+                    });
+                }, function (err) {
+                    $scope.formSmartId.isLoading = false;
+                });
+        };
+
+        var pollVoteSmartIdSignStatus = function (topicId, voteId, token, milliseconds, retry) {
+            if (!retry) retry = 80;
+            if (!retry--) throw new Error('Too many retries');
+
+            var voteStatusPromise = TopicVote.status({topicId: topic.id, voteId: topic.vote.id, prefix: sAuth.getUrlPrefix(), userId: sAuth.getUrlUserId(), token: token}).$promise
+
+            return voteStatusPromise
+                .then(function (response) {
+                    var statusCode = response.status.code;
+                    switch (statusCode) {
+                        case 20001:
+                            return $timeout(function () {
+                                return pollVoteSmartIdSignStatus(topicId, voteId, token, milliseconds, retry);
                             }, milliseconds, false);
                         case 20002:
                             // Done

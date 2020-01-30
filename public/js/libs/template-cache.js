@@ -66,6 +66,8 @@ angular
             '/views/modals/topic_vote_delegate.html',
             '/views/modals/topic_vote_revoke_delegation_confirm.html',
             '/views/modals/topic_vote_sign.html',
+            '/views/modals/topic_vote_sign_esteid.html',
+            '/views/modals/topic_vote_sign_smartid.html',
             '/views/modals/user_delete_confirm.html',
             '/views/modals/widgets_how_it_works.html',
             '/views/widgets/activities.html',

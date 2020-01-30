@@ -1,6 +1,6 @@
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox">
-    <div id="lightbox" class="id_signing wide_lightbox with_title_description">
+    <div id="lightbox">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
@@ -17,78 +17,43 @@
                     </div>
                 </div>
 
-                <div class="clearer"></div>
-
-                <div class="voting_tag_padding">
-                    <div class="voting_tag">
-                        <div class="table_cell">
-                            <span translate="MODALS.TOPIC_VOTE_SIGN_TXT_VOTING_FOR">YOU’RE VOTING:</span> <span class="bold" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + optionSelected.value | linky | uppercase}}"
-                                                                                                                 translate-default="{{optionSelected.value | linky}}"></span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <div class="line lightest_line"></div>
-
             <div class="lightbox_content">
-
-                <div class="v_line lightest_line"></div>
-
-                <div class="sign_in_section">
-                    <form name="formMobileSign" novalidate>
-                        <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
-                        <input ng-if="!formMobile.isLoading"  id="phone" name="phoneNumber" ng-class="{error_input: formMobileSign.phoneNumber.$error.pattern && formMobileSign.phoneNumber.$touched}" ng-model="formMobile.phoneNumber" placeholder="{{'MODALS.TOPIC_VOTE_SIGN_PLACEHOLDER_PHONE' | translate}}" focus-if="{{wWidth > 1024}}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
-                        <label ng-if="formMobileSign.phoneNumber.$error.pattern && formMobileSign.phoneNumber.$touched" for="phone" class="error_label" >
-                            <div class="table_cell">
-                                <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                <span translate="MODALS.TOPIC_VOTE_SIGN_ERROR_PHONE">Invalid phone number</span>
-                            </div>
-                        </label>
-                        <input ng-if="!formMobile.isLoading" ng-model="formMobile.pid" name="pid" type="text" inputmode="numeric" ng-class="{error_input: formMobileSign.pid.$error.pattern && formMobileSign.pid.$touched}" placeholder="{{'MODALS.TOPIC_VOTE_SIGN_PLACEHOLDER_PID' | translate}}" ng-pattern="/^[0-9]{11}$/" required>
-                        <label ng-if="formMobileSign.pid.$error.pattern && formMobileSign.pid.$touched" for="phone" class="error_label" >
-                            <div class="table_cell">
-                                <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                <span translate="MODALS.TOPIC_VOTE_SIGN_ERROR_PID">Invalid PID number</span>
-                            </div>
-                        </label>
-                        <div ng-if="formMobile.isLoading && formMobile.challengeID" class="code" translate="MODALS.TOPIC_VOTE_SIGN_TXT_CONTROL_CODE" translate-values="{code: challengeID}">Kontrollkood: 1234</div>
-                        <div ng-if="formMobile.isLoading && formMobile.challengeID" class="code_text" translate="MODALS.TOPIC_VOTE_SIGN_TXT_CHECK_CONTROL_CODE">Please enter the PIN in your mobile phone...</div>
-                        <div ng-if="formMobile.isLoading"  class="loader_wrap">
-                            <div class="loader"></div>
-                        </div>
-                        <button ng-if="wWidth <= 550" class="blue_button" ng-click="doSignWithMobile()" cos-disabled="formMobileSign.$invalid || formMobile.isLoading || isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_MID">Sign with Mobiil-ID</button>
-                    </form>
-                </div>
-
-                <div class="line_wrap">
+                <div id="login_lightbox" ng-controller="SignFormCtrl">
                     <div class="line lightest_line"></div>
+                    <div class="lightbox_section">
+
+                        <div id="id_card" ng-click="doSignEsteId()" class="social_button">
+                            <div class="social_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-login-icon-id2x"></div>
+                                </div>
+                            </div>
+                            <div class="social_text">
+                                <div class="table_cell" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_ESTEID">Sign with ID-Card / Mobiil-ID</div>
+                            </div>
+                        </div>
+
+                        <div id="smart_id" ng-click="doSignSmartId()" class="social_button">
+                            <div class="social_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-login-icon-smartid2x"></div>
+                                </div>
+                            </div>
+                            <div class="social_text">
+                                <div class="table_cell" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_SMARTID">Sign with Smart-ID</div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-
-                <div class="sign_in_section">
-                    <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
-                    <div class="sprite_big sprite sprite-img-idkaart2x"></div>
-                    <button ng-if="wWidth <= 550" class="blue_button" cos-disabled="isLoadingIdCard || formMobile.isLoading" ng-click="doSignWithCard()" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_CARD">Sign with ID-Card</button>
-                </div>
-
-                <div class="clearer"></div>
-
-                <div ng-if="wWidth > 550" class="sign_in_section">
-                    <button class="blue_button" ng-click="doSignWithMobile()" cos-disabled="formMobileSign.$invalid || formMobile.isLoading || isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_MID">Sign with Mobiil-ID</button>
-                </div>
-
-                <div ng-if="wWidth > 550" class="sign_in_section">
-                    <button class="blue_button" cos-disabled="isLoadingIdCard || formMobile.isLoading" ng-click="doSignWithCard()" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_CARD">Sign with ID-Card</button>
-                </div>
-
-                <div class="clearer"></div>
-
             </div>
 
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
+    <div id="close_lightbox" ng-click="closeThisDialog()">
+    </div>
 
 </div>
