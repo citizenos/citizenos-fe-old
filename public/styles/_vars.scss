@@ -88,6 +88,8 @@ $aqua_marine_border: #2be0aa;
 $aqua_marine_border_second: #28d4a0;
 $aqua_marine_text: #00ce8f;;
 
+$hacktivist_community_background: #ffd100;
+
 
 .blue_progress_bar {
     background: $deep_sky_blue;
@@ -202,7 +204,7 @@ $aqua_marine_text: #00ce8f;;
 }
 
 .hacktivist_community_background {
-    background: #ffd100;
+    background: $hacktivist_community_background;
 }
 
 .thirty_four_island_project_background {

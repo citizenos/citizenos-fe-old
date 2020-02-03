@@ -88,6 +88,7 @@
 
         .dropdown_active {
             background: $white;
+
             .animated_bg_bar {
                 width: 100%;
             }
@@ -139,7 +140,7 @@
                     height: 62px;
                     top: 0;
                     left: 0;
-                    transition: all 220ms cubic-bezier(.45,.78,0,1);
+                    transition: all 220ms cubic-bezier(.45, .78, 0, 1);
                     border-radius: 4px;
                 }
 
@@ -202,22 +203,27 @@
 
         .filter_topics.edit {
             height: auto;
+
             .filter_topics_top {
                 height: 40px;
                 box-sizing: border-box;
                 display: table;
                 width: 100%;
+
                 .blue_link {
                     @extend .table_cell;
                     padding: 0 10px;
                 }
+
                 .blue_link:first-child {
                     text-align: left;
                 }
+
                 .blue_link:last-child {
                     text-align: right;
                 }
             }
+
             .filter_topics_bottom {
 
                 padding: 8px 10px 7px 10px;
@@ -257,6 +263,7 @@
                 height: 96px;
                 overflow: hidden;
                 background: $white;
+
                 #fi_header {
                     font-size: 16px;
                     font-weight: $bold;
@@ -296,13 +303,16 @@
                             color: $medium_black_seven;
                             font-size: 14px;
                             padding-bottom: 19px;
+
                             &.selected {
                                 color: $medium_black;
                             }
                         }
+
                         .line {
                             height: 2px;
                             visibility: hidden;
+
                             &.selected {
                                 visibility: visible;
                             }
@@ -381,6 +391,7 @@
             }
 
         }
+
         .fixed_topic, .topic {
             height: 300px;
             margin: 0 0 10px 10px;
@@ -426,9 +437,11 @@
 
             .top {
                 margin-bottom: 10px;
+
                 .date {
                     float: left;
                 }
+
                 .author {
                     float: right;
                 }
@@ -499,6 +512,10 @@
                 background: #00b23b;
             }
 
+            &.hacktivistcommunity {
+                background: $hacktivist_community_background;
+            }
+
             &.thetwelvemovie {
                 background: #6192ce;
             }
@@ -531,6 +548,7 @@
             &.thetwelvemovie,
             &.integration {
                 color: $white;
+
                 .line {
                     background: $white;
                 }
@@ -570,8 +588,10 @@
             &.health,
             &.education,
             &.varia,
-            &.eestijazziarengusuunad {
+            &.eestijazziarengusuunad,
+            &.hacktivistcommunity {
                 color: $black;
+
                 .line {
                     background: $black;
                 }
@@ -603,7 +623,7 @@
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
                 @media (max-width: 667px) {
-                     background-image: none;
+                    background-image: none;
                 }
             }
 
@@ -613,7 +633,7 @@
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
                 @media (max-width: 667px) {
-                     background-image: none;
+                    background-image: none;
                 }
             }
 
@@ -623,7 +643,7 @@
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
                 @media (max-width: 667px) {
-                     background-image: none;
+                    background-image: none;
                 }
             }
 
@@ -705,6 +725,7 @@
     #blue_button_wrap {
         background: $light_gray;
         text-align: center;
+
         .blue_button {
             display: inline-block;
             margin: 10px auto 20px auto;;
