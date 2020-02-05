@@ -344,7 +344,8 @@
   "TXT_TOPIC_CATEGORY_ALL": "setiap kategori",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
   "TXT_TOPIC_CATEGORY_KEEPITCLEANPLAN": "Keep It Clean Plan",
-  "TXT_TOPIC_CATEGORY_THIRTYFOURISLANDPROJECT": "34 island project",
+  "TXT_TOPIC_CATEGORY_HACKTIVISTCOMMUNITY": "Masyarakat Hacktivist",
+  "TXT_TOPIC_CATEGORY_THIRTYFOURISLANDPROJECT": "proyek 34 pulau",
   "TXT_TOPIC_CATEGORY_EESTIJAZZIARENGUSUUNAD": "Eesti Jazzi Arengusuunad",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Bisnis dan industri",
   "TXT_TOPIC_CATEGORY_TRANSPORT": "Keselamatan jalan dan transportasi umum",
@@ -455,7 +456,11 @@
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
       "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Anda dapat menemukan semua dokumen dan informasi tentang Keep It Clean Plan di sini.",
-      "LBL_ENVIRONMENT": "Lingkungan"
+      "HEADING_HACKTIVIST_COMMUNITY": "Masyarakat Hacktivist",
+      "TXT_HACKTIVIST_COMMUNITY": "Masyarakat Hacktivist",
+      "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Masyarakat hacktivist sipil adalah ruang bertemu bagi orang-orang yang mendukung demokrasi virtual dan pengambilan keputusan kolaboratif.",
+      "LBL_ENVIRONMENT": "Lingkungan",
+      "LBL_HACKTIVIST_COMMUNITY": "Demokrasi dan masyarakat sipil"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Grup: {{count}}",
@@ -874,7 +879,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40016": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40016",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40017": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40017",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "Pelayanan dokumen digital mengalami kesalahan. Silahkan coba lagi, jika masalah masih bercokol hubungi layanan pelanggan.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Sorry, one of the vote options provided is invalid. Vote option can have maximum of 200 characters.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Maaf, salah satu opsi hak pilih yang tersedia tidak valid. Opsi hak pilih maksimum hanya bisa 200 karakter.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Pemungutan suara telah berakhir.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",

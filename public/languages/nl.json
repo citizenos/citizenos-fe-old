@@ -77,7 +77,7 @@
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_NO": "@:BTN_NO",
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_YES": "@:BTN_YES",
     "TOPIC_INVITE_USER_DELETE_CONFIRM_HEADING": "Gebruikersuitnodiging verwijderen",
-    "TOPIC_INVITE_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Weet u zeker dat u deze gebruikersuitnodiging wilt verwijderen?",
+    "TOPIC_INVITE_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Weet u zeker dat u de uitnodiging van deze gebruiker wilt verwijderen?",
     "TOPIC_INVITE_USER_DELETE_CONFIRM_NO": "@:BTN_NO",
     "TOPIC_INVITE_USER_DELETE_CONFIRM_SINGLE": "JA, ENKELE UITNODIGING VERWIJDEREN",
     "TOPIC_INVITE_USER_DELETE_CONFIRM_ALL": "JA, ALLE UITNODIGINGEN VERWIJDEREN",
@@ -344,6 +344,7 @@
   "TXT_TOPIC_CATEGORY_ALL": "elke categorie",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "De Twelve-film",
   "TXT_TOPIC_CATEGORY_KEEPITCLEANPLAN": "Keep It Clean Plan",
+  "TXT_TOPIC_CATEGORY_HACKTIVISTCOMMUNITY": "Hacktivist Community",
   "TXT_TOPIC_CATEGORY_THIRTYFOURISLANDPROJECT": "34 island project",
   "TXT_TOPIC_CATEGORY_EESTIJAZZIARENGUSUUNAD": "Eesti Jazzi Arengusuunad",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Bedrijfsleven en industrie",
@@ -455,7 +456,11 @@
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
       "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Hier vindt u alle documenten en informatie over het Keep It Clean-plan.",
-      "LBL_ENVIRONMENT": "Milieu"
+      "HEADING_HACKTIVIST_COMMUNITY": "Hacktivist Community",
+      "TXT_HACKTIVIST_COMMUNITY": "Hacktivist Community",
+      "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "De Civic Hacktivist Community is een ontmoetingsplaats voor mensen die zich hard maken voor e-democratie en gezamenlijke besluitvorming.",
+      "LBL_ENVIRONMENT": "Milieu",
+      "LBL_HACKTIVIST_COMMUNITY": "Democratie en maatschappij"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Groepen: {{count}}",
@@ -874,7 +879,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40016": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40016",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40017": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40017",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "DigiDoc-service fout. Probeer het opnieuw. Neem contact op met de klantenservice als het probleem aanhoudt.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Sorry, one of the vote options provided is invalid. Vote option can have maximum of 200 characters.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Sorry, een van de opgegeven stemopties is ongeldig. De stemoptie mag maximaal 200 tekens lang zijn.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "De stemming is afgelopen.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",

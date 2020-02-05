@@ -191,8 +191,8 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
-                .state('keepitcleanplan', { //TODO: Special project with https://www.letsdoitworld.org/, remove when over.
-                    url: '/keepitcleanplan',
+                .state('hacktivistcommunity', {
+                    url: '/hacktivistcommunity',
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })

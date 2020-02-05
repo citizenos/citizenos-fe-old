@@ -77,7 +77,7 @@
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_NO": "@:BTN_NO",
     "TOPIC_MEMBER_USER_DELETE_CONFIRM_YES": "@:BTN_YES",
     "TOPIC_INVITE_USER_DELETE_CONFIRM_HEADING": "Supprimer l'invitation du membre",
-    "TOPIC_INVITE_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Êtes-vous sûr de vouloir supprimer l'invitation de ce membre ?",
+    "TOPIC_INVITE_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Êtes-vous sûr de vouloir supprimer l'invitation de cet utilisateur ?",
     "TOPIC_INVITE_USER_DELETE_CONFIRM_NO": "@:BTN_NO",
     "TOPIC_INVITE_USER_DELETE_CONFIRM_SINGLE": "OUI, SUPPRIMER UNE SEULE INVITATION",
     "TOPIC_INVITE_USER_DELETE_CONFIRM_ALL": "OUI, SUPPRIMER TOUTES LES INVITATIONS",
@@ -344,6 +344,7 @@
   "TXT_TOPIC_CATEGORY_ALL": "Toute catégorie",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "Film « The Twelve »",
   "TXT_TOPIC_CATEGORY_KEEPITCLEANPLAN": "Keep It Clean Plan",
+  "TXT_TOPIC_CATEGORY_HACKTIVISTCOMMUNITY": "Communauté hacktiviste",
   "TXT_TOPIC_CATEGORY_THIRTYFOURISLANDPROJECT": "34 island project",
   "TXT_TOPIC_CATEGORY_EESTIJAZZIARENGUSUUNAD": "Eesti Jazzi Arengusuunad",
   "TXT_TOPIC_CATEGORY_BUSINESS": "Business et industrie",
@@ -455,7 +456,11 @@
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
       "TXT_KEEP_IT_CLEAN_PLAN": "Keep It Clean Plan by Let's Do It! World.",
       "TXT_DESCRIPTION_KEEP_IT_CLEAN_PLAN": "Vous trouverez ici tous les documents et renseignements sur le plan « Keep It Clean ».",
-      "LBL_ENVIRONMENT": "Environnement"
+      "HEADING_HACKTIVIST_COMMUNITY": "Communauté hacktiviste",
+      "TXT_HACKTIVIST_COMMUNITY": "Communauté hacktiviste",
+      "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "La communauté hacktiviste civique est un espace de rencontre pour les personnes qui se battent pour l'e-démocratie et la prise de décision collaborative.",
+      "LBL_ENVIRONMENT": "Environnement",
+      "LBL_HACKTIVIST_COMMUNITY": "Démocratie et société civile"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Groupes : {{count}}",
@@ -874,7 +879,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40016": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40016",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40017": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40017",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "Erreur de service DigiDoc. Veuillez réessayer. Si le problème persiste, veuillez contacter le service client.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Sorry, one of the vote options provided is invalid. Vote option can have maximum of 200 characters.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Désolé, une des options de vote fournies n'est pas valide. L'option de vote doit faire moins de 200 caractères.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Le vote est clôturé.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
