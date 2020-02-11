@@ -190,10 +190,10 @@ angular
             communities: 'communities', // Communities and urban development
             defense: 'defense', //  Defense and security
             integration: 'integration', // Integration and human rights
-            varia: 'varia', // Varia
             youth: 'youth', //Youth
             science: 'science', //Science and Technology
-            society: 'society' //Democracy and civil society
+            society: 'society', //Democracy and civil society
+            varia: 'varia' // Varia
         };
 
         Topic.REPORT_TYPES = {
