@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="clearer"></div>
 
                 <div class="header_row_wrap">
@@ -34,11 +34,6 @@
                             </div>
                         </div>
 
-                        <div ng-if="wWidth > 560" class="blue_button_wrap">
-                            <div class="blue_button" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button" 
-                                 translate="MODALS.MY_ACCOUNT_BTN_SAVE">Save changes
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -48,7 +43,7 @@
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section">
-                        
+
                         <div id="image_edit_section">
                             <div class="profile_image_wrapper dark big">
                                 <!--div class="profile_moon sprite sprite-icon-certified-google-2-x2x"></div-->
@@ -73,7 +68,7 @@
                         </div>
 
                         <div class="profile_line v_line lightest_line"></div>
-                        
+
                         <div id="profile_edit_section">
                             <input id="name" ng-model="form.name" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NAME' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" maxlength="255" required>
                             <label for="name" class="error_label" ng-if="errors.name">
@@ -105,7 +100,7 @@
             <div class="lightbox_content" ng-if="tabSelected === 'account'">
                 <div id="login_lightbox">
                     <div class="line lightest_line"></div>
-    
+
                     <div class="lightbox_section">
                         <div id="account_edit_section">
                             <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NEW_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64">
@@ -120,6 +115,19 @@
                     </div>
                 </div>
             </div>
+
+            <div class="lightbox_footer">
+
+                <div class="line lightest_line"></div>
+                <div class="blue_button_wrap">
+                    <div class="blue_button_wrap">
+                        <div class="blue_button" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button"
+                             translate="MODALS.MY_ACCOUNT_BTN_SAVE">Save changes
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </form>
         </div>
     </div>
