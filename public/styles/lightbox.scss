@@ -592,6 +592,78 @@
                 }
             }
 
+            .lightbox_footer {
+                width: 100%;
+                height: 70px;
+                background: #FFF;
+                border-radius: 0 0 4px 4px;
+                display: table;
+                box-sizing: border-box;
+                color: #252525;
+
+                @media (max-width: 560px) {
+                    position: relative;
+                    bottom: 0;
+                }
+
+                .lightbox_section {
+                    display: table-row;
+                    height: 80px;
+                    padding: 0;
+
+                    .footer_button_wrap {
+                        position: relative;
+                        display: table-cell;
+                        vertical-align: middle;
+
+                        .blue_button {
+                            padding: 10px;
+                            display: inline-block;
+                            min-width: 120px;
+                        }
+
+                        &.left {
+                            left: 20px;
+                            text-align: left;
+                        }
+                        &.right {
+                            right: 20px;
+                            text-align: right;
+                        }
+
+                    }
+                }
+            }
+
+            .blue_button_wrap {
+                .blue_button {
+                    @media (max-width: 560px) {
+                        width: calc(100% - 40px);
+                    }
+                    float: right;
+                    margin-top: 20px;
+                    margin-right: 20px;
+                    min-width: 100px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    border-radius: 4px;
+                    position: relative;
+                }
+            }
+
+            .blue_button_wrap.mobile {
+                border-radius: 0 0 4px 4px;
+                position: absolute;
+                width: 100%;
+                bottom: 10px;
+                padding: 0 10px;
+                box-sizing: border-box;
+                z-index: 1;
+
+                .blue_button {
+                    border-radius: 4px;
+                }
+            }
         }
 
         .blue_button_wrap.mobile {
@@ -846,6 +918,10 @@
             padding: 20px 20px 19px 20px;
             box-sizing: border-box;
             border-bottom: 1px solid $lightest_gray;
+
+            &:last-child {
+                border-bottom: none;
+            }
 
             .blue_link {
                 font-weight: $bold;
@@ -1432,12 +1508,7 @@
             .lightbox_content {
                 background: $light_gray;
                 font-size: 14px;
-                border-radius: 0 0 4px 4px;
                 overflow: hidden;
-
-                @media (max-height: 800px) {
-                    margin-bottom: 30px;
-                }
 
                 @media (max-width: 560px) {
                     border-radius: 0
@@ -1697,10 +1768,6 @@
             &.language_section {
                 padding-left: 25px !important;
             }
-            @media (max-width: 640px) {
-                max-height: 279px;
-            }
-
             @media (max-width: 560px) {
                 max-height: initial;
                 padding-bottom: 20px !important;
@@ -2077,10 +2144,6 @@
         }
     }
 
-    #lightbox.with_header_menu #lightbox_wrap .lightbox_content {
-        top: 142px;
-    }
-
     .lightbox_content.invite_url {
 
         .copy_link {
@@ -2207,13 +2270,12 @@
                     bottom: 0;
                     right: 0;
                     left: 0;
-                    top: 96px;
-                    position: absolute;
+                    top: 0;
+                    position: relative;
                     margin: 0;
                     overflow: auto;
 
                     .lightbox_section {
-                        margin-bottom: 20px;
 
                         .input_description {
                             margin-bottom: 1px;
