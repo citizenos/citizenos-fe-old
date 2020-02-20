@@ -6,8 +6,8 @@
 
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
     .sprite {
-        background-image: url('../imgs/icons_sprite2x.png?v6');
-        background-size: 203px 3197px;
+        background-image: url('../imgs/icons_sprite2x.png?v7');
+        background-size: 203px 3237px;
     }
 }
 
@@ -793,6 +793,18 @@
     width: 40px;
     height: 40px;
     background-position: 0 -2773px;
+}
+
+.sprite-icon-activity-invite-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -3197px; /**FIXME: ICON**/
+}
+
+.sprite-icon-activity-invite-new-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -3197px; /**FIXME: ICON**/
 }
 
 .sprite-icon-activity-personal-2x {
