@@ -747,7 +747,7 @@
                         <div class="topic_info" ng-class="app.more_info_button ? 'open' : ''">
 
                             <div class="container_report" ng-if="topic.visibility === VISIBILITY.public && !topic.report" ui-sref="topics.view.report">
-                                <div class="ff_table_fix">
+                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='MODALS.TOOLTIP_REPORT_TOPIC'>Report topic</span>">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-exclamation2x-white"></div>
                                         <div class="red_bg"></div>
@@ -756,7 +756,7 @@
                             </div>
 
                             <div class="container_pin" ng-class="topic.pinned ? 'pinned' : ''" ng-click="togglePin()">
-                                <div class="ff_table_fix">
+                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='MODALS.TOOLTIP_PIN_TOPIC'>Pin topic</span>">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-favourite2x-white"></div>
                                         <div class="yellow_bg"></div>

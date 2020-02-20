@@ -114,7 +114,7 @@
                 <!-- Topics -->
                 <a ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
                     <div class="container_pin" ng-class="item.pinned ? 'pinned' : ''" ng-click="item.togglePin();">
-                        <div class="ff_table_fix">
+                        <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='MODALS.TOOLTIP_PIN_TOPIC'>Pin topic</span>">
                             <div class="table_cell">
                                 <div class="sprite sprite-icon-favourite2x-white"></div>
                                 <div class="yellow_bg"></div>
