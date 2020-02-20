@@ -304,7 +304,7 @@
         <a ui-sref="topics.view({topicId: topic.id})" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
-                    <div class="date" ng-bind="topic.createdAt | amDateFormat : 'L'">12/12/2015</div>
+                    <div class="date" ng-bind="topic.lastActivity | amDateFormat : 'L'">12/12/2015</div>
                     <div class="author" ng-bind="topic.creator.name">creator name</div>
                     <div class="clearer"></div>
                 </div>
