@@ -1,3 +1,7 @@
+## 2020-02-20
+
+* User lastActivity field for public topics list https://github.com/citizenos/citizenos-fe/issues/231
+
 ## 2020-01-16
 
 * Updated home page view - https://github.com/citizenos/citizenos-fe/issues/383
