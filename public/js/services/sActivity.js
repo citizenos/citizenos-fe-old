@@ -351,7 +351,7 @@ angular
                 dataobject = dataobject[0];
             }
 
-            if (activity.data.type === 'Accept' || activity.data.type === 'Invite') {
+            if (activity.data.type === 'Accept' || activity.data.type === 'Invite' || (activity.data.type === 'Add' && activity.data.actor.type === 'User' && activity.data.object['@type'] === 'User' && activity.data.target['@type'] === 'Group')) { // Last condition if for Group invites
                 return 'invite';
             } else if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject['@type'] === 'TopicPin' || activity.data.target && activity.data.target['@type'] === ' Topic') {
                 return 'topic';
