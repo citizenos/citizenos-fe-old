@@ -342,6 +342,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 #epAuthorshipToggleAuthorList {
     font-family: bold, sans-serif;
     background: $base;
+    font-size: 12px;
 }
 
 #padpage {
@@ -395,14 +396,14 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         width: auto;
         height: auto;
         background-color: $medium_black;
-        
+
         ul {
             position: relative;
             margin: 5px;
 
             li {
                 height: auto;
-            
+
                 &.link {
                     width: auto;
                     color: $white;
@@ -410,7 +411,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                     font-size: 13px;
                     line-height: 18px;
                     clear: both;
-            
+
                     a {
                         background: none;
                         box-shadow: none;
@@ -572,7 +573,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                 display: block!important;
             }
         }
-        
+
     }
     input[type="submit"] {
         display: inline-block;
@@ -602,7 +603,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         text-align: right;
         border: none;
         background: none;
-        margin-left: 20px;        
+        margin-left: 20px;
     }
     .comment-reply {
         note {
@@ -611,7 +612,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
             width: 100% !important;
             margin-left: -20px !important;
             padding: 20px !important;
-            
+
             .comment-reply-text {
                 display: block;
                 clear: both;
@@ -639,7 +640,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                         padding: 0;
                         clear: both;
                     }
-    
+
                     .comment-changeFrom-value, .comment-changeTo-value, .comment-changeTo-value {
                         display: block;
                         height: auto;
@@ -662,12 +663,12 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                         width: 100%;
                     }
                 }
-                
-    
+
+
                 .comment-suggest-from-p {
                     margin-top: 20px;
                 }
-                
+
                 .comment-changeTo-approve {
                     display: block;
 
@@ -684,7 +685,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                         text-align: center;
                         display: inline-block;
                     }
-                } 
+                }
             }
         }
         note:nth-child(odd) {
@@ -728,7 +729,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
         box-shadow: none;
-        
+
 
         .comment-options-wrapper {
             .comment-options-button {
@@ -900,7 +901,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
             .comment-suggest-from-p {
                 margin-top: 20px;
             }
-            
+
             .comment-changeTo-approve {
                 display: block;
 
@@ -917,7 +918,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                     text-align: center;
                     display: inline-block!important;
                 }
-            } 
+            }
         }
 
         .comment-reply{
@@ -984,7 +985,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                 }
             }
         }
-    
+
         .comment-edit-form {
             textarea {
                 display: block;
@@ -1002,12 +1003,12 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                 margin-top: 12px;
                 margin-bottom: 16px;
                 padding: 6px 10px;
-                font-weight: normal;   
+                font-weight: normal;
             }
 
             div {
                 display: inline-block;
-                
+
                 .comment-edit-cancel {
                     height: 30px;
                     color: #0680FC;
@@ -1063,12 +1064,12 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         position: relative;
         margin-left: 0;
         display: inline-block;
-        
+
         .comment-text {
             height: 100px;
             width: initial;
 
-            label { 
+            label {
                 height: 20px;
                 width: initial;
                 color: #252525;
@@ -1153,7 +1154,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                 height: auto;
                 width: initial;
                 margin: 20px 0;
-                
+
                 textarea.comment-suggest-from {
                     font-family: 'Noto Sans',sans-serif;
                     font-size: 13px;
@@ -1161,7 +1162,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                     width: -moz-calc(100% - 20px);
                     width: -webkit-calc(100% - 20px);
                     width: -o-calc(100% - 20px);
-                    width: calc(100% - 20px);                    
+                    width: calc(100% - 20px);
                     padding: 0;
                     border: 1px solid #E5E5E5;
                     border-radius: 4px;
@@ -1213,7 +1214,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
                 float: left;
                 border: none;
                 background: none;
-                
+
             }
         }
 
@@ -1284,6 +1285,6 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         color: #0680FC;
         border: none;
         background: none;
-        
+
     }
 }
