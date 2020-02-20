@@ -21,8 +21,7 @@ angular
                 if (activity.data) {
                     if (activity.data.type === 'Create' && !activity.data.target && activity.data.object && (activity.data.object['@type'] === 'Vote' || Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'VoteOption')) {
                         result.data.splice(key, 1);
-                    }
-                    else if (activity.data.type === 'Update' && Array.isArray(activity.data.result)) {
+                    } else if (activity.data.type === 'Update' && Array.isArray(activity.data.result)) {
                         var i = 0;
                         var resultItems = [];
                         if (activity.data.origin['@type'] === 'Topic') {
@@ -352,7 +351,9 @@ angular
                 dataobject = dataobject[0];
             }
 
-            if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject['@type'] === 'TopicPin' || activity.data.target && activity.data.target['@type'] === ' Topic') {
+            if (activity.data.type === 'Accept' || activity.data.type === 'Invite') {
+                return 'invite';
+            } else if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject['@type'] === 'TopicPin' || activity.data.target && activity.data.target['@type'] === ' Topic') {
                 return 'topic';
             } else if (dataobject['@type'] === 'Group' || dataobject.groupName) {
                 return 'group';
