@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "Pengguna {{userName}} telah membuat topik: {{topicTitle}}",
+    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "Pengguna {{userName}} telah memperbarui bidang {{fieldName}} dalam topik {{topicTitle}}",
     "ACTIVITY_PREVIOUS_VERSION": "Versi sebelumnya: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Versi baru: {{newValue}}",
