@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "Käyttäjä {{userName}} on luonut aiheen {{topicTitle}}",
+    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "Käyttäjä {{userName}} on päivittänyt kentän {{fieldName}} aiheessa {{topicTitle}}",
     "ACTIVITY_PREVIOUS_VERSION": "Aiempi versio: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Uusi versio: {{newValue}}",
