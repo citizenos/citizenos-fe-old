@@ -414,6 +414,27 @@ angular
             }
         };
 
+        var getAactivityUserConnectionName = function (activity) {
+            var dataobject = activity.data.object;
+
+            if (Array.isArray(dataobject)) {
+                dataobject = dataobject[0];
+            }
+
+            if (dataobject['@type'] === 'UserConnection') {
+                var key = 'ACTIVITY_FEED.ACTIVITY_USERCONNECTION_CONNECTION_NAME_:connectionId'
+                    .replace(':connectionId', dataobject.connectionId)
+                    .toUpperCase();
+                var translation = $translate.instant(key);
+
+                if (!translation || translation === key) { // No translation found
+                    return dataobject.connectionId.charAt(0).toUpperCase() + dataobject.connectionId.slice(1)
+                } else {
+                    return translation;
+                }
+            }
+        };
+
         var getActivityUsers = function (activity, values) {
             var dataobject = activity.data.object;
             if (Array.isArray(dataobject)) {
@@ -458,6 +479,7 @@ angular
                 values.description = getActivityDescription(activity);
                 values.groupName = getActivityGroupName(activity);
                 values.attachmentName = getActivityAttachmentName(activity);
+                values.connectionName = getAactivityUserConnectionName(activity);
                 getActivityUserLevel(activity, values);
 
                 var dataobject = activity.data.object;
@@ -466,7 +488,7 @@ angular
                 }
 
                 if (dataobject['@type'] === 'CommentVote' && activity.data.type === 'Create') {
-                    var str = 'ACTIVITY_FEED.ACTIVITY_COMMENTVOTE_FIELD_VALUE_'
+                    var str = 'ACTIVITY_FEED.ACTIVITY_COMMENTVOTE_FIELD_VALUE_';
                     var val = 'UP';
                     if (dataobject.value === -1) {
                         val = 'DOWN';
