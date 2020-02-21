@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "Kasutaja {{userName}} on loonud teema \"{{topicTitle}}\"",
+    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "Kasutaja {{userName}} uuendas teemas \"{{topicTitle}}\" välja {{fieldName}}",
     "ACTIVITY_PREVIOUS_VERSION": "Eelmine versioon: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Uus versioon: {{newValue}}",
