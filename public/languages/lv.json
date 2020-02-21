@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "Lietotājs {{userName}} izveidoja tematu: {{topicTitle}}",
+    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "Lietotājs {{userName}} veica izmaiņas laukā {{fieldName}} tematā {{topicTitle}}",
     "ACTIVITY_PREVIOUS_VERSION": "Iepriekšējā versija: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Jaunā versija: {{newValue}}",
