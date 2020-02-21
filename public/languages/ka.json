@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic {{topicTitle}}",
+    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "User {{userName}} has updated a field {{fieldName}} in topic {{topicTitle}}",
     "ACTIVITY_PREVIOUS_VERSION": "Previous version: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "New version: {{newValue}}",
