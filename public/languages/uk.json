@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "Користувач {{userName}} створив тему: {{topicTitle}}",
+    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "Користувач {{userName}} оновив поле {{fieldName}} в темі {{topicTitle}}",
     "ACTIVITY_PREVIOUS_VERSION": "Попередня версія: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Нова версія: {{newValue}}",
