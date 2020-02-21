@@ -62,7 +62,7 @@ suite('l10n', function () {
                 const translation = require(path.join(LANGUAGE_FILE_DIRECTORY, file));
                 const translationProperties = propertiesToDotNotationArray(translation);
 
-                assert.deepEqual(translationProperties.sort(), sourceProperties.sort());
+                assert.deepEqual(translationProperties.sort(), sourceProperties.sort(), `Source and language file "${file}" mismatch!`);
             });
 
             done();
