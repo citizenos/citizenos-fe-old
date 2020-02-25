@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "Корисникот {{userName}} ја создаде темата: {{topicTitle}}",
+    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "Корисникот {{userName}} го обнови полето {{fieldName}} во темата {{topicTitle}}",
     "ACTIVITY_PREVIOUS_VERSION": "Претходна верзија: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Нова верзија: {{newValue}}",
@@ -826,6 +826,11 @@
     "ACTIVITY_SYSTEM_CREATE_USER": "Корисникот е креиран во системот по покана од друг корисник.",
     "ACTIVITY_USER_CREATE_USERCONSENT": "",
     "ACTIVITY_USER_DELETE_CONSENT": "",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_GOOGLE": "Google",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_FACEBOOK": "Facebook",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_SMARTID": "Smart-ID",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Estonian ID-card / Mobiil-ID",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_CITIZENOS": "Citizen OS",
     "FILTER_ALL": "Сите активности",
     "FILTER_USERTOPICS": "Активности за моите теми",
     "FILTER_USERGROUPS": "Активности за моите групи",

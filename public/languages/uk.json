@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "Користувач {{userName}} створив тему: {{topicTitle}}",
+    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "Користувач {{userName}} оновив поле {{fieldName}} в темі {{topicTitle}}",
     "ACTIVITY_PREVIOUS_VERSION": "Попередня версія: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Нова версія: {{newValue}}",
@@ -826,6 +826,11 @@
     "ACTIVITY_SYSTEM_CREATE_USER": "Користувач був створений у системі за запрошенням іншого користувача.",
     "ACTIVITY_USER_CREATE_USERCONSENT": "",
     "ACTIVITY_USER_DELETE_CONSENT": "",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_GOOGLE": "Google",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_FACEBOOK": "Facebook",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_SMARTID": "Smart-ID",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Estonian ID-card / Mobiil-ID",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_CITIZENOS": "Citizen OS",
     "FILTER_ALL": "Всі події",
     "FILTER_USERTOPICS": "Події пов'язані з моїми темами",
     "FILTER_USERGROUPS": "Події пов'язані з моїми групами",

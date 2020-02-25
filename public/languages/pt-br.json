@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "O usuário {{userName}} criou o tópico {{topicTitle}}",
+    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "O usuário {{userName}} atualizou o campo {{fieldName}} no tópico {{topicTitle}}",
     "ACTIVITY_PREVIOUS_VERSION": "Versão anterior: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Nova versão: {{newValue}}",
@@ -826,6 +826,11 @@
     "ACTIVITY_SYSTEM_CREATE_USER": "O usuário foi criado para o sistema ou foi convidado por outro usuário.",
     "ACTIVITY_USER_CREATE_USERCONSENT": "",
     "ACTIVITY_USER_DELETE_CONSENT": "",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_GOOGLE": "Google",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_FACEBOOK": "Facebook",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_SMARTID": "Smart-ID",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Estonian ID-card / Mobiil-ID",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_CITIZENOS": "Citizen OS",
     "FILTER_ALL": "Todas as atividades",
     "FILTER_USERTOPICS": "Atividades relacionadas aos meus tópicos",
     "FILTER_USERGROUPS": "Atividades relacionadas aos meus grupos",
