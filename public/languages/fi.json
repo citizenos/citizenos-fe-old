@@ -743,7 +743,7 @@
   },
   "ACTIVITY_FEED": {
     "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_UPDATE_TOPIC": "User {{userName}} has updated a field {{fieldName}} in topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPIC": "Käyttäjä {{userName}} on päivittänyt kentän {{fieldName}} aiheessa <em>{{topicTitle}}</em>",
     "ACTIVITY_PREVIOUS_VERSION": "Aiempi versio: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Uusi versio: {{newValue}}",
     "ACTIVITY_SYSTEM_UPDATE_TOPIC": "Järjestelmä on päivittänyt kentän {{fieldName}} aiheessa <em>{{topicTitle}}</em>.",
