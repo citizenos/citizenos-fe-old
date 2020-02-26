@@ -33,7 +33,7 @@
   "TXT_MODERATION_TYPES_HATE": "@:TXT_REPORT_TYPES_HATE",
   "TXT_MODERATION_TYPES_NETIQUETTE": "@:TXT_REPORT_TYPES_NETIQUETTE",
   "TXT_MODERATION_TYPES_DUPLICATE": "@:TXT_REPORT_TYPES_DUPLICATE",
-  "TOOLTIP_PIN_TOPIC": "Pin topic",
+  "TOOLTIP_PIN_TOPIC": "Добавить тему в избранное",
   "TOOLTIP_REPORT_TOPIC": "@:MODALS.TOPIC_REPORT_HEADING",
   "MODALS": {
     "GROUP_DELETE_CONFIRM_HEADING": "Удалить группу",
@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_CREATE_TOPIC": "Пользователь {{userName}} создал тему <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "Пользователь {{userName}} обновил поле {{fieldName}} в теме: <em>{{topicTitle}}</em>",
     "ACTIVITY_PREVIOUS_VERSION": "Предыдущая версия: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Новая версия: {{newValue}}",
@@ -829,7 +829,7 @@
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_GOOGLE": "Google",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_FACEBOOK": "Facebook",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_SMARTID": "Smart-ID",
-    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Estonian ID-card / Mobiil-ID",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Эстонская ID-карта / Mobiil-ID",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_CITIZENOS": "Citizen OS",
     "FILTER_ALL": "Все обновления",
     "FILTER_USERTOPICS": "Обновления, связанные с моими темами",
