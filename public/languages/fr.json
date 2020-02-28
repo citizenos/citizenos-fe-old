@@ -33,7 +33,7 @@
   "TXT_MODERATION_TYPES_HATE": "@:TXT_REPORT_TYPES_HATE",
   "TXT_MODERATION_TYPES_NETIQUETTE": "@:TXT_REPORT_TYPES_NETIQUETTE",
   "TXT_MODERATION_TYPES_DUPLICATE": "@:TXT_REPORT_TYPES_DUPLICATE",
-  "TOOLTIP_PIN_TOPIC": "Pin topic",
+  "TOOLTIP_PIN_TOPIC": "Épingler le sujet",
   "TOOLTIP_REPORT_TOPIC": "@:MODALS.TOPIC_REPORT_HEADING",
   "MODALS": {
     "GROUP_DELETE_CONFIRM_HEADING": "Supprimer groupe",
@@ -742,7 +742,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_CREATE_TOPIC": "L’utilisateur {{userName}} a créé un sujet : <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "L'utilisateur {{userName}} à mis à jour un champs {{fieldName}} dans le sujet <em>{{topicTitle}}</em>",
     "ACTIVITY_PREVIOUS_VERSION": "Version antérieure : {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Dernière version: {{newValue}}",
@@ -829,7 +829,7 @@
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_GOOGLE": "Google",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_FACEBOOK": "Facebook",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_SMARTID": "Smart-ID",
-    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Estonian ID-card / Mobiil-ID",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Carte d'identité estonienne / Mobiil-ID",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_CITIZENOS": "Citizen OS",
     "FILTER_ALL": "Toutes les activités",
     "FILTER_USERTOPICS": "Les activités liées à mes sujets",
