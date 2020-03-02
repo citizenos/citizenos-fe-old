@@ -5,27 +5,35 @@ angular
 
         var path = '/api/:prefix/:userId/topics/:topicId/comments/:commentId';
 
-        function findReplies(parentNode, currentNode) {
+        // Transform an argument (comment) tree to 2 levels - bring all replies and their replies to same level.
+        function flattenTree (parentNode, currentNode) {
             if (currentNode.replies.rows.length > 0) {
-                if(parentNode != currentNode) {
+                if (parentNode != currentNode) {
                     parentNode.replies.rows = parentNode.replies.rows.concat(currentNode.replies.rows);
                 }
-                currentNode.replies.rows.forEach(function(reply) {
-                    findReplies(parentNode, reply);
+                currentNode.replies.rows.forEach(function (reply) {
+                    flattenTree(parentNode, reply);
                 });
-            }
-            else {
+            } else {
                 return;
             }
         }
 
         var TopicComment = $resource(
             sLocation.getAbsoluteUrlApi(path),
-            {topicId: '@topicId', commentId: '@id'},
+            {
+                topicId: '@topicId',
+                commentId: '@id'
+            },
             {
                 save: {
                     method: 'POST',
-                    params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
+                    params: {
+                        topicId: '@topicId',
+                        commentId: '@id',
+                        prefix: sAuth.getUrlPrefix,
+                        userId: sAuth.getUrlUserId
+                    },
                     transformRequest: function (data) {
                         return angular.toJson(data);
                     },
@@ -40,13 +48,18 @@ angular
                 query: {
                     isArray: true,
                     url: sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId/comments'),
-                    params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
+                    params: {
+                        topicId: '@topicId',
+                        commentId: '@id',
+                        prefix: sAuth.getUrlPrefix,
+                        userId: sAuth.getUrlUserId
+                    },
                     transformResponse: function (data, headerGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             var result = angular.fromJson(data).data.rows;
-                            result.forEach(function(row, k) {
+                            result.forEach(function (row, k) {
                                 row.count = angular.fromJson(data).data.count;
-                                findReplies(row, row)
+                                flattenTree(row, row);
                             });
 
                             return result;
@@ -57,7 +70,12 @@ angular
                 },
                 update: {
                     method: 'PUT',
-                    params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
+                    params: {
+                        topicId: '@topicId',
+                        commentId: '@id',
+                        prefix: sAuth.getUrlPrefix,
+                        userId: sAuth.getUrlUserId
+                    },
                     transformRequest: function (data) {
                         var requestObject = {};
                         _.forEach(data.toJSON(), function (value, key) { // Remove all object properties as we have none we care about in the server side
@@ -84,7 +102,10 @@ angular
                 },
                 report: {
                     method: 'POST',
-                    params: {topicId: '@topicId', commentId: '@id'},
+                    params: {
+                        topicId: '@topicId',
+                        commentId: '@id'
+                    },
                     url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/reports'),
                     transformRequest: function (data) {
                         return angular.toJson(data);
@@ -92,7 +113,12 @@ angular
                 },
                 delete: {
                     method: 'DELETE',
-                    params: {topicId: '@topicId', commentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
+                    params: {
+                        topicId: '@topicId',
+                        commentId: '@id',
+                        prefix: sAuth.getUrlPrefix,
+                        userId: sAuth.getUrlUserId
+                    },
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;
