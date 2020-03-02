@@ -19,13 +19,12 @@ angular
             '/views/default/nav.html',
             '/views/default/nav_mobile.html',
             '/views/default/search.html',
-            '/views/directives/cos_modal.html',
-            '/views/directives/cos_modal_datepicker.html',
-            '/views/directives/date_picker.html',
             '/views/layouts/main.html',
             '/views/layouts/partner.html',
             '/views/layouts/widget.html',
-            '/views/widgets/activities.html',
+            '/views/directives/cos_modal.html',
+            '/views/directives/cos_modal_datepicker.html',
+            '/views/directives/date_picker.html',
             '/views/modals/activity_modal.html',
             '/views/modals/group_create_settings.html',
             '/views/modals/group_delete_confirm.html',
@@ -71,6 +70,7 @@ angular
             '/views/modals/topic_vote_sign_smartid.html',
             '/views/modals/user_delete_confirm.html',
             '/views/modals/widgets_how_it_works.html',
+            '/views/widgets/activities.html',
         ];
         var i = 0;
         if (templates.length) {

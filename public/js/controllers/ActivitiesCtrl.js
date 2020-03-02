@@ -26,6 +26,51 @@ angular
                 filterValue = null;
             }
 
+            var activitiesToGroups = function (activities) {
+                var finalActivities = {};
+                var returnActivities = [];
+
+                for(var i=0; i < activities.length; i++) {
+                    var id = activities[i].data.object.id;
+                    if (activities[i].data.target) {
+                        id = activities[i].data.target.id;
+                    }
+                    var key = activities[i].string + '_' + id;
+                    if (!finalActivities[key]) {
+                        finalActivities[key] = new Array(activities[i]);
+                    } else {
+                        finalActivities[key].push(_.cloneDeep(activities[i]));
+                    }
+                }
+
+                Object.keys(finalActivities).forEach(function (item) {
+
+                    var groupItems = {};
+                    finalActivities[item].forEach(function (value){
+                        groupItems[value.id] = value;
+                    });
+
+                    returnActivities.push({referer: item, values: groupItems});
+                });
+
+                return returnActivities;
+            };
+
+            $scope.keyCounter = function (objIn) {
+                console.log(objIn);
+                return Object.keys(objIn).length;
+            };
+
+            $scope.getGroupItems = function (values) {
+                var returnArray = [];
+                Object.keys(values).forEach(function (key) {
+                    returnArray.push(values[key]);
+                });
+
+                console.log(returnArray.length)
+                return returnArray;
+            };
+
             sActivity
                 .getActivities($scope.activitiesOffset, $scope.activitiesLimit, filterValue)
                 .then(function (activities) {
@@ -40,17 +85,17 @@ angular
                             activity.isNew = '-new';
                         }
                     });
-
-                    $scope.showLoadMoreActivities = !(activities.length < $scope.activitiesLimit);
-                    $scope.activities = $scope.activities.concat(activities);
+                    var groupedActivities = activitiesToGroups(activities);
+                    $scope.showLoadMoreActivities = (!groupedActivities.length < $scope.activitiesLimit);
+                    $scope.activities = $scope.activities.concat(groupedActivities);
 
                     var element = angular.element($document[0].getElementsByClassName('lightbox_content'));
                     if (element && element[0] && element[0].scrollHeight) {
-                        $scope.$watch(element[0].scrollHeight, function () {
+                       /* $scope.$watch(element[0].scrollHeight, function () {
                             if (activities.length && element[0].clientHeight >= element[0].scrollHeight) {
-                                $scope.loadActivities();
+                               // $scope.loadActivities();
                             }
-                        }, true);
+                        }, true);*/
                     }
 
                 });
