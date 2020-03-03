@@ -73,17 +73,6 @@ angular
                         });
 
                         $scope.topicComments.rows = comments;
-                        $scope.topicComments.rows.forEach(function (comment, key) {
-                            if (comment.deletedReasonType) {
-                                $scope.topicComments.rows[key].deletedReasonType = $translate.instant('TXT_REPORT_TYPES_' + comment.deletedReasonType.toUpperCase());
-                            }
-                            comment.replies.rows.forEach(function (reply, rkey) {
-                                $scope.topicComments.rows[key].replies.rows[rkey] = new TopicComment(reply);
-                                if (reply.deletedReasonType) {
-                                    $scope.topicComments.rows[key].replies.rows[rkey].deletedReasonType = $translate.instant('TXT_REPORT_TYPES_' + comment.deletedReasonType.toUpperCase());
-                                }
-                            })
-                        });
                     } else {
                         $scope.topicComments.rows = [];
                         $scope.topicComments.count = {

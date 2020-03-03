@@ -243,7 +243,7 @@
                         <div class="alert_argument" ng-if="comment.showDeleteReason" ng-click="comment.showDeleteReason = !comment.showDeleteReason">
                             <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_FOUND_INAPPRIOPRIATE_BY" translate-values="{usersFullName: comment.deletedBy.name}">This comment was found inappriopriate by <b>{{::comment.deletedBy.name}}</b></span><span
                             ng-if="comment.deletedReasonType || comment.deleteReasonText">:</span>
-                            <b ng-if="comment.deletedReasonType">{{::comment.deletedReasonType}}</b><br>
+                            <b ng-if="comment.deletedReasonType">{{('TXT_REPORT_TYPES_' + ::comment.deletedReasonType | uppercase) | translate}}</b><br>
                             <b ng-if="comment.deletedReasonText" class="italic">{{::comment.deletedReasonText}}</b>
                             <br>
                             <br>
@@ -545,8 +545,8 @@
                         <div class="alert_argument" ng-if="reply.showDeleteReason" ng-click="reply.showDeleteReason = !reply.showDeleteReason">
                             <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY" translate-values="{usersFullName: reply.deletedBy.name}">This comment was found inappriopriate by <b>{{reply.deletedBy.name}}</b></span><span
                             ng-if="reply.deletedReasonType || reply.deletedReasonText">:</span>
-                            <b ng-if="reply.deletedReasonType">{{('TXT_REPORT_TYPES_' + reply.deletedReasonType | uppercase) | translate}}</b><br>
-                            <b class="italic" ng-if="reply.deletedReasonText">{{reply.deletedReasonText}}</b><br>
+                            <b ng-if="reply.deletedReasonType">::{{('TXT_REPORT_TYPES_' + ::reply.deletedReasonType | uppercase) | translate}}</b><br>
+                            <b class="italic" ng-if="reply.deletedReasonText">{{::reply.deletedReasonText}}</b><br>
                             <br>
                             <br>
                             <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT">Read our <a class="underlined_link" href="">code of conduct</a> for more information</span>

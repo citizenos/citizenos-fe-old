@@ -5,20 +5,6 @@ angular
 
         var path = '/api/:prefix/:userId/topics/:topicId/comments/:commentId';
 
-        // Transform an argument (comment) tree to 2 levels - bring all replies and their replies to same level.
-        function flattenTree (parentNode, currentNode) {
-            if (currentNode.replies.rows.length > 0) {
-                if (parentNode != currentNode) {
-                    parentNode.replies.rows = parentNode.replies.rows.concat(currentNode.replies.rows);
-                }
-                currentNode.replies.rows.forEach(function (reply) {
-                    flattenTree(parentNode, reply);
-                });
-            } else {
-                return;
-            }
-        }
-
         var TopicComment = $resource(
             sLocation.getAbsoluteUrlApi(path),
             {
@@ -57,9 +43,18 @@ angular
                     transformResponse: function (data, headerGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             var result = angular.fromJson(data).data.rows;
+
                             result.forEach(function (row, k) {
                                 row.count = angular.fromJson(data).data.count;
                                 flattenTree(row, row);
+                            });
+
+                            // All replies to be instances of TopicComment
+                            result.forEach(function(row, i) {
+                               var replies = row.replies.rows;
+                               replies.forEach(function(reply, j){
+                                    replies[j] = new TopicComment(reply);
+                               });
                             });
 
                             return result;
@@ -170,6 +165,18 @@ angular
             popularity: 'popularity',
             date: 'date'
         };
+
+        // Transform an argument (comment) tree to 2 levels - bring all replies and their replies to same level.
+        function flattenTree (parentNode, currentNode) {
+            if (currentNode.replies.rows.length > 0) {
+                if (parentNode != currentNode) {
+                    parentNode.replies.rows = parentNode.replies.rows.concat(currentNode.replies.rows);
+                }
+                currentNode.replies.rows.forEach(function (reply, i) {
+                    flattenTree(parentNode, reply);
+                });
+            }
+        }
 
         return TopicComment;
     }]);
