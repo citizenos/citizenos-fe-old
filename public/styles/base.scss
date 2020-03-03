@@ -292,7 +292,7 @@ table, .pretend_table {
     cursor: pointer;
     background-color: $lightest_gray;
     border-radius: 50%;
-    overflow: hidden;
+    overflow: visible;
 
     .ff_table_fix {
         display: table;
@@ -304,12 +304,8 @@ table, .pretend_table {
         .yellow_bg {
             width: 24px;
             height: 24px;
-            top: 0;
-            right: 0;
-            @include tablet {
-                width: 0;
-                height: 0;
-            }
+            top: -1px;
+            right: -1px;
         }
     }
 
@@ -320,16 +316,13 @@ table, .pretend_table {
             transition: none;
             width: 24px;
             height: 24px;
-            top: 0;
-            right: 0;
+            top: -1px;
+            right: -1px;
         }
     }
 
     .yellow_bg {
         transition: all 360ms cubic-bezier(.45, .78, 0, 1);
-        @include tablet {
-            transition: none !important;
-        }
         background: $pin_yellow;
         border-radius: 50%;
         width: 0;
@@ -352,8 +345,8 @@ table, .pretend_table {
         transition: none;
         width: 24px !important;
         height: 24px !important;
-        top: 0;
-        right: 0;
+        top: -1px;
+        right: -1px;
     }
 }
 
@@ -374,7 +367,6 @@ table, .pretend_table {
     .table_cell:first-child {
         padding-right: 5px;
     }
-
     .table_cell:last-child {
         padding-left: 5px;
     }

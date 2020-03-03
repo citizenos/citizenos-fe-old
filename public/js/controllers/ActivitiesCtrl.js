@@ -47,6 +47,11 @@ angular
 
                     var groupItems = {};
                     finalActivities[item].forEach(function (value){
+                        if (finalActivities[item].length > 1) {
+                            value.string = value.string + '_ACTIVITYGROUP';
+                            value.values.groupCount = finalActivities[item].length-1;
+                        }
+                        console.log(value.id);
                         groupItems[value.id] = value;
                     });
 
@@ -57,7 +62,6 @@ angular
             };
 
             $scope.keyCounter = function (objIn) {
-                console.log(objIn);
                 return Object.keys(objIn).length;
             };
 
@@ -67,25 +71,28 @@ angular
                     returnArray.push(values[key]);
                 });
 
-                console.log(returnArray.length)
                 return returnArray;
             };
 
             sActivity
                 .getActivities($scope.activitiesOffset, $scope.activitiesLimit, filterValue)
-                .then(function (activities) {
+                .then(function (groupedActivities) {
                     $scope.app.unreadActivitiesCount = 0;
-                    activities.forEach(function (activity, key) {
-                        if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
-                            if (!lastViewTime || activity.updatedAt > lastViewTime) {
-                                lastViewTime = activity.updatedAt;
+                    console.log('GROUPED 2', groupedActivities);
+                    groupedActivities.forEach(function (group, groupKey) {
+                        Object.keys(group.values).forEach(function (key) {
+                            group.values[key]
+                            if (group.values[key].data.type === 'View' && group.values[key].data.object && group.values[key].data.object['@type'] === 'Activity') {
+                                if (!lastViewTime || group.values[key].updatedAt > lastViewTime) {
+                                    lastViewTime = group.values[key].updatedAt;
+                                }
+                                groupedActivities.splice(groupKey, 1);
+                            } else if (!lastViewTime || group.values[key].updatedAt > lastViewTime) {
+                                group.values[key].isNew = '-new';
                             }
-                            activities.splice(key, 1);
-                        } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
-                            activity.isNew = '-new';
-                        }
+                        });
                     });
-                    var groupedActivities = activitiesToGroups(activities);
+               //     var groupedActivities = activitiesToGroups(activities);
                     $scope.showLoadMoreActivities = (!groupedActivities.length < $scope.activitiesLimit);
                     $scope.activities = $scope.activities.concat(groupedActivities);
 

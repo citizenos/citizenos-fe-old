@@ -25,7 +25,7 @@
                     <img ng-if="group.imageUrl" ng-src="group.imageUrl"><span ng-bind="group.name">group.name</span>
                 </div>
                 <div class="container_pin" ng-class="app.pinned ? 'pinned' : ''" ng-click="app.pinned = !app.pinned">
-                    <div class="ff_table_fix">
+                    <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='MODALS.TOOLTIP_PIN_TOPIC'>Pin topic</span>">
                         <div class="table_cell">
                             <div class="sprite sprite-icon-favourite2x-white"></div>
                             <div class="yellow_bg"></div>
