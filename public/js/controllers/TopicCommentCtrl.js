@@ -282,8 +282,12 @@ angular
                         for (var j = 0; j < $scope.topicComments.rows[i].replies.rows.length; j++) {
                             if ($scope.topicComments.rows[i].replies.rows[j].id === commentId) {
                                 $scope.topicComments.rows[i].showReplies = true;
-                                // TODO: Expand edits only if an edit is actually referenced.
-                                $scope.topicComments.rows[i].replies.rows[j].showEdits = true; // In case the reply has edits and that is referenced.
+
+                                // Expand edits only if an actual edit is referenced.
+                                var replyEdits = $scope.topicComments.rows[i].replies.rows[j].edits;
+                                if (replyEdits.length && commentVersion < replyEdits.length - 1) {
+                                    $scope.topicComments.rows[i].replies.rows[j].showEdits = true; // In case the reply has edits and that is referenced.
+                                }
 
                                 $timeout(function () { // TODO:  After "showEdits" is set, angular will render the edits and that takes time. Any better way to detect of it to be done?
                                     $scope.app.scrollToAnchor(commentIdWithVersion)
