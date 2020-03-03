@@ -675,7 +675,7 @@
       "LBL_ARGUMENTS_COUNT_PRO": "pro: {{countPro}}",
       "LBL_ARGUMENTS_COUNT_CON": "con: {{countCon}}",
       "BTN_ADD_ARGUMENT": "add argument",
-      "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "view previous versions",
+      "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "view edits",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Edit your argument subject...",

@@ -2,13 +2,13 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCommentCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$translate', 'ngDialog', 'TopicComment', function ($scope, $state, $stateParams, $timeout, $log, $translate, ngDialog, TopicComment) {
+    .controller('TopicCommentCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$translate', '$q', 'ngDialog', 'TopicComment', function ($scope, $state, $stateParams, $timeout, $log, $translate, $q, ngDialog, TopicComment) {
         $log.debug('TopicCommentCtrl', $scope, $scope.topic, $stateParams.topicId);
 
         $scope.topic = $scope.topic || {id: $stateParams.topicId};
 
         var COMMENT_VERSION_SEPARATOR = '_v';
-        var commentsLimit = 10;
+        var COMMENT_COUNT_PER_PAGE = 10;
 
         $scope.topicComments = {
             rows: [],
@@ -32,16 +32,44 @@ angular
             };
         });
 
-        $scope.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
+        /**
+         * Parse commentId value from the state params to commentId and version
+         *
+         *  @param {string} commentIdWithVersion Comment id in format {commentId}_v{version}
+         *
+         * @returns {{commentVersion: null, commentId: null}|{commentVersion: (*|string), commentId: (*|string)}}
+         * @private
+         */
+        var _parseCommentIdAndVersion = function (commentIdWithVersion) {
+            if (!commentIdWithVersion) {
+                return {
+                    commentId: null,
+                    commentVersion: null
+                }
+            }
 
-        $scope.loadPage = function (page) {
-            var offset = (page - 1) * commentsLimit;
-            $scope.loadTopicComments(offset, commentsLimit);
+            var commentIdAndVersionRegex = new RegExp('^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4{1}[a-fA-F0-9]{3}-[89abAB]{1}[a-fA-F0-9]{3}-[a-fA-F0-9]{12})+' + COMMENT_VERSION_SEPARATOR + '([0-9]+)$'); // SRC: https://gist.github.com/bugventure/f71337e3927c34132b9a#gistcomment-2238943
+            var commentIdWithVersionSplit = $stateParams.commentId.match(commentIdAndVersionRegex);
+
+            if (!commentIdWithVersionSplit) {
+                $log.error('Invalid input for _parseCommentIdAndVersion. Provided commentId does not look like UUIDv4 with version appended', commentIdWithVersion);
+                return {
+                    commentId: null,
+                    commentVersion: null
+                }
+            }
+
+            return {
+                commentId: commentIdWithVersionSplit[1],
+                commentVersion: commentIdWithVersionSplit[2],
+            }
         };
+
+        $scope.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
 
         $scope.loadTopicComments = function (offset, limit) {
             if (!limit) {
-                limit = commentsLimit;
+                limit = COMMENT_COUNT_PER_PAGE;
             }
             if (!offset) {
                 offset = 0;
@@ -55,6 +83,20 @@ angular
                     limit: limit
                 })
                 .$promise
+                .then(function (comments) {
+                    if (!comments || !comments.length) {
+                        return comments;
+                    }
+
+                    // Direct referencing a comment, we have no idea on what page it may be. Let's try to find out if it's on the current page.
+                    var commentIdInParams = _parseCommentIdAndVersion($stateParams.commentId).commentId;
+                    if (commentIdInParams && JSON.stringify(comments).indexOf(commentIdInParams) === -1) { // Comment ID is specified in the params, its not in the result set... on another page?
+                        $scope.loadPage($stateParams.argumentsPage + 1, true);
+                        return $q.reject();
+                    } else { // Comment ID was not specified OR was invalid. Erase whatever value was there, if it was there as it was invalid
+                        return comments;
+                    }
+                })
                 .then(function (comments) {
                     // NOTE: TopicComment.query internally transforms the API response argument (comment) tree to 2 levels - bring all replies and their replies to same level.
                     // Now we got only 2 levels in the tree - arguments and replies.
@@ -72,7 +114,17 @@ angular
                             location: location
                         });
 
+                        if ($scope.topic) { // For the arguments count on the /topics/:topicId, not beautiful. Will do until /topics/:topicId API returns comments count.
+                            $scope.topic.comments = $scope.topicComments;
+                        }
+
                         $scope.topicComments.rows = comments;
+
+                        if (_parseCommentIdAndVersion($stateParams.commentId).commentId) {
+                            $timeout(function () {
+                                $scope.goToComment($stateParams.commentId);
+                            });
+                        }
                     } else {
                         $scope.topicComments.rows = [];
                         $scope.topicComments.count = {
@@ -81,18 +133,33 @@ angular
                             total: 0
                         };
                     }
-
-                    if ($scope.topic) { // For the arguments count on the /topics/:topicId, not beautiful. Will do until /topics/:topicId API returns comments count.
-                        $scope.topic.comments = $scope.topicComments;
-                    }
-
-                    $timeout(function () {
-                        if ($stateParams.commentId) {
-                            $scope.goToComment($stateParams.commentId);
-                        }
-                    });
                 });
         };
+
+        /**
+         * Comment pagination
+         *
+         * @param {Number} [page=1] Page number
+         * @param {Boolean} [dontResetCommentIdParam=false] Do not reset the commentId param. Defaults to resetting commentId param
+         */
+        $scope.loadPage = function (page, dontResetCommentIdParam) {
+            var offset = (page - 1) * COMMENT_COUNT_PER_PAGE;
+            if (!dontResetCommentIdParam) {
+                $stateParams.commentId = null;
+            }
+            $scope.loadTopicComments(offset, COMMENT_COUNT_PER_PAGE);
+        };
+
+        var init = function () {
+            var commentIdInParams = _parseCommentIdAndVersion($stateParams.commentId).commentId;
+            if (commentIdInParams) {
+                $stateParams.argumentsPage = 1; // Override the set page number as comment may be on any page by now
+            }
+
+            $scope.loadPage($stateParams.argumentsPage, true);
+        };
+        init();
+
 
         $scope.orderComments = function (order) {
             $scope.topicComments.orderBy = order;
@@ -130,10 +197,8 @@ angular
                 });
         };
 
-        $scope.loadPage($stateParams.argumentsPage || 1);
-
         $scope.updateComment = function (comment, editType) {
-            if (comment.editType != comment.type || comment.subject != comment.editSubject || comment.text != comment.editText) {
+            if (comment.editType !== comment.type || comment.subject !== comment.editSubject || comment.text !== comment.editText) {
                 comment.subject = comment.editSubject;
                 comment.text = comment.editText;
 
@@ -219,7 +284,7 @@ angular
          */
         $scope.goToComment = function (commentIdWithVersion) {
             if (!commentIdWithVersion || commentIdWithVersion.indexOf(COMMENT_VERSION_SEPARATOR) < 0) {
-                console.error('Invalid input for $scope.goToComment. Expecting UUIDv4 comment ID with version. For example: "604670eb-27b4-48d0-b19b-b6cf6bde33b2_v0"', commentIdWithVersion);
+                $log.error('Invalid input for $scope.goToComment. Expecting UUIDv4 comment ID with version. For example: "604670eb-27b4-48d0-b19b-b6cf6bde33b2_v0"', commentIdWithVersion);
                 return;
             }
 
@@ -241,16 +306,15 @@ angular
                 // 2. the commentId + version refers to a comment reply, but replies have not been expanded.
                 // 3. the commentId + version is on another page
                 // 4. the comment/reply does not exist
-                var commentIdAndVersionRegex = new RegExp('^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4{1}[a-fA-F0-9]{3}-[89abAB]{1}[a-fA-F0-9]{3}-[a-fA-F0-9]{12})+' + COMMENT_VERSION_SEPARATOR + '([0-9]+)$'); // SRC: https://gist.github.com/bugventure/f71337e3927c34132b9a#gistcomment-2238943
-                var commentIdWithVersionSplit = commentIdWithVersion.match(commentIdAndVersionRegex);
 
-                if (!commentIdWithVersionSplit) {
-                    console.error('Invalid input for $scope.goToComment. Provided commentId does not look like UUIDv4 with version appended', commentIdWithVersion);
+                var commentParameterValues = _parseCommentIdAndVersion(commentIdWithVersion);
+                var commentId = commentParameterValues.commentId;
+                var commentVersion = commentParameterValues.commentVersion;
+
+                if (!commentId || !commentVersion) {
+                    $log.error('$scope.goToComment', 'No commentId and/or version provided, nothing to do here');
                     return;
                 }
-
-                var commentId = commentIdWithVersionSplit[1];
-                var commentVersion = parseInt(commentIdWithVersionSplit[2]);
 
                 for (var i = 0; i < $scope.topicComments.rows.length; i++) {
                     // 1. the commentId + version refers to another version of the comment and the comments are not expanded.
