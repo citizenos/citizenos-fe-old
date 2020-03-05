@@ -14,104 +14,65 @@ angular
             return $q.reject(response);
         };
 
-        var activitiesToGroups = function (activities) {
-            var finalActivities = {};
-            var returnActivities = [];
-
-            for(var i=0; i < activities.length; i++) {
-                var id = activities[i].data.object.id;
-                if (activities[i].data.target) {
-                    id = activities[i].data.target.id;
-                }
-                var key = activities[i].string + '_' + id;
-                if (!finalActivities[key]) {
-                    finalActivities[key] = new Array(activities[i]);
-                } else {
-                    finalActivities[key].push(_.cloneDeep(activities[i]));
-                }
-            }
-
-            Object.keys(finalActivities).forEach(function (item) {
-
-                var groupItems = {};
-                finalActivities[item].forEach(function (value){
-                    if (finalActivities[item].length > 1) {
-                        value.string = value.string + '_ACTIVITYGROUP';
-                        value.values.groupCount = finalActivities[item].length-1;
-                    }
-
-                    groupItems[value.id] = value;
-                });
-
-                returnActivities.push({referer: item, values: groupItems});
-            });
-
-            return returnActivities;
-        };
-
         var success = function (data) {
             var result = angular.fromJson(data).data;
             var parsedResult = [];
-            var activities = [];
-            console.log('RESULT', result.data);
             result.data.forEach(function (activity, key) {
-                buildActivityString(activity);
-                activity = sActivity.getActivityValues(activity);
-                activities.push(activity);
-            });
+                if (activity.data) {
+                    if (activity.data.type === 'Create' && !activity.data.target && activity.data.object && (activity.data.object['@type'] === 'Vote' || Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'VoteOption')) {
+                        result.data.splice(key, 1);
+                    } else if (activity.data.type === 'Update' && Array.isArray(activity.data.result)) {
+                        var i = 0;
+                        var resultItems = [];
+                        if (activity.data.origin['@type'] === 'Topic') {
+                            activity.data.origin.description = null;
+                        }
+                        var resultObject = _.cloneDeep(activity.data.origin);
+                        activity.data.resultObject = jsonpatch.applyPatch(resultObject, activity.data.result).newDocument;
+                        activity.data.result.forEach(function (item) {
+                            var field = item.path.split('/')[1];
+                            if (field === 'deletedById' || field === 'deletedByReportId') {
+                                item = null;
+                            } else {
+                                var change = _.find(resultItems, function (resItem) {
+                                    return resItem.path.indexOf(field) > -1;
+                                });
 
-
-            activitiesGroups = activitiesToGroups(activities);
-            console.log('GROUPED', activitiesGroups);
-            activitiesGroups.forEach(function (group, groupKey) {
-                Object.keys(group.values).forEach(function (key) {
-                    var activity = group.values[key];
-                    if (activity.data) {
-                        if (activity.data.type === 'Create' && !activity.data.target && activity.data.object && (activity.data.object['@type'] === 'Vote' || Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'VoteOption')) {
-                            result.data.splice(key, 1);
-                        } else if (activity.data.type === 'Update' && Array.isArray(activity.data.result)) {
-                            var i = 0;
-                            var resultItems = [];
-                            if (activity.data.origin['@type'] === 'Topic') {
-                                activity.data.origin.description = null;
-                            }
-
-                            activity.data.result.forEach(function (item) {
-                                console.log(item);
-                                var field = item.path.split('/')[1];
-                                if (field === 'deletedById' || field === 'deletedByReportId') {
-                                    item = null;
-                                } else {
-                                    var change = _.find(resultItems, function (resItem) {
-                                        return resItem.path.indexOf(field) > -1;
-                                    });
-
-                                    if (!change) {
-                                        resultItems.push(item);
-                                    } else if (item.value) {
-                                        if (!Array.isArray(change.value)) {
-                                            change.value = [change.value];
-                                        }
-                                        change.value.push(item.value);
+                                if (!change) {
+                                    resultItems.push(item);
+                                } else if (item.value) {
+                                    if (!Array.isArray(change.value)) {
+                                        change.value = [change.value];
                                     }
+                                    change.value.push(item.value);
                                 }
-                            });
-                            activity.data.result = resultItems;
-                            while (i < activity.data.result.length) {
-                                var act = _.cloneDeep(activity);
-                                var change = activity.data.result[i];
-                                act.data.result = [change];
-                                activitiesGroups[groupKey +'_'+i] = act;
-                                i++;
                             }
+                        });
+                        activity.data.result = resultItems;
+                        while (i < activity.data.result.length) {
+                            var act = _.cloneDeep(activity);
+                            var change = activity.data.result[i];
+                            act.data.result = [change];
+                            if (act.data.target) {
+                                act.data.target.id = act.data.target.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
+                            }
+                            act.data.object.id = act.data.object.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
+                            buildActivityString(act);
+                            act = sActivity.getActivityValues(act);
+                            parsedResult.push(act);
+                            i++;
                         }
                     } else {
-                        $log.error('Activity data missing');
+                        buildActivityString(activity);
+                        activity = sActivity.getActivityValues(activity);
+                        parsedResult.push(activity)
                     }
-                });
+                } else {
+                    $log.error('Activity data missing');
+                }
             });
 
-            return activitiesGroups;
+            return parsedResult;
         };
 
         var buildActivityString = function (activity) {
@@ -273,8 +234,6 @@ angular
         sActivity.getUpdatedTranslations = function (activity) {
             var fieldName = activity.data.result[0].path.split('/')[1];
             activity.values.fieldName = fieldName;
-            var resultObject = _.cloneDeep(activity.data.origin);
-            activity.data.resultObject = jsonpatch.applyPatch(resultObject, activity.data.result).newDocument;
             var previousValue = activity.data.origin[fieldName];
             var newValue = activity.data.resultObject[fieldName];
             var previousValueKey = null;

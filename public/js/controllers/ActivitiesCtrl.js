@@ -35,6 +35,7 @@ angular
                     if (activities[i].data.target) {
                         id = activities[i].data.target.id;
                     }
+
                     var key = activities[i].string + '_' + id;
                     if (!finalActivities[key]) {
                         finalActivities[key] = new Array(activities[i]);
@@ -51,7 +52,6 @@ angular
                             value.string = value.string + '_ACTIVITYGROUP';
                             value.values.groupCount = finalActivities[item].length-1;
                         }
-                        console.log(value.id);
                         groupItems[value.id] = value;
                     });
 
@@ -76,23 +76,19 @@ angular
 
             sActivity
                 .getActivities($scope.activitiesOffset, $scope.activitiesLimit, filterValue)
-                .then(function (groupedActivities) {
+                .then(function (activities) {
                     $scope.app.unreadActivitiesCount = 0;
-                    console.log('GROUPED 2', groupedActivities);
-                    groupedActivities.forEach(function (group, groupKey) {
-                        Object.keys(group.values).forEach(function (key) {
-                            group.values[key]
-                            if (group.values[key].data.type === 'View' && group.values[key].data.object && group.values[key].data.object['@type'] === 'Activity') {
-                                if (!lastViewTime || group.values[key].updatedAt > lastViewTime) {
-                                    lastViewTime = group.values[key].updatedAt;
-                                }
-                                groupedActivities.splice(groupKey, 1);
-                            } else if (!lastViewTime || group.values[key].updatedAt > lastViewTime) {
-                                group.values[key].isNew = '-new';
+                    activities.forEach(function (activity, key) {
+                        if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
+                            if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                                lastViewTime = activity.updatedAt;
                             }
-                        });
+                            activities.splice(key, 1);
+                        } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                            activity.isNew = '-new';
+                        }
                     });
-               //     var groupedActivities = activitiesToGroups(activities);
+                    var groupedActivities = activitiesToGroups(activities);
                     $scope.showLoadMoreActivities = (!groupedActivities.length < $scope.activitiesLimit);
                     $scope.activities = $scope.activities.concat(groupedActivities);
 
