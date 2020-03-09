@@ -267,9 +267,27 @@
                         </div>
                         <!-- END COMMENT DELETED-->
                         <!-- COMMENT EDITS -->
-                        <div id="{{comment.id + '_v' + version}}" class="argument" ng-class="{is_con:edit.type=='con', is_pro: edit.type=='pro'}" ng-if="comment.showEdits && comment.isEdited() && !$last"
+                        <div id="{{comment.id + '_v' + version}}" class="argument" ng-class="{is_con:edit.type=='con', is_pro: edit.type=='pro'}"
+                             ng-if="comment.showEdits && comment.isEdited() && !$last"
                              ng-repeat="(version, edit) in comment.edits">
-                            <div class="argument_header" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">{{edit.createdAt | amTimeAgo}}</div>
+                            <div class="argument_header" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
+                                <div class="argument_header_widget">
+                                    <div class="table_cell" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
+                                        {{edit.createdAt | amTimeAgo}}
+                                    </div>
+                                </div>
+                                <div class="line_wrap">
+                                    <div class="table_cell">
+                                        <div class="v_line"></div>
+                                    </div>
+                                </div>
+                                <div class="argument_header_widget">
+                                    <div class="table_cell">
+                                        <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: comment.id + '_v' + version})" translate="LNK_DIRECT_LINK">link</a>
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
                             <div class="argument_title" ng-if="::edit.subject">
                                 {{::edit.subject}}
                             </div>
@@ -513,7 +531,24 @@
                         <!--END REPLY EDIT-->
                         <!-- REPLY EDITS -->
                         <div id="{{reply.id + '_v' + version}}" class="argument" ng-if="reply.showEdits && reply.isEdited() && !$last" ng-repeat="(version, edit) in reply.edits">
-                            <div class="argument_header" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">{{edit.createdAt | amTimeAgo}}</div>
+                            <div class="argument_header" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
+                                <div class="argument_header_widget">
+                                    <div class="table_cell" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
+                                        {{edit.createdAt | amTimeAgo}}
+                                    </div>
+                                </div>
+                                <div class="line_wrap">
+                                    <div class="table_cell">
+                                        <div class="v_line"></div>
+                                    </div>
+                                </div>
+                                <div class="argument_header_widget">
+                                    <div class="table_cell">
+                                        <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: reply.id + '_v' + version})" translate="LNK_DIRECT_LINK">link</a>
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
                             <div class="argument_text_wrap">
                                 <div class="argument_text italic" ng-bind-html="edit.text | linky : '_blank'"></div>
                             </div>
