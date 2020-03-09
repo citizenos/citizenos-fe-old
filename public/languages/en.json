@@ -6,6 +6,7 @@
   "BTN_NO": "NO",
   "BTN_CLOSE": "Close",
   "LNK_CANCEL": "Cancel",
+  "LNK_DIRECT_LINK": "direct link",
   "TOGGLE_ON": "ON",
   "TOGGLE_OFF": "OFF",
   "TXT_TOPIC_STATUS_ALL": "all",
