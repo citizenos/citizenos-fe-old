@@ -65,9 +65,14 @@ angular
             }
         };
 
+        $scope.getCommentIdWithVersion = function (commentId, version) {
+            return commentId + COMMENT_VERSION_SEPARATOR + version;
+        };
+
         $scope.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
 
         $scope.loadTopicComments = function (offset, limit) {
+            //debugger;
             if (!limit) {
                 limit = COMMENT_COUNT_PER_PAGE;
             }
@@ -90,6 +95,7 @@ angular
 
                     // Direct referencing a comment, we have no idea on what page it may be. Let's try to find out if it's on the current page.
                     var commentIdInParams = _parseCommentIdAndVersion($stateParams.commentId).commentId;
+
                     if (commentIdInParams && JSON.stringify(comments).indexOf(commentIdInParams) === -1) { // Comment ID is specified in the params, its not in the result set... on another page?
                         $scope.loadPage($stateParams.argumentsPage + 1, true);
                         return $q.reject();
@@ -209,10 +215,11 @@ angular
 
                 comment
                     .$update()
-                    .then(function () {
-                        $scope.loadTopicComments();
-                        $scope.commentEditMode(comment);
-
+                    .then(function (commentUpdated) {
+                        return $state.go(
+                            $state.current.name,
+                            {commentId: $scope.getCommentIdWithVersion(commentUpdated.id, commentUpdated.edits.length)}
+                        );
                     }, function (err) {
                         $log.error('err', err)
                     });
@@ -309,10 +316,10 @@ angular
 
                 var commentParameterValues = _parseCommentIdAndVersion(commentIdWithVersion);
                 var commentId = commentParameterValues.commentId;
-                var commentVersion = commentParameterValues.commentVersion;
+                var commentVersion = commentParameterValues.commentVersion || 0;
 
-                if (!commentId || isNaN(commentVersion)) {
-                    $log.error('$scope.goToComment', 'No commentId and/or version provided, nothing to do here');
+                if (!commentId) {
+                    $log.error('$scope.goToComment', 'No commentId and/or version provided, nothing to do here', commentIdWithVersion);
                     return;
                 }
 
@@ -346,6 +353,7 @@ angular
                                         .then(function () {
                                             var commentElement = angular.element(document.getElementById(commentIdWithVersion));
                                             commentElement.addClass('highlight');
+                                            $state.commentId = commentIdWithVersion;
                                             $timeout(function () {
                                                 commentElement.removeClass('highlight');
                                             }, 500);
@@ -367,12 +375,25 @@ angular
             return sLocation.getAbsoluteUrl('/', null, {commentId: commentIdWithVersion});
         };
 
-        $scope.goToParentComment = function (rootComment, parent) {
+        $scope.goToParentComment = function (rootComment, parent, $event) {
+            if ($event) { // Enables us to use links where link is generated with ui-sref and can be copied, but action is ng-click or similar without reloading page
+                $event.preventDefault(); //
+            }
 
             if (!parent.id || !parent.hasOwnProperty('version')) {
                 return;
             }
-            $scope.goToComment(parent.id + COMMENT_VERSION_SEPARATOR + parent.version);
+
+            var commentIdWithVersion = $scope.getCommentIdWithVersion(parent.id, parent.version);
+
+            return $state // Update the URL in browser for history and copy
+                .go($state.current.name, {commentId: commentIdWithVersion}, {
+                    notify: false,
+                    inherit: true
+                })
+                .then(function () {
+                    return $scope.goToComment(commentIdWithVersion);
+                });
         };
 
         $scope.doAddComment = function () {

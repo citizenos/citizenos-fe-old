@@ -270,7 +270,7 @@
                         <div id="{{comment.id + '_v' + version}}" class="argument" ng-class="{is_con:edit.type=='con', is_pro: edit.type=='pro'}"
                              ng-if="comment.showEdits && comment.isEdited() && !$last"
                              ng-repeat="(version, edit) in comment.edits">
-                            <div class="argument_header" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
+                            <div class="argument_header">
                                 <div class="argument_header_widget">
                                     <div class="table_cell" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
                                         {{edit.createdAt | amTimeAgo}}
@@ -357,17 +357,6 @@
                                     <div ng-if="comment.showReplies" class="blue_link black_text" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_HIDE_REPLIES">
                                         Hide Replies
                                     </div>
-                                </div>
-                            </div>
-                            <div ng-if="comment.isEdited()" class="line_wrap last_edited_line">
-                                <div class="table_cell">
-                                    <div class="v_line"></div>
-                                </div>
-                            </div>
-                            <div ng-if="comment.isEdited()" class="argument_footer_widget">
-                                <div class="table_cell italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LAST_EDITED"
-                                     translate-values="{edittime: (comment.edits[(comment.edits.length-1)].createdAt | amTimeAgo)}">
-                                    Last edited {{::comment.edits[(comment.edits.length-1)].createdAt | amTimeAgo}}
                                 </div>
                             </div>
                             <div class="clearer"></div>
@@ -555,8 +544,7 @@
                         </div>
                         <!-- END REPLY EDITS -->
                         <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
-                            <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text"><span class="replys_reply" ng-click="goToParentComment(comment, reply.parent)">@{{getParentAuthor(comment, reply.parent.id)}}</span>
-                            </div>
+                            <a ng-if="!reply.deletedAt && reply.isVisible()" href="#" class="replys_reply" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})" ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</a>
                             <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text" ng-bind-html="reply.text | linky : '_blank'"></div>
                             <div ng-if="!reply.isVisible()" class="argument_text italic">This comment has been deleted by {{reply.deletedBy.name}}</div>
                             <div class="argument_overlay">
@@ -608,7 +596,7 @@
                             <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT">Read our <a class="underlined_link" href="">code of conduct</a> for more information</span>
                         </div>
                         <div class="alert_argument" ng-if="reply.deletedAt && reply.isVisible()">
-                            <span class="replys_reply" ng-click="goToParentComment(comment, reply.parent)">@{{getParentAuthor(comment, reply.parent.id)}}</span>
+                            <span class="replys_reply" ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</span>
                             <span class="italic" ng-click="reply.showDeletedComment = !reply.showDeletedComment">{{reply.text}}</span>
                         </div>
                         <!-- END REPLY DELETED -->
@@ -655,17 +643,6 @@
                                     </div>
                                     <div class="sprite desktop_fix sprite-icon-reportmessage-default2x">
                                     </div>
-                                </div>
-                            </div>
-                            <div ng-if="reply.isEdited()" class="line_wrap last_edited_line">
-                                <div class="table_cell">
-                                    <div class="v_line"></div>
-                                </div>
-                            </div>
-                            <div ng-if="reply.isEdited()" class="argument_footer_widget">
-                                <div class="table_cell italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LAST_EDITED"
-                                     translate-values="{edittime: (reply.edits[(reply.edits.length-1)].createdAt | amTimeAgo)}">
-                                    Last edited {{reply.edits[(reply.edits.length-1)].createdAt | amTimeAgo}}
                                 </div>
                             </div>
                             <div class="clearer"></div>
