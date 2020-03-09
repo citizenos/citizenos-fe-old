@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCommentCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$translate', '$q', 'ngDialog', 'TopicComment', function ($scope, $state, $stateParams, $timeout, $log, $translate, $q, ngDialog, TopicComment) {
+    .controller('TopicCommentCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$translate', '$q', 'ngDialog', 'sLocation', 'TopicComment', function ($scope, $state, $stateParams, $timeout, $log, $translate, $q, ngDialog, sLocation, TopicComment) {
         $log.debug('TopicCommentCtrl', $scope, $scope.topic, $stateParams.topicId);
 
         $scope.topic = $scope.topic || {id: $stateParams.topicId};
@@ -93,7 +93,7 @@ angular
                     if (commentIdInParams && JSON.stringify(comments).indexOf(commentIdInParams) === -1) { // Comment ID is specified in the params, its not in the result set... on another page?
                         $scope.loadPage($stateParams.argumentsPage + 1, true);
                         return $q.reject();
-                    } else { // Comment ID was not specified OR was invalid. Erase whatever value was there, if it was there as it was invalid
+                    } else {
                         return comments;
                     }
                 })
@@ -362,6 +362,10 @@ angular
                     }
                 }
             }
+        };
+
+        $scope.getCommentUrl = function (commentIdWithVersion) {
+            return sLocation.getAbsoluteUrl('/', null, {commentId: commentIdWithVersion});
         };
 
         $scope.goToParentComment = function (rootComment, parent) {
