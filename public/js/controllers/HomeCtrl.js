@@ -2,16 +2,27 @@
 
 angular
     .module('citizenos')
-    .controller('HomeCtrl', ['$scope', '$log', '$state', 'sTopic', function ($scope, $log, $state, sTopic) {
+    .controller('HomeCtrl', ['$scope', '$log', '$location', '$state', '$stateParams', 'sTopic', function ($scope, $log, $location, $state, $stateParams, sTopic) {
         $log.debug('HomeCtrl', $state);
 
         // Constant marking the "clear" or all options will do
         $scope.FILTERS_ALL = 'all';
 
+        var resolveCategory = function () {
+            var category;
+            if ($state.current.name === 'category') {
+                category = $stateParams.category;
+            } else if (sTopic.CATEGORIES[$state.current.name]) {
+                category = $state.current.name; //Check if special page for category
+            }
+
+            return sTopic.CATEGORIES[category] ? category : $scope.FILTERS_ALL;
+        };
+
         var init = function () {
             $scope.filters = {
                 categories: {
-                    value: sTopic.CATEGORIES[$state.current.name] ? $state.current.name : $scope.FILTERS_ALL,
+                    value: resolveCategory(),
                     options: [$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))
                 },
                 statuses: {
@@ -27,29 +38,36 @@ angular
             $scope.topicCountTotal = null;
             $scope.isTopicListLoading = null; // Bool, but for initial load using null.
         };
+
         init();
 
-        /**
-         * Update topic list by setting relevant filter
-         *
-         * @param {object} filter The property of filter that changed. For ex filters.statuses, filters.categories
-         * @param {string} value The new value
-         */
-        $scope.doSetFilter = function (filter, value) {
-            filter.value = value;
+        $scope.doSetStatus = function (status) {
+            $scope.filters.statuses.value = status;
 
-            $scope.topicList = [];
-            $scope.topicCountTotal = null;
-            $scope.filters.offset = 0;
+            if (status === $scope.FILTERS_ALL) {
+                status = null;
+            }
 
-            $scope.loadTopicList();
+            $stateParams.topicStatus = status;
+            $state.go($state.current.name, $stateParams);
+        };
+
+        $scope.doSetCategory = function (category) {
+            if (category === $scope.FILTERS_ALL) {
+                category = null;
+                $stateParams.category = category;
+                $state.go('home', $stateParams);
+            } else {
+                $stateParams.category = category;
+                $state.go('category', $stateParams);
+            }
         };
 
         /**
          * Clear all applied filters
          */
         $scope.doClearFilters = function () {
-            init();
+            $location.url('/');
             $scope.loadTopicList();
         };
 
@@ -63,9 +81,28 @@ angular
                 && $scope.topicList.length; // Render tutorial only when there are topics, this avoids Android and alignment issues.
         };
 
+        var resolveStatus = function () {
+            if ($stateParams.topicStatus === $scope.FILTERS_ALL) {
+                $scope.filters.statuses.value = $scope.FILTERS_ALL;
+                $stateParams.topicStatus = null;
+                return null;
+            }
+            var status = ($stateParams.topicStatus && $scope.filters.statuses.options.indexOf($stateParams.topicStatus) > -1) ? $stateParams.topicStatus: null;
+            if (status) {
+                $scope.filters.statuses.value = status;
+            } else {
+                $stateParams.topicStatus = null;
+                $state.go($state.current.name, $stateParams);
+            }
+
+            return status;
+        };
+
         $scope.loadTopicList = function () {
             $log.debug('HomeCtrl.loadTopicList()');
-
+            if ($stateParams.category && !sTopic.CATEGORIES[$stateParams.category]) {
+                return $state.go('error.404');
+            }
             if ($scope.isTopicListLoading === true) {
                 $log.warn('HomeCtrl.loadTopicList()', 'Topic list already loading, will skip this request.');
                 return;
@@ -78,10 +115,12 @@ angular
 
             $scope.isTopicListLoading = true;
 
+            var status = resolveStatus();
+
             sTopic
                 .listUnauth(
-                    $scope.filters.statuses.value !== $scope.FILTERS_ALL ? $scope.filters.statuses.value : null,
-                    $scope.filters.categories.value !== $scope.FILTERS_ALL ? $scope.filters.categories.value : null,
+                    $scope.filters.statuses.value !== $scope.FILTERS_ALL ? status : null,
+                    $scope.filters.categories.value !== $scope.FILTERS_ALL ? $stateParams.category : null,
                     $scope.filters.offset,
                     $scope.filters.limit
                 )

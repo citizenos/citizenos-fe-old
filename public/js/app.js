@@ -187,7 +187,12 @@
                     }
                 })
                 .state('home', {
-                    url: '/',
+                    url: '/?topicStatus',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
+                .state('category', {
+                    url: '/topics/categories/:category?topicStatus',
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
