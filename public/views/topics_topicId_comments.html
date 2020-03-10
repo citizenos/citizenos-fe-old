@@ -311,22 +311,22 @@
                                         <div class="v_line"></div>
                                     </div>
                                 </div>
-                                <div class="thumbs_up" ng-if="app.user.loggedIn" ng-click="doCommentVote(comment.id, 1)">
+                                <div class="thumbs_up" ng-if="app.user.loggedIn" ng-click="doCommentVote(comment, 1)">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-thumbsup-hover2x">
                                         </div>
                                     </div>
                                     <div class="table_cell">
-                                        {{::comment.votes.up.count}}
+                                        {{comment.votes.up.count}}
                                     </div>
                                 </div>
-                                <div class="thumbs_down" ng-if="app.user.loggedIn" ng-click="doCommentVote(comment.id, -1)">
+                                <div class="thumbs_down" ng-if="app.user.loggedIn" ng-click="doCommentVote(comment, -1)">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-thumbsdown-hover2x">
                                         </div>
                                     </div>
                                     <div class="table_cell">
-                                        {{::comment.votes.down.count}}
+                                        {{comment.votes.down.count}}
                                     </div>
                                 </div>
                                 <div class="line_wrap" ng-if="app.user.loggedIn">
@@ -614,7 +614,7 @@
                                     <div class="v_line"></div>
                                 </div>
                             </div>
-                            <div class="thumbs_up" ng-if="app.user.loggedIn" ng-click="doCommentVote(reply.id, 1)">
+                            <div class="thumbs_up" ng-if="app.user.loggedIn" ng-click="doCommentVote(reply, 1)">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-thumbsup-hover2x">
                                     </div>
@@ -623,7 +623,7 @@
                                     {{reply.votes.up.count}}
                                 </div>
                             </div>
-                            <div class="thumbs_down" ng-if="app.user.loggedIn" ng-click="doCommentVote(reply.id, -1)">
+                            <div class="thumbs_down" ng-if="app.user.loggedIn" ng-click="doCommentVote(reply, -1)">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-thumbsdown-hover2x">
                                     </div>

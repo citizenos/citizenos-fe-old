@@ -186,20 +186,20 @@ angular
             $scope.loadTopicComments();
         };
 
-        $scope.doCommentVote = function (commentId, value) {
+        $scope.doCommentVote = function (comment, value) {
             if (!$scope.app.user.loggedIn) {
                 return;
             }
 
             var topicComment = new TopicComment({
-                id: commentId,
+                id: comment.id,
                 topicId: $scope.topic.id
             });
             topicComment.value = value;
             topicComment
                 .$vote()
-                .then(function () {
-                    $scope.loadTopicComments();
+                .then(function (voteResult) {
+                    comment.votes = voteResult;
                 });
         };
 
@@ -231,7 +231,9 @@ angular
                     .then(function (commentUpdated) {
                         return $state.go(
                             $state.current.name,
-                            {commentId: $scope.getCommentIdWithVersion(commentUpdated.id, commentUpdated.edits.length)}
+                            {
+                                commentId: $scope.getCommentIdWithVersion(commentUpdated.id, commentUpdated.edits.length)
+                            }
                         );
                     }, function (err) {
                         $log.error('err', err)
@@ -273,7 +275,7 @@ angular
                     comment.topicId = $scope.topic.id;
                     comment
                         .$delete()
-                        .then(function (deleteRes) {
+                        .then(function () {
                             return $state.go(
                                 $state.current.name,
                                 {
@@ -300,7 +302,7 @@ angular
                 .then(function () {
                     comment.topicId = $scope.topic.id;
                     comment.$delete()
-                        .then(function (deleteRes) {
+                        .then(function () {
                             return $state.go(
                                 $state.current.name,
                                 {

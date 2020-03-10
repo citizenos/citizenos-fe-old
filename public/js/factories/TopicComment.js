@@ -93,6 +93,13 @@ angular
                     url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/votes'),
                     transformRequest: function (data) {
                         return angular.toJson(data);
+                    },
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
                     }
                 },
                 report: {
