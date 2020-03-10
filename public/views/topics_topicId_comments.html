@@ -133,7 +133,7 @@
                             </div>
                             <div class="argument_header_widget underline_link">
                                 <div class="table_cell">
-                                    <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: comment.id + '_v' + (comment.edits.length-1)})" translate="LNK_DIRECT_LINK">link</a>
+                                    <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(comment.id, comment.edits.length-1)})" ng-click="goToComment(getCommentIdWithVersion(comment.id, comment.edits.length-1), $event)" translate="LNK_DIRECT_LINK">link</a>
                                 </div>
                             </div>
 
@@ -283,7 +283,7 @@
                                 </div>
                                 <div class="argument_header_widget">
                                     <div class="table_cell">
-                                        <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: comment.id + '_v' + version})" translate="LNK_DIRECT_LINK">link</a>
+                                        <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(comment.id, version)})" ng-click="goToComment(getCommentIdWithVersion(comment.id, version), $event)" translate="LNK_DIRECT_LINK">link</a>
                                     </div>
                                 </div>
                                 <div class="clearer"></div>
@@ -475,7 +475,7 @@
                             </div>
                             <div class="argument_header_widget underline_link">
                                 <div class="table_cell">
-                                    <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: reply.id + '_v' + (reply.edits.length-1)})" translate="LNK_DIRECT_LINK">link</a>
+                                    <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.id, reply.edits.length-1)})" ng-click="goToComment(getCommentIdWithVersion(reply.id, reply.edits.length-1), $event)" translate="LNK_DIRECT_LINK">link</a>
                                 </div>
                             </div>
                             <div class="clearer"></div>
@@ -533,7 +533,7 @@
                                 </div>
                                 <div class="argument_header_widget">
                                     <div class="table_cell">
-                                        <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: reply.id + '_v' + version})" translate="LNK_DIRECT_LINK">link</a>
+                                        <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.id, version)})" ng-click="goToComment(getCommentIdWithVersion(reply.id, version), $event)"  translate="LNK_DIRECT_LINK">link</a>
                                     </div>
                                 </div>
                                 <div class="clearer"></div>

@@ -260,7 +260,7 @@ angular
         };
 
         $scope.doShowDeleteComment = function (comment) {
-            $log.debug('TopicCommentCtrl.doShowDeleteComment()');
+            $log.debug('TopicCommentCtrl.doShowDeleteComment()', comment);
 
             ngDialog
                 .openConfirm({
@@ -271,15 +271,24 @@ angular
                 })
                 .then(function () {
                     comment.topicId = $scope.topic.id;
-                    comment.$delete()
-                        .then(function () {
-                            $scope.loadTopicComments();
+                    comment
+                        .$delete()
+                        .then(function (deleteRes) {
+                            return $state.go(
+                                $state.current.name,
+                                {
+                                    commentId: $scope.getCommentIdWithVersion(comment.id, comment.edits.length - 1)
+                                },
+                                {
+                                    reload: true
+                                }
+                            );
                         }, angular.noop);
                 });
         };
 
         $scope.doShowDeleteReply = function (comment) {
-            $log.debug('TopicCommentCtrl.doShowDeleteReply()');
+            $log.debug('TopicCommentCtrl.doShowDeleteReply()', comment);
 
             ngDialog
                 .openConfirm({
@@ -291,8 +300,16 @@ angular
                 .then(function () {
                     comment.topicId = $scope.topic.id;
                     comment.$delete()
-                        .then(function () {
-                            $scope.loadTopicComments();
+                        .then(function (deleteRes) {
+                            return $state.go(
+                                $state.current.name,
+                                {
+                                    commentId: $scope.getCommentIdWithVersion(comment.id, comment.edits.length - 1)
+                                },
+                                {
+                                    reload: true
+                                }
+                            );
                         }, angular.noop);
                 });
         };
@@ -301,8 +318,19 @@ angular
          * Show the referenced comment on the screen
          *
          * @param {String} commentIdWithVersion Comment id with version in format {{uuidv4}}+_v+{{version}}. For example: 604670eb-27b4-48d0-b19b-b6cf6bde33b2_v0
+         * @param {Object} [$event] Event handler
          */
-        $scope.goToComment = function (commentIdWithVersion) {
+        $scope.goToComment = function (commentIdWithVersion, $event) {
+            if ($event) {
+                $event.preventDefault();
+
+                $state // Update the URL in browser for history and copy
+                    .go($state.current.name, {commentId: commentIdWithVersion}, {
+                        notify: false,
+                        inherit: true
+                    });
+            }
+
             if (!commentIdWithVersion || commentIdWithVersion.indexOf(COMMENT_VERSION_SEPARATOR) < 0) {
                 $log.error('Invalid input for $scope.goToComment. Expecting UUIDv4 comment ID with version. For example: "604670eb-27b4-48d0-b19b-b6cf6bde33b2_v0"', commentIdWithVersion);
                 return;
