@@ -1,6 +1,8 @@
 ## 2020-03-10
 
-* Change home page filtering behaviour https://github.com/citizenos/citizenos-fe/issues/427
+* Fix issues:
+    * Change home page filtering behaviour - https://github.com/citizenos/citizenos-fe/issues/427
+    * "Edit topic" button is not working properly in mobile view - https://github.com/citizenos/citizenos-fe/issues/434
 
 ## 2020-02-20
 

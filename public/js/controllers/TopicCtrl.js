@@ -7,6 +7,7 @@ angular
         var lastViewTime = null;
 
         $scope.topic = rTopic;
+        $scope.app.topic = rTopic;
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
         $scope.hideTopicContent = true;
 
