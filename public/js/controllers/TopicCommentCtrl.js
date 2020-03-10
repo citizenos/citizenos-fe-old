@@ -183,6 +183,7 @@ angular
         $scope.orderComments = function (order) {
             $scope.topicComments.orderBy = order;
             $scope.topicComments.orderByTranslation = $translate.instant('VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ORDER_BY_' + order.toUpperCase());
+            $stateParams.commentId = null; // Reset commentId, does not make sense in ordering scenario
             $scope.loadTopicComments();
         };
 
