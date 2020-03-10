@@ -72,7 +72,6 @@ angular
         $scope.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
 
         $scope.loadTopicComments = function (offset, limit) {
-            //debugger;
             if (!limit) {
                 limit = COMMENT_COUNT_PER_PAGE;
             }
@@ -97,7 +96,8 @@ angular
                     var commentIdInParams = _parseCommentIdAndVersion($stateParams.commentId).commentId;
 
                     if (commentIdInParams && JSON.stringify(comments).indexOf(commentIdInParams) === -1) { // Comment ID is specified in the params, its not in the result set... on another page?
-                        $scope.loadPage($stateParams.argumentsPage + 1, true);
+                        $scope.topicComments.page += 1;
+                        $scope.loadPage($scope.topicComments.page, true);
                         return $q.reject();
                     } else {
                         return comments;
@@ -132,12 +132,25 @@ angular
                             });
                         }
                     } else {
-                        $scope.topicComments.rows = [];
-                        $scope.topicComments.count = {
-                            pro: 0,
-                            con: 0,
-                            total: 0
-                        };
+                        if ($stateParams.commentId) { // Comment ID was provided in params, but we could not find a matching comment on any of the pages, so the best we can do is to go and load first page
+                            return $state.go(
+                                $state.current.name,
+                                {
+                                    argumentsPage: 1,
+                                    commentId: null
+                                },
+                                {
+                                    location: 'replace'
+                                }
+                            );
+                        } else {
+                            $scope.topicComments.rows = [];
+                            $scope.topicComments.count = {
+                                pro: 0,
+                                con: 0,
+                                total: 0
+                            };
+                        }
                     }
                 });
         };
