@@ -23,7 +23,7 @@
                 <div class="dropdown big_drop">
                     <div class="line lightest_line"></div>
 
-                    <div class="dropdown_item" ng-repeat="category in filters.categories.options" ng-click="doSetFilter(filters.categories, category)"
+                    <div class="dropdown_item" ng-repeat="category in filters.categories.options" ng-click="doSetCategory(category)"
                          ng-class="category === filters.categories.value ? 'bold' : ''">
                         <div class="item_name">
                             {{'TXT_TOPIC_CATEGORY_' + category | uppercase | translate}}
@@ -82,7 +82,7 @@
                 <div class="dropdown">
                     <div class="line lightest_line"></div>
 
-                    <div class="dropdown_item" ng-repeat="status in filters.statuses.options" ng-click="doSetFilter(filters.statuses, status)"
+                    <div class="dropdown_item" ng-repeat="status in filters.statuses.options" ng-click="doSetStatus(status)"
                          ng-class="status === filters.statuses.value ? 'bold' : ''">
                         <div class="item_name">
                             {{'TXT_TOPIC_STATUS_' + status | uppercase | translate}}

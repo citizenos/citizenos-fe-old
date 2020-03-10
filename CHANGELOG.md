@@ -1,3 +1,7 @@
+## 2020-03-10
+
+* Change home page filtering behaviour https://github.com/citizenos/citizenos-fe/issues/427
+
 ## 2020-02-20
 
 * User lastActivity field for public topics list https://github.com/citizenos/citizenos-fe/issues/231

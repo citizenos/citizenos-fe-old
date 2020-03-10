@@ -187,27 +187,32 @@
                     }
                 })
                 .state('home', {
-                    url: '/',
+                    url: '/?topicStatus',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
+                .state('category', {
+                    url: '/topics/categories/:category?topicStatus',
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
                 .state('hacktivistcommunity', {
-                    url: '/hacktivistcommunity',
+                    url: '/hacktivistcommunity?topicStatus',
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
                 .state('thirtyfourislandproject', {
-                    url: '/thirtyfourislandproject',
+                    url: '/thirtyfourislandproject?topicStatus',
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
                 .state('eestijazziarengusuunad', {
-                    url: '/eestijazziarengusuunad',
+                    url: '/eestijazziarengusuunad?topicStatus',
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
                 .state('thetwelvemovie', {
-                    url: '/thetwelvemovie',
+                    url: '/thetwelvemovie?topicStatus',
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
