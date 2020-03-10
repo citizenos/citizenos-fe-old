@@ -6,6 +6,7 @@
   "BTN_NO": "Non",
   "BTN_CLOSE": "Fermer",
   "LNK_CANCEL": "Annuler",
+  "LNK_DIRECT_LINK": "direct link",
   "TOGGLE_ON": "Activé",
   "TOGGLE_OFF": "Désactivé",
   "TXT_TOPIC_STATUS_ALL": "Tout",
@@ -33,7 +34,7 @@
   "TXT_MODERATION_TYPES_HATE": "@:TXT_REPORT_TYPES_HATE",
   "TXT_MODERATION_TYPES_NETIQUETTE": "@:TXT_REPORT_TYPES_NETIQUETTE",
   "TXT_MODERATION_TYPES_DUPLICATE": "@:TXT_REPORT_TYPES_DUPLICATE",
-  "TOOLTIP_PIN_TOPIC": "Pin topic",
+  "TOOLTIP_PIN_TOPIC": "Épingler le sujet",
   "TOOLTIP_REPORT_TOPIC": "@:MODALS.TOPIC_REPORT_HEADING",
   "MODALS": {
     "GROUP_DELETE_CONFIRM_HEADING": "Supprimer groupe",
@@ -675,7 +676,7 @@
       "LBL_ARGUMENTS_COUNT_PRO": "pour: {{countPro}}",
       "LBL_ARGUMENTS_COUNT_CON": "contre: {{countCon}}",
       "BTN_ADD_ARGUMENT": "ajouter argument",
-      "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "montrer les versions précédentes",
+      "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "view edits",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Éditez votre objet d'argument...",
@@ -742,7 +743,7 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_CREATE_TOPIC": "L’utilisateur {{userName}} a créé un sujet : <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "L'utilisateur {{userName}} à mis à jour un champs {{fieldName}} dans le sujet <em>{{topicTitle}}</em>",
     "ACTIVITY_PREVIOUS_VERSION": "Version antérieure : {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Dernière version: {{newValue}}",
@@ -829,7 +830,7 @@
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_GOOGLE": "Google",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_FACEBOOK": "Facebook",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_SMARTID": "Smart-ID",
-    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Estonian ID-card / Mobiil-ID",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Carte d'identité estonienne / Mobiil-ID",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_CITIZENOS": "Citizen OS",
     "FILTER_ALL": "Toutes les activités",
     "FILTER_USERTOPICS": "Les activités liées à mes sujets",
