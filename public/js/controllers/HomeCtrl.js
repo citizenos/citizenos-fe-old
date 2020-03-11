@@ -120,7 +120,7 @@ angular
             sTopic
                 .listUnauth(
                     $scope.filters.statuses.value !== $scope.FILTERS_ALL ? status : null,
-                    $scope.filters.categories.value !== $scope.FILTERS_ALL ? $stateParams.category : null,
+                    $scope.filters.categories.value !== $scope.FILTERS_ALL ? resolveCategory() : null,
                     $scope.filters.offset,
                     $scope.filters.limit
                 )
