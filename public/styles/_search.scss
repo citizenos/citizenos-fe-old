@@ -34,6 +34,10 @@
         right: 70px;
     }
 
+    @media  print {
+        display: none;
+    }
+
     #search_area_wrap {
         background: $white;
         position: absolute;

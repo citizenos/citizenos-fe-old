@@ -16,6 +16,10 @@
         position: relative;
         background: $light_gray;
 
+        @media print {
+            display: none;
+        }
+
         @media (max-width: 767px) {
             padding: 0;
             height: 106px;
@@ -188,6 +192,10 @@
             position: relative;
             display: table;
             width: 100%;
+
+            @media print{
+                display: none;
+            }
 
             .arrow_btn {
                 position: absolute;
@@ -387,6 +395,10 @@
                             margin-bottom: 29px;
                             display: block;
 
+                            @media print {
+                                display: none;
+                            }
+
                             .container_pin {
                                 top: -4px;
                                 right: -41px;
@@ -532,6 +544,15 @@
                             }
                         }
 
+                        @media print {
+                            #topic_content_area {
+                                display: block;
+                                position: absolute;
+                                z-index: 999999;
+                                top:0;
+                                left: 0;
+                            }
+                        }
                         .topic_content {
                             font-family: 'Noto Sans', sans-serif;
                             font-size: 16px;
@@ -697,6 +718,10 @@
                 min-width: 250px;
                 background: $side_panel_gray;
                 vertical-align: top;
+
+                @media print {
+                    display: none;
+                }
 
                 @include tablet {
                     top: 60px;
