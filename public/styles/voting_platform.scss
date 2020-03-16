@@ -94,57 +94,38 @@
                 font-size: 16px;
                 font-weight: bold;
                 float: left;
+                width:60%;
             }
 
+            .message_content {
+                font-size: 14px;
+                float: left;
+                padding-top: 10px;
+                width:65%;
+            }
 
             .float_wrap {
-                float: right;
+                position:   absolute;
+                right: 0;
+                width:40%;
+                padding-right: 15px;
                 margin: 0;
+
+                .icon_wrapper {
+                    float: right;
+                    clear: both;
+                    padding-bottom: 5px;
+                }
 
                 .sprite {
                     margin-bottom: 0;
-                    @media (max-width: 1400px) {
-                        margin-bottom: 10px;
-                    }
-                    @media (max-width: 1024px) {
-                        margin-bottom: 0;
-                    }
-                    @media (max-width: 850px) {
-                        margin-bottom: 10px;
-                    }
                 }
 
                 .blue_link {
                     font-size: 13px;
+                    text-align: right;
                 }
 
-                @media (max-width: 1400px) {
-                    position: absolute;
-                    bottom: 10px;
-                    left: 20px;
-                    .blue_link {
-                        margin-bottom: 15px;
-                    }
-                }
-
-                @media (max-width: 1024px) {
-                    position: initial;
-                    bottom: initial;
-                    left: initial;
-                    .blue_link {
-                        margin-bottom: 0;
-                    }
-                }
-
-
-                @media (max-width: 850px) {
-                    position: absolute;
-                    bottom: 10px;
-                    left: 20px;
-                    .blue_link {
-                        margin-bottom: 15px;
-                    }
-                }
 
             }
 
@@ -152,6 +133,9 @@
 
         .message_content {
             font-size: 14px;
+            @media (max-width: 450px) {
+                padding-top: 15px;
+            }
         }
 
          .voting_button {
@@ -637,6 +621,20 @@
                 @media (max-width: 600px) {
                     padding: 0;
                 }
+                .icon_cell {
+                    display: table-cell;
+                    width: 33%;
+                    padding-top: 10px;
+
+                    .icon_wrapper {
+                        width: min-content;
+                        margin-left: auto;
+                        margin-right: auto;
+                        left: 0;
+                        right: 0;
+                    }
+                }
+
             }
             .right_row {
                 padding-left: 10px;
