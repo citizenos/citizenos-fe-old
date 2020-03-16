@@ -1,6 +1,6 @@
 <div id="topics_admin_root">
 
-    <div class="timeline">
+    <div class="timeline print_never">
 
         <div class="milestones_wrap">
 
@@ -86,7 +86,7 @@
 
     <div class="content_wrap">
 
-        <div class="tabs_wrap_wrap">
+        <div class="tabs_wrap_wrap print_never">
 
             <div class="tabs_wrap">
                 <div class="tabs_visible_area" ng-controller="buttonsSlider">
@@ -764,7 +764,7 @@
 
                     <div class="iframe_content_wrap" ng-if="!('topics.view.followUp' | isState)">
 
-                        <div class="topic_info" ng-class="app.more_info_button ? 'open' : ''">
+                        <div class="topic_info print_never" ng-class="app.more_info_button ? 'open' : ''">
 
                             <div class="container_report" ng-if="topic.visibility === VISIBILITY.public && !topic.report" ui-sref="topics.view.report">
                                 <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='TOOLTIP_REPORT_TOPIC'>Report topic</span>">
@@ -893,7 +893,7 @@
 
             </div>
 
-            <div class="side_panel" ng-if="wWidth > 1024 || app.topics_settings">
+            <div class="side_panel print_never" ng-if="wWidth > 1024 || app.topics_settings">
                 <div ng-if="topic.canEdit() && app.editMode" class="options_wrap">
                     <div class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_DONE_EDITING" ng-click="app.doToggleEditMode()">Done editing</div>
                 </div>

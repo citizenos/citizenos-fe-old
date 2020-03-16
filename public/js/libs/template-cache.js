@@ -16,6 +16,9 @@ angular
             '/views/topics_topicId_comments.html',
             '/views/topics_topicId_mentions.html',
             '/views/unknown_device.html',
+            '/views/default/nav.html',
+            '/views/default/nav_mobile.html',
+            '/views/default/search.html',
             '/views/directives/cos_modal.html',
             '/views/directives/cos_modal_datepicker.html',
             '/views/directives/date_picker.html',
@@ -68,9 +71,6 @@ angular
             '/views/modals/user_delete_confirm.html',
             '/views/modals/widgets_how_it_works.html',
             '/views/widgets/activities.html',
-            '/views/default/nav.html',
-            '/views/default/nav_mobile.html',
-            '/views/default/search.html',
         ];
         var i = 0;
         if (templates.length) {

@@ -70,6 +70,12 @@ h2 {
     display: block !important;
 }
 
+@media print {
+    .print_never {
+        display: none !important;
+    }
+}
+
 #close_mobile_menu {
     position: fixed;
     z-index: 3;

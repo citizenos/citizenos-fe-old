@@ -16,10 +16,6 @@
         position: relative;
         background: $light_gray;
 
-        @media print {
-            display: none;
-        }
-
         @media (max-width: 767px) {
             padding: 0;
             height: 106px;
@@ -192,10 +188,6 @@
             position: relative;
             display: table;
             width: 100%;
-
-            @media print{
-                display: none;
-            }
 
             .arrow_btn {
                 position: absolute;
@@ -394,10 +386,6 @@
                             position: relative;
                             margin-bottom: 29px;
                             display: block;
-
-                            @media print {
-                                display: none;
-                            }
 
                             .container_pin {
                                 top: -4px;
@@ -726,10 +714,6 @@
                 min-width: 250px;
                 background: $side_panel_gray;
                 vertical-align: top;
-
-                @media print {
-                    display: none;
-                }
 
                 @include tablet {
                     top: 60px;
