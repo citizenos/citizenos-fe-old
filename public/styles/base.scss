@@ -51,7 +51,7 @@ h2 {
 }
 
 .hidden {
-    display: none!important;
+    display: none !important;
 }
 
 .table {
@@ -60,6 +60,14 @@ h2 {
 
 .row {
     display: table-row;
+}
+
+.ng-hide {
+    display: none !important;
+}
+
+.ng-show {
+    display: block !important;
 }
 
 #close_mobile_menu {
@@ -1887,6 +1895,10 @@ a:link, a:visited {
     z-index: 9999;
     font-size: 14px;
     font-weight: $bold;
+
+    @media print {
+        display: none;
+    }
 
     @include tablet {
         margin-top: 60px;

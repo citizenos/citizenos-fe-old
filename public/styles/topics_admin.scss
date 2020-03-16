@@ -544,15 +544,23 @@
                             }
                         }
 
+                        /** For @media print - hiding the topic_content_read_only and showing later with CSS when print is pushed **/
+                        #topic_content_read_only {
+                            display: inline;
+                        }
+
                         @media print {
                             #topic_content_area {
-                                display: block;
-                                position: absolute;
-                                z-index: 999999;
-                                top:0;
-                                left: 0;
+                                iframe {
+                                    display: none !important;
+                                }
+
+                                #topic_content_read_only {
+                                    display: inline !important; /** Whatever happens, on print show read-only content **/
+                                }
                             }
                         }
+
                         .topic_content {
                             font-family: 'Noto Sans', sans-serif;
                             font-size: 16px;
