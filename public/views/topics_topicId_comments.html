@@ -7,7 +7,7 @@
                     <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_PRO" translate-values="{countPro:topicComments.count.pro}">pro: 0</span>
                     <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_CON" translate-values="{countCon:topicComments.count.con}">con: 0</span>
                 </div>
-                <div class="data_right">
+                <div class="data_right print_never">
                     <div cos-dropdown class="classic_dropdown borderless_dropdown">
                         <div class="dropdown_selection">
                             <div class="dropdown_text data_item">
@@ -681,7 +681,7 @@
 
         </div>
 
-        <div id="post_argument_wrap" class="post_argument_wrap" ng-controller="TopicCommentCreateFormCtrl">
+        <div id="post_argument_wrap" class="post_argument_wrap print_never" ng-controller="TopicCommentCreateFormCtrl">
             <div class="post_argument_overlay" ng-if="!app.user.loggedIn">
                 <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
                     <div class="blue_link">log in</div>

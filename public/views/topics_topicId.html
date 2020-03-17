@@ -1,6 +1,6 @@
 <div id="topics_admin_root">
 
-    <div class="timeline">
+    <div class="timeline print_never">
 
         <div class="milestones_wrap">
 
@@ -86,7 +86,7 @@
 
     <div class="content_wrap">
 
-        <div class="tabs_wrap_wrap">
+        <div class="tabs_wrap_wrap print_never">
 
             <div class="tabs_wrap">
                 <div class="tabs_visible_area" ng-controller="buttonsSlider">
@@ -183,7 +183,7 @@
 
                     <!-- Create a milestone -->
 
-                    <div class="voting_platform_wrap create_a_milestone_wrap" ng-if="('topics.view.followUp' | isState) && topic.canEdit()">
+                    <div class="voting_platform_wrap create_a_milestone_wrap print_never" ng-if="('topics.view.followUp' | isState) && topic.canEdit()">
 
                         <div class="vote_casting_header">
                             <div class="vote_casting_header_section">
@@ -250,7 +250,7 @@
                                 <div class="table_cell" ng-if="topic.canEdit()">
                                     <div class="v_line"></div>
                                 </div>
-                                <div class="table_cell" ng-if="topic.canEdit()">
+                                <div class="table_cell print_never" ng-if="topic.canEdit()">
                                     <div class="milestone_action">
                                         <span class="red_text blue_link" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONE_DELETE" ng-click="deleteEvent(event)">delete</span>
                                     </div>
@@ -397,9 +397,9 @@
                                 <div class="clearer"></div>
                             </div>
 
-                            <div ng-if="!topic.hasVoteEndedExpired()" class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
+                            <div ng-if="!topic.hasVoteEndedExpired()" class="message_content print_never" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
 
-                            <div ng-if="topic.hasVoteEndedExpired()">
+                            <div ng-if="topic.hasVoteEndedExpired()" class="print_never">
                                 <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED_EXPIRED">Votes have now been cast. Please send topic to follow-up, then return here to download voting results.</div>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" ng-click="sendToFollowUp('topics.view.votes.view')" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow</div>
@@ -432,12 +432,12 @@
                                 </div>
                             </div>
 
-                            <a ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" ng-href="{{topic.vote.downloads.bdocFinal}}" download>
+                            <a class="print_never" ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" ng-href="{{topic.vote.downloads.bdocFinal}}" download>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
                                 </div>
                             </a>
-                            <a ng-if="topic.vote.authType===voteAuthTypes.soft && topic.vote.downloads.zipFinal" ng-href="{{topic.vote.downloads.zipFinal}}" download>
+                            <a class="print_never" ng-if="topic.vote.authType===voteAuthTypes.soft && topic.vote.downloads.zipFinal" ng-href="{{topic.vote.downloads.zipFinal}}" download>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_ZIP">Download full ZIP</div>
                                 </div>
@@ -764,7 +764,7 @@
 
                     <div class="iframe_content_wrap" ng-if="!('topics.view.followUp' | isState)">
 
-                        <div class="topic_info" ng-class="app.more_info_button ? 'open' : ''">
+                        <div class="topic_info print_never" ng-class="app.more_info_button ? 'open' : ''">
 
                             <div class="container_report" ng-if="topic.visibility === VISIBILITY.public && !topic.report" ui-sref="topics.view.report">
                                 <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='TOOLTIP_REPORT_TOPIC'>Report topic</span>">
@@ -870,7 +870,7 @@
 
                     </div>
 
-                    <div class="comments_section">
+                    <div class="comments_section print_never">
                         <div class="tabs_wrap">
                             <div ng-click="app.activeCommentSection = 'arguments'" class="tab"
                                  ng-class="app.activeCommentSection == 'arguments' || app.activeCommentSection == undefined ? 'active':''">
@@ -892,7 +892,7 @@
 
             </div>
 
-            <div class="side_panel" ng-if="wWidth > 1024 || app.topics_settings">
+            <div class="side_panel print_never" ng-if="wWidth > 1024 || app.topics_settings">
                 <div ng-if="topic.canEdit() && app.editMode" class="options_wrap">
                     <div class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_DONE_EDITING" ng-click="app.doToggleEditMode()">Done editing</div>
                 </div>
@@ -947,4 +947,15 @@
     </div>
 
     <div ui-view></div>
+
+    <div class="qr_code_footer" ng-if="topic">
+        <div class="qr_code" ng-if="app.currentUrlAbs" style="float:left">
+            <qrcode data="{{app.currentUrlAbs}}" size="210" version="12" error-correction-level="L" download class="qr_img"></qrcode>
+        </div>
+        <div class="qr_code_info">
+            <div translate="VIEWS.TOPICS_TOPICID.TXT_QR_CODE_FOOTER_SCAN_CODE" translate-values="{topicTitle: topic.title}">Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!</div>
+            <a ng-href="app.currentUrlAbs">{{app.currentUrlAbs}}</a>
+        </div>
+    </div>
+
 </div>

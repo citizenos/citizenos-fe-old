@@ -12,7 +12,8 @@ angular
             showNav: false,
             showSearchFiltersMobile: false,
             isLoading: true,
-            unreadActivitiesCount: 0
+            unreadActivitiesCount: 0,
+            currentUrlAbs: $location.absUrl()
         };
 
         $scope.app.user = sAuth.user;
@@ -230,6 +231,8 @@ angular
             $timeout(function () {
                 $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady', $state.$current.name);
                 window.prerenderReady = true;
+
+                $scope.app.currentUrlAbs = $location.absUrl();
 
                 if ($window.ga) {
                     $window.ga('send', {

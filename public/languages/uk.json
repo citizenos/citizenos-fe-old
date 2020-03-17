@@ -739,7 +739,8 @@
       "NAV_LNK_VIEW_TOPIC": "Перегляд теми",
       "NAV_LNK_LEAVE_TOPIC": "Залишити тему",
       "HEADER_FILES": "ФАЙЛИ",
-      "LNK_ADD_MANAGE_FILES": "Додати/редагувати файли"
+      "LNK_ADD_MANAGE_FILES": "Додати/редагувати файли",
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
     }
   },
   "ACTIVITY_FEED": {

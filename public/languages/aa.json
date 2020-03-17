@@ -739,7 +739,8 @@
       "NAV_LNK_VIEW_TOPIC": "crwdns21512:0crwdne21512:0",
       "NAV_LNK_LEAVE_TOPIC": "crwdns21514:0crwdne21514:0",
       "HEADER_FILES": "crwdns21516:0crwdne21516:0",
-      "LNK_ADD_MANAGE_FILES": "crwdns21518:0crwdne21518:0"
+      "LNK_ADD_MANAGE_FILES": "crwdns21518:0crwdne21518:0",
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "crwdns24136:0{{topicTitle}}crwdne24136:0"
     }
   },
   "ACTIVITY_FEED": {

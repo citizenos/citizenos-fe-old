@@ -739,7 +739,8 @@
       "NAV_LNK_VIEW_TOPIC": "Apskatīt tematu",
       "NAV_LNK_LEAVE_TOPIC": "Pamest tematu",
       "HEADER_FILES": "PIELIKUMI",
-      "LNK_ADD_MANAGE_FILES": "Pievienot/pārvaldīt pielikumus"
+      "LNK_ADD_MANAGE_FILES": "Pievienot/pārvaldīt pielikumus",
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
     }
   },
   "ACTIVITY_FEED": {

@@ -739,7 +739,8 @@
       "NAV_LNK_VIEW_TOPIC": "Näytä aihe",
       "NAV_LNK_LEAVE_TOPIC": "Lähde aiheesta",
       "HEADER_FILES": "LIITTEET",
-      "LNK_ADD_MANAGE_FILES": "Lisää/hallitse liitteitä"
+      "LNK_ADD_MANAGE_FILES": "Lisää/hallitse liitteitä",
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
     }
   },
   "ACTIVITY_FEED": {
