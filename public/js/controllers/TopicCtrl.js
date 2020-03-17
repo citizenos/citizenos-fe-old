@@ -222,7 +222,7 @@ angular
                 .then(function () {
                     if (!$scope.topic.voteId && !$scope.topic.vote) {
                         $scope.app.topics_settings = false;
-                        $state.go('topics.view.votes.create', {topicId: $scope.topic.id});
+                        $state.go('topics.view.votes.create', {topicId: $scope.topic.id, commentId: null});
                     } else if (($scope.topic.voteId || $scope.topic.vote && $scope.topic.vote.id) && $scope.topic.status !== $scope.STATUSES.voting) {
                         $log.debug('sendToVote');
                         return new Topic({
@@ -237,6 +237,7 @@ angular
                                 $state.go('topics.view.votes.view', {
                                         topicId: $scope.topic.id,
                                         voteId: $scope.topic.vote.id,
+                                        commentId: null,
                                         editMode: null
                                     },
                                     {reload: true}
@@ -264,7 +265,7 @@ angular
                                 $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
                                 var stateNext = stateSuccess || 'topics.view.followUp';
-                                var stateParams = angular.extend({}, $stateParams, {editMode: null});
+                                var stateParams = angular.extend({}, $stateParams, {editMode: null, commentId: null});
                                 $state.go(
                                     stateNext,
                                     stateParams,
@@ -293,7 +294,7 @@ angular
                                 $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
                                 if ($state.is('topics.view.votes.view')) {
-                                    $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true});
+                                    $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true, commentId: null});
                                 }
                             }
                         );
@@ -316,7 +317,8 @@ angular
                     'topics.view',
                     {
                         topicId: $scope.topic.id,
-                        editMode: $scope.app.editMode
+                        editMode: $scope.app.editMode,
+                        commentId: null
                     }
                 );
             } else {
@@ -324,7 +326,8 @@ angular
                     'topics.view',
                     {
                         topicId: $scope.topic.id,
-                        editMode: null
+                        editMode: null,
+                        commentId: null
                     },
                     {
                         reload: true
