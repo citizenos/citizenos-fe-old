@@ -739,7 +739,8 @@
       "NAV_LNK_VIEW_TOPIC": "Regarder le sujet",
       "NAV_LNK_LEAVE_TOPIC": "Quitter le sujet",
       "HEADER_FILES": "PIÈCE JOINTES",
-      "LNK_ADD_MANAGE_FILES": "Ajouter/gérer les pièces jointes"
+      "LNK_ADD_MANAGE_FILES": "Ajouter/gérer les pièces jointes",
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
     }
   },
   "ACTIVITY_FEED": {
