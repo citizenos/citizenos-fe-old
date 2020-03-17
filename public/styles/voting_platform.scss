@@ -94,7 +94,7 @@
                 font-size: 16px;
                 font-weight: bold;
                 float: left;
-                width:65%;
+                width:60%;
             }
 
             .message_content {
@@ -107,7 +107,7 @@
             .float_wrap {
                 position:   absolute;
                 right: 0;
-                width:35%;
+                width:40%;
                 padding-right: 15px;
                 margin: 0;
 
@@ -123,6 +123,7 @@
 
                 .blue_link {
                     font-size: 13px;
+                    text-align: right;
                 }
 
 
@@ -132,6 +133,9 @@
 
         .message_content {
             font-size: 14px;
+            @media (max-width: 450px) {
+                padding-top: 15px;
+            }
         }
 
          .voting_button {
@@ -620,6 +624,7 @@
                 .icon_cell {
                     display: table-cell;
                     width: 33%;
+                    padding-top: 10px;
 
                     .icon_wrapper {
                         width: min-content;
