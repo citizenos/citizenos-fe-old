@@ -152,6 +152,12 @@
         box-sizing: border-box;
         margin-top: 30px;
 
+        * {
+            color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
         .graph_row {
             position: relative;
             height: 40px;
@@ -492,6 +498,10 @@
                 display: table;
                 text-align: center;
                 cursor: pointer;
+
+                color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
 
                 &:not(.active):hover {
                     background: $medium_gray;
