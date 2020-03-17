@@ -29,9 +29,11 @@ angular
             comment
                 .$save({topicId: $scope.topic.id})
                 .then(
-                    function () {
-                        $scope.loadTopicComments();
-                        init();
+                    function (comment) {
+                        return $state.go(
+                            $state.current.name,
+                            {commentId: $scope.getCommentIdWithVersion(comment.id, comment.edits.length - 1)}
+                        );
                     },
                     function (res) {
                         $scope.form.errors = res.data.errors;
@@ -40,26 +42,26 @@ angular
         };
 
         $scope.commentTextLengthCheck = function (comment, text) {
-            if(text && text.length > $scope.maxLengthText) {
-                if(!comment.errors) {
+            if (text && text.length > $scope.maxLengthText) {
+                if (!comment.errors) {
                     comment.errors = {};
                 }
                 comment.errors.text = 'VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ERROR_TEXT_TOO_LONG';
             } else {
-                if(comment.errors && comment.errors.text) {
+                if (comment.errors && comment.errors.text) {
                     comment.errors.text = null;
                 }
             }
         };
 
         $scope.commentSubjectLengthCheck = function (comment, subject) {
-            if(subject && subject.length > $scope.maxLengthSubject) {
-                if(!comment.errors) {
+            if (subject && subject.length > $scope.maxLengthSubject) {
+                if (!comment.errors) {
                     comment.errors = {};
                 }
                 comment.errors.subject = 'VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ERROR_SUBJECT_TOO_LONG';
             } else {
-                if(comment.errors && comment.errors.subject) {
+                if (comment.errors && comment.errors.subject) {
                     comment.errors.subject = null;
                 }
             }

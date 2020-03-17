@@ -176,7 +176,7 @@ angular
 
         $scope.app.scrollToAnchor = function (anchor) {
             // TODO: Probably not the most elegant way but works for now. Probably should be a directive, which calculates the yOffset (https://docs.angularjs.org/api/ng/service/$anchorScroll#yOffset)
-            $timeout(function () {
+            return $timeout(function () {
                 if ($rootScope.wWidth <= 1024) {
                     $anchorScroll.yOffset = 68;
                 } else {
