@@ -948,4 +948,15 @@
     </div>
 
     <div ui-view></div>
+
+    <div class="qr_code_footer" ng-if="topic">
+        <div class="qr_code" ng-if="app.currentUrlAbs" style="float:left">
+            <qrcode data="{{app.currentUrlAbs}}" size="210" version="12" error-correction-level="L" download class="qr_img"></qrcode>
+        </div>
+        <div class="qr_code_info">
+            <div translate="VIEWS.TOPICS_TOPICID.TXT_QR_CODE_FOOTER_SCAN_CODE" translate-values="{topicTitle: topic.title}">Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!</div>
+            <a ng-href="app.currentUrlAbs">{{app.currentUrlAbs}}</a>
+        </div>
+    </div>
+
 </div>
