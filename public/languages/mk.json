@@ -739,7 +739,8 @@
       "NAV_LNK_VIEW_TOPIC": "Види ја темата",
       "NAV_LNK_LEAVE_TOPIC": "Напушти ја темата",
       "HEADER_FILES": "ФАЈЛОВИ",
-      "LNK_ADD_MANAGE_FILES": "Додади/Измени фајлови"
+      "LNK_ADD_MANAGE_FILES": "Додади/Измени фајлови",
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
     }
   },
   "ACTIVITY_FEED": {

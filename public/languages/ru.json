@@ -739,7 +739,8 @@
       "NAV_LNK_VIEW_TOPIC": "Просмотр темы",
       "NAV_LNK_LEAVE_TOPIC": "Покинуть тему",
       "HEADER_FILES": "Прикрепленные файлы",
-      "LNK_ADD_MANAGE_FILES": "Добавить/редактировать файлы"
+      "LNK_ADD_MANAGE_FILES": "Добавить/редактировать файлы",
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
     }
   },
   "ACTIVITY_FEED": {

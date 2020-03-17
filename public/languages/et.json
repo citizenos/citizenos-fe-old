@@ -739,7 +739,8 @@
       "NAV_LNK_VIEW_TOPIC": "Vaata teemat",
       "NAV_LNK_LEAVE_TOPIC": "Lahku teemast",
       "HEADER_FILES": "MANUSED",
-      "LNK_ADD_MANAGE_FILES": "Lisa/muuda manuseid"
+      "LNK_ADD_MANAGE_FILES": "Lisa/muuda manuseid",
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
     }
   },
   "ACTIVITY_FEED": {

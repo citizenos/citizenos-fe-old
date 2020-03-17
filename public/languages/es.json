@@ -739,7 +739,8 @@
       "NAV_LNK_VIEW_TOPIC": "Ver tema",
       "NAV_LNK_LEAVE_TOPIC": "Abandonar tema",
       "HEADER_FILES": "ADJUNTOS",
-      "LNK_ADD_MANAGE_FILES": "Agregar o administrar archivos adjuntos"
+      "LNK_ADD_MANAGE_FILES": "Agregar o administrar archivos adjuntos",
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
     }
   },
   "ACTIVITY_FEED": {
