@@ -739,7 +739,8 @@
       "NAV_LNK_VIEW_TOPIC": "Lihat Topik",
       "NAV_LNK_LEAVE_TOPIC": "Meninggalkan topik",
       "HEADER_FILES": "LAMPIRAN",
-      "LNK_ADD_MANAGE_FILES": "Tambah/atur lampiran"
+      "LNK_ADD_MANAGE_FILES": "Tambah/atur lampiran",
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
     }
   },
   "ACTIVITY_FEED": {
