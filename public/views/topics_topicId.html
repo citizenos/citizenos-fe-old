@@ -346,7 +346,7 @@
 
                         </div>
 
-                        <div class="delegation_section print_never" ng-if="!topic.hasVoteEnded()">
+                        <div class="delegation_section" ng-if="!topic.hasVoteEnded()">
 
                             <div class="voting_button voting_button_blue" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)"
                                  ng-class="topic.vote.delegation ? '' : 'active'" ng-click="doDelegate()">
@@ -864,8 +864,7 @@
                         <div id="topic_content_area" class="topic_content">
                             <iframe cos-etherpad ng-if="!hideTopicContent && topic.canEdit() && app.editMode" frameborder="0" scrolling="no" ng-class="{hidden: !topic.padUrl || ('topics.view.followUp' | isState)}"
                                     ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
-                            <!-- Using ng-show instead of ng-if for showing topic content in case of printing the page -->
-                            <div id="topic_content_read_only" ng-show="!hideTopicContent && !app.editMode" ng-bind-html="topic.description"></div>
+                            <ng-bind-html ng-if="!hideTopicContent && !app.editMode" ng-bind-html="topic.description"></ng-bind-html>
                             <h1 ng-if="hideTopicContent"><i>Topic content has been hidden due to violation of community guidelines</i></h1>
                         </div>
 
