@@ -76,6 +76,20 @@ h2 {
     }
 }
 
+.print_footer {
+    display: none;
+    padding: 60px 30px;
+    text-align: center;
+
+    .qr_code {
+        padding-right: 2em;
+    }
+
+    @media print {
+        display: block;
+    }
+}
+
 #close_mobile_menu {
     position: fixed;
     z-index: 3;
@@ -440,26 +454,6 @@ table, .pretend_table {
             border-top: 2px solid $aqua_marine;
             border-right: 2px solid $aqua_marine;
             border-bottom: 2px solid $aqua_marine;
-        }
-    }
-
-    @media print {
-        &.active {
-            .table_cell:last-child {
-                background: $aqua_marine;
-            }
-        }
-
-        .table_cell {
-            border: 1px solid black;
-
-            &:first-child {
-                border: 1px solid black;
-            }
-
-            &:last-child {
-                border: 1px solid black;
-            }
         }
     }
 

@@ -27,11 +27,11 @@
             </div>
 
             <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting].indexOf(topic.status) > -1" class="progress_line voting_line bar_green"
-                ng-class="{in_voting_line: STATUSES.voting === topic.status}">
+                 ng-class="{in_voting_line: STATUSES.voting === topic.status}">
             </div>
 
             <div ng-if="[STATUSES.closed, STATUSES.followUp, STATUSES.voting, STATUSES.inProgress].indexOf(topic.status) > -1" class="progress_line pin_yellow_background progress_status_line"
-                ng-class="{in_progress_line: STATUSES.inProgress === topic.status}">
+                 ng-class="{in_progress_line: STATUSES.inProgress === topic.status}">
             </div>
 
             <div class="days_left_wrap"
@@ -101,9 +101,9 @@
                         </div>
                     </div>
                     <div class="tabs_rails">
-                        <div class="tabs_train" slide-controller identifier="tabsTrain" dimensions >
+                        <div class="tabs_train" slide-controller identifier="tabsTrain" dimensions>
                             <div class="tab" ui-sref="topics.view({topicId: topic.id})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
-                                dimensions>
+                                 dimensions>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
                             </div>
                             <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})"
@@ -170,10 +170,16 @@
 
                         <div class="info_bar_text">
                             <div class="info_row">
-                                <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_REPORTED">This topic has been reported.</span>&nbsp;<a ng-click="doShowReportOverlay()" href="" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_VIEW_REPORT_DETAILS">View details</a>
-                                <span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsModerate({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_MODERATE">Moderate</a></span>
-                                <span ng-if="topic.report.type">&nbsp;<a ui-sref="topics.view.reportsResolve({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_RESOLVE">Mark as resolved</a></span>
-                                <span ng-if="topic.canEdit() && topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_SUBMIT_FOR_REVIEW">Submit for review</a></span>
+                                <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_REPORTED">This topic has been reported.</span>&nbsp;<a ng-click="doShowReportOverlay()" href=""
+                                                                                                                                          translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_VIEW_REPORT_DETAILS">View
+                                details</a>
+                                <span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsModerate({topicId: topic.id, reportId: topic.report.id})"
+                                                                                                              ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_MODERATE">Moderate</a></span>
+                                <span ng-if="topic.report.type">&nbsp;<a ui-sref="topics.view.reportsResolve({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}"
+                                                                         translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_RESOLVE">Mark as resolved</a></span>
+                                <span ng-if="topic.canEdit() && topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})"
+                                                                                                           ui-sref-opts="{reload:false}"
+                                                                                                           translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_SUBMIT_FOR_REVIEW">Submit for review</a></span>
                             </div>
                         </div>
                     </div>
@@ -292,7 +298,8 @@
 
                             <div class="message_header">
                                 <div class="message_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_REQUIRE_HARD_ID">This vote requires an ID card or Mobile ID signing.</div>
-                                <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_REQUIRE_HARD_ID">This document needs a signing by ID card or Mobile ID to be registered. You can not
+                                <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_REQUIRE_HARD_ID">This document needs a signing by ID card or Mobile ID to be registered. You can
+                                    not
                                     vote if you don’t identify yourself.
                                 </div>
                                 <div class="float_wrap">
@@ -312,7 +319,6 @@
                             </div>
 
 
-
                         </div>
 
                         <div class="vote_casting_message with_upper_right_links" ng-if="getUserHasVoted() && !topic.hasVoteEnded()">
@@ -321,12 +327,14 @@
                                 <div class="message_title" translate="VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED">Your vote has been registered!</div>
                                 <div class="float_wrap">
                                     <div class="blue_link" ng-class="{hidden: topic.vote.authType !== voteAuthTypes.hard}"><a ng-href="{{topic.vote.downloads.bdocVote}}"
-                                                                                                                   translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_USER_BDOC" download>Download your DDOC</a></div>
+                                                                                                                              translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_USER_BDOC" download>Download
+                                        your DDOC</a></div>
                                 </div>
                                 <div class="clearer"></div>
                             </div>
 
-                            <div class="message_content" ng-class="{hidden: topic.vote.authType !== voteAuthTypes.hard}" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_REGISTERED">This document needs a signing by
+                            <div class="message_content" ng-class="{hidden: topic.vote.authType !== voteAuthTypes.hard}" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_REGISTERED">This document needs a
+                                signing by
                                 ID card or Mobile ID to be registered. You can not vote if you don’t identify yourself.
                             </div>
 
@@ -397,10 +405,14 @@
                                 <div class="clearer"></div>
                             </div>
 
-                            <div ng-if="!topic.hasVoteEndedExpired()" class="message_content print_never" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can download the full document here.</div>
+                            <div ng-if="!topic.hasVoteEndedExpired()" class="message_content print_never" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can
+                                download the full document here.
+                            </div>
 
                             <div ng-if="topic.hasVoteEndedExpired()" class="print_never">
-                                <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED_EXPIRED">Votes have now been cast. Please send topic to follow-up, then return here to download voting results.</div>
+                                <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED_EXPIRED">Votes have now been cast. Please send topic to follow-up, then return here to
+                                    download voting results.
+                                </div>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" ng-click="sendToFollowUp('topics.view.votes.view')" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow</div>
                                 </div>
@@ -424,8 +436,10 @@
                                                 Here's what you could do now:
                                             </p>
                                             <p class="info_bar_text" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_DRAW_WHAT_NOW">
-                                                    It might be possible to solve this offline - for example, a co-located team could flip a coin between the two winning options.
-                                                    Also, if you had votes going to non-winning options, we suggest you run another vote between the two previously winning options only. This time, you could pre-determine a tie-breaker in case you have another draw: a coin flip, a default winning option (usually status quo wins in a draw), a person whose vote is decisive etc.
+                                                It might be possible to solve this offline - for example, a co-located team could flip a coin between the two winning options.
+                                                Also, if you had votes going to non-winning options, we suggest you run another vote between the two previously winning options only. This time, you
+                                                could pre-determine a tie-breaker in case you have another draw: a coin flip, a default winning option (usually status quo wins in a draw), a person
+                                                whose vote is decisive etc.
                                             </p>
                                         </div>
                                     </div>
@@ -590,7 +604,8 @@
                                 <div class="left_row">
 
                                     <div class="input_with_icon clickable" ng-repeat="(key, option) in voteForm.options">
-                                        <input id="{{'voteOption' + $index}}" class="gray_borders" ng-model="option.value" ng-class="{'error_input': option.value && voteForm.errors.value}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER' | translate}}">
+                                        <input id="{{'voteOption' + $index}}" class="gray_borders" ng-model="option.value" ng-class="{'error_input': option.value && voteForm.errors.value}"
+                                               placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER' | translate}}">
                                         <div class="icon_table" ng-class="{'error': option.value && voteForm.errors.value}">
                                             <div class="icon_cell" ng-click="removeOption(key)">
                                                 <div class="sprite sprite-inputfield-icon-delete2x"></div>
@@ -696,8 +711,8 @@
                                     <div class="gray_toggle_box" ng-if="(voteForm.authType == voteAuthTypes.hard)">
                                         <div class="toggle_box_warning">
                                             <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                        <span
-                                            translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID">When Hard-ID is the chosen method of voting, delegation is not allowed.</span>
+                                            <span
+                                                translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID">When Hard-ID is the chosen method of voting, delegation is not allowed.</span>
                                         </div>
                                     </div>
 
@@ -725,7 +740,8 @@
                                                         <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DEADLINE">Deadline</div>
                                                     </div>
                                                     <div class="table_cell">
-                                                        <div cos-toggle ng-model="voteForm.endsAt" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" cos-toggle-datepicker-toggle="true"></div>
+                                                        <div cos-toggle ng-model="voteForm.endsAt" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                                             cos-toggle-datepicker-toggle="true"></div>
                                                     </div>
                                                 </div>
 
@@ -811,7 +827,8 @@
                                             <span ng-if="!$last" class="info_section_separator"> | </span>
                                         </span>
                                         <span ng-if="!topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none
-                                            <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span>
+                                            <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})"
+                                                  translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span>
                                         </span>
                                     </div>
                                 </div>
@@ -820,9 +837,9 @@
                                         <span translate="VIEWS.TOPICS_TOPICID.LBL_AUTHORS">Authors:</span>
                                     </div>
                                     <div class="info_section_content"><span ng-if="topic.creator.email" class="blue_link"
-                                    tooltips tooltip-class="tooltip_author"
-                                    tooltip-template="<span class='creator_data_tooltip_row'>{{topic.creator.email}}</span><span class='creator_data_tooltip_row'>{{topic.creator.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{topic.creator.pid}}</span>"
-                                    tooltip-smart="true">{{topic.creator.name}}</span><span ng-if="!topic.creator.email">{{topic.creator.name}}</span>
+                                                                            tooltips tooltip-class="tooltip_author"
+                                                                            tooltip-template="<span class='creator_data_tooltip_row'>{{topic.creator.email}}</span><span class='creator_data_tooltip_row'>{{topic.creator.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{topic.creator.pid}}</span>"
+                                                                            tooltip-smart="true">{{topic.creator.name}}</span><span ng-if="!topic.creator.email">{{topic.creator.name}}</span>
                                     </div>
                                 </div>
                                 <div class="info_section">
@@ -831,15 +848,16 @@
                                     </div>
                                     <div class="info_section_content">
                                         <span class="blue_link" ng-click="app.activeCommentSection = 'arguments'; app.scrollToAnchor('arguments')"
-                                                translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT"
-                                                translate-values="{count: topic.comments.count.total || 0}">0 arguments</span>
+                                              translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT"
+                                              translate-values="{count: topic.comments.count.total || 0}">0 arguments</span>
                                         <span class="info_section_separator"> | </span>
-                                        <span class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')" translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT"
-                                                translate-values="{mentionsCount: (topicSocialMentions.length ||0)}">0 social mentions</span>
-                                                <span ng-if="!topic.hashtag && topic.canEdit()" class="info_section_separator"> | </span>
-                                                <span class="blue_link" ng-if="!topic.hashtag && topic.canEdit()"
-                                                    ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"
-                                                    translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG"> add hashtag</span>
+                                        <span class="blue_link" ng-click="app.activeCommentSection = 'socialMentions'; app.scrollToAnchor('socialMentions')"
+                                              translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT"
+                                              translate-values="{mentionsCount: (topicSocialMentions.length ||0)}">0 social mentions</span>
+                                        <span ng-if="!topic.hashtag && topic.canEdit()" class="info_section_separator"> | </span>
+                                        <span class="blue_link" ng-if="!topic.hashtag && topic.canEdit()"
+                                              ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"
+                                              translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG"> add hashtag</span>
                                         <span ng-if="topic.hashtag" class="black_text"> #{{topic.hashtag}}</span>
                                     </div>
                                 </div>
@@ -849,10 +867,15 @@
                                     </div>
                                     <div class="info_section_content">
                                         <div class="blue_link" ng-repeat="attachment in topicAttachments">
-                                            <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment" ng-click="$event.preventDefault(); downloadAttachment(attachment);" href="{{attachment.link}}">{{attachment.name}}<span class="btn blue_button file_type">.{{attachment.type}}</span></a>
-                                            <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment" href="{{attachment.link}}" >{{attachment.name}} <span class="btn blue_button file_type">{{attachment.type}}</span></a>
+                                            <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment"
+                                               ng-click="$event.preventDefault(); downloadAttachment(attachment);" href="{{attachment.link}}">{{attachment.name}}<span
+                                                class="btn blue_button file_type">.{{attachment.type}}</span></a>
+                                            <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment" href="{{attachment.link}}">{{attachment.name}} <span
+                                                class="btn blue_button file_type">{{attachment.type}}</span></a>
                                         </div>
-                                        <div ui-sref="topics.view.files" cos-disabled="!topic.canEdit()"class="blue_link info_section_add_attachments" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
+                                        <div ui-sref="topics.view.files" cos-disabled="!topic.canEdit()" class="blue_link info_section_add_attachments"
+                                             translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -862,7 +885,8 @@
 
 
                         <div id="topic_content_area" class="topic_content">
-                            <iframe cos-etherpad ng-if="!hideTopicContent && topic.canEdit() && app.editMode" frameborder="0" scrolling="no" ng-class="{hidden: !topic.padUrl || ('topics.view.followUp' | isState)}"
+                            <iframe cos-etherpad ng-if="!hideTopicContent && topic.canEdit() && app.editMode" frameborder="0" scrolling="no"
+                                    ng-class="{hidden: !topic.padUrl || ('topics.view.followUp' | isState)}"
                                     ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
                             <ng-bind-html ng-if="!hideTopicContent && !app.editMode" ng-bind-html="topic.description"></ng-bind-html>
                             <h1 ng-if="hideTopicContent"><i>Topic content has been hidden due to violation of community guidelines</i></h1>
@@ -897,7 +921,9 @@
                     <div class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_DONE_EDITING" ng-click="app.doToggleEditMode()">Done editing</div>
                 </div>
                 <div ng-if="topic.canEdit() && topic.report.moderatedReasonType" class="options_wrap">
-                    <div class="blue_button" ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_SUBMIT_FOR_REVIEW">Submit for review</div>
+                    <div class="blue_button" ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}"
+                         translate="VIEWS.TOPICS_TOPICID.NAV_BTN_SUBMIT_FOR_REVIEW">Submit for review
+                    </div>
                 </div>
                 <div class="options_wrap">
                     <div class="options_header">
@@ -916,7 +942,9 @@
                         <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_CATEGORIES">Categories</div>
                         <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'invite'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_INVITE_USERS">Invite users</div>
                         <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'share'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SHARE">Share topic</div>
-                        <div ng-if="topic.visibility === VISIBILITY.public && !topic.report" class="blue_link" ui-sref="topics.view.report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report topic</div>
+                        <div ng-if="topic.visibility === VISIBILITY.public && !topic.report" class="blue_link" ui-sref="topics.view.report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report
+                            topic
+                        </div>
                         <div class="line lightest_line"></div>
                         <div class="blue_link" cos-disabled="!topic.canEditDescription()" ng-click="app.doToggleEditMode()"
                              ng-if="!app.editMode" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC">Edit topic
@@ -931,11 +959,12 @@
                     </div>
                     <div class="options_content">
                         <div class="blue_link" ng-repeat="attachment in topicAttachments">
-                            <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link" ng-click="$event.preventDefault(); downloadAttachment(attachment);" href="{{attachment.link}}">{{attachment.name}}<span class="btn blue_button file_type">.{{attachment.type}}</span></a>
-                            <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link" href="{{attachment.link}}" >{{attachment.name}} <span class="btn blue_button file_type">{{attachment.type}}</span></a>
+                            <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link" ng-click="$event.preventDefault(); downloadAttachment(attachment);" href="{{attachment.link}}">{{attachment.name}}<span
+                                class="btn blue_button file_type">.{{attachment.type}}</span></a>
+                            <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link" href="{{attachment.link}}">{{attachment.name}} <span class="btn blue_button file_type">{{attachment.type}}</span></a>
                         </div>
                         <div class="line lightest_line" ng-if="topicAttachments.length"></div>
-                        <div ui-sref="topics.view.files" cos-disabled="!topic.canEdit()"class="blue_link" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
+                        <div ui-sref="topics.view.files" cos-disabled="!topic.canEdit()" class="blue_link" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
                     </div>
                 </div>
             </div>
@@ -948,14 +977,11 @@
 
     <div ui-view></div>
 
-    <div class="qr_code_footer" ng-if="topic">
-        <div class="qr_code" ng-if="app.currentUrlAbs" style="float:left">
+    <div class="print_footer" ng-if="topic">
+        <div class="qr_code" ng-if="app.currentUrlAbs">
             <qrcode data="{{app.currentUrlAbs}}" size="210" version="12" error-correction-level="L" download class="qr_img"></qrcode>
         </div>
-        <div class="qr_code_info">
-            <div translate="VIEWS.TOPICS_TOPICID.TXT_QR_CODE_FOOTER_SCAN_CODE" translate-values="{topicTitle: topic.title}">Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!</div>
-            <a ng-href="app.currentUrlAbs">{{app.currentUrlAbs}}</a>
-        </div>
+        <span translate="VIEWS.TOPICS_TOPICID.TXT_QR_CODE_FOOTER_SCAN_CODE" translate-values="{topicTitle: topic.title}">Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!</span>
+        <a ng-href="app.currentUrlAbs">{{app.currentUrlAbs}}</a>
     </div>
-
 </div>

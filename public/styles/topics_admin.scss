@@ -760,19 +760,4 @@
         }
 
     }
-
-
-    .qr_code_footer {
-        display: none;
-        padding: 60px 30px;
-
-        .qr_code {
-            float: left;
-            padding-right: 20px;
-        }
-
-        @media print {
-            display: block;
-        }
-    }
 }
