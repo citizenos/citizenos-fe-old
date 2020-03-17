@@ -102,15 +102,15 @@
                     </div>
                     <div class="tabs_rails">
                         <div class="tabs_train" slide-controller identifier="tabsTrain" dimensions>
-                            <div class="tab" ui-sref="topics.view({topicId: topic.id})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
+                            <div class="tab" ui-sref="topics.view({topicId: topic.id, commentId: null})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
                                  dimensions>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
                             </div>
-                            <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId})"
+                            <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId, commentId: null})"
                                  ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" dimensions>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VOTE">Vote</div>
                             </div>
-                            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="tab" ui-sref="topics.view.followUp({topicId: topic.id})"
+                            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="tab" ui-sref="topics.view.followUp({topicId: topic.id, commentId: null})"
                                  ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.followUp' | isState)}" dimensions>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_FOLLOW_UP">Follow up</div>
                             </div>
