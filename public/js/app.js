@@ -639,6 +639,12 @@
                                 case 'private':
                                     urlParams.visibility = Topic.VISIBILITY.private;
                                     return Topic.query(urlParams).$promise;
+                                case 'haveVoted':
+                                    urlParams.hasVoted = true;
+                                    return Topic.query(urlParams).$promise;
+                                case 'haveNotVoted':
+                                    urlParams.hasVoted = false;
+                                    return Topic.query(urlParams).$promise;
                                 case 'iCreated':
                                     urlParams.creatorId = sAuth.user.id;
                                     return Topic.query(urlParams).$promise;

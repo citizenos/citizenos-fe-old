@@ -491,6 +491,8 @@
         "SHOW_ONLY": "crwdns21036:0crwdne21036:0",
         "MY_PUBLIC_TOPICS": "crwdns21038:0crwdne21038:0",
         "MY_PRIVATE_TOPICS": "crwdns21040:0crwdne21040:0",
+        "TOPICS_I_HAVE_VOTED": "crwdns24138:0crwdne24138:0",
+        "TOPICS_I_HAVE_NOT_VOTED": "crwdns24140:0crwdne24140:0",
         "TOPICS_I_CREATED": "crwdns21042:0crwdne21042:0",
         "TOPICS_ORDERED_BY_GROUPS": "crwdns21044:0crwdne21044:0",
         "TOPICS_IN_PROGRESS": "crwdns21046:0crwdne21046:0",

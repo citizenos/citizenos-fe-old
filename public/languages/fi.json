@@ -491,6 +491,8 @@
         "SHOW_ONLY": "Näytä vain:",
         "MY_PUBLIC_TOPICS": "Omat julkiset aiheet",
         "MY_PRIVATE_TOPICS": "Omat yksityiset aiheet",
+        "TOPICS_I_HAVE_VOTED": "Topics I have voted on",
+        "TOPICS_I_HAVE_NOT_VOTED": "Topics that need my vote",
         "TOPICS_I_CREATED": "Luomani aiheet",
         "TOPICS_ORDERED_BY_GROUPS": "Näyta aiheet järjesteltynä ryhmän mukaan",
         "TOPICS_IN_PROGRESS": "Kesken olevat aiheet",
