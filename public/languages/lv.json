@@ -491,6 +491,8 @@
         "SHOW_ONLY": "Rādīt tikai:",
         "MY_PUBLIC_TOPICS": "Mani publiskie temati",
         "MY_PRIVATE_TOPICS": "Mani privātie temati",
+        "TOPICS_I_HAVE_VOTED": "Topics I have voted on",
+        "TOPICS_I_HAVE_NOT_VOTED": "Topics that need my vote",
         "TOPICS_I_CREATED": "Mani izveidotie temati",
         "TOPICS_ORDERED_BY_GROUPS": "Rādīt tematus pa grupām",
         "TOPICS_IN_PROGRESS": "Temati procesā",

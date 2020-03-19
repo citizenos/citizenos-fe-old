@@ -34,6 +34,20 @@ angular
                         }
                     },
                     {
+                        id: 'haveVoted',
+                        name: 'VIEWS.MY.FILTERS.TOPICS_I_HAVE_VOTED',
+                        onSelect: function () {
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                        }
+                    },
+                    {
+                        id: 'haveNotVoted',
+                        name: 'VIEWS.MY.FILTERS.TOPICS_I_HAVE_NOT_VOTED',
+                        onSelect: function () {
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                        }
+                    },
+                    {
                         id: 'iCreated',
                         name: 'VIEWS.MY.FILTERS.TOPICS_I_CREATED',
                         onSelect: function () {

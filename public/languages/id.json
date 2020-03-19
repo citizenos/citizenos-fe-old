@@ -491,6 +491,8 @@
         "SHOW_ONLY": "Tampilkan hanya:",
         "MY_PUBLIC_TOPICS": "Topik umum saya",
         "MY_PRIVATE_TOPICS": "Topik pribadi saya",
+        "TOPICS_I_HAVE_VOTED": "Topics I have voted on",
+        "TOPICS_I_HAVE_NOT_VOTED": "Topics that need my vote",
         "TOPICS_I_CREATED": "Topik yang saya buat",
         "TOPICS_ORDERED_BY_GROUPS": "Tampilkan topik yang dipesan oleh kelompok",
         "TOPICS_IN_PROGRESS": "Topik sedang berjalan",
