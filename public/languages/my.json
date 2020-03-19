@@ -491,6 +491,8 @@
         "SHOW_ONLY": "Show only:",
         "MY_PUBLIC_TOPICS": "My public topics",
         "MY_PRIVATE_TOPICS": "My private topics",
+        "TOPICS_I_HAVE_VOTED": "Topics I have voted on",
+        "TOPICS_I_HAVE_NOT_VOTED": "Topics that need my vote",
         "TOPICS_I_CREATED": "Topics I created",
         "TOPICS_ORDERED_BY_GROUPS": "Show topics ordered by groups",
         "TOPICS_IN_PROGRESS": "Topics in progress",
