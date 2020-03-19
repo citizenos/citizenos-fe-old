@@ -491,6 +491,8 @@
         "SHOW_ONLY": "Показывать только:",
         "MY_PUBLIC_TOPICS": "Мои публичные темы",
         "MY_PRIVATE_TOPICS": "Мои приватные темы",
+        "TOPICS_I_HAVE_VOTED": "Topics I have voted on",
+        "TOPICS_I_HAVE_NOT_VOTED": "Topics that need my vote",
         "TOPICS_I_CREATED": "Темы, созданные мной",
         "TOPICS_ORDERED_BY_GROUPS": "Сортировать темы по группам",
         "TOPICS_IN_PROGRESS": "Темы в стадии создания",
