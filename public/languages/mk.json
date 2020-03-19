@@ -491,6 +491,8 @@
         "SHOW_ONLY": "Прикажи само:",
         "MY_PUBLIC_TOPICS": "Мои јавни теми",
         "MY_PRIVATE_TOPICS": "Мои приватни теми",
+        "TOPICS_I_HAVE_VOTED": "Topics I have voted on",
+        "TOPICS_I_HAVE_NOT_VOTED": "Topics that need my vote",
         "TOPICS_I_CREATED": "Теми кои јас ги создадов",
         "TOPICS_ORDERED_BY_GROUPS": "Прикажи теми подредени по групи",
         "TOPICS_IN_PROGRESS": "Теми во тек",
