@@ -3,7 +3,7 @@
 angular
     .module('citizenos')
     .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $interval, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity) {
-        $log.debug('AppCtrl');
+        $log.debug('AppCtrl', $location.host());
 
         $scope.app = {
             config: cosConfig,
@@ -11,6 +11,7 @@ angular
             showSearchResults: false,
             showNav: false,
             showSearchFiltersMobile: false,
+            showTestingEnvNotification: $location.host() === 'test.app.citizenos.com',
             isLoading: true,
             unreadActivitiesCount: 0,
             currentUrlAbs: $location.absUrl()
