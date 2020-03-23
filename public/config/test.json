@@ -1,6 +1,6 @@
 {
   "api": {
-    "baseUrl": "https://citizenos-citizenos-api-test.herokuapp.com"
+    "baseUrl": "https://test.api.citizenos.com"
   },
   "language": {
     "default": "en",

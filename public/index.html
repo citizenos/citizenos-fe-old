@@ -12,11 +12,11 @@
     </script>
     <![endif]-->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=c07ebb3ac0179930b60be47f7579e0e7" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=f501effdf750658c0607d6909c69f0d2" rel="stylesheet">
     <link href="config/styles/local.css?v=d41d8cd98f00b204e9800998ecf8427e" rel="stylesheet">
 
     <script src="settings.js?v=eff55ee2e7039cb340b7b8be6958f207"></script>
-    <script src="js/citizenos-fe.bundle.js?v=62e1642fafd8443d35c418c42d42b60f"></script>
+    <script src="js/citizenos-fe.bundle.js?v=c585586a211085adc5797a58d57df00d"></script>
 
     <meta name="theme-color" content="#1a1a1a">
     <title ng-if="app.metainfo.title" translate="{{app.metainfo.title}}">Citizen OS - an e-decisionmaking platform for communities.</title>
@@ -36,9 +36,23 @@
 
 <body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" cos-resize>
     <div ng-app="viewTemplateCache"></div>
-
     <!-- INFO BAR - base.scss -->
     <div class="info_bar_wrap">
+        <!-- ORANGE MESSAGE for TESTING ENV NOTIFICATION -->
+        <div class="info_bar bar_orange" ng-class="{'info_bar_show': app.showTestingEnvNotification}">
+            <div class="info_icon">
+                <div class="sprite sprite-icon-notification-error2x"></div>
+            </div>
+
+            <div class="info_bar_text">
+                PLEASE NOTE! This Citizen OS is a testing environment and is for TESTING ONLY, all data here MAY be deleted at any time! Please visit <a href="https://app.citizenos.com">https://app.citizenos.com</a> for LIVE application.
+            </div>
+
+            <div class="info_icon" ng-click="app.showTestingEnvNotification = false">
+                <div class="sprite sprite-icon-closemenu2x"></div>
+            </div>
+        </div>
+
         <!-- RED MESSAGE -->
         <div class="info_bar bar_red" ng-class="{'info_bar_show': app.notifications.messages[app.notifications.levels.ERROR].length}" >
             <div class="info_icon">

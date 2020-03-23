@@ -147,6 +147,20 @@ $hacktivist_community_background: #ffd100;
     }
 }
 
+.bar_orange {
+    color: $white;
+    background:  $orange;
+
+    a:link, a:visited {
+        color: $white;
+        text-decoration: underline;
+    }
+
+    .info_icon:last-child:hover {
+        background: $orange;
+    }
+}
+
 
 
 .dark_yellow_background {
