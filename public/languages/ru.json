@@ -6,7 +6,7 @@
   "BTN_NO": "НЕТ",
   "BTN_CLOSE": "Закрыть",
   "LNK_CANCEL": "Отменить",
-  "LNK_DIRECT_LINK": "direct link",
+  "LNK_DIRECT_LINK": "прямая ссылка",
   "TOGGLE_ON": "ДА",
   "TOGGLE_OFF": "НЕТ",
   "TXT_TOPIC_STATUS_ALL": "все",
@@ -491,8 +491,8 @@
         "SHOW_ONLY": "Показывать только:",
         "MY_PUBLIC_TOPICS": "Мои публичные темы",
         "MY_PRIVATE_TOPICS": "Мои приватные темы",
-        "TOPICS_I_HAVE_VOTED": "Topics I have voted on",
-        "TOPICS_I_HAVE_NOT_VOTED": "Topics that need my vote",
+        "TOPICS_I_HAVE_VOTED": "Темы, по которым я голосовал(-а)",
+        "TOPICS_I_HAVE_NOT_VOTED": "Темы, нуждающиеся в моем голосе",
         "TOPICS_I_CREATED": "Темы, созданные мной",
         "TOPICS_ORDERED_BY_GROUPS": "Сортировать темы по группам",
         "TOPICS_IN_PROGRESS": "Темы в стадии создания",
@@ -678,7 +678,7 @@
       "LBL_ARGUMENTS_COUNT_PRO": "за: {{countPro}}",
       "LBL_ARGUMENTS_COUNT_CON": "против: {{countCon}}",
       "BTN_ADD_ARGUMENT": "ДОБАВИТЬ АРГУМЕНТ",
-      "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "view edits",
+      "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "просмотреть правки",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Редактировать тему аргумента...",
@@ -742,7 +742,7 @@
       "NAV_LNK_LEAVE_TOPIC": "Покинуть тему",
       "HEADER_FILES": "Прикрепленные файлы",
       "LNK_ADD_MANAGE_FILES": "Добавить/редактировать файлы",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Перейти к теме <b>{{topicTitle}}</b>, отсканируя этот QR-код"
     }
   },
   "ACTIVITY_FEED": {
