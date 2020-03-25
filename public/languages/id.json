@@ -492,7 +492,7 @@
         "MY_PUBLIC_TOPICS": "Topik umum saya",
         "MY_PRIVATE_TOPICS": "Topik pribadi saya",
         "TOPICS_I_HAVE_VOTED": "Topik yang saya telah memberikan hak pilih",
-        "TOPICS_I_HAVE_NOT_VOTED": "Topics that need my vote",
+        "TOPICS_I_HAVE_NOT_VOTED": "Topik yang memerlukan hak pilih saya",
         "TOPICS_I_CREATED": "Topik yang saya buat",
         "TOPICS_ORDERED_BY_GROUPS": "Tampilkan topik yang dipesan oleh kelompok",
         "TOPICS_IN_PROGRESS": "Topik sedang berjalan",
@@ -678,7 +678,7 @@
       "LBL_ARGUMENTS_COUNT_PRO": "pro: {{countPro}}",
       "LBL_ARGUMENTS_COUNT_CON": "kon: {{countCon}}",
       "BTN_ADD_ARGUMENT": "menambahkan argumen",
-      "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "view edits",
+      "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "lihat edit",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Edit subjek argumen Anda...",
@@ -742,11 +742,11 @@
       "NAV_LNK_LEAVE_TOPIC": "Meninggalkan topik",
       "HEADER_FILES": "LAMPIRAN",
       "LNK_ADD_MANAGE_FILES": "Tambah/atur lampiran",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Langsung masuk ke dalam topik <b>{{topicTitle}}</b> dengan memindai kode QR ini!"
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "User {{userName}} has created a topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_CREATE_TOPIC": "Pengguna {{userName}} telah membuat topik: <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "Pengguna {{userName}} telah memperbarui bidang {{fieldName}} dalam topik <em>{{topicTitle}}</em>",
     "ACTIVITY_PREVIOUS_VERSION": "Versi sebelumnya: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Versi baru: {{newValue}}",
@@ -833,7 +833,7 @@
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_GOOGLE": "Google",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_FACEBOOK": "Facebook",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_SMARTID": "Smart-ID",
-    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Estonian ID-card / Mobiil-ID",
+    "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Kartu ID Estonia/Mobiil-ID",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_CITIZENOS": "Citizen OS",
     "FILTER_ALL": "Semua aktivitas",
     "FILTER_USERTOPICS": "Kegiatan yang berhubungan dengan topik saya",
