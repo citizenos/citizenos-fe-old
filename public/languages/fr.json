@@ -491,8 +491,8 @@
         "SHOW_ONLY": "Afficher seulement:",
         "MY_PUBLIC_TOPICS": "Mes sujets publics",
         "MY_PRIVATE_TOPICS": "Mes sujets privés",
-        "TOPICS_I_HAVE_VOTED": "Topics I have voted on",
-        "TOPICS_I_HAVE_NOT_VOTED": "Topics that need my vote",
+        "TOPICS_I_HAVE_VOTED": "Sujets sur lesquels j'ai voté",
+        "TOPICS_I_HAVE_NOT_VOTED": "Sujets nécessitant mon vote",
         "TOPICS_I_CREATED": "Sujets créés",
         "TOPICS_ORDERED_BY_GROUPS": "Montrer les sujets classés par groupes",
         "TOPICS_IN_PROGRESS": "Sujets en cours",
@@ -742,7 +742,7 @@
       "NAV_LNK_LEAVE_TOPIC": "Quitter le sujet",
       "HEADER_FILES": "PIÈCE JOINTES",
       "LNK_ADD_MANAGE_FILES": "Ajouter/gérer les pièces jointes",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Sautez directement dans le sujet <b>{{topicTitle}}</b> en scannant ce code QR !"
     }
   },
   "ACTIVITY_FEED": {
