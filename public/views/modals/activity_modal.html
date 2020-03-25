@@ -59,41 +59,74 @@
                     <div class="activity_wrap modal">
                         <div class="activity_area">
 
-                            <div class="activity_content" ng-repeat="(key, activity) in activities">
-
-                                <div class="left_side">
-                                    <div class="line_top"></div>
-                                    <div class="icon">
-                                        <div ng-class="'sprite sprite-icon-activity-{{activity.values.className}}{{activity.isNew}}-2x'"></div>
-                                    </div>
-                                    <div class="line_bottom"></div>
-                                </div>
-
-                                <div class="right_side" ng-click="activityRedirect(activity)">
-                                    <div class="text_box">
-                                        <div class="main_text">
-                                            <span translate="{{activity.string}}" translate-values="activity.values">User Tom has added a new argument for topic: HELP.</span>
+                            <div ng-repeat="(key, group) in activities">
+                                <div class="activity_content" ng-repeat="(keyRow, activity) in group.values" >
+                                    <div ng-if="$first" class="left_side">
+                                        <div class="line_top"></div>
+                                        <div class="icon">
+                                            <div ng-class="'sprite sprite-icon-activity-{{activity.values.className}}{{activity.isNew}}-2x'"></div>
                                         </div>
-                                        <div class="description_area italic">
-                                            <span ng-if="showActivityUpdateVersions(activity)">
-                                                <span class="activity_previous" translate="ACTIVITY_FEED.ACTIVITY_PREVIOUS_VERSION" translate-values="{previousValue: '{{(activity.values.previousValue | limitTo: 200) + (activity.values.previousValue.length > 200 ? '...' : '')}}'}"></span>
-                                                <br>
-                                                <span class="activity_new" translate="ACTIVITY_FEED.ACTIVITY_NEW_VERSION" translate-values="{newValue: '{{(activity.values.newValue | limitTo: 200) + (activity.values.newValue.length > 200 ? '...' : '')}}'}"></span>
-                                            </span>
-                                            <span ng-if="showActivityDescription(activity) && !showActivityUpdateVersions(activity)" class="activity_description_text" ng-bind="(activity.values.description | limitTo: 200) + (activity.values.description.length > 200 ? '...' : '')">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
-                                                home office combo? First off, you will need to set a budget for your new ...
-                                            </span>
+                                        <div class="line_bottom"></div>
+                                    </div>
+                                    <div class="right_side" ng-if="keyCounter(group.values) > 1">
+                                        <div class="text_box" ng-if="$first" ng-click="group.show = !group.show">
+                                            <div class="main_text">
+                                                <span translate="{{activity.string}}" translate-values="activity.values">User Tom has added a new argument for topic: HELP.</span>
+                                            </div>
+                                            <div class="separator"></div>
+                                            <div class="arrow_holder" ng-click="group.show = !group.show">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                    <div class="v_line"></div>
+                                                </div>
+                                            </div>
+                                            <b class="notch border-notch"></b>
+                                            <b class="notch"></b>
                                         </div>
-                                        <div class="date_area" ng-bind="activity.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
-                                        <b class="notch border-notch"></b>
-                                        <b class="notch"></b>
+                                        <div class="text_box no_margin" ng-if="$first && group.show">
+                                            <div class="activity_group_row" ng-repeat="item in group.values" ng-click="activityRedirect(item)">
+                                                <div class="profile_image_wrapper dark">
+                                                    <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
+                                                    <div class="account_picture">
+                                                        <div class="profile_image_filler">
+                                                            <div class="table_cell" cos-initials="item.values.userName">
+                                                                ML
+                                                            </div>
+                                                            <div class="profile_circle"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="contents">
+                                                    <div class="contents_data"><i>{{::item.values.groupItemValue}}</i></div><div class="date_area" ng-bind="item.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="right_side" ng-if="keyCounter(group.values) === 1" ng-click="activityRedirect(activity)">
+                                        <div class="text_box">
+                                            <div class="main_text">
+                                                <span translate="{{activity.string}}" translate-values="activity.values">User Tom has added a new argument for topic: HELP.</span>
+                                            </div>
+                                            <div class="description_area italic">
+                                                <span ng-if="showActivityUpdateVersions(activity)">
+                                                    <span class="activity_previous" translate="ACTIVITY_FEED.ACTIVITY_PREVIOUS_VERSION" translate-values="{previousValue: '{{(activity.values.previousValue | limitTo: 200) + (activity.values.previousValue.length > 200 ? '...' : '')}}'}"></span>
+                                                    <br>
+                                                    <span class="activity_new" translate="ACTIVITY_FEED.ACTIVITY_NEW_VERSION" translate-values="{newValue: '{{(activity.values.newValue | limitTo: 200) + (activity.values.newValue.length > 200 ? '...' : '')}}'}"></span>
+                                                </span>
+                                                <span ng-if="showActivityDescription(activity) && !showActivityUpdateVersions(activity)" class="activity_description_text" ng-bind="(activity.values.description | limitTo: 200) + (activity.values.description.length > 200 ? '...' : '')">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your
+                                                    home office combo? First off, you will need to set a budget for your new ...
+                                                </span>
+                                            </div>
+                                            <div class="date_area" ng-bind="activity.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
+                                            <b class="notch border-notch"></b>
+                                            <b class="notch"></b>
+                                        </div>
+                                    </div>
+                                    <div class="clearer"></div>
                                     </div>
                                 </div>
-
-                                <div class="clearer"></div>
-
-                            </div>
-
                         </div>
                     </div>
                 </div>

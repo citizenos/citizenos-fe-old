@@ -78,8 +78,41 @@
                     box-sizing: border-box;
                     position: relative;
 
+                    &.no_margin  {
+                        margin-top: -9px;
+
+                        .activity_group_row {
+                            display: block;
+                            clear: both;
+                            min-height: 40px;
+                            position: relative;
+                            margin-bottom: 10px;
+
+                            .name_wrap {
+                                display: block;
+                                padding-left: 50px;
+
+                                span {
+                                    margin-top: auto;
+                                    margin-bottom: auto;
+                                    top: 0;
+                                    bottom: 0;
+                                    height: max-content;
+                                    position: absolute;
+
+                                    &.date_area {
+                                        right: 0;
+                                    }
+                                }
+                            }
+                        }
+
+
+                    }
+
                     .main_text {
                         font-size: 14px !important;
+                        max-width: 590px;
                     }
 
                     .description_area {
@@ -101,6 +134,28 @@
                             top: 22px;
                         }
                     }
+                }
+
+                .separator {
+                    position: absolute;
+                    right: 50px;
+                    height: 50%;
+                    background: $medium_gray;
+                    z-index: 100;
+                    width: 1px;
+                    top: 0;
+                    bottom: 0;
+                    margin-top: auto;
+                    margin-bottom: auto;
+                }
+                .arrow_holder {
+                    position: absolute;
+                    right: 20px;
+                    height: 5px;
+                    top: 0;
+                    bottom: 0;
+                    margin-top: auto;
+                    margin-bottom: auto;
                 }
             }
 
