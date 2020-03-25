@@ -84,7 +84,7 @@
                         .activity_group_row {
                             display: block;
                             clear: both;
-                            height: 40px;
+                            min-height: 40px;
                             position: relative;
                             margin-bottom: 10px;
 
@@ -112,6 +112,7 @@
 
                     .main_text {
                         font-size: 14px !important;
+                        max-width: 590px;
                     }
 
                     .description_area {

@@ -54,9 +54,10 @@ angular
                             var change = activity.data.result[i];
                             act.data.result = [change];
                             if (act.data.target) {
-                                act.data.target.id = act.data.target.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
+                                act.id = act.data.target.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
                             }
                             act.data.object.id = act.data.object.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
+                            act.id = act.id + '_' + change.path;
                             buildActivityString(act);
                             act = sActivity.getActivityValues(act);
                             parsedResult.push(act);
@@ -238,14 +239,11 @@ angular
             var newValue = activity.data.resultObject[fieldName];
             var previousValueKey = null;
             var newValueKey = null;
+            var fieldNameKey = null;
             var originType = activity.data.origin['@type'];
 
             if (originType === 'Topic' || originType === 'Comment') {
-                var fieldNameKey = 'ACTIVITY_FEED.ACTIVITY_' + originType.toUpperCase() + '_FIELD_' + fieldName.toUpperCase();
-                $translate(fieldNameKey)
-                    .then(function (translatedField) {
-                        activity.values.fieldName = translatedField;
-                    });
+                fieldNameKey = 'ACTIVITY_FEED.ACTIVITY_' + originType.toUpperCase() + '_FIELD_' + fieldName.toUpperCase();
             }
 
             if (Array.isArray(previousValue) && previousValue.length === 0) {
@@ -304,6 +302,9 @@ angular
                     if (fieldName === 'deletedReasonType') {
                         newValueKey = 'ACTIVITY_FEED.ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_' + newValue.toUpperCase();
                     }
+                    if (fieldName === 'type') {
+                        newValueKey = 'ACTIVITY_FEED.ACTIVITY_COMMENT_FIELD_VALUE_' + newValue.toUpperCase();
+                    }
                 }
             }
             if (previousValueKey) {
@@ -317,16 +318,38 @@ angular
             } else {
                 activity.values.previousValue = previousValue;
             }
-            if (newValueKey) {
+            if (fieldNameKey) {
+                $translate(fieldNameKey)
+                    .then(function (translatedField) {
+                        activity.values.fieldName = translatedField;
+                        activity.values.groupItemValue = translatedField;
+                        if (newValueKey) {
+                            $translate(newValueKey)
+                                .then(function (newVal) {
+                                    if (typeof newVal === 'object') {
+                                        newVal =  Object.values(newVal).join(';');
+                                    }
+                                    activity.values.newValue = newVal;
+                                    activity.values.groupItemValue += ': ' + newVal;
+                                });
+                        } else {
+                            if (newValue) {
+                                activity.values.groupItemValue += ': ' + newValue;
+                            }
+                        }
+                    });
+            } else if (newValueKey) {
                 $translate(newValueKey)
                     .then(function (newVal) {
-                        activity.values.newValue = newVal;
                         if (typeof newVal === 'object') {
-                            activity.values.newValue = Object.values(newVal).join(';');
+                            newVal =  Object.values(newVal).join(';');
                         }
+                        activity.values.newValue = newVal;
+                        activity.values.groupItemValue += ': ' + newVal;
                     });
             } else {
                 activity.values.newValue = newValue;
+                activity.values.groupItemValue += ': ' + newValue;
             }
         };
 
@@ -487,9 +510,24 @@ angular
                 values.connectionName = getAactivityUserConnectionName(activity);
                 getActivityUserLevel(activity, values);
 
+                values.groupItemValue =  values.userName;
+                if (values.userName2) {
+                    values.groupItemValue = values.userName2;
+                }
+                if (values.attachmentName) {
+                    values.groupItemValue = values.attachmentName;
+                }
+                if (values.connectionName) {
+                    values.groupItemValue = values.connectionName;
+                }
+
                 var dataobject = activity.data.object;
                 if (Array.isArray(dataobject)) {
                     dataobject = dataobject[0];
+                }
+
+                if (dataobject['@type'] === 'Comment') {
+                    values.groupItemValue = dataobject.text;
                 }
 
                 if (dataobject['@type'] === 'CommentVote' && activity.data.type === 'Create') {
@@ -502,6 +540,7 @@ angular
                     }
                     $translate(str + val).then(function (value) {
                         values.reaction = value;
+                        values.groupItemValue = value;
                     });
                 }
             }
@@ -571,7 +610,7 @@ angular
                     stateName = 'topics.view';
                     params.topicId = object.id;
                 }
-            } else if (object['@type'] === 'Topic') {
+            } else if (object['@type'] === 'Topic' || target['@type'] === 'Topic') {
                 stateName = 'topics.view';
                 params.topicId = object.id;
             } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote' || (object['@type'] === 'User' && activity.data.target && activity.data.target['@type'] === 'Topic')) {

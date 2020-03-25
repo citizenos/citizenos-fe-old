@@ -68,13 +68,13 @@
                                         </div>
                                         <div class="line_bottom"></div>
                                     </div>
-                                    <div class="right_side" ng-if="keyCounter(group.values) > 1" ng-click="group.show = !group.show">
-                                        <div class="text_box" ng-if="$first">
+                                    <div class="right_side" ng-if="keyCounter(group.values) > 1">
+                                        <div class="text_box" ng-if="$first" ng-click="group.show = !group.show">
                                             <div class="main_text">
                                                 <span translate="{{activity.string}}" translate-values="activity.values">User Tom has added a new argument for topic: HELP.</span>
                                             </div>
                                             <div class="separator"></div>
-                                            <div class="arrow_holder">
+                                            <div class="arrow_holder" ng-click="group.show = !group.show">
                                                 <div class="table_cell">
                                                     <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
 
@@ -85,7 +85,7 @@
                                             <b class="notch"></b>
                                         </div>
                                         <div class="text_box no_margin" ng-if="$first && group.show">
-                                            <div class="activity_group_row" ng-repeat="item in group.values">
+                                            <div class="activity_group_row" ng-repeat="item in group.values" ng-click="activityRedirect(item)">
                                                 <div class="profile_image_wrapper dark">
                                                     <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
                                                     <div class="account_picture">
@@ -97,8 +97,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="name_wrap">
-                                                    <span>{{item.values.userName}}</span><span class="date_area" ng-bind="item.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</span>
+                                                <div class="contents">
+                                                    <div class="contents_data"><i>{{::item.values.groupItemValue}}</i></div><div class="date_area" ng-bind="item.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
                                                 </div>
                                             </div>
                                         </div>
