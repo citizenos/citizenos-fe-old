@@ -678,7 +678,7 @@
       "LBL_ARGUMENTS_COUNT_PRO": "a favor: {{countPro}}",
       "LBL_ARGUMENTS_COUNT_CON": "en contra: {{countCon}}",
       "BTN_ADD_ARGUMENT": "agregar argumento",
-      "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "ver modificaciones",
+      "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "ver cambios",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Edite el asunto del argumento…",
