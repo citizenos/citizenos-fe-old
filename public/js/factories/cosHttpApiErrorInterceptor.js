@@ -119,12 +119,19 @@ angular
 
         return {
             'response': function (response) {
+                //Remove connecion error if exists
+                if (sNotification.messages.error.length) {
+                    sNotification.messages.error.forEach(function (item, key) {
+                        if (item === 'MSG_ERROR_NETWORK_PROBLEMS') {
+                            sNotification.messages.error.splice(key, 1);
+                        }
+                    });
+                }
                 // sNotification.removeAll(); - With all the parallel requests going on, was not a good idea.
                 return response;
             },
             'responseError': function (response) {
                 sNotification.removeAll();
-
                 if (response.config.url.match(API_REQUEST_REGEX) && response) {
                     try {
                         errorsToKeys(response);
