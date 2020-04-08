@@ -7,7 +7,7 @@
 
 CitizenOS front-end web application - https://app.citizenos.com.
 
-## Running locally
+## Running
 
 ### Prerequisites
 
@@ -17,13 +17,21 @@ CitizenOS front-end web application - https://app.citizenos.com.
 
 * Get the source - `git clone git@github.com:citizenos/citizenos-fe.git`
 * Go to the source directory - `cd citizenos-fe`
-* Add to dev.citizenos.com to your hosts file - `sudo -- sh -c -e "echo '127.0.0.1 dev.citizenos.com' >> /etc/hosts"`
-* When using over HTTPS you need to add `./config/certs/citizenosCARoot.pem` to your trusted CA certificate store or browsers will complain.
+* **DEV ONLY** Add to dev.citizenos.com to your hosts file - `sudo -- sh -c -e "echo '127.0.0.1 dev.citizenos.com' >> /etc/hosts"`
+* **DEV ONLY** When using over HTTPS you need to add `./config/certs/citizenosCARoot.pem` to your trusted CA certificate store or browsers will complain.
 
 ### Running
 
-* Run the application - `npm run dev`
-* Open https://dev.citizenos.com:3001 or http://dev.citizenos.com:3000 in your browser.
+* Set `NODE_ENV` environment variable:
+    * Production - `production`
+    * Test - `test`
+    * Development/local - `development`
+* Run the application:
+    * Production/test - `node ./bin/www`. Note that Heroku and some other cloud envs pick up the starting point from `Procfile` (https://github.com/citizenos/citizenos-fe/blob/master/Procfile.txt)
+    * Development - `npm run dev`
+* Open 
+    * Production/test - your configured public app url.
+    * Development - https://dev.citizenos.com:3001 or http://dev.citizenos.com:3000 in your browser.
 
 **NOTES:**
 
