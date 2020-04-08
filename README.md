@@ -27,7 +27,7 @@ CitizenOS front-end web application - https://app.citizenos.com.
 
 **NOTES:**
 
-* By default the app runs against CitizenOS public testing environment (https://citizenos-citizenos-api-test.herokuapp.com). If you want to run against your local [citizenos-api](https://github.com/citizenos/citizenos-api) instance, modify the url in app.js to https://dev.api.citizenos.com:3003
+* By default the app runs against CitizenOS public testing environment (https://test.api.citizenos.com). If you want to run against your local [citizenos-api](https://github.com/citizenos/citizenos-api) instance, modify the url in app.js to https://dev.api.citizenos.com:3003
 
 ## Contributing
 
