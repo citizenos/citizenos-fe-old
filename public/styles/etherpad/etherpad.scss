@@ -386,11 +386,11 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
     width: max-content;
     height: auto;
     right: 0!important;
-    left: initial!important; //until plugin positioning is fixed
+//    left: initial!important; //until plugin positioning is fixed
     padding: 0;
 
     .menu_inline {
-        margin-left: 15px;
+        margin: 7px;
         display: inline-block;
         position: sticky;
         width: auto;
@@ -433,16 +433,24 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
     }
 
     .menu_inline:after {
-        content: ' ';
+        content: '';
+        border: 7px solid transparent;
+        border-bottom-color: $medium_black;
+        border-top: 0;
         position: absolute;
-        width: 0;
-        height: 0;
-        left: -15px;
-        right: auto;
-        top: 0px;
-        bottom: auto;
-        border: 15px solid;
-        border-color: $medium_black transparent transparent transparent;
+        top: -7px;
+        left: 50%;
+        margin-left: -20px;
+    }
+
+    .menu_inline.arrow_left:after {
+        left: 20%;
+
+    }
+
+    .menu_inline.arrow_right:after {
+        left: auto;
+        right: 20%;
     }
 }
 
