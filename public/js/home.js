@@ -1,4 +1,7 @@
+// Prerender - https://prerender.io/documentation. Use local instance of Prerender if possible so that nothing is sent to 3rd party.
 window.prerenderReady = false;
+
+// Crowdin in-context localization - https://support.crowdin.com/in-context-localization/
 if (window.location.pathname.match(/^\/aa\/.*/)) {
     var _jipt = [];
     _jipt.push(['project', 'citizenos-fe']);
@@ -8,7 +11,8 @@ if (window.location.pathname.match(/^\/aa\/.*/)) {
     crowdinScriptElement.type = 'text/javascript';
     document.getElementsByTagName('head')[0].appendChild(crowdinScriptElement);
 }
-//Google Analytics
+
+// Google Analytics
 if (/\/\/(www.)?app\.citizenos\.com/.test(window.location.href)) {
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
@@ -23,9 +27,11 @@ if (/\/\/(www.)?app\.citizenos\.com/.test(window.location.href)) {
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-67049149-1', 'auto');
+    ga('set', 'anonymizeIp', true);
 }
 
-if (/\/\/(www.)?citizenos\.com/.test(window.location.href)) {
+// Open source notice in developer tools
+if (/\/\/(www.)?app\.citizenos\.com/.test(window.location.href)) {
     if (/(chrome|firefox)/.test(navigator.userAgent.toLowerCase())) {
         var notified = false;
         window.addEventListener('devtoolschange', function (e) {
