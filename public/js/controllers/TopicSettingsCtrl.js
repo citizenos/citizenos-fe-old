@@ -46,6 +46,39 @@ angular
 
             $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
             $scope.memberGroups = [];
+            $scope.users = {
+                rows: [],
+                count: {
+                    pro: 0,
+                    con: 0
+                },
+                page: 1,
+                totalPages: 0
+
+            };
+
+            $scope.groups = {
+                rows: [],
+                count: {
+                    pro: 0,
+                    con: 0
+                },
+                page: 1,
+                totalPages: 0
+
+            };
+
+            $scope.emails = {
+                rows: [],
+                count: {
+                    pro: 0,
+                    con: 0
+                },
+                page: 1,
+                totalPages: 0
+
+            };
+
             $scope.members = {
                 users: [],
                 emails: [],
@@ -67,29 +100,36 @@ angular
         $scope.search = function (str) {
             $scope.searchString = str; // TODO: Hackish - Typeahead has term="searchString" but somehow the 2 way binding does not work there, investigate when time
             if (str && str.length >= 2) {
-                var include = ['my.group', 'public.user'];
-                sSearch
-                    .searchV2(str, {include: include})
-                    .then(function (response) {
-                        $scope.searchResults.users = [];
-                        $scope.searchResults.groups = [];
-                        $scope.searchResults.emails = [];
-                        $scope.searchResults.combined = [];
-                        if (response.data.data.results.public.users.rows.length) {
-                            response.data.data.results.public.users.rows.forEach(function (user) {
-                                $scope.searchResults.users.push(user);
-                            });
-                        }
-                        else if (validator.isEmail(str)) {
-                            $scope.searchResults.emails.push($scope.searchString);
-                        }
-                        if (response.data.data.results.my.groups.rows.length) {
-                            response.data.data.results.my.groups.rows.forEach(function (group) {
-                                $scope.searchResults.groups.push(group);
-                            });
-                        }
-                        $scope.searchResults.combined = $scope.searchResults.users.concat($scope.searchResults.groups).concat($scope.searchResults.emails);
-                    });
+                if (str.indexOf(',') > -1) {
+                    $scope.searchResults.users = [];
+                    $scope.searchResults.groups = [];
+                    $scope.searchResults.emails = [];
+                    $scope.searchResults.combined = [str];
+                } else {
+                    var include = ['my.group', 'public.user'];
+                    sSearch
+                        .searchV2(str, {include: include})
+                        .then(function (response) {
+                            $scope.searchResults.users = [];
+                            $scope.searchResults.groups = [];
+                            $scope.searchResults.emails = [];
+                            $scope.searchResults.combined = [];
+                            if (response.data.data.results.public.users.rows.length) {
+                                response.data.data.results.public.users.rows.forEach(function (user) {
+                                    $scope.searchResults.users.push(user);
+                                });
+                            }
+                            else if (validator.isEmail(str)) {
+                                $scope.searchResults.emails.push($scope.searchString);
+                            }
+                            if (response.data.data.results.my.groups.rows.length) {
+                                response.data.data.results.my.groups.rows.forEach(function (group) {
+                                    $scope.searchResults.groups.push(group);
+                                });
+                            }
+                            $scope.searchResults.combined = $scope.searchResults.users.concat($scope.searchResults.groups).concat($scope.searchResults.emails);
+                        });
+                }
             } else {
                 $scope.searchResults.users = [];
                 $scope.searchResults.emails = [];
@@ -179,7 +219,7 @@ angular
         };
 
         $scope.addTopicMember = function (member) {
-            if (!member || validator.isEmail(member)) {
+            if (!member || validator.isEmail(member) || member.indexOf(',') > -1) {
                 $scope.addTopicMemberUser();
             }
             if (member.hasOwnProperty('company')) {
@@ -250,7 +290,26 @@ angular
                 }
             } else {
                 // Assume e-mail was entered.
-                if (validator.isEmail($scope.searchString)) {
+                if ($scope.searchString.indexOf(',') > -1) {
+                    var emails = $scope.searchString.split(',');
+                    console.log('EMAILS', emails);
+                    var filtered = _.filter(emails, function (email) {
+                        return validator.isEmail(email.trim())
+                    });
+                    console.log('FILTERED', filtered);
+                    _.uniq(filtered).forEach(function (email) {
+                        $scope.members.emails.push({
+                            userId: email.trim(),
+                            name: email.trim(),
+                            level: TopicMemberUser.LEVELS.read
+                        });
+                    });
+
+                    $scope.searchResults.groups = [];
+                    $scope.searchResults.users = [];
+                    $scope.searchResults.emails = [];
+                    $scope.searchResults.combined = [];
+                } else if (validator.isEmail($scope.searchString)) {
                     // Ignore duplicates
                     if (!_.find($scope.searchResults.results, {userId: $scope.searchString})) {
                         $scope.members.emails.push({
