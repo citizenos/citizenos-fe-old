@@ -550,6 +550,7 @@ angular
             var hash = '';
             var object = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
             var target = activity.data.target;
+            var origin = activity.data.origin;
             if (Array.isArray(object)) {
                 object = object[0];
             }
@@ -566,27 +567,38 @@ angular
                     stateName = 'topics.view';
                     params.topicId = object.id;
                 }
-            } else if (object['@type'] === 'Topic') {
+            } else if ((object && object['@type'] === 'Topic') || (target && target['@type'] === 'Topic')) {
                 stateName = 'topics.view';
                 params.topicId = object.id;
-            } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote' || (object['@type'] === 'User' && activity.data.target && activity.data.target['@type'] === 'Topic')) {
-                if (activity.data.target) {
-                    if (activity.data.target['@type'] === 'Topic' || activity.data.target.topicId) {
-                        stateName = 'topics.view';
-                        params.topicId = activity.data.target.topicId || activity.data.target.id;
-                        params.commentId = object.commentId || object.id;
-                        // hash = object.commentId || object.id;
-                    }
+                if (target && (target['@type'] === 'Topic' || target.topicId)) {
+                    params.topicId = target.topicId || target.id;
                 }
-            } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteList') {
+
+            } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote') {
+                if (target && (target['@type'] === 'Topic' || target.topicId)) {
+                    stateName = 'topics.view';
+                    params.topicId =  target.topicId || target.id;
+                    params.commentId = object.commentId || object.id;
+                    // hash = object.commentId || object.id;
+                }
+            } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteList' && target && target['@type'] === 'Topic') {
                 stateName = 'topics.view.votes.view';
-                params.topicId = activity.data.target.topicId || activity.data.target.id;
+                params.topicId = target.topicId || target.id;
                 params.voteId = object.voteId || object.id;
             } else if (object['@type'] === 'Group') {
                 stateName = 'my.groups.groupId';
                 params.groupId = object.id;
             }
 
+            if (target && target['@type'] === 'Group') {
+                stateName = 'my.groups.groupId';
+                params.groupId = target.id;
+            }
+
+            if (!stateName && origin && origin['@type'] === 'Topic') {
+                stateName = 'topics.view';
+                params.topicId  = origin.id;
+            }
             if (stateName) {
                 //  ngDialog.closeAll();
                 var link = $state.href(stateName, params);
