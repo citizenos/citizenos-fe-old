@@ -75,7 +75,7 @@
                                             </div>
                                             <div class="separator"></div>
                                             <div class="arrow_holder" ng-click="group.show = !group.show">
-                                                <div class="table_cell">
+                                                <div class="table_cell" ng-click="group.show = !group.show">
                                                     <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
 
                                                     <div class="v_line"></div>
@@ -98,7 +98,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="contents">
-                                                    <div class="contents_data"><i>{{::item.values.groupItemValue}}</i></div><div class="date_area" ng-bind="item.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
+                                                    <div class="contents_data"><em>{{::item.values.userName}}:</em><i> {{::item.values.groupItemValue}}</i></div><div class="date_area" ng-bind="item.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
                                                 </div>
                                             </div>
                                         </div>

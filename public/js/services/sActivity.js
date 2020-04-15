@@ -54,9 +54,9 @@ angular
                             var change = activity.data.result[i];
                             act.data.result = [change];
                             if (act.data.target) {
-                                act.id = act.data.target.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
+                                act.id = act.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
                             }
-                            act.data.object.id = act.data.object.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
+                            act.data.object.groupingId = act.data.object.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
                             act.id = act.id + '_' + change.path;
                             buildActivityString(act);
                             act = sActivity.getActivityValues(act);
@@ -335,6 +335,7 @@ angular
                         } else {
                             if (newValue) {
                                 activity.values.groupItemValue += ': ' + newValue;
+                                activity.values.newValue = newValue;
                             }
                         }
                     });
@@ -351,6 +352,8 @@ angular
                 activity.values.newValue = newValue;
                 activity.values.groupItemValue += ': ' + newValue;
             }
+
+            console.log(activity.values);
         };
 
         var getActivityTopicTitle = function (activity) {
@@ -613,18 +616,20 @@ angular
             } else if (object['@type'] === 'Topic' || target['@type'] === 'Topic') {
                 stateName = 'topics.view';
                 params.topicId = object.id;
-            } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote' || (object['@type'] === 'User' && activity.data.target && activity.data.target['@type'] === 'Topic')) {
-                if (activity.data.target) {
-                    if (activity.data.target['@type'] === 'Topic' || activity.data.target.topicId) {
-                        stateName = 'topics.view';
-                        params.topicId = activity.data.target.topicId || activity.data.target.id;
-                        params.commentId = object.commentId || object.id;
-                        // hash = object.commentId || object.id;
-                    }
+                if (target && (target['@type'] === 'Topic' || target.topicId)) {
+                    params.topicId = target.topicId || target.id;
                 }
-            } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteList') {
+
+            } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote') {
+                if (target && (target['@type'] === 'Topic' || target.topicId)) {
+                    stateName = 'topics.view';
+                    params.topicId =  target.topicId || target.id;
+                    params.commentId = object.commentId || object.id;
+                    // hash = object.commentId || object.id;
+                }
+            } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteList' && target && target['@type'] === 'Topic') {
                 stateName = 'topics.view.votes.view';
-                params.topicId = activity.data.target.topicId || activity.data.target.id;
+                params.topicId = target.topicId || target.id;
                 params.voteId = object.voteId || object.id;
             } else if (object['@type'] === 'Group') {
                 stateName = 'my.groups.groupId';
