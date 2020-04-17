@@ -88,10 +88,6 @@ $aqua_marine_border: #2be0aa;
 $aqua_marine_border_second: #28d4a0;
 $aqua_marine_text: #00ce8f;;
 
-$hacktivist_community_background: rgba(255, 209, 0, 1);
-$thetwelvemovie_background: rgba(97, 146, 206, 1);
-$eestijazziarengusuunad_background: rgba(0, 255, 2, 1);
-
 $category_politics: rgba(0, 115, 153, 1);
 $category_taxes: rgba(62, 100, 142, 1);
 $category_defense: rgba(0, 51, 115, 1);
@@ -106,6 +102,12 @@ $category_transport: rgba(254, 247, 141, 1);
 $category_health: rgba(253, 214, 30, 1);
 $category_education: rgba(255, 212, 166, 1);
 $category_varia: rgba(241, 217, 255, 1);
+
+$hacktivist_community_background: rgba(255, 209, 0, 1);
+$thetwelvemovie_background: rgba(97, 146, 206, 1);
+$eestijazziarengusuunad_background: rgba(0, 255, 2, 1);
+$keepitclean_background: rgba(190, 215, 61, 1);
+$thirtyfourislandproject_background: rgba(190, 215, 61, 1);
 
 .blue_progress_bar {
     background: $deep_sky_blue;
@@ -230,7 +232,7 @@ $category_varia: rgba(241, 217, 255, 1);
 }
 
 .keep_it_clean_background {
-    background: #ffd100;
+    background: $keepitclean_background;
 }
 
 .hacktivist_community_background {
@@ -238,15 +240,15 @@ $category_varia: rgba(241, 217, 255, 1);
 }
 
 .thirty_four_island_project_background {
-    background: #bed73d;
+    background: $thirtyfourislandproject_background;
 }
 
 .eesti_jazzi_arengusuunad_project_background {
-    background: #00ff02;
+    background: $eestijazziarengusuunad_background;
 }
 
 .the_twelve_movie_background {
-    background: #6192ce;
+    background: $thetwelvemovie_background;
 }
 
 .dark_gray_background {
