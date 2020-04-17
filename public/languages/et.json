@@ -568,7 +568,7 @@
       "HEADING_USERS_LIST": "Kasutajaid",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
       "LNK_PROFILE": "Kasutaja",
-      "LBL_VIA": "gruppide kaudu:",
+      "LBL_VIA": "rühma kaudu:",
       "TXT_INVITE_PENDING": "Ootel olev kutse",
       "TXT_NO_PERMISSION_TO_DELETE_MEMBER": "Teil pole õigust liiget kustutada",
       "TXT_PERMISSION_VIA_GROUP": "Luba anti läbi Rühma – Kasutaja Rühmast eemaldamiseks või lubade tühistamiseks vali rippmenüüst soovitud väärtus.",
