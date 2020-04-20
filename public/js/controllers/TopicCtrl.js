@@ -180,16 +180,19 @@ angular
             if ($scope.topic) {
                 sActivity.getTopicActivities($scope.topic.id, $scope.activitiesOffset, $scope.activitiesLimit)
                     .then(function (activities) {
-                        activities.forEach(function (activity, key) {
-                            activity.values.topicTitle = $scope.topic.title;
-                            if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
-                                if (!lastViewTime || activity.updatedAt > lastViewTime) {
-                                    lastViewTime = activity.updatedAt;
+                        activities.forEach(function (activityGroups) {
+                            Object.keys(activityGroups.values).forEach(function (key) {
+                                var activity = activityGroups.values[key];
+                                if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
+                                    activity.values.topicTitle = $scope.topic.title;
+                                    if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                                        lastViewTime = activity.updatedAt;
+                                    }
+                                    delete activityGroups;
+                                } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                                    activity.isNew = '-new';
                                 }
-                                activities.splice(key, 1);
-                            } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
-                                activity.isNew = '-new';
-                            }
+                            });
                         });
                         $scope.showLoadMoreActivities = !(activities.length < $scope.activitiesLimit);
                         $scope.activities = $scope.activities.concat(activities);
@@ -546,6 +549,7 @@ angular
         };
 
         $scope.showActivityUpdateVersions = function (activity) {
+            console.log(activity);
             if (activity.data.type === 'Update') {
                 if (activity.data.result && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1 || !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1)) {
                     return false;

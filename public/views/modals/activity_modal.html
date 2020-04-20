@@ -71,11 +71,11 @@
                                     <div class="right_side" ng-if="keyCounter(group.values) > 1">
                                         <div class="text_box" ng-if="$first" ng-click="group.show = !group.show">
                                             <div class="main_text">
-                                                <span translate="{{activity.string}}" translate-values="activity.values">User Tom has added a new argument for topic: HELP.</span>
+                                                <span ng-bind-html="activity.string">User Tom has added a new argument for topic: HELP.</span>
                                             </div>
                                             <div class="separator"></div>
                                             <div class="arrow_holder" ng-click="group.show = !group.show">
-                                                <div class="table_cell">
+                                                <div class="table_cell" ng-click="group.show = !group.show">
                                                     <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
 
                                                     <div class="v_line"></div>
@@ -98,7 +98,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="contents">
-                                                    <div class="contents_data"><i>{{::item.values.groupItemValue}}</i></div><div class="date_area" ng-bind="item.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
+                                                    <div class="contents_data"><em>{{::item.values.userName}}</em> <i ng-if="item.values.userName !== item.values.groupItemValue">{{::item.values.groupItemValue | limitTo: 200}}</i></div><div class="date_area" ng-bind="item.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -107,7 +107,7 @@
                                     <div class="right_side" ng-if="keyCounter(group.values) === 1" ng-click="activityRedirect(activity)">
                                         <div class="text_box">
                                             <div class="main_text">
-                                                <span translate="{{activity.string}}" translate-values="activity.values">User Tom has added a new argument for topic: HELP.</span>
+                                                <span ng-bind-html="activity.string" >User Tom has added a new argument for topic: HELP.</span>
                                             </div>
                                             <div class="description_area italic">
                                                 <span ng-if="showActivityUpdateVersions(activity)">

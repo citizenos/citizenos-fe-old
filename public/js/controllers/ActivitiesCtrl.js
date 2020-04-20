@@ -26,119 +26,6 @@ angular
                 filterValue = null;
             }
 
-            var activitiesToGroups = function (activities) {
-                var finalActivities = {};
-                var userActivityGroups = {};
-                var activityGroups = {};
-                var returnActivities = [];
-
-                for(var i=0; i < activities.length; i++) {
-                    var id = activities[i].data.object.id;
-                    if (activities[i].data.target) {
-                        id = activities[i].data.target.id;
-                    }
-
-                    var groupKey = activities[i].string + '_' + id;
-                    var userGroupKey = groupKey + '_' + activities[i].data.actor.id;
-                    //Create group with id-s
-                    if (!activityGroups[groupKey]) {
-                        activityGroups[groupKey] = new Array(activities[i]);
-                    } else {
-                        activityGroups[groupKey].push(activities[i]);
-                    }
-                    //Create group with same actor
-                    if (!userActivityGroups[userGroupKey]) {
-                        userActivityGroups[userGroupKey] = new Array(activities[i]);
-                    } else {
-                        userActivityGroups[userGroupKey].push(activities[i]);
-                    }
-
-                }
-
-                userActivityGroups = _.filter(userActivityGroups, function (item) {return item.length > 1;});
-                var userGroupIds = [];
-                Object.keys(userActivityGroups).forEach(function (key) {
-                    var groupItems = _.map(userActivityGroups[key], function(item) {return item.id});
-                    userGroupIds.push(groupItems);
-                });
-
-                userGroupIds = _.flatten(userGroupIds, function (item) {return item.length > 1;});
-
-                var groupIds = [];
-                Object.keys(activityGroups).forEach(function (key) {
-                    var groupItems = _.map(activityGroups[key], function(item) {return item.id});
-                    groupIds.push(_.filter(groupItems, function (item) { return userGroupIds.indexOf(item) === -1;}));
-                    groupIds = _.filter(groupIds, function (item) {return item.length > 1});
-                });
-                var groupIdsFlat = _.flatten(groupIds);
-                userActivityGroups.forEach(function (items) {
-                    items.forEach(function (item) {
-                        item.string = item.string + '_USERACTIVITYGROUP';
-                        item.values.groupCount = items.length;
-                    });
-                    _.sortBy(items, ['createdAt']).reverse();
-                });
-
-                var finalGroups = _.map(groupIds, function (group) {
-                    var itemGroup = _.map(group, function (itemId) {
-                        return _.find(activities, function (activity) {
-                            return activity.id === itemId;
-                        })
-                    });
-
-                    itemGroup.forEach(function (value) {
-                        value.string = value.string + '_ACTIVITYGROUP';
-                        value.values.groupCount = (itemGroup.length -1);
-                    });
-
-                    return _.sortBy(itemGroup, ['updatedAt']).reverse();
-                });
-
-                activities.forEach(function (activity, index) {
-                    if (groupIdsFlat.indexOf(activity.id) === -1 && userGroupIds.indexOf(activity.id) === -1) {
-                        finalActivities[index] = [activity];
-                    } else {
-                        if (userActivityGroups.length) {
-                            userActivityGroups.forEach(function (group) {
-                                var found = _.find(group, function (groupActivity) {
-                                    return groupActivity.id === activity.id;
-                                });
-
-                                if (found) {
-                                    finalActivities[activity.string] = group;
-                                }
-                            });
-                        }
-                        if (finalGroups.length) {
-                            finalGroups.forEach(function (group) {
-                                var found = _.find(group, function (groupActivity) {
-                                    return groupActivity.id === activity.id;
-                                });
-
-                                if (found) {
-                                    finalActivities[activity.string] = group;
-                                }
-                            });
-                        }
-
-                    }
-                });
-
-                Object.keys(finalActivities).forEach(function (item) {
-
-                    var groupItems = {};
-                    var i = 0;
-                    finalActivities[item].forEach(function (value){
-                        groupItems[i] = value;
-                        i++;
-                    });
-
-                    returnActivities.push({referer: item, values: groupItems});
-                });
-
-                return _.sortBy(returnActivities, [function(o) { return o.values[0].updatedAt; }]).reverse();
-            };
-
             $scope.keyCounter = function (objIn) {
                 return Object.keys(objIn).length;
             };
@@ -156,19 +43,21 @@ angular
                 .getActivities($scope.activitiesOffset, $scope.activitiesLimit, filterValue)
                 .then(function (activities) {
                     $scope.app.unreadActivitiesCount = 0;
-                    activities.forEach(function (activity, key) {
-                        if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
-                            if (!lastViewTime || activity.updatedAt > lastViewTime) {
-                                lastViewTime = activity.updatedAt;
+                    activities.forEach(function (activityGroups, groupKey) {
+                        Object.keys(activityGroups.values).forEach(function (key) {
+                            var activity = activityGroups.values[key];
+                            if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
+                                if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                                    lastViewTime = activity.updatedAt;
+                                }
+                                activities.splice(groupKey, 1);
+                            } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                                activity.isNew = '-new';
                             }
-                            activities.splice(key, 1);
-                        } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
-                            activity.isNew = '-new';
-                        }
+                        });
                     });
-                    var groupedActivities = activitiesToGroups(activities);
-                    $scope.showLoadMoreActivities = (!groupedActivities.length < $scope.activitiesLimit);
-                    $scope.activities = $scope.activities.concat(groupedActivities);
+                    $scope.showLoadMoreActivities = (!activities.length < $scope.activitiesLimit);
+                    $scope.activities = $scope.activities.concat(activities);
 
                     var element = angular.element($document[0].getElementsByClassName('lightbox_content'));
                     if (element && element[0] && element[0].scrollHeight) {
