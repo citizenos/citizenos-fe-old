@@ -71,7 +71,7 @@
                                     <div class="right_side" ng-if="keyCounter(group.values) > 1">
                                         <div class="text_box" ng-if="$first" ng-click="group.show = !group.show">
                                             <div class="main_text">
-                                                <span translate="{{activity.string}}" translate-values="activity.values">User Tom has added a new argument for topic: HELP.</span>
+                                                <span ng-bind-html="activity.string">User Tom has added a new argument for topic: HELP.</span>
                                             </div>
                                             <div class="separator"></div>
                                             <div class="arrow_holder" ng-click="group.show = !group.show">
@@ -98,7 +98,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="contents">
-                                                    <div class="contents_data"><em>{{::item.values.userName}}:</em><i> {{::item.values.groupItemValue}}</i></div><div class="date_area" ng-bind="item.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
+                                                    <div class="contents_data">
+                                                        <em>{{::item.values.userName}}</em>
+                                                        <i ng-if="item.values.userName !== item.values.groupItemValue && !showActivityUpdateVersions(item)">{{(item.values.groupItemValue | limitTo: 200) + (item.values.groupItemValue.length > 200 ? '...' : '') }}</i>
+                                                        <i ng-if="showActivityUpdateVersions(item)">
+                                                            <em>{{::item.values.fieldName}}</em>
+                                                            <div class="activity_previous" translate="ACTIVITY_FEED.ACTIVITY_PREVIOUS_VERSION" translate-values="{previousValue: '{{(item.values.previousValue | limitTo: 200) + (item.values.previousValue.length > 200 ? '...' : '')}}'}"></div>
+
+                                                            <div class="activity_new" translate="ACTIVITY_FEED.ACTIVITY_NEW_VERSION" translate-values="{newValue: '{{(item.values.newValue | limitTo: 200) + (item.values.newValue.length > 200 ? '...' : '')}}'}"></div>
+                                                        </i>
+                                                    </div>
+                                                    <div class="date_area" ng-bind="item.updatedAt | amDateFormat : 'DD.MM.YYYY HH:mm'">55.07.2056 11:23</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -107,7 +117,7 @@
                                     <div class="right_side" ng-if="keyCounter(group.values) === 1" ng-click="activityRedirect(activity)">
                                         <div class="text_box">
                                             <div class="main_text">
-                                                <span translate="{{activity.string}}" translate-values="activity.values">User Tom has added a new argument for topic: HELP.</span>
+                                                <span ng-bind-html="activity.string" >User Tom has added a new argument for topic: HELP.</span>
                                             </div>
                                             <div class="description_area italic">
                                                 <span ng-if="showActivityUpdateVersions(activity)">

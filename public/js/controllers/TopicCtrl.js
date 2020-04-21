@@ -180,16 +180,18 @@ angular
             if ($scope.topic) {
                 sActivity.getTopicActivities($scope.topic.id, $scope.activitiesOffset, $scope.activitiesLimit)
                     .then(function (activities) {
-                        activities.forEach(function (activity, key) {
-                            activity.values.topicTitle = $scope.topic.title;
-                            if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
-                                if (!lastViewTime || activity.updatedAt > lastViewTime) {
-                                    lastViewTime = activity.updatedAt;
+                        activities.forEach(function (activityGroups, groupKey) {
+                            Object.keys(activityGroups.values).forEach(function (key) {
+                                var activity = activityGroups.values[key];
+                                if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
+                                    if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                                        lastViewTime = activity.updatedAt;
+                                    }
+                                    activities.splice(groupKey, 1);
+                                } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                                    activity.isNew = '-new';
                                 }
-                                activities.splice(key, 1);
-                            } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
-                                activity.isNew = '-new';
-                            }
+                            });
                         });
                         $scope.showLoadMoreActivities = !(activities.length < $scope.activitiesLimit);
                         $scope.activities = $scope.activities.concat(activities);
@@ -549,19 +551,20 @@ angular
         };
 
         $scope.showActivityUpdateVersions = function (activity) {
-            if (activity.data.type === 'Update') {
-                if (activity.data.result && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1 || !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1)) {
-                    return false;
-                }
-                if (activity.data.object['@type'] === 'CommentVote' && activity.data.type === 'Update' && activity.data.resultObject && activity.data.resultObject.value === 0) {
-                    return false;
-                }
-                if (activity.data.result && !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'TopicMemberUser' && activity.data.result[0].path.indexOf('level') > -1 && activity.data.result[0].value === 'none') {
-                    return false;
-                }
-                return true;
-            }
-            return false;
+            return sActivity.showActivityUpdateVersions(activity);
+        };
+
+        $scope.keyCounter = function (objIn) {
+            return Object.keys(objIn).length;
+        };
+
+        $scope.getGroupItems = function (values) {
+            var returnArray = [];
+            Object.keys(values).forEach(function (key) {
+                returnArray.push(values[key]);
+            });
+
+            return returnArray;
         };
 
         $scope.activityRedirect = function (activity) {

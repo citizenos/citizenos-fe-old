@@ -56,7 +56,6 @@ angular
                             if (act.data.target) {
                                 act.id = act.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
                             }
-                            act.data.object.groupingId = act.data.object.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
                             act.id = act.id + '_' + change.path;
                             buildActivityString(act);
                             act = sActivity.getActivityValues(act);
@@ -73,7 +72,122 @@ angular
                 }
             });
 
-            return parsedResult;
+            return activitiesToGroups(parsedResult);
+        };
+
+        var activitiesToGroups = function (activities) {
+            var finalActivities = {};
+            var userActivityGroups = {};
+            var activityGroups = {};
+            var returnActivities = [];
+
+            for(var i=0; i < activities.length; i++) {
+                var id = activities[i].data.object.id;
+                if (activities[i].data.target) {
+                    id = activities[i].data.target.id;
+                }
+
+                var groupKey = activities[i].string + '_' + id;
+                var userGroupKey = groupKey + '_' + activities[i].data.actor.id;
+                //Create group with id-s
+                if (!activityGroups[groupKey]) {
+                    activityGroups[groupKey] = new Array(activities[i]);
+                } else {
+                    activityGroups[groupKey].push(activities[i]);
+                }
+                //Create group with same actor
+                if (!userActivityGroups[userGroupKey]) {
+                    userActivityGroups[userGroupKey] = new Array(activities[i]);
+                } else {
+                    userActivityGroups[userGroupKey].push(activities[i]);
+                }
+
+            }
+
+            userActivityGroups = _.filter(userActivityGroups, function (item) {return item.length > 1;});
+            var userGroupIds = [];
+            Object.keys(userActivityGroups).forEach(function (key) {
+                var groupItems = _.map(userActivityGroups[key], function(item) {return item.id});
+                userGroupIds.push(groupItems);
+            });
+
+            userGroupIds = _.flatten(userGroupIds, function (item) {return item.length > 1;});
+
+            var groupIds = [];
+            Object.keys(activityGroups).forEach(function (key) {
+                var groupItems = _.map(activityGroups[key], function(item) {return item.id});
+                groupIds.push(_.filter(groupItems, function (item) { return userGroupIds.indexOf(item) === -1;}));
+                groupIds = _.filter(groupIds, function (item) {return item.length > 1});
+            });
+            var groupIdsFlat = _.flatten(groupIds);
+            userActivityGroups.forEach(function (items) {
+                items.forEach(function (item) {
+                    item.string = item.string + '_USERACTIVITYGROUP';
+                    item.values.groupCount = items.length;
+                });
+                _.sortBy(items, ['createdAt']).reverse();
+            });
+
+            var finalGroups = _.map(groupIds, function (group) {
+                var itemGroup = _.map(group, function (itemId) {
+                    return _.find(activities, function (activity) {
+                        return activity.id === itemId;
+                    })
+                });
+
+                itemGroup.forEach(function (value) {
+                    value.string = value.string + '_ACTIVITYGROUP';
+                    value.values.groupCount = (itemGroup.length -1);
+                });
+
+                return _.sortBy(itemGroup, ['updatedAt']).reverse();
+            });
+
+            activities.forEach(function (activity, index) {
+                if (groupIdsFlat.indexOf(activity.id) === -1 && userGroupIds.indexOf(activity.id) === -1) {
+                    activity.string = $translate.instant(activity.string, activity.values);
+                    finalActivities[activity.string] = [activity];
+                } else {
+                    if (userActivityGroups.length) {
+                        userActivityGroups.forEach(function (group) {
+                            var found = _.find(group, function (groupActivity) {
+                                return groupActivity.id === activity.id;
+                            });
+
+                            if (found) {
+                                finalActivities[activity.string] = group;
+                            }
+                        });
+                    }
+                    if (finalGroups.length) {
+                        finalGroups.forEach(function (group) {
+                            var found = _.find(group, function (groupActivity) {
+                                return groupActivity.id === activity.id;
+                            });
+
+                            if (found) {
+                                finalActivities[activity.string] = group;
+                            }
+                        });
+                    }
+
+                }
+            });
+
+            Object.keys(finalActivities).forEach(function (item) {
+
+                var groupItems = {};
+                var i = 0;
+                finalActivities[item].forEach(function (value){
+                    value.string = $translate.instant(value.string, value.values);
+                    groupItems[i] = value;
+                    i++;
+                });
+
+                returnActivities.push({referer: item, values: groupItems});
+            });
+
+            return _.sortBy(returnActivities, [function(o) { return o.values[0].updatedAt; }]).reverse();
         };
 
         var buildActivityString = function (activity) {
@@ -241,7 +355,6 @@ angular
             var newValueKey = null;
             var fieldNameKey = null;
             var originType = activity.data.origin['@type'];
-
             if (originType === 'Topic' || originType === 'Comment') {
                 fieldNameKey = 'ACTIVITY_FEED.ACTIVITY_' + originType.toUpperCase() + '_FIELD_' + fieldName.toUpperCase();
             }
@@ -319,41 +432,22 @@ angular
                 activity.values.previousValue = previousValue;
             }
             if (fieldNameKey) {
-                $translate(fieldNameKey)
-                    .then(function (translatedField) {
-                        activity.values.fieldName = translatedField;
-                        activity.values.groupItemValue = translatedField;
-                        if (newValueKey) {
-                            $translate(newValueKey)
-                                .then(function (newVal) {
-                                    if (typeof newVal === 'object') {
-                                        newVal =  Object.values(newVal).join(';');
-                                    }
-                                    activity.values.newValue = newVal;
-                                    activity.values.groupItemValue += ': ' + newVal;
-                                });
-                        } else {
-                            if (newValue) {
-                                activity.values.groupItemValue += ': ' + newValue;
-                                activity.values.newValue = newValue;
-                            }
-                        }
-                    });
-            } else if (newValueKey) {
-                $translate(newValueKey)
-                    .then(function (newVal) {
-                        if (typeof newVal === 'object') {
-                            newVal =  Object.values(newVal).join(';');
-                        }
-                        activity.values.newValue = newVal;
-                        activity.values.groupItemValue += ': ' + newVal;
-                    });
+                var translatedField = $translate.instant(fieldNameKey);
+                activity.values.fieldName = translatedField;
+                activity.values.groupItemValue = translatedField;
+            }
+            if (newValueKey) {
+                var newVal = $translate.instant(newValueKey);
+                if (typeof newVal === 'object') {
+                    newVal =  Object.values(newVal).join(';');
+                }
+                activity.values.newValue = newVal;
+                activity.values.groupItemValue += ': ' + newVal;
             } else {
                 activity.values.newValue = newValue;
                 activity.values.groupItemValue += ': ' + newValue;
             }
 
-            console.log(activity.values);
         };
 
         var getActivityTopicTitle = function (activity) {
@@ -597,6 +691,7 @@ angular
             var hash = '';
             var object = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
             var target = activity.data.target;
+            var origin = activity.data.origin;
             if (Array.isArray(object)) {
                 object = object[0];
             }
@@ -613,7 +708,7 @@ angular
                     stateName = 'topics.view';
                     params.topicId = object.id;
                 }
-            } else if (object['@type'] === 'Topic' || target['@type'] === 'Topic') {
+            } else if ((object && object['@type'] === 'Topic') || (target && target['@type'] === 'Topic')) {
                 stateName = 'topics.view';
                 params.topicId = object.id;
                 if (target && (target['@type'] === 'Topic' || target.topicId)) {
@@ -636,6 +731,15 @@ angular
                 params.groupId = object.id;
             }
 
+            if (target && target['@type'] === 'Group') {
+                stateName = 'my.groups.groupId';
+                params.groupId = target.id;
+            }
+
+            if (!stateName && origin && origin['@type'] === 'Topic') {
+                stateName = 'topics.view';
+                params.topicId  = origin.id;
+            }
             if (stateName) {
                 //  ngDialog.closeAll();
                 var link = $state.href(stateName, params);
