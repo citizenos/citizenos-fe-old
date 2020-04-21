@@ -145,7 +145,6 @@ angular
 
             activities.forEach(function (activity, index) {
                 if (groupIdsFlat.indexOf(activity.id) === -1 && userGroupIds.indexOf(activity.id) === -1) {
-                    activity.string = $translate.instant(activity.string, activity.values);
                     finalActivities[activity.string] = [activity];
                 } else {
                     if (userActivityGroups.length) {
