@@ -73,10 +73,7 @@ angular
                 }
             });
 
-            var grouped = activitiesToGroups(parsedResult);
-            console.log('GROPED:', grouped);
-
-            return grouped;
+            return activitiesToGroups(parsedResult);
         };
 
         var activitiesToGroups = function (activities) {
@@ -150,7 +147,6 @@ angular
             activities.forEach(function (activity, index) {
                 if (groupIdsFlat.indexOf(activity.id) === -1 && userGroupIds.indexOf(activity.id) === -1) {
                     activity.string = $translate.instant(activity.string, activity.values);
-                    console.log(activity.string, activity.values.fieldName);
                     finalActivities[activity.string] = [activity];
                 } else {
                     if (userActivityGroups.length) {
@@ -184,6 +180,7 @@ angular
                 var groupItems = {};
                 var i = 0;
                 finalActivities[item].forEach(function (value){
+                    value.string = $translate.instant(value.string, value.values);
                     groupItems[i] = value;
                     i++;
                 });
