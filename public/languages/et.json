@@ -746,8 +746,8 @@
     }
   },
   "ACTIVITY_FEED": {
-    "ACTIVITY_USER_CREATE_TOPIC": "User <em>{{userName}}</em> has created a topic <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_UPDATE_TOPIC": "User <em>{{userName}}</em> has updated a field <em>{{fieldName}}</em> in topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_CREATE_TOPIC": "Kasutaja <em>{{userName}}</em> on loonud teema <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPIC": "Kasutaja <em>{{userName}}</em> uuendas teemas <em>{{topicTitle}}</em> välja <em>{{fieldName}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have updated topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has made <em>{{groupCount}}</em> updates to topic <em>{{topicTitle}}</em>",
     "ACTIVITY_PREVIOUS_VERSION": "Eelmine versioon: {{previousValue}}",
