@@ -227,8 +227,10 @@
     // Mobile view
     @mixin mobile {
         .activity_area {
-            .activity_content {
+            .clearer {
                 border-bottom: solid 1px $lightest_gray;
+            }
+            .activity_content {
                 margin-bottom: 20px;
 
                 .left_side {
@@ -281,6 +283,9 @@
 
                         .notch {
                             display: none;
+                        }
+                        .activity_group_row {
+                            border-bottom: solid 1px $lightest_gray;
                         }
                     }
                 }

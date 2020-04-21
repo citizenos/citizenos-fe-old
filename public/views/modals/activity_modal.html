@@ -60,8 +60,8 @@
                         <div class="activity_area">
 
                             <div ng-repeat="(key, group) in activities">
-                                <div class="activity_content" ng-repeat="(keyRow, activity) in group.values" >
-                                    <div ng-if="$first" class="left_side">
+                                <div class="activity_content" ng-if="$first || group.show" ng-repeat="(keyRow, activity) in group.values" >
+                                    <div class="left_side">
                                         <div class="line_top"></div>
                                         <div class="icon">
                                             <div ng-class="'sprite sprite-icon-activity-{{activity.values.className}}{{activity.isNew}}-2x'"></div>
@@ -134,7 +134,7 @@
                                             <b class="notch"></b>
                                         </div>
                                     </div>
-                                    <div class="clearer"></div>
+                                    <div class="clearer" ng-if="$first"></div>
                                     </div>
                                 </div>
                         </div>
