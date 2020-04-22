@@ -89,12 +89,16 @@ angular
 
                 var groupKey = activities[i].string + '_' + id;
                 var userGroupKey = groupKey + '_' + activities[i].data.actor.id;
+
+                activities[i].groupKey = groupKey;
+                activities[i].userGroupKey = userGroupKey;
                 //Create group with id-s
                 if (!activityGroups[groupKey]) {
                     activityGroups[groupKey] = new Array(activities[i]);
                 } else {
                     activityGroups[groupKey].push(activities[i]);
                 }
+
                 //Create group with same actor
                 if (!userActivityGroups[userGroupKey]) {
                     userActivityGroups[userGroupKey] = new Array(activities[i]);
@@ -117,7 +121,7 @@ angular
             Object.keys(activityGroups).forEach(function (key) {
                 var groupItems = _.map(activityGroups[key], function(item) {return item.id});
                 groupIds.push(_.filter(groupItems, function (item) { return userGroupIds.indexOf(item) === -1;}));
-                groupIds = _.filter(groupIds, function (item) {return item.length > 1});
+                groupIds = _.filter(groupIds, function (item) {return item.length > 1;});
             });
             var groupIdsFlat = _.flatten(groupIds);
             userActivityGroups.forEach(function (items) {
@@ -154,7 +158,7 @@ angular
                             });
 
                             if (found) {
-                                finalActivities[activity.string] = group;
+                                finalActivities[group[0].userGroupKey] = group;
                             }
                         });
                     }
@@ -165,16 +169,13 @@ angular
                             });
 
                             if (found) {
-                                finalActivities[activity.string] = group;
+                                finalActivities[group[0].groupKey] = group;
                             }
                         });
                     }
-
                 }
             });
-
             Object.keys(finalActivities).forEach(function (item) {
-
                 var groupItems = {};
                 var i = 0;
                 finalActivities[item].forEach(function (value){
@@ -185,7 +186,6 @@ angular
 
                 returnActivities.push({referer: item, values: groupItems});
             });
-
             return _.sortBy(returnActivities, [function(o) { return o.values[0].updatedAt; }]).reverse();
         };
 
@@ -715,9 +715,9 @@ angular
                 }
 
             } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote') {
-                if (target && (target['@type'] === 'Topic' || target.topicId)) {
+                if (target && (target['@type'] === 'Topic' || object.topicId || target.topicId)) {
                     stateName = 'topics.view';
-                    params.topicId =  target.topicId || target.id;
+                    params.topicId = object.topicId || target.topicId || target.id;
                     params.commentId = object.commentId || object.id;
                     // hash = object.commentId || object.id;
                 }
@@ -739,6 +739,7 @@ angular
                 stateName = 'topics.view';
                 params.topicId  = origin.id;
             }
+            console.log(stateName)
             if (stateName) {
                 //  ngDialog.closeAll();
                 var link = $state.href(stateName, params);
