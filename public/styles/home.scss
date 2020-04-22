@@ -397,6 +397,8 @@
             margin: 0 0 10px 10px;
             float: left;
             display: block;
+            background: $category_varia;
+            color: $black;
 
             .topic_wrap {
                 padding: 19px 20px 0 20px;
@@ -449,6 +451,7 @@
 
             .line {
                 margin: 0px 0 12px 0;
+                background: $black;
             }
 
             .line::before {
@@ -457,6 +460,7 @@
                 display: block;
                 bottom: 2em;
                 height: 2em;
+                background: linear-gradient(rgba(255,255,255,0), $category_varia);
             }
 
             .text_small {
@@ -633,6 +637,13 @@
                 }
             }
 
+            &.society {
+                background: $category_society;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_society);
+                }
+            }
+
             &.varia {
                 background: $category_varia;
                 .line::before {
@@ -652,6 +663,7 @@
             &.transport,
             &.health,
             &.education,
+            &.society,
             &.varia,
             &.eestijazziarengusuunad,
             &.hacktivistcommunity {
@@ -677,12 +689,14 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
+                background-color: $tutorial_background;
+
                 @media (max-width: 667px) {
                     background-image: none;
                 }
 
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $deep_sky_blue);
+                    background-image: linear-gradient(rgba(255,255,255,0), $tutorial_background);
                 }
             }
 
@@ -691,6 +705,8 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
+                background-color: $keepitclean_background;
+
                 @media (max-width: 667px) {
                     background-image: none;
                 }
@@ -705,6 +721,8 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
+                background-color: $hacktivist_community_background;
+
                 @media (max-width: 667px) {
                     background-image: none;
                 }
@@ -718,8 +736,9 @@
                 background-image: url('../imgs/img_partner_ldiindonesia.png');
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
-                background-position: right -50px bottom 0px;
                 background-size: 300px;
+                background-color: $thirtyfourislandproject_background;
+
                 @media (max-width: 667px) {
                     background-image: none;
                 }
@@ -734,6 +753,8 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
+                background-color: $eestijazziarengusuunad_background;
+
                 @media (max-width: 667px) {
                     background-image: none;
                 }
