@@ -460,7 +460,7 @@
                 display: block;
                 bottom: 2em;
                 height: 2em;
-                background: linear-gradient(rgba(255,255,255,0), $category_varia);
+                background: linear-gradient(to bottom, rgba($category_varia, 0), $category_varia);
             }
 
             .text_small {
@@ -516,71 +516,80 @@
 
             &.politics {
                 background: $category_politics;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_politics);
+                    background-image: linear-gradient(to bottom, rgba($category_politics, 0), $category_politics);
                 }
             }
 
             &.taxes {
                 background: $category_taxes;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_taxes);
+                    background-image: linear-gradient(to bottom, rgba($category_taxes, 0), $category_taxes);
                 }
             }
 
             &.defense {
                 background: $category_defense;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_defense);
+                    background-image: linear-gradient(to bottom, rgba($category_defense, 0), $category_defense);
                 }
             }
 
             &.environment, &.keepitcleanplan, &.thirtyfourislandproject {
                 background: $category_environment; // #00b23b
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_environment);
+                    background-image: linear-gradient(to bottom, rgba($category_environment, 0), $category_environment);
                 }
             }
 
             &.hacktivistcommunity {
                 background: $hacktivist_community_background;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $hacktivist_community_background);
+                    background-image: linear-gradient(to bottom, rgba($hacktivist_community_background, 0), $hacktivist_community_background);
                 }
             }
 
             &.thetwelvemovie {
                 background: $thetwelvemovie_background;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $thetwelvemovie_background);
+                    background-image: linear-gradient(to bottom, rgba($thetwelvemovie_background, 0), $thetwelvemovie_background);
                 }
             }
 
             &.agriculture {
                 background: $category_agriculture;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_agriculture);
+                    background-image: linear-gradient(to bottom, rgba($category_agriculture, 0), $category_agriculture);
                 }
             }
 
             &.culture {
                 background: $category_culture;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_culture);
+                    background-image: linear-gradient(to bottom, rgba($category_culture, 0), $category_culture);
                 }
             }
 
             &.communities {
                 background: $category_communities;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_communities);
+                    background-image: linear-gradient(to bottom, rgba($category_communities, 0), $category_communities);
                 }
             }
 
             &.integration {
                 background: $category_integration;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_integration);
+                    background-image: linear-gradient(to bottom, rgba($category_integration, 0), $category_integration);
                 }
             }
 
@@ -604,57 +613,65 @@
 
             &.business {
                 background: $category_business;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_business);
+                    background-image: linear-gradient(to bottom, rgba($category_business, 0), $category_business);
                 }
             }
 
             &.work {
                 background: $category_work;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_work);
+                    background-image: linear-gradient(to bottom, rgba($category_work, 0), $category_work);
                 }
             }
 
             &.transport {
                 background: $category_transport;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_transport);
+                    background-image: linear-gradient(to bottom, rgba($category_transport, 0), $category_transport);
                 }
             }
 
             &.health {
                 background: $category_health;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_health);
+                    background-image: linear-gradient(to bottom, rgba($category_health, 0), $category_health);
                 }
             }
 
             &.education {
                 background: $category_education;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_education);
+                    background-image: linear-gradient(to bottom, rgba($category_education, 0), $category_education);
                 }
             }
 
             &.society {
                 background: $category_society;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_society);
+                    background-image: linear-gradient(to bottom, rgba($category_society, 0), $category_society);
                 }
             }
 
             &.varia {
                 background: $category_varia;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $category_varia);
+                    background-image: linear-gradient(to bottom, rgba($category_varia, 0), $category_varia);
                 }
             }
 
             &.eestijazziarengusuunad {
                 background: $eestijazziarengusuunad_background;
+
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $eestijazziarengusuunad_background);
+                    background-image: linear-gradient(to bottom, rgba($eestijazziarengusuunad_background, 0), $eestijazziarengusuunad_background);
                 }
             }
 
@@ -700,7 +717,7 @@
                 }
 
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $tutorial_background);
+                    background-image: linear-gradient(to bottom, rgba($tutorial_background, 0), $tutorial_background);
                 }
             }
 
@@ -716,7 +733,7 @@
                 }
 
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $keepitclean_background);
+                    background-image: linear-gradient(to bottom, rgba($keepitclean_background, 0), $keepitclean_background);
                 }
             }
 
@@ -732,7 +749,7 @@
                 }
 
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $hacktivist_community_background);
+                    background-image: linear-gradient(to bottom, rgba($hacktivist_community_background, 0), $hacktivist_community_background);
                 }
             }
 
@@ -748,7 +765,7 @@
                 }
 
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $thirtyfourislandproject_background);
+                    background-image: linear-gradient(to bottom, rgba($thirtyfourislandproject_background, 0), $thirtyfourislandproject_background);
                 }
             }
 
@@ -764,7 +781,7 @@
                 }
 
                 .line::before {
-                    background-image: linear-gradient(rgba(255,255,255,0), $eestijazziarengusuunad_background);
+                    background-image: linear-gradient(to bottom, rgba($eestijazziarengusuunad_background, 0), $eestijazziarengusuunad_background);
                 }
             }
 
