@@ -695,6 +695,10 @@
                     background-image: none;
                 }
 
+                .line {
+                    background: $white;
+                }
+
                 .line::before {
                     background-image: linear-gradient(rgba(255,255,255,0), $tutorial_background);
                 }
