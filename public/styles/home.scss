@@ -377,7 +377,7 @@
             margin-top: 10px;
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 667px) {
             padding: 0 10px 10px 10px;
         }
 
@@ -419,7 +419,7 @@
                 overflow: hidden;
             }
 
-            @media (max-width: 500px) {
+            @media (max-width: 667px) {
 
                 &:nth-child(2n+1), &:nth-child(2n), &:nth-child(1) {
                     margin-left: 0;
@@ -451,10 +451,24 @@
                 margin: 0px 0 12px 0;
             }
 
+            .line::before {
+                content: '\00a0';
+                position: relative;
+                display: block;
+                bottom: 2em;
+                height: 2em;
+            }
+
             .text_small {
                 font-size: 13px;
                 color: inherit;
                 font-weight: inherit;
+
+                &.categories {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
 
                 @media (max-width: 667px) {
                     width: 100%;
@@ -497,43 +511,73 @@
             }
 
             &.politics {
-                background: #007399;
+                background: $category_politics;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_politics);
+                }
             }
 
             &.taxes {
-                background: #3e648e;
+                background: $category_taxes;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_taxes);
+                }
             }
 
             &.defense {
-                background: #003373;
+                background: $category_defense;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_defense);
+                }
             }
 
             &.environment, &.keepitcleanplan, &.thirtyfourislandproject {
-                background: #00b23b;
+                background: $category_environment; // #00b23b
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_environment);
+                }
             }
 
             &.hacktivistcommunity {
                 background: $hacktivist_community_background;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $hacktivist_community_background);
+                }
             }
 
             &.thetwelvemovie {
-                background: #6192ce;
+                background: $thetwelvemovie_background;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $thetwelvemovie_background);
+                }
             }
 
             &.agriculture {
-                background: #858116;
+                background: $category_agriculture;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_agriculture);
+                }
             }
 
             &.culture {
-                background: #da0048;
+                background: $category_culture;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_culture);
+                }
             }
 
             &.communities {
-                background: #e66700;
+                background: $category_communities;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_communities);
+                }
             }
 
             &.integration {
-                background: #e64100;
+                background: $category_integration;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_integration);
+                }
             }
 
             &.politics,
@@ -555,31 +599,52 @@
             }
 
             &.business {
-                background: #fff;
+                background: $category_business;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_business);
+                }
             }
 
             &.work {
-                background: #dfdfdf;
+                background: $category_work;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_work);
+                }
             }
 
             &.transport {
-                background: #fef78d;
+                background: $category_transport;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_transport);
+                }
             }
 
             &.health {
-                background: #fdd61e;
+                background: $category_health;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_health);
+                }
             }
 
             &.education {
-                background: #ffd4a6;
+                background: $category_education;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_education);
+                }
             }
 
             &.varia {
-                background: #f1d9ff;
+                background: $category_varia;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $category_varia);
+                }
             }
 
             &.eestijazziarengusuunad {
-                background: #00ff02;
+                background: $eestijazziarengusuunad_background;
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $eestijazziarengusuunad_background);
+                }
             }
 
             &.business,
@@ -615,6 +680,10 @@
                 @media (max-width: 667px) {
                     background-image: none;
                 }
+
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $deep_sky_blue);
+                }
             }
 
             &.keep_it_clean_plan {
@@ -624,6 +693,10 @@
                 background-size: 300px;
                 @media (max-width: 667px) {
                     background-image: none;
+                }
+
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $keepitclean_background);
                 }
             }
 
@@ -635,15 +708,24 @@
                 @media (max-width: 667px) {
                     background-image: none;
                 }
+
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $hacktivist_community_background);
+                }
             }
 
             &.thirty_four_island_project {
                 background-image: url('../imgs/img_partner_ldiindonesia.png');
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
+                background-position: right -50px bottom 0px;
                 background-size: 300px;
                 @media (max-width: 667px) {
                     background-image: none;
+                }
+
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $thirtyfourislandproject_background);
                 }
             }
 
@@ -654,6 +736,10 @@
                 background-size: 300px;
                 @media (max-width: 667px) {
                     background-image: none;
+                }
+
+                .line::before {
+                    background-image: linear-gradient(rgba(255,255,255,0), $eestijazziarengusuunad_background);
                 }
             }
 
@@ -712,7 +798,7 @@
                 }
             }
 
-            @media (max-width: 500px) {
+            @media (max-width: 667px) {
                 width: 100%;
                 padding-right: 0;
             }
@@ -732,7 +818,7 @@
             padding-right: 50px;
             padding-left: 50px;
             border-radius: 4px;
-            @media (max-width: 500px) {
+            @media (max-width: 667px) {
                 margin-top: 0;
             }
         }
