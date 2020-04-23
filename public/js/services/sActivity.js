@@ -126,7 +126,7 @@ angular
             var groupIdsFlat = _.flatten(groupIds);
             userActivityGroups.forEach(function (items) {
                 items.forEach(function (item) {
-                    item.string = item.string + '_USERACTIVITYGROUP';
+                    item.groupString = item.string + '_USERACTIVITYGROUP';
                     item.values.groupCount = items.length;
                 });
                 _.sortBy(items, ['createdAt']).reverse();
@@ -140,7 +140,7 @@ angular
                 });
 
                 itemGroup.forEach(function (value) {
-                    value.string = value.string + '_ACTIVITYGROUP';
+                    value.groupString = value.string + '_ACTIVITYGROUP';
                     value.values.groupCount = (itemGroup.length -1);
                 });
 
@@ -180,12 +180,14 @@ angular
                 var i = 0;
                 finalActivities[item].forEach(function (value){
                     value.string = $translate.instant(value.string, value.values);
+                    value.groupString = $translate.instant(value.groupString, value.values);
                     groupItems[i] = value;
                     i++;
                 });
 
                 returnActivities.push({referer: item, values: groupItems});
             });
+
             return _.sortBy(returnActivities, [function(o) { return o.values[0].updatedAt; }]).reverse();
         };
 
