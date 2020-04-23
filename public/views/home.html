@@ -224,7 +224,7 @@
             </div>
         </a>
 
-        <a ng-href="/hacktivistcommunity" class="big hacktivist_community black_text hacktivist_community_background fixed_topic" ng-if="isTutorialVisible()">
+        <a ng-href="/hacktivistcommunity" class="big hacktivist_community black_text fixed_topic" ng-if="isTutorialVisible()">
             <div class="topic_wrap">
                 <div class="text_area">
 
@@ -243,7 +243,7 @@
             </div>
         </a>
 
-        <a ng-href="/thirtyfourislandproject" class="big thirty_four_island_project black_text thirty_four_island_project_background fixed_topic" ng-if="isTutorialVisible()">
+        <a ng-href="/thirtyfourislandproject" class="big thirty_four_island_project black_text fixed_topic" ng-if="isTutorialVisible()">
             <div class="topic_wrap">
                 <div class="text_area">
 
@@ -262,7 +262,7 @@
             </div>
         </a>
 
-        <a ng-href="/eestijazziarengusuunad" class="big black_text eesti_jazzi_arengusuunad eesti_jazzi_arengusuunad_project_background fixed_topic" ng-if="isTutorialVisible()">
+        <a ng-href="/eestijazziarengusuunad" class="big black_text eesti_jazzi_arengusuunad fixed_topic" ng-if="isTutorialVisible()">
             <div class="topic_wrap">
                 <div class="text_area">
 
@@ -316,7 +316,7 @@
 
                 <div class="line"></div>
 
-                <div class="text_small" ng-if="wWidth > 667">
+                <div class="text_small categories" ng-if="wWidth > 667">
                     <span ng-repeat="category in topic.categories">
                         <span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}"></span><span ng-class="{hidden: $last}">, </span>
                     </span>
