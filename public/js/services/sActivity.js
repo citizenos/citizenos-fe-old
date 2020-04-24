@@ -149,7 +149,7 @@ angular
 
             activities.forEach(function (activity, index) {
                 if (groupIdsFlat.indexOf(activity.id) === -1 && userGroupIds.indexOf(activity.id) === -1) {
-                    finalActivities[activity.string] = [activity];
+                    finalActivities[activity.id] = [activity];
                 } else {
                     if (userActivityGroups.length) {
                         userActivityGroups.forEach(function (group) {
