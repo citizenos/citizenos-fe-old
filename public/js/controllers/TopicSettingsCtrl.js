@@ -127,7 +127,6 @@ angular
 
         $scope.doEditVoteDeadline = function () {
 
-            console.log('ENDS AT', $scope.form.topic.vote.endsAt);
             $scope.form.topic.vote.topicId = $scope.topic.id;
             return $scope.form.topic.vote
                 .$update();

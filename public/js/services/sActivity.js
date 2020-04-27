@@ -53,6 +53,10 @@ angular
                             var act = _.cloneDeep(activity);
                             var change = activity.data.result[i];
                             act.data.result = [change];
+                            if (act.data.target) {
+                                act.id = act.id + '_' + change.path; //this is to avoid weird grouping of update activities with multiple fields
+                            }
+                            act.id = act.id + '_' + change.path;
                             buildActivityString(act);
                             act = sActivity.getActivityValues(act);
                             parsedResult.push(act);
@@ -67,7 +71,124 @@ angular
                     $log.error('Activity data missing');
                 }
             });
-            return parsedResult;
+
+            return activitiesToGroups(parsedResult);
+        };
+
+        var activitiesToGroups = function (activities) {
+            var finalActivities = {};
+            var userActivityGroups = {};
+            var activityGroups = {};
+            var returnActivities = [];
+
+            for(var i=0; i < activities.length; i++) {
+                var id = activities[i].data.object.id;
+                if (activities[i].data.target) {
+                    id = activities[i].data.target.id;
+                }
+
+                var groupKey = activities[i].string + '_' + id;
+                var userGroupKey = groupKey + '_' + activities[i].data.actor.id;
+
+                activities[i].groupKey = groupKey;
+                activities[i].userGroupKey = userGroupKey;
+                //Create group with id-s
+                if (!activityGroups[groupKey]) {
+                    activityGroups[groupKey] = new Array(activities[i]);
+                } else {
+                    activityGroups[groupKey].push(activities[i]);
+                }
+
+                //Create group with same actor
+                if (!userActivityGroups[userGroupKey]) {
+                    userActivityGroups[userGroupKey] = new Array(activities[i]);
+                } else {
+                    userActivityGroups[userGroupKey].push(activities[i]);
+                }
+
+            }
+
+            userActivityGroups = _.filter(userActivityGroups, function (item) {return item.length > 1;});
+            var userGroupIds = [];
+            Object.keys(userActivityGroups).forEach(function (key) {
+                var groupItems = _.map(userActivityGroups[key], function(item) {return item.id});
+                userGroupIds.push(groupItems);
+            });
+
+            userGroupIds = _.flatten(userGroupIds, function (item) {return item.length > 1;});
+
+            var groupIds = [];
+            Object.keys(activityGroups).forEach(function (key) {
+                var groupItems = _.map(activityGroups[key], function(item) {return item.id});
+                groupIds.push(_.filter(groupItems, function (item) { return userGroupIds.indexOf(item) === -1;}));
+                groupIds = _.filter(groupIds, function (item) {return item.length > 1;});
+            });
+            var groupIdsFlat = _.flatten(groupIds);
+            userActivityGroups.forEach(function (items) {
+                items.forEach(function (item) {
+                    item.groupString = item.string + '_USERACTIVITYGROUP';
+                    item.values.groupCount = items.length;
+                });
+                _.sortBy(items, ['createdAt']).reverse();
+            });
+
+            var finalGroups = _.map(groupIds, function (group) {
+                var itemGroup = _.map(group, function (itemId) {
+                    return _.find(activities, function (activity) {
+                        return activity.id === itemId;
+                    })
+                });
+
+                itemGroup.forEach(function (value) {
+                    value.groupString = value.string + '_ACTIVITYGROUP';
+                    value.values.groupCount = (itemGroup.length -1);
+                });
+
+                return _.sortBy(itemGroup, ['updatedAt']).reverse();
+            });
+
+            activities.forEach(function (activity, index) {
+                if (groupIdsFlat.indexOf(activity.id) === -1 && userGroupIds.indexOf(activity.id) === -1) {
+                    finalActivities[activity.id] = [activity];
+                } else {
+                    if (userActivityGroups.length) {
+                        userActivityGroups.forEach(function (group) {
+                            var found = _.find(group, function (groupActivity) {
+                                return groupActivity.id === activity.id;
+                            });
+
+                            if (found) {
+                                finalActivities[group[0].userGroupKey] = group;
+                            }
+                        });
+                    }
+                    if (finalGroups.length) {
+                        finalGroups.forEach(function (group) {
+                            var found = _.find(group, function (groupActivity) {
+                                return groupActivity.id === activity.id;
+                            });
+
+                            if (found) {
+                                finalActivities[group[0].groupKey] = group;
+                            }
+                        });
+                    }
+                }
+            });
+            Object.keys(finalActivities).forEach(function (item) {
+                var groupItems = {};
+                var i = 0;
+                finalActivities[item].forEach(function (value){
+                    value.string = $translate.instant(value.string, value.values);
+                    value.groupString = $translate.instant(value.groupString, value.values);
+                    groupItems[i] = value;
+                    i++;
+                });
+
+                returnActivities.push({referer: item, values: groupItems});
+            });
+
+            return _.sortBy(returnActivities, [function(o) { return o.values[0].updatedAt; }]).reverse();
         };
 
         var buildActivityString = function (activity) {
@@ -233,14 +354,10 @@ angular
             var newValue = activity.data.resultObject[fieldName];
             var previousValueKey = null;
             var newValueKey = null;
+            var fieldNameKey = null;
             var originType = activity.data.origin['@type'];
-
             if (originType === 'Topic' || originType === 'Comment') {
-                var fieldNameKey = 'ACTIVITY_FEED.ACTIVITY_' + originType.toUpperCase() + '_FIELD_' + fieldName.toUpperCase();
-                $translate(fieldNameKey)
-                    .then(function (translatedField) {
-                        activity.values.fieldName = translatedField;
-                    });
+                fieldNameKey = 'ACTIVITY_FEED.ACTIVITY_' + originType.toUpperCase() + '_FIELD_' + fieldName.toUpperCase();
             }
 
             if (Array.isArray(previousValue) && previousValue.length === 0) {
@@ -299,6 +416,9 @@ angular
                     if (fieldName === 'deletedReasonType') {
                         newValueKey = 'ACTIVITY_FEED.ACTIVITY_COMMENT_FIELD_DELETEDREASONTYPE_' + newValue.toUpperCase();
                     }
+                    if (fieldName === 'type') {
+                        newValueKey = 'ACTIVITY_FEED.ACTIVITY_COMMENT_FIELD_VALUE_' + newValue.toUpperCase();
+                    }
                 }
             }
             if (previousValueKey) {
@@ -312,17 +432,23 @@ angular
             } else {
                 activity.values.previousValue = previousValue;
             }
+            if (fieldNameKey) {
+                var translatedField = $translate.instant(fieldNameKey);
+                activity.values.fieldName = translatedField;
+                activity.values.groupItemValue = translatedField;
+            }
             if (newValueKey) {
-                $translate(newValueKey)
-                    .then(function (newVal) {
-                        activity.values.newValue = newVal;
-                        if (typeof newVal === 'object') {
-                            activity.values.newValue = Object.values(newVal).join(';');
-                        }
-                    });
+                var newVal = $translate.instant(newValueKey);
+                if (typeof newVal === 'object') {
+                    newVal =  Object.values(newVal).join(';');
+                }
+                activity.values.newValue = newVal;
+                activity.values.groupItemValue += ': ' + newVal;
             } else {
                 activity.values.newValue = newValue;
+                activity.values.groupItemValue += ': ' + newValue;
             }
+
         };
 
         var getActivityTopicTitle = function (activity) {
@@ -482,9 +608,24 @@ angular
                 values.connectionName = getAactivityUserConnectionName(activity);
                 getActivityUserLevel(activity, values);
 
+                values.groupItemValue =  values.userName;
+                if (values.userName2) {
+                    values.groupItemValue = values.userName2;
+                }
+                if (values.attachmentName) {
+                    values.groupItemValue = values.attachmentName;
+                }
+                if (values.connectionName) {
+                    values.groupItemValue = values.connectionName;
+                }
+
                 var dataobject = activity.data.object;
                 if (Array.isArray(dataobject)) {
                     dataobject = dataobject[0];
+                }
+
+                if (dataobject['@type'] === 'Comment') {
+                    values.groupItemValue = dataobject.text;
                 }
 
                 if (dataobject['@type'] === 'CommentVote' && activity.data.type === 'Create') {
@@ -497,6 +638,7 @@ angular
                     }
                     $translate(str + val).then(function (value) {
                         values.reaction = value;
+                        values.groupItemValue = value;
                     });
                 }
             }
@@ -575,9 +717,9 @@ angular
                 }
 
             } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote') {
-                if (target && (target['@type'] === 'Topic' || target.topicId)) {
+                if (target && (target['@type'] === 'Topic' || object.topicId || target.topicId)) {
                     stateName = 'topics.view';
-                    params.topicId =  target.topicId || target.id;
+                    params.topicId = object.topicId || target.topicId || target.id;
                     params.commentId = object.commentId || object.id;
                     // hash = object.commentId || object.id;
                 }
