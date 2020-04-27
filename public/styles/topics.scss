@@ -512,6 +512,7 @@
                             float: left;
                             position: relative;
                             box-sizing: border-box;
+
                             @media (max-width: 1280px) {
                                 width: 50%;
                             }
@@ -539,6 +540,12 @@
 
                                 &:not(:last-child) {
                                     margin-bottom: 20px;
+                                }
+
+                                .item_content {
+                                    .sprite {
+                                        display: inline-block;
+                                    }
                                 }
 
                             }
