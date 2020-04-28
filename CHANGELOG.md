@@ -1,5 +1,9 @@
 ## 2020-03-10
 
+* Group similar Activity Feed items together - https://github.com/citizenos/citizenos-fe/issues/256
+
+## 2020-03-10
+
 * Direct linking of arguments - https://github.com/citizenos/citizenos-fe/issues/361
 * Fix issues:
     * Change home page filtering behaviour - https://github.com/citizenos/citizenos-fe/issues/427

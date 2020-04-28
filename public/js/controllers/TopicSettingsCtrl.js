@@ -79,6 +79,35 @@ angular
 
             };
 
+            var itemsPerPage = 10;
+            $scope.membersPage = 1;
+            $scope.groupLevel;
+
+            $scope.updateGroupLevel = function (level) {
+                $scope.groupLevel = level;
+                $scope.members.users.forEach(function (item) {
+                    item.level = $scope.groupLevel;
+                });
+                $scope.members.emails.forEach(function (item) {
+                    item.level = $scope.groupLevel;
+                });
+                $scope.members.groups.forEach(function (item) {
+                    item.level = $scope.groupLevel;
+                });
+            }
+
+            $scope.loadPage = function (pageNr) {
+                $scope.membersPage = pageNr;
+            }
+            $scope.totalPages = function (items) {
+                return Math.ceil(items.length / itemsPerPage);
+            };
+
+            $scope.isOnPage = function (index, page) {
+                var endIndex = page * itemsPerPage;
+                return  (index >= endIndex - itemsPerPage && index < endIndex);
+            }
+
             $scope.members = {
                 users: [],
                 emails: [],
@@ -167,7 +196,6 @@ angular
 
         $scope.doEditVoteDeadline = function () {
 
-            console.log('ENDS AT', $scope.form.topic.vote.endsAt);
             $scope.form.topic.vote.topicId = $scope.topic.id;
             return $scope.form.topic.vote
                 .$update();
@@ -219,13 +247,13 @@ angular
         };
 
         $scope.addTopicMember = function (member) {
-            if (!member || validator.isEmail(member) || member.indexOf(',') > -1) {
-                $scope.addTopicMemberUser();
+            if (!member || (typeof member === 'string' && (validator.isEmail(member) || member.indexOf(',') > -1))) {
+                return $scope.addTopicMemberUser();
             }
             if (member.hasOwnProperty('company')) {
-                $scope.addTopicMemberUser(member);
+                return $scope.addTopicMemberUser(member);
             } else {
-                $scope.addTopicMemberGroup(member);
+                return $scope.addTopicMemberGroup(member);
             }
         };
 
@@ -291,13 +319,11 @@ angular
             } else {
                 // Assume e-mail was entered.
                 if ($scope.searchString.indexOf(',') > -1) {
-                    var emails = $scope.searchString.split(',');
-                    console.log('EMAILS', emails);
+                    var emails = $scope.searchString.match(/(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})/gi);
                     var filtered = _.filter(emails, function (email) {
                         return validator.isEmail(email.trim())
                     });
-                    console.log('FILTERED', filtered);
-                    _.uniq(filtered).forEach(function (email) {
+                    _.sortedUniq(filtered.sort()).forEach(function (email) {
                         $scope.members.emails.push({
                             userId: email.trim(),
                             name: email.trim(),

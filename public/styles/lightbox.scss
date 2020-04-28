@@ -1069,7 +1069,6 @@
             }
 
             td:first-child {
-                width: 33%;
                 color: $medium_black_seven;
             }
         }
@@ -1768,6 +1767,19 @@
             &.language_section {
                 padding-left: 25px !important;
             }
+
+            &.double_row_list.user_list {
+                max-height: min-content;
+
+                @media (max-width: 640px) {
+                    max-height: min-content;
+                }
+
+                @media (max-width: 560px) {
+                    max-height: min-content !important;
+                }
+            }
+
             @media (max-width: 560px) {
                 max-height: initial;
                 padding-bottom: 20px !important;

@@ -135,7 +135,6 @@ angular
 
         $scope.doSignWithSmartId = function () {
             $log.debug('doSignWithSmartId()');
-            console.log($scope.formSmartId);
             $scope.formSmartId.isLoading = true;
 
             var userVote = new TopicVote({id: topic.vote.id, topicId: topic.id});

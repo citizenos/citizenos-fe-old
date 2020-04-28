@@ -251,9 +251,33 @@
 
 
                 <div class="lightbox_section double_row_list user_list" ng-if="members.users.length || members.groups.length || members.emails.length">
+                    <div ng-repeat="(key, memberGroups) in members" ng-if="memberGroups.length">
+                        <div ng-if="memberGroups.length">
+                            <div cos-dropdown class="classic_dropdown">
 
-                    <div ng-repeat="(key, members) in members" ng-if="members.length">
+                                <div class="dropdown_selection">
+                                    <div class="dropdown_text">
+                                        {{'TXT_TOPIC_LEVELS_' + groupLevel | uppercase | translate}}
+                                    </div>
 
+                                    <div class="arrow_holder">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                            <div class="v_line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <div  class="dropdown_item" ng-repeat="level in TopicMemberUser.LEVELS">
+                                        <div ng-if="level !== TopicMemberUser.LEVELS.none" class="item_name" ng-click="updateGroupLevel(level)">
+                                            {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="category_title">
                             <div class="table_cell">
                                 {{('MODALS.TOPIC_SETTINGS_RESULT_GROUP_' + key) | uppercase | translate}}
@@ -262,7 +286,7 @@
 
                         <table>
 
-                            <tr ng-repeat="(memberKey, member) in members">
+                            <tr ng-repeat="(memberKey, member) in memberGroups" ng-if="isOnPage($index, membersPage)">
                                 <td>
                                     <div class="profile_image_wrapper dark">
                                         <!--div class="profile_moon sprite"></div-->
@@ -371,9 +395,9 @@
                                     </div>
                                 </td>
                             </tr>
-                            <div class="pagination" cos-pagination select="loadPage" total-pages="members.totalPages" page="topicComments.page"></div>
+                            <tr><td></td></tr>
                         </table>
-
+                        <div class="pagination" cos-pagination select="loadPage" total-pages="totalPages(memberGroups)" page="membersPage"></div>
                     </div>
 
 

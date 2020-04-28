@@ -105,10 +105,9 @@
             }
 
             .float_wrap {
-                position: absolute;
-                right: 0;
-                width: 40%;
-                padding-right: 15px;
+                position: relative;
+                float: right;
+                max-width: 40%;
                 margin: 0;
 
                 .icon_wrapper {
@@ -676,9 +675,9 @@
                 .icon_cell {
                     display: table-cell;
                     width: 33%;
-                    padding-top: 10px;
 
                     .icon_wrapper {
+                        padding-top: 10px;
                         width: min-content;
                         margin-left: auto;
                         margin-right: auto;

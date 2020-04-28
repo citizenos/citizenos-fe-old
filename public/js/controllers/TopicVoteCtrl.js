@@ -36,7 +36,6 @@ angular
                         },
                         preCloseCallback: function (data) {
                             if (data) {
-                                console.log(data);
                                 $scope.topic.vote.topicId = $scope.topic.id;
                                 $scope.topic.vote.$get()
                                     .then(function () {
