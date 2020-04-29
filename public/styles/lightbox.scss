@@ -631,11 +631,18 @@
                             text-align: right;
                         }
 
+                        .footer_link {
+                            font-size: 0.875em;
+                            color: $dark_blue;
+                        }
+
                     }
                 }
             }
 
             .blue_button_wrap {
+                border: 1px solid red;
+
                 .blue_button {
                     @media (max-width: 560px) {
                         width: calc(100% - 40px);
@@ -648,6 +655,12 @@
                     padding-right: 10px;
                     border-radius: 4px;
                     position: relative;
+
+                    &.left {
+                        float: left;
+                        margin-left: 20px;
+                        margin-right: auto;
+                    }
                 }
             }
 

@@ -26,6 +26,7 @@ angular
             '/views/directives/cos_modal_datepicker.html',
             '/views/directives/date_picker.html',
             '/views/modals/activity_modal.html',
+            '/views/modals/cookie_control.html',
             '/views/modals/group_create_settings.html',
             '/views/modals/group_delete_confirm.html',
             '/views/modals/group_member_topic_delete_confirm.html',

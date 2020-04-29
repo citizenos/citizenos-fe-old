@@ -1,0 +1,77 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+
+    <div id="lightbox" class="wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="">Citizen OS use of cookies</div>
+                </div>
+
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <div class="lightbox_content">
+
+                <div class="lightbox_section">
+
+                    <div class="settings_section">
+                        We use necessary cookies to make our site work. We'd also like to set optional analytics cookies to help us improve it. We won't set optional cookies unless you enable them.
+                        Using this tool will set a cookie on your device to remember your preferences.
+                    </div>
+
+                    <div class="settings_section">
+                        <h3 translate="">Necessary cookies</h3>
+                        <p translate="">
+                            Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this
+                            may affect how the website functions.
+                        </p>
+                        <a href="#">
+                            View details
+                        </a>
+                    </div>
+
+                    <div class="settings_section">
+
+                        <div>
+                            <h3>Anonymous analytics cookies</h3>
+                            <div style="display: inline-block; float: right; border: 1px solid red;" cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                 ng-value="Topic.VISIBILITY.private" off-value="Topic.VISIBILITY.public" ng-model="form.topic.visibility"></div>
+                        </div>
+
+                        <p translate="">We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use
+                            it. The cookies collect information in a way
+                            that does not directly identify anyone.
+                        </p>
+                        <a href="#">
+                            View details
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="lightbox_footer">
+                <div class="line lightest_line"></div>
+
+                <div class="lightbox_section">
+                    <div class="footer_button_wrap left">
+                        <a class="footer_link left" ng-href="{{app.config.legal.privacyPolicy}}">
+                            <span translate="MODALS.PRIVACY_POLICY_LNK_PRIVACY_POLICY">Privacy Policy</span>
+                        </a>
+                    </div>
+                    <div class="footer_button_wrap right">
+                        <div class="blue_button" translate="">Enable all cookies</div>
+                        <div class="blue_button" translate="">Save settings</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
