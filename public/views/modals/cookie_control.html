@@ -1,7 +1,7 @@
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox" class="full_screen">
 
-    <div id="lightbox" class="wide_lightbox">
+    <div id="lightbox" class="wide_lightbox cookie_control">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
@@ -24,31 +24,61 @@
                     </div>
 
                     <div class="settings_section">
-                        <h3 translate="">Necessary cookies</h3>
-                        <p translate="">
-                            Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this
-                            may affect how the website functions.
-                        </p>
-                        <a href="#">
-                            View details
-                        </a>
+
+                        <div class="settings_row">
+                            <div class="settings_cell">
+                                <div class="setting_title">Necessary cookies</div>
+                            </div>
+                        </div>
+
+                        <div class="settings_row">
+                            <div class="settings_cell">
+                                Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this
+                                may affect how the website functions.
+                            </div>
+                        </div>
+
+                        <div class="settings_row">
+                            <div class="settings_cell">
+                                <a href="#">
+                                    View details
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="settings_section">
 
-                        <div>
-                            <h3>Anonymous analytics cookies</h3>
-                            <div style="display: inline-block; float: right; border: 1px solid red;" cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
-                                 ng-value="Topic.VISIBILITY.private" off-value="Topic.VISIBILITY.public" ng-model="form.topic.visibility"></div>
+                        <div class="settings_row">
+                            <div class="settings_cell left">
+                                <div class="setting_title">Anonymous analytics cookies</div>
+                            </div>
+
+                            <div class="settings_cell right">
+                                <div cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                     ng-value="Topic.VISIBILITY.private" off-value="Topic.VISIBILITY.public" ng-model="form.topic.visibility"></div>
+                            </div>
                         </div>
 
-                        <p translate="">We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use
-                            it. The cookies collect information in a way
-                            that does not directly identify anyone.
-                        </p>
-                        <a href="#">
-                            View details
-                        </a>
+                        <div class="settings_row">
+                            <div class="settings_cell">
+                                We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it. The cookies collect information
+                                in a way that does not directly identify anyone.
+                            </div>
+                        </div>
+
+                        <div class="settings_row">
+                            <div class="settings_cell">
+                                <a href="#" class="link_details">
+                                    <div class="section_icon">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-bullet-arrow-blue2x"></div>
+                                        </div>
+                                    </div>
+                                    View details
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
