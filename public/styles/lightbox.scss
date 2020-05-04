@@ -631,6 +631,10 @@
                     bottom: 0;
                 }
 
+                .line {
+                    display: table-caption;
+                }
+
                 .lightbox_section {
                     display: table-row;
                     height: 80px;
@@ -949,6 +953,21 @@
                     a.link_details {
                         .section_icon {
                             display: inline-block;
+                        }
+                    }
+                }
+
+                table {
+                    margin-top: 10px;
+
+                    tbody {
+                        tr:nth-child(odd) {
+                            background: $medium_gray;
+                        }
+
+                        td {
+                            padding: 1em;
+                            color: $black;
                         }
                     }
                 }

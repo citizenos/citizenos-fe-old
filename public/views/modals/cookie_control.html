@@ -40,10 +40,48 @@
 
                         <div class="settings_row">
                             <div class="settings_cell">
-                                <a href="#">
+                                <a href="#" class="link_details" ng-click="showNecessaryCookies = !showNecessaryCookies">
+                                    <div class="section_icon">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-bullet-arrow-blue2x"></div>
+                                        </div>
+                                    </div>
                                     View details
                                 </a>
                             </div>
+                        </div>
+
+                        <div class="settings_row" ng-if="showNecessaryCookies">
+                            <table>
+                                <tr>
+                                    <td>app.sid</td>
+                                    <td>After logging in, this is for identifying you and your actions.</td>
+                                </tr>
+                                <tr>
+                                    <td>express_sid</td>
+                                    <td>After logging in and opening up our Topic editor, this is used by the editor to identify you and your actions.</td>
+                                </tr>
+                                <tr>
+                                    <td>token</td>
+                                    <td>After logging in and opening up our Topic editor, this is used by the editor to identify you and your actions.</td>
+                                </tr>
+                                <tr>
+                                    <td>language</td>
+                                    <td>Our Topic editor uses this to store your language preference to show you the UI in the language you want to read.</td>
+                                </tr>
+                                <tr>
+                                    <td>prefs</td>
+                                    <td>Our Topic editor uses this to store your UI preferences. These include font type, hide/show authorship colors etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>cookie_control</td>
+                                    <td>Used to store the devices cookie preferences.</td>
+                                </tr>
+                                <tr>
+                                    <td>__cfduid</td>
+                                    <td>Helps Cloudflare detect malicious visitors to our website and minimizes blocking legitimate users. It may be placed on the devices of the End Users to identify individual clients behind a shared IP address and apply security settings on a per-client basis. It is necessary for supporting Cloudflare's security features.</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
 
@@ -51,7 +89,7 @@
 
                         <div class="settings_row">
                             <div class="settings_cell left">
-                                <div class="setting_title">Anonymous analytics cookies</div>
+                                <div class="setting_title">Analytics cookies</div>
                             </div>
 
                             <div class="settings_cell right">
@@ -69,7 +107,7 @@
 
                         <div class="settings_row">
                             <div class="settings_cell">
-                                <a href="#" class="link_details">
+                                <a href="#" class="link_details" ng-click="showAnalyticsCookies = !showAnalyticsCookies">
                                     <div class="section_icon">
                                         <div class="table_cell">
                                             <div class="sprite sprite-bullet-arrow-blue2x"></div>
@@ -78,6 +116,19 @@
                                     View details
                                 </a>
                             </div>
+                        </div>
+
+                        <div class="settings_row" ng-if="showAnalyticsCookies">
+                            <table>
+                                <tr>
+                                    <td>_ga, _gid</td>
+                                    <td>Used to distinguish users. </td>
+                                </tr>
+                                <tr>
+                                    <td>_gat</td>
+                                    <td>Used to throttle request rate.</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
 
