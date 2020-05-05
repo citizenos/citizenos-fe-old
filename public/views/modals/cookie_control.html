@@ -39,13 +39,15 @@
 
                         <div class="settings_row">
                             <div class="settings_cell">
-                                <a href="#" class="link_details" ng-click="showNecessaryCookies = !showNecessaryCookies">
+                                <a href="" class="link_details" ng-click="showNecessaryCookies = !showNecessaryCookies">
                                     <div class="section_icon">
                                         <div class="table_cell">
-                                            <div class="sprite sprite-bullet-arrow-blue2x"></div>
+                                            <div class="sprite sprite-bullet-arrow-blue2x" ng-if="!showNecessaryCookies"></div>
+                                            <div class="sprite sprite-bullet-x-blue2x" ng-if="showNecessaryCookies"></div>
                                         </div>
-                                    </div><!---FIXME: CLOSE DETAILS! COOKIE_CONTROL_LNK_CLOSE_DETAILS -->
-                                    <span translate="MODALS.COOKIE_CONTROL_LNK_VIEW_DETAILS">View details</span>
+                                    </div>
+                                    <span translate="MODALS.COOKIE_CONTROL_LNK_VIEW_DETAILS" ng-if="!showNecessaryCookies">View details</span>
+                                    <span translate="MODALS.COOKIE_CONTROL_LNK_CLOSE_DETAILS" ng-if="showNecessaryCookies">Close details</span>
                                 </a>
                             </div>
                         </div>
@@ -106,14 +108,16 @@
 
                         <div class="settings_row">
                             <div class="settings_cell">
-                                <a href="#" class="link_details" ng-click="showAnalyticsCookies = !showAnalyticsCookies">
+                                <a href="" class="link_details" ng-click="showAnalyticsCookies = !showAnalyticsCookies">
                                     <div class="section_icon">
                                         <div class="table_cell">
-                                            <div class="sprite sprite-bullet-arrow-blue2x"></div>
+                                            <!-- FIXME: Icons -->
+                                            <div class="sprite sprite-bullet-arrow-blue2x" ng-if="!showAnalyticsCookies"></div>
+                                            <div class="sprite sprite-bullet-x-blue2x" ng-if="showAnalyticsCookies"></div>
                                         </div>
                                     </div>
-                                    <!--FIXME: Close details COOKIE_CONTROL_LNK_CLOSE_DETAILS -->
-                                    <span translate="MODALS.COOKIE_CONTROL_LNK_VIEW_DETAILS">View details</span>
+                                    <span translate="MODALS.COOKIE_CONTROL_LNK_VIEW_DETAILS" ng-if="!showAnalyticsCookies">View details</span>
+                                    <span translate="MODALS.COOKIE_CONTROL_LNK_CLOSE_DETAILS" ng-if="showAnalyticsCookies">Close details</span>
                                 </a>
                             </div>
                         </div>

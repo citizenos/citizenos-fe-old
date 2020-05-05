@@ -7,7 +7,7 @@
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
     .sprite {
         background-image: url('../imgs/icons_sprite2x.png?v8');
-        background-size: 203px 3367px;
+        background-size: 203px 3377px;
     }
 }
 
@@ -876,5 +876,11 @@
 .sprite-bullet-arrow-blue2x {
     width: 15px;
     height: 5px;
-    background-position: 0 -3193px;
+    background-position: 0 -3192px;
+}
+
+.sprite-bullet-x-blue2x {
+    width: 10px;
+    height: 10px;
+    background-position: 0 -3367px;
 }

@@ -953,6 +953,12 @@
                     a.link_details {
                         .section_icon {
                             display: inline-block;
+
+                            .table_cell {
+                                .sprite-bullet-arrow-blue2x {
+                                    margin: 0 0 2px 0;
+                                }
+                            }
                         }
                     }
                 }
