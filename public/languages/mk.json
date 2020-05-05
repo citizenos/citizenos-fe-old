@@ -915,7 +915,7 @@
     "USER_DELETE_USER_GROUP": "User <em>{{userName}}</em> has removed user <em>{{userName2}}</em> from group <em>{{groupName}}</em>",
     "USER_DELETE_USER_GROUP_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have removed users from group <em>{{groupName}}</em>",
     "USER_DELETE_USER_GROUP_USERACTIVITYGROUP": "User <em>{{userName}}</em> has removed <em>{{groupCount}}</em> users from group <em>{{groupName}}</em>",
-    "ACTIVITY_USER_ADD_USERCONNECTION_USER": "User <em>{{userName}}</em> has added a new log-in method: {{connectionName}}",
+    "ACTIVITY_USER_ADD_USERCONNECTION_USER": "User <em>{{userName}}</em> has added a new log-in method: <em>{{connectionName}}</em>",
     "ACTIVITY_USER_CREATE_USER": "User <em>{{userName}}</em> has just been created",
     "ACTIVITY_SYSTEM_CREATE_USER": "User has been created in the system by invite from another user.",
     "ACTIVITY_USER_CREATE_USERCONSENT": "",
