@@ -1,5 +1,5 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="full_screen" ng-controller="CookieControl">
+<div id="root_lightbox" class="full_screen" ng-controller="CookieControlCtrl">
 
     <div id="lightbox" class="wide_lightbox cookie_control">
         <div id="lightbox_wrap">
@@ -7,7 +7,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title" translate="">Citizen OS use of cookies</div>
+                    <div class="title" translate="MODALS.COOKIE_CONTROL_HEADING">Citizen OS use of cookies</div>
                 </div>
 
             </div>
@@ -18,22 +18,20 @@
 
                 <div class="lightbox_section">
 
-                    <div class="settings_section">
-                        We use necessary cookies to make our site work. We'd also like to set optional analytics cookies to help us improve the service. We won't set optional cookies unless you enable
-                        them.
-                        Using this tool will set a cookie on your device to remember your preferences.
+                    <div class="settings_section" translate="MODALS.COOKIE_CONTROL_DESCRIPTION">
+                        We use necessary cookies to make our site work. We'd also like to set optional analytics cookies to help us improve the service. We won't set optional cookies unless you enable them. Using this tool will set a cookie on your device to remember your preferences.
                     </div>
 
                     <div class="settings_section">
 
                         <div class="settings_row">
                             <div class="settings_cell">
-                                <div class="setting_title">Necessary cookies</div>
+                                <div class="setting_title" translate="MODALS.COOKIE_CONTROL_HEADING_NECESSARY_COOKIES">Necessary cookies</div>
                             </div>
                         </div>
 
                         <div class="settings_row">
-                            <div class="settings_cell">
+                            <div class="settings_cell" translate="MODALS.COOKIE_CONTROL_DESCRIPTION_NECESSARY_COOKIES">
                                 Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this
                                 may affect how the website functions.
                             </div>
@@ -46,8 +44,8 @@
                                         <div class="table_cell">
                                             <div class="sprite sprite-bullet-arrow-blue2x"></div>
                                         </div>
-                                    </div>
-                                    View details
+                                    </div><!---FIXME: CLOSE DETAILS! COOKIE_CONTROL_LNK_CLOSE_DETAILS -->
+                                    <span translate="MODALS.COOKIE_CONTROL_LNK_VIEW_DETAILS">View details</span>
                                 </a>
                             </div>
                         </div>
@@ -56,31 +54,31 @@
                             <table>
                                 <tr>
                                     <td>app.sid</td>
-                                    <td>After logging in, this is for identifying you and your actions.</td>
+                                    <td translate="MODALS.COOKIE_CONTROL_DETAILS_APPSID">After logging in, this is for identifying you and your actions.</td>
                                 </tr>
                                 <tr>
                                     <td>express_sid</td>
-                                    <td>After logging in and opening up our Topic editor, this is used by the editor to identify you and your actions.</td>
+                                    <td translate="MODALS.COOKIE_CONTROL_DETAILS_EXPRESSSID">After logging in and opening up our Topic editor, this is used by the editor to identify you and your actions.</td>
                                 </tr>
                                 <tr>
                                     <td>token</td>
-                                    <td>After logging in and opening up our Topic editor, this is used by the editor to identify you and your actions.</td>
+                                    <td translate="MODALS.COOKIE_CONTROL_DETAILS_TOKEN">After logging in and opening up our Topic editor, this is used by the editor to identify you and your actions.</td>
                                 </tr>
                                 <tr>
                                     <td>language</td>
-                                    <td>Our Topic editor uses this to store your language preference to show you the UI in the language you want to read.</td>
+                                    <td translate="MODALS.COOKIE_CONTROL_DETAILS_LANGUAGE">Our Topic editor uses this to store your language preference to show you the UI in the language you want to read.</td>
                                 </tr>
                                 <tr>
                                     <td>prefs</td>
-                                    <td>Our Topic editor uses this to store your UI preferences. These include font type, hide/show authorship colors etc.</td>
+                                    <td translate="MODALS.COOKIE_CONTROL_DETAILS_PREFS">Our Topic editor uses this to store your UI preferences. These include font type, hide/show authorship colors etc.</td>
                                 </tr>
                                 <tr>
                                     <td>cookie_control</td>
-                                    <td>Used to store the cookie preferences you set on your device.</td>
+                                    <td translate="MODALS.COOKIE_CONTROL_DETAILS_COOKIECONTROL">Used to store the cookie preferences you set on your device.</td>
                                 </tr>
                                 <tr>
                                     <td>__cfduid</td>
-                                    <td>Helps Cloudflare detect malicious visitors to our website and minimizes blocking legitimate users. It may be placed on the devices of the End Users to identify
+                                    <td translate="MODALS.COOKIE_CONTROL_DETAILS_CFUID">Helps Cloudflare detect malicious visitors to our website and minimizes blocking legitimate users. It may be placed on the devices of the End Users to identify
                                         individual clients behind a shared IP address and apply security settings on a per-client basis. It is necessary for supporting Cloudflare's security features.
                                     </td>
                                 </tr>
@@ -92,7 +90,7 @@
 
                         <div class="settings_row">
                             <div class="settings_cell left">
-                                <div class="setting_title">Analytics cookies</div>
+                                <div class="setting_title" translate="MODALS.COOKIE_CONTROL_HEADING_ANALYTICS_COOKIES">Analytics cookies</div>
                             </div>
 
                             <div class="settings_cell right">
@@ -101,9 +99,8 @@
                         </div>
 
                         <div class="settings_row">
-                            <div class="settings_cell">
-                                We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it. The cookies collect information
-                                in a way that does not directly identify anyone.
+                            <div class="settings_cell" translate="MODALS.COOKIE_CONTROL_DESCRIPTION_ANALYTICS_COOKIES">
+                                We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it. The cookies collect information in a way that does not directly identify anyone.
                             </div>
                         </div>
 
@@ -115,7 +112,8 @@
                                             <div class="sprite sprite-bullet-arrow-blue2x"></div>
                                         </div>
                                     </div>
-                                    View details
+                                    <!--FIXME: Close details COOKIE_CONTROL_LNK_CLOSE_DETAILS -->
+                                    <span translate="MODALS.COOKIE_CONTROL_LNK_VIEW_DETAILS">View details</span>
                                 </a>
                             </div>
                         </div>
@@ -124,11 +122,11 @@
                             <table>
                                 <tr>
                                     <td>_ga, _gid</td>
-                                    <td>Google Analytics uses this to distinguish users.</td>
+                                    <td translate="MODALS.COOKIE_CONTROL_DETAILS_GAGID">Google Analytics uses this to distinguish users.</td>
                                 </tr>
                                 <tr>
                                     <td>_gat</td>
-                                    <td>Google Analytics uses this to throttle request rate.</td>
+                                    <td translate="MODALS.COOKIE_CONTROL_DETAILS_GAT">Google Analytics uses this to throttle request rate.</td>
                                 </tr>
                             </table>
                         </div>
@@ -144,12 +142,12 @@
                 <div class="lightbox_section">
                     <div class="footer_button_wrap left">
                         <a class="footer_link left" ng-href="{{app.config.legal.privacyPolicy}}">
-                            <span translate="MODALS.PRIVACY_POLICY_LNK_PRIVACY_POLICY">Privacy Policy</span>
+                            <span translate="MODALS.COOKIE_CONTROL_LNK_PRIVACY_AND_COOKIE_POLICY">Privacy Policy</span>
                         </a>
                     </div>
                     <div class="footer_button_wrap right">
-                        <div class="blue_button" ng-click="cookieControlSettings.analytics = true; saveCookieSettings();" translate="">Enable all cookies</div>
-                        <div class="blue_button" ng-click="saveCookieSettings()" translate="">Save settings</div>
+                        <div class="blue_button" ng-click="cookieControlSettings.analytics = true; saveCookieSettings();" translate="MODALS.COOKIE_CONTROL_BTN_ENABLE_ALL">Enable all cookies</div>
+                        <div class="blue_button" ng-click="saveCookieSettings()" translate="MODALS.COOKIE_CONTROL_BTN_SAVE_SETTINGS">Save settings</div>
                     </div>
                 </div>
             </div>

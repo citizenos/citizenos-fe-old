@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('CookieControl', ['$scope', '$log', '$cookies', 'ngDialog', 'cosConfig', function ($scope, $log, $cookies, ngDialog, cosConfig) {
+    .controller('CookieControlCtrl', ['$scope', '$log', '$cookies', 'ngDialog', 'cosConfig', function ($scope, $log, $cookies, ngDialog, cosConfig) {
         $scope.cookieControlSettings = {
             necessary: true,
             analytics: false
