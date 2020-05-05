@@ -915,7 +915,7 @@
     "USER_DELETE_USER_GROUP": "crwdns25086:0{{userName}}crwdnd25086:0{{userName2}}crwdnd25086:0{{groupName}}crwdne25086:0",
     "USER_DELETE_USER_GROUP_ACTIVITYGROUP": "crwdns24926:0{{userName}}crwdnd24926:0{{groupCount}}crwdnd24926:0{{groupName}}crwdne24926:0",
     "USER_DELETE_USER_GROUP_USERACTIVITYGROUP": "crwdns24928:0{{userName}}crwdnd24928:0{{groupCount}}crwdnd24928:0{{groupName}}crwdne24928:0",
-    "ACTIVITY_USER_ADD_USERCONNECTION_USER": "crwdns25088:0{{userName}}crwdnd25088:0{{connectionName}}crwdne25088:0",
+    "ACTIVITY_USER_ADD_USERCONNECTION_USER": "crwdns25190:0{{userName}}crwdnd25190:0{{connectionName}}crwdne25190:0",
     "ACTIVITY_USER_CREATE_USER": "crwdns25090:0{{userName}}crwdne25090:0",
     "ACTIVITY_SYSTEM_CREATE_USER": "crwdns25092:0crwdne25092:0",
     "ACTIVITY_USER_CREATE_USERCONSENT": "crwdns21678:0crwdne21678:0",
