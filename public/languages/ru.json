@@ -374,7 +374,7 @@
     "COOKIE_CONTROL_DETAILS_GAGID": "Google Analytics uses this to distinguish users.",
     "COOKIE_CONTROL_DETAILS_GAT": "Google Analytics uses this to throttle request rate.",
     "COOKIE_CONTROL_LNK_PRIVACY_AND_COOKIE_POLICY": "Политика Конфиденциальности и Файлов Cookie",
-    "COOKIE_CONTROL_BTN_ENABLE_ALL": "Включить все файлы cookies",
+    "COOKIE_CONTROL_BTN_ENABLE_ALL": "Включить все файлы cookie",
     "COOKIE_CONTROL_BTN_SAVE_SETTINGS": "Сохранить настройки"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Все существующие",
@@ -915,7 +915,7 @@
     "USER_DELETE_USER_GROUP": "Пользователь <em>{{userName}}</em> удалил пользователя <em>{{userName2}}</em> из группы <em>{{groupName}}</em>",
     "USER_DELETE_USER_GROUP_ACTIVITYGROUP": "Пользователь <em>{{userName}}</em> и еще <em>{{groupCount}}</em> других удалили пользователей из группы <em>{{groupName}}</em>",
     "USER_DELETE_USER_GROUP_USERACTIVITYGROUP": "Пользователь <em>{{userName}}</em> удалил <em>{{groupCount}}</em> пользователей из группы <em>{{groupName}}</em>",
-    "ACTIVITY_USER_ADD_USERCONNECTION_USER": "User <em>{{userName}}</em> has added a new log-in method: <em>{{connectionName}}</em>",
+    "ACTIVITY_USER_ADD_USERCONNECTION_USER": "Пользователь <em>{{userName}}</em> добавил новый способ входа в систему: <em>{{connectionName}}</em>",
     "ACTIVITY_USER_CREATE_USER": "Создан пользователь <em>{{userName}}</em>",
     "ACTIVITY_SYSTEM_CREATE_USER": "Пользователь был создан в системе по приглашению другого пользователя.",
     "ACTIVITY_USER_CREATE_USERCONSENT": "",
