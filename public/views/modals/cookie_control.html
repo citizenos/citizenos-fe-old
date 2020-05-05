@@ -1,5 +1,5 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="full_screen">
+<div id="root_lightbox" class="full_screen" ng-controller="CookieControl">
 
     <div id="lightbox" class="wide_lightbox cookie_control">
         <div id="lightbox_wrap">
@@ -19,7 +19,8 @@
                 <div class="lightbox_section">
 
                     <div class="settings_section">
-                        We use necessary cookies to make our site work. We'd also like to set optional analytics cookies to help us improve it. We won't set optional cookies unless you enable them.
+                        We use necessary cookies to make our site work. We'd also like to set optional analytics cookies to help us improve the service. We won't set optional cookies unless you enable
+                        them.
                         Using this tool will set a cookie on your device to remember your preferences.
                     </div>
 
@@ -75,11 +76,13 @@
                                 </tr>
                                 <tr>
                                     <td>cookie_control</td>
-                                    <td>Used to store the devices cookie preferences.</td>
+                                    <td>Used to store the cookie preferences you set on your device.</td>
                                 </tr>
                                 <tr>
                                     <td>__cfduid</td>
-                                    <td>Helps Cloudflare detect malicious visitors to our website and minimizes blocking legitimate users. It may be placed on the devices of the End Users to identify individual clients behind a shared IP address and apply security settings on a per-client basis. It is necessary for supporting Cloudflare's security features.</td>
+                                    <td>Helps Cloudflare detect malicious visitors to our website and minimizes blocking legitimate users. It may be placed on the devices of the End Users to identify
+                                        individual clients behind a shared IP address and apply security settings on a per-client basis. It is necessary for supporting Cloudflare's security features.
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -93,8 +96,7 @@
                             </div>
 
                             <div class="settings_cell right">
-                                <div cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
-                                     ng-value="Topic.VISIBILITY.private" off-value="Topic.VISIBILITY.public" ng-model="form.topic.visibility"></div>
+                                <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="cookieControlSettings.analytics"></div>
                             </div>
                         </div>
 
@@ -122,11 +124,11 @@
                             <table>
                                 <tr>
                                     <td>_ga, _gid</td>
-                                    <td>Used to distinguish users. </td>
+                                    <td>Google Analytics uses this to distinguish users.</td>
                                 </tr>
                                 <tr>
                                     <td>_gat</td>
-                                    <td>Used to throttle request rate.</td>
+                                    <td>Google Analytics uses this to throttle request rate.</td>
                                 </tr>
                             </table>
                         </div>
@@ -146,8 +148,8 @@
                         </a>
                     </div>
                     <div class="footer_button_wrap right">
-                        <div class="blue_button" translate="">Enable all cookies</div>
-                        <div class="blue_button" translate="">Save settings</div>
+                        <div class="blue_button" ng-click="cookieControlSettings.analytics = true; saveCookieSettings();" translate="">Enable all cookies</div>
+                        <div class="blue_button" ng-click="saveCookieSettings()" translate="">Save settings</div>
                     </div>
                 </div>
             </div>

@@ -32,7 +32,11 @@
   "legal": {
     "termsOfUse": "https://citizenos.com/legal/api/",
     "privacyPolicy": "https://citizenos.com/legal/privacy/",
-    "version": "1"
+    "version": "1",
+    "cookieControl": {
+      "cookieName": "cookie_control",
+      "maxAgeDays": 180
+    }
   },
   "attachments": {
     "limit": 10,

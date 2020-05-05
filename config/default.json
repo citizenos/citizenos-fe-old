@@ -10,7 +10,8 @@
       "script-src": [
         "self",
         "https://cdn.crowdin.com",
-        "https://apis.google.com"
+        "https://apis.google.com",
+        "https://www.google-analytics.com"
       ],
       "style-src": [
         "self",
