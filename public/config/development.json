@@ -47,6 +47,7 @@
         "url": "https://id-test.citizenos.com/authorize"
       },
       "citizenos": true
-    }
+    },
+    "analytics": false
   }
 }
