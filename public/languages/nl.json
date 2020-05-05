@@ -355,7 +355,27 @@
     "USER_DELETE_CONFIRM_TXT_USER_DELETED": "Uw account wordt verwijderd",
     "USER_DELETE_CONFIRM_TXT_KEEP_DATA_ANONYMOUSLY": "Alle door de gebruiker aangemaakte gegevens worden geanonimiseerd en kunnen niet worden hersteld",
     "USER_DELETE_CONFIRM_NO": "NEE, DIT ACCOUNT BEHOUDEN",
-    "USER_DELETE_CONFIRM_YES": "JA, DIT ACCOUNT VERWIJDEREN"
+    "USER_DELETE_CONFIRM_YES": "JA, DIT ACCOUNT VERWIJDEREN",
+    "COOKIE_CONTROL_HEADING": "Citizen OS use of cookies",
+    "COOKIE_CONTROL_DESCRIPTION": "We use necessary cookies to make our site work. We'd also like to set optional analytics cookies to help us improve the service. We won't set optional cookies unless you enable them. Using this tool will set a cookie on your device to remember your preferences.",
+    "COOKIE_CONTROL_HEADING_NECESSARY_COOKIES": "Necessary cookies",
+    "COOKIE_CONTROL_DESCRIPTION_NECESSARY_COOKIES": "Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this may affect how the website functions",
+    "COOKIE_CONTROL_LNK_VIEW_DETAILS": "@:VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_VIEW_REPORT_DETAILS",
+    "COOKIE_CONTROL_LNK_CLOSE_DETAILS": "Close details",
+    "COOKIE_CONTROL_DETAILS_APPSID": "After logging in, this is for identifying you and your actions.",
+    "COOKIE_CONTROL_DETAILS_EXPRESSSID": "After logging in and opening up our Topic editor, this is used by the editor to identify you and your actions.",
+    "COOKIE_CONTROL_DETAILS_TOKEN": "After logging in and opening up our Topic editor, this is used by the editor to identify you and your actions.",
+    "COOKIE_CONTROL_DETAILS_LANGUAGE": "Our Topic editor uses this to store your language preference to show you the UI in the language you want to read.",
+    "COOKIE_CONTROL_DETAILS_PREFS": "Our Topic editor uses this to store your UI preferences. These include font type, hide/show authorship colors etc.",
+    "COOKIE_CONTROL_DETAILS_COOKIECONTROL": "Used to store the cookie preferences you set on your device.",
+    "COOKIE_CONTROL_DETAILS_CFUID": "Helps Cloudflare detect malicious visitors to our website and minimizes blocking legitimate users. It may be placed on the devices of the End Users to identify individual clients behind a shared IP address and apply security settings on a per-client basis. It is necessary for supporting Cloudflare's security features.",
+    "COOKIE_CONTROL_HEADING_ANALYTICS_COOKIES": "Analytics cookies",
+    "COOKIE_CONTROL_DESCRIPTION_ANALYTICS_COOKIES": "We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it. The cookies collect information in a way that does not directly identify anyone.",
+    "COOKIE_CONTROL_DETAILS_GAGID": "Google Analytics uses this to distinguish users.",
+    "COOKIE_CONTROL_DETAILS_GAT": "Google Analytics uses this to throttle request rate.",
+    "COOKIE_CONTROL_LNK_PRIVACY_AND_COOKIE_POLICY": "Privacy and Cookies Policy",
+    "COOKIE_CONTROL_BTN_ENABLE_ALL": "Enable all cookies",
+    "COOKIE_CONTROL_BTN_SAVE_SETTINGS": "Save settings"
   },
   "TXT_TOPIC_CATEGORY_ALL": "elke categorie",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "De Twelve-film",
@@ -422,11 +442,6 @@
       "BTN_HOW_DOES_IT_WORK": "Hoe werkt het?",
       "LNK_PRIVACY_POLICY": "Privacybeleid van Citizen OS",
       "LNK_CITIZENOS_WEBSITE": "Website van Citizen OS"
-    },
-    "COOKIE_POLICY_NOTIFICATION": {
-      "TITLE": "Cookiebeleid",
-      "CONTENT": "Wij gebruiken cookies om inhoud te personaliseren, om sociale-mediafuncties te verzorgen en om ons verkeer te analyseren. Door op &quot;Accepteren&quot; te klikken, deze banner te sluiten of door te gaan met het gebruik van onze diensten, accepteert u ons gebruik van cookies. <a href=\"{{policyLink}}\">Lees onze juridische voorwaarden</a>",
-      "BTN_ACCEPT": "Accepteren"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "mijn topics",
