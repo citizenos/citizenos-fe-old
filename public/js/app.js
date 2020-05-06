@@ -388,6 +388,23 @@
                         });
                     }]
                 })
+                .state('topics.view.invite', {
+                    url: '/invite?tab',
+                    parent: 'topics.view',
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_invite.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
                 .state('topics.view.files', {
                     url: '/files',
                     parent: 'topics.view',
@@ -706,6 +723,23 @@
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_settings.html',
+                            data: $stateParams,
+                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                        });
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                $state.go('^');
+                            }
+                        });
+                    }]
+                })
+                .state('my.topics.topicId.invite', {
+                    url: '/invite?tab',
+                    parent: 'my.topics.topicId',
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/topic_invite.html',
                             data: $stateParams,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
