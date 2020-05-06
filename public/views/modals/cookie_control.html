@@ -154,9 +154,9 @@
                 <div class="line lightest_line"></div>
 
                 <div class="blue_button_wrap">
-                    <div class="white_button left like_link" ng-href="{{app.config.legal.privacyPolicy}}">
+                    <a class="white_button left like_link" ng-href="{{app.config.legal.privacyPolicy}}">
                         <span translate="MODALS.COOKIE_CONTROL_LNK_PRIVACY_AND_COOKIE_POLICY">Privacy Policy</span>
-                    </div>
+                    </a>
                     <div class="blue_button" ng-click="cookieControlSettings.analytics = true; saveCookieSettings();" translate="MODALS.COOKIE_CONTROL_BTN_ENABLE_ALL">Enable all cookies</div>
                     <div class="blue_button" ng-click="saveCookieSettings()" translate="MODALS.COOKIE_CONTROL_BTN_SAVE_SETTINGS">Save settings</div>
                 </div>
