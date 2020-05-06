@@ -629,6 +629,7 @@
                 @media (max-width: 560px) {
                     position: relative;
                     bottom: 0;
+                    padding-bottom: 20px;
                 }
 
                 .line {
@@ -671,9 +672,7 @@
             }
 
             .blue_button_wrap {
-                border: 1px solid red;
-
-                .blue_button {
+                .blue_button, .white_button {
                     @media (max-width: 560px) {
                         width: calc(100% - 40px);
                     }
@@ -690,6 +689,22 @@
                         float: left;
                         margin-left: 20px;
                         margin-right: auto;
+                    }
+
+                    &.like_link {
+                        background: none !important;
+                        border: none !important;
+                        color: $deep_sky_blue;
+                        font-weight: $medium;
+                    }
+                }
+
+                .footer_link {
+                    text-align: center;
+                    &.left {
+                        @media (max-width: 560px) {
+                            margin-left: auto;
+                        }
                     }
                 }
             }
