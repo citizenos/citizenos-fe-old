@@ -1,0 +1,310 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen" ng-controller="TopicInviteCtrl">
+
+    <div id="lightbox" class="wide_lightbox with_title_description with_header_menu">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_INVITE_HEADING"></div>
+                    <div class="title_description">{{form.topic.title}}</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div class="header_row_wrap">
+                    <div class="header_row" slide-controller identifier="topicSettingsSlider">
+                        <div class="tab_button" ng-click="selectTab('invite')" ng-class="tabSelected === 'invite' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text" translate="MODALS.TOPIC_INVITE_TAB_INVITE">INVITE</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+                        <div class="tab_button" ng-click="selectTab('share')" ng-class="tabSelected === 'share' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text" translate="MODALS.TOPIC_INVITE_TAB_SHARE">SHARE</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="line lightest_line"></div>
+            <!-- INVITE USERS -->
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'invite'">
+
+                <div class="lightbox_section">
+                    <!--div class="input_text_margin_bottom" translate="MODALS.TOPIC_INVITE_LBL_OPTIONAL_MESSAGE">Add an optional invitation message</div>
+                    <textarea id="invite_body" translate translate-attr-placeholder="MODALS.TOPIC_INVITE_PLACHOLDER_OPTIONAL_MESSAGE" class="gray_borders"
+                                          placeholder="Edit your reply here..." ng-model="inviteMessage" ng-keyup="commentTextLengthCheck(comment, comment.editText)"
+                                          ng-class="{'error_input': comment.errors.text}" maxlength="{{::maxLengthText}}"></textarea> -->
+                    <div class="input_text_margin_bottom" translate="MODALS.TOPIC_INVITE_TXT_INVITE_USERS_AND_GROUPS">Invite users and groups via name or e-mail address</div>
+
+                    <div class="searchbox_with_icon_and_text only_text">
+                        <div cos-dropdown
+                            ng-class="{search_with_dropdown : (searchResults.users.length || searchResults.groups.length || searchResults.emails.length), dropdown_active : (searchResults.users.length || searchResults.groups.length || searchResults.emails.length)}">
+                            <typeahead id="userSearch" class="auto-complete" items="searchResults.combined" term="searchString" search="search(term, 'user')"
+                                    select="addTopicMember(item)" placeholder="{{'MODALS.TOPIC_INVITE_PLACEHOLDER_INVITE_USERS_AND_GROUPS' | translate}}">
+                                <div class="search_area_wrap">
+                                    <div class="search_dropdown_area" ng-class="{hidden: (!searchResults.users.length && !searchResults.groups.length && !searchResults.emails.length)}">
+                                        <div class="search_dropdown_item" ng-if="searchResults.users.length">
+                                            <div class="table_cell" translate="MODALS.TOPIC_INVITE_TH_USERS">Users</div>
+                                        </div>
+                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
+                                            <div class="table_cell search_item_text">
+                                                <b>{{user.name}}</b> {{user.company}}
+                                            </div>
+                                            <div class="table_cell blue_link">
+                                                <span class="submit_link" ng-click="addTopicMemberUser(user)" translate="MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
+                                            </div>
+                                        </div>
+                                        <div class="search_dropdown_item" ng-if="searchResults.groups.length">
+                                            <div class="table_cell" translate="MODALS.TOPIC_SETTINGS_TH_GROUPS">Groups</div>
+                                        </div>
+                                        <div class="search_dropdown_item" typeahead-item="group" ng-repeat="group in searchResults.groups">
+                                            <div class="table_cell search_item_text">
+                                                <b>{{group.name}}</b>
+                                            </div>
+                                            <div class="table_cell blue_link">
+                                                <span class="submit_link" ng-click="addTopicMemberGroup(group)"
+                                                    translate="MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter or click to add</span>
+                                            </div>
+                                        </div>
+                                        <div class="search_dropdown_item" ng-if="searchResults.emails.length">
+                                            <div class="table_cell" translate="MODALS.TOPIC_SETTINGS_TH_USERS">Users</div>
+                                        </div>
+                                        <div class="search_dropdown_item" typeahead-item="email" ng-repeat="email in searchResults.emails">
+                                            <div class="table_cell search_item_text">
+                                                <b>{{email}}</b>
+                                            </div>
+                                            <div class="table_cell blue_link">
+                                                <span class="submit_link" ng-click="addTopicMemberUser()" translate="MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </typeahead>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="lightbox_section double_row_list user_list" ng-if="members.length">
+                    <table>
+                        <tr>
+                            <td><span>Change all</span></td>
+                            <td>
+                                <div cos-dropdown class="classic_dropdown">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text">
+                                            {{'TXT_TOPIC_LEVELS_' + groupLevel | uppercase | translate}}
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                <div class="v_line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <div  class="dropdown_item" ng-repeat="level in TopicMemberUser.LEVELS">
+                                            <div ng-if="level !== TopicMemberUser.LEVELS.none" class="item_name" ng-click="updateGroupLevel(level)">
+                                                {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn_wrap recycle_bin white_bg">
+                                    <div class="btn" ng-click="removeAllMembers()">
+                                        <div class="table_cell">
+                                            <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="category_title" ng-repeat-start="title in memberGroups" ng-if="itemsExist(title)">
+                        <div class="table_cell">
+                            <span>{{"MODALS.TOPIC_SETTINGS_RESULT_GROUP_" + title | uppercase | translate}}</span>
+                        </div>
+                    </div>
+
+                    <table  ng-repeat-end ng-if="itemsExist(title)">
+                        <tr ng-repeat="(memberKey, member) in members" ng-if="isOnPage($index, membersPage) && isInGroup(member, title)">
+                            <td>
+                                <div class="profile_image_wrapper dark">
+                                    <!--div class="profile_moon sprite"></div-->
+                                    <div class="account_picture">
+                                        <img ng-if="member.imageUrl" src="{{member.imageUrl}}">
+                                        <div class="profile_image_filler">
+                                            <div class="table_cell" cos-initials="member.name">
+                                                ML
+                                            </div>
+                                            <div class="profile_circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name_wrap">
+                                    <div class="table_cell">
+                                        <div class="blue_link" ng-click="removeTopicMemberUser(member)">{{member.name}}</div>
+                                        <div class="via">{{member.company}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="mobile_extra_info">
+                                    <div class="left">
+                                        <div cos-dropdown class="classic_dropdown">
+
+                                            <div class="dropdown_selection">
+                                                <div class="dropdown_text">
+                                                    {{'TXT_TOPIC_LEVELS_' + member.level | uppercase | translate}}
+                                                </div>
+
+                                                <div class="arrow_holder">
+                                                    <div class="table_cell">
+                                                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+                                                <div class="dropdown_item" ng-repeat="level in TopicMemberUser.LEVELS">
+                                                    <div ng-if="level !== TopicMemberUser.LEVELS.none" class="item_name" ng-click="updateTopicMemberUserLevel(member, level)">
+                                                        {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="right">
+                                        <div class="btn_wrap recycle_bin white_bg">
+                                            <div class="btn" ng-click="removeTopicMemberUser(member)">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div cos-dropdown class="classic_dropdown">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text">
+                                            {{'TXT_TOPIC_LEVELS_' + member.level | uppercase | translate}}
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                <div class="v_line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <div class="dropdown_item" ng-repeat="level in TopicMemberUser.LEVELS">
+                                            <div class="item_name" ng-click="updateTopicMemberUserLevel(member, level)">
+                                                {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn_wrap recycle_bin white_bg">
+                                    <div class="btn" ng-click="removeTopicMemberUser(member)">
+                                        <div class="table_cell">
+                                            <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td></td></tr>
+                    </table>
+                    <div class="pagination" cos-pagination select="loadPage" total-pages="totalPages(members)" page="membersPage"></div>
+                </div>
+
+            </div>
+
+            <!-- SHARE -->
+            <div class="lightbox_content invite_url" ng-if="tabSelected === 'share'">
+
+                <div class="lightbox_section">
+                    <div class="input_text_margin_bottom" translate="MODALS.TOPIC_SETTINGS_TXT_SHARE_LINK">Share this link to people you want to join the topic:</div>
+
+                    <div class="copy_link">
+                        <div class="searchbox_with_icon_and_text">
+                            <input id="url_invite_topic_input" ng-model="form.urlJoin" cos-disabled="!topic.canUpdate()"
+                                placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_CREATE_NEW_LINK' | translate}}">
+                            <div class="search_text">
+                                <div class="blue_link table_cell" cos-disabled="!topic.canUpdate()" ng-click="generateTokenJoin()"
+                                    translate="{{'MODALS.TOPIC_SETTINGS_LNK_CREATE_NEW_LINK' | translate}}">Create a new link
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="blue_button" cos-disabled="!topic.canUpdate()" ng-click="copyInviteLink()" ng-if="!app.createGroupsInviteUsers" translate="MODALS.TOPIC_SETTINGS_BTN_COPY_LINK">Copy
+                            link
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="lightbox_section" ng-if="topic.canUpdate()">
+
+                    <div class="qr_code">
+                        <qrcode data="{{form.urlJoin}}" size="210" version="4" error-correction-level="L" download class="qr_img"></qrcode>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="lightbox_footer">
+                <div class="line lightest_line"></div>
+                <div class="blue_button_wrap">
+                    <div class="blue_button" ng-if="!members.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                        translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC">Save topic
+                    </div>
+                    <div class="blue_button" ng-if="members.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                        translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC_AND_INVITE">Save topic and send invite
+                    </div>
+                </div>
+            </div>
+
+            </div>
+            </div>
+
+            <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()">
+            </div>
+
+</div>

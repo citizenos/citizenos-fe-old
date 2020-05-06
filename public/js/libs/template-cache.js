@@ -51,6 +51,7 @@ angular
             '/views/modals/topic_delete_confirm.html',
             '/views/modals/topic_delete_reply.html',
             '/views/modals/topic_event_delete_confirm.html',
+            '/views/modals/topic_invite.html',
             '/views/modals/topic_invite_user_delete_confirm.html',
             '/views/modals/topic_member_group_delete_confirm.html',
             '/views/modals/topic_member_user_delete_confirm.html',

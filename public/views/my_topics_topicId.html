@@ -380,7 +380,7 @@
             <div class="header_text"><span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_GROUP_LIST">Group list</span> <span ng-bind="'('+topic.members.groups.count+')'">0</span> |
                 <div class="blue_link" cos-disabled="!topic.members.groups.count" ng-click="groupList.isSearchVisible = !groupList.isSearchVisible; doShowMemberGroupList(); $event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
                 |
-                <div class="blue_link" ui-sref="my.topics.topicId.settings({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
+                <div class="blue_link" ui-sref="my.topics.topicId.invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
             </div>
             <div class="minimize_container" ng-if="topic.members.groups.count">
                 <div ng-class="!groupList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -474,7 +474,7 @@
                 <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'(' + topic.members.users.count + ')'">(0)</span> |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(); $event.stopPropagation();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
                 |
-                <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my.topics.topicId.settings({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>
+                <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my.topics.topicId.invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>
             </div>
             <div class="minimize_container">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
