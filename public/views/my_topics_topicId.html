@@ -115,9 +115,9 @@
                             <span class="item_text blue_link" ng-click="doLeaveTopic()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_LEAVE">leave</span>
                             <span ng-if="topic.canDelete()">
                                 <span class="separator">|</span>
-                                <span class="item_text remove blue_link" ng-click="doDeleteTopic()">
-                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
-                                    <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_DELETE">delete</span>
+                                <span ng-click="doDeleteTopic()">
+                                    <span class="sprite sprite-mytopics-icon-deletetopic2x"></span>
+                                    <span class="item_text remove blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_DELETE">delete</span>
                                 </span>
                             </span>
                         </div>
