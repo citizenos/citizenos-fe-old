@@ -361,7 +361,7 @@
     "USER_DELETE_CONFIRM_TXT_KEEP_DATA_ANONYMOUSLY": "Semua data yang dibuat pengguna akan anonim dan tidak akan bisa dipulihkan",
     "USER_DELETE_CONFIRM_NO": "TIDAK, PERTAHANKAN AKUN INI",
     "USER_DELETE_CONFIRM_YES": "YA, HAPUS AKUN INI",
-    "COOKIE_CONTROL_HEADING": "Citizen OS use of cookies",
+    "COOKIE_CONTROL_HEADING": "Citizen OS menggunakan kuki",
     "COOKIE_CONTROL_DESCRIPTION": "We use necessary cookies to make our site work. We'd also like to set optional analytics cookies to help us improve the service. We won't set optional cookies unless you enable them. Using this tool will set a cookie on your device to remember your preferences.",
     "COOKIE_CONTROL_HEADING_NECESSARY_COOKIES": "Necessary cookies",
     "COOKIE_CONTROL_DESCRIPTION_NECESSARY_COOKIES": "Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this may affect how the website functions",
