@@ -768,7 +768,7 @@
   "ACTIVITY_FEED": {
     "ACTIVITY_USER_CREATE_TOPIC": "Kasutaja <em>{{userName}}</em> on loonud teema <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_TOPIC": "Kasutaja <em>{{userName}}</em> uuendas teemas <em>{{topicTitle}}</em> välja <em>{{fieldName}}</em>",
-    "ACTIVITY_USER_UPDATE_TOPIC_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have updated topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPIC_ACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> ja <em>{{groupCount}}</em> teist kasutajat uuendasid teemat \"<em>{{topicTitle}}</em>\"",
     "ACTIVITY_USER_UPDATE_TOPIC_USERACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> on teinud teemas \"<em>{{topicTitle}}</em>\" <em>{{groupCount}}</em> uuendust",
     "ACTIVITY_PREVIOUS_VERSION": "Eelmine versioon: {{previousValue}}",
     "ACTIVITY_NEW_VERSION": "Uus versioon: {{newValue}}",
