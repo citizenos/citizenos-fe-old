@@ -844,7 +844,7 @@
     "ACTIVITY_COMMENTVOTE_FIELD_VALUE_UP": "горе",
     "ACTIVITY_COMMENTVOTE_FIELD_VALUE_DOWN": "доле",
     "ACTIVITY_COMMENTVOTE_FIELD_VALUE_REMOVE": "отстрани",
-    "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "User <em>{{userName}}</em> has left a reply to an argument in topic <em>{{topicTitle}}</em>: ",
+    "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT": "Корисникот <em>{{userName}}</em> остави одговор на аргумент за темата <em>{{topicTitle}}</em>: ",
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have left replies to an argument in topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_CREATE_COMMENT_TOPIC_IN_REPLY_TO_COMMENT_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left <em>{{groupCount}}</em> replies to arguments in topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_ADD_TOPIC_GROUP": "User <em>{{userName}}</em> has added a topic <em>{{topicTitle}}</em> to group <em>{{groupName}}</em>",
