@@ -378,8 +378,8 @@
     "COOKIE_CONTROL_DESCRIPTION_ANALYTICS_COOKIES": "We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it. The cookies collect information in a way that does not directly identify anyone.",
     "COOKIE_CONTROL_DETAILS_GAGID": "Google Analytics uses this to distinguish users.",
     "COOKIE_CONTROL_DETAILS_GAT": "Google Analytics uses this to throttle request rate.",
-    "COOKIE_CONTROL_LNK_PRIVACY_AND_COOKIE_POLICY": "Privacy and Cookies Policy",
-    "COOKIE_CONTROL_BTN_ENABLE_ALL": "Enable all cookies",
+    "COOKIE_CONTROL_LNK_PRIVACY_AND_COOKIE_POLICY": "Politique de confidentialité et cookies",
+    "COOKIE_CONTROL_BTN_ENABLE_ALL": "Activer tous les cookies",
     "COOKIE_CONTROL_BTN_SAVE_SETTINGS": "Save settings"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Toute catégorie",
