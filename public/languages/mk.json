@@ -803,7 +803,7 @@
     "ACTIVITY_USER_ADD_TOPIC_TOPICPIN_USERACTIVITYGROUP": "Корисникот <em>{{userName}}</em> закачи податок во темата <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_CREATE_VOTE_TOPIC": "Корисникот <em>{{userName}}</em> отвори можност за гласање за темата <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_VOTE_TOPIC": "Корисникот <em>{{userName}}</em> го ажурираше крајниот рок за можноста за гласање за темата <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_UPDATE_VOTE_TOPIC_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have updated the voting deadline of topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_VOTE_TOPIC_ACTIVITYGROUP": "Корисникот <em>{{userName}}</em> и <em>{{groupCount}}</em> други го ажурираа крајниот рок на можноста за гласање поканата за темата <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_VOTE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has updated the voting deadline of topic <em>{{topicTitle}}</em> <em>{{groupCount}}</em> times",
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC": "Корисникот гласаше на темата: <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_ACTIVITYGROUP": "<em>{{(groupCount)}}</em> users have voted on topic <em>{{topicTitle}}</em>.",
