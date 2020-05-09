@@ -862,7 +862,7 @@
     "ACTIVITY_USER_DELETE_TOPICEVENT_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has deleted <em>{{groupCount}}</em> updates from topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC": "User <em>{{userName}}</em> has added an attachment <em>{{attachmentName}}</em> to topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have added attachments to topic <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has added <em>{{groupCount}}</em> attachments to topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_ADD_ATTACHMENT_TOPIC_USERACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> on lisanud teemasse \"<em>{{topicTitle}}</em>\" <em>{{groupCount}}</em> manust",
     "ACTIVITY_USER_DELETE_ATTACHMENT_TOPIC": "User <em>{{userName}}</em> has deleted an attachment <em>{{attachmentName}}</em> from topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_ATTACHMENT_TOPIC_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have deleted attachments from topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_ATTACHMENT_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has deleted <em>{{groupCount}}</em> attachments from topic <em>{{topicTitle}}</em>",
