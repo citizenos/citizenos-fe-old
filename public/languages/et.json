@@ -808,7 +808,7 @@
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC": "Kasutaja hääletas teemat \"<em>{{topicTitle}}</em>\"",
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_ACTIVITYGROUP": "<em>{{(groupCount)}}</em> users have voted on topic <em>{{topicTitle}}</em>.",
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_USERACTIVITYGROUP": "Teemal \"<em>{{topicTitle}}</em>\" on hääletanud <em>{{(groupCount)}}</em> kasutajat.",
-    "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "User <em>{{userName}}</em> has delegated his/her vote on topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "Kasutaja <em>{{userName}}</em> volitas teemal \"<em>{{topicTitle}}</em>\" teise kasutaja enda eest hääletama",
     "ACTIVITY_USER_DELETE_VOTEDELEGATION_VOTE": "User <em>{{userName}}</em> has revoked delegation of his/her vote on topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "User <em>{{userName}}</em> has downloaded the voting results of topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have downloaded the voting results of topic <em>{{topicTitle}}</em>",
