@@ -370,7 +370,7 @@
     "COOKIE_CONTROL_DETAILS_APPSID": "По пријавувањето, со ова ве идентификуваме вас и вашите дејства.",
     "COOKIE_CONTROL_DETAILS_EXPRESSSID": "По пријавувањето и отворањето на нашиот уредник на Теми, со ова уредникот ве идентификува вас и вашите дејства.",
     "COOKIE_CONTROL_DETAILS_TOKEN": "По пријавувањето и отворањето на нашиот уредник на Теми, со ова уредникот ве идентификува вас и вашите дејства.",
-    "COOKIE_CONTROL_DETAILS_LANGUAGE": "Our Topic editor uses this to store your language preference to show you the UI in the language you want to read.",
+    "COOKIE_CONTROL_DETAILS_LANGUAGE": "Нашиот уредник на Теми со ова ги складира вашите јазични преференции за да ви го прикаже КИ (UI) на јазикот кој сакате да го читате.",
     "COOKIE_CONTROL_DETAILS_PREFS": "Our Topic editor uses this to store your UI preferences. These include font type, hide/show authorship colors etc.",
     "COOKIE_CONTROL_DETAILS_COOKIECONTROL": "Used to store the cookie preferences you set on your device.",
     "COOKIE_CONTROL_DETAILS_CFUID": "Helps Cloudflare detect malicious visitors to our website and minimizes blocking legitimate users. It may be placed on the devices of the End Users to identify individual clients behind a shared IP address and apply security settings on a per-client basis. It is necessary for supporting Cloudflare's security features.",
