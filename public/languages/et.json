@@ -368,7 +368,7 @@
     "COOKIE_CONTROL_LNK_VIEW_DETAILS": "@:VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_VIEW_REPORT_DETAILS",
     "COOKIE_CONTROL_LNK_CLOSE_DETAILS": "Sulge üksikasjad",
     "COOKIE_CONTROL_DETAILS_APPSID": "Salvestatakse pärast sisselogimist. See küpsis tuvastab sind ja salvestab sinu toimingute teabe.",
-    "COOKIE_CONTROL_DETAILS_EXPRESSSID": "After logging in and opening up our Topic editor, this is used by the editor to identify you and your actions.",
+    "COOKIE_CONTROL_DETAILS_EXPRESSSID": "Pärast sisselogimist ja meie teemaredaktori avamist kasutab redaktor seda küpsist sinu ja sinu toimingute tuvastamiseks.",
     "COOKIE_CONTROL_DETAILS_TOKEN": "After logging in and opening up our Topic editor, this is used by the editor to identify you and your actions.",
     "COOKIE_CONTROL_DETAILS_LANGUAGE": "Our Topic editor uses this to store your language preference to show you the UI in the language you want to read.",
     "COOKIE_CONTROL_DETAILS_PREFS": "Our Topic editor uses this to store your UI preferences. These include font type, hide/show authorship colors etc.",
