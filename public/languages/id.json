@@ -620,7 +620,7 @@
       "BAR_TOOLTIP_PHASE": "Status:",
       "BAR_TOOLTIP_IN_PROGRESS": "sedang berjalan",
       "BAR_TOOLTIP_VOTING": "dalam proses pemilihan",
-      "BAR_SIGNING_DEADLINE": "Batas waktu keputusan:",
+      "BAR_SIGNING_DEADLINE": "Voting deadline:",
       "BAR_CURRENT_PHASE": "Status terkini:",
       "TAB_VIEW": "Lihat",
       "TAB_VOTE": "Pilih",

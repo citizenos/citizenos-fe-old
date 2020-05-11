@@ -620,7 +620,7 @@
       "BAR_TOOLTIP_PHASE": "Status:",
       "BAR_TOOLTIP_IN_PROGRESS": "in Bearbeitung",
       "BAR_TOOLTIP_VOTING": "in Abstimmung",
-      "BAR_SIGNING_DEADLINE": "Abstimmungsfrist:",
+      "BAR_SIGNING_DEADLINE": "Voting deadline:",
       "BAR_CURRENT_PHASE": "Aktueller Status:",
       "TAB_VIEW": "Ansicht",
       "TAB_VOTE": "Abstimmen",
