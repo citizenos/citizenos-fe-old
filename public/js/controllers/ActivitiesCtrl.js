@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('ActivitiesCtrl', ['$scope', '$stateParams', '$document', 'sActivity', function ($scope, $stateParams, $document, sActivity) {
+    .controller('ActivitiesCtrl', ['$scope', '$stateParams', '$document', '$translate', 'sActivity', function ($scope, $stateParams, $document, $translate, sActivity) {
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 25;
         $scope.activities = [];
@@ -46,6 +46,7 @@ angular
                     activities.forEach(function (activityGroups, groupKey) {
                         Object.keys(activityGroups.values).forEach(function (key) {
                             var activity = activityGroups.values[key];
+
                             if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
                                 if (!lastViewTime || activity.updatedAt > lastViewTime) {
                                     lastViewTime = activity.updatedAt;
@@ -88,6 +89,13 @@ angular
 
         $scope.activityRedirect = function (activity) {
             return sActivity.handleActivityRedirect(activity);
+        };
+
+        $scope.translateGroup = function (key, group) {
+            var values = group[0].values;
+            values.groupCount = group.length;
+
+            return $translate.instant(key.split(':')[0], values);
         };
     }
     ]);
