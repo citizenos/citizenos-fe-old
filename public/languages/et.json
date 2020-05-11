@@ -620,7 +620,7 @@
       "BAR_TOOLTIP_PHASE": "Olek:",
       "BAR_TOOLTIP_IN_PROGRESS": "ühisloomes",
       "BAR_TOOLTIP_VOTING": "hääletamisel",
-      "BAR_SIGNING_DEADLINE": "Allkirjastamise tähtaeg:",
+      "BAR_SIGNING_DEADLINE": "Voting deadline:",
       "BAR_CURRENT_PHASE": "Kehtiv olek:",
       "TAB_VIEW": "Vaata",
       "TAB_VOTE": "Hääleta",
