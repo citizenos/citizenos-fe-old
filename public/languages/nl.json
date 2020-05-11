@@ -620,7 +620,7 @@
       "BAR_TOOLTIP_PHASE": "Status:",
       "BAR_TOOLTIP_IN_PROGRESS": "in behandeling",
       "BAR_TOOLTIP_VOTING": "stemming",
-      "BAR_SIGNING_DEADLINE": "Uiterste datum voor ondertekening:",
+      "BAR_SIGNING_DEADLINE": "Voting deadline:",
       "BAR_CURRENT_PHASE": "Huidige status:",
       "TAB_VIEW": "Weergeven",
       "TAB_VOTE": "Stemmen",
