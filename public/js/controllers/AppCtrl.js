@@ -192,6 +192,7 @@ angular
                 .then(
                     function () {
                         $state.go('home');
+                        ngDialog.closeAll();
                     },
                     function (err) {
                         $log.error('AppCtrl.doLogout()', 'Logout failed', err);
