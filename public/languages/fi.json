@@ -620,7 +620,7 @@
       "BAR_TOOLTIP_PHASE": "Tila:",
       "BAR_TOOLTIP_IN_PROGRESS": "kesken",
       "BAR_TOOLTIP_VOTING": "äänestyksessä",
-      "BAR_SIGNING_DEADLINE": "Allekirjoituksen määräaika:",
+      "BAR_SIGNING_DEADLINE": "Voting deadline:",
       "BAR_CURRENT_PHASE": "Nykyinen tila:",
       "TAB_VIEW": "Näytä",
       "TAB_VOTE": "Äänestä",
