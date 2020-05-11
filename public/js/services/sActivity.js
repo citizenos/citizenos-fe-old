@@ -678,13 +678,9 @@ angular
                     stateName = 'topics.view';
                     params.topicId = object.id;
                 }
-            } else if ((object && object['@type'] === 'Topic') || (target && target['@type'] === 'Topic')) {
+            } else if ((object && object['@type'] === 'Topic')) {
                 stateName = 'topics.view';
                 params.topicId = object.id;
-                if (target && (target['@type'] === 'Topic' || target.topicId)) {
-                    params.topicId = target.topicId || target.id;
-                }
-
             } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote') {
                 if (target && (target['@type'] === 'Topic' || object.topicId || target.topicId)) {
                     stateName = 'topics.view';
@@ -699,6 +695,9 @@ angular
             } else if (object['@type'] === 'Group') {
                 stateName = 'my.groups.groupId';
                 params.groupId = object.id;
+            } else if (target && target['@type'] === 'Topic' || target.topicId) {
+                stateName = 'topics.view';
+                params.topicId = target.topicId || target.id
             }
 
             if (target && target['@type'] === 'Group') {
