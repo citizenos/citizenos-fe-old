@@ -47,9 +47,11 @@ angular
                     commentVersion: null
                 }
             }
-
-            var commentIdAndVersionRegex = new RegExp('^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4{1}[a-fA-F0-9]{3}-[89abAB]{1}[a-fA-F0-9]{3}-[a-fA-F0-9]{12})+' + COMMENT_VERSION_SEPARATOR + '([0-9]+)$'); // SRC: https://gist.github.com/bugventure/f71337e3927c34132b9a#gistcomment-2238943
-            var commentIdWithVersionSplit = $stateParams.commentId.match(commentIdAndVersionRegex);
+            if (commentIdWithVersion.length === 36) {
+                commentIdWithVersion = commentIdWithVersion + COMMENT_VERSION_SEPARATOR + '0';
+            }
+            var commentIdAndVersionRegex = new RegExp('^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4{1}[a-fA-F0-9]{3}-[89abAB]{1}[a-fA-F0-9]{3}-[a-fA-F0-9]{12})' + COMMENT_VERSION_SEPARATOR + '([0-9]+)$'); // SRC: https://gist.github.com/bugventure/f71337e3927c34132b9a#gistcomment-2238943
+            var commentIdWithVersionSplit = commentIdWithVersion.match(commentIdAndVersionRegex);
 
             if (!commentIdWithVersionSplit) {
                 $log.error('Invalid input for _parseCommentIdAndVersion. Provided commentId does not look like UUIDv4 with version appended', commentIdWithVersion);
@@ -60,6 +62,7 @@ angular
             }
 
             return {
+                commentIdWithVersion: commentIdWithVersion,
                 commentId: commentIdWithVersionSplit[1],
                 commentVersion: parseInt(commentIdWithVersionSplit[2]),
             }
@@ -126,9 +129,10 @@ angular
 
                         $scope.topicComments.rows = comments;
 
-                        if (_parseCommentIdAndVersion($stateParams.commentId).commentId) {
+                        var parsedResult = _parseCommentIdAndVersion($stateParams.commentId);
+                        if (parsedResult.commentId) {
                             $timeout(function () {
-                                $scope.goToComment($stateParams.commentId);
+                                $scope.goToComment(parsedResult.commentIdWithVersion);
                             });
                         }
                     } else {
