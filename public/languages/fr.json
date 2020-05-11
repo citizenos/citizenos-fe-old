@@ -620,7 +620,7 @@
       "BAR_TOOLTIP_PHASE": "Etat:",
       "BAR_TOOLTIP_IN_PROGRESS": "en cours",
       "BAR_TOOLTIP_VOTING": "en cours de vote",
-      "BAR_SIGNING_DEADLINE": "Dernier délai pour signer:",
+      "BAR_SIGNING_DEADLINE": "Voting deadline:",
       "BAR_CURRENT_PHASE": "Etat actuel:",
       "TAB_VIEW": "Voir",
       "TAB_VOTE": "Voter",
