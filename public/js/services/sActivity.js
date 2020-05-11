@@ -76,23 +76,34 @@ angular
         };
 
         var activitiesToGroups = function (activities) {
-            var finalActivities = {};
             var userActivityGroups = {};
             var activityGroups = {};
+            var grouped = {};
             var returnActivities = [];
 
+            var addToGroup = function (key, value) {
+                if (!grouped[key]) {
+                    grouped[key] = [value];
+                } else {
+                    grouped[key].push(value);
+                }
+            }
             for(var i=0; i < activities.length; i++) {
-                var id = activities[i].data.object.id;
+                var objectId = activities[i].data.object.id;
+
                 if (activities[i].data.target) {
-                    id = activities[i].data.target.id;
+                    var targetId = activities[i].data.target.id;
+                    addToGroup(activities[i].string + '_ACTIVITYGROUP:' + targetId, activities[i].id);
+                    addToGroup(activities[i].string + '_USERACTIVITYGROUP:' + targetId+ '_' + activities[i].data.actor.id, activities[i].id);
                 }
 
-                var groupKey = activities[i].string + '_' + id;
+                var groupKey = activities[i].string + '_' + objectId;
                 var userGroupKey = groupKey + '_' + activities[i].data.actor.id;
 
-                activities[i].groupKey = groupKey;
-                activities[i].userGroupKey = userGroupKey;
+                addToGroup(activities[i].string + '_ACTIVITYGROUP:' + objectId, activities[i].id);
+                addToGroup(activities[i].string + '_USERACTIVITYGROUP:' + objectId+ '_' + activities[i].data.actor.id, activities[i].id);
                 //Create group with id-s
+
                 if (!activityGroups[groupKey]) {
                     activityGroups[groupKey] = new Array(activities[i]);
                 } else {
@@ -108,84 +119,42 @@ angular
 
             }
 
-            userActivityGroups = _.filter(userActivityGroups, function (item) {return item.length > 1;});
-            var userGroupIds = [];
-            Object.keys(userActivityGroups).forEach(function (key) {
-                var groupItems = _.map(userActivityGroups[key], function(item) {return item.id});
-                userGroupIds.push(groupItems);
-            });
-
-            userGroupIds = _.flatten(userGroupIds, function (item) {return item.length > 1;});
-
-            var groupIds = [];
-            Object.keys(activityGroups).forEach(function (key) {
-                var groupItems = _.map(activityGroups[key], function(item) {return item.id});
-                groupIds.push(_.filter(groupItems, function (item) { return userGroupIds.indexOf(item) === -1;}));
-                groupIds = _.filter(groupIds, function (item) {return item.length > 1;});
-            });
-            var groupIdsFlat = _.flatten(groupIds);
-            userActivityGroups.forEach(function (items) {
-                items.forEach(function (item) {
-                    item.groupString = item.string + '_USERACTIVITYGROUP';
-                    item.values.groupCount = items.length;
+            // Filter out the final activities
+            var final = {};
+            activities.forEach(function (activity) {
+                var groupKey;
+                Object.keys(grouped).forEach(function (key) {
+                    if (grouped[key].length > 1 && grouped[key].indexOf(activity.id) > -1) {
+                        if (key.indexOf('USERACTIVITYGROUP')) {
+                            groupKey = key;
+                        } else if (groupKey.indexOf('USERACTIVITYGROUP') === -1) {
+                            groupKey = key;
+                        }
+                    }
                 });
-                _.sortBy(items, ['createdAt']).reverse();
-            });
-
-            var finalGroups = _.map(groupIds, function (group) {
-                var itemGroup = _.map(group, function (itemId) {
-                    return _.find(activities, function (activity) {
-                        return activity.id === itemId;
-                    })
-                });
-
-                itemGroup.forEach(function (value) {
-                    value.groupString = value.string + '_ACTIVITYGROUP';
-                    value.values.groupCount = (itemGroup.length -1);
-                });
-
-                return _.sortBy(itemGroup, ['updatedAt']).reverse();
-            });
-
-            activities.forEach(function (activity, index) {
-                if (groupIdsFlat.indexOf(activity.id) === -1 && userGroupIds.indexOf(activity.id) === -1) {
-                    finalActivities[activity.id] = [activity];
+                if (groupKey) {
+                    if (!final[groupKey]) {
+                        final[groupKey] = [activity];
+                    } else {
+                        final[groupKey].push(activity);
+                        final[groupKey].sort(function(a, b) {
+                            if (!a || !b) return 0;
+                            var keyA = new Date(a.updatedAt),
+                              keyB = new Date(b.updatedAt);
+                            // Compare the 2 dates
+                            if (keyA < keyB) return 1;
+                            if (keyA > keyB) return -1;
+                            return 0;
+                        });
+                    }
+                    _.sortBy(final[groupKey], ['updatedAt']).reverse();
                 } else {
-                    if (userActivityGroups.length) {
-                        userActivityGroups.forEach(function (group) {
-                            var found = _.find(group, function (groupActivity) {
-                                return groupActivity.id === activity.id;
-                            });
-
-                            if (found) {
-                                finalActivities[group[0].userGroupKey] = group;
-                            }
-                        });
-                    }
-                    if (finalGroups.length) {
-                        finalGroups.forEach(function (group) {
-                            var found = _.find(group, function (groupActivity) {
-                                return groupActivity.id === activity.id;
-                            });
-
-                            if (found) {
-                                finalActivities[group[0].groupKey] = group;
-                            }
-                        });
-                    }
+                    final[activity.id] = [activity];
                 }
             });
-            Object.keys(finalActivities).forEach(function (item) {
-                var groupItems = {};
-                var i = 0;
-                finalActivities[item].forEach(function (value){
-                    value.string = $translate.instant(value.string, value.values);
-                    value.groupString = $translate.instant(value.groupString, value.values);
-                    groupItems[i] = value;
-                    i++;
-                });
 
-                returnActivities.push({referer: item, values: groupItems});
+            Object.keys(final).forEach(function (key){
+                returnActivities.push({referer: key, values: final[key]});
             });
 
             return _.sortBy(returnActivities, [function(o) { return o.values[0].updatedAt; }]).reverse();
@@ -741,7 +710,6 @@ angular
                 stateName = 'topics.view';
                 params.topicId  = origin.id;
             }
-            console.log(stateName)
             if (stateName) {
                 //  ngDialog.closeAll();
                 var link = $state.href(stateName, params);
