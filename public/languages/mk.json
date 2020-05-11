@@ -620,7 +620,7 @@
       "BAR_TOOLTIP_PHASE": "Стадиум:",
       "BAR_TOOLTIP_IN_PROGRESS": "во тек",
       "BAR_TOOLTIP_VOTING": "стадиум на гласање",
-      "BAR_SIGNING_DEADLINE": "Краен рок за пријавување:",
+      "BAR_SIGNING_DEADLINE": "Voting deadline:",
       "BAR_CURRENT_PHASE": "Моментален стадиум:",
       "TAB_VIEW": "Преглед",
       "TAB_VOTE": "Гласај",
