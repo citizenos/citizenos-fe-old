@@ -192,6 +192,7 @@ angular
                 .then(
                     function () {
                         $state.go('home');
+                        ngDialog.closeAll();
                     },
                     function (err) {
                         $log.error('AppCtrl.doLogout()', 'Logout failed', err);
@@ -287,6 +288,13 @@ angular
             });
         }
 
+        var getUnreadActivities = function () {
+            sActivity
+                .getUnreadActivities()
+                .then(function (count) {
+                    $scope.app.unreadActivitiesCount = count;
+                });
+        }
         // Update new activities count
         var newActivitiesWatcher = null;
         $scope.$watch(
@@ -295,13 +303,9 @@ angular
             },
             function (loggedIn) {
                 if (loggedIn) {
+                    getUnreadActivities();
                     newActivitiesWatcher = $interval(function () {
-                        sActivity
-                            .getUnreadActivities()
-                            .then(function (count) {
-                                $scope.app.unreadActivitiesCount = count;
-                            });
-
+                        getUnreadActivities();
                     }, 30000);
                 } else if (newActivitiesWatcher) {
                     $interval.cancel(newActivitiesWatcher);
