@@ -73,6 +73,7 @@ angular
             }
         };
 
+        $scope.visibleUserList = false;
         $scope.userList = {
             isVisible: false,
             isSearchVisible: false,
@@ -127,6 +128,7 @@ angular
             return TopicMemberUser
                 .query({topicId: $scope.topic.id}).$promise
                 .then(function (users) {
+                    console.log('USERS', users);
                     $scope.topic.members.users.rows = users;
                     $scope.topic.members.users.count = users.length;
 
@@ -422,6 +424,16 @@ angular
             }
         };
 
+        $scope.inviteMembers = function () {
+            var dialog = ngDialog.open({
+                template: '/views/modals/topic_invite.html',
+                data: $stateParams,
+                scope: $scope // Pass on $scope so that I can access AppCtrl
+            });
+            dialog.closePromise.then(function (data) {
+
+            });
+        }
         $scope.doUpdateMemberGroup = function (topicMemberGroup, level) {
             $log.debug('doUpdateMemberGroup', topicMemberGroup, level);
 
@@ -432,7 +444,7 @@ angular
                     .$update({topicId: $scope.topic.id})
                     .then(
                         function () {
-                            if ($scope.userList.isVisible) { // Reload User list when Group permissions change as User permissions may also change
+                            if ($scope.visibleUserList) { // Reload User list when Group permissions change as User permissions may also change
                                 loadTopicMemberUserList();
                             }
                         },
@@ -467,11 +479,11 @@ angular
         $scope.TopicMemberUser = TopicMemberUser;
 
         $scope.doShowMemberUserList = function () {
-            if (!$scope.userList.isVisible) {
+            if (!$scope.visibleUserList) {
                 $q
                     .all([loadTopicMemberUserList(), loadTopicInviteUserList()])
                     .then(function () {
-                        $scope.userList.isVisible = true;
+                        $scope.visibleUserList = true;
                         $scope.app.scrollToAnchor('user_list');
                     });
             } else {
@@ -480,8 +492,8 @@ angular
         };
 
         $scope.doToggleMemberUserList = function () {
-            if ($scope.userList.isVisible) {
-                $scope.userList.isVisible = false;
+            if ($scope.visibleUserList) {
+                $scope.visibleUserList = false;
             } else {
                 $scope.doShowMemberUserList();
             }
@@ -592,6 +604,16 @@ angular
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
             if (fromState.name === 'topics.view.files') {
                 $scope.loadTopicAttachments();
+            } else if (fromState.name === 'my.topics.topicId.invite') {
+                console.log($scope.groupList.isVisible);
+                console.log($scope.userList);
+                if ($scope.visibleUserList) {
+                    $q
+                        .all([loadTopicMemberUserList(), loadTopicInviteUserList()])
+                        .then(function () {
+                            $scope.visibleUserList = true;
+                        });
+                }
             }
         });
     }

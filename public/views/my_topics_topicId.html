@@ -477,7 +477,7 @@
                 <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my.topics.topicId.invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>
             </div>
             <div class="minimize_container">
-                <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                <div ng-class="!visibleUserList ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
         <div class="container_header second_header" ng-if="userList.isSearchVisible">
@@ -488,7 +488,7 @@
                 <div class="blue_link" ng-click="userList.searchFilter = ''" translate="VIEWS.MY_TOPICS_TOPICID.LNK_CLEAR_FILTER">clear filter</div>
             </div>
         </div>
-        <div class="container_content" ng-if="userList.isVisible">
+        <div class="container_content" ng-if="visibleUserList">
             <div class="pretend_table">
                 <div class="pretend_tr">
                     <div class="mobile_text pretend_th" ng-if="wWidth <= 560">
