@@ -584,7 +584,7 @@
       "LNK_RIGHTS": "@:VIEWS.MY_GROUPS_GROUPID.LNK_RIGHTS",
       "LNK_USERS": "@:VIEWS.MY_TOPICS_TOPICID.LBL_USERS",
       "LBL_REMOVE_FROM_TOPIC": "Dzēst no temata",
-      "LBL_INACCESSIBLE_GROUP": "<Inaccessible Group> ({{level}})",
+      "LBL_INACCESSIBLE_GROUP": "Inaccessible Group",
       "LBL_USERS_COUNT": "@:VIEWS.MY_GROUPS_GROUPID.LBL_USERS_COUNT",
       "HEADING_USERS_LIST": "Lietotāju saraksts",
       "LNK_INVITE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_INVITE",
