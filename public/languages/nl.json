@@ -990,6 +990,8 @@
   "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "De tekst van de uitleg kan 10 tot 4.000 tekens lang zijn.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "De melding is ongeldig geworden omdat het argument werd bijgewerkt na de melding.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Bijlagelimiet bereikt voor de topic",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "You cannot delegate a vote to yourself.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate vote to user who does not have access to this topic. Please make sure you typed the name correctly and the user is a member of this topic.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "U hebt het ondertekeningsproces geannuleerd en uw stem werd niet meegeteld.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Het ondertekeningsverzoek is verlopen. Begin opnieuw om te stemmen.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "De handtekening is ongeldig. Uw stem werd niet meegeteld.",
