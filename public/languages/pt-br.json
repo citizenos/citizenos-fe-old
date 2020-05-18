@@ -990,6 +990,8 @@
   "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "O texto da explicação deve ter entre 10 e 4000 caracteres.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "A denúncia se tornou inválida pois o argumento foi atualizado após a denúncia.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Limite de anexos do tópico atingido",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "You cannot delegate a vote to yourself.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate vote to user who does not have access to this topic. Please make sure you typed the name correctly and the user is a member of this topic.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Você cancelou o fluxo de assinatura e seu voto não foi contabilizado.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "O pedido de assinatura expirou. Para votar, comece novamente.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "A assinatura é inválida. Seu voto não foi contabilizado.",

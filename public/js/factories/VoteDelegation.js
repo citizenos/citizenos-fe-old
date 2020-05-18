@@ -10,7 +10,11 @@ angular
                 save: {
                     method: 'POST',
                     transformResponse: function (data) {
-                        return angular.fromJson(data).data;
+                        if (status > 0 && status < 400) {
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
                     }
                 },
                 delete: {

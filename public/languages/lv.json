@@ -990,6 +990,8 @@
   "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Skaidrojuma teksta atļautais garums ir no 10 līdz 4000 rakstzīmēm.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Ziņojums ir kļuvis nederīgs, arguments ir atjaunināts pēc ziņojuma.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Sasniegts temata pielikumu limits",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "You cannot delegate a vote to yourself.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate vote to user who does not have access to this topic. Please make sure you typed the name correctly and the user is a member of this topic.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Jūs atcēlāt parakstīšanas plūsmu un jūsu balss netika ieskaitīta.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Parakstīšanas pieprasījuma laiks beidzies. Lai balsotu, sāciet no jauna.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Paraksts ir nederīgs. Jūsu balss netika ieskaitīta.",
