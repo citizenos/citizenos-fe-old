@@ -990,6 +990,8 @@
   "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Le texte d'explication doit contenir entre 10 et 4000 caractères.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Le signalement n'est plus valide parce que l'argument a été mis à jour après le signalement.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Limite de pièce jointe du sujet atteinte",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "You cannot delegate a vote to yourself.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate vote to user who does not have access to this topic. Please make sure you typed the name correctly and the user is a member of this topic.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Vous avez abandonné le processus de signature en cours de route et votre vote n'a pas été comptabilisé.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "La requête de signature a expiré. Pour voter, veuiller recommencer.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "La signature n'est pas valide. Votre vote n'est pas comptabilisé.",

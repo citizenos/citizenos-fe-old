@@ -990,6 +990,8 @@
   "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Teks penjelasan dapat 10 hingga 4.000 karakter.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Laporan menjadi tidak valid karena argumen telah diperbarui setelah pelaporan.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Batas lampiran topik telah dicapai",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "You cannot delegate a vote to yourself.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate vote to user who does not have access to this topic. Please make sure you typed the name correctly and the user is a member of this topic.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Anda telah membatalkan proses penandatanganan dan suara Anda tidak dihitung.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Permintaan penandatanganan telah berakhir. Untuk memilih, silahkan mulai dari awal.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Tanda tangan ini tidak valid. Suara Anda tidak dihitung.",
