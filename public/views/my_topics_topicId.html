@@ -152,8 +152,8 @@
                 <div class="activity_area">
 
                     <div ng-repeat="(key, group) in activities">
-                        <div class="activity_content" ng-repeat="(keyRow, activity) in group.values" >
-                            <div ng-if="$first" class="left_side">
+                        <div class="activity_content" ng-if="$first || group.show" ng-repeat="(keyRow, activity) in group.values" >
+                            <div class="left_side">
                                 <div class="line_top"></div>
                                 <div class="icon">
                                     <div ng-class="'sprite sprite-icon-activity-{{activity.values.className}}{{activity.isNew}}-2x'"></div>
@@ -163,11 +163,11 @@
                             <div class="right_side" ng-if="keyCounter(group.values) > 1">
                                 <div class="text_box" ng-if="$first" ng-click="group.show = !group.show">
                                     <div class="main_text">
-                                        <span ng-bind-html="activity.string">User Tom has added a new argument for topic: HELP.</span>
+                                        <span ng-bind-html="translateGroup(group.referer, group.values)">User Tom has added a new argument for topic: HELP.</span>
                                     </div>
                                     <div class="separator"></div>
-                                    <div class="arrow_holder" ng-click="group.show = !group.show">
-                                        <div class="table_cell" ng-click="group.show = !group.show">
+                                    <div class="arrow_holder">
+                                        <div class="table_cell">
                                             <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
 
                                             <div class="v_line"></div>
@@ -191,8 +191,7 @@
                                         </div>
                                         <div class="contents">
                                             <div class="contents_data">
-                                                <em>{{::item.values.userName}}</em>
-                                                <i ng-if="item.values.userName !== item.values.groupItemValue && !showActivityUpdateVersions(item)">{{(item.values.groupItemValue | limitTo: 200) + (item.values.groupItemValue.length > 200 ? '...' : '') }}</i>
+                                                <span translate="{{item.string}}" translate-values="item.values">User Tom has added a new argument for topic: HELP.</span>
                                                 <i ng-if="showActivityUpdateVersions(item)">
                                                     <em>{{::item.values.fieldName}}</em>
                                                     <div class="activity_previous" translate="ACTIVITY_FEED.ACTIVITY_PREVIOUS_VERSION" translate-values="{previousValue: '{{(item.values.previousValue | limitTo: 200) + (item.values.previousValue.length > 200 ? '...' : '')}}'}"></div>
@@ -209,7 +208,7 @@
                             <div class="right_side" ng-if="keyCounter(group.values) === 1" ng-click="activityRedirect(activity)">
                                 <div class="text_box">
                                     <div class="main_text">
-                                        <span ng-bind-html="activity.string" >User Tom has added a new argument for topic: HELP.</span>
+                                        <span translate="{{activity.string}}" translate-values="activity.values">User Tom has added a new argument for topic: HELP.</span>
                                     </div>
                                     <div class="description_area italic">
                                         <span ng-if="showActivityUpdateVersions(activity)">
@@ -226,7 +225,7 @@
                                     <b class="notch"></b>
                                 </div>
                             </div>
-                            <div class="clearer"></div>
+                            <div class="clearer" ng-if="$first"></div>
                             </div>
                         </div>
                 </div>

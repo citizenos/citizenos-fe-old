@@ -21,7 +21,7 @@
          * @param {string|null} [partnerId=undefined] Partner id for the Topic. If used, the "topicId" is considered to be Partner entity id and will be internally mapped to CitizenOS Topic id
          * @param {string} [targetId=undefined] Containing pages target element id
          * @param {object} [options=undefined] Containing custom title, style properties
-         * 
+         *
          * @constructor
          */
         window.CITIZENOS.widgets.Argument = function (language, topicId, partnerId, targetId, options) {
