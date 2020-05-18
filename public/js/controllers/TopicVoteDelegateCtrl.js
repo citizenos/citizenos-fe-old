@@ -19,6 +19,7 @@ angular
 
         $scope.search = function (str) {
             sNotification.removeAll();
+
             if (str && str.length >= 2) {
                 $scope.searchResults.users = _.filter($scope.topicMembers, function (member) {
                     return member.name.toLowerCase().indexOf(str.toLowerCase()) > -1;
