@@ -990,6 +990,8 @@
   "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Текстот на објаснувањето може да биде во должина од 10 до 4 000 карактери.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Пријавата е невалидна бидејќи аргументот е обновен по оваа пријава.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Достигнато е ограничувањето на прилогот на темата",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "You cannot delegate a vote to yourself.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate vote to user who does not have access to this topic. Please make sure you typed the name correctly and the user is a member of this topic.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Го откажавте протокот на потпишување и вашиот глас нема да се брои.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Поканата за најавување истече. Да гласате, започнете одново.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Потписот е невалиден. Вашиот глас нема да се брои.",
