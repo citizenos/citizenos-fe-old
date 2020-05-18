@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicVoteDelegateCtrl', ['$scope', '$log', 'TopicMemberUser', 'ngDialog', function ($scope, $log, TopicMemberUser, ngDialog) {
+    .controller('TopicVoteDelegateCtrl', ['$scope', '$log', 'TopicMemberUser', 'ngDialog', 'sNotification', function ($scope, $log, TopicMemberUser, ngDialog, sNotification) {
         $log.debug('TopicVoteDelegateCtrl', $scope.ngDialogData);
 
         var topic = $scope.ngDialogData.topic;
@@ -18,8 +18,8 @@ angular
             });
 
         $scope.search = function (str) {
+            sNotification.removeAll();
             if (str && str.length >= 2) {
-                $log.debug($scope.topicMembers);
                 $scope.searchResults.users = _.filter($scope.topicMembers, function (member) {
                     return member.name.toLowerCase().indexOf(str.toLowerCase()) > -1;
                 });
@@ -29,6 +29,12 @@ angular
         };
 
         $scope.addUser = function (member) {
+            sNotification.removeAll();
+
+            if (!member) {
+                sNotification.addError('MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002');
+            }
+
             if (member.id && member !== $scope.delegateUser) {
                 $scope.delegateUser = member;
             }

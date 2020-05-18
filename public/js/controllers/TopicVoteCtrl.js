@@ -76,7 +76,6 @@ angular
                             topic: $scope.topic
                         },
                         preCloseCallback: function (data) {
-                            $log.debug(data);
                             if (data && data.delegateUser && data.delegateUser.id) {
                                 var delegation = new VoteDelegation({topicId: $scope.topic.id, voteId: $scope.topic.vote.id});
                                 delegation.userId = data.delegateUser.id;
