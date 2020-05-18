@@ -45,6 +45,8 @@ nav {
     font-size: 13px;
     position: fixed;
     z-index: 10;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     .dark_line {
         margin-top: 16px;
