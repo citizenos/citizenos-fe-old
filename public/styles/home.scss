@@ -506,12 +506,8 @@
             }
 
             &:hover {
-                .main_text {
-                    text-decoration: underline;
-                    @include tablet {
-                        text-decoration: none;
-                    }
-                }
+                transform: scale(1.01);
+                box-shadow: 0 0 8px 0 $dark_gray;
             }
 
             &.politics {
