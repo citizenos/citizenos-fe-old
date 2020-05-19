@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $stateParams, $q, $log, $sce, $location, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $translate, $stateParams, $q, $log, $sce, $location, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
@@ -183,6 +183,7 @@ angular
                         activities.forEach(function (activityGroups, groupKey) {
                             Object.keys(activityGroups.values).forEach(function (key) {
                                 var activity = activityGroups.values[key];
+
                                 if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
                                     if (!lastViewTime || activity.updatedAt > lastViewTime) {
                                         lastViewTime = activity.updatedAt;
@@ -193,7 +194,7 @@ angular
                                 }
                             });
                         });
-                        $scope.showLoadMoreActivities = !(activities.length < $scope.activitiesLimit);
+
                         $scope.activities = $scope.activities.concat(activities);
                     });
             } else {
@@ -685,6 +686,13 @@ angular
 
         $scope.downloadAttachment = function (attachment) {
             return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
+        };
+
+        $scope.translateGroup = function (key, group) {
+            var values = group[0].values;
+            values.groupCount = group.length;
+
+            return $translate.instant(key.split(':')[0], values);
         };
 
         var listener = $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
