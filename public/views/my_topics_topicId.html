@@ -71,7 +71,7 @@
                             <div class="item_text">
                                 <span ng-bind="topic.members.users.count">0</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" ng-click="doShowMemberUserList();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
+                                <span class="item_link blue_link" ng-click="viewMemberUsers();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -83,7 +83,7 @@
                             <div class="item_text">
                                 <span ng-bind="topic.members.groups.count">0</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" ng-click="doShowMemberGroupList();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
+                                <span class="item_link blue_link" ng-click="viewMemberGroups();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -136,7 +136,7 @@
     </div>
 
     <!-- ACTIVITY FEED & NOTIFICATIONS -->
-    <div class="info_container">
+    <div id="activities_list" class="info_container">
 
         <div class="container_header" ng-click="doToggleActivities();">
             <div class="header_text" translate="VIEWS.MY_TOPICS_TOPICID.HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS">
@@ -237,9 +237,9 @@
 
     <!-- CURRENT VOTE WITH VOTING -->
 
-    <div class="info_container vote_results" ng-if="topic.vote.id" >
+    <div id="vote_results" class="info_container vote_results" ng-if="topic.vote.id" >
 
-        <div class="container_header" ng-click="voteResults.isVisible = !voteResults.isVisible;">
+        <div class="container_header" ng-click="doToggleVoteResults()">
             <div class="header_text" translate="VIEWS.MY_TOPICS_TOPICID.HEADING_CURRENT_VOTE_RESULTS">Current vote results</div>
             <div class="minimize_container">
                 <div ng-class="!voteResults.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -374,7 +374,7 @@
 
     </div>
 
-    <!-- TOPIC LIST -->
+    <!-- GROUP LIST -->
     <div class="info_container group_list" id="group_list">
         <div class="container_header" ng-click="doToggleMemberGroupList();">
             <div class="header_text"><span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_GROUP_LIST">Group list</span> <span ng-bind="'('+topic.members.groups.count+')'">0</span> |
@@ -469,7 +469,7 @@
 
     <!-- USER LIST -->
     <div class="info_container group_list user_list" id="user_list">
-        <div class="container_header" ng-click="doToggleMemberUserList();">
+        <div class="container_header" ng-click="doToggleMemberUserList(); $event.stopPropagation();">
             <div class="header_text">
                 <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'(' + topic.members.users.count + ')'">(0)</span> |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(); $event.stopPropagation();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
@@ -477,7 +477,7 @@
                 <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my.topics.topicId.invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>
             </div>
             <div class="minimize_container">
-                <div ng-class="!visibleUserList ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
         <div class="container_header second_header" ng-if="userList.isSearchVisible">
@@ -488,7 +488,7 @@
                 <div class="blue_link" ng-click="userList.searchFilter = ''" translate="VIEWS.MY_TOPICS_TOPICID.LNK_CLEAR_FILTER">clear filter</div>
             </div>
         </div>
-        <div class="container_content" ng-if="visibleUserList">
+        <div class="container_content" ng-if="userList.isVisible">
             <div class="pretend_table">
                 <div class="pretend_tr">
                     <div class="mobile_text pretend_th" ng-if="wWidth <= 560">
