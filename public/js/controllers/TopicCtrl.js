@@ -178,7 +178,7 @@ angular
                 $scope.activitiesOffset += $scope.activitiesLimit;
             }
             if ($scope.topic) {
-                sActivity.getTopicActivities($scope.topic.id, $scope.activitiesOffset, $scope.activitiesLimit)
+                return sActivity.getTopicActivities($scope.topic.id, $scope.activitiesOffset, $scope.activitiesLimit)
                     .then(function (activities) {
                         activities.forEach(function (activityGroups, groupKey) {
                             Object.keys(activityGroups.values).forEach(function (key) {
@@ -197,14 +197,21 @@ angular
 
                         $scope.activities = $scope.activities.concat(activities);
                     });
+            } else {
+                return new Promise();
             }
         };
 
         $scope.doToggleActivities = function () {
-            $scope.app.activityFeed = !$scope.app.activityFeed;
-            if ($scope.app.activityFeed) {
+            if (!$scope.app.activityFeed) {
                 $scope.showLoadMoreActivities = true;
-                $scope.loadActivities(0);
+                $scope.loadActivities(0)
+                    .then(function () {
+                        $scope.app.activityFeed = true;
+                        checkIfInView('activities_list');
+                    });
+            } else {
+                $scope.app.activityFeed = !$scope.app.activityFeed;
             }
         };
 
@@ -217,6 +224,12 @@ angular
             $scope.showVoteCreateForm = !$scope.showVoteCreateForm;
         };
 
+        $scope.doToggleVoteResults = function () {
+            $scope.voteResults.isVisible = !$scope.voteResults.isVisible;
+            if ($scope.voteResults.isVisible) {
+                checkIfInView('vote_results');
+            }
+        }
         $scope.sendToVote = function () {
             ngDialog
                 .openConfirm({
@@ -404,23 +417,28 @@ angular
         $scope.TopicMemberGroup = TopicMemberGroup;
 
         $scope.doToggleMemberGroupList = function () {
+            var doShowList = $scope.groupList.isVisible;
             if ($scope.groupList.isVisible) {
-                $scope.groupList.isVisible = false;
-            } else {
-                $scope.doShowMemberGroupList();
+                $scope.groupList.isVisible = !$scope.groupList.isVisible;
             }
+            toggleTabParam('group_list')
+                .then(function () {
+                    if (!doShowList) {
+                        $scope.doShowMemberGroupList();
+                        checkIfInView('group_list');
+                    } else {
+
+                    }
+                });
         };
 
         $scope.doShowMemberGroupList = function () {
-            if ($scope.groupList.isVisible) {
-                $scope.app.scrollToAnchor('group_list');
-            } else {
-                loadTopicMemberGroupList()
-                    .then(function () {
+            loadTopicMemberGroupList()
+                .then(function () {
+                    if ($scope.topic.members.groups.count) {
                         $scope.groupList.isVisible = true;
-                        $scope.app.scrollToAnchor('group_list');
-                    });
-            }
+                    }
+                });
         };
 
         $scope.doUpdateMemberGroup = function (topicMemberGroup, level) {
@@ -468,25 +486,81 @@ angular
         $scope.TopicMemberUser = TopicMemberUser;
 
         $scope.doShowMemberUserList = function () {
+            return $q
+                .all([loadTopicMemberUserList(), loadTopicInviteUserList()])
+                .then(function () {
+                    $scope.userList.isVisible = true;
+                });
+        };
+
+        var toggleTabParam = function (tabName) {
+            return new Promise (function (resolve) {
+                var tabIndex;
+                if ($stateParams.openTabs) {
+                    tabIndex = $stateParams.openTabs.indexOf(tabName);
+                }
+
+                if (tabIndex  > -1) {
+                    if (!Array.isArray($stateParams.openTabs)){
+                        $stateParams.openTabs = null;
+                    } else if($stateParams.openTabs) {
+                        $stateParams.openTabs.splice(tabIndex, 1);
+                    }
+                } else {
+                    if (!$stateParams.openTabs) {
+                        $stateParams.openTabs = [];
+                    }
+                    if (!Array.isArray($stateParams.openTabs)){
+                        $stateParams.openTabs = [$stateParams.openTabs];
+                    }
+                    $stateParams.openTabs.push(tabName);
+                }
+
+                $state.transitionTo($state.current.name, $stateParams, {
+                    notify: true,
+                    reload: false
+                }).then(function () {
+                    return resolve();
+                });
+            });
+
+        }
+        $scope.doToggleMemberUserList = function () {
+            var doShowList = $scope.userList.isVisible;
+            if ($scope.userList.isVisible) {
+                $scope.userList.isVisible = !$scope.userList.isVisible;
+            }
+            toggleTabParam('user_list')
+                .then(function () {
+                    if (!doShowList) {
+                        $scope.doShowMemberUserList()
+                            .then(function() {
+                                checkIfInView('user_list');
+                            });
+                    }
+                });
+        };
+
+        $scope.viewMemberUsers = function () {
             if (!$scope.userList.isVisible) {
-                $q
-                    .all([loadTopicMemberUserList(), loadTopicInviteUserList()])
-                    .then(function () {
-                        $scope.userList.isVisible = true;
-                        $scope.app.scrollToAnchor('user_list');
+                $scope.doShowMemberUserList()
+                    .then(function() {
+                        checkIfInView('user_list');
                     });
             } else {
-                $scope.app.scrollToAnchor('user_list');
+                checkIfInView('user_list');
             }
         };
 
-        $scope.doToggleMemberUserList = function () {
-            if ($scope.userList.isVisible) {
-                $scope.userList.isVisible = false;
+        $scope.viewMemberGroups = function () {
+            if (!$scope.groupList.isVisible) {
+                $scope.doShowMemberGroupList();
+                checkIfInView('group_list')
             } else {
-                $scope.doShowMemberUserList();
+                checkIfInView('group_list');
             }
         };
+
 
         $scope.doUpdateMemberUser = function (topicMemberUser, level) {
             if (topicMemberUser.level !== level) {
@@ -586,6 +660,30 @@ angular
                 });
         };
 
+        if ($stateParams.openTabs) {
+            $scope.userList.isVisible = false;
+            $scope.groupList.isVisible = false;
+            if (!Array.isArray($stateParams.openTabs)) {
+                $stateParams.openTabs = [$stateParams.openTabs];
+            }
+            $stateParams.openTabs.forEach(function (tab) {
+                switch(tab) {
+                    case 'user_list':
+                        $scope.doShowMemberUserList();
+                        break;
+                    case 'group_list':
+                        $scope.doShowMemberGroupList();
+                        break;
+                    case 'activity_feed':
+                        $scope.app.activityFeed = true;
+                        $scope.loadActivities(0);
+                    case 'vote_results':
+                        $scope.voteResults.isVisible = true;
+                        break;
+                }
+            });
+        }
+
         $scope.downloadAttachment = function (attachment) {
             return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
         };
@@ -597,10 +695,24 @@ angular
             return $translate.instant(key.split(':')[0], values);
         };
 
-        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
+        var listener = $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
             if (fromState.name === 'topics.view.files') {
                 $scope.loadTopicAttachments();
             }
         });
+
+        // Unregister
+        $scope.$on('$destroy', function () {
+            listener();
+        });
+
+        var checkIfInView = function (elemId, from) {
+            var elem = document.getElementById(elemId);
+            var bounding = elem.getBoundingClientRect();
+
+            if ((bounding.top + 100) > (window.scrollY + window.innerHeight)) {
+                setTimeout(function () {$scope.app.scrollToAnchor(elemId)}, 200);
+            }
+        }
     }
     ]);
