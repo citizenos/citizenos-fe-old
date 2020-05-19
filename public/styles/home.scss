@@ -399,6 +399,7 @@
             display: block;
             background: $category_varia;
             color: $black;
+            transition: transform .1s;
 
             .topic_wrap {
                 padding: 19px 20px 0 20px;
