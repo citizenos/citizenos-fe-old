@@ -399,6 +399,7 @@
             display: block;
             background: $category_varia;
             color: $black;
+            transition: transform .1s;
 
             .topic_wrap {
                 padding: 19px 20px 0 20px;
@@ -506,12 +507,8 @@
             }
 
             &:hover {
-                .main_text {
-                    text-decoration: underline;
-                    @include tablet {
-                        text-decoration: none;
-                    }
-                }
+                transform: scale(1.01);
+                box-shadow: 0 0 8px 0 $dark_gray;
             }
 
             &.politics {
