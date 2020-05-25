@@ -11,7 +11,7 @@ angular
 
         $scope.app.metainfo = {
             title: $scope.topic.title,
-            description: $scope.topic.description.replace(/<[^>]+>/gm, '').replace($scope.topic.title, '') // Strip HTML and title
+            description: $scope.topic.description.replace(/<br>/gm, '\n').replace(/<[^>]+>/gm, '').replace($scope.topic.title, '') // Strip HTML and title
         };
 
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
