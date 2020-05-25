@@ -8,6 +8,12 @@ angular
 
         $scope.topic = rTopic;
         $scope.app.topic = rTopic;
+
+        $scope.app.metainfo = {
+            title: $scope.topic.title,
+            description: $scope.topic.description
+        };
+
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
         $scope.hideTopicContent = true;
 
