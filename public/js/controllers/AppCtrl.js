@@ -45,7 +45,6 @@ angular
 
         $translate('META_DEFAULT_KEYWORDS').then(function (translation) {
             $scope.app.metainfo.keywords = translation;
-            console.log('APP CTRL', $scope.app.metainfo);
         });
 
         createRelUrls();

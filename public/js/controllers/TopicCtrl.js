@@ -11,7 +11,7 @@ angular
 
         $scope.app.metainfo = {
             title: $scope.topic.title,
-            description: $scope.topic.description
+            description: $scope.topic.description.replace(/<[^>]+>/gm, '').replace($scope.topic.title, '') // Strip HTML and title
         };
 
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
@@ -719,6 +719,5 @@ angular
             if ((bounding.top + 100) > (window.scrollY + window.innerHeight)) {
                 setTimeout(function () {$scope.app.scrollToAnchor(elemId)}, 200);
             }
-        }
-    }
-    ]);
+        };
+    }]);
