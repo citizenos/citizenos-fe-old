@@ -43,7 +43,6 @@ angular
         };
 
         sNotification.addError = function (key) {
-            console.log('ADD ERROR', key);
             add(sNotification.levels.ERROR, key);
         };
 

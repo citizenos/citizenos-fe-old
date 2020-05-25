@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $interval, $cookies, $anchorScroll, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $interval, $cookies, $anchorScroll, $translate, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity) {
         $log.debug('AppCtrl', $location.host());
 
         $scope.app = {
@@ -26,9 +26,6 @@ angular
             });
 
         $scope.app.metainfo = {
-            title: 'META_DEFAULT_TITLE',
-            description: 'META_DEFAULT_DESCRIPTION',
-            keywords: 'META_DEFAULT_KEYWORDS',
             icon: sLocation.getAbsoluteUrl('/imgs/favicon.ico'),
             iconHires: sLocation.getAbsoluteUrl('/imgs/icon_hires.png'),
             author: null,
@@ -37,6 +34,19 @@ angular
             siteName: 'CitizenOS.com',
             hreflang: {}
         };
+
+        $translate('META_DEFAULT_TITLE').then(function (translation) {
+            $scope.app.metainfo.title = translation;
+        });
+
+        $translate('META_DEFAULT_DESCRIPTION').then(function (translation) {
+            $scope.app.metainfo.description = translation;
+        });
+
+        $translate('META_DEFAULT_KEYWORDS').then(function (translation) {
+            $scope.app.metainfo.keywords = translation;
+            console.log('APP CTRL', $scope.app.metainfo);
+        });
 
         createRelUrls();
 
