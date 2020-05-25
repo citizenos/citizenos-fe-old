@@ -8,6 +8,12 @@ angular
 
         $scope.topic = rTopic;
         $scope.app.topic = rTopic;
+
+        $scope.app.metainfo = {
+            title: $scope.topic.title,
+            description: $scope.topic.description.replace(/<br>/gm, '\n').replace(/<[^>]+>/gm, '').replace($scope.topic.title, '') // Strip HTML and title
+        };
+
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
         $scope.hideTopicContent = true;
 
@@ -713,6 +719,5 @@ angular
             if ((bounding.top + 100) > (window.scrollY + window.innerHeight)) {
                 setTimeout(function () {$scope.app.scrollToAnchor(elemId)}, 200);
             }
-        }
-    }
-    ]);
+        };
+    }]);
