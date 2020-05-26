@@ -15,7 +15,6 @@ angular
             title: $scope.topic.title,
             description: angular.element('<div/>').html($scope.topic.description.replace(/<br>/gm, '\n')).text().replace($scope.topic.title, '').trim(), // Strip HTML and title
         };
-        console.log('METAINFO', $scope.app.metainfo);
 
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
         $scope.hideTopicContent = true;
