@@ -261,6 +261,9 @@ angular
         $rootScope.$on('$stateChangeSuccess', function () {
             $timeout(function () {
                 $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady', $state.$current.name);
+
+                $scope.app.metainfo.url = window.location.origin + window.location.pathname;
+
                 window.prerenderReady = true;
 
                 $scope.app.currentUrlAbs = $location.absUrl();
