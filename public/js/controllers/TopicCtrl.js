@@ -12,7 +12,13 @@ angular
         $scope.app.topic = rTopic;
 
         $scope.app.metainfo.title = $scope.topic.title;
-        $scope.app.metainfo.description = angular.element('<div/>').html($scope.topic.description.replace(/<br>/gm, '\n')).text().replace($scope.topic.title, '').trim(), // Strip HTML and title
+        $scope.app.metainfo.description = angular.element('<div/>').html($scope.topic.description.replace(/<br>/gm, '\n')).text().replace($scope.topic.title, '').trim(); // Strip HTML and title
+
+        var docImageSrcMatch = $scope.topic.description.match(/<img src="(http[^"]*)/);
+        var docImageSrc = docImageSrcMatch ? docImageSrcMatch[1] : null;
+        if (docImageSrc) {
+            $scope.app.metainfo.image = docImageSrc;
+        }
 
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
         $scope.hideTopicContent = true;
