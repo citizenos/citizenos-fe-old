@@ -1,6 +1,6 @@
 'use strict';
 
-/* global _*/
+/* global window _*/
 
 angular
     .module('citizenos')
