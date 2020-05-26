@@ -11,13 +11,17 @@ angular
         $scope.topic = rTopic;
         $scope.app.topic = rTopic;
 
-        $scope.app.metainfo.title = $scope.topic.title;
-        $scope.app.metainfo.description = angular.element('<div/>').html($scope.topic.description.replace(/<br>/gm, '\n')).text().replace($scope.topic.title, '').trim(); // Strip HTML and title
+        if ($scope.topic.title) {
+            $scope.app.metainfo.title = $scope.topic.title;
+        }
 
-        var docImageSrcMatch = $scope.topic.description.match(/<img src="(http[^"]*)/);
-        var docImageSrc = docImageSrcMatch ? docImageSrcMatch[1] : null;
-        if (docImageSrc) {
-            $scope.app.metainfo.image = docImageSrc;
+        if ($scope.topic.description) {
+            $scope.app.metainfo.description = angular.element('<div/>').html($scope.topic.description.replace(/<br>/gm, '\n')).text().replace($scope.topic.title, '').trim(); // Strip HTML and title
+            var docImageSrcMatch = $scope.topic.description.match(/<img src="(http[^"]*)/);
+            var docImageSrc = docImageSrcMatch ? docImageSrcMatch[1] : null;
+            if (docImageSrc) {
+                $scope.app.metainfo.image = docImageSrc;
+            }
         }
 
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
@@ -25,11 +29,11 @@ angular
 
         $scope.doShowReportOverlay = function () {
             ngDialog.openConfirm({
-                    template: '/views/modals/topic_reports_reportId.html',
-                    data: $stateParams,
-                    scope: $scope, // Pass on $scope so that I can access AppCtrl,
-                    closeByEscape: false
-                })
+                template: '/views/modals/topic_reports_reportId.html',
+                data: $stateParams,
+                scope: $scope, // Pass on $scope so that I can access AppCtrl,
+                closeByEscape: false
+            })
                 .then(
                     function () {
                         // User wants to view the Topic
@@ -250,28 +254,31 @@ angular
                 .then(function () {
                     if (!$scope.topic.voteId && !$scope.topic.vote) {
                         $scope.app.topics_settings = false;
-                        $state.go('topics.view.votes.create', {topicId: $scope.topic.id, commentId: null});
+                        $state.go('topics.view.votes.create', {
+                            topicId: $scope.topic.id,
+                            commentId: null
+                        });
                     } else if (($scope.topic.voteId || $scope.topic.vote && $scope.topic.vote.id) && $scope.topic.status !== $scope.STATUSES.voting) {
                         $log.debug('sendToVote');
                         return new Topic({
                             id: $scope.topic.id,
                             status: $scope.STATUSES.voting
                         })
-                        .$patch()
-                        .then(
-                            function (topicPatched) {
-                                $scope.topic.status = topicPatched.status;
-                                $scope.app.topics_settings = false;
-                                $state.go('topics.view.votes.view', {
-                                        topicId: $scope.topic.id,
-                                        voteId: $scope.topic.vote.id,
-                                        commentId: null,
-                                        editMode: null
-                                    },
-                                    {reload: true}
-                                );
-                            }
-                        );
+                            .$patch()
+                            .then(
+                                function (topicPatched) {
+                                    $scope.topic.status = topicPatched.status;
+                                    $scope.app.topics_settings = false;
+                                    $state.go('topics.view.votes.view', {
+                                            topicId: $scope.topic.id,
+                                            voteId: $scope.topic.vote.id,
+                                            commentId: null,
+                                            editMode: null
+                                        },
+                                        {reload: true}
+                                    );
+                                }
+                            );
                     }
                     return false;
                 }, angular.noop);
@@ -293,7 +300,10 @@ angular
                                 $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
                                 var stateNext = stateSuccess || 'topics.view.followUp';
-                                var stateParams = angular.extend({}, $stateParams, {editMode: null, commentId: null});
+                                var stateParams = angular.extend({}, $stateParams, {
+                                    editMode: null,
+                                    commentId: null
+                                });
                                 $state.go(
                                     stateNext,
                                     stateParams,
@@ -322,7 +332,10 @@ angular
                                 $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
                                 if ($state.is('topics.view.votes.view')) {
-                                    $state.go('topics.view', {topicId: $scope.topic.id}, {reload: true, commentId: null});
+                                    $state.go('topics.view', {topicId: $scope.topic.id}, {
+                                        reload: true,
+                                        commentId: null
+                                    });
                                 }
                             }
                         );
@@ -506,23 +519,23 @@ angular
         };
 
         var toggleTabParam = function (tabName) {
-            return new Promise (function (resolve) {
+            return new Promise(function (resolve) {
                 var tabIndex;
                 if ($stateParams.openTabs) {
                     tabIndex = $stateParams.openTabs.indexOf(tabName);
                 }
 
-                if (tabIndex  > -1) {
-                    if (!Array.isArray($stateParams.openTabs)){
+                if (tabIndex > -1) {
+                    if (!Array.isArray($stateParams.openTabs)) {
                         $stateParams.openTabs = null;
-                    } else if($stateParams.openTabs) {
+                    } else if ($stateParams.openTabs) {
                         $stateParams.openTabs.splice(tabIndex, 1);
                     }
                 } else {
                     if (!$stateParams.openTabs) {
                         $stateParams.openTabs = [];
                     }
-                    if (!Array.isArray($stateParams.openTabs)){
+                    if (!Array.isArray($stateParams.openTabs)) {
                         $stateParams.openTabs = [$stateParams.openTabs];
                     }
                     $stateParams.openTabs.push(tabName);
@@ -546,7 +559,7 @@ angular
                 .then(function () {
                     if (!doShowList) {
                         $scope.doShowMemberUserList()
-                            .then(function() {
+                            .then(function () {
                                 checkIfInView('user_list');
                             });
                     }
@@ -556,7 +569,7 @@ angular
         $scope.viewMemberUsers = function () {
             if (!$scope.userList.isVisible) {
                 $scope.doShowMemberUserList()
-                    .then(function() {
+                    .then(function () {
                         checkIfInView('user_list');
                     });
             } else {
@@ -679,7 +692,7 @@ angular
                 $stateParams.openTabs = [$stateParams.openTabs];
             }
             $stateParams.openTabs.forEach(function (tab) {
-                switch(tab) {
+                switch (tab) {
                     case 'user_list':
                         $scope.doShowMemberUserList();
                         break;
@@ -723,7 +736,9 @@ angular
             var bounding = elem.getBoundingClientRect();
 
             if ((bounding.top + 100) > (window.scrollY + window.innerHeight)) {
-                setTimeout(function () {$scope.app.scrollToAnchor(elemId)}, 200);
+                setTimeout(function () {
+                    $scope.app.scrollToAnchor(elemId)
+                }, 200);
             }
         };
     }]);
