@@ -1,5 +1,7 @@
 'use strict';
 
+/* global _*/
+
 angular
     .module('citizenos')
     .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $translate, $stateParams, $q, $log, $sce, $location, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicVote, Mention, TopicAttachment, rTopic) {
@@ -9,10 +11,8 @@ angular
         $scope.topic = rTopic;
         $scope.app.topic = rTopic;
 
-        $scope.app.metainfo = {
-            title: $scope.topic.title,
-            description: $scope.topic.description.replace(/<br>/gm, '\n').replace(/<[^>]+>/gm, '').replace($scope.topic.title, '') // Strip HTML and title
-        };
+        $scope.app.metainfo.title = $scope.topic.title;
+        $scope.app.metainfo.description = angular.element('<div/>').html($scope.topic.description.replace(/<br>/gm, '\n')).text().replace($scope.topic.title, '').trim(), // Strip HTML and title
 
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
         $scope.hideTopicContent = true;
