@@ -991,7 +991,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Сообщение стало недействительным, так как аргумент был обновлен.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Достигнут лимит файлов, прикрепленных к теме",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "Нельзя передать полномочия голосования самому себе.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Сожалеем, но нельзя передать полномочия голосования пользователю, у которого нет доступа к этой теме. Пожалуйста, убедитесь, что имя введено корректно и пользователь является участником этой темы.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate your vote to a user who does not have access to this topic. Please make sure you've typed the name correctly and the user is a member of this topic.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Вы прервали процесс подписания и Ваш голос не засчитан.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Процесс подписания занял слишком много времени и голос остался не засчитан. Пожалуйста, начните сначала.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Подпись недействительна. Ваш голос не засчитан.",
