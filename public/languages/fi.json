@@ -991,7 +991,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Ilmoitus ei enää kelpaa, koska kommenttia on päivitetty ilmoittamisen jälkeen.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Aiheen liitetiedostojen enimmäismäärä on saavutettu",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "You cannot delegate a vote to yourself.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate vote to user who does not have access to this topic. Please make sure you typed the name correctly and the user is a member of this topic.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate your vote to a user who does not have access to this topic. Please make sure you've typed the name correctly and the user is a member of this topic.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Olet keskeyttänyt allekirjoituksen kulun, eikä ääntäsi laskettu.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Allekirjoituspyyntö on vanhentunut. Jos haluat äänestää, ole hyvä ja aloita alusta.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Allekirjoitus on virheellinen. Ääntäsi ei laskettu.",
