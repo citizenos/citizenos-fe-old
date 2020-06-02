@@ -991,7 +991,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "La denuncia ya no es válida porque el argumento se ha actualizado después.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Se alcanzó el límite de archivos adjuntos del tema",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "You cannot delegate a vote to yourself.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate vote to user who does not have access to this topic. Please make sure you typed the name correctly and the user is a member of this topic.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate your vote to a user who does not have access to this topic. Please make sure you've typed the name correctly and the user is a member of this topic.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Canceló el flujo de firma y no se contabilizó el voto.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "La solicitud de firma caducó. Para votar, vuelva a empezar.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "La firma no es válida. No se contabilizó el voto.",
