@@ -991,7 +991,7 @@
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Die Meldung ist nun ungültig, weil das Argument nach der Meldung aktualisiert wurde.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Die Höchstanzahl der Anhänge in einem Thema ist erreicht",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "You cannot delegate a vote to yourself.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate vote to user who does not have access to this topic. Please make sure you typed the name correctly and the user is a member of this topic.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40002": "Sorry, you cannot delegate your vote to a user who does not have access to this topic. Please make sure you've typed the name correctly and the user is a member of this topic.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40010": "Sie haben die Unterzeichnung abgebrochen und Ihre Stimme wurde nicht gezählt.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40011": "Die Anfrage zum Unterzeichnen ist abgelaufen. Um abzustimmen, fangen Sie bitte neu an.",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40012": "Die Unterschrift ist ungültig. Ihre Stimme wurde nicht gezählt.",
