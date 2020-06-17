@@ -235,16 +235,19 @@ angular
                     return;
                 }
                 _.sortedUniq(filtered.sort()).forEach(function (email) {
+                    email = email.trim();
                     if ($scope.members.length >= maxUsers) {
                         sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
                         return;
                     }
-                    $scope.members.push({
-                        userId: email.trim(),
-                        name: email.trim(),
-                        level: $scope.groupLevel
-                    });
-                    orderMembers();
+                    if (!_.find($scope.members, ['userId', email])) {
+                        $scope.members.push({
+                            userId: email,
+                            name: email,
+                            level: $scope.groupLevel
+                        });
+                        orderMembers();
+                    }
                 });
 
                 $scope.searchResults.groups = [];

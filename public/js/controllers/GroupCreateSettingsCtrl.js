@@ -15,6 +15,7 @@ angular
             group: null
         };
 
+        $scope.memberGroups = ['users', 'emails'];
         $scope.tabSelected = $stateParams.tab || 'settings';
 
         $scope.topicList = {
@@ -23,6 +24,8 @@ angular
                 property: 'title'
             }
         };
+        var maxUsers = 50;
+        var itemsPerPage = 10;
 
         var init = function () {
             // Group creation
@@ -42,12 +45,9 @@ angular
                 // Create a copy of parent scopes Group, so that while modifying we don't change parent state
                 $scope.form.group = angular.copy($scope.group);
             }
-
+            $scope.membersPage = 1;
             $scope.memberTopics = [];
-            $scope.members = {
-                users: [],
-                emails: []
-            };
+            $scope.members = [];
 
             $scope.Group = Group;
             $scope.GroupMemberTopic = GroupMemberTopic;
@@ -58,6 +58,7 @@ angular
             $scope.searchResults = {};
             $scope.form.newMemberTopicTitle = null;
             $scope.form.newMemberTopicLevel = GroupMemberTopic.LEVELS.read;
+            $scope.groupLevel = GroupMemberUser.LEVELS.read;
 
             $scope.errors = null;
         };
@@ -131,6 +132,71 @@ angular
             $scope.topicList.searchOrderBy.property = property;
         };
 
+        $scope.itemsExist = function (type) {
+            var exists = false;
+            var i = ($scope.membersPage * itemsPerPage) - itemsPerPage;
+            for(i; i < $scope.members.length && i < ($scope.membersPage * itemsPerPage); i++) {
+                if (type === 'users') {
+                    if ($scope.members[i].id) {
+                        exists = true;
+                        break;
+                    }
+                } else if ($scope.members[i].userId === $scope.members[i].name){
+                    exists = true;
+                    break;
+                }
+
+            }
+
+            return exists;
+        };
+
+        $scope.isInGroup = function (item, group) {
+            if (group === 'emails') {
+                return item.userId === item.name;
+            } else {
+                return item.userId !== item.name;
+            }
+        };
+
+        $scope.removeAllMembers = function () {
+            $scope.members = []
+        };
+
+        $scope.updateGroupLevel = function (level) {
+            $scope.groupLevel = level;
+            $scope.members.forEach(function (item) {
+                item.level = $scope.groupLevel;
+            });
+        };
+
+        $scope.loadPage = function (pageNr) {
+            $scope.membersPage = pageNr;
+        }
+        $scope.totalPages = function (items) {
+            return Math.ceil(items.length / itemsPerPage);
+        };
+
+        $scope.isOnPage = function (index, page) {
+            var endIndex = page * itemsPerPage;
+            return  (index >= (endIndex - itemsPerPage) && index < endIndex);
+        }
+
+        var orderMembers = function () {
+            var compare = function(a, b) {
+                var property = 'name';
+                return (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+            }
+            var users = $scope.members.filter(function (member) {
+                return !!member.id;
+            }).sort(compare);
+            var emails = $scope.members.filter(function (member) {
+                return member.userId === member.name;
+            }).sort(compare);
+
+            $scope.members = users.concat(emails);
+        };
+
         $scope.addGroupMemberUser = function (member) {
             if (member) {
                 if (_.find($scope.members.users, {userId: member.id})) {
@@ -143,41 +209,43 @@ angular
                     memberClone.userId = member.id;
                     memberClone.level = GroupMemberUser.LEVELS.read;
 
-                    $scope.members.users.push(memberClone);
+                    $scope.members.push(memberClone);
                     $scope.searchResults.users = [];
+                    orderMembers();
                 }
             } else {
-                // Assume e-mail was entered.
-                if (validator.isEmail($scope.searchStringUser)) {
-                    // Ignore duplicates
-                    if (!_.find($scope.searchResults.results, {userId: $scope.searchStringUser})) {
-                        $scope.members.emails.push({
-                            userId: $scope.searchStringUser,
-                            name: $scope.searchStringUser,
-                            level: GroupMemberUser.LEVELS.read
-                        });
-                        $scope.searchResults.users = [];
-                    }
-                } else {
+                var emails = $scope.searchStringUser.match(/(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})/gi);
+                var filtered = _.filter(emails, function (email) {
+                    return validator.isEmail(email.trim())
+                });
+                if (!filtered.length) {
                     $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchStringUser);
+                    return;
                 }
+                _.sortedUniq(filtered.sort()).forEach(function (email) {
+                    email = email.trim();
+                    if ($scope.members.length >= maxUsers) {
+                        sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
+                        return;
+                    }
+                    if (!_.find($scope.members, ['userId', email])) {
+                        $scope.members.push({
+                            userId: email,
+                            name: email,
+                            level: $scope.groupLevel
+                        });
+                        orderMembers();
+                    }
+                });
             }
         };
 
         $scope.doRemoveMemberUser = function (member) {
-            if (member.userId.indexOf('@') === -1) { // Remove existing User
-                $scope.members.users.splice($scope.members.users.indexOf(member), 1);
-            } else { // Remove User with e-mail
-                $scope.members.emails.splice($scope.members.emails.indexOf(member), 1);
-            }
+            $scope.members.splice($scope.members.indexOf(member), 1);
         };
 
         $scope.updateGroupMemberUserLevel = function (member, level) {
-            if (member.userId.indexOf('@') === -1) { // Edit existing User
-                $scope.members.users[$scope.members.users.indexOf(member)].level = level;
-            } else { // Add User with e-mail
-                $scope.members.emails[$scope.members.emails.indexOf(member)].level = level;
-            }
+            $scope.members[$scope.members.indexOf(member)].level = level;
         };
 
         $scope.selectTab = function (tab) {
@@ -204,7 +272,7 @@ angular
 
                         // Users
                         var groupMemberUsersToSave = [];
-                        $scope.members.users.concat($scope.members.emails).forEach(function (member) {
+                        $scope.members.forEach(function (member) {
                             groupMemberUsersToSave.push({
                                 userId: member.userId,
                                 level: member.level
