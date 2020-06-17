@@ -287,20 +287,98 @@
 
                 </div>
 
+                <div class="lightbox_section double_row_list user_list" ng-if="members.length">
+                    <div>
+                        <table>
+                            <tr>
+                                <td><span translate="MODALS.GROUP_CREATE_SETTINGS_LBL_CHANGE_ALL">Change all</span><div class="mobile_extra_info">
+                                    <div class="left">
 
-                <div class="lightbox_section double_row_list user_list" ng-if="members.users.length || members.emails.length">
+                                        <div cos-dropdown class="classic_dropdown">
 
-                    <div ng-repeat="(key, members) in members" ng-if="members.length">
+                                            <div class="dropdown_selection">
+                                                <div class="dropdown_text">
+                                                    {{'TXT_TOPIC_LEVELS_' + groupLevel | uppercase | translate}}
+                                                </div>
 
-                        <div class="category_title">
+                                                <div class="arrow_holder">
+                                                    <div class="table_cell">
+                                                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+                                                <div  class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
+                                                    <div class="item_name" ng-click="updateGroupLevel(level)">
+                                                        {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="right">
+                                        <div class="btn_wrap recycle_bin white_bg">
+                                            <div class="btn" ng-click="removeAllMembers()">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div></td>
+                                <td>
+                                    <div cos-dropdown class="classic_dropdown">
+
+                                        <div class="dropdown_selection">
+                                            <div class="dropdown_text">
+                                                {{'TXT_TOPIC_LEVELS_' + groupLevel | uppercase | translate}}
+                                            </div>
+
+                                            <div class="arrow_holder">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                    <div class="v_line"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="dropdown">
+                                            <div  class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
+                                                <div ng-if="level !== GroupMemberUser.LEVELS.none" class="item_name" ng-click="updateGroupLevel(level)">
+                                                    {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn_wrap recycle_bin white_bg">
+                                        <div class="btn" ng-click="removeAllMembers()">
+                                            <div class="table_cell">
+                                                <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                                <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="category_title" ng-repeat-start="title in memberGroups" ng-if="itemsExist(title)">
                             <div class="table_cell">
-                                {{key | uppercase}}
+                                <span>{{"MODALS.TOPIC_SETTINGS_RESULT_GROUP_" + title | uppercase | translate}}</span>
                             </div>
                         </div>
 
-                        <table>
-
-                            <tr ng-repeat="(memberKey, member) in members">
+                        <table  ng-repeat-end ng-if="itemsExist(title)">
+                            <!--table  ng-repeat-end ng-if="itemsExist(title)"-->
+                                <tr ng-repeat="(memberKey, member) in members" ng-if="isOnPage($index, membersPage) && isInGroup(member, title)">
+                            <!--tr ng-repeat="(memberKey, member) in members"-->
                                 <td>
                                     <div class="profile_image_wrapper dark">
                                         <!--div class="profile_moon sprite"></div-->
@@ -401,7 +479,7 @@
                             </tr>
 
                         </table>
-
+                        <div class="pagination" cos-pagination select="loadPage" total-pages="totalPages(members)" page="membersPage"></div>
                     </div>
 
 
@@ -413,8 +491,8 @@
 
                 <div class="line lightest_line"></div>
                 <div class="blue_button_wrap">
-                    <div class="blue_button" cos-disabled="!form.group.canUpdate()" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP">Save group</div>
-                    <div class="blue_button" cos-disabled="!form.group.canUpdate()" ng-if="members.users.length || members.emails.length" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP_AND_INVITE">Save group and send invite</div>
+                    <div class="blue_button" cos-disabled="!form.group.canUpdate()" ng-if="!members.length" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP">Save group</div>
+                    <div class="blue_button" cos-disabled="!form.group.canUpdate()" ng-if="members.length" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP_AND_INVITE">Save group and send invite</div>
                 </div>
             </div>
         </div>
