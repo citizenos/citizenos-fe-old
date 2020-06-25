@@ -24,7 +24,7 @@ angular
                 property: 'title'
             }
         };
-        var maxUsers = 50;
+        var maxUsers = 550;
         var itemsPerPage = 10;
 
         var init = function () {
