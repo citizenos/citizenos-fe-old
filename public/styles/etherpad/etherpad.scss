@@ -339,6 +339,11 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
     }
 }
 
+.btn-primary
+{
+  background-color: $deep_sky_blue;
+}
+
 #epAuthorshipToggleAuthorList {
     font-family: bold, sans-serif;
     background: $base;
@@ -370,24 +375,20 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 
 .popup, #users, #connectivity {
     background: $base;
-    border-top: 1px solid $base;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    border-radius: 0;
-    z-index: 1500 !important;
-    margin-top: -1px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+}
+
+.popup h1 {
+    font-family: "Noto Sans";
+    color: $medium_black;
 }
 
 #inline_toolbar {
     width: max-content;
     height: auto;
     right: 0!important;
-//    left: initial!important; //until plugin positioning is fixed
     padding: 0;
+    background: none;
+    border: none;
 
     .menu_inline {
         margin: 7px;
@@ -396,6 +397,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         width: auto;
         height: auto;
         background-color: $medium_black;
+        padding: 10px;
 
         ul {
             position: relative;
@@ -459,6 +461,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         margin-left: calc(100% - 140px)!important;
     }
 }
+/*
 .comment-icon {
     height: 24px!important;
     width: 24px!important;
@@ -495,13 +498,9 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
     border-color: transparent #FFC600 transparent transparent;
     z-index: -1;
 }
-
+*/
 .comment-modal {
-    width: -moz-calc(100% - 40px) !important;
-    width: -webkit-calc(100% - 40px) !important;
-    width: -o-calc(100% - 40px) !important;
-    width: calc(100% - 40px) !important;
-    left: 0 !important;
+    width: max-content;
     max-width: 100% !important;
     border: none !important;
     padding: 0!important;
@@ -584,7 +583,6 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 
     }
     input[type="submit"] {
-        display: inline-block;
         position: relative;
         width: initial!important;
         height: 30px;
@@ -601,7 +599,6 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         padding: 0 20px;
     }
     input[type="reset"]  {
-        display: inline-block;
         position: relative;
         height: 30px;
         color: #0680FC;
@@ -700,19 +697,6 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
             background-color: #F6F6F6!important;
         }
     }
-}
-.comment-modal:after {
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 0px;
-    right: auto;
-    top: -15px;
-    bottom: auto;
-    border: 15px solid;
-    border-color: transparent transparent transparent $white;
-  //  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
 #comments, .comment-modal {
