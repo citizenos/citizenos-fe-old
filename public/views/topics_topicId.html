@@ -649,7 +649,15 @@
 
                                 </div>
                             </div>
+                            <div class="vote_options_count_wrap" ng-if="voteForm.voteType == 'multiple'">
+                                <p>Define up to how many choices a person can vote for. For example, you have 4 choices but you allow people to choose up to 2 out of them. You can only add as many as you have choices to choose from.</p>
+                                <div class="options_count_input_wrap">
+                                    <div class="gray_button options_count_input_subtract" ng-click="optionsCountDown()">-</div>
+                                    <input class="options_count_input" type="number" ng-min="1" ng-model="voteForm.maxChoices"/>
+                                    <div class="gray_button options_count_input_add" ng-click="optionsCountUp()">+</div>
+                                </div>
 
+                            </div>
                         </div>
 
                         <div class="line lightest_line" ng-if="voteForm.voteType"></div>

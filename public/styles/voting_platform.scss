@@ -525,7 +525,7 @@
                 margin-bottom: -100px;
                 height: 100px;
                 width: 40px;
-                border-right: 2px solid $lightest_gray;
+                border-right: 1px solid $lightest_gray;
 
                 &.active {
                     background: $aqua_marine_border;
@@ -773,6 +773,44 @@
                 @media (max-width: 600px) {
                     margin-top: 20px;
                     padding: 0;
+                }
+            }
+        }
+
+        .vote_options_count_wrap {
+            width: 100%;
+            clear: both;
+            padding-bottom: 33px;
+
+            .options_count_input_wrap {
+                width: 50%;
+
+                .options_count_input {
+                    height: 41px;
+                    width: calc(100% - 110px);
+                    border: 1px solid $lightest_gray;
+                    border-radius: 4px;
+                    vertical-align: middle;
+                    -webkit-appearance: textfield;
+                    appearance: textfield;
+                    -moz-appearance: textfield;
+                    text-align: center;
+                }
+
+                .options_count_input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                .options_count_input_subtract, .options_count_input_add {
+                    width: 45px;
+                    height: 45px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: 30px;
+                    line-height: 30px;
+                    color: #666666;
+                    font-weight: bold;
                 }
             }
         }
