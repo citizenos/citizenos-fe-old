@@ -419,6 +419,59 @@ table, .pretend_table {
     text-align: center;
     cursor: pointer;
 
+    .option_checkbox {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: $white;
+        display: block;
+
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 5px;
+            top: 2px;
+            width: 7px;
+            height: 10px;
+            border: solid $aqua_marine_border;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+
+    .option_radio {
+        position: relative;
+        display: block;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: $white;
+        border: solid 1px $lightest_gray;
+        border-radius: 50%;
+
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            top: 5px;
+            left: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: $aqua_marine_border;
+        }
+    }
+
+    .vote_option_radio {
+        position: absolute;
+    }
+
     * {
         color-adjust: exact;
         -webkit-print-color-adjust: exact;
@@ -432,8 +485,23 @@ table, .pretend_table {
     overflow: hidden;
 
     &.active {
+        .option_radio {
+            border:none;
+        }
+        .option_checkbox:after, .option_radio:after {
+            display: block;
+        }
+
+        .table_cell:first-child {
+            border: 1px solid $aqua_marine_border;
+            background: $aqua_marine;
+        }
+
         .table_cell:last-child {
             background: $aqua_marine;
+            border-top: 1px solid $aqua_marine_border;
+            border-right: 1px solid $aqua_marine_border;
+            border-bottom: 1px solid $aqua_marine_border;
         }
     }
 
@@ -446,14 +514,16 @@ table, .pretend_table {
 
         &:first-child {
             width: 40px;
-            background: $aqua_marine_border;
             border-radius: 4px 0 0 4px;
+            background: $light_gray;
+            border: 1px solid $lightest_gray;
         }
 
         &:last-child {
-            border-top: 2px solid $aqua_marine;
-            border-right: 2px solid $aqua_marine;
-            border-bottom: 2px solid $aqua_marine;
+            background: $light_gray;
+            border-top: 1px solid $lightest_gray;
+            border-right: 1px solid $lightest_gray;
+            border-bottom: 1px solid $lightest_gray;
         }
     }
 
@@ -462,12 +532,11 @@ table, .pretend_table {
         @media (min-width: 1025px) {
             .table_cell {
                 &:first-child {
-                    background: $aqua_marine_border_second;
+                    background: $medium_gray;
                 }
 
                 &:last-child {
                     background: $medium_gray;
-                    border-color: $aqua_marine_border_second;
                 }
             }
         }
@@ -534,6 +603,10 @@ table, .pretend_table {
         }
 
     }
+}
+
+.vote_multiple_submit_section {
+    padding-top: 20px;
 }
 
 .delegation_section {
@@ -896,6 +969,10 @@ a:link, a:visited {
 .line {
     width: 100%;
     height: 1px;
+
+    &.multiplechoice {
+        margin-top: 20px;
+    }
 }
 
 .v_line {

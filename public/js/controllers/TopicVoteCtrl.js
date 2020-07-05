@@ -23,6 +23,15 @@ angular
             return false;
         };
 
+        $scope.$parent.$parent.selectOption = function (option) {
+            if ($scope.topic.vote.type === Vote.VOTE_TYPES.multiple) {
+                option.selected=!option.selected;
+            } else {
+                $scope.$parent.$parent.doVote(option);
+            }
+
+        };
+
         $scope.$parent.$parent.doVote = function (option) {
             if (!$scope.topic.canVote()) return;
             if ($scope.topic.vote.authType === $scope.voteAuthTypes.hard) {
