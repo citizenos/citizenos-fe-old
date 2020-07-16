@@ -7,21 +7,25 @@ angular
 
         $scope.topic.vote.topicId = $scope.topic.id;
         $scope.$parent.$parent.userHasVoted = false;
-        $scope.topic.vote.$get().then(function () {
-            if ($scope.topic.vote && $scope.topic.vote.options) {
-                var options = $scope.topic.vote.options.rows;
-                for (var i in options) {
-                    options[i].optionId = options[i].id;
-                    if (options[i].selected) {
-                        $scope.$parent.$parent.userHasVoted = true;
-                    }
-                }
-            }
-        });
-
         $scope.$parent.$parent.showVoteArea = true;
         $scope.$parent.$parent.voteTypes = Vote.VOTE_TYPES;
         $scope.$parent.$parent.voteAuthTypes = Vote.VOTE_AUTH_TYPES;
+
+        var getVote = function () {
+            $scope.topic.vote.$get().then(function () {
+                if ($scope.topic.vote && $scope.topic.vote.options) {
+                    var options = $scope.topic.vote.options.rows;
+                    for (var i in options) {
+                        options[i].optionId = options[i].id;
+                        if (options[i].selected) {
+                            $scope.$parent.$parent.userHasVoted = true;
+                        }
+                    }
+                }
+            });
+        };
+
+        getVote();
 
         $scope.$parent.$parent.selectOption = function (option) {
             if ($scope.topic.vote.type === Vote.VOTE_TYPES.multiple) {
@@ -85,6 +89,7 @@ angular
                                     .then(function () {
                                         $scope.topic.vote.options.rows.forEach(function (option) {
                                             data.options.forEach(function (dOption) {
+                                                option.optionId = option.id;
                                                 if (option.id === dOption.optionId) {
                                                     option.selected = true;
                                                 }
@@ -105,7 +110,7 @@ angular
                     .$save()
                     .then(function (data) {
                         $scope.topic.vote.topicId = $scope.topic.id;
-                        $scope.topic.vote.$get()
+                        getVote();
                     });
             }
         };

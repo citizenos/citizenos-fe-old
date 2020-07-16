@@ -612,11 +612,20 @@ table, .pretend_table {
 .delegation_section {
     margin-top: 20px;
 
+    .voting_button {
+        .table_cell:first-child {
+            &.left_side {
+                background-color: $lightest_gray;
+                color: $dark_gray;
+            }
+        }
 
-    .table_cell:first-child {
-        &.left_side {
-            background-color: $lightest_gray;
-            color: $dark_gray;
+        &.active {
+            .table_cell:first-child {
+                &.left_side {
+                    background-color: $aqua_marine_border;
+                }
+            }
         }
     }
     .delegation_information {

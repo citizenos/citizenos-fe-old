@@ -261,9 +261,17 @@
 
                             <div class="voting_platform_buttons">
 
-                                <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? '' : 'active'" ng-repeat="(key, option) in topic.vote.options.rows" ng-click="doVote(option)">
+                                <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows" ng-click="selectOption(option)">
                                     <div class="table_cell left_side">
-                                        {{getOptionLetter(key)}}.
+                                        <label class="checkcontainer" ng-if="topic.vote.type ==='multiple'">
+                                            <input type="checkbox" class="vote_option_radio" checked="(option.selected) ? 'checked: ''" >
+                                            <span class="option_checkbox"></span>
+                                        </label>
+                                        <label class="checkcontainer" ng-if="topic.vote.type ==='regular'">
+                                            <input type="radio" class="vote_option_radio">
+                                            <span class="option_radio"></span>
+                                        </label>
+
                                     </div>
                                     <div class="table_cell right_side" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
                                          translate-default="{{option.value | linky}}">
@@ -274,7 +282,7 @@
 
                             <div class="delegation_section" ng-if="!topic.hasVoteEnded()">
 
-                                <div class="voting_button voting_button_blue" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)" ng-class="topic.vote.delegation ? '' : 'active'" ng-click="doDelegate()">
+                                <div class="voting_button" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)" ng-class="topic.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
                                     <div class="table_cell left_side">
                                         <div class="sprite sprite-icon-delegate2x"></div>
                                     </div>
@@ -312,7 +320,12 @@
                                 </div>
 
                             </div>
-
+                            <div class="line lightest_line multiplechoice" ng-if="topic.vote.type ==='multiple'"></div>
+                            <div class="vote_multiple_submit_section" ng-if="!topic.hasVoteEnded() && topic.vote.type ==='multiple'">
+                                <div class="table_cell" cos-disabled="!canSubmit()">
+                                    <div class="blue_button" ng-click="doVote()" translate="VIEWS.TOPICS_TOPICID.VOTE_SUBMIT">Submit your vote</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
