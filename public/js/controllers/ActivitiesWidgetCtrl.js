@@ -6,7 +6,6 @@ angular
         $log.debug('ActivitiesWidgetCtrl');
 
         $scope.activities = ActivitiesResolve;
-        console.log($scope.activities);
         $scope.showActivityDescription = function (activity) {
             return sActivity.showActivityDescription(activity);
         };

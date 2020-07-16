@@ -782,8 +782,13 @@
             clear: both;
             padding-bottom: 33px;
 
+            .options_selector_wrapper {
+                display: inline-block;
+                width: 49%;
+            }
+
             .options_count_input_wrap {
-                width: 50%;
+                width: 100%;
 
                 .options_count_input {
                     height: 41px;
@@ -810,6 +815,8 @@
                     font-size: 30px;
                     line-height: 30px;
                     color: #666666;
+                    background-color: $light_gray;
+                    border: solid 1px $lightest_gray;
                     font-weight: bold;
                 }
             }

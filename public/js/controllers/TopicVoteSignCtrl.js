@@ -6,7 +6,7 @@ angular
         $log.debug('TopicVoteSignCtrl', $scope.ngDialogData);
 
         var topic = $scope.ngDialogData.topic;
-        var option = $scope.ngDialogData.option;
+        var options = $scope.ngDialogData.options;
 
         $scope.formMobile = {
             pid: null,
@@ -24,7 +24,9 @@ angular
         $scope.isLoadingIdCard = false;
 
         // TODO: Multiple choice support some day... - https://trello.com/c/WzECsxck/280-bug-vote-sign-no-multiple-choice-support
-        $scope.optionSelected = option;
+        $scope.optionsSelected = _.map(options, function (option) {
+            return { value: option.value, optionId: option.id };
+        });
 
         $scope.doSignWithCard = function () {
             $scope.isLoadingIdCard = true;
@@ -33,7 +35,7 @@ angular
                 .getCertificate({})
                 .then(function (certificate) {
                     var userVote = new TopicVote({id: topic.vote.id, topicId: topic.id});
-                    userVote.options = [{optionId: $scope.optionSelected.id}];
+                    userVote.options =  $scope.optionsSelected;
                     userVote.certificate = certificate.hex;
                     return $q.all([certificate, userVote.$save()]);
                 })
@@ -61,7 +63,7 @@ angular
                 })
                 .then(function (voteSignResult) {
                     ngDialog.closeAll({ // Pass Vote options, so we can show selected option for the unauthenticated User
-                        options: [{optionId: $scope.optionSelected.id}],
+                        options:  $scope.optionsSelected,
                         bdocUri: voteSignResult.data.bdocUri
                     });
                 }, function (err) {
@@ -84,7 +86,7 @@ angular
             $scope.formMobile.isLoading = true;
 
             var userVote = new TopicVote({id: topic.vote.id, topicId: topic.id});
-            userVote.options = [{optionId: $scope.optionSelected.id}];
+            userVote.options =  $scope.optionsSelected;
             userVote.pid = $scope.formMobile.pid;
             userVote.certificate = null;
             userVote.phoneNumber = $scope.formMobile.phoneNumber;
@@ -101,7 +103,7 @@ angular
                 .then(function (voteStatusResult) {
                     $log.debug('voteVoteSign succeeded', arguments);
                     ngDialog.closeAll({ // Pass Vote options, so we can show selected option for the unauthenticated User
-                        options: [{optionId: $scope.optionSelected.id}],
+                        options:  $scope.optionsSelected,
                         bdocUri: voteStatusResult.bdocUri
                     });
                 }, function (err) {
@@ -138,7 +140,7 @@ angular
             $scope.formSmartId.isLoading = true;
 
             var userVote = new TopicVote({id: topic.vote.id, topicId: topic.id});
-            userVote.options = [{optionId: $scope.optionSelected.id}];
+            userVote.options =  $scope.optionsSelected;
             userVote.pid = $scope.formSmartId.pid;
             userVote.certificate = null;
             userVote.phoneNumber = null;
@@ -156,7 +158,7 @@ angular
                 .then(function (voteStatusResult) {
                     $log.debug('voteVoteSign succeeded', arguments);
                     ngDialog.closeAll({ // Pass Vote options, so we can show selected option for the unauthenticated User
-                        options: [{optionId: $scope.optionSelected.id}],
+                        options:  $scope.optionsSelected,
                         bdocUri: voteStatusResult.bdocUri
                     });
                 }, function (err) {

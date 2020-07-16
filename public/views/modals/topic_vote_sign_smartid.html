@@ -23,8 +23,8 @@
                 <div class="voting_tag_padding">
                     <div class="voting_tag">
                         <div class="table_cell">
-                            <span translate="MODALS.TOPIC_VOTE_SIGN_SMARTID_TXT_VOTING_FOR">YOU’RE VOTING:</span> <span class="bold" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + optionSelected.value | linky | uppercase}}"
-                                                                                                                 translate-default="{{optionSelected.value | linky}}"></span>
+                            <span translate="MODALS.TOPIC_VOTE_SIGN_SMARTID_TXT_VOTING_FOR">YOU’RE VOTING:</span> <span class="bold" ng-repeat="option in optionsSelected" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
+                                                                                                                 translate-default="{{option.value | linky}}"></span>
                         </div>
                     </div>
                 </div>

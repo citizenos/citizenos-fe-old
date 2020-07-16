@@ -46,6 +46,7 @@ angular
         $scope.$parent.$parent.voteForm = {
             options: [],
             maxChoices: 1,
+            minChoices: 1,
             extraOptions: angular.copy(CONF.extraOptions),
             delegationIsAllowed: false,
             endsAt: null,
@@ -55,20 +56,30 @@ angular
             errors: null
         };
 
-        $scope.$parent.$parent.optionsCountUp = function () {
+        $scope.$parent.$parent.optionsCountUp = function (type) {
             var options = _.filter($scope.voteForm.options, function (option) {
                 return !!option.value;
             });
-
-            if ($scope.$parent.$parent.voteForm.maxChoices < options.length)
+            if (type === 'min' && $scope.$parent.$parent.voteForm.minChoices < options.length) {
+                $scope.voteForm.minChoices++;
+                if ($scope.voteForm.minChoices > $scope.voteForm.maxChoices) {
+                    $scope.voteForm.maxChoices = $scope.voteForm.minChoices;
+                }
+            } else if ($scope.$parent.$parent.voteForm.maxChoices < options.length) {
                 $scope.voteForm.maxChoices++;
-                $scope.voteForm.minChoices = $scope.$parent.$parent.voteForm.maxChoices;
+            }
         };
 
-        $scope.$parent.$parent.optionsCountDown = function () {
-            if ($scope.$parent.$parent.voteForm.maxChoices > 1)
+        $scope.$parent.$parent.optionsCountDown = function (type) {
+            if (type === 'min' && $scope.$parent.$parent.voteForm.minChoices > 1) {
+                $scope.voteForm.minChoices--;
+            }
+            else if ($scope.$parent.$parent.voteForm.maxChoices > 1) {
                 $scope.voteForm.maxChoices--;
-                $scope.voteForm.minChoices = $scope.$parent.$parent.voteForm.maxChoices;
+                if ($scope.voteForm.minChoices > $scope.voteForm.maxChoices) {
+                    $scope.voteForm.minChoices = $scope.voteForm.maxChoices;
+                }
+            }
         };
 
         $scope.$parent.$parent.setVoteType = function (voteType) {

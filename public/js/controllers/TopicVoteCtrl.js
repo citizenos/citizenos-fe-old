@@ -2,29 +2,40 @@
 
 angular
     .module('citizenos')
-    .controller('TopicVoteCtrl', ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDelegation', 'ngDialog', function ($scope, $log, TopicVote, Vote, VoteDelegation, ngDialog) {
+    .controller('TopicVoteCtrl', ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDelegation', 'ngDialog', 'sNotification', function ($scope, $log, TopicVote, Vote, VoteDelegation, ngDialog, sNotification) {
         $log.debug('TopicVoteCtrl');
 
         $scope.topic.vote.topicId = $scope.topic.id;
-        $scope.topic.vote.$get();
+        $scope.$parent.$parent.userHasVoted = false;
+        $scope.topic.vote.$get().then(function () {
+            if ($scope.topic.vote && $scope.topic.vote.options) {
+                var options = $scope.topic.vote.options.rows;
+                for (var i in options) {
+                    options[i].optionId = options[i].id;
+                    if (options[i].selected) {
+                        $scope.$parent.$parent.userHasVoted = true;
+                    }
+                }
+            }
+        });
+
         $scope.$parent.$parent.showVoteArea = true;
         $scope.$parent.$parent.voteTypes = Vote.VOTE_TYPES;
         $scope.$parent.$parent.voteAuthTypes = Vote.VOTE_AUTH_TYPES;
 
-        $scope.$parent.$parent.getUserHasVoted = function () {
-            if ($scope.topic.vote && $scope.topic.vote.options) {
-                var options = $scope.topic.vote.options.rows;
-                for (var i in options) {
-                    if (options[i].selected) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        };
-
         $scope.$parent.$parent.selectOption = function (option) {
             if ($scope.topic.vote.type === Vote.VOTE_TYPES.multiple) {
+                option.optionId = option.id;
+
+                var selected = _.filter($scope.topic.vote.options.rows, function (option) {
+                    return !!option.selected;
+                });
+
+                var isSelected = _.find(selected, function (item) {
+                    if (item.id === option.id) return item;
+                });
+
+                if (selected.length >= $scope.topic.vote.maxChoices && !isSelected) return;
                 option.selected=!option.selected;
             } else {
                 $scope.$parent.$parent.doVote(option);
@@ -32,8 +43,32 @@ angular
 
         };
 
+        $scope.$parent.$parent.canSubmit = function () {
+            var options = _.filter($scope.topic.vote.options.rows, function (option) {
+                return !!option.selected;
+            });
+
+            if (options.length > $scope.topic.vote.maxChoices || options.length < $scope.topic.vote.minChoices)
+                return false;
+
+            return true;
+        };
+
         $scope.$parent.$parent.doVote = function (option) {
+            var options = [];
             if (!$scope.topic.canVote()) return;
+            if (!option) {
+                options = _.filter($scope.topic.vote.options.rows, function (option) {
+                    return !!option.selected;
+                });
+            } else {
+                options = [option];
+            }
+            if (options.length > $scope.topic.vote.maxChoices || options.length < $scope.topic.vote.minChoices) {
+                sNotification.addError('MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS');
+                return;
+            }
+
             if ($scope.topic.vote.authType === $scope.voteAuthTypes.hard) {
                 ngDialog
                     .open({
@@ -41,7 +76,7 @@ angular
                         controller: 'TopicVoteSignCtrl',
                         data: {
                             topic: $scope.topic,
-                            option: option
+                            options: options
                         },
                         preCloseCallback: function (data) {
                             if (data) {
@@ -65,7 +100,7 @@ angular
                 return;
             } else {
                 var userVote = new TopicVote({id: $scope.topic.vote.id, topicId: $scope.topic.id});
-                userVote.options = [{optionId: option.id}];
+                userVote.options = options
                 userVote
                     .$save()
                     .then(function (data) {
