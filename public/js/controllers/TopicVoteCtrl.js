@@ -96,6 +96,7 @@ angular
                                             });
                                         });
                                         $scope.topic.vote.downloads = {bdocVote: data.bdocUri};
+                                        $scope.$parent.$parent.userHasVoted = true;
                                     });
                                 return true;
                             }
