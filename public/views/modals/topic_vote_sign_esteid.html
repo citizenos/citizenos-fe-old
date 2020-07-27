@@ -20,10 +20,10 @@
                 <div class="clearer"></div>
 
                 <div class="voting_tag_padding">
-                    <div class="voting_tag">
-                        <div class="table_cell">
-                            <span translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_TXT_VOTING_FOR">YOU’RE VOTING:</span> <span ng-repeat="option in optionsSelected" class="bold" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
-                                                                                                                 translate-default="{{option.value | linky}}"></span>
+                    <span translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_TXT_VOTING_FOR">YOU’RE VOTING:</span>
+                    <div class="voting_tag" ng-repeat="option in optionsSelected">
+                        <div class="table_cell" >
+                            <span class="bold" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}" translate-default="{{option.value | linky}}"></span>
                         </div>
                     </div>
                 </div>

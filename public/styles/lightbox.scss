@@ -1260,9 +1260,32 @@
             }
 
             #lightbox_header {
+                position: relative;
+
+                #lightbox_close {
+                    height: 54px;
+                    border-radius: 0 4px;
+                    position: absolute;
+                    float: none;
+                    right: 0;
+                }
 
                 #lightbox_header_text {
                     height: 80px !important;
+                    font-weight: 400;
+                    float: left;
+                    padding: 17px 60px 17px 20px;
+                    height: 55px;
+                    overflow: hidden;
+                    margin-bottom: 20px;
+
+                    .title {
+                        opacity: 0.7;
+                        font-weight: 700;
+                        font-size: 16px;
+                        padding-right: 60px;
+                        position: absolute;
+                    }
 
                     .title_description {
                         margin-top: 25px;
@@ -1286,6 +1309,7 @@
                         padding: 0 10px;
                         box-sizing: border-box;
                         border: solid 1px $aqua_marine_border;
+                        margin-top: 10px;
                     }
                 }
             }
