@@ -277,7 +277,6 @@ angular
         };
 
         Topic.prototype.togglePin = function () {
-            console.log('TOGGLE PIN', this);
             var self = this;
             if (!self.pinned) {
                 return this.$addToPinned()

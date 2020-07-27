@@ -107,6 +107,7 @@ angular
         };
 
         $scope.topic.padUrl = $sce.trustAsResourceUrl($scope.topic.padUrl);
+        $scope.topic.description = $sce.trustAsHtml($scope.topic.description);
         $scope.app.editMode = ($stateParams.editMode && $stateParams.editMode === 'true') || false;
         $scope.showInfoEdit = $scope.app.editMode;
         $scope.showVoteArea = false;

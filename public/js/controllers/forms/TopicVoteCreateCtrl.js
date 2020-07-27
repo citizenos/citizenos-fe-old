@@ -45,6 +45,8 @@ angular
 
         $scope.$parent.$parent.voteForm = {
             options: [],
+            maxChoices: 1,
+            minChoices: 1,
             extraOptions: angular.copy(CONF.extraOptions),
             delegationIsAllowed: false,
             endsAt: null,
@@ -54,10 +56,37 @@ angular
             errors: null
         };
 
+        $scope.$parent.$parent.optionsCountUp = function (type) {
+            var options = _.filter($scope.voteForm.options, function (option) {
+                return !!option.value;
+            });
+            if (type === 'min' && $scope.$parent.$parent.voteForm.minChoices < options.length) {
+                $scope.voteForm.minChoices++;
+                if ($scope.voteForm.minChoices > $scope.voteForm.maxChoices) {
+                    $scope.voteForm.maxChoices = $scope.voteForm.minChoices;
+                }
+            } else if ($scope.$parent.$parent.voteForm.maxChoices < options.length) {
+                $scope.voteForm.maxChoices++;
+            }
+        };
+
+        $scope.$parent.$parent.optionsCountDown = function (type) {
+            if (type === 'min' && $scope.$parent.$parent.voteForm.minChoices > 1) {
+                $scope.voteForm.minChoices--;
+            }
+            else if ($scope.$parent.$parent.voteForm.maxChoices > 1) {
+                $scope.voteForm.maxChoices--;
+                if ($scope.voteForm.minChoices > $scope.voteForm.maxChoices) {
+                    $scope.voteForm.minChoices = $scope.voteForm.maxChoices;
+                }
+            }
+        };
+
         $scope.$parent.$parent.setVoteType = function (voteType) {
             if (voteType == $scope.voteTypes.multiple) {
                 $scope.voteForm.voteType = voteType;
                 $scope.voteForm.options = angular.copy(CONF.defaultOptions.multiple);
+                $scope.voteForm.maxChoices = 1;
             } else {
                 $scope.voteForm.voteType = $scope.voteTypes.regular;
                 $scope.voteForm.options = angular.copy(CONF.defaultOptions.regular);
@@ -90,6 +119,8 @@ angular
             vote.delegationIsAllowed = $scope.voteForm.delegationIsAllowed;
             vote.type = $scope.voteForm.voteType;
             vote.authType = $scope.voteForm.authType;
+            vote.maxChoices = $scope.voteForm.maxChoices;
+            vote.minChoices = $scope.voteForm.minChoices;
 
             for (var o in $scope.voteForm.extraOptions) {
                 var option = $scope.voteForm.extraOptions[o];

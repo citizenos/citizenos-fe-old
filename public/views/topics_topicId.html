@@ -321,7 +321,7 @@
 
                         </div>
 
-                        <div class="vote_casting_message with_upper_right_links" ng-if="getUserHasVoted() && !topic.hasVoteEnded()">
+                        <div class="vote_casting_message with_upper_right_links" ng-if="userHasVoted && !topic.hasVoteEnded()">
 
                             <div class="message_header">
                                 <div class="message_title" translate="VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED">Your vote has been registered!</div>
@@ -340,13 +340,23 @@
 
                         </div>
 
+                        <div class="vote_casting_message" ng-if="topic.vote.type === 'multiple'">
+                            <div class="message_content" translate="VIEWS.TOPICS_TOPICID.TXT_YOU_CAN_CHOOSE_OPTIONS" translate-values="{maxChoices: topic.vote.maxChoices}">This is a multiple choice vote. You can choose max 2 options that align with your view.</div>
+                        </div>
 
                         <div class="voting_platform_buttons" ng-if="!topic.hasVoteEnded()">
 
-                            <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? '' : 'active'" ng-repeat="(key, option) in topic.vote.options.rows"
-                                 ng-click="doVote(option)">
+                            <div class="voting_button" ng-click="selectOption(option)" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active': ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                 <div class="table_cell left_side">
-                                    {{getOptionLetter(key)}}.
+                                    <label class="checkcontainer" ng-if="topic.vote.type ==='multiple'">
+                                        <input type="checkbox" class="vote_option_radio" checked="(option.selected) ? 'checked: ''" >
+                                        <span class="option_checkbox"></span>
+                                    </label>
+                                    <label class="checkcontainer" ng-if="topic.vote.type ==='regular'">
+                                        <input type="radio" class="vote_option_radio">
+                                        <span class="option_radio"></span>
+                                    </label>
+
                                 </div>
                                 <div class="table_cell right_side" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
                                      translate-default="{{option.value | linky}}"></div>
@@ -356,8 +366,8 @@
 
                         <div class="delegation_section" ng-if="!topic.hasVoteEnded()">
 
-                            <div class="voting_button voting_button_blue" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)"
-                                 ng-class="topic.vote.delegation ? '' : 'active'" ng-click="doDelegate()">
+                            <div class="voting_button" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)"
+                                 ng-class="topic.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
                                 <div class="table_cell left_side">
                                     <div class="sprite sprite-icon-delegate2x"></div>
                                 </div>
@@ -395,7 +405,12 @@
                             </div>
 
                         </div>
-
+                        <div class="line lightest_line multiplechoice" ng-if="topic.vote.type ==='multiple'"></div>
+                        <div class="vote_multiple_submit_section" ng-if="!topic.hasVoteEnded() && topic.vote.type ==='multiple'">
+                            <div class="table_cell" cos-disabled="!canSubmit()">
+                                <div class="blue_button" ng-click="doVote()" translate="VIEWS.TOPICS_TOPICID.VOTE_SUBMIT">Submit your vote</div>
+                            </div>
+                        </div>
 
                         <!-- Statistics graph start -->
                         <div class="vote_casting_message" ng-if="topic.canUpdate() && topic.hasVoteEnded()">
@@ -522,7 +537,11 @@
                             <div class="voting_platform_buttons_wrap">
 
                                 <div class="table_cell">
-                                    <div class="voting_platform_button" ng-click="setVoteType(voteTypes.regular)" ng-class="voteForm.voteType == 'regular'? '' : 'active'">
+                                    <div class="voting_platform_radio_wrap" ng-class="voteForm.voteType == 'regular'? 'active' : ''">
+                                        <div class="check"></div>
+                                        <input class="voting_platform_radio" type="radio" ng-checked="voteForm.voteType=='regular'" name="voteTypeRegular"/>
+                                    </div>
+                                    <div class="voting_platform_button" ng-click="setVoteType(voteTypes.regular)" ng-class="voteForm.voteType == 'regular'? 'active' : ''">
                                         <div class="table_cell">
                                             <div class="button_title" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_REGULAR">REGULAR</div>
                                             <div class="button_description" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_REGULAR_EXPLANATION">(ie. yes/no/neutral/…)</div>
@@ -531,7 +550,11 @@
                                 </div>
 
                                 <div class="table_cell">
-                                    <div class="voting_platform_button" ng-click="setVoteType(voteTypes.multiple)" ng-class="voteForm.voteType == 'multiple' ? '' : 'active'">
+                                    <div class="voting_platform_radio_wrap" ng-class="voteForm.voteType == 'multiple' ? 'active' : ''">
+                                        <div class="check"></div>
+                                        <input class="voting_platform_radio" type="radio" ng-checked="voteForm.voteType=='multiple'" name="voteTypeMultiple"/>
+                                    </div>
+                                    <div class="voting_platform_button" ng-click="setVoteType(voteTypes.multiple)" ng-class="voteForm.voteType == 'multiple' ? 'active' : ''">
                                         <div class="table_cell">
                                             <div class="button_title" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_MULTIPLECHOICE">MULTIPLECHOICE</div>
                                             <div class="button_description" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_MULTIPLECHOICE_EXPLANATION">(ie. A/B/C/D/…)</div>
@@ -641,7 +664,27 @@
 
                                 </div>
                             </div>
+                            <div class="vote_options_count_wrap" ng-if="voteForm.voteType == 'multiple'">
+                                <p translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_DESCRIPTION_CHOICE_RANGE">Define up to how many choices a person can vote for. For example, you have 4 choices but you allow people to choose up to 2 out of them. You can only add as many as you have choices to choose from.</p>
 
+                                <div class="options_selector_wrapper">
+                                    <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_MIN_CHOICES">Min choices:</div>
+                                    <div class="options_count_input_wrap">
+                                        <div class="gray_button options_count_input_subtract" ng-click="optionsCountDown('min')">-</div>
+                                        <input class="options_count_input" type="number" ng-min="1" ng-model="voteForm.minChoices"/>
+                                        <div class="gray_button options_count_input_add" ng-click="optionsCountUp('min')">+</div>
+                                    </div>
+                                </div>
+                                <div class="options_selector_wrapper">
+                                    <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_MAX_CHOICES">Max choices:</div>
+                                    <div class="options_count_input_wrap">
+                                        <div class="gray_button options_count_input_subtract" ng-click="optionsCountDown()">-</div>
+                                        <input class="options_count_input" type="number" ng-min="1" ng-model="voteForm.maxChoices"/>
+                                        <div class="gray_button options_count_input_add" ng-click="optionsCountUp()">+</div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
                         <div class="line lightest_line" ng-if="voteForm.voteType"></div>
