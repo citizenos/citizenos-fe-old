@@ -461,44 +461,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         margin-left: calc(100% - 140px)!important;
     }
 }
-/*
-.comment-icon {
-    height: 24px!important;
-    width: 24px!important;
-    content: ' '!important;
-    background: #FFC600;
 
-    .comment-icon-counter {
-        height: 18px;
-        width: 100%;
-        color: #252525;
-        font-family: "Noto Sans";
-        font-size: 13px;
-        font-weight: bold;
-        line-height: 24px;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-.comment-icon:before {
-    display: none;
-}
-
-.comment-icon:after {
-    content: ' ';
-    position: relative;
-    height: 0;
-    right: auto;
-    bottom: auto;
-    width: 0;
-    left: 3px;
-    top: -5px;
-    border: 8px solid;
-    border-color: transparent #FFC600 transparent transparent;
-    z-index: -1;
-}
-*/
 .comment-modal {
     width: max-content;
     max-width: 100% !important;
@@ -1229,6 +1192,9 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
             pointer-events: none;
         }
     }
+}
+.vote {
+    background: #2eecb4;
 }
 
 #footNotePopup {
