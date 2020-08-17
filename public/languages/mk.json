@@ -63,6 +63,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Гласањето ќе заврши, понатамошно гласање би било невозможно.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "НЕ, НЕ ЈА ЗАТВОРАЈ ТЕМАТА",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "ДА, ЗАТВОРИ ЈА ТЕМАТА",
+    "TOPIC_COMMENT_REACTIONS_HEADING": "Topic argument reactions",
     "TOPIC_DELETE_CONFIRM_HEADING": "Избриши ја темата",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Дали сте сигурни дека сакате да ја избришете темата?",
     "TOPIC_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
