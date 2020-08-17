@@ -63,6 +63,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Голосование будет закрыто и новые голоса не будут засчитаны.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "НЕТ, ОСТАВИТЬ ТЕМУ ОТКРЫТОЙ",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "ДА, ЗАКРЫТЬ ТЕМУ",
+    "TOPIC_COMMENT_REACTIONS_HEADING": "Topic argument reactions",
     "TOPIC_DELETE_CONFIRM_HEADING": "Удалить тему",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Вы точно хотите удалить эту тему?",
     "TOPIC_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
