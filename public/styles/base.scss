@@ -192,6 +192,17 @@ table, .pretend_table {
     height: 40px;
 }
 
+.reaction_wrap {
+    display: table-cell;
+    width: 100%;
+
+    .reaction{
+        position: relative;
+        float: right;
+        top: 8px;
+    }
+}
+
 .user_list {
     td, .pretend_td {
         padding: 5px 0;

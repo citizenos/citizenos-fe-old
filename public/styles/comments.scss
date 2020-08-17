@@ -508,14 +508,29 @@
                                     margin-right: 8px;
                                     opacity: 0.44;
                                 }
-                                &:hover {
-                                    .sprite {
-                                        opacity: 1;
-                                        @include tablet {
-                                            opacity: 0.44;
+
+                                .table_cell {
+                                    &:hover {
+                                        .sprite {
+                                            opacity: 1;
+                                            @include tablet {
+                                                opacity: 0.44;
+                                            }
                                         }
                                     }
                                 }
+
+                                &.active {
+                                    .table_cell {
+                                        .sprite {
+                                            opacity: 1;
+                                            @include tablet {
+                                                opacity: 0.44;
+                                            }
+                                        }
+                                    }
+                                }
+
                             }
 
                             .exclamation {

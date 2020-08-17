@@ -46,6 +46,7 @@ angular
             '/views/modals/topic_attachments.html',
             '/views/modals/topic_close_confirm.html',
             '/views/modals/topic_comment_moderate.html',
+            '/views/modals/topic_comment_reactions.html',
             '/views/modals/topic_comment_report.html',
             '/views/modals/topic_delete_comment.html',
             '/views/modals/topic_delete_confirm.html',

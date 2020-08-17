@@ -102,6 +102,20 @@ angular
                         }
                     }
                 },
+                votes: {
+                    method: 'GET',
+                    url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/votes'),
+                    transformRequest: function (data) {
+                        return angular.toJson(data);
+                    },
+                    transformResponse: function (data, headerGetter, status) {
+                        if (status > 0 && status < 400) {
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
+                },
                 report: {
                     method: 'POST',
                     params: {
