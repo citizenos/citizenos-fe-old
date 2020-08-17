@@ -63,6 +63,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Die Abstimmung wird beendet, weitere Abstimmung wird nicht möglich sein.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "NEIN, DAS THEMA OFFEN LASSEN",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "JA, DAS THEMA SCHLIEßEN",
+    "TOPIC_COMMENT_REACTIONS_HEADING": "Topic argument reactions",
     "TOPIC_DELETE_CONFIRM_HEADING": "Thema löschen",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Sind Sie sicher, dass Sie dieses Thema löschen möchten?",
     "TOPIC_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
