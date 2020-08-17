@@ -63,6 +63,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Balsošana beigsies, pēc tam balsot nebūs iespējams.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "NĒ, ATSTĀT TEMATU ATVĒRTU",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "JĀ, SLĒGT TEMATU",
+    "TOPIC_COMMENT_REACTIONS_HEADING": "Topic argument reactions",
     "TOPIC_DELETE_CONFIRM_HEADING": "Dzēst tematu",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Vai tiešām vēlaties dzēst šo tematu?",
     "TOPIC_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
