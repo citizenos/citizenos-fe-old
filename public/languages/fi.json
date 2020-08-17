@@ -63,6 +63,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Äänestys päättyy, eikä äänestäminen ole enää mahdollista.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "EN, ÄLÄ SULJE AIHETTA",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "KYLLÄ, SULJE AIHE",
+    "TOPIC_COMMENT_REACTIONS_HEADING": "Topic argument reactions",
     "TOPIC_DELETE_CONFIRM_HEADING": "Poista aihe",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Haluatko varmasti poistaa tämän aiheen?",
     "TOPIC_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",

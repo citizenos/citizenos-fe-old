@@ -63,6 +63,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Voting will end, further voting will not be possible.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "NO, DON'T CLOSE THE TOPIC",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "YES, CLOSE THE TOPIC",
+    "TOPIC_COMMENT_REACTIONS_HEADING": "Topic argument reactions",
     "TOPIC_DELETE_CONFIRM_HEADING": "Delete topic",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to delete this topic?",
     "TOPIC_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",

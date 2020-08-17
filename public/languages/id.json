@@ -63,6 +63,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Masa pemilihan akan berakhir, pengumutan suara tidak dapat dilakukan kembali.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "TIDAK, JANGAN TUTUP TOPIK",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "YA, TUTUP TOPIK",
+    "TOPIC_COMMENT_REACTIONS_HEADING": "Topic argument reactions",
     "TOPIC_DELETE_CONFIRM_HEADING": "Hapus topik",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Apakah Anda yakin ingin menghapus topik ini?",
     "TOPIC_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",

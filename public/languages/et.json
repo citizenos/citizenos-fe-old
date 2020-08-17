@@ -63,6 +63,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "Hääletamine suletakse, uued hääled ei lähe enam arvesse.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "EI, JÄTAN TEEMA AVATUKS",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "JAH, SULGEN TEEMA",
+    "TOPIC_COMMENT_REACTIONS_HEADING": "Topic argument reactions",
     "TOPIC_DELETE_CONFIRM_HEADING": "Kustuta teema",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Kas tahad kindlasti selle teema kustutada?",
     "TOPIC_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",

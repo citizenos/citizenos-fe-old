@@ -63,6 +63,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "A votação será encerrada, não será mais possível votar.",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "NÃO, NÃO FECHE ESSE TÓPICO",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "SIM, FECHE O TÓPICO",
+    "TOPIC_COMMENT_REACTIONS_HEADING": "Topic argument reactions",
     "TOPIC_DELETE_CONFIRM_HEADING": "Excluir tópico",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Tem certeza de que deseja excluir esse tópico?",
     "TOPIC_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
