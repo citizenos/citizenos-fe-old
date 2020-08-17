@@ -192,6 +192,10 @@ table, .pretend_table {
     height: 40px;
 }
 
+.reaction_name {
+    @extend .table_cell;
+    min-width: 260px;
+}
 .reaction_wrap {
     display: table-cell;
     width: 100%;

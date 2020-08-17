@@ -104,7 +104,12 @@ angular
                 },
                 votes: {
                     method: 'GET',
-                    url: sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/votes'),
+                    url: sLocation.getAbsoluteUrlApi('/api/users/:userId/topics/:topicId/comments/:commentId/votes'),
+                    params: {
+                        topicId: '@topicId',
+                        commentId: '@id',
+                        userId: sAuth.getUrlUserId
+                    },
                     transformRequest: function (data) {
                         return angular.toJson(data);
                     },
