@@ -80,7 +80,6 @@ angular
         };
 
         $scope.doSaveAttachment = function (attachment) {
-            console.log(attachment);
             if (attachment.file) {
                 return sUpload
                     .upload(attachment.file, $scope.topic.id)
