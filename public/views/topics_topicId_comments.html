@@ -614,21 +614,21 @@
                                     <div class="v_line"></div>
                                 </div>
                             </div>
-                            <div class="thumbs_up" ng-if="app.user.loggedIn">
+                            <div class="thumbs_up" ng-class="{'active': reply.votes.up.selected}" ng-if="app.user.loggedIn">
                                 <div class="table_cell" ng-click="doCommentVote(reply, 1)">
-                                    <div class="sprite sprite-icon-thumbsup-hover2x">
+                                    <div class="sprite sprite-icon-thumb-up">
                                     </div>
                                 </div>
-                                <div class="table_cell"  ng-click="doShowVotersList(comment)">
+                                <div class="table_cell"  ng-click="doShowVotersList(reply)">
                                     {{reply.votes.up.count}}
                                 </div>
                             </div>
-                            <div class="thumbs_down" ng-if="app.user.loggedIn">
+                            <div class="thumbs_down" ng-class="{'active': reply.votes.down.selected}" ng-if="app.user.loggedIn">
                                 <div class="table_cell" ng-click="doCommentVote(reply, -1)">
-                                    <div class="sprite sprite-icon-thumbsdown-hover2x">
+                                    <div class="sprite sprite-icon-thumb-down">
                                     </div>
                                 </div>
-                                <div class="table_cell" ng-click="doShowVotersList(comment)">
+                                <div class="table_cell" ng-click="doShowVotersList(reply)">
                                     {{reply.votes.down.count}}
                                 </div>
                             </div>
