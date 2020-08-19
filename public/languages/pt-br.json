@@ -627,6 +627,7 @@
       "BAR_SIGNING_DEADLINE": "Prazo final da votação:",
       "BAR_CURRENT_PHASE": "Status atual:",
       "TAB_VIEW": "Visualizar",
+      "TAB_EDIT": "Edit",
       "TAB_VOTE": "Voto",
       "TAB_FOLLOW_UP": "Acompanhamento",
       "TAB_INFO_TXT_EDIT": "Agora você está no modo de edição. Você pode adicionar texto ou fazer alterações nele. Todas as alterações são salvas automaticamente.",
