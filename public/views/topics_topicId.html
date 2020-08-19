@@ -104,7 +104,8 @@
                         <div class="tabs_train" slide-controller identifier="tabsTrain" dimensions>
                             <div class="tab" ui-sref="topics.view({topicId: topic.id, commentId: null})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
                                  dimensions>
-                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
+                                <div ng-if="!app.editMode" class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
+                                <div ng-if="app.editMode" class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_EDIT">EDIT</div>
                             </div>
                             <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId, commentId: null})"
                                  ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" dimensions>
