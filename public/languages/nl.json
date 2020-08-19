@@ -627,6 +627,7 @@
       "BAR_SIGNING_DEADLINE": "Sluitingsdatum voor stemming:",
       "BAR_CURRENT_PHASE": "Huidige status:",
       "TAB_VIEW": "Weergeven",
+      "TAB_EDIT": "Edit",
       "TAB_VOTE": "Stemmen",
       "TAB_FOLLOW_UP": "Opvolgen",
       "TAB_INFO_TXT_EDIT": "U bent nu in e bewerkingsmodus. U kunt tekst toevoegen of wijzigingen aanbrengen. Alle wijzigingen worden automatisch opgeslagen.",
