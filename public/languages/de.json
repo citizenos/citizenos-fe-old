@@ -627,6 +627,7 @@
       "BAR_SIGNING_DEADLINE": "Abstimmungsfrist:",
       "BAR_CURRENT_PHASE": "Aktueller Status:",
       "TAB_VIEW": "Ansicht",
+      "TAB_EDIT": "Edit",
       "TAB_VOTE": "Abstimmen",
       "TAB_FOLLOW_UP": "Nachverfolgung",
       "TAB_INFO_TXT_EDIT": "Sie sind jetzt im Bearbeitungsmodus. Sie können Text hinzufügen oder Änderungen vorschlagen. Alle Änderungen werden automatisch gespeichert.",
