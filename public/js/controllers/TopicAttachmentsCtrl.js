@@ -49,28 +49,27 @@ angular
             }
         };
 
+        function handleAttachment (attachment) {
+            if (attachment){
+                $scope.appendAttachment(attachment);
+            }
+        }
         $scope.dropboxSelect = function () {
             sAttachment
                 .dropboxSelect()
-                .then(function (attachment) {
-                    $scope.appendAttachment(attachment);
-                });
+                .then(handleAttachment);
         };
 
         $scope.oneDriveSelect = function () {
             sAttachment
                 .oneDriveSelect()
-                .then(function (attachment) {
-                    $scope.appendAttachment(attachment);
-                });
+                .then(handleAttachment);
         };
 
         $scope.googleDriveSelect = function () {
             sAttachment
                 .googleDriveSelect()
-                .then(function (attachment) {
-                    $scope.appendAttachment(attachment);
-                });
+                .then(handleAttachment);
         };
 
         $scope.appendAttachment = function (attachment) {
