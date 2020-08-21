@@ -1055,7 +1055,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Името на фајлот е недефинирано!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Лозинката не се совпаѓа со потврдената лозинка.",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Достигнато е ограничувањето на бројот нови членови",
-  "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Selected options count does not match vote settings!",
+  "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Избраниот број оции не е во согласност со поставките за гласање!",
   "ep_comments_page.comment": "Додај коментар",
   "ep_comments_page.comments": "Коментари",
   "ep_comments_page.add_comment.title": "Додади нов коментар на селекцијата",
