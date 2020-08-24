@@ -690,7 +690,7 @@
       "VOTE_SUBMIT": "Enviar voto",
       "TXT_YOU_CAN_CHOOSE_OPTIONS": "Este es un voto de selección múltiple. Puede elegir un máximo de {{maxChoices}} opciones que se correspondan con su opinión.",
       "MSG_CHOOSE_AT_LEAST_OPTIONS": "Necesita seleccionar como mínimo {{optionsCount}} opciones",
-      "VOTE_TXT_DESCRIPTION_CHOICE_RANGE": "Especifique por cuántas opciones puede votar un usuario (por ejemplo, hay 4 opciones, pero permite que los usuarios seleccionen 2 opciones como máximo). Como máximo, solo se puede agregar el número de opciones que haya disponibles.",
+      "VOTE_TXT_DESCRIPTION_CHOICE_RANGE": "Especifique por cuántas opciones puede votar un usuario (por ejemplo, hay 4 opciones, pero permite que los usuarios seleccionen un máximo de 2 opciones). No se puede agregar un número superior a las opciones disponibles.",
       "VOTE_LBL_MIN_CHOICES": "Número mínimo de opciones:",
       "VOTE_LBL_MAX_CHOICES": "Número máximo de opciones:",
       "LNK_TOPIC_DETAILS": "Detalles del tema",
