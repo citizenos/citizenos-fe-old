@@ -104,7 +104,8 @@
                         <div class="tabs_train" slide-controller identifier="tabsTrain" dimensions>
                             <div class="tab" ui-sref="topics.view({topicId: topic.id, commentId: null})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
                                  dimensions>
-                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
+                                <div ng-if="!app.editMode" class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
+                                <div ng-if="app.editMode" class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_EDIT">EDIT</div>
                             </div>
                             <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId, commentId: null})"
                                  ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" dimensions>
@@ -346,7 +347,7 @@
 
                         <div class="voting_platform_buttons" ng-if="!topic.hasVoteEnded()">
 
-                            <div class="voting_button" ng-click="selectOption(option)" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active': ''" ng-repeat="(key, option) in topic.vote.options.rows">
+                            <div class="voting_button" ng-click="selectOption(option)" ng-if="topic.canVote()" ng-class="(option.selected) ? 'active': ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                 <div class="table_cell left_side">
                                     <label class="checkcontainer" ng-if="topic.vote.type ==='multiple'">
                                         <input type="checkbox" class="vote_option_radio" checked="(option.selected) ? 'checked: ''" >
@@ -366,7 +367,7 @@
 
                         <div class="delegation_section" ng-if="!topic.hasVoteEnded()">
 
-                            <div class="voting_button" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)"
+                            <div class="voting_button" ng-if="(topic.canDelegate() && topic.vote.authType !== voteAuthTypes.hard)"
                                  ng-class="topic.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
                                 <div class="table_cell left_side">
                                     <div class="sprite sprite-icon-delegate2x"></div>
@@ -916,7 +917,7 @@
                                             <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment" href="{{attachment.link}}">{{attachment.name}} <span
                                                 class="btn blue_button file_type">{{attachment.type}}</span></a>
                                         </div>
-                                        <div ui-sref="topics.view.files" cos-disabled="!topic.canEdit()" class="blue_link info_section_add_attachments"
+                                        <div ui-sref="topics.view.files" ng-if="topic.canEdit()" class="blue_link info_section_add_attachments"
                                              translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files
                                         </div>
                                     </div>
@@ -973,27 +974,27 @@
                         <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.NAV_HEADING">OPTIONS</div>
                     </div>
                     <div class="options_content">
-                        <div ng-if="!(topic.vote.id && topic.status===STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToVote()" ng-click="sendToVote()"
+                        <div ng-if="!(topic.vote.id && topic.status===STATUSES.voting) && topic.canSendToVote()" class="blue_link" ng-click="sendToVote()"
                              translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_VOTE">Send to vote
                         </div>
-                        <div ng-if="(topic.vote.id && topic.status===STATUSES.voting)" class="blue_link" cos-disabled="!topic.canSendToFollowUp()" ng-click="sendToFollowUp()"
+                        <div ng-if="(topic.vote.id && topic.status===STATUSES.voting && topic.canSendToFollowUp())" class="blue_link" ng-click="sendToFollowUp()"
                              translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow up
                         </div>
-                        <div class="blue_link" cos-disabled="!topic.canUpdate()" ng-click="closeTopic()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_CLOSE_TOPIC">Close topic</div>
+                        <div class="blue_link" ng-if="topic.canUpdate()" ng-click="closeTopic()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_CLOSE_TOPIC">Close topic</div>
                         <div class="line lightest_line"></div>
-                        <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SETTINGS">Settings</div>
-                        <div class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_CATEGORIES">Categories</div>
-                        <div class="blue_link" ui-sref="topics.view.invite({topicId: topic.id, tab: 'invite'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_INVITE_USERS">Invite users</div>
-                        <div class="blue_link" ui-sref="topics.view.invite({topicId: topic.id, tab: 'share'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SHARE">Share topic</div>
+                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SETTINGS">Settings</div>
+                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_CATEGORIES">Categories</div>
+                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.invite({topicId: topic.id, tab: 'invite'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_INVITE_USERS">Invite users</div>
+                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.invite({topicId: topic.id, tab: 'share'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SHARE">Share topic</div>
                         <div ng-if="topic.visibility === VISIBILITY.public && !topic.report" class="blue_link" ui-sref="topics.view.report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report
                             topic
                         </div>
-                        <div class="line lightest_line"></div>
-                        <div class="blue_link" cos-disabled="!topic.canEditDescription()" ng-click="app.doToggleEditMode()"
+                        <div class="line lightest_line" ng-if="topic.canUpdate()"></div>
+                        <div class="blue_link" ng-if="topic.canEditDescription()" ng-click="app.doToggleEditMode()"
                              ng-if="!app.editMode" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC">Edit topic
                         </div>
                         <div class="blue_link" ng-if="app.editMode" ng-click="app.doToggleEditMode()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_VIEW_TOPIC">Edit topic</div>
-                        <div cos-disabled="!topic.canLeave()" class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
+                        <div ng-if="topic.canLeave()" class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
                     </div>
                 </div>
                 <div class="options_wrap" ng-if="wWidth > 767">
@@ -1007,7 +1008,7 @@
                             <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link" href="{{attachment.link}}">{{attachment.name}} <span class="btn blue_button file_type">{{attachment.type}}</span></a>
                         </div>
                         <div class="line lightest_line" ng-if="topicAttachments.length"></div>
-                        <div ui-sref="topics.view.files" cos-disabled="!topic.canEdit()" class="blue_link" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
+                        <div ui-sref="topics.view.files" ng-if="topic.canEdit()" class="blue_link" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
                     </div>
                 </div>
             </div>

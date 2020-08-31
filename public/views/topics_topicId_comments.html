@@ -298,7 +298,7 @@
                         <!-- END COMMENT EDITS -->
                         <!-- COMMENT FOOTER -->
                         <div class="argument_footer">
-                            <div cos-disabled="!!comment.deletedAt">
+                            <div ng-if="!comment.deletedAt">
                                 <div class="link_wrap">
                                     <div class="table_cell">
                                         <div class="blue_link black_text" ng-click="comment.showReply=!comment.showReply" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_REPLY">
@@ -372,7 +372,7 @@
                                 to comment
                             </h3>
                         </div>
-                        <form cos-disabled="!app.user.loggedIn" name="argumentConReply">
+                        <form ng-if="app.user.loggedIn" name="argumentConReply">
                             <textarea id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-keyup="commentTextLengthCheck(form, form.editText)"
                                       ng-class="{'error_input': form.errors.text}"
                                       placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" maxlength="{{maxLengthText}}" focus-if></textarea>
@@ -483,7 +483,7 @@
                         <!-- END REPLY HEADER -->
                         <!-- REPLY EDIT-->
                         <div class="argument_edit_wrap" ng-if="reply.showEdit" ng-controller="TopicCommentCreateFormCtrl">
-                            <form cos-disabled="!app.user.loggedIn" name="replyEdit">
+                            <form ng-if="app.user.loggedIn" name="replyEdit">
                                 <div class="post_argument_overlay" ng-if="!app.user.loggedIn">
                                     <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
                                         <div class="blue_link">log in</div>
@@ -601,7 +601,7 @@
                         </div>
                         <!-- END REPLY DELETED -->
                         <!-- REPLY FOOTER -->
-                        <div class="argument_footer reply_footer" cos-disabled="!!reply.deletedAt">
+                        <div class="argument_footer reply_footer" ng-if="!reply.deletedAt">
                             <div class="link_wrap">
                                 <div class="table_cell">
                                     <div class="blue_link black_text" ng-click="reply.showReply = !reply.showReply"
@@ -614,21 +614,21 @@
                                     <div class="v_line"></div>
                                 </div>
                             </div>
-                            <div class="thumbs_up" ng-if="app.user.loggedIn">
+                            <div class="thumbs_up" ng-class="{'active': reply.votes.up.selected}" ng-if="app.user.loggedIn">
                                 <div class="table_cell" ng-click="doCommentVote(reply, 1)">
-                                    <div class="sprite sprite-icon-thumbsup-hover2x">
+                                    <div class="sprite sprite-icon-thumb-up">
                                     </div>
                                 </div>
-                                <div class="table_cell"  ng-click="doShowVotersList(comment)">
+                                <div class="table_cell"  ng-click="doShowVotersList(reply)">
                                     {{reply.votes.up.count}}
                                 </div>
                             </div>
-                            <div class="thumbs_down" ng-if="app.user.loggedIn">
+                            <div class="thumbs_down" ng-class="{'active': reply.votes.down.selected}" ng-if="app.user.loggedIn">
                                 <div class="table_cell" ng-click="doCommentVote(reply, -1)">
-                                    <div class="sprite sprite-icon-thumbsdown-hover2x">
+                                    <div class="sprite sprite-icon-thumb-down">
                                     </div>
                                 </div>
-                                <div class="table_cell" ng-click="doShowVotersList(comment)">
+                                <div class="table_cell" ng-click="doShowVotersList(reply)">
                                     {{reply.votes.down.count}}
                                 </div>
                             </div>
@@ -657,7 +657,7 @@
                                 to comment
                             </h3>
                         </div>
-                        <form cos-disabled="!app.user.loggedIn" name="argumentReplyForm">
+                        <form ng-if="app.user.loggedIn" name="argumentReplyForm">
                             <textarea id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-keyup="commentTextLengthCheck(form, form.text)"
                                       ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" required
                                       maxlength="{{maxLengthText}}" focus-if></textarea>
