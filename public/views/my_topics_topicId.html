@@ -106,11 +106,11 @@
                     <div class="content_item">
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_TOPIC_ACTIONS">Topic actions</div>
                         <div class="item_content">
-                            <span class="item_text blue_link" ui-sref="my.topics.topicId.settings({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_SETTINGS">settings</span>
-                            <span class="separator">|</span>
+                            <span class="item_text blue_link" ng-if="topic.canUpdate()" ui-sref="my.topics.topicId.settings({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_SETTINGS">settings</span>
+                            <span class="separator" ng-if="topic.canUpdate()">|</span>
                             <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
-                            <span class="separator">|</span>
-                            <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id, editMode: true})" cos-disabled="!topic.canEditDescription()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span>
+                            <span class="separator" ng-if="topic.canEditDescription()">|</span>
+                            <span class="item_text blue_link" ng-if="topic.canEditDescription()" ui-sref="topics.view({topicId: topic.id, editMode: true})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span>
                             <span class="separator">|</span>
                             <span class="item_text blue_link" ng-click="doLeaveTopic()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_LEAVE">leave</span>
                             <span ng-if="topic.canDelete()">
@@ -261,7 +261,7 @@
 
                             <div class="voting_platform_buttons">
 
-                                <div class="voting_button" cos-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows" ng-click="selectOption(option)">
+                                <div class="voting_button" ng-if="topic.canVote()" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows" ng-click="selectOption(option)">
                                     <div class="table_cell left_side">
                                         <label class="checkcontainer" ng-if="topic.vote.type ==='multiple'">
                                             <input type="checkbox" class="vote_option_radio" checked="(option.selected) ? 'checked: ''" >
@@ -282,7 +282,7 @@
 
                             <div class="delegation_section" ng-if="!topic.hasVoteEnded()">
 
-                                <div class="voting_button" cos-disabled="(!topic.canDelegate() || topic.vote.authType === voteAuthTypes.hard)" ng-class="topic.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
+                                <div class="voting_button" ng-if="(topic.canDelegate() && topic.vote.authType !== voteAuthTypes.hard)" ng-class="topic.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
                                     <div class="table_cell left_side">
                                         <div class="sprite sprite-icon-delegate2x"></div>
                                     </div>
@@ -322,7 +322,7 @@
                             </div>
                             <div class="line lightest_line multiplechoice" ng-if="topic.vote.type ==='multiple'"></div>
                             <div class="vote_multiple_submit_section" ng-if="!topic.hasVoteEnded() && topic.vote.type ==='multiple'">
-                                <div class="table_cell" cos-disabled="!canSubmit()">
+                                <div class="table_cell" ng-if="canSubmit()">
                                     <div class="blue_button" ng-click="doVote()" translate="VIEWS.TOPICS_TOPICID.VOTE_SUBMIT">Submit your vote</div>
                                 </div>
                             </div>
@@ -390,9 +390,9 @@
     <div class="info_container group_list" id="group_list">
         <div class="container_header" ng-click="doToggleMemberGroupList();">
             <div class="header_text"><span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_GROUP_LIST">Group list</span> <span ng-bind="'('+topic.members.groups.count+')'">0</span> |
-                <div class="blue_link" cos-disabled="!topic.members.groups.count" ng-click="groupList.isSearchVisible = !groupList.isSearchVisible; doShowMemberGroupList(); $event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
-                |
-                <div class="blue_link" ui-sref="my.topics.topicId.invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
+                <div class="blue_link" ng-if="topic.members.groups.count" ng-click="groupList.isSearchVisible = !groupList.isSearchVisible; doShowMemberGroupList(); $event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
+                <span ng-if="topic.members.groups.count && topic.canUpdate()">|</span>
+                <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="my.topics.topicId.invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
             </div>
             <div class="minimize_container" ng-if="topic.members.groups.count">
                 <div ng-class="!groupList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -442,7 +442,7 @@
                         <div ng-if="!group.permission.level"><i class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP">Inaccessible Group</i></div>
                     </div>
                     <div class="pretend_td">
-                        <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
+                        <div cos-dropdown class="classic_dropdown" ng-if="topic.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}}</div>
 
@@ -465,8 +465,8 @@
                         <span class="pretend_table_mobile_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_USERS_COUNT" translate-values="{count: group.members.users.count}">Users: 0</span>
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
-                        <div class="btn_wrap recycle_bin">
-                            <div class="btn" ng-click="doDeleteMemberGroup(group)" cos-disabled="!topic.canUpdate()">
+                        <div class="btn_wrap recycle_bin" ng-if="topic.canUpdate()">
+                            <div class="btn" ng-click="doDeleteMemberGroup(group)">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                     <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -485,8 +485,8 @@
             <div class="header_text">
                 <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'(' + topic.members.users.count + ')'">(0)</span> |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(); $event.stopPropagation();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
-                |
-                <div class="blue_link" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my.topics.topicId.invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>
+                <span ng-if="topic.canUpdate()">|</span>
+                <div class="blue_link" ng-if="topic.canUpdate()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my.topics.topicId.invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>
             </div>
             <div class="minimize_container">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -518,7 +518,7 @@
                             <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'level'"></div>
                         </div>
                     </div>
-                    <div class="pretend_th not_sortable">
+                    <div class="pretend_th not_sortable" ng-if="topic.canUpdate()">
                         <div class="th_text">
                             <span translate="VIEWS.MY_TOPICS_TOPICID.LBL_REMOVE_FROM_TOPIC">Remove from topic</span>
                         </div>
@@ -551,7 +551,7 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <div cos-dropdown class="classic_dropdown" cos-disabled="!topic.canUpdate()">
+                        <div cos-dropdown class="classic_dropdown" ng-if="topic.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + user.level | uppercase | translate}}</div>
 
@@ -569,10 +569,11 @@
                                 </div>
                             </div>
                         </div>
+                        <span ng-if="!topic.canUpdate()" class="user_level_text">{{'TXT_TOPIC_LEVELS_' + user.level | uppercase | translate}}</span>
                     </div>
-                    <div class="pretend_td recycle_bin_wrap">
-                        <div class="btn_wrap recycle_bin">
-                            <div class="btn" ng-click="doDeleteMemberUser(user)" cos-disabled="!topic.canUpdate() || !user.levelUser" cos-disabled-tooltip="{{!topic.canUpdate() ? ('VIEWS.MY_TOPICS_TOPICID.TXT_NO_PERMISSION_TO_DELETE_MEMBER' | translate) : ('VIEWS.MY_TOPICS_TOPICID.TXT_PERMISSION_VIA_GROUP' | translate)}}">
+                    <div class="pretend_td recycle_bin_wrap" ng-if="topic.canUpdate()">
+                        <div class="btn_wrap recycle_bin" ng-if="user.levelUser">
+                            <div class="btn" ng-click="doDeleteMemberUser(user)">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                     <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -608,7 +609,8 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        <div cos-dropdown class="classic_dropdown" cos-disabled>
+                        {{'TXT_TOPIC_LEVELS_' + invite.level | uppercase | translate}}
+                        <!--div cos-dropdown class="classic_dropdown" cos-disabled>
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + invite.level | uppercase | translate}}</div>
 
@@ -620,11 +622,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
-                        <div class="btn_wrap recycle_bin">
-                            <div class="btn" ng-click="doDeleteInviteUser(invite)" cos-disabled="!topic.canUpdate()" cos-disabled-tooltip="{{'VIEWS.MY_TOPICS_TOPICID.TXT_NO_PERMISSION_TO_DELETE_MEMBER' | translate}}">
+                        <div class="btn_wrap recycle_bin" ng-if="topic.canUpdate()">
+                            <div class="btn" ng-click="doDeleteInviteUser(invite)">
                                 <div class="table_cell">
                                     <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                     <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>

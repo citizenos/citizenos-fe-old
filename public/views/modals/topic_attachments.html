@@ -147,8 +147,8 @@
             </div>
 
              <!-- MOBILE SAVE BUTTON -->
-            <div ng-if="wWidth <= 560" class="blue_button_wrap mobile">
-                <div class="blue_button" cos-disabled="!topic.canEdit() || saveInProgress" ng-click="doSaveFiles()" translate="MODALS.TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS">Save attachments</div>
+            <div ng-if="wWidth <= 560 && topic.canEdit()" class="blue_button_wrap mobile">
+                <div class="blue_button" cos-disabled="saveInProgress" ng-click="doSaveFiles()" translate="MODALS.TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS">Save attachments</div>
             </div>
 
         </div>
