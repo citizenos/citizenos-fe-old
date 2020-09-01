@@ -14,9 +14,9 @@
     <div id="content_wrap">
         <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"></div>
 
-        <div id="content">
+        <div id="content" ng-class="!displaySearch() ? 'content_no_padding' : ''">
             <!-- SEARCH AREA -->
-            <div id="search_area" ng-if="wWidth > 1024">
+            <div id="search_area" ng-if="wWidth > 1024 && displaySearch()">
                 <div ng-include="'views/default/search.html'"></div>
             </div>
             <div id="content_cell">
