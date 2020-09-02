@@ -83,6 +83,10 @@
         box-sizing: border-box;
         padding-top:60px;
 
+        &.content_no_padding {
+            padding-top: 0;
+        }
+
         @include tablet {
             padding-top: 0;
         }

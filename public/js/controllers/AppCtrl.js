@@ -283,6 +283,16 @@ angular
             });
         });
 
+        $rootScope.displaySearch = function () {
+            var allowedState = ['home', 'my.groups.groupId', 'my.topics.topicId']
+            console.log('STATE BANE', $state.current.name);
+            if (allowedState.indexOf($state.current.name) > -1) {
+                return true;
+            }
+
+            return false;
+        }
+
         $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
             $log.debug('$stateChangeError', 'event', event, 'toState', toState, 'toParams', toParams, 'fromState', fromState, 'fromParams', fromParams, 'error', error);
             if (error.status && error.data && error.config) { // $http failure in "resolve"
