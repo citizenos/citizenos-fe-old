@@ -48,27 +48,27 @@
                 <div class="lightbox_section">
 
 
-                    <div class="settings_section">
+                    <div class="settings_section" ng-if="topic.canEdit()">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_MAKE_PRIVATE">Make your topic private</div>
                             <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_MAKE_PRIVATE_EXT">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-disabled="!topic.canEdit()" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                            <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
                                  ng-value="Topic.VISIBILITY.private" off-value="Topic.VISIBILITY.public" ng-model="form.topic.visibility"></div>
                         </div>
                     </div>
 
                     <div class="line lightest_line"></div>
 
-                    <div class="settings_section">
+                    <div class="settings_section" ng-if="topic.canEdit()">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_HASHTAG">Hashtag</div>
                             <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_HASHTAG_EXT">USE THIS HASHTAG IN SOCIAL MEDIA AND THE MENTIONS WILL BE SHOWN BELOW YOUR TOPIC</div>
                         </div>
                         <div class="settings_cell hashtag_cell">
-                            <div class="recycle_bin_wrap" cos-disabled="!topic.canEdit()">
+                            <div class="recycle_bin_wrap">
                                 <div ng-click="doDeleteHashtag()" class="btn_wrap recycle_bin">
                                     <div class="btn">
                                         <div class="table_cell disabled_area">
@@ -78,9 +78,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <input id="hashtag" cos-disabled="!topic.canEdit()" value="#cos_hipsters" ng-model="form.topic.hashtag" ng-change="checkHashtag()"
+                            <input id="hashtag" value="#cos_hipsters" ng-model="form.topic.hashtag" ng-change="checkHashtag()"
                                    placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_HASHTAG' | translate}}" ng-class="{'error_input': errors.hashtag}">
-                            <div class="recycle_bin_wrap wrap_mobile" cos-disabled="!topic.canEdit()">
+                            <div class="recycle_bin_wrap wrap_mobile">
                                 <div ng-click="doDeleteHashtag()" class="btn_wrap recycle_bin">
                                     <div class="btn">
                                         <div class="table_cell disabled_area">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="line lightest_line"></div>
 
-                    <div class="settings_section" ng-if="topic.canSendToFollowUp()">
+                    <div class="settings_section" ng-if="topic.canSendToFollowUp() && topic.canEdit()">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_DEADLINE">Deadline</div>
                             <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_DEADLINE_EXT">WHEN THE DEADLINE IS REACHED, THE TOPIC WILL BE CLOSED</div>
@@ -110,13 +110,13 @@
                             <span class="bold">{{form.topic.vote.endsAt | amDateFormat:'L'}}</span>
                         </div>
                         <div class="settings_cell">
-                            <div cos-disabled="!topic.canEdit()" class="gray_button edit_deadline_button" cos-modal-datepicker ng-model="form.topic.vote.endsAt" cos-modal-on-save="doEditVoteDeadline" cos-modal-title="'MODALS.TOPIC_SETTINGS_MODAL_DEADLINE_TITLE'" cos-modal-description="'MODALS.TOPIC_SETTINGS_MODAL_DEADLINE_DESCRIPTION'"><span translate="MODALS.TOPIC_SETTINGS_BTN_EDIT_DEADLINE">Edit deadline</span></div>
+                            <div class="gray_button edit_deadline_button" cos-modal-datepicker ng-model="form.topic.vote.endsAt" cos-modal-on-save="doEditVoteDeadline" cos-modal-title="'MODALS.TOPIC_SETTINGS_MODAL_DEADLINE_TITLE'" cos-modal-description="'MODALS.TOPIC_SETTINGS_MODAL_DEADLINE_DESCRIPTION'"><span translate="MODALS.TOPIC_SETTINGS_BTN_EDIT_DEADLINE">Edit deadline</span></div>
                         </div>
 
                     </div>
                     <div class="line lightest_line"></div>
 
-                    <div class="settings_section">
+                    <div class="settings_section" ng-if="topic.canLeave()">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_LEAVE_TOPIC">Leave topic</div>
                             <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_LEAVE_TOPIC_EXT">LEAVING A TOPIC WILL RESULT IN GIVING UP ANY POWERS YOU MAY HAVE AS USER IN THAT
@@ -125,20 +125,20 @@
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-disabled="!topic.canLeave()" class="gray_button" ng-click="doLeaveTopic(topic)" translate="MODALS.TOPIC_SETTINGS_BTN_LEAVE_TOPIC">Leave topic</div>
+                            <div class="gray_button" ng-click="doLeaveTopic(topic)" translate="MODALS.TOPIC_SETTINGS_BTN_LEAVE_TOPIC">Leave topic</div>
                         </div>
 
                     </div>
                     <div class="line lightest_line"></div>
 
-                    <div class="settings_section">
+                    <div class="settings_section" ng-if="topic.canDelete()">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_DELETE_TOPIC">Delete topic</div>
                             <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_DELETE_TOPIC_EXT">DELETING A TOPIC CAN NOT BE UNDONE. BE SURE TO BE REALLY SURE ABOUT THIS.</div>
                         </div>
 
                         <div class="settings_cell">
-                            <div cos-disabled="!topic.canDelete()" class="blue_button yes" ng-click="doDeleteTopic(topic)" translate="MODALS.TOPIC_SETTINGS_BTN_DELETE_TOPIC">Delete topic</div>
+                            <div class="blue_button yes" ng-click="doDeleteTopic(topic)" translate="MODALS.TOPIC_SETTINGS_BTN_DELETE_TOPIC">Delete topic</div>
                         </div>
                     </div>
 
@@ -149,14 +149,14 @@
 
             <!-- CATEGORIES -->
             <div class="lightbox_content categories_section_wrap" ng-if="tabSelected === 'categories'">
-                <div class="lightbox_section">
+                <div class="lightbox_section" ng-if="topic.canEdit()">
                     <div class="tip" translate="MODALS.TOPIC_SETTINGS_TXT_ASSIGN_CATEGORIES">Assign up to 3 categories</div>
                     <div class="selected_categories">
-                        <div class="category_wrap" ng-repeat="topicCategory in form.topic.categories" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
+                        <div class="category_wrap" ng-repeat="topicCategory in form.topic.categories" ng-click="removeTopicCategory(topicCategory)">
                             <div class="category_cell category_title">
                                 <span translate="{{'TXT_TOPIC_CATEGORY_' + topicCategory | uppercase}}" translate-default="{{topicCategory}}">Sport</span>
                             </div>
-                            <div class="category_cell category_control" cos-disabled="!topic.canEdit()" ng-click="removeTopicCategory(topicCategory)">
+                            <div class="category_cell category_control" ng-click="removeTopicCategory(topicCategory)">
                                 <div class="sprite sprite-icon-category-delete2x"></div>
                             </div>
                         </div>
@@ -165,13 +165,13 @@
                     <div class="line lightest_line"></div>
 
                     <div class="category_selection">
-                        <div class="category_wrap" ng-repeat="category in Topic.CATEGORIES" cos-disabled="!topic.canEdit()"
+                        <div class="category_wrap" ng-repeat="category in Topic.CATEGORIES"
                              ng-click="(form.topic.categories.indexOf(category) > -1) ? removeTopicCategory(category): addTopicCategory(category)"
                              ng-class="{'category_selected': (form.topic.categories.indexOf(category) > -1)}">
                             <div class="category_cell category_title">
                                 {{'TXT_TOPIC_CATEGORY_' + category | uppercase | translate}}
                             </div>
-                            <div class="category_cell category_control" cos-disabled="!topic.canEdit()">
+                            <div class="category_cell category_control">
                                 <div class="sprite desktop_fix" ng-class="(form.topic.categories.indexOf(category) > -1) ? 'sprite-icon-category-delete2x' : 'sprite-icon-category-add2x'"></div>
                                 <div class="sprite mobile_fix" ng-class="(form.topic.categories.indexOf(category) > -1) ? 'sprite-icon-category-delete2x' : 'sprite-icon-category-add2x-black'"></div>
                             </div>
@@ -180,13 +180,13 @@
                 </div>
             </div>
 
-            <div class="lightbox_footer">
+            <div class="lightbox_footer" ng-if="topic.canEdit()">
                 <div class="line lightest_line"></div>
                 <div class="blue_button_wrap">
-                    <div class="blue_button" ng-if="!members.users.length && !members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                    <div class="blue_button" ng-if="!members.users.length && !members.emails.length" ng-click="doSaveTopic()"
                          translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC">Save topic
                     </div>
-                    <div class="blue_button" ng-if="members.users.length || members.emails.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                    <div class="blue_button" ng-if="members.users.length || members.emails.length" ng-click="doSaveTopic()"
                          translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC_AND_INVITE">Save topic and send invite
                     </div>
                 </div>

@@ -627,6 +627,7 @@
       "BAR_SIGNING_DEADLINE": "Äänestyksen määräaika:",
       "BAR_CURRENT_PHASE": "Nykyinen tila:",
       "TAB_VIEW": "Näytä",
+      "TAB_EDIT": "Edit",
       "TAB_VOTE": "Äänestä",
       "TAB_FOLLOW_UP": "Seuranta",
       "TAB_INFO_TXT_EDIT": "Olet nyt muokkaustilassa. Voit lisätä tai muuttaa tekstiä. Kaikki muutokset tallennetaan automaattisesti.",

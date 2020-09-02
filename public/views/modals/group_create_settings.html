@@ -103,13 +103,13 @@
 
 
                     <div class="line lightest_line" ng-if="form.group.id"></div>
-                    <div class="settings_section" ng-if="form.group.id">
+                    <div class="settings_section" ng-if="form.group.id && form.group.canDelete()">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_DELETE_GROUP">Delete group</div>
                             <div class="setting_description" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_DELETE_GROUP_EXP">DELETING A GROUP CAN NOT BE UNDONE. BE SURE TO BE REALLY SURE ABOUT THIS.</div>
                         </div>
                         <div class="settings_cell">
-                            <div class="blue_button yes" ng-click="doDeleteGroup(group)" cos-disabled="!form.group.canDelete()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_DELETE_GROUP">Delete group</div>
+                            <div class="blue_button yes" ng-click="doDeleteGroup(group)" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_DELETE_GROUP">Delete group</div>
                         </div>
                     </div>
 
@@ -154,10 +154,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="lightbox_section">
+                <div class="lightbox_section" ng-if="form.group.canUpdate()">
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_ADD_TOPICS">Add topics searching by title</div>
                     <div cos-dropdown ng-class="{search_with_dropdown : searchResults.topics.length, dropdown_active : searchResults.topics.length}">
-                        <typeahead cos-disabled="!form.group.canUpdate()" class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
+                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
                                    select="addGroupMemberTopic(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_TOPIC' | translate}}">
                             <div class="search_icon">
                                 <div class="table_cell">
@@ -255,12 +255,12 @@
             <!-- INVITE USERS -->
             <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'users'">
 
-                <div class="lightbox_section">
+                <div class="lightbox_section" ng-if="form.group.canUpdate()">
 
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_INVITE_USERS">Invite users via their name or e-mail address</div>
 
                     <div class="searchbox_with_icon_and_text only_text">
-                        <div cos-dropdown cos-disabled="!form.group.canUpdate()" ng-class="{search_with_dropdown : searchResults.users.length, dropdown_active : searchResults.users.length}">
+                        <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length, dropdown_active : searchResults.users.length}">
                             <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
                                        select="addGroupMemberUser(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_BY_NAME_EMAIL' | translate}}">
                                 <div class="search_area_wrap">
@@ -491,8 +491,8 @@
 
                 <div class="line lightest_line"></div>
                 <div class="blue_button_wrap">
-                    <div class="blue_button" cos-disabled="!form.group.canUpdate()" ng-if="!members.length" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP">Save group</div>
-                    <div class="blue_button" cos-disabled="!form.group.canUpdate()" ng-if="members.length" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP_AND_INVITE">Save group and send invite</div>
+                    <div class="blue_button" ng-if="!members.length && form.group.canUpdate()" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP">Save group</div>
+                    <div class="blue_button" ng-if="members.length && form.group.canUpdate()" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP_AND_INVITE">Save group and send invite</div>
                 </div>
             </div>
         </div>

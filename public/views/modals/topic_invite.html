@@ -297,21 +297,21 @@
             <!-- SHARE -->
             <div class="lightbox_content invite_url" ng-if="tabSelected === 'share'">
 
-                <div class="lightbox_section">
+                <div class="lightbox_section" ng-if="topic.canUpdate()">
                     <div class="input_text_margin_bottom" translate="MODALS.TOPIC_SETTINGS_TXT_SHARE_LINK">Share this link to people you want to join the topic:</div>
 
                     <div class="copy_link">
                         <div class="searchbox_with_icon_and_text">
-                            <input id="url_invite_topic_input" ng-model="form.urlJoin" cos-disabled="!topic.canUpdate()"
+                            <input id="url_invite_topic_input" ng-model="form.urlJoin"
                                 placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_CREATE_NEW_LINK' | translate}}">
                             <div class="search_text">
-                                <div class="blue_link table_cell" cos-disabled="!topic.canUpdate()" ng-click="generateTokenJoin()"
+                                <div class="blue_link table_cell" ng-click="generateTokenJoin()"
                                     translate="{{'MODALS.TOPIC_SETTINGS_LNK_CREATE_NEW_LINK' | translate}}">Create a new link
                                 </div>
                             </div>
                         </div>
 
-                        <div class="blue_button" cos-disabled="!topic.canUpdate()" ng-click="copyInviteLink()" ng-if="!app.createGroupsInviteUsers" translate="MODALS.TOPIC_SETTINGS_BTN_COPY_LINK">Copy
+                        <div class="blue_button" ng-click="copyInviteLink()" ng-if="!app.createGroupsInviteUsers" translate="MODALS.TOPIC_SETTINGS_BTN_COPY_LINK">Copy
                             link
                         </div>
                     </div>
@@ -327,13 +327,13 @@
                 </div>
 
             </div>
-            <div class="lightbox_footer">
+            <div class="lightbox_footer" ng-if="topic.canEdit()">
                 <div class="line lightest_line"></div>
                 <div class="blue_button_wrap">
-                    <div class="blue_button" ng-if="!members.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                    <div class="blue_button" ng-if="!members.length" ng-click="doSaveTopic()"
                         translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC">Save topic
                     </div>
-                    <div class="blue_button" ng-if="members.length" cos-disabled="!topic.canEdit()" ng-click="doSaveTopic()"
+                    <div class="blue_button" ng-if="members.length" ng-click="doSaveTopic()"
                         translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC_AND_INVITE">Save topic and send invite
                     </div>
                 </div>
