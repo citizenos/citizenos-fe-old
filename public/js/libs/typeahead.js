@@ -14,7 +14,9 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
         template: '<div><div ng-class="{hidden: !label}" class="ac-label">{{label}}</div><div class="ac-input"><input ng-model="term" ng-change="query()" ng-model-options="{debounce:250}" type="text" autocomplete="off" placeholder="{{placeholder}}" focus-if autofocus/></div><div ng-transclude></div></div>',
         scope: {
             search: "&",
+            enterAction: "&",
             select: "&",
+            selectLimit: "=",
             items: "=",
             term: "=",
             placeholder: "@",
@@ -45,6 +47,10 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
 
             this.selectActive = function () {
                 this.select($scope.active);
+            };
+
+            this.enterAction = function () {
+                $scope.enterAction({text: $scope.term, limit:true});
             };
 
             this.select = function (item) {
@@ -100,9 +106,15 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
 
             $input.bind('keyup', function (e) {
                 if (e.keyCode === 13) { // ENTER
-                    scope.$apply(function () {
-                        controller.selectActive();
-                    });
+                    if (!scope.selectLimit || (scope.term && (scope.selectLimit <= scope.term.length)) || (scope.items && scope.items.length)) {
+                        scope.$apply(function () {
+                            controller.selectActive();
+                        });
+                    } else {
+                        scope.$apply(function () {
+                            controller.enterAction();
+                        });
+                    }
                 }
 
                 if (e.keyCode === 27) { // ESC
