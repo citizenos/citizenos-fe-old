@@ -285,7 +285,6 @@ angular
 
         $rootScope.displaySearch = function () {
             var allowedState = ['home', 'my.groups.groupId', 'my.topics.topicId']
-            console.log('STATE BANE', $state.current.name);
             if (allowedState.indexOf($state.current.name) > -1) {
                 return true;
             }

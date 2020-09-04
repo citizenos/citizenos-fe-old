@@ -45,7 +45,11 @@ angular
             $log.debug('combineResults', $scope.searchResults);
         };
 
-        $scope.doSearch = function (str) {
+        $scope.enterAction = function () {
+            $scope.doSearch($scope.form.searchInput, true);
+        };
+
+        $scope.doSearch = function (str, noLimit) {
             if ($scope.viewMoreInProgress) {
                 $scope.form.searchInput = $scope.moreStr;
                 return;
@@ -53,7 +57,7 @@ angular
 
             $scope.noResults = true;
 
-            if (!str || str.length < 3) {
+            if (!str || str.length < 3 && !noLimit) {
                 $scope.app.showSearchResults = false;
                 return;
             }

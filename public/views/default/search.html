@@ -3,7 +3,7 @@
         <div class="logo sprite sprite-x5-cos-logo-small2x">
         </div>
     </div>
-    <typeahead class="auto-complete" items="searchResults.combined" term="form.searchInput" search="doSearch(term)"
+    <typeahead class="auto-complete" items="searchResults.combined" term="form.searchInput" search="doSearch(term)" select-limit="3" enter-action="enterAction(item)"
                select="goToView(item)" placeholder="{{'LAYOUTS.MAIN.PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS' | translate}}">
 
         <div id="search_results_area">
