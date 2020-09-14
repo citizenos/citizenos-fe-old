@@ -570,6 +570,13 @@ table, .pretend_table {
                 &.right_side {
                     background: $deep_sky_blue;
                 }
+
+                &:last-child {
+                    border-left: 1px solid $deep_sky_blue;
+                    border-top: 1px solid $deep_sky_blue;
+                    border-right: 1px solid $deep_sky_blue;
+                    border-bottom: 1px solid $deep_sky_blue;
+                }
             }
         }
 
