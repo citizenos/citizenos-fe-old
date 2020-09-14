@@ -684,7 +684,7 @@
                         width: calc(100% - 40px);
                     }
                     float: right;
-                    margin-top: 20px;
+                    margin-top: 15px;
                     margin-right: 20px;
                     min-width: 100px;
                     padding-left: 10px;
@@ -905,7 +905,25 @@
                     }
                 }
             }
+
+            .lightbox_footer {
+                .delete_account {
+                    margin-left: 20px;
+                    span {
+                        display: inline-block;
+                        color: $pinky_red;
+                    }
+                }
+
+                .blue_button_wrap {
+                    .blue_button {
+                        margin-top: auto;
+                        margin-bottom: auto;
+                    }
+                }
+            }
         }
+
     }
 
     #lightbox.with_title_description {

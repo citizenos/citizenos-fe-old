@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$filter', '$document', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', function ($scope, $log, $stateParams, $filter, $document, ngDialog, sNotification, sAuth, sUser, sUpload) {
+    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$document', '$window', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', function ($scope, $log, $stateParams, $document, $window, ngDialog, sNotification, sAuth, sUser, sUpload) {
         $log.debug('MyAccountFormCtrl');
 
         $scope.tabSelected = 'profile';
@@ -98,6 +98,29 @@ angular
 
         $scope.selectTab = function (tab) {
             $scope.tabSelected = tab;
+        }
+
+        $scope.doDeleteAccount = function () {
+            ngDialog.openConfirm({
+                template: '/views/modals/user_delete_confirm.html',
+                data: $stateParams,
+                scope: $scope, // Pass on $scope so that I can access AppCtrl,
+                closeByEscape: false,
+                closeByNavigation: false
+            })
+            .then(
+                function () {
+                    sUser
+                        .deleteUser()
+                        .then(function () {
+                            return sAuth
+                                .logout();
+                        })
+                        .then(function () {
+                            $window.location.href = '/';
+                        });
+                }
+            );
         }
 
     }]);
