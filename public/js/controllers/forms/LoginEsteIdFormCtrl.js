@@ -48,7 +48,7 @@ angular
                 .loginIdCard()
                 .then(
                     function () {
-                        handleLoginSuccess();
+                  //      handleLoginSuccess();
                     },
                     function (err) {
                         $log.error('Something failed when trying to log in with card', err);

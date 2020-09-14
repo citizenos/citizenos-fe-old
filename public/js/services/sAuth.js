@@ -158,7 +158,7 @@ angular
                 .then(function (certificate) {
                     var der =  hexToBase64(certificate.hex);
                     var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
-
+                    console.log(path);
                     return $http.get(path, {
                         headers: {
                             'x-ssl-client-cert': der
@@ -181,7 +181,10 @@ angular
 
                         }
                     });
-                });
+                })
+                .catch(function (e) {
+                    console.log('GET CERTIFICATE ERROR', e);
+                })
         };
 
         sAuth.logout = function () {
