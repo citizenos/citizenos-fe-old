@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sAuth', ['$http', '$q', '$log', 'sLocation', 'cosConfig', function ($http, $q, $log, sLocation, cosConfig) {
+    .service('sAuth', ['$http', '$q', '$log', 'sLocation', 'hwcrypto', 'cosConfig', function ($http, $q, $log, sLocation, hwcrypto, cosConfig) {
         var sAuth = this;
 
         sAuth.user = {
@@ -112,17 +112,75 @@ angular
                 return response;
             };
 
-            return $http
-                .get(cosConfig.features.authentication.idCard.url, {withCredentials: true}) // withCredentials so that client certificate is sent
-                .then(function (response) {
-                    if (response.data.data.token) { // id-auth proxy used
-                        var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
-                        return $http.get(path, {params: response.data.data});
-                    } else { // Not using id-auth proxy
-                        return response;
+            function _hex2array(str) {
+                if (typeof str == "string") {
+                    var len = Math.floor(str.length / 2);
+                    var ret = new Uint8Array(len);
+                    for (var i = 0; i < len; i++) {
+                        ret[i] = parseInt(str.substr(i * 2, 2), 16);
                     }
-                })
-                .then(success, defaultError);
+                    return ret;
+                }
+            }
+
+            function hexToBase64(hexStr) {
+                return btoa(function () {
+                    hexStr.split('').reduce(function (acc, _, i) {
+                        acc += !(i - 1 & 1) ? String.fromCharCode(parseInt(hexStr.substring(i - 1, i + 1), 16)) : ""
+                    });
+                });
+            }
+
+            if (!window.btoa) {
+                var tableStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+                var table = tableStr.split("");
+
+                window.btoa = function (bin) {
+                  for (var i = 0, j = 0, len = bin.length / 3, base64 = []; i < len; ++i) {
+                    var a = bin.charCodeAt(j++), b = bin.charCodeAt(j++), c = bin.charCodeAt(j++);
+                    if ((a | b | c) > 255) throw new Error("String contains an invalid character");
+                    base64[base64.length] = table[a >> 2] + table[((a << 4) & 63) | (b >> 4)] +
+                                            (isNaN(b) ? "=" : table[((b << 2) & 63) | (c >> 6)]) +
+                                            (isNaN(b + c) ? "=" : table[c & 63]);
+                  }
+                  return base64.join("");
+                };
+
+            }
+
+            function hexToBase64(str) {
+                return btoa(String.fromCharCode.apply(null,
+                    str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" "))
+                );
+            }
+            return hwcrypto
+                .getCertificate({filter: 'AUTH'})
+                .then(function (certificate) {
+                    var der =  hexToBase64(certificate.hex);
+                    var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
+                    return $http.get(path, {
+                        headers: {
+                            'x-ssl-client-cert': der
+                        }
+                    }).then(function (response) {
+                        if (response.data.data.hash) {
+                            var hash = response.data.data.hash;
+                            var token = response.data.data.token;
+
+                            return hwcrypto
+                                .sign(certificate, {value: _hex2array(hash), type: "SHA-256"},{})
+                                .then(function (signature) {
+                                    return $http.post(path, {
+                                        'signature': signature,
+                                        'token': token,
+                                    },{headers: {
+                                        'x-ssl-client-cert': der
+                                    }});
+                                }).then(success, defaultError)
+
+                        }
+                    });
+                });
         };
 
         sAuth.logout = function () {
