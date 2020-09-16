@@ -25,28 +25,30 @@ angular
                 $scope.app.language = language;
             });
 
-        $scope.app.metainfo = {
-            icon: sLocation.getAbsoluteUrl('/imgs/favicon.ico'),
-            iconHires: sLocation.getAbsoluteUrl('/imgs/icon_hires.png'),
-            author: null,
-            image: sLocation.getAbsoluteUrl('/imgs/logo_dark_seo.jpg'),
-            url: null,
-            siteName: 'CitizenOS.com',
-            hreflang: {}
+        var setDefaultMetaInfo = function () {
+            $scope.app.metainfo = {
+                icon: sLocation.getAbsoluteUrl('/imgs/favicon.ico'),
+                iconHires: sLocation.getAbsoluteUrl('/imgs/icon_hires.png'),
+                author: null,
+                image: sLocation.getAbsoluteUrl('/imgs/logo_dark_seo.jpg'),
+                url: null,
+                siteName: 'CitizenOS.com',
+                hreflang: {}
+            };
+
+            $translate('META_DEFAULT_TITLE').then(function (translation) {
+                $scope.app.metainfo.title = translation;
+            });
+
+            $translate('META_DEFAULT_DESCRIPTION').then(function (translation) {
+                $scope.app.metainfo.description = translation;
+            });
+
+            $translate('META_DEFAULT_KEYWORDS').then(function (translation) {
+                $scope.app.metainfo.keywords = translation;
+            });
         };
-
-        $translate('META_DEFAULT_TITLE').then(function (translation) {
-            $scope.app.metainfo.title = translation;
-        });
-
-        $translate('META_DEFAULT_DESCRIPTION').then(function (translation) {
-            $scope.app.metainfo.description = translation;
-        });
-
-        $translate('META_DEFAULT_KEYWORDS').then(function (translation) {
-            $scope.app.metainfo.keywords = translation;
-        });
-
+        setDefaultMetaInfo();
         createRelUrls();
 
         // Different global notifications that can be shown in the page header OR as a dialog
@@ -261,6 +263,18 @@ angular
         $rootScope.$on('$stateChangeSuccess', function () {
             $timeout(function () {
                 $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady', $state.$current.name);
+
+                var metaDataViews = ['topics.view', 'my.topics.topicId'];
+                var isView = false;
+                metaDataViews.forEach(function (item) {
+                    if ($state.current.name.indexOf(item) >-1) {
+                        isView = true;
+                    }
+                })
+
+                if (!isView) {
+                    setDefaultMetaInfo();
+                }
 
                 $scope.app.metainfo.url = window.location.origin + window.location.pathname;
 
