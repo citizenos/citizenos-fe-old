@@ -59,7 +59,12 @@ angular
         }
 
         if ($scope.topic) {
-            $scope.topic.padUrl += '&theme=default'; // Change of PAD URL here has to be before $sce.trustAsResourceUrl($scope.topic.padUrl);
+            var padURL = new URL($scope.topic.padUrl);
+            if (padURL.searchParams.get('lang') !== $scope.app.language) {
+                padURL.searchParams.set('lang', $scope.app.language);
+            }
+            padURL.searchParams.set('theme', 'default');
+            $scope.topic.padUrl = padURL.href; // Change of PAD URL here has to be before $sce.trustAsResourceUrl($scope.topic.padUrl);
             if (!$scope.topic.canEditDescription() && ($stateParams.editMode && $stateParams.editMode === 'true')) {
                 $scope.app.editMode = false;
                 delete $stateParams.editMode;
