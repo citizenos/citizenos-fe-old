@@ -725,7 +725,7 @@ angular
             if (fromState.name === 'topics.view.files') {
                 $scope.loadTopicAttachments();
             }
-            if ($state.current.name === 'topics.view') {
+            if ($state.current.name === 'topics.view' && rTopic.status === Topic.STATUSES.voting) {
                 $stateParams.voteId = rTopic.voteId;
                 $state.go('topics.view.votes.view', $stateParams);
             }

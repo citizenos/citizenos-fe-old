@@ -990,10 +990,10 @@
                             topic
                         </div>
                         <div class="line lightest_line" ng-if="topic.canUpdate()"></div>
-                        <div class="blue_link" ng-if="topic.canEditDescription()" ng-click="app.doToggleEditMode()"
+                        <div class="blue_link" ng-if="topic.canEditDescription() && !app.editMode" ng-click="app.doToggleEditMode()"
                              ng-if="!app.editMode" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC">Edit topic
                         </div>
-                        <div class="blue_link" ng-if="app.editMode" ng-click="app.doToggleEditMode()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_VIEW_TOPIC">Edit topic</div>
+                        <div class="blue_link" ng-if="app.editMode" ng-click="app.doToggleEditMode()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_VIEW_TOPIC">View topic</div>
                         <div ng-if="topic.canLeave()" class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
                     </div>
                 </div>

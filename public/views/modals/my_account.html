@@ -91,6 +91,7 @@
                                     <span translate="{{errors.email}}"></span>
                                 </div>
                             </label>
+
                         </div>
                     </div>
 
@@ -117,12 +118,17 @@
             </div>
 
             <div class="lightbox_footer">
-
                 <div class="line lightest_line"></div>
-                <div class="blue_button_wrap">
+                <div class="table_cell">
+                    <span class="delete_account" ng-click="doDeleteAccount()">
+                        <span class="sprite sprite-mytopics-icon-deletetopic2x"></span>
+                        <span class="item_text remove blue_link ng-scope" translate="MODALS.MY_ACCOUNT_LNK_DELETE">Delete account</span>
+                    </span>
+                </div>
+                <div class="table_cell">
                     <div class="blue_button_wrap">
                         <div class="blue_button" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button"
-                             translate="MODALS.MY_ACCOUNT_BTN_SAVE">Save changes
+                            translate="MODALS.MY_ACCOUNT_BTN_SAVE">Save changes
                         </div>
                     </div>
                 </div>
