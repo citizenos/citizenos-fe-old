@@ -90,6 +90,9 @@ angular
         $scope.translateGroup = function (key, group) {
             var values = group[0].values;
             values.groupCount = group.length;
+            if (key.indexOf('USERACTIVITYGROUP') === -1) {
+                values.groupCount--;
+            }
 
             return $translate.instant(key.split(':')[0], values);
         };
