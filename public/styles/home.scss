@@ -766,6 +766,22 @@
                 }
             }
 
+            &.opinionfestival {
+                background-image: url('../imgs/img_partner_opinionfestival.png');
+                background-repeat: no-repeat;
+                background-position: right -50px bottom 0px;
+                background-size: 300px;
+                background-color: $opinionfestival_background;
+
+                @media (max-width: 667px) {
+                    background-image: none;
+                }
+
+                .line::before {
+                    background-image: linear-gradient(to bottom, rgba($opinionfestival_background, 0), $opinionfestival_background);
+                }
+            }
+
             &.eesti_jazzi_arengusuunad { /** https://github.com/citizenos/citizenos-api/issues/73 **/
                 background-image: url('../imgs/img_partner_jazzunion.png');
                 background-repeat: no-repeat;
