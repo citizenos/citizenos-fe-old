@@ -209,6 +209,11 @@
                         });
                     }]
                 })
+                .state('opinionfestival', {
+                    url: '/opinionfestival',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
                 .state('hacktivistcommunity', {
                     url: '/hacktivistcommunity?topicStatus',
                     parent: 'main',
