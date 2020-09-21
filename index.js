@@ -8,7 +8,8 @@ var path = require('path');
 var http = require('http');
 var fs = require('fs');
 var _ = require('lodash');
-var csp = require('express-csp-header');
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
+
 
 var prerender = require('prerender-node');
 
@@ -42,19 +43,19 @@ if (cspConfig) {
                     cspOptions.policies[key] = [];
                 }
                 if (value === 'none') {
-                    cspOptions.policies[key].push(csp.NONE);
+                    cspOptions.policies[key].push(NONE);
                 } else if (value === 'self') {
-                    cspOptions.policies[key].push(csp.SELF);
+                    cspOptions.policies[key].push(SELF);
                 } else if (value === 'inline') {
-                    cspOptions.policies[key].push(csp.INLINE);
+                    cspOptions.policies[key].push(INLINE);
                 } else {
                     cspOptions.policies[key].push(value);
                 }
             });
         });
     }
-    var cspHeader = csp(cspOptions);
-    app.use(cspHeader);
+
+    app.use(expressCspHeader(cspOptions));
 }
 
 

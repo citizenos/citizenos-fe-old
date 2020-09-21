@@ -281,45 +281,6 @@
             </div>
         </a>
 
-        <a ng-href="/eestijazziarengusuunad" class="big black_text eesti_jazzi_arengusuunad fixed_topic" ng-if="isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small">EESTI JAZZ 2030</div>
-
-                    <div class="main_text">
-                        <div class="text_big">Eesti Jazzi Arengusuunad</div>
-                        <div class="text_small">Siit leiad Eesti Jazzi Arengusuundade jooksvalt täieneva visandi, mida kutsume üles lugema ning kommenteerima!</div>
-                        <div class="text_small">Autor / kontakt: Virgo Sillamaa, virgo.sillamaa@gmail.com</div>
-                    </div>
-
-                    <div class="line black_line"></div>
-
-                    <div class="text_small" ng-if="wWidth > 667">Eesti Jazzi Arengusuunad</div>
-
-                </div>
-            </div>
-        </a>
-
-        <!-- a ng-href="/thetwelvemovie" class="big black_text the_twelve_movie the_twelve_movie_background fixed_topic" ng-if="isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small" translate="VIEWS.HOME.HEADING_THE_TWELVE_MOVIE">THE TWELVE MOVIE</div>
-
-                    <div class="main_text">
-                        <div class="text_big" translate="VIEWS.HOME.TXT_THE_TWELVE_MOVIE">Keep It Clean Plan by Let's Do It! World.</div>
-                        <div class="text_small" translate="VIEWS.HOME.TXT_DESCRIPTION_THE_TWELVE_MOVIE" >Here you can find all the documents and information on the Keep It Clean Plan.</div>
-                    </div>
-
-                    <div class="line black_line"></div>
-
-                    <div class="text_small" ng-if="wWidth > 667" translate="VIEWS.HOME.LBL_ENVIRONMENT">Environment</div>
-
-                </div>
-            </div>
-        </a -->
-
         <a ui-sref="topics.view({topicId: topic.id})" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
