@@ -45,6 +45,7 @@
         "https://docs.google.com"
       ]
     },
-    "reportUri": "https://dev.api.citizenos.com:3003/api/internal/report"
+    "reportUri": "https://dev.api.citizenos.com:3003/api/internal/report",
+    "reportOnly": true
   }
 }
