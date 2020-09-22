@@ -867,6 +867,8 @@
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_ACTIVITYGROUP": "Käyttäjä <em>{{userName}}</em> ja <em>{{groupCount}}</em> muuta ovat poistaneet aiheita ryhmästä <em>{{groupName}}</em>",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_USERACTIVITYGROUP": "Käyttäjä <em>{{userName}}</em> on poistanut <em>{{groupCount}}</em> aihetta ryhmästä <em>{{groupName}}</em>",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "Käyttäjä <em>{{userName}}</em> on muuttanut ryhmän <em>{{groupName}}</em> käyttöoikeustasoa aiheessa <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have changed the access level of group <em>{{groupName}}</em> to topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_USERACTIVITYGROUP": "User <em>{{userName}}</em> has changed the access level of group <em>{{groupName}}</em> for <em>{{groupCount}}</em> topics",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "Käyttäjä <em>{{userName}}</em> on tehnyt päivityksen aiheeseen <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_ACTIVITYGROUP": "Käyttäjä <em>{{userName}}</em> ja <em>{{groupCount}}</em> muuta ovat tehneet päivityksen aiheeseen <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_USERACTIVITYGROUP": "Käyttäjä <em>{{userName}}</em> on tehnyt <em>{{groupCount}}</em> päivitystä aiheeseen <em>{{topicTitle}}</em>:",
