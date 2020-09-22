@@ -867,6 +867,8 @@
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_ACTIVITYGROUP": "L'utilisateur <em>{{userName}}</em> et <em>{{groupCount}}</em> autres ont supprimé des sujets du groupe <em>{{groupName}}</em>",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_USERACTIVITYGROUP": "L'utilisateur <em>{{userName}}</em> a supprimé <em>{{groupCount}}</em> sujets du groupe <em>{{groupName}}</em>",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "L'utilisateur <em>{{userName}}</em> a changé le niveau d'accès du groupe <em>{{groupName}}</em> au sujet <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have changed the access level of group <em>{{groupName}}</em> to topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_USERACTIVITYGROUP": "User <em>{{userName}}</em> has changed the access level of group <em>{{groupName}}</em> for <em>{{groupCount}}</em> topics",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "L'utilisateur <em>{{userName}}</em> a créé une mise à jour sur le sujet <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_ACTIVITYGROUP": "L'utilisateur <em>{{userName}}</em> et <em>{{groupCount}}</em> autres ont créé une mise à jour sur le sujet <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_USERACTIVITYGROUP": "L'utilisateur <em>{{userName}}</em> a créé <em>{{groupCount}}</em> mises à jour sur le sujet <em>{{topicTitle}}</em>:",
