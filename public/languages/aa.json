@@ -867,6 +867,8 @@
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_ACTIVITYGROUP": "crwdns25050:0{{userName}}crwdnd25050:0{{groupCount}}crwdnd25050:0{{groupName}}crwdne25050:0",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_USERACTIVITYGROUP": "crwdns25052:0{{userName}}crwdnd25052:0{{groupCount}}crwdnd25052:0{{groupName}}crwdne25052:0",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "crwdns25054:0{{userName}}crwdnd25054:0{{groupName}}crwdnd25054:0{{topicTitle}}crwdne25054:0",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_ACTIVITYGROUP": "crwdns26746:0{{userName}}crwdnd26746:0{{groupCount}}crwdnd26746:0{{groupName}}crwdnd26746:0{{topicTitle}}crwdne26746:0",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_USERACTIVITYGROUP": "crwdns26748:0{{userName}}crwdnd26748:0{{groupName}}crwdnd26748:0{{groupCount}}crwdne26748:0",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "crwdns25056:0{{userName}}crwdnd25056:0{{topicTitle}}crwdne25056:0",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_ACTIVITYGROUP": "crwdns25058:0{{userName}}crwdnd25058:0{{groupCount}}crwdnd25058:0{{topicTitle}}crwdne25058:0",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_USERACTIVITYGROUP": "crwdns25060:0{{userName}}crwdnd25060:0{{groupCount}}crwdnd25060:0{{topicTitle}}crwdne25060:0",

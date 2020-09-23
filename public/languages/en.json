@@ -867,6 +867,8 @@
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have removed topics from group <em>{{groupName}}</em>",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has removed <em>{{groupCount}}</em> topics from group <em>{{groupName}}</em>",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "User <em>{{userName}}</em> has changed the access level of group <em>{{groupName}}</em> to topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have changed the access level of group <em>{{groupName}}</em> to topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_USERACTIVITYGROUP": "User <em>{{userName}}</em> has changed the access level of group <em>{{groupName}}</em> for <em>{{groupCount}}</em> topics",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "User <em>{{userName}}</em> has created an update on topic <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have created an update on topic <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has created <em>{{groupCount}}</em> updates on topic <em>{{topicTitle}}</em>:",
