@@ -6,7 +6,7 @@ angular
         $log.debug('TopicCommentVoteCtrl');
 
         $scope.voteItems = $scope.$parent.ngDialogData.commentVotes;
-        var itemsPerPage = 2;
+        var itemsPerPage = 10;
         $scope.totalPages = Math.ceil($scope.voteItems.rows.length / itemsPerPage) || 1;
         $scope.page = 1;
 
