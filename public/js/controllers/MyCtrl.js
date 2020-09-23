@@ -152,4 +152,15 @@ angular
             }
         };
 
+        $scope.goToTopicView = function (topicId) {
+            $state.go('topics.view', {topicId: topicId});
+        };
+
+        $scope.isActiveTopic = function (item) {
+            if (item.id === ($state.params.topicId || $state.params.groupId)) {
+                return true;
+            }
+
+            return false;
+        };
     }]);

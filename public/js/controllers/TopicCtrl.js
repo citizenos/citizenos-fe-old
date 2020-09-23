@@ -122,18 +122,20 @@ angular
         $scope.STATUSES = Topic.STATUSES;
         $scope.VISIBILITY = Topic.VISIBILITY;
 
-        if ($scope.topic.vote && $scope.topic.vote.options) {
-            var winnerCount = 0;
-            $scope.topic.vote.options.rows.forEach(function (option) {
-                if (option.winner) {
-                    winnerCount++;
-                    if (winnerCount > 1) {
-                        $scope.showInfoWinners = true;
-                        $scope.multipleWinners = true;
+    /*    if ($scope.topic.vote) {
+            $scope.topic.vote.$get(function(v){
+                var winnerCount = 0;
+                v.options.rows.forEach(function (option) {
+                    if (option.winner) {
+                        winnerCount++;
+                        if (winnerCount > 1) {
+                            $scope.showInfoWinners = true;
+                            $scope.multipleWinners = true;
+                        }
                     }
-                }
+                });
             });
-        }
+        }*/
 
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 25;

@@ -282,7 +282,8 @@
 
                         <div class="vote_casting_header">
                             <div class="vote_casting_header_section">
-                                <div class="table_cell bold vote_casting_description" translate="VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE">Cast your vote</div>
+                                <div class="table_cell bold vote_casting_description" ng-if="!topic.hasVoteEndedExpired()" translate="VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE">Cast your vote</div>
+                                <div class="table_cell bold vote_casting_description" ng-if="topic.hasVoteEndedExpired()" translate="VIEWS.TOPICS_TOPICID.LBL_VOTE_RESULTS">Cast your vote</div>
                             </div>
                             <div class="vote_casting_header_section">
                                 <div class="table_cell">
@@ -414,18 +415,18 @@
                         </div>
 
                         <!-- Statistics graph start -->
-                        <div class="vote_casting_message" ng-if="topic.canUpdate() && topic.hasVoteEnded()">
+                        <div class="vote_casting_message" ng-if="topic.hasVoteEndedExpired() || topic.hasVoteEnded()">
 
                             <div class="message_header">
                                 <div class="message_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_VOTE_CLOSED">Voting has ended!</div>
                                 <div class="clearer"></div>
                             </div>
 
-                            <div ng-if="!topic.hasVoteEndedExpired()" class="message_content print_never" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can
+                            <div ng-if="topic.canUpdate()" class="message_content print_never" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can
                                 download the full document here.
                             </div>
 
-                            <div ng-if="topic.hasVoteEndedExpired()" class="print_never">
+                            <div ng-if="topic.hasVoteEndedExpired() && topic.canUpdate()" class="print_never">
                                 <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED_EXPIRED">Votes have now been cast. Please send topic to follow-up, then return here to
                                     download voting results.
                                 </div>
@@ -433,9 +434,8 @@
                                     <div class="table_cell" ng-click="sendToFollowUp('topics.view.votes.view')" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow</div>
                                 </div>
                             </div>
-
-                            <div class="info_box_wrap" ng-if="multipleWinners && (topic.status === STATUSES.followUp) && ('topics.view.votes.view' | isState) && showInfoWinners">
-                                <div class="info_box" ng-class="{'info_box_show': multipleWinners && (topic.status === STATUSES.followUp) && ('topics.view.votes.view' | isState)}">
+                            <div class="info_box_wrap" ng-if="multipleWinners && (topic.hasVoteEndedExpired() || topic.hasVoteEnded()) && ('topics.view.votes.view' | isState) && showInfoWinners && topic.canUpdate()">
+                                <div class="info_box" ng-class="{'info_box_show': multipleWinners && (topic.hasVoteEndedExpired() || topic.hasVoteEnded()) && ('topics.view.votes.view' | isState)}">
                                     <div class="info_icon">
                                         <div class="sprite sprite-icon-box-info2x"></div>
                                     </div>
@@ -461,7 +461,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            {{}}
                             <a class="print_never" ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" ng-href="{{topic.vote.downloads.bdocFinal}}" download>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
@@ -476,8 +476,7 @@
                         </div>
 
                         <!-- Regular graph -->
-                        <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular && topic.hasVoteEnded()">
-
+                        <div class="graph_wrap" ng-if="topic.vote.type === voteTypes.regular && (topic.hasVoteEndedExpired() || topic.hasVoteEnded())">
                             <div class="graph_row" ng-class="option.winner ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                 <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
                                 <div class="graph_row_fill" cos-styles='{"width" : "{{getVoteValuePercentage(option.voteCount)}}%"}' tooltips
@@ -498,7 +497,7 @@
                         </div>
 
                         <!-- Big graph -->
-                        <div class="big_graph" ng-if="topic.vote.type === voteTypes.multiple && topic.hasVoteEnded()">
+                        <div class="big_graph" ng-if="topic.vote.type === voteTypes.multiple && (topic.hasVoteEndedExpired() || topic.hasVoteEnded())">
                             <div class="long_text_holder">
                                 <div class="long_text" ng-class="(option.winner) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                     <span class="bold">{{getOptionLetter(key)}}.</span> <span translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"

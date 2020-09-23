@@ -660,6 +660,7 @@
       "VOTE_DELEGATED_TO": "You delegated your vote to:",
       "VOTE_REVOKE_DELEGATION": "Revoke your delegation",
       "VOTE_HEADING_VOTE_CLOSED": "Voting is closed!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Everyone has cast their votes. You can download the full document here.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Votes have now been cast. Please send topic to follow-up, then return here to download voting results.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Download signed file (BDOC)",
