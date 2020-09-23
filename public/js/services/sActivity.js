@@ -692,9 +692,9 @@ angular
                 stateName = 'topics.view.votes.view';
                 params.topicId = target.topicId || target.id;
                 params.voteId = object.voteId || object.id;
-            } else if (object['@type'] === 'Group') {
+            } else if (object['@type'] === 'Group' || object['@type'] === 'TopicMemberGroup') {
                 stateName = 'my.groups.groupId';
-                params.groupId = object.id;
+                params.groupId = object.id || object.groupId;
             } else if (target && target['@type'] === 'Topic' || target.topicId) {
                 stateName = 'topics.view';
                 params.topicId = target.topicId || target.id

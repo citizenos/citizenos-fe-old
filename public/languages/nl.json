@@ -867,6 +867,8 @@
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_ACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> en <em>{{groupCount}}</em> anderen hebben topics verwijderd uit de groep <em>{{groupName}}</em>",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_USERACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> heeft <em>{{groupCount}}</em> topics verwijderd uit de groep <em>{{groupName}}</em>",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "Gebruiker <em>{{userName}}</em> heeft het toegangsniveau van de groep <em>{{groupName}}</em> gewijzigd voor de topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have changed the access level of group <em>{{groupName}}</em> to topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_USERACTIVITYGROUP": "User <em>{{userName}}</em> has changed the access level of group <em>{{groupName}}</em> for <em>{{groupCount}}</em> topics",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "Gebruiker <em>{{userName}}</em> heeft een update gemaakt voor de topic <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_ACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> en <em>{{groupCount}}</em> anderen hebben een update gemaakt voor de topic <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_USERACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> heeft <em>{{groupCount}}</em> updates gemaakt voor de topic <em>{{topicTitle}}</em>:",

@@ -867,6 +867,8 @@
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_ACTIVITYGROUP": "Lietotājs <em>{{userName}}</em> un <em>{{groupCount}}</em> citi dzēsa tematus no grupas <em>{{groupName}}</em>",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_USERACTIVITYGROUP": "Lietotājs <em>{{userName}}</em> dzēsa <em>{{groupCount}}</em> tematus no grupas <em>{{groupName}}</em>",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "Lietotājs <em>{{userName}}</em> mainīja grupas piekļuves līmeni <em>{{groupName}}</em> tematam <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have changed the access level of group <em>{{groupName}}</em> to topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_USERACTIVITYGROUP": "User <em>{{userName}}</em> has changed the access level of group <em>{{groupName}}</em> for <em>{{groupCount}}</em> topics",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "Lietotās <em>{{userName}}</em> atjaunināja tematu <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_ACTIVITYGROUP": "Lietotājs <em>{{userName}}</em> un <em>{{groupCount}}</em> citi atjaunināja tematu <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_USERACTIVITYGROUP": "Lietotājs <em>{{userName}}</em> veica <em>{{groupCount}}</em> atjauninājumus tematā <em>{{topicTitle}}</em>:",
