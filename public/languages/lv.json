@@ -660,6 +660,7 @@
       "VOTE_DELEGATED_TO": "Jūs deleģējāt savu balsi:",
       "VOTE_REVOKE_DELEGATION": "Atsaukt deleģējumu",
       "VOTE_HEADING_VOTE_CLOSED": "Balsošana beigusies!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Visi ir nobalsojuši. Jūs varat lejupielādēt pilnu dokumentu šeit.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Tagad balsis ir nodotas. Lūdzu, nosūtiet tematu īstenošanai, pēc tam atgrieziet šeit, lai lejupielādētu balsošanas rezultātus.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Lejupielādēt parakstīto failu (BDOC)",
