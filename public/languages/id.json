@@ -660,6 +660,7 @@
       "VOTE_DELEGATED_TO": "Anda mendelegasikan pilihan anda kepada:",
       "VOTE_REVOKE_DELEGATION": "Batalkan delegasi pilihan",
       "VOTE_HEADING_VOTE_CLOSED": "Masa pemilihan sudah ditutup!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Semua orang telah memberikan suara. Anda dapat mengunduh dokumen lengkap di sini.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Sekarang hak pilih telah diberikan. Silakan mengirim topik untuk tindak lanjut, kemudian kembali ke sini untuk mengunduh hasil voting.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Unduh dokumen yang sudah tertandatangani (BDOC)",
