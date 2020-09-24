@@ -660,6 +660,7 @@
       "VOTE_DELEGATED_TO": "U heeft uw stem overgedragen aan:",
       "VOTE_REVOKE_DELEGATION": "Uw overdracht intrekken",
       "VOTE_HEADING_VOTE_CLOSED": "De stemming is gesloten!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Iedereen heeft zijn stem uitgebracht. U kunt het volledige document hier downloaden.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "De stemmen zijn uitgebracht. Stuur een topic om op te volgen en kom hier terug om de stemresultaten te downloaden.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Ondertekend bestand (BDOC) downloaden",
