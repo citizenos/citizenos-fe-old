@@ -660,6 +660,7 @@
       "VOTE_DELEGATED_TO": "Го делегиравте вашиот глас за:",
       "VOTE_REVOKE_DELEGATION": "Забрани ја вашата делегација",
       "VOTE_HEADING_VOTE_CLOSED": "Гласањето е затворено!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Сите членови гласаа. Можете да го преземете целиот документ тука.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Гласовите се дадени. Ве молиме, пратете ја темата на проследување, потоа вратете се тука за да ги симнете резултатите од гасањето.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Преземи потпишан фајл (BDOC)",
