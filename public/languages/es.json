@@ -867,6 +867,8 @@
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_ACTIVITYGROUP": "El usuario <em>{{userName}}</em> y <em>{{groupCount}}</em> más quitaron temas del grupo <em>{{groupName}}</em>",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_USERACTIVITYGROUP": "El usuario <em>{{userName}}</em> quitó <em>{{groupCount}}</em> temas del grupo <em>{{groupName}}</em>",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "El usuario <em>{{userName}}</em> cambió el nivel de acceso del grupo <em>{{groupName}}</em> al tema <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have changed the access level of group <em>{{groupName}}</em> to topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_USERACTIVITYGROUP": "User <em>{{userName}}</em> has changed the access level of group <em>{{groupName}}</em> for <em>{{groupCount}}</em> topics",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "El usuario <em>{{userName}}</em> creó una actualización en el tema <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_ACTIVITYGROUP": "El usuario <em>{{userName}}</em> y <em>{{groupCount}}</em> más crearon una actualización en el tema <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_USERACTIVITYGROUP": "El usuario <em>{{userName}}</em> creó <em>{{groupCount}}</em> actualizaciones en el tema <em>{{topicTitle}}</em>:",

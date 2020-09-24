@@ -867,6 +867,8 @@
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_ACTIVITYGROUP": "Пользователь <em>{{userName}}</em> и еще <em>{{groupCount}}</em> других удалили темы из группы <em>{{groupName}}</em>",
     "ACTIVITY_USER_DELETE_GROUP_TOPIC_USERACTIVITYGROUP": "Пользователь <em>{{userName}}</em> удалил <em>{{groupCount}}</em> тем из группы <em>{{groupName}}</em>",
     "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP": "Пользователь <em>{{userName}}</em> обновил уровень доступа группы <em>{{groupName}}</em> к теме <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have changed the access level of group <em>{{groupName}}</em> to topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_UPDATE_TOPICMEMBERGROUP_USERACTIVITYGROUP": "User <em>{{userName}}</em> has changed the access level of group <em>{{groupName}}</em> for <em>{{groupCount}}</em> topics",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC": "Пользователь <em>{{userName}}</em> создал обновление по теме <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_ACTIVITYGROUP": "Пользователь <em>{{userName}}</em> и еще <em>{{groupCount}}</em> других создали обновления по теме <em>{{topicTitle}}</em>:",
     "ACTIVITY_USER_CREATE_TOPICEVENT_TOPIC_USERACTIVITYGROUP": "Пользователь <em>{{userName}}</em> создал <em>{{groupCount}}</em> обновлений по теме <em>{{topicTitle}}</em>:",
