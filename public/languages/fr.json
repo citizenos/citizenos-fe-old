@@ -660,6 +660,7 @@
       "VOTE_DELEGATED_TO": "Vous avez délégué votre vote à:",
       "VOTE_REVOKE_DELEGATION": "Révoquez votre délégation",
       "VOTE_HEADING_VOTE_CLOSED": "Le vote est fermé!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Tout le monde a voté. Vous pouvez maintenant rélécharger tout le document",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Les votes ont maintenant été envoyés. Veuillez envoyer le sujet au suivi, puis revenez ici pour télécharger les résultats des votes.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Télécharger le ficher signé (DBOC)",
