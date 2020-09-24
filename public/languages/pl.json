@@ -660,6 +660,7 @@
       "VOTE_DELEGATED_TO": "Przekazałeś/aś swój głos na:",
       "VOTE_REVOKE_DELEGATION": "Odwołaj przekazanie głosu",
       "VOTE_HEADING_VOTE_CLOSED": "Głosowanie zostało zamknięte!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Każdy oddał głos. Możesz pobrać pełny dokument tutaj.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Głosy zostały oddane. Wyślij wątek do obserwacji, a następnie wróć tutaj, aby pobrać wyniki głosowania.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Pobierz podpisany plik (BDOC)",
