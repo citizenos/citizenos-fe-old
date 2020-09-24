@@ -231,6 +231,18 @@
                 .small_topic_footer {
                     color: $medium_black;
                     margin-top: 14px;
+
+                    .small_topic_icon, .small_topic_small_text {
+                        float: left;
+                        opacity: .69;
+                    }
+
+                    .small_topic_left_cont {
+                        .small_topic_icon {
+                            margin: 0px 8px 0 0;
+                        }
+                    }
+
                 }
 
             }
@@ -284,12 +296,15 @@
 
             }
 
-            .small_topic:hover {
-                .small_topic_title {
+            .small_topic {
+                .small_topic_title:hover {
                     text-decoration: underline;
                     @include tablet {
                         text-decoration: none;
                     }
+                }
+                .small_topic_link {
+                    text-decoration: underline;
                 }
             }
         }
