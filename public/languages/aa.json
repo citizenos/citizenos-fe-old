@@ -660,6 +660,7 @@
       "VOTE_DELEGATED_TO": "crwdns21300:0crwdne21300:0",
       "VOTE_REVOKE_DELEGATION": "crwdns21302:0crwdne21302:0",
       "VOTE_HEADING_VOTE_CLOSED": "crwdns21304:0crwdne21304:0",
+      "LBL_VOTE_RESULTS": "crwdns26764:0crwdne26764:0",
       "VOTE_TXT_VOTE_CLOSED": "crwdns21306:0crwdne21306:0",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "crwdns23096:0crwdne23096:0",
       "BTN_DOWNLOAD_FINAL_BDOC": "crwdns21308:0crwdne21308:0",
