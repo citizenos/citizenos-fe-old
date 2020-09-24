@@ -145,11 +145,14 @@
                     <div class="line lightest_line"></div>
 
                     <div class="small_topic_footer">
-                        <!--div class="small_topic_left_cont">
-                            <div class="small_topic_icon" ng-click="goToTopicView(item.id)">
-                                <div class="sprite sprite-icon-edit2x"></div>
+                        <div class="small_topic_left_cont">
+                            <div class="small_topic_link" ng-click="goToTopicView(item.id)">
+                                <div class="small_topic_icon">
+                                    <div class="sprite" ng-class="isActiveTopic(item) ? 'sprite-icon-edit-topic_white': 'sprite-icon-edit-topic_black'"></div>
+                                </div>
+                                <div class="small_topic_small_text small_topic_link">Edit</div>
                             </div>
-                        </div-->
+                        </div>
                         <div class="small_topic_right_cont">
                             <div class="small_topic_small_text" ng-bind="(item.updatedAt || item.createdAt) | amDateFormat : 'L LT'">12/12/2015</div>
                         </div>
