@@ -660,6 +660,7 @@
       "VOTE_DELEGATED_TO": "Volitasid isikut:",
       "VOTE_REVOKE_DELEGATION": "Tühista volitus",
       "VOTE_HEADING_VOTE_CLOSED": "Hääletus on lõppenud!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Kõik on hääletanud. Valmis dokumendi saad alla laadida siit.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Hääled on nüüd antud. Palun liiguta teema elluviimisfaasi ja seejärel naase siia, et laadida alla hääletustulemused.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Lae alla allkirjadega fail (BDOC)",
