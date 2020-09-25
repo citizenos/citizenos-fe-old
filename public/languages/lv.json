@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "nodots balsošanai",
   "TXT_TOPIC_STATUS_FOLLOWUP": "īstenošana",
   "TXT_TOPIC_STATUS_CLOSED": "aizvērts",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "administrators",
   "TXT_TOPIC_LEVELS_EDIT": "rediģēt",
   "TXT_TOPIC_LEVELS_READ": "lasīt",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "Jūs vēl nepiedalījāties temata apspriešanā. Pamēģiniet, tas tiešām ir forši!",
       "HEADING_GET_INVOLVED": "Jūs varat iesaistīties",
       "MY_CREATING_A_NEW_TOPIC": "Izveidot jaunu tematu",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Rādīt visus manus tematus",
         "SHOW_ONLY": "Rādīt tikai:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Temati balsošanas posmā",
         "TOPICS_IN_FOLLOW_UP": "Temati īstenošanas posmā",
         "TOPICS_CLOSED": "Slēgtie temati",
-        "TOPICS_PINNED": "Atzīmētie temati"
+        "TOPICS_PINNED": "Atzīmētie temati",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
