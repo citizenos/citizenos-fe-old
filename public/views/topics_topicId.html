@@ -282,8 +282,8 @@
 
                         <div class="vote_casting_header">
                             <div class="vote_casting_header_section">
-                                <div class="table_cell bold vote_casting_description" ng-if="!topic.hasVoteEndedExpired()" translate="VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE">Cast your vote</div>
-                                <div class="table_cell bold vote_casting_description" ng-if="topic.hasVoteEndedExpired()" translate="VIEWS.TOPICS_TOPICID.LBL_VOTE_RESULTS">Cast your vote</div>
+                                <div class="table_cell bold vote_casting_description" ng-if="!topic.hasVoteEndedExpired() && !topic.hasVoteEnded()" translate="VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE">Cast your vote</div>
+                                <div class="table_cell bold vote_casting_description" ng-if="topic.hasVoteEndedExpired() || topic.hasVoteEnded()" translate="VIEWS.TOPICS_TOPICID.LBL_VOTE_RESULTS">Cast your vote</div>
                             </div>
                             <div class="vote_casting_header_section">
                                 <div class="table_cell">

@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "stemming",
   "TXT_TOPIC_STATUS_FOLLOWUP": "opvolging",
   "TXT_TOPIC_STATUS_CLOSED": "gesloten",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "beheren",
   "TXT_TOPIC_LEVELS_EDIT": "bewerken",
   "TXT_TOPIC_LEVELS_READ": "lezen",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "U hebt nog niet deelgenomen aan een topic. Probeer het, het is echt cool!",
       "HEADING_GET_INVOLVED": "U kunt deelnemen door",
       "MY_CREATING_A_NEW_TOPIC": "Een nieuwe topic maken",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Toon al mijn topics",
         "SHOW_ONLY": "Toon alleen:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Topics in stemming",
         "TOPICS_IN_FOLLOW_UP": "Topics in opvolging",
         "TOPICS_CLOSED": "Gesloten topics",
-        "TOPICS_PINNED": "Vastgemaakte topics"
+        "TOPICS_PINNED": "Vastgemaakte topics",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -660,6 +663,7 @@
       "VOTE_DELEGATED_TO": "U heeft uw stem overgedragen aan:",
       "VOTE_REVOKE_DELEGATION": "Uw overdracht intrekken",
       "VOTE_HEADING_VOTE_CLOSED": "De stemming is gesloten!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Iedereen heeft zijn stem uitgebracht. U kunt het volledige document hier downloaden.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "De stemmen zijn uitgebracht. Stuur een topic om op te volgen en kom hier terug om de stemresultaten te downloaden.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Ondertekend bestand (BDOC) downloaden",

@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "на голосовании",
   "TXT_TOPIC_STATUS_FOLLOWUP": "в стадии применения решения",
   "TXT_TOPIC_STATUS_CLOSED": "закрыто",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "администрирование",
   "TXT_TOPIC_LEVELS_EDIT": "редактирование",
   "TXT_TOPIC_LEVELS_READ": "просмотр",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "Вы пока не участвуете ни в одной теме. Попробуйте, это здорово!",
       "HEADING_GET_INVOLVED": "Для участия имеются следующие возможности",
       "MY_CREATING_A_NEW_TOPIC": "Создать новую тему",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Показать все мои темы",
         "SHOW_ONLY": "Показывать только:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Темы в стадии голосования",
         "TOPICS_IN_FOLLOW_UP": "Темы в стадии применения решения",
         "TOPICS_CLOSED": "Закрытые темы",
-        "TOPICS_PINNED": "Избранные темы"
+        "TOPICS_PINNED": "Избранные темы",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -660,6 +663,7 @@
       "VOTE_DELEGATED_TO": "Уполномоченное лицо:",
       "VOTE_REVOKE_DELEGATION": "Отменить переданное полномочие",
       "VOTE_HEADING_VOTE_CLOSED": "Голосование окончено.",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Все проголосовали. Здесь можете скачать готовый документ.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Голоса учтены. Переведите тему в стадию применения решения, затем вернитесь на эту страницу, чтобы загрузить результаты голосования.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Загрузить конечный файл с подписями (BDOC) ",

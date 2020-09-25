@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "hääletamisel",
   "TXT_TOPIC_STATUS_FOLLOWUP": "elluviimisel",
   "TXT_TOPIC_STATUS_CLOSED": "suletud",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "haldamine",
   "TXT_TOPIC_LEVELS_EDIT": "muutmine",
   "TXT_TOPIC_LEVELS_READ": "lugemine",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "Sa ei osale veel üheski teemas. Proovi järele, see on lahe!",
       "HEADING_GET_INVOLVED": "Osalemiseks on järgmised võimalused",
       "MY_CREATING_A_NEW_TOPIC": "Loo uus teema",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Näita kõiki minu teemasid",
         "SHOW_ONLY": "Näita ainult:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Hääletamisel teemad",
         "TOPICS_IN_FOLLOW_UP": "Elluviimisel teemad",
         "TOPICS_CLOSED": "Suletud teemad",
-        "TOPICS_PINNED": "Esiletõstetud teemad"
+        "TOPICS_PINNED": "Esiletõstetud teemad",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -660,6 +663,7 @@
       "VOTE_DELEGATED_TO": "Volitasid isikut:",
       "VOTE_REVOKE_DELEGATION": "Tühista volitus",
       "VOTE_HEADING_VOTE_CLOSED": "Hääletus on lõppenud!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Kõik on hääletanud. Valmis dokumendi saad alla laadida siit.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Hääled on nüüd antud. Palun liiguta teema elluviimisfaasi ja seejärel naase siia, et laadida alla hääletustulemused.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Lae alla allkirjadega fail (BDOC)",

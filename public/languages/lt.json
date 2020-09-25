@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "in voting",
   "TXT_TOPIC_STATUS_FOLLOWUP": "in follow-up",
   "TXT_TOPIC_STATUS_CLOSED": "closed",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "admin",
   "TXT_TOPIC_LEVELS_EDIT": "edit",
   "TXT_TOPIC_LEVELS_READ": "read",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "You have not participated in a topic yet. Try it, it’s really cool!",
       "HEADING_GET_INVOLVED": "You can get involved by",
       "MY_CREATING_A_NEW_TOPIC": "Creating a new topic",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Show all my topics",
         "SHOW_ONLY": "Show only:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Topics in voting",
         "TOPICS_IN_FOLLOW_UP": "Topics in follow-up",
         "TOPICS_CLOSED": "Closed topics",
-        "TOPICS_PINNED": "Pinned topics"
+        "TOPICS_PINNED": "Pinned topics",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -660,6 +663,7 @@
       "VOTE_DELEGATED_TO": "You delegated your vote to:",
       "VOTE_REVOKE_DELEGATION": "Revoke your delegation",
       "VOTE_HEADING_VOTE_CLOSED": "Voting is closed!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Everyone has cast their votes. You can download the full document here.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Votes have now been cast. Please send topic to follow-up, then return here to download voting results.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Download signed file (BDOC)",
