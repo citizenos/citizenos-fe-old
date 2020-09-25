@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "стадиум на гласање",
   "TXT_TOPIC_STATUS_FOLLOWUP": "стадиум на следење",
   "TXT_TOPIC_STATUS_CLOSED": "затворено",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "администратор",
   "TXT_TOPIC_LEVELS_EDIT": "ажурирај",
   "TXT_TOPIC_LEVELS_READ": "прочитај",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "Сѐ уште немате земено учество во некоја тема. Пробајте, интересно е!",
       "HEADING_GET_INVOLVED": "Можете да се инволвирате од ",
       "MY_CREATING_A_NEW_TOPIC": "Создавање на нова тема",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Прикажи ги сите мои теми",
         "SHOW_ONLY": "Прикажи само:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Теми за гласање",
         "TOPICS_IN_FOLLOW_UP": "Теми во стадиум на следење",
         "TOPICS_CLOSED": "Затворни теми",
-        "TOPICS_PINNED": "Закачени теми"
+        "TOPICS_PINNED": "Закачени теми",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
