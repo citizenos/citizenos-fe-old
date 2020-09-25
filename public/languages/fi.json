@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "äänestyksessä",
   "TXT_TOPIC_STATUS_FOLLOWUP": "seurannassa",
   "TXT_TOPIC_STATUS_CLOSED": "suljettu",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "järjestelmänvalvoja",
   "TXT_TOPIC_LEVELS_EDIT": "muokkaa",
   "TXT_TOPIC_LEVELS_READ": "lue",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "Et ole vielä osallistunut mihinkään aiheeseen. Kannattaa kokeilla – se on tosi siistiä!",
       "HEADING_GET_INVOLVED": "Voit osallistua",
       "MY_CREATING_A_NEW_TOPIC": "Luomalla uuden aiheen",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Näytä kaikki aiheeni",
         "SHOW_ONLY": "Näytä vain:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Äänestyksessä olevat aiheet",
         "TOPICS_IN_FOLLOW_UP": "Seurannassa olevat aiheet",
         "TOPICS_CLOSED": "Suljetut aiheet",
-        "TOPICS_PINNED": "Kiinnitä aihe"
+        "TOPICS_PINNED": "Kiinnitä aihe",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
