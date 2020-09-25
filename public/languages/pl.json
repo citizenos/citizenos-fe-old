@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "w głosowaniu",
   "TXT_TOPIC_STATUS_FOLLOWUP": "w monitorowaniu",
   "TXT_TOPIC_STATUS_CLOSED": "zamknięte",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "administrator",
   "TXT_TOPIC_LEVELS_EDIT": "edycja",
   "TXT_TOPIC_LEVELS_READ": "czytanie",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "Nie uczestniczyłeś/aś jeszcze w temacie. Wypróbuj, to naprawdę fajne!",
       "HEADING_GET_INVOLVED": "Możesz zaangażować się przez",
       "MY_CREATING_A_NEW_TOPIC": "Tworzenie nowego tematu",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Pokaż wszystkie moje tematy",
         "SHOW_ONLY": "Pokaż tylko:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Tematy w trakcie głosowania",
         "TOPICS_IN_FOLLOW_UP": "Tematy w monitorowaniu",
         "TOPICS_CLOSED": "Zamknięte tematy",
-        "TOPICS_PINNED": "Przypięte tematy"
+        "TOPICS_PINNED": "Przypięte tematy",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
