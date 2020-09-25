@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "en votación",
   "TXT_TOPIC_STATUS_FOLLOWUP": "en seguimiento",
   "TXT_TOPIC_STATUS_CLOSED": "cerrado",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "administrador",
   "TXT_TOPIC_LEVELS_EDIT": "editar",
   "TXT_TOPIC_LEVELS_READ": "leer",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "Aún no participó en ningún tema. Pruébelo, es realmente interesante.",
       "HEADING_GET_INVOLVED": "Puede participar si",
       "MY_CREATING_A_NEW_TOPIC": "Crea un tema",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Mostrar todos mis temas",
         "SHOW_ONLY": "Mostrar solo:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Temas en votación",
         "TOPICS_IN_FOLLOW_UP": "Temas en seguimiento",
         "TOPICS_CLOSED": "Temas cerrados",
-        "TOPICS_PINNED": "Temas anclados"
+        "TOPICS_PINNED": "Temas anclados",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
