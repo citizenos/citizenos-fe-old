@@ -27,7 +27,7 @@ angular
                 },
                 statuses: {
                     value: $scope.FILTERS_ALL,
-                    options: [$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES))
+                    options: [$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES).concat('moderated'))
                 },
                 limit: 30,
                 offset: 0,
@@ -116,11 +116,17 @@ angular
             $scope.isTopicListLoading = true;
 
             var status = resolveStatus();
-
+            console.log(status);
+            var showModerated = false;
+            if (status === 'moderated' ) {
+                status = null;
+                showModerated = true;
+            }
             sTopic
                 .listUnauth(
                     $scope.filters.statuses.value !== $scope.FILTERS_ALL ? status : null,
                     $scope.filters.categories.value !== $scope.FILTERS_ALL ? resolveCategory() : null,
+                    showModerated,
                     $scope.filters.offset,
                     $scope.filters.limit
                 )
