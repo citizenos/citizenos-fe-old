@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "dalam pemungutan suara",
   "TXT_TOPIC_STATUS_FOLLOWUP": "dalam tindak lanjut",
   "TXT_TOPIC_STATUS_CLOSED": "ditutup",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "admin",
   "TXT_TOPIC_LEVELS_EDIT": "edit",
   "TXT_TOPIC_LEVELS_READ": "baca",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "Anda belum berpartisipasi dalam sebuah topik. Cobalah, ino sangat keren!",
       "HEADING_GET_INVOLVED": "Anda dapat terlibat dengan",
       "MY_CREATING_A_NEW_TOPIC": "Membuat topik baru",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Tampilkan semua topik saya",
         "SHOW_ONLY": "Tampilkan hanya:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Topik dalam pengambilan suara",
         "TOPICS_IN_FOLLOW_UP": "Topik dalam tindak lanjut",
         "TOPICS_CLOSED": "Topik ditutup",
-        "TOPICS_PINNED": "Topik disematkan"
+        "TOPICS_PINNED": "Topik disematkan",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
