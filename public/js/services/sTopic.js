@@ -11,12 +11,13 @@ angular
 
         sTopic.CATEGORIES = Topic.CATEGORIES;
 
-        sTopic.listUnauth = function (statuses, categories, offset, limit) {
+        sTopic.listUnauth = function (statuses, categories, showModerated, offset, limit) {
             var path = sLocation.getAbsoluteUrlApi('/api/topics');
 
             return $http.get(path, {
                 params: {
                     statuses: statuses,
+                    showModerated: showModerated,
                     categories: categories,
                     offset: offset,
                     limit: limit

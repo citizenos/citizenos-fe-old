@@ -1,6 +1,187 @@
-## 2020-03-10
+## 2020-09-30
+
+* Report a Topic - hide/show moderated topics - https://github.com/citizenos/citizenos-fe/issues/464
+
+## 2020-09-24
+
+* Make entering topic view mode from my topics easier - https://github.com/citizenos/citizenos-fe/issues/237
+
+## 2020-09-23
+
+* 'See who liked your argument' feature not working https://github.com/citizenos/citizenos-fe/issues/572
+* No information about voting deadline passed - https://github.com/citizenos/citizenos-fe/issues/502
+
+## 2020-09-22
+
+* Update dependencies and related deprecated code
+* Add missing translation keys - https://github.com/citizenos/citizenos-fe/issues/551
+
+## 2020-09-18
+
+* Activity feed shows incorrect numbers in grouped activities - https://github.com/citizenos/citizenos-fe/issues/496
+* Opinion festival box for front page- https://github.com/citizenos/citizenos-fe/issues/556
+
+## 2020-09-16
+
+* Etherpad language not always in sync with app UI language - https://github.com/citizenos/citizenos-fe/issues/504
+* Sharing private topics displays translations keys as title and description - https://github.com/citizenos/citizenos-fe/issues/543
+
+## 2020-09-15
+
+* Enable account termination by user - https://github.com/citizenos/citizenos-fe/issues/318
+
+## 2020-09-14
+
+* When voting is active, open "Vote" tab by default - https://github.com/citizenos/citizenos-fe/issues/513
+* Drop DigiDocService and Proxy using for ID-Card signing - https://github.com/citizenos/citizenos-api/issues/157
+
+## 2020-09-04
+
+* Make search more visible and only when it is relevant - https://github.com/citizenos/citizenos-fe/issues/236
+* Search bar should provide feedback if user's input isn't suitable for search - https://github.com/citizenos/citizenos-fe/issues/324
+
+## 2020-08-31
+
+* Hide disabled features (links, buttons) - https://github.com/citizenos/citizenos-fe/issues/240
+
+## 2020-08-19
+
+* Update argument reply votes
+* FIX Google scipt outdating for picker - https://github.com/citizenos/citizenos-fe/issues/459
+* Change tab name from "View" to "Edit" and back, based on what action user is performing - https://github.com/citizenos/citizenos-fe/issues/302
+
+## 2020-08-17
+
+* Display list of users reactions on arguments - https://github.com/citizenos/citizenos-fe/issues/470
+
+## 2020-07-27
+
+* Enable multiple choice voting - https://github.com/citizenos/citizenos-fe/issues/413
+
+## 2020-07-01
+
+* Update etherpad styles
+
+## 2020-06-17
+
+* Add multiple emails to group
+
+## 2020-05-26
+
+* Topic title and description to meta tags so that social media previews would be generated properly
+    * https://github.com/citizenos/citizenos-fe/issues/166
+    * https://github.com/citizenos/citizenos-fe/issues/420
+
+## 2020-05-19
+
+* Fix missing comment icon in Etherpad inline comments - https://github.com/citizenos/citizenos-fe/issues/467
+* Fix toggling tabs
+* Home - hover effect for tiles - slight animation - https://github.com/citizenos/citizenos-fe/issues/305
+* Dashboard tabs behaviour fix - https://github.com/citizenos/citizenos-fe/issues/100
+
+
+## 2020-05-18
+
+* Enable vertical scroll of navigation so that logout would not become inaccessible on small screens - https://github.com/citizenos/citizenos-fe/issues/299
+* Delegation - error message when User tries to delegate to a non-topic member - https://github.com/citizenos/citizenos-fe/issues/359
+
+## 2020-05-13
+
+* Fix dashboard topic member list showing inaccessible groups incorrectly - https://github.com/citizenos/citizenos-fe/issues/260
+* Fix topic and widget activity feed
+
+## 2020-05-12
+
+* Activity feed direct link to comments - https://github.com/citizenos/citizenos-fe/issues/468
+* Activity Feed doesn't show new activities' badge upon login - https://github.com/citizenos/citizenos-fe/issues/472
+* Activity Feed stays visible after log-out - https://github.com/citizenos/citizenos-fe/issues/473
+
+## 2020-05-11
+
+* Update activity feed grouping
+* Load more activities if list is too short after grouping
+* Fix topic invite mobile view
+
+## 2020-05-07
+
+* Topic inivite to separate modal, add pagination, can copy-paste multiple e-mails - https://github.com/citizenos/citizenos-fe/issues/235
+
+## 2020-04-28
+
+* Add pagination funcitonality for topic members
+
+
+## 2020-04-27
 
 * Group similar Activity Feed items together - https://github.com/citizenos/citizenos-fe/issues/256
+* FIX delete topic alignment in Safari - https://github.com/citizenos/citizenos-fe/issues/257
+
+## 2020-04-22
+
+* In public topics view title is cut off at the line and the category has no bottom padding - https://github.com/citizenos/citizenos-fe/issues/304
+
+## 2020-04-21
+
+* Update activities to be more informative
+* Update acitivities mobile view
+
+
+## 2020-04-20
+
+* Update activities strings with em
+* Update google-api.js for picker
+
+## 2020-04-15
+
+* Fix redirect and group expand for activities
+* Activity feed redirect fix
+
+## 2020-04-14
+
+* Add list functionality to topic user invite form
+
+## 2020-04-13
+
+* Update cookie notification (Home.js - describe script usage. Enable GA IP anonymization) - https://github.com/citizenos/citizenos-fe/issues/381
+
+## 2020-04-10
+
+* Inlinecomment adding label hides selected text (Etherpad) - https://github.com/citizenos/citizenos-fe/issues/241
+
+## 2020-04-08
+
+* Update README.md
+
+## 2020-04-01
+
+* Red internet connection alert is constantly active - https://github.com/citizenos/citizenos-fe/issues/352
+
+## 2020-03-26
+
+* Fix topic vote style issues
+
+## 2020-03-25
+
+* Update grouping of activities
+
+## 2020-03-23
+
+* Add testing environment notification - https://github.com/citizenos/citizenos-fe/issues/442
+
+## 2020-03-19
+
+* Enable filtering by voting status - https://github.com/citizenos/citizenos-fe/issues/323
+
+## 2020-03-17
+
+* Add Smart-ID icon to voting view
+* Make topic view printable - https://github.com/citizenos/citizenos-fe/issues/330
+* Fix regression where after coming to page with commentId navigating tabs would always scroll to the comment - https://github.com/citizenos/citizenos-fe/issues/361
+
+## 2020-03-11
+
+* FIX: Public topics "boxes" categories do not work - https://github.com/citizenos/citizenos-fe/issues/436
+* Add styles for print view
 
 ## 2020-03-10
 
