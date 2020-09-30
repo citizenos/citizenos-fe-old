@@ -698,6 +698,9 @@
                                 case 'pinnedTopics':
                                     urlParams.pinned = true;
                                     return Topic.query(urlParams).$promise;
+                                case 'showModerated':
+                                    urlParams.showModerated = true;
+                                    return Topic.query(urlParams).$promise;
                                 case 'grouped':
                                     return Group.query().$promise;
                                 default:

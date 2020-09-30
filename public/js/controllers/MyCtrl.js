@@ -88,6 +88,13 @@ angular
                         onSelect: function () {
                             $state.go('my.topics', {filter: this.id}, {reload: true});
                         }
+                    },
+                    {
+                        id: 'showModerated',
+                        name: 'VIEWS.MY.FILTERS.TOPICS_MODERATED',
+                        onSelect: function () {
+                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                        }
                     }
                 ]
             },

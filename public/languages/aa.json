@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "crwdns20226:0crwdne20226:0",
   "TXT_TOPIC_STATUS_FOLLOWUP": "crwdns20228:0crwdne20228:0",
   "TXT_TOPIC_STATUS_CLOSED": "crwdns20230:0crwdne20230:0",
+  "TXT_TOPIC_STATUS_MODERATED": "crwdns26766:0crwdne26766:0",
   "TXT_TOPIC_LEVELS_ADMIN": "crwdns20232:0crwdne20232:0",
   "TXT_TOPIC_LEVELS_EDIT": "crwdns20234:0crwdne20234:0",
   "TXT_TOPIC_LEVELS_READ": "crwdns20236:0crwdne20236:0",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "crwdns21028:0crwdne21028:0",
       "HEADING_GET_INVOLVED": "crwdns21030:0crwdne21030:0",
       "MY_CREATING_A_NEW_TOPIC": "crwdns21032:0crwdne21032:0",
+      "LNK_TOPIC_EDIT": "crwdns26768:0crwdne26768:0",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "crwdns21034:0crwdne21034:0",
         "SHOW_ONLY": "crwdns21036:0crwdne21036:0",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "crwdns21048:0crwdne21048:0",
         "TOPICS_IN_FOLLOW_UP": "crwdns21050:0crwdne21050:0",
         "TOPICS_CLOSED": "crwdns21052:0crwdne21052:0",
-        "TOPICS_PINNED": "crwdns21054:0crwdne21054:0"
+        "TOPICS_PINNED": "crwdns21054:0crwdne21054:0",
+        "TOPICS_MODERATED": "crwdns26770:0crwdne26770:0"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -660,6 +663,7 @@
       "VOTE_DELEGATED_TO": "crwdns21300:0crwdne21300:0",
       "VOTE_REVOKE_DELEGATION": "crwdns21302:0crwdne21302:0",
       "VOTE_HEADING_VOTE_CLOSED": "crwdns21304:0crwdne21304:0",
+      "LBL_VOTE_RESULTS": "crwdns26764:0crwdne26764:0",
       "VOTE_TXT_VOTE_CLOSED": "crwdns21306:0crwdne21306:0",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "crwdns23096:0crwdne23096:0",
       "BTN_DOWNLOAD_FINAL_BDOC": "crwdns21308:0crwdne21308:0",

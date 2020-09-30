@@ -14,6 +14,7 @@
   "TXT_TOPIC_STATUS_VOTING": "en cours de vote",
   "TXT_TOPIC_STATUS_FOLLOWUP": "en cours de suivi",
   "TXT_TOPIC_STATUS_CLOSED": "fermé",
+  "TXT_TOPIC_STATUS_MODERATED": "moderated",
   "TXT_TOPIC_LEVELS_ADMIN": "administrateur",
   "TXT_TOPIC_LEVELS_EDIT": "éditer",
   "TXT_TOPIC_LEVELS_READ": "lire",
@@ -512,6 +513,7 @@
       "HEADING_NOT_PARTICIPATED": "Vous n'avez pas encore participé à aucun sujet. Essayez, c'est vraiment cool!",
       "HEADING_GET_INVOLVED": "Vous pouvez être impliqué ",
       "MY_CREATING_A_NEW_TOPIC": "Création d'un nouveau sujet",
+      "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Visionner tout mes sujets",
         "SHOW_ONLY": "Afficher seulement:",
@@ -525,7 +527,8 @@
         "TOPICS_IN_VOTING": "Sujets en vote",
         "TOPICS_IN_FOLLOW_UP": "Sujets en suivi",
         "TOPICS_CLOSED": "Sujets fermés",
-        "TOPICS_PINNED": "Sujets épinglés"
+        "TOPICS_PINNED": "Sujets épinglés",
+        "TOPICS_MODERATED": "Moderated topics"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -660,6 +663,7 @@
       "VOTE_DELEGATED_TO": "Vous avez délégué votre vote à:",
       "VOTE_REVOKE_DELEGATION": "Révoquez votre délégation",
       "VOTE_HEADING_VOTE_CLOSED": "Le vote est fermé!",
+      "LBL_VOTE_RESULTS": "Voting results",
       "VOTE_TXT_VOTE_CLOSED": "Tout le monde a voté. Vous pouvez maintenant rélécharger tout le document",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Les votes ont maintenant été envoyés. Veuillez envoyer le sujet au suivi, puis revenez ici pour télécharger les résultats des votes.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Télécharger le ficher signé (DBOC)",
