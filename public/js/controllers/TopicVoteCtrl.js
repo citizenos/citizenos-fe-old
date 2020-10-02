@@ -28,7 +28,7 @@ angular
         getVote();
 
         $scope.$parent.$parent.selectOption = function (option) {
-            if ($scope.topic.vote.type === Vote.VOTE_TYPES.multiple) {
+            if ($scope.topic.vote.type === Vote.VOTE_TYPES.multiple && $scope.topic.vote.maxChoices > 1) {
                 option.optionId = option.id;
 
                 var selected = _.filter($scope.topic.vote.options.rows, function (option) {
