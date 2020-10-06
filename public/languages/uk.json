@@ -679,6 +679,8 @@
       "VOTE_LBL_OPTION_NO": "Ні",
       "VOTE_LBL_OPTION_NEUTRAL": "Утримуюся",
       "VOTE_LBL_OPTION_VETO": "Вето",
+      "VOTE_LBL_YOUR_VOTE": "Your vote",
+      "VOTE_LBL_YOUR_VOTE_DELEGATED": "Your vote delegated to {{userName}}",
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "Введіть можливу відповідь",
       "VOTE_BTB_ADD_OPTION": "Додати ще одну відповідь",
       "VOTE_HEADING_STEP3": "Крок 3: Визначити права для голосування",
