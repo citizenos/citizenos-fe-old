@@ -679,6 +679,8 @@
       "VOTE_LBL_OPTION_NO": "Nee",
       "VOTE_LBL_OPTION_NEUTRAL": "Neutraal",
       "VOTE_LBL_OPTION_VETO": "Veto",
+      "VOTE_LBL_YOUR_VOTE": "Your vote",
+      "VOTE_LBL_YOUR_VOTE_DELEGATED": "Your vote delegated to {{userName}}",
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "Voer een mogelijk antwoord in",
       "VOTE_BTB_ADD_OPTION": "Nog een antwoord toevoegen",
       "VOTE_HEADING_STEP3": "Stap 3: stel stemrechten in",
