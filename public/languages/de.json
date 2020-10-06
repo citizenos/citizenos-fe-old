@@ -679,6 +679,8 @@
       "VOTE_LBL_OPTION_NO": "Nein",
       "VOTE_LBL_OPTION_NEUTRAL": "Enthaltung",
       "VOTE_LBL_OPTION_VETO": "Veto",
+      "VOTE_LBL_YOUR_VOTE": "Your vote",
+      "VOTE_LBL_YOUR_VOTE_DELEGATED": "Your vote delegated to {{userName}}",
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "Geben Sie eine mögliche Antwort ein",
       "VOTE_BTB_ADD_OPTION": "Weitere Antwort hinzufügen",
       "VOTE_HEADING_STEP3": "Schritt 3: Einrichten der Abstimmrechte",
