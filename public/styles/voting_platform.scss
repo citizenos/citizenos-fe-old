@@ -182,10 +182,10 @@
             .graph_row_text_wrap {
                 display: table;
                 height: 100%;
-                width: 100px;
-                min-width: 100px;
+                width: 200px;
+                min-width: 150px;
                 position: absolute;
-                right: -100px;
+                right: -200px;
             }
 
             .graph_row_text {
@@ -195,8 +195,8 @@
                 line-height: 15px;
                 text-align: left;
                 word-wrap: break-word;
-                width: 100px;
-                min-width: 100px;
+                width: 200px;
+                min-width: 150px;
             }
 
             .bullet {
