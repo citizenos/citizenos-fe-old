@@ -657,6 +657,7 @@
       "VOTE_HEADING_REQUIRE_HARD_ID": "Tämä ääni vaatii allekirjoituksen henkilökortilla tai Mobiil-ID:llä.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Tämä asiakirja tarvitsee rekisteröintiä varten allekirjoittaa henkilökortilla tai Mobiil-ID:llä. Et voi äänestää todentamatta henkilöllisyyttäsi.",
       "HEADING_VOTE_REGISTERED": "Äänesi on rekisteröity!",
+      "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
       "BTN_DOWNLOAD_USER_BDOC": "Lataa allekirjoitettu äänesi (BDOC-tiedosto)",
       "VOTE_TXT_VOTE_REGISTERED": "Kiitoksia äänestäsi. Voit yhä muuttaa mieltäsi ja ääntäsi valitsemalla eri vaihtoehdon.",
       "VOTE_HEADING_DELEGATE": "Delegoi äänesi",

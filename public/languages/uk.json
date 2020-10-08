@@ -657,6 +657,7 @@
       "VOTE_HEADING_REQUIRE_HARD_ID": "Це голосування вимагає авторизацію за допомогою ID-картки або Mobile-ID.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Цей документ має бути підписано за допомогою ID-карти або Mobile-ID для реєстрації. Ви не зможете проголосувати доки не ідентифікуєте себе.",
       "HEADING_VOTE_REGISTERED": "Ваш голос було зараховано!",
+      "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
       "BTN_DOWNLOAD_USER_BDOC": "Завантажити Ваш підписаний голос (BDOC file)",
       "VOTE_TXT_VOTE_REGISTERED": "Дякуємо за Ваш голос. Ви можете змінити Вашу думку та Ваш голос, обравши іншу опцію.",
       "VOTE_HEADING_DELEGATE": "Делегувати Ваш голос",

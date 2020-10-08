@@ -657,6 +657,7 @@
       "VOTE_HEADING_REQUIRE_HARD_ID": "Suara ini memerlukan kartu identitas atau penandatanganan id seluler.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Dokumen ini perlu ditanda tangani dengan kartu pengenal atau id seluler untuk didaftarkan. Anda tidak dapat memberikan pilihan, kecuali Anda mengidentifikasi diri.",
       "HEADING_VOTE_REGISTERED": "Pilihan Anda telah terdaftar!",
+      "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
       "BTN_DOWNLOAD_USER_BDOC": "Download pilihan Anda yang telah ditandatangani (BDOC file)",
       "VOTE_TXT_VOTE_REGISTERED": "Terima kasih untuk pilihan Anda. Anda masih dapat mengubah pikiran dan pilihan Anda dengan memilih pilihan lain.",
       "VOTE_HEADING_DELEGATE": "Wakilkan pilihanmu",

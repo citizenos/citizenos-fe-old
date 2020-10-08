@@ -657,6 +657,7 @@
       "VOTE_HEADING_REQUIRE_HARD_ID": "Ова гласање бара лична карта или потпишување на Mobiil-ID.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Овој документ мора да биде потпишан со лична карта или Mobiil-ID за да биде регистриран. Не можете да гласате доколку не сте идентификувани.",
       "HEADING_VOTE_REGISTERED": "Вашиот глас е регистриран!",
+      "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
       "BTN_DOWNLOAD_USER_BDOC": "Преземете го вашиот потпишан глас (BDOC датотека)",
       "VOTE_TXT_VOTE_REGISTERED": "Ви благодариме на вашиот глас. Сѐ уште можете да се предомислите и подоцна да го смените вашиот глас.",
       "VOTE_HEADING_DELEGATE": "Делегирај го твојот глас",
