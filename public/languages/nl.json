@@ -657,6 +657,7 @@
       "VOTE_HEADING_REQUIRE_HARD_ID": "Deze stemming vereist een identiteitskaart of ondertekening met Mobiil-ID.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Dit document moet worden ondertekend met een identiteitskaart of Mobiil-ID om geregistreerd te worden. U kunt niet stemmen tenzij u zich identificeert.",
       "HEADING_VOTE_REGISTERED": "Uw stem is geregistreerd!",
+      "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
       "BTN_DOWNLOAD_USER_BDOC": "Download uw ondertekende stem (BDOC-bestand)",
       "VOTE_TXT_VOTE_REGISTERED": "Bedankt voor uw stem. U kunt nog van mening veranderen en uw stem wijzigen door een andere optie te kiezen.",
       "VOTE_HEADING_DELEGATE": "Uw stem overdragen",
