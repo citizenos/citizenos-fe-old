@@ -252,22 +252,22 @@
 
                 <!-- COLUMN 1 -->
                 <div class="content_column" ng-controller="TopicVoteCtrl">
-                    <div class="content_item" ng-if="topic.status === STATUSES.voting">
+                    <div class="content_item" ng-if="topic.status === STATUSES.voting && !(topic.hasVoteEndedExpired() || topic.hasVoteEnded())">
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE">
                             Cast your vote
                         </div>
                         <div class="voting_buttons">
                             <div class="line lightest_line"></div>
 
-                            <div class="voting_platform_buttons">
+                            <div class="voting_platform_buttons"  ng-if="!topic.hasVoteEnded()">
 
                                 <div class="voting_button" ng-if="topic.canVote()" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows" ng-click="selectOption(option)">
                                     <div class="table_cell left_side">
-                                        <label class="checkcontainer" ng-if="topic.vote.type ==='multiple' && topic.vote.maxChoices > 1">
+                                        <label class="checkcontainer" ng-if="!isRadio(topic.vote, option)">
                                             <input type="checkbox" class="vote_option_radio" checked="(option.selected) ? 'checked: ''" >
                                             <span class="option_checkbox"></span>
                                         </label>
-                                        <label class="checkcontainer" ng-if="topic.vote.type ==='regular' || topic.vote.maxChoices === 1">
+                                        <label class="checkcontainer" ng-if="isRadio(topic.vote, option)">
                                             <input type="radio" class="vote_option_radio">
                                             <span class="option_radio"></span>
                                         </label>
@@ -320,16 +320,16 @@
                                 </div>
 
                             </div>
-                            <div class="line lightest_line multiplechoice" ng-if="topic.vote.type ==='multiple' && topic.vote.maxChoices > 1"></div>
+                            <div class="line lightest_line multiplechoice" ng-if="topic.vote.type ==='multiple'"></div>
                             <div class="vote_multiple_submit_section" ng-if="!topic.hasVoteEnded() && topic.vote.type ==='multiple' && topic.vote.maxChoices > 1">
-                                <div class="table_cell" ng-if="canSubmit()">
+                                <div class="table_cell" cos-disabled="!canSubmit()">
                                     <div class="blue_button" ng-click="doVote()" translate="VIEWS.TOPICS_TOPICID.VOTE_SUBMIT">Submit your vote</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="content_item">
+                    <div class="content_item" ng-if="topic.hasVoteEndedExpired() || topic.hasVoteEnded()">
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_RESULTS">Results</div>
 
                         <div class="results_table">

@@ -38,6 +38,10 @@ angular
             }
         };
 
+        sNotification.addSuccess = function (key) {
+            add(sNotification.levels.SUCCESS, key);
+        };
+
         sNotification.addInfo = function (key) {
             add(sNotification.levels.INFO, key);
         };

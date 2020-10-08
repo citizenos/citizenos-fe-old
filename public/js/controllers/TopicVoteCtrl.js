@@ -27,7 +27,25 @@ angular
 
         getVote();
 
+        $scope.$parent.$parent.isRadio = function (vote, option) {
+            if (option.value === 'Neutral' || option.value === 'Veto') return true;
+            if (vote.type ==='regular' || vote.maxChoices === 1) return true;
+
+            return false;
+        };
+
         $scope.$parent.$parent.selectOption = function (option) {
+
+                $scope.topic.vote.options.rows.forEach(function(opt) {
+                    if (option.value === 'Neutral' || option.value === 'Veto') {
+                        opt.selected = false;
+                    } else if (opt.value === 'Neutral' || opt.value === 'Veto') {
+                        opt.selected = false;
+                    }
+                });
+                if (option.value === 'Neutral' || option.value === 'Veto') {
+                    $scope.$parent.$parent.doVote(option);
+                }
             if ($scope.topic.vote.type === Vote.VOTE_TYPES.multiple && $scope.topic.vote.maxChoices > 1) {
                 option.optionId = option.id;
 
@@ -68,7 +86,7 @@ angular
             } else {
                 options = [option];
             }
-            if (options.length > $scope.topic.vote.maxChoices || options.length < $scope.topic.vote.minChoices) {
+            if (options.length > $scope.topic.vote.maxChoices || options.length < $scope.topic.vote.minChoices && option.value !== 'Neutral' && option.value !== 'Veto') {
                 sNotification.addError('MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS');
                 return;
             }
@@ -85,6 +103,7 @@ angular
                         preCloseCallback: function (data) {
                             if (data) {
                                 $scope.topic.vote.topicId = $scope.topic.id;
+                                sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
                                 $scope.topic.vote.$get()
                                     .then(function () {
                                         $scope.topic.vote.options.rows.forEach(function (option) {
@@ -111,6 +130,7 @@ angular
                     .$save()
                     .then(function (data) {
                         $scope.topic.vote.topicId = $scope.topic.id;
+                        sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
                         getVote();
                     });
             }
