@@ -679,6 +679,8 @@
       "VOTE_LBL_OPTION_NO": "Не",
       "VOTE_LBL_OPTION_NEUTRAL": "Неутрално",
       "VOTE_LBL_OPTION_VETO": "Вето",
+      "VOTE_LBL_YOUR_VOTE": "Your vote",
+      "VOTE_LBL_YOUR_VOTE_DELEGATED": "Your vote delegated to {{userName}}",
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "Внесете можен одговор",
       "VOTE_BTB_ADD_OPTION": "Додади друг одговор",
       "VOTE_HEADING_STEP3": "Чекор 3: Поставете права за гласањето",

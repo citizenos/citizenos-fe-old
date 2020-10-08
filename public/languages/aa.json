@@ -679,6 +679,8 @@
       "VOTE_LBL_OPTION_NO": "crwdns21328:0crwdne21328:0",
       "VOTE_LBL_OPTION_NEUTRAL": "crwdns21330:0crwdne21330:0",
       "VOTE_LBL_OPTION_VETO": "crwdns21332:0crwdne21332:0",
+      "VOTE_LBL_YOUR_VOTE": "crwdns26772:0crwdne26772:0",
+      "VOTE_LBL_YOUR_VOTE_DELEGATED": "crwdns26774:0{{userName}}crwdne26774:0",
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "crwdns21334:0crwdne21334:0",
       "VOTE_BTB_ADD_OPTION": "crwdns21336:0crwdne21336:0",
       "VOTE_HEADING_STEP3": "crwdns21338:0crwdne21338:0",
