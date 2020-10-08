@@ -657,6 +657,7 @@
       "VOTE_HEADING_REQUIRE_HARD_ID": "Esse voto requer um login feito com registro de identidade ou Mobiil-ID.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Esse documento precisa ser assinado com um cartão de identificação ou Mobiil-ID para ser contabilizado. Não é possível votar sem se identificar.",
       "HEADING_VOTE_REGISTERED": "Seu voto foi registrado!",
+      "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
       "BTN_DOWNLOAD_USER_BDOC": "Baixe seu voto assinado (arquivo BDOC)",
       "VOTE_TXT_VOTE_REGISTERED": "Obrigado pelo seu voto. Você ainda pode mudar de opinião e de voto escolhendo outra opção.",
       "VOTE_HEADING_DELEGATE": "Delegue seu voto",
