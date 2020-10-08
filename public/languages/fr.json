@@ -657,6 +657,7 @@
       "VOTE_HEADING_REQUIRE_HARD_ID": "Ce vote nécessite ID-card ou une signature par Mobiil-ID.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Ce document doit être signé avec une ID-card ou Mobiil-ID pour être enregistré. Vous ne pouvez pas voter sans être identifié.",
       "HEADING_VOTE_REGISTERED": "Votre vote a été enregistré!",
+      "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
       "BTN_DOWNLOAD_USER_BDOC": "Téléchargez votre vote signé (fichier BDOC)",
       "VOTE_TXT_VOTE_REGISTERED": "Merci pour votre vote. Vous pouvez toujours changer d'avis et de vote en choisissant une autre option.",
       "VOTE_HEADING_DELEGATE": "Déléguez votre vote",
