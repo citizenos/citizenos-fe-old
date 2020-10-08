@@ -657,6 +657,7 @@
       "VOTE_HEADING_REQUIRE_HARD_ID": "Para realizar este voto, se necesita una firma con tarjeta de identificación o Mobiil-ID.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Para firmar y registrar este documento, se necesita una tarjeta de identificación o Mobiil-ID. Solo se puede votar después de identificarse.",
       "HEADING_VOTE_REGISTERED": "¡Se registró su voto!",
+      "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
       "BTN_DOWNLOAD_USER_BDOC": "Descargue su voto firmado (archivo BDOC)",
       "VOTE_TXT_VOTE_REGISTERED": "Gracias por su voto. Aún puede cambiar de opinión y votar por otra opción.",
       "VOTE_HEADING_DELEGATE": "Delegar el voto",
