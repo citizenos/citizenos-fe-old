@@ -350,11 +350,11 @@
 
                             <div class="voting_button" ng-click="selectOption(option)" ng-if="topic.canVote()" ng-class="(option.selected) ? 'active': ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                 <div class="table_cell left_side">
-                                    <label class="checkcontainer" ng-if="topic.vote.type ==='multiple' && topic.vote.maxChoices > 1">
+                                    <label class="checkcontainer" ng-if="!isRadio(topic.vote, option)">
                                         <input type="checkbox" class="vote_option_radio" checked="(option.selected) ? 'checked: ''" >
                                         <span class="option_checkbox"></span>
                                     </label>
-                                    <label class="checkcontainer" ng-if="topic.vote.type ==='regular' || topic.vote.maxChoices === 1">
+                                    <label class="checkcontainer" ng-if="isRadio(topic.vote, option)">
                                         <input type="radio" class="vote_option_radio">
                                         <span class="option_radio"></span>
                                     </label>
