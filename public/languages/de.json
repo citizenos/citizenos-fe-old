@@ -657,6 +657,7 @@
       "VOTE_HEADING_REQUIRE_HARD_ID": "Diese Abstimmung erfordert eine Unterzeichnung mit der ID-Karte oder mit Mobiil-ID.",
       "VOTE_TXT_REQUIRE_HARD_ID": "Dieses Dokument muss für die Stimmabgabe mit einer ID-Karte oder einer Mobiil-ID unterzeichnet werden. Sie können nicht abstimmen, solange Sie sich nicht identifizieren.",
       "HEADING_VOTE_REGISTERED": "Ihre Stimme wurde gezählt!",
+      "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
       "BTN_DOWNLOAD_USER_BDOC": "Laden Sie Ihre unterzeichnete Stimme herunter (BDOC-Datei)",
       "VOTE_TXT_VOTE_REGISTERED": "Vielen Dank für Ihre Stimme. Sie können Ihre Wahl noch überdenken und für eine andere Option abstimmen.",
       "VOTE_HEADING_DELEGATE": "Übertragen Sie Ihre Stimme",
