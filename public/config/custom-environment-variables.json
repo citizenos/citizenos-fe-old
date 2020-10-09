@@ -6,11 +6,7 @@
     "default": "DEFAULT_LANG_KEY"
   },
   "links": {
-    "help": {
-      "en": "HELP_LINK_EN",
-      "et": "HELP_LINK_ET",
-      "ru": "HELP_LINK_RU"
-    }
+    "help": "HELP_LINKS"
   },
   "legal": {
     "termsOfUse": "CITIZENOS_LEGAL_TERMS_OF_USE_LNK",
