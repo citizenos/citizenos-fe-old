@@ -9,7 +9,8 @@
     "help": {
       "en": "HELP_LINK_EN",
       "et": "HELP_LINK_ET",
-      "ru": "HELP_LINK_RU"
+      "ru": "HELP_LINK_RU",
+      "id": "HELP_LINK_ID"
     }
   },
   "legal": {
