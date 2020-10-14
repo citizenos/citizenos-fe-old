@@ -219,6 +219,11 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('pyln', {
+                    url: '/pyln?topicStatus',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
                 .state('thirtyfourislandproject', {
                     url: '/thirtyfourislandproject?topicStatus',
                     parent: 'main',
