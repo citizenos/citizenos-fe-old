@@ -531,6 +531,11 @@
                                     }
                                 }
 
+                                .comment_vote_count {
+                                    &:hover {
+                                        text-decoration: underline;
+                                    }
+                                }
                             }
 
                             .exclamation {

@@ -486,7 +486,7 @@
                                             <div class="graph_row_text">
                                                 <span translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
                                                       translate-default="{{option.value | linky}}"></span><br>
-                                                <span class="bold">{{option.voteCount || 0}}</span><span class="bold bullet">•</span><span class="bold" ng-if="option.selected" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_YOUR_VOTE">Your vote</span></span><span class="bold" ng-if="option.delegated" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_YOUR_VOTE_DELEGATED" translate-values="{userName: topic.vote.delegation.name}">Your vote delegated to </span>
+                                                <span class="bold">{{option.voteCount || 0}}</span><span class="bold bullet"  ng-if="option.selected">•</span><span class="bold" ng-if="option.selected" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_YOUR_VOTE">Your vote</span><!--span class="bold" ng-if="option.delegated" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_YOUR_VOTE_DELEGATED" translate-values="{userName: topic.vote.delegation.name}">Your vote delegated to </span-->
                                             </div>
                                         </div>
                                     </div>
@@ -514,7 +514,7 @@
                                             <div class="table_cell">
                                                 <div class="graph_row_text">
                                                     {{getOptionLetter(key)}}.<br>
-                                                    <span class="bold">{{option.voteCount || 0}}</span><span class="bold bullet">•</span><span class="bold" ng-if="option.selected" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_YOUR_VOTE">Your vote</span></span><span class="bold" ng-if="option.delegated" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_YOUR_VOTE_DELEGATED" translate-values="{userName: topic.vote.delegation.name}">Your vote delegated to </span>
+                                                    <span class="bold">{{option.voteCount || 0}}</span><span class="bold bullet"  ng-if="option.selected">•</span><span class="bold" ng-if="option.selected" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_YOUR_VOTE">Your vote</span><!--span class="bold" ng-if="option.delegated" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_YOUR_VOTE_DELEGATED" translate-values="{userName: topic.vote.delegation.name}">Your vote delegated to </span-->
                                                 </div>
                                             </div>
                                         </div>
