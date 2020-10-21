@@ -264,11 +264,11 @@
                                 <div class="voting_button" ng-if="topic.canVote()" ng-class="(option.selected) ? 'active' : ''" ng-repeat="(key, option) in topic.vote.options.rows" ng-click="selectOption(option)">
                                     <div class="table_cell left_side">
                                         <label class="checkcontainer" ng-if="!isRadio(topic.vote, option)">
-                                            <input type="checkbox" class="vote_option_radio" checked="(option.selected) ? 'checked: ''" >
+                                            <input type="checkbox" class="vote_option_radio" checked="(option.selected) ? 'checked: ''" ng-click="selectOption(option)">
                                             <span class="option_checkbox"></span>
                                         </label>
                                         <label class="checkcontainer" ng-if="isRadio(topic.vote, option)">
-                                            <input type="radio" class="vote_option_radio">
+                                            <input type="radio" class="vote_option_radio" ng-click="selectOption(option)">
                                             <span class="option_radio"></span>
                                         </label>
 
