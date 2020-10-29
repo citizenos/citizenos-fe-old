@@ -30,6 +30,15 @@ angular
                 }
             };
 
+            if ($scope.form.password) {
+                if ($scope.form.password !== $scope.form.passwordConfirm) {
+                    $scope.errors = {
+                        password: 'MSG_ERROR_PASSWORD_MISMATCH'
+                    };
+                    return;
+                }
+            }
+
             sAuth
                 .passwordReset($stateParams.email, $scope.form.password, $stateParams.passwordResetCode)
                 .then(success, error);
