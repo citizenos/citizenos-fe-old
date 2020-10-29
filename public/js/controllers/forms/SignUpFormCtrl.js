@@ -32,6 +32,15 @@ angular
                 $scope.errors = res.data.errors;
             };
 
+            if ($scope.form.password) {
+                if ($scope.form.password !== $scope.form.passwordConfirm) {
+                    $scope.errors = {
+                        password: 'MSG_ERROR_PASSWORD_MISMATCH'
+                    };
+                    return;
+                }
+            }
+
             sAuth
                 .signUp($scope.form.email, $scope.form.password, $scope.form.name, $scope.form.company, $scope.form.redirectSuccess)
                 .then(success, error);

@@ -47,7 +47,8 @@
                                 </div>
                             </label>
                             <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64" required>
-                            <label for="password" class="error_label" ng-if="errors.password">
+                            <input id="password_confirm" ng-model="form.passwordConfirm" type="password" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_PASSWORD_CONFIRM' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64">
+                            <label for="password_confirm" class="error_label" ng-if="errors.password">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
                                     <span translate="{{errors.password}}"></span>
