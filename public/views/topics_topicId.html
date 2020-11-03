@@ -878,10 +878,10 @@
                                     <div class="info_section_title">
                                         <span translate="VIEWS.TOPICS_TOPICID.LBL_AUTHORS">Authors:</span>
                                     </div>
-                                    <div class="info_section_content"><span ng-if="topic.creator.email" class="blue_link"
+                                    <div class="info_section_content"><span ng-repeat="author in topic.authors" ng-if="author.email" class="blue_link"
                                                                             tooltips tooltip-class="tooltip_author"
-                                                                            tooltip-template="<span class='creator_data_tooltip_row'>{{topic.creator.email}}</span><span class='creator_data_tooltip_row'>{{topic.creator.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{topic.creator.pid}}</span>"
-                                                                            tooltip-smart="true">{{topic.creator.name}}</span><span ng-if="!topic.creator.email">{{topic.creator.name}}</span>
+                                                                            tooltip-template="<span class='creator_data_tooltip_row'>{{author.email}}</span><span class='creator_data_tooltip_row'>{{author.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{author.pid}}</span>"
+                                                                            tooltip-smart="true">{{author.name}}<span ng-if="!$last">, </span></span><span ng-repeat="author in topic.authors" ng-if="!author.email">{{author.name}}<span ng-if="!$last" class="info_section_separator"> | </span></span>
                                     </div>
                                 </div>
                                 <div class="info_section">
