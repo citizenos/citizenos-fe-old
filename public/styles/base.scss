@@ -2366,3 +2366,117 @@ a:link, a:visited {
         border-right-color: rgba(148, 148, 148, .21);
     }
 }
+
+
+.help_bubble {
+    z-index: 999999;
+    width:  60px;
+    height: 60px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: $deep_sky_blue;
+    background-image: url(../imgs/icon_bubble_help.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 30px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.help_widget {
+    z-index: 999999;
+    width: 320px;
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    border-radius: 4px;
+    background: $white;
+
+    .help_top {
+        border-radius: 4px 4px 0 0;
+        height: 198px;
+        width: 320px;
+        background-color: $deep_sky_blue;
+        color: $white;
+
+        .help_title_text_wrapper {
+            padding: 20px 20px 10px 20px;
+            width: 100%;
+
+            .help_title_text {
+                font-size: 26px;
+                line-height: 32px;
+                font-weight: 600;
+                width: 280px;
+            }
+        }
+
+        .help_description {
+            padding: 0 20px;
+            font-size: 14px;
+
+            a {
+                width: 100%;
+                margin-top: 10px;
+                line-height: 24px;
+                clear: both;
+                display: inline-block;
+                text-decoration: underline;
+                cursor: pointer;
+                &:hover {
+                    color: $lightest_gray;
+                }
+
+                span {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    .help_bottom {
+        width: 280px;
+        padding: 0 20px 0 20px;
+
+        .help_bottom_title {
+            color: $medium_black;
+            width: 100%;
+            line-height: 24px;
+            font-size: 18px;
+            font-weight: $bold;
+            margin: 20px 0 20px 0;
+        }
+
+        input, textarea {
+            width: 269px;
+            border-radius: 4px;
+            border: solid 1px $lightest_gray;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        textarea {
+            height: 160px;
+        }
+
+        .blue_button_wrap {
+            .blue_button {
+                float: right;
+                width: max-content;
+                margin-bottom: 20px;
+                padding: 12px 20px 13px;
+                border: none;
+            }
+        }
+
+        .error_label {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+    }
+}

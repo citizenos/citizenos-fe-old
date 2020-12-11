@@ -37,6 +37,16 @@
   "TXT_MODERATION_TYPES_DUPLICATE": "@:TXT_REPORT_TYPES_DUPLICATE",
   "TOOLTIP_PIN_TOPIC": "Pin topic",
   "TOOLTIP_REPORT_TOPIC": "@:MODALS.TOPIC_REPORT_HEADING",
+  "HELP_WIDGET": {
+    "TITLE":"We’re here to help!",
+    "DESCRIPTION":"If you have questions or comments, we’re eager to hear them and help you!",
+    "LINK_FAQ": "Frequently asked questions",
+    "LINK_HELP_PAGE": "Help page",
+    "SEND_US_MESSAGE": "Send us a message",
+    "PLACEHOLDER_WRITE_YOUR_MESSAGE":"Write your message...",
+    "BTN_SEND": "Send",
+    "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL"
+  },
   "MODALS": {
     "GROUP_DELETE_CONFIRM_HEADING": "Delete group",
     "GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to delete this group?",

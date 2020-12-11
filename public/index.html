@@ -12,12 +12,12 @@
     </script>
     <![endif]-->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,700" rel="stylesheet">
-    <link href="styles/citizenos-fe.bundle.css?v=4fa7794cc6dfdef6b712f312d5a21ecf" rel="stylesheet">
+    <link href="styles/citizenos-fe.bundle.css?v=68d6477589c5821ed97bc15b48ff97d1" rel="stylesheet">
     <link href="config/styles/local.css?v=d41d8cd98f00b204e9800998ecf8427e" rel="stylesheet">
 
     <script src="settings.js?v=7c5fbe9433a33dd7d568359058f67f8e"></script>
     <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
-    <script src="js/citizenos-fe.bundle.js?v=62e845bc9586a7b4677f6f871066efc7"></script>
+    <script src="js/citizenos-fe.bundle.js?v=60e3ec796e24d99573c6568ae7476750"></script>
 
     <meta name="theme-color" content="#1a1a1a">
     <title ng-if="app.metainfo.title">{{app.metainfo.title}}</title>
@@ -109,8 +109,8 @@
     <!-- CONTENT -->
     <!-- Cant have ui-view without a wrapper element. Search results depend on the outer element height, thus the style -->
     <div ui-view class="full_height"></div>
-
-    <script src="js/libs/template-cache.js?v=669cd8863a68e3f1452a8a7aad18da3b"></script>
+    <div ng-include="'views/widgets/help.html'"></div>
+    <script src="js/libs/template-cache.js?v=b26e9e14d544629ffd32d1791c614c18"></script>
     <script src="js/home.js?v=cc26daed497d0cf8115283abb028363d"></script>
 </body>
 </html>
