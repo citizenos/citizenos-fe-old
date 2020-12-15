@@ -912,7 +912,7 @@
                                             <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment"
                                                ng-click="$event.preventDefault(); downloadAttachment(attachment);" href="{{attachment.link}}">{{attachment.name}}<span
                                                 class="btn blue_button file_type">.{{attachment.type}}</span></a>
-                                            <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment" href="{{attachment.link}}">{{attachment.name}} <span
+                                            <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment" target="_blank" href="{{attachment.link}}">{{attachment.name}} <span
                                                 class="btn blue_button file_type">{{attachment.type}}</span></a>
                                         </div>
                                         <div ui-sref="topics.view.files" ng-if="topic.canEdit()" class="blue_link info_section_add_attachments"

@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('HelpFormCtrl', ['$scope', '$http', '$stateParams', '$window' , function ($scope, $http, $stateParams, $window) {
+    .controller('HelpFormCtrl', ['$scope', '$http', '$location', 'sLocation', '$window', 'sNotification' , function ($scope, $http, $location, sLocation, $window, sNotification) {
         var init = function () {
             $scope.errors = null;
             $scope.form = {
@@ -11,9 +11,7 @@ angular
             };
             $scope.showHelp = false; // Hide mobile navigation when login flow is started
         };
-
         init();
-
         $scope.sendHelp = function () {
 
             var mailParams = {
@@ -22,15 +20,16 @@ angular
                 height: $window.innerHeight,
                 width: $window.innerWidth,
                 email: $scope.form.email,
-                description: $scope.form.description
+                description: $scope.form.description,
+                location: $location.url()
             };
 
-            console.log('PARAMS', mailParams);
-/*
+            var path = sLocation.getAbsoluteUrlApi('/api/internal/help');
+
             return $http.post(path, mailParams).then(function () {
+                sNotification.addSuccess('HELP_WIDGET.MSG_REQUEST_SENT');
                 init();
             }, function () {
-                console.log('WeNT WRONG')
-            });*/
+            });
         };
     }]);

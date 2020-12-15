@@ -45,7 +45,8 @@
     "SEND_US_MESSAGE": "Send us a message",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE":"Write your message...",
     "BTN_SEND": "Send",
-    "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL"
+    "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
+    "MSG_REQUEST_SENT": "Your help request has been sent!"
   },
   "MODALS": {
     "GROUP_DELETE_CONFIRM_HEADING": "Delete group",
