@@ -1003,7 +1003,7 @@
                         <div class="blue_link" ng-repeat="attachment in topicAttachments">
                             <a ng-if="attachment.source === ATTACHMENT_SOURCES.upload" class="blue_link" ng-click="$event.preventDefault(); downloadAttachment(attachment);" href="{{attachment.link}}">{{attachment.name}}<span
                                 class="btn blue_button file_type">.{{attachment.type}}</span></a>
-                            <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link" href="{{attachment.link}}">{{attachment.name}} <span class="btn blue_button file_type">{{attachment.type}}</span></a>
+                            <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" target="_blank" class="blue_link" href="{{attachment.link}}">{{attachment.name}} <span class="btn blue_button file_type">{{attachment.type}}</span></a>
                         </div>
                         <div class="line lightest_line" ng-if="topicAttachments.length"></div>
                         <div ui-sref="topics.view.files" ng-if="topic.canEdit()" class="blue_link" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
