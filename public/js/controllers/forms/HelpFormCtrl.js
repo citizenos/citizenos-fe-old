@@ -7,7 +7,8 @@ angular
             $scope.errors = null;
             $scope.form = {
                 email: null,
-                description: null
+                description: null,
+                clientData: false
             };
             $scope.showHelp = false; // Hide mobile navigation when login flow is started
         };
@@ -15,17 +16,20 @@ angular
         $scope.sendHelp = function () {
 
             var mailParams = {
-                userAgent: $window.clientInformation.userAgent,
-                platform: $window.clientInformation.platform,
-                height: $window.innerHeight,
-                width: $window.innerWidth,
                 email: $scope.form.email,
-                description: $scope.form.description,
-                location: $location.url()
+                description: $scope.form.description
             };
 
-            var path = sLocation.getAbsoluteUrlApi('/api/internal/help');
+            if ($scope.form.clientData) {
+                mailParams.userAgent = $window.clientInformation.userAgent;
+                mailParams.platform = $window.clientInformation.platform;
+                mailParams.height = $window.innerHeight;
+                mailParams.width = $window.innerWidth;
+                mailParams.location = $location.url();
+            }
 
+            var path = sLocation.getAbsoluteUrlApi('/api/internal/help');
+            console.log(mailParams);
             return $http.post(path, mailParams).then(function () {
                 sNotification.addSuccess('HELP_WIDGET.MSG_REQUEST_SENT');
                 init();
