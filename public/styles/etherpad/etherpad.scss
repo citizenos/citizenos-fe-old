@@ -169,8 +169,6 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
     background: none;
     * {
         font-family: 'Noto Sans', sans-serif;
-        font-size: 16px;
-        font-weight: normal;
         line-height: 175%;
         word-break: break-word;
     }
@@ -274,43 +272,43 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif
     }
 
-    fs8 *, .fs8 * {
+    fs8 *, .fs8 *, .font-size\:8 * {
         font-size:8px
     }
-    fs9 *, .fs9 * {
+    fs9 *, .fs9 *, .font-size\:9 * {
         font-size:9px
     }
-    fs10 *, .fs10 * {
+    fs10 *, .fs10 *, .font-size\:10 * {
         font-size:10px;
     }
-    fs11 *, .fs11 * {
+    fs11 *, .fs11 *, .font-size\:11 * {
         font-size:11px;
     }
-    fs12 *, .fs12 * {
+    fs12 *, .fs12 *, .font-size\:12 * {
         font-size:12px;
     }
-    fs13 *, .fs13 * {
+    fs13 *, .fs13 *, .font-size\:13 * {
         font-size:13px;
     }
-    fs14 *, .fs14 * {
+    fs14 *, .fs14 *, .font-size\:14 * {
         font-size:14px;
     }
-    fs15 *, .fs15 * {
+    fs15 *, .fs15 *, .font-size\:15 * {
         font-size:15px;
     }
-    fs16 *, .fs16 * {
+    fs16 *, .fs16 *, .font-size\:16 * {
         font-size:16px;
     }
-    fs17 *, .fs17 * {
+    fs17 *, .fs17 *, .font-size\:17 * {
         font-size:17px;
     }
-    fs18 *, .fs18 * {
+    fs18 *, .fs18 *, .font-size\:18 * {
         font-size:18px;
     }
-    fs19 *, .fs19 * {
+    fs19 *, .fs19 *, .font-size\:19 * {
         font-size:19px;
     }
-    fs20 *, .fs20 * {
+    fs20 *, .fs20 *, .font-size\:20 * {
         font-size:20px;
     }
 
@@ -427,6 +425,11 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 
                         &:hover {
                             opacity: 0.7;
+                        }
+
+                        &:before {
+                            display: none;
+                            content: '';
                         }
                     }
                 }
@@ -1198,19 +1201,6 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 }
 
 #footNotePopup {
-    width: auto;
-    height: auto;
-    right: 0;
-    left: 0;
-    border: none;
-    padding: 20px;
-    margin: 0;
-    position: relative;
-    display: inline-block;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-
     #fnInput {
         font-family: 'Noto Sans',sans-serif;
         font-size: 13px;
