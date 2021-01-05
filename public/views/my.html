@@ -139,7 +139,7 @@
                     </div>
 
                     <a class="small_topic_title" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
-                        <span ng-bind="item.title">title</span><span class="lock_icon_wrap" ng-class="{hidden: !item.isPrivate()}"><div class="sprite sprite-icon-lock2x"></div></span>
+                        <div class="title_div" ng-bind="item.title">title</div><span class="lock_icon_wrap" ng-class="{hidden: !item.isPrivate()}"><div class="sprite sprite-icon-lock2x"></div></span>
                     </a>
 
                     <div class="line lightest_line"></div>

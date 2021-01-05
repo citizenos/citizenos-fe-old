@@ -222,6 +222,13 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
+
+                    .title_div {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 98%;
+                        display: inline-block;
+                    }
                 }
 
                 .line {
