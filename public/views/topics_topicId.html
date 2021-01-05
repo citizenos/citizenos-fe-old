@@ -959,8 +959,9 @@
             </div>
 
             <div class="side_panel print_never" ng-if="wWidth > 1024 || app.topics_settings">
-                <div ng-if="topic.canEdit() && app.editMode" class="options_wrap">
-                    <div class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_DONE_EDITING" ng-click="app.doToggleEditMode()">Done editing</div>
+                <div ng-if="topic.canEditDescription()" class="options_wrap">
+                    <div ng-if="app.editMode" class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_DONE_EDITING" ng-click="app.doToggleEditMode()">Done editing</div>
+                    <div ng-if="!app.editMode" class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC" ng-click="app.doToggleEditMode()">Edit topic</div>
                 </div>
                 <div ng-if="topic.canEdit() && topic.report.moderatedReasonType" class="options_wrap">
                     <div class="blue_button" ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}"
@@ -988,10 +989,6 @@
                             topic
                         </div>
                         <div class="line lightest_line" ng-if="topic.canUpdate()"></div>
-                        <div class="blue_link" ng-if="topic.canEditDescription() && !app.editMode" ng-click="app.doToggleEditMode()"
-                             ng-if="!app.editMode" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC">Edit topic
-                        </div>
-                        <div class="blue_link" ng-if="app.editMode" ng-click="app.doToggleEditMode()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_VIEW_TOPIC">View topic</div>
                         <div ng-if="topic.canLeave()" class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
                     </div>
                 </div>
