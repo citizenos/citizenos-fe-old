@@ -1,9 +1,9 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="full_screen">
-    <div id="lightbox" class="confirm_lightbox">
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing delete_topic wide_lightbox">
         <div id="lightbox_wrap">
 
-            <div id="lightbox_header" class="profile_circle_on">
+            <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
                     <div class="title" translate="MODALS.GROUP_MEMBER_USER_LEAVE_CONFIRM_HEADING">Leave group</div>
@@ -16,43 +16,54 @@
                     </div>
                 </div>
 
-                <div class="clearer"></div>
+                <div class="line lightest_line"></div>
 
-                <div class="profile_area">
+            </div>
 
-                    <div class="table">
-                        <div class="profile_image_cell">
-                            <div class="group_circle big">
-                                <div class="table_cell" cos-initials="ngDialogData.group.name | limitTo: 1">
-                                    G
-                                </div>
+
+            <div class="lightbox_content">
+
+                <div class="second_header">
+
+                    <div class="sprite sprite-icon-warn-topic2x"></div>
+                    <div class="warn_title" translate="MODALS.GROUP_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE_CONTINUE">Are you sure you want to continue?</div>
+
+                    <div id="lightbox_close" ng-click="closeThisDialog()">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x">
                             </div>
                         </div>
-
-                        <div class="profile_text">
-                            {{ngDialogData.group.name}}
-                        </div>
-
                     </div>
 
                 </div>
-            </div>
 
-            <div class="line lightest_line"></div>
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
 
-            <!-- CONFIRM CONTENT -->
-            <div class="lightbox_content">
-                <div class="lightbox_section">
-                    <span translate="MODALS.GROUP_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to leave this group?</span>
-                    <div class="yes_no_buttons">
+                <div id="delete_info_wrap">
+
+                    <div class="delete_info_text_wrap">
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.GROUP_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to leave this topic?</div>
+                        </div>
+                    </div>
+
+                    <div class="delete_info_button_wrap">
+
                         <div class="table_cell">
                             <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.GROUP_MEMBER_USER_LEAVE_CONFIRM_BTN_NO">NO</div>
                         </div>
+
                         <div class="table_cell">
-                            <div class="blue_button yes" ng-click="confirm()" translate="MODALS.GROUP_MEMBER_USER_LEAVE_CONFIRM_BTN_YES">YES</div>
+                            <div class="blue_button" ng-click="confirm()" translate="MODALS.GROUP_MEMBER_USER_LEAVE_CONFIRM_BTN_YES">YES</div>
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
 
         </div>
