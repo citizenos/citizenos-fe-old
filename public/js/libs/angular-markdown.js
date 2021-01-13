@@ -7,7 +7,7 @@ angular.module('cosmarkdown', ['ngSanitize']).
         opts = newOpts;
       },
       $get: function () {
-        return SimpleMDE;
+        return EasyMDE;
       }
     };
   }).
@@ -33,7 +33,7 @@ angular.module('cosmarkdown', ['ngSanitize']).
       return $sce.getTrustedHtml(div.textContent);
     }
   }]).
-  directive('cosMarkdown', ['$sanitize', '$filter', 'markdown', function ($sanitize, $filter, markdown) {
+  directive('cosMarkdown', ['$sanitize', '$filter', '$translate', 'markdown', function ($sanitize, $filter, $translate, markdown) {
     return {
       restrict: 'A',
       scope: {
@@ -52,6 +52,45 @@ angular.module('cosmarkdown', ['ngSanitize']).
         var config = {
           placeholder: attrs.placeholder,
           toolbar: ["bold", "italic", "strikethrough", "|", "ordered-list", "unordered-list", "preview"],
+          toolbar: [
+            {
+              name: "bold",
+              action: EasyMDE.toggleBold,
+              className: "fa fa-bold",
+              title: $translate.instant('MDEDITOR_TOOLTIP_BOLD'),
+            },
+            {
+              name: "italic",
+              action: EasyMDE.toggleItalic,
+              className: "fa fa-italic",
+              title: $translate.instant('MDEDITOR_TOOLTIP_ITALIC'),
+            },
+            {
+              name: "strikethrough",
+              action: EasyMDE.toggleStrikethrough,
+              className: "fa fa-strikethrough",
+              title: $translate.instant('MDEDITOR_TOOLTIP_STRIKETHROUGH'),
+            },
+            '|',
+            {
+              name: "ordered-list	",
+              action: EasyMDE.toggleOrderedList,
+              className: "fa fa-list-ol",
+              title: $translate.instant('MDEDITOR_TOOLTIP_ORDERED_LIST'),
+            },
+            {
+              name: "unordered-list	",
+              action: EasyMDE.toggleUnorderedList,
+              className: "fa fa-list-ul",
+              title: $translate.instant('MDEDITOR_TOOLTIP_UNORDERED_LIST'),
+            },
+            {
+              name: "preview	",
+              action: EasyMDE.togglePreview,
+              className: "fa fa-eye no-disable",
+              title: $translate.instant('MDEDITOR_TOOLTIP_PREVIEW'),
+            }
+          ],
           preview:true,
           blockStyles: {
             italic: "_"
@@ -66,8 +105,7 @@ angular.module('cosmarkdown', ['ngSanitize']).
             }
           }],
           element:element[0],
-          initialValue: scope.item,
-          toolbarTips: false
+          initialValue: scope.item
         };
 
         var simplemde = new markdown(config);
