@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .factory('TopicComment', ['$log', '$resource', 'sLocation', 'sAuth', function ($log, $resource, sLocation, sAuth) {
+    .factory('TopicComment', ['$log', '$resource', '$sce', '$filter', 'sLocation', 'sAuth', 'marked', function ($log, $resource, $sce, $filter, sLocation, sAuth, marked) {
         $log.debug('citizenos.factory.TopicComment');
 
         var path = '/api/:prefix/:userId/topics/:topicId/comments/:commentId';
