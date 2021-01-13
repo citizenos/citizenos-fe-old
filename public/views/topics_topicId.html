@@ -663,6 +663,13 @@
 
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="line lightest_line" ng-if="voteForm.voteType == 'multiple'"></div>
+
+                        <div class="voting_platform_section" ng-if="voteForm.voteType == 'multiple'">
+                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP_DEFINE_OPTION_COUNT"></div>
+
                             <div class="vote_options_count_wrap" ng-if="voteForm.voteType == 'multiple'">
                                 <p translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_DESCRIPTION_CHOICE_RANGE">Define up to how many choices a person can vote for. For example, you have 4 choices but you allow people to choose up to 2 out of them. You can only add as many as you have choices to choose from.</p>
 
@@ -690,7 +697,7 @@
 
 
                         <div class="voting_platform_section" ng-if="voteForm.voteType">
-                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP3">Step 3: User vote casting</div>
+                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP3" translate-values="{stepNum: getStepNum(3)}">Step 3: User vote casting</div>
 
                             <div class="double_cell_layout ten_px_margin_between">
                                 <div class="left_row add_bottom_borders">
@@ -766,7 +773,7 @@
                         <div class="line lightest_line" ng-if="voteForm.voteType"></div>
 
                         <div class="voting_platform_section" ng-if="voteForm.voteType">
-                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP4">Step 4: End of voting system</div>
+                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP4" translate-values="{stepNum: getStepNum(4)}">Step 4: End of voting system</div>
 
                             <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes">
 
