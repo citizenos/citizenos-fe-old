@@ -721,6 +721,16 @@ angular
             return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
         };
 
+        $scope.downloadContainer = function (includeCSV) {
+            var url = $scope.topic.vote.downloads.bdocFinal;
+            if (!url) return;
+            if (includeCSV) {
+                url+='?include=csv';
+            }
+
+            window.location.href = url;
+        };
+
         $scope.translateGroup = function (key, group) {
             var values = group[0].values;
             values.groupCount = group.length;

@@ -461,11 +461,41 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="print_never" ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" ng-href="{{topic.vote.downloads.bdocFinal}}" download>
+                            <!--a class="print_never"  ng-href="{{topic.vote.downloads.bdocFinal}}" download>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
                                 </div>
-                            </a>
+                            </a-->
+
+                            <div cos-dropdown class="bar_select">
+
+                                <div class="select_text">
+                                    {{'VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC' | translate}}
+                                    <div class="icon_holder">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-icon-arrow_down-white"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown big_drop">
+                                    <div class="line lightest_line"></div>
+
+                                    <div class="dropdown_item">
+                                        <div class="item_name" ng-click="downloadContainer(false)" translate="VIEWS.TOPICS_TOPICID.FINAL_OPTION_WITHOUT_CSV">
+                                            Container without CSV
+                                        </div>
+                                        <div class="clearer"></div>
+                                    </div>
+                                    <div class="dropdown_item">
+                                        <div class="item_name" ng-click="downloadContainer(true)" translate="VIEWS.TOPICS_TOPICID.FINAL_OPTION_WITH_CSV">
+                                            Container with CSV
+                                        </div>
+                                        <div class="clearer"></div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <a class="print_never" ng-if="topic.vote.authType===voteAuthTypes.soft && topic.vote.downloads.zipFinal" ng-href="{{topic.vote.downloads.zipFinal}}" download>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_ZIP">Download full ZIP</div>
