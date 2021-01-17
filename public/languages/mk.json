@@ -535,7 +535,7 @@
         "TOPICS_IN_FOLLOW_UP": "Теми во стадиум на следење",
         "TOPICS_CLOSED": "Затворни теми",
         "TOPICS_PINNED": "Закачени теми",
-        "TOPICS_MODERATED": "Moderated topics"
+        "TOPICS_MODERATED": "Модерирани теми"
       }
     },
     "MY_GROUPS_GROUPID": {
@@ -671,11 +671,11 @@
       "VOTE_DELEGATED_TO": "Го делегиравте вашиот глас за:",
       "VOTE_REVOKE_DELEGATION": "Забрани ја вашата делегација",
       "VOTE_HEADING_VOTE_CLOSED": "Гласањето е затворено!",
-      "LBL_VOTE_RESULTS": "Voting results",
+      "LBL_VOTE_RESULTS": "Резултати од гласањето",
       "VOTE_TXT_VOTE_CLOSED": "Сите членови гласаа. Можете да го преземете целиот документ тука.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Гласовите се дадени. Ве молиме, пратете ја темата на проследување, потоа вратете се тука за да ги симнете резултатите од гасањето.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Преземи потпишан фајл (BDOC)",
-      "BTN_DOWNLOAD_FINAL_ZIP": "Download voting results summary (ZIP)",
+      "BTN_DOWNLOAD_FINAL_ZIP": "Преземи резиме за резултати од гласањето (ZIP)",
       "VOTE_HEADING_CREATE": "Создадете платформа за гласање",
       "VOTE_HEADING_STEP1": "Чекор 1: Одберете тип на гласање",
       "VOTE_BTN_TYPE_REGULAR": "РЕГУЛАРНО",
