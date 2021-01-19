@@ -675,6 +675,8 @@
       "VOTE_TXT_VOTE_CLOSED": "Kõik on hääletanud. Valmis dokumendi saad alla laadida siit.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Hääled on nüüd antud. Palun liiguta teema elluviimisfaasi ja seejärel naase siia, et laadida alla hääletustulemused.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Lae alla allkirjadega fail (BDOC)",
+      "FINAL_OPTION_WITHOUT_CSV": " Container without CSV",
+      "FINAL_OPTION_WITH_CSV": " Container with CSV",
       "BTN_DOWNLOAD_FINAL_ZIP": "Lae alla hääletustulemuste kokkuvõte (zip-failina)",
       "VOTE_HEADING_CREATE": "Määra hääletamisseaded",
       "VOTE_HEADING_STEP1": "Samm 1: vali hääletamise tüüp",
