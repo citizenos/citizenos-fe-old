@@ -675,6 +675,8 @@
       "VOTE_TXT_VOTE_CLOSED": "Усі проголосували. Ви можете завантажити повний документ тут.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Голосування було проведено. Будь ласка, відправте наступну тему, а потім поверніться сюди для завантаження результатів голосування.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Завантажити підписаний файл (BDOC)",
+      "FINAL_OPTION_WITHOUT_CSV": " Container without CSV",
+      "FINAL_OPTION_WITH_CSV": " Container with CSV",
       "BTN_DOWNLOAD_FINAL_ZIP": "Download voting results summary (ZIP)",
       "VOTE_HEADING_CREATE": "Створення голосування",
       "VOTE_HEADING_STEP1": "Крок 1: Оберіть тип голосування",
