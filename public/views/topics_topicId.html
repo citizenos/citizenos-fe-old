@@ -407,8 +407,8 @@
                             </div>
 
                         </div>
-                        <div class="line lightest_line multiplechoice" ng-if="topic.vote.type ==='multiple'"></div>
-                        <div class="vote_multiple_submit_section" ng-if="!topic.hasVoteEnded() && topic.vote.type ==='multiple' && topic.vote.maxChoices > 1">
+                        <div class="line lightest_line multiplechoice"></div>
+                        <div class="vote_multiple_submit_section" ng-if="!topic.hasVoteEnded()">
                             <div class="table_cell" cos-disabled="!canSubmit()">
                                 <div class="blue_button" ng-click="doVote()" translate="VIEWS.TOPICS_TOPICID.VOTE_SUBMIT">Submit your vote</div>
                             </div>
@@ -461,11 +461,36 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="print_never" ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" ng-href="{{topic.vote.downloads.bdocFinal}}" download>
-                                <div class="voting_button voting_button_blue active">
-                                    <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
+
+                            <div ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" cos-dropdown class="bar_select">
+
+                                <div class="select_text">
+                                    {{'VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC' | translate}}
+                                    <div class="icon_holder">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-icon-arrow_down-white"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
+
+                                <div class="dropdown big_drop">
+                                    <div class="line lightest_line"></div>
+
+                                    <div class="dropdown_item" ng-click="downloadContainer(false)">
+                                        <div class="item_name" translate="VIEWS.TOPICS_TOPICID.FINAL_OPTION_WITHOUT_CSV">
+                                            Container without CSV
+                                        </div>
+                                        <div class="clearer"></div>
+                                    </div>
+                                    <div class="dropdown_item" ng-click="downloadContainer(true)">
+                                        <div class="item_name" translate="VIEWS.TOPICS_TOPICID.FINAL_OPTION_WITH_CSV">
+                                            Container with CSV
+                                        </div>
+                                        <div class="clearer"></div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <a class="print_never" ng-if="topic.vote.authType===voteAuthTypes.soft && topic.vote.downloads.zipFinal" ng-href="{{topic.vote.downloads.zipFinal}}" download>
                                 <div class="voting_button voting_button_blue active">
                                     <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_ZIP">Download full ZIP</div>
@@ -663,6 +688,13 @@
 
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="line lightest_line" ng-if="voteForm.voteType == 'multiple'"></div>
+
+                        <div class="voting_platform_section" ng-if="voteForm.voteType == 'multiple'">
+                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP_DEFINE_OPTION_COUNT"></div>
+
                             <div class="vote_options_count_wrap" ng-if="voteForm.voteType == 'multiple'">
                                 <p translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_DESCRIPTION_CHOICE_RANGE">Define up to how many choices a person can vote for. For example, you have 4 choices but you allow people to choose up to 2 out of them. You can only add as many as you have choices to choose from.</p>
 
@@ -690,7 +722,7 @@
 
 
                         <div class="voting_platform_section" ng-if="voteForm.voteType">
-                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP3">Step 3: User vote casting</div>
+                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP3" translate-values="{stepNum: getStepNum(3)}">Step 3: User vote casting</div>
 
                             <div class="double_cell_layout ten_px_margin_between">
                                 <div class="left_row add_bottom_borders">
@@ -766,7 +798,7 @@
                         <div class="line lightest_line" ng-if="voteForm.voteType"></div>
 
                         <div class="voting_platform_section" ng-if="voteForm.voteType">
-                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP4">Step 4: End of voting system</div>
+                            <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP4" translate-values="{stepNum: getStepNum(4)}">Step 4: End of voting system</div>
 
                             <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes">
 
@@ -959,8 +991,9 @@
             </div>
 
             <div class="side_panel print_never" ng-if="wWidth > 1024 || app.topics_settings">
-                <div ng-if="topic.canEdit() && app.editMode" class="options_wrap">
-                    <div class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_DONE_EDITING" ng-click="app.doToggleEditMode()">Done editing</div>
+                <div ng-if="topic.canEditDescription()" class="options_wrap">
+                    <div ng-if="app.editMode" class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_BTN_DONE_EDITING" ng-click="app.doToggleEditMode()">Done editing</div>
+                    <div ng-if="!app.editMode" class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC" ng-click="app.doToggleEditMode()">Edit topic</div>
                 </div>
                 <div ng-if="topic.canEdit() && topic.report.moderatedReasonType" class="options_wrap">
                     <div class="blue_button" ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}"
@@ -988,10 +1021,6 @@
                             topic
                         </div>
                         <div class="line lightest_line" ng-if="topic.canUpdate()"></div>
-                        <div class="blue_link" ng-if="topic.canEditDescription() && !app.editMode" ng-click="app.doToggleEditMode()"
-                             ng-if="!app.editMode" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC">Edit topic
-                        </div>
-                        <div class="blue_link" ng-if="app.editMode" ng-click="app.doToggleEditMode()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_VIEW_TOPIC">View topic</div>
                         <div ng-if="topic.canLeave()" class="blue_link" ng-click="doLeaveTopic(topic)" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_LEAVE_TOPIC">Leave topic</div>
                     </div>
                 </div>

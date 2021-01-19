@@ -74,6 +74,8 @@ const jshintTask = function () {
 var uglifyTask =  function() {
     return pipeline(
         gulp.src([
+            'public/js/libs/easymde.min.js',
+            'public/js/libs/marked.min.js',
             'public/js/libs/OneDrive.js',
             'public/js/libs/moment-with-locales.js',
             'public/js/libs/hwcrypto-legacy.js',
@@ -141,7 +143,7 @@ var watchTask = function() {
  */
 var sassTask = function() {
     return pipeline(
-        gulp.src(['public/styles/*.scss']),
+        gulp.src(['public/styles/easymde.min.css', 'public/styles/*.scss']),
         plumber(),
         sourcemaps.init(),
         sass(),
