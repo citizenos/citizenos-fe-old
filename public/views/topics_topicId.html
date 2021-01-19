@@ -461,13 +461,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--a class="print_never"  ng-href="{{topic.vote.downloads.bdocFinal}}" download>
-                                <div class="voting_button voting_button_blue active">
-                                    <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC">Download full DDOC</div>
-                                </div>
-                            </a-->
 
-                            <div cos-dropdown class="bar_select">
+                            <div ng-if="topic.vote.authType===voteAuthTypes.hard && topic.vote.downloads.bdocFinal" cos-dropdown class="bar_select">
 
                                 <div class="select_text">
                                     {{'VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC' | translate}}
@@ -481,14 +476,14 @@
                                 <div class="dropdown big_drop">
                                     <div class="line lightest_line"></div>
 
-                                    <div class="dropdown_item">
-                                        <div class="item_name" ng-click="downloadContainer(false)" translate="VIEWS.TOPICS_TOPICID.FINAL_OPTION_WITHOUT_CSV">
+                                    <div class="dropdown_item" ng-click="downloadContainer(false)">
+                                        <div class="item_name" translate="VIEWS.TOPICS_TOPICID.FINAL_OPTION_WITHOUT_CSV">
                                             Container without CSV
                                         </div>
                                         <div class="clearer"></div>
                                     </div>
-                                    <div class="dropdown_item">
-                                        <div class="item_name" ng-click="downloadContainer(true)" translate="VIEWS.TOPICS_TOPICID.FINAL_OPTION_WITH_CSV">
+                                    <div class="dropdown_item" ng-click="downloadContainer(true)">
+                                        <div class="item_name" translate="VIEWS.TOPICS_TOPICID.FINAL_OPTION_WITH_CSV">
                                             Container with CSV
                                         </div>
                                         <div class="clearer"></div>

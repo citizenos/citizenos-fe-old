@@ -725,7 +725,7 @@ angular
             var url = $scope.topic.vote.downloads.bdocFinal;
             if (!url) return;
             if (includeCSV) {
-                url+='?include=csv';
+                url+='&include[]=csv';
             }
 
             window.location.href = url;
