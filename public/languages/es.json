@@ -675,6 +675,8 @@
       "VOTE_TXT_VOTE_CLOSED": "Todos han emitido sus votos. Puede descargar el documento completo aquí.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Los votos ya se han emitido. Envíe el tema a seguimiento y, después, vuelva aquí para descargar los resultados de la votación.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Descargar archivo firmado (BDOC)",
+      "FINAL_OPTION_WITHOUT_CSV": " Container without CSV",
+      "FINAL_OPTION_WITH_CSV": " Container with CSV",
       "BTN_DOWNLOAD_FINAL_ZIP": "Descargar resumen de los resultados de la votación (ZIP)",
       "VOTE_HEADING_CREATE": "Crear una plataforma de votación",
       "VOTE_HEADING_STEP1": "Paso 1: Seleccionar el tipo de votación",
