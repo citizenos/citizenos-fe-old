@@ -693,8 +693,8 @@
       "VOTE_LBL_YOUR_VOTE_DELEGATED": "Sinu hääl, mis on delegeeritud kasutajale {{userName}}",
       "PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER": "Lisa vastusevariant",
       "VOTE_BTB_ADD_OPTION": "Lisa variant",
-      "VOTE_HEADING_STEP_DEFINE_OPTION_COUNT": "Step 3: Define min/max options",
-      "VOTE_HEADING_STEP3": "Step {{stepNum}}: Set up voting rights",
+      "VOTE_HEADING_STEP_DEFINE_OPTION_COUNT": "Samm 3: Määra valikute arvu vähim ja suurim võimalik väärtus",
+      "VOTE_HEADING_STEP3": "Samm {{stepNum}}: Hääletamise õiguste seadistamine",
       "VOTE_LBL_AUTH_SOFT_ID": "Harilik login",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "HÄÄLETAMISEKS ON VAJA SISENEDA CITIZEN OS-I SÜSTEEMI",
       "VOTE_LBL_AUTH_HARD_ID": "digiallkirjastamine",
@@ -1080,7 +1080,7 @@
   "MDEDITOR_TOOLTIP_BOLD": "Paks",
   "MDEDITOR_TOOLTIP_ITALIC": "Kursiiv",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Läbikriipsutus",
-  "MDEDITOR_TOOLTIP_ORDERED_LIST": "Ordered List",
-  "MDEDITOR_TOOLTIP_UNORDERED_LIST": "Unordered List",
-  "MDEDITOR_TOOLTIP_PREVIEW": "Preview"
+  "MDEDITOR_TOOLTIP_ORDERED_LIST": "Järjestatud nimekiri",
+  "MDEDITOR_TOOLTIP_UNORDERED_LIST": "Järjestamata nimekiri",
+  "MDEDITOR_TOOLTIP_PREVIEW": "Eelvaade"
 }
