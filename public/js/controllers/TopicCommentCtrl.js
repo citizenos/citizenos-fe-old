@@ -209,7 +209,6 @@ angular
         };
 
         $scope.doShowVotersList = function (comment) {
-            console.log(comment)
             var topicComment = new TopicComment({
                 id: comment.id,
                 topicId: $scope.topic.id
@@ -217,7 +216,6 @@ angular
             topicComment
                 .$votes()
                 .then(function (commentVotes) {
-                    console.log('commentVotes', commentVotes)
                     ngDialog
                         .open({
                             template: '/views/modals/topic_comment_reactions.html',
