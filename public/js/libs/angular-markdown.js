@@ -27,6 +27,13 @@ angular.module('cosmarkdown', ['ngSanitize']).
   }]).
   filter('markdown', ['$filter', '$sce', 'marked', function ($filter, $sce, marked) {
     return function (input) {
+      var renderer = {
+        code: function (text) {
+          return '<code>'+ text + '</code>';
+        }
+      }
+
+      marked.use({renderer:renderer});
       var html = marked(input);
       var div = document.createElement('div');
       div.innerHTML = $filter('linky')(html, '_blank');
