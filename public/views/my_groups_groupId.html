@@ -193,7 +193,7 @@
         </div>
         <div class="container_header second_header" ng-if="topicList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-model="topicList.searchFilter" focus-if>
+                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-change="loadMemberTopicsList()" ng-model-options="{debounce:250}" ng-model="topicList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="topicList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
@@ -229,7 +229,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="topic in group.members.topics.rows | filter: topicList.searchFilter | orderBy: topicList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="topic in group.members.topics.rows | orderBy: topicList.searchOrderBy.property">
                     <div class="pretend_td">
                         <div class="blue_link" ui-sref="my.topics.topicId({topicId: topic.id})" ng-bind="topic.title">topic.title</div>
                     </div>
@@ -267,6 +267,13 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="pretend_tr">
+                    <div class="pagination_wrapper">
+                        <div class="pagination" cos-pagination select="loadMemberTopicsPage" total-pages="group.members.topics.totalPages" page="group.members.topics.page"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -288,7 +295,7 @@
         </div>
         <div class="container_header second_header" ng-if="userList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-model="userList.searchFilter" focus-if>
+                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="loadMemberUsersList()" ng-model-options="{debounce:250}" ng-model="userList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="userList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
@@ -318,7 +325,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="user in group.members.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="user in group.members.users.rows | orderBy : userList.searchOrderBy.property">
                     <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
@@ -370,6 +377,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="pretend_tr">
+                    <div class="pagination_wrapper">
+                        <div class="pagination" cos-pagination select="loadMemberUsersPage" total-pages="group.members.users.totalPages" page="group.members.users.page"></div>
                     </div>
                 </div>
             </div>

@@ -400,7 +400,7 @@
         </div>
         <div class="container_header second_header" ng-if="groupList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="{{'VIEWS.MY_TOPICS_TOPICID.PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-model="groupList.searchFilter">
+                <input placeholder="{{'VIEWS.MY_TOPICS_TOPICID.PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-change="loadTopicMemberGroupList()" ng-model-options="{debounce:250}" ng-model="groupList.searchFilter">
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="groupList.searchFilter = ''" translate="VIEWS.MY_TOPICS_TOPICID.LNK_CLEAR_FILTER">clear filter</div>
@@ -436,7 +436,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="group in topic.members.groups.rows | filter: groupList.searchFilter | orderBy: groupList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="group in topic.members.groups.rows | orderBy: groupList.searchOrderBy.property">
                     <div class="pretend_td">
                         <div class="blue_link" ng-if="group.permission.level" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})" ui-sref-opts="{reload: true}" ng-bind="group.name">Group name</div>
                         <div ng-if="!group.permission.level"><i class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP">Inaccessible Group</i></div>
@@ -475,6 +475,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="pretend_tr">
+                    <div class="pagination_wrapper">
+                        <div class="pagination" cos-pagination select="loadMemberGroupPage" total-pages="topic.members.groups.totalPages" page="topic.members.groups.page"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -494,7 +499,7 @@
         </div>
         <div class="container_header second_header" ng-if="userList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="{{'VIEWS.MY_TOPICS_TOPICID.PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-model="userList.searchFilter">
+                <input placeholder="{{'VIEWS.MY_TOPICS_TOPICID.PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="loadTopicMemberUserList(); loadTopicInviteUserList();" ng-model-options="{debounce:250}" ng-model="userList.searchFilter">
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="userList.searchFilter = ''" translate="VIEWS.MY_TOPICS_TOPICID.LNK_CLEAR_FILTER">clear filter</div>
@@ -582,6 +587,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="pretend_tr">
+                    <div class="pagination_wrapper">
+                        <div class="pagination" cos-pagination select="loadMemberUsersPage" total-pages="topic.members.users.totalPages" page="topic.members.users.page"></div>
+                    </div>
+                </div>
                 <!-- TopicInviteUsers -->
                 <div class="pretend_tr" ng-repeat="invite in topic.invites.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
                     <div class="pretend_td">
@@ -633,6 +643,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="pretend_tr">
+                    <div class="pagination_wrapper">
+                        <div class="pagination" cos-pagination select="loadUsersInvitedPage" total-pages="topic.invites.users.totalPages" page="topic.invites.users.page"></div>
                     </div>
                 </div>
             </div>

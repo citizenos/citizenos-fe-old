@@ -9,21 +9,21 @@ angular
         $scope.delegateUser = null;
         $scope.searchResults = {users: []};
         $scope.searchStringUser = null;
-        $scope.topicMembers = [];
 
-        TopicMemberUser
-            .query({topicId: topic.id}).$promise
-            .then(function (topicMembers) {
-                $scope.topicMembers = topicMembers;
-            });
+
 
         $scope.search = function (str) {
             sNotification.removeAll();
 
             if (str && str.length >= 2) {
-                $scope.searchResults.users = _.filter($scope.topicMembers, function (member) {
-                    return member.name.toLowerCase().indexOf(str.toLowerCase()) > -1;
-                });
+                TopicMemberUser
+                    .query({topicId: topic.id, search: str}).$promise
+                    .then(function (topicMembers) {
+                        $scope.searchResults.users = _.filter(topicMembers.rows, function (member) {
+                            return member.name.toLowerCase().indexOf(str.toLowerCase()) > -1;
+                        });
+                    });
+
             } else {
                 $scope.searchResults.users = [];
             }
