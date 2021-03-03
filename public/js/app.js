@@ -973,7 +973,7 @@
                                 .then(
                                     function () {
                                         return $state.go(
-                                            'groups.view',
+                                            'my.groups.groupId',
                                             {
                                                 groupId: rGroupInviteUser.groupId
                                             }

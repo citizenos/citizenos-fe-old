@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', function ($scope, $state, $stateParams, $timeout, $log, $location, sSearch, Group, GroupMemberUser, GroupMemberTopic) {
+    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', function ($scope, $state, $stateParams, $timeout, $log, $location, sSearch, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser) {
         $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
         $scope.levels = {
             none: 0,
@@ -271,17 +271,17 @@ angular
                         angular.extend($scope.form.group, data);
 
                         // Users
-                        var groupMemberUsersToSave = [];
+                        var groupMemberUsersToInvite = [];
                         $scope.members.forEach(function (member) {
-                            groupMemberUsersToSave.push({
+                            groupMemberUsersToInvite.push({
                                 userId: member.userId,
                                 level: member.level
                             })
                         });
 
-                        if (groupMemberUsersToSave.length) {
+                        if (groupMemberUsersToInvite.length) {
                             savePromises.push(
-                                GroupMemberUser.save({groupId: $scope.form.group.id}, groupMemberUsersToSave)
+                                GroupInviteUser.save({groupId: $scope.form.group.id}, groupMemberUsersToInvite)
                             );
                         }
 
