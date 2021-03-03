@@ -937,6 +937,91 @@
                         });
                     }]
                 })
+                .state('groupsGroupIdInvitesUsers', { // Cannot use dot notation (groups.groupId.invites.users) as that would make the page child of "groups" and we don't want that.
+                    url: '/groups/:groupId/invites/users/:inviteId',
+                    parent: 'main',
+                    templateUrl: '/views/home.html',
+                    resolve: {
+                        rGroupInviteUser: ['$stateParams', '$q', '$log', 'GroupInviteUser', function ($stateParams, $q, $log, GroupInviteUser) {
+                            var params = {
+                                id: $stateParams.inviteId,
+                                groupId: $stateParams.groupId
+                            };
+
+                            return new GroupInviteUser(params)
+                                .$get()
+                                .then(
+                                    function (groupInvite) {
+                                        groupInvite.id = params.id;
+
+                                        return groupInvite;
+                                    },
+                                    function (err) {
+                                        return $q.resolve(err); // Resolve so that the page would load
+                                    }
+                                );
+                        }]
+                    },
+                    controller: ['$scope', '$state', '$stateParams', '$log', '$timeout', 'sAuth', 'sNotification', 'ngDialog', 'GroupInviteUser', 'rGroupInviteUser', function ($scope, $state, $stateParams, $log, $timeout, sAuth, sNotification, ngDialog, GroupInviteUser, rGroupInviteUser) {
+                        if (!(rGroupInviteUser instanceof GroupInviteUser)) { // Some kind of error happened, the instance was not built
+                            return; // ERROR: Expecting cosHttpApiErrorInterceptor to tell the user what went wrong
+                        }
+
+                        var doAccept = function () {
+                            return rGroupInviteUser
+                                .$accept()
+                                .then(
+                                    function () {
+                                        return $state.go(
+                                            'groups.view',
+                                            {
+                                                groupId: rGroupInviteUser.groupId
+                                            }
+                                        )
+                                    }
+                                );
+                        };
+
+                        // 1. The invited User is logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
+                        if (sAuth.user.loggedIn && rGroupInviteUser.user.id === sAuth.user.id) {
+                            return doAccept();
+                        }
+
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/group_groupId_invites_users_inviteId.html',
+                            data: $stateParams,
+                            scope: $scope, // pass on scope, so that modal has access to App scope ($scope.app)
+                            controller: ['$scope', '$log', function ($scope, $log) {
+                                $scope.invite = rGroupInviteUser;
+
+                                $scope.doAccept = function () {
+                                    // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
+                                    if (!sAuth.user.loggedIn) {
+                                        var currentUrl = $state.href($state.current.name, $stateParams);
+                                        return $state.go('account.login', {redirectSuccess: currentUrl});
+                                    }
+
+                                    // 2. User logged in, but opens an invite NOT meant to that account  - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
+                                    if (sAuth.user.loggedIn && $scope.invite.user.id !== sAuth.user.id) {
+                                        sAuth
+                                            .logout()
+                                            .then(function () {
+                                                var currentUrl = $state.href($state.current.name, $stateParams);
+                                                // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
+                                                return $state.go('account.login', {redirectSuccess: currentUrl}, {reload: true});
+                                            });
+                                    }
+                                };
+                            }]
+                        });
+
+                        dialog.closePromise.then(function (data) {
+                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                return $state.go('home');
+                            }
+                        });
+                    }]
+                })
                 .state('partners', {
                     url: '/partners/:partnerId',
                     abstract: true,

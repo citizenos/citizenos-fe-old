@@ -4,7 +4,7 @@ angular
         $log.debug('citizenos.factory.TopicInviteUser');
 
         var TopicInviteUser = $resource(
-            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/invites/users/:inviteId'), // Actually Groups are added to Topic
+            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/invites/users/:inviteId'),
             {
                 topicId: '@topicId',
                 inviteId: '@id'
