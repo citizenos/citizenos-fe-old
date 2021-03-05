@@ -30,7 +30,7 @@ angular
                     method: 'GET',
                     params: {topicId: '@topicId', voteId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformResponse: function (data, headersGetter, status) {
-                        if (status > 0 && status < 400) { // TODO: think this error handling through....                            
+                        if (status > 0 && status < 400) { // TODO: think this error handling through....
                             var returndata = angular.fromJson(data).data;
                             var maxVotes = 0;
                             returndata.options.rows.forEach(function (voteOption) {

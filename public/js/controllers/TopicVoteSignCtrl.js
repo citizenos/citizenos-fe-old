@@ -153,13 +153,29 @@ angular
                     $scope.challengeID = voteInitResult.challengeID;
                     $scope.formSmartId.challengeID = voteInitResult.challengeID;
                     var token = voteInitResult.token;
-                    return pollVoteSmartIdSignStatus(topic.id, topic.vote.id, token, 3000, 80);
+                    return TopicVote
+                        .status({topicId: topic.id, voteId: topic.vote.id, prefix: sAuth.getUrlPrefix(), userId: sAuth.getUrlUserId(), token: token}).$promise
+                        .then(function (response) {
+                            console.log(response);
+                            var statusCode = response.status.code;
+                            switch (statusCode) {
+                                case 20001:
+                                case 20002:
+                                    // Done
+                                    return response.data;
+                                default:
+                                    $log.error('Mobile signing failed', response);
+                                    ngDialog.closeAll();
+                                    return $q.defer().reject(response);
+                            }
+                        });
                 })
                 .then(function (voteStatusResult) {
+                    console.log(voteStatusResult.bdocUri);
                     $log.debug('voteVoteSign succeeded', arguments);
                     ngDialog.closeAll({ // Pass Vote options, so we can show selected option for the unauthenticated User
                         options:  $scope.optionsSelected,
-                        bdocUri: voteStatusResult.bdocUri
+                        bdocUri: voteStatusResult.data.bdocUri
                     });
                 }, function (err) {
                     $scope.formSmartId.isLoading = false;
