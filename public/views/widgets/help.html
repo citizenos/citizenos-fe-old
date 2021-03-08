@@ -6,8 +6,8 @@
         </div>
         <div class="help_description">
             <span translate="HELP_WIDGET.DESCRIPTION">If you have questions or comments, we’re eager to hear them and help you!</span>
-            <a><span class="sprite sprite-bullet-arrow2x"></span><span translate="HELP_WIDGET.LINK_FAQ">Frequently asked questions</span></a>
-            <a><span class="sprite sprite-bullet-arrow2x"></span><span translate="HELP_WIDGET.LINK_HELP_PAGE">Help page</span></a>
+            <!--a><span class="sprite sprite-bullet-arrow2x"></span><span translate="HELP_WIDGET.LINK_FAQ">Frequently asked questions</span></a>
+            <a><span class="sprite sprite-bullet-arrow2x"></span><span translate="HELP_WIDGET.LINK_HELP_PAGE">Help page</span></a-->
         </div>
     </div>
     <div class="help_bottom">
@@ -21,11 +21,11 @@
                 </div>
             </label>
             <textarea placeholder="{{'HELP_WIDGET.PLACEHOLDER_WRITE_YOUR_MESSAGE' | translate}}" ng-model="form.description" name="description"></textarea>
-            <label class="checkcontainer">
+            <!--label class="checkcontainer">
                 <input type="checkbox" class="help_input_checkbox" ng-checked="form.clientData" ng-click="form.clientData = !form.clientData">
                 <span class="help_checkbox"></span>
                 <span translate="HELP_WIDGET.LBL_CONSENT">I consent to sharing extra data to Citizen OS to create a better experience.</span>
-            </label>
+            </label-->
             <div class="blue_button_wrap">
                 <button type="submit" ng-click="sendHelp()" cos-disabled="helpForm.$invalid" class="blue_button" translate="HELP_WIDGET.BTN_SEND">Send</button>
             </div>

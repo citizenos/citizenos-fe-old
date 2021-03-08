@@ -17,11 +17,11 @@ angular
         $scope.form = {
             topic: null,
             description: null,
+            inviteMessage: null,
             urlJoin: null
         };
-
+        $scope.maxLengthText = 200;
         $scope.tabSelected = $stateParams.tab || 'invite';
-        $scope.inviteMessage = null;
 
         $scope.topicList = {
             searchFilter: '',
@@ -305,6 +305,7 @@ angular
                         } else {
                             topicMemberUsersToSave.push({
                                 userId: member.userId,
+                                inviteMessage: $scope.form.inviteMessage,
                                 level: member.level
                             })
                         }

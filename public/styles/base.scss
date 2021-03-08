@@ -183,8 +183,13 @@ table, .pretend_table {
     display: table-row;
 }
 
-.pretend_td, .pretend_th {
+.pretend_td, .pretend_th, .pagination_wrapper {
     @extend .table_cell;
+}
+
+.pagination_wrapper {
+    width: 100%;
+    padding: 5px 5px 15px;
 }
 
 .name_wrap {
@@ -2367,7 +2372,6 @@ a:link, a:visited {
     }
 }
 
-
 .help_bubble {
     z-index: 999999;
     width:  60px;
@@ -2524,4 +2528,8 @@ a:link, a:visited {
             margin-bottom: 10px;
         }
     }
+}
+
+.cm-formatting {
+	display: none;
 }

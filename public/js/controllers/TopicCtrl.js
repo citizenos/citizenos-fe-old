@@ -10,6 +10,7 @@ angular
 
         $scope.topic = rTopic;
         $scope.app.topic = rTopic;
+        var ITEMS_COUNT_PER_PAGE = 10;
 
         if ($scope.topic.title) {
             $scope.app.metainfo.title = $scope.topic.title;
@@ -147,20 +148,64 @@ angular
             return false;
         };
 
-        var loadTopicMemberUserList = function () {
+        $scope.loadTopicMemberUserList = function (offset, limit) {
+            if (!limit) {
+                limit = ITEMS_COUNT_PER_PAGE;
+            }
+            if (!offset) {
+                offset = 0;
+            }
+
+            var search = null;
+            if ($scope.userList.searchFilter) {
+                search = $scope.userList.searchFilter.trim();
+            }
+
             return TopicMemberUser
-                .query({topicId: $scope.topic.id}).$promise
+                .query({
+                    topicId: $scope.topic.id,
+                    offset: offset,
+                    search: search,
+                    limit: limit
+                }).$promise
                 .then(function (users) {
                     $scope.topic.members.users.rows = users;
                     $scope.topic.members.users.count = users.length;
+                    if (users.length) {
+                        $scope.topic.members.users.count = users[0].countTotal;
+                    }
 
+                    $scope.topic.members.users.totalPages = Math.ceil($scope.topic.members.users.count / limit);
+                    $scope.topic.members.users.page = Math.ceil((offset + limit) / limit);
                     return users;
                 });
         };
 
-        var loadTopicInviteUserList = function () {
+        $scope.loadMemberUsersPage = function (page) {
+            var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
+            $scope.loadTopicMemberUserList(offset, ITEMS_COUNT_PER_PAGE);
+        };
+
+        $scope.loadTopicInviteUserList = function (offset, limit) {
+            if (!limit) {
+                limit = ITEMS_COUNT_PER_PAGE;
+            }
+            if (!offset) {
+                offset = 0;
+            }
+
+            var search = null;
+            if ($scope.userList.searchFilter) {
+                search = $scope.userList.searchFilter.trim();
+            }
+
             return TopicInviteUser
-                .query({topicId: $scope.topic.id}).$promise
+                .query({
+                    topicId: $scope.topic.id,
+                    offset: offset,
+                    search: search,
+                    limit: limit
+                }).$promise
                 .then(function (invites) {
                     $scope.topic.invites = {
                         users: {
@@ -179,20 +224,57 @@ angular
 
                     $scope.topic.invites.users.rows = _.sortedUniqBy(inviteListOrderedByLevel, 'user.id');
                     $scope.topic.invites.users.count = invites.length;
+                    if (invites.length) {
+                        $scope.topic.invites.users.count = invites[0].countTotal;
+                    }
+
+                    $scope.topic.invites.users.totalPages = Math.ceil($scope.topic.invites.users.count / limit);
+                    $scope.topic.invites.users.page = Math.ceil((offset + limit) / limit);
 
                     return invites;
                 });
         };
 
-        var loadTopicMemberGroupList = function () {
+        $scope.loadUsersInvitedPage = function (page) {
+            var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
+            $scope.loadTopicInviteUserList(offset, ITEMS_COUNT_PER_PAGE);
+        };
+
+        $scope.loadTopicMemberGroupList = function (offset, limit) {
+            if (!limit) {
+                limit = ITEMS_COUNT_PER_PAGE;
+            }
+            if (!offset) {
+                offset = 0;
+            }
+            var search = null;
+            if ($scope.groupList.searchFilter) {
+                search = $scope.groupList.searchFilter.trim();
+            }
+
             return TopicMemberGroup
-                .query({topicId: $scope.topic.id}).$promise
+                .query({
+                    topicId: $scope.topic.id,
+                    offset: offset,
+                    search: search,
+                    limit: limit
+                }).$promise
                 .then(function (groups) {
                     $scope.topic.members.groups.rows = groups;
                     $scope.topic.members.groups.count = groups.length;
+                    if (groups.length) {
+                        $scope.topic.members.groups.count = groups[0].countTotal;
+                    }
 
+                    $scope.topic.members.groups.totalPages = Math.ceil($scope.topic.members.groups.count / limit);
+                    $scope.topic.members.groups.page = Math.ceil((offset + limit) / limit);
                     return groups;
                 });
+        };
+
+        $scope.loadMemberGroupPage = function (page) {
+            var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
+            $scope.loadTopicMemberGroupList(offset, ITEMS_COUNT_PER_PAGE);
         };
 
         $scope.loadActivities = function (offset, limit) {
@@ -466,7 +548,7 @@ angular
         };
 
         $scope.doShowMemberGroupList = function () {
-            loadTopicMemberGroupList()
+            $scope.loadTopicMemberGroupList()
                 .then(function () {
                     if ($scope.topic.members.groups.count) {
                         $scope.groupList.isVisible = true;
@@ -485,7 +567,7 @@ angular
                     .then(
                         function () {
                             if ($scope.userList.isVisible) { // Reload User list when Group permissions change as User permissions may also change
-                                loadTopicMemberUserList();
+                                $scope.loadTopicMemberUserList();
                             }
                         },
                         function () {
@@ -511,7 +593,7 @@ angular
                         .then(function () {
                             $scope.topic.members.groups.rows.splice($scope.topic.members.groups.rows.indexOf(topicMemberGroup), 1);
                             $scope.topic.members.groups.count = $scope.topic.members.groups.rows.length;
-                            loadTopicMemberUserList();
+                            $scope.loadTopicMemberUserList();
                         });
                 }, angular.noop);
         };
@@ -520,7 +602,7 @@ angular
 
         $scope.doShowMemberUserList = function () {
             return $q
-                .all([loadTopicMemberUserList(), loadTopicInviteUserList()])
+                .all([$scope.loadTopicMemberUserList(), $scope.loadTopicInviteUserList()])
                 .then(function () {
                     $scope.userList.isVisible = true;
                 });
@@ -623,7 +705,7 @@ angular
                     topicMemberUser
                         .$delete({topicId: $scope.topic.id})
                         .then(function () {
-                            return loadTopicMemberUserList(); // Good old topic.members.users.splice wont work due to group permission inheritance
+                            return $scope.loadTopicMemberUserList(); // Good old topic.members.users.splice wont work due to group permission inheritance
                         });
                 }, angular.noop);
         };
@@ -653,7 +735,7 @@ angular
                     $q
                         .all(promisesToResolve)
                         .then(function () {
-                            return loadTopicInviteUserList();
+                            return $scope.loadTopicInviteUserList();
                         });
                 }, angular.noop);
         };
@@ -719,6 +801,16 @@ angular
 
         $scope.downloadAttachment = function (attachment) {
             return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
+        };
+
+        $scope.downloadContainer = function (includeCSV) {
+            var url = $scope.topic.vote.downloads.bdocFinal;
+            if (!url) return;
+            if (includeCSV) {
+                url+='&include[]=csv';
+            }
+
+            window.location.href = url;
         };
 
         $scope.translateGroup = function (key, group) {

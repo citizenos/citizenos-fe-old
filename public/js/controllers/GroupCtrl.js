@@ -5,6 +5,7 @@ angular
     .controller('GroupCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', 'rGroup', function ($rootScope, $scope, $state, $stateParams, $log, $location, ngDialog, sAuth, GroupMemberUser, GroupMemberTopic, rGroup) {
         $log.debug('GroupCtrl');
 
+        var ITEMS_COUNT_PER_PAGE = 10;
         $scope.group = rGroup;
 
         $scope.generalInfo = {
@@ -45,31 +46,88 @@ angular
 
         $scope.GroupMemberTopic = GroupMemberTopic;
 
-        var loadMemberTopicsList = function () {
+        $scope.loadMemberTopicsList = function (offset, limit) {
+            if (!limit) {
+                limit = ITEMS_COUNT_PER_PAGE;
+            }
+            if (!offset) {
+                offset = 0;
+            }
+
+            var search = null;
+            if ($scope.topicList.searchFilter) {
+                search = $scope.topicList.searchFilter.trim();
+            }
+
             return GroupMemberTopic
-                .query({groupId: $scope.group.id}).$promise
+                .query({
+                    groupId: $scope.group.id,
+                    limit: limit,
+                    search: search,
+                    offset: offset
+                }).$promise
                 .then(function (topics) {
                     $scope.group.members.topics.rows = topics;
                     $scope.group.members.topics.count = topics.length;
+
+                    if (topics.length) {
+                        $scope.group.members.topics.count = topics[0].countTotal;
+                    }
+
+                    $scope.group.members.topics.totalPages = Math.ceil($scope.group.members.topics.count / limit);
+                    $scope.group.members.topics.page = Math.ceil((offset + limit) / limit);
 
                     return topics;
                 });
         };
 
-        var loadMemberUsersList = function () {
+        $scope.loadMemberTopicsPage = function (page) {
+            var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
+            $scope.loadMemberTopicsList(offset, ITEMS_COUNT_PER_PAGE);
+        };
+
+        $scope.loadMemberUsersList = function (offset, limit) {
+            if (!limit) {
+                limit = ITEMS_COUNT_PER_PAGE;
+            }
+            if (!offset) {
+                offset = 0;
+            }
+
+            var search = null;
+            if ($scope.userList.searchFilter) {
+                search = $scope.userList.searchFilter.trim();
+            }
+
             return GroupMemberUser
-                    .query({groupId: $scope.group.id}).$promise
+                    .query({
+                        groupId: $scope.group.id,
+                        limit: limit,
+                        search: search,
+                        offset: offset
+                    }).$promise
                     .then(function (users) {
                         $scope.group.members.users.rows = users;
                         $scope.group.members.users.count = users.length;
 
+                        if (users.length) {
+                            $scope.group.members.users.count = users[0].countTotal;
+                        }
+
+                        $scope.group.members.users.totalPages = Math.ceil($scope.group.members.users.count / limit);
+                        $scope.group.members.users.page = Math.ceil((offset + limit) / limit);
                         return users;
                     });
         };
 
+        $scope.loadMemberUsersPage = function (page) {
+            var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
+            $scope.loadMemberUsersList(offset, ITEMS_COUNT_PER_PAGE);
+        };
+
         $scope.doShowMemberTopicList = function () {
             if (!$scope.topicList.isVisible) {
-                loadMemberTopicsList()
+                $scope.loadMemberTopicsList()
                     .then(function () {
                         $scope.topicList.isVisible = true;
                         $scope.app.scrollToAnchor('topic_list');
@@ -114,7 +172,7 @@ angular
                     groupMemberTopic
                         .$delete({groupId: $scope.group.id})
                         .then(function () {
-                            loadMemberTopicsList();
+                            $scope.loadMemberTopicsList();
                         });
                 }, angular.noop);
         };
@@ -123,7 +181,7 @@ angular
 
         $scope.doShowMemberUserList = function () {
             if (!$scope.userList.isVisible) {
-                loadMemberUsersList()
+                $scope.loadMemberUsersList()
                     .then(function () {
                         $scope.userList.isVisible = true;
                         $scope.app.scrollToAnchor('user_list');
@@ -167,7 +225,7 @@ angular
                     groupMemberUser
                         .$delete({groupId: $scope.group.id})
                         .then(function () {
-                            loadMemberUsersList();
+                            $scope.loadMemberUsersList();
                         });
                 }, angular.noop);
         };
@@ -191,7 +249,7 @@ angular
         };
 
         if (sAuth.user.loggedIn) {
-            loadMemberTopicsList();
-            loadMemberUsersList();
+            $scope.loadMemberTopicsList();
+            $scope.loadMemberUsersList();
         }
     }]);

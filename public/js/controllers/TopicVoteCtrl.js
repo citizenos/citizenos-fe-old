@@ -35,40 +35,38 @@ angular
         };
 
         $scope.$parent.$parent.selectOption = function (option) {
-
-                $scope.topic.vote.options.rows.forEach(function(opt) {
-                    if (option.value === 'Neutral' || option.value === 'Veto') {
-                        opt.selected = false;
-                    } else if (opt.value === 'Neutral' || opt.value === 'Veto') {
-                        opt.selected = false;
-                    }
-                });
-                if (option.value === 'Neutral' || option.value === 'Veto') {
-                    $scope.$parent.$parent.doVote(option);
+            $scope.topic.vote.options.rows.forEach(function(opt) {
+                if (option.value === 'Neutral' || option.value === 'Veto' || $scope.topic.vote.maxChoices ===1) {
+                    opt.selected = false;
+                } else if (opt.value === 'Neutral' || opt.value === 'Veto' || $scope.topic.vote.maxChoices ===1) {
+                    opt.selected = false;
                 }
-            if ($scope.topic.vote.type === Vote.VOTE_TYPES.multiple && $scope.topic.vote.maxChoices > 1) {
-                option.optionId = option.id;
+            });
 
-                var selected = _.filter($scope.topic.vote.options.rows, function (option) {
-                    return !!option.selected;
-                });
+            option.optionId = option.id;
 
-                var isSelected = _.find(selected, function (item) {
-                    if (item.id === option.id) return item;
-                });
+            var selected = _.filter($scope.topic.vote.options.rows, function (option) {
+                return !!option.selected;
+            });
 
-                if (selected.length >= $scope.topic.vote.maxChoices && !isSelected) return;
-                option.selected=!option.selected;
-            } else {
-                $scope.$parent.$parent.doVote(option);
-            }
+            var isSelected = _.find(selected, function (item) {
+                if (item.id === option.id) return item;
+            });
+
+            if (selected.length >= $scope.topic.vote.maxChoices && !isSelected) return;
+            option.selected=!option.selected;
 
         };
 
         $scope.$parent.$parent.canSubmit = function () {
+            if (!$scope.topic.vote.options || !_.isArray($scope.topic.vote.options.rows)) return false;
             var options = _.filter($scope.topic.vote.options.rows, function (option) {
                 return !!option.selected;
             });
+
+            if (options && options.length === 1 && (options[0].value === 'Neutral' || options[0].value === 'Veto')) {
+                return true;
+            }
 
             if (options.length > $scope.topic.vote.maxChoices || options.length < $scope.topic.vote.minChoices)
                 return false;
@@ -86,7 +84,7 @@ angular
             } else {
                 options = [option];
             }
-            if (options.length > $scope.topic.vote.maxChoices || options.length < $scope.topic.vote.minChoices && option.value !== 'Neutral' && option.value !== 'Veto') {
+            if (options.length > $scope.topic.vote.maxChoices || options.length < $scope.topic.vote.minChoices && options[0].value !== 'Neutral' && options[0].value !== 'Veto') {
                 sNotification.addError('MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS');
                 return;
             }

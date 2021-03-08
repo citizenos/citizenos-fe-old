@@ -139,14 +139,14 @@
                     </div>
 
                     <a class="small_topic_title" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
-                        <span ng-bind="item.title">title</span><span class="lock_icon_wrap" ng-class="{hidden: !item.isPrivate()}"><div class="sprite sprite-icon-lock2x"></div></span>
+                        <div class="title_div" ng-bind="item.title">title</div><span class="lock_icon_wrap" ng-class="{hidden: !item.isPrivate()}"><div class="sprite sprite-icon-lock2x"></div></span>
                     </a>
 
                     <div class="line lightest_line"></div>
 
                     <div class="small_topic_footer">
                         <div class="small_topic_left_cont">
-                            <div class="small_topic_link" ng-click="goToTopicView(item.id)">
+                            <div class="small_topic_link" ng-click="goToTopicView(item.id)" ng-if="item.status==='inProgress'">
                                 <div class="small_topic_icon">
                                     <div class="sprite" ng-class="isActiveTopic(item) ? 'sprite-icon-edit-topic_white': 'sprite-icon-edit-topic_black'"></div>
                                 </div>

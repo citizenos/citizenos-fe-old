@@ -93,6 +93,14 @@ angular
             }
         };
 
+        $scope.$parent.$parent.getStepNum = function (num) {
+            if ($scope.voteForm.voteType === $scope.voteTypes.multiple) {
+                num++;
+            }
+
+            return num;
+        };
+
         $scope.$parent.$parent.removeOption = function (key) {
             $scope.voteForm.options.splice(key, 1);
         };
