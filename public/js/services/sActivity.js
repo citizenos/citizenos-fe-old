@@ -478,7 +478,7 @@ angular
         };
 
         var getActivityGroupName = function (activity) {
-            var dataobject = activity.data.object;
+            var dataobject = activity.data.object && activity.data.object.object ? activity.data.object.object : activity.data.object;
             if (Array.isArray(dataobject)) {
                 dataobject = dataobject[0];
             }
