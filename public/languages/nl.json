@@ -37,6 +37,18 @@
   "TXT_MODERATION_TYPES_DUPLICATE": "@:TXT_REPORT_TYPES_DUPLICATE",
   "TOOLTIP_PIN_TOPIC": "Topic vastmaken",
   "TOOLTIP_REPORT_TOPIC": "@:MODALS.TOPIC_REPORT_HEADING",
+  "HELP_WIDGET": {
+    "TITLE": "We’re here to help!",
+    "DESCRIPTION": "Got questions or comments? Just drop us a message below.",
+    "LINK_FAQ": "Frequently asked questions",
+    "LINK_HELP_PAGE": "Step-by-step guidance",
+    "SEND_US_MESSAGE": "Send us a message",
+    "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Your message here...",
+    "LBL_CONSENT": "I consent to sharing <a href=\"\">extra data</a> with Citizen OS to help improve the user experience.",
+    "BTN_SEND": "Send",
+    "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
+    "MSG_REQUEST_SENT": "Your help request has been sent!"
+  },
   "MODALS": {
     "GROUP_DELETE_CONFIRM_HEADING": "Groep verwijderen",
     "GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Weet u zeker dat u deze groep wilt verwijderen?",
