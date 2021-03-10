@@ -666,7 +666,6 @@ angular
                 object = object[0];
             }
 
-            console.error('activityType', activityType, activity);
             if (activityType === 'Invite' && target['@type'] === 'User' && object['@type'] === 'Topic') { // https://github.com/citizenos/citizenos-fe/issues/112
                 // The invited user is viewing
                 if (sAuth.user.loggedIn && sAuth.user.id === target.id) {
@@ -677,6 +676,17 @@ angular
                     // Creator of the invite or a person who has read permissions is viewing
                     stateName = 'topics.view';
                     params.topicId = object.id;
+                }
+            } else if (activityType === 'Invite' && target['@type'] === 'User' && object['@type'] === 'Group') { // https://github.com/citizenos/citizenos-fe/issues/348
+                // The invited user is viewing
+                if (sAuth.user.loggedIn && sAuth.user.id === target.id) {
+                    stateName = 'groupsGroupIdInvitesUsers';
+                    params.groupId = object.id;
+                    params.inviteId = target.inviteId; // HACKISH! Change once issue resolves - https://github.com/w3c/activitystreams/issues/506
+                } else {
+                    // Creator of the invite or a person who has read permissions is viewing
+                    stateName = 'group.view';
+                    params.groupId = object.id;
                 }
             } else if ((object && object['@type'] === 'Topic')) {
                 stateName = 'topics.view';
