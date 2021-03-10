@@ -280,7 +280,7 @@
 
     <!-- USER LIST -->
     <div class="info_container group_list user_list" id="user_list">
-        <div class="container_header" ng-click="doToggleMemberUserList(group);">
+        <div class="container_header" ng-click="doToggleMemberUserList(); $event.stopPropagation();">
             <div class="header_text">
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_USERS_LIST" translate-values="{count: (group.members.users.count || 0)}">User list (0)</span>
                 |
@@ -325,7 +325,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="user in group.members.users.rows | orderBy : userList.searchOrderBy.property">
+                <!-- GroupMemberUsers -->
+                <div class="pretend_tr" ng-repeat="user in group.members.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
                     <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
@@ -382,6 +383,64 @@
                 <div class="pretend_tr">
                     <div class="pagination_wrapper">
                         <div class="pagination" cos-pagination select="loadMemberUsersPage" total-pages="group.members.users.totalPages" page="group.members.users.page"></div>
+                    </div>
+                </div>
+                <!-- GroupInviteUsers -->
+                <div class="pretend_tr" ng-repeat="invite in group.invites.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
+                    <div class="pretend_td">
+                        <div class="profile_image_wrapper dark">
+                            <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
+                            <div class="account_picture">
+                                <img ng-if="invite.user.imageUrl" ng-src="{{invite.user.imageUrl}}">
+                                <div ng-if="!invite.user.imageUrl" class="profile_image_filler">
+                                    <div class="table_cell" cos-initials="invite.user.name">
+                                        ML
+                                    </div>
+                                    <div class="profile_circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="name_wrap">
+                            <div class="table_cell smooth_gray">
+                                <div ng-bind="invite.user.name" tooltips tooltip-hidden="{{(!invite.user.email && !invite.user.pid && !invite.user.phoneNumber)}}" tooltip-class="tooltip_author"
+                                     tooltip-template="<span class='creator_data_tooltip_row'>{{invite.user.email}}</span><span class='creator_data_tooltip_row'>{{invite.user.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{invite.user.pid}}</span>"
+                                     tooltip-smart="true">invite.user.name</div>
+                                <div class="via" translate="VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING">
+                                    Pending invite
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pretend_td">
+                        <span class="user_level_text">{{'TXT_TOPIC_LEVELS_' + invite.level | uppercase | translate}}</span>
+                        <!--div cos-dropdown class="classic_dropdown" cos-disabled>
+                            <div class="dropdown_selection">
+                                <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + invite.level | uppercase | translate}}</div>
+
+                                <div class="arrow_holder">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                        <div class="v_line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div-->
+                    </div>
+                    <div class="pretend_td recycle_bin_wrap">
+                        <div class="btn_wrap recycle_bin" ng-if="group.canUpdate()">
+                            <div class="btn" ng-click="doDeleteInviteUser(invite)">
+                                <div class="table_cell">
+                                    <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                    <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pretend_tr">
+                    <div class="pagination_wrapper">
+                        <div class="pagination" cos-pagination select="loadUsersInvitedPage" total-pages="group.invites.users.totalPages" page="group.invites.users.page"></div>
                     </div>
                 </div>
             </div>
