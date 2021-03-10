@@ -100,24 +100,24 @@ angular
             }
 
             return GroupMemberUser
-                    .query({
-                        groupId: $scope.group.id,
-                        limit: limit,
-                        search: search,
-                        offset: offset
-                    }).$promise
-                    .then(function (users) {
-                        $scope.group.members.users.rows = users;
-                        $scope.group.members.users.count = users.length;
+                .query({
+                    groupId: $scope.group.id,
+                    limit: limit,
+                    search: search,
+                    offset: offset
+                }).$promise
+                .then(function (users) {
+                    $scope.group.members.users.rows = users;
+                    $scope.group.members.users.count = users.length;
 
-                        if (users.length) {
-                            $scope.group.members.users.count = users[0].countTotal;
-                        }
+                    if (users.length) {
+                        $scope.group.members.users.count = users[0].countTotal;
+                    }
 
-                        $scope.group.members.users.totalPages = Math.ceil($scope.group.members.users.count / limit);
-                        $scope.group.members.users.page = Math.ceil((offset + limit) / limit);
-                        return users;
-                    });
+                    $scope.group.members.users.totalPages = Math.ceil($scope.group.members.users.count / limit);
+                    $scope.group.members.users.page = Math.ceil((offset + limit) / limit);
+                    return users;
+                });
         };
 
         $scope.loadInviteUserList = function (offset, limit) {
@@ -269,20 +269,24 @@ angular
         };
 
         $scope.doDeleteMemberUser = function (groupMemberUser) {
-            ngDialog
-                .openConfirm({
-                    template: '/views/modals/group_member_user_delete_confirm.html',
-                    data: {
-                        user: groupMemberUser
-                    }
-                })
-                .then(function () {
-                    groupMemberUser
-                        .$delete({groupId: $scope.group.id})
-                        .then(function () {
-                            $scope.loadMemberUsersList();
-                        });
-                }, angular.noop);
+            if (groupMemberUser.id === sAuth.user.id) { // IF User tries to delete himself, show "Leave" dialog instead
+                $scope.doLeaveGroup();
+            } else {
+                ngDialog
+                    .openConfirm({
+                        template: '/views/modals/group_member_user_delete_confirm.html',
+                        data: {
+                            user: groupMemberUser
+                        }
+                    })
+                    .then(function () {
+                        groupMemberUser
+                            .$delete({groupId: $scope.group.id})
+                            .then(function () {
+                                $scope.loadMemberUsersList();
+                            });
+                    }, angular.noop);
+            }
         };
 
         $scope.doDeleteInviteUser = function (groupInviteUser) {
