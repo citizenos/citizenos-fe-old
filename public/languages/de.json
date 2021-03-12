@@ -43,6 +43,7 @@
     "LINK_FAQ": "Frequently asked questions",
     "LINK_HELP_PAGE": "Step-by-step guidance",
     "SEND_US_MESSAGE": "Send us a message",
+    "PLACEHOLDER_WRITE_YOUR_EMAIL": "youremail@example.com",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Your message here...",
     "LBL_CONSENT": "I consent to sharing <a href=\"\">extra data</a> with Citizen OS to help improve the user experience.",
     "BTN_SEND": "Send",
