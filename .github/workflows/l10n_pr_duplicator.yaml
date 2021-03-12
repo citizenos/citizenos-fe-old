@@ -12,7 +12,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: PR Duplicator
-      uses: citizenos/github-action-pr-duplicator@a5a328c
+      uses: citizenos/github-action-pr-duplicator@a5a328c83cc1d7316c55c794ec66816a2b0294c6
       with:
         from: 'l10n_master'
         base: 'master'
