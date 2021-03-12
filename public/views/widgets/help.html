@@ -13,7 +13,7 @@
     <div class="help_bottom">
         <div class="help_bottom_title" translate="HELP_WIDGET.SEND_US_MESSAGE">Send us a message</div>
         <form name="helpForm" novalidate>
-            <input type="email" name="email" placeholder="email@example.com" ng-model="form.email" ng-class="{'error_input': errors.email}" maxlength="254" required/>
+            <input type="email" name="email" placeholder="{{'HELP_WIDGET.PLACEHOLDER_WRITE_YOUR_EMAIL' | translate}}" ng-model="form.email" ng-class="{'error_input': errors.email}" maxlength="254" required/>
             <label for="email" class="error_label" ng-if="helpForm.email.$error.email">
                 <div class="table_cell">
                     <div class="sprite sprite-icon-inputfield-error2x"></div>
