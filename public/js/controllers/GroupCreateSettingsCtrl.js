@@ -30,7 +30,8 @@ angular
         var init = function () {
             // Group creation
             $scope.form = {
-                group: null
+                group: null,
+                inviteMessage: null
             };
             if (!$stateParams.groupId) {
                 $scope.form.group = new Group({
@@ -48,6 +49,7 @@ angular
             $scope.membersPage = 1;
             $scope.memberTopics = [];
             $scope.members = [];
+            $scope.inviteMessageMaxLength = 200;
 
             $scope.Group = Group;
             $scope.GroupMemberTopic = GroupMemberTopic;
@@ -74,7 +76,10 @@ angular
                     $scope.searchStringUser = str;
                 }
                 sSearch
-                    .searchV2(str, {include: include, 'my.topic.level': 'admin'})
+                    .searchV2(str, {
+                        include: include,
+                        'my.topic.level': 'admin'
+                    })
                     .then(function (response) {
                         $scope.searchResults.users = [];
                         $scope.searchResults.topics = [];
@@ -114,7 +119,11 @@ angular
         };
 
         $scope.addNewGroupMemberTopic = function (title, newMemberTopicLevel) {
-            $state.go('topics.create', {groupId: $scope.group.id, title: title, groupLevel: newMemberTopicLevel});
+            $state.go('topics.create', {
+                groupId: $scope.group.id,
+                title: title,
+                groupLevel: newMemberTopicLevel
+            });
         }
 
         $scope.removeGroupMemberTopic = function (topic) {
@@ -135,13 +144,13 @@ angular
         $scope.itemsExist = function (type) {
             var exists = false;
             var i = ($scope.membersPage * itemsPerPage) - itemsPerPage;
-            for(i; i < $scope.members.length && i < ($scope.membersPage * itemsPerPage); i++) {
+            for (i; i < $scope.members.length && i < ($scope.membersPage * itemsPerPage); i++) {
                 if (type === 'users') {
                     if ($scope.members[i].id) {
                         exists = true;
                         break;
                     }
-                } else if ($scope.members[i].userId === $scope.members[i].name){
+                } else if ($scope.members[i].userId === $scope.members[i].name) {
                     exists = true;
                     break;
                 }
@@ -172,21 +181,21 @@ angular
 
         $scope.loadPage = function (pageNr) {
             $scope.membersPage = pageNr;
-        }
+        };
         $scope.totalPages = function (items) {
             return Math.ceil(items.length / itemsPerPage);
         };
 
         $scope.isOnPage = function (index, page) {
             var endIndex = page * itemsPerPage;
-            return  (index >= (endIndex - itemsPerPage) && index < endIndex);
-        }
+            return (index >= (endIndex - itemsPerPage) && index < endIndex);
+        };
 
         var orderMembers = function () {
-            var compare = function(a, b) {
+            var compare = function (a, b) {
                 var property = 'name';
                 return (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-            }
+            };
             var users = $scope.members.filter(function (member) {
                 return !!member.id;
             }).sort(compare);
@@ -275,7 +284,8 @@ angular
                         $scope.members.forEach(function (member) {
                             groupMemberUsersToInvite.push({
                                 userId: member.userId,
-                                level: member.level
+                                level: member.level,
+                                inviteMessage: $scope.form.inviteMessage
                             })
                         });
 
@@ -305,7 +315,10 @@ angular
                 .then(
                     function () {
                         $timeout(function () { // Avoid $digest already in progress
-                            $state.go('my.groups.groupId', {groupId: $scope.form.group.id, filter: 'grouped'}, {reload: true});
+                            $state.go('my.groups.groupId', {
+                                groupId: $scope.form.group.id,
+                                filter: 'grouped'
+                            }, {reload: true});
                         });
                     },
                     function (errorResponse) {

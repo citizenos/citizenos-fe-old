@@ -258,6 +258,9 @@
             <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'users'">
 
                 <div class="lightbox_section" ng-if="form.group.canUpdate()">
+                    <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_INVITE_LBL_OPTIONAL_MESSAGE">Add an optional invitation message</div>
+                    <textarea id="invite_body" translate translate-attr-placeholder="MODALS.GROUP_CREATE_SETTINGS_INVITE_PLACHOLDER_OPTIONAL_MESSAGE" class="gray_borders"
+                              placeholder="Edit your reply here..." ng-model="form.inviteMessage" maxlength="{{::inviteMessageMaxLength}}"></textarea>
 
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_INVITE_USERS">Invite users via their name or e-mail address</div>
 
