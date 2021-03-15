@@ -159,8 +159,13 @@ angular
             }
         };
 
-        $scope.goToTopicView = function (topicId) {
-            $state.go('topics.view', {topicId: topicId});
+        $scope.goToTopicView = function (topic) {
+            var params = {topicId: topic.id};
+            if (topic.canEdit()) {
+                params.editMode = true;
+            }
+
+            $state.go('topics.view', params);
         };
 
         $scope.isActiveTopic = function (item) {
