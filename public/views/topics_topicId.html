@@ -560,12 +560,12 @@
 
                             <div class="voting_platform_buttons_wrap">
 
-                                <div class="table_cell">
+                                <div class="table_cell" ng-click="setVoteType(voteTypes.regular)">
                                     <div class="voting_platform_radio_wrap" ng-class="voteForm.voteType == 'regular'? 'active' : ''">
                                         <div class="check"></div>
                                         <input class="voting_platform_radio" type="radio" ng-checked="voteForm.voteType=='regular'" name="voteTypeRegular"/>
                                     </div>
-                                    <div class="voting_platform_button" ng-click="setVoteType(voteTypes.regular)" ng-class="voteForm.voteType == 'regular'? 'active' : ''">
+                                    <div class="voting_platform_button" ng-class="voteForm.voteType == 'regular'? 'active' : ''">
                                         <div class="table_cell">
                                             <div class="button_title" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_REGULAR">REGULAR</div>
                                             <div class="button_description" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_REGULAR_EXPLANATION">(ie. yes/no/neutral/…)</div>
@@ -573,12 +573,12 @@
                                     </div>
                                 </div>
 
-                                <div class="table_cell">
+                                <div class="table_cell"  ng-click="setVoteType(voteTypes.multiple)" >
                                     <div class="voting_platform_radio_wrap" ng-class="voteForm.voteType == 'multiple' ? 'active' : ''">
                                         <div class="check"></div>
                                         <input class="voting_platform_radio" type="radio" ng-checked="voteForm.voteType=='multiple'" name="voteTypeMultiple"/>
                                     </div>
-                                    <div class="voting_platform_button" ng-click="setVoteType(voteTypes.multiple)" ng-class="voteForm.voteType == 'multiple' ? 'active' : ''">
+                                    <div class="voting_platform_button" ng-class="voteForm.voteType == 'multiple' ? 'active' : ''">
                                         <div class="table_cell">
                                             <div class="button_title" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_MULTIPLECHOICE">MULTIPLECHOICE</div>
                                             <div class="button_description" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_MULTIPLECHOICE_EXPLANATION">(ie. A/B/C/D/…)</div>
@@ -742,32 +742,23 @@
                                         <div class="table_cell">
                                             <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_AUTH_HARD_ID">Hard-ID</div>
                                             <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_AUTH_HARD_ID_EXPLANATION">ID-CARD OR MOBILE ID SIGNING IS REQUIRED</div>
+                                            <div class="toggle_box_icons">
+                                                <div class="icon_wrapper">
+                                                    <div class="sprite sprite-id-kaart-small2x"></div>
+                                                </div>
+                                                <div class="icon_wrapper">
+                                                    <div class="sprite sprite-mobiil-id-small2x"></div>
+                                                </div>
+                                                <div class="icon_wrapper">
+                                                    <div class="sprite sprite-smart-id-small2x"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="table_cell">
                                             <div cos-toggle ng-value="voteAuthTypes.hard" off-value="voteAuthTypes.soft" ng-model="voteForm.authType" cos-toggle-text-on="'TOGGLE_ON' | translate"
                                                  cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
                                         </div>
-                                        <div class="table_row">
-                                            <div class="icon_cell">
-                                                <div class="icon_wrapper">
-                                                    <div class="sprite sprite-id-kaart-small2x"></div>
-                                                </div>
-                                            </div>
-                                            <div class="icon_cell">
-                                                <div class="icon_wrapper">
-                                                    <div class="sprite sprite-mobiil-id-small2x"></div>
-                                                </div>
-                                            </div>
-                                            <div class="icon_cell">
-                                                <div class="icon_wrapper">
-                                                    <div class="sprite sprite-smart-id-small2x"></div>
-                                                </div>
-                                            </div>
-                                            <div class="clearer"></div>
-
-                                        </div>
                                     </div>
-
                                 </div>
                                 <div class="right_row add_bottom_borders">
 

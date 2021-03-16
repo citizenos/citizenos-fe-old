@@ -1394,6 +1394,12 @@ a:link, a:visited {
         font-size: 11px;
     }
 
+    .toggle_box_icons {
+        padding-top: 15px;
+        .icon_wrapper {
+            display: inline-block;
+        }
+    }
     .toggle_box_warning {
         color: $pinky_red;
         padding: 8px 0 13px 36px;
