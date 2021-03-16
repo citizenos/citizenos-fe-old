@@ -4,9 +4,17 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$location', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $translate, $stateParams, $q, $log, $sce, $location, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$timeout', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $translate, $stateParams, $q, $log, $sce, $timeout, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
+
+        if ($state.$current.name === 'topics.view' && rTopic.status === Topic.STATUSES.voting) {
+            $timeout(function () {
+                $stateParams.voteId = rTopic.voteId;
+
+                return $state.go('topics.view.votes.view', $stateParams);
+            });
+        }
 
         $scope.topic = rTopic;
         $scope.app.topic = rTopic;
@@ -820,15 +828,20 @@ angular
             return $translate.instant(key.split(':')[0], values);
         };
 
-        var listener = $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
-            if (fromState.name === 'topics.view.files') {
-                $scope.loadTopicAttachments();
-            }
-            if ($state.current.name === 'topics.view' && rTopic.status === Topic.STATUSES.voting) {
-                $stateParams.voteId = rTopic.voteId;
-                $state.go('topics.view.votes.view', $stateParams);
-            }
-        });
+        var listener = function () {
+            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
+                if (fromState.name === 'topics.view.files') {
+                    $scope.loadTopicAttachments();
+                }
+            });
+
+            $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
+                if (toState.name === 'topics.view' && rTopic.id === toState.topicId && rTopic.status === Topic.STATUSES.voting) {
+                    $stateParams.voteId = rTopic.voteId;
+                    $state.go('topics.view.votes.view', $stateParams);
+                }
+            });
+        }
 
         // Unregister
         $scope.$on('$destroy', function () {

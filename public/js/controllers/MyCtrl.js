@@ -159,13 +159,21 @@ angular
             }
         };
 
-        $scope.goToTopicView = function (topic) {
+        $scope.goToTopicView = function (topic, editMode) {
+            var status = topic.status;
             var params = {topicId: topic.id};
-            if (topic.canEdit()) {
-                params.editMode = true;
+            if (status === Topic.STATUSES.inProgress) {
+                if (topic.canEdit() && editMode) {
+                    params.editMode = true;
+                }
+
+                $state.go('topics.view', params);
             }
 
-            $state.go('topics.view', params);
+            else if (status === Topic.STATUSES.voting) {
+                params.voteId = topic.voteId;
+                $state.go('topics.view.votes.view', params);
+            }
         };
 
         $scope.isActiveTopic = function (item) {
