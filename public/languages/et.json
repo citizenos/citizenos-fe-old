@@ -1101,7 +1101,7 @@
   "MSG_ERROR_PUT_API_USERS_GROUPS_MEMBERS_USERS_40000": "Kasutaja õigusi ei saa muuta, sest kasutaja on viimane administraator selles grupis. Õiguste muutmiseks määra uus administraator.",
   "MSG_ERROR_DELETE_API_USERS_GROUPS_MEMBERS_USERS_40000": "Sa ei saa grupist lahkuda, sest oled viimane administraatori õigustega kasutaja. Lahkumiseks palun määra enda asemele uus administraator.",
   "MSG_ERROR_GET_API_USERS_GROUPS_INVITES_USERS_41001": "Vabandust, selle grupi kutse on kustutatud.",
-  "MSG_ERROR_GET_API_USERS_GROUPS_INVITES_USERS_41002_HEADING": "Invitation expired",
+  "MSG_ERROR_GET_API_USERS_GROUPS_INVITES_USERS_41002_HEADING": "Kutse on aegunud",
   "MSG_ERROR_GET_API_USERS_GROUPS_INVITES_USERS_41002": "Oih! See kutse on aegunud. Vabandame ebamugavuste pärast. Võid proovida sellele grupile uuesti juurdepääsu taotleda.",
   "MSG_ERROR_DELETE_API_USERS_TOPICS_MEMBERS_USERS_40010": "Viimast administraatori õigustega kasutajat pole võimalik kustutada. Määra uus administraator, et see kasutaja kustutada.",
   "MSG_ERROR_PUT_API_USERS_TOPICS_MEMBERS_USERS_40000": "Viimase administraatori õigustega kasutaja õigusi pole võimalik muuta. Määra uus administraator, et selle kasutaja õigusi muuta.",
