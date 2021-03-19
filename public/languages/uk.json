@@ -38,9 +38,9 @@
   "TOOLTIP_PIN_TOPIC": "Закріпити тему",
   "TOOLTIP_REPORT_TOPIC": "@:MODALS.TOPIC_REPORT_HEADING",
   "HELP_WIDGET": {
-    "TITLE": "We’re here to help!",
-    "DESCRIPTION": "Got questions or comments? Just drop us a message below.",
-    "LINK_FAQ": "Frequently asked questions",
+    "TITLE": "З радістю допоможемо!",
+    "DESCRIPTION": "Маєте питання чи коментарі? Просто залиште нам повідомлення у полі нижче.",
+    "LINK_FAQ": "Запитання й відповіді (FAQ)",
     "LINK_HELP_PAGE": "Step-by-step guidance",
     "SEND_US_MESSAGE": "Send us a message",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "youremail@example.com",
