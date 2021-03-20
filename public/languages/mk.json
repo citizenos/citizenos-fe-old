@@ -38,9 +38,9 @@
   "TOOLTIP_PIN_TOPIC": "Закачи тема",
   "TOOLTIP_REPORT_TOPIC": "@:MODALS.TOPIC_REPORT_HEADING",
   "HELP_WIDGET": {
-    "TITLE": "We’re here to help!",
-    "DESCRIPTION": "Got questions or comments? Just drop us a message below.",
-    "LINK_FAQ": "Frequently asked questions",
+    "TITLE": "Тука сме за помош!",
+    "DESCRIPTION": "Имате прашања или коментари? Само пратете ни порака подолу.",
+    "LINK_FAQ": "Најчесто поставувани прашања",
     "LINK_HELP_PAGE": "Step-by-step guidance",
     "SEND_US_MESSAGE": "Send us a message",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "youremail@example.com",
