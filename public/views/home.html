@@ -185,19 +185,19 @@
     <div id="topics_area" ng-class="{no_tutorial_topic: filters.categories.value !== FILTERS_ALL || filters.statuses.value !== FILTERS_ALL, no_results: !topicList.length}">
 
         <div ng-if="!isTopicListLoading && !topicList.length" class="table">
-            <div class="v_align_cell">
+            <div class="no_results v_align_cell">
+                <div class="no_results_icon_wrap">
+                    <div class="sprite sprite-icon-no-results2x"></div>
+                </div>
                 <div class="title_area">
-                    <h1 translate="VIEWS.HOME.HEADING_NO_RESUTS">We’re sorry, but we couldn’t find any results :(</h1>
-                    <h2 translate="VIEWS.HOME.HEADING_GET_STARTED">Maybe you can get the first discussion initiated by</h2>
+                    <h3 translate="VIEWS.HOME.HEADING_NO_RESUTS">We’re sorry, but we couldn’t find any results :(</h3>
+                    <p translate="VIEWS.HOME.HEADING_GET_STARTED">Maybe you can get the first discussion initiated by</p>
                 </div>
 
                 <div class="button_area">
 
                     <div class="big_button" ui-sref="topics.create">
                         <div class="button_cell">
-                            <div class="icon_nudge">
-                                <div class="sprite sprite-x2-mytopics-icon-newtopic-big2x"></div>
-                            </div>
                             <div class="topic_text" translate="VIEWS.HOME.BTN_CREATING_A_NEW_TOPIC">Creating a new topic</div>
                         </div>
                     </div>

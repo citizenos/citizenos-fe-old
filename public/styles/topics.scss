@@ -315,6 +315,26 @@
                     text-transform: capitalize;
                 }
             }
+            .no_results {
+                .no_results_icon_wrap {
+                    width: min-content;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .title_area {
+                    text-align: center;
+
+                    h3 {
+                        font-size: 26px;
+                    }
+
+                    p {
+                        font-size: 14px;
+                        color: $dark_gray;
+                    }
+                }
+            }
         }
 
         .topics_right {
