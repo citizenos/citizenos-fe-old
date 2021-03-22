@@ -298,7 +298,7 @@ angular
         });
 
         $rootScope.displaySearch = function () {
-            var allowedState = ['home', 'my.groups.groupId', 'my.topics.topicId']
+            var allowedState = ['home', 'my.groups', 'my.topics','my.groups.groupId', 'my.topics.topicId'];
             if (allowedState.indexOf($state.current.name) > -1) {
                 return true;
             }

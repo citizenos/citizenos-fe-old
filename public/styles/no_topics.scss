@@ -5,14 +5,14 @@
     display: inline;
 
     .big_button {
-        width: 200px;
-        height: 200px;
+        width: auto;
+        height: auto;
         border-radius: 4px;
         background: $deep_sky_blue;
         color: #fff;
         font-weight: $bold;
         display: inline-table;
-        margin: 14px 20px 26px 20px;
+        margin: 0 20px 26px 20px;
         cursor: pointer;
         vertical-align: middle;
 
@@ -24,7 +24,7 @@
 
         .button_cell {
             @extend .table_cell;
-            
+
             .icon_nudge {
                 margin-left: 14px;
             }
@@ -34,8 +34,8 @@
             }
 
             .topic_text {
-                margin-top: 12px;
-                padding: 5px;
+                font-size: 14px;
+                padding: 10px;
             }
         }
     }
