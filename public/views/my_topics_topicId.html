@@ -108,7 +108,7 @@
                         <div class="item_content">
                             <span class="item_text blue_link" ng-if="topic.canUpdate()" ui-sref="my.topics.topicId.settings({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_SETTINGS">settings</span>
                             <span class="separator" ng-if="topic.canUpdate()">|</span>
-                            <span class="item_text blue_link" ui-sref="topics.view({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
+                            <span class="item_text blue_link" ng-click="goToTopicView(topic)" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
                             <span class="separator" ng-if="topic.canEditDescription()">|</span>
                             <span class="item_text blue_link" ng-if="topic.canEditDescription()" ui-sref="topics.view({topicId: topic.id, editMode: true})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span>
                             <span class="separator">|</span>
@@ -619,7 +619,7 @@
                         </div>
                     </div>
                     <div class="pretend_td">
-                        {{'TXT_TOPIC_LEVELS_' + invite.level | uppercase | translate}}
+                        <span class="user_level_text">{{'TXT_TOPIC_LEVELS_' + invite.level | uppercase | translate}}</span>
                         <!--div cos-dropdown class="classic_dropdown" cos-disabled>
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + invite.level | uppercase | translate}}</div>

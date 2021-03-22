@@ -20,7 +20,7 @@ angular
             inviteMessage: null,
             urlJoin: null
         };
-        $scope.maxLengthText = 200;
+        $scope.inviteMessageMaxLength = 200;
         $scope.tabSelected = $stateParams.tab || 'invite';
 
         $scope.topicList = {
@@ -78,8 +78,7 @@ angular
                                 response.data.data.results.public.users.rows.forEach(function (user) {
                                     $scope.searchResults.users.push(user);
                                 });
-                            }
-                            else if (validator.isEmail(str)) {
+                            } else if (validator.isEmail(str)) {
                                 $scope.searchResults.emails.push($scope.searchString);
                             }
                             if (response.data.data.results.my.groups.rows.length) {
@@ -101,13 +100,13 @@ angular
         $scope.itemsExist = function (type) {
             var exists = false;
             var i = ($scope.membersPage * itemsPerPage) - itemsPerPage;
-            for(i; i < $scope.members.length && i < ($scope.membersPage * itemsPerPage); i++) {
+            for (i; i < $scope.members.length && i < ($scope.membersPage * itemsPerPage); i++) {
                 if (type === 'groups') {
                     if ($scope.members[i].groupId) {
                         exists = true;
                         break;
                     }
-                } else if (!$scope.members[i].groupId){
+                } else if (!$scope.members[i].groupId) {
                     exists = true;
                     break;
                 }
@@ -138,21 +137,21 @@ angular
 
         $scope.loadPage = function (pageNr) {
             $scope.membersPage = pageNr;
-        }
+        };
         $scope.totalPages = function (items) {
             return Math.ceil(items.length / itemsPerPage);
         };
 
         $scope.isOnPage = function (index, page) {
             var endIndex = page * itemsPerPage;
-            return  (index >= (endIndex - itemsPerPage) && index < endIndex);
-        }
+            return (index >= (endIndex - itemsPerPage) && index < endIndex);
+        };
 
         var orderMembers = function () {
-            var compare = function(a, b) {
+            var compare = function (a, b) {
                 var property = 'name';
                 return (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-            }
+            };
             var groups = $scope.members.filter(function (member) {
                 return !!member.groupId;
             }).sort(compare);

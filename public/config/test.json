@@ -14,7 +14,8 @@
       "ru": "Pусский",
       "fi": "Suomi",
       "uk": "Українська",
-      "aa": "Crowdin"
+      "aa": "Crowdin",
+      "sk": "Slovenský jazyk"
     },
     "debug": "dbg"
   },

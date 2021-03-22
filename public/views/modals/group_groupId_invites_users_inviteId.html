@@ -1,0 +1,72 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+    <div id="lightbox" class="delete_comment">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.GROUP_INVITE_VIEW_HEADING">Group invitation</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <!-- CONFIRM CONTENT -->
+            <div class="lightbox_content">
+                <div class="lightbox_section">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td translate="MODALS.GROUP_INVITE_VIEW_LBL_GROUP_NAME">Group name:</td>
+                                <td class="bold">{{invite.group.name}}</td>
+                            </tr>
+                            <tr>
+                                <td translate="MODALS.GROUP_INVITE_VIEW_LBL_INVITED_BY">Invited by:</td>
+                                <td>{{invite.creator.name}}</td>
+                            </tr>
+                            <tr>
+                                <td translate="MODALS.GROUP_INVITE_VIEW_LBL_INVITATION_SENT_TO">Invitation sent to:</td>
+                                <td>{{invite.user.email}}</td>
+                            </tr>
+                            <tr>
+                                <td translate="MODALS.GROUP_INVITE_VIEW_LBL_GROUP_LEVEL">Group rights:</td>
+                                <td>{{invite.level}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="yes_no_buttons">
+                        <div class="blue_button" ng-click="doAccept()" translate="MODALS.GROUP_INVITE_VIEW_BTN_LOGIN_AS" translate-values="{email: invite.user.email}">Log-in as {{invite.user.email}} to accept invitation</div>
+                    </div>
+                </div>
+                <div class="line lightest_line"></div>
+
+                <div class="lightbox_section">
+                    <span class="medium_black_seven" translate="MODALS.GROUP_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS">You can also:</span>
+                    <ul>
+                        <li>
+                            <a ng-href="{{app.config.links.about}}" href="#" translate="MODALS.GROUP_INVITE_VIEW_LNK_LEARN_MORE">Learn more about Citizen OS if you're new!</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()">
+    </div>
+
+</div>

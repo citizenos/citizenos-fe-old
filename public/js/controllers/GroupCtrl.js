@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', 'rGroup', function ($rootScope, $scope, $state, $stateParams, $log, $location, ngDialog, sAuth, GroupMemberUser, GroupMemberTopic, rGroup) {
+    .controller('GroupCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$log', '$location', '$q', 'ngDialog', 'sAuth', 'GroupMemberUser', 'GroupMemberTopic', 'rGroup', 'GroupInviteUser', function ($rootScope, $scope, $state, $stateParams, $log, $location, $q, ngDialog, sAuth, GroupMemberUser, GroupMemberTopic, rGroup, GroupInviteUser) {
         $log.debug('GroupCtrl');
 
         var ITEMS_COUNT_PER_PAGE = 10;
@@ -100,29 +100,83 @@ angular
             }
 
             return GroupMemberUser
-                    .query({
-                        groupId: $scope.group.id,
-                        limit: limit,
-                        search: search,
-                        offset: offset
-                    }).$promise
-                    .then(function (users) {
-                        $scope.group.members.users.rows = users;
-                        $scope.group.members.users.count = users.length;
+                .query({
+                    groupId: $scope.group.id,
+                    limit: limit,
+                    search: search,
+                    offset: offset
+                }).$promise
+                .then(function (users) {
+                    $scope.group.members.users.rows = users;
+                    $scope.group.members.users.count = users.length;
 
-                        if (users.length) {
-                            $scope.group.members.users.count = users[0].countTotal;
+                    if (users.length) {
+                        $scope.group.members.users.count = users[0].countTotal;
+                    }
+
+                    $scope.group.members.users.totalPages = Math.ceil($scope.group.members.users.count / limit);
+                    $scope.group.members.users.page = Math.ceil((offset + limit) / limit);
+                    return users;
+                });
+        };
+
+        $scope.loadInviteUserList = function (offset, limit) {
+            if (!limit) {
+                limit = ITEMS_COUNT_PER_PAGE;
+            }
+            if (!offset) {
+                offset = 0;
+            }
+
+            var search = null;
+            if ($scope.userList.searchFilter) {
+                search = $scope.userList.searchFilter.trim();
+            }
+
+            return GroupInviteUser
+                .query({
+                    groupId: $scope.group.id,
+                    offset: offset,
+                    search: search,
+                    limit: limit
+                }).$promise
+                .then(function (invites) {
+                    $scope.group.invites = {
+                        users: {
+                            rows: [],
+                            count: 0
                         }
+                    };
 
-                        $scope.group.members.users.totalPages = Math.ceil($scope.group.members.users.count / limit);
-                        $scope.group.members.users.page = Math.ceil((offset + limit) / limit);
-                        return users;
-                    });
+                    // Need to show only 1 line per User with maximum level
+                    // NOTE: Objects don't actually guarantee order if keys parsed to number, it was better if TopicMemberUser.LEVELS was a Map
+                    var levelOrder = Object.keys(GroupMemberUser.LEVELS);
+                    var inviteListOrderedByLevel = _.orderBy(invites, function (invite) {
+                        return levelOrder.indexOf(invite.level);
+                    }, ['desc']);
+                    $scope.group.invites.users._rows = invites; // Store the original result from server to implement DELETE ALL, need to know the ID-s of the invites to delete
+
+                    $scope.group.invites.users.rows = _.sortedUniqBy(inviteListOrderedByLevel, 'user.id');
+                    $scope.group.invites.users.count = invites.length;
+                    if (invites.length) {
+                        $scope.group.invites.users.count = invites[0].countTotal;
+                    }
+
+                    $scope.group.invites.users.totalPages = Math.ceil($scope.group.invites.users.count / limit);
+                    $scope.group.invites.users.page = Math.ceil((offset + limit) / limit);
+
+                    return invites;
+                });
         };
 
         $scope.loadMemberUsersPage = function (page) {
             var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
             $scope.loadMemberUsersList(offset, ITEMS_COUNT_PER_PAGE);
+        };
+
+        $scope.loadUsersInvitedPage = function (page) {
+            var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
+            $scope.loadInviteUserList(offset, ITEMS_COUNT_PER_PAGE);
         };
 
         $scope.doShowMemberTopicList = function () {
@@ -181,7 +235,8 @@ angular
 
         $scope.doShowMemberUserList = function () {
             if (!$scope.userList.isVisible) {
-                $scope.loadMemberUsersList()
+                return $q
+                    .all([$scope.loadMemberUsersList(), $scope.loadInviteUserList()])
                     .then(function () {
                         $scope.userList.isVisible = true;
                         $scope.app.scrollToAnchor('user_list');
@@ -214,18 +269,52 @@ angular
         };
 
         $scope.doDeleteMemberUser = function (groupMemberUser) {
+            if (groupMemberUser.id === sAuth.user.id) { // IF User tries to delete himself, show "Leave" dialog instead
+                $scope.doLeaveGroup();
+            } else {
+                ngDialog
+                    .openConfirm({
+                        template: '/views/modals/group_member_user_delete_confirm.html',
+                        data: {
+                            user: groupMemberUser
+                        }
+                    })
+                    .then(function () {
+                        groupMemberUser
+                            .$delete({groupId: $scope.group.id})
+                            .then(function () {
+                                $scope.loadMemberUsersList();
+                            });
+                    }, angular.noop);
+            }
+        };
+
+        $scope.doDeleteInviteUser = function (groupInviteUser) {
             ngDialog
                 .openConfirm({
-                    template: '/views/modals/group_member_user_delete_confirm.html',
+                    template: '/views/modals/group_invite_user_delete_confirm.html',
                     data: {
-                        user: groupMemberUser
+                        user: groupInviteUser.user
                     }
                 })
-                .then(function () {
-                    groupMemberUser
-                        .$delete({groupId: $scope.group.id})
+                .then(function (isAll) {
+                    var promisesToResolve = [];
+
+                    // Delete all
+                    if (isAll) {
+                        $scope.group.invites.users._rows.forEach(function (invite) {
+                            if (invite.user.id === groupInviteUser.user.id) {
+                                promisesToResolve.push(invite.$delete({groupId: $scope.group.id}));
+                            }
+                        });
+                    } else { // Delete single
+                        promisesToResolve.push(groupInviteUser.$delete({groupId: $scope.group.id}));
+                    }
+
+                    $q
+                        .all(promisesToResolve)
                         .then(function () {
-                            $scope.loadMemberUsersList();
+                            return $scope.loadInviteUserList();
                         });
                 }, angular.noop);
         };

@@ -1,5 +1,5 @@
 <div class="full_height">
-    <div id="topics_root" ng-if="itemList.length">
+    <div id="topics_root">
 
         <div class="v_line separator absolute_separator" ng-class="{hidden: (wWidth < 750)}"></div>
 
@@ -131,7 +131,7 @@
 
                         <div class="small_topic_right_cont" ng-if="item.members.groups.count > 0">
                             <div class="small_topic_icon">
-                                <div class="sprite sprite-menu-icon-groups2x-dark"></div>
+                                <div ></div>
                             </div>
                             <div class="small_topic_small_text" translate="VIEWS.MY.LBL_GROUPS_COUNT" translate-values="{count: item.members.groups.count}">0 groups</div>
                         </div>
@@ -146,7 +146,7 @@
 
                     <div class="small_topic_footer">
                         <div class="small_topic_left_cont">
-                            <div class="small_topic_link" ng-click="goToTopicView(item.id)" ng-if="item.status==='inProgress'">
+                            <div class="small_topic_link" ng-click="goToTopicView(item, true)" ng-if="item.status==='inProgress'">
                                 <div class="small_topic_icon">
                                     <div class="sprite" ng-class="isActiveTopic(item) ? 'sprite-icon-edit-topic_white': 'sprite-icon-edit-topic_black'"></div>
                                 </div>
@@ -161,6 +161,20 @@
 
                 <div ng-repeat-end></div>
 
+                 <!-- No results -->
+                <div class="no_results table" ng-if="!itemList.length">
+                    <!-- No Groups view -->
+                    <div class="v_align_cell">
+                        <div class="no_results_icon_wrap">
+                            <div class="sprite sprite-icon-no-results2x"></div>
+                        </div>
+                        <div class="title_area">
+                            <h3 translate="VIEWS.MY.NO_RESULTS_FOUND_TITLE">No results found</h3>
+                            <p translate="VIEWS.MY.NO_RESULTS_FOUND_DESCRIPTION">We can’t display results for what you’re searching. Maybe try another search?</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- RIGHT SIDE -->
@@ -168,64 +182,5 @@
 
             <div class="clearer"></div>
         </div>
-    </div>
-
-    <!-- No results -->
-    <div class="table" ng-if="!itemList.length">
-        <!-- No Groups view -->
-        <div class="v_align_cell" ng-if="('my.groups' | isState) || ('my.groups.create' | isState)">
-            <div class="title_area">
-                <h1 translate="VIEWS.MY.HEADING_NOT_IN_GROUP">You are not yet part of a group. It's highschool all over again!</h1>
-                <h2 translate="VIEWS.MY.HEADING_AT_LEAST_WE_HELP">At least you still have us to help you by</h2>
-            </div>
-
-            <div class="button_area">
-
-                <div class="big_button" ui-sref="my.groups.create">
-                    <div class="button_cell">
-                        <div class="icon_nudge">
-                            <div class="sprite sprite-icon-creategroup2x"></div>
-                        </div>
-                        <div class="topic_text" translate="VIEWS.MY.TXT_CREATING_A NEW_GROUP">Creating a new group</div>
-                    </div>
-                </div>
-
-                <!--div class="big_button">
-                    <div class="button_cell">
-                        <div class="sprite sprite-icon-joingroup2x"></div>
-                        <div class="topic_text">Joining a public group</div>
-                    </div>
-                </div-->
-
-            </div>
-        </div>
-        <!-- No Topics view -->
-        <div class="v_align_cell" ng-if="'my.topics' | isState">
-            <div class="title_area">
-                <h1 translate="VIEWS.MY.HEADING_NOT_PARTICIPATED">You have not participated in a topic yet. Try it, it’s really cool!</h1>
-                <h2 translate="VIEWS.MY.HEADING_GET_INVOLVED">You can get involved by</h2>
-            </div>
-
-            <div class="button_area">
-
-                <div class="big_button" ui-sref="topics.create">
-                    <div class="button_cell">
-                        <div class="icon_nudge">
-                            <div class="sprite sprite-x2-mytopics-icon-newtopic-big2x"></div>
-                        </div>
-                        <div class="topic_text" translate="VIEWS.MY.MY_CREATING_A_NEW_TOPIC">Creating a new topic</div>
-                    </div>
-                </div>
-
-                <!--div class="big_button">
-                    <div class="button_cell">
-                        <div class="sprite sprite-x1-mytopics-icon-discuss-big2x"></div>
-                        <div class="topic_text">Actively<br> joining a topic</div>
-                    </div>
-                </div-->
-
-            </div>
-        </div>
-        <div ui-view></div>
     </div>
 </div>

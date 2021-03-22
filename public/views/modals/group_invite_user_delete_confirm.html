@@ -1,0 +1,73 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+    <div id="lightbox" class="confirm_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header" class="profile_circle_on">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.GROUP_INVITE_USER_DELETE_CONFIRM_HEADING">Delete user invite</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div class="profile_area">
+
+                    <div class="table">
+                        <div class="profile_image_cell">
+                            <div class="profile_image_wrapper dark">
+                                <!--div class="profile_moon sprite sprite-icon-certified-google2x"></div-->
+                                <div class="account_picture">
+                                    <img ng-if="ngDialogData.user.imageUrl" ng-src="{{ngDialogData.user.imageUrl}}">
+                                    <div ng-if="!ngDialogData.user.imageUrl" class="profile_image_filler">
+                                        <div class="table_cell" cos-initials="ngDialogData.user.name">
+                                            ML
+                                        </div>
+                                        <div class="profile_circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile_text">
+                            {{ngDialogData.user.name}}
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <!-- CONFIRM CONTENT -->
+            <div class="lightbox_content">
+                <div class="lightbox_section">
+                    <span translate="MODALS.GROUP_INVITE_USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to delete this user invite(s)?</span>
+                    <div class="yes_no_buttons">
+                        <div class="table_cell">
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.GROUP_INVITE_USER_DELETE_CONFIRM_NO">NO</div>
+                        </div>
+                        <div class="table_cell">
+                            <div class="blue_button yes" ng-click="confirm(0)" translate="MODALS.GROUP_INVITE_USER_DELETE_CONFIRM_SINGLE">YES, DELETE A SINGLE INVITE</div>
+                        </div>
+                        <div class="table_cell">
+                            <div class="blue_button yes" ng-click="confirm(1)" translate="MODALS.GROUP_INVITE_USER_DELETE_CONFIRM_ALL">YES, DELETE ALL INVITES</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
+
+</div>
