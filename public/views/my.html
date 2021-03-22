@@ -105,6 +105,14 @@
                     <div class="line lightest_line"></div>
 
                     <div class="small_topic_footer">
+                        <div class="small_topic_left_cont">
+                            <div class="small_topic_link" ng-click="goToTopicView(groupMemberTopic, true); $event.stopPropagation(); $event.preventDefault();" ng-if="groupMemberTopic.status==='inProgress'">
+                                <div class="small_topic_icon">
+                                    <div class="sprite" ng-class="isActiveTopic(groupMemberTopic) ? 'sprite-icon-edit-topic_white': 'sprite-icon-edit-topic_black'"></div>
+                                </div>
+                                <div class="small_topic_small_text small_topic_link" translate="VIEWS.MY.LNK_TOPIC_EDIT">Edit</div>
+                            </div>
+                        </div>
                         <div class="small_topic_right_cont">
                             <div class="small_topic_small_text" ng-bind="(groupMemberTopic.updatedAt || groupMemberTopic.createdAt) | amDateFormat : 'L LT'">12/12/2012</div>
                         </div>
@@ -112,7 +120,7 @@
                 </a>
 
                 <!-- Topics -->
-                <div ng-if="!isGroup(item)" class="small_topic" ng-class="isActiveTopic(item) ? 'active': ''">
+                <div ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ng-class="isActiveTopic(item) ? 'active': ''">
                     <div class="container_pin" ng-class="item.pinned ? 'pinned' : ''" ng-click="item.togglePin();">
                         <div class="ff_table_fix" translate translate-attr-title="TOOLTIP_PIN_TOPIC">
                             <div class="table_cell">
@@ -138,7 +146,7 @@
                         <div class="clearer"></div>
                     </div>
 
-                    <a class="small_topic_title" ui-sref="my.topics.topicId({topicId: item.id})" ui-sref-active="active">
+                    <a class="small_topic_title">
                         <div class="title_div" ng-bind="item.title">title</div><span class="lock_icon_wrap" ng-class="{hidden: !item.isPrivate()}"><div class="sprite sprite-icon-lock2x"></div></span>
                     </a>
 
@@ -146,7 +154,7 @@
 
                     <div class="small_topic_footer">
                         <div class="small_topic_left_cont">
-                            <div class="small_topic_link" ng-click="goToTopicView(item, true)" ng-if="item.status==='inProgress'">
+                            <div class="small_topic_link" ng-click="goToTopicView(item, true); $event.stopPropagation();" ng-if="item.status==='inProgress'">
                                 <div class="small_topic_icon">
                                     <div class="sprite" ng-class="isActiveTopic(item) ? 'sprite-icon-edit-topic_white': 'sprite-icon-edit-topic_black'"></div>
                                 </div>
