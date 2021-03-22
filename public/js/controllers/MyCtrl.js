@@ -170,7 +170,6 @@ angular
                     params.editMode = true;
                 }
 
-                $log.debug('MyCtrl.goToTopicView()', topic, editMode);
                 $state.go('topics.view', params);
             } else if (status === Topic.STATUSES.voting) {
                 params.voteId = topic.voteId;
