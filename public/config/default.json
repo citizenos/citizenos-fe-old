@@ -33,11 +33,7 @@
   "legal": {
     "termsOfUse": "https://citizenos.com/legal/api/",
     "privacyPolicy": "https://citizenos.com/legal/privacy/",
-    "version": "1",
-    "cookieControl": {
-      "cookieName": "cookie_control",
-      "maxAgeDays": 180
-    }
+    "version": "1"
   },
   "attachments": {
     "limit": 10,
@@ -66,7 +62,12 @@
       },
       "citizenos": true
     },
-    "analytics": true
+    "analytics": {
+      "src": "https://stats.citizenos.com/js/index.js",
+      "async": true,
+      "defer": true,
+      "data-domain": "app.citizenos.com"
+    }
   },
   "moderation": {
     "codeOfConduct": "https://app.citizenos.com/topics/ac8b66a4-ca56-4d02-8406-5e19da73d7ce"

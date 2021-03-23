@@ -33,5 +33,8 @@
   },
   "moderation": {
     "codeOfConduct": "CITIZENOS_MODERATION_CODE_OF_CONDUCT_LNK"
+  },
+  "features": {
+    "analytics": "CITIZENOS_FEATURES_ANALYTICS"
   }
 }
