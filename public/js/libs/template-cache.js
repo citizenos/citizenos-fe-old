@@ -26,7 +26,6 @@ angular
             '/views/layouts/partner.html',
             '/views/layouts/widget.html',
             '/views/modals/activity_modal.html',
-            '/views/modals/cookie_control.html',
             '/views/modals/group_create_settings.html',
             '/views/modals/group_delete_confirm.html',
             '/views/modals/group_groupId_invites_users_inviteId.html',
