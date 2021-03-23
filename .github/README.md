@@ -87,7 +87,7 @@ We listen to our users in issues.
 
 ### :book: Prerequisites
 
-* Node.JS >= 6.13.1 (https://github.com/mklement0/n-install)
+* Node.JS >= 10.22.1 (https://github.com/mklement0/n-install)
 
 ### :book: Installing
 
