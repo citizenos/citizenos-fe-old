@@ -57,7 +57,7 @@ Citizen OS is a free participation platform for collaborative text creation, str
 
 ## :dart: Features
 
--   Private and public groups and topics
+-   Private and public topics, private groups. Public groups planned - https://github.com/orgs/citizenos/projects/1#card-14133727
 -   e-ID log-in and vote signing
 -   Science-led structured argumentation environment
 -   vote delegation, minivote, multiple choices votes
@@ -87,7 +87,7 @@ We listen to our users in issues.
 
 ### :book: Prerequisites
 
-* Node.JS >= 6.13.1 (https://github.com/mklement0/n-install)
+* Node.JS >= 10.22.1 (https://github.com/mklement0/n-install)
 
 ### :book: Installing
 
@@ -104,7 +104,7 @@ We listen to our users in issues.
     * Development/local - `development`
 * Run the application:
     * Production/test - `node ./bin/www`. Note that Heroku and some other cloud envs pick up the starting point from `Procfile` (https://github.com/citizenos/citizenos-fe/blob/master/Procfile.txt)
-    * Development - `npm run dev`
+    * Development - `npm run start-dev`
 * Open
     * Production/test - your configured public app url.
     * Development - https://dev.citizenos.com:3001 or http://dev.citizenos.com:3000 in your browser.
