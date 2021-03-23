@@ -62,12 +62,7 @@
       },
       "citizenos": true
     },
-    "analytics": {
-      "src": "https://stats.citizenos.com/js/index.js",
-      "async": true,
-      "defer": true,
-      "data-domain": "app.citizenos.com"
-    }
+    "analytics": false
   },
   "moderation": {
     "codeOfConduct": "https://app.citizenos.com/topics/ac8b66a4-ca56-4d02-8406-5e19da73d7ce"
