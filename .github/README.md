@@ -57,7 +57,7 @@ Citizen OS is a free participation platform for collaborative text creation, str
 
 ## :dart: Features
 
--   Private and public groups and topics
+-   Private and public topics, private groups. Public groups planned - https://github.com/orgs/citizenos/projects/1#card-14133727
 -   e-ID log-in and vote signing
 -   Science-led structured argumentation environment
 -   vote delegation, minivote, multiple choices votes
