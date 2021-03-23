@@ -73,41 +73,14 @@ angular
 
         sHotkeys.add('ctrl+alt+shift+t', sTranslate.debugMode);
 
-        $scope.app.loadAnalytics = function () {
-            if (cosConfig.features.analytics) {
-                (function (i, s, o, g, r, a, m) {
-                    i['GoogleAnalyticsObject'] = r;
-                    i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                    a = s.createElement(o),
-                        m = s.getElementsByTagName(o)[0];
-                    a.async = 1;
-                    a.src = g;
-                    m.parentNode.insertBefore(a, m)
-                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-                ga('create', 'UA-67049149-1', 'auto');
-                ga('set', 'anonymizeIp', true);
-            } else {
-                $log.debug('Skipped loading analytics as it is not enabled in configuration', cosConfig.features.analytics);
-            }
-        };
-
-        var cookieControlSettings = $cookies.getObject(cosConfig.legal.cookieControl.cookieName);
-        if (!cookieControlSettings) {
-            ngDialog.open({
-                template: '/views/modals/cookie_control.html',
-                closeByEscape: false,
-                closeByNavigation: false,
-                scope: $scope
+        // Insert Analytics - https://github.com/citizenos/citizenos-fe/issues/457
+        if ($scope.app.config.features.analytics) {
+            var script = document.createElement('script');
+            Object.keys($scope.app.config.features.analytics).forEach(function (key) {
+                script.setAttribute(key, $scope.app.config.features.analytics[key])
             });
-        } else {
-            if (cookieControlSettings.analytics) {
-                $scope.app.loadAnalytics();
-            }
+            document.head.appendChild(script);
         }
-
 
         $scope.app.doShowLogin = function () {
             $log.debug('AppCtrl.doShowLogin()');
@@ -267,10 +240,10 @@ angular
                 var metaDataViews = ['topics.view', 'my.topics.topicId'];
                 var isView = false;
                 metaDataViews.forEach(function (item) {
-                    if ($state.current.name.indexOf(item) >-1) {
+                    if ($state.current.name.indexOf(item) > -1) {
                         isView = true;
                     }
-                })
+                });
 
                 if (!isView) {
                     setDefaultMetaInfo();
@@ -298,13 +271,13 @@ angular
         });
 
         $rootScope.displaySearch = function () {
-            var allowedState = ['home', 'my.groups', 'my.topics','my.groups.groupId', 'my.topics.topicId'];
+            var allowedState = ['home', 'my.groups', 'my.topics', 'my.groups.groupId', 'my.topics.topicId'];
             if (allowedState.indexOf($state.current.name) > -1) {
                 return true;
             }
 
             return false;
-        }
+        };
 
         $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
             $log.debug('$stateChangeError', 'event', event, 'toState', toState, 'toParams', toParams, 'fromState', fromState, 'fromParams', fromParams, 'error', error);
