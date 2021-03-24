@@ -21,13 +21,11 @@ angular
                 description: $scope.form.description
             };
 
-            if ($scope.form.clientData) {
-                mailParams.userAgent = $window.clientInformation.userAgent;
-                mailParams.platform = $window.clientInformation.platform;
-                mailParams.height = $window.innerHeight;
-                mailParams.width = $window.innerWidth;
-                mailParams.location = $location.url();
-            }
+            mailParams.userAgent = $window.clientInformation.userAgent;
+            mailParams.platform = $window.clientInformation.platform;
+            mailParams.height = $window.innerHeight;
+            mailParams.width = $window.innerWidth;
+            mailParams.location = $location.url();
 
             var path = sLocation.getAbsoluteUrlApi('/api/internal/help');
 
