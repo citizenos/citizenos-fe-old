@@ -10,12 +10,15 @@ angular
                 description: null,
                 clientData: false
             };
+            $scope.isLoading = false;
             $scope.showHelp = false; // Hide mobile navigation when login flow is started
         };
 
         init();
 
         $scope.sendHelp = function () {
+            $scope.isLoading = true;
+
             var mailParams = {
                 email: $scope.form.email,
                 description: $scope.form.description
@@ -36,6 +39,7 @@ angular
                         init();
                     },
                     function () {
+                        $scope.isLoading = false;
                     });
         };
 

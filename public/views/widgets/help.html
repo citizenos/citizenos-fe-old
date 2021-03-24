@@ -22,7 +22,7 @@
             </label>
             <textarea placeholder="{{'HELP_WIDGET.PLACEHOLDER_WRITE_YOUR_MESSAGE' | translate}}" ng-model="form.description" name="description" maxlength="2048" required></textarea>
             <div class="blue_button_wrap">
-                <button type="submit" ng-click="sendHelp()" cos-disabled="helpForm.$invalid" class="blue_button" translate="HELP_WIDGET.BTN_SEND">Send</button>
+                <button type="submit" ng-click="sendHelp()" cos-disabled="helpForm.$invalid || isLoading" class="blue_button" translate="HELP_WIDGET.BTN_SEND">Send</button>
             </div>
         </form>
     </div>
