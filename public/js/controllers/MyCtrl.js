@@ -174,6 +174,8 @@ angular
             } else if (status === Topic.STATUSES.voting) {
                 params.voteId = topic.voteId;
                 $state.go('topics.view.votes.view', params);
+            } else {
+                $state.go('topics.view.followUp', params);
             }
         };
 
