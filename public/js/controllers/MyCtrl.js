@@ -165,6 +165,7 @@ angular
         $scope.goToTopicView = function (topic, editMode) {
             var status = topic.status;
             var params = {topicId: topic.id};
+            console.log(topic, status);
             if (status === Topic.STATUSES.inProgress) {
                 if (topic.canEdit() && editMode) {
                     params.editMode = true;
@@ -174,6 +175,8 @@ angular
             } else if (status === Topic.STATUSES.voting) {
                 params.voteId = topic.voteId;
                 $state.go('topics.view.votes.view', params);
+            } else {
+                $state.go('topics.view.followUp', params);
             }
         };
 
