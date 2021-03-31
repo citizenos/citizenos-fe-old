@@ -19,9 +19,7 @@ angular
                 TopicMemberUser
                     .query({topicId: topic.id, search: str}).$promise
                     .then(function (topicMembers) {
-                        $scope.searchResults.users = _.filter(topicMembers.rows, function (member) {
-                            return member.name.toLowerCase().indexOf(str.toLowerCase()) > -1;
-                        });
+                        $scope.searchResults.users = topicMembers;
                     });
 
             } else {
