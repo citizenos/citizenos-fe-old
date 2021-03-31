@@ -2538,4 +2538,8 @@ a:link, a:visited {
 
 .cm-formatting {
 	display: none;
+
+    &.cm-formatting-list {
+        display: inherit;
+    }
 }

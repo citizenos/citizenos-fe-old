@@ -171,11 +171,10 @@ angular
                         });
                 })
                 .then(function (voteStatusResult) {
-                    console.log(voteStatusResult.bdocUri);
                     $log.debug('voteVoteSign succeeded', arguments);
                     ngDialog.closeAll({ // Pass Vote options, so we can show selected option for the unauthenticated User
                         options:  $scope.optionsSelected,
-                        bdocUri: voteStatusResult.data.bdocUri
+                        bdocUri: voteStatusResult.bdocUri
                     });
                 }, function (err) {
                     $scope.formSmartId.isLoading = false;
