@@ -9,9 +9,9 @@
       ],
       "script-src": [
         "self",
+        "https://dev.stats.citizenos.com",
         "https://cdn.crowdin.com",
-        "https://apis.google.com",
-        "https://www.google-analytics.com"
+        "https://apis.google.com"
       ],
       "style-src": [
         "self",

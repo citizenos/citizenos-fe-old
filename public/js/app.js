@@ -196,19 +196,6 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
-                .state('cookieControl', {
-                    url: '/cookieControl',
-                    parent: 'main',
-                    templateUrl: '/views/home.html',
-                    controller: ['$scope', 'ngDialog', function ($scope, ngDialog) {
-                        ngDialog.open({
-                            template: '/views/modals/cookie_control.html',
-                            closeByEscape: false,
-                            closeByNavigation: false,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                    }]
-                })
                 .state('opinionfestival', {
                     url: '/opinionfestival',
                     parent: 'main',

@@ -9,9 +9,9 @@
       ],
       "script-src": [
         "self",
+        "https://stats.citizenos.com",
         "https://cdn.crowdin.com",
-        "https://apis.google.com",
-        "https://www.google-analytics.com"
+        "https://apis.google.com"
       ],
       "style-src": [
         "self",
@@ -28,6 +28,7 @@
         "self",
         "https://id.citizenos.com",
         "https://api.citizenos.com",
+        "https://stats.citizenos.com",
         "https://sentry.io",
         "https://graph.microsoft.com"
       ],

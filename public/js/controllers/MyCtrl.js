@@ -124,7 +124,10 @@ angular
                     if ($state.is('my.groups') || $state.is('my.topics')) {
                         var item = $scope.itemList[0];
                         if ($scope.isGroup(item)) {
-                            $state.go('my.groups.groupId', {groupId: item.id, filter: 'grouped'});
+                            $state.go('my.groups.groupId', {
+                                groupId: item.id,
+                                filter: 'grouped'
+                            });
                         } else {
                             $state.go('my.topics.topicId', {topicId: item.id});
                         }
@@ -168,9 +171,7 @@ angular
                 }
 
                 $state.go('topics.view', params);
-            }
-
-            else if (status === Topic.STATUSES.voting) {
+            } else if (status === Topic.STATUSES.voting) {
                 params.voteId = topic.voteId;
                 $state.go('topics.view.votes.view', params);
             }

@@ -83,6 +83,18 @@ angular
             return this.permission.level === GroupMemberTopic.LEVELS.admin;
         };
 
+        /**
+         * Can one edit Topics settings and possibly description (content)?
+         * Use canEditDescription() if you only need to check if content can be edited.
+         *
+         * @returns {boolean}
+         *
+         * @see Topic.prototype.canEditDescription()
+         */
+        GroupMemberTopic.prototype.canEdit = function () {
+            return [GroupMemberTopic.LEVELS.admin, GroupMemberTopic.LEVELS.edit].indexOf(this.permission.level) > -1;
+        };
+
         GroupMemberTopic.prototype.togglePin = function () {
             var self = this;
             var topic = new Topic(this);
