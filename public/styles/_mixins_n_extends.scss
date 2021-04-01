@@ -1,3 +1,4 @@
+@use 'vars';
 /* cyrillic-ext */
 @font-face {
   font-family: 'Noto Sans';
@@ -150,13 +151,13 @@
 .input_small {
   width: 100%;
   box-sizing: border-box;
-  border: solid 1px $lightest_gray;
+  border: solid 1px vars.$lightest_gray;
   border-radius: 4px;
   height: 30px;
   font-size: 13px;
   padding: 0 10px;
   &:focus {
-      border: 1px solid $dark_gray;
+      border: 1px solid vars.$dark_gray;
       outline: none;
   }
 }
@@ -171,7 +172,7 @@
 }
 
 .default_setup {
-    background: $light_gray;
+    background: vars.$light_gray;
     @extend .all_zero;
     text-align: left;
     position: absolute;
@@ -182,7 +183,7 @@
 .add_bottom_borders {
   & > div {
     &:not(:last-child) {
-      border-bottom: 1px solid $lightest_gray;
+      border-bottom: 1px solid vars.$lightest_gray;
     }
   }
 }
@@ -227,7 +228,7 @@
         position: relative;
         display: block;
         width: 100%;
-        border-top: 1px solid $lightest_gray;
+        border-top: 1px solid vars.$lightest_gray;
         padding: 9px 0 20px;
     }
 

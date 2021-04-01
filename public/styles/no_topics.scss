@@ -1,5 +1,5 @@
-@import 'vars';
-@import 'mixins_n_extends';
+@use 'vars';
+@use 'mixins_n_extends';
 
 .button_area {
     display: inline;
@@ -8,9 +8,9 @@
         width: auto;
         height: auto;
         border-radius: 4px;
-        background: $deep_sky_blue;
+        background: vars.$deep_sky_blue;
         color: #fff;
-        font-weight: $bold;
+        font-weight: vars.$bold;
         display: inline-table;
         margin: 0 20px 26px 20px;
         cursor: pointer;
@@ -18,7 +18,7 @@
 
 
         &:hover {
-            background: $sky_blue;
+            background: vars.$sky_blue;
         }
 
 

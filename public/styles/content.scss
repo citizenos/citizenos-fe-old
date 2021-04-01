@@ -1,18 +1,18 @@
-@import 'vars';
-@import 'mixins_n_extends';
+@use 'vars';
+@use 'mixins_n_extends';
 
 .navOpen {
-    padding-right: $nav_t_width;
-    right: $nav_t_width;
-    @include mobile {
+    padding-right: vars.$nav_t_width;
+    right: vars.$nav_t_width;
+    @include mixins_n_extends.mobile {
         right: 0;
-        margin-left: -$nav_t_width;
+        margin-left: - vars.$nav_t_width;
     }
 }
 
 #content_root {
     height: 100%;
-    padding-left: $nav_d_width;
+    padding-left: vars.$nav_d_width;
     transition: all 420ms cubic-bezier(.45, .78, 0, 1);
     top: 0;
     left: 0;
@@ -20,11 +20,11 @@
     right: 0;
     box-sizing: border-box;
 
-    @include mobile {
+    @include mixins_n_extends.mobile {
         position: relative;
     }
 
-    @include tablet {
+    @include mixins_n_extends.tablet {
         padding-left: 0;
         padding-top: 60px;
     }
@@ -63,14 +63,14 @@
         }
 
         #close_search_icon:hover {
-            background: $light_gray;
+            background: vars.$light_gray;
         }
     }
 
     #content_wrap {
         height: 100%;
 
-        @include tablet {
+        @include mixins_n_extends.tablet {
             margin-top: 0;
             position: relative;
         }
@@ -87,7 +87,7 @@
             padding-top: 0;
         }
 
-        @include tablet {
+        @include mixins_n_extends.tablet {
             padding-top: 0;
         }
 
@@ -100,7 +100,7 @@
             }
 
             .table {
-                background: $light_gray;
+                background: vars.$light_gray;
                 width: 100%;
                 height: 100%;
                 .v_align_cell {
@@ -114,7 +114,7 @@
     }
 
     #footer_notification {
-        background: $white;
+        background: vars.$white;
         position: fixed;
         bottom: 0;
         padding: 20px 25px 20px 25px;
@@ -202,6 +202,6 @@
         }
     }
 }
-/* SEARCH AREA (Search bar styles in nav.scss) */
+
 @import 'search';
 

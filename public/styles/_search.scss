@@ -1,3 +1,6 @@
+@use 'vars';
+@use 'mixins_n_extends';
+
 /* SEARCH AREA (Search bar styles in nav.scss) */
 #search_area_close {
     position: fixed;
@@ -6,7 +9,7 @@
     right: 0;
     bottom: 0;
     z-index: 1;
-    @include tablet {
+    @include mixins_n_extends.tablet {
         left: 0;
     }
 }
@@ -22,7 +25,7 @@
     font-size: 14px;
     transition: all 220ms ease-out;
 
-    @include tablet {
+    @include mixins_n_extends.tablet {
         right: 136px;
     }
 
@@ -39,15 +42,15 @@
     }
 
     #search_area_wrap {
-        background: $white;
+        background: vars.$white;
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         z-index: 4;
 
-        @include tablet {
-            background: $medium_black;
+        @include mixins_n_extends.tablet {
+            background: vars.$medium_black;
             display: table;
             height: 60px;
             width: 100%;
@@ -56,7 +59,7 @@
 
         .logo_area, .header_button {
             display: none;
-            @include tablet {
+            @include mixins_n_extends.tablet {
                 display: table;
             }
         }
@@ -64,13 +67,13 @@
         #search_results_area {
             z-index: 5;
 
-            @include tablet {
+            @include mixins_n_extends.tablet {
                 left: 0;
                 width: 100%;
                 position: fixed;
                 padding-left: 190px;
                 padding-right: 135px;
-                @include mobile {
+                @include mixins_n_extends.mobile {
                     padding-left: 59px;
                 }
             }
@@ -78,7 +81,7 @@
             #m_search_icon, #m_search_close {
                 display: none;
 
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     position: inherit;
                     display: table;
                     height: 60px;
@@ -93,7 +96,7 @@
             }
 
             #m_search_close {
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     right: 135px;
                     cursor: pointer;
                 }
@@ -105,7 +108,7 @@
         }
 
         .ac-input {
-            @include tablet {
+            @include mixins_n_extends.tablet {
                 position: relative;
                 height: 60px;
                 vertical-align: middle;
@@ -120,7 +123,7 @@
                 font-size: 14px;
                 padding: 0 58px;
                 box-sizing: border-box;
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     border-radius: 15px;
                     border: none;
                     height: 30px;
@@ -145,7 +148,7 @@
             height: 60px;
             display: table;
             top: 0;
-            @include tablet {
+            @include mixins_n_extends.tablet {
                 display: none;
             }
 
@@ -158,19 +161,19 @@
         #close_search_icon {
             right: 0;
             cursor: pointer;
-            @include tablet {
+            @include mixins_n_extends.tablet {
                 right: 0;
                 cursor: pointer;
             }
         }
 
         #close_search_icon:hover {
-            background: $light_gray;
+            background: vars.$light_gray;
         }
 
         .search_cat {
             width: 100%;
-            background: $medium_gray;
+            background: vars.$medium_gray;
 
             .cat_wrap {
                 @extend .table_cell;
@@ -180,14 +183,14 @@
         }
 
         #search_results_list {
-            background: $white;
+            background: vars.$white;
             position: fixed;
             overflow-y: scroll;
             left: 190px;
             right: 0;
             height: 100%;
 
-            @include tablet {
+            @include mixins_n_extends.tablet {
                 left: 0;
             }
 
@@ -198,7 +201,7 @@
 
         .results_area {
             padding: 5px 5px 15px 5px;
-            background: $white;
+            background: vars.$white;
             .result_group {
                 margin-bottom: 8px;
                 display: table;
@@ -208,7 +211,7 @@
                     text-align: center;
                     padding: 35px 20px 17px 20px;
 
-                    @include mobile {
+                    @include mixins_n_extends.mobile {
                         padding: 15px 10px 0 10px;
                     }
 
@@ -234,7 +237,7 @@
                 .result_links {
                     &.active {
                         .result_link, .more_results {
-                            color: $sky_blue;
+                            color: vars.$sky_blue;
                             text-decoration: underline;
                         }
                     }
@@ -248,7 +251,7 @@
                 }
 
                 .links_wrap {
-                    @include mobile {
+                    @include mixins_n_extends.mobile {
                         padding: 10px 15px;
                     }
                 }
@@ -258,18 +261,18 @@
                 }
 
                 .result_link {
-                    color: $deep_sky_blue;
+                    color: vars.$deep_sky_blue;
                 }
 
                 .more_results {
-                    color: $deep_sky_blue;
+                    color: vars.$deep_sky_blue;
                     font-size: 13px;
                     cursor: pointer;
                     display: inline-block;
                 }
 
                 .more_results:hover, .result_link:hover {
-                    color: $sky_blue;
+                    color: vars.$sky_blue;
                 }
 
             }

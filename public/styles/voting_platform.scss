@@ -1,6 +1,6 @@
-@import 'vars';
-@import 'mixins_n_extends';
-@import 'icons';
+@use 'vars';
+@use 'mixins_n_extends';
+@use 'icons';
 
 .vote_casting_wrap {
     padding: 20px;
@@ -54,7 +54,7 @@
                 height: inherit;
 
                 .v_line {
-                    background: $dark_gray;
+                    background: vars.$dark_gray;
                     height: inherit;
                     margin: 1px 7px 0;
                 }
@@ -68,7 +68,7 @@
 
 
     .vote_casting_message {
-        background: $light_gray;
+        background: vars.$light_gray;
         padding: 20px 20px 21px;
         margin: 20px 0;
         position: relative;
@@ -139,14 +139,14 @@
 
         .bar_select {
             margin-top: 20px;
-            color: $white;
+            color: vars.$white;
             position: relative;
             display: inline-block;
             border-radius: 4px;
             text-align: left;
-            background: $deep_sky_blue;
+            background: vars.$deep_sky_blue;
             font-weight: 800;
-            border: solid 1px $dark_blue;
+            border: solid 1px vars.$dark_blue;
         }
 
         .icon_holder {
@@ -166,7 +166,7 @@
 
             .animated_bg_bar {
                 z-index: 1;
-                background: $white;
+                background: vars.$white;
                 width: 0;
                 position: absolute;
                 height: 62px;
@@ -187,7 +187,7 @@
             display: none;
             position: absolute;
             width: 100%;
-            background: $white;
+            background: vars.$white;
             left: 0;
             z-index: 1;
             margin-top: 10px;
@@ -201,7 +201,7 @@
                 font-size: 14px;
                 padding: 5px 10px;
                 box-sizing: border-box;
-                color: $black;
+                color: vars.$black;
 
                 &:nth-child(2) {
                     padding-top: 10px;
@@ -212,7 +212,7 @@
                 }
 
                 &:hover {
-                    color: $deep_sky_blue;
+                    color: vars.$deep_sky_blue;
                 }
 
                 .item_name {
@@ -259,7 +259,7 @@
     }
 
     .graph_wrap {
-        border-left: 1px solid $lightest_gray;
+        border-left: 1px solid vars.$lightest_gray;
         width: 100%;
         text-align: center;
         position: relative;
@@ -284,12 +284,12 @@
 
             &.active {
                 .graph_row_fill {
-                    background: $aqua_marine;
+                    background: vars.$aqua_marine;
                 }
             }
 
             .graph_row_fill {
-                background: $side_panel_gray;
+                background: vars.$side_panel_gray;
                 height: 100%;
                 width: 100%;
                 position: relative;
@@ -333,7 +333,7 @@
                     cursor: pointer;
                     @media (min-width: 1025px) {
                         &:hover {
-                            background: $another_gray;
+                            background: vars.$another_gray;
                         }
                     }
                 }
@@ -342,7 +342,7 @@
                     .graph_row_fill {
                         @media (min-width: 1025px) {
                             &:hover {
-                                background: $aqua_marine_border_second;
+                                background: vars.$aqua_marine_border_second;
                             }
                         }
                     }
@@ -366,13 +366,13 @@
                 }
 
                 &.active {
-                    color: $aqua_marine_text;
-                    font-weight: $bold;
+                    color: vars.$aqua_marine_text;
+                    font-weight: vars.$bold;
                 }
 
                 @media (min-width: 1025px) {
                     &:hover {
-                        background: $side_panel_gray;
+                        background: vars.$side_panel_gray;
                     }
                 }
             }
@@ -450,10 +450,10 @@
 
             .milestone_number {
                 font-size: 13px;
-                font-weight: $bold;
+                font-weight: vars.$bold;
                 line-height: 18px;
                 margin-left: 12px;
-                color: $deep_sky_blue;
+                color: vars.$deep_sky_blue;
                 @media (max-width: 760px) {
                     margin-left: 7px;
                 }
@@ -463,7 +463,7 @@
             }
 
             .v_line {
-                background: $medium_black;
+                background: vars.$medium_black;
                 height: 15px;
                 width: 1px;
                 opacity: 0.7;
@@ -491,7 +491,7 @@
 
             .milestone_description_title {
                 font-size: 36px;
-                font-weight: $bold;
+                font-weight: vars.$bold;
                 line-height: 40px;
                 margin-bottom: 19px;
                 word-break: break-word;
@@ -525,7 +525,7 @@
 
 
 .voting_platform_wrap {
-    background: $white;
+    background: vars.$white;
     margin: 40px 60px 22px;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
 
@@ -535,7 +535,7 @@
 
     .platform_description {
         font-size: 13px;
-        font-weight: $bold;
+        font-weight: vars.$bold;
         padding: 10px 20px 0;
         @media (max-width: 670px) {
             padding-top: 21px;
@@ -558,7 +558,7 @@
 
         .voting_platform_section_title {
             font-size: 16px;
-            font-weight: $bold;
+            font-weight: vars.$bold;
             margin: 20px 0;
             @media (max-width: 670px) {
                 margin-bottom: 13px;
@@ -646,26 +646,26 @@
                 margin-bottom: -100px;
                 height: 100px;
                 width: 40px;
-                border-right: 1px solid $lightest_gray;
+                border-right: 1px solid vars.$lightest_gray;
 
                 &.active {
-                    background: $aqua_marine_border;
+                    background: vars.$aqua_marine_border;
                     border-right: none;;
 
                     .check {
-                        border: 1px solid $aqua_marine_border;
-                        background: $white;
+                        border: 1px solid vars.$aqua_marine_border;
+                        background: vars.$white;
                     }
 
                     .check::before{
-                        background: $aqua_marine_border;
+                        background: vars.$aqua_marine_border;
                     }
                 }
 
                 .check{
                     display: block;
                     position: absolute;
-                    border: 1px solid $lightest_gray;
+                    border: 1px solid vars.$lightest_gray;
                     border-radius: 100%;
                     z-index: 5;
                     transition: border .25s linear;
@@ -693,7 +693,7 @@
                     -webkit-transition: background 0.25s linear;
 
                     &:checked {
-                        color: $aqua_marine_border;
+                        color: vars.$aqua_marine_border;
                     }
                 }
 
@@ -715,7 +715,7 @@
             .voting_platform_button {
                 width: 100%;
                 height: 100px;
-                border: 2px solid $lightest_gray;
+                border: 2px solid vars.$lightest_gray;
                 box-sizing: border-box;
                 border-radius: 4px;
                 float: left;
@@ -728,13 +728,13 @@
                 print-color-adjust: exact;
 
                 &:not(.active):hover {
-                    background: $medium_gray;
+                    background: vars.$medium_gray;
                     cursor: initial;
                 }
 
                 .button_title {
                     font-size: 26px;
-                    font-weight: $bold;
+                    font-weight: vars.$bold;
                 }
 
                 .button_description {
@@ -742,8 +742,8 @@
                 }
 
                 &.active {
-                    border: 2px solid $aqua_marine_border;
-                    background: $aqua_marine;
+                    border: 2px solid vars.$aqua_marine_border;
+                    background: vars.$aqua_marine;
                 }
             }
 
@@ -762,7 +762,7 @@
 
                 & .table > .table_cell {
                     width: 50%;
-                    border-right: 1px solid $lightest_gray;
+                    border-right: 1px solid vars.$lightest_gray;
                 }
             }
 
@@ -773,7 +773,7 @@
                     width: 50%;
 
                     &:not(:last-child) {
-                        border-right: 1px solid $lightest_gray;
+                        border-right: 1px solid vars.$lightest_gray;
                     }
                 }
             }
@@ -784,7 +784,7 @@
                     width: 100% !important;
                 }
                 & > .table_cell:first-child {
-                    border-bottom: 1px solid $lightest_gray;
+                    border-bottom: 1px solid vars.$lightest_gray;
 
                     & .table > .table_cell:last-child {
                         border-right: none;
@@ -800,7 +800,7 @@
                     border-right: none !important;
 
                     &:not(:last-child) {
-                        border-bottom: 1px solid $lightest_gray;
+                        border-bottom: 1px solid vars.$lightest_gray;
                     }
                 }
 
@@ -914,7 +914,7 @@
                 .options_count_input {
                     height: 41px;
                     width: calc(100% - 110px);
-                    border: 1px solid $lightest_gray;
+                    border: 1px solid vars.$lightest_gray;
                     border-radius: 4px;
                     vertical-align: middle;
                     -webkit-appearance: textfield;
@@ -936,8 +936,8 @@
                     font-size: 30px;
                     line-height: 30px;
                     color: #666666;
-                    background-color: $light_gray;
-                    border: solid 1px $lightest_gray;
+                    background-color: vars.$light_gray;
+                    border: solid 1px vars.$lightest_gray;
                     font-weight: bold;
                 }
             }
@@ -946,7 +946,7 @@
     }
 
     .picker_content {
-        background: $light_gray;
+        background: vars.$light_gray;
         position: relative;
         padding: 10px 0 14px;
         left: 0;

@@ -14,6 +14,7 @@ const {Gulp, series, watch} = require('gulp'),
     cachebust = require('gulp-cache-bust'),
     fs = require('fs'),
     templateCache = require('gulp-angular-templatecache');
+    sass.compiler = require('sass');
 
 var pkg = JSON.parse(fs.readFileSync('package.json'));
 

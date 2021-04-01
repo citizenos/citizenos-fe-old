@@ -1,6 +1,6 @@
-@import 'vars';
-@import 'mixins_n_extends';
-@import 'icons';
+@use 'vars';
+@use 'mixins_n_extends';
+@use 'icons';
 
 #topics_admin_root {
     @extend .default_setup;
@@ -14,7 +14,7 @@
         font-size: 14px;
         margin-top: 15px;
         position: relative;
-        background: $light_gray;
+        background: vars.$light_gray;
 
         @media (max-width: 767px) {
             padding: 0;
@@ -35,7 +35,7 @@
 
             .milestones_section {
                 display: inline-table;
-                background: $lightest_gray;
+                background: vars.$lightest_gray;
                 padding-right: 12px;
                 border-radius: 12px;
                 margin-left: -2px;
@@ -96,7 +96,7 @@
                 height: 24px;
                 display: table;
                 border-radius: 100px;
-                font-weight: $bold;
+                font-weight: vars.$bold;
                 padding: 0 10px;
                 position: absolute;
                 margin-top: -12px;
@@ -141,7 +141,7 @@
                     cursor: pointer;
                     .tooltip {
                         visibility: visible;
-                        @include tablet {
+                        @include mixins_n_extends.tablet {
                             visibility: hidden;
                         }
                     }
@@ -195,7 +195,7 @@
                 height: inherit;
                 width: 70px;
                 z-index: 2;
-                border-bottom: 1px solid $lightest_gray;
+                border-bottom: 1px solid vars.$lightest_gray;
                 display: table;
                 box-sizing: border-box;
                 cursor: pointer;
@@ -231,7 +231,7 @@
             .fake_cell {
                 display: table-cell;
                 min-width: 310px;
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     display: none;
                 }
             }
@@ -243,7 +243,7 @@
                 width: 70%;
                 padding-left: 60px;
                 box-sizing: border-box;
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     width: 100%;
                     padding-left: 0;
                 }
@@ -252,7 +252,7 @@
                     position: relative;
                     overflow: hidden;
 
-                    @include tablet {
+                    @include mixins_n_extends.tablet {
                         padding-left: 10px;
                     }
 
@@ -266,41 +266,41 @@
                             float: left;
                             position: absolute;
                             transition: all 450ms cubic-bezier(.45, .78, 0, 1);
-                            @include tablet {
+                            @include mixins_n_extends.tablet {
                                 transition: none;
                             }
                             .tab {
                                 display: table;
                                 height: inherit;
                                 float: left;
-                                background: $white;
+                                background: vars.$white;
                                 font-size: 14px;
                                 font-weight: bold;
                                 padding: 0 20px;
                                 box-sizing: border-box;
                                 margin-right: 10px;
-                                border: 1px solid $lightest_gray;
+                                border: 1px solid vars.$lightest_gray;
                                 position: relative;
                                 z-index: 1;
                                 text-align: center;
-                                color: $text_gray;
+                                color: vars.$text_gray;
 
                                 &:hover {
                                     cursor: pointer;
-                                    background: $light_gray;
-                                    @include tablet {
-                                        background: $white;
+                                    background: vars.$light_gray;
+                                    @include mixins_n_extends.tablet {
+                                        background: vars.$white;
                                     }
                                 }
-                                @include tablet {
+                                @include mixins_n_extends.tablet {
                                     &:last-child {
                                         margin-right: 0;
                                     }
                                 }
                             }
                             .selected {
-                                background: $light_gray;
-                                border-bottom: 1px solid $light_gray;
+                                background: vars.$light_gray;
+                                border-bottom: 1px solid vars.$light_gray;
 
                                 &:hover {
                                     cursor: initial;
@@ -337,7 +337,7 @@
                     .info_icon {
                         vertical-align: middle;
                     }
-                    @include tablet {
+                    @include mixins_n_extends.tablet {
                         margin-top: 0;
                     }
 
@@ -347,7 +347,7 @@
                     position: relative;
                     box-sizing: border-box;
 
-                    @include tablet {
+                    @include mixins_n_extends.tablet {
                         width: 100%;
                     }
                     .iframe_content_wrap {
@@ -429,7 +429,7 @@
                                 font-family: "Noto Sans";
                                 font-size: 14px;
                                 line-height: 22px;
-                                color: $deep_sky_blue;
+                                color: vars.$deep_sky_blue;
                                 display: none;
                                 @media (max-width: 767px) {
                                     display: table;
@@ -455,8 +455,8 @@
                                     }
 
                                     .more_info_attachment_wrap {
-                                        background-color: $deep_sky_blue;
-                                        color:$white;
+                                        background-color: vars.$deep_sky_blue;
+                                        color:vars.$white;
                                         height: 22px;
                                         width: 38px;
                                         border-radius: 11px;
@@ -490,7 +490,7 @@
                                         }
                                     }
                                     .info_section_content {
-                                        color: $deep_sky_blue;
+                                        color: vars.$deep_sky_blue;
 
                                         @media (min-width: 767px) {
                                             display: inline-block;
@@ -501,7 +501,7 @@
                                         }
                                     }
                                     .info_section_separator {
-                                        color: $medium_black;
+                                        color: vars.$medium_black;
                                     }
                                     .file_type {
                                         padding: 0 3px 0px 3px;
@@ -558,7 +558,7 @@
 
                             h1, h2, h3, h4, h5, h6 {
                                 font-family: 'Noto Sans', sans-serif;
-                                color: $medium_black;
+                                color: vars.$medium_black;
                                 margin: 20px 0;
                                 line-height: 135%;
                                 font-weight: bold;
@@ -588,7 +588,7 @@
                                 font-size: 16px;
                             }
 
-                            @include mobile {
+                            @include mixins_n_extends.mobile {
                                 h1 {
                                     font-size: 30px;
                                 }
@@ -712,10 +712,10 @@
                 display: table-cell;
                 width: 30%;
                 min-width: 250px;
-                background: $side_panel_gray;
+                background: vars.$side_panel_gray;
                 vertical-align: top;
 
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     top: 60px;
                     position: fixed;
                     z-index: 1;
@@ -732,16 +732,16 @@
                     font-size: 14px;
                     margin-bottom: 20px;
                     .options_header {
-                        background: $light_gray;
+                        background: vars.$light_gray;
                         padding: 0 10px;
                         height: 40px;
                         display: table;
                         width: 100%;
-                        font-weight: $bold;
+                        font-weight: vars.$bold;
                         box-sizing: border-box;
                     }
                     .options_content {
-                        background: $white;
+                        background: vars.$white;
                         padding: 5px 10px;
                         .blue_link, .personal_note {
                             padding: 5px 0;

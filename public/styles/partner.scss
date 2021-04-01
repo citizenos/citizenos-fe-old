@@ -1,5 +1,5 @@
-@import 'vars';
-@import 'mixins_n_extends';
+@use 'vars';
+@use 'mixins_n_extends';
 
 #table_element {
     position: absolute;
@@ -7,8 +7,8 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    color: $medium_black;
-    background: $light_gray;
+    color: vars.$medium_black;
+    background: vars.$light_gray;
     -webkit-text-size-adjust: 100%;
     font-size: 14px;
 
@@ -16,7 +16,7 @@
         display: table-row;
         &:first-child {
             height: 60px;
-            background: $side_panel_gray;
+            background: vars.$side_panel_gray;
         }
     }
 
@@ -37,7 +37,7 @@
         #name {
             text-align: right;
             padding-right: 11px;
-            font-weight: $bold;
+            font-weight: vars.$bold;
         }
 
         #profile_image {
@@ -71,7 +71,7 @@
         margin: 0 auto;
         padding: 40px 40px 41px;
         width: 680px;
-        background: $white;
+        background: vars.$white;
         box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         @media (max-width: 720px) {
@@ -109,9 +109,9 @@
         outline: 0;
         border: 2px solid rgba(255, 255, 255, 0);
         margin-bottom: 10px;
-        background: $deep_sky_blue;
+        background: vars.$deep_sky_blue;
         border-radius: 4px;
-        font-weight: $bold;
+        font-weight: vars.$bold;
         cursor: pointer;
         text-align: center;
         color: #FFF;
@@ -121,7 +121,7 @@
 
         @media (min-width: 1025px) {
             &:hover {
-                background: $dark_blue;
+                background: vars.$dark_blue;
             }
         }
 
@@ -137,7 +137,7 @@
     }
 
     .lightbox_link {
-        color: $deep_sky_blue;
+        color: vars.$deep_sky_blue;
         @media (min-width: 1025px) {
             &:hover {
                 text-decoration: underline;
@@ -154,12 +154,12 @@
 
     .social_buttons_wrap {
         padding-right: 19px;
-        border-right: 1px solid $lightest_gray;
+        border-right: 1px solid vars.$lightest_gray;
         @media (max-width: 700px) {
             border: none;
             padding-right: 0;
             padding-bottom: 20px;
-            border-bottom: 1px solid $lightest_gray;
+            border-bottom: 1px solid vars.$lightest_gray;
         }
     }
 
@@ -185,7 +185,7 @@
 
         .social_button {
             height: 40px;
-            color: $white;
+            color: vars.$white;
             width: 100%;
             border-radius: 2px;
             cursor: pointer;
@@ -200,7 +200,7 @@
                 display: table;
                 border-radius: 2px 0 0 2px;
                 position: absolute;
-                background: $white;
+                background: vars.$white;
                 background-size: cover;
 
                 .sprite {
@@ -224,53 +224,53 @@
 
         #facebook {
             .social_text .table_cell {
-                background: $facebook_medium;
-                border: 1px solid $facebook_dark;
+                background: vars.$facebook_medium;
+                border: 1px solid vars.$facebook_dark;
             }
 
             .social_icon {
-                border: 1px solid $facebook_dark;
+                border: 1px solid vars.$facebook_dark;
             }
         }
 
         #facebook:hover {
             .social_text .table_cell {
-                background: $facebook_light;
+                background: vars.$facebook_light;
             }
         }
 
         #google {
             .social_text .table_cell {
-                background: $google_medium;
-                border: 1px solid $google_dark;
+                background: vars.$google_medium;
+                border: 1px solid vars.$google_dark;
             }
 
             .social_icon {
-                border: 1px solid $google_dark;
+                border: 1px solid vars.$google_dark;
             }
         }
 
         #google:hover {
             .social_text .table_cell {
-                background: $google_light;
+                background: vars.$google_light;
             }
         }
 
         #id_card, #smart_id {
             .social_text .table_cell {
-                background: $id_medium;
-                color: $medium_black;
-                border: 1px solid $id_dark;
+                background: vars.$id_medium;
+                color: vars.$medium_black;
+                border: 1px solid vars.$id_dark;
             }
 
             .social_icon {
-                border: 1px solid $id_dark;
+                border: 1px solid vars.$id_dark;
             }
         }
 
         #id_card:hover, #smart_id:hover {
             .social_text .table_cell {
-                background: $id_light;
+                background: vars.$id_light;
             }
         }
 
@@ -308,13 +308,13 @@
                 text-align: center;
                 border-radius: 50%;
                 box-sizing: border-box;
-                color: $dark_gray;
+                color: vars.$dark_gray;
                 .profile_circle {
-                    color: $dark_gray;
+                    color: vars.$dark_gray;
                     position: absolute;
                     width: inherit;
                     height: inherit;
-                    border: 1px solid $smooth_gray;
+                    border: 1px solid vars.$smooth_gray;
                     border-radius: 50%;
                     box-sizing: border-box;
                     left: 0;
@@ -348,16 +348,16 @@
 
         #terms {
             text-align: left;
-            border-top: 1px solid $lightest_gray;
-            border-bottom: 1px solid $lightest_gray;
+            border-top: 1px solid vars.$lightest_gray;
+            border-bottom: 1px solid vars.$lightest_gray;
             padding: 20px 10px 0 30px;
 
             li {
                 margin-bottom: 21px;
-                color: $deep_sky_blue;
+                color: vars.$deep_sky_blue;
 
                 span {
-                    color: $medium_black;
+                    color: vars.$medium_black;
                 }
             }
         }
