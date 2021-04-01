@@ -23,7 +23,7 @@
 
 
         .button_cell {
-            @extend .table_cell;
+            @extend %table_cell;
 
             .icon_nudge {
                 margin-left: 14px;

@@ -176,7 +176,7 @@
             background: vars.$medium_gray;
 
             .cat_wrap {
-                @extend .table_cell;
+                @extend %table_cell;
                 padding: 0 20px 0 20px;
                 height: 40px;
             }

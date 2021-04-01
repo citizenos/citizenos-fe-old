@@ -3,7 +3,7 @@
 @use 'icons';
 
 #root_lightbox {
-    @extend .all_zero;
+    @extend %all_zero;
     background-color: rgba(0, 0, 0, 0.6);
     position: fixed;
     z-index: 11;
@@ -18,7 +18,7 @@
     }
 
     #close_lightbox {
-        @extend .all_zero;
+        @extend %all_zero;
         position: absolute;
         cursor: pointer;
         z-index: 10;
@@ -45,7 +45,7 @@
     }
 
     input {
-        @extend .input_small;
+        @extend %input_small;
     }
 
     input, button {
@@ -195,13 +195,13 @@
                         box-sizing: border-box;
 
                         .description {
-                            @extend .table_cell;
+                            @extend %table_cell;
                             padding-right: 10px;
                         }
 
                         .toggle_cell {
                             width: 60px;
-                            @extend .table_cell;
+                            @extend %table_cell;
 
                             .toggle_widget {
                                 position: relative;
@@ -258,12 +258,12 @@
                         padding: 0 20px 10px 20px;
 
                         .profile_image_cell {
-                            @extend .table_cell;
+                            @extend %table_cell;
                             width: 40px;
                         }
 
                         .profile_text {
-                            @extend .table_cell;
+                            @extend %table_cell;
                             font-size: 14px;
                             word-break: break-all;
                         }
@@ -364,7 +364,7 @@
                     overflow: hidden;
 
                     .title {
-                        @extend .text_dod_dot_dot;
+                        @extend %text_dod_dot_dot;
                         opacity: .7;
                         font-weight: vars.$bold;
                         font-size: 16px;
@@ -373,7 +373,7 @@
                     }
 
                     .title_description {
-                        @extend .text_dod_dot_dot;
+                        @extend %text_dod_dot_dot;
                         margin-top: 25px;
                         overflow: hidden;
                         position: absolute;
@@ -771,7 +771,7 @@
                     overflow: hidden;
 
                     .title {
-                        @extend .text_dod_dot_dot;
+                        @extend %text_dod_dot_dot;
                         opacity: .7;
                         font-weight: vars.$bold;
                         font-size: 16px;
@@ -1626,7 +1626,7 @@
                 }
 
                 #lightbox_header_text {
-                    @extend .table_cell;
+                    @extend %table_cell;
                     font-weight: vars.$bold;
                     font-size: 16px;
                     padding: 15px 0 15px 20px;
@@ -1935,7 +1935,7 @@
                 }
 
                 .settings_cell {
-                    @extend .table_cell;
+                    @extend %table_cell;
                     width: 50%;
 
                     &:last-child {
@@ -2009,7 +2009,7 @@
                 }
 
                 .language_cell {
-                    @extend .table_cell;
+                    @extend %table_cell;
                     width: 31%;
                     float: left;
                     padding: 5px;
@@ -2210,7 +2210,7 @@
                 margin-bottom: 5px;
 
                 .category_cell {
-                    @extend .table_cell;
+                    @extend %table_cell;
                 }
 
                 .category_title {

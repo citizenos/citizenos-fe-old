@@ -3,7 +3,7 @@
 @use 'icons';
 
 #topics_root {
-    @extend .default_setup;
+    @extend %default_setup;
 
     .v_line.separator {
         width: 1px;
@@ -51,7 +51,7 @@
             box-sizing: border-box;
 
             .header_text {
-                @extend .table_cell;
+                @extend %table_cell;
                 font-size: 13px;
                 padding-left: 5px;
                 cursor: pointer;
@@ -64,7 +64,7 @@
             .header_img_wrap {
                 height: 30px;
                 width: 25px;
-                @extend .table_cell;
+                @extend %table_cell;
                 img {
                     height: 20px;
                     width: 20px;
@@ -373,7 +373,7 @@
 
                     .table_cell {
                         input {
-                            @extend .input_small;
+                            @extend %input_small;
                         }
                     }
 
@@ -682,7 +682,7 @@
                                         }
 
                                         .item_text {
-                                            @extend .table_cell;
+                                            @extend %table_cell;
                                             &:last-child {
                                                 width: 95px;
                                                 padding-right: 0;

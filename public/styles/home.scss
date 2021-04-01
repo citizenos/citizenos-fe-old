@@ -193,7 +193,7 @@
                 width: 100%;
 
                 .blue_link {
-                    @extend .table_cell;
+                    @extend %table_cell;
                     padding: 0 10px;
                 }
 

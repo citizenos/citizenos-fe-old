@@ -3,7 +3,7 @@
 @use 'icons';
 
 #topics_admin_root {
-    @extend .default_setup;
+    @extend %default_setup;
 
     .timeline {
         height: 85px;

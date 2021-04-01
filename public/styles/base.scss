@@ -75,6 +75,267 @@ h2 {
     }
 }
 
+.table {
+    @extend %table;
+}
+
+.table_cell {
+    @extend %table_cell;
+}
+
+.table_row {
+    @extend %table_row;
+}
+
+
+.blue_progress_bar {
+    background: vars.$deep_sky_blue;
+    color: vars.$white;
+}
+
+.aqua_progress_bar {
+    background: vars.$aqua_marine;
+}
+
+.yellow_progress_bar {
+    background: vars.$pin_yellow;
+}
+
+/* INFO BAR COLORS */
+.bar_red {
+    color: vars.$white;
+    background:  vars.$pinky_red;
+
+    a:link, a:visited {
+        color: vars.$white;
+        text-decoration: underline;
+    }
+
+    .info_icon:last-child:hover {
+        background: vars.$pinky_red_dark;
+    }
+}
+
+.bar_blue {
+    color: vars.$white;
+    background:  vars.$deep_sky_blue;
+
+    a:link, a:visited {
+        color: vars.$white;
+        text-decoration: underline;
+    }
+
+    .info_icon:last-child:hover {
+        background: vars.$dark_blue;
+    }
+}
+
+.bar_green {
+    color: vars.$green_dark;
+    background:  vars.$aqua_marine;
+
+    a:link, a:visited {
+        color: vars.$green_dark;
+        text-decoration: underline;
+    }
+
+    .info_icon:last-child:hover {
+        background: vars.$green_medium;
+    }
+}
+
+.bar_orange {
+    color: vars.$white;
+    background:  vars.$orange;
+
+    a:link, a:visited {
+        color: vars.$white;
+        text-decoration: underline;
+    }
+
+    .info_icon:last-child:hover {
+        background: vars.$orange;
+    }
+}
+
+
+
+.dark_yellow_background {
+    background: vars.$dark_yellow;
+}
+
+.aqua_marine_progress_bar_background {
+    background: vars.$aqua_marine;
+}
+
+.aqua_marine_background {
+    background: vars.$aqua_marine;
+    &:hover {
+        background: vars.$aqua_marine_border_second !important;
+        @media (max-width: 1025px) {
+            background: vars.$aqua_marine;
+        }
+    }
+}
+
+.timeline_gray_background {
+    background: vars.$timeline_gray;
+}
+
+.orange_background {
+    background: vars.$orange;
+}
+
+.purpule_background {
+    background: vars.$purpule;
+}
+
+.yellow_background {
+    background: vars.$yellow;
+}
+
+.light_gray_background {
+    background: vars.$light_gray;
+}
+
+.pin_yellow_background {
+    background: vars.$pin_yellow;
+}
+
+.red_background {
+    background: vars.$red;
+}
+
+.blue_background {
+    background: vars.$deep_sky_blue;
+}
+
+.dark_gray_background {
+    background: vars.$dark_gray;
+}
+
+.white_text {
+    color: vars.$white !important;
+}
+
+.black_text {
+    color: vars.$medium_black !important;
+}
+
+.dark_line {
+    background: vars.$dark_black;
+}
+
+.light_line {
+    background: vars.$light_black;
+}
+
+.white_line {
+    background: vars.$white;
+}
+
+.black_line {
+    background: vars.$medium_black;
+}
+
+.lightest_line {
+    background: vars.$lightest_gray;
+}
+
+.red_text {
+    color: vars.$pinky_red;
+}
+
+.gray_text {
+    color: vars.$pinky_red;
+}
+
+.black_text {
+    color: vars.$medium_black;
+}
+
+.gray_borders {
+    border: 1px solid vars.$lightest_gray;
+    border-radius: 4px;
+}
+
+.nature_green_button {
+    background: vars.$nature_green;
+    border: 1px solid vars.$nature_green_border;
+    color: vars.$medium_black;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 4px;
+    &:hover {
+        @media (min-width: 1025px) {
+            background: vars.$nature_green_dark !important;
+            border: 1px solid vars.$nature_green_border_dark;
+        }
+    }
+    &.disabled {
+        background: vars.$nature_green;
+    }
+}
+
+.pinky_red_button {
+    @extend .nature_green_button;
+    background: vars.$pinky_red;
+    color: vars.$white;
+    border: 1px solid vars.$pinky_red_border;
+    &:hover {
+        @media (min-width: 1025px) {
+            background: vars.$pinky_red_dark_hover !important;
+            border: 1px solid vars.$pinky_red_dark_border;
+        }
+    }
+    &.disabled {
+        background: vars.$pinky_red;
+    }
+}
+
+.blue_white_button {
+    @extend .nature_green_button;
+    background: vars.$white;
+    color: vars.$deep_sky_blue;
+    border: 1px solid vars.$lightest_gray;
+    &:hover {
+        @media (min-width: 1025px) {
+            background: vars.$medium_gray !important;
+            border: 1px solid vars.$mobile_border_gray;
+        }
+    }
+    &.disabled {
+        background: vars.$pinky_red;
+    }
+}
+
+
+
+.bullet_blue {
+    background: vars.$deep_sky_blue;
+    color: vars.$white;
+}
+
+.bullet_yellow {
+    background: vars.$pin_yellow;
+}
+
+.bullet_aqua_marine {
+    background: vars.$aqua_marine_border;
+}
+
+.bullet_orange {
+    background: #f5762d;
+}
+
+.bullet_sky_blue {
+    background: vars.$sky_blue;
+}
+
+.medium_black_seven {
+    color: vars.$medium_black_seven;
+}
+
 .print_footer {
     display: none;
     padding: 60px 30px;
@@ -183,7 +444,7 @@ table, .pretend_table {
 }
 
 .pretend_td, .pretend_th, .pagination_wrapper {
-    @extend .table_cell;
+    @extend %table_cell;
 }
 
 .pagination_wrapper {
@@ -197,7 +458,7 @@ table, .pretend_table {
 }
 
 .reaction_name {
-    @extend .table_cell;
+    @extend %table_cell;
     min-width: 260px;
 }
 .reaction_wrap {
@@ -700,7 +961,7 @@ table, .pretend_table {
 
 
 .minimize_container {
-    @extend .table_cell;
+    @extend %table_cell;
     width: 36px;
     cursor: pointer;
 
@@ -1076,7 +1337,7 @@ a:link, a:visited {
         .icon_cell {
             height: inherit;
             width: inherit;
-            @extend .table_cell;
+            @extend %table_cell;
 
             .sprite {
                 margin: 0 auto;
@@ -1587,7 +1848,7 @@ a:link, a:visited {
 
             .arrow, .month_text {
                 font-weight: vars.$bold;
-                @extend .table_cell;
+                @extend %table_cell;
             }
 
             .arrow {
@@ -1874,7 +2135,7 @@ a:link, a:visited {
             }
 
             .arrow, .month_text {
-                @extend .table_cell;
+                @extend %table_cell;
             }
 
             .arrow {
@@ -2138,13 +2399,13 @@ a:link, a:visited {
         }
 
         .info_bar_text {
-            @extend .table_cell;
+            @extend %table_cell;
             padding: 10px 0 11px 0;
         }
 
         .info_icon {
             width: 56px;
-            @extend .table_cell;
+            @extend %table_cell;
 
             vertical-align: top;
             padding: 13px 0 13px 0;

@@ -3,7 +3,7 @@
 @use 'icons';
 
 #groups_root {
-    @extend .default_setup;
+    @extend %default_setup;
 
     .groups_wrap {
         padding: 0 10px 10px 10px;
@@ -38,7 +38,7 @@
                     }
 
                     .button_cell {
-                        @extend .table_cell;
+                        @extend %table_cell;
                         @media (max-width: 768px) {
                             position: absolute;
                             display: block;

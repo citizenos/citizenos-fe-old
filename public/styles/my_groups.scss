@@ -3,5 +3,5 @@
 @use 'icons';
 
 #my_groups_root {
-    @extend .default_setup;
+    @extend %default_setup;
 }

@@ -461,7 +461,7 @@ nav {
         }
 
        .line_holder, .header_button_icon, .header_button_text {
-            @extend .table_cell;
+            @extend %table_cell;
             text-align: center;
         }
 
@@ -507,7 +507,7 @@ nav {
         }
 
         #m_search_bar_wrap {
-            @extend .table_cell;
+            @extend %table_cell;
 
             input {
                 border-radius: 15px;
