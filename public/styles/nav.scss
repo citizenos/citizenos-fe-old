@@ -1,27 +1,27 @@
-@import 'vars';
-@import 'mixins_n_extends';
+@use 'vars';
+@use 'mixins_n_extends';
 
 .logo_area {
     width: 190px;
     height: 60px;
-    background: $dark_black;
+    background: vars.$dark_black;
     display: table;
     cursor: pointer;
 
-    @include tablet {
+    @include mixins_n_extends.tablet {
          background: none;
          position: absolute;
          left: 0;
     }
 
-    @include mobile {
+    @include mixins_n_extends.mobile {
         width: 59px;
     }
 
     .logo {
         margin-top: 16px;
         margin-bottom: 16px;
-        @include mobile {
+        @include mixins_n_extends.mobile {
             width: 28px;
         }
     }
@@ -33,15 +33,15 @@
 
 .nav_is_open {
     right: 0;
-    width: $nav_t_width;
+    width: vars.$nav_t_width;
 }
 
 nav {
 
-    width: $nav_d_width;
+    width: vars.$nav_d_width;
     height: 100%;
-    background: $medium_black;
-    color: $transparent_white;
+    background: vars.$medium_black;
+    color: vars.$transparent_white;
     font-size: 13px;
     position: fixed;
     z-index: 10;
@@ -56,8 +56,8 @@ nav {
         margin-top: 20px;
     }
 
-    @include tablet {
-        right: -$nav_t_width;
+    @include mixins_n_extends.tablet {
+        right: - vars.$nav_t_width;
         transition: all 220ms cubic-bezier(.45,.78,0,1);
         overflow-y: visible;
         overflow-x: hidden;
@@ -74,13 +74,13 @@ nav {
         .blue_button {
             margin-top: 20px;
             margin-bottom: 20px;
-            @include tablet {
+            @include mixins_n_extends.tablet {
                 margin-top: -10px;
             }
         }
 
         a:link, a:visited {
-            color: $transparent_white;
+            color: vars.$transparent_white;
         }
 
         .sprite, a, .section_item {
@@ -98,17 +98,17 @@ nav {
 
         .bold_white {
             font-weight: 700;
-            color: $white;
+            color: vars.$white;
         }
 
         .bold_blue, .bold_blue:visited, .bold_blue:link {
             font-weight: 700;
-            color: $sky_blue;
+            color: vars.$sky_blue;
             opacity: 1;
         }
 
         a:hover {
-            color: $white;
+            color: vars.$white;
         }
 
         #account_area {
@@ -135,7 +135,7 @@ nav {
                     width: 84px;
                 }
 
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     padding: 8px 0 8px 12px ;
                     box-sizing: border-box;
                 }
@@ -179,7 +179,7 @@ nav {
                 }
 
                 .dropdown_active .section_item {
-                    background: $black !important;
+                    background: vars.$black !important;
                 }
 
                 .dropdown_active .dropdown {
@@ -202,15 +202,15 @@ nav {
 
                 .section_item:not(.section_header):hover, .section_item.active {
                     cursor: pointer;
-                    font-weight: $bold;
-                    color: $white;
+                    font-weight: vars.$bold;
+                    color: vars.$white;
 
-                    @include tablet {
+                    @include mixins_n_extends.tablet {
                         font-weight: initial;
 
                         &.bold_blue {
-                            font-weight: $bold;
-                            color: $sky_blue;
+                            font-weight: vars.$bold;
+                            color: vars.$sky_blue;
                             opacity: 1;
 
                             .sprite {
@@ -220,8 +220,8 @@ nav {
                     }
 
                     & {
-                        background: $black;
-                        font-weight: $bold;
+                        background: vars.$black;
+                        font-weight: vars.$bold;
                     }
 
                     .sprite {
@@ -231,7 +231,7 @@ nav {
                 }
 
                 .section_item:not(.section_header):hover {
-                    @include tablet {
+                    @include mixins_n_extends.tablet {
                         -webkit-tap-highlight-color: rgba(0, 0, 0, .45);
                         background: initial;
                     }
@@ -279,7 +279,7 @@ nav {
 
 #mobile_header {
     height: 60px;
-    background: $medium_black;
+    background: vars.$medium_black;
     z-index: 4;
     padding-right: 138px;
     padding-left: 190px;
@@ -414,7 +414,7 @@ nav {
     }
 
     .header_button.settings.active, .header_button.edit.active  {
-        background: $side_panel_gray;
+        background: vars.$side_panel_gray;
         padding-left: 0;
         .line_holder {
             display: none;
@@ -429,7 +429,7 @@ nav {
         height: 60px;
         position: absolute;
         right: 0;
-        color: $white;
+        color: vars.$white;
         font-weight: bold;
         font-size: 14px;
         display: table;
@@ -461,7 +461,7 @@ nav {
         }
 
        .line_holder, .header_button_icon, .header_button_text {
-            @extend .table_cell;
+            @extend %table_cell;
             text-align: center;
         }
 
@@ -507,7 +507,7 @@ nav {
         }
 
         #m_search_bar_wrap {
-            @extend .table_cell;
+            @extend %table_cell;
 
             input {
                 border-radius: 15px;
@@ -528,7 +528,7 @@ nav {
                 padding: 0 34px 1px 34px;
                 box-sizing: border-box;
                 width: 100%;
-                background: $medium_black;
+                background: vars.$medium_black;
             }
         }
     }

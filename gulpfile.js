@@ -14,6 +14,7 @@ const {Gulp, series, watch} = require('gulp'),
     cachebust = require('gulp-cache-bust'),
     fs = require('fs'),
     templateCache = require('gulp-angular-templatecache');
+    sass.compiler = require('sass');
 
 var pkg = JSON.parse(fs.readFileSync('package.json'));
 
@@ -143,7 +144,7 @@ var watchTask = function() {
  */
 var sassTask = function() {
     return pipeline(
-        gulp.src(['public/styles/easymde.min.css', 'public/styles/*.scss']),
+        gulp.src(['public/styles/easymde.min.css', 'public/styles/*.scss', '!public/styles/_vars.scss', '!public/styles/_mixins_n_extends.scss']),
         plumber(),
         sourcemaps.init(),
         sass(),

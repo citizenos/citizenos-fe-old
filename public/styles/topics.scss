@@ -1,13 +1,13 @@
-@import 'vars';
-@import 'mixins_n_extends';
-@import 'icons';
+@use 'vars';
+@use 'mixins_n_extends';
+@use 'icons';
 
 #topics_root {
-    @extend .default_setup;
+    @extend %default_setup;
 
     .v_line.separator {
         width: 1px;
-        background: $medium_gray;
+        background: vars.$medium_gray;
         top: 0;
         bottom: 0;
         position: absolute;
@@ -39,19 +39,19 @@
     }
 
     #topics_wrap {
-        background: $light_gray;
+        background: vars.$light_gray;
 
         .container_header {
             margin-top: 10px;
             height: 30px;
-            background: $medium_gray;
+            background: vars.$medium_gray;
             display: table;
             width: 100%;
             padding-left: 5px;
             box-sizing: border-box;
 
             .header_text {
-                @extend .table_cell;
+                @extend %table_cell;
                 font-size: 13px;
                 padding-left: 5px;
                 cursor: pointer;
@@ -64,7 +64,7 @@
             .header_img_wrap {
                 height: 30px;
                 width: 25px;
-                @extend .table_cell;
+                @extend %table_cell;
                 img {
                     height: 20px;
                     width: 20px;
@@ -104,7 +104,7 @@
             .small_topic {
                 display: block;
                 height: 120px;
-                background: $white;
+                background: vars.$white;
                 padding: 13px 20px 17px 20px;
                 margin-top: 10px;
                 box-sizing: border-box;
@@ -167,25 +167,25 @@
 
                         &:hover .hover_info {
                             display: block;
-                            @include tablet {
+                            @include mixins_n_extends.tablet {
                                 display: none;
                             }
                         }
 
                         &:hover .small_topic_small_text, &:hover .small_topic_icon {
                             opacity: 1;
-                            @include tablet {
+                            @include mixins_n_extends.tablet {
                                 opacity: .69;
                             }
                         }
 
                         .hover_info {
-                            background-color: $transparent_black;
+                            background-color: vars.$transparent_black;
                             position: absolute;
-                            color: $white;
+                            color: vars.$white;
                             border-radius: 4px;
                             padding: 14px 15px 1px 15px;
-                            font-weight: $bold;
+                            font-weight: vars.$bold;
                             font-size: 14px;
                             display: none;
                             width: 300px;
@@ -215,8 +215,8 @@
 
                 .small_topic_title {
                     font-size: 16px;
-                    color: $deep_sky_blue;
-                    font-weight: $bold;
+                    color: vars.$deep_sky_blue;
+                    font-weight: vars.$bold;
                     margin-top: 6px;
                     width: 100%;
                     overflow: hidden;
@@ -236,7 +236,7 @@
                 }
 
                 .small_topic_footer {
-                    color: $medium_black;
+                    color: vars.$medium_black;
                     margin-top: 14px;
 
                     .small_topic_icon, .small_topic_small_text {
@@ -255,10 +255,10 @@
             }
 
             .small_topic.active, .container_header.active {
-                background: $deep_sky_blue;
+                background: vars.$deep_sky_blue;
 
                 .small_topic_title, .small_topic_small_text, .header_text {
-                    color: $white !important;
+                    color: vars.$white !important;
                 }
 
                 .sprite-menu-icon-groups2x-dark {
@@ -294,9 +294,9 @@
                 }
 
                 .minimize_container:hover {
-                    background: $dark_blue;
+                    background: vars.$dark_blue;
 
-                    @include tablet {
+                    @include mixins_n_extends.tablet {
                         background: initial;
                     }
                 }
@@ -306,7 +306,7 @@
             .small_topic {
                 .small_topic_title:hover {
                     text-decoration: underline;
-                    @include tablet {
+                    @include mixins_n_extends.tablet {
                         text-decoration: none;
                     }
                 }
@@ -331,7 +331,7 @@
 
                     p {
                         font-size: 14px;
-                        color: $dark_gray;
+                        color: vars.$dark_gray;
                     }
                 }
             }
@@ -373,7 +373,7 @@
 
                     .table_cell {
                         input {
-                            @extend .input_small;
+                            @extend %input_small;
                         }
                     }
 
@@ -406,7 +406,7 @@
                 }
 
                 .container_content {
-                    background: $white;
+                    background: vars.$white;
                     width: 100%;
                     padding: 0 20px;
                     box-sizing: border-box;
@@ -452,7 +452,7 @@
                             }
 
                             .activiy_title {
-                                font-weight: $bold;
+                                font-weight: vars.$bold;
                                 &.overheight {
                                     .activity_previous, .activity_new {
                                         overflow: hidden;
@@ -520,12 +520,12 @@
                     .content_top {
 
                         .container_title {
-                            color: $deep_sky_blue;
+                            color: vars.$deep_sky_blue;
                             font-size: 36px;
-                            font-weight: $bold;
+                            font-weight: vars.$bold;
                             padding: 20px 27px 20px 0;
                             cursor: pointer;
-                            @include tablet {
+                            @include mixins_n_extends.tablet {
                                 font-size: 26px;
                             }
                             img {
@@ -559,7 +559,7 @@
                             @media (max-width: 1280px) {
                                 width: 50%;
                             }
-                            @include tablet {
+                            @include mixins_n_extends.tablet {
                                 position: initial;
                             }
                             @media (max-width: 700px) {
@@ -571,7 +571,7 @@
                                     padding-left: 10px;
                                 }
                             }
-                            @include mobile {
+                            @include mixins_n_extends.mobile {
                                 width: 100%;
                                 &:nth-child(1), &:nth-child(2) {
                                     padding-right: 0;
@@ -615,7 +615,7 @@
                     @media (max-width: 1280px) {
                         width: 50%;
                     }
-                    @include mobile {
+                    @include mixins_n_extends.mobile {
                         width: 100%;
                     }
                 }
@@ -626,13 +626,13 @@
                     @media (max-width: 1280px) {
                         width: 50%;
                     }
-                    @include mobile {
+                    @include mixins_n_extends.mobile {
                         width: 100%;
                     }
                 }
 
                 .container_title {
-                    color: $medium_black !important;
+                    color: vars.$medium_black !important;
                     cursor: default !important;
                     padding-top: 16px !important;
                     padding-bottom: 15px !important;
@@ -658,7 +658,7 @@
                             box-sizing: border-box;
                             padding-right: 70px;
 
-                            @include mobile {
+                            @include mixins_n_extends.mobile {
                                 padding-right: 0;
                             }
 
@@ -678,11 +678,11 @@
                                         display: table-row;
 
                                         &:not(:last-child) {
-                                            border-bottom: 1px solid $lightest_gray;
+                                            border-bottom: 1px solid vars.$lightest_gray;
                                         }
 
                                         .item_text {
-                                            @extend .table_cell;
+                                            @extend %table_cell;
                                             &:last-child {
                                                 width: 95px;
                                                 padding-right: 0;
@@ -733,7 +733,7 @@
                         td:nth-child(1),
                         .pretend_td:nth-child(1) {
                             font-size: 14px;
-                            font-weight: $bold;
+                            font-weight: vars.$bold;
                         }
 
                         tr:nth-child(2),
@@ -768,15 +768,15 @@
 
                         .table_wrap {
                             border-radius: 4px;
-                            border: solid 1px $lightest_gray;
+                            border: solid 1px vars.$lightest_gray;
                             width: 30px;
                             height: 30px;
                             margin: 0 auto;
                             cursor: pointer;
 
                             &:hover {
-                                border: solid 1px $pinky_red;
-                                background: $pinky_red;
+                                border: solid 1px vars.$pinky_red;
+                                background: vars.$pinky_red;
 
                                 .tooltip {
                                     visibility: visible;
@@ -801,7 +801,7 @@
 
                         @media (max-width: 560px) {
 
-                            @include table_mobile_view;
+                            @include mixins_n_extends.table_mobile_view;
 
                             .pretend_td:nth-child(2) {
                                 float: right;

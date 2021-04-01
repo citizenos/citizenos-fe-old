@@ -1,5 +1,6 @@
-@import 'vars';
-@import 'mixins_n_extends';
+
+@use 'vars';
+@use 'mixins_n_extends';
 
 #about_page_root {
 
@@ -9,8 +10,8 @@
         h1, h2 {
             font-size: 46px;
             line-height: 62px;
-            font-weight: $bold;
-            color: $medium_black;
+            font-weight: vars.$bold;
+            color: vars.$medium_black;
             margin-bottom: 10px;
             @media (max-width: 750px) {
                 font-size: 40px;
@@ -52,7 +53,7 @@
     .about_page_left {
         padding: 40px 60px 59px;
         vertical-align: top;
-        background: $light_gray;
+        background: vars.$light_gray;
         width: 70%;
         @media (max-width: 750px) {
             padding: 20px 30px 39px;
@@ -80,7 +81,7 @@
                 height: inherit;
                 display: table;
                 text-align: center;
-                font-weight: $bold;
+                font-weight: vars.$bold;
             }
         }
 
@@ -98,7 +99,7 @@
     }
 
     .blue_bullets {
-        color: $deep_sky_blue;
+        color: vars.$deep_sky_blue;
         font-family: 'Noto Sans', sans-serif;
         margin-top: 2px;
         margin-bottom: 12px;
@@ -117,7 +118,7 @@
 
     .about_page_right {
         padding-top: 80px;
-        background: $side_panel_gray;
+        background: vars.$side_panel_gray;
         width: 30%;
         min-width: 250px;
         text-align: center;
@@ -129,7 +130,7 @@
                 height: 110px;
                 width: 110px;
                 margin: 0 auto;
-                background: $white;
+                background: vars.$white;
                 border-radius: 50%;
                 margin-bottom: 10px;
                 .sample_icon {
@@ -148,7 +149,7 @@
             height: 70px;
             width: 2px;
             margin: 10px auto;
-            background: $white;
+            background: vars.$white;
         }
 
     }

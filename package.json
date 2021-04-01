@@ -45,7 +45,8 @@
     "jshint-stylish": "2.2.1",
     "mocha": "8.1.3",
     "readable-stream": "3.6.0",
-    "run-sequence": "2.2.1"
+    "run-sequence": "2.2.1",
+    "sass": "^1.32.8"
   },
   "bugs": {
     "url": "https://github.com/citizenos/citizenos-fe/issues"

@@ -1,8 +1,8 @@
-@import 'vars';
-@import 'mixins_n_extends';
+@use 'vars';
+@use 'mixins_n_extends';
 
 #home_root {
-    background: $light_gray;
+    background: vars.$light_gray;
     position: absolute;
     top: 0;
     left: 0;
@@ -21,7 +21,7 @@
     /* FILTER AREA DESKTOP */
     #filter_bar_desktop {
         padding: 25px 20px 20px 20px;
-        font-weight: $bold;
+        font-weight: vars.$bold;
         margin-top: -156px;
         position: absolute;
         width: 100%;
@@ -31,7 +31,7 @@
             display: none;
             position: absolute;
             width: 100%;
-            background: $white;
+            background: vars.$white;
             left: 0;
             z-index: 1;
             margin-top: 10px;
@@ -55,7 +55,7 @@
                 }
 
                 &:hover {
-                    color: $deep_sky_blue;
+                    color: vars.$deep_sky_blue;
                 }
 
                 .item_name {
@@ -87,7 +87,7 @@
         }
 
         .dropdown_active {
-            background: $white;
+            background: vars.$white;
 
             .animated_bg_bar {
                 width: 100%;
@@ -99,12 +99,12 @@
         }
 
         .bar_text {
-            color: $dark_gray;
+            color: vars.$dark_gray;
             display: inline-block;
         }
 
         .bar_select {
-            color: $medium_black;
+            color: vars.$medium_black;
             position: relative;
             display: inline-block;
             border-radius: 4px;
@@ -147,7 +147,7 @@
                 border-radius: 4px;
 
                 &:hover {
-                    background: $white;
+                    background: vars.$white;
                 }
             }
 
@@ -173,8 +173,8 @@
 
         .filter_topics {
             height: 40px;
-            color: $deep_sky_blue;
-            font-weight: $bold;
+            color: vars.$deep_sky_blue;
+            font-weight: vars.$bold;
             box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
             font-size: 14px;
             box-sizing: border-box;
@@ -193,7 +193,7 @@
                 width: 100%;
 
                 .blue_link {
-                    @extend .table_cell;
+                    @extend %table_cell;
                     padding: 0 10px;
                 }
 
@@ -214,9 +214,9 @@
                 .filter_text {
 
                     margin-bottom: 4px;
-                    font-weight: $medium;
+                    font-weight: vars.$medium;
                     text-align: left;
-                    color: $medium_black;
+                    color: vars.$medium_black;
                     font-size: 13px;
                     box-sizing: border-box;
                     width: 100%;
@@ -225,7 +225,7 @@
                     white-space: nowrap;
 
                     span {
-                        font-weight: $bold;
+                        font-weight: vars.$bold;
                     }
                 }
             }
@@ -244,12 +244,12 @@
 
                 height: 96px;
                 overflow: hidden;
-                background: $white;
+                background: vars.$white;
 
                 #fi_header {
                     font-size: 16px;
-                    font-weight: $bold;
-                    color: $medium_black_seven;
+                    font-weight: vars.$bold;
+                    color: vars.$medium_black_seven;
                     text-align: left;
                     height: 45px;
 
@@ -282,12 +282,12 @@
                         }
 
                         .fi_button_text {
-                            color: $medium_black_seven;
+                            color: vars.$medium_black_seven;
                             font-size: 14px;
                             padding-bottom: 19px;
 
                             &.selected {
-                                color: $medium_black;
+                                color: vars.$medium_black;
                             }
                         }
 
@@ -310,7 +310,7 @@
                 bottom: 50px;
                 left: 0;
                 right: 0;
-                background: $light_gray;
+                background: vars.$light_gray;
                 overflow: auto;
 
                 .fi_link {
@@ -318,7 +318,7 @@
                     text-align: left;
                     padding: 10px 20px;
                     font-size: 14px;
-                    color: $medium_black;
+                    color: vars.$medium_black;
                     -webkit-text-size-adjust: none;
 
                     &:first-child {
@@ -334,7 +334,7 @@
                 position: absolute;
                 width: 100%;
                 height: 50px;
-                background: $light_gray;
+                background: vars.$light_gray;
                 overflow: hidden;
                 padding: 10px;
                 box-sizing: border-box;
@@ -350,7 +350,7 @@
 
     /* TOPICS AREA */
     #topics_area {
-        background: $light_gray;
+        background: vars.$light_gray;
         text-align: left;
         box-sizing: border-box;
         padding-left: 0px;
@@ -368,7 +368,7 @@
 
             .title_area {
                 h2 {
-                    color: $medium_black;
+                    color: vars.$medium_black;
                 }
             }
 
@@ -379,8 +379,8 @@
             margin: 0 0 10px 10px;
             float: left;
             display: block;
-            background: $category_varia;
-            color: $black;
+            background: vars.$category_varia;
+            color: vars.$black;
             transition: transform .1s;
 
             .topic_wrap {
@@ -434,7 +434,7 @@
 
             .line {
                 margin: 0px 0 12px 0;
-                background: $black;
+                background: vars.$black;
             }
 
             .line::before {
@@ -443,7 +443,7 @@
                 display: block;
                 bottom: 2em;
                 height: 2em;
-                background: linear-gradient(to bottom, rgba($category_varia, 0), $category_varia);
+                background: linear-gradient(to bottom, rgba(vars.$category_varia, 0), vars.$category_varia);
             }
 
             .text_small {
@@ -479,7 +479,7 @@
 
             .text_big {
                 font-size: 26px;
-                font-weight: $bold;
+                font-weight: vars.$bold;
                 line-height: 1.23;
 
                 @media (max-width: 667px) {
@@ -490,85 +490,85 @@
 
             &:hover {
                 transform: scale(1.015);
-                box-shadow: 0 0 8px 0 $dark_gray;
+                box-shadow: 0 0 8px 0 vars.$dark_gray;
             }
 
             &.politics {
-                background: $category_politics;
+                background: vars.$category_politics;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_politics, 0), $category_politics);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_politics, 0), vars.$category_politics);
                 }
             }
 
             &.taxes {
-                background: $category_taxes;
+                background: vars.$category_taxes;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_taxes, 0), $category_taxes);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_taxes, 0), vars.$category_taxes);
                 }
             }
 
             &.defense {
-                background: $category_defense;
+                background: vars.$category_defense;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_defense, 0), $category_defense);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_defense, 0), vars.$category_defense);
                 }
             }
 
             &.environment, &.keepitcleanplan, &.thirtyfourislandproject {
-                background: $category_environment; // #00b23b
+                background: vars.$category_environment; // #00b23b
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_environment, 0), $category_environment);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_environment, 0), vars.$category_environment);
                 }
             }
 
             &.hacktivistcommunity {
-                background: $hacktivist_community_background;
+                background: vars.$hacktivist_community_background;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($hacktivist_community_background, 0), $hacktivist_community_background);
+                    background-image: linear-gradient(to bottom, rgba(vars.$hacktivist_community_background, 0), vars.$hacktivist_community_background);
                 }
             }
 
             &.thetwelvemovie {
-                background: $thetwelvemovie_background;
+                background: vars.$thetwelvemovie_background;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($thetwelvemovie_background, 0), $thetwelvemovie_background);
+                    background-image: linear-gradient(to bottom, rgba(vars.$thetwelvemovie_background, 0), vars.$thetwelvemovie_background);
                 }
             }
 
             &.agriculture {
-                background: $category_agriculture;
+                background: vars.$category_agriculture;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_agriculture, 0), $category_agriculture);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_agriculture, 0), vars.$category_agriculture);
                 }
             }
 
             &.culture {
-                background: $category_culture;
+                background: vars.$category_culture;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_culture, 0), $category_culture);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_culture, 0), vars.$category_culture);
                 }
             }
 
             &.communities {
-                background: $category_communities;
+                background: vars.$category_communities;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_communities, 0), $category_communities);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_communities, 0), vars.$category_communities);
                 }
             }
 
             &.integration {
-                background: $category_integration;
+                background: vars.$category_integration;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_integration, 0), $category_integration);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_integration, 0), vars.$category_integration);
                 }
             }
 
@@ -583,74 +583,74 @@
             &.communities,
             &.thetwelvemovie,
             &.integration {
-                color: $white;
+                color: vars.$white;
 
                 .line {
-                    background: $white;
+                    background: vars.$white;
                 }
             }
 
             &.business {
-                background: $category_business;
+                background: vars.$category_business;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_business, 0), $category_business);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_business, 0), vars.$category_business);
                 }
             }
 
             &.work {
-                background: $category_work;
+                background: vars.$category_work;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_work, 0), $category_work);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_work, 0), vars.$category_work);
                 }
             }
 
             &.transport {
-                background: $category_transport;
+                background: vars.$category_transport;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_transport, 0), $category_transport);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_transport, 0), vars.$category_transport);
                 }
             }
 
             &.health {
-                background: $category_health;
+                background: vars.$category_health;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_health, 0), $category_health);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_health, 0), vars.$category_health);
                 }
             }
 
             &.education {
-                background: $category_education;
+                background: vars.$category_education;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_education, 0), $category_education);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_education, 0), vars.$category_education);
                 }
             }
 
             &.society {
-                background: $category_society;
+                background: vars.$category_society;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_society, 0), $category_society);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_society, 0), vars.$category_society);
                 }
             }
 
             &.varia {
-                background: $category_varia;
+                background: vars.$category_varia;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($category_varia, 0), $category_varia);
+                    background-image: linear-gradient(to bottom, rgba(vars.$category_varia, 0), vars.$category_varia);
                 }
             }
 
             &.eestijazziarengusuunad {
-                background: $eestijazziarengusuunad_background;
+                background: vars.$eestijazziarengusuunad_background;
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($eestijazziarengusuunad_background, 0), $eestijazziarengusuunad_background);
+                    background-image: linear-gradient(to bottom, rgba(vars.$eestijazziarengusuunad_background, 0), vars.$eestijazziarengusuunad_background);
                 }
             }
 
@@ -663,10 +663,10 @@
             &.varia,
             &.eestijazziarengusuunad,
             &.hacktivistcommunity {
-                color: $black;
+                color: vars.$black;
 
                 .line {
-                    background: $black;
+                    background: vars.$black;
                 }
             }
 
@@ -685,18 +685,18 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
-                background-color: $tutorial_background;
+                background-color: vars.$tutorial_background;
 
                 @media (max-width: 667px) {
                     background-image: none;
                 }
 
                 .line {
-                    background: $white;
+                    background: vars.$white;
                 }
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($tutorial_background, 0), $tutorial_background);
+                    background-image: linear-gradient(to bottom, rgba(vars.$tutorial_background, 0), vars.$tutorial_background);
                 }
             }
 
@@ -705,14 +705,14 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
-                background-color: $keepitclean_background;
+                background-color: vars.$keepitclean_background;
 
                 @media (max-width: 667px) {
                     background-image: none;
                 }
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($keepitclean_background, 0), $keepitclean_background);
+                    background-image: linear-gradient(to bottom, rgba(vars.$keepitclean_background, 0), vars.$keepitclean_background);
                 }
             }
 
@@ -721,14 +721,14 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
-                background-color: $hacktivist_community_background;
+                background-color: vars.$hacktivist_community_background;
 
                 @media (max-width: 667px) {
                     background-image: none;
                 }
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($hacktivist_community_background, 0), $hacktivist_community_background);
+                    background-image: linear-gradient(to bottom, rgba(vars.$hacktivist_community_background, 0), vars.$hacktivist_community_background);
                 }
             }
 
@@ -737,14 +737,14 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
-                background-color: $thirtyfourislandproject_background;
+                background-color: vars.$thirtyfourislandproject_background;
 
                 @media (max-width: 667px) {
                     background-image: none;
                 }
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($thirtyfourislandproject_background, 0), $thirtyfourislandproject_background);
+                    background-image: linear-gradient(to bottom, rgba(vars.$thirtyfourislandproject_background, 0), vars.$thirtyfourislandproject_background);
                 }
             }
 
@@ -753,14 +753,14 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
-                background-color: $opinionfestival_background;
+                background-color: vars.$opinionfestival_background;
 
                 @media (max-width: 667px) {
                     background-image: none;
                 }
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($opinionfestival_background, 0), $opinionfestival_background);
+                    background-image: linear-gradient(to bottom, rgba(vars.$opinionfestival_background, 0), vars.$opinionfestival_background);
                 }
             }
 
@@ -769,14 +769,14 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
-                background-color: $pyln_background;
+                background-color: vars.$pyln_background;
 
                 @media (max-width: 667px) {
                     background-image: none;
                 }
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($pyln_background, 0), $pyln_background);
+                    background-image: linear-gradient(to bottom, rgba(vars.$pyln_background, 0), vars.$pyln_background);
                 }
             }
 
@@ -785,14 +785,14 @@
                 background-repeat: no-repeat;
                 background-position: right -50px bottom 0px;
                 background-size: 300px;
-                background-color: $eestijazziarengusuunad_background;
+                background-color: vars.$eestijazziarengusuunad_background;
 
                 @media (max-width: 667px) {
                     background-image: none;
                 }
 
                 .line::before {
-                    background-image: linear-gradient(to bottom, rgba($eestijazziarengusuunad_background, 0), $eestijazziarengusuunad_background);
+                    background-image: linear-gradient(to bottom, rgba(vars.$eestijazziarengusuunad_background, 0), vars.$eestijazziarengusuunad_background);
                 }
             }
 
@@ -877,7 +877,7 @@
 
                 p {
                     font-size: 14px;
-                    color: $dark_gray;
+                    color: vars.$dark_gray;
                 }
             }
         }
@@ -885,7 +885,7 @@
 
 
     #blue_button_wrap {
-        background: $light_gray;
+        background: vars.$light_gray;
         text-align: center;
 
         .blue_button {

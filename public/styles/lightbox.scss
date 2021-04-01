@@ -1,9 +1,9 @@
-@import 'vars';
-@import 'mixins_n_extends';
-@import 'icons';
+@use 'vars';
+@use 'mixins_n_extends';
+@use 'icons';
 
 #root_lightbox {
-    @extend .all_zero;
+    @extend %all_zero;
     background-color: rgba(0, 0, 0, 0.6);
     position: fixed;
     z-index: 11;
@@ -18,7 +18,7 @@
     }
 
     #close_lightbox {
-        @extend .all_zero;
+        @extend %all_zero;
         position: absolute;
         cursor: pointer;
         z-index: 10;
@@ -45,7 +45,7 @@
     }
 
     input {
-        @extend .input_small;
+        @extend %input_small;
     }
 
     input, button {
@@ -69,7 +69,7 @@
         margin-bottom: 10px;
 
         &:focus {
-            border: 2px solid $sky_blue;
+            border: 2px solid vars.$sky_blue;
             border-radius: 4px;
             outline: none;
         }
@@ -80,7 +80,7 @@
         padding-bottom: 1px;
 
         .lightbox_link {
-            color: $deep_sky_blue;
+            color: vars.$deep_sky_blue;
             font-size: 13px;
 
             &:hover {
@@ -107,7 +107,7 @@
                     }
 
                     .title {
-                        color: $medium_black_seven;
+                        color: vars.$medium_black_seven;
                         padding-right: 54px;
 
                         @media (max-width: 560px) {
@@ -122,7 +122,7 @@
                     }
 
                     .lightbox_header_description_text {
-                        font-weight: $medium;
+                        font-weight: vars.$medium;
                         font-style: italic;
                         @media (max-width: 560px) {
                             top: 40px;
@@ -195,13 +195,13 @@
                         box-sizing: border-box;
 
                         .description {
-                            @extend .table_cell;
+                            @extend %table_cell;
                             padding-right: 10px;
                         }
 
                         .toggle_cell {
                             width: 60px;
-                            @extend .table_cell;
+                            @extend %table_cell;
 
                             .toggle_widget {
                                 position: relative;
@@ -244,7 +244,7 @@
 
                 #lightbox_header_text {
                     .title {
-                        color: $medium_black_seven;
+                        color: vars.$medium_black_seven;
                     }
                 }
 
@@ -258,12 +258,12 @@
                         padding: 0 20px 10px 20px;
 
                         .profile_image_cell {
-                            @extend .table_cell;
+                            @extend %table_cell;
                             width: 40px;
                         }
 
                         .profile_text {
-                            @extend .table_cell;
+                            @extend %table_cell;
                             font-size: 14px;
                             word-break: break-all;
                         }
@@ -288,7 +288,7 @@
                 display: table;
                 width: 100%;
                 box-sizing: border-box;
-                background-color: $white;
+                background-color: vars.$white;
                 padding: 20px;
                 border-radius: 0 0 4px 4px;
             }
@@ -296,7 +296,7 @@
     }
 
     #lightbox.delete_comment {
-        @extend #lightbox.confirm_lightbox;
+        @extend #lightbox, .confirm_lightbox;
         width: 600px;
 
         .confirm_description_wrap {
@@ -357,23 +357,23 @@
                 position: relative;
 
                 #lightbox_header_text {
-                    font-weight: $medium;
+                    font-weight: vars.$medium;
                     float: left;
                     padding: 17px 60px 17px 20px;
                     height: 55px;
                     overflow: hidden;
 
                     .title {
-                        @extend .text_dod_dot_dot;
+                        @extend %text_dod_dot_dot;
                         opacity: .7;
-                        font-weight: $bold;
+                        font-weight: vars.$bold;
                         font-size: 16px;
                         padding-right: 60px;
                         position: absolute;
                     }
 
                     .title_description {
-                        @extend .text_dod_dot_dot;
+                        @extend %text_dod_dot_dot;
                         margin-top: 25px;
                         overflow: hidden;
                         position: absolute;
@@ -460,11 +460,11 @@
                                     left: 50%;
                                     height: 2px;
                                     position: absolute;
-                                    background: $deep_sky_blue;
+                                    background: vars.$deep_sky_blue;
                                     transition: all 300ms cubic-bezier(.45, .78, 0, 1);
                                     bottom: 0;
 
-                                    @include tablet {
+                                    @include mixins_n_extends.tablet {
                                         transition: none;
                                     }
 
@@ -475,7 +475,7 @@
                                     .blue_bottom_line {
                                         width: 100%;
                                         left: 0%;
-                                        @include tablet {
+                                        @include mixins_n_extends.tablet {
                                             transition: none;
 
                                             width: auto;
@@ -496,7 +496,7 @@
                                     width: 100%;
                                     left: 0%;
                                     height: 2px;
-                                    background: $deep_sky_blue;
+                                    background: vars.$deep_sky_blue;
                                 }
                             }
                         }
@@ -566,7 +566,7 @@
                 .line_files_sepparator {
                     height: 80px;
                     width: 1px;
-                    background-color: $lightest_gray;
+                    background-color: vars.$lightest_gray;
                     display: table-cell;
                 }
 
@@ -586,7 +586,7 @@
                         .file_add_btn_description {
                             height: 20px;
                             width: auto;
-                            color: $medium_black;
+                            color: vars.$medium_black;
                             font-size: 16px;
                             font-weight: bold;
                             line-height: 20px;
@@ -671,7 +671,7 @@
 
                         .footer_link {
                             font-size: 0.875em;
-                            color: $dark_blue;
+                            color: vars.$dark_blue;
                         }
 
                     }
@@ -701,8 +701,8 @@
                     &.like_link {
                         background: none !important;
                         border: none !important;
-                        color: $deep_sky_blue;
-                        font-weight: $medium;
+                        color: vars.$deep_sky_blue;
+                        font-weight: vars.$medium;
                     }
                 }
 
@@ -764,16 +764,16 @@
                 position: relative;
 
                 #lightbox_header_text {
-                    font-weight: $medium;
+                    font-weight: vars.$medium;
                     float: left;
                     padding: 17px 60px 17px 20px;
                     height: 55px;
                     overflow: hidden;
 
                     .title {
-                        @extend .text_dod_dot_dot;
+                        @extend %text_dod_dot_dot;
                         opacity: .7;
-                        font-weight: $bold;
+                        font-weight: vars.$bold;
                         font-size: 16px;
                         padding-right: 60px;
                         position: absolute;
@@ -807,14 +807,14 @@
 
                 .policy_links {
                     margin-top: 20px;
-                    color: $dark_blue;
+                    color: vars.$dark_blue;
 
                     .policy_link_wrap {
                         padding-bottom: 10px;
 
                         .policy_link {
                             padding: 2px 0 0 0;
-                            color: $dark_blue;
+                            color: vars.$dark_blue;
                         }
                     }
                 }
@@ -911,7 +911,7 @@
                     margin-left: 20px;
                     span {
                         display: inline-block;
-                        color: $pinky_red;
+                        color: vars.$pinky_red;
                     }
                 }
 
@@ -977,7 +977,7 @@
             padding: 0 20px;
             display: table;
             height: 30px;
-            background: $medium_gray;
+            background: vars.$medium_gray;
             width: 100%;
             text-align: left;
             box-sizing: border-box;
@@ -991,7 +991,7 @@
                 margin-left: 20px;
                 position: relative;
 
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     opacity: 1;
                 }
 
@@ -1005,14 +1005,14 @@
         .double_row_item {
             padding: 20px 20px 19px 20px;
             box-sizing: border-box;
-            border-bottom: 1px solid $lightest_gray;
+            border-bottom: 1px solid vars.$lightest_gray;
 
             &:last-child {
                 border-bottom: none;
             }
 
             .blue_link {
-                font-weight: $bold;
+                font-weight: vars.$bold;
                 text-align: left;
             }
 
@@ -1078,7 +1078,7 @@
                     .mobile_extra_info {
                         display: block;
                         margin-top: 10px;
-                        font-weight: $medium;
+                        font-weight: vars.$medium;
                         padding-right: 52px;
                         position: relative;
 
@@ -1118,7 +1118,7 @@
                                 z-index: 1;
                             }
 
-                            background-color: $white;
+                            background-color: vars.$white;
                         }
                     }
                 }
@@ -1163,7 +1163,7 @@
             }
 
             td:first-child {
-                color: $medium_black_seven;
+                color: vars.$medium_black_seven;
             }
         }
 
@@ -1256,11 +1256,11 @@
                         width: 100%;
                         height: 40px;
                         display: table;
-                        background: $aqua_marine;
+                        background: vars.$aqua_marine;
                         border-radius: 4px;
                         padding: 0 10px;
                         box-sizing: border-box;
-                        border: solid 1px $aqua_marine_border;
+                        border: solid 1px vars.$aqua_marine_border;
                         margin-top: 10px;
                     }
                 }
@@ -1325,7 +1325,7 @@
                     }
 
                     .code {
-                        font-weight: $bold;
+                        font-weight: vars.$bold;
                         font-size: 16px;
                         margin-bottom: 8px;
                         margin-top: 10px;
@@ -1424,12 +1424,12 @@
                     padding: 20px 20px 22px 20px;
                     text-align: center;
 
-                    background: $white;
+                    background: vars.$white;
                     border-top-left-radius: 4px;
                     border-top-right-radius: 4px;
 
                     @media (max-width: 560px) {
-                        background: $light_gray;
+                        background: vars.$light_gray;
                         padding-top: 40px;
                         border-radius: 0;
                     }
@@ -1439,16 +1439,16 @@
                     }
 
                     .delete_title {
-                        color: $pinky_red !important;
+                        color: vars.$pinky_red !important;
                         font-size: 22px;
-                        font-weight: $bold;
+                        font-weight: vars.$bold;
                         margin-bottom: 5px;
                     }
 
                     .warn_title {
-                        color: $dark_blue !important;
+                        color: vars.$dark_blue !important;
                         font-size: 22px;
-                        font-weight: $bold;
+                        font-weight: vars.$bold;
                         margin-bottom: 5px;
                     }
 
@@ -1486,7 +1486,7 @@
 
                     .text-block {
                         padding: 20px;
-                        background-color: $white;
+                        background-color: vars.$white;
 
                     }
 
@@ -1599,7 +1599,7 @@
                 }
 
                 &:hover {
-                    background: $light_gray;
+                    background: vars.$light_gray;
                 }
 
                 .sprite {
@@ -1615,19 +1615,19 @@
             #lightbox_header {
                 width: 100%;
                 height: 54px;
-                background: $white;
+                background: vars.$white;
                 border-radius: 4px 4px 0 0;
                 display: table;
                 box-sizing: border-box;
-                color: $medium_black;
+                color: vars.$medium_black;
 
                 @media (max-width: 560px) {
                     border-radius: 0
                 }
 
                 #lightbox_header_text {
-                    @extend .table_cell;
-                    font-weight: $bold;
+                    @extend %table_cell;
+                    font-weight: vars.$bold;
                     font-size: 16px;
                     padding: 15px 0 15px 20px;
                     box-sizing: border-box;
@@ -1635,7 +1635,7 @@
             }
 
             .lightbox_content {
-                background: $light_gray;
+                background: vars.$light_gray;
                 font-size: 14px;
                 overflow: hidden;
 
@@ -1722,7 +1722,7 @@
 
                     .social_button {
                         height: 40px;
-                        color: $white;
+                        color: vars.$white;
                         width: 100%;
                         border-radius: 2px;
                         cursor: pointer;
@@ -1737,7 +1737,7 @@
                             display: table;
                             border-radius: 2px 0 0 2px;
                             position: absolute;
-                            background: $white;
+                            background: vars.$white;
                             background-size: cover;
 
                             .sprite {
@@ -1762,53 +1762,53 @@
 
                     #facebook {
                         .social_text .table_cell {
-                            background: $facebook_medium;
-                            border: 1px solid $facebook_dark;
+                            background: vars.$facebook_medium;
+                            border: 1px solid vars.$facebook_dark;
                         }
 
                         .social_icon {
-                            border: 1px solid $facebook_dark;
+                            border: 1px solid vars.$facebook_dark;
                         }
                     }
 
                     #facebook:hover {
                         .social_text .table_cell {
-                            background: $facebook_light;
+                            background: vars.$facebook_light;
                         }
                     }
 
                     #google {
                         .social_text .table_cell {
-                            background: $google_medium;
-                            border: 1px solid $google_dark;
+                            background: vars.$google_medium;
+                            border: 1px solid vars.$google_dark;
                         }
 
                         .social_icon {
-                            border: 1px solid $google_dark;
+                            border: 1px solid vars.$google_dark;
                         }
                     }
 
                     #google:hover {
                         .social_text .table_cell {
-                            background: $google_light;
+                            background: vars.$google_light;
                         }
                     }
 
                     #id_card, #smart_id {
                         .social_text .table_cell {
-                            background: $id_medium;
-                            color: $medium_black;
-                            border: 1px solid $id_dark;
+                            background: vars.$id_medium;
+                            color: vars.$medium_black;
+                            border: 1px solid vars.$id_dark;
                         }
 
                         .social_icon {
-                            border: 1px solid $id_dark;
+                            border: 1px solid vars.$id_dark;
                         }
                     }
 
                     #id_card:hover, #smart_id:hover {
                         .social_text .table_cell {
-                            background: $id_light;
+                            background: vars.$id_light;
                         }
                     }
 
@@ -1935,7 +1935,7 @@
                 }
 
                 .settings_cell {
-                    @extend .table_cell;
+                    @extend %table_cell;
                     width: 50%;
 
                     &:last-child {
@@ -1948,7 +1948,7 @@
 
                     .setting_title {
                         font-size: 16px;
-                        font-weight: $bold;
+                        font-weight: vars.$bold;
                     }
 
                     .setting_description {
@@ -2009,7 +2009,7 @@
                 }
 
                 .language_cell {
-                    @extend .table_cell;
+                    @extend %table_cell;
                     width: 31%;
                     float: left;
                     padding: 5px;
@@ -2117,7 +2117,7 @@
                             }
 
                             .blue_link {
-                                font-weight: $bold !important;
+                                font-weight: vars.$bold !important;
                                 margin: 6px 10px 5px 20px;
                                 float: left;
                             }
@@ -2202,15 +2202,15 @@
                 display: table;
                 width: 100%;
                 height: 30px;
-                background: $medium_gray;
-                border: 1px solid $lightest_gray;
+                background: vars.$medium_gray;
+                border: 1px solid vars.$lightest_gray;
                 border-radius: 4px;
                 overflow: hidden;
                 box-sizing: border-box;
                 margin-bottom: 5px;
 
                 .category_cell {
-                    @extend .table_cell;
+                    @extend %table_cell;
                 }
 
                 .category_title {
@@ -2220,15 +2220,15 @@
                 .category_control {
 
                     &:hover {
-                        background: $white;
-                        @include tablet {
-                            background: $medium_gray;
+                        background: vars.$white;
+                        @include mixins_n_extends.tablet {
+                            background: vars.$medium_gray;
                         }
                     }
 
                     cursor: pointer;
                     width: 28px;
-                    border-left: 1px solid $lightest_gray;
+                    border-left: 1px solid vars.$lightest_gray;
 
                     .sprite {
                         margin: 0 auto;
@@ -2253,8 +2253,8 @@
                         display: table;
                         width: 100%;
                         height: 30px;
-                        background: $medium_gray;
-                        border: 1px solid $lightest_gray;
+                        background: vars.$medium_gray;
+                        border: 1px solid vars.$lightest_gray;
                         border-radius: 4px;
                         overflow: hidden;
                         box-sizing: border-box;
@@ -2262,7 +2262,7 @@
 
                         .category_control {
                             &:hover {
-                                background: $white;
+                                background: vars.$white;
                             }
 
                             display: table-cell;
@@ -2275,15 +2275,15 @@
 
                     &:not(.disabled):hover {
                         @media (min-width: 1024px) {
-                            background: $deep_sky_blue;
-                            color: $white;
-                            border: 1px solid $dark_blue;
+                            background: vars.$deep_sky_blue;
+                            color: vars.$white;
+                            border: 1px solid vars.$dark_blue;
                             .category_control {
                                 display: table-cell;
-                                border-left: 1px solid $dark_blue;
+                                border-left: 1px solid vars.$dark_blue;
 
                                 &:hover {
-                                    background: $dark_blue;
+                                    background: vars.$dark_blue;
                                 }
                             }
                         }

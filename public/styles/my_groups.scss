@@ -1,7 +1,7 @@
-@import 'vars';
-@import 'mixins_n_extends';
-@import 'icons';
+@use 'vars';
+@use 'mixins_n_extends';
+@use 'icons';
 
 #my_groups_root {
-    @extend .default_setup;
+    @extend %default_setup;
 }

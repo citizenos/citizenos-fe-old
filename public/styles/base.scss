@@ -1,7 +1,6 @@
-@import 'vars';
-@import 'mixins_n_extends';
-@import 'no_topics';
-@import 'icons';
+@use 'mixins_n_extends';
+@use 'vars';
+@use 'icons';
 
 body, html {
     font-family: 'Noto Sans', sans-serif;
@@ -11,8 +10,8 @@ body, html {
     min-height: 100%;
     width: 100%;
     bottom: 0;
-    color: $medium_black;
-    background: $medium_black;
+    color: vars.$medium_black;
+    background: vars.$medium_black;
     -webkit-text-size-adjust: 100%;
 }
 
@@ -29,16 +28,16 @@ body.body_not_fixed {
 h1 {
     padding: 0;
     margin: 0;
-    color: $dark_gray;
-    font-weight: $light;
+    color: vars.$dark_gray;
+    font-weight: vars.$light;
     font-size: 36px;
 }
 
 h2 {
     padding: 0;
     margin: 20px 0 0 0;
-    color: $deep_sky_blue;
-    font-weight: $bold;
+    color: vars.$deep_sky_blue;
+    font-weight: vars.$bold;
     font-size: 16px;
 }
 
@@ -74,6 +73,267 @@ h2 {
     .print_never {
         display: none !important;
     }
+}
+
+.table {
+    @extend %table;
+}
+
+.table_cell {
+    @extend %table_cell;
+}
+
+.table_row {
+    @extend %table_row;
+}
+
+
+.blue_progress_bar {
+    background: vars.$deep_sky_blue;
+    color: vars.$white;
+}
+
+.aqua_progress_bar {
+    background: vars.$aqua_marine;
+}
+
+.yellow_progress_bar {
+    background: vars.$pin_yellow;
+}
+
+/* INFO BAR COLORS */
+.bar_red {
+    color: vars.$white;
+    background:  vars.$pinky_red;
+
+    a:link, a:visited {
+        color: vars.$white;
+        text-decoration: underline;
+    }
+
+    .info_icon:last-child:hover {
+        background: vars.$pinky_red_dark;
+    }
+}
+
+.bar_blue {
+    color: vars.$white;
+    background:  vars.$deep_sky_blue;
+
+    a:link, a:visited {
+        color: vars.$white;
+        text-decoration: underline;
+    }
+
+    .info_icon:last-child:hover {
+        background: vars.$dark_blue;
+    }
+}
+
+.bar_green {
+    color: vars.$green_dark;
+    background:  vars.$aqua_marine;
+
+    a:link, a:visited {
+        color: vars.$green_dark;
+        text-decoration: underline;
+    }
+
+    .info_icon:last-child:hover {
+        background: vars.$green_medium;
+    }
+}
+
+.bar_orange {
+    color: vars.$white;
+    background:  vars.$orange;
+
+    a:link, a:visited {
+        color: vars.$white;
+        text-decoration: underline;
+    }
+
+    .info_icon:last-child:hover {
+        background: vars.$orange;
+    }
+}
+
+
+
+.dark_yellow_background {
+    background: vars.$dark_yellow;
+}
+
+.aqua_marine_progress_bar_background {
+    background: vars.$aqua_marine;
+}
+
+.aqua_marine_background {
+    background: vars.$aqua_marine;
+    &:hover {
+        background: vars.$aqua_marine_border_second !important;
+        @media (max-width: 1025px) {
+            background: vars.$aqua_marine;
+        }
+    }
+}
+
+.timeline_gray_background {
+    background: vars.$timeline_gray;
+}
+
+.orange_background {
+    background: vars.$orange;
+}
+
+.purpule_background {
+    background: vars.$purpule;
+}
+
+.yellow_background {
+    background: vars.$yellow;
+}
+
+.light_gray_background {
+    background: vars.$light_gray;
+}
+
+.pin_yellow_background {
+    background: vars.$pin_yellow;
+}
+
+.red_background {
+    background: vars.$red;
+}
+
+.blue_background {
+    background: vars.$deep_sky_blue;
+}
+
+.dark_gray_background {
+    background: vars.$dark_gray;
+}
+
+.white_text {
+    color: vars.$white !important;
+}
+
+.black_text {
+    color: vars.$medium_black !important;
+}
+
+.dark_line {
+    background: vars.$dark_black;
+}
+
+.light_line {
+    background: vars.$light_black;
+}
+
+.white_line {
+    background: vars.$white;
+}
+
+.black_line {
+    background: vars.$medium_black;
+}
+
+.lightest_line {
+    background: vars.$lightest_gray;
+}
+
+.red_text {
+    color: vars.$pinky_red;
+}
+
+.gray_text {
+    color: vars.$pinky_red;
+}
+
+.black_text {
+    color: vars.$medium_black;
+}
+
+.gray_borders {
+    border: 1px solid vars.$lightest_gray;
+    border-radius: 4px;
+}
+
+.nature_green_button {
+    background: vars.$nature_green;
+    border: 1px solid vars.$nature_green_border;
+    color: vars.$medium_black;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 4px;
+    &:hover {
+        @media (min-width: 1025px) {
+            background: vars.$nature_green_dark !important;
+            border: 1px solid vars.$nature_green_border_dark;
+        }
+    }
+    &.disabled {
+        background: vars.$nature_green;
+    }
+}
+
+.pinky_red_button {
+    @extend .nature_green_button;
+    background: vars.$pinky_red;
+    color: vars.$white;
+    border: 1px solid vars.$pinky_red_border;
+    &:hover {
+        @media (min-width: 1025px) {
+            background: vars.$pinky_red_dark_hover !important;
+            border: 1px solid vars.$pinky_red_dark_border;
+        }
+    }
+    &.disabled {
+        background: vars.$pinky_red;
+    }
+}
+
+.blue_white_button {
+    @extend .nature_green_button;
+    background: vars.$white;
+    color: vars.$deep_sky_blue;
+    border: 1px solid vars.$lightest_gray;
+    &:hover {
+        @media (min-width: 1025px) {
+            background: vars.$medium_gray !important;
+            border: 1px solid vars.$mobile_border_gray;
+        }
+    }
+    &.disabled {
+        background: vars.$pinky_red;
+    }
+}
+
+
+
+.bullet_blue {
+    background: vars.$deep_sky_blue;
+    color: vars.$white;
+}
+
+.bullet_yellow {
+    background: vars.$pin_yellow;
+}
+
+.bullet_aqua_marine {
+    background: vars.$aqua_marine_border;
+}
+
+.bullet_orange {
+    background: #f5762d;
+}
+
+.bullet_sky_blue {
+    background: vars.$sky_blue;
+}
+
+.medium_black_seven {
+    color: vars.$medium_black_seven;
 }
 
 .print_footer {
@@ -112,7 +372,7 @@ input::-ms-clear {
 }
 
 b {
-    font-weight: $bold;
+    font-weight: vars.$bold;
 }
 
 a img, a {
@@ -120,11 +380,11 @@ a img, a {
 }
 
 a:link, a:visited {
-    color: $deep_sky_blue;
+    color: vars.$deep_sky_blue;
 }
 
 a:hover {
-    color: $dark_blue;
+    color: vars.$dark_blue;
 }
 
 img {
@@ -138,10 +398,10 @@ table, .pretend_table {
     th, .pretend_th {
         font-size: 13px;
         opacity: .5;
-        font-weight: $medium;
+        font-weight: vars.$medium;
         text-decoration: underline;
         cursor: pointer;
-        border-bottom: 1px solid $lightest_gray;
+        border-bottom: 1px solid vars.$lightest_gray;
         padding: 20px 0 10px 0;
 
         &:first-child {
@@ -184,7 +444,7 @@ table, .pretend_table {
 }
 
 .pretend_td, .pretend_th, .pagination_wrapper {
-    @extend .table_cell;
+    @extend %table_cell;
 }
 
 .pagination_wrapper {
@@ -198,7 +458,7 @@ table, .pretend_table {
 }
 
 .reaction_name {
-    @extend .table_cell;
+    @extend %table_cell;
     min-width: 260px;
 }
 .reaction_wrap {
@@ -218,18 +478,18 @@ table, .pretend_table {
 
         &:nth-child(1) {
             font-size: 14px;
-            font-weight: $bold;
+            font-weight: vars.$bold;
         }
     }
 }
 
 .btn_wrap.white_bg {
-    background-color: $white;
+    background-color: vars.$white;
 }
 
 .btn_wrap {
     border-radius: 4px;
-    border: solid 1px $lightest_gray;
+    border: solid 1px vars.$lightest_gray;
     width: 30px;
     height: 30px;
     margin: 0 auto;
@@ -256,9 +516,9 @@ table, .pretend_table {
 
 .btn_wrap.white_bg:not(.disabled) {
     &:hover {
-        border: solid 1px $lightest_gray;
-        @include tablet {
-            background: $white !important;
+        border: solid 1px vars.$lightest_gray;
+        @include mixins_n_extends.tablet {
+            background: vars.$white !important;
         }
     }
 }
@@ -267,7 +527,7 @@ table, .pretend_table {
     display: none;
 }
 
-@include tablet {
+@include mixins_n_extends.tablet {
     .desktop_fix {
         display: none;
     }
@@ -277,32 +537,32 @@ table, .pretend_table {
 }
 
 .btn_wrap.recycle_bin:not(.disabled) {
-    background-color: $white;
+    background-color: vars.$white;
 
     &:hover {
-        border: solid 1px $pinky_red;
-        background: $pinky_red;
+        border: solid 1px vars.$pinky_red;
+        background: vars.$pinky_red;
 
         .sprite.desktop_fix {
             @extend .sprite-mytopics-icon-deletetopic02x;
         }
 
-        @include tablet {
+        @include mixins_n_extends.tablet {
             background: initial;
-            border: solid 1px $lightest_gray;
+            border: solid 1px vars.$lightest_gray;
         }
     }
 }
 
 .btn_wrap.edit_btn:not(.disabled) {
-    background-color: $white;
+    background-color: vars.$white;
 
     &:hover {
-        border: solid 1px $lightest_gray;
-        background: $lightest_gray;
+        border: solid 1px vars.$lightest_gray;
+        background: vars.$lightest_gray;
 
-        @include tablet {
-            background: $white !important;
+        @include mixins_n_extends.tablet {
+            background: vars.$white !important;
         }
     }
 }
@@ -310,9 +570,9 @@ table, .pretend_table {
 .btn_wrap.check.yes {
 
     &:hover {
-        border: solid 1px $aqua_marine_border;
-        @include tablet {
-            border: solid 1px $lightest_gray;
+        border: solid 1px vars.$aqua_marine_border;
+        @include mixins_n_extends.tablet {
+            border: solid 1px vars.$lightest_gray;
         }
 
         .sprite {
@@ -329,9 +589,9 @@ table, .pretend_table {
 
     &:hover {
 
-        border: solid 1px $pinky_red_dark;
-        @include tablet {
-            border: solid 1px $lightest_gray;
+        border: solid 1px vars.$pinky_red_dark;
+        @include mixins_n_extends.tablet {
+            border: solid 1px vars.$lightest_gray;
         }
 
         .sprite {
@@ -346,7 +606,7 @@ table, .pretend_table {
     width: 22px;
     height: 22px;
     cursor: pointer;
-    background-color: $lightest_gray;
+    background-color: vars.$lightest_gray;
     border-radius: 50%;
     overflow: visible;
 
@@ -380,7 +640,7 @@ table, .pretend_table {
 
     .yellow_bg {
         transition: all 360ms cubic-bezier(.45, .78, 0, 1);
-        background: $pin_yellow;
+        background: vars.$pin_yellow;
         border-radius: 50%;
         width: 0;
         height: 0;
@@ -412,7 +672,7 @@ table, .pretend_table {
 
     .red_bg {
         @extend .yellow_bg;
-        background: $pinky_red;
+        background: vars.$pinky_red;
     }
 }
 
@@ -435,7 +695,7 @@ table, .pretend_table {
     height: 40px;
     display: table;
     width: 100%;
-    font-weight: $bold;
+    font-weight: vars.$bold;
     text-align: center;
     cursor: pointer;
 
@@ -445,7 +705,7 @@ table, .pretend_table {
         left: 0;
         height: 20px;
         width: 20px;
-        background-color: $white;
+        background-color: vars.$white;
         display: block;
 
         &:after {
@@ -456,7 +716,7 @@ table, .pretend_table {
             top: 2px;
             width: 7px;
             height: 10px;
-            border: solid $aqua_marine_border;
+            border: solid vars.$aqua_marine_border;
             border-width: 0 3px 3px 0;
             -webkit-transform: rotate(45deg);
             -ms-transform: rotate(45deg);
@@ -471,8 +731,8 @@ table, .pretend_table {
         left: 0;
         height: 20px;
         width: 20px;
-        background-color: $white;
-        border: solid 1px $lightest_gray;
+        background-color: vars.$white;
+        border: solid 1px vars.$lightest_gray;
         border-radius: 50%;
 
         &:after {
@@ -484,7 +744,7 @@ table, .pretend_table {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: $aqua_marine_border;
+            background: vars.$aqua_marine_border;
         }
     }
 
@@ -513,15 +773,15 @@ table, .pretend_table {
         }
 
         .table_cell:first-child {
-            border: 1px solid $aqua_marine_border;
-            background: $aqua_marine;
+            border: 1px solid vars.$aqua_marine_border;
+            background: vars.$aqua_marine;
         }
 
         .table_cell:last-child {
-            background: $aqua_marine;
-            border-top: 1px solid $aqua_marine_border;
-            border-right: 1px solid $aqua_marine_border;
-            border-bottom: 1px solid $aqua_marine_border;
+            background: vars.$aqua_marine;
+            border-top: 1px solid vars.$aqua_marine_border;
+            border-right: 1px solid vars.$aqua_marine_border;
+            border-bottom: 1px solid vars.$aqua_marine_border;
         }
     }
 
@@ -535,15 +795,15 @@ table, .pretend_table {
         &:first-child {
             width: 40px;
             border-radius: 4px 0 0 4px;
-            background: $light_gray;
-            border: 1px solid $lightest_gray;
+            background: vars.$light_gray;
+            border: 1px solid vars.$lightest_gray;
         }
 
         &:last-child {
-            background: $light_gray;
-            border-top: 1px solid $lightest_gray;
-            border-right: 1px solid $lightest_gray;
-            border-bottom: 1px solid $lightest_gray;
+            background: vars.$light_gray;
+            border-top: 1px solid vars.$lightest_gray;
+            border-right: 1px solid vars.$lightest_gray;
+            border-bottom: 1px solid vars.$lightest_gray;
         }
     }
 
@@ -552,11 +812,11 @@ table, .pretend_table {
         @media (min-width: 1025px) {
             .table_cell {
                 &:first-child {
-                    background: $medium_gray;
+                    background: vars.$medium_gray;
                 }
 
                 &:last-child {
-                    background: $medium_gray;
+                    background: vars.$medium_gray;
                 }
             }
         }
@@ -569,41 +829,41 @@ table, .pretend_table {
             cursor: pointer;
 
             .table_cell {
-                color: $white;
-                background: $deep_sky_blue;
+                color: vars.$white;
+                background: vars.$deep_sky_blue;
 
                 &.right_side {
-                    background: $deep_sky_blue;
+                    background: vars.$deep_sky_blue;
                 }
 
                 &:last-child {
-                    border-left: 1px solid $deep_sky_blue;
-                    border-top: 1px solid $deep_sky_blue;
-                    border-right: 1px solid $deep_sky_blue;
-                    border-bottom: 1px solid $deep_sky_blue;
+                    border-left: 1px solid vars.$deep_sky_blue;
+                    border-top: 1px solid vars.$deep_sky_blue;
+                    border-right: 1px solid vars.$deep_sky_blue;
+                    border-bottom: 1px solid vars.$deep_sky_blue;
                 }
             }
         }
 
         .table_cell {
-            border-top: 2px solid $deep_sky_blue;
-            border-right: 2px solid $deep_sky_blue;
-            border-bottom: 2px solid $deep_sky_blue;
-            border-left: 2px solid $deep_sky_blue;
+            border-top: 2px solid vars.$deep_sky_blue;
+            border-right: 2px solid vars.$deep_sky_blue;
+            border-bottom: 2px solid vars.$deep_sky_blue;
+            border-left: 2px solid vars.$deep_sky_blue;
             background: none;
             border-radius: 4px;
-            color: $deep_sky_blue;
+            color: vars.$deep_sky_blue;
 
             &.left_side {
-                background: $deep_sky_blue;
+                background: vars.$deep_sky_blue;
                 border-radius: 4px 0 0 4px;
             }
 
             &.right_side {
                 background: transparent;
-                border-top: 2px solid $deep_sky_blue;
-                border-right: 2px solid $deep_sky_blue;
-                border-bottom: 2px solid $deep_sky_blue;
+                border-top: 2px solid vars.$deep_sky_blue;
+                border-right: 2px solid vars.$deep_sky_blue;
+                border-bottom: 2px solid vars.$deep_sky_blue;
                 border-radius: 0 4px 4px 0;
             }
 
@@ -616,14 +876,14 @@ table, .pretend_table {
         &:not(.active):hover {
             @media (min-width: 1025px) {
                 .table_cell {
-                    border-color: $deep_sky_blue;
+                    border-color: vars.$deep_sky_blue;
 
                     &.left_side {
-                        background: $deep_sky_blue;
+                        background: vars.$deep_sky_blue;
                     }
 
                     &.right_side {
-                        background: $medium_gray;
+                        background: vars.$medium_gray;
                     }
                 }
             }
@@ -642,21 +902,21 @@ table, .pretend_table {
     .voting_button {
         .table_cell:first-child {
             &.left_side {
-                background-color: $lightest_gray;
-                color: $dark_gray;
+                background-color: vars.$lightest_gray;
+                color: vars.$dark_gray;
             }
         }
 
         &.active {
             .table_cell:first-child {
                 &.left_side {
-                    background-color: $aqua_marine_border;
+                    background-color: vars.$aqua_marine_border;
                 }
             }
         }
     }
     .delegation_information {
-        background: $light_gray;
+        background: vars.$light_gray;
         padding: 20px;
         margin-top: 20px;
 
@@ -701,7 +961,7 @@ table, .pretend_table {
 
 
 .minimize_container {
-    @extend .table_cell;
+    @extend %table_cell;
     width: 36px;
     cursor: pointer;
 
@@ -710,9 +970,9 @@ table, .pretend_table {
     }
 
     &:hover {
-        background: $dark_gray;
+        background: vars.$dark_gray;
 
-        @include tablet {
+        @include mixins_n_extends.tablet {
             background: initial;
         }
     }
@@ -722,10 +982,10 @@ table, .pretend_table {
     position: absolute;
     right: -11px;
     top: 4px;
-    @include rotate(180);
+    @include mixins_n_extends.rotate(180);
 
     &.desc {
-        @include rotate(0);
+        @include mixins_n_extends.rotate(0);
     }
 }
 
@@ -749,13 +1009,13 @@ table, .pretend_table {
     width: 40px;
     border-radius: 50%;
     overflow: hidden;
-    color: $medium_black;
+    color: vars.$medium_black;
     display: table;
     font-size: 14px;
     text-align: center;
     float: left;
     display: table;
-    background: $another_gray !important;
+    background: vars.$another_gray !important;
     margin-right: 20px;
     margin-top: 4px;
 }
@@ -765,16 +1025,16 @@ table, .pretend_table {
     width: 20px;
     font-size: 11px;
     margin-top: 0;
-    font-weight: $bold;
+    font-weight: vars.$bold;
 }
 
 .via {
-    font-weight: $medium;
+    font-weight: vars.$medium;
     font-size: 13px;
 }
 
 .smooth_gray {
-    color: $smooth_gray;
+    color: vars.$smooth_gray;
 }
 
 .mobile_extra_info {
@@ -852,7 +1112,7 @@ table, .pretend_table {
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
         overflow: hidden;
-        background: $white;
+        background: vars.$white;
         max-height: 250px;
         position: absolute;
         left: 1px;
@@ -865,7 +1125,7 @@ table, .pretend_table {
             max-height: 250px;
             overflow-y: auto;
 
-            @include mobile {
+            @include mixins_n_extends.mobile {
                 max-height: 200px;
             }
 
@@ -878,7 +1138,7 @@ table, .pretend_table {
                 box-sizing: border-box;
 
                 &:hover, &.active {
-                    background-color: $transparent_blue;
+                    background-color: vars.$transparent_blue;
                     cursor: pointer;
 
                     .blue_link {
@@ -887,12 +1147,12 @@ table, .pretend_table {
                         }
                     }
 
-                    @include tablet {
+                    @include mixins_n_extends.tablet {
                         background-color: initial;
                     }
                 }
 
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     .blue_link {
                         display: none;
                     }
@@ -903,7 +1163,7 @@ table, .pretend_table {
                 }
 
                 .blue_link {
-                    font-weight: $bold;
+                    font-weight: vars.$bold;
                     font-size: 13px;
                     width: 174px;
                     text-align: right;
@@ -968,13 +1228,13 @@ table, .pretend_table {
             text-align: center;
             border-radius: 50%;
             box-sizing: border-box;
-            color: $white;
+            color: vars.$white;
 
             .profile_circle {
                 position: absolute;
                 width: inherit;
                 height: inherit;
-                border: 1px solid $white;
+                border: 1px solid vars.$white;
                 border-radius: 50%;
                 box-sizing: border-box;
                 left: 0;
@@ -987,11 +1247,11 @@ table, .pretend_table {
 .profile_image_wrapper.dark {
 
     .profile_image_filler {
-        color: $dark_gray;
+        color: vars.$dark_gray;
 
         .profile_circle {
-            border: 1px solid $smooth_gray;
-            color: $dark_gray;
+            border: 1px solid vars.$smooth_gray;
+            color: vars.$dark_gray;
         }
     }
 
@@ -1028,7 +1288,7 @@ a:link, a:visited {
 }
 
 .tip {
-    font-weight: $bold;
+    font-weight: vars.$bold;
     font-size: 16px;
 }
 
@@ -1037,11 +1297,11 @@ a:link, a:visited {
 }
 
 .error_input {
-    border: solid 1px $pinky_red !important;
+    border: solid 1px vars.$pinky_red !important;
 }
 
 .error_label {
-    color: $pinky_red;
+    color: vars.$pinky_red;
     font-size: 13px;
     display: table;
     margin-top: 6px;
@@ -1077,7 +1337,7 @@ a:link, a:visited {
         .icon_cell {
             height: inherit;
             width: inherit;
-            @extend .table_cell;
+            @extend %table_cell;
 
             .sprite {
                 margin: 0 auto;
@@ -1092,11 +1352,11 @@ a:link, a:visited {
             cursor: pointer;
             height: 41px;
             width: 41px;
-            background: $light_gray;
+            background: vars.$light_gray;
             border-radius: 0 4px 4px 0;
-            border-top: 1px solid $lightest_gray;
-            border-right: 1px solid $lightest_gray;
-            border-bottom: 1px solid $lightest_gray;
+            border-top: 1px solid vars.$lightest_gray;
+            border-right: 1px solid vars.$lightest_gray;
+            border-bottom: 1px solid vars.$lightest_gray;
         }
     }
 
@@ -1105,23 +1365,23 @@ a:link, a:visited {
             cursor: pointer;
             height: 41px;
             width: 41px;
-            background: $light_gray;
+            background: vars.$light_gray;
             border-radius: 0 4px 4px 0;
-            border-top: 1px solid $pinky_red;
-            border-right: 1px solid $pinky_red;
-            border-bottom: 1px solid $pinky_red;
+            border-top: 1px solid vars.$pinky_red;
+            border-right: 1px solid vars.$pinky_red;
+            border-bottom: 1px solid vars.$pinky_red;
         }
     }
 }
 
 
 .blue_button {
-    background: $deep_sky_blue;
+    background: vars.$deep_sky_blue;
     border-radius: 4px;
-    font-weight: $bold;
+    font-weight: vars.$bold;
     cursor: pointer;
     text-align: center;
-    color: $white;
+    color: vars.$white;
     font-size: 14px;
     padding: 12px 5px 13px;
     box-sizing: border-box;
@@ -1129,16 +1389,16 @@ a:link, a:visited {
 
 .gray_button {
     @extend .blue_button;
-    background: $lightest_gray;
-    color: $medium_black;
-    border: 1px solid $id_dark !important;
+    background: vars.$lightest_gray;
+    color: vars.$medium_black;
+    border: 1px solid vars.$id_dark !important;
     border-radius: 4px;
     padding: 6px 10px 5px 10px;
     font-size: 13px;
 
     &:hover {
         @media (min-width: 1025px) {
-            background: $medium_gray !important;
+            background: vars.$medium_gray !important;
         }
     }
 }
@@ -1149,8 +1409,8 @@ a:link, a:visited {
 
 .white_button {
     @extend .gray_button;
-    background: $white;
-    color: $medium_black;
+    background: vars.$white;
+    color: vars.$medium_black;
 }
 
 .blue_button.no, .blue_button.yes {
@@ -1158,59 +1418,59 @@ a:link, a:visited {
 }
 
 .blue_button.no {
-    background: $white;
-    color: $medium_black;
-    border: solid 1px $lightest_gray;
+    background: vars.$white;
+    color: vars.$medium_black;
+    border: solid 1px vars.$lightest_gray;
 
     &:hover {
         @media (min-width: 1025px) {
-            background: $lightest_gray !important;
+            background: vars.$lightest_gray !important;
         }
     }
 }
 
 .blue_button.yes {
-    background: $pinky_red;
-    border: solid 1px $pinky_red_border;
+    background: vars.$pinky_red;
+    border: solid 1px vars.$pinky_red_border;
 
     &:hover {
         @media (min-width: 1025px) {
-            background: $pinky_red_dark_hover !important;
+            background: vars.$pinky_red_dark_hover !important;
         }
     }
 }
 
 .blue_button[disabled], .blue_button.disabled {
-    background: $disabled_blue;
+    background: vars.$disabled_blue;
     cursor: initial;
 }
 
 .gray_button[disabled], .gray_button.disabled {
-    background: $disabled_gray;
+    background: vars.$disabled_gray;
     cursor: initial;
 }
 
 .blue_button.yes[disabled], .blue_button.yes.disabled {
-    background: $pinky_red;
+    background: vars.$pinky_red;
     cursor: initial;
 }
 
 .blue_link {
-    color: $deep_sky_blue;
+    color: vars.$deep_sky_blue;
     font-size: 14px;
     cursor: pointer;
 }
 
 .blue_link:hover {
     text-decoration: underline;
-    @include tablet {
+    @include mixins_n_extends.tablet {
         text-decoration: none;
     }
 }
 
 .black_link {
     @extend .blue_link;
-    color: $medium_black;
+    color: vars.$medium_black;
 }
 
 .underline_link {
@@ -1225,11 +1485,11 @@ a:link, a:visited {
 
 .underlined_link {
     cursor: pointer;
-    color: $medium_black;
+    color: vars.$medium_black;
     text-decoration: underline !important;
     @media (min-width: 1025px) {
         &:hover {
-            color: $deep_sky_blue;
+            color: vars.$deep_sky_blue;
         }
     }
 }
@@ -1237,7 +1497,7 @@ a:link, a:visited {
 
 .blue_button:not([disabled]):not(.disabled):hover {
     @media (min-width: 1025px) {
-        background: $dark_blue;
+        background: vars.$dark_blue;
     }
 }
 
@@ -1248,7 +1508,7 @@ a:link, a:visited {
     .bar {
         transition: width 350ms;
 
-        background: $deep_sky_blue;
+        background: vars.$deep_sky_blue;
         position: fixed;
         z-index: 10002;
         top: 0;
@@ -1275,7 +1535,7 @@ a:link, a:visited {
     .toggle_circle {
         height: 26px;
         width: 26px;
-        background: $white;
+        background: vars.$white;
         border-radius: 50%;
         position: absolute;
         top: 1px;
@@ -1284,35 +1544,35 @@ a:link, a:visited {
     }
 
     &.on {
-        background: $aqua_marine;
-        border: 1px solid $aqua_marine_border_second;
+        background: vars.$aqua_marine;
+        border: 1px solid vars.$aqua_marine_border_second;
 
         .toggle_circle {
             margin-left: 31px;
         }
 
         &:hover {
-            background: $aqua_marine_border_second;
+            background: vars.$aqua_marine_border_second;
 
-            @include tablet {
-                background: $aqua_marine;
+            @include mixins_n_extends.tablet {
+                background: vars.$aqua_marine;
             }
         }
     }
 
     &.off {
-        background: $pinky_red;
-        border: 1px solid $pinky_red_border;
+        background: vars.$pinky_red;
+        border: 1px solid vars.$pinky_red_border;
 
         .toggle_circle {
             margin-left: 1px;
         }
 
         &:hover {
-            background: $pinky_red_dark_hover;
+            background: vars.$pinky_red_dark_hover;
 
-            @include tablet {
-                background: $pinky_red;
+            @include mixins_n_extends.tablet {
+                background: vars.$pinky_red;
             }
         }
     }
@@ -1324,8 +1584,8 @@ a:link, a:visited {
             display: table;
             position: absolute;
             font-size: 14px;
-            font-weight: $bold;
-            color: $white;
+            font-weight: vars.$bold;
+            color: vars.$white;
             height: inherit;
             width: 44px;
             margin-top: -1px;
@@ -1333,7 +1593,7 @@ a:link, a:visited {
         }
 
         &.on {
-            color: $green_dark;
+            color: vars.$green_dark;
 
             .toggle_circle {
                 margin-left: 40px;
@@ -1358,7 +1618,7 @@ a:link, a:visited {
 
 .gray_toggle_box {
     display: table;
-    background: $light_gray;
+    background: vars.$light_gray;
     height: 50px;
     width: 100%;
     padding: 10px 20px;
@@ -1386,7 +1646,7 @@ a:link, a:visited {
     }
 
     .toggle_box_title {
-        font-weight: $bold;
+        font-weight: vars.$bold;
     }
 
     .toggle_box_description {
@@ -1401,7 +1661,7 @@ a:link, a:visited {
         }
     }
     .toggle_box_warning {
-        color: $pinky_red;
+        color: vars.$pinky_red;
         padding: 8px 0 13px 36px;
         position: relative;
 
@@ -1452,11 +1712,11 @@ a:link, a:visited {
 
         .item_text {
             .separator {
-                font-weight: $light;
+                font-weight: vars.$light;
             }
 
             .blue_link {
-                font-weight: $medium;
+                font-weight: vars.$medium;
                 font-size: 13px;
             }
         }
@@ -1464,7 +1724,7 @@ a:link, a:visited {
         .v_line {
             height: 14px;
             width: 1px;
-            background: $medium_black;
+            background: vars.$medium_black;
             margin-right: 7px;
             margin-top: 4px;
         }
@@ -1474,7 +1734,7 @@ a:link, a:visited {
         }
 
         .item_text {
-            font-weight: $bold;
+            font-weight: vars.$bold;
             font-size: 16px;
         }
 
@@ -1484,7 +1744,7 @@ a:link, a:visited {
         }
 
         .remove {
-            color: $pinky_red;
+            color: vars.$pinky_red;
 
             .sprite {
                 float: left;
@@ -1520,7 +1780,7 @@ a:link, a:visited {
 .picker_content {
     font-size: 14px;
 
-    @include tablet {
+    @include mixins_n_extends.tablet {
         width: initial;
         left: 20px;
         right: 20px;
@@ -1582,20 +1842,20 @@ a:link, a:visited {
             display: table;
             width: 100%;
             text-align: center;
-            @include tablet {
+            @include mixins_n_extends.tablet {
                 height: 40px;
             }
 
             .arrow, .month_text {
-                font-weight: $bold;
-                @extend .table_cell;
+                font-weight: vars.$bold;
+                @extend %table_cell;
             }
 
             .arrow {
                 box-sizing: border-box;
                 width: 30px;
                 border-radius: 4px;
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     width: 40px;
                 }
 
@@ -1608,8 +1868,8 @@ a:link, a:visited {
                 }
 
                 &:hover {
-                    background: $medium_gray;
-                    @include tablet {
+                    background: vars.$medium_gray;
+                    @include mixins_n_extends.tablet {
                         background: none;
                     }
                 }
@@ -1630,20 +1890,20 @@ a:link, a:visited {
             border-collapse: collapse;
 
             th {
-                font-weight: $bold;
+                font-weight: vars.$bold;
                 opacity: .7;
                 padding-bottom: 7px;
                 text-align: center;
             }
 
             td {
-                font-weight: $medium;
+                font-weight: vars.$medium;
                 cursor: pointer;
 
                 &:hover {
                     .date_circle {
-                        background: $medium_gray;
-                        @include tablet {
+                        background: vars.$medium_gray;
+                        @include mixins_n_extends.tablet {
                             background: none;
                         }
                     }
@@ -1656,17 +1916,17 @@ a:link, a:visited {
                     height: 30px;
                     text-align: center;
 
-                    @include tablet {
+                    @include mixins_n_extends.tablet {
                         width: 40px;
                         height: 40px;
                     }
 
                     &.now {
-                        background: $transparent_white;
+                        background: vars.$transparent_white;
                     }
 
                     &.selected {
-                        background: $aqua_marine;
+                        background: vars.$aqua_marine;
                     }
 
                 }
@@ -1705,10 +1965,10 @@ a:link, a:visited {
 
 /* EDIT TOOLTIP */
 .tooltip {
-    background: $transparent_black;
+    background: vars.$transparent_black;
     position: absolute;
     padding: 10px 10px 11px;
-    color: $white;
+    color: vars.$white;
     width: 150px;
     border-radius: 4px;
     font-size: 14px;
@@ -1727,7 +1987,7 @@ a:link, a:visited {
         margin-left: -4px;
         border-width: 4px;
         border-style: solid;
-        border-color: $transparent_black transparent transparent transparent;
+        border-color: vars.$transparent_black transparent transparent transparent;
     }
 }
 
@@ -1752,7 +2012,7 @@ a:link, a:visited {
 /* EDIT BUBBLE */
 .edit_bubble {
     position: absolute;
-    background: $light_gray;
+    background: vars.$light_gray;
     z-index: 1;
     border-radius: 4px;
     padding: 10px 20px;
@@ -1761,7 +2021,7 @@ a:link, a:visited {
     width: 100%;
     margin-left: -20px;
 
-    @include tablet {
+    @include mixins_n_extends.tablet {
         width: initial;
         left: 20px;
         right: 20px;
@@ -1784,7 +2044,7 @@ a:link, a:visited {
         }
 
         .bubble_description {
-            font-weight: $medium;
+            font-weight: vars.$medium;
             font-size: 11px;
             margin-bottom: 10px;
         }
@@ -1801,7 +2061,7 @@ a:link, a:visited {
         margin-top: 8px;
 
         .blue_link {
-            font-weight: $medium;
+            font-weight: vars.$medium;
         }
     }
 
@@ -1813,7 +2073,7 @@ a:link, a:visited {
     box-sizing: border-box;
     margin-left: 0;
 
-    @include tablet {
+    @include mixins_n_extends.tablet {
         width: initial;
         left: 20px;
         right: 20px;
@@ -1870,19 +2130,19 @@ a:link, a:visited {
             display: table;
             width: 100%;
             text-align: center;
-            @include tablet {
+            @include mixins_n_extends.tablet {
                 height: 40px;
             }
 
             .arrow, .month_text {
-                @extend .table_cell;
+                @extend %table_cell;
             }
 
             .arrow {
                 box-sizing: border-box;
                 width: 30px;
                 border-radius: 4px;
-                @include tablet {
+                @include mixins_n_extends.tablet {
                     width: 40px;
                 }
 
@@ -1895,8 +2155,8 @@ a:link, a:visited {
                 }
 
                 &:hover {
-                    background: $medium_gray;
-                    @include tablet {
+                    background: vars.$medium_gray;
+                    @include mixins_n_extends.tablet {
                         background: none;
                     }
                 }
@@ -1917,19 +2177,19 @@ a:link, a:visited {
             border-collapse: collapse;
 
             th {
-                font-weight: $bold;
+                font-weight: vars.$bold;
                 opacity: .7;
                 padding-bottom: 7px;
             }
 
             td {
-                font-weight: $medium;
+                font-weight: vars.$medium;
                 cursor: pointer;
 
                 &:hover {
                     .date_circle {
-                        background: $medium_gray;
-                        @include tablet {
+                        background: vars.$medium_gray;
+                        @include mixins_n_extends.tablet {
                             background: none;
                         }
                     }
@@ -1942,7 +2202,7 @@ a:link, a:visited {
                     height: 30px;
                     text-align: center;
 
-                    @include tablet {
+                    @include mixins_n_extends.tablet {
                         width: 40px;
                         height: 40px;
                     }
@@ -1950,7 +2210,7 @@ a:link, a:visited {
                 }
 
                 .date_circle.selected {
-                    background: $aqua_marine;
+                    background: vars.$aqua_marine;
                 }
             }
 
@@ -1965,11 +2225,11 @@ a:link, a:visited {
 
 /* CLASSIC DROPDOWN */
 .classic_dropdown {
-    color: $medium_black;
+    color: vars.$medium_black;
     font-size: 13px;
     border-radius: 4px;
-    background-color: $white;
-    border: solid 1px $lightest_gray;
+    background-color: vars.$white;
+    border: solid 1px vars.$lightest_gray;
     box-sizing: border-box;
     height: 30px;
     z-index: 1;
@@ -1993,7 +2253,7 @@ a:link, a:visited {
             }
 
             .v_line {
-                background: $medium_gray;
+                background: vars.$medium_gray;
                 left: 0 !important;
                 top: 0 !important;
                 bottom: 2px !important;
@@ -2004,25 +2264,25 @@ a:link, a:visited {
         }
 
         &:hover .dropdown_text {
-            color: $deep_sky_blue;
-            @include tablet {
-                color: $medium_black;
+            color: vars.$deep_sky_blue;
+            @include mixins_n_extends.tablet {
+                color: vars.$medium_black;
             }
         }
 
     }
 
     .dropdown {
-        border-left: solid 1px $lightest_gray;
-        border-right: solid 1px $lightest_gray;
-        border-bottom: solid 1px $lightest_gray;
+        border-left: solid 1px vars.$lightest_gray;
+        border-right: solid 1px vars.$lightest_gray;
+        border-bottom: solid 1px vars.$lightest_gray;
         border-radius: 0 0 4px 4px;
-        background-color: $white;
+        background-color: vars.$white;
         width: 100%;
         left: -1px;
         top: 29px;
         position: absolute;
-        color: $medium_black;
+        color: vars.$medium_black;
         max-height: 500px;
         overflow-y: auto;
         display: none;
@@ -2038,9 +2298,9 @@ a:link, a:visited {
                 padding: 5px 10px;
 
                 &:hover {
-                    color: $deep_sky_blue;
-                    @include tablet {
-                        color: $medium_black;
+                    color: vars.$deep_sky_blue;
+                    @include mixins_n_extends.tablet {
+                        color: vars.$medium_black;
                     }
                 }
             }
@@ -2057,7 +2317,7 @@ a:link, a:visited {
 
             .item_category, .item_names_wrap {
                 display: table-cell;
-                background-color: $white;
+                background-color: vars.$white;
             }
 
             .item_category {
@@ -2082,7 +2342,7 @@ a:link, a:visited {
         }
 
         &.dropdown_active {
-            border: solid 1px $lightest_gray;
+            border: solid 1px vars.$lightest_gray;
         }
     }
 }
@@ -2096,7 +2356,7 @@ a:link, a:visited {
         cursor: default;
 
         &:hover .dropdown_text {
-            color: $medium_black;
+            color: vars.$medium_black;
         }
     }
 }
@@ -2115,13 +2375,13 @@ a:link, a:visited {
     width: 100%;
     z-index: 9999;
     font-size: 14px;
-    font-weight: $bold;
+    font-weight: vars.$bold;
 
     @media print {
         display: none;
     }
 
-    @include tablet {
+    @include mixins_n_extends.tablet {
         margin-top: 60px;
     }
 
@@ -2139,13 +2399,13 @@ a:link, a:visited {
         }
 
         .info_bar_text {
-            @extend .table_cell;
+            @extend %table_cell;
             padding: 10px 0 11px 0;
         }
 
         .info_icon {
             width: 56px;
-            @extend .table_cell;
+            @extend %table_cell;
 
             vertical-align: top;
             padding: 13px 0 13px 0;
@@ -2173,7 +2433,7 @@ a:link, a:visited {
     border: 1px solid #BADCFF;
     background-color: #D5EAFF;
 
-    @include tablet {
+    @include mixins_n_extends.tablet {
         margin-top: 60px;
     }
 
@@ -2199,7 +2459,7 @@ a:link, a:visited {
         }
 
         .info_box_heading {
-            font-weight: $bold;
+            font-weight: vars.$bold;
         }
 
         .info_box_text {
@@ -2225,7 +2485,7 @@ a:link, a:visited {
 }
 
 .content_wrap {
-    background: $light_gray;
+    background: vars.$light_gray;
     position: relative;
     z-index: 2;
 }
@@ -2237,16 +2497,16 @@ a:link, a:visited {
     width: 30%;
     min-width: 310px;
     right: 0;
-    background: $side_panel_gray;
+    background: vars.$side_panel_gray;
     z-index: -1;
-    @include tablet {
+    @include mixins_n_extends.tablet {
         display: none;
     }
 }
 
 .ngdialog-open {
     .info_bar_wrap {
-        @include tablet {
+        @include mixins_n_extends.tablet {
             margin-top: 0;
         }
     }
@@ -2261,25 +2521,25 @@ a:link, a:visited {
         .page_button {
             width: 20px;
             height: 20px;
-            border: 1px solid $light_gray;
+            border: 1px solid vars.$light_gray;
             border-right: 0;
-            color: $deep_sky_blue;
+            color: vars.$deep_sky_blue;
             text-align: center;
             font-size: 14px;
             padding: 5px;
 
             &:hover {
                 cursor: pointer;
-                color: $dark_blue;
+                color: vars.$dark_blue;
             }
 
             &:last-child {
-                border-right: 1px solid $light_gray;
+                border-right: 1px solid vars.$light_gray;
             }
 
             &.active {
-                background: $deep_sky_blue;
-                color: $white;
+                background: vars.$deep_sky_blue;
+                color: vars.$white;
             }
         }
     }
@@ -2329,7 +2589,7 @@ a:link, a:visited {
 }
 
 .loader:after {
-    background: $light_gray;
+    background: vars.$light_gray;
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -2385,7 +2645,7 @@ a:link, a:visited {
     position: fixed;
     right: 20px;
     bottom: 20px;
-    background-color: $deep_sky_blue;
+    background-color: vars.$deep_sky_blue;
     background-image: url(../imgs/icon_bubble_help.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -2403,14 +2663,14 @@ a:link, a:visited {
     right: 20px;
     bottom: 100px;
     border-radius: 4px;
-    background: $white;
+    background: vars.$white;
 
     .help_top {
         border-radius: 4px 4px 0 0;
         height: 198px;
         width: 320px;
-        background-color: $deep_sky_blue;
-        color: $white;
+        background-color: vars.$deep_sky_blue;
+        color: vars.$white;
 
         .help_title_text_wrapper {
             padding: 20px 20px 10px 20px;
@@ -2437,7 +2697,7 @@ a:link, a:visited {
                 text-decoration: underline;
                 cursor: pointer;
                 &:hover {
-                    color: $lightest_gray;
+                    color: vars.$lightest_gray;
                 }
 
                 span {
@@ -2454,18 +2714,18 @@ a:link, a:visited {
         padding: 0 20px 0 20px;
 
         .help_bottom_title {
-            color: $medium_black;
+            color: vars.$medium_black;
             width: 100%;
             line-height: 24px;
             font-size: 18px;
-            font-weight: $bold;
+            font-weight: vars.$bold;
             margin: 20px 0 20px 0;
         }
 
         input, textarea {
             width: 269px;
             border-radius: 4px;
-            border: solid 1px $lightest_gray;
+            border: solid 1px vars.$lightest_gray;
             margin-bottom: 10px;
             padding: 5px;
 
@@ -2488,7 +2748,7 @@ a:link, a:visited {
                 left: 0;
                 height: 20px;
                 width: 20px;
-                background-color: $white;
+                background-color: vars.$white;
                 display: inline-block;
                 border: 1px solid #e5e5e5;
                 -webkit-box-shadow: 0px -1px 2px 0px rgba(0,0,0,.15);
@@ -2503,7 +2763,7 @@ a:link, a:visited {
                     top: 2px;
                     width: 7px;
                     height: 10px;
-                    border: solid $deep_sky_blue;
+                    border: solid vars.$deep_sky_blue;
                     border-width: 0 3px 3px 0;
                     -webkit-transform: rotate(45deg);
                     -ms-transform: rotate(45deg);

@@ -1,3 +1,4 @@
+@use 'vars';
 /* cyrillic-ext */
 @font-face {
   font-family: 'Noto Sans';
@@ -127,42 +128,42 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-.table {
+%table {
   display: table;
 }
 
-.table_cell {
+%table_cell {
   display: table-cell;
   vertical-align: middle;
 }
 
-.table_row {
+%table_row {
   display: table-row;
 }
 
-.all_zero {
+%all_zero {
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
 }
 
-.input_small {
+%input_small {
   width: 100%;
   box-sizing: border-box;
-  border: solid 1px $lightest_gray;
+  border: solid 1px vars.$lightest_gray;
   border-radius: 4px;
   height: 30px;
   font-size: 13px;
   padding: 0 10px;
   &:focus {
-      border: 1px solid $dark_gray;
+      border: 1px solid vars.$dark_gray;
       outline: none;
   }
 }
 
 
-.text_dod_dot_dot {
+%text_dod_dot_dot {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -170,19 +171,19 @@
     width: 100%;
 }
 
-.default_setup {
-    background: $light_gray;
-    @extend .all_zero;
+%default_setup {
+    background: vars.$light_gray;
+    @extend %all_zero;
     text-align: left;
     position: absolute;
     top: 0;
     bottom: 0;
 }
 
-.add_bottom_borders {
+%add_bottom_borders {
   & > div {
     &:not(:last-child) {
-      border-bottom: 1px solid $lightest_gray;
+      border-bottom: 1px solid vars.$lightest_gray;
     }
   }
 }
@@ -227,7 +228,7 @@
         position: relative;
         display: block;
         width: 100%;
-        border-top: 1px solid $lightest_gray;
+        border-top: 1px solid vars.$lightest_gray;
         padding: 9px 0 20px;
     }
 
