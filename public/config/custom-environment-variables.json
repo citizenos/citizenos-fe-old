@@ -3,7 +3,11 @@
     "baseUrl": "CITIZENOS_URL_API"
   },
   "language": {
-    "default": "DEFAULT_LANG_KEY"
+    "default": "DEFAULT_LANG_KEY",
+    "list": {
+      "__name": "CITIZENOS_LANGUAGE_LIST",
+      "__format": "json"
+    }
   },
   "links": {
     "help": {
