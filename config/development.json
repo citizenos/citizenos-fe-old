@@ -1,6 +1,6 @@
 {
   "csp": {
-    "policies": {
+    "directives": {
       "default-src": [
         "self"
       ],

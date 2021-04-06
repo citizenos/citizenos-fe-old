@@ -31,25 +31,25 @@ try {
 var cspConfig = config.csp;
 var cspOptions = _.cloneDeep(cspConfig);
 if (cspConfig) {
-    if (cspConfig.policies) {
-        if (typeof cspConfig.policies === 'string') {
-            console.log(Object.values(JSON.parse(cspConfig.policies)));
-            cspConfig.policies = JSON.parse(cspConfig.policies);
-            cspOptions.policies = {};
+    if (cspConfig.directives) {
+        if (typeof cspConfig.directives === 'string') {
+            console.log(Object.values(JSON.parse(cspConfig.directives)));
+            cspConfig.directives = JSON.parse(cspConfig.directives);
+            cspOptions.directives = {};
         }
-        Object.keys(cspConfig.policies).forEach(function(key, index) {
-            cspConfig.policies[key].forEach(function (value, k) {
+        Object.keys(cspConfig.directives).forEach(function(key, index) {
+            cspConfig.directives[key].forEach(function (value, k) {
                 if (k === 0) {
-                    cspOptions.policies[key] = [];
+                    cspOptions.directives[key] = [];
                 }
                 if (value === 'none') {
-                    cspOptions.policies[key].push(NONE);
+                    cspOptions.directives[key].push(NONE);
                 } else if (value === 'self') {
-                    cspOptions.policies[key].push(SELF);
+                    cspOptions.directives[key].push(SELF);
                 } else if (value === 'inline') {
-                    cspOptions.policies[key].push(INLINE);
+                    cspOptions.directives[key].push(INLINE);
                 } else {
-                    cspOptions.policies[key].push(value);
+                    cspOptions.directives[key].push(value);
                 }
             });
         });

@@ -1,6 +1,6 @@
 {
   "csp": {
-    "policies": {
+    "directives": {
       "__name": "CSP_POLICIES",
       "__format": "json"
     },
