@@ -33,7 +33,6 @@ var cspOptions = _.cloneDeep(cspConfig);
 if (cspConfig) {
     if (cspConfig.directives) {
         if (typeof cspConfig.directives === 'string') {
-            console.log(Object.values(JSON.parse(cspConfig.directives)));
             cspConfig.directives = JSON.parse(cspConfig.directives);
             cspOptions.directives = {};
         }

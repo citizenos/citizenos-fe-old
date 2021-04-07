@@ -15,14 +15,16 @@
       ],
       "style-src": [
         "self",
-        "https://fonts.googleapis.com"
+        "https://fonts.googleapis.com",
+        "https://maxcdn.bootstrapcdn.com"
       ],
       "script-src-elem": [
         "self"
       ],
       "font-src": [
         "self",
-        "https://fonts.gstatic.com"
+        "https://fonts.gstatic.com",
+        "https://maxcdn.bootstrapcdn.com"
       ],
       "connect-src": [
         "self",
@@ -46,6 +48,6 @@
       ]
     },
     "reportUri": "https://dev.api.citizenos.com:3003/api/internal/report",
-    "reportOnly": true
+    "reportOnly": false
   }
 }
