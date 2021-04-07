@@ -1,6 +1,9 @@
 {
   "csp": {
-    "policies": "CSP_POLICIES",
+    "directives": {
+      "__name": "CSP_POLICIES",
+      "__format": "json"
+    },
     "reportUri": "CSP_REPORT_URI",
     "reportOnly": "CSP_REPORT_ONLY"
   }
