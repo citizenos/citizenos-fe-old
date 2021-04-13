@@ -156,6 +156,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 #outerdocbody {
     overflow: hidden;
     background: none;
+    min-height: 600px;
 }
 
 @media (min-width: 947px) { /* 955 - 8 (8 is #innerdocbody left position) */
@@ -331,7 +332,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
         color:#FF9800;
     }
 
-    .ttl {
+    .ep_title_limit_ttl {
         color: #8D8D8D;
     }
 }
@@ -379,7 +380,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
     color: $medium_black;
 }
 
-#inline_toolbar {
+#inline_toolbar, #custom_inline_toolbar { /** TODO: safe to remove #inline_toolbar once we stop using ep_inline_toolbar in our EP conf**/
     width: max-content;
     height: auto;
     right: 0!important;
