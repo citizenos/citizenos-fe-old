@@ -72,6 +72,7 @@
         padding: 20px 20px 21px;
         margin: 20px 0;
         position: relative;
+        border: 5px solid vars.$aqua_marine;
 
         &.with_upper_right_links {
             @media (max-width: 1400px) {
