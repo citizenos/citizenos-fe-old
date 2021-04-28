@@ -169,11 +169,11 @@ h2 {
 }
 
 .aqua_marine_background {
-    background: vars.$aqua_marine;
+    background: vars.$aqua_marine !important;
     &:hover {
         background: vars.$aqua_marine_border_second !important;
         @media (max-width: 1025px) {
-            background: vars.$aqua_marine;
+            background: vars.$aqua_marine !important;
         }
     }
 }
