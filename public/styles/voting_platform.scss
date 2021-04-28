@@ -87,6 +87,10 @@
             }
         }
 
+        &.with_border {
+            border: 5px solid vars.$aqua_marine;
+        }
+
         .message_header {
             margin-bottom: 14px;
 
