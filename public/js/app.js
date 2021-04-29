@@ -264,15 +264,27 @@
                     }]
                 })
                 .state('account.login', {
-                    url: '/login?email&redirectSuccess',
-                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve) {
+                    url: '/login?userId&email&redirectSuccess',
+                    resolve: {
+                        rUserConnections: ['$state', '$stateParams', 'sUser', function ($state, $stateParams, sUser) {
+                            console.log('account.login', 'rUserConnections', $stateParams);
+                            if ($stateParams.userId) {
+                                return sUser.listUserConnections($stateParams.userId);
+                            } else {
+                                return;
+                            }
+                        }]
+                    },
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rUserConnections', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rUserConnections) {
                         if (sAuthResolve) {
                             return $state.go('home');
                         }
 
                         var dialog = ngDialog.open({
                             template: '/views/modals/login.html',
-                            data: $stateParams,
+                            data: {
+                                userConnections: rUserConnections
+                            },
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
 
@@ -900,7 +912,7 @@
                                     // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
                                     if (!sAuth.user.loggedIn) {
                                         var currentUrl = $state.href($state.current.name, $stateParams);
-                                        return $state.go('account.login', {redirectSuccess: currentUrl});
+                                        return $state.go('account.login', {userId: $scope.invite.user.id, redirectSuccess: currentUrl});
                                     }
 
                                     // 2. User logged in, but opens an invite NOT meant to that account  - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
@@ -910,7 +922,7 @@
                                             .then(function () {
                                                 var currentUrl = $state.href($state.current.name, $stateParams);
                                                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
-                                                return $state.go('account.login', {redirectSuccess: currentUrl}, {reload: true});
+                                                return $state.go('account.login', {userId: $scope.invite.user.id, redirectSuccess: currentUrl}, {reload: true});
                                             });
                                     }
                                 };

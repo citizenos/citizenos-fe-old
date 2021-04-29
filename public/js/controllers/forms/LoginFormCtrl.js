@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'ngDialog', 'sAuth', 'sLocation', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $document, $interval, ngDialog, sAuth, sLocation, sNotification) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'ngDialog', 'sAuth', 'sLocation', function ($scope, $log, $state, $stateParams, $window, $document, $interval, ngDialog, sAuth, sLocation) {
         $log.debug('LoginFormCtrl');
 
         $scope.LOGIN_PARTNERS = {
@@ -19,7 +19,9 @@ angular
         };
         init();
 
-        angular.extend($scope.form, $stateParams, $scope.$parent.ngDialogData);
+        angular.extend($scope.form, $stateParams);
+
+        var userConnections = $scope.$parent.ngDialogData.userConnections;
 
         var popupCenter = function (url, title, w, h) {
             var userAgent = navigator.userAgent,

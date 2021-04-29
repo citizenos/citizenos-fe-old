@@ -5,6 +5,14 @@ angular
     .service('sUser', ['$http', 'sLocation', function ($http, sLocation) {
         var sUser = this;
 
+        var defaultSuccess = function (response) {
+            return response.data.data;
+        };
+
+        var defaultError = function (response) {
+            return $q.reject(response);
+        };
+
         sUser.update = function (name, email, password, company, imageUrl, language, termsVersion) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self');
             var userData = {
@@ -14,7 +22,7 @@ angular
                 imageUrl: imageUrl,
                 language: language,
                 termsVersion: termsVersion
-            }
+            };
 
             if (password) {
                 userData.password = password;
@@ -41,6 +49,12 @@ angular
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/consents');
 
             return $http.post(path, {partnerId: partnerId});
+        };
+
+        sUser.listUserConnections = function (userId) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/:userId/userconnections', {userId: userId});
+
+            return $http.get(path).then(defaultSuccess, defaultError);
         };
 
     }]);
