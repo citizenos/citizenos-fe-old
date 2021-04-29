@@ -90,7 +90,7 @@ angular
             }
 
             if ($scope.topic.vote.authType === $scope.voteAuthTypes.hard) {
-                ngDialog
+                var signDialog = ngDialog
                     .open({
                         template: '/views/modals/topic_vote_sign.html',
                         controller: 'TopicVoteSignCtrl',
@@ -101,7 +101,7 @@ angular
                         preCloseCallback: function (data) {
                             if (data) {
                                 $scope.topic.vote.topicId = $scope.topic.id;
-                                sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
+
                                 $scope.topic.vote.$get()
                                     .then(function () {
                                         $scope.topic.vote.options.rows.forEach(function (option) {
@@ -119,6 +119,10 @@ angular
                             }
                         }
                     });
+
+                signDialog.closePromise.then(function (data) {
+                    sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
+                });
 
                 return;
             } else {
