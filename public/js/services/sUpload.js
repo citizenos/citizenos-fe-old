@@ -1,10 +1,10 @@
 'use strict';
 
-app.service('sUpload', ['$http', '$window', 'sLocation', function ($http, $window, sLocation) {
+app.service('sUpload', ['$http', '$window', 'cosConfig', 'sLocation', function ($http, $window, cosConfig, sLocation) {
 
     var sUpload = this;
 
-    sUpload.ALLOWED_FILE_TYPES = ['txt', 'pdf', 'doc', 'docx', 'ddoc', 'bdoc', 'odf', 'odt', 'jpg', 'jpeg', 'img', 'png', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx', 'pps', 'xlt'];
+    sUpload.ALLOWED_FILE_TYPES = cosConfig.attachments.upload.allowedFileTypes;
 
     sUpload.upload = function (file, folder) {
         var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload');
