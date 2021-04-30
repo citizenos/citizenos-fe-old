@@ -24,6 +24,9 @@
   },
   "attachments": {
     "limit": "CITIZENOS_ATTACHMENTS_LIMIT",
+    "upload": {
+      "allowedFileTypes":  "CITIZENOS_ATTACHMENTS_UPLOAD_ALLOWED_FILE_TYPES"
+    },
     "dropbox": {
       "appKey": "DROPBOX_APP_KEY"
     },
