@@ -23,7 +23,7 @@ angular
         angular.extend($scope.form, $stateParams);
 
         // UserConnections to know which auth methods to show - https://github.com/citizenos/citizenos-fe/issues/657
-        var userConnections = $scope.$parent.ngDialogData.userConnections;
+        var userConnections = $scope.$parent.ngDialogData ? $scope.$parent.ngDialogData.userConnections : null;
         if (userConnections) {
             var userAuthMethods = [];
 
@@ -204,7 +204,10 @@ angular
             ngDialog
                 .open({
                     template: '/views/modals/login_esteid.html',
-                    scope: $scope // Pass on $scope so that I can access AppCtrl
+                    scope: $scope, // Pass on $scope so that I can access AppCtrl
+                    data: {
+                        authMethodsAvailable: $scope.authMethodsAvailable
+                    }
                 });
         };
 

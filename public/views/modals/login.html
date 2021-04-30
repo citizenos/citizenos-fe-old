@@ -21,7 +21,7 @@
             <div class="lightbox_content">
                 <div id="login_lightbox" ng-controller="LoginFormCtrl">
                     <div class="line lightest_line"></div>
-                    <div class="lightbox_section">
+                    <div class="lightbox_section" ng-if="authMethodsAvailable.facebook || authMethodsAvailable.google || authMethodsAvailable.mobiilId || authMethodsAvailable.idCard || authMethodsAvailable.smartId">
 
                         <div ng-if="authMethodsAvailable.facebook" id="facebook" ng-click="doLoginPartner(LOGIN_PARTNERS.facebook)" class="social_button">
                             <div class="social_icon">
