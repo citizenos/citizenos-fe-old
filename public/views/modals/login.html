@@ -23,7 +23,7 @@
                     <div class="line lightest_line"></div>
                     <div class="lightbox_section">
 
-                        <div ng-if="app.config.features.authentication.facebook" id="facebook" ng-click="doLoginPartner(LOGIN_PARTNERS.facebook)" class="social_button">
+                        <div ng-if="authMethodsAvailable.facebook" id="facebook" ng-click="doLoginPartner(LOGIN_PARTNERS.facebook)" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-facebook2x"></div>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
 
-                        <div ng-if="app.config.features.authentication.google" id="google" ng-click="doLoginPartner(LOGIN_PARTNERS.google)" class="social_button">
+                        <div ng-if="authMethodsAvailable.google" id="google" ng-click="doLoginPartner(LOGIN_PARTNERS.google)" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-google2x"></div>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
 
-                        <div ng-if="app.config.features.authentication.mobiilId || app.config.features.authentication.idCard" id="id_card" ng-click="doLoginEsteId()" class="social_button">
+                        <div ng-if="authMethodsAvailable.mobiilId || authMethodsAvailable.idCard" id="id_card" ng-click="doLoginEsteId()" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-id2x"></div>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <div ng-if="app.config.features.authentication.smartId" id="smart_id" ng-click="doLoginSmartId()" class="social_button">
+                        <div ng-if="authMethodsAvailable.smartId" id="smart_id" ng-click="doLoginSmartId()" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-smartid2x"></div>
@@ -69,7 +69,7 @@
 
                     </div>
 
-                    <div ng-if="app.config.features.authentication.citizenos">
+                    <div ng-if="authMethodsAvailable.citizenos">
                         <div class="line lightest_line"></div>
 
                         <div class="lightbox_section">

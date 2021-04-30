@@ -51,6 +51,15 @@ angular
             return $http.post(path, {partnerId: partnerId});
         };
 
+        // Map UserConnections.connectionId to authentication method
+        sUser.USER_CONNECTION_IDS_TO_AUTH_METHOD_MAP = {
+            esteid: ['mobiilId', 'idCard', 'smartId'], // TODO: We should fix it properly on API/FE side - mapping of PID to auth methods
+            smartid: ['mobiilId', 'idCard', 'smartId'], // TODO: We should fix it properly on API/FE side - mapping of PID to auth methods
+            google: 'google',
+            facebook: 'facebook',
+            citizenos: 'citizenos'
+        };
+
         sUser.listUserConnections = function (userId) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/:userId/userconnections', {userId: userId});
 

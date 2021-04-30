@@ -2,13 +2,14 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'ngDialog', 'sAuth', 'sLocation', function ($scope, $log, $state, $stateParams, $window, $document, $interval, ngDialog, sAuth, sLocation) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'cosConfig', 'ngDialog', 'sAuth', 'sLocation', 'sUser', function ($scope, $log, $state, $stateParams, $window, $document, $interval, cosConfig, ngDialog, sAuth, sLocation, sUser) {
         $log.debug('LoginFormCtrl');
 
         $scope.LOGIN_PARTNERS = {
             facebook: 'facebook',
             google: 'google'
         };
+        $scope.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
 
         var init = function () {
             $scope.form = {
@@ -21,7 +22,26 @@ angular
 
         angular.extend($scope.form, $stateParams);
 
+        // UserConnections to know which auth methods to show - https://github.com/citizenos/citizenos-fe/issues/657
         var userConnections = $scope.$parent.ngDialogData.userConnections;
+        if (userConnections) {
+            var userAuthMethods = [];
+
+            // Check out from the UserConnection.connectionId map which authentication methods apply
+            userConnections.forEach(function(val) {
+                userAuthMethods = userAuthMethods.concat(sUser.USER_CONNECTION_IDS_TO_AUTH_METHOD_MAP[val.connectionId]);
+            });
+
+            // Reduce to unique values
+            userAuthMethods = userAuthMethods.filter(function(val, i, res) {
+                return res.indexOf(val) === i;
+            });
+
+            // Initially the authMethods that are configured are all available, modify the list so that only those User has available are enabled
+            Object.keys($scope.authMethodsAvailable).forEach(function (val) {
+                $scope.authMethodsAvailable[val] = userAuthMethods.indexOf(val) > -1;
+            });
+        }
 
         var popupCenter = function (url, title, w, h) {
             var userAgent = navigator.userAgent,
