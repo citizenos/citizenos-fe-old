@@ -266,10 +266,19 @@
                 .state('account.login', {
                     url: '/login?userId&email&redirectSuccess',
                     resolve: {
-                        rUserConnections: ['$state', '$stateParams', 'sUser', function ($state, $stateParams, sUser) {
-                            console.log('account.login', 'rUserConnections', $stateParams);
+                        rUserConnections: ['$state', '$stateParams', '$log', 'sUser', function ($state, $stateParams, $log, sUser) {
                             if ($stateParams.userId) {
-                                return sUser.listUserConnections($stateParams.userId);
+                                return sUser
+                                    .listUserConnections($stateParams.userId)
+                                    .then(
+                                        function (res) {
+                                            return res;
+                                        },
+                                        function (err) {
+                                            // If the UserConnection fetch fails, it does not matter, we just don't filter authentication methods
+                                            $log.warn('Unable to fetch UserConnections for User', err);
+                                            return;
+                                        });
                             } else {
                                 return;
                             }
@@ -912,7 +921,10 @@
                                     // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
                                     if (!sAuth.user.loggedIn) {
                                         var currentUrl = $state.href($state.current.name, $stateParams);
-                                        return $state.go('account.login', {userId: $scope.invite.user.id, redirectSuccess: currentUrl});
+                                        return $state.go('account.login', {
+                                            userId: $scope.invite.user.id,
+                                            redirectSuccess: currentUrl
+                                        });
                                     }
 
                                     // 2. User logged in, but opens an invite NOT meant to that account  - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
@@ -922,7 +934,10 @@
                                             .then(function () {
                                                 var currentUrl = $state.href($state.current.name, $stateParams);
                                                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
-                                                return $state.go('account.login', {userId: $scope.invite.user.id, redirectSuccess: currentUrl}, {reload: true});
+                                                return $state.go('account.login', {
+                                                    userId: $scope.invite.user.id,
+                                                    redirectSuccess: currentUrl
+                                                }, {reload: true});
                                             });
                                     }
                                 };

@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sUser', ['$http', 'sLocation', function ($http, sLocation) {
+    .service('sUser', ['$http', '$q', 'sLocation', function ($http, $q, sLocation) {
         var sUser = this;
 
         var defaultSuccess = function (response) {
