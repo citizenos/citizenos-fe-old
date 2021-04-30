@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicAttachmentsCtrl', ['$scope', '$state', '$stateParams', '$log', '$document', 'Topic', 'sNotification', 'sUpload', 'sAttachment', 'TopicAttachment', 'ngDialog', function ($scope, $state, $stateParams, $log, $document, Topic, sNotification, sUpload, sAttachment, TopicAttachment, ngDialog) {
+    .controller('TopicAttachmentsCtrl', ['$scope', '$state', '$stateParams', '$log', '$document', '$translate', 'Topic', 'sNotification', 'sUpload', 'sAttachment', 'TopicAttachment', 'ngDialog', function ($scope, $state, $stateParams, $log, $document, $translate, Topic, sNotification, sUpload, sAttachment, TopicAttachment, ngDialog) {
         $log.debug('TopicAttachmentsCtrl', $state, $stateParams);
 
         $scope.form = {
@@ -41,8 +41,9 @@ angular
                 });
 
             } else if (sUpload.ALLOWED_FILE_TYPES.indexOf(attachment.type) === -1) {
+                var fileTypeError = $translate.instant('MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED', {allowedFileTypes: sUpload.ALLOWED_FILE_TYPES.toString()});
                 $scope.$apply(function () {
-                    sNotification.addError('MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED');
+                    sNotification.addError(fileTypeError);
                 });
             } else {
                 $scope.appendAttachment(attachment);
