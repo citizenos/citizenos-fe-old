@@ -1092,7 +1092,7 @@
   "MSG_ERROR_50000": "Midagi läks meie süsteemis valesti. Palun vabandust! Proovi palun veel kord. Kui viga kordub, võta ühendust kasutajatoega.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Internetiühendus puudub, palun kontrolli ühendust.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Manus on liiga suur! Maksimaalne lubatud suurus on 50 MB.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Faili tüüp ei ole lubatud",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Manuse link puudub!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Manuse nimi puudub!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Salasõna ja salasõna kinnitus on erinevad.",
