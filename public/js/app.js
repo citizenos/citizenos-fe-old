@@ -1014,7 +1014,11 @@
                                     // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
                                     if (!sAuth.user.loggedIn) {
                                         var currentUrl = $state.href($state.current.name, $stateParams);
-                                        return $state.go('account.login', {redirectSuccess: currentUrl});
+                                        return $state.go('account.login', {
+                                            userId: $scope.invite.user.id,
+                                            redirectSuccess: currentUrl,
+                                            email: $scope.invite.user.email
+                                        });
                                     }
 
                                     // 2. User logged in, but opens an invite NOT meant to that account  - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
@@ -1024,7 +1028,11 @@
                                             .then(function () {
                                                 var currentUrl = $state.href($state.current.name, $stateParams);
                                                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
-                                                return $state.go('account.login', {redirectSuccess: currentUrl}, {reload: true});
+                                                return $state.go('account.login', {
+                                                    userId: $scope.invite.user.id,
+                                                    redirectSuccess: currentUrl,
+                                                    email: $scope.invite.user.email
+                                                }, {reload: true});
                                             });
                                     }
                                 };
