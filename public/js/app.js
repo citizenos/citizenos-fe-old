@@ -923,7 +923,8 @@
                                         var currentUrl = $state.href($state.current.name, $stateParams);
                                         return $state.go('account.login', {
                                             userId: $scope.invite.user.id,
-                                            redirectSuccess: currentUrl
+                                            redirectSuccess: currentUrl,
+                                            email: $scope.invite.user.email
                                         });
                                     }
 
@@ -936,7 +937,8 @@
                                                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
                                                 return $state.go('account.login', {
                                                     userId: $scope.invite.user.id,
-                                                    redirectSuccess: currentUrl
+                                                    redirectSuccess: currentUrl,
+                                                    email: $scope.invite.user.email
                                                 }, {reload: true});
                                             });
                                     }

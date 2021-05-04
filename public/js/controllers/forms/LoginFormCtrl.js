@@ -10,10 +10,11 @@ angular
             google: 'google'
         };
         $scope.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
+        $scope.isFormEmailProvided = $stateParams.email ? $stateParams.email : false;
 
         var init = function () {
             $scope.form = {
-                email: null,
+                email: $scope.isFormEmailProvided ? $stateParams.email : null,
                 password: null
             };
             $scope.app.showNav = false; // Hide mobile navigation when login flow is started
@@ -28,12 +29,12 @@ angular
             var userAuthMethods = [];
 
             // Check out from the UserConnection.connectionId map which authentication methods apply
-            userConnections.forEach(function(val) {
+            userConnections.forEach(function (val) {
                 userAuthMethods = userAuthMethods.concat(sUser.USER_CONNECTION_IDS_TO_AUTH_METHOD_MAP[val.connectionId]);
             });
 
             // Reduce to unique values
-            userAuthMethods = userAuthMethods.filter(function(val, i, res) {
+            userAuthMethods = userAuthMethods.filter(function (val, i, res) {
                 return res.indexOf(val) === i;
             });
 
@@ -232,5 +233,4 @@ angular
                     scope: $scope // Pass on $scope so that I can access AppCtrl
                 });
         };
-
     }]);
