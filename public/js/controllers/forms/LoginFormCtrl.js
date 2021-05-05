@@ -10,11 +10,11 @@ angular
             google: 'google'
         };
         $scope.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
-        $scope.isFormEmailProvided = $stateParams.email ? $stateParams.email : false;
+        $scope.isFormEmailProvided = $scope.$parent.ngDialogData && $scope.$parent.ngDialogData.email;
 
         var init = function () {
             $scope.form = {
-                email: $scope.isFormEmailProvided ? $stateParams.email : null,
+                email: $scope.isFormEmailProvided ? $scope.$parent.ngDialogData.email : null,
                 password: null
             };
             $scope.app.showNav = false; // Hide mobile navigation when login flow is started
