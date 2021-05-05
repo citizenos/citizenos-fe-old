@@ -427,6 +427,7 @@
   "TXT_TOPIC_CATEGORY_YOUTH": "Nuoret",
   "TXT_TOPIC_CATEGORY_SCIENCE": "Tiede ja teknologia",
   "TXT_TOPIC_CATEGORY_SOCIETY": "Demokratia ja kansalaisyhteiskunta",
+  "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Hae aiheita, käyttäjiä, ryhmiä..."
