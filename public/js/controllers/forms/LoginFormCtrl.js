@@ -28,15 +28,20 @@ angular
         if (userConnections) {
             var userAuthMethods = [];
 
-            // Check out from the UserConnection.connectionId map which authentication methods apply
-            userConnections.forEach(function (val) {
-                userAuthMethods = userAuthMethods.concat(sUser.USER_CONNECTION_IDS_TO_AUTH_METHOD_MAP[val.connectionId]);
-            });
+            if (userConnections.rows.length) {
+                // Check out from the UserConnection.connectionId map which authentication methods apply
+                userConnections.rows.forEach(function (val) {
+                    userAuthMethods = userAuthMethods.concat(sUser.USER_CONNECTION_IDS_TO_AUTH_METHOD_MAP[val.connectionId]);
+                });
 
-            // Reduce to unique values
-            userAuthMethods = userAuthMethods.filter(function (val, i, res) {
-                return res.indexOf(val) === i;
-            });
+                // Reduce to unique values
+                userAuthMethods = userAuthMethods.filter(function (val, i, res) {
+                    return res.indexOf(val) === i;
+                });
+            } else {
+                // IF no UserConnections is returned, that is a for an unregistered user, show 'citizenos' auth method.
+                userAuthMethods.push('citizenos');
+            }
 
             // Initially the authMethods that are configured are all available, modify the list so that only those User has available are enabled
             Object.keys($scope.authMethodsAvailable).forEach(function (val) {

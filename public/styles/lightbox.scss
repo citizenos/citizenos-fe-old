@@ -1564,7 +1564,7 @@
         -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
-        width: 320px;
+        min-width: 320px;
 
         @media (max-height: 800px) {
             top: 30px;
