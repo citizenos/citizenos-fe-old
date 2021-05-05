@@ -1092,7 +1092,7 @@
   "MSG_ERROR_50000": "In unserem System ging etwas schief. Es tut uns sehr leid! Bitte versuchen Sie es erneut. Wenn der Fehler weiterhin besteht, wenden Sie sich bitte an unseren Kundendienst.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Verbindungsfehler. Bitte überprüfen Sie Ihre Internetverbindung.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Der Anhang ist zu groß! Die maximale Größe beträgt 50 Mb.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Dieses Dateiformat wird nicht unterstützt!",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Der Link zum Anhang fehlt!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Der Name des Anhangs fehlt!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Passwort stimmt nicht mit dem Bestätigungspasswort überein.",

@@ -1092,7 +1092,7 @@
   "MSG_ERROR_50000": "Щось сталося не так в нашій системі. Нам дуже шкода! Будь-ласка, спробуйте ще раз. Якщо помилка не зникне, будь-ласка, зверніться до нашої служби підтримки.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Мережева помилка, будь-ласка, перевірте підключення до Інтернету.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Вкладення занадто велике! Максимальний розмір - 50 Мб.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Такий тип файлів не допускається!",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Посилання на файл не визначено!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Назва файлу не визначена!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Паролі не співпадають.",
