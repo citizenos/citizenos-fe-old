@@ -300,6 +300,25 @@
             </div>
         </a>
 
+        <a ng-href="/eurochangemakers" class="big eurochangemakers white_text fixed_topic" ng-if="isTutorialVisible()">
+            <div class="topic_wrap">
+                <div class="text_area">
+
+                    <div class="top text_small">GEYC</div>
+
+                    <div class="main_text">
+                        <div class="text_big">EuroChangeMakers</div>
+                        <div class="text_small"> EuroChangeMakers #euroCM Project, co-funded by Europe for Citizens Programme of the European Union, engages 19 partners from 18 countries and aims to foster youth participation and reflection on critical issues for the Future of Europe: digitalization, social cohesion, and environment. https://eurocm.geyc.ro</div>
+                    </div>
+
+                    <div class="line black_line"></div>
+
+                    <div class="text_small" ng-if="wWidth > 667">EuroChangeMakers</div>
+
+                </div>
+            </div>
+        </a>
+
         <a ui-sref="topics.view({topicId: topic.id})" class="topic" ng-repeat="topic in topicList" ng-class="topic.categories.indexOf(filters.categories.value) > -1 ? filters.categories.value : filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
