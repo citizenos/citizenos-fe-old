@@ -1092,7 +1092,7 @@
   "MSG_ERROR_50000": "V našom systéme sa niečo pokazilo. Je nám to veľmi ľúto! Skúste ešte raz. Ak chyba pretrváva, obráťte sa na našu zákaznícku podporu.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Problémy siete, skontrolujte prosím svoje internetové pripojenie.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Príloha je priveľká! Maximálna povolená veľkosť je 50MB.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Nepovolený typ súboru!",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Odkaz prílohy nie je definovaný!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Názov prílohy nie je zadefinovaný!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Heslo sa nezhoduje s potvrdeným heslom. ",

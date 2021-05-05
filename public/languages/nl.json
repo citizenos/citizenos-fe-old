@@ -1092,7 +1092,7 @@
   "MSG_ERROR_50000": "Er ging iets mis in ons systeem. Het spijt ons! Probeer het nog een keer. Neem contact op met onze klantenservice als het probleem aanhoudt.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Netwerkproblemen, controleer uw internetverbinding.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "De bijlage is te groot! De maximale toegestane grootte is 50 MB.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Het bestandstype is niet toegestaan!",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "De bijlagelink is niet gedefinieerd!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "De bijlagenaam is niet gedefinieerd!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Het wachtwoord komt niet overeen met het bevestigde wachtwoord. ",

@@ -38,7 +38,7 @@
   "attachments": {
     "limit": 10,
     "upload": {
-      "allowedFileTypes":  ["txt", "pdf", "doc", "docx", "ddoc", "bdoc", "odf", "odt", "jpg", "jpeg", "img", "png", "rtf", "xls", "xlsx", "ppt", "pptx", "pps", "xlt"]
+      "allowedFileTypes": ["asice", "txt", "pdf", "doc", "docx", "ddoc", "bdoc", "odf", "odt", "jpg", "jpeg", "img", "png", "rtf", "xls", "xlsx", "ppt", "pptx", "pps", "xlt"]
     },
     "dropbox": {
       "appKey": "lkk7j6f41sfpm5b"

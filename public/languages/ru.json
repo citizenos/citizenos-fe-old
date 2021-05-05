@@ -1092,7 +1092,7 @@
   "MSG_ERROR_50000": "В нашей системе что-то пошло не так. Приносим свои извинения! Пожалуйста, попробуйте еще раз. Если ошибка повторится, обратитесь в техническую поддержку.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Отсутствует связь с интернетом - пожалуйста, проверьте связь.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Размер файла является слишком большим! Максимальный допустимый размер равен 50 МБ.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Тип файла не допускается!",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Отсутствует ссылка на файл!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Отсутствует название файла!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Пароль и подтверждение пароля не cовпадают.",

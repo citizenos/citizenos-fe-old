@@ -226,6 +226,11 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('eurochangemakers', {
+                    url: '/eurochangemakers?topicStatus',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
                 .state('account', {
                     url: '/account',
                     abstract: true,

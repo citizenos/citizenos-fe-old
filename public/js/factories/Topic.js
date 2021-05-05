@@ -173,6 +173,7 @@ angular
         };
 
         Topic.CATEGORIES = {
+            eurochangemakers: 'eurochangemakers',
             opinionfestival: 'opinionfestival',
             thetwelvemovie: 'thetwelvemovie',
             thirtyfourislandproject: 'thirtyfourislandproject',
