@@ -23,9 +23,9 @@
 
                 <form name="loginMobiilIdForm" novalidate>
 
-                    <div class="v_line lightest_line" ng-if="app.config.features.authentication.mobiilId && app.config.features.authentication.idCard"></div>
+                    <div class="v_line lightest_line" ng-if="authMethodsAvailable.mobiilId && authMethodsAvailable.idCard"></div>
 
-                    <div ng-if="app.config.features.authentication.mobiilId" class="sign_in_section" ng-class="{'single_section': !app.config.features.authentication.idCard}">
+                    <div ng-if="authMethodsAvailable.mobiilId" class="sign_in_section" ng-class="{'single_section': !authMethodsAvailable.idCard}">
                         <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
                         <div ng-if="formMobile.isLoading && !formMobile.challengeID" class="loader_wrap">
                             <div class="loader"></div>
@@ -66,7 +66,7 @@
                         <div class="line lightest_line"></div>
                     </div>
 
-                    <div ng-if="app.config.features.authentication.idCard" class="sign_in_section" ng-class="{'single_section': !app.config.features.authentication.mobiilId}">
+                    <div ng-if="authMethodsAvailable.idCard" class="sign_in_section" ng-class="{'single_section': !authMethodsAvailable.mobiilId}">
                         <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
                         <div ng-if="!isLoadingIdCard" class="sprite_big sprite sprite-img-idkaart2x"></div>
                         <div ng-if="isLoadingIdCard" class="loader_wrap id_card_loader">
@@ -79,14 +79,14 @@
 
                     <div class="clearer"></div>
 
-                    <div ng-if="app.config.features.authentication.mobiilId && wWidth > 550" class="sign_in_section" ng-class="{'single_section': !app.config.features.authentication.idCard}">
+                    <div ng-if="authMethodsAvailable.mobiilId && wWidth > 550" class="sign_in_section" ng-class="{'single_section': !authMethodsAvailable.idCard}">
                         <button ng-click="doLoginMobiilId()" cos-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading || isLoadingIdCard" class="blue_button"
                                 ng-class="{margin_mobile_id: !app.config.features.authentication.idCard}"
                                 translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_MID">Log in with Mobiil-ID
                         </button>
                     </div>
 
-                    <div ng-if="app.config.features.authentication.idCard && wWidth > 550" class="sign_in_section" ng-class="{'single_section': !app.config.features.authentication.mobiilId}">
+                    <div ng-if="authMethodsAvailable.idCard && wWidth > 550" class="sign_in_section" ng-class="{'single_section': !authMethodsAvailable.mobiilId}">
                         <button ng-click="doLoginIdCard()" cos-disabled="formMobile.isLoading || isLoadingIdCard" class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_ID">Log in with
                             ID-Card
                         </button>

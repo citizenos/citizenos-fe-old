@@ -17,6 +17,8 @@ angular
         };
         init();
 
+        $scope.authMethodsAvailable = $scope.ngDialogData.authMethodsAvailable;
+
         $scope.doLoginMobiilId = function () {
             $log.debug('LoginEsteIdFormCtrl.doLoginMobiilId()');
 

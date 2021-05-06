@@ -2,24 +2,52 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'ngDialog', 'sAuth', 'sLocation', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $document, $interval, ngDialog, sAuth, sLocation, sNotification) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'cosConfig', 'ngDialog', 'sAuth', 'sLocation', 'sUser', function ($scope, $log, $state, $stateParams, $window, $document, $interval, cosConfig, ngDialog, sAuth, sLocation, sUser) {
         $log.debug('LoginFormCtrl');
 
         $scope.LOGIN_PARTNERS = {
             facebook: 'facebook',
             google: 'google'
         };
+        $scope.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
+        $scope.isFormEmailProvided = $scope.$parent.ngDialogData && $scope.$parent.ngDialogData.email;
 
         var init = function () {
             $scope.form = {
-                email: null,
+                email: $scope.isFormEmailProvided ? $scope.$parent.ngDialogData.email : null,
                 password: null
             };
             $scope.app.showNav = false; // Hide mobile navigation when login flow is started
         };
         init();
 
-        angular.extend($scope.form, $stateParams, $scope.$parent.ngDialogData);
+        angular.extend($scope.form, $stateParams);
+
+        // UserConnections to know which auth methods to show - https://github.com/citizenos/citizenos-fe/issues/657
+        var userConnections = $scope.$parent.ngDialogData ? $scope.$parent.ngDialogData.userConnections : null;
+        if (userConnections) {
+            var userAuthMethods = [];
+
+            if (userConnections.rows.length) {
+                // Check out from the UserConnection.connectionId map which authentication methods apply
+                userConnections.rows.forEach(function (val) {
+                    userAuthMethods = userAuthMethods.concat(sUser.USER_CONNECTION_IDS_TO_AUTH_METHOD_MAP[val.connectionId]);
+                });
+
+                // Reduce to unique values
+                userAuthMethods = userAuthMethods.filter(function (val, i, res) {
+                    return res.indexOf(val) === i;
+                });
+            } else {
+                // IF no UserConnections is returned, that is a for an unregistered user, show 'citizenos' auth method.
+                userAuthMethods.push('citizenos');
+            }
+
+            // Initially the authMethods that are configured are all available, modify the list so that only those User has available are enabled
+            Object.keys($scope.authMethodsAvailable).forEach(function (val) {
+                $scope.authMethodsAvailable[val] = userAuthMethods.indexOf(val) > -1;
+            });
+        }
 
         var popupCenter = function (url, title, w, h) {
             var userAgent = navigator.userAgent,
@@ -182,7 +210,10 @@ angular
             ngDialog
                 .open({
                     template: '/views/modals/login_esteid.html',
-                    scope: $scope // Pass on $scope so that I can access AppCtrl
+                    scope: $scope, // Pass on $scope so that I can access AppCtrl
+                    data: {
+                        authMethodsAvailable: $scope.authMethodsAvailable
+                    }
                 });
         };
 
@@ -207,5 +238,4 @@ angular
                     scope: $scope // Pass on $scope so that I can access AppCtrl
                 });
         };
-
     }]);
