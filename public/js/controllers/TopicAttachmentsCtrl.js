@@ -26,27 +26,29 @@ angular
         };
 
 
-        $scope.selectFile = function (element) {
-            var attachment = {
-                name: element.files[0].name,
-                type: element.files[0].name.split('.').pop(),
-                source: 'upload',
-                size: element.files[0].size,
-                file: element.files[0]
-            };
+        $scope.selectFile = function (files) {
+            for(var i = 0; i < files.length; i++) {
+                var attachment = {
+                    name: files[i].name,
+                    type: files[i].name.split('.').pop(),
+                    source: 'upload',
+                    size: files[i].size,
+                    file: files[i]
+                };
 
-            if (attachment.size > 50000000) {
-                $scope.$apply(function () {
-                    sNotification.addError('MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT');
-                });
+                if (attachment.size > 50000000) {
+              //      $scope.$apply(function () {
+                        sNotification.addError('MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT');
+             //       });
 
-            } else if (sUpload.ALLOWED_FILE_TYPES.indexOf(attachment.type) === -1) {
-                var fileTypeError = $translate.instant('MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED', {allowedFileTypes: sUpload.ALLOWED_FILE_TYPES.toString()});
-                $scope.$apply(function () {
-                    sNotification.addError(fileTypeError);
-                });
-            } else {
-                $scope.appendAttachment(attachment);
+                } else if (sUpload.ALLOWED_FILE_TYPES.indexOf(attachment.type.toLowerCase()) === -1) {
+                    var fileTypeError = $translate.instant('MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED', {allowedFileTypes: sUpload.ALLOWED_FILE_TYPES.toString()});
+       //             $scope.$apply(function () {
+                        sNotification.addError(fileTypeError);
+       //             });
+                } else {
+                    $scope.appendAttachment(attachment);
+                }
             }
         };
 
@@ -74,9 +76,7 @@ angular
         };
 
         $scope.appendAttachment = function (attachment) {
-            $scope.$apply(function () {
-                $scope.doSaveAttachment(attachment);
-            });
+            $scope.doSaveAttachment(attachment);
         };
 
         $scope.doSaveAttachment = function (attachment) {
@@ -94,10 +94,17 @@ angular
                                 $scope.form.files.push(topicAttachment);
                             })
                             .catch(function (err) {
-                                var keys = Object.keys(err.data.errors);
-                                keys.forEach(function (key) {
-                                    sNotification.addError(err.data.errors[key]);
-                                });
+                                if (err.data.errors) {
+                                    var keys = Object.keys(err.data.errors);
+                                    keys.forEach(function (key) {
+                                        sNotification.addError(err.data.errors[key]);
+                                    });
+                                } else if (err.data.status && err.data.status.message){
+                                    sNotification.addError(err.data.status.message);
+                                } else {
+                                    console.log(err);
+                                    sNotification.addError(err.message);
+                                }
                             });
                     });
             }

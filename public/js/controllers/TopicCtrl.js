@@ -828,24 +828,12 @@ angular
             return $translate.instant(key.split(':')[0], values);
         };
 
-        var listener = function () {
-            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
-                if (fromState.name === 'topics.view.files') {
-                    $scope.loadTopicAttachments();
-                }
-            });
-
-            $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
-                if (toState.name === 'topics.view' && rTopic.id === toState.topicId && rTopic.status === Topic.STATUSES.voting) {
-                    $stateParams.voteId = rTopic.voteId;
-                    $state.go('topics.view.votes.view', $stateParams);
-                }
-            });
-        }
-
-        // Unregister
-        $scope.$on('$destroy', function () {
-            listener();
+        $scope.$watch(function(){
+            return $state.$current.name
+        }, function(newVal, oldVal){
+            if (oldVal === 'topics.view.files') {
+                $scope.loadTopicAttachments();
+            }
         });
 
         var checkIfInView = function (elemId, from) {
