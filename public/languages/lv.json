@@ -427,6 +427,7 @@
   "TXT_TOPIC_CATEGORY_YOUTH": "Jaunieši",
   "TXT_TOPIC_CATEGORY_SCIENCE": "Zinātne un tehnoloģija",
   "TXT_TOPIC_CATEGORY_SOCIETY": "Demokrātija un pilsoniskā sabiedrība",
+  "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Meklēt tematus, lietotājus, grupas…"
@@ -1092,7 +1093,7 @@
   "MSG_ERROR_50000": "Notika mūsu sistēmas darbības kļūda. Ļoti atvainojamies! Lūdzu, mēģiniet vēlreiz. Ja problēma turpinās, lūdzu, sazinieties ar mūsu klientu atbalsta dienestu.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Tīkla darbības kļūda, lūdzu, pārbaudiet savienojumu ar internetu.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Pielikums ir par lielu! Maksimālais atļautais izmērs ir 50 MB.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Šāda veida faili nav atļauti!",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Nav definēta pielikuma saite!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Nav norādīts pielikuma nosaukums!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Parole neatbilst apstiprinātajai parolei. ",

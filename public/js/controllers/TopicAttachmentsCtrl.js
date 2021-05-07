@@ -27,7 +27,6 @@ angular
 
 
         $scope.selectFile = function (files) {
-            console.log('file', files);
             for(var i = 0; i < files.length; i++) {
                 var attachment = {
                     name: files[i].name,
@@ -95,7 +94,6 @@ angular
                                 $scope.form.files.push(topicAttachment);
                             })
                             .catch(function (err) {
-                                console.log(err);
                                 if (err.data.errors) {
                                     var keys = Object.keys(err.data.errors);
                                     keys.forEach(function (key) {
@@ -104,6 +102,7 @@ angular
                                 } else if (err.data.status && err.data.status.message){
                                     sNotification.addError(err.data.status.message);
                                 } else {
+                                    console.log(err);
                                     sNotification.addError(err.message);
                                 }
                             });

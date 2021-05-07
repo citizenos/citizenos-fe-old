@@ -427,6 +427,7 @@
   "TXT_TOPIC_CATEGORY_YOUTH": "Młodzież",
   "TXT_TOPIC_CATEGORY_SCIENCE": "Nauka i technika",
   "TXT_TOPIC_CATEGORY_SOCIETY": "Demokracja i społeczeństwo obywatelskie",
+  "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Szukaj tematów, użytkowników, grupy…"
@@ -1092,7 +1093,7 @@
   "MSG_ERROR_50000": "Coś poszło nie tak w naszym systemie. Bardzo nam przykro! Spróbuj jeszcze raz. Jeśli błąd będzie się powtarzał, skontaktuj się z naszym działem obsługi klienta.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Problemy z siecią, sprawdź swoje połączenie internetowe.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Załącznik jest zbyt duży! Maksymalny dozwolony rozmiar to 50MB.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Typ pliku jest niedozwolony!",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Link załącznika jest niezdefiniowany!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Nazwa załącznika jest niezdefiniowana!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Hasło nie pasuje do potwierdzonego hasła. ",

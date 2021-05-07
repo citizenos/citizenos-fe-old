@@ -427,6 +427,7 @@
   "TXT_TOPIC_CATEGORY_YOUTH": "Млади",
   "TXT_TOPIC_CATEGORY_SCIENCE": "Наука и техологија",
   "TXT_TOPIC_CATEGORY_SOCIETY": "Демократија и граѓанско општество",
+  "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Пребарај теми, корисници, групи…"
@@ -1092,7 +1093,7 @@
   "MSG_ERROR_50000": "Се случи нешто неочекувано со нашиот систем. Многу ни е жал! Обидете се уште еднаш, па доколку повторно се јави овој проблем, контактирајте ја грижата за корисници.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Проблеми со конекцијата, ве молиме проверете ја вашата интернет конекција.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Фајлот е преголем! Максимална дозволена големина е 50MB.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Типот на фајлот не е дозволен!",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Линкот на фајлот е недефиниран!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Името на фајлот е недефинирано!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Лозинката не се совпаѓа со потврдената лозинка.",

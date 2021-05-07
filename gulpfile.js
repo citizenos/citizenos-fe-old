@@ -131,10 +131,6 @@ var watchTask = function() {
             sass_widgets,
             cachebreaker
             )
-        ),
-        watch('public/views/**/*.html', series(
-                templatecache
-            )
         )
 };
 

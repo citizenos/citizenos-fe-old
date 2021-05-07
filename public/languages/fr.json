@@ -427,6 +427,7 @@
   "TXT_TOPIC_CATEGORY_YOUTH": "Jeunesse",
   "TXT_TOPIC_CATEGORY_SCIENCE": "Science et Technologie",
   "TXT_TOPIC_CATEGORY_SOCIETY": "Démocratie et société civile",
+  "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Chercher un sujet, utilisateur, groupe..."
@@ -1092,7 +1093,7 @@
   "MSG_ERROR_50000": "Nous sommes désolés. Une erreur inattendue est survenue dans nos systèmes. Veuiller réessayer une deuxième fois. Si l'erreur persiste, veuillez contacter notre équipe de support client.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Problèmes de connexion réseau. Veuillez vérifier que votre connexion Internet fonctionne correctement.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "La pièce jointe est trop volumineuse ! La taille maximum autorisée est 50Mo.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Ce type de fichier n'est pas autorisé !",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Le lien de la pièce jointe est indéterminé !",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Le nom de la pièce jointe est indéterminé !",
   "MSG_ERROR_PASSWORD_MISMATCH": "Le mot de passe ne correspond pas au mot de passe de confirmation. ",

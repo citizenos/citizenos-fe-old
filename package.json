@@ -22,7 +22,7 @@
     "config": "3.3.1",
     "express": "4.17.1",
     "express-csp-header": "4.0.0",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "moment": "2.29.0",
     "prerender-node": "3.2.5",
     "simplemde": "^1.11.2"

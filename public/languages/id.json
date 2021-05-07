@@ -427,6 +427,7 @@
   "TXT_TOPIC_CATEGORY_YOUTH": "Anak muda",
   "TXT_TOPIC_CATEGORY_SCIENCE": "Sains dan Teknologi",
   "TXT_TOPIC_CATEGORY_SOCIETY": "Demokrasi dan masyarakat sipil",
+  "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Cari topik, pengguna, grup…"
@@ -1092,7 +1093,7 @@
   "MSG_ERROR_50000": "Terjadi kesalahan pada sistem kami. Kami mohon maaf. Silahkan coba sekali lagi. Jika kesalahan tetap terjadi, hubungi layanan pelanggan kami.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Masalah jaringan, tolong periksa koneksi internet Anda.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Lampiran terlalu besar! Ukuran maksimum yang diizinkan adalah 50 MB.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Jenis file tidak diperbolehkan!",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Link Lampiran tidak jelas!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Nama lampiran tidak jelas!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Kata sandi tidak cocok dengan kata sandi yang dikonfirmasi. ",

@@ -427,6 +427,7 @@
   "TXT_TOPIC_CATEGORY_YOUTH": "Juventud",
   "TXT_TOPIC_CATEGORY_SCIENCE": "Ciencia y tecnología",
   "TXT_TOPIC_CATEGORY_SOCIETY": "Democracia y sociedad civil",
+  "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
       "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Buscar temas, usuarios, grupos…"
@@ -1092,7 +1093,7 @@
   "MSG_ERROR_50000": "Hubo un problema en el sistema. Lo sentimos. Vuelva a intentarlo una vez más. Si el error persiste, póngase en contacto con el servicio de atención al cliente.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Problemas de red, compruebe su conexión a Internet.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "El archivo adjunto es demasiado grande. El tamaño máximo permitido son 50 MB.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Tipo de archivo no permitido.",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "No se definió el enlace del adjunto.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "No se especificó el nombre del adjunto.",
   "MSG_ERROR_PASSWORD_MISMATCH": "La contraseña no coincide con la confirmación de contraseña. ",

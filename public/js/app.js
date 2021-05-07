@@ -249,10 +249,28 @@
                     }]
                 })
                 .state('account.signup', {
-                    url: '/signup?email&name&redirectSuccess',
-                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve) {
+                    url: '/signup?name&redirectSuccess',  // NOTE: Also supports email via "params" conf and rHiddenParams
+                    resolve: {
+                        rHiddenParams: ['$stateParams', function ($stateParams) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                            if ($stateParams.email) {
+                                return {
+                                    email: $stateParams.email
+                                }
+                            }
+                        }]
+                    },
+                    params: {
+                        email: null
+                    },
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rHiddenParams) {
                         if (sAuthResolve) {
                             return $state.go('home');
+                        }
+
+                        var dialogData = angular.extend({}, $stateParams);
+
+                        if (rHiddenParams && rHiddenParams.email) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                            dialogData.email = rHiddenParams.email;
                         }
 
                         var dialog = ngDialog.open({
@@ -269,15 +287,52 @@
                     }]
                 })
                 .state('account.login', {
-                    url: '/login?email&redirectSuccess',
-                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve) {
+                    url: '/login?userId&redirectSuccess', // NOTE: Also supports email via "params" conf and rHiddenParams
+                    resolve: {
+                        rHiddenParams: ['$stateParams', function ($stateParams) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                            if ($stateParams.email) {
+                                return {
+                                    email: $stateParams.email
+                                }
+                            }
+                        }],
+                        rUserConnections: ['$state', '$stateParams', '$log', 'sUser', function ($state, $stateParams, $log, sUser) {
+                            if ($stateParams.userId) {
+                                return sUser
+                                    .listUserConnections($stateParams.userId)
+                                    .then(
+                                        function (res) {
+                                            return res;
+                                        },
+                                        function (err) {
+                                            // If the UserConnection fetch fails, it does not matter, we just don't filter authentication methods
+                                            $log.warn('Unable to fetch UserConnections for User', err);
+                                            return;
+                                        });
+                            } else {
+                                return;
+                            }
+                        }]
+                    },
+                    params: {
+                        email: null // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                    },
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rUserConnections', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rUserConnections, rHiddenParams) {
                         if (sAuthResolve) {
                             return $state.go('home');
                         }
 
+                        var dialogData = {
+                            userConnections: rUserConnections
+                        };
+
+                        if (rHiddenParams && rHiddenParams.email) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                            dialogData.email = rHiddenParams.email;
+                        }
+
                         var dialog = ngDialog.open({
                             template: '/views/modals/login.html',
-                            data: $stateParams,
+                            data: dialogData,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
 
@@ -905,7 +960,11 @@
                                     // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
                                     if (!sAuth.user.loggedIn) {
                                         var currentUrl = $state.href($state.current.name, $stateParams);
-                                        return $state.go('account.login', {redirectSuccess: currentUrl});
+                                        return $state.go('account.login', {
+                                            userId: $scope.invite.user.id,
+                                            redirectSuccess: currentUrl,
+                                            email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                                        });
                                     }
 
                                     // 2. User logged in, but opens an invite NOT meant to that account  - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
@@ -915,7 +974,11 @@
                                             .then(function () {
                                                 var currentUrl = $state.href($state.current.name, $stateParams);
                                                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
-                                                return $state.go('account.login', {redirectSuccess: currentUrl}, {reload: true});
+                                                return $state.go('account.login', {
+                                                    userId: $scope.invite.user.id,
+                                                    redirectSuccess: currentUrl,
+                                                    email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                                                }, {reload: true});
                                             });
                                     }
                                 };
@@ -990,7 +1053,11 @@
                                     // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
                                     if (!sAuth.user.loggedIn) {
                                         var currentUrl = $state.href($state.current.name, $stateParams);
-                                        return $state.go('account.login', {redirectSuccess: currentUrl});
+                                        return $state.go('account.login', {
+                                            userId: $scope.invite.user.id,
+                                            redirectSuccess: currentUrl,
+                                            email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                                        });
                                     }
 
                                     // 2. User logged in, but opens an invite NOT meant to that account  - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
@@ -1000,7 +1067,11 @@
                                             .then(function () {
                                                 var currentUrl = $state.href($state.current.name, $stateParams);
                                                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
-                                                return $state.go('account.login', {redirectSuccess: currentUrl}, {reload: true});
+                                                return $state.go('account.login', {
+                                                    userId: $scope.invite.user.id,
+                                                    redirectSuccess: currentUrl,
+                                                    email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                                                }, {reload: true});
                                             });
                                     }
                                 };
