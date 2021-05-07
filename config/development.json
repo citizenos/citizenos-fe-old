@@ -48,6 +48,6 @@
       ]
     },
     "reportUri": "https://dev.api.citizenos.com:3003/api/internal/report",
-    "reportOnly": true
+    "reportOnly": false
   }
 }
