@@ -45,7 +45,6 @@
     "SEND_US_MESSAGE": "Pošlite nám správu",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "vas_email@priklad.sk",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Vaša správa tu...",
-    "LBL_CONSENT": "Súhlasím so zdieľaním <a href=\"\">extra dát</a> s Citizen OS pre zlepšenie užívateľského zážitku.",
     "BTN_SEND": "Poslať",
     "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "MSG_REQUEST_SENT": "Vaša žiadosť o pomoc bola odoslaná!"

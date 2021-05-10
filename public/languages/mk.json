@@ -45,7 +45,6 @@
     "SEND_US_MESSAGE": "Испратете ни порака",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "youremail@example.com",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Место за вашата порака...",
-    "LBL_CONSENT": "Се согласувам да споделувам <a href=\"\">дополнителни податоци</a> со Citizen OS заради подобрување на корисничкото искуство.",
     "BTN_SEND": "Испрати",
     "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "MSG_REQUEST_SENT": "Вашето барање за помош е испратено!"

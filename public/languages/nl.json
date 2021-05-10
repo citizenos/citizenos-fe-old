@@ -45,7 +45,6 @@
     "SEND_US_MESSAGE": "Stuur ons een bericht",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "uw_e-mailadres@voorbeeld.nl",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Uw bericht hier...",
-    "LBL_CONSENT": "Ik stem in met het delen van <a href=\"\">extra gegevens</a> met Citizen OS om te helpen de gebruikerservaring te verbeteren.",
     "BTN_SEND": "Verzenden",
     "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "MSG_REQUEST_SENT": "Je hulpverzoek is verzonden!"

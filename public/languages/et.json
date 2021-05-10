@@ -45,7 +45,6 @@
     "SEND_US_MESSAGE": "Saada meile sõnum",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "sinu_epost@domeen.ee",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Sisesta sõnum siia...",
-    "LBL_CONSENT": "Nõustun Citizen OS-iga kasutajakogemuse parendamiseks <a href=\"\">lisaandmeid</a> jagama.",
     "BTN_SEND": "Saada",
     "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "MSG_REQUEST_SENT": "Sinu abitaotlus on saadetud!"
