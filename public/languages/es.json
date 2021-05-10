@@ -45,7 +45,6 @@
     "SEND_US_MESSAGE": "Envíenos un mensaje",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "usuario@ejemplo.com",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Escriba aquí su mensaje…",
-    "LBL_CONSENT": "Acepto compartir <a href=\"\">datos adicionales</a> con Citizen OS para ayudar a mejorar la experiencia del usuario.",
     "BTN_SEND": "Enviar",
     "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "MSG_REQUEST_SENT": "Se ha enviado su solicitud de ayuda."
