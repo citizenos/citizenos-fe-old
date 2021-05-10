@@ -2650,6 +2650,7 @@ a:link, a:visited {
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 30px;
+    box-shadow: 0 0 8px 0 vars.$dark_gray;
 
     &:hover {
         cursor: pointer;
@@ -2664,6 +2665,7 @@ a:link, a:visited {
     bottom: 100px;
     border-radius: 4px;
     background: vars.$white;
+    box-shadow: 0 0 8px 0 vars.$dark_gray;
 
     .help_top {
         border-radius: 4px 4px 0 0;
