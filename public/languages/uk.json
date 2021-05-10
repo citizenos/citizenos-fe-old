@@ -45,7 +45,6 @@
     "SEND_US_MESSAGE": "Напишіть нам",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "вашаадреса@приклад.com",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Напишіть повідомлення тут…",
-    "LBL_CONSENT": "Я погоджуюся надавати Citizen OS доступ до <a href=\"\">додаткових даних</a> для покращення функціоналу програми для користувачів.",
     "BTN_SEND": "Відправити",
     "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "MSG_REQUEST_SENT": "Ваш запит на підтримку відправлено!"

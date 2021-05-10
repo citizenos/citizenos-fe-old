@@ -45,7 +45,6 @@
     "SEND_US_MESSAGE": "Nosūti mums ziņu",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "jusuepasts@piemers.lv",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Ierakstiet savu ziņojumu...",
-    "LBL_CONSENT": "Es piekrītu kopīgot <a href=\"\">papildu datus</a> ar Citizen OS, lai palīdzētu uzlabot lietotāju pieredzi.",
     "BTN_SEND": "Sūtīt",
     "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "MSG_REQUEST_SENT": "Jūsu palīdzības pieprasījums tika nosūtīts!"

@@ -45,7 +45,6 @@
     "SEND_US_MESSAGE": "Lähetä viesti",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "sposti@esimerkki.com",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Kirjoita viestisi tähän...",
-    "LBL_CONSENT": "Hyväksyn <a href=\"\">lisätietojen</a> jakamisen Citizen OS:lle käyttäjäkokemuksen parantamiseksi.",
     "BTN_SEND": "Lähetä",
     "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "MSG_REQUEST_SENT": "Pyyntösi on lähetetty!"

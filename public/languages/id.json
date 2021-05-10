@@ -45,7 +45,6 @@
     "SEND_US_MESSAGE": "Kirim pesan kepada kami",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "youremail@example.com",
     "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Tulis pesan di sini...",
-    "LBL_CONSENT": "Saya setuju untuk berbagi <a href=\"\">data ekstra</a> dengan Citizen OS untuk membantu meningkatkan pengalaman pengguna.",
     "BTN_SEND": "Kirim",
     "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "MSG_REQUEST_SENT": "Permintaan bantuan Anda telah dikirimkan!"
