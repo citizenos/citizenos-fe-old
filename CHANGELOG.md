@@ -1,3 +1,8 @@
+## 2021-05-11
+
+* **FE now requires CitizenOS API >= 2.2.0.**
+* Localization: GroupMember model renamed to GroupMemberUser - https://github.com/citizenos/citizenos-api/issues/198
+
 ## 2020-09-30
 
 * Report a Topic - hide/show moderated topics - https://github.com/citizenos/citizenos-fe/issues/464
