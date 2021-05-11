@@ -178,7 +178,16 @@
                             $log.debug('Resolve unreadActivities');
                             if (sAuth.user.loggedIn) {
                                 return sActivity
-                                    .getUnreadActivities();
+                                    .getUnreadActivities()
+                                    .then(
+                                        function (res) {
+                                            return res;
+                                        },
+                                        function (err) {
+                                            $log.error('Failed to load Activities.', err);
+                                            return $q.resolve(false); // Ignore, do not break the whole site.
+                                        }
+                                    );
                             } else {
                                 return $q.resolve(false);
                             }
