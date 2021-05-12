@@ -28,6 +28,10 @@
       "et": "https://app.citizenos.com/en/topics/fd8c4e13-6c5f-4423-9408-cf97c30727d7",
       "ru": "https://app.citizenos.com/en/topics/bd15b9e8-7de4-42c2-a394-78ed95a735cd"
     },
+    "faq": {
+      "en": "https://citizenos.com/faq/",
+      "et": "https://citizenos.com/et/kkk/"
+    },
     "about": "https://citizenos.com/product"
   },
   "legal": {

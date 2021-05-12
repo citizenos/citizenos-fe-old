@@ -104,7 +104,7 @@ h2 {
 /* INFO BAR COLORS */
 .bar_red {
     color: vars.$white;
-    background:  vars.$pinky_red;
+    background: vars.$pinky_red;
 
     a:link, a:visited {
         color: vars.$white;
@@ -118,7 +118,7 @@ h2 {
 
 .bar_blue {
     color: vars.$white;
-    background:  vars.$deep_sky_blue;
+    background: vars.$deep_sky_blue;
 
     a:link, a:visited {
         color: vars.$white;
@@ -132,7 +132,7 @@ h2 {
 
 .bar_green {
     color: vars.$green_dark;
-    background:  vars.$aqua_marine;
+    background: vars.$aqua_marine;
 
     a:link, a:visited {
         color: vars.$green_dark;
@@ -146,7 +146,7 @@ h2 {
 
 .bar_orange {
     color: vars.$white;
-    background:  vars.$orange;
+    background: vars.$orange;
 
     a:link, a:visited {
         color: vars.$white;
@@ -159,7 +159,6 @@ h2 {
 }
 
 
-
 .dark_yellow_background {
     background: vars.$dark_yellow;
 }
@@ -170,6 +169,7 @@ h2 {
 
 .aqua_marine_background {
     background: vars.$aqua_marine !important;
+
     &:hover {
         background: vars.$aqua_marine_border_second !important;
         @media (max-width: 1025px) {
@@ -266,12 +266,14 @@ h2 {
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 4px;
+
     &:hover {
         @media (min-width: 1025px) {
             background: vars.$nature_green_dark !important;
             border: 1px solid vars.$nature_green_border_dark;
         }
     }
+
     &.disabled {
         background: vars.$nature_green;
     }
@@ -282,12 +284,14 @@ h2 {
     background: vars.$pinky_red;
     color: vars.$white;
     border: 1px solid vars.$pinky_red_border;
+
     &:hover {
         @media (min-width: 1025px) {
             background: vars.$pinky_red_dark_hover !important;
             border: 1px solid vars.$pinky_red_dark_border;
         }
     }
+
     &.disabled {
         background: vars.$pinky_red;
     }
@@ -298,17 +302,18 @@ h2 {
     background: vars.$white;
     color: vars.$deep_sky_blue;
     border: 1px solid vars.$lightest_gray;
+
     &:hover {
         @media (min-width: 1025px) {
             background: vars.$medium_gray !important;
             border: 1px solid vars.$mobile_border_gray;
         }
     }
+
     &.disabled {
         background: vars.$pinky_red;
     }
 }
-
 
 
 .bullet_blue {
@@ -461,11 +466,12 @@ table, .pretend_table {
     @extend %table_cell;
     min-width: 260px;
 }
+
 .reaction_wrap {
     display: table-cell;
     width: 100%;
 
-    .reaction{
+    .reaction {
         position: relative;
         float: right;
         top: 8px;
@@ -766,8 +772,9 @@ table, .pretend_table {
 
     &.active {
         .option_radio {
-            border:none;
+            border: none;
         }
+
         .option_checkbox:after, .option_radio:after {
             display: block;
         }
@@ -915,6 +922,7 @@ table, .pretend_table {
             }
         }
     }
+
     .delegation_information {
         background: vars.$light_gray;
         padding: 20px;
@@ -1041,7 +1049,7 @@ table, .pretend_table {
     display: none;
 }
 
-.user_level_text{
+.user_level_text {
     font-size: 13px;
 }
 
@@ -1656,10 +1664,12 @@ a:link, a:visited {
 
     .toggle_box_icons {
         padding-top: 15px;
+
         .icon_wrapper {
             display: inline-block;
         }
     }
+
     .toggle_box_warning {
         color: vars.$pinky_red;
         padding: 8px 0 13px 36px;
@@ -2640,7 +2650,7 @@ a:link, a:visited {
 
 .help_bubble {
     z-index: 999999;
-    width:  60px;
+    width: 60px;
     height: 60px;
     position: fixed;
     right: 20px;
@@ -2669,7 +2679,6 @@ a:link, a:visited {
 
     .help_top {
         border-radius: 4px 4px 0 0;
-        height: 198px;
         width: 320px;
         background-color: vars.$deep_sky_blue;
         color: vars.$white;
@@ -2687,7 +2696,7 @@ a:link, a:visited {
         }
 
         .help_description {
-            padding: 0 20px;
+            padding: 0 20px 20px 20px;
             font-size: 14px;
 
             a {
@@ -2698,14 +2707,21 @@ a:link, a:visited {
                 display: inline-block;
                 text-decoration: underline;
                 cursor: pointer;
+                color: vars.$white;
+
                 &:hover {
                     color: vars.$lightest_gray;
+                }
+
+                &:visited {
+                    color: vars.$white;
                 }
 
                 span {
                     display: inline-block;
                     vertical-align: middle;
                     margin-right: 5px;
+                    text-decoration: underline;
                 }
             }
         }
@@ -2744,6 +2760,7 @@ a:link, a:visited {
             span {
                 font-size: 14px;
             }
+
             .help_checkbox {
                 position: relative;
                 top: 5px;
@@ -2753,9 +2770,9 @@ a:link, a:visited {
                 background-color: vars.$white;
                 display: inline-block;
                 border: 1px solid #e5e5e5;
-                -webkit-box-shadow: 0px -1px 2px 0px rgba(0,0,0,.15);
-                box-shadow: 0px -1px 2px 0px rgba(0,0,0,.15);
-                -moz-box-shadow: 0px -1px 2px 0px rgba(0,0,0,.15);
+                -webkit-box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, .15);
+                box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, .15);
+                -moz-box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, .15);
 
                 &:after {
                     content: "";
@@ -2777,6 +2794,7 @@ a:link, a:visited {
                 display: block;
             }
         }
+
         textarea {
             height: 160px;
         }
@@ -2799,7 +2817,7 @@ a:link, a:visited {
 }
 
 .cm-formatting {
-	display: none;
+    display: none;
 
     &.cm-formatting-list {
         display: inherit;
