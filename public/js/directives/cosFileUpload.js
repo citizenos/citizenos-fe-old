@@ -1,15 +1,12 @@
 angular
     .module('citizenos')
-    .directive('cosFileModel', [function ($parse) {
+    .directive('cosFileUpload', [function ($parse) {
         return {
-            restrict: 'A', //the directive can be used as an attribute only
+            restrict: 'A',
             scope: {
                 select: '=?'
             },
             link: function (scope, element, attrs) {
-            /*    var model = $parse(attrs.demoFileModel),
-                    modelSetter = model.assign;*/ //define a setter for demoFileModel
-
                 //Bind change event on the element
                 element.bind('change', function () {
                     //Call apply on scope, it checks for value changes and reflect them on UI

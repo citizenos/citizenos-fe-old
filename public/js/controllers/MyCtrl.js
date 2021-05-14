@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', 'Group', 'Topic', 'GroupMemberTopic', 'rItems', function ($rootScope, $scope, $state, $stateParams, $q, $log, Group, Topic, GroupMemberTopic, rItems) {
+    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', '$timeout', 'Group', 'Topic', 'GroupMemberTopic', 'rItems', function ($rootScope, $scope, $state, $stateParams, $q, $log, $timeout, Group, Topic, GroupMemberTopic, rItems) {
         $log.debug('MyCtrl', $stateParams, rItems);
 
         $scope.itemList = rItems;
@@ -121,17 +121,20 @@ angular
                 if (!newList || !newList.length) return;
                 // Navigate to first item in the list on big screens.
                 if ($rootScope.wWidth > 750) {
-                    if ($state.is('my.groups') || $state.is('my.topics')) {
-                        var item = $scope.itemList[0];
-                        if ($scope.isGroup(item)) {
-                            $state.go('my.groups.groupId', {
-                                groupId: item.id,
-                                filter: 'grouped'
-                            });
-                        } else {
-                            $state.go('my.topics.topicId', {topicId: item.id});
+
+                    $timeout(function () {
+                        if ($state.is('my.groups') || $state.is('my.topics')) {
+                            var item = $scope.itemList[0];
+                            if ($scope.isGroup(item)) {
+                                $state.go('my.groups.groupId', {
+                                    groupId: item.id,
+                                    filter: 'grouped'
+                                });
+                            } else {
+                                $state.go('my.topics.topicId', {topicId: item.id});
+                            }
                         }
-                    }
+                    });
                 }
             }
         );
@@ -165,7 +168,6 @@ angular
         $scope.goToTopicView = function (topic, editMode) {
             var status = topic.status;
             var params = {topicId: topic.id};
-            console.log(topic, status);
             if (status === Topic.STATUSES.inProgress) {
                 if (topic.canEdit() && editMode) {
                     params.editMode = true;

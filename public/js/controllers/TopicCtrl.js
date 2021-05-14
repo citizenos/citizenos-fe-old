@@ -549,8 +549,6 @@ angular
                     if (!doShowList) {
                         $scope.doShowMemberGroupList();
                         checkIfInView('group_list');
-                    } else {
-
                     }
                 });
         };
@@ -648,6 +646,7 @@ angular
             });
 
         }
+
         $scope.doToggleMemberUserList = function () {
             var doShowList = $scope.userList.isVisible;
             if ($scope.userList.isVisible) {

@@ -31,7 +31,6 @@
     "chai": "4.2.0",
     "concurrently": "5.3.0",
     "gulp": "4.0.2",
-    "gulp-angular-templatecache": "3.0.0",
     "gulp-cache-bust": "1.4.1",
     "gulp-clean-css": "4.3.0",
     "gulp-concat": "2.6.1",
