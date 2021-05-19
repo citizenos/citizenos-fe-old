@@ -121,7 +121,9 @@ angular
                     });
 
                 signDialog.closePromise.then(function (data) {
-                    sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
+                    if(data.value) {
+                        sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
+                    }
                 });
 
                 return;
