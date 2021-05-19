@@ -1,5 +1,11 @@
 <div ng-controller="HelpFormCtrl">
 <div class="help_widget" ng-if="showHelp">
+    <div id="help_close" ng-click="closeHelp()">
+        <div class="table_cell">
+            <div class="sprite sprite sprite-icon-closemenu2x">
+            </div>
+        </div>
+    </div>
     <div class="help_top">
         <div class="help_title_text_wrapper">
             <div class="help_title_text" translate="HELP_WIDGET.TITLE">We’re here to help!</div>

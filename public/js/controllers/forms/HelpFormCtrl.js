@@ -15,6 +15,9 @@ angular
         };
 
         init();
+        $scope.closeHelp = function () {
+            $scope.showHelp = false;
+        };
 
         $scope.sendHelp = function () {
             $scope.isLoading = true;
