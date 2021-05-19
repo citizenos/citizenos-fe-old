@@ -2677,6 +2677,15 @@ a:link, a:visited {
     background: vars.$white;
     box-shadow: 0 0 8px 0 vars.$dark_gray;
 
+    #help_close {
+        height: 54px;
+        border-radius: 0 4px;
+        position: absolute;
+        float: none;
+        right: 10px;
+        top: 10px;
+    }
+
     .help_top {
         border-radius: 4px 4px 0 0;
         width: 320px;
