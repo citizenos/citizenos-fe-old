@@ -216,7 +216,7 @@ angular
         };
 
         Topic.prototype.canUpdate = function () {
-            return (this.permission && this.permission.level === TopicMemberUser.LEVELS.admin);
+            return (this.permission && this.permission.level === TopicMemberUser.LEVELS.admin && this.status !== Topic.STATUSES.closed);
         };
 
         /**
@@ -228,7 +228,7 @@ angular
          * @see Topic.prototype.canEditDescription()
          */
         Topic.prototype.canEdit = function () {
-            return [TopicMemberUser.LEVELS.admin, TopicMemberUser.LEVELS.edit].indexOf(this.permission.level) > -1;
+            return ([TopicMemberUser.LEVELS.admin, TopicMemberUser.LEVELS.edit].indexOf(this.permission.level) > -1 && this.status !== Topic.STATUSES.closed);
         };
 
         /**
