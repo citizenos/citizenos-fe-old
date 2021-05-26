@@ -448,15 +448,15 @@ angular
 
             if (activity.data.type === 'Accept' || activity.data.type === 'Invite' || (activity.data.type === 'Add' && activity.data.actor.type === 'User' && activity.data.object['@type'] === 'User' && activity.data.target['@type'] === 'Group')) { // Last condition if for Group invites
                 return 'invite';
-            } else if (dataobject['@type'] === 'Topic' || dataobject['@type'] === 'TopicMemberUser' || dataobject['@type'] === 'CommentVote' || dataobject['@type'] === 'Attachment' || dataobject['@type'] === 'TopicPin' || activity.data.target && activity.data.target['@type'] === ' Topic') {
+            } else if (['Topic', 'TopicMemberUser', 'Attachment', 'TopicPin' ].indexOf(dataobject['@type']) > -1 || activity.data.target && activity.data.target['@type'] === ' Topic') {
                 return 'topic';
-            } else if (dataobject['@type'] === 'Group' || dataobject.groupName) {
+            } else if (['Group'].indexOf(dataobject['@type']) > -1 || dataobject.groupName) {
                 return 'group';
-            } else if (dataobject['@type'] === 'Vote' || dataobject['@type'] === 'VoteList' || dataobject['@type'] === 'VoteUserContainer' || dataobject['@type'] === 'VoteOption') {
+            } else if (['Vote', 'VoteList', 'VoteUserContainer', 'VoteOption', 'VoteDelegation'].indexOf(dataobject['@type']) > -1) {
                 return 'vote';
-            } else if (dataobject['@type'] === 'Comment' || dataobject.text) {
+            } else if (['Comment', 'CommentVote'].indexOf(dataobject['@type']) > -1) {
                 return 'comment';
-            } else if (dataobject['@type'] === 'User' || dataobject['@type'] === 'UserConnection' || dataobject.text) {
+            } else if (['User', 'UserConnection'].indexOf(dataobject['@type']) > -1 || dataobject.text) {
                 return 'personal';
             } else {
                 return 'topic';
