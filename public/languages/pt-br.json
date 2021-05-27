@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Atividades relacionadas aos meus tópicos",
     "FILTER_USERGROUPS": "Atividades relacionadas aos meus grupos",
     "FILTER_USER": "Atividades relacionadas ao usuário",
-    "FILTER_SELF": "Atividades do usuário"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "E-mail inválido.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "O endereço de e-mail já está em uso.",
