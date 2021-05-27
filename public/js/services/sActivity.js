@@ -425,7 +425,7 @@ angular
             if (Array.isArray(dataobject)) {
                 dataobject = dataobject[0];
             }
-            if (dataobject['@type'] === 'Topic') {
+            if (['Topic', 'VoteFinalContainer'].indexOf(dataobject['@type']) > -1) {
                 return dataobject.title;
             } else if (dataobject.topicTitle) {
                 return dataobject.topicTitle;
@@ -452,7 +452,7 @@ angular
                 return 'topic';
             } else if (['Group'].indexOf(dataobject['@type']) > -1 || dataobject.groupName) {
                 return 'group';
-            } else if (['Vote', 'VoteList', 'VoteUserContainer', 'VoteOption', 'VoteDelegation'].indexOf(dataobject['@type']) > -1) {
+            } else if (['Vote', 'VoteList', 'VoteUserContainer', 'VoteFinalContainer', 'VoteOption', 'VoteDelegation'].indexOf(dataobject['@type']) > -1) {
                 return 'vote';
             } else if (['Comment', 'CommentVote'].indexOf(dataobject['@type']) > -1) {
                 return 'comment';
@@ -705,6 +705,10 @@ angular
             } else if (object['@type'] === 'Group' || object['@type'] === 'TopicMemberGroup') {
                 stateName = 'my.groups.groupId';
                 params.groupId = object.id || object.groupId;
+            } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteFinalContainer' ) {
+                stateName = 'topics.view.votes.view';
+                params.topicId = object.topicId || object.id;
+                params.voteId = object.voteId || object.id;
             } else if (target && target['@type'] === 'Topic' || target.topicId) {
                 stateName = 'topics.view';
                 params.topicId = target.topicId || target.id
