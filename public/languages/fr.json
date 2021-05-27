@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Les activités liées à mes sujets",
     "FILTER_USERGROUPS": "Les activités liées à mes groupes",
     "FILTER_USER": "Les activités liées à l'utilisateur",
-    "FILTER_SELF": "Les activités de l'utilisateur"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Email non valide.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Cette adresse email est déjà utilisée.",
