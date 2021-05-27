@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Omiin aiheisiini liittyvä toiminta",
     "FILTER_USERGROUPS": "Omiin ryhmiini liittyvä toiminta",
     "FILTER_USER": "Käyttäjään liittyvä toiminta",
-    "FILTER_SELF": "Käyttäjän toiminta"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Virheellinen sähköposti.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Sähköpostiosoite on jo käytössä.",
