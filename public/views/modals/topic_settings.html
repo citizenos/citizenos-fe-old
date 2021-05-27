@@ -28,7 +28,7 @@
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="selectTab('categories')" ng-class="tabSelected === 'categories' ? 'active' : ''">
+                        <div class="tab_button" ng-if="topic.canEdit()" ng-click="selectTab('categories')" ng-class="tabSelected === 'categories' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_SETTINGS_TAB_CATEGORIES">CATEGORIES</div>
                                 <div class="blue_bottom_line"></div>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
 
-                    <div class="line lightest_line"></div>
+                    <div class="line lightest_line" ng-if="topic.canEdit()"></div>
 
                     <div class="settings_section" ng-if="topic.canEdit()">
                         <div class="settings_cell">
@@ -99,7 +99,7 @@
                         </div>
 
                     </div>
-                    <div class="line lightest_line"></div>
+                    <div class="line lightest_line" ng-if="topic.canSendToFollowUp() && topic.canEdit()"></div>
 
                     <div class="settings_section" ng-if="topic.canSendToFollowUp() && topic.canEdit()">
                         <div class="settings_cell">
@@ -114,7 +114,7 @@
                         </div>
 
                     </div>
-                    <div class="line lightest_line"></div>
+                    <div class="line lightest_line" ng-if="topic.canEdit()"></div>
 
                     <div class="settings_section" ng-if="topic.canLeave()">
                         <div class="settings_cell">
@@ -129,7 +129,7 @@
                         </div>
 
                     </div>
-                    <div class="line lightest_line"></div>
+                    <div class="line lightest_line"  ng-if="topic.canDelete()"></div>
 
                     <div class="settings_section" ng-if="topic.canDelete()">
                         <div class="settings_cell">
