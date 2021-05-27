@@ -425,7 +425,7 @@ angular
             if (Array.isArray(dataobject)) {
                 dataobject = dataobject[0];
             }
-            if (dataobject['@type'] === 'Topic') {
+            if (['Topic', 'VoteFinalContainer'].indexOf(dataobject['@type']) > -1) {
                 return dataobject.title;
             } else if (dataobject.topicTitle) {
                 return dataobject.topicTitle;
