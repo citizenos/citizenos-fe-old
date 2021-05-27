@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Обновления, связанные с моими темами",
     "FILTER_USERGROUPS": "Обновления, связанные с моими группами",
     "FILTER_USER": "Обновления, связанные с пользователем",
-    "FILTER_SELF": "Обзор деятельности пользователя"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ошибка в адресе эл. почты.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Данный адрес эл. почты уже используется.",
