@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Ar manu tematu saistītās aktivitātes",
     "FILTER_USERGROUPS": "Ar manām grupām saistītās aktivitātes",
     "FILTER_USER": "Ar lietotāju saistītās aktivitātes",
-    "FILTER_SELF": "Lietotāja aktivitātes"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Nederīgs e-pasts.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Šī e-pasta adrese jau tiek izmantota.",
