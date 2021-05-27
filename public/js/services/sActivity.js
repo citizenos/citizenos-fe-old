@@ -705,6 +705,10 @@ angular
             } else if (object['@type'] === 'Group' || object['@type'] === 'TopicMemberGroup') {
                 stateName = 'my.groups.groupId';
                 params.groupId = object.id || object.groupId;
+            } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteFinalContainer' ) {
+                stateName = 'topics.view.votes.view';
+                params.topicId = object.topicId || object.id;
+                params.voteId = object.voteId || object.id;
             } else if (target && target['@type'] === 'Topic' || target.topicId) {
                 stateName = 'topics.view';
                 params.topicId = target.topicId || target.id
