@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Aktivity súvisiace s mojimi témami",
     "FILTER_USERGROUPS": "Aktivity súvisiace s mojimi skupinami",
     "FILTER_USER": "Aktivity súvisiace s užívateľom/užívateľkou",
-    "FILTER_SELF": "Užívatelove aktivity"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Neplatný email.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Táto mailová adresa sa už používa.",
