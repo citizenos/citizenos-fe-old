@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Activiteiten gerelateerd aan mijn topics",
     "FILTER_USERGROUPS": "Activiteiten gerelateerd aan mijn groepen",
     "FILTER_USER": "Activiteiten gerelateerd aan gebruiker",
-    "FILTER_SELF": "Activiteiten gebruiker"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ongeldig e-mailadres.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Dit e-mailadres wordt al gebruikt.",
