@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Minu teemadega seotud toimingud",
     "FILTER_USERGROUPS": "Minu gruppidega seotud toimingud",
     "FILTER_USER": "Kasutajaga seotud toimingud",
-    "FILTER_SELF": "Kasutaja toimingud"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Viga e-posti aadressis.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "See e-posti aadress on juba kasutusel.",
