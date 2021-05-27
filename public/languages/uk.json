@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Події пов'язані з моїми темами",
     "FILTER_USERGROUPS": "Події пов'язані з моїми групами",
     "FILTER_USER": "Події пов'язані з користувачем",
-    "FILTER_SELF": "Дії користувача"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Невірна електронна пошта.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Ця електронна пошта вже використовується.",
