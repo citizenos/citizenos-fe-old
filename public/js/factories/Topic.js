@@ -243,7 +243,7 @@ angular
         };
 
         Topic.prototype.canDelete = function () {
-            return this.canUpdate();
+            return (this.permission && this.permission.level === TopicMemberUser.LEVELS.admin);
         };
 
         Topic.prototype.canVote = function () {
