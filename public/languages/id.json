@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Kegiatan yang berhubungan dengan topik saya",
     "FILTER_USERGROUPS": "Kegiatan yang berhubungan dengan grup saya",
     "FILTER_USER": "Kegiatan yang berhubungan pengguna",
-    "FILTER_SELF": "Aktifitas pengguna"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Email tidak valid.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Alamat email ini sudah digunakan.",
