@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Aktivitäten in meinen Themen",
     "FILTER_USERGROUPS": "Aktivitäten in meinen Gruppen",
     "FILTER_USER": "Benutzerbezogene Aktivitäten",
-    "FILTER_SELF": "Meine Aktivitäten"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ungültige E-Mail.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Diese E-Mail-Adresse wird bereits verwendet.",
