@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Активности за моите теми",
     "FILTER_USERGROUPS": "Активности за моите групи",
     "FILTER_USER": "Активности за овој корисник",
-    "FILTER_SELF": "Активности на корисникот"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Невалидна е-пошта.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Оваа е-пошта е веќе во употреба.",
