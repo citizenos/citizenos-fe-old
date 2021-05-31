@@ -177,6 +177,7 @@ angular
                     function () {
                         $state.go('home');
                         ngDialog.closeAll();
+                        sNotification.removeAll();
                     },
                     function (err) {
                         $log.error('AppCtrl.doLogout()', 'Logout failed', err);
@@ -191,6 +192,7 @@ angular
                 .then(
                     function () {
                         $state.reload();
+                        sNotification.removeAll();
                     },
                     function (err) {
                         $log.error('AppCtrl.doLogout()', 'Logout failed', err);
