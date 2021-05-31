@@ -180,6 +180,7 @@ angular
                     },
                     function (err) {
                         $log.error('AppCtrl.doLogout()', 'Logout failed', err);
+                        sNotification.addError('MSG_ERROR_LOGOUT_FAILED');
                     }
                 );
         };
@@ -193,6 +194,7 @@ angular
                     },
                     function (err) {
                         $log.error('AppCtrl.doLogout()', 'Logout failed', err);
+                        sNotification.addError('MSG_ERROR_LOGOUT_FAILED');
                     }
                 );
         };

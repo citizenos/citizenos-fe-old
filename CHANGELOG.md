@@ -1,3 +1,7 @@
+## 2021-05-31  - v. 0.1.1
+
+* App logout to call `GET /ep_auth_citizenos/logout` to destroy EP session - https://github.com/citizenos/citizenos-fe/issues/676
+
 ## 2021-05-11
 
 * **FE now requires CitizenOS API >= 2.2.0.**

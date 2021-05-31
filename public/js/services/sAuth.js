@@ -56,7 +56,6 @@ angular
                 return response.data.data;
             };
 
-
             var path = sLocation.getAbsoluteUrlApi('/api/auth/mobile/init');
             return $http.post(path, data).then(success, defaultError);
         };
@@ -115,7 +114,7 @@ angular
             return $http
                 .get(cosConfig.features.authentication.idCard.url, {withCredentials: true}) // withCredentials so that client certificate is sent
                 .then(function (response) {
-                    if(response.data.data.token) {
+                    if (response.data.data.token) {
                         var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
                         return $http.get(path, {params: response.data.data});
                     } else {
@@ -139,7 +138,14 @@ angular
             };
 
             var path = sLocation.getAbsoluteUrlApi('/api/auth/logout');
-            return $http.post(path).then(success, defaultError);
+
+            return $http
+                .get('https://dev.p.citizenos.com:9001/ep_auth_citizenos/logout') // Call Etherpad logout - https://github.com/citizenos/citizenos-fe/issues/676
+                .then(function (success, err) {
+                    if (err) throw err;
+                    return $http.post(path);
+                })
+                .then(success, defaultError);
         };
 
         sAuth.status = function () {
