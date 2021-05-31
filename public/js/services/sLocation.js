@@ -30,6 +30,12 @@ angular
             return _getAbsoluteUrl(baseUrlApi, path, params, query);
         };
 
+        sLocation.getAbsoluteUrlEtherpad = function (path, params, query) {
+            var baseUrlEtherpad = cosConfig.etherpad.baseUrl;
+
+            return _getAbsoluteUrl(baseUrlEtherpad, path, params, query);
+        };
+
         sLocation.getAbsoluteUrl = function (path, params, query) {
             var baseUrlApi = sLocation.getBaseUrl();
 
@@ -41,7 +47,7 @@ angular
             return baseUrl + $location.url();
         };
 
-        function _getAbsoluteUrl(baseUrl, path, params, query) {
+        function _getAbsoluteUrl (baseUrl, path, params, query) {
 
             if (params) {
                 Object.keys(params).forEach(function (key) {

@@ -137,13 +137,14 @@ angular
                 return response;
             };
 
-            var path = sLocation.getAbsoluteUrlApi('/api/auth/logout');
+            var pathLogoutEtherpad = sLocation.getAbsoluteUrlEtherpad('/ep_auth_citizenos/logout');
+            var pathLogoutAPI = sLocation.getAbsoluteUrlApi('/api/auth/logout');
 
             return $http
-                .get('https://dev.p.citizenos.com:9001/ep_auth_citizenos/logout') // Call Etherpad logout - https://github.com/citizenos/citizenos-fe/issues/676
+                .get(pathLogoutEtherpad) // Call Etherpad logout - https://github.com/citizenos/citizenos-fe/issues/676
                 .then(function (success, err) {
                     if (err) throw err;
-                    return $http.post(path);
+                    return $http.post(pathLogoutAPI);
                 })
                 .then(success, defaultError);
         };

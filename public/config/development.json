@@ -2,6 +2,9 @@
   "api": {
     "baseUrl": "https://dev.api.citizenos.com:3003"
   },
+  "etherpad": {
+    "baseUrl": "https://dev.p.citizenos.com:9001"
+  },
   "language": {
     "default": "en",
     "list": {
