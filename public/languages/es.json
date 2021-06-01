@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "La contraseña no coincide con la confirmación de contraseña. ",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Se alcanzó el límite de nuevos miembros",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "El número de opciones seleccionadas no coincide con la configuración de votos.",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Negrita",
   "MDEDITOR_TOOLTIP_ITALIC": "Cursiva",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Tachado",
