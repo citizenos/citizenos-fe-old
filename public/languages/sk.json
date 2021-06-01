@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "Heslo sa nezhoduje s potvrdeným heslom. ",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Dosiahnutý limit nových členov",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Vybraný počet možností sa nezhoduje s nastaveniami hlasovania!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Tučné",
   "MDEDITOR_TOOLTIP_ITALIC": "Kurzíva",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Prečiarknutie",
