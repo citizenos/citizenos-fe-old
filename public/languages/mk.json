@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "Лозинката не се совпаѓа со потврдената лозинка.",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Достигнато е ограничувањето на бројот нови членови",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Избраниот број оции не е во согласност со поставките за гласање!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Задебелено",
   "MDEDITOR_TOOLTIP_ITALIC": "Курзив",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Пречкртај",
