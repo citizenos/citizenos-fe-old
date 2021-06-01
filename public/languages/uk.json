@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Події пов'язані з моїми темами",
     "FILTER_USERGROUPS": "Події пов'язані з моїми групами",
     "FILTER_USER": "Події пов'язані з користувачем",
-    "FILTER_SELF": "Дії користувача"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Невірна електронна пошта.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Ця електронна пошта вже використовується.",
@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "Паролі не співпадають.",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Досягнуто ліміту нових учасників",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Кількість обраних опцій не відповідає налаштуванням голосування!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Жирний",
   "MDEDITOR_TOOLTIP_ITALIC": "Курсив",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Закреслений",

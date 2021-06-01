@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Activities related to my topics",
     "FILTER_USERGROUPS": "Activities related to my groups",
     "FILTER_USER": "Activities related to user",
-    "FILTER_SELF": "User's activities"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Invalid email.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "The email address is already in use.",
@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "Password does not match the confirmed password. ",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "New members limit reached",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Selected options count does not match vote settings!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Bold",
   "MDEDITOR_TOOLTIP_ITALIC": "Italic",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Strikethrough",

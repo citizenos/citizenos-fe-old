@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Atividades relacionadas aos meus tópicos",
     "FILTER_USERGROUPS": "Atividades relacionadas aos meus grupos",
     "FILTER_USER": "Atividades relacionadas ao usuário",
-    "FILTER_SELF": "Atividades do usuário"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "E-mail inválido.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "O endereço de e-mail já está em uso.",
@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "A senha não corresponde à senha confirmada. ",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Limite de novos membros atingido",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "A quantidade de opções selecionadas não corresponde com as configurações de voto!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Negrito",
   "MDEDITOR_TOOLTIP_ITALIC": "Itálico",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Tachado",

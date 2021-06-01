@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Aktivity súvisiace s mojimi témami",
     "FILTER_USERGROUPS": "Aktivity súvisiace s mojimi skupinami",
     "FILTER_USER": "Aktivity súvisiace s užívateľom/užívateľkou",
-    "FILTER_SELF": "Užívatelove aktivity"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Neplatný email.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Táto mailová adresa sa už používa.",
@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "Heslo sa nezhoduje s potvrdeným heslom. ",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Dosiahnutý limit nových členov",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Vybraný počet možností sa nezhoduje s nastaveniami hlasovania!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Tučné",
   "MDEDITOR_TOOLTIP_ITALIC": "Kurzíva",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Prečiarknutie",

@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Обновления, связанные с моими темами",
     "FILTER_USERGROUPS": "Обновления, связанные с моими группами",
     "FILTER_USER": "Обновления, связанные с пользователем",
-    "FILTER_SELF": "Обзор деятельности пользователя"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ошибка в адресе эл. почты.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Данный адрес эл. почты уже используется.",
@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "Пароль и подтверждение пароля не cовпадают.",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Достигнут лимит новых участников",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Количество выбранных вариантов не соответствует настройкам голосования!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Полужирный",
   "MDEDITOR_TOOLTIP_ITALIC": "Курсив",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Перечеркнутый",

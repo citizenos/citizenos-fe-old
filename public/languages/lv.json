@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Ar manu tematu saistītās aktivitātes",
     "FILTER_USERGROUPS": "Ar manām grupām saistītās aktivitātes",
     "FILTER_USER": "Ar lietotāju saistītās aktivitātes",
-    "FILTER_SELF": "Lietotāja aktivitātes"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Nederīgs e-pasts.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Šī e-pasta adrese jau tiek izmantota.",
@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "Parole neatbilst apstiprinātajai parolei. ",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Sasniegts jaunu lietotāju limits",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Atlasīto variantu skaits neatbilst balsojuma iestatījumiem!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Treknraksts",
   "MDEDITOR_TOOLTIP_ITALIC": "Slīpraksts",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Pārsvītrojums",
