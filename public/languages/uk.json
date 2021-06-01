@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "Паролі не співпадають.",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Досягнуто ліміту нових учасників",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Кількість обраних опцій не відповідає налаштуванням голосування!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Жирний",
   "MDEDITOR_TOOLTIP_ITALIC": "Курсив",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Закреслений",
