@@ -26,6 +26,7 @@
       ],
       "connect-src": [
         "self",
+        "https://p.citizenos.com",
         "https://id.citizenos.com",
         "https://api.citizenos.com",
         "https://stats.citizenos.com",

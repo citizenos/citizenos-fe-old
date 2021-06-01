@@ -2,6 +2,9 @@
   "api": {
     "baseUrl": "CITIZENOS_URL_API"
   },
+  "etherpad": {
+    "baseUrl": "CITIZENOS_ETHERPAD_BASEURL"
+  },
   "language": {
     "default": "DEFAULT_LANG_KEY",
     "list": {

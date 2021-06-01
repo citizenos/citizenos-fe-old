@@ -177,9 +177,11 @@ angular
                     function () {
                         $state.go('home');
                         ngDialog.closeAll();
+                        sNotification.removeAll();
                     },
                     function (err) {
                         $log.error('AppCtrl.doLogout()', 'Logout failed', err);
+                        sNotification.addError('MSG_ERROR_LOGOUT_FAILED');
                     }
                 );
         };
@@ -190,9 +192,11 @@ angular
                 .then(
                     function () {
                         $state.reload();
+                        sNotification.removeAll();
                     },
                     function (err) {
                         $log.error('AppCtrl.doLogout()', 'Logout failed', err);
+                        sNotification.addError('MSG_ERROR_LOGOUT_FAILED');
                     }
                 );
         };

@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Kegiatan yang berhubungan dengan topik saya",
     "FILTER_USERGROUPS": "Kegiatan yang berhubungan dengan grup saya",
     "FILTER_USER": "Kegiatan yang berhubungan pengguna",
-    "FILTER_SELF": "Aktifitas pengguna"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Email tidak valid.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Alamat email ini sudah digunakan.",
@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "Kata sandi tidak cocok dengan kata sandi yang dikonfirmasi. ",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Batas anggota baru telah dicapai",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Jumlah opsi yang dipilih tidak sesuai dengan pengaturan hak pilih!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Bold",
   "MDEDITOR_TOOLTIP_ITALIC": "Italic",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Strikethrough",

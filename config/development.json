@@ -29,6 +29,7 @@
       "connect-src": [
         "self",
         "https://dev.api.citizenos.com:3003",
+        "https://dev.p.citizenos.com:9001",
         "https://citizenos-citizenos-api-test.herokuapp.com",
         "https://id-test.citizenos.com",
         "https://sentry.io",

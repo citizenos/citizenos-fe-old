@@ -987,7 +987,7 @@
     "FILTER_USERTOPICS": "Activiteiten gerelateerd aan mijn topics",
     "FILTER_USERGROUPS": "Activiteiten gerelateerd aan mijn groepen",
     "FILTER_USER": "Activiteiten gerelateerd aan gebruiker",
-    "FILTER_SELF": "Activiteiten gebruiker"
+    "FILTER_SELF": "My activities"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Ongeldig e-mailadres.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Dit e-mailadres wordt al gebruikt.",
@@ -1101,6 +1101,7 @@
   "MSG_ERROR_PASSWORD_MISMATCH": "Het wachtwoord komt niet overeen met het bevestigde wachtwoord. ",
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Limiet voor nieuwe leden bereikt",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Aantal geselecteerde opties komt niet overeen met de steminstellingen!",
+  "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Vetgedrukt",
   "MDEDITOR_TOOLTIP_ITALIC": "Cursief",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Doorhalen",
