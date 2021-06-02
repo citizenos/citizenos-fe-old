@@ -78,10 +78,6 @@
             <span translate="VIEWS.TOPICS_TOPICID.BAR_SIGNING_DEADLINE">Signing deadline</span> <span class="bold">{{topic.vote.endsAt | amDateFormat:'L'}}</span>
         </div>
 
-
-        <div class="additional_info current_phase">
-            <span translate="VIEWS.TOPICS_TOPICID.BAR_CURRENT_PHASE">Current phase:</span> {{'TXT_TOPIC_STATUS_' + topic.status | uppercase | translate}}
-        </div>
     </div>
 
     <div class="content_wrap">
@@ -845,7 +841,7 @@
 
                     <div class="iframe_content_wrap" ng-if="!('topics.view.followUp' | isState)">
 
-                        <div class="topic_info print_never" ng-class="app.more_info_button ? 'open' : ''">
+                        <div class="topic_info print_never" ng-class="app.more_info_button ? 'open' : ''" ng-if="!app.editMode">
 
                             <div class="container_report" ng-if="topic.visibility === VISIBILITY.public && !topic.report" ui-sref="topics.view.report">
                                 <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='TOOLTIP_REPORT_TOPIC'>Report topic</span>">
