@@ -282,6 +282,8 @@
     "TOPIC_SETTINGS_BTN_COPY_LINK": "Kopírovať odkaz",
     "TOPIC_SETTINGS_BTN_SAVE_SETTINGS": "Uložiť nastavenia",
     "TOPIC_SETTINGS_LBL_CHANGE_ALL": "Zmeniť všetkým",
+    "TOPIC_SETTINGS_ERROR_MSG_INVALID_EMAILS_FOUND": "Invalid e-mail formats found. Please correct and add before sending invite.",
+    "TOPIC_SETTINGS_BTN_ADD": "Add",
     "TOPIC_INVITE_HEADING": "Pozvať užívateľov zapojiť sa do témy",
     "TOPIC_INVITE_TH_USERS": "@:MODALS.TOPIC_INVITE_TH_USERS",
     "TOPIC_INVITE_LBL_OPTIONAL_MESSAGE": "Pridať voliteľnú správu pozvánky",
