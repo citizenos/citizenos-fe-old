@@ -1411,6 +1411,11 @@ a:link, a:visited {
     }
 }
 
+.light_gray_button {
+    @extend .gray_button;
+    background-color: vars.$light_gray;
+}
+
 .edit_deadline_button {
     padding: 6px 5px 5px 5px;
 }

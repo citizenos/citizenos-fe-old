@@ -201,6 +201,21 @@ angular
             }
         };
 
+        $scope.addCorrectedEmail = function (email, key) {
+            if (validator.isEmail(email.trim())) {
+                $scope.addTopicMemberUser({
+                    userId: email,
+                    name: email,
+                    level: $scope.groupLevel
+                });
+                $scope.invalid.splice(key,1);
+            }
+        };
+
+        $scope.removeInvalidEmail = function (key) {
+            $scope.invalid.splice(key,1);
+        };
+
         $scope.addTopicMemberUser = function (member) {
             if (member) {
                 if (_.find($scope.members, {userId: member.id})) {
@@ -225,11 +240,16 @@ angular
                 }
             } else {
                 // Assume e-mail was entered.
-                var emails = $scope.searchString.match(/(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})/gi);
+                var emails = $scope.searchString.replace(/[;,\s]/gi, ',').split(',');
                 var filtered = _.filter(emails, function (email) {
                     return validator.isEmail(email.trim())
                 });
-                if (!filtered.length) {
+
+                var invalid = _.filter(emails, function (email) {
+                    return !validator.isEmail(email.trim())
+                });
+
+                if (!filtered.length && !invalid.length) {
                     $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchString);
                     return;
                 }
@@ -247,6 +267,8 @@ angular
                         });
                         orderMembers();
                     }
+
+                    $scope.invalid = invalid;
                 });
 
                 $scope.searchResults.groups = [];
