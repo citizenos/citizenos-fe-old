@@ -54,7 +54,7 @@ if (cspConfig) {
         });
     }
 
-    app.use(expressCspHeader(cspOptions));
+ //   app.use(expressCspHeader(cspOptions));
 }
 
 
