@@ -949,7 +949,8 @@
                             <iframe cos-etherpad ng-if="!hideTopicContent && topic.canEdit() && app.editMode" frameborder="0" scrolling="no"
                                     ng-class="{hidden: !topic.padUrl || ('topics.view.followUp' | isState)}"
                                     ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
-                            <ng-bind-html ng-if="!hideTopicContent && !app.editMode" ng-bind-html="topic.description"></ng-bind-html>
+                            <!--ng-bind-html ng-if="!hideTopicContent && !app.editMode" ng-bind-html="topic.description"></ng-bind-html -->
+                            <div ng-if="!hideTopicContent && !app.editMode" cos-topic-compiler="topic.description"></div>
                             <h1 ng-if="hideTopicContent"><i>Topic content has been hidden due to violation of community guidelines</i></h1>
                         </div>
 
