@@ -81,12 +81,6 @@ angular
                     notify: false,
                     reload: false
                 });
-            } else {
-                var t = new Topic({id: $scope.topic.id});
-                t.$getInlineComments()
-                    .then(function(data) {
-                        $scope.topic.inlineComments = data.comments;
-                    });
             }
         }
 
@@ -126,7 +120,10 @@ angular
             bytesLeft: 59
         };
 
-        $scope.topic.description = $scope.topic.description.replace(/data\-comment/gi, 'cos-inline-comment="'+$scope.topic.id+'" data-comment');
+        if (sAuth.user.loggedIn) {
+            console.log('Siin')
+            $scope.topic.description = $scope.topic.description.replace(/data\-comment/gi, 'cos-inline-comment="'+$scope.topic.id+'" data-comment');
+        }
         $scope.topic.padUrl = $sce.trustAsResourceUrl($scope.topic.padUrl);
         $scope.topic.description = $sce.trustAsHtml($scope.topic.description);
         $scope.app.editMode = ($stateParams.editMode && $stateParams.editMode === 'true') || false;
