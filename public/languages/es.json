@@ -804,7 +804,8 @@
       "NAV_LNK_LEAVE_TOPIC": "Abandonar tema",
       "HEADER_FILES": "ADJUNTOS",
       "LNK_ADD_MANAGE_FILES": "Agregar o administrar archivos adjuntos",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "¡Escanee este código QR para ir directamente al tema <b>{{topicTitle}}</b>!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "¡Escanee este código QR para ir directamente al tema <b>{{topicTitle}}</b>!",
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {
@@ -836,7 +837,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "El usuario <em>{{userName}}</em> se unió al tema <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC": "El usuario <em>{{userName}}</em> abandonó el tema <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "El usuario <em>{{userName}}</em> y <em>{{groupCount}}</em> más abandonaron el tema <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "El usuario <em>{{userName}}</em> abandonó el tema <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left topiligc <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "El usuario <em>{{userName}}</em> desancló el tema <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_ACTIVITYGROUP": "El usuario <em>{{userName}}</em> y <em>{{groupCount}}</em> más desanclaron el tema <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_USERACTIVITYGROUP": "El usuario <em>{{userName}}</em> desancló el tema <em>{{topicTitle}}</em>",
@@ -852,7 +853,7 @@
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_USERACTIVITYGROUP": "<em>{{(groupCount)}}</em> usuarios votaron en el tema <em>{{topicTitle}}</em>.",
     "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "El usuario <em>{{userName}}</em> delegó su voto en el tema <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_VOTEDELEGATION_VOTE": "El usuario <em>{{userName}}</em> revocó la delegación de su voto en el tema <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "El usuario <em>{{userName}}</em> descargó los resultados de la votación del tema <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "User <em>{{userName}}</em> has downloaded the vligoting results of topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_ACTIVITYGROUP": "El usuario <em>{{userName}}</em> y <em>{{groupCount}}</em> más descargaron los resultados de la votación del tema <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_USERACTIVITYGROUP": "El usuario <em>{{userName}}</em> descargó los resultados de la votación del tema <em>{{topicTitle}}</em> <em>{{groupCount}}</em> veces",
     "ACTIVITY_USER_VIEW_VOTEFINALCONTAINER": "El usuario <em>{{userName}}</em> descargó los resultados de la votación del tema <em>{{topicTitle}}</em>",
@@ -1041,7 +1042,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_REPORTS_40000_TEXT": "@:MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTYPE": "Es necesario especificar el motivo de la moderación",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTEXT": "@:MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TEXT",
-  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "El texto de la explicación puede tener entre 10 y 4000 caracteres de longitud.",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Explanation text can be 10 to 4000lig characters.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "La denuncia ya no es válida porque el argumento se ha actualizado después.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Se alcanzó el límite de archivos adjuntos del tema",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "No puede delegar un voto a su propio usuario.",
@@ -1057,7 +1058,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "Error del servicio DigiDoc. Vuelva a intentarlo y, si el problema persiste, póngase en contacto con el servicio de atención al cliente.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Una de las opciones de voto especificadas no es válida. Cada opción de voto puede tener como máximo 200 caracteres.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "La votación finalizó.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_4002lig0",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40023": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40023",

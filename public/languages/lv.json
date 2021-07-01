@@ -804,7 +804,8 @@
       "NAV_LNK_LEAVE_TOPIC": "Pamest tematu",
       "HEADER_FILES": "PIELIKUMI",
       "LNK_ADD_MANAGE_FILES": "Pievienot/pārvaldīt pielikumus",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Pārejiet tieši uz tēmu <b>{{topicTitle}}</b>, noskenējot šo QA kodu!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Pārejiet tieši uz tēmu <b>{{topicTitle}}</b>, noskenējot šo QA kodu!",
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {
@@ -836,7 +837,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "Lietotājs <em>{{userName}}</em> pievienojās tematam <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC": "Lietotājs <em>{{userName}}</em> pameta tematu <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "Lietotājs <em>{{userName}}</em> un <em>{{groupCount}}</em> citi pameta tematu <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "Lietotājs <em>{{userName}}</em> pameta tematu <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left topiligc <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "Lietotājs <em>{{userName}} </em>noņēma atzīmi tematam <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_ACTIVITYGROUP": "Lietotājs <em>{{userName}}</em> un <em>{{groupCount}}</em> noņēma atzīmi tematam <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_USERACTIVITYGROUP": "Lietotājs <em>{{userName}} </em>noņēma atzīmi tematam <em>{{topicTitle}}</em>",
@@ -852,7 +853,7 @@
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_USERACTIVITYGROUP": "<em>{{(groupCount)}}</em> lietotāji balsoja tematā <em>{{topicTitle}}</em>.",
     "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "Lietotājs <em>{{userName}} </em> deleģēja savu balsi balsojumā par tematu <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_VOTEDELEGATION_VOTE": "Lietotājs <em>{{userName}}</em> atsauca savas balss deleģējumu balsojumā par tematu <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "Lietotājs <em>{{userName}}</em> lejupielādēja rezultātus balsojumam par tematu <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "User <em>{{userName}}</em> has downloaded the vligoting results of topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_ACTIVITYGROUP": "Lietotājs <em>{{userName}}</em> un <em>{{groupCount}}</em> citi lejupielādēja balsojuma rezultātus par tematu <em>({topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_USERACTIVITYGROUP": "Lietotājs <em>{{userName}} </em> lejupielādēja rezultātus balsojumam par tematu <em>{{topicTitle}}</em> <em>{{groupCount}}</em> reizes",
     "ACTIVITY_USER_VIEW_VOTEFINALCONTAINER": "Lietotājs <em>{{userName}}</em> lejupielādēja rezultātus balsojumam par tematu <em>{{topicTitle}}</em>",
@@ -1041,7 +1042,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_REPORTS_40000_TEXT": "@:MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTYPE": "Nepieciešams norādīt iemeslu moderēšanai",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTEXT": "@:MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TEXT",
-  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Skaidrojuma teksta atļautais garums ir no 10 līdz 4000 rakstzīmēm.",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Explanation text can be 10 to 4000lig characters.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Ziņojums ir kļuvis nederīgs, arguments ir atjaunināts pēc ziņojuma.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Sasniegts temata pielikumu limits",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "Jūs nevarat deleģēt savu balsi paši sev.",
@@ -1057,7 +1058,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "DigiDoc pakalpojuma kļūda. Lūdzu, mēģiniet vēlreiz, bet, ja problēma turpinās, sazinieties ar klientu atbalsta dienestu.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Diemžēl viena no norādītajām balsošanas opcijām ir nederīga. Balsošanas opcija drīkst saturēt ne vairāk par 200 rakstzīmēm.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Balsošana beidzās.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_4002lig0",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40023": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40023",
