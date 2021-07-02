@@ -804,8 +804,7 @@
       "NAV_LNK_LEAVE_TOPIC": "Opustiť tému",
       "HEADER_FILES": "PRÍLOHY",
       "LNK_ADD_MANAGE_FILES": "Pridať/spravovať prílohy",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skočte priamo do témy <b>{{topicTitle}}</b>oskenovaním tohto QR kódu!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skočte priamo do témy <b>{{topicTitle}}</b>oskenovaním tohto QR kódu!"
     }
   },
   "ACTIVITY_FEED": {
@@ -837,7 +836,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "Užívateľ/ka <em>{{userName}}</em> sa pripojil/a k téme <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC": "Užívateľ/ka <em>{{userName}}</em> opustil/a tému <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "Užívateľ/ka <em>{{userName}}</em> a <em>{{groupCount}}</em> ďalší opustili tému <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left topiligc <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "Užívateľ/ka <em>{{userName}}</em> opustil/a tému <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "Užívateľ/ka <em>{{userName}}</em> zrušil/a prišpendlenie témy <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_ACTIVITYGROUP": "Užívateľ/ka <em>{{userName}}</em> a <em>{{groupCount}}</em> ďalší zrušili prišpendlenie témy <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_USERACTIVITYGROUP": "Užívateľ/ka <em>{{userName}}</em> odstránil/a prišpendlenie z témy <em>{{topicTitle}}</em>",
@@ -853,7 +852,7 @@
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_USERACTIVITYGROUP": "<em>{{(groupCount)}}</em> užívateľov hlasovalo o téme <em>{{topicTitle}}</em>.",
     "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "Užívateľ/ka <em>{{userName}}</em> delegoval/a svoj hlas pre tému <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_VOTEDELEGATION_VOTE": "Užívateľ/ka <em>{{userName}}</em> zrušil/a delegáciu svojho hlasu pre tému <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "User <em>{{userName}}</em> has downloaded the vligoting results of topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "Užívateľ/ka <em>{{userName}}</em> si stiahol/a výsledky hlasovania o téme <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_ACTIVITYGROUP": "Užívateľ/ka <em>{{userName}}</em> a <em>{{groupCount}}</em> ďalší si stiahli výsledky hlasovania o téme <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_USERACTIVITYGROUP": "Užívateľ/ka <em>{{userName}}</em> si stiahol/a výsledky hlasovania o téme <em>{{topicTitle}}</em> <em>{{groupCount}}</em> krát",
     "ACTIVITY_USER_VIEW_VOTEFINALCONTAINER": "Užívateľ/ka <em>{{userName}}</em> si stiahol/a výsledky hlasovania o téme <em>{{topicTitle}}</em>",
@@ -1042,7 +1041,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_REPORTS_40000_TEXT": "@:MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTYPE": "Je potrebné uviesť dôvod pre moderáciu",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTEXT": "@:MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TEXT",
-  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Explanation text can be 10 to 4000lig characters.",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Text vysvetlenia môže mať od 10 do 4000 znakov.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Nahlásenie stratilo platnosť, pretože po nahlásení bol argument aktualizovaný.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Dosiahnutý limit príloh témy",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "Nemôžete delegovať hlas sami sebe.",
@@ -1058,7 +1057,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "Chyba služby DigiDoc. Skúste prosím znova, ak problém pretrváva, kontaktujte zákaznícku podporu.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Ľutujeme, jedna z poskytnutých možností hlasovania je neplatná. Možnosť hlasovania môže mať maximálne 200 znakov.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Hlasovanie bolo ukončené.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_4002lig0",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40023": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40023",
