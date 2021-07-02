@@ -804,8 +804,7 @@
       "NAV_LNK_LEAVE_TOPIC": "Покинуть тему",
       "HEADER_FILES": "Прикрепленные файлы",
       "LNK_ADD_MANAGE_FILES": "Добавить/редактировать файлы",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Перейти к теме <b>{{topicTitle}}</b>, отсканируя этот QR-код",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Перейти к теме <b>{{topicTitle}}</b>, отсканируя этот QR-код"
     }
   },
   "ACTIVITY_FEED": {
@@ -837,7 +836,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "Пользователь <em>{{userName}}</em> присоединился к теме <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC": "Пользователь <em>{{userName}}</em> покинул тему <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "Пользователь <em>{{userName}}</em> и еще <em>{{groupCount}}</em> других покинули тему <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left topiligc <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "Пользователь <em>{{userName}}</em> покинул тему <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "Пользователь <em>{{userName}}</em> удалил тему <em>{{topicTitle}}</em> из избранных",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_ACTIVITYGROUP": "Пользователь <em>{{userName}}</em> и еще <em>{{groupCount}}</em> других удалили тему <em>{{topicTitle}}</em> из избранных",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_USERACTIVITYGROUP": "Пользователь <em>{{userName}}</em> удалил тему <em>{{topicTitle}}</em> из избранных",
@@ -853,7 +852,7 @@
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_USERACTIVITYGROUP": "<em>{{(groupCount)}}</em> пользователей проголосовало по теме <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "Пользователь <em>{{userName}}</em> передал свои полномочия голосования по теме <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_VOTEDELEGATION_VOTE": "Пользователь <em>{{userName}}</em> отменил передачу полномочия голосования по теме <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "User <em>{{userName}}</em> has downloaded the vligoting results of topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "Пользователь <em>{{userName}}</em> скачал результаты голосования по теме <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_ACTIVITYGROUP": "Пользователь <em>{{userName}}</em> и <em>{{groupCount}}</em> других скачали результаты голосования по теме <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_USERACTIVITYGROUP": "Пользователь <em>{{userName}}</em> скачал результаты голосования по теме <em>{{topicTitle}}</em> <em>{{groupCount}}</em> раза",
     "ACTIVITY_USER_VIEW_VOTEFINALCONTAINER": "Пользователь <em>{{userName}}</em> скачал результаты голосования по теме <em>{{topicTitle}}</em>",
@@ -1042,7 +1041,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_REPORTS_40000_TEXT": "@:MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTYPE": "Требуется причина модерирования",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTEXT": "@:MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TEXT",
-  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Explanation text can be 10 to 4000lig characters.",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Описание может быть длиной от 10 до 4000 знаков.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Сообщение стало недействительным, так как аргумент был обновлен.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Достигнут лимит файлов, прикрепленных к теме",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "Нельзя передать полномочия голосования самому себе.",
@@ -1058,7 +1057,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "Ошибка услуги DigiDoc. Пожалуйста, попробуйте еще раз. Если проблема не исчезнет, свяжитесь со службой поддержки.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "К сожалению, один из предоставленных вариантов голосования некорректно оформлен. Вариант может содержать максимум 200 символов.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Голосование завершилось.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_4002lig0",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40023": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40023",
