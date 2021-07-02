@@ -804,8 +804,7 @@
       "NAV_LNK_LEAVE_TOPIC": "Lahku teemast",
       "HEADER_FILES": "MANUSED",
       "LNK_ADD_MANAGE_FILES": "Lisa/muuda manuseid",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skanni see QR-kood, et avada teema <b>{{topicTitle}}</b> kohe!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skanni see QR-kood, et avada teema <b>{{topicTitle}}</b> kohe!"
     }
   },
   "ACTIVITY_FEED": {
@@ -837,7 +836,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> liitus aruteluga teemal \"<em>{{topicTitle}}</em>\"",
     "ACTIVITY_USER_LEAVE_TOPIC": "Kasutaja <em>{{userName}}</em> lahkus teema \"<em>{{topicTitle}}</em>\" arutelust",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> ja <em>{{groupCount}}</em> teist kasutajat lahkusid teema \"<em>{{topicTitle}}</em>\" arutelust",
-    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left topiligc <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> lahkus teema \"<em>{{topicTitle}}</em>\" arutelust",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "Kasutaja <em>{{userName}}</em> eemaldas märke teemalt <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_ACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> ja <em>{{groupCount}}</em> teist kasutajat eemaldasid märke teemalt \"<em>{{topicTitle}}</em>\"",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_USERACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> eemaldas märke teemalt <em>{{topicTitle}}</em>",
@@ -853,7 +852,7 @@
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_USERACTIVITYGROUP": "Teemal \"<em>{{topicTitle}}</em>\" on hääletanud <em>{{(groupCount)}}</em> kasutajat.",
     "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "Kasutaja <em>{{userName}}</em> volitas teemal \"<em>{{topicTitle}}</em>\" teise kasutaja enda eest hääletama",
     "ACTIVITY_USER_DELETE_VOTEDELEGATION_VOTE": "Kasutaja <em>{{userName}}</em> tühistas oma volituse teema \"<em>{{topicTitle}}</em>\" hääletamisel",
-    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "User <em>{{userName}}</em> has downloaded the vligoting results of topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "Kasutaja <em>{{userName}}</em> laadis alla teema \"<em>{{topicTitle}}</em>\" hääletustulemused",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_ACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> ja <em>{{groupCount}}</em> teist kasutajat laadisid alla teema \"<em>{{topicTitle}}</em>\" hääletustulemused",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_USERACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> on teema \"<em>{{topicTitle}}</em>\" hääletustulemusi <em>{{groupCount}}</em> korda alla laadinud",
     "ACTIVITY_USER_VIEW_VOTEFINALCONTAINER": "Kasutaja <em>{{userName}}</em> laadis alla teema \"<em>{{topicTitle}}</em>\" hääletustulemused",
@@ -1042,7 +1041,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_REPORTS_40000_TEXT": "@:MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTYPE": "Pead lisama modereerimise põhjuse",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTEXT": "@:MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TEXT",
-  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Explanation text can be 10 to 4000lig characters.",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Selgitus võib olla 10 kuni 4000 tähemärki pikk.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Argumendist teavitamise järel on argumenti muudetud ja seetõttu ei saa seda argumenti modereerida.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Teema külge ei mahu rohkem manuseid",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "Sa ei saa häält iseendale delegeerida.",
@@ -1058,7 +1057,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "DigiDoc teenuse viga. Palun proovi uuesti, probleemi jätkumisel palun võta ühendust klienditoega.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Kahjuks pole üks hääletuse valikutest korrektne - see võib sisaldada kuni 200 tähemärki.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Hääletamine on lõppenud.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_4002lig0",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40023": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40023",
