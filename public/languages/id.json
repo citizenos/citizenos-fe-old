@@ -804,8 +804,7 @@
       "NAV_LNK_LEAVE_TOPIC": "Meninggalkan topik",
       "HEADER_FILES": "LAMPIRAN",
       "LNK_ADD_MANAGE_FILES": "Tambah/atur lampiran",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Langsung masuk ke dalam topik <b>{{topicTitle}}</b> dengan memindai kode QR ini!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Langsung masuk ke dalam topik <b>{{topicTitle}}</b> dengan memindai kode QR ini!"
     }
   },
   "ACTIVITY_FEED": {
@@ -837,7 +836,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "Pengguna <em>{{userName}}</em> telah bergabung pada topik <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC": "Pengguna <em>{{userName}}</em> telah meninggalkan topik <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "Pengguna <em>{{userName}}</em> dan <em>{{groupCount}}</em> lainnya telah meninggalkan topik <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left topiligc <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "Pengguna <em>{{userName}}</em> telah meninggalkan topik <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "Pengguna <em>{{userName}}</em> telah mencabut pin dari topik <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_ACTIVITYGROUP": "Pengguna <em>{{userName}}</em> dan <em>{{groupCount}}</em> lainnya telah mencabut pin dari topik <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_USERACTIVITYGROUP": "Pengguna <em>{{userName}}</em> telah mencabut pin dari topik <em>{{topicTitle}}</em>",
@@ -853,7 +852,7 @@
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_USERACTIVITYGROUP": "<em>{{(groupCount)}}</em> pengguna telah menggunakan hak pilih pada topik <em>{{topicTitle}}</em>.",
     "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "Pengguna <em>{{userName}}</em> telah mewakilkan hak pilihnya tentang topik: <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_VOTEDELEGATION_VOTE": "Pengguna <em>{{userName}}</em> telah mencabut perwakilan hak pilihnya tentang topik: <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "User <em>{{userName}}</em> has downloaded the vligoting results of topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "Pengguna <em>{{userName}}</em> telah mengunduh hasil voting dari topik <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_ACTIVITYGROUP": "Pengguna <em>{{userName}}</em> dan <em>{{groupCount}}</em> lainnya telah mengunduh hasil voting dari topik <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_USERACTIVITYGROUP": "Pengguna <em>{{userName}}</em> telah mengunduh hasil voting dari topik <em>{{topicTitle}}</em> <em>{{groupCount}}</em> kali",
     "ACTIVITY_USER_VIEW_VOTEFINALCONTAINER": "Pengguna <em>{{userName}}</em> telah mengunduh hasil voting dari topik <em>{{topicTitle}}</em>",
@@ -1042,7 +1041,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_REPORTS_40000_TEXT": "@:MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTYPE": "Alasan moderasi diperlukan",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTEXT": "@:MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TEXT",
-  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Explanation text can be 10 to 4000lig characters.",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Teks penjelasan dapat 10 hingga 4.000 karakter.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Laporan menjadi tidak valid karena argumen telah diperbarui setelah pelaporan.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Batas lampiran topik telah dicapai",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "Anda tidak dapat mendelegasikan hak pilih pada diri Anda sendiri.",
@@ -1058,7 +1057,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "Pelayanan dokumen digital mengalami kesalahan. Silahkan coba lagi, jika masalah masih bercokol hubungi layanan pelanggan.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Maaf, salah satu opsi hak pilih yang tersedia tidak valid. Opsi hak pilih maksimum hanya bisa 200 karakter.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Pemungutan suara telah berakhir.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_4002lig0",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40023": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40023",
