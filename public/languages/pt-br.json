@@ -804,8 +804,7 @@
       "NAV_LNK_LEAVE_TOPIC": "Sair do tópico",
       "HEADER_FILES": "ANEXOS",
       "LNK_ADD_MANAGE_FILES": "Adicionar/gerenciar anexos",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Vá direto para o tópico <b>{{topicTitle}}</b> escaneando este código QR!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Vá direto para o tópico <b>{{topicTitle}}</b> escaneando este código QR!"
     }
   },
   "ACTIVITY_FEED": {
@@ -837,7 +836,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "O usuário <em>{{userName}}</em> entrou no tópico <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC": "O usuário <em>{{userName}}</em> saiu do tópico <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "O usuário <em>{{userName}}</em> e <em>{{groupCount}}</em> outros saíram do tópico <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left topiligc <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "O usuário <em>{{userName}}</em> saiu do tópico <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "O usuário <em>{{userName}}</em> removeu um destaque do tópico <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_ACTIVITYGROUP": "O usuário <em>{{userName}}</em> e <em>{{groupCount}}</em> outros removeram um destaque do tópico <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_USERACTIVITYGROUP": "O usuário <em>{{userName}}</em> removeu um destaque do tópico <em>{{topicTitle}}</em>",
@@ -853,7 +852,7 @@
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_USERACTIVITYGROUP": "<em>{{(groupCount)}}</em> usuários votaram no tópico <em>{{topicTitle}}</em>.",
     "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "O usuário <em>{{userName}}</em> delegou seu voto no tópico <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_VOTEDELEGATION_VOTE": "O usuário <em>{{userName}}</em> revogou a delegação de seu voto no tópico <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "User <em>{{userName}}</em> has downloaded the vligoting results of topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "O usuário <em>{{userName}}</em> baixou os resultados de votação no tópico <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_ACTIVITYGROUP": "O usuário <em>{{userName}}</em> e <em>{{groupCount}}</em> outros baixaram o resultado da votação no tópico <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_USERACTIVITYGROUP": "O usuário <em>{{userName}}</em> baixou o resultado da votação no tópico <em>{{topicTitle}}</em> <em>{{groupCount}}</em> vezes",
     "ACTIVITY_USER_VIEW_VOTEFINALCONTAINER": "O usuário <em>{{userName}}</em> baixou os resultados de votação no tópico <em>{{topicTitle}}</em>",
@@ -1042,7 +1041,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_REPORTS_40000_TEXT": "@:MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTYPE": "É necessário um motivo para a moderação",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTEXT": "@:MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TEXT",
-  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Explanation text can be 10 to 4000lig characters.",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "O texto da explicação deve ter entre 10 e 4000 caracteres.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "A denúncia se tornou inválida pois o argumento foi atualizado após a denúncia.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Limite de anexos do tópico atingido",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "Você não pode delegar um voto a si mesmo.",
@@ -1058,7 +1057,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "Erro no Serviço DigiDoc. Tente novamente. Se o problema persistir, entre em contato com o suporte ao cliente.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Desculpe, uma das opções de voto é inválida. A opção de voto pode ter no máximo 200 caracteres.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "A votação terminou.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_4002lig0",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40023": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40023",
