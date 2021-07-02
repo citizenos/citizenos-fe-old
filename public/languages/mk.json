@@ -804,8 +804,7 @@
       "NAV_LNK_LEAVE_TOPIC": "Напушти ја темата",
       "HEADER_FILES": "ФАЈЛОВИ",
       "LNK_ADD_MANAGE_FILES": "Додади/Измени фајлови",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Оди директно на темата <b>{{topicTitle}}</b> со скенирање на овој QR-код!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Оди директно на темата <b>{{topicTitle}}</b> со скенирање на овој QR-код!"
     }
   },
   "ACTIVITY_FEED": {
@@ -837,7 +836,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "Корисникот <em>{{userName}}</em> се вклучи во темата <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC": "Корисникот <em>{{userName}}</em> замина од темата <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "Корисникот <em>{{userName}}</em> и <em>{{groupCount}}</em> други заминаа од темата <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left topiligc <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "Корисникот <em>{{userName}}</em> замина од темата <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "Корисникот <em>{{userName}}</em> го отстрани закачениот податок од темата <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_ACTIVITYGROUP": "Корисникот <em>{{userName}}</em> и <em>{{groupCount}}</em> други го отстранија закачениот податок од темата <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_USERACTIVITYGROUP": "Корисникот <em>{{userName}}</em> го отстрани закачениот податок од темата <em>{{topicTitle}}</em>",
@@ -853,7 +852,7 @@
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_USERACTIVITYGROUP": "<em>{{(groupCount)}}</em> корисници гласаа за темата <em>{{topicTitle}}</em>.",
     "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "Корисникот <em>{{userName}}</em> го делегираше својот глас на темата <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_DELETE_VOTEDELEGATION_VOTE": "Корисникот <em>{{userName}}</em> ја избриша делегацијата на својот глас за темата <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "User <em>{{userName}}</em> has downloaded the vligoting results of topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "Корисникот <em>{{userName}}</em> ги презеде резултатите од гласањето за темата: <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_ACTIVITYGROUP": "Корисникот <em>{{userName}}</em> и <em>{{groupCount}}</em> други ги презедоа резултатите од гласањето за темата <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_USERACTIVITYGROUP": "Корисникот <em>{{userName}}</em> ги презеде резултатите од гласањето за темата <em>{{topicTitle}}</em> <em>{{groupCount}}</em> times",
     "ACTIVITY_USER_VIEW_VOTEFINALCONTAINER": "Корисникот <em>{{userName}}</em> ги презеде резултатите од гласањето за темата: <em>{{topicTitle}}</em>",
@@ -1042,7 +1041,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_REPORTS_40000_TEXT": "@:MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTYPE": "Задолжителна е причина за модерирањето",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTEXT": "@:MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TEXT",
-  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Explanation text can be 10 to 4000lig characters.",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Текстот на објаснувањето може да биде во должина од 10 до 4 000 карактери.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "Пријавата е невалидна бидејќи аргументот е обновен по оваа пријава.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Достигнато е ограничувањето на прилогот на темата",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "Не можете да си доделите глас себеси.",
@@ -1058,7 +1057,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "Грешка на DigiDoc услугата. Ве молиме обидете се повторно. Доколку проблемот повторно се јавува, контактирајте ја грижата за корисници.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Простете, една од дадените опции за гласање е невалидна. Опцијата за гласање може да има најмногу 200 карактери.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Гласањето заврши.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_4002lig0",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40023": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40023",
