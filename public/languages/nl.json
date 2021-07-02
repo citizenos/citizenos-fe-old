@@ -804,8 +804,7 @@
       "NAV_LNK_LEAVE_TOPIC": "Topic verlaten",
       "HEADER_FILES": "BIJLAGEN",
       "LNK_ADD_MANAGE_FILES": "Bijlagen beheren/toevoegen",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Ga rechtstreeks naar de topic <b>{{topicTitle}}</b> door deze QR-code te scannen!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Ga rechtstreeks naar de topic <b>{{topicTitle}}</b> door deze QR-code te scannen!"
     }
   },
   "ACTIVITY_FEED": {
@@ -837,7 +836,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> neemt deel aan de topic <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC": "Gebruiker <em>{{userName}}</em> heeft de topic <em>{{topicTitle}}</em> verlaten",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> en <em>{{groupCount}}</em> anderen hebben de topic <em>{{topicTitle}}</em> verlaten",
-    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left topiligc <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> heeft de topic <em>{{topicTitle}}</em> verlaten",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC": "Gebruiker <em>{{userName}}</em> heeft de topic <em>{{topicTitle}}</em> losgemaakt",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_ACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> en <em>{{groupCount}}</em> anderen hebben de topic <em>{{topicTitle}}</em> losgemaakt",
     "ACTIVITY_USER_DELETE_TOPICPIN_TOPIC_USERACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> heeft de topic <em>{{topicTitle}}</em> losgemaakt",
@@ -853,7 +852,7 @@
     "ACTIVITY_USER_CREATE_VOTELIST_TOPIC_USERACTIVITYGROUP": "<em>{{(groupCount)}}</em> gebruikers hebben gestemd op de topic <em>{{topicTitle}}</em>.",
     "ACTIVITY_USER_CREATE_VOTEDELEGATION_VOTE": "Gebruiker <em>{{userName}}</em> heeft zijn/haar stem voor de topic <em>{{topicTitle}}</em> overgedragen",
     "ACTIVITY_USER_DELETE_VOTEDELEGATION_VOTE": "Gebruiker <em>{{userName}}</em> heeft de overdracht van zijn/haar stem voor de topic <em>{{topicTitle}}</em> ingetrokken",
-    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "User <em>{{userName}}</em> has downloaded the vligoting results of topic <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER": "Gebruiker <em>{{userName}}</em> heeft de resultaten van de stemming voor de topic <em>{{topicTitle}}</em> gedownload",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_ACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> en <em>{{groupCount}}</em> anderen hebben de resultaten van de stemming voor de topic <em>{{topicTitle}}</em> gedownload",
     "ACTIVITY_USER_VIEW_VOTEUSERCONTAINER_USERACTIVITYGROUP": "Gebruiker <em>{{userName}}</em> heeft de resultaten van de stemming voor de topic <em>{{topicTitle}}</em> <em>{{groupCount}}</em> keer gedownload",
     "ACTIVITY_USER_VIEW_VOTEFINALCONTAINER": "Gebruiker <em>{{userName}}</em> heeft de resultaten van de stemming voor de topic <em>{{topicTitle}}</em> gedownload",
@@ -1042,7 +1041,7 @@
   "MSG_ERROR_POST_API_USERS_TOPICS_REPORTS_40000_TEXT": "@:MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_40000_TEXT",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTYPE": "De moderatiereden is verplicht",
   "MSG_ERROR_POST_API_TOPICS_REPORTS_MODERATE_40000_MODERATEDREASONTEXT": "@:MSG_ERROR_POST_API_TOPICS_REPORTS_40000_TEXT",
-  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "Explanation text can be 10 to 4000lig characters.",
+  "MSG_ERROR_POST_API_TOPICS_REPORTS_REVIEW_40001_TEXT": "De tekst van de uitleg kan 10 tot 4.000 tekens lang zijn.",
   "MSG_ERROR_POST_API_TOPICS_COMMENTS_REPORTS_MODERATE_40010": "De melding is ongeldig geworden omdat het argument werd bijgewerkt na de melding.",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40002": "Bijlagelimiet bereikt voor de topic",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_DELEGATIONS_40001": "U kunt een stem niet aan uzelf overdragen.",
@@ -1058,7 +1057,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "DigiDoc-service fout. Probeer het opnieuw. Neem contact op met de klantenservice als het probleem aanhoudt.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Sorry, een van de opgegeven stemopties is ongeldig. De stemoptie mag maximaal 200 tekens lang zijn.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "De stemming is afgelopen.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_4002lig0",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40023": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40023",
