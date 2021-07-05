@@ -31,6 +31,10 @@ angular
             if (docImageSrc) {
                 $scope.app.metainfo.image = docImageSrc;
             }
+
+            if (sAuth.user.loggedIn) {
+                $scope.topic.description = $scope.topic.description.replace(/data\-comment/gi, 'cos-inline-comment="'+$scope.topic.id+'" data-comment');
+            }
         }
 
         $scope.isTopicReported = $scope.topic.report && $scope.topic.report.moderatedReasonType;
@@ -120,10 +124,6 @@ angular
             bytesLeft: 59
         };
 
-        if (sAuth.user.loggedIn) {
-            console.log('Siin')
-            $scope.topic.description = $scope.topic.description.replace(/data\-comment/gi, 'cos-inline-comment="'+$scope.topic.id+'" data-comment');
-        }
         $scope.topic.padUrl = $sce.trustAsResourceUrl($scope.topic.padUrl);
         $scope.topic.description = $sce.trustAsHtml($scope.topic.description);
         $scope.app.editMode = ($stateParams.editMode && $stateParams.editMode === 'true') || false;
