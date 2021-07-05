@@ -804,7 +804,8 @@
       "NAV_LNK_LEAVE_TOPIC": "Lähde aiheesta",
       "HEADER_FILES": "LIITTEET",
       "LNK_ADD_MANAGE_FILES": "Lisää/hallitse liitteitä",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Hyppää suoraan aiheeseen <b>{{topicTitle}}</b> skannaamalla tämä QR-koodi!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Hyppää suoraan aiheeseen <b>{{topicTitle}}</b> skannaamalla tämä QR-koodi!",
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {
