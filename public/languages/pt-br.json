@@ -804,7 +804,8 @@
       "NAV_LNK_LEAVE_TOPIC": "Sair do tópico",
       "HEADER_FILES": "ANEXOS",
       "LNK_ADD_MANAGE_FILES": "Adicionar/gerenciar anexos",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Vá direto para o tópico <b>{{topicTitle}}</b> escaneando este código QR!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Vá direto para o tópico <b>{{topicTitle}}</b> escaneando este código QR!",
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {
