@@ -804,7 +804,8 @@
       "NAV_LNK_LEAVE_TOPIC": "Thema verlassen",
       "HEADER_FILES": "ANHÄNGE",
       "LNK_ADD_MANAGE_FILES": "Anhänge hinzufügen/verwalten",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Gelangen Sie direkt ins Thema <b>{{topicTitle}}</b>, indem Sie diesen QR-Code scannen!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Gelangen Sie direkt ins Thema <b>{{topicTitle}}</b>, indem Sie diesen QR-Code scannen!",
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {

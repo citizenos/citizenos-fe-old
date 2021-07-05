@@ -804,7 +804,8 @@
       "NAV_LNK_LEAVE_TOPIC": "Pamest tematu",
       "HEADER_FILES": "PIELIKUMI",
       "LNK_ADD_MANAGE_FILES": "Pievienot/pārvaldīt pielikumus",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Pārejiet tieši uz tēmu <b>{{topicTitle}}</b>, noskenējot šo QA kodu!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Pārejiet tieši uz tēmu <b>{{topicTitle}}</b>, noskenējot šo QA kodu!",
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {

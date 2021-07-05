@@ -804,7 +804,8 @@
       "NAV_LNK_LEAVE_TOPIC": "Opuść temat",
       "HEADER_FILES": "ZAŁĄCZNIKI",
       "LNK_ADD_MANAGE_FILES": "Dodaj/zarządzaj załącznikami",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skocz bezpośrednio do tematu <b>{{topicTitle}}</b> skanując ten kod QR!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skocz bezpośrednio do tematu <b>{{topicTitle}}</b> skanując ten kod QR!",
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {
