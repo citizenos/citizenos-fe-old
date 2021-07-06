@@ -805,7 +805,7 @@
       "HEADER_FILES": "PRÍLOHY",
       "LNK_ADD_MANAGE_FILES": "Pridať/spravovať prílohy",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skočte priamo do témy <b>{{topicTitle}}</b>oskenovaním tohto QR kódu!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Navrhovaná zmena z \"{{changeFrom}}\" na \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {
