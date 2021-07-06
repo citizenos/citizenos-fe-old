@@ -805,7 +805,7 @@
       "HEADER_FILES": "PIÈCE JOINTES",
       "LNK_ADD_MANAGE_FILES": "Ajouter/gérer les pièces jointes",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Sautez directement dans le sujet <b>{{topicTitle}}</b> en scannant ce code QR !",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Modification de « {{changeFrom}} » à « {{changeTo}} » suggérée"
     }
   },
   "ACTIVITY_FEED": {
