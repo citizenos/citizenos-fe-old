@@ -2,6 +2,62 @@
 @use 'mixins_n_extends';
 @use 'icons';
 
+.comment-popup {
+    z-index: 9999;
+    position: absolute;
+    background: #f6f6f6;
+    border-radius: 5px;
+    background: none;
+    background-color: #ffffff;
+    color: #576273;
+    font-size: 15px;
+    border: none;
+    box-shadow: 0 0 0 1px rgb(99 114 130 / 16%), 0 8px 16px rgb(27 39 51 / 8%);
+
+    .comment-popup-content{
+        padding: 25px;
+        .comment-header {
+            .comment-author-name{
+                font-weight: bold;
+            }
+
+            .comment-created-at {
+                font-size: .8em;
+                opacity: .7;
+                margin-left: 5px;
+            }
+        }
+
+        .comment-text{
+            display: block;
+            white-space: normal;
+        }
+    }
+}
+
+.comment-reply {
+    padding: 25px;
+    border-top: 1px solid #f2f3f4;
+    .comment-container {
+        margin-bottom: 10px;
+
+        .comment-author-name{
+            font-weight: bold;
+        }
+
+        .comment-created-at {
+            font-size: .8em;
+            opacity: .7;
+            margin-left: 5px;
+        }
+
+        .comment-text{
+            display: block;
+            white-space: normal;
+        }
+    }
+}
+
 #root_lightbox {
     @extend %all_zero;
     background-color: rgba(0, 0, 0, 0.6);

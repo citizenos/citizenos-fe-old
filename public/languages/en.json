@@ -804,7 +804,8 @@
       "NAV_LNK_LEAVE_TOPIC": "Leave topic",
       "HEADER_FILES": "ATTACHMENTS",
       "LNK_ADD_MANAGE_FILES": "Add/manage attachments",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!",
+      "INLINE_COMMENT_SUGGEST_CHANGE" : "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {

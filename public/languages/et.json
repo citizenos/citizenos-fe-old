@@ -804,7 +804,8 @@
       "NAV_LNK_LEAVE_TOPIC": "Lahku teemast",
       "HEADER_FILES": "MANUSED",
       "LNK_ADD_MANAGE_FILES": "Lisa/muuda manuseid",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skanni see QR-kood, et avada teema <b>{{topicTitle}}</b> kohe!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skanni see QR-kood, et avada teema <b>{{topicTitle}}</b> kohe!",
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Soovitas \"{{changeFrom}}\" asemel kasutada \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {

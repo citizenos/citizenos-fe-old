@@ -804,7 +804,8 @@
       "NAV_LNK_LEAVE_TOPIC": "Abandonar tema",
       "HEADER_FILES": "ADJUNTOS",
       "LNK_ADD_MANAGE_FILES": "Agregar o administrar archivos adjuntos",
-      "TXT_QR_CODE_FOOTER_SCAN_CODE": "¡Escanee este código QR para ir directamente al tema <b>{{topicTitle}}</b>!"
+      "TXT_QR_CODE_FOOTER_SCAN_CODE": "¡Escanee este código QR para ir directamente al tema <b>{{topicTitle}}</b>!",
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Cambio sugerido: «{{changeFrom}}» a «{{changeTo}}»"
     }
   },
   "ACTIVITY_FEED": {

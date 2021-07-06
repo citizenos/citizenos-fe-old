@@ -151,7 +151,19 @@ angular
                     params: {topicId: '@id'},
                     url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/pin'),
                     transformResponse: function (data, headersGetter, status) {
-                        if (status > 0 && status < 400) { // IF patch is working then make it return data again, for now return nothing to stop from overwriting all fields but topkenJoin
+                        if (status > 0 && status < 400) {
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
+                },
+                getInlineComments: {
+                    method: 'GET',
+                    params: {topicId: '@id'},
+                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/inlinecomments'),
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status > 0 && status < 400) {
+                            return angular.fromJson(data).data;
                         } else {
                             return angular.fromJson(data);
                         }
