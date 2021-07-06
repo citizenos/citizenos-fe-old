@@ -805,7 +805,7 @@
       "HEADER_FILES": "LAMPIRAN",
       "LNK_ADD_MANAGE_FILES": "Tambah/atur lampiran",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Langsung masuk ke dalam topik <b>{{topicTitle}}</b> dengan memindai kode QR ini!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Perubahan yang disarankan dari \"{{changeFrom}}\" menjadi \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {

@@ -805,7 +805,7 @@
       "HEADER_FILES": "LIITTEET",
       "LNK_ADD_MANAGE_FILES": "Lisää/hallitse liitteitä",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Hyppää suoraan aiheeseen <b>{{topicTitle}}</b> skannaamalla tämä QR-koodi!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Ehdotti seuraavaa muutosta: \"{{changeFrom}}\" -> \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {

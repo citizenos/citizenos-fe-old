@@ -805,7 +805,7 @@
       "HEADER_FILES": "BIJLAGEN",
       "LNK_ADD_MANAGE_FILES": "Bijlagen beheren/toevoegen",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Ga rechtstreeks naar de topic <b>{{topicTitle}}</b> door deze QR-code te scannen!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Voorgestelde wijziging van \"{{changeFrom}}\" naar \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {

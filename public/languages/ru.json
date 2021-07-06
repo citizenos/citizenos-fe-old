@@ -805,7 +805,7 @@
       "HEADER_FILES": "Прикрепленные файлы",
       "LNK_ADD_MANAGE_FILES": "Добавить/редактировать файлы",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Перейти к теме <b>{{topicTitle}}</b>, отсканируя этот QR-код",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Предложенное изменение: \"{{changeTo}}\" вместо \"{{changeFrom}}\""
     }
   },
   "ACTIVITY_FEED": {

@@ -805,7 +805,7 @@
       "HEADER_FILES": "ФАЙЛИ",
       "LNK_ADD_MANAGE_FILES": "Додати/редагувати файли",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Перейдіть прямо в тему <b>{{topicTitle}}</b>, просканувавши цей QR-код!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Запропонована зміна з \"{{changeFrom}}\" на \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {

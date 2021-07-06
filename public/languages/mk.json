@@ -805,7 +805,7 @@
       "HEADER_FILES": "ФАЈЛОВИ",
       "LNK_ADD_MANAGE_FILES": "Додади/Измени фајлови",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Оди директно на темата <b>{{topicTitle}}</b> со скенирање на овој QR-код!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Предложена промена од \"{{changeFrom}}\" во \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {
