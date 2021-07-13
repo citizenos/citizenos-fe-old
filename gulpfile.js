@@ -2,7 +2,7 @@
 
 const {Gulp, series, watch} = require('gulp'),
     gulp = new Gulp(),
-    sass = require('gulp-sass'),
+    sass = require('gulp-sass')(require('sass')),
     concat = require('gulp-concat'),
     cleanCSS = require('gulp-clean-css'),
     sourcemaps = require('gulp-sourcemaps'),
@@ -13,7 +13,6 @@ const {Gulp, series, watch} = require('gulp'),
     pipeline = require('readable-stream').pipeline,
     cachebust = require('gulp-cache-bust'),
     fs = require('fs');
-    sass.compiler = require('sass');
 
 var pkg = JSON.parse(fs.readFileSync('package.json'));
 
