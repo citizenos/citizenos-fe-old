@@ -1699,6 +1699,41 @@
                     border-radius: 0
                 }
 
+                #login_lightbox {
+                    input {
+                        height: 40px;
+                        margin-bottom: 10px;
+                    }
+
+                    .input_with_icon.clickable {
+                        .icon_table:hover {
+                            @media (min-width: 1025px) {
+                                cursor: pointer;
+                                height: 41px;
+                                width: 41px;
+                                background: inherit;
+                                border-radius: 0 4px 4px 0;
+                                border-top: 1px solid vars.$lightest_gray;
+                                border-right: 1px solid vars.$lightest_gray;
+                                border-bottom: 1px solid vars.$lightest_gray;
+                            }
+                        }
+
+                        .icon_table.error:hover {
+                            @media (min-width: 1025px) {
+                                cursor: pointer;
+                                height: 41px;
+                                width: 41px;
+                                background: inherit;
+                                border-radius: 0 4px 4px 0;
+                                border-top: 1px solid vars.$pinky_red;
+                                border-right: 1px solid vars.$pinky_red;
+                                border-bottom: 1px solid vars.$pinky_red;
+                            }
+                        }
+                    }
+                }
+
                 #image_edit_section {
                     display: inline-block;
                     width: 210px;
