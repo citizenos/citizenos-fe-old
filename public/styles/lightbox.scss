@@ -1709,8 +1709,8 @@
                         .icon_table:hover {
                             @media (min-width: 1025px) {
                                 cursor: pointer;
-                                height: 41px;
-                                width: 41px;
+                                height: 40px;
+                                width: 40px;
                                 background: inherit;
                                 border-radius: 0 4px 4px 0;
                                 border-top: 1px solid vars.$lightest_gray;
@@ -1722,8 +1722,8 @@
                         .icon_table.error:hover {
                             @media (min-width: 1025px) {
                                 cursor: pointer;
-                                height: 41px;
-                                width: 41px;
+                                height: 40px;
+                                width: 40px;
                                 background: inherit;
                                 border-radius: 0 4px 4px 0;
                                 border-top: 1px solid vars.$pinky_red;
