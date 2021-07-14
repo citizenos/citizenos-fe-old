@@ -54,7 +54,7 @@ if (cspConfig) {
         });
     }
 
- //   app.use(expressCspHeader(cspOptions));
+    app.use(expressCspHeader(cspOptions));
 }
 
 
@@ -62,7 +62,36 @@ app.use(prerender.set('prerenderToken', 'CrrAflHAEiF44KMFkrs7'));
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/*', function (req, res) {
+const browserDetect = (req, res, next) => {
+    const ua = req.headers['user-agent'];
+
+    const msie = ua.indexOf('MSIE ');
+    if (msie > 0) {
+        // IE 10 or older => return version number
+        var IEversion =  parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+        console.log('IEversion', IEversion);
+        res.sendFile(__dirname + '/public/views/unknown_device.html');
+
+        return res.set('Permissions-Policy', 'interest-cohort=()'); // Opt-out of Google FLoC
+    }
+
+    const trident = ua.indexOf('Trident/');
+    if (trident > 0) {
+        // IE 11 => return version number
+        var rv = ua.indexOf('rv:');
+        var version =  parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+        console.log('IE 11');
+        res.sendFile(__dirname + '/public/views/unknown_device.html');
+
+        return res.set('Permissions-Policy', 'interest-cohort=()'); // Opt-out of Google FLoC
+    }
+    // other browser
+
+    next();
+}
+
+app.use(browserDetect);
+app.get('/*', browserDetect, function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
     res.set('Permissions-Policy', 'interest-cohort=()'); // Opt-out of Google FLoC
 });
