@@ -717,6 +717,8 @@
       "VOTE_HEADING_STEP4": "Paso {{stepNum}}: Fecha límite para la votación",
       "VOTE_LBL_DEADLINE": "Fecha límite",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Días restantes: {{numberOfDaysLeft}}",
+      "VOTE_LBL_ALL_VOTES_ARE_IN": "All votes are in",
+      "VOTE_LBL_ALL_VOTES_ARE_IN_EXPLANATION": "WHEN EVERY USER IN THE TOPIC HAS VOTED, THE VOTE SYSTEM CLOSES.",
       "VOTE_BTN_CREATE_VOTE": "INICIO DE LA VOTACIÓN",
       "VOTE_SUBMIT": "Enviar voto",
       "TXT_YOU_CAN_CHOOSE_OPTIONS": "Este es un voto de selección múltiple. Puede elegir un máximo de {{maxChoices}} opciones que se correspondan con su opinión.",
