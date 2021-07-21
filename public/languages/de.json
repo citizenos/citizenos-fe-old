@@ -717,6 +717,8 @@
       "VOTE_HEADING_STEP4": "Schritt {{stepNum}}: Abstimmfrist",
       "VOTE_LBL_DEADLINE": "Frist",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Verbleibende Tage: {{numberOfDaysLeft}}",
+      "VOTE_LBL_ALL_VOTES_ARE_IN": "All votes are in",
+      "VOTE_LBL_ALL_VOTES_ARE_IN_EXPLANATION": "WHEN EVERY USER IN THE TOPIC HAS VOTED, THE VOTE SYSTEM CLOSES.",
       "VOTE_BTN_CREATE_VOTE": "ABSTIMMUNG STARTEN",
       "VOTE_SUBMIT": "Stimmen Sie ab",
       "TXT_YOU_CAN_CHOOSE_OPTIONS": "Dies ist eine Abstimmung mit Auswahlantworten. Sie können bis zu {{maxChoices}} Optionen auswählen, die Ihrer Ansicht entsprechen.",
