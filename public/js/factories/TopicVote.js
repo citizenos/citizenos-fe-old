@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .factory('TopicVote', ['$log', '$resource', 'sLocation', 'sAuth', function ($log, $resource, sLocation, sAuth) {
+    .factory('TopicVote', ['$log', '$state', '$resource', 'sLocation', 'sAuth', function ($log, $state, $resource, sLocation, sAuth) {
         $log.debug('citizenos.factory.TopicVote');
 
         var path = '/api/:prefix/:userId/topics/:topicId/votes/:voteId';
@@ -19,7 +19,9 @@ angular
                         return angular.toJson(data);
                     },
                     transformResponse: function (data, headersGetter, status) {
-                        if (status > 0 && status < 400) {
+                        if (status === 205) {
+                            $state.reload();
+                        } else if (status > 0 && status < 400) {
                             return angular.fromJson(data).data;
                         } else {
                             return angular.fromJson(data);
@@ -64,6 +66,13 @@ angular
                     method: 'GET',
                     params: {topicId: '@topicId', voteId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     url: sLocation.getAbsoluteUrlApi(pathStatus),
+                    transformResponse: function(data, headersGetter, status) {
+                        if (status === 205) {
+                            $state.reload();
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
                 },
                 sign: {
                     method: 'POST',

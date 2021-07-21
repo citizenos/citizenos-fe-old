@@ -37,6 +37,12 @@ angular
                     enabled: false
                 }
             },
+            autoClose: {
+                allMembersVoted: {
+                    value: 'allMembersVoted',
+                    enabled: false
+                }
+            },
             optionsMax: 10,
             optionsMin: 2
         };
@@ -53,7 +59,8 @@ angular
             voteType: null,
             authType: $scope.voteAuthTypes.soft,
             numberOfDaysLeft: 0,
-            errors: null
+            errors: null,
+            autoClose: angular.copy(CONF.autoClose)
         };
 
         $scope.$parent.$parent.optionsCountUp = function (type) {
@@ -136,6 +143,20 @@ angular
                     vote.options.push({value: option.value});
                 }
             }
+
+            var autoClose = [];
+            for (var i in $scope.voteForm.autoClose) {
+                var option = $scope.voteForm.autoClose[i];
+                if (option.enabled) {
+                    autoClose.push({value: option.value});
+                }
+            }
+
+            if (!autoClose.length) {
+                autoClose = null;
+            }
+            vote.autoClose = autoClose;
+
             vote.options = _.filter(vote.options, function (option) {
                 return !!option.value
             });
