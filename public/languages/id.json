@@ -717,6 +717,8 @@
       "VOTE_HEADING_STEP4": "Langkah {{stepNum}}: Tenggat pemungutan suara",
       "VOTE_LBL_DEADLINE": "Batas Waktu",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Sisa hari: {{numberOfDaysLeft}}",
+      "VOTE_LBL_ALL_VOTES_ARE_IN": "All votes are in",
+      "VOTE_LBL_ALL_VOTES_ARE_IN_EXPLANATION": "WHEN EVERY USER IN THE TOPIC HAS VOTED, THE VOTE SYSTEM CLOSES.",
       "VOTE_BTN_CREATE_VOTE": "MULAI MASA PEMILIHAN",
       "VOTE_SUBMIT": "Kirim hak pilih Anda",
       "TXT_YOU_CAN_CHOOSE_OPTIONS": "Ini adalah hak pilih pilihan ganda. Anda dapat memilih maks {{maxChoices}} opsi yang sesuai dengan pandangan Anda.",

@@ -717,6 +717,8 @@
       "VOTE_HEADING_STEP4": "Vaihe {{stepNum}}: Äänestyksen määräaika",
       "VOTE_LBL_DEADLINE": "Määräaika",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Päiviä jäljellä: {{numberOfDaysLeft}}",
+      "VOTE_LBL_ALL_VOTES_ARE_IN": "All votes are in",
+      "VOTE_LBL_ALL_VOTES_ARE_IN_EXPLANATION": "WHEN EVERY USER IN THE TOPIC HAS VOTED, THE VOTE SYSTEM CLOSES.",
       "VOTE_BTN_CREATE_VOTE": "ALOITA ÄÄNESTYS",
       "VOTE_SUBMIT": "Lähetä äänesi",
       "TXT_YOU_CAN_CHOOSE_OPTIONS": "Monivalintaäänestyksessä voit valita enintään {{maxChoices}} vaihtoehtoa, jotka vastaavat näkymääsi.",
