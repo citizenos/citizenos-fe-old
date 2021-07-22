@@ -717,6 +717,8 @@
       "VOTE_HEADING_STEP4": "Stap {{stepNum}}: deadline voor stemmen",
       "VOTE_LBL_DEADLINE": "Uiterste datum",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Resterende dagen: {{numberOfDaysLeft}}",
+      "VOTE_LBL_ALL_VOTES_ARE_IN": "All votes are in",
+      "VOTE_LBL_ALL_VOTES_ARE_IN_EXPLANATION": "WHEN EVERY USER IN THE TOPIC HAS VOTED, THE VOTE SYSTEM CLOSES.",
       "VOTE_BTN_CREATE_VOTE": "START DE STEMMING",
       "VOTE_SUBMIT": "Stemmen",
       "TXT_YOU_CAN_CHOOSE_OPTIONS": "Dit is een meerkeuzestemming. U kunt maximaal {{maxChoices}} opties kiezen die bij uw mening passen.",

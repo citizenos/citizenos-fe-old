@@ -717,6 +717,8 @@
       "VOTE_HEADING_STEP4": "Samm {{stepNum}}: Hääletamise tähtaeg",
       "VOTE_LBL_DEADLINE": "Tähtaeg",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Hääletamise lõpuni: {{numberOfDaysLeft}} päeva",
+      "VOTE_LBL_ALL_VOTES_ARE_IN": "All votes are in",
+      "VOTE_LBL_ALL_VOTES_ARE_IN_EXPLANATION": "WHEN EVERY USER IN THE TOPIC HAS VOTED, THE VOTE SYSTEM CLOSES.",
       "VOTE_BTN_CREATE_VOTE": "ALUSTA HÄÄLETAMIST",
       "VOTE_SUBMIT": "Saada oma hääl",
       "TXT_YOU_CAN_CHOOSE_OPTIONS": "Mitmikvalikus saad hääletada kuni {{maxChoices}} valiku poolt.",
