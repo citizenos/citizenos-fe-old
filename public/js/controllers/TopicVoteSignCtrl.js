@@ -156,7 +156,7 @@ angular
                     return TopicVote
                         .status({topicId: topic.id, voteId: topic.vote.id, prefix: sAuth.getUrlPrefix(), userId: sAuth.getUrlUserId(), token: token}).$promise
                         .then(function (response) {
-                            console.log(response);
+                            console.log('RESPONSE',response);
                             var statusCode = response.status.code;
                             switch (statusCode) {
                                 case 20001:
