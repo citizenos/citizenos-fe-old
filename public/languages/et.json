@@ -687,8 +687,8 @@
       "VOTE_TXT_VOTE_CLOSED": "Kõik on hääletanud. Valmis dokumendi saad alla laadida siit.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Hääled on nüüd antud. Palun liiguta teema elluviimisfaasi ja seejärel naase siia, et laadida alla hääletustulemused.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Lae alla allkirjadega fail (BDOC)",
-      "FINAL_OPTION_WITHOUT_CSV": "Machine-readable file (Äriregister)",
-      "FINAL_OPTION_WITH_CSV": "Human-readable file (Riigikogu, KOV)",
+      "FINAL_OPTION_WITHOUT_CSV": "Masinloetav fail (Äriregister)",
+      "FINAL_OPTION_WITH_CSV": "Inimloetav fail (Riigikogu, KOV)",
       "BTN_DOWNLOAD_FINAL_ZIP": "Lae alla hääletustulemuste kokkuvõte (zip-failina)",
       "VOTE_HEADING_CREATE": "Määra hääletamisseaded",
       "VOTE_HEADING_STEP1": "Samm 1: vali hääletamise tüüp",
@@ -992,7 +992,7 @@
     "FILTER_USERTOPICS": "Minu teemadega seotud toimingud",
     "FILTER_USERGROUPS": "Minu gruppidega seotud toimingud",
     "FILTER_USER": "Kasutajaga seotud toimingud",
-    "FILTER_SELF": "My activities"
+    "FILTER_SELF": "Minu toimingud"
   },
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Viga e-posti aadressis.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "See e-posti aadress on juba kasutusel.",
