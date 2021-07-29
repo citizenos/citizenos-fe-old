@@ -1,12 +1,12 @@
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox">
-    <div id="lightbox">
-        <div id="lightbox_wrap">
-
+    <div id="lightbox" class="wide_lightbox">
+        <div id="lightbox_wrap" ng-controller="LoginFormCtrl">
+            <form name="loginForm">
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <span translate="MODALS.LOGIN_HEADING">Log in / Register to Citizen OS</span>
+                    <div class="title" translate="MODALS.LOGIN_HEADING">Log in / Register to Citizen OS</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -19,7 +19,7 @@
             </div>
 
             <div class="lightbox_content">
-                <div id="login_lightbox" ng-controller="LoginFormCtrl">
+                <div id="login_lightbox">
                     <div class="line lightest_line"></div>
                     <div class="lightbox_section" ng-if="authMethodsAvailable.facebook || authMethodsAvailable.google || authMethodsAvailable.mobiilId || authMethodsAvailable.idCard || authMethodsAvailable.smartId">
 
@@ -73,8 +73,14 @@
                         <div class="line lightest_line"></div>
 
                         <div class="lightbox_section">
-                            <form name="loginForm">
                                 <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+                                <p class="bold" translate="MODALS.LOGIN_EMAIL_HEADING">Log in / Register to Citizen OS</p>
+                                <div class="error_no_account" ng-if="errors.accoundDoesNotExist">
+                                    <div class="icon_cell"><div class="sprite sprite-icon-inputfield-error2x"></div></div>
+                                    <div class="table_cell">
+                                        <span translate="MODALS.LOGIN_ERROR_NO_ACCOUNT" translate-values="{linkRegister: linkRegister}">We couldn’t find an account with that e-mail & password combination. Maybe you want to <a>register a new account?</a></span>
+                                    </div>
+                                </div>
                                 <input id="email" ng-model="form.email" type="email" placeholder="{{'MODALS.LOGIN_PLACEHOLDER_EMAIL' | translate}}" focus-if="{{wWidth > 1024 && !isFormEmailProvided}}"
                                        ng-class="{'error_input': errors.email}" maxlength="254" required>
                                 <label for="email" class="error_label" ng-if="errors.email">
@@ -93,16 +99,24 @@
                                         <span translate="{{errors.password}}"></span>
                                     </div>
                                 </label>
-                                <button type="submit" ng-click="doLogin()" cos-disabled="loginForm.$invalid" class="blue_button" translate="MODALS.LOGIN_BTN_LOGIN_REGISTER">Log in / Register</button>
                                 <div class="link_section">
                                     <a class="lightbox_link" ng-click="doResetPassword()" href="" translate="MODALS.LOGIN_LNK_FORGOT_PASSWORD">Forgot password?</a>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <div class="lightbox_footer login_footer">
+                <div class="line lightest_line"></div>
+                <div class="lightbox_section">
+                    <div class="footer_button_wrap"></div>
+                    <div class="footer_button_wrap right">
+                        <a class="footer_link" ui-sref="account.signup" translate="MODALS.LOGIN_LNK_NO_ACCOUNT_REGISTER">No account? Sign up now</a>
+                        <button type="submit" ng-click="doLogin()" cos-disabled="loginForm.$invalid" class="blue_button login_button" translate="MODALS.LOGIN_BTN_LOGIN">Log in / Register</button>
+                    </div>
+                </div>
+            </div>
+            </form>
         </div>
     </div>
 
