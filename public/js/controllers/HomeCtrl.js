@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('HomeCtrl', ['$scope', '$log', '$location', '$state', '$stateParams', 'sTopic', function ($scope, $log, $location, $state, $stateParams, sTopic) {
+    .controller('HomeCtrl', ['$scope', '$log', '$location', '$window', '$state', '$stateParams', 'sTopic', function ($scope, $log, $location, $window, $state, $stateParams, sTopic) {
         $log.debug('HomeCtrl', $state);
 
         // Constant marking the "clear" or all options will do
@@ -147,4 +147,8 @@ angular
         };
         $scope.loadTopicList();
 
+        $scope.goToPage = function (url) {
+            console.log(url);
+            $window.location.href = url;
+        }
     }]);
