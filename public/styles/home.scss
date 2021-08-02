@@ -816,6 +816,29 @@
                 }
             }
 
+            &.biotoopia {
+                background-image: url('../imgs/biotoopia_white.png');
+                background-repeat: no-repeat;
+                background-position: right -50px bottom 0px;
+                background-size: 300px;
+                background-color: vars.$biotoopia_background;
+
+                @media (max-width: 667px) {
+                    background-image: none;
+                }
+
+                .main_text {
+                    height: 189px;
+                }
+                .line {
+                    background: vars.$white;
+                }
+
+                .line::before {
+                    background-image: linear-gradient(to bottom, rgba(vars.$biotoopia_background, 0), vars.$biotoopia_background);
+                }
+            }
+
             @media (max-width: 2480px) {
                 padding-right: 0;
             }

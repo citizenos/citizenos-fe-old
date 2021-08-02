@@ -185,6 +185,7 @@ angular
         };
 
         Topic.CATEGORIES = {
+            biotoopia: "biotoopia",
             eurochangemakers: 'eurochangemakers',
             opinionfestival: 'opinionfestival',
             thetwelvemovie: 'thetwelvemovie',

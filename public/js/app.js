@@ -240,6 +240,11 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('biotoopia', {
+                    url: '/biotoopia?topicStatus',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
                 .state('account', {
                     url: '/account',
                     abstract: true,

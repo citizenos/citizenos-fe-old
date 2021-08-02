@@ -437,6 +437,13 @@
                         font-style: italic;
                     }
 
+                    .title_description_register {
+                        margin-top: 25px;
+                        position: absolute;
+                        padding-right: 77px;
+                        font-size: 14px;
+                        line-height: 24px;
+                    }
                 }
 
                 #lightbox_close {
@@ -713,6 +720,12 @@
                             padding: 10px;
                             display: inline-block;
                             min-width: 120px;
+
+                            &.login_button {
+                                width: 106px;
+                                max-width: 200px;
+                                margin-left: 20px;
+                            }
                         }
 
                         &.left {
@@ -1699,13 +1712,24 @@
                     border-radius: 0
                 }
 
+                #sign_up_lightbox {
+                    input {
+                        height: 40px;
+                    }
+                }
+
                 #login_lightbox {
                     input {
                         height: 40px;
                         margin-bottom: 10px;
                     }
 
+                    .link_section {
+                        text-align: left;
+                    }
+
                     .input_with_icon.clickable {
+                        margin-bottom: 0;
                         .icon_table:hover {
                             @media (min-width: 1025px) {
                                 cursor: pointer;
@@ -1730,6 +1754,21 @@
                                 border-right: 1px solid vars.$pinky_red;
                                 border-bottom: 1px solid vars.$pinky_red;
                             }
+                        }
+                    }
+
+                    .error_no_account {
+                        display: table-row;
+                        background-color: vars.$old_pink;
+                        padding: 10px;
+                        font-size: 14px;
+                        line-height: 24px;
+
+                        .icon_cell {
+                            padding: 16px 0px 0px 12px;
+                        }
+                        .table_cell {
+                            padding: 12px;
                         }
                     }
                 }

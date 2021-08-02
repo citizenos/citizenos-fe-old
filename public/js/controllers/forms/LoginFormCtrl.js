@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'cosConfig', 'ngDialog', 'sAuth', 'sLocation', 'sUser', function ($scope, $log, $state, $stateParams, $window, $document, $interval, cosConfig, ngDialog, sAuth, sLocation, sUser) {
+    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'cosConfig', 'ngDialog', 'sAuth', 'sLocation', 'sUser', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $document, $interval, cosConfig, ngDialog, sAuth, sLocation, sUser, sNotification) {
         $log.debug('LoginFormCtrl');
 
         $scope.LOGIN_PARTNERS = {
@@ -11,6 +11,7 @@ angular
         };
         $scope.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
         $scope.isFormEmailProvided = $scope.$parent.ngDialogData && $scope.$parent.ngDialogData.email;
+        $scope.linkRegister = sLocation.getAbsoluteUrl('/account/signup');
 
         var init = function () {
             $scope.form = {
@@ -108,13 +109,8 @@ angular
 
                 switch (status.code) {
                     case 40001: // Account does not exist
-                        // Not using $state.go('account.signup') cause $stateParams are exposed in the url and
-                        // I don't want password to be there. Found no secret way to pass data to new state.
-                        ngDialog.open({
-                            template: '/views/modals/sign_up.html',
-                            data: $scope.form,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
+                        sNotification.removeAll();
+                        $scope.errors = {accoundDoesNotExist: true};
                         break;
                     default:
                         $scope.errors = response.data.errors;
