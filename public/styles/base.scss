@@ -384,6 +384,14 @@ a img, a {
     outline: none;
 }
 
+.link {
+    cursor: pointer;
+
+    :hover {
+        text-decoration: underline;
+    }
+}
+
 a:link, a:visited {
     color: vars.$deep_sky_blue;
 }
@@ -970,7 +978,7 @@ table, .pretend_table {
 
 .minimize_container {
     @extend %table_cell;
-    width: 36px;
+    width: 26px;
     cursor: pointer;
 
     .sprite {
@@ -982,6 +990,43 @@ table, .pretend_table {
 
         @include mixins_n_extends.tablet {
             background: initial;
+        }
+    }
+
+    &.classic_dropdown {
+        background: initial;
+        border: none;
+        width: 26px;
+    }
+
+    &.dropdown_active {
+        .dropdown {
+            width: max-content;
+            left: 100%;
+            transform: translateX(-100%);
+
+            .item_category {
+                padding-left: 10px;
+            }
+
+            .dropdown_item {
+                .item_names_wrap {
+                    .item_name {
+                        font-weight: 400;
+                        padding-left: 10px;
+                        &.bold {
+                            font-weight: 700;
+                        }
+                        &:hover {
+                            color: vars.$medium_black;
+                            background: vars.$light_gray;
+                            @include mixins_n_extends.tablet {
+                                color: vars.$medium_black;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

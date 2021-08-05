@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', '$timeout', 'Group', 'Topic', 'GroupMemberTopic', 'rItems', function ($rootScope, $scope, $state, $stateParams, $q, $log, $timeout, Group, Topic, GroupMemberTopic, rItems) {
+    .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', '$timeout', 'Group', 'Topic', 'GroupMemberTopic', 'rItems', 'sAuth', function ($rootScope, $scope, $state, $stateParams, $q, $log, $timeout, Group, Topic, GroupMemberTopic, rItems, sAuth) {
         $log.debug('MyCtrl', $stateParams, rItems);
 
         $scope.itemList = rItems;
@@ -113,6 +113,64 @@ angular
             selected: _.find(filters, {id: filterParam}) || _.chain(filters).map('children').flatten().find({id: filterParam}).value() || filters[0]
         };
 
+        var groupFilters = [
+            {
+                name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.SHOW_ONLY',
+                children: [
+                    {
+                        id: 'inProgress',
+                        name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.TOPICS_IN_PROGRESS'
+                    },
+                    {
+                        id: 'voting',
+                        name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.TOPICS_IN_VOTING'
+                    },
+                    {
+                        id: 'followUp',
+                        name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.TOPICS_IN_FOLLOW_UP'
+                    },
+                    {
+                        id: 'closed',
+                        name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.TOPICS_CLOSED'
+                    }
+                ]
+            },
+            {
+                name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.ORDER_TOPICS_BY',
+                children: [
+                    {
+                        id: 'status.ascending',
+                        name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.STATUS_ASCENDING'
+                    },
+                    {
+                        id: 'status.descending',
+                        name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.STATUS_DESCENDING'
+                    },
+                    {
+                        id: 'pinned.descending',
+                        name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.PINNED_DESCENDING'
+                    },
+                    {
+                        id: 'pinned.ascending',
+                        name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.PINNED_ASCENDING'
+                    },
+                    {
+                        id: 'lastActivity.ascending',
+                        name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.ACTIVITY_ASCENDING'
+                    },
+                    {
+                        id: 'lastActivity.descending',
+                        name: 'VIEWS.MY.FILTERS_GROUP_TOPICS.ACTIVITY_DESCENDING'
+                    }
+                ]
+            }
+        ];
+
+        $scope.groupFilters = {
+            items: groupFilters,
+            selected: _.find(groupFilters, {id: filterParam}) || _.chain(groupFilters).map('children').flatten().find({id: filterParam}).value() || groupFilters[0]
+        };
+
         $scope.$watch(
             function () {
                 return $scope.itemList;
@@ -163,6 +221,39 @@ angular
             } else { // already visible, we hide
                 groupMemberTopicsVisible.splice(indexGroupIdVisible, 1);
             }
+        };
+
+
+        $scope.doOrderGroupTopicList = function (group, order) {
+            var statuses = ['inProgress', 'voting', 'followUp', 'closed'];
+            var searchParams = {groupId: group.id};
+            if (statuses.indexOf(order) > -1) {
+                searchParams.statuses = order;
+            }
+            var param = order.split('.')[0];
+            var sortOrder = order.split('.')[1];
+            if (statuses.indexOf(order) > -1) {
+                searchParams.statuses = order;
+            }
+            var param = order.split('.')[0];
+            var sortOrder = order.split('.')[1];
+            var orderParams = ['status', 'pinned', 'lastActivity'];
+            if (orderParams.indexOf(param) > -1) {
+                searchParams.order = param;
+                if (sortOrder === 'descending') {
+                    searchParams.sortOrder = 'desc';
+                }
+            }
+            GroupMemberTopic
+                    .query(searchParams).$promise
+                    .then(function (topics) {
+                        group.members.topics.rows = topics;
+                        group.members.topics.count = topics.length;
+                        var indexGroupIdVisible = groupMemberTopicsVisible.indexOf(group.id);
+                        if (indexGroupIdVisible < 0) {
+                            groupMemberTopicsVisible.push(group.id);
+                        }
+                    });
         };
 
         $scope.goToTopicView = function (topic, editMode) {
