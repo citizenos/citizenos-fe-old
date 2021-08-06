@@ -553,6 +553,20 @@
         "TOPICS_CLOSED": "Zamknięte tematy",
         "TOPICS_PINNED": "Przypięte tematy",
         "TOPICS_MODERATED": "Tematy moderowane"
+      },
+      "FILTERS_GROUP_TOPICS": {
+        "SHOW_ONLY": "@:VIEWS.MY.FILTERS.SHOW_ONLY",
+        "ORDER_TOPICS_BY": "Order group topics by:",
+        "TOPICS_IN_PROGRESS": "@:VIEWS.MY.FILTERS.TOPICS_IN_PROGRESS",
+        "TOPICS_IN_VOTING": "@:VIEWS.MY.FILTERS.TOPICS_IN_VOTING",
+        "TOPICS_IN_FOLLOW_UP": "@:VIEWS.MY.FILTERS.TOPICS_IN_FOLLOW_UP",
+        "TOPICS_CLOSED": "@:VIEWS.MY.FILTERS.TOPICS_CLOSED",
+        "STATUS_ASCENDING": "Status (ascending)",
+        "STATUS_DESCENDING": "Status (descending)",
+        "PINNED_ASCENDING": "Attention (non-pinned first)",
+        "PINNED_DESCENDING": "Attention (pinned first)",
+        "ACTIVITY_ASCENDING": "Activity (latest)",
+        "ACTIVITY_DESCENDING": "Activity (oldest)"
       }
     },
     "MY_GROUPS_GROUPID": {
