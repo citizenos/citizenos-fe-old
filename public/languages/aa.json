@@ -553,6 +553,20 @@
         "TOPICS_CLOSED": "crwdns21052:0crwdne21052:0",
         "TOPICS_PINNED": "crwdns21054:0crwdne21054:0",
         "TOPICS_MODERATED": "crwdns26770:0crwdne26770:0"
+      },
+      "FILTERS_GROUP_TOPICS": {
+        "SHOW_ONLY": "crwdns28697:0crwdne28697:0",
+        "ORDER_TOPICS_BY": "crwdns28699:0crwdne28699:0",
+        "TOPICS_IN_PROGRESS": "crwdns28701:0crwdne28701:0",
+        "TOPICS_IN_VOTING": "crwdns28703:0crwdne28703:0",
+        "TOPICS_IN_FOLLOW_UP": "crwdns28705:0crwdne28705:0",
+        "TOPICS_CLOSED": "crwdns28707:0crwdne28707:0",
+        "STATUS_ASCENDING": "crwdns28709:0crwdne28709:0",
+        "STATUS_DESCENDING": "crwdns28711:0crwdne28711:0",
+        "PINNED_ASCENDING": "crwdns28713:0crwdne28713:0",
+        "PINNED_DESCENDING": "crwdns28715:0crwdne28715:0",
+        "ACTIVITY_ASCENDING": "crwdns28717:0crwdne28717:0",
+        "ACTIVITY_DESCENDING": "crwdns28719:0crwdne28719:0"
       }
     },
     "MY_GROUPS_GROUPID": {
