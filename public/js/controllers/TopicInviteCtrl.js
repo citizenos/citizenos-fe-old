@@ -246,7 +246,7 @@ angular
                 });
 
                 var invalid = _.filter(emails, function (email) {
-                    return !validator.isEmail(email.trim())
+                    return !validator.isEmail(email.trim()) && email.trim().length > 0;
                 });
 
                 if (!filtered.length && !invalid.length) {
@@ -267,7 +267,6 @@ angular
                         });
                         orderMembers();
                     }
-
                     $scope.invalid = invalid;
                 });
 
