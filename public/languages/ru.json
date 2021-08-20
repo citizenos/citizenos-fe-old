@@ -748,7 +748,7 @@
       "VOTE_LBL_MINIMUM_VOTES_DESCRIPTION": "КОЛИЧЕСТВО ГОЛОСОВ, НЕОБХОДИМЫХ ДЛЯ ОКОНЧАНИЯ ГОЛОСОВАНИЯ.",
       "VOTE_MINIMUM_VOTES_INPUT_PLACHOLDER": "н-р 1000",
       "VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT": "Осталось дней: {{numberOfDaysLeft}}",
-      "VOTE_LBL_ALL_VOTES_ARE_IN": "All votes are in",
+      "VOTE_LBL_ALL_VOTES_ARE_IN": "Когда проголосуют все",
       "VOTE_LBL_ALL_VOTES_ARE_IN_EXPLANATION": "ГОЛОСОВАНИЕ ЗАКАНЧИВАЕТСЯ, КОГДА ПРОГОЛОСУЮТ ВСЕ ПОЛЬЗОВАТЕЛИ В ЭТОЙ ТЕМЕ.",
       "VOTE_BTN_CREATE_VOTE": "НАЧАТЬ ГОЛОСОВАНИЕ",
       "VOTE_SUBMIT": "Голосовать",
