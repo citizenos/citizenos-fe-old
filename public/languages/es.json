@@ -537,7 +537,7 @@
       "MY_CREATING_A_NEW_TOPIC": "Crea un tema",
       "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "NO_RESULTS_FOUND_TITLE": "No se encontraron resultados",
-      "NO_RESULTS_FOUND_DESCRIPTION": "No encontramos resultados para su búsqueda. ¿Quiere probar con otra búsqueda?",
+      "NO_RESULTS_FOUND_DESCRIPTION": "No se encontraron resultados para su búsqueda. ¿Quiere probar con otra búsqueda?",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Mostrar todos mis temas",
         "SHOW_ONLY": "Mostrar solo:",
