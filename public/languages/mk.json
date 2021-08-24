@@ -736,7 +736,7 @@
       "VOTE_HEADING_STEP4": "Step {{stepNum}}: End of voting system",
       "VOTE_HEADING_STEP4_DESCRIPTION": "You can choose either deadline or vote amount or combine them. When you combine them, the first that is reached will end the voting system.",
       "VOTE_LBL_DEADLINE": "Краен рок",
-      "VOTE_LBL_SET_TIME": "Set a time",
+      "VOTE_LBL_SET_TIME": "Поставете време",
       "VOTE_LBL_SET_DATE": "Set a date",
       "VOTE_LBL_SET_TIMEZONE": "Set a timezone",
       "VOTE_SETTING_TIME_OPTION_24": "24 hr clock",
