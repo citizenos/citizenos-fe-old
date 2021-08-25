@@ -441,7 +441,7 @@
   },
   "DEFAULT": {
     "NAV": {
-      "LNK_LOG_IN_REGISTER": "Log in / Register to Citizen OS",
+      "LNK_LOG_IN_REGISTER": "Вход или регистрация в Citizen OS",
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
       "HEADING_TOPICS": "Темы",
       "LNK_CREATE_TOPICS": "Создать тему",
