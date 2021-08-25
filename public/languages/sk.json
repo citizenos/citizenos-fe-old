@@ -227,7 +227,7 @@
     "PASSWORD_RESET_BTN_RESET_PASSWORD": "Obnovte si heslo",
     "PASSWORD_RESET_LNK_CANCEL": "@:LNK_CANCEL",
     "SIGN_UP_HEADING": "Register a free account",
-    "SIGN_UP_HEADING_DESCRIPTION": "Register a free account now to get acces to Citizen OS: the platform for asynchronous meetings & citizen participation.",
+    "SIGN_UP_HEADING_DESCRIPTION": "Register a free account now to get access to Citizen OS: the platform for asynchronous meetings & citizen participation.",
     "SIGN_UP_PLACEHOLDER_NAME": "@:MODALS.MY_ACCOUNT_PLACEHOLDER_NAME",
     "SIGN_UP_PLACEHOLDER_COMPANY": "@:MODALS.MY_ACCOUNT_PLACEHOLDER_COMPANY",
     "SIGN_UP_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
