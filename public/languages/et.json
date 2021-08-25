@@ -287,7 +287,7 @@
     "TOPIC_SETTINGS_BTN_SAVE_SETTINGS": "Salvesta seaded",
     "TOPIC_SETTINGS_LBL_CHANGE_ALL": "Muuda kõigile",
     "TOPIC_SETTINGS_ERROR_MSG_INVALID_EMAILS_FOUND": "Leiti valesid e-posti aadressi vorminguid. Enne kutse saatmist kõrvalda vead ja lisa korrektne aadress.",
-    "TOPIC_SETTINGS_BTN_ADD": "Add",
+    "TOPIC_SETTINGS_BTN_ADD": "Lisa",
     "TOPIC_INVITE_HEADING": "Kutsu kasutajaid teemasse",
     "TOPIC_INVITE_TH_USERS": "@:MODALS.TOPIC_INVITE_TH_USERS",
     "TOPIC_INVITE_LBL_OPTIONAL_MESSAGE": "Lisa kutsele valikuline sõnum",
@@ -441,7 +441,7 @@
   },
   "DEFAULT": {
     "NAV": {
-      "LNK_LOG_IN_REGISTER": "Log in / Register to Citizen OS",
+      "LNK_LOG_IN_REGISTER": "Sisene / Loo Citizen OSi konto",
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
       "HEADING_TOPICS": "Teemad",
       "LNK_CREATE_TOPICS": "Loo teema",
