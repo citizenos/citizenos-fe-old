@@ -1131,7 +1131,7 @@
   "MSG_ERROR_50000": "Järjestelmässämme meni jotakin vikaan. Olemme hyvin pahoillamme! Ole hyvä ja yritä vielä kerran. Mikäli virhe toistuu, ole hyvä ja ota yhteys asiakastukeemme.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Ongelmia verkossa. Ole hyvä ja tarkista Internet-yhteytesi.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Liite on liian suuri! Liitteen suurin sallittu koko on 50 Mt.",
-  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "File type is not allowed! Allowed types are: {{allowedFileTypes}}",
+  "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Tiedostotyyppi ei ole sallittu! Sallitut tyypit ovat: {{allowedFileTypes}}",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_LINK": "Liitteen linkkiä ei ole määritetty!",
   "MSG_ERROR_POST_API_USERS_TOPICS_ATTACHMENTS_40000_NAME": "Liitteen nimeä ei ole määritetty!",
   "MSG_ERROR_PASSWORD_MISMATCH": "Salasana ja salasanan vahvistus ovat erilaisia. ",
