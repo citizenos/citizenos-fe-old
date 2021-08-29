@@ -45,8 +45,8 @@ angular
         };
 
         $scope.GroupMemberTopic = GroupMemberTopic;
-
-        $scope.loadMemberTopicsList = function (offset, limit) {
+        $scope.loadMemberTopicsList = function (offset, limit, order) {
+            order = order || '';
             if (!limit) {
                 limit = ITEMS_COUNT_PER_PAGE;
             }
@@ -59,13 +59,28 @@ angular
                 search = $scope.topicList.searchFilter.trim();
             }
 
+            var statuses = ['inProgress', 'voting', 'followUp', 'closed'];
+            var searchParams = {
+                groupId: $scope.group.id,
+                limit: limit,
+                search: search,
+                offset: offset
+            };
+            if (statuses.indexOf(order) > -1) {
+                searchParams.statuses = order;
+            }
+            var param = order.split('.')[0];
+            var sortOrder = order.split('.')[1];
+            var orderParams = ['status', 'pinned', 'lastActivity'];
+            if (orderParams.indexOf(param) > -1) {
+                searchParams.order = param;
+                if (sortOrder === 'descending') {
+                    searchParams.sortOrder = 'desc';
+                }
+            }
+            $scope.group.members.topics.order = order;
             return GroupMemberTopic
-                .query({
-                    groupId: $scope.group.id,
-                    limit: limit,
-                    search: search,
-                    offset: offset
-                }).$promise
+                .query(searchParams).$promise
                 .then(function (topics) {
                     $scope.group.members.topics.rows = topics;
                     $scope.group.members.topics.count = topics.length;
@@ -83,7 +98,7 @@ angular
 
         $scope.loadMemberTopicsPage = function (page) {
             var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
-            $scope.loadMemberTopicsList(offset, ITEMS_COUNT_PER_PAGE);
+            $scope.loadMemberTopicsList(offset, ITEMS_COUNT_PER_PAGE, $scope.group.members.topics.order);
         };
 
         $scope.loadMemberUsersList = function (offset, limit) {
@@ -201,6 +216,75 @@ angular
                         checkIfInView('topic_list');
                     }
                 });
+        };
+
+        $scope.doOrderTopicList = function (order) {
+            var param = order.split('.')[0];
+            var sortOrder = order.split('.')[1];
+            var statuses = ['inProgress', 'voting', 'followUp', 'closed'];
+            $scope.loadMemberTopicsList(0, ITEMS_COUNT_PER_PAGE, order).then(function () {
+                if (param === 'status') {
+                    var mapped = $scope.group.members.topics.rows.map(function (v, i) {
+                        return { i: i, value: statuses.indexOf(v.status) };
+                    })
+
+                    mapped.sort(function (a, b) {
+                        if (a.value > b.value) {
+                            if (sortOrder === 'descending') return -1;
+
+                            return 1;
+                        }
+                        if (a.value < b.value) {
+                            if (sortOrder === 'descending') return 1;
+
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    var result = mapped.map(function (v) { return $scope.group.members.topics.rows[v.i]});
+                    $scope.group.members.topics.rows = result;
+                } else if (param === 'pinned') {
+                    var mapped = $scope.group.members.topics.rows.map(function (v, i) {
+                        return { i: i, value: (v.pinned === true)? 1: -1 };
+                    })
+                    mapped.sort(function (a, b) {
+                        if (a.value < b.value) {
+                            if (sortOrder === 'descending') return -1;
+
+                            return 1;
+                        }
+                        if (a.value > b.value) {
+                            if (sortOrder === 'descending') return 1;
+
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    var result = mapped.map(function (v) { return $scope.group.members.topics.rows[v.i]});
+                    $scope.group.members.topics.rows  = result
+                } else if (param === 'activity') {
+                    var now = (new Date()).getTime();
+                    var mapped = $scope.group.members.topics.rows.map(function (v, i) {
+                        return { i: i, value: now - (new Date(v.lastActivity)).getTime() };
+                    });
+
+                    mapped.sort(function (a, b) {
+                        if (a.value > b.value) {
+                            if (sortOrder === 'descending') return -1;
+
+                            return 1;
+                        }
+                        if (a.value < b.value) {
+                            if (sortOrder === 'descending') return 1;
+
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    var result = mapped.map(function (v) { return $scope.group.members.topics.rows[v.i]});
+                    $scope.group.members.topics.rows  = result;
+                }
+            });
         };
 
         $scope.doUpdateMemberTopic = function (groupMemberTopic, level) {

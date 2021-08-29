@@ -178,7 +178,7 @@
 
     <!-- TOPIC LIST -->
     <div class="info_container group_list" id="topic_list">
-        <div class="container_header" ng-click="doToggleMemberTopicList(group);">
+        <div class="container_header">
             <div class="header_text">
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_TOPIC_LIST" translate-values="{count: group.members.topics.count}">Topic list ({{group.members.topics.count}})</span>
                 <span ng-if="group.members.topics.count">|</span>
@@ -187,7 +187,27 @@
                     <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</div>
                 </span>
             </div>
-            <div class="minimize_container" ng-if="group.members.topics.count">
+            <div cos-dropdown class="classic_dropdown minimize_container" >
+                <div class="sprite sprite-btn-filter-gray"></div>
+
+                <div class="dropdown">
+                    <div class="dropdown_item" ng-repeat="filter in groupFilters.items">
+                        <div class="item_category bold">
+                            <span translate="{{filter.name}}">Order group topics by:</span>
+                        </div>
+                        <div ng-if="filter.children">
+                            <div class="item_names_wrap">
+                                <div ng-repeat="child in filter.children" class="item_name" ng-click="doOrderTopicList(child.id)">
+                                    <span translate="{{child.name}}">Child name</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="minimize_container" ng-if="group.members.topics.count"  ng-click="doToggleMemberTopicList(group);">
                 <div ng-class="!topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -208,19 +228,16 @@
                     <div class="pretend_th" ng-click="topicList.searchOrderBy.property = 'title'">
                         <div class="th_text">
                             <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_TITLE">Title</span>
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'title'"></div>
                         </div>
                     </div>
-                    <div class="pretend_th" ng-click="topicList.searchOrderBy.property = 'permission.levelGroup'">
+                    <div class="pretend_th">
                         <div class="th_text">
                             <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_RIGHTS">Rights</span>
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'permission.levelGroup'"></div>
                         </div>
                     </div>
-                    <div class="pretend_th" ng-click="topicList.searchOrderBy.property = 'members.users.count'">
+                    <div class="pretend_th">
                         <div class="th_text">
                             <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_USERS">Users</span>
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'members.users.count'"></div>
                         </div>
                     </div>
                     <div class="pretend_th">
@@ -229,7 +246,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="topic in group.members.topics.rows | orderBy: topicList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="topic in group.members.topics.rows">
                     <div class="pretend_td">
                         <div class="blue_link" ui-sref="my.topics.topicId({topicId: topic.id})" ng-bind="topic.title">topic.title</div>
                     </div>

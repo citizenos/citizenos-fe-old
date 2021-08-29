@@ -285,6 +285,10 @@
                     @extend .sprite-icon-lock2x-white;
                 }
 
+                .sprite-btn-filter-gray {
+                    @extend .sprite-btn-filter-white;
+                }
+
                 .sprite-btn-expand2x {
                     @extend .sprite-btn-expand2x-white;
                 }

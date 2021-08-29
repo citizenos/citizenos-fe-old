@@ -42,10 +42,10 @@
     "husky": "7.0.1",
     "jshint": "2.13.0",
     "jshint-stylish": "2.2.1",
-    "mocha": "9.0.2",
+    "mocha": "9.0.3",
     "readable-stream": "3.6.0",
     "run-sequence": "2.2.1",
-    "sass": "1.35.2"
+    "sass": "1.37.5"
   },
   "bugs": {
     "url": "https://github.com/citizenos/citizenos-fe/issues"

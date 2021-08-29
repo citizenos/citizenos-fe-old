@@ -65,6 +65,27 @@
                     <a class="header_text" ui-sref="my.groups.groupId({groupId: item.id, filter: 'grouped'})" ng-bind="item.name+' ('+item.members.topics.count+')'">
                         item (0)
                     </a>
+                    <div cos-dropdown class="classic_dropdown minimize_container" >
+                        <div class="sprite sprite-btn-filter-gray"></div>
+
+                        <div class="dropdown">
+                            <div class="dropdown_item" ng-repeat="filter in groupFilters.items">
+                                <div class="item_category bold">
+                                    <span translate="{{filter.name}}">Order group topics by:</span>
+                                </div>
+                                <div ng-if="filter.children">
+                                    <div class="item_names_wrap">
+                                        <div ng-repeat="child in filter.children" class="item_name" ng-click="doOrderGroupTopicList(item, child.id)">
+                                            <span translate="{{child.name}}">Child name</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
                     <div class="minimize_container" ng-if="item.members.topics.count" ng-click="doToggleGroupTopicList(item)">
                         <div ng-class="!isGroupMemberTopicsVisible(item) ?  'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
                     </div>
