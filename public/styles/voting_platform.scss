@@ -973,6 +973,94 @@
                 max-width: 400px;
                 margin: 0 auto;
             }
+
+            .toggle_box_title {
+                padding: 20px 0 10px 0;
+            }
+
+            .date_picker_wrap  {
+                background-color: vars.$white;
+                border: solid 1px vars.$lightest_gray;
+                border-radius: 4px;
+                width: 400px;
+                height: 350px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .bubble_section_table {
+                padding-top: 0;
+
+                table {
+                    padding-top: 0;
+                    margin-top: 0;
+                }
+            }
+
+            .right_row {
+                padding-right: 20px;
+            }
+
+            .set_vote_time_wrap, .set_vote_timezone_wrap {
+                padding-left: 20px;
+                display: inline-block;
+                width: calc(100% - 40px);
+
+                .toggle_box_title {
+                    padding-bottom: 10px;
+                }
+                input {
+                    height: 38px;
+                    width: 100%;
+                    border: 1px solid #e5e5e5;
+                    border-radius: 4px;
+                    vertical-align: middle;
+                    -webkit-appearance: textfield;
+                    appearance: textfield;
+                    -moz-appearance: textfield;
+                    text-align: center;
+                }
+
+                .input_row {
+                    display: block;
+
+                    .time_input {
+                        width: 35px;
+                    }
+
+                    .float_left {
+                        float:left;
+                    }
+
+                    .time_separator {
+                        height: 42px;
+                        padding-left: 5px;
+                        padding-right: 5px;
+                        padding-top: 10px;
+                    }
+
+                    .classic_dropdown {
+                        float: right;
+                    }
+                }
+
+                .classic_dropdown {
+                    height: 41px;
+                    width: max-content;
+                    display: inline-block;
+
+                    .dropdown_selection {
+                        padding: 10px 30px 14px 10px;
+
+                        .dropdown_text {
+                            padding-right: 10px;
+                        }
+                        .arrow_holder {
+                            height: 42px;
+                        }
+                    }
+                }
+            }
         }
 
 

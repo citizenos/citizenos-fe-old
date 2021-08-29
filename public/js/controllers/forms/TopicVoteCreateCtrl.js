@@ -49,6 +49,67 @@ angular
 
         $scope.showVoteCreate();
 
+        $scope.$parent.$parent.timezones = [
+            {name: "Etc/GMT+0", value: 0},
+            {name: "Etc/GMT+1", value: 1},
+            {name: "Etc/GMT+2", value: 2},
+            {name: "Etc/GMT+3", value: 3},
+            {name: "Etc/GMT+4", value: 4},
+            {name: "Etc/GMT+5", value: 5},
+            {name: "Etc/GMT+6", value: 6},
+            {name: "Etc/GMT+7", value: 7},
+            {name: "Etc/GMT+8", value: 8},
+            {name: "Etc/GMT+9", value: 9},
+            {name: "Etc/GMT+10", value: 10},
+            {name: "Etc/GMT+11", value: 11},
+            {name: "Etc/GMT+12", value: 12},
+            {name: "Etc/GMT-0", value: -0},
+            {name: "Etc/GMT-1", value: -1},
+            {name: "Etc/GMT-2", value: -2},
+            {name: "Etc/GMT-3", value: -3},
+            {name: "Etc/GMT-4", value: -4},
+            {name: "Etc/GMT-5", value: -5},
+            {name: "Etc/GMT-6", value: -6},
+            {name: "Etc/GMT-7", value: -7},
+            {name: "Etc/GMT-8", value: -8},
+            {name: "Etc/GMT-9", value: -9},
+            {name: "Etc/GMT-10", value: -10},
+            {name: "Etc/GMT-11", value: -11},
+            {name: "Etc/GMT-12", value: -12},
+            {name: "Etc/GMT-13", value: -13},
+            {name: "Etc/GMT-14", value: -14}
+        ];
+
+        $scope.$parent.$parent.endsAtMin = 0;
+        $scope.$parent.$parent.endsAtH = 0;
+
+        $scope.$parent.$parent.formatTime = function (val) {
+            if (val < 10) {
+                val = '0' + val;
+            }
+        }
+        $scope.$parent.$parent.setEndsAtTime = function (h, min, z) {
+            console.log($scope.voteForm);
+            if (min) {
+                $scope.$parent.$parent.endsAtMin = min;
+                console.log($scope.voteForm.endsAt);
+                $scope.voteForm.endsAt = moment($scope.voteForm.endsAt).minute(min)
+            }
+            if (h) {
+                $scope.$parent.$parent.endsAtH = h;
+                $scope.$parent.$parent.voteForm.endsAt = moment($scope.voteForm.endsAt).hour(h)
+            }
+            if (z) {
+                $scope.voteForm.timezone = z;
+                console.log('OFFSET', z*60)
+                $scope.voteForm.endsAt = moment($scope.voteForm.endsAt).utcOffset(z*60)
+            }
+        };
+
+        $scope.$parent.$parent.getTimeZoneName = function (value) {
+            return ($scope.timezones.find(function(item) {return item.value === value})).name;
+        }
+
         $scope.$parent.$parent.voteForm = {
             options: [],
             maxChoices: 1,
@@ -56,6 +117,7 @@ angular
             extraOptions: angular.copy(CONF.extraOptions),
             delegationIsAllowed: false,
             endsAt: null,
+            timezone: (new Date()).getTimezoneOffset()/60,
             voteType: null,
             authType: $scope.voteAuthTypes.soft,
             numberOfDaysLeft: 0,
@@ -161,7 +223,7 @@ angular
                 return !!option.value
             });
             // Ends at midnight of the date chosen, thus 00:00:00 of the next day.
-            var endsAt = moment($scope.voteForm.endsAt).add(1, 'd').toDate();
+            var endsAt = $scope.voteForm.endsAt;
 
             if (endsAt) {
                 vote.endsAt = endsAt;
