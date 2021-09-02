@@ -80,33 +80,16 @@ angular
             {name: "Etc/GMT-14", value: -14}
         ];
 
-        $scope.$parent.$parent.endsAtMin = 0;
-        $scope.$parent.$parent.endsAtH = 0;
+        $scope.$parent.$parent.HCount = 24;
 
         $scope.$parent.$parent.formatTime = function (val) {
             if (val < 10) {
                 val = '0' + val;
             }
         }
-        $scope.$parent.$parent.setEndsAtTime = function (h, min, z) {
-            console.log($scope.voteForm);
-            if (min) {
-                $scope.$parent.$parent.endsAtMin = min;
-                console.log($scope.voteForm.endsAt);
-                $scope.voteForm.endsAt = moment($scope.voteForm.endsAt).minute(min)
-            }
-            if (h) {
-                $scope.$parent.$parent.endsAtH = h;
-                $scope.$parent.$parent.voteForm.endsAt = moment($scope.voteForm.endsAt).hour(h)
-            }
-            if (z) {
-                $scope.voteForm.timezone = z;
-                console.log('OFFSET', z*60)
-                $scope.voteForm.endsAt = moment($scope.voteForm.endsAt).utcOffset(z*60)
-            }
-        };
 
         $scope.$parent.$parent.getTimeZoneName = function (value) {
+            console.log(value);
             return ($scope.timezones.find(function(item) {return item.value === value})).name;
         }
 
@@ -116,13 +99,43 @@ angular
             minChoices: 1,
             extraOptions: angular.copy(CONF.extraOptions),
             delegationIsAllowed: false,
-            endsAt: null,
-            timezone: (new Date()).getTimezoneOffset()/60,
+            endsAt: {
+                date: null,
+                min: 0,
+                h: 24,
+                timezone: (new Date()).getTimezoneOffset()/60,
+                timeFormat: 24
+            },
+            deadline: null,
             voteType: null,
             authType: $scope.voteAuthTypes.soft,
             numberOfDaysLeft: 0,
             errors: null,
             autoClose: angular.copy(CONF.autoClose)
+        };
+
+        $scope.$parent.$parent.setTimeFormat = function () {
+            $scope.HCount = 24;
+
+            if ($scope.$parent.$parent.voteForm.timeFormat !== 24) {
+                $scope.HCount = 12;
+                if ($scope.voteForm.endsAt.h > 12) {
+                    $scope.voteForm.endsAt.h -= 12;
+                }
+            }
+            $scope.setEndsAtTime();
+        }
+
+        $scope.$parent.$parent.setEndsAtTime = function () {
+            $scope.voteForm.endsAt.date = $scope.voteForm.endsAt.date || new Date();
+            $scope.voteForm.deadline = moment(new Date($scope.voteForm.endsAt.date));
+            $scope.voteForm.deadline.utcOffset($scope.voteForm.endsAt.timezone);0
+            var hour = $scope.voteForm.endsAt.h;
+            if ($scope.voteForm.endsAt.timeFormat === 'PM') hour += 12;
+            $scope.voteForm.deadline.hour(hour);
+            $scope.voteForm.deadline.minutes($scope.voteForm.endsAt.min);
+            console.log($scope.voteForm.deadline);
+            console.log($scope.voteForm.deadline.toString());
         };
 
         $scope.$parent.$parent.optionsCountUp = function (type) {
@@ -179,11 +192,11 @@ angular
         };
 
         $scope.$parent.$parent.daysToVoteEnd = function () {
-            if ($scope.voteForm.endsAt) {
-                if ($scope.voteForm.endsAt === true) {
-                    $scope.voteForm.endsAt = new Date();
+            if ($scope.voteForm.deadline) {
+                if ($scope.voteForm.deadline === true) {
+                    $scope.voteForm.deadline = new Date();
                 }
-                var endDate = $scope.voteForm.endsAt;
+                var endDate = $scope.voteForm.deadline;
                 var diffTime = new Date(endDate).getTime() - new Date().getTime();
                 $scope.voteForm.numberOfDaysLeft = Math.ceil(diffTime / (1000 * 3600 * 24)); // Diff in days
             }
@@ -223,10 +236,11 @@ angular
                 return !!option.value
             });
             // Ends at midnight of the date chosen, thus 00:00:00 of the next day.
-            var endsAt = $scope.voteForm.endsAt;
+            var endsAt = $scope.voteForm.deadline;
 
             if (endsAt) {
-                vote.endsAt = endsAt;
+                console.log('ENDS ', endsAt);
+                vote.endsAt = endsAt.format();
             }
 
             vote

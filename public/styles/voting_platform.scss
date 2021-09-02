@@ -569,6 +569,11 @@
             }
         }
 
+        .voting_platform_section_description  {
+            padding-bottom: 20px;
+            font-size: 14px;
+        }
+
         @mixin buttons_in_rows {
             margin-bottom: 20px;
             & > .table_cell {
@@ -813,7 +818,7 @@
         }
 
         .double_cell_layout {
-            padding-bottom: 40px;
+
             display: table;
             width: 100%;
 
@@ -834,6 +839,14 @@
                 }
             }
 
+            &.ten_px_padding {
+                padding-bottom: 10px;
+            }
+
+            &.section_padding {
+                padding-bottom: 20px;
+            }
+
             @media (max-width: 1200px) {
                 padding-bottom: 20px;
             }
@@ -843,16 +856,21 @@
                 vertical-align: top;
                 width: 50%;
                 @media (max-width: 1200px) {
-                    display: block;
+                    display: table-row;
                     width: 100%;
+
+                    .datepicker_title, .date_picker_wrap  {
+                        margin-left: 20px;
+                    }
+
                 }
                 @media (max-width: 1024px) {
-                    display: table-cell;
+                    display: table-row;
                     vertical-align: top;
                     width: 50%;
                 }
                 @media (max-width: 600px) {
-                    display: block;
+                    display: table-row;
                     width: 100%;
                 }
 
@@ -983,9 +1001,9 @@
                 border: solid 1px vars.$lightest_gray;
                 border-radius: 4px;
                 width: 400px;
-                height: 350px;
                 margin-right: auto;
                 margin-left: auto;
+                padding-bottom: 15px;
             }
 
             .bubble_section_table {
@@ -1005,10 +1023,12 @@
                 padding-left: 20px;
                 display: inline-block;
                 width: calc(100% - 40px);
+                max-width: 400px;
 
                 .toggle_box_title {
                     padding-bottom: 10px;
                 }
+
                 input {
                     height: 38px;
                     width: 100%;
@@ -1022,7 +1042,7 @@
                 }
 
                 .input_row {
-                    display: block;
+                    display: table-row;
 
                     .time_input {
                         width: 35px;
@@ -1040,7 +1060,15 @@
                     }
 
                     .classic_dropdown {
-                        float: right;
+                        margin-left: 20px;
+
+                    }
+
+                    @media (max-width: 1500px) {
+                        .classic_dropdown {
+                            float:right;
+                            margin-left: auto;
+                        }
                     }
                 }
 
@@ -1058,6 +1086,11 @@
                         .arrow_holder {
                             height: 42px;
                         }
+                    }
+
+                    &.timezone_dropdown {
+                        margin-left: 0;
+                        width: 235px;
                     }
                 }
             }

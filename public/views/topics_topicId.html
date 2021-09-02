@@ -75,7 +75,7 @@
         </div>
 
         <div class="additional_info signing_deadline" ng-if="topic.vote.endsAt">
-            <span translate="VIEWS.TOPICS_TOPICID.BAR_SIGNING_DEADLINE">Signing deadline</span> <span class="bold">{{topic.vote.endsAt | amDateFormat:'L'}}</span>
+            <span translate="VIEWS.TOPICS_TOPICID.BAR_SIGNING_DEADLINE">Signing deadline</span> <span class="bold">{{topic.vote.endsAt | amDateFormat:'MM.DD.YYYY HH:mm'}}</span>
         </div>
 
     </div>
@@ -720,7 +720,7 @@
                         <div class="voting_platform_section" ng-if="voteForm.voteType">
                             <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP3" translate-values="{stepNum: getStepNum(3)}">Step 3: User vote casting</div>
 
-                            <div class="double_cell_layout ten_px_margin_between">
+                            <div class="double_cell_layout ten_px_margin_between section_padding">
                                 <div class="left_row add_bottom_borders">
 
                                     <div class="gray_toggle_box">
@@ -787,27 +787,25 @@
                         <div class="voting_platform_section" ng-if="voteForm.voteType">
                             <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP4" translate-values="{stepNum: getStepNum(4)}">Step 4: End of voting system</div>
                             <div class="voting_platform_section_description" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP4_DESCRIPTION">You can choose either deadline or vote amount or combine them. When you combine them, the first that is reached will end the voting system.</div>
-                            <div class="ten_px_margin_between margin_betwen_boxes">
-
+                            <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes ten_px_padding">
                                 <div class="left_row add_bottom_borders">
-                                    <div class="picker_content" ng-class="voteForm.endsAt ? 'active' : ''">
+                                    <div class="gray_toggle_box">
+                                        <div class="table_cell">
+                                            <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DEADLINE">Deadline</div>
+                                        </div>
+                                        <div class="table_cell">
+                                            <div cos-toggle ng-model="voteForm.deadline" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                                cos-toggle-datepicker-toggle="true"></div>
+                                        </div>
+                                    </div>
+                                    <div class="picker_content" ng-class="voteForm.deadline ? 'active' : ''" ng-if="voteForm.deadline">
                                         <div class="bubble_content">
 
                                             <div class="bubble_section">
 
-                                                <div class="gray_toggle_box">
-                                                    <div class="table_cell">
-                                                        <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DEADLINE">Deadline</div>
-                                                    </div>
-                                                    <div class="table_cell">
-                                                        <div cos-toggle ng-model="voteForm.endsAt" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
-                                                            cos-toggle-datepicker-toggle="true"></div>
-                                                    </div>
-                                                </div>
-
                                                 <div class="bubble_description">
                                                     <div class="picker_deadline_date">
-                                                        {{voteForm.endsAt | amDateFormat:'L'}}
+                                                        {{voteForm.deadline | amDateFormat:'MM.DD.YYYY HH:mm Z'}}
                                                     </div>
                                                     <div class="picker_days_left" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT"
                                                         translate-values="{numberOfDaysLeft: daysToVoteEnd()}">0 days left
@@ -816,16 +814,17 @@
                                                 </div>
                                             </div>
                                             <div class="double_cell_layout">
-                                                <div class="left_row gray_toggle_box" ng-if="voteForm.endsAt">
+                                                <div class="left_row gray_toggle_box">
                                                     <div class="set_vote_time_wrap">
                                                         <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_TIME">Set a time</div>
                                                         <div class="input_row">
-                                                            <input class="time_input float_left" ng-model="endsAtH" ng-change="formatTime(endsAtH); setEndsAtTime(endsAtH)" type="number" min="0" max="12" step="1"/><span class="float_left time_separator">:</span><input type="number" class="time_input float_left" min="0" max="60" step="5" ng-model="endsAtMin" ng-change="formatTime(endsAtH);setEndsAtTime(null, endsAtMin)" />
+                                                            <input class="time_input" ng-model="voteForm.endsAt.h" ng-change="formatTime(voteForm.endsAt.h); setEndsAtTime()" type="number" min="0" max="{{HCount}}" step="1"/><span class="time_separator">:</span><input type="number" class="time_input" min="0" max="60" step="5" ng-model="voteForm.endsAt.min" ng-change="formatTime(voteForm.endsAt.min);setEndsAtTime()" />
+
                                                             <div cos-dropdown class="classic_dropdown">
 
                                                                 <div class="dropdown_selection">
-                                                                    <div class="dropdown_text" translate="{{filters.selected.name}}">
-                                                                        {{'VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_24' | translate}}
+                                                                    <div class="dropdown_text">
+                                                                        {{'VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_'+voteForm.endsAt.timeFormat | uppercase | translate}}
                                                                     </div>
 
                                                                     <div class="arrow_holder">
@@ -842,13 +841,13 @@
                                                                     <div class="dropdown_item">
 
                                                                         <div class="item_names_wrap">
-                                                                            <div class="item_name" translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_24">
+                                                                            <div class="item_name" translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_24" ng-click="voteForm.endsAt.timeFormat = 24; setTimeFormat()">
                                                                                 24 hr clock
                                                                             </div>
-                                                                            <div class="item_name"translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_AM">
+                                                                            <div class="item_name"translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_AM" ng-click="voteForm.endsAt.timeFormat = 'AM'; setTimeFormat()">
                                                                                 AM
                                                                             </div>
-                                                                            <div class="item_name"translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_PM">
+                                                                            <div class="item_name"translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_PM" ng-click="voteForm.endsAt.timeFormat = 'PM'; setTimeFormat()">
                                                                                 PM
                                                                             </div>
                                                                         </div>
@@ -862,49 +861,53 @@
                                                     </div>
                                                     <div class="set_vote_timezone_wrap">
                                                         <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_TIMEZONE">Set a time</div>
-                                                        <div cos-dropdown class="classic_dropdown">
+                                                        <div class="input_row">
+                                                            <div cos-dropdown class="classic_dropdown timezone_dropdown">
 
-                                                            <div class="dropdown_selection">
-                                                                <div class="dropdown_text">
-                                                                    {{getTimeZoneName(voteForm.timezone)}}
-                                                                </div>
-
-                                                                <div class="arrow_holder">
-                                                                    <div class="table_cell">
-                                                                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
-
-                                                                        <div class="v_line"></div>
+                                                                <div class="dropdown_selection">
+                                                                    <div class="dropdown_text">
+                                                                        {{getTimeZoneName(voteForm.endsAt.timezone)}}
                                                                     </div>
-                                                                </div>
-                                                            </div>
 
-                                                            <div class="dropdown">
+                                                                    <div class="arrow_holder">
+                                                                        <div class="table_cell">
+                                                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
 
-                                                                <div class="dropdown_item" ng-class="category === filters.categories.value ? 'bold' : ''">
-                                                                    <div class="item_names_wrap">
-                                                                        <div class="item_name" ng-repeat="zone in timezones" ng-click="setEndsAtTime(null, null, zone.value)">
-                                                                            {{zone.name}}
+                                                                            <div class="v_line"></div>
                                                                         </div>
                                                                     </div>
-                                                                    <!--div class="item_props">
-                                                                        404 topics
-                                                                    </div-->
-                                                                    <div class="clearer"></div>
+                                                                </div>
+
+                                                                <div class="dropdown">
+
+                                                                    <div class="dropdown_item" ng-class="zone === voteForm.endsAt.timezone ? 'bold' : ''"  ng-repeat="zone in timezones">
+                                                                        <div class="item_names_wrap">
+                                                                            <div class="item_name" ng-click="voteForm.endsAt.timezone = zone.value;setEndsAtTime()">
+                                                                                {{zone.name}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--div class="item_props">
+                                                                            404 topics
+                                                                        </div-->
+                                                                        <div class="clearer"></div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="right_row gray_toggle_box">
-                                                        <div class="toggle_box_title" ng-if="voteForm.endsAt" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DEADLINE">Deadline</div>
-                                                        <div class="date_picker_wrap" date-picker="voteForm.endsAt" min-date="datePickerMin" max-view="date" min-view="date"
+                                                        <div class="toggle_box_title datepicker_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_DATE">Set date</div>
+                                                        <div class="date_picker_wrap" date-picker="voteForm.endsAt.date" min-date="datePickerMin" max-view="date" min-view="date"
                                                             template="/views/directives/date_picker.html"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="right_row">
+                            </div>
+                            <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes section_padding">
+                                <div class="left_row">
                                     <div class="gray_toggle_box">
                                         <div class="table_cell">
                                             <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_ALL_VOTES_ARE_IN">All votes are in</div>
