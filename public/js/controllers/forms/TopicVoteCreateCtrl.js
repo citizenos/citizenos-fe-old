@@ -89,7 +89,6 @@ angular
         }
 
         $scope.$parent.$parent.getTimeZoneName = function (value) {
-            console.log(value);
             return ($scope.timezones.find(function(item) {return item.value === value})).name;
         }
 
@@ -128,16 +127,24 @@ angular
 
         $scope.$parent.$parent.setEndsAtTime = function () {
             $scope.voteForm.endsAt.date = $scope.voteForm.endsAt.date || new Date();
-            $scope.voteForm.deadline = moment(new Date($scope.voteForm.endsAt.date));
-            $scope.voteForm.deadline.utcOffset($scope.voteForm.endsAt.timezone);0
+            $scope.voteForm.deadline = moment($scope.voteForm.endsAt.date);
+            $scope.voteForm.deadline.utcOffset($scope.voteForm.endsAt.timezone, true);
             var hour = $scope.voteForm.endsAt.h;
             if ($scope.voteForm.endsAt.timeFormat === 'PM') hour += 12;
             $scope.voteForm.deadline.hour(hour);
             $scope.voteForm.deadline.minutes($scope.voteForm.endsAt.min);
-            console.log($scope.voteForm.deadline);
-            console.log($scope.voteForm.deadline.toString());
         };
 
+        $scope.$watch(
+            function () {
+                return $scope.voteForm.endsAt.date
+            }
+            , function (newValue, oldValue) {
+                if (newValue && newValue !== oldValue) {
+                    $scope.setEndsAtTime();
+                }
+            }
+        );
         $scope.$parent.$parent.optionsCountUp = function (type) {
             var options = _.filter($scope.voteForm.options, function (option) {
                 return !!option.value;
@@ -239,7 +246,6 @@ angular
             var endsAt = $scope.voteForm.deadline;
 
             if (endsAt) {
-                console.log('ENDS ', endsAt);
                 vote.endsAt = endsAt.format();
             }
 
