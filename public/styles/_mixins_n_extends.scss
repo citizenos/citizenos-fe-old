@@ -180,7 +180,7 @@
     bottom: 0;
 }
 
-%add_bottom_borders {
+%add_bottom_borders, .add_bottom_borders {
   & > div {
     &:not(:last-child) {
       border-bottom: 1px solid vars.$lightest_gray;
