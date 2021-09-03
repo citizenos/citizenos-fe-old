@@ -101,8 +101,8 @@ angular
             endsAt: {
                 date: null,
                 min: 0,
-                h: 24,
-                timezone: (new Date()).getTimezoneOffset()/60,
+                h: 0,
+                timezone: moment().utcOffset()/60,
                 timeFormat: 24
             },
             deadline: null,
@@ -130,9 +130,9 @@ angular
             $scope.voteForm.deadline = moment($scope.voteForm.endsAt.date);
             $scope.voteForm.deadline.utcOffset($scope.voteForm.endsAt.timezone, true);
             var hour = $scope.voteForm.endsAt.h;
-            if ($scope.voteForm.endsAt.timeFormat === 'PM') hour += 12;
+            if ($scope.voteForm.endsAt.timeFormat === 'PM') { hour += 12; }
             $scope.voteForm.deadline.hour(hour);
-            $scope.voteForm.deadline.minutes($scope.voteForm.endsAt.min);
+            $scope.voteForm.deadline.minute($scope.voteForm.endsAt.min);
         };
 
         $scope.$watch(
@@ -246,7 +246,7 @@ angular
             var endsAt = $scope.voteForm.deadline;
 
             if (endsAt) {
-                vote.endsAt = endsAt.format();
+                vote.endsAt = endsAt;
             }
 
             vote
