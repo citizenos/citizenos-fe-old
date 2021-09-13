@@ -37,6 +37,8 @@
   "TXT_MODERATION_TYPES_DUPLICATE": "@:TXT_REPORT_TYPES_DUPLICATE",
   "TOOLTIP_PIN_TOPIC": "Anclar tema",
   "TOOLTIP_REPORT_TOPIC": "@:MODALS.TOPIC_REPORT_HEADING",
+  "TOOLTIP_TOPIC_VISIBILITY_PUBLIC": "@:TXT_TOPIC_VISIBILITY_PUBLIC",
+  "TOOLTIP_TOPIC_VISIBILITY_PRIVATE": "@:TXT_TOPIC_VISIBILITY_PRIVATE",
   "HELP_WIDGET": {
     "TITLE": "¡Estamos aquí para ayudar!",
     "DESCRIPTION": "¿Tiene alguna pregunta o comentario? Envíenos un mensaje con el formulario siguiente.",
