@@ -17,6 +17,13 @@
 
             <div class="content_top">
                 <div class="container_title" ui-sref="topics.view({topicId: topic.id})" ng-bind="topic.title">Topic title</div>
+                <div class="container_visibility" >
+                    <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+topic.visibility | uppercase) | translate}}</span>">
+                        <div class="table_cell">
+                            <div class="sprite" ng-class="{'sprite-icon-public-topic': !topic.isPrivate(), 'sprite-icon-private-topic': topic.isPrivate()}"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="container_pin" ng-class="topic.pinned ? 'pinned' : ''" ng-click="togglePin()">
                     <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='TOOLTIP_PIN_TOPIC'>Pin topic</span>">
                         <div class="table_cell">

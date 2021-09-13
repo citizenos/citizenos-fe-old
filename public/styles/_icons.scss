@@ -1,13 +1,13 @@
 /* Generated data URIs used for preview purposes only */
 /* Be sure that you replace data URIs with generated images */
 .sprite {
-    background-image: url('../imgs/icons_sprite.png?v16');
+    background-image: url('../imgs/icons_sprite.png?v17');
 }
 
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
     .sprite {
-        background-image: url('../imgs/icons_sprite2x.png?v16');
-        background-size: 203px 3797px;
+        background-image: url('../imgs/icons_sprite2x.png?v17');
+        background-size: 203px 3841px;
     }
 }
 
@@ -961,4 +961,16 @@
     width: 24px;
     height: 20px;
     background-position: 0 -3745px;
+}
+
+.sprite-icon-private-topic {
+    width: 22px;
+    height: 22px;
+    background-position: 0 -3797px;
+}
+
+.sprite-icon-public-topic {
+    width: 22px;
+    height: 22px;
+    background-position: 0 -3819px;
 }
