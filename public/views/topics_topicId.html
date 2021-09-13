@@ -939,7 +939,7 @@
 
                         <div class="topic_info print_never" ng-if="!app.editMode">
                             <div class="container_visibility" >
-                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='TOOLTIP_TOPIC_VISIBILITY_{{topic.visibility | uppercase}}'>{{('TOOLTIP_TOPIC_VISIBILITY_'+topic.visibility | uppercase) | translate}}</span>">
+                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+topic.visibility | uppercase) | translate}}</span>">
                                     <div class="table_cell">
                                         <div class="sprite" ng-class="{'sprite-icon-public-topic': !topic.isPrivate(), 'sprite-icon-private-topic': topic.isPrivate()}"></div>
                                     </div>
