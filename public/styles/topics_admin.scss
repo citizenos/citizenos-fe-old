@@ -407,15 +407,15 @@
 
                             .container_report {
                                 top: -4px;
-                                right: -12px;
+                                right: 16px;
                                 &:active {
                                     top: -5px;
-                                    right: -13px;
+                                    right: -17px;
                                 }
                                 @media (max-width: 767px) {
                                     display: blocK;
                                     top: auto;
-                                    right: 28px;
+                                    right: 55px;
                                     &:active {
                                         top: auto;
                                         right: 28px;
@@ -423,6 +423,15 @@
                                 }
                             }
 
+                            .container_visibility {
+                                top: -4px;
+                                right: -12px;
+                                @media (max-width: 767px) {
+                                    display: blocK;
+                                    top: auto;
+                                    right: 28px;
+                                }
+                            }
 
                             .more_info_button {
                                 margin-bottom: 21px;

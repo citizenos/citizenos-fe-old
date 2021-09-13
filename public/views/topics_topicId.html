@@ -937,10 +937,16 @@
 
                     <div class="iframe_content_wrap" ng-if="!('topics.view.followUp' | isState)">
 
-                        <div class="topic_info print_never" ng-class="app.more_info_button ? 'open' : ''" ng-if="!app.editMode">
-
+                        <div class="topic_info print_never" ng-if="!app.editMode">
+                            <div class="container_visibility" >
+                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+topic.visibility | uppercase) | translate}}</span>">
+                                    <div class="table_cell">
+                                        <div class="sprite" ng-class="{'sprite-icon-public-topic': !topic.isPrivate(), 'sprite-icon-private-topic': topic.isPrivate()}"></div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="container_report" ng-if="topic.visibility === VISIBILITY.public && !topic.report" ui-sref="topics.view.report">
-                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='TOOLTIP_REPORT_TOPIC'>Report topic</span>">
+                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{'TOOLTIP_REPORT_TOPIC' | translate}}</span>">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-exclamation2x-white"></div>
                                         <div class="red_bg"></div>
@@ -949,7 +955,7 @@
                             </div>
 
                             <div class="container_pin" ng-class="topic.pinned ? 'pinned' : ''" ng-click="togglePin()">
-                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span translate='TOOLTIP_PIN_TOPIC'>Pin topic</span>">
+                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{'TOOLTIP_PIN_TOPIC' | translate}}</span>">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-favourite2x-white"></div>
                                         <div class="yellow_bg"></div>

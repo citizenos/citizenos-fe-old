@@ -119,6 +119,10 @@
                     top: -5px;
                 }
 
+                .container_visibility {
+                    display: inline-block;
+                }
+
                 .small_topic_small_text {
                     font-size: 13px;
                 }
@@ -226,7 +230,7 @@
                     .title_div {
                         overflow: hidden;
                         text-overflow: ellipsis;
-                        width: 98%;
+                        width: calc(100% - 28px);
                         display: inline-block;
                     }
                 }
@@ -547,6 +551,11 @@
                                 top: 14px;
                                 right: 14px;
                             }
+                        }
+
+                        .container_visibility {
+                            right: 45px;
+                            top: 15px;
                         }
 
                     }

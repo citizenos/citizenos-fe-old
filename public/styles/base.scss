@@ -690,6 +690,10 @@ table, .pretend_table {
     }
 }
 
+.container_visibility {
+    @extend .container_pin;
+}
+
 .yes_no_buttons {
     display: table;
     width: 100%;

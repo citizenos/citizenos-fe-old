@@ -120,7 +120,14 @@
                     </div>
 
                     <div class="small_topic_title">
-                        <span ng-bind="groupMemberTopic.title">title</span> <span class="lock_icon_wrap" ng-class="{hidden: !groupMemberTopic.isPrivate()}"><div class="sprite sprite-icon-lock2x"></div></span>
+                        <div class="title_div" ng-bind="groupMemberTopic.title">title</div>
+                        <div class="container_visibility" >
+                            <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+groupMemberTopic.visibility | uppercase) | translate}}</span>">
+                                <div class="table_cell">
+                                    <div class="sprite" ng-class="{'sprite-icon-public-topic': !groupMemberTopic.isPrivate(), 'sprite-icon-private-topic': groupMemberTopic.isPrivate()}"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="line lightest_line"></div>
@@ -168,7 +175,14 @@
                     </div>
 
                     <a class="small_topic_title">
-                        <div class="title_div" ng-bind="item.title">title</div><span class="lock_icon_wrap" ng-class="{hidden: !item.isPrivate()}"><div class="sprite sprite-icon-lock2x"></div></span>
+                        <div class="title_div" ng-bind="item.title">title</div>
+                        <div class="container_visibility" >
+                            <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+item.visibility | uppercase) | translate}}</span>">
+                                <div class="table_cell">
+                                    <div class="sprite" ng-class="{'sprite-icon-public-topic': !item.isPrivate(), 'sprite-icon-private-topic': item.isPrivate()}"></div>
+                                </div>
+                            </div>
+                        </div>
                     </a>
 
                     <div class="line lightest_line"></div>
