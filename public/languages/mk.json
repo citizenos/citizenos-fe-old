@@ -462,7 +462,7 @@
       "BTN_SEARCH": "Пребарај",
       "BTN_OVERVIEW": "Преглед",
       "BTN_EDIT": "Ажурирај",
-      "BTN_SETTINGS": "Поставки",
+      "BTN_SETTINGS": "Actions",
       "BTN_MENU": "Мени",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
