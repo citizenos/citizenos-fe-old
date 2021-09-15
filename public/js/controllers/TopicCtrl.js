@@ -850,7 +850,7 @@ angular
             }
         };
 
-        // Hide menu when user clicks outside "Actions" menu in <=tablet - https://github.com/citizenos/citizenos-fe/issues/393
+        // Hide menu when user clicks outside "Actions" menu inside the Etherpad frame in <=tablet - https://github.com/citizenos/citizenos-fe/issues/393
         var handleBlurEvent = function () {
             $timeout(function () {
                 $scope.app.topics_settings = false;
