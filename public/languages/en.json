@@ -462,7 +462,7 @@
       "BTN_SEARCH": "Search",
       "BTN_OVERVIEW": "Overview",
       "BTN_EDIT": "Edit",
-      "BTN_SETTINGS": "Settings",
+      "BTN_ACTIONS": "Actions",
       "BTN_MENU": "Menu",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
