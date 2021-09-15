@@ -36,7 +36,10 @@ angular
             $scope.form.topic = angular.copy($scope.topic);
 
             if ($scope.topic.status === Topic.STATUSES.voting && $scope.topic.voteId) {
-                new TopicVote({topicId: $scope.topic.id, id: $scope.topic.voteId})
+                new TopicVote({
+                    topicId: $scope.topic.id,
+                    id: $scope.topic.voteId
+                })
                     .$get()
                     .then(function (topicVote) {
                         $scope.topic.vote = topicVote;
@@ -71,8 +74,7 @@ angular
 
             if ((hashtagMaxLength - length) < 0) {
                 $scope.errors = {hashtag: 'MSG_ERROR_40000_TOPIC_HASHTAG'};
-            }
-            else if ($scope.errors && $scope.errors.hashtag) {
+            } else if ($scope.errors && $scope.errors.hashtag) {
                 $scope.errors.hashtag = null;
             }
         };
