@@ -462,7 +462,7 @@
       "BTN_SEARCH": "Поиск",
       "BTN_OVERVIEW": "Обзор",
       "BTN_EDIT": "Изменить",
-      "BTN_SETTINGS": "Настройки",
+      "BTN_SETTINGS": "Actions",
       "BTN_MENU": "Меню",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
