@@ -462,7 +462,7 @@
       "BTN_SEARCH": "Meklēt",
       "BTN_OVERVIEW": "Pārskats",
       "BTN_EDIT": "Rediģēt",
-      "BTN_SETTINGS": "Iestatījumi",
+      "BTN_SETTINGS": "Actions",
       "BTN_MENU": "Izvēlne",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
