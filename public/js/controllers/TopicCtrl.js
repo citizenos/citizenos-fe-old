@@ -4,7 +4,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$timeout', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $translate, $stateParams, $q, $log, $sce, $timeout, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$timeout', '$window', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $translate, $stateParams, $q, $log, $sce, $timeout, $window, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicVote, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
@@ -33,7 +33,7 @@ angular
             }
 
             if (sAuth.user.loggedIn) {
-                $scope.topic.description = $scope.topic.description.replace(/data\-comment/gi, 'cos-inline-comment="'+$scope.topic.id+'" data-comment');
+                $scope.topic.description = $scope.topic.description.replace(/data\-comment/gi, 'cos-inline-comment="' + $scope.topic.id + '" data-comment');
             }
         }
 
@@ -135,20 +135,20 @@ angular
         $scope.STATUSES = Topic.STATUSES;
         $scope.VISIBILITY = Topic.VISIBILITY;
 
-    /*    if ($scope.topic.vote) {
-            $scope.topic.vote.$get(function(v){
-                var winnerCount = 0;
-                v.options.rows.forEach(function (option) {
-                    if (option.winner) {
-                        winnerCount++;
-                        if (winnerCount > 1) {
-                            $scope.showInfoWinners = true;
-                            $scope.multipleWinners = true;
+        /*    if ($scope.topic.vote) {
+                $scope.topic.vote.$get(function(v){
+                    var winnerCount = 0;
+                    v.options.rows.forEach(function (option) {
+                        if (option.winner) {
+                            winnerCount++;
+                            if (winnerCount > 1) {
+                                $scope.showInfoWinners = true;
+                                $scope.multipleWinners = true;
+                            }
                         }
-                    }
+                    });
                 });
-            });
-        }*/
+            }*/
 
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 25;
@@ -818,7 +818,7 @@ angular
             var url = $scope.topic.vote.downloads.bdocFinal;
             if (!url) return;
             if (includeCSV) {
-                url+='&include[]=csv';
+                url += '&include[]=csv';
             }
 
             window.location.href = url;
@@ -831,9 +831,9 @@ angular
             return $translate.instant(key.split(':')[0], values);
         };
 
-        $scope.$watch(function(){
+        $scope.$watch(function () {
             return $state.$current.name
-        }, function(newVal, oldVal){
+        }, function (newVal, oldVal) {
             if (oldVal === 'topics.view.files') {
                 $scope.loadTopicAttachments();
             }
@@ -849,4 +849,17 @@ angular
                 }, 200);
             }
         };
+
+        // Hide menu when user clicks outside "Actions" menu in <=tablet - https://github.com/citizenos/citizenos-fe/issues/393
+        var handleBlurEvent = function () {
+            $timeout(function () {
+                $scope.app.topics_settings = false;
+            });
+        };
+
+        $window.addEventListener('blur', handleBlurEvent);
+
+        $scope.$on('$destroy', function () {
+            $window.removeEventListener('blur', handleBlurEvent);
+        });
     }]);

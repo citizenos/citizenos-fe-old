@@ -331,6 +331,10 @@
                 width: 70%;
                 position: relative;
 
+                @include mixins_n_extends.tablet {
+                    width: 100%;
+                }
+
                 .info_bar_wrap {
                     position: relative;
                     z-index: 1;
@@ -740,7 +744,6 @@
                     z-index: 1;
                     width: 100%;
                     box-sizing: border-box;
-                    bottom: 0;
                     left: 0;
                     overflow: auto;
                     padding: 20px 20px 40px;

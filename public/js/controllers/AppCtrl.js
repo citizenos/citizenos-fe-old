@@ -306,7 +306,8 @@ angular
                 .then(function (count) {
                     $scope.app.unreadActivitiesCount = count;
                 });
-        }
+        };
+
         // Update new activities count
         var newActivitiesWatcher = null;
         $scope.$watch(
@@ -325,5 +326,4 @@ angular
                     $scope.app.unreadActivitiesCount = 0;
                 }
             });
-
     }]);
