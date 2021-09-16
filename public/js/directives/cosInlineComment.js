@@ -1,16 +1,14 @@
 angular
     .module('citizenos')
-    .directive('cosInlineComment', ['Topic', '$translate', function (Topic, $translate) {
+    .directive('cosInlineComment', ['$translate', function ($translate) {
         return {
           restrict: 'A',
           replace: false,
+          scope:{
+              cosInlineComment: '=?'
+          },
           link: function (scope, element, attrs) {
             attrs.$addClass('inline-comment');
-            var t = new Topic({id: attrs.cosInlineComment});
-            t.$getInlineComments()
-                .then(function(comments) {
-                    scope.comments = comments;
-                });
 
             element.on('click', function () {
                 //will remove existing elements
@@ -24,7 +22,8 @@ angular
                 //get the current element position top place the popup in correct position
                 var top = element[0].offsetTop + element[0].offsetHeight;
                 var left = element[0].offsetLeft;
-                var comment = scope.comments[attrs.comment];
+                var comment = scope.cosInlineComment(attrs.comment);
+                if (!comment) return;
                 var createdAt = moment(comment.timestamp).fromNow();
                 var commentRepliesbox = '';
                 if (comment.replies) {

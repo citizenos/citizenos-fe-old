@@ -33,7 +33,20 @@ angular
             }
 
             if (sAuth.user.loggedIn) {
-                $scope.topic.description = $scope.topic.description.replace(/data\-comment/gi, 'cos-inline-comment="' + $scope.topic.id + '" data-comment');
+                var t = new Topic({id: $scope.topic.id});
+                t
+                    .$getInlineComments()
+                    .then(function(inlinecomments) {
+                        $scope.inlinecomments = inlinecomments;
+                    });
+                $scope.getCommentData = function (commentId) {
+                    return $scope.inlinecomments[commentId];
+                };
+                // Little hack, while ep_comments exports deleted comments in html too
+                $scope.topic.description = $scope.topic.description.replace(/data-comment="comment-deleted"/gi, '');
+
+                $scope.topic.description = $scope.topic.description.replace(/data\-comment/gi, 'cos-inline-comment="getCommentData" data-comment');
+
             }
         }
 
