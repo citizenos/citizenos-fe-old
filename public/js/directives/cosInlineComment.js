@@ -25,6 +25,7 @@ angular
                 var top = element[0].offsetTop + element[0].offsetHeight;
                 var left = element[0].offsetLeft;
                 var comment = scope.comments[attrs.comment];
+                console.log(comment);
                 var createdAt = moment(comment.timestamp).fromNow();
                 var commentRepliesbox = '';
                 if (comment.replies) {

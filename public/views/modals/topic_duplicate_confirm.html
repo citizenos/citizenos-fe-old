@@ -1,0 +1,100 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing delete_topic wide_lightbox">
+        <div id="lightbox_wrap">
+
+
+            <div class="lightbox_content">
+
+                <div class="second_header">
+
+                    <div class="sprite sprite-icon-warn-topic2x"></div>
+                    <div class="warn_title" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_HEADING">Are you sure you want to continue?</div>
+                    <div class="warn_description" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_HEADING_DESCRIPTION">This will create and open a new private topic with "inProgress" status</div>
+                    <div id="lightbox_close" ng-click="closeThisDialog()">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+
+                <div id="delete_info_wrap">
+
+                    <h3 translate="MODALS.DUPLICATE_TOPIC_CONFIRM_HEADING_WILL_BE_DUPLICATED">This content will be duplicated</h3>
+                    <div class="delete_info_text_wrap">
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_TXT_COPY_TOPIC_CONTENT">copy topic content as is on the moment of copying(including images, footnotes, comments)</div>
+                        </div>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_TXT_COPY_ATTACHMENTS">copy attachments</div>
+                        </div>
+                    </div>
+                    <h3 translate="MODALS.DUPLICATE_TOPIC_CONFIRM_HEADING_WILL_NOT_BE_DUPLICATED">This content will not be duplicated</h3>
+                    <div class="delete_info_text_wrap">
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_TXT_SETTINGS">settings (public/private, voting systems, hashtags etc)</div>
+                        </div>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_TXT_PERMISSIONS">permissions (users, groups)</div>
+                        </div>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_TXT_HISTORY">history (edit history, activity feed items, mini-votes)</div>
+                        </div>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_TXT_DISCUSSIONS">discussions (arguments, replies)</div>
+                        </div>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_TXT_RELATED_INFO">related information (topic status, pinned status)</div>
+                        </div>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_TXT_VOTES">votes</div>
+                        </div>
+
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_TXT_FOLLOW_UP_POSTS">follow-up posts</div>
+                        </div>
+                    </div>
+
+                    <div class="delete_info_button_wrap">
+
+                        <div class="table_cell">
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_BTN_NO">Cancel</div>
+                        </div>
+
+                        <div class="table_cell">
+                            <div class="blue_button" ng-click="confirm()" translate="MODALS.DUPLICATE_TOPIC_CONFIRM__BTN_YES">Yes</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
+
+</div>
