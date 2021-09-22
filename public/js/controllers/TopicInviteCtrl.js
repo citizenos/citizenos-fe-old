@@ -5,21 +5,8 @@ angular
     .controller('TopicInviteCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'sNotification', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, sNotification, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup) {
         $log.debug('TopicInviteCtrl', $state, $stateParams);
 
-        $scope.levels = {
-            none: 0,
-            read: 1,
-            edit: 2,
-            admin: 3
-        };
+        $scope.memberGroups = ['groups', 'users'];
 
-        $scope.memberGroups = ['groups', 'users']
-
-        $scope.form = {
-            topic: null,
-            description: null,
-            inviteMessage: null,
-            urlJoin: null
-        };
         $scope.inviteMessageMaxLength = 200;
         $scope.tabSelected = $stateParams.tab || 'invite';
 
@@ -36,7 +23,8 @@ angular
             $scope.form = {
                 topic: null,
                 description: null,
-                urlJoin: null
+                urlJoin: null,
+                urlPermission: TopicMemberUser.LEVELS.read //FIXME: Separate form for the url stuff? Should default to existing url permission!
             };
             $scope.form.topic = angular.copy($scope.topic);
 

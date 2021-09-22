@@ -14,10 +14,11 @@
     border: none;
     box-shadow: 0 0 0 1px rgb(99 114 130 / 16%), 0 8px 16px rgb(27 39 51 / 8%);
 
-    .comment-popup-content{
+    .comment-popup-content {
         padding: 25px;
+
         .comment-header {
-            .comment-author-name{
+            .comment-author-name {
                 font-weight: bold;
             }
 
@@ -28,7 +29,7 @@
             }
         }
 
-        .comment-text{
+        .comment-text {
             display: block;
             white-space: normal;
         }
@@ -38,10 +39,11 @@
 .comment-reply {
     padding: 25px;
     border-top: 1px solid #f2f3f4;
+
     .comment-container {
         margin-bottom: 10px;
 
-        .comment-author-name{
+        .comment-author-name {
             font-weight: bold;
         }
 
@@ -51,7 +53,7 @@
             margin-left: 5px;
         }
 
-        .comment-text{
+        .comment-text {
             display: block;
             white-space: normal;
         }
@@ -781,6 +783,7 @@
 
                 .footer_link {
                     text-align: center;
+
                     &.left {
                         @media (max-width: 560px) {
                             margin-left: auto;
@@ -982,6 +985,7 @@
             .lightbox_footer {
                 .delete_account {
                     margin-left: 20px;
+
                     span {
                         display: inline-block;
                         color: vars.$pinky_red;
@@ -1734,6 +1738,7 @@
 
                     .input_with_icon.clickable {
                         margin-bottom: 0;
+
                         .icon_table:hover {
                             @media (min-width: 1025px) {
                                 cursor: pointer;
@@ -1771,6 +1776,7 @@
                         .icon_cell {
                             padding: 16px 0px 0px 12px;
                         }
+
                         .table_cell {
                             padding: 12px;
                         }
@@ -2441,23 +2447,19 @@
 
     .lightbox_content.invite_url {
 
-        .copy_link {
+        .share_link {
             display: table;
             width: 100%;
-            height: 40px;
 
             .searchbox_with_icon_and_text {
-                position: initial;
                 display: table-cell;
-
-                .search_text {
-                    position: initial;
-                }
+                height: 40px;
+                top: 0;
 
                 input {
-                    height: 100%;
-                    padding: 0 10px !important;
                     border-radius: 4px 0 0 4px;
+                    height: 100%;
+                    padding: 0;
                 }
 
                 .regenerate_link {
@@ -2475,6 +2477,19 @@
                 border-radius: 0 4px 4px 0;
                 padding: 0;
             }
+
+            .permissions {
+                margin-top: 10px;
+
+                .label {
+                    display: inline-block;
+                }
+
+                .classic_dropdown {
+                    display: inline-block;
+                    margin-left: 10px;
+                }
+            }
         }
 
         .social_sharing {
@@ -2485,6 +2500,9 @@
         }
 
         .qr_code {
+            display: table-cell;
+            padding-right: 20px;
+
             img, .qr_img {
                 display: block;
                 height: 120px;
@@ -2497,6 +2515,7 @@
         }
 
         @media (max-width: 560px) {
+            // FIXME: Update mobile styles! - https://github.com/citizenos/citizenos-fe/issues/311
 
             padding-bottom: 40px !important;
 
@@ -2537,8 +2556,6 @@
             }
 
             .qr_code {
-                padding: 20px 0 0 0;
-
                 img {
                     height: 150px;
                     width: 150px;
@@ -2548,7 +2565,6 @@
                 a {
                     font-size: 14px;
                 }
-
             }
 
         }

@@ -221,7 +221,6 @@ angular
             duplicate: 'duplicate' // duplicate
         };
 
-
         Topic.CATEGORIES_COUNT_MAX = 3; // Maximum of 3 categories allowed at the time.
 
         Topic.prototype.isPrivate = function () {
