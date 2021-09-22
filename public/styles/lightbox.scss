@@ -614,10 +614,14 @@
             }
 
             .lightbox_content {
-                padding: 20px 0;
 
                 .lightbox_section {
-                    padding: 0 20px;
+                    padding: 30px 20px;
+                    border-top: 1px solid vars.$lightest_gray;
+
+                    h1, h2, h3, h4 {
+                        margin-top: 0;
+                    }
                 }
 
                 .file_name {
