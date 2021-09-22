@@ -349,35 +349,37 @@
             <div class="lightbox_content invite_url" ng-if="tabSelected === 'share'">
 
                 <div class="lightbox_section" ng-if="topic.canUpdate()">
-                    <div class="input_text_margin_bottom" translate="MODALS.TOPIC_SETTINGS_TXT_SHARE_LINK">Share this link to people you want to join the topic:</div>
-
+                    <h3 ng-translate="MODALS.TOPIC_SETTINGS_HEADING_LINK_SHARING">Link sharing</h3>
                     <div class="copy_link">
                         <div class="searchbox_with_icon_and_text">
-                            <input id="url_invite_topic_input" ng-model="form.urlJoin"
-                                placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_CREATE_NEW_LINK' | translate}}">
-                            <div class="search_text">
-                                <div class="blue_link table_cell" ng-click="generateTokenJoin()"
-                                    translate="{{'MODALS.TOPIC_SETTINGS_LNK_CREATE_NEW_LINK' | translate}}">Create a new link
-                                </div>
+                            <input id="url_invite_topic_input" ng-model="form.urlJoin" placeholder="{{'MODALS.TOPIC_SETTINGS_PLACEHOLDER_CREATE_NEW_LINK' | translate}}">
+                            <div class="regenerate_link" ng-click="generateTokenJoin()">
+                                <div class="sprite sprite-icon-refresh"></div>
                             </div>
                         </div>
-
                         <div class="blue_button" ng-click="copyInviteLink()" ng-if="!app.createGroupsInviteUsers" translate="MODALS.TOPIC_SETTINGS_BTN_COPY_LINK">Copy
                             link
                         </div>
                     </div>
+                </div>
 
+                <div class="lightbox_section social_sharing" ng-if="topic.canUpdate()">
+                    <h3 ng-translate="MODALS.TOPIC_SETTINGS_HEADING_SOCIAL_SHARING">Social sharing</h3>
+                    <!--FIXME: Make the links work! -->
+                    <a href=""><div class="sprite sprite-icon-social-facebook-v2"></div></a>
+                    <a href=""><div class="sprite sprite-icon-social-linkedin-v2"></div></a>
+                    <a href=""><div class="sprite sprite-icon-social-twitter-v2"></div></a>
                 </div>
 
                 <div class="lightbox_section" ng-if="topic.canUpdate()">
-
+                    <h3 ng-translate="MODALS.TOPIC_SETTINGS_HEADING_QR_SHARING">QR sharing</h3>
                     <div class="qr_code">
-                        <qrcode data="{{form.urlJoin}}" size="210" version="4" error-correction-level="L" download class="qr_img"></qrcode>
+                        <qrcode data="{{form.urlJoin}}" size="120" version="4" error-correction-level="L" download class="qr_img"></qrcode>
                     </div>
-
                 </div>
 
             </div>
+
             <div class="lightbox_footer" ng-if="topic.canEdit()">
                 <div class="line lightest_line"></div>
                 <div class="blue_button_wrap">

@@ -2438,35 +2438,53 @@
     .lightbox_content.invite_url {
 
         .copy_link {
-
-            padding-right: 110px;
-            position: relative;
+            display: table;
+            width: 100%;
+            height: 40px;
 
             .searchbox_with_icon_and_text {
+                position: initial;
+                display: table-cell;
+
+                .search_text {
+                    position: initial;
+                }
+
                 input {
-                    padding-left: 10px !important;
-                    padding-right: 123px !important;
+                    height: 100%;
+                    padding: 0 10px !important;
+                    border-radius: 4px 0 0 4px;
+                }
+
+                .regenerate_link {
+                    position: absolute;
+                    display: inline-block;
+                    padding: 10px;
+                    margin-left: -40px;
+                    cursor: pointer;
                 }
             }
 
             .blue_button {
-                width: 100px;
-                position: absolute;
-                right: 0;
-                top: 0;
-                border-radius: 4px;
+                display: table-cell;
+                position: initial;
+                border-radius: 0 4px 4px 0;
+                padding: 0;
+            }
+        }
+
+        .social_sharing {
+            a {
+                margin-right: 20px;
+                display: inline-block;
             }
         }
 
         .qr_code {
-            padding: 40px 0 20px 0;
-            text-align: center;
-
             img, .qr_img {
                 display: block;
-                margin: 0 auto 10px auto;
-                height: 210px;
-                width: 210px;
+                height: 120px;
+                width: 120px;
             }
 
             a {
