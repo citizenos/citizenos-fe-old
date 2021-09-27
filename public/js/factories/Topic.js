@@ -124,10 +124,10 @@ angular
                         }
                     }
                 },
-                updateTokenJoin: { //TODO: Support patch method
+                updateTokenJoin: {
                     method: 'PUT',
                     params: {topicId: '@id'},
-                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/tokenJoin'),
+                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/token'),
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) { // IF patch is working then make it return data again, for now return nothing to stop from overwriting all fields but topkenJoin
                         } else {

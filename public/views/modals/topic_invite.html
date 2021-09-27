@@ -367,7 +367,7 @@
                             <div cos-dropdown class="classic_dropdown">
                                 <div class="dropdown_selection">
                                     <div class="dropdown_text">
-                                        {{('TXT_TOPIC_LEVELS_' + form.urlPermission | uppercase) | translate}}
+                                        {{('TXT_TOPIC_LEVELS_' + form.join.level | uppercase) | translate}}
                                     </div>
 
                                     <div class="arrow_holder">
@@ -381,7 +381,7 @@
 
                                 <div class="dropdown">
                                     <div class="dropdown_item" ng-repeat="level in TopicMemberUser.LEVELS">
-                                        <div ng-if="level !== TopicMemberUser.LEVELS.none" class="item_name" ng-click="form.urlPermission = level"> <!--FIXME-->
+                                        <div ng-if="level !== TopicMemberUser.LEVELS.none" class="item_name" ng-click="form.join.level = level">
                                             {{('TXT_TOPIC_LEVELS_' + level | uppercase) | translate}}
                                         </div>
                                     </div>
@@ -391,7 +391,7 @@
                     </div>
                 </div>
 
-                <div class="lightbox_section social_sharing" ng-if="topic.canUpdate()">
+                <div class="lightbox_section social_sharing" ng-if="topic.canUpdate()"><!--FIXME: Public ONLY -->
                     <h3 ng-translate="MODALS.TOPIC_SETTINGS_HEADING_SOCIAL_SHARING">Social sharing</h3>
                     <!--FIXME: Make the links work! -->
                     <a href=""><div class="sprite sprite-icon-social-facebook-v2"></div></a>

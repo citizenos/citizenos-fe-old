@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicInviteCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'sNotification', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, sNotification, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup) {
+    .controller('TopicInviteCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'sNotification', 'sAuth', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicJoin', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, sNotification, sAuth, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup, TopicJoin) {
         $log.debug('TopicInviteCtrl', $state, $stateParams);
 
         $scope.memberGroups = ['groups', 'users'];
@@ -23,10 +23,16 @@ angular
             $scope.form = {
                 topic: null,
                 description: null,
-                urlJoin: null,
-                urlPermission: TopicMemberUser.LEVELS.read //FIXME: Separate form for the url stuff? Should default to existing url permission!
+                join: {
+                    level: null,
+                    token: null
+                },
+                joinUrl: null
             };
             $scope.form.topic = angular.copy($scope.topic);
+
+            $scope.form.join = $scope.form.topic.join;
+            $scope.generateJoinUrl();
 
             $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
 
@@ -41,8 +47,6 @@ angular
             $scope.searchResults = {};
 
             $scope.errors = null;
-
-            $scope.generateJoinUrl();
         };
 
         $scope.search = function (str) {
@@ -340,18 +344,16 @@ angular
         };
 
         $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,
-            $scope.topic.$updateTokenJoin()
-                .then(function () {
-                    Topic
-                        .query()
-                        .$promise
-                        .then(function (topics) {
-                            if (topics) {
-                                $scope.topic = _.find(topics, {id: $stateParams.topicId});
-                                $scope.form.topic.tokenJoin = $scope.topic.tokenJoin;
-                                $scope.generateJoinUrl();
-                            }
-                        });
+            var topicJoin = new TopicJoin ({
+                topicId: $scope.topic.id,
+                userId: sAuth.user.id,
+                level: $scope.form.join.level
+            });
+
+            topicJoin.$update()
+                .then(function (res) {
+                    $scope.topic.join = res;
+                    $scope.generateJoinUrl();
                 });
         };
 
@@ -364,8 +366,9 @@ angular
         };
 
         $scope.generateJoinUrl = function () {
-            if ($scope.topic.tokenJoin && $scope.topic.canUpdate()) {
-                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/join/' + $scope.topic.tokenJoin);
+            // FIXME: Level & slug!
+            if ($scope.topic.join.token && $scope.topic.canUpdate()) {
+                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/join/' + $scope.topic.join.token);
             }
         };
 

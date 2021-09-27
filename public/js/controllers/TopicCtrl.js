@@ -36,7 +36,7 @@ angular
                 var t = new Topic({id: $scope.topic.id});
                 t
                     .$getInlineComments()
-                    .then(function(inlinecomments) {
+                    .then(function (inlinecomments) {
                         $scope.inlinecomments = inlinecomments;
                     });
                 $scope.getCommentData = function (commentId) {
@@ -375,10 +375,12 @@ angular
                         });
                     } else if (($scope.topic.voteId || $scope.topic.vote && $scope.topic.vote.id) && $scope.topic.status !== $scope.STATUSES.voting) {
                         $log.debug('sendToVote');
-                        return new Topic({
-                            id: $scope.topic.id,
-                            status: $scope.STATUSES.voting
-                        })
+                        return new Topic(
+                            {
+                                id: $scope.topic.id,
+                                status: $scope.STATUSES.voting
+
+                            })
                             .$patch()
                             .then(
                                 function (topicPatched) {
