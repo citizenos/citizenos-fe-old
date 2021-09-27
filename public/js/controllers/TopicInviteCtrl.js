@@ -200,12 +200,12 @@ angular
                     name: email,
                     level: $scope.groupLevel
                 });
-                $scope.invalid.splice(key,1);
+                $scope.invalid.splice(key, 1);
             }
         };
 
         $scope.removeInvalidEmail = function (key) {
-            $scope.invalid.splice(key,1);
+            $scope.invalid.splice(key, 1);
         };
 
         $scope.addTopicMemberUser = function (member) {
@@ -343,8 +343,8 @@ angular
                 );
         };
 
-        $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,
-            var topicJoin = new TopicJoin ({
+        $scope.generateTokenJoin = function () {
+            var topicJoin = new TopicJoin({
                 topicId: $scope.topic.id,
                 userId: sAuth.user.id,
                 level: $scope.form.join.level
@@ -368,7 +368,7 @@ angular
         $scope.generateJoinUrl = function () {
             // FIXME: Level & slug!
             if ($scope.topic.join.token && $scope.topic.canUpdate()) {
-                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/join/' + $scope.topic.join.token);
+                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/topics/join/' + $scope.topic.join.token);
             }
         };
 
