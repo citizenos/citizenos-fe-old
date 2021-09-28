@@ -7,7 +7,7 @@ angular
 
         $scope.memberGroups = ['groups', 'users'];
 
-        $scope.inviteMessageMaxLength = 200;
+        $scope.inviteMessageMaxLength = 1000;
         $scope.tabSelected = $stateParams.tab || 'invite';
 
         $scope.topicList = {
