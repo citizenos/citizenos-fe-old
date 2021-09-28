@@ -20,7 +20,7 @@ angular
             inviteMessage: null,
             urlJoin: null
         };
-        $scope.inviteMessageMaxLength = 200;
+        $scope.inviteMessageMaxLength = 1000;
         $scope.tabSelected = $stateParams.tab || 'invite';
 
         $scope.topicList = {
