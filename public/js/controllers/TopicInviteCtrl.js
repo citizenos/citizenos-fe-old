@@ -350,10 +350,25 @@ angular
                 level: $scope.form.join.level
             });
 
-            topicJoin.$update()
+            topicJoin.$save()
                 .then(function (res) {
                     $scope.topic.join = res;
                     $scope.generateJoinUrl();
+                });
+        };
+
+        $scope.doUpdateTokenJoin = function (level) {
+            console.log('doUpdateTokenJoin', level);
+            var topicJoin = new TopicJoin({
+                topicId: $scope.topic.id,
+                userId: sAuth.user.id,
+                level: level,
+                token: $scope.form.join.token
+            });
+
+            topicJoin.$update()
+                .then(function (res) {
+                    $scope.form.join.level = level;
                 });
         };
 

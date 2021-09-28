@@ -664,7 +664,7 @@ angular
                 });
             });
 
-        }
+        };
 
         $scope.doToggleMemberUserList = function () {
             var doShowList = $scope.userList.isVisible;
