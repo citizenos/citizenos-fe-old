@@ -49,7 +49,7 @@ angular
             $scope.membersPage = 1;
             $scope.memberTopics = [];
             $scope.members = [];
-            $scope.inviteMessageMaxLength = 200;
+            $scope.inviteMessageMaxLength = 1000;
 
             $scope.Group = Group;
             $scope.GroupMemberTopic = GroupMemberTopic;
