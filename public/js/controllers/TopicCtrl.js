@@ -4,7 +4,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$timeout', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'sTopic', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'Mention', 'TopicAttachment', 'rTopic', function ($scope, $state, $translate, $stateParams, $q, $log, $sce, $timeout, ngDialog, sAuth, sActivity, sUpload, sTopic, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$timeout', '$window', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'sTopic', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'Mention', 'TopicAttachment', 'rTopic', function ($scope, $state, $translate, $stateParams, $q, $log, $sce, $timeout, $window, ngDialog, sAuth, sActivity, sUpload, sTopic, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
