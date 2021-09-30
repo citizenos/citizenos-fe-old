@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicInviteCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'sNotification', 'sAuth', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicJoin', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, sNotification, sAuth, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup, TopicJoin) {
+    .controller('TopicInviteCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', 'sSearch', 'sLocation', 'sNotification', 'sAuth', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicJoin', function ($scope, $state, $stateParams, $log, $location, ngDialog, sSearch, sLocation, sNotification, sAuth, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup, TopicJoin) {
         $log.debug('TopicInviteCtrl', $state, $stateParams);
 
         $scope.memberGroups = ['groups', 'users'];
@@ -344,21 +344,28 @@ angular
         };
 
         $scope.generateTokenJoin = function () {
-            var topicJoin = new TopicJoin({
-                topicId: $scope.topic.id,
-                userId: sAuth.user.id,
-                level: $scope.form.join.level
-            });
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_join_link_generate_confirm.html',
+                })
+                .then(function () {
+                    var topicJoin = new TopicJoin({
+                        topicId: $scope.topic.id,
+                        userId: sAuth.user.id,
+                        level: $scope.form.join.level
+                    });
 
-            topicJoin.$save()
-                .then(function (res) {
-                    $scope.topic.join = res;
-                    $scope.generateJoinUrl();
-                });
+                    topicJoin.$save()
+                        .then(function (res) {
+                            $scope.topic.join = res;
+                            $scope.form.join.token = res.token;
+                            $scope.form.join.level = res.level;
+                            $scope.generateJoinUrl();
+                        });
+                }, angular.noop);
         };
 
         $scope.doUpdateTokenJoin = function (level) {
-            console.log('doUpdateTokenJoin', level);
             var topicJoin = new TopicJoin({
                 topicId: $scope.topic.id,
                 userId: sAuth.user.id,
