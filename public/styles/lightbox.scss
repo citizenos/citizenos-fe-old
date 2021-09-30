@@ -2473,7 +2473,6 @@
 
             .blue_button {
                 display: table-cell;
-                position: initial;
                 border-radius: 0 4px 4px 0;
                 padding: 0;
             }
@@ -2514,45 +2513,26 @@
             }
         }
 
-        @media (max-width: 560px) {
-            // FIXME: Update mobile styles! - https://github.com/citizenos/citizenos-fe/issues/311
-
+        @include mixins_n_extends.mobile {
             padding-bottom: 40px !important;
 
-            .copy_link {
-                padding: 0;
+            .not_mobile {
+                display: none !important;
+            }
 
+            .share_link {
                 .searchbox_with_icon_and_text {
                     input {
-                        padding-right: 5px !important;
+                        border-radius: 4px;
                     }
-
-                    .search_text {
-                        position: relative;
-                        display: block;
-                        margin: 0 auto;
-                        text-align: center;
-                        width: 100%;
-                        margin-top: 10px;
-                        margin-bottom: 11px;
-                        height: auto;
-
-                        .table_cell {
-                            display: inline;
-                            font-size: 14px;
-                        }
-                    }
-
                 }
 
                 .blue_button {
-                    width: initial;
-                    position: initial;
-                    right: initial;
-                    top: initial;
+                    display: block;
+                    padding: 5px;
+                    margin: 10px 0;
                     border-radius: 4px;
                 }
-
             }
 
             .qr_code {
@@ -2566,7 +2546,6 @@
                     font-size: 14px;
                 }
             }
-
         }
 
     }
