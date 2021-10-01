@@ -365,7 +365,7 @@ angular
                 }, angular.noop);
         };
 
-        $scope.doUpdateTokenJoin = function (level) {
+        $scope.doUpdateJoinToken = function (level) {
             var topicJoin = new TopicJoin({
                 topicId: $scope.topic.id,
                 userId: sAuth.user.id,

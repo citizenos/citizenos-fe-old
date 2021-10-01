@@ -381,7 +381,7 @@
 
                                 <div class="dropdown">
                                     <div class="dropdown_item" ng-repeat="level in TopicMemberUser.LEVELS">
-                                        <div ng-if="level !== TopicMemberUser.LEVELS.none" class="item_name" ng-click="doUpdateTokenJoin(level)">
+                                        <div ng-if="level !== TopicMemberUser.LEVELS.none" class="item_name" ng-click="doUpdateJoinToken(level)">
                                             {{('TXT_TOPIC_LEVELS_' + level | uppercase) | translate}}
                                         </div>
                                     </div>

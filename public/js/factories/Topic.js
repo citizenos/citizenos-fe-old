@@ -114,8 +114,8 @@ angular
                 },
                 join: {
                     method: 'POST',
-                    params: {tokenJoin: '@id'},
-                    url: sLocation.getAbsoluteUrlApi('/api/topics/join/:tokenJoin'),
+                    params: {token: '@id'},
+                    url: sLocation.getAbsoluteUrlApi('/api/topics/join/:token'),
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) {
                             return angular.fromJson(data);
@@ -124,7 +124,7 @@ angular
                         }
                     }
                 },
-                updateTokenJoin: {
+                doUpdateJoinToken: {
                     method: 'PUT',
                     params: {topicId: '@id'},
                     url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/token'),
