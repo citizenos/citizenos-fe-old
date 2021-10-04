@@ -29,7 +29,7 @@
         right: 136px;
     }
 
-    @media (max-width: 535px) {
+    @media (max-width: 750px) {
         left: 62px;
     }
 
@@ -73,7 +73,7 @@
                 position: fixed;
                 padding-left: 190px;
                 padding-right: 135px;
-                @include mixins_n_extends.mobile {
+                @media (max-width: 750px) {
                     padding-left: 59px;
                 }
             }
