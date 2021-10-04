@@ -14,14 +14,14 @@
         left: 0;
     }
 
-    @include mixins_n_extends.mobile {
+    @media (max-width: '750px') {
         width: 59px;
     }
 
     .logo {
         margin-top: 16px;
         margin-bottom: 16px;
-        @include mixins_n_extends.mobile {
+        @media (max-width: '750px') {
             width: 28px;
         }
     }
@@ -250,7 +250,7 @@ nav {
         left: 0;
         bottom: 0;
         text-align: center;
-        @media (max-width: '1024px') {
+        @include mixins_n_extends.tablet {
             right: 0;
             width: 230px;
         }
@@ -292,7 +292,7 @@ nav {
     width: 100%;
     box-sizing: border-box;
 
-    @media (max-width: '535px') {
+    @include mixins_n_extends.mobile {
         padding-left: 60px;
     }
 
@@ -302,10 +302,26 @@ nav {
 
     .header_button.overview {
         width: 144px;
-        right: 234px;
-        @media (max-width: '560px') {
-            right: 169px;
+        right: 334px;
+
+        @include mixins_n_extends.mobile {
+            right: 225px;
+            width: 53px;
+
+            .header_button_text {
+                display: none;
+            }
+
+            .header_button_icon {
+                width: 51px;
+
+                .sprite {
+                    float: none;
+                    margin: 0 auto;
+                }
+            }
         }
+
         @media (max-width: '360px') {
             width: 58px;
             right: 171px;
@@ -324,7 +340,7 @@ nav {
     }
 
     .header_button.overview_active {
-        @media (max-width: '560px') {
+        @include mixins_n_extends.mobile {
             width: 53px;
             .header_button_icon {
                 .sprite {
@@ -355,9 +371,9 @@ nav {
             }
         }
 
-        @media (max-width: '600px') {
+        @include mixins_n_extends.mobile {
             width: 53px;
-
+            right: 172px;
             .header_button_text {
                 display: none;
             }
@@ -370,10 +386,6 @@ nav {
                     margin: 0 auto;
                 }
             }
-        }
-
-        @media (max-width: '560px') {
-            right: 172px;
         }
 
         @media (max-width: '340px') {
@@ -401,8 +413,11 @@ nav {
         right: 333px;
         width: 130px;
 
-        @media (max-width: '665px') {
+        @include mixins_n_extends.mobile {
             width: 53px;
+            right: 224px;
+            padding-left: 0;
+
             .header_button_text {
                 display: none;
             }
@@ -414,15 +429,7 @@ nav {
                     margin: 0 auto;
                 }
             }
-        }
 
-        @media (max-width: '600px') {
-            right: 289px;
-        }
-
-        @media (max-width: '560px') {
-            right: 224px;
-            padding-left: 0;
         }
 
         @media (max-width: '340px') {

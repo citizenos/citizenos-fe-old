@@ -1,3 +1,11 @@
+## 2021-10-04
+
+* FIX - Overview menu item overlaps other menu items in mobile view - /my/topics/:topicId - https://github.com/citizenos/citizenos-fe/issues/779
+
+## 2021-09-28 - v. 0.1.2
+
+* Add duplicate topic flow - https://github.com/citizenos/citizenos-fe/issues/416
+
 ## 2021-05-31  - v. 0.1.1
 
 * App logout to call `GET /ep_auth_citizenos/logout` to destroy EP session - https://github.com/citizenos/citizenos-fe/issues/676

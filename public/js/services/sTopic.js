@@ -11,6 +11,14 @@ angular
 
         sTopic.CATEGORIES = Topic.CATEGORIES;
 
+        var defaultSuccess = function (response) {
+            return response.data.data;
+        };
+
+        var defaultError = function (response) {
+            return $q.reject(response);
+        };
+
         sTopic.listUnauth = function (statuses, categories, showModerated, offset, limit) {
             var path = sLocation.getAbsoluteUrlApi('/api/topics');
 
@@ -40,4 +48,10 @@ angular
             return $http.post(path, topic);
         };
 
+        sTopic.duplicate = function (topic) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/duplicate', {topicId: topic.id});
+            return $http
+                .get(path)
+                .then(defaultSuccess, defaultError);
+        }
     }]);

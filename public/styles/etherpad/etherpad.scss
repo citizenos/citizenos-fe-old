@@ -4,6 +4,7 @@ $white: #fff;
 $medium_black: #252525;
 $deep_sky_blue: #0680FC;
 $bold: 700;
+$pinky_red_dark_hover: #e6193b;
 
 /* cyrillic-ext */
 @font-face {
@@ -340,6 +341,11 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 .btn-primary
 {
   background-color: $deep_sky_blue;
+}
+
+.btn-red
+{
+  background-color: $pinky_red_dark_hover;
 }
 
 #epAuthorshipToggleAuthorList {
