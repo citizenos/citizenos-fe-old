@@ -27,6 +27,13 @@
                             </div>
                         </div>
 
+                        <div class="tab_button" ng-click="selectTab('settings')" ng-class="tabSelected === 'settings' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_SETTINGS">SETTINGS</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+
                         <div class="tab_button" ng-click="selectTab('account')" ng-class="tabSelected === 'account' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_ACCOUNT">ACCOUNT</div>
@@ -95,6 +102,25 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+            <div class="lightbox_content" ng-if="tabSelected === 'settings'">
+                <div id="login_lightbox">
+                    <div class="line lightest_line"></div>
+
+                    <div class="lightbox_section">
+                        <div class="settings_section">
+                            <div class="settings_cell">
+                                <div class="setting_title" translate="MODALS.MY_ACCOUNT_LBL_SHOW_IN_SEARCH">Make your topic private</div>
+                                <div class="setting_description" translate="MODALS.MY_ACCOUNT_LBL_SHOW_IN_SEARCH_DESCRIPTION">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
+                            </div>
+
+                            <div class="settings_cell">
+                                <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                        ng-model="form.settings.showInSearch"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

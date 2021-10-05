@@ -972,6 +972,25 @@
                     form {
                         padding: 20px 0px 0px;
                     }
+
+                    .settings_section {
+                        width: 100%;
+                        display: table;
+
+                        .settings_cell {
+                            display: table-cell;
+                            width: 50%;
+
+                            .setting_title {
+                                font-size: 16px;
+                                font-weight: vars.$bold;
+                            }
+
+                            .setting_description {
+                                font-size: 11px;
+                            }
+                        }
+                    }
                 }
             }
 
