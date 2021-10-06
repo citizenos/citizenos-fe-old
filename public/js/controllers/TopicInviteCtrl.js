@@ -6,7 +6,6 @@ angular
         $log.debug('TopicInviteCtrl', $state, $stateParams);
 
         $scope.memberGroups = ['groups', 'users'];
-
         $scope.inviteMessageMaxLength = 1000;
         $scope.tabSelected = $stateParams.tab || 'invite';
 
@@ -30,11 +29,10 @@ angular
                 joinUrl: null
             };
             $scope.form.topic = angular.copy($scope.topic);
+            $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
 
             $scope.form.join = $scope.form.topic.join;
             $scope.generateJoinUrl();
-
-            $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
 
             $scope.membersPage = 1;
             $scope.groupLevel = TopicMemberGroup.LEVELS.read;

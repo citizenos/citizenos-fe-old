@@ -4,7 +4,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$rootScope', '$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$timeout', '$window', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicVote', 'Mention', 'TopicAttachment', 'rTopic', function ($rootScope, $scope, $state, $translate, $stateParams, $q, $log, $sce, $timeout, $window, ngDialog, sAuth, sActivity, sUpload, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicVote, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$timeout', '$window', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'sTopic', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'Mention', 'TopicAttachment', 'rTopic', function ($scope, $state, $translate, $stateParams, $q, $log, $sce, $timeout, $window, ngDialog, sAuth, sActivity, sUpload, sTopic, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, Mention, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
@@ -620,6 +620,22 @@ angular
                             $scope.topic.members.groups.count = $scope.topic.members.groups.rows.length;
                             $scope.loadTopicMemberUserList();
                         });
+                }, angular.noop);
+        };
+
+        $scope.duplicateTopic = function () {
+
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_duplicate_confirm.html',
+                })
+                .then(function () {
+                   sTopic
+                    .duplicate($scope.topic)
+                    .then(function(duplicate) {
+                        console.log(duplicate)
+                        $state.go('topics.view', {topicId: duplicate.id});
+                    });
                 }, angular.noop);
         };
 
