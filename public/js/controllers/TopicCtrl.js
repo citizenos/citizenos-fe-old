@@ -32,7 +32,7 @@ angular
                 $scope.app.metainfo.image = docImageSrc;
             }
 
-            if (sAuth.user.loggedIn) {
+            if (sAuth.user.loggedIn && $state.current.name.indexOf('topics.view') === 0) {
                 var t = new Topic({id: $scope.topic.id});
                 t
                     .$getInlineComments()
