@@ -405,7 +405,7 @@
     "USER_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to delete your account?",
     "USER_DELETE_CONFIRM_TXT_NO_UNDO": "Please keep in mind you cannot undo this action.",
     "USER_DELETE_CONFIRM_TXT_USER_DELETED": "Your account will be deleted",
-    "USER_DELETE_CONFIRM_TXT_KEEP_DATA_ANONYMOUSLY": "All user-created data will be anonymized and will not be recoverable",
+    "USER_DELETE_CONFIRM_TXT_KEEP_DATA_ANONYMOUSLY": "All user-created data will be anonymised and will not be recoverable",
     "USER_DELETE_CONFIRM_NO": "NO, KEEP THIS ACCOUNT",
     "USER_DELETE_CONFIRM_YES": "YES, DELETE THIS ACCOUNT",
     "DUPLICATE_TOPIC_CONFIRM_HEADING": "Are you sure you want to continue?",
