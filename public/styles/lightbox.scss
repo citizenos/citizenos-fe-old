@@ -414,9 +414,7 @@
 
                 #lightbox_header_text {
                     font-weight: vars.$medium;
-                    float: left;
                     padding: 17px 60px 17px 20px;
-                    height: 55px;
                     overflow: hidden;
 
                     .title {
@@ -425,21 +423,18 @@
                         font-weight: vars.$bold;
                         font-size: 16px;
                         padding-right: 60px;
-                        position: absolute;
                     }
 
                     .title_description {
                         @extend %text_dod_dot_dot;
-                        margin-top: 25px;
+                        margin-top: 5px;
                         overflow: hidden;
-                        position: absolute;
                         padding-right: 77px;
                         font-style: italic;
                     }
 
                     .title_description_register {
-                        margin-top: 25px;
-                        position: absolute;
+                        margin-top: 5px;
                         padding-right: 77px;
                         font-size: 14px;
                         line-height: 24px;
@@ -452,6 +447,7 @@
                     position: absolute;
                     float: none;
                     right: 0;
+                    top: 0;
                 }
 
                 .header_row_with_title {
@@ -481,6 +477,7 @@
 
                 .header_row_wrap {
                     width: 100%;
+                    display: table-row;
 
                     @media (max-width: 560px) {
                         width: 200%;
@@ -1018,7 +1015,7 @@
         #lightbox_wrap {
             #lightbox_header {
                 #lightbox_header_text {
-                    height: 71px;
+                    height: auto;
                     padding-right: 20px;
                     @media (max-width: 560px) {
                         font-size: 14px;
@@ -1286,6 +1283,25 @@
 
             .toggle_wrap {
                 float: right;
+            }
+        }
+
+        .settings_section {
+            width: 100%;
+            display: table;
+
+            .settings_cell {
+                display: table-cell;
+                width: 50%;
+
+                .setting_title {
+                    font-size: 16px;
+                    font-weight: vars.$bold;
+                }
+
+                .setting_description {
+                    font-size: 11px;
+                }
             }
         }
     }
@@ -1702,7 +1718,7 @@
 
             #lightbox_header {
                 width: 100%;
-                height: 54px;
+                height: auto;
                 background: vars.$white;
                 border-radius: 4px 4px 0 0;
                 display: table;
@@ -1734,6 +1750,10 @@
                 #sign_up_lightbox {
                     input {
                         height: 40px;
+                    }
+
+                    .settings_section {
+                        padding-top: 20px;
                     }
                 }
 

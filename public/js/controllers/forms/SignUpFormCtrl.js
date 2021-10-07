@@ -10,7 +10,10 @@ angular
             email: null,
             password: null,
             company: null,
-            redirectSuccess: null
+            redirectSuccess: null,
+            settings: {
+                showInSearch: false
+            }
         };
 
         // Direct links will have parameters in $stateParams, Login form will pass the "data" when opening the dialog.
@@ -43,7 +46,7 @@ angular
                 return;
             } else {
                 sAuth
-                    .signUp($scope.form.email, $scope.form.password, $scope.form.name, $scope.form.company, $scope.form.redirectSuccess)
+                    .signUp($scope.form.email, $scope.form.password, $scope.form.name, $scope.form.company, $scope.form.redirectSuccess, $scope.form.settings)
                     .then(success, error);
             }
         };
