@@ -76,7 +76,7 @@ angular
                     $scope.searchStringUser = str;
                 }
                 sSearch
-                    .searchV2(str, {
+                    .search(str, {
                         include: include,
                         'my.topic.level': 'admin'
                     })
