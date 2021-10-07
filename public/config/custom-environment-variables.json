@@ -32,5 +32,6 @@
       "__name": "CITIZENOS_FEATURES_ANALYTICS",
       "__format": "json"
     }
-  }
+  },
+  "helplink": "CITIZENOS_HELP_LINK"
 }

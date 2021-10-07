@@ -33,5 +33,6 @@
         </form>
     </div>
 </div>
-<div class="help_bubble" ng-click="showHelp = !showHelp"></div>
+<div ng-show="!app.config.helplink" class="help_bubble" ng-click="showHelp = !showHelp"></div>
+<a ng-if="app.config.helplink" class="help_bubble" ng-href={{app.config.helplink}} target="_blank"></a>
 </div>
