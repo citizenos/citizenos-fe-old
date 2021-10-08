@@ -114,8 +114,8 @@ angular
                 },
                 join: {
                     method: 'POST',
-                    params: {tokenJoin: '@id'},
-                    url: sLocation.getAbsoluteUrlApi('/api/topics/join/:tokenJoin'),
+                    params: {token: '@id'},
+                    url: sLocation.getAbsoluteUrlApi('/api/topics/join/:token'),
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) {
                             return angular.fromJson(data);
@@ -124,10 +124,10 @@ angular
                         }
                     }
                 },
-                updateTokenJoin: { //TODO: Support patch method
+                doUpdateJoinToken: {
                     method: 'PUT',
                     params: {topicId: '@id'},
-                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/tokenJoin'),
+                    url: sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/token'),
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) { // IF patch is working then make it return data again, for now return nothing to stop from overwriting all fields but topkenJoin
                         } else {
@@ -220,7 +220,6 @@ angular
             netiquette: 'netiquette', // infringes (n)etiquette
             duplicate: 'duplicate' // duplicate
         };
-
 
         Topic.CATEGORIES_COUNT_MAX = 3; // Maximum of 3 categories allowed at the time.
 

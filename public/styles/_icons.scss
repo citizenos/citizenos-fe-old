@@ -1,13 +1,13 @@
 /* Generated data URIs used for preview purposes only */
 /* Be sure that you replace data URIs with generated images */
 .sprite {
-    background-image: url('../imgs/icons_sprite.png?v17');
+    background-image: url('../imgs/icons_sprite.png?v19');
 }
 
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
     .sprite {
-        background-image: url('../imgs/icons_sprite2x.png?v17');
-        background-size: 203px 3841px;
+        background-image: url('../imgs/icons_sprite2x.png?v19');
+        background-size: 203px 3992px;
     }
 }
 
@@ -973,4 +973,27 @@
     width: 22px;
     height: 22px;
     background-position: 0 -3819px;
+}
+
+.sprite-icon-refresh {
+    width: 23px;
+    height: 19px;
+    background-position: 0 -3841px;
+}
+
+.sprite-icon-social-twitter-v2 {
+    width: 44px;
+    height: 44px;
+    background-position: 0 -3860px;
+}
+
+.sprite-icon-social-linkedin-v2 {
+    width: 44px;
+    height: 44px;
+    background-position: 0 -3904px;
+}
+.sprite-icon-social-facebook-v2 {
+    width: 44px;
+    height: 44px;
+    background-position: 0 -3948px;
 }

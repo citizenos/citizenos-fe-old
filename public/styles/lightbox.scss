@@ -14,10 +14,11 @@
     border: none;
     box-shadow: 0 0 0 1px rgb(99 114 130 / 16%), 0 8px 16px rgb(27 39 51 / 8%);
 
-    .comment-popup-content{
+    .comment-popup-content {
         padding: 25px;
+
         .comment-header {
-            .comment-author-name{
+            .comment-author-name {
                 font-weight: bold;
             }
 
@@ -28,7 +29,7 @@
             }
         }
 
-        .comment-text{
+        .comment-text {
             display: block;
             white-space: normal;
         }
@@ -38,10 +39,11 @@
 .comment-reply {
     padding: 25px;
     border-top: 1px solid #f2f3f4;
+
     .comment-container {
         margin-bottom: 10px;
 
-        .comment-author-name{
+        .comment-author-name {
             font-weight: bold;
         }
 
@@ -51,7 +53,7 @@
             margin-left: 5px;
         }
 
-        .comment-text{
+        .comment-text {
             display: block;
             white-space: normal;
         }
@@ -611,10 +613,14 @@
             }
 
             .lightbox_content {
-                padding: 20px 0;
 
                 .lightbox_section {
-                    padding: 0 20px;
+                    padding: 30px 20px;
+                    border-top: 1px solid vars.$lightest_gray;
+
+                    h1, h2, h3, h4 {
+                        margin-top: 0;
+                    }
                 }
 
                 .file_name {
@@ -774,6 +780,7 @@
 
                 .footer_link {
                     text-align: center;
+
                     &.left {
                         @include mixins_n_extends.mobile {
                             margin-left: auto;
@@ -994,6 +1001,7 @@
             .lightbox_footer {
                 .delete_account {
                     margin-left: 20px;
+
                     span {
                         display: inline-block;
                         color: vars.$pinky_red;
@@ -1762,6 +1770,7 @@
 
                     .input_with_icon.clickable {
                         margin-bottom: 0;
+
                         .icon_table:hover {
                             @media (min-width: 1025px) {
                                 cursor: pointer;
@@ -1799,6 +1808,7 @@
                         .icon_cell {
                             padding: 16px 0px 0px 12px;
                         }
+
                         .table_cell {
                             padding: 12px;
                         }
@@ -2469,36 +2479,65 @@
 
     .lightbox_content.invite_url {
 
-        .copy_link {
-
-            padding-right: 110px;
-            position: relative;
+        .share_link {
+            display: table;
+            width: 100%;
 
             .searchbox_with_icon_and_text {
+                display: table-cell;
+                height: 40px;
+                top: 0;
+
                 input {
-                    padding-left: 10px !important;
-                    padding-right: 123px !important;
+                    border-radius: 4px 0 0 4px;
+                    height: 100%;
+                    padding: 0 35px 0 10px !important;
+                }
+
+                .regenerate_link {
+                    position: absolute;
+                    display: inline-block;
+                    padding: 10px;
+                    margin-left: -40px;
+                    cursor: pointer;
                 }
             }
 
             .blue_button {
-                width: 100px;
-                position: absolute;
-                right: 0;
-                top: 0;
-                border-radius: 4px;
+                display: table-cell;
+                border-radius: 0 4px 4px 0;
+                padding: 0;
+            }
+
+            .permissions {
+                margin-top: 10px;
+
+                .label {
+                    display: inline-block;
+                }
+
+                .classic_dropdown {
+                    display: inline-block;
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        .social_sharing {
+            a {
+                margin-right: 20px;
+                display: inline-block;
             }
         }
 
         .qr_code {
-            padding: 40px 0 20px 0;
-            text-align: center;
+            display: table-cell;
+            padding-right: 20px;
 
             img, .qr_img {
                 display: block;
-                margin: 0 auto 10px auto;
-                height: 210px;
-                width: 210px;
+                height: 120px;
+                width: 120px;
             }
 
             a {
@@ -2507,48 +2546,28 @@
         }
 
         @include mixins_n_extends.mobile {
-
             padding-bottom: 40px !important;
 
-            .copy_link {
-                padding: 0;
+            .not_mobile {
+                display: none !important;
+            }
 
+            .share_link {
                 .searchbox_with_icon_and_text {
                     input {
-                        padding-right: 5px !important;
+                        border-radius: 4px;
                     }
-
-                    .search_text {
-                        position: relative;
-                        display: block;
-                        margin: 0 auto;
-                        text-align: center;
-                        width: 100%;
-                        margin-top: 10px;
-                        margin-bottom: 11px;
-                        height: auto;
-
-                        .table_cell {
-                            display: inline;
-                            font-size: 14px;
-                        }
-                    }
-
                 }
 
                 .blue_button {
-                    width: initial;
-                    position: initial;
-                    right: initial;
-                    top: initial;
+                    display: block;
+                    padding: 5px;
+                    margin: 10px 0;
                     border-radius: 4px;
                 }
-
             }
 
             .qr_code {
-                padding: 20px 0 0 0;
-
                 img {
                     height: 150px;
                     width: 150px;
@@ -2558,9 +2577,7 @@
                 a {
                     font-size: 14px;
                 }
-
             }
-
         }
 
     }

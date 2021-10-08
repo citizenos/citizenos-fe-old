@@ -2,24 +2,10 @@
 
 angular
     .module('citizenos')
-    .controller('TopicInviteCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'sSearch', 'sLocation', 'sNotification', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', function ($scope, $state, $stateParams, $log, $location, sSearch, sLocation, sNotification, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup) {
+    .controller('TopicInviteCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', 'sSearch', 'sLocation', 'sNotification', 'sAuth', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicJoin', function ($scope, $state, $stateParams, $log, $location, ngDialog, sSearch, sLocation, sNotification, sAuth, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup, TopicJoin) {
         $log.debug('TopicInviteCtrl', $state, $stateParams);
 
-        $scope.levels = {
-            none: 0,
-            read: 1,
-            edit: 2,
-            admin: 3
-        };
-
-        $scope.memberGroups = ['groups', 'users']
-
-        $scope.form = {
-            topic: null,
-            description: null,
-            inviteMessage: null,
-            urlJoin: null
-        };
+        $scope.memberGroups = ['groups', 'users'];
         $scope.inviteMessageMaxLength = 1000;
         $scope.tabSelected = $stateParams.tab || 'invite';
 
@@ -36,11 +22,17 @@ angular
             $scope.form = {
                 topic: null,
                 description: null,
-                urlJoin: null
+                join: {
+                    level: null,
+                    token: null
+                },
+                joinUrl: null
             };
             $scope.form.topic = angular.copy($scope.topic);
-
             $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
+
+            $scope.form.join = $scope.form.topic.join;
+            $scope.generateJoinUrl();
 
             $scope.membersPage = 1;
             $scope.groupLevel = TopicMemberGroup.LEVELS.read;
@@ -53,8 +45,6 @@ angular
             $scope.searchResults = {};
 
             $scope.errors = null;
-
-            $scope.generateJoinUrl();
         };
 
         $scope.search = function (str) {
@@ -208,12 +198,12 @@ angular
                     name: email,
                     level: $scope.groupLevel
                 });
-                $scope.invalid.splice(key,1);
+                $scope.invalid.splice(key, 1);
             }
         };
 
         $scope.removeInvalidEmail = function (key) {
-            $scope.invalid.splice(key,1);
+            $scope.invalid.splice(key, 1);
         };
 
         $scope.addTopicMemberUser = function (member) {
@@ -351,19 +341,39 @@ angular
                 );
         };
 
-        $scope.generateTokenJoin = function () { //TODO: update when PATCH support is added, because this is a very ugly solution,
-            $scope.topic.$updateTokenJoin()
+        $scope.generateTokenJoin = function () {
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_join_link_generate_confirm.html',
+                })
                 .then(function () {
-                    Topic
-                        .query()
-                        .$promise
-                        .then(function (topics) {
-                            if (topics) {
-                                $scope.topic = _.find(topics, {id: $stateParams.topicId});
-                                $scope.form.topic.tokenJoin = $scope.topic.tokenJoin;
-                                $scope.generateJoinUrl();
-                            }
+                    var topicJoin = new TopicJoin({
+                        topicId: $scope.topic.id,
+                        userId: sAuth.user.id,
+                        level: $scope.form.join.level
+                    });
+
+                    topicJoin.$save()
+                        .then(function (res) {
+                            $scope.topic.join = res;
+                            $scope.form.join.token = res.token;
+                            $scope.form.join.level = res.level;
+                            $scope.generateJoinUrl();
                         });
+                }, angular.noop);
+        };
+
+        $scope.doUpdateJoinToken = function (level) {
+            var topicJoin = new TopicJoin({
+                topicId: $scope.topic.id,
+                userId: sAuth.user.id,
+                level: level,
+                token: $scope.form.join.token
+            });
+
+            topicJoin.$update()
+                .then(function (res) {
+                    $scope.form.join.level = level;
                 });
         };
 
@@ -376,8 +386,9 @@ angular
         };
 
         $scope.generateJoinUrl = function () {
-            if ($scope.topic.tokenJoin && $scope.topic.canUpdate()) {
-                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/join/' + $scope.topic.tokenJoin);
+            // FIXME: Level & slug!
+            if ($scope.topic.join.token && $scope.topic.canUpdate()) {
+                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/topics/join/' + $scope.topic.join.token);
             }
         };
 

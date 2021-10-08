@@ -32,11 +32,11 @@ angular
                 $scope.app.metainfo.image = docImageSrc;
             }
 
-            if (sAuth.user.loggedIn) {
+            if (sAuth.user.loggedIn && $state.current.name.indexOf('topics.view') === 0) {
                 var t = new Topic({id: $scope.topic.id});
                 t
                     .$getInlineComments()
-                    .then(function(inlinecomments) {
+                    .then(function (inlinecomments) {
                         $scope.inlinecomments = inlinecomments;
                     });
                 $scope.getCommentData = function (commentId) {
@@ -375,10 +375,12 @@ angular
                         });
                     } else if (($scope.topic.voteId || $scope.topic.vote && $scope.topic.vote.id) && $scope.topic.status !== $scope.STATUSES.voting) {
                         $log.debug('sendToVote');
-                        return new Topic({
-                            id: $scope.topic.id,
-                            status: $scope.STATUSES.voting
-                        })
+                        return new Topic(
+                            {
+                                id: $scope.topic.id,
+                                status: $scope.STATUSES.voting
+
+                            })
                             .$patch()
                             .then(
                                 function (topicPatched) {
@@ -678,7 +680,7 @@ angular
                 });
             });
 
-        }
+        };
 
         $scope.doToggleMemberUserList = function () {
             var doShowList = $scope.userList.isVisible;

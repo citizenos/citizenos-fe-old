@@ -908,10 +908,23 @@
                         $state.go('error.404');
                     }]
                 })
-                .state('join', { // Join a Topic via shared url
-                    url: '/join/:tokenJoin',
+                .state('join', { // Join a Topic via shared url - DEPRECATED, use "topicJoin" instead - https://github.com/citizenos/citizenos-fe/issues/311
+                    url: '/join/:token',
                     parent: 'main',
-                    controller: 'JoinCtrl'
+                    controller: ['$state', '$stateParams', function ($state, $stateParams) {
+                        // DEPRECATED! DEPRECATED, redirected to "topicJoin" instead - https://github.com/citizenos/citizenos-fe/issues/311
+                        $state.go(
+                            'topicJoin',
+                            {
+                                token: $stateParams.token.padStart(12, '0') // Legacy tokens are of length 8, pad with 0-s as the tokens where migrated over with leading 0-s
+                            }
+                        )
+                    }]
+                })
+                .state('topicJoin', { // Join a Topic via shared url
+                    url: '/topics/join/:token',
+                    parent: 'main',
+                    controller: 'TopicJoinCtrl'
                 })
                 .state('topicsTopicIdInvitesUsers', { // Cannot use dot notation (topics.topicId.invites.users) as that would make the page child of "topics" and we don't want that.
                     url: '/topics/:topicId/invites/users/:inviteId',
