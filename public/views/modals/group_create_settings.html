@@ -272,7 +272,7 @@
                                     <div class="search_dropdown_area" ng-class="{hidden: !searchResults.users.length}">
                                         <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
                                             <div class="table_cell search_item_text">
-                                                <b>{{user.name}}</b> {{user.company}}
+                                                <b>{{user.name}}</b> {{user.email}}
                                             </div>
                                             <div class="table_cell blue_link">
                                                 <span class="submit_link" ng-click="addGroupMemberUser(user)" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
