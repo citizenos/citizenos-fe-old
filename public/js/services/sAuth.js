@@ -18,14 +18,14 @@ angular
             return $q.reject(response);
         };
 
-        sAuth.signUp = function (email, password, name, company, redirectSuccess, settings) {
+        sAuth.signUp = function (email, password, name, company, redirectSuccess, preferences) {
             var data = {
                 email: email,
                 password: password,
                 name: name,
                 company: company,
                 redirectSuccess: redirectSuccess,
-                settings: settings
+                preferences: preferences
             };
 
             var path = sLocation.getAbsoluteUrlApi('/api/auth/signup');

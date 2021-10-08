@@ -11,7 +11,7 @@ angular
             password: null,
             company: null,
             redirectSuccess: null,
-            settings: {
+            preferences: {
                 showInSearch: false
             }
         };

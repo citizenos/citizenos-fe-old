@@ -13,7 +13,7 @@ angular
             company: null,
             imageUrl: null,
             passwordConfirm: null,
-            settings: {
+            preferences: {
                 showInSearch: false
             }
         };

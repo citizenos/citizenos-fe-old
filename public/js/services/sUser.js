@@ -13,7 +13,7 @@ angular
             return $q.reject(response);
         };
 
-        sUser.update = function (name, email, password, company, imageUrl, settings, language, termsVersion) {
+        sUser.update = function (name, email, password, company, imageUrl, preferences, language, termsVersion) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self');
             var userData = {
                 name: name,
@@ -21,7 +21,7 @@ angular
                 company: company,
                 imageUrl: imageUrl,
                 language: language,
-                settings: settings,
+                preferences: preferences,
                 termsVersion: termsVersion
             };
 
