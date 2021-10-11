@@ -68,7 +68,7 @@ angular
             }
 
             sSearch
-                .searchV2(
+                .search(
                     str,
                     {
                         include: include,
@@ -161,7 +161,7 @@ angular
                 var page = Math.floor($scope.searchResults[context][model].rows.length / 5) + 1;
 
                 sSearch
-                    .searchV2(
+                    .search(
                         $scope.moreStr,
                         {
                             include: include,
