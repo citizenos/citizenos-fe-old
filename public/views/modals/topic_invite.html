@@ -397,13 +397,12 @@
                     </div>
                 </div>
 
-                <!-- FIXME: Social links -->
-                <!--div class="lightbox_section social_sharing" ng-if="topic.canUpdate()">
+                <div class="lightbox_section social_sharing" ng-if="topic.canUpdate()">
                     <h3 ng-translate="MODALS.TOPIC_SETTINGS_HEADING_SOCIAL_SHARING">Social sharing</h3>
-                    <a href=""><div class="sprite sprite-icon-social-facebook-v2"></div></a>
-                    <a href=""><div class="sprite sprite-icon-social-linkedin-v2"></div></a>
-                    <a href=""><div class="sprite sprite-icon-social-twitter-v2"></div></a>
-                </div-->
+                    <a href="#" socialshare socialshare-provider="facebook" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-facebook-v2"></div></a>
+                    <a href="#" socialshare socialshare-provider="linkedin" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-linkedin-v2"></div></a>
+                    <a href="#" socialshare socialshare-provider="twitter" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-twitter-v2"></div></a>
+                </div>
 
                 <!-- FIXME: PDF download -->
                 <!--div class="lightbox_section" ng-if="topic.canUpdate()">
