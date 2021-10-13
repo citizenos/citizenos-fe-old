@@ -52,8 +52,18 @@
                                     <span translate="{{errors.password}}"></span>
                                 </div>
                             </label>
-                        </div>
+                            <div class="settings_section">
+                                <div class="settings_cell">
+                                    <div class="setting_title" translate="MODALS.SIGN_UP_LBL_SHOW_IN_SEARCH">Make your topic private</div>
+                                    <div class="setting_description" translate="MODALS.SIGN_UP_LBL_SHOW_IN_SEARCH_DESCRIPTION">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
+                                </div>
 
+                                <div class="settings_cell">
+                                    <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                            ng-model="form.preferences.showInSearch"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="lightbox_footer login_footer">

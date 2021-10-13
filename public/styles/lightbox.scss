@@ -71,7 +71,7 @@
     transform: translateZ(0);
     box-sizing: border-box;
 
-    @media (max-width: 560px) {
+    @include mixins_n_extends.mobile {
         background: #F6F6F6;
     }
 
@@ -85,13 +85,13 @@
     /* RESETS */
     .padding_bottom_zero {
         padding-bottom: 0 !important;
-        @media (max-width: 560px) {
+        @include mixins_n_extends.mobile {
             padding-bottom: 20px !important;
         }
     }
 
     .padding_bottom_zero.top_112 {
-        @media (max-width: 560px) {
+        @include mixins_n_extends.mobile {
             top: 112px !important;
         }
     }
@@ -151,7 +151,7 @@
         #lightbox_wrap {
             #lightbox_header {
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     font-size: 14px;
                     height: 105px !important;
                     min-height: 105px !important;
@@ -160,7 +160,7 @@
 
                 #lightbox_header_text {
                     padding-bottom: 9px;
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         float: left;
                     }
 
@@ -168,7 +168,7 @@
                         color: vars.$medium_black_seven;
                         padding-right: 54px;
 
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             padding-right: 70px;
                             position: absolute;
                             overflow: hidden;
@@ -182,7 +182,7 @@
                     .lightbox_header_description_text {
                         font-weight: vars.$medium;
                         font-style: italic;
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             top: 40px;
                             right: 20px;
                             left: 20px;
@@ -204,20 +204,20 @@
 
             .lightbox_content {
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     padding-bottom: 38px;
                 }
 
                 .lightbox_section {
                     padding: 20px 0 !important;
 
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         padding-top: 10px !important;
                     }
 
                 }
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     top: 106px !important;
                 }
             }
@@ -230,7 +230,7 @@
         #lightbox_wrap {
             #lightbox_header {
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     font-size: 14px;
                     height: 54px !important;
                     min-height: 54px !important;
@@ -416,9 +416,7 @@
 
                 #lightbox_header_text {
                     font-weight: vars.$medium;
-                    float: left;
                     padding: 17px 60px 17px 20px;
-                    height: 55px;
                     overflow: hidden;
 
                     .title {
@@ -427,21 +425,18 @@
                         font-weight: vars.$bold;
                         font-size: 16px;
                         padding-right: 60px;
-                        position: absolute;
                     }
 
                     .title_description {
                         @extend %text_dod_dot_dot;
-                        margin-top: 25px;
+                        margin-top: 5px;
                         overflow: hidden;
-                        position: absolute;
                         padding-right: 77px;
                         font-style: italic;
                     }
 
                     .title_description_register {
-                        margin-top: 25px;
-                        position: absolute;
+                        margin-top: 5px;
                         padding-right: 77px;
                         font-size: 14px;
                         line-height: 24px;
@@ -454,6 +449,7 @@
                     position: absolute;
                     float: none;
                     right: 0;
+                    top: 0;
                 }
 
                 .header_row_with_title {
@@ -483,8 +479,9 @@
 
                 .header_row_wrap {
                     width: 100%;
+                    display: table-row;
 
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         width: 200%;
                         overflow: hidden;
                     }
@@ -494,7 +491,7 @@
                         top: 54px;
                         overflow: hidden;
 
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             float: left;
                             padding: 0 0 0 10px;
                         }
@@ -584,7 +581,7 @@
 
             #lightbox_header.title_and_button {
                 #lightbox_header_text {
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         height: 101px;
                         padding-bottom: 10px;
                         padding-right: 20px;
@@ -593,7 +590,7 @@
                     .title_description {
                         margin-top: 41px;
                         padding-right: 148px;
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             overflow: initial;
                             text-overflow: initial;
                             white-space: initial;
@@ -702,7 +699,7 @@
                 box-sizing: border-box;
                 color: #252525;
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     position: relative;
                     bottom: 0;
                     padding-bottom: 20px;
@@ -755,7 +752,7 @@
 
             .blue_button_wrap {
                 .blue_button, .white_button {
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         width: calc(100% - 40px);
                     }
                     float: right;
@@ -785,7 +782,7 @@
                     text-align: center;
 
                     &.left {
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             margin-left: auto;
                         }
                     }
@@ -861,7 +858,7 @@
 
             #lightbox_header.title_and_button {
                 #lightbox_header_text {
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         height: 101px;
                         padding-bottom: 10px;
                         padding-right: 20px;
@@ -966,7 +963,7 @@
     #lightbox.my_account_lightbox {
         #lightbox_wrap {
 
-            @media (max-width: 560px) {
+            @include mixins_n_extends.mobile {
                 padding: 0;
             }
 
@@ -978,6 +975,25 @@
 
                     form {
                         padding: 20px 0px 0px;
+                    }
+
+                    .settings_section {
+                        width: 100%;
+                        display: table;
+
+                        .settings_cell {
+                            display: table-cell;
+                            width: 50%;
+
+                            .setting_title {
+                                font-size: 16px;
+                                font-weight: vars.$bold;
+                            }
+
+                            .setting_description {
+                                font-size: 11px;
+                            }
+                        }
                     }
                 }
             }
@@ -991,13 +1007,6 @@
                         color: vars.$pinky_red;
                     }
                 }
-
-                .blue_button_wrap {
-                    .blue_button {
-                        margin-top: auto;
-                        margin-bottom: auto;
-                    }
-                }
             }
         }
 
@@ -1007,9 +1016,9 @@
         #lightbox_wrap {
             #lightbox_header {
                 #lightbox_header_text {
-                    height: 71px;
+                    height: auto;
                     padding-right: 20px;
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         font-size: 14px;
                         height: 101px;
                         .title_description {
@@ -1025,7 +1034,7 @@
             }
 
             .lightbox_content {
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     top: 142px;
                 }
             }
@@ -1046,7 +1055,7 @@
             max-height: 279px;
         }
 
-        @media (max-width: 560px) {
+        @include mixins_n_extends.mobile {
             max-height: initial;
         }
 
@@ -1097,7 +1106,7 @@
                 margin-top: 16px;
                 font-size: 13px;
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     .dropdown_description {
                         display: none;
                     }
@@ -1118,7 +1127,7 @@
                         margin-top: -5px;
                         margin-left: 10px;
                         width: 170px;
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             width: 112px;
                         }
                         @media (max-width: 360px) {
@@ -1137,7 +1146,7 @@
 
         table {
             margin: 19px 0;
-            @media (max-width: 560px) {
+            @include mixins_n_extends.mobile {
                 margin: 5px 0 5px 0;
             }
 
@@ -1145,7 +1154,7 @@
                 padding-left: 10px;
                 padding-right: 10px;
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     &:not(:first-child) {
                         display: none;
                     }
@@ -1159,7 +1168,7 @@
                         padding-right: 52px;
                         position: relative;
 
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             display: block;
                         }
 
@@ -1227,7 +1236,7 @@
             max-height: 308px !important;
         }
 
-        @media (max-width: 560px) {
+        @include mixins_n_extends.mobile {
             max-height: initial !important;
         }
     }
@@ -1275,6 +1284,25 @@
 
             .toggle_wrap {
                 float: right;
+            }
+        }
+
+        .settings_section {
+            width: 100%;
+            display: table;
+
+            .settings_cell {
+                display: table-cell;
+                width: 50%;
+
+                .setting_title {
+                    font-size: 16px;
+                    font-weight: vars.$bold;
+                }
+
+                .setting_description {
+                    font-size: 11px;
+                }
             }
         }
     }
@@ -1438,7 +1466,7 @@
     /* DELETE TOPIC LIGHTBOX */
     #lightbox.id_signing.delete_topic {
 
-        @media (max-width: 560px) {
+        @include mixins_n_extends.mobile {
             top: 0;
             bottom: 0;
             right: 0;
@@ -1455,7 +1483,7 @@
         }
 
         #lightbox_wrap {
-            @media (max-width: 560px) {
+            @include mixins_n_extends.mobile {
                 padding: 0;
             }
 
@@ -1468,14 +1496,14 @@
                     bottom: 0;
                 }
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     border-radius: 0 !important;
                     display: block !important;
                 }
 
                 .first_header {
                     display: none;
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         display: block;
                     }
                 }
@@ -1486,7 +1514,7 @@
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     border-radius: 0;
                     bottom: 0;
                     right: 0;
@@ -1505,7 +1533,7 @@
                     border-top-left-radius: 4px;
                     border-top-right-radius: 4px;
 
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         background: vars.$light_gray;
                         padding-top: 40px;
                         border-radius: 0;
@@ -1538,7 +1566,7 @@
                         top: 0;
                         height: 54px;
                         position: absolute;
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             display: none;
                         }
                     }
@@ -1567,14 +1595,14 @@
 
                     }
 
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         width: 100%;
                         box-sizing: border-box;
                         padding: 0 20px;
                     }
 
                     .delete_info_text_wrap {
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             margin-bottom: 124px;
                         }
 
@@ -1608,7 +1636,7 @@
                             padding-left: 5px;
                         }
 
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             position: fixed;
                             bottom: 10px;
                             left: 0;
@@ -1657,7 +1685,7 @@
             transform: translate(-50%, 0);
         }
 
-        @media (max-width: 560px) {
+        @include mixins_n_extends.mobile {
             width: 100%;
             top: 0;
         }
@@ -1671,7 +1699,7 @@
                 float: right;
                 cursor: pointer;
                 border-radius: 0 4px 0 0;
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     border-radius: 0
                 }
 
@@ -1685,20 +1713,20 @@
 
             }
 
-            @media (max-width: 560px) {
+            @include mixins_n_extends.mobile {
                 padding: 0;
             }
 
             #lightbox_header {
                 width: 100%;
-                height: 54px;
+                height: auto;
                 background: vars.$white;
                 border-radius: 4px 4px 0 0;
                 display: table;
                 box-sizing: border-box;
                 color: vars.$medium_black;
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     border-radius: 0
                 }
 
@@ -1716,13 +1744,17 @@
                 font-size: 14px;
                 overflow: hidden;
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     border-radius: 0
                 }
 
                 #sign_up_lightbox {
                     input {
                         height: 40px;
+                    }
+
+                    .settings_section {
+                        padding-top: 20px;
                     }
                 }
 
@@ -1795,7 +1827,7 @@
                     .profile_image_wrapper {
                         margin-left: 38px;
 
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             width: 100%;
                             margin-left: 20px;
                             margin-right: 20px;
@@ -1820,13 +1852,13 @@
                             opacity: .69;
                         }
 
-                        @media (max-width: 560px) {
+                        @include mixins_n_extends.mobile {
                             //text-align: center;
                             margin-left: 20px;
                         }
                     }
 
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         width: 100%;
                         position: relative;
                     }
@@ -1836,7 +1868,7 @@
                     position: relative;
                     display: inline-block;
                     height: 197px;
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         display: none;
                     }
                 }
@@ -1848,7 +1880,7 @@
                     margin-right: 20px;
                     position: absolute;
 
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         position: relative;
                         margin-left: 0;
                         margin-right: 0;
@@ -2030,7 +2062,7 @@
         padding-top: 0 !important;
         padding-bottom: 0 !important;
 
-        @media (max-width: 560px) {
+        @include mixins_n_extends.mobile {
             overflow: auto !important;
         }
 
@@ -2051,12 +2083,12 @@
                     max-height: min-content;
                 }
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     max-height: min-content !important;
                 }
             }
 
-            @media (max-width: 560px) {
+            @include mixins_n_extends.mobile {
                 max-height: initial;
                 padding-bottom: 20px !important;
             }
@@ -2162,7 +2194,7 @@
 
                 }
 
-                @media (max-width: 560px) {
+                @include mixins_n_extends.mobile {
                     display: block;
 
                     &:last-child {
@@ -2229,7 +2261,7 @@
                 .toggle_widget {
                     position: relative;
                     float: right;
-                    @media (max-width: 560px) {
+                    @include mixins_n_extends.mobile {
                         float: none;
                         margin-left: 20px;
                         margin-top: 10px;
@@ -2246,7 +2278,7 @@
 
                             .setting_title {
                                 margin-bottom: 15px;
-                                @media (max-width: 560px) {
+                                @include mixins_n_extends.mobile {
                                     margin-bottom: -1px;
                                 }
                             }
@@ -2262,7 +2294,7 @@
                                 float: left;
                             }
 
-                            @media (max-width: 560px) {
+                            @include mixins_n_extends.mobile {
                                 width: 100%;
                                 padding-bottom: 14px;
                                 .button_holder {
@@ -2287,7 +2319,7 @@
                         }
 
                         &:last-child {
-                            @media (max-width: 560px) {
+                            @include mixins_n_extends.mobile {
                                 position: absolute;
                                 top: 50px;
                                 right: 0;
@@ -2319,7 +2351,7 @@
         padding-bottom: 0 !important;
         overflow: hidden !important;
 
-        @media (max-width: 560px) {
+        @include mixins_n_extends.mobile {
             overflow: auto !important;
         }
 
@@ -2333,7 +2365,7 @@
                 max-height: 279px;
             }
 
-            @media (max-width: 560px) {
+            @include mixins_n_extends.mobile {
                 max-height: initial;
                 padding-bottom: 40px !important;
             }
@@ -2440,7 +2472,7 @@
 
     .lightbox_content {
         overflow: initial !important;
-        @media (max-width: 560px) {
+        @include mixins_n_extends.mobile {
             overflow: auto !important;
         }
     }
@@ -2550,7 +2582,7 @@
 
     }
 
-    @media (max-width: 560px) {
+    @include mixins_n_extends.mobile {
         .mobile_only {
             display: block;
         }

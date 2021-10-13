@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
                                             <div class="table_cell search_item_text">
-                                                <b>{{user.name}}</b> {{user.company}}
+                                                <b>{{user.name}}</b> {{user.email}}
                                             </div>
                                             <div class="table_cell blue_link">
                                                 <span class="submit_link" ng-click="addTopicMemberUser(user)" translate="MODALS.TOPIC_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
@@ -397,22 +397,20 @@
                     </div>
                 </div>
 
-                <!-- FIXME: Social links -->
-                <!--div class="lightbox_section social_sharing" ng-if="topic.canUpdate()">
+                <div class="lightbox_section social_sharing" ng-if="topic.canUpdate()">
                     <h3 ng-translate="MODALS.TOPIC_SETTINGS_HEADING_SOCIAL_SHARING">Social sharing</h3>
-                    <a href=""><div class="sprite sprite-icon-social-facebook-v2"></div></a>
-                    <a href=""><div class="sprite sprite-icon-social-linkedin-v2"></div></a>
-                    <a href=""><div class="sprite sprite-icon-social-twitter-v2"></div></a>
-                </div-->
+                    <a href="#" socialshare socialshare-provider="facebook" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-facebook-v2"></div></a>
+                    <a href="#" socialshare socialshare-provider="linkedin" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-linkedin-v2"></div></a>
+                    <a href="#" socialshare socialshare-provider="twitter" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-twitter-v2"></div></a>
+                </div>
 
-                <!-- FIXME: PDF download -->
-                <!--div class="lightbox_section" ng-if="topic.canUpdate()">
+                <div class="lightbox_section" ng-if="topic.canUpdate()">
                     <h3 ng-translate="MODALS.TOPIC_SETTINGS_HEADING_QR_SHARING">QR sharing</h3>
                     <div class="qr_code">
                         <qrcode data="{{form.urlJoin}}" size="120" version="4" error-correction-level="L" download class="qr_img"></qrcode>
                     </div>
-                    <a href="#fixme" class="table_cell" ng-translate="MODALS.TOPIC_SETTINGS_LINK_QR_CODE_PDF">Download QR code PDF</a>
-                </div-->
+                    <!--a href="#fixme" class="table_cell" ng-translate="MODALS.TOPIC_SETTINGS_LINK_QR_CODE_PDF">Download QR code PDF</a-->
+                </div>
 
             </div>
 

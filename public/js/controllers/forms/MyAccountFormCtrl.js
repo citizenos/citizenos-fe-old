@@ -12,7 +12,10 @@ angular
             password: null,
             company: null,
             imageUrl: null,
-            passwordConfirm: null
+            passwordConfirm: null,
+            preferences: {
+                showInSearch: false
+            }
         };
 
         $scope.imageFile = null;
@@ -50,13 +53,13 @@ angular
                     .then(function (url) {
                         $scope.form.imageUrl = url;
                         sUser
-                            .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, url)
+                            .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, url, $scope.form.preferences)
                             .then(success, error);
                     });
 
             } else {
                 sUser
-                    .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, $scope.form.imageUrl)
+                    .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, $scope.form.imageUrl, $scope.form.preferences)
                     .then(success, error);
             }
         };

@@ -58,7 +58,7 @@ angular
                 } else {
                     var include = ['my.group', 'public.user'];
                     sSearch
-                        .searchV2(str, {include: include})
+                        .search(str, {include: include})
                         .then(function (response) {
                             $scope.searchResults.users = [];
                             $scope.searchResults.groups = [];
