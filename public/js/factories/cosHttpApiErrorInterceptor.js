@@ -28,6 +28,7 @@ angular
          * @param {object} errorResponse Response object
          */
         var errorsToKeys = function (errorResponse) {
+            console.log('ERRORS TO KEYS', arguments);
             if (!errorResponse) {
                 throw new Error('cosHttpApiErrorInterceptor.errorsToKeys()', 'Missing one or more required parameters', arguments);
             }
@@ -132,7 +133,7 @@ angular
             },
             'responseError': function (response) {
                 sNotification.removeAll();
-                if (response.config.url.match(API_REQUEST_REGEX) && response) {
+                if (response.config.url.match(API_REQUEST_REGEX) && response && response.config && response.config.params && !response.config.params.__doNotDisplayErrors) {
                     try {
                         errorsToKeys(response);
                     } catch (err) {

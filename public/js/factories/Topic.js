@@ -48,6 +48,17 @@ angular
                         }
                     }
                 },
+                getByToken: {
+                    method: 'GET',
+                    url: sLocation.getAbsoluteUrlApi('/api/topics/join/:token'),
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status > 0 && status < 400) {
+                            return angular.fromJson(data).data;
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
+                },
                 query: {
                     isArray: true,
                     transformResponse: function (data, headerGetter, status) {
