@@ -220,7 +220,7 @@
     "MY_ACCOUNT_TAB_PREFERENCES": "Preferências",
     "MY_ACCOUNT_TAB_ACCOUNT": "Conta",
     "MY_ACCOUNT_LBL_SHOW_IN_SEARCH": "Exibir meu perfil nos resultados de pesquisa",
-    "MY_ACCOUNT_LBL_SHOW_IN_SEARCH_DESCRIPTION": "Display my name and e-mail in invite search results so that other people can easily invite me to groups and topics",
+    "MY_ACCOUNT_LBL_SHOW_IN_SEARCH_DESCRIPTION": "Exibir meu nome e e-mail nos resultados da pesquisa dos convites para que outras pessoas possam me convidar para grupos e tópicos",
     "PASSWORD_FORGOT_HEADING": "Esqueceu sua senha?",
     "PASSWORD_FORGOT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "PASSWORD_FORGOT_SEND_RESET": "Enviar código de redefinição",
