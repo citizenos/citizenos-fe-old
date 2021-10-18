@@ -435,7 +435,7 @@
     "DUPLICATE_TOPIC_CONFIRM_TXT_DISCUSSIONS": "Diskussionen (Argumente, Antworten)",
     "DUPLICATE_TOPIC_CONFIRM_TXT_RELATED_INFO": "zugehörige Informationen (Themenstatus, angehefteter Status)",
     "DUPLICATE_TOPIC_CONFIRM_TXT_VOTES": "Stimmen",
-    "DUPLICATE_TOPIC_CONFIRM_TXT_FOLLOW_UP_POSTS": "follow-up posts",
+    "DUPLICATE_TOPIC_CONFIRM_TXT_FOLLOW_UP_POSTS": "Folgebeiträge",
     "DUPLICATE_TOPIC_CONFIRM_BTN_NO": "@:LNK_CANCEL",
     "DUPLICATE_TOPIC_CONFIRM__BTN_YES": "@:BTN_YES"
   },
