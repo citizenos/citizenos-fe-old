@@ -435,7 +435,7 @@
     "DUPLICATE_TOPIC_CONFIRM_TXT_DISCUSSIONS": "обговорення (аргументи, відповіді)",
     "DUPLICATE_TOPIC_CONFIRM_TXT_RELATED_INFO": "пов'язана інформація (статус теми, закріплений статус)",
     "DUPLICATE_TOPIC_CONFIRM_TXT_VOTES": "голосування",
-    "DUPLICATE_TOPIC_CONFIRM_TXT_FOLLOW_UP_POSTS": "наступні публікації",
+    "DUPLICATE_TOPIC_CONFIRM_TXT_FOLLOW_UP_POSTS": "публікації щодо реалізації рішення",
     "DUPLICATE_TOPIC_CONFIRM_BTN_NO": "@:LNK_CANCEL",
     "DUPLICATE_TOPIC_CONFIRM__BTN_YES": "@:BTN_YES"
   },
