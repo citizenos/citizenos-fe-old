@@ -426,7 +426,7 @@
     "DUPLICATE_TOPIC_CONFIRM_HEADING": "Kas soovid kindlasti seda teemat dubleerida?",
     "DUPLICATE_TOPIC_CONFIRM_HEADING_DESCRIPTION": "See loob uue privaatse teema, mille olek on \"ühisloomes\"",
     "DUPLICATE_TOPIC_CONFIRM_HEADING_WILL_BE_DUPLICATED": "See sisu dubleeritakse:",
-    "DUPLICATE_TOPIC_CONFIRM_TXT_COPY_TOPIC_CONTENT": "teema sisu praegusel kujul (koos piltide, allmärkuste, kommentaaride ja minihäältega)",
+    "DUPLICATE_TOPIC_CONFIRM_TXT_COPY_TOPIC_CONTENT": "teema sisu praegusel kujul (koos piltide, allmärkuste, kommentaaride ja minihääletustega)",
     "DUPLICATE_TOPIC_CONFIRM_TXT_COPY_ATTACHMENTS": "kõik manused",
     "DUPLICATE_TOPIC_CONFIRM_HEADING_WILL_NOT_BE_DUPLICATED": "Seda sisu ei dubleerita:",
     "DUPLICATE_TOPIC_CONFIRM_TXT_SETTINGS": "seaded (avalik/privaatne, hääletussüsteemid, teemaviited jne)",
@@ -435,7 +435,7 @@
     "DUPLICATE_TOPIC_CONFIRM_TXT_DISCUSSIONS": "arutelud (argumendid, vastused)",
     "DUPLICATE_TOPIC_CONFIRM_TXT_RELATED_INFO": "seotud teave (teema olek, esiletõstetud olek)",
     "DUPLICATE_TOPIC_CONFIRM_TXT_VOTES": "hääled",
-    "DUPLICATE_TOPIC_CONFIRM_TXT_FOLLOW_UP_POSTS": "järelteabe postitused",
+    "DUPLICATE_TOPIC_CONFIRM_TXT_FOLLOW_UP_POSTS": "jätkupostitused",
     "DUPLICATE_TOPIC_CONFIRM_BTN_NO": "@:LNK_CANCEL",
     "DUPLICATE_TOPIC_CONFIRM__BTN_YES": "@:BTN_YES"
   },
