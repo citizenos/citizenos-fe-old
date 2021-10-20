@@ -220,7 +220,7 @@
     "MY_ACCOUNT_TAB_PREFERENCES": "Налаштування",
     "MY_ACCOUNT_TAB_ACCOUNT": "Обліковий запис",
     "MY_ACCOUNT_LBL_SHOW_IN_SEARCH": "Показувати мій профіль в результатах пошуку",
-    "MY_ACCOUNT_LBL_SHOW_IN_SEARCH_DESCRIPTION": "Показувати моє ім'я та e-mail у результатах пошуку, щоб інші користувачі могли легко запросити мене до груп і тем",
+    "MY_ACCOUNT_LBL_SHOW_IN_SEARCH_DESCRIPTION": "Показувати мої ім'я та електронну пошту у результатах пошуку, щоб інші користувачі могли легко запрошувати мене до груп і тем",
     "PASSWORD_FORGOT_HEADING": "Забули Ваш пароль?",
     "PASSWORD_FORGOT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "PASSWORD_FORGOT_SEND_RESET": "Відправити код скидання",
