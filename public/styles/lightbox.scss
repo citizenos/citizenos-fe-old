@@ -206,13 +206,73 @@
 
                 @include mixins_n_extends.mobile {
                     padding-bottom: 38px;
+                    position: initial!important;
                 }
 
                 .lightbox_section {
+                    display: table;
+                    width: 100%;
                     padding: 20px 0 !important;
 
                     @include mixins_n_extends.mobile {
                         padding-top: 10px !important;
+                    }
+                    .input_row {
+                        input {
+                            width: auto;
+                        }
+
+                        .time_input {
+                            width: 50px;
+                            height: 41px;
+                            border: 1px solid #e5e5e5;
+                            border-radius: 4px;
+                            vertical-align: middle;
+                            -webkit-appearance: textfield;
+                            appearance: textfield;
+                            -moz-appearance: textfield;
+                            text-align: center;
+                            margin-top: 0;
+                        }
+
+                        .classic_dropdown {
+                            margin-left: 20px;
+                        }
+
+                        .timezone_dropdown {
+                            margin-left: 0;
+                        }
+                    }
+                    .left_row {
+                        padding-right: 10px;
+                        @media (max-width: 1200px) {
+                            padding: 0;
+                        }
+                        @media (max-width: 1024px) {
+                            padding-right: 10px;
+                        }
+                        @media (max-width: 600px) {
+                            padding: 0;
+                        }
+
+                        .icon_cell {
+                            display: table-cell;
+                            width: 33%;
+
+                            .icon_wrapper {
+                                padding-top: 10px;
+                                width: min-content;
+                                margin-left: auto;
+                                margin-right: auto;
+                                left: 0;
+                                right: 0;
+                            }
+                        }
+
+                    }
+
+                    .right_row {
+                        padding-left: 20px;
                     }
 
                 }

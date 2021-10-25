@@ -1,6 +1,6 @@
 <div class="line lightest_line"></div>
 <div id="root_lightbox" class="full_screen">
-    <div id="lightbox" class="date_picker_wrap">
+    <div id="lightbox" class="date_picker_wrap wide_lightbox">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
@@ -29,40 +29,134 @@
 
                 <div class="lightbox_section picker_content">
 
-                    <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
-
-                    <div class="bubble_content">
-
-                        <div class="bubble_section">
-                            <div class="bubble_title" translate="DIRECTIVES.COS_MODAL_DATEPICKER.LBL_DEADLINE">Deadline</div>
-                            <div class="bubble_description">
-                                <div ng-if="cosModalIsDateSelected">
-                                    <div class="picker_deadline_date">
-                                        {{cosModelValue | amDateFormat:'L'}}
-                                    </div>
-                                    <div class="picker_days_left">
-                                        {{cosModelValue | amDifference : null : 'days'}}
-                                    </div>
-                                </div>&nbsp;<!-- Fix for padding when datepicker is not shown, could use a better fix tho -->
-                                <div class="clearer"></div>
-                            </div>
+                    <div class="gray_toggle_box">
+                        <div class="table_cell">
+                            <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DEADLINE">Deadline</div>
                         </div>
+                        <div class="table_cell">
+                            <div cos-toggle ng-model="cosModalIsDateSelected" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></div>
+                        </div>
+                    </div>
+                    <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes ten_px_padding" ng-if="cosModalIsDateSelected">
+                        <div class="left_row add_bottom_borders">
+                            <div class="picker_content active">
+                                <div class="bubble_content">
 
-                        <div ng-if="cosModalIsDateSelected" class="line lightest_line"></div>
+                                    <div class="bubble_section">
 
-                        <div ng-if="cosModalIsDateSelected" date-picker="$parent.cosModelValue" min-date="$parent.datePickerMin" max-view="date" min-view="date" template="/views/directives/date_picker.html"></div>
+                                        <div class="bubble_description">
+                                            <div class="picker_deadline_date">
+                                                {{form.deadline | amDateFormat:'MM.DD.YYYY HH:mm Z'}}
+                                            </div>
+                                            <div class="picker_days_left" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT"
+                                                translate-values="{numberOfDaysLeft: daysToVoteEnd()}">0 days left
+                                            </div>
+                                            <div class="clearer"></div>
+                                        </div>
+                                    </div>
+                                    <div class="double_cell_layout">
+                                        <div class="left_row gray_toggle_box">
+                                            <div class="set_vote_time_wrap">
+                                                <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_TIME">Set a time</div>
+                                                <div class="input_row">
+                                                    <input class="time_input" ng-model="form.endsAt.h" ng-change="formatTime(form.endsAt.h); setEndsAtTime()" type="number" min="0" max="{{HCount}}" step="1"/><span class="time_separator">:</span><input type="number" class="time_input" min="0" max="60" step="5" ng-model="form.endsAt.min" ng-change="formatTime(form.endsAt.min);setEndsAtTime()" />
 
-                        <div class="bubble_section date_save_buttons">
-                            <div class="blue_button" ng-click="cosModalSaveAction()" translate="DIRECTIVES.COS_MODAL_DATEPICKER.BTN_SAVE">Save</div>
-                            <div class="blue_link_wrapper" ng-click="cosModalClose()">
-                                <div class="blue_link" translate="DIRECTIVES.COS_MODAL_DATEPICKER.BTN_CANCEL">Cancel</div>
+                                                    <div cos-dropdown class="classic_dropdown">
+
+                                                        <div class="dropdown_selection">
+                                                            <div class="dropdown_text">
+                                                                {{'VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_'+form.endsAt.timeFormat | uppercase | translate}}
+                                                            </div>
+
+                                                            <div class="arrow_holder">
+                                                                <div class="table_cell">
+                                                                    <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                                    <div class="v_line"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="dropdown">
+
+                                                            <div class="dropdown_item">
+
+                                                                <div class="item_names_wrap">
+                                                                    <div class="item_name" translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_24" ng-click="form.endsAt.timeFormat = 24; setTimeFormat()">
+                                                                        24 hr clock
+                                                                    </div>
+                                                                    <div class="item_name"translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_AM" ng-click="form.endsAt.timeFormat = 'AM'; setTimeFormat()">
+                                                                        AM
+                                                                    </div>
+                                                                    <div class="item_name"translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_PM" ng-click="form.endsAt.timeFormat = 'PM'; setTimeFormat()">
+                                                                        PM
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearer"></div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="set_vote_timezone_wrap">
+                                                <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_TIMEZONE">Set a time</div>
+                                                <div class="input_row">
+                                                    <div cos-dropdown class="classic_dropdown timezone_dropdown">
+
+                                                        <div class="dropdown_selection">
+                                                            <div class="dropdown_text">
+                                                                {{getTimeZoneName(form.endsAt.timezone)}}
+                                                            </div>
+
+                                                            <div class="arrow_holder">
+                                                                <div class="table_cell">
+                                                                    <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                                    <div class="v_line"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="dropdown">
+
+                                                            <div class="dropdown_item" ng-class="zone === form.endsAt.timezone ? 'bold' : ''"  ng-repeat="zone in timezones">
+                                                                <div class="item_names_wrap">
+                                                                    <div class="item_name" ng-click="form.endsAt.timezone = zone.value;setEndsAtTime()">
+                                                                        {{zone.name}}
+                                                                    </div>
+                                                                </div>
+                                                                <!--div class="item_props">
+                                                                    404 topics
+                                                                </div-->
+                                                                <div class="clearer"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right_row gray_toggle_box">
+                                                <div class="toggle_box_title datepicker_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_DATE">Set date</div>
+                                                <div class="date_picker_wrap" date-picker="form.endsAt.date" min-date="datePickerMin" max-view="date" min-view="date"
+                                                    template="/views/directives/date_picker.html"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
+            <div class="lightbox_footer">
+                <div class="line lightest_line"></div>
+                <div class="blue_button_wrap">
+                    <div class="blue_button" ng-click="cosModalSaveAction()" translate="DIRECTIVES.COS_MODAL_DATEPICKER.BTN_SAVE">Save</div>
+                    <div class="blue_button no" ng-click="cosModalClose()" translate="DIRECTIVES.COS_MODAL_DATEPICKER.BTN_CANCEL">Cancel</div>
+                </div>
+            </div>
         </div>
     </div>
 
