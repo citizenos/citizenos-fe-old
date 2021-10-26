@@ -1,3 +1,7 @@
+## 2021-10-25
+
+* In topic view changed "Settings" to "Actions". Altered "Leave topic" confirmation modal to be more descriptive of what that action does
+
 ## 2021-10-04
 
 * FIX - Overview menu item overlaps other menu items in mobile view - /my/topics/:topicId - https://github.com/citizenos/citizenos-fe/issues/779

@@ -7,7 +7,7 @@
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SETTINGS"></div>
+                    <div class="title" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_ACTIONS"></div>
                     <div class="title_description">{{form.topic.title}}</div>
                 </div>
 
@@ -24,7 +24,7 @@
                     <div class="header_row" slide-controller identifier="topicSettingsSlider">
                         <div class="tab_button" ng-click="selectTab('settings')" ng-class="tabSelected === 'settings' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
-                                <div class="tab_button_text" translate="MODALS.TOPIC_SETTINGS_TAB_SETTINGS">SETTINGS</div>
+                                <div class="tab_button_text" translate="MODALS.TOPIC_SETTINGS_TAB_SETTINGS">ACTIONS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_DEADLINE_EXT">WHEN THE DEADLINE IS REACHED, THE TOPIC WILL BE CLOSED</div>
                         </div>
                         <div class="settings_cell text-right">
-                            <span class="bold">{{form.topic.vote.endsAt | amDateFormat:'L'}}</span>
+                            <span class="bold">{{form.topic.vote.endsAt | amDateFormat:'MM.DD.YYYY HH:mm Z'}}</span>
                         </div>
                         <div class="settings_cell">
                             <div class="gray_button edit_deadline_button" cos-modal-datepicker ng-model="form.topic.vote.endsAt" cos-modal-on-save="doEditVoteDeadline" cos-modal-title="'MODALS.TOPIC_SETTINGS_MODAL_DEADLINE_TITLE'" cos-modal-description="'MODALS.TOPIC_SETTINGS_MODAL_DEADLINE_DESCRIPTION'"><span translate="MODALS.TOPIC_SETTINGS_BTN_EDIT_DEADLINE">Edit deadline</span></div>
