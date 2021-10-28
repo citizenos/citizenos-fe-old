@@ -147,6 +147,13 @@
                 @media (max-width: 621px) {
                     padding-top: 20px;
                 }
+                .comment_link_input {
+                    z-index: -999;
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    border: none;
+                }
 
                 .argument_wrap {
 
