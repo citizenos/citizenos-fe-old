@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sNotification', ['$log', function ($log) {
+    .service('sNotification', ['$timeout', function ($timeout) {
         var sNotification = this;
 
         sNotification.levels = {
@@ -56,6 +56,23 @@ angular
                 content: content
             }
         };
+
+        sNotification.inline = function (text, X, Y) {
+            var el = document.createElement("div");
+            el.className = 'inline-message';
+            el.innerText = text;
+            el.style.left = X + 'px';
+            el.style.top = Y + 'px';
+
+            document.body.appendChild(el);
+            $timeout(function () {
+                el.classList.add('no-opacity');
+            }, 300);
+
+            $timeout(function () {
+                el.remove();
+            }, 1000);
+        }
 
         return sNotification;
     }]);

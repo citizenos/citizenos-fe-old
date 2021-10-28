@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicCommentCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$translate', '$q', 'ngDialog', 'sLocation', 'TopicComment', function ($scope, $state, $stateParams, $timeout, $log, $translate, $q, ngDialog, sLocation, TopicComment) {
+    .controller('TopicCommentCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$translate', '$q', 'ngDialog', 'sLocation', 'sNotification', 'TopicComment', function ($scope, $state, $stateParams, $timeout, $log, $translate, $q, ngDialog, sLocation, sNotification, TopicComment) {
         $log.debug('TopicCommentCtrl', $scope, $scope.topic, $stateParams.topicId);
 
         $scope.topic = $scope.topic || {id: $stateParams.topicId};
@@ -439,7 +439,23 @@ angular
         };
 
         $scope.getCommentUrl = function (commentIdWithVersion) {
-            return sLocation.getAbsoluteUrl('/', null, {commentId: commentIdWithVersion});
+            return sLocation.getAbsoluteUrl('/topics/:topicId', {topicId: $scope.topic.id},{ commentId: commentIdWithVersion});
+        };
+
+        $scope.copyCommentLink = function (mainid, version, event) {
+            var id = mainid + '_v'+(version);
+            var urlInputElement = document.getElementById('comment_link_input_'+id);
+            var url = $scope.getCommentUrl(id);
+            urlInputElement.value = url;
+            urlInputElement.focus();
+            urlInputElement.select();
+            urlInputElement.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+
+            var X = event.pageX;
+	        var Y = event.pageY;
+
+            sNotification.inline($translate.instant('VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_COPIED'), X, Y-35);
         };
 
         $scope.goToParentComment = function (rootComment, parent, $event) {
