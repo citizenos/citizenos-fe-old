@@ -442,8 +442,8 @@ angular
             return sLocation.getAbsoluteUrl('/topics/:topicId', {topicId: $scope.topic.id},{ commentId: commentIdWithVersion});
         };
 
-        $scope.copyCommentLink = function (comment, event) {
-            var id = comment.id + '_v'+(comment.edits.length-1);
+        $scope.copyCommentLink = function (mainid, version, event) {
+            var id = mainid + '_v'+(version);
             var urlInputElement = document.getElementById('comment_link_input_'+id);
             var url = $scope.getCommentUrl(id);
             urlInputElement.value = url;
