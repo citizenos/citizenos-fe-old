@@ -106,37 +106,38 @@
                                     View previous versions
                                 </div>
                             </div>
-                            <div ng-if="::comment.canEdit()" class="line_wrap">
-                                <div class="table_cell">
-                                    <div class="v_line"></div>
-                                </div>
-                            </div>
-                            <div ng-if="::comment.canEdit()" class="argument_header_widget underline_link">
-                                <div class="table_cell" ng-click="commentEditMode(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_EDIT">
-                                    Edit
-                                </div>
-                            </div>
-                            <div ng-if="::comment.canDelete()" class="line_wrap">
-                                <div class="table_cell">
-                                    <div class="v_line"></div>
-                                </div>
-                            </div>
-                            <div ng-if="::comment.canDelete()" class="argument_header_widget underline_link" ng-click="doShowDeleteComment(comment)">
-                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">
-                                    Delete
-                                </div>
-                            </div>
                             <div class="line_wrap">
                                 <div class="table_cell">
                                     <div class="v_line"></div>
                                 </div>
                             </div>
-                            <div class="argument_header_widget underline_link">
-                                <div class="table_cell">
-                                    <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(comment.id, comment.edits.length-1)})" ng-click="goToComment(getCommentIdWithVersion(comment.id, comment.edits.length-1), $event)" translate="LNK_DIRECT_LINK">link</a>
+                            <div class="table_cell">
+                                <div cos-dropdown class="classic_dropdown borderless_dropdown">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text data_item">
+                                            Actions
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <!-- NO CATEGORY -->
+                                        <div class="dropdown_item">
+                                            <div ng-if="::comment.canEdit()" class="item_name" ng-click="commentEditMode(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_EDIT">Edit</div>
+                                            <div ng-if="::comment.canDelete()" class="item_name" ng-click="doShowDeleteComment(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">Delete</div>
+                                            <div class="item_name" ng-click="copyCommentLink(comment.id, (comment.edits.length-1), $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{comment.id + '_v'+(comment.edits.length-1)}}" value=""/></div>
+                                            <div class="item_name" ng-if="app.user.loggedIn" ng-click="doCommentReport(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_REPORT">Report</div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-
                             <div class="clearer"></div>
                         </div>
                         <!-- END COMMENT HEADER -->
@@ -283,7 +284,7 @@
                                 </div>
                                 <div class="argument_header_widget">
                                     <div class="table_cell">
-                                        <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(comment.id, version)})" ng-click="goToComment(getCommentIdWithVersion(comment.id, version), $event)" translate="LNK_DIRECT_LINK">link</a>
+                                        <a href="#"  ng-click="copyCommentLink(comment.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{comment.id + '_v'+version}}" value=""/></a>
                                     </div>
                                 </div>
                                 <div class="clearer"></div>
@@ -327,19 +328,6 @@
                                     </div>
                                     <div class="table_cell comment_vote_count" ng-click="doShowVotersList(comment)">
                                         {{comment.votes.down.count}}
-                                    </div>
-                                </div>
-                                <div class="line_wrap" ng-if="app.user.loggedIn">
-                                    <div class="table_cell">
-                                        <div class="v_line"></div>
-                                    </div>
-                                </div>
-                                <div class="exclamation" ng-if="app.user.loggedIn" ng-click="doCommentReport(comment)">
-                                    <div class="table_cell">
-                                        <div class="sprite mobile_fix sprite-icon-reportmessage-default2x">
-                                        </div>
-                                        <div class="sprite desktop_fix sprite-icon-reportmessage-default2x">
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -448,34 +436,36 @@
                                     View previous versions
                                 </div>
                             </div>
-                            <div ng-if="reply.canEdit()" class="line_wrap">
-                                <div class="table_cell">
-                                    <div class="v_line"></div>
-                                </div>
-                            </div>
-                            <div ng-if="reply.canEdit()" class="argument_header_widget underline_link">
-                                <div class="table_cell" ng-click="commentEditMode(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_EDIT">
-                                    Edit
-                                </div>
-                            </div>
-                            <div ng-if="reply.canDelete()" class="line_wrap">
-                                <div class="table_cell">
-                                    <div class="v_line"></div>
-                                </div>
-                            </div>
-                            <div ng-if="reply.canDelete()" class="argument_header_widget underline_link" ng-click="doShowDeleteReply(reply)">
-                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">
-                                    Delete
-                                </div>
-                            </div>
                             <div class="line_wrap">
                                 <div class="table_cell">
                                     <div class="v_line"></div>
                                 </div>
                             </div>
-                            <div class="argument_header_widget underline_link">
-                                <div class="table_cell">
-                                    <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.id, reply.edits.length-1)})" ng-click="goToComment(getCommentIdWithVersion(reply.id, reply.edits.length-1), $event)" translate="LNK_DIRECT_LINK">link</a>
+                            <div class="table_cell">
+                                <div cos-dropdown class="classic_dropdown borderless_dropdown">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text data_item">
+                                            Actions
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <!-- NO CATEGORY -->
+                                        <div class="dropdown_item">
+                                            <div ng-if="::reply.canEdit()" class="item_name" ng-click="commentEditMode(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_EDIT">Edit</div>
+                                            <div ng-if="::reply.canDelete()" class="item_name" ng-click="doShowDeleteComment(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">Delete</div>
+                                            <div class="item_name" ng-click="copyCommentLink(reply.id, (reply.edits.length-1), $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{reply.id + '_v'+(reply.edits.length-1)}}" value=""/></div>
+                                            <div class="item_name" ng-if="app.user.loggedIn" ng-click="doCommentReport(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_REPORT">Report</div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="clearer"></div>
@@ -533,7 +523,7 @@
                                 </div>
                                 <div class="argument_header_widget">
                                     <div class="table_cell">
-                                        <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.id, version)})" ng-click="goToComment(getCommentIdWithVersion(reply.id, version), $event)"  translate="LNK_DIRECT_LINK">link</a>
+                                        <a href="#" ng-click="copyCommentLink(reply.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{reply.id + '_v'+version}}" value=""/></a>
                                     </div>
                                 </div>
                                 <div class="clearer"></div>
@@ -630,19 +620,6 @@
                                 </div>
                                 <div class="table_cell comment_vote_count" ng-click="doShowVotersList(reply)">
                                     {{reply.votes.down.count}}
-                                </div>
-                            </div>
-                            <div class="line_wrap" ng-if="app.user.loggedIn">
-                                <div class="table_cell">
-                                    <div class="v_line"></div>
-                                </div>
-                            </div>
-                            <div class="exclamation" ng-if="app.user.loggedIn" ng-click="doCommentReport(reply)">
-                                <div class="table_cell">
-                                    <div class="sprite mobile_fix sprite-icon-reportmessage-default2x">
-                                    </div>
-                                    <div class="sprite desktop_fix sprite-icon-reportmessage-default2x">
-                                    </div>
                                 </div>
                             </div>
                             <div class="clearer"></div>

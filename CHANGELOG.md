@@ -1,3 +1,7 @@
+## 2021-10-28
+
+* Update argument section. All actions are in dropdown, added copy direct link functionality to "direct link" - https://github.com/citizenos/citizenos-fe/issues/361
+
 ## 2021-10-25
 
 * In topic view changed "Settings" to "Actions". Altered "Leave topic" confirmation modal to be more descriptive of what that action does

@@ -3037,3 +3037,18 @@ a:link, a:visited {
     }
 
 }
+
+.inline-message {
+    position: absolute;
+    padding: 5px 20px;
+    background-color: vars.$dark_black;
+    z-index: 999999;
+    color: vars.$white;
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.no-opacity {
+    opacity: 0;
+}
