@@ -131,7 +131,7 @@
                                         <div class="dropdown_item">
                                             <div ng-if="::comment.canEdit()" class="item_name" ng-click="commentEditMode(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_EDIT">Edit</div>
                                             <div ng-if="::comment.canDelete()" class="item_name" ng-click="doShowDeleteComment(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">Delete</div>
-                                            <div class="item_name" ng-click="copyCommentLink(comment, $event)"><span>link</span><input class="comment_link_input" id="comment_link_input_{{comment.id + '_v'+(comment.edits.length-1)}}" value=""/></div>
+                                            <div class="item_name" ng-click="copyCommentLink(comment.id, (comment.edits.length-1), $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{comment.id + '_v'+(comment.edits.length-1)}}" value=""/></div>
                                             <div class="item_name" ng-if="app.user.loggedIn" ng-click="doCommentReport(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_REPORT">Report</div>
                                         </div>
                                     </div>
@@ -284,7 +284,7 @@
                                 </div>
                                 <div class="argument_header_widget">
                                     <div class="table_cell">
-                                        <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(comment.id, version)})" ng-click="goToComment(getCommentIdWithVersion(comment.id, version), $event)" translate="LNK_DIRECT_LINK">link</a>
+                                        <a href="#"  ng-click="copyCommentLink(comment.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{comment.id + '_v'+version}}" value=""/></a>
                                     </div>
                                 </div>
                                 <div class="clearer"></div>
@@ -461,7 +461,7 @@
                                         <div class="dropdown_item">
                                             <div ng-if="::reply.canEdit()" class="item_name" ng-click="commentEditMode(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_EDIT">Edit</div>
                                             <div ng-if="::reply.canDelete()" class="item_name" ng-click="doShowDeleteComment(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">Delete</div>
-                                            <div class="item_name" ng-click="copyCommentLink(reply, $event)"><span>link</span><input class="comment_link_input" id="comment_link_input_{{reply.id + '_v'+(reply.edits.length-1)}}" value=""/></div>
+                                            <div class="item_name" ng-click="copyCommentLink(reply.id, (reply.edits.length-1), $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{reply.id + '_v'+(reply.edits.length-1)}}" value=""/></div>
                                             <div class="item_name" ng-if="app.user.loggedIn" ng-click="doCommentReport(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_REPORT">Report</div>
                                         </div>
                                     </div>
@@ -523,7 +523,7 @@
                                 </div>
                                 <div class="argument_header_widget">
                                     <div class="table_cell">
-                                        <a href="#" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.id, version)})" ng-click="goToComment(getCommentIdWithVersion(reply.id, version), $event)"  translate="LNK_DIRECT_LINK">link</a>
+                                        <a href="#" ng-click="copyCommentLink(reply.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{reply.id + '_v'+version}}" value=""/></a>
                                     </div>
                                 </div>
                                 <div class="clearer"></div>
