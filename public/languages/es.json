@@ -469,7 +469,7 @@
   "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Search topics, groups…"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Buscar temas, grupos…"
     }
   },
   "DEFAULT": {
@@ -809,8 +809,8 @@
       "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "ver cambios",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
-      "ARGUMENT_LNK_COPIED": "Link copied",
-      "ARGUMENT_LNK_REPORT": "report",
+      "ARGUMENT_LNK_COPIED": "Enlace copiado",
+      "ARGUMENT_LNK_REPORT": "denunciar",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Edite el asunto del argumento…",
       "PLACEHOLDER_EDIT_ARGUMENT_TEXT": "Edite la respuesta aquí…",
       "ARGUMENT_EDIT_BTN_POST_AS_PRO": "@:VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_PRO",
