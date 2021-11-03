@@ -474,14 +474,14 @@
   },
   "DEFAULT": {
     "NAV": {
-      "LNK_LOG_IN_REGISTER": "Log in / Register to Citizen OS",
+      "LNK_LOG_IN_REGISTER": "Zaloguj się / Zarejestruj się w Citizen OS",
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
       "HEADING_TOPICS": "Tematy",
       "LNK_CREATE_TOPICS": "Utwórz temat",
       "LNK_MY_TOPICS": "Moje tematy",
       "LNK_PUBLIC_TOPICS": "Tematy publiczne",
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
-      "LNK_CREATE_GROUPS": "Create group",
+      "LNK_CREATE_GROUPS": "Utwórz grupę",
       "LNK_MY_GROUPS": "Moje grupy",
       "LNK_ABOUT": "O programie",
       "LNK_FAQ": "Najczęściej zadawane pytania",
@@ -569,7 +569,7 @@
       "HEADING_GET_INVOLVED": "Możesz zaangażować się przez",
       "MY_CREATING_A_NEW_TOPIC": "Tworzenie nowego tematu",
       "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
-      "NO_RESULTS_FOUND_TITLE": "No results found",
+      "NO_RESULTS_FOUND_TITLE": "Nie znaleziono",
       "NO_RESULTS_FOUND_DESCRIPTION": "We can’t display results for what you’re searching. Maybe try another search?",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "Pokaż wszystkie moje tematy",
