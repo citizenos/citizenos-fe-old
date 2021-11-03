@@ -1180,9 +1180,9 @@
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Wybrana liczba opcji nie pasuje do ustawień głosowania!",
   "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
   "MDEDITOR_TOOLTIP_BOLD": "Bold",
-  "MDEDITOR_TOOLTIP_ITALIC": "Italic",
-  "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Strikethrough",
-  "MDEDITOR_TOOLTIP_ORDERED_LIST": "Ordered List",
-  "MDEDITOR_TOOLTIP_UNORDERED_LIST": "Unordered List",
+  "MDEDITOR_TOOLTIP_ITALIC": "Kursywa",
+  "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Przekreślenie",
+  "MDEDITOR_TOOLTIP_ORDERED_LIST": "Lista uporządkowana",
+  "MDEDITOR_TOOLTIP_UNORDERED_LIST": "Lista nieuporządkowana",
   "MDEDITOR_TOOLTIP_PREVIEW": "Preview"
 }
