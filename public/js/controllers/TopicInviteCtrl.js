@@ -386,7 +386,6 @@ angular
         };
 
         $scope.generateJoinUrl = function () {
-            // FIXME: Level & slug!
             if ($scope.topic.join.token && $scope.topic.canUpdate()) {
                 $scope.form.urlJoin = sLocation.getAbsoluteUrl('/topics/join/' + $scope.topic.join.token);
             }

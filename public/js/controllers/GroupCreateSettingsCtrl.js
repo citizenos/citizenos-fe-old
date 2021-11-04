@@ -2,8 +2,9 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', function ($scope, $state, $stateParams, $timeout, $log, $location, sSearch, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser) {
+    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'ngDialog', 'sAuth', 'sSearch', 'sLocation', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', function ($scope, $state, $stateParams, $timeout, $log, $location, ngDialog, sAuth, sSearch, sLocation, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser, GroupJoin) {
         $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
+
         $scope.levels = {
             none: 0,
             read: 1,
@@ -31,7 +32,12 @@ angular
             // Group creation
             $scope.form = {
                 group: null,
-                inviteMessage: null
+                inviteMessage: null,
+                join: {
+                    level: null,
+                    token: null
+                },
+                joinUrl: null
             };
             if (!$stateParams.groupId) {
                 $scope.form.group = new Group({
@@ -46,6 +52,12 @@ angular
                 // Create a copy of parent scopes Group, so that while modifying we don't change parent state
                 $scope.form.group = angular.copy($scope.group);
             }
+
+            $scope.form.join = $scope.form.group.join;
+            if ($scope.form.join) {
+                $scope.generateJoinUrl();
+            }
+
             $scope.membersPage = 1;
             $scope.memberTopics = [];
             $scope.members = [];
@@ -64,7 +76,6 @@ angular
 
             $scope.errors = null;
         };
-        init();
 
         $scope.search = function (str, type) {
             if (str && str.length >= 2) {
@@ -124,7 +135,7 @@ angular
                 title: title,
                 groupLevel: newMemberTopicLevel
             });
-        }
+        };
 
         $scope.removeGroupMemberTopic = function (topic) {
             $scope.memberTopics.splice($scope.memberTopics.indexOf(topic), 1);
@@ -328,6 +339,57 @@ angular
                         }
                     }
                 );
-        }
+        };
 
+        $scope.generateTokenJoin = function () {
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/group_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
+                })
+                .then(function () {
+                    var groupJoin = new GroupJoin({
+                        groupId: $scope.form.group.id,
+                        userId: sAuth.user.id,
+                        level: $scope.form.join.level
+                    });
+
+                    groupJoin.$save()
+                        .then(function (res) {
+                            $scope.form.group.join = res;
+                            $scope.form.join.token = res.token;
+                            $scope.form.join.level = res.level;
+                            $scope.generateJoinUrl();
+                        });
+                }, angular.noop);
+        };
+
+        $scope.doUpdateJoinToken = function (level) {
+            var groupJoin = new GroupJoin({
+                groupId: $scope.form.group.id,
+                userId: sAuth.user.id,
+                level: level,
+                token: $scope.form.join.token
+            });
+
+            groupJoin.$update()
+                .then(function (res) {
+                    $scope.form.join.level = level;
+                });
+        };
+
+        $scope.copyInviteLink = function () {
+            var urlInputElement = document.getElementById('url_invite_group_input');
+            urlInputElement.focus();
+            urlInputElement.select();
+            urlInputElement.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+        };
+
+        $scope.generateJoinUrl = function () {
+            if ($scope.form.join.token && $scope.form.group.canUpdate()) {
+                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/groups/join/' + $scope.form.join.token);
+            }
+        };
+
+        init();
     }]);

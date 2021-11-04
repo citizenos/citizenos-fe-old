@@ -69,6 +69,18 @@ angular
                 },
                 delete: {
                     method: 'DELETE'
+                },
+                join: {
+                    method: 'POST',
+                    params: {token: '@id'},
+                    url: sLocation.getAbsoluteUrlApi('/api/groups/join/:token'),
+                    transformResponse: function (data, headersGetter, status) {
+                        if (status > 0 && status < 400) {
+                            return angular.fromJson(data);
+                        } else {
+                            return angular.fromJson(data);
+                        }
+                    }
                 }
             }
         );
