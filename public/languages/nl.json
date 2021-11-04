@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Uitnodiging verstuurd naar:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Topicrechten:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Log in met e-mailadres {{email}} om de uitnodiging te accepteren",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "U kunt ook:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Meer lezen over Citizen OS als u nieuw bent!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, u beschikt niet over de nodige rechten om toegang te krijgen tot dit onderdeel :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "U kunt dit misschien verhelpen door",
       "BTN_LOGIN": "In te loggen",
       "BTN_REQUEST_ACCESS": "Verzoek voor toegang tot de bron"

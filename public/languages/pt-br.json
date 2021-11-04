@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Convite enviado para:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Permissões do tópico:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Entre com o e-mail {{email}} para aceitar o convite",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Você também pode:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Saiba mais sobre o Citizen OS se chegou agora!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Desculpe, você não tem permissões suficientes para acessar o recurso :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Ainda assim, você pode se recuperar desse evento infeliz",
       "BTN_LOGIN": "Fazendo login",
       "BTN_REQUEST_ACCESS": "Solicitando acesso ao recurso"

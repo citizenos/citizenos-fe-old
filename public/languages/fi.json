@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Kutsun vastaanottaja:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Aiheen oikeudet:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Hyväksy kutsu kirjautumalla sisään sähköpostiosoitteella {{email}}",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Muut vaihtoehdot:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Lue lisää Citizen OS:stä, jos olet uusi käyttäjä!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Ikävä kyllä sinulla ei ole riittäviä käyttöoikeuksia resurssin näyttämiseen :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Voit kuitenkin paikata tällaisen ikävän tilanteen",
       "BTN_LOGIN": "Kirjautumalla sisään",
       "BTN_REQUEST_ACCESS": "Pyytämällä resurssin käyttöoikeuksia"
