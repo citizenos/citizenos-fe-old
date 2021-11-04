@@ -2,8 +2,9 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'sSearch', 'sLocation', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', function ($scope, $state, $stateParams, $timeout, $log, $location, sSearch, sLocation, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser) {
+    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'ngDialog', 'sAuth', 'sSearch', 'sLocation', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', function ($scope, $state, $stateParams, $timeout, $log, $location, ngDialog, sAuth, sSearch, sLocation, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser, GroupJoin) {
         $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
+
         $scope.levels = {
             none: 0,
             read: 1,
@@ -134,7 +135,7 @@ angular
                 title: title,
                 groupLevel: newMemberTopicLevel
             });
-        }
+        };
 
         $scope.removeGroupMemberTopic = function (topic) {
             $scope.memberTopics.splice($scope.memberTopics.indexOf(topic), 1);
@@ -346,34 +347,34 @@ angular
                     template: '/views/modals/topic_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
                 })
                 .then(function () {
-                    // var topicJoin = new GroupJoin({
-                    //     topicId: $scope.topic.id,
-                    //     userId: sAuth.user.id,
-                    //     level: $scope.form.join.level
-                    // });
-                    //
-                    // topicJoin.$save()
-                    //     .then(function (res) {
-                    //         $scope.topic.join = res;
-                    //         $scope.form.join.token = res.token;
-                    //         $scope.form.join.level = res.level;
-                    //         $scope.generateJoinUrl();
-                    //     });
+                    var groupJoin = new GroupJoin({
+                        groupId: $scope.form.group.id,
+                        userId: sAuth.user.id,
+                        level: $scope.form.join.level
+                    });
+
+                    groupJoin.$save()
+                        .then(function (res) {
+                            $scope.form.group.join = res;
+                            $scope.form.join.token = res.token;
+                            $scope.form.join.level = res.level;
+                            $scope.generateJoinUrl();
+                        });
                 }, angular.noop);
         };
 
         $scope.doUpdateJoinToken = function (level) {
-            // var topicJoin = new GroupJoin({
-            //     topicId: $scope.topic.id,
-            //     userId: sAuth.user.id,
-            //     level: level,
-            //     token: $scope.form.join.token
-            // });
-            //
-            // topicJoin.$update()
-            //     .then(function (res) {
-            //         $scope.form.join.level = level;
-            //     });
+            var groupJoin = new GroupJoin({
+                groupId: $scope.form.group.id,
+                userId: sAuth.user.id,
+                level: level,
+                token: $scope.form.join.token
+            });
+
+            groupJoin.$update()
+                .then(function (res) {
+                    $scope.form.join.level = level;
+                });
         };
 
         $scope.copyInviteLink = function () {
@@ -385,8 +386,8 @@ angular
         };
 
         $scope.generateJoinUrl = function () {
-            if ($scope.form.group.join.token && $scope.form.group.canUpdate()) {
-                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/groups/join/' + $scope.form.group.join.token);
+            if ($scope.form.join.token && $scope.form.group.canUpdate()) {
+                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/groups/join/' + $scope.form.join.token);
             }
         };
 
