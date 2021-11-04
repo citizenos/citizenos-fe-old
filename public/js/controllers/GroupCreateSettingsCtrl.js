@@ -53,7 +53,9 @@ angular
             }
 
             $scope.form.join = $scope.form.group.join;
-            $scope.generateJoinUrl();
+            if ($scope.form.join) {
+                $scope.generateJoinUrl();
+            }
 
             $scope.membersPage = 1;
             $scope.memberTopics = [];

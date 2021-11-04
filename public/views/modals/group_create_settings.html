@@ -42,7 +42,7 @@
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="selectTab('share')" ng-class="tabSelected === 'share' ? 'active' : ''">
+                        <div class="tab_button" ng-click="selectTab('share')" ng-class="tabSelected === 'share' ? 'active' : ''" ng-if="form.group.join">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.GROUP_CREATE_SETTINGS_TAB_SHARE">SHARE</div>
                                 <div class="blue_bottom_line"></div>
