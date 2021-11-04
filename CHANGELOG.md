@@ -1,4 +1,4 @@
-## 2021-11-04
+## 2021-11-04 - v. 0.1.3
 
 * Group share / join - https://github.com/citizenos/citizenos-fe/issues/325
 
