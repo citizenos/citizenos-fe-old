@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Приглашение отправлено:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Выдать права:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Войдите через {{email}}, чтобы принять приглашение",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Вы также можете:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Если вы с нами недавно, узнайте больше о Citizen OS!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Извините, у Вас нет права входа. :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Для разрешения ситуации имеются следующие возможности",
       "BTN_LOGIN": "Вход",
       "BTN_REQUEST_ACCESS": "Запрос доступа"
