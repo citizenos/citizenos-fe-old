@@ -54,4 +54,9 @@ angular
                 .get(path)
                 .then(defaultSuccess, defaultError);
         }
+
+        sTopic.invites = function (topic) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/invites/users', {topicId: topic.id});
+            return $http.get(path).then(defaultSuccess, defaultError);
+        }
     }]);

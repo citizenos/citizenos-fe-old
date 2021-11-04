@@ -104,7 +104,7 @@
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_HEADING": "Залишити тему",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE_CONTINUE": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_ARE_YOU_SURE",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE": "Ви впевнені, що хочете залишити цю тему?",
-    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_LEAVING_TOPIC_DESC": "Leaving a topic will result in giving up any rights you may have as user in that topic",
+    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_LEAVING_TOPIC_DESC": "Leaving a topic will result in giving up any rights you may have as a participant in that topic",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_YES": "@:BTN_YES",
     "TOPIC_SEND_TO_FOLLOWUP_CONFIRM_HEADING": "Розпочати стадію реалізації рішення",
@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Запрошення надіслано:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Права у темі:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Увійдіть за допомогою електронної пошти {{email}}, аби прийняти запрошення",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Ви також можете:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Дізнатися більше про Citizen OS, якщо ви тут вперше!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -469,7 +470,7 @@
   "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Шукати теми, користувачів, групи…"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Шукати теми, групи…"
     }
   },
   "DEFAULT": {
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Вибачте, у Вас немає достатніх прав для доступу до цього ресурсу :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Тим не менше, Ви можете спробувати виправити цю невдалу ситуацію наступним чином",
       "BTN_LOGIN": "Вхід до системи",
       "BTN_REQUEST_ACCESS": "Запит доступу до ресурсу"
@@ -809,8 +811,8 @@
       "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "переглянути редагування",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
-      "ARGUMENT_LNK_COPIED": "Link copied",
-      "ARGUMENT_LNK_REPORT": "report",
+      "ARGUMENT_LNK_COPIED": "Скопійовано посилання",
+      "ARGUMENT_LNK_REPORT": "поскаржитися",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Редагувати тему аргументу...",
       "PLACEHOLDER_EDIT_ARGUMENT_TEXT": "Редагувати Вашу відповідь...",
       "ARGUMENT_EDIT_BTN_POST_AS_PRO": "@:VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_PRO",

@@ -104,7 +104,7 @@
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_HEADING": "Leave topic",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE_CONTINUE": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_ARE_YOU_SURE",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to leave this topic?",
-    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_LEAVING_TOPIC_DESC": "Leaving a topic will result in giving up any rights you may have as user in that topic",
+    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_LEAVING_TOPIC_DESC": "Leaving a topic will result in giving up any rights you may have as a participant in that topic",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_YES": "@:BTN_YES",
     "TOPIC_SEND_TO_FOLLOWUP_CONFIRM_HEADING": "Send topic to follow-up",
@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Invitation sent to:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Topic rights:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Log in with email {{email}} to accept invitation",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "You can also:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Learn more about Citizen OS if you're new!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -469,7 +470,7 @@
   "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Search topics, users, groups…"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Search topics, groups…"
     }
   },
   "DEFAULT": {
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Still, you may recover from the unfortunate event by",
       "BTN_LOGIN": "Logging in",
       "BTN_REQUEST_ACCESS": "Requesting access to the resource"

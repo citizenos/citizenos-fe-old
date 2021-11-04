@@ -104,7 +104,7 @@
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_HEADING": "Quitter le sujet",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE_CONTINUE": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_ARE_YOU_SURE",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE": "Etes-vous sûr(e) de vouloir quitter ce sujet?",
-    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_LEAVING_TOPIC_DESC": "Leaving a topic will result in giving up any rights you may have as user in that topic",
+    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_LEAVING_TOPIC_DESC": "Leaving a topic will result in giving up any rights you may have as a participant in that topic",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_YES": "@:BTN_YES",
     "TOPIC_SEND_TO_FOLLOWUP_CONFIRM_HEADING": "Envoyer le sujet au suivi",
@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Invitation envoyée à :",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Droits du sujet :",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Connectez-vous avec {{email}} pour accepter l'invitation",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Vous pouvez aussi :",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Si vous découvrez Citizen OS, apprenez-en plus sur nous !",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -469,7 +470,7 @@
   "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Chercher un sujet, utilisateur, groupe..."
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Chercher un sujet, groupe…"
     }
   },
   "DEFAULT": {
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Oups, vous semblez ne pas disposer des permissions nécessaires pour accéder à cette ressource",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Vous pouvez encore rattrapper le coup en",
       "BTN_LOGIN": "Connexion en cours",
       "BTN_REQUEST_ACCESS": "Tentative d'accès à la ressource"
@@ -809,8 +811,8 @@
       "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "voir modifications",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
-      "ARGUMENT_LNK_COPIED": "Link copied",
-      "ARGUMENT_LNK_REPORT": "report",
+      "ARGUMENT_LNK_COPIED": "Lien copié",
+      "ARGUMENT_LNK_REPORT": "signaler",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Éditez votre objet d'argument...",
       "PLACEHOLDER_EDIT_ARGUMENT_TEXT": "Éditez votre réponse ici...",
       "ARGUMENT_EDIT_BTN_POST_AS_PRO": "@:VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_PRO",

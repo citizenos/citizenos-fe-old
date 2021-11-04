@@ -104,7 +104,7 @@
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_HEADING": "Abandonar tema",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE_CONTINUE": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_ARE_YOU_SURE",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE": "¿Está seguro de que quiere abandonar el tema?",
-    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_LEAVING_TOPIC_DESC": "Leaving a topic will result in giving up any rights you may have as user in that topic",
+    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_LEAVING_TOPIC_DESC": "Leaving a topic will result in giving up any rights you may have as a participant in that topic",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_YES": "@:BTN_YES",
     "TOPIC_SEND_TO_FOLLOWUP_CONFIRM_HEADING": "Enviar tema a seguimiento",
@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Invitación enviada a:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Derechos del tema:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Inicie sesión con el correo electrónico {{email}} para aceptar la invitación",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Otra opción:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "¡Obtener más información sobre Citizen OS si es un nuevo usuario!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -469,7 +470,7 @@
   "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Buscar temas, usuarios, grupos…"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Buscar temas, grupos…"
     }
   },
   "DEFAULT": {
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "No tiene permisos suficientes para acceder al recurso :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Aun así, puede recuperarse del desafortunado evento si",
       "BTN_LOGIN": "Inicia la sesión",
       "BTN_REQUEST_ACCESS": "Solicitando acceso al recurso"
@@ -809,8 +811,8 @@
       "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "ver cambios",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
-      "ARGUMENT_LNK_COPIED": "Link copied",
-      "ARGUMENT_LNK_REPORT": "report",
+      "ARGUMENT_LNK_COPIED": "Enlace copiado",
+      "ARGUMENT_LNK_REPORT": "denunciar",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Edite el asunto del argumento…",
       "PLACEHOLDER_EDIT_ARGUMENT_TEXT": "Edite la respuesta aquí…",
       "ARGUMENT_EDIT_BTN_POST_AS_PRO": "@:VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_PRO",

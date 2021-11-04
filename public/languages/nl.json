@@ -104,7 +104,7 @@
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_HEADING": "Topic verlaten",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE_CONTINUE": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_ARE_YOU_SURE",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_ARE_YOU_SURE": "Weet u zeker dat u deze topic wilt verlaten?",
-    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_LEAVING_TOPIC_DESC": "Leaving a topic will result in giving up any rights you may have as user in that topic",
+    "TOPIC_MEMBER_USER_LEAVE_CONFIRM_TXT_LEAVING_TOPIC_DESC": "Leaving a topic will result in giving up any rights you may have as a participant in that topic",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_NO": "@:BTN_NO",
     "TOPIC_MEMBER_USER_LEAVE_CONFIRM_BTN_YES": "@:BTN_YES",
     "TOPIC_SEND_TO_FOLLOWUP_CONFIRM_HEADING": "Topic verzenden voor opvolging",
@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Uitnodiging verstuurd naar:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Topicrechten:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Log in met e-mailadres {{email}} om de uitnodiging te accepteren",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "U kunt ook:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Meer lezen over Citizen OS als u nieuw bent!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -469,7 +470,7 @@
   "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Zoek topics, gebruikers, groepen …"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Zoek topics, groepen …"
     }
   },
   "DEFAULT": {
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, u beschikt niet over de nodige rechten om toegang te krijgen tot dit onderdeel :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "U kunt dit misschien verhelpen door",
       "BTN_LOGIN": "In te loggen",
       "BTN_REQUEST_ACCESS": "Verzoek voor toegang tot de bron"
@@ -809,8 +811,8 @@
       "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "bewerkingen weergeven",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
-      "ARGUMENT_LNK_COPIED": "Link copied",
-      "ARGUMENT_LNK_REPORT": "report",
+      "ARGUMENT_LNK_COPIED": "Link gekopieerd",
+      "ARGUMENT_LNK_REPORT": "melden",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Bewerk het onderwerp van uw argument ...",
       "PLACEHOLDER_EDIT_ARGUMENT_TEXT": "Bewerk uw antwoord hier ...",
       "ARGUMENT_EDIT_BTN_POST_AS_PRO": "@:VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_PRO",
