@@ -530,7 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Ľutujeme, nemáte dostatok povolení k prístupu ku zdroju :(",
-      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Ak ste dostali pozvánku na tému alebo do skupiny, musíte ju najprv prijať. Skontrolujte si, prosím, svoj kanál s aktivitami alebo e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Napriek tomu sa môžete zotaviť z nešťastnej udalosti",
       "BTN_LOGIN": "Prihlasovanie",
       "BTN_REQUEST_ACCESS": "Vyžaduje sa prístup k zdroju"
