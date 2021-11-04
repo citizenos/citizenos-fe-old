@@ -864,12 +864,32 @@
                     parent: 'my.groups',
                     templateUrl: '/views/my_groups_groupId.html',
                     resolve: {
-                        rGroup: ['$state', '$stateParams', '$anchorScroll', 'Group', 'rItems', function ($state, $stateParams, $anchorScroll, Group, rItems) {
+                        rGroup: ['$state', '$stateParams', '$anchorScroll', 'Group', 'rItems', 'GroupInviteUser', function ($state, $stateParams, $anchorScroll, Group, rItems, GroupInviteUser) {
                             $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
                             var group = _.find(rItems, {id: $stateParams.groupId});
 
                             if (!group) {
-                                $state.go('error.404');
+                                return GroupInviteUser
+                                    .query({
+                                        groupId: $stateParams.groupId
+                                    }).$promise
+                                    .then(function (invites) {
+                                        if (invites.length) {
+                                            return invites[0]
+                                                .$accept()
+                                                .then(function () {
+                                                    return $state.go(
+                                                        'topics.view',
+                                                        $stateParams
+                                                    )
+                                                    }
+                                                );
+                                        } else {
+                                            $state.go('error.404');
+                                        }
+                                    }, function () {
+                                        $state.go('error.404');
+                                    });
                             } else {
                                 return group;
                             }

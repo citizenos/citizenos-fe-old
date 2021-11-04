@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'sTopic', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $interval, $cookies, $anchorScroll, $translate, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity, sTopic) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'sTopic', 'TopicInviteUser', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $interval, $cookies, $anchorScroll, $translate, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity, sTopic, TopicInviteUser) {
         $log.debug('AppCtrl', $location.host());
 
         $scope.app = {
@@ -285,18 +285,35 @@ angular
 
         $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
             $log.debug('$stateChangeError', 'event', event, 'toState', toState, 'toParams', toParams, 'fromState', fromState, 'fromParams', fromParams, 'error', error);
+            var errorCheck = function () {
+                if (error && error.status && error.data && error.config) { // $http failure in "resolve"
+                    var stateError = 'error.' + error.status;
+                    $log.debug('$stateChangeError', '"resolve" failed in route definition.');
+                    $state.go(stateError, {language: fromParams.language || $scope.app.user.language}, {location: false});
+                }
+            }
             if ($scope.app.user.loggedIn && toState.name.indexOf('topics.view') > -1) {
-                console.log(toState, fromState);
-                sTopic.invites({id: toParams.topicId})
-                    .then(function (list) {
-                        console.log('LIST', list)
-                    })
+                return TopicInviteUser
+                    .query({
+                        topicId: toParams.topicId
+                    }).$promise
+                    .then(function (invites) {
+                        if (invites.length) {
+                            return invites[0].$accept()
+                            .then(function () {
+                                return $state.go(
+                                    'topics.view',
+                                    toParams
+                                )
+                                }
+                            );
+                        } else {
+                            errorCheck();
+                        }
+                    }, errorCheck);
             }
-            if (error && error.status && error.data && error.config) { // $http failure in "resolve"
-                var stateError = 'error.' + error.status;
-                $log.debug('$stateChangeError', '"resolve" failed in route definition.');
-                $state.go(stateError, {language: fromParams.language || $scope.app.user.language}, {location: false});
-            }
+
+            errorCheck();
         });
 
         function createRelUrls () {
