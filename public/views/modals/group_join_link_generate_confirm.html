@@ -1,0 +1,79 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing delete_topic wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.GROUP_INVITE_SHARE_LINK_GENERATE_CONFIRM_HEADING">Create new share link</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="line lightest_line"></div>
+
+            </div>
+
+
+            <div class="lightbox_content">
+
+                <div class="second_header">
+
+                    <div class="sprite sprite-icon-warn-topic2x"></div>
+                    <div class="warn_title" translate="MODALS.GROUP_INVITE_SHARE_LINK_GENERATE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to continue?</div>
+
+                    <div id="lightbox_close" ng-click="closeThisDialog()">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+
+                <div id="delete_info_wrap">
+
+                    <div class="delete_info_text_wrap">
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.GROUP_INVITE_SHARE_LINK_GENERATE_CONFIRM_TXT_POINT1">Currently used share link will stop working.</div>
+                        </div>
+                        <div class="delete_info">
+                            <div class="sprite sprite-checkmark2x"></div>
+                            <div class="delete_info_text" translate="MODALS.GROUP_INVITE_SHARE_LINK_GENERATE_CONFIRM_TXT_POINT2">Only new link can be used to access the topic.</div>
+                        </div>
+                    </div>
+
+                    <div class="delete_info_button_wrap">
+
+                        <div class="table_cell">
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.GROUP_INVITE_SHARE_LINK_GENERATE_CONFIRM_BTN_NO">NO, DON'T CHANGE LINK</div>
+                        </div>
+
+                        <div class="table_cell">
+                            <div class="blue_button" ng-click="confirm()" translate="MODALS.GROUP_INVITE_SHARE_LINK_GENERATE_CONFIRM_BTN_YES">YES, CHANGE THE LINK</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
+
+</div>

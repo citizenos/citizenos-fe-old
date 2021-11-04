@@ -344,7 +344,7 @@ angular
         $scope.generateTokenJoin = function () {
             ngDialog
                 .openConfirm({
-                    template: '/views/modals/topic_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
+                    template: '/views/modals/group_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
                 })
                 .then(function () {
                     var groupJoin = new GroupJoin({
