@@ -879,7 +879,7 @@
                                                 .$accept()
                                                 .then(function () {
                                                     return $state.go(
-                                                        'topics.view',
+                                                        'my.groups.groupId',
                                                         $stateParams
                                                     )
                                                     }
