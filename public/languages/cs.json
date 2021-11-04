@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Pozvánka odeslána:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Práva k tématu:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Přihlaste se pomocí e-mailu {{email}} pro přijetí pozvánky",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Můžete také:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Zjistěte více o Citizen OS pokud jste nový!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Omlouváme se, ale pro přístup ke zdroji nemáte dostatečná oprávnění: (",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Přesto se můžete zotavit z nešťastné události",
       "BTN_LOGIN": "Přihlášení",
       "BTN_REQUEST_ACCESS": "Požadavek na přístup ke zdroji"

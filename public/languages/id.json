@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Undangan dikirim kepada:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Hak topik:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Masuk dengan e-mail {{email}} untuk menerima undangan",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Anda juga dapat:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Lihat selengkapnya tentang Citizen OS jika Anda baru di sini!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Maaf, Anda tidak punya cukup izin untuk mengakses :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Namun, Anda dapat memperbarui kondisi ini dengan",
       "BTN_LOGIN": "Masuk",
       "BTN_REQUEST_ACCESS": "Meminta akses"

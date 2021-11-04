@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Запрошення надіслано:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Права у темі:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Увійдіть за допомогою електронної пошти {{email}}, аби прийняти запрошення",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Ви також можете:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Дізнатися більше про Citizen OS, якщо ви тут вперше!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Вибачте, у Вас немає достатніх прав для доступу до цього ресурсу :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Тим не менше, Ви можете спробувати виправити цю невдалу ситуацію наступним чином",
       "BTN_LOGIN": "Вхід до системи",
       "BTN_REQUEST_ACCESS": "Запит доступу до ресурсу"

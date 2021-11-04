@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Примач на пораката:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Права на темата:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Регистрирајте се со е-поштата {{email}} за да ја прифатите поканата",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Можете исто така:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Да дознаете повеќе за Citizen OS ако сте нов/нова!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Извинете, не поседувате таква дозвола за да добиете пристап до овој ресурс :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Се уште можете да се спасите од оваа непосакувана случка со",
       "BTN_LOGIN": "Најавување",
       "BTN_REQUEST_ACCESS": "Барање пристап до ресурсите"
