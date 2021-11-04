@@ -405,6 +405,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Uzaicinājuma saņēmējs:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Temata tiesības:",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Lai pieņemtu uzaicinājumu, piesakieties ar e-pasta adresi {{email}}",
+    "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Tāpat jūs varat:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Uzzināt vairāk par Citizen OS!",
     "ACTIVITY_MODAL_HEADING": "@:DEFAULT.NAV.LNK_ACTIVITY",
@@ -529,6 +530,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Atvainojamies, bet jums nav atļauts piekļūt šim resursam :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Taču jūs varat labot situāciju",
       "BTN_LOGIN": "Piesakieties",
       "BTN_REQUEST_ACCESS": "Pieprasa piekļuvi resursam"
