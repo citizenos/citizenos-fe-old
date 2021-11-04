@@ -1,3 +1,7 @@
+## 2021-11-04 - v. 0.1.3
+
+* Group share / join - https://github.com/citizenos/citizenos-fe/issues/325
+
 ## 2021-10-28
 
 * Update argument section. All actions are in dropdown, added copy direct link functionality to "direct link" - https://github.com/citizenos/citizenos-fe/issues/361
