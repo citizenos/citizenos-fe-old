@@ -1,3 +1,7 @@
+## 2021-11-04
+
+* Group share / join - https://github.com/citizenos/citizenos-fe/issues/325
+
 ## 2021-10-04
 
 * FIX - Overview menu item overlaps other menu items in mobile view - /my/topics/:topicId - https://github.com/citizenos/citizenos-fe/issues/779
