@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'sSearch', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', function ($scope, $state, $stateParams, $timeout, $log, $location, sSearch, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser) {
+    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'sSearch', 'sLocation', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', function ($scope, $state, $stateParams, $timeout, $log, $location, sSearch, sLocation, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser) {
         $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
         $scope.levels = {
             none: 0,
@@ -31,7 +31,12 @@ angular
             // Group creation
             $scope.form = {
                 group: null,
-                inviteMessage: null
+                inviteMessage: null,
+                join: {
+                    level: null,
+                    token: null
+                },
+                joinUrl: null
             };
             if (!$stateParams.groupId) {
                 $scope.form.group = new Group({
@@ -46,6 +51,10 @@ angular
                 // Create a copy of parent scopes Group, so that while modifying we don't change parent state
                 $scope.form.group = angular.copy($scope.group);
             }
+
+            $scope.form.join = $scope.form.group.join;
+            $scope.generateJoinUrl();
+
             $scope.membersPage = 1;
             $scope.memberTopics = [];
             $scope.members = [];
@@ -64,7 +73,6 @@ angular
 
             $scope.errors = null;
         };
-        init();
 
         $scope.search = function (str, type) {
             if (str && str.length >= 2) {
@@ -328,6 +336,57 @@ angular
                         }
                     }
                 );
-        }
+        };
 
+        $scope.generateTokenJoin = function () {
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
+                })
+                .then(function () {
+                    // var topicJoin = new GroupJoin({
+                    //     topicId: $scope.topic.id,
+                    //     userId: sAuth.user.id,
+                    //     level: $scope.form.join.level
+                    // });
+                    //
+                    // topicJoin.$save()
+                    //     .then(function (res) {
+                    //         $scope.topic.join = res;
+                    //         $scope.form.join.token = res.token;
+                    //         $scope.form.join.level = res.level;
+                    //         $scope.generateJoinUrl();
+                    //     });
+                }, angular.noop);
+        };
+
+        $scope.doUpdateJoinToken = function (level) {
+            // var topicJoin = new GroupJoin({
+            //     topicId: $scope.topic.id,
+            //     userId: sAuth.user.id,
+            //     level: level,
+            //     token: $scope.form.join.token
+            // });
+            //
+            // topicJoin.$update()
+            //     .then(function (res) {
+            //         $scope.form.join.level = level;
+            //     });
+        };
+
+        $scope.copyInviteLink = function () {
+            var urlInputElement = document.getElementById('url_invite_group_input');
+            urlInputElement.focus();
+            urlInputElement.select();
+            urlInputElement.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+        };
+
+        $scope.generateJoinUrl = function () {
+            if ($scope.form.group.join.token && $scope.form.group.canUpdate()) {
+                $scope.form.urlJoin = sLocation.getAbsoluteUrl('/groups/join/' + $scope.form.group.join.token);
+            }
+        };
+
+        init();
     }]);
