@@ -2721,7 +2721,7 @@ a:link, a:visited {
     }
 }
 
-.help_widget {
+.help_widget, .help_widget_old {
     z-index: 999999;
     width: 360px;
     position: fixed;
@@ -2746,7 +2746,7 @@ a:link, a:visited {
 
         iframe {
             width: 100%;
-            height: 100%;
+            height: 90%;
         }
     }
     .help_top {
@@ -3050,6 +3050,36 @@ a:link, a:visited {
         }
     }
 
+}
+
+.help_widget_old {
+    width: 320px;
+    right: 20px;
+    bottom: 100px;
+    height: initial;
+    top: initial;
+
+    .help_top {
+        border-radius: 4px 4px 0 0;
+        width: 320px;
+        background-color: vars.$deep_sky_blue;
+        color: vars.$white;
+
+        .help_title_text_wrapper {
+            padding: 20px 20px 10px 20px;
+            width: 100%;
+            text-align: initial;
+
+            .help_title_text {
+                font-size: 26px;
+                line-height: 32px;
+                font-weight: 600;
+                width: 280px;
+                color: vars.$white;
+                text-transform: none;
+            }
+        }
+    }
 }
 
 .inline-message {

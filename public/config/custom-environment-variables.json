@@ -33,5 +33,6 @@
       "__format": "json"
     }
   },
-  "helplink": "CITIZENOS_HELP_LINK"
+  "helplink": "CITIZENOS_HELP_LINK",
+  "newHelp": "CITIZENOS_HELP_NEW"
 }
