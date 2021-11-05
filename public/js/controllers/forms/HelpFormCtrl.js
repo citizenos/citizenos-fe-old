@@ -46,4 +46,7 @@ angular
                     });
         };
 
+        $scope.helpback = function () {
+            document.getElementById("help_frame").src = document.getElementById("help_frame").src;
+        }
     }]);

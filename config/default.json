@@ -40,6 +40,7 @@
         "none"
       ],
       "frame-src": [
+        "https://citizenos.com",
         "https://p.citizenos.com",
         "https://accounts.google.com/",
         "https://docs.google.com"
