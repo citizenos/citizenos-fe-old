@@ -16,9 +16,9 @@
             <iframe id="help_frame" name="help_frame" ng-if="showHelp" frameborder="0"  ng-src="https://citizenos.com/help?app=true" width="100%"></iframe>
         </div>
     </div>
-    <div ng-show="!app.config.helplink" class="help_bubble" ng-click="showHelp = !showHelp"></div>
-    <a ng-if="app.config.helplink && !app.config.newHelp" class="help_bubble" ng-href={{app.config.helplink}} target="_blank"></a>
 
+    <div ng-show="!app.config.helpink" class="help_bubble" ng-click="showHelp = !showHelp"></div>
+    <a ng-if="app.config.helplink && !app.config.newHelp" class="help_bubble" ng-href={{app.config.helplink}} target="_blank"></a>
     <div class="help_widget_old" ng-if="showHelp && !app.config.newHelp">
         <div id="help_close" ng-click="closeHelp()">
             <div class="table_cell">
@@ -52,8 +52,5 @@
                 </div>
             </form>
         </div>
-    </div>
-    <div ng-show="!app.config.helplink" class="help_bubble" ng-click="showHelp = !showHelp"></div>
-    <a ng-if="app.config.helplink" class="help_bubble" ng-href={{app.config.helplink}} target="_blank"></a>
     </div>
 </div>
