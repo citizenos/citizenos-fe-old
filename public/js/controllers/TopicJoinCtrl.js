@@ -6,7 +6,10 @@ angular
         var joinTopic = new Topic();
 
         joinTopic
-            .$getByToken({token: $stateParams.token, __doNotDisplayErrors: true})
+            .$getByToken({
+                token: $stateParams.token,
+                __doNotDisplayErrors: true
+            })
             .then(
                 function (res) { // IF IT RETURNS, it is a PUBLIC topic and send straight to the Topic view - https://github.com/citizenos/citizenos-fe/issues/405#issuecomment-943336961
                     return $state.go('topics.view', {
@@ -15,7 +18,10 @@ angular
                 },
                 function (err) {
                     // IT does not exist or the Topic is PRIVATE and requires login
-                    return joinTopic.$join({token: $stateParams.token, __doNotDisplayErrors: true});
+                    return joinTopic.$join({
+                        token: $stateParams.token,
+                        __doNotDisplayErrors: true
+                    });
                 }
             )
             .then(

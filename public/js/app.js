@@ -931,6 +931,11 @@
                         });
                     }]
                 })
+                .state('groupJoin', { // Join a Topic via shared url
+                    url: '/groups/join/:token',
+                    parent: 'main',
+                    controller: 'GroupJoinCtrl'
+                })
                 .state('about', {
                     url: '/about',
                     parent: 'main',

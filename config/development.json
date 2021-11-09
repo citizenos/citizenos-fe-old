@@ -42,6 +42,7 @@
         "none"
       ],
       "frame-src": [
+        "https://citizenos.com",
         "dev.p.citizenos.com:9001",
         "https://citizenos-etherpad-web-test.herokuapp.com",
         "https://accounts.google.com/",

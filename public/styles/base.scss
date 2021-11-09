@@ -2721,12 +2721,13 @@ a:link, a:visited {
     }
 }
 
-.help_widget {
+.help_widget, .help_widget_old {
     z-index: 999999;
-    width: 320px;
+    width: 360px;
     position: fixed;
-    right: 20px;
-    bottom: 100px;
+    right: 0px;
+    top: 0px;
+    height: 100%;
     border-radius: 4px;
     background: vars.$white;
     box-shadow: 0 0 8px 0 vars.$dark_gray;
@@ -2739,22 +2740,35 @@ a:link, a:visited {
         right: 10px;
         top: 10px;
     }
+    .help_content {
+        width: 360px;
+        height: 100vh;
 
+        iframe {
+            width: 100%;
+            height: 90%;
+        }
+    }
     .help_top {
         border-radius: 4px 4px 0 0;
-        width: 320px;
-        background-color: vars.$deep_sky_blue;
-        color: vars.$white;
+        width: 100%;
+
+        .help_back_link {
+            padding: 10px;
+            position: absolute;
+        }
 
         .help_title_text_wrapper {
-            padding: 20px 20px 10px 20px;
+            padding: 10px 0px;
             width: 100%;
+            text-align: center;
 
             .help_title_text {
-                font-size: 26px;
-                line-height: 32px;
-                font-weight: 600;
-                width: 280px;
+                font-size: 12px;
+                line-height: 16px;
+                font-weight: 700;
+                color: vars.$dark_gray;
+                text-transform: uppercase;
             }
         }
 
@@ -3036,6 +3050,36 @@ a:link, a:visited {
         }
     }
 
+}
+
+.help_widget_old {
+    width: 320px;
+    right: 20px;
+    bottom: 100px;
+    height: initial;
+    top: initial;
+
+    .help_top {
+        border-radius: 4px 4px 0 0;
+        width: 320px;
+        background-color: vars.$deep_sky_blue;
+        color: vars.$white;
+
+        .help_title_text_wrapper {
+            padding: 20px 20px 10px 20px;
+            width: 100%;
+            text-align: initial;
+
+            .help_title_text {
+                font-size: 26px;
+                line-height: 32px;
+                font-weight: 600;
+                width: 280px;
+                color: vars.$white;
+                text-transform: none;
+            }
+        }
+    }
 }
 
 .inline-message {
