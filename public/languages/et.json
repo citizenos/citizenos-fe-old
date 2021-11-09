@@ -929,7 +929,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> liitus aruteluga teemal \"<em>{{topicTitle}}</em>\"",
     "ACTIVITY_USER_JOIN_GROUP": "User <em>{{userName}}</em> has joined group <em>{{groupName}}</em> with access level: {{accessLevel}}",
     "ACTIVITY_USER_JOIN_GROUP_ACTIVITYGROUP": "User <em>{{userName}}</em> and others have joined group <em>{{groupName}}</em>",
-    "ACTIVITY_USER_JOIN_GROUP_USERACTIVITYGROUP": "User <em>{{userName}}</em> has joined group <em>{{groupName}}</em>",
+    "ACTIVITY_USER_JOIN_GROUP_USERACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> liitus grupiga \"<em>{{groupName}}</em>\"",
     "ACTIVITY_USER_LEAVE_TOPIC": "Kasutaja <em>{{userName}}</em> lahkus teema \"<em>{{topicTitle}}</em>\" arutelust",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> ja <em>{{groupCount}}</em> teist kasutajat lahkusid teema \"<em>{{topicTitle}}</em>\" arutelust",
     "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> lahkus teema \"<em>{{topicTitle}}</em>\" arutelust",
