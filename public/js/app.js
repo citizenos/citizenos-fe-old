@@ -490,7 +490,7 @@
                     }]
                 })
                 .state('topics.view.participants', {
-                    url: '/invite?tab',
+                    url: '/participants?tab',
                     parent: 'topics.view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {

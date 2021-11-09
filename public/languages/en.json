@@ -439,7 +439,10 @@
     "DUPLICATE_TOPIC_CONFIRM_TXT_VOTES": "votes",
     "DUPLICATE_TOPIC_CONFIRM_TXT_FOLLOW_UP_POSTS": "follow-up posts",
     "DUPLICATE_TOPIC_CONFIRM_BTN_NO": "@:LNK_CANCEL",
-    "DUPLICATE_TOPIC_CONFIRM__BTN_YES": "@:BTN_YES"
+    "DUPLICATE_TOPIC_CONFIRM__BTN_YES": "@:BTN_YES",
+    "TOPIC_MEMBERS_TAB_PARTICIPANTS": "Participants",
+    "TOPIC_MEMBERS_TAB_GROUPS": "Groups",
+    "TOPIC_MEMBERS_TAB_INVITED": "Invited"
   },
   "TXT_TOPIC_CATEGORY_ALL": "every category",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
@@ -874,6 +877,7 @@
       "NAV_LNK_EDIT_TOPIC": "Edit topic",
       "NAV_LNK_VIEW_TOPIC": "View topic",
       "NAV_LNK_LEAVE_TOPIC": "Leave topic",
+      "NAV_LNK_PARTICIPANTS": "Manage participants",
       "HEADER_FILES": "ATTACHMENTS",
       "LNK_ADD_MANAGE_FILES": "Add/manage attachments",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!",
