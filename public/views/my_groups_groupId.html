@@ -68,7 +68,8 @@
                                 <span class="item_link blue_link" ng-click="doShowMemberUserList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                                 <span ng-if="group.canUpdate()">
                                     <span class="separator">|</span>
-                                    <span class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</span>
+                                    <span class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})"
+                                          translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</span>
                                 </span>
                             </div>
                         </div>
@@ -182,12 +183,15 @@
             <div class="header_text">
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_TOPIC_LIST" translate-values="{count: group.members.topics.count}">Topic list ({{group.members.topics.count}})</span>
                 <span ng-if="group.members.topics.count">|</span>
-                <div class="blue_link" ng-if="group.members.topics.count" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doShowMemberTopicList(group); $event.stopPropagation();" translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter</div>
+                <div class="blue_link" ng-if="group.members.topics.count" ng-click="topicList.isSearchVisible = !topicList.isSearchVisible; doShowMemberTopicList(group); $event.stopPropagation();"
+                     translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter
+                </div>
                 <span ng-if="group.canUpdate()">|
-                    <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</div>
+                    <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})" ng-click="$event.stopPropagation()"
+                         translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</div>
                 </span>
             </div>
-            <div cos-dropdown class="classic_dropdown minimize_container" >
+            <div cos-dropdown class="classic_dropdown minimize_container">
                 <div class="sprite sprite-btn-filter-gray"></div>
 
                 <div class="dropdown">
@@ -207,13 +211,14 @@
 
                 </div>
             </div>
-            <div class="minimize_container" ng-if="group.members.topics.count"  ng-click="doToggleMemberTopicList(group);">
+            <div class="minimize_container" ng-if="group.members.topics.count" ng-click="doToggleMemberTopicList(group);">
                 <div ng-class="!topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
         <div class="container_header second_header" ng-if="topicList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-change="loadMemberTopicsList()" ng-model-options="{debounce:250}" ng-model="topicList.searchFilter" focus-if>
+                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-change="loadMemberTopicsList()" ng-model-options="{debounce:250}"
+                       ng-model="topicList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="topicList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
@@ -301,7 +306,9 @@
             <div class="header_text">
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_USERS_LIST" translate-values="{count: (group.members.users.count || 0)}">User list (0)</span>
                 |
-                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(group); $event.stopPropagation();" translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter</div>
+                <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(group); $event.stopPropagation();"
+                     translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter
+                </div>
                 <span ng-if="group.canUpdate()">|
                     <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</div>
                 </span>
@@ -312,7 +319,8 @@
         </div>
         <div class="container_header second_header" ng-if="userList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="loadMemberUsersList()" ng-model-options="{debounce:250}" ng-model="userList.searchFilter" focus-if>
+                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="loadMemberUsersList()" ng-model-options="{debounce:250}"
+                       ng-model="userList.searchFilter" focus-if>
             </div>
             <div class="table_cell">
                 <div class="blue_link" ng-click="userList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
@@ -359,11 +367,14 @@
                         </div>
                         <div class="name_wrap">
                             <div class="table_cell">
-                                <div ng-bind="user.name">user name</div>
+                                <div ng-bind="user.name">John Smith</div>
+                                <div class="via">
+                                    {{user.email}} {{user.phoneNumber}} {{user.pid}}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="pretend_td" >
+                    <div class="pretend_td">
                         <div cos-dropdown class="classic_dropdown" ng-if="group.canUpdate()">
                             <div class="dropdown_selection">
                                 <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + user.level | uppercase | translate}}</div>
@@ -418,12 +429,12 @@
                             </div>
                         </div>
                         <div class="name_wrap">
-                            <div class="table_cell smooth_gray">
-                                <div ng-bind="invite.user.name" tooltips tooltip-hidden="{{(!invite.user.email && !invite.user.pid && !invite.user.phoneNumber)}}" tooltip-class="tooltip_author"
-                                     tooltip-template="<span class='creator_data_tooltip_row'>{{invite.user.email}}</span><span class='creator_data_tooltip_row'>{{invite.user.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{invite.user.pid}}</span>"
-                                     tooltip-smart="true">invite.user.name</div>
-                                <div class="via" translate="VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING">
-                                    Pending invite
+                            <div class="table_cell">
+                                <div ng-bind="invite.user.name">John Smith</div>
+                                <div class="via">
+                                    {{invite.user.email}} {{invite.user.phoneNumber}} {{invite.user.pid}}
+                                    <span ng-if="invite.user.email || invite.user.phoneNumber || invite.user.pid"> • </span>
+                                    <span translate="VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING">Pending invite</span>
                                 </div>
                             </div>
                         </div>
