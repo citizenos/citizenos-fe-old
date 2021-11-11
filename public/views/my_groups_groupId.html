@@ -359,7 +359,10 @@
                         </div>
                         <div class="name_wrap">
                             <div class="table_cell">
-                                <div ng-bind="user.name">user name</div>
+                                <div ng-bind="user.name">John Smith</div>
+                                <div class="via">
+                                    {{user.email}} {{user.phoneNumber}} {{user.pid}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -407,21 +410,19 @@
                     <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
-                            <div class="account_picture">
-                                <img ng-if="invite.user.imageUrl" ng-src="{{invite.user.imageUrl}}">
-                                <div ng-if="!invite.user.imageUrl" class="profile_image_filler">
-                                    <div class="table_cell" cos-initials="invite.user.name">
-                                        ML
-                                    </div>
-                                    <div class="profile_circle"></div>
-                                </div>
+                            <div ng-bind="invite.user.name">John Smith</div>
+                            <div class="via">
+                                <span ng-if="invite.user.email || invite.user.phoneNumber || invite.user.pid">
+                                    {{invite.user.email}} {{invite.user.phoneNumber}} {{invite.user.pid}}
+                                </span>
+                                <span>
+                                    <span ng-if="invite.user.email || invite.user.phoneNumber || invite.user.pid"> • </span>
+                                    <span translate="VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING">Pending invite</span>
+                                </span>
                             </div>
                         </div>
                         <div class="name_wrap">
                             <div class="table_cell smooth_gray">
-                                <div ng-bind="invite.user.name" tooltips tooltip-hidden="{{(!invite.user.email && !invite.user.pid && !invite.user.phoneNumber)}}" tooltip-class="tooltip_author"
-                                     tooltip-template="<span class='creator_data_tooltip_row'>{{invite.user.email}}</span><span class='creator_data_tooltip_row'>{{invite.user.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{invite.user.pid}}</span>"
-                                     tooltip-smart="true">invite.user.name</div>
                                 <div class="via" translate="VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING">
                                     Pending invite
                                 </div>
