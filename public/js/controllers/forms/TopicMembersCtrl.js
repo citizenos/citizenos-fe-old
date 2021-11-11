@@ -5,7 +5,7 @@ angular
     .controller('TopicMembersCtrl', ['$scope', '$log', '$stateParams', '$filter', '$location', 'ngDialog', 'sAuth', 'TopicMemberUser', 'TopicInviteUser', 'TopicMemberGroup', function ($scope, $log, $stateParams, $filter, $location, ngDialog, sAuth, TopicMemberUser, TopicInviteUser, TopicMemberGroup) {
         $log.debug('TopicMembersCtrl');
 
-        $scope.members = {
+        $scope.topic.members = {
             users: [],
             groups: [],
             invited: []
@@ -68,14 +68,14 @@ angular
                     limit: limit
                 }).$promise
                 .then(function (users) {
-                    $scope.members.users.rows = users;
-                    $scope.members.users.count = users.length;
+                    $scope.topic.members.users.rows = users;
+                    $scope.topic.members.users.count = users.length;
                     if (users.length) {
-                        $scope.members.users.count = users[0].countTotal;
+                        $scope.topic.members.users.count = users[0].countTotal;
                     }
 
-                    $scope.members.users.totalPages = Math.ceil($scope.members.users.count / limit);
-                    $scope.members.users.page = Math.ceil((offset + limit) / limit);
+                    $scope.topic.members.users.totalPages = Math.ceil($scope.topic.members.users.count / limit);
+                    $scope.topic.members.users.page = Math.ceil((offset + limit) / limit);
                     return users;
                 });
         };
@@ -107,7 +107,7 @@ angular
                 }).$promise
                 .then(function (invites) {
                     console.log(invites)
-                    $scope.members.invited = {
+                    $scope.topic.members.invited = {
                         rows: [],
                         count: 0
                     };
@@ -118,19 +118,19 @@ angular
                     var inviteListOrderedByLevel = _.orderBy(invites, function (invite) {
                         return levelOrder.indexOf(invite.level);
                     }, ['desc']);
-                    $scope.members.invited._rows = invites; // Store the original result from server to implement DELETE ALL, need to know the ID-s of the invites to delete
+                    $scope.topic.members.invited._rows = invites; // Store the original result from server to implement DELETE ALL, need to know the ID-s of the invites to delete
 
-                    $scope.members.invited.rows = _.sortedUniqBy(inviteListOrderedByLevel, 'user.id');
-                    $scope.members.invited.count = invites.length;
-                    console.log($scope.members);
+                    $scope.topic.members.invited.rows = _.sortedUniqBy(inviteListOrderedByLevel, 'user.id');
+                    $scope.topic.members.invited.count = invites.length;
+                    console.log($scope.topic.members);
                     if (invites.length) {
-                        $scope.members.invited.count = invites[0].countTotal;
+                        $scope.topic.members.invited.count = invites[0].countTotal;
                     }
 
-                    $scope.members.invited.totalPages = Math.ceil($scope.members.invited.count / limit);
-                    $scope.members.invited.page = Math.ceil((offset + limit) / limit);
+                    $scope.topic.members.invited.totalPages = Math.ceil($scope.topic.members.invited.count / limit);
+                    $scope.topic.members.invited.page = Math.ceil((offset + limit) / limit);
 
-                    console.log($scope.members);
+                    console.log($scope.topic.members);
                     return invites;
                 });
         };
@@ -160,14 +160,14 @@ angular
                     limit: limit
                 }).$promise
                 .then(function (groups) {
-                    $scope.members.groups.rows = groups;
-                    $scope.members.groups.count = groups.length;
+                    $scope.topic.members.groups.rows = groups;
+                    $scope.topic.members.groups.count = groups.length;
                     if (groups.length) {
-                        $scope.members.groups.count = groups[0].countTotal;
+                        $scope.topic.members.groups.count = groups[0].countTotal;
                     }
 
-                    $scope.members.groups.totalPages = Math.ceil($scope.members.groups.count / limit);
-                    $scope.members.groups.page = Math.ceil((offset + limit) / limit);
+                    $scope.topic.members.groups.totalPages = Math.ceil($scope.topic.members.groups.count / limit);
+                    $scope.topic.members.groups.page = Math.ceil((offset + limit) / limit);
                     return groups;
                 });
         };

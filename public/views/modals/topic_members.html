@@ -80,7 +80,7 @@
                                 </div>
                             </th>
                         </tr>
-                        <tr ng-class="{'with_padding': $first}" ng-repeat="user in members.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
+                        <tr ng-class="{'with_padding': $first}" ng-repeat="user in topic.members.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
                             <td>
                                 <div class="profile_image_wrapper dark">
                                     <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
@@ -99,6 +99,7 @@
                                         <div ng-bind="user.name" tooltips tooltip-hidden="{{(!user.email && !user.pid && !user.phoneNumber)}}" tooltip-class="tooltip_author"
                                             tooltip-template="<span class='creator_data_tooltip_row'>{{user.email}}</span><span class='creator_data_tooltip_row'>{{user.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{user.pid}}</span>"
                                             tooltip-smart="true">user.name</div>
+                                        <span ng-bind="user.email"></span>
                                         <div class="via" ng-if="user.groups.rows.length && !user.levelUser"><span translate="VIEWS.MY_TOPICS_TOPICID.LBL_VIA">via</span> <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}})</span><i
                                             ng-if="!group.name" class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP" translate-values="{level: ('TXT_TOPIC_LEVELS_' + group.level | uppercase | translate)}">Inaccessible Group</i> <i class="disabled">(<span  translate="{{'TXT_TOPIC_LEVELS_' + group.level | uppercase }}">admin</span>)</i></span>
                                         </div>
@@ -140,7 +141,7 @@
                         <tr>
                             <td>
                                 <div class="pagination_wrapper">
-                                    <div class="pagination" cos-pagination select="loadMemberUsersPage" total-pages="topic.members.users.totalPages" page="topic.members.users.page"></div>
+                                    <div class="pagination" cos-pagination select="loadMemberUsersPage" total-pages="topic.topic.members.users.totalPages" page="topic.topic.members.users.page"></div>
                                 </div>
                             </td>
                         </tr>
@@ -161,7 +162,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="lightbox_section participants_list" ng-if="members.groups.rows.length">
+                <div class="lightbox_section participants_list" ng-if="topic.members.groups.rows.length">
                     <table>
                         <tr>
                             <th class="mobile_text" ng-if="wWidth <= 560">
@@ -184,7 +185,7 @@
                                 </div>
                             </th>
                         </tr>
-                        <tr ng-class="{'with_padding': $first}" ng-repeat="group in members.groups.rows | orderBy: groupList.searchOrderBy.property">
+                        <tr ng-class="{'with_padding': $first}" ng-repeat="group in topic.members.groups.rows | orderBy: groupList.searchOrderBy.property">
                             <td>
                                 <div class="blue_link" ng-if="group.permission.level" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})" ui-sref-opts="{reload: true}" ng-bind="group.name">Group name</div>
                                 <div ng-if="!group.permission.level"><i class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP">Inaccessible Group</i></div>
@@ -266,7 +267,7 @@
                                 </div>
                             </div>
                         </tr>
-                        <tr ng-class="{'with_padding': $first}" ng-repeat="invite in members.invited.rows | filter: inviteList.searchFilter | orderBy : inviteList.searchOrderBy.property">
+                        <tr ng-class="{'with_padding': $first}" ng-repeat="invite in topic.members.invited.rows | filter: inviteList.searchFilter | orderBy : inviteList.searchOrderBy.property">
                             <td>
                                 <div class="profile_image_wrapper dark">
                                     <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
@@ -321,7 +322,7 @@
                         <tr>
                             <td>
                                 <div class="pagination_wrapper">
-                                    <div class="pagination" cos-pagination select="loadUsersInvitedPage" total-pages="mebers.invited.totalPages" page="mebers.invited.page"></div>
+                                    <div class="pagination" cos-pagination select="loadUsersInvitedPage" total-pages="topic.members.invited.totalPages" page="topic.members.invited.page"></div>
                                 </div>
                             </td>
                         </tr>
