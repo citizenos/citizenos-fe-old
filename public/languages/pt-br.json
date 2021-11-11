@@ -840,6 +840,7 @@
       "ARGUMENT_READ_CODE_OF_CONDUCT": "Leia nosso <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">código de conduta</a> para mais informações",
       "ARGUMENT_LAST_EDITED": "Última edição: {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Edite sua resposta aqui...",
+      "ARGUMENT_SELECT_ACTIONS": "@:DEFAULT.NAV_MOBILE.BTN_SETTINGS",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Ver resposta mesmo assim",

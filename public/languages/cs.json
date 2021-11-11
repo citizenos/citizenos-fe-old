@@ -840,6 +840,7 @@
       "ARGUMENT_READ_CODE_OF_CONDUCT": "Přečtěte si náš <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">kodex chování</a> a získejte více informací",
       "ARGUMENT_LAST_EDITED": "Naposledy upraveno: {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Upravte odpověď zde...",
+      "ARGUMENT_SELECT_ACTIONS": "@:DEFAULT.NAV_MOBILE.BTN_SETTINGS",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Přesto zobrazit odpověď",
