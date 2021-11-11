@@ -1106,7 +1106,7 @@
                         <div class="blue_link" ng-if="topic.canDelete() || topic.canLeave()" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_ACTIONS">Actions</div>
                         <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.invite({topicId: topic.id, tab: 'invite'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_INVITE_USERS">Invite users</div>
                         <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.invite({topicId: topic.id, tab: 'share'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SHARE">Share topic</div>
-                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.participants({topicId: topic.id, tab: 'users'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_PARTICIPANTS">Share topic</div>
+                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.participants({topicId: topic.id, tab: 'participants'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_PARTICIPANTS">Share topic</div>
                         <div class="blue_link" ng-if="topic.canUpdate()" ng-click="duplicateTopic()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_DUPLICATE_TOPIC">Duplicate topic</div>
                         <div ng-if="topic.visibility === VISIBILITY.public && !topic.report" class="blue_link" ui-sref="topics.view.report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report
                             topic

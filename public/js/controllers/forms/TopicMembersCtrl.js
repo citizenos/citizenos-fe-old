@@ -13,7 +13,35 @@ angular
 
         $scope.tabSelected = $stateParams.tab || 'participants';
 
-        var ITEMS_COUNT_PER_PAGE = 10;
+        var ITEMS_COUNT_PER_PAGE = 2;
+
+        $scope.groupList = {
+            isVisible: false,
+            isSearchVisible: false,
+            searchFilter: '',
+            searchOrderBy: {
+                property: 'name'
+            }
+        };
+
+        $scope.userList = {
+            isVisible: false,
+            isSearchVisible: false,
+            searchFilter: '',
+            searchOrderBy: {
+                property: 'name'
+            }
+        };
+
+        $scope.inviteList = {
+            isVisible: false,
+            isSearchVisible: false,
+            searchFilter: '',
+            searchOrderBy: {
+                property: 'name'
+            }
+        };
+
         $scope.selectTab = function (tab) {
             $scope.tabSelected = tab
             $location.search({tab: tab});
@@ -57,7 +85,7 @@ angular
             $scope.loadMemberUserList(offset, ITEMS_COUNT_PER_PAGE);
         };
 
-        $scope.loadTopicInviteUserList = function (offset, limit) {
+        $scope.loadInviteUserList = function (offset, limit) {
             if (!limit) {
                 limit = ITEMS_COUNT_PER_PAGE;
             }
@@ -66,8 +94,8 @@ angular
             }
 
             var search = null;
-            if ($scope.userList.searchFilter) {
-                search = $scope.userList.searchFilter.trim();
+            if ($scope.inviteList.searchFilter) {
+                search = $scope.inviteList.searchFilter.trim();
             }
 
             return TopicInviteUser
@@ -109,7 +137,7 @@ angular
 
         $scope.loadUsersInvitedPage = function (page) {
             var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
-            $scope.loadTopicInviteUserList(offset, ITEMS_COUNT_PER_PAGE);
+            $scope.loadInviteUserList(offset, ITEMS_COUNT_PER_PAGE);
         };
 
         $scope.loadMemberGroupList = function (offset, limit) {

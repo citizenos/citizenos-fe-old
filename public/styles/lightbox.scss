@@ -2050,6 +2050,28 @@
 
         }
     }
+
+
+    .lightbox_section {
+        &.participants_list {
+            table, .pretend_table {
+                tr, .pretend_tr {
+                    td, .pretend_td {
+                        padding: 5px 0;
+                        &:nth-child(1) {
+                            font-size: 14px;
+                            font-weight: vars.$bold;
+                        }
+                    }
+                    &.with_padding {
+                        td, .pretend_td {
+                            padding-top: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 #root_lightbox.full_screen {
