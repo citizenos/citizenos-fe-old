@@ -840,6 +840,7 @@
       "ARGUMENT_READ_CODE_OF_CONDUCT": "Lasiet mūsu <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">uzvedības kodeksu</a>, lai uzzinātu vairāk",
       "ARGUMENT_LAST_EDITED": "Rediģēts {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Rediģējiet savu atbildi šeit...",
+      "ARGUMENT_SELECT_ACTIONS": "@:DEFAULT.NAV_MOBILE.BTN_SETTINGS",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Apskatīt atbildi",
