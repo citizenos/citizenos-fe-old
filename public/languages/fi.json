@@ -840,6 +840,7 @@
       "ARGUMENT_READ_CODE_OF_CONDUCT": "Saat lisätietoja lukemalla <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">käyttäytymissääntömme</a>",
       "ARGUMENT_LAST_EDITED": "Muokattu viimeksi {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Muokkaa vastaustasi tässä...",
+      "ARGUMENT_SELECT_ACTIONS": "@:DEFAULT.NAV_MOBILE.BTN_SETTINGS",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Näytä silti vastaus",
