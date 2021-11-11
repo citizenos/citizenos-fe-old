@@ -840,6 +840,7 @@
       "ARGUMENT_READ_CODE_OF_CONDUCT": "Прочитајте го нашиот <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">кодекс на однесување</a> за повеќе информации",
       "ARGUMENT_LAST_EDITED": "Последно ажурирано {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Ажурирајте го вашиот одговор тука...",
+      "ARGUMENT_SELECT_ACTIONS": "@:DEFAULT.NAV_MOBILE.BTN_SETTINGS",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Види го одговорот секако",

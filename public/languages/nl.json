@@ -840,6 +840,7 @@
       "ARGUMENT_READ_CODE_OF_CONDUCT": "Lees onze <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">gedragscode</a> voor meer informatie",
       "ARGUMENT_LAST_EDITED": "Laatste bewerking {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Bewerk uw antwoord hier ...",
+      "ARGUMENT_SELECT_ACTIONS": "@:DEFAULT.NAV_MOBILE.BTN_SETTINGS",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Antwoord toch weergeven",

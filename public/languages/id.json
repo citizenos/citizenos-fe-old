@@ -840,6 +840,7 @@
       "ARGUMENT_READ_CODE_OF_CONDUCT": "Baca <a class=\"underlined_link\" href=\"{{codeOfConduct}}\">pedoman perilaku</a> kami untuk informasi lebih lanjut",
       "ARGUMENT_LAST_EDITED": "Terakhir diedit {{edittime}}",
       "PLACEHOLDER_EDIT_REPLY": "Edit balasan Anda di sini...",
+      "ARGUMENT_SELECT_ACTIONS": "@:DEFAULT.NAV_MOBILE.BTN_SETTINGS",
       "ARGUMENT_BTN_SAVE_EDIT_REPLY": "@:DIRECTIVES.COS_MODAL.BTN_SAVE",
       "ARGUMENT_BTN_CANCEL_EDIT_REPLY": "@:LNK_CANCEL",
       "ARGUMENT_VIEW_REPLY_ANYWAY": "Lihat Balasan",
