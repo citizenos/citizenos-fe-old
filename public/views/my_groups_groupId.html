@@ -369,7 +369,7 @@
                             <div class="table_cell">
                                 <div ng-bind="user.name">John Smith</div>
                                 <div class="via">
-                                    {{user.email}} {{user.phoneNumber}} {{user.pid}}
+                                    {{user.email}} {{user.phoneNumber}}
                                 </div>
                             </div>
                         </div>
@@ -432,8 +432,8 @@
                             <div class="table_cell">
                                 <div ng-bind="invite.user.name">John Smith</div>
                                 <div class="via">
-                                    {{invite.user.email}} {{invite.user.phoneNumber}} {{invite.user.pid}}
-                                    <span ng-if="invite.user.email || invite.user.phoneNumber || invite.user.pid"> • </span>
+                                    {{invite.user.email}} {{invite.user.phoneNumber}}
+                                    <span ng-if="invite.user.email || invite.user.phoneNumber"> • </span>
                                     <span translate="VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING">Pending invite</span>
                                 </div>
                             </div>

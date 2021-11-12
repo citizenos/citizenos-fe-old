@@ -555,11 +555,11 @@
                             <div class="table_cell">
                                 <div ng-bind="user.name">John Smith</div>
                                 <div class="via">
-                                    <span ng-if="user.email || user.phoneNumber || user.pid">
-                                        {{user.email}} {{user.phoneNumber}} {{user.pid}}
+                                    <span ng-if="user.email || user.phoneNumber">
+                                        {{user.email}} {{user.phoneNumber}}
                                     </span>
                                     <span ng-if="user.groups.rows.length && !user.levelUser">
-                                        <span ng-if="user.email || user.phoneNumber || user.pid"> • </span>
+                                        <span ng-if="user.email || user.phoneNumber"> • </span>
                                         <span translate="VIEWS.MY_TOPICS_TOPICID.LBL_VIA">via</span> <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}})</span><i
                                         ng-if="!group.name" class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP" translate-values="{level: ('TXT_TOPIC_LEVELS_' + group.level | uppercase | translate)}">Inaccessible Group</i> <i class="disabled">(<span  translate="{{'TXT_TOPIC_LEVELS_' + group.level | uppercase }}">admin</span>)</i></span>
                                     </span>
@@ -623,11 +623,11 @@
                             <div class="table_cell smooth_gray">
                                 <div ng-bind="invite.user.name">John Smith</div>
                                 <div class="via">
-                                    <span ng-if="invite.user.email || invite.user.phoneNumber || invite.user.pid">
-                                        {{invite.user.email}} {{invite.user.phoneNumber}} {{invite.user.pid}}
+                                    <span ng-if="invite.user.email || invite.user.phoneNumber">
+                                        {{invite.user.email}} {{invite.user.phoneNumber}}
                                     </span>
                                     <span>
-                                        <span ng-if="invite.user.email || invite.user.phoneNumber || invite.user.pid"> • </span>
+                                        <span ng-if="invite.user.email || invite.user.phoneNumber"> • </span>
                                         <span translate="VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING">Pending invite</span>
                                     </span>
                                 </div>
