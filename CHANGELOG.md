@@ -1,3 +1,7 @@
+## 2021-11-11 - v. 0.1.4
+
+* Dashboard - show extra User contact info in the Topic/Group members list for Topic/Group admins and moderators - https://github.com/citizenos/citizenos-fe/issues/670
+
 ## 2021-11-04 - v. 0.1.3
 
 * Group share / join - https://github.com/citizenos/citizenos-fe/issues/325
