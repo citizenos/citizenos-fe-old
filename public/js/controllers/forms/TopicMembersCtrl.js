@@ -276,7 +276,7 @@ angular
                     .then(
                         function () {
                             if ($scope.userList.isVisible) { // Reload User list when Group permissions change as User permissions may also change
-                                $scope.loadTopicMemberUserList();
+                                $scope.loadMemberUserList();
                             }
                         },
                         function () {
