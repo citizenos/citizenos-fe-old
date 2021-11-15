@@ -30,7 +30,7 @@
                 <div class="table file_upload_table">
                     <div class="table_row">
                         <div class="file_add_cell" ng-if="app.config.attachments.upload">
-                            <input id="addFile" type="file" name="lisa fail" cos-file-upload select="selectFile" multiple="true"/>
+                            <input id="addFile" type="file" name="addFile" cos-file-upload select="selectFile" multiple="true"/>
                             <div class="file_add_btn_wrap" ng-click="uploadFile()">
                                 <div class="file_add_btn">
                                     <div class="sprite sprite-topic-file-upload2x"></div>
@@ -86,7 +86,7 @@
                                     <div class="name_wrap file_name">
                                         <div class="table_cell">
                                             <div ng-if="!file.editMode" class="blue_link">{{file.name}}</div>
-                                            <input ng-if="file.editMode" type="text" ng-model="file.name"/>
+                                            <input ng-if="file.editMode" type="text" ng-model="file.name" focus-if ng-keyup="$event.keyCode === 13 && editAttachment(file)"/>
                                         </div>
                                     </div>
 
@@ -121,8 +121,8 @@
                                     <div class="btn_wrap edit_btn" ng-click="editAttachment(file)">
                                         <div class="btn">
                                             <div class="table_cell">
-                                                <div class="sprite desktop_fix sprite-icon-edit2x"></div>
-                                                <div class="sprite mobile_fix sprite-icon-edit2x"></div>
+                                                <div class="sprite desktop_fix" ng-class="file.editMode ? 'sprite-icon-confirm2x' : 'sprite-icon-edit2x'"></div>
+                                                <div class="sprite mobile_fix" ng-class="file.editMode ? 'sprite-icon-confirm2x' : 'sprite-icon-edit2x'"></div>
                                             </div>
                                         </div>
                                     </div>

@@ -687,6 +687,10 @@
                     @media(max-width: 560px) {
                         display: none;
                     }
+
+                    &.name_wrap {
+                        width: 100%;
+                    }
                 }
 
                 .line_files_sepparator {
