@@ -2664,6 +2664,15 @@
 
     }
 
+    #lightbox.member_lightbox {
+        #lightbox_wrap {
+
+            .lightbox_footer {
+                height: 15px;
+            }
+        }
+    }
+
     @include mixins_n_extends.mobile {
         .mobile_only {
             display: block;
@@ -2737,6 +2746,18 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.pagination_row {
+    padding-top: 20px;
+    .pagination_wrapper {
+        display: inline-block;
+        padding: inherit;
+        border-top: 1px solid vars.$lightest_gray;
+       .pagination {
+           float: right;
         }
     }
 }
