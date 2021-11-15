@@ -7,7 +7,7 @@ angular
 
         $scope.form = {
             files: []
-        }
+        };
 
         $scope.saveInProgress = false;
 
@@ -25,9 +25,8 @@ angular
             $document[0].getElementById('addFile').click();
         };
 
-
         $scope.selectFile = function (files) {
-            for(var i = 0; i < files.length; i++) {
+            for (var i = 0; i < files.length; i++) {
                 var attachment = {
                     name: files[i].name,
                     type: files[i].name.split('.').pop(),
@@ -37,15 +36,10 @@ angular
                 };
 
                 if (attachment.size > 50000000) {
-              //      $scope.$apply(function () {
-                        sNotification.addError('MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT');
-             //       });
-
+                    sNotification.addError('MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT');
                 } else if (sUpload.ALLOWED_FILE_TYPES.indexOf(attachment.type.toLowerCase()) === -1) {
                     var fileTypeError = $translate.instant('MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED', {allowedFileTypes: sUpload.ALLOWED_FILE_TYPES.toString()});
-       //             $scope.$apply(function () {
-                        sNotification.addError(fileTypeError);
-       //             });
+                    sNotification.addError(fileTypeError);
                 } else {
                     $scope.appendAttachment(attachment);
                 }
@@ -53,10 +47,11 @@ angular
         };
 
         function handleAttachment (attachment) {
-            if (attachment){
+            if (attachment) {
                 $scope.appendAttachment(attachment);
             }
         }
+
         $scope.dropboxSelect = function () {
             sAttachment
                 .dropboxSelect()
@@ -99,7 +94,7 @@ angular
                                     keys.forEach(function (key) {
                                         sNotification.addError(err.data.errors[key]);
                                     });
-                                } else if (err.data.status && err.data.status.message){
+                                } else if (err.data.status && err.data.status.message) {
                                     sNotification.addError(err.data.status.message);
                                 } else {
                                     console.log(err);
@@ -137,7 +132,10 @@ angular
                 .then(function () {
                     $scope.form.files.splice(key, 1);
                     if (attachment.id) {
-                        TopicAttachment.delete({attachmentId: attachment.id, topicId: $scope.topic.id});
+                        TopicAttachment.delete({
+                            attachmentId: attachment.id,
+                            topicId: $scope.topic.id
+                        });
                     }
                 }, angular.noop);
         };

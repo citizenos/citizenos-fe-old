@@ -31,7 +31,7 @@ angular
                         activity.data.resultObject = jsonpatch.applyPatch(resultObject, activity.data.result).newDocument;
                         activity.data.result.forEach(function (item) {
                             var field = item.path.split('/')[1];
-                            if (field === 'deletedById' || field === 'deletedByReportId') {
+                            if (['deletedById', 'deletedByReportId', 'edits'].indexOf(field) > -1 ) {
                                 item = null;
                             } else {
                                 var change = _.find(resultItems, function (resItem) {

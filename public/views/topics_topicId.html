@@ -75,7 +75,7 @@
         </div>
 
         <div class="additional_info signing_deadline" ng-if="topic.vote.endsAt">
-            <span translate="VIEWS.TOPICS_TOPICID.BAR_SIGNING_DEADLINE">Signing deadline</span> <span class="bold">{{topic.vote.endsAt | amDateFormat:'MM.DD.YYYY HH:mm Z'}}</span>
+            <span translate="VIEWS.TOPICS_TOPICID.BAR_SIGNING_DEADLINE">Signing deadline</span> <span class="bold">{{topic.vote.endsAt | amDateFormat:'DD.MM.YYYY HH:mm Z'}}</span>
         </div>
 
     </div>
@@ -1001,7 +1001,7 @@
                                     </div>
                                     <div class="info_section_content"><span ng-repeat="author in topic.authors" ng-if="author.email" class="blue_link"
                                                                             tooltips tooltip-class="tooltip_author"
-                                                                            tooltip-template="<span class='creator_data_tooltip_row'>{{author.email}}</span><span class='creator_data_tooltip_row'>{{author.phoneNumber}}</span><span class='creator_data_tooltip_row'>{{author.pid}}</span>"
+                                                                            tooltip-template="<span class='creator_data_tooltip_row'>{{author.email}}</span><span class='creator_data_tooltip_row'>{{author.phoneNumber}}</span>"
                                                                             tooltip-smart="true">{{author.name}}<span ng-if="!$last" class="info_section_separator"> | </span></span><span ng-repeat="author in topic.authors" ng-if="!author.email">{{author.name}}<span ng-if="!$last" class="info_section_separator"> | </span></span>
                                     </div>
                                 </div>
