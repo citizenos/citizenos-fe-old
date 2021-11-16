@@ -456,6 +456,9 @@ table, .pretend_table {
     display: table-row;
 }
 
+.row_with_padding {
+    padding-top: 10px;
+}
 .pretend_td, .pretend_th, .pagination_wrapper {
     @extend %table_cell;
 }
@@ -487,8 +490,23 @@ table, .pretend_table {
 }
 
 .user_list {
+    table {
+        tr {
+            td, .pretend_td {
+                padding: 5px 0;
+
+                &:nth-child(1) {
+                    font-size: 14px;
+                    font-weight: vars.$bold;
+                }
+            }
+        }
+    }
+}
+
+.participants_list {
     td, .pretend_td {
-        padding: 5px 0;
+        padding: 10px 0;
 
         &:nth-child(1) {
             font-size: 14px;

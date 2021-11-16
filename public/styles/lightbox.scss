@@ -2054,6 +2054,28 @@
 
         }
     }
+
+
+    .lightbox_section {
+        &.participants_list {
+            table, .pretend_table {
+                tr, .pretend_tr {
+                    td, .pretend_td {
+                        padding: 5px 0;
+                        &:nth-child(1) {
+                            font-size: 14px;
+                            font-weight: vars.$bold;
+                        }
+                    }
+                    &.with_padding {
+                        td, .pretend_td {
+                            padding-top: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 #root_lightbox.full_screen {
@@ -2646,6 +2668,15 @@
 
     }
 
+    #lightbox.member_lightbox {
+        #lightbox_wrap {
+
+            .lightbox_footer {
+                height: 15px;
+            }
+        }
+    }
+
     @include mixins_n_extends.mobile {
         .mobile_only {
             display: block;
@@ -2719,6 +2750,18 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.pagination_row {
+    padding-top: 20px;
+    .pagination_wrapper {
+        display: inline-block;
+        padding: inherit;
+        border-top: 1px solid vars.$lightest_gray;
+       .pagination {
+           float: right;
         }
     }
 }

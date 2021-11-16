@@ -116,7 +116,8 @@ angular
             isSearchVisible: false,
             searchFilter: '',
             searchOrderBy: {
-                property: 'name'
+                property: 'name',
+                sortOrder: 'ASC'
             }
         };
 
@@ -125,7 +126,8 @@ angular
             isSearchVisible: false,
             searchFilter: '',
             searchOrderBy: {
-                property: 'name'
+                property: 'name',
+                sortOrder: 'ASC'
             }
         };
 
@@ -173,7 +175,7 @@ angular
             return false;
         };
 
-        $scope.loadTopicMemberUserList = function (offset, limit) {
+        $scope.loadTopicMemberUserList = function (offset, limit, order, sortOrder) {
             if (!limit) {
                 limit = ITEMS_COUNT_PER_PAGE;
             }
@@ -186,11 +188,20 @@ angular
                 search = $scope.userList.searchFilter.trim();
             }
 
+            if (order) {
+                $scope.userList.searchOrderBy.property = order;
+            }
+            if (sortOrder) {
+                $scope.userList.searchOrderBy.sortOrder = sortOrder;
+            }
+
             return TopicMemberUser
                 .query({
                     topicId: $scope.topic.id,
                     offset: offset,
                     search: search,
+                    order: $scope.userList.searchOrderBy.property,
+                    sortOrder: $scope.userList.searchOrderBy.sortOrder,
                     limit: limit
                 }).$promise
                 .then(function (users) {
@@ -211,7 +222,7 @@ angular
             $scope.loadTopicMemberUserList(offset, ITEMS_COUNT_PER_PAGE);
         };
 
-        $scope.loadTopicInviteUserList = function (offset, limit) {
+        $scope.loadTopicInviteUserList = function (offset, limit, order, sortOrder) {
             if (!limit) {
                 limit = ITEMS_COUNT_PER_PAGE;
             }
@@ -224,11 +235,20 @@ angular
                 search = $scope.userList.searchFilter.trim();
             }
 
+            if (order) {
+                $scope.userList.searchOrderBy.property = order;
+            }
+            if (sortOrder) {
+                $scope.userList.searchOrderBy.sortOrder = sortOrder;
+            }
+
             return TopicInviteUser
                 .query({
                     topicId: $scope.topic.id,
                     offset: offset,
                     search: search,
+                    order: $scope.userList.searchOrderBy.property,
+                    sortOrder: $scope.userList.searchOrderBy.sortOrder,
                     limit: limit
                 }).$promise
                 .then(function (invites) {
@@ -265,7 +285,18 @@ angular
             $scope.loadTopicInviteUserList(offset, ITEMS_COUNT_PER_PAGE);
         };
 
-        $scope.loadTopicMemberGroupList = function (offset, limit) {
+        $scope.sortMemberUsers = function (property) {
+            if (property === $scope.userList.searchOrderBy.property && $scope.userList.searchOrderBy.sortOrder === 'ASC') {
+                order = 'DESC'
+             } else {
+                 order = 'ASC'
+             }
+
+             $scope.loadTopicMemberUserList(0, ITEMS_COUNT_PER_PAGE, property, order);
+             $scope.loadTopicInviteUserList(0, ITEMS_COUNT_PER_PAGE, property, order);
+        };
+
+        $scope.loadTopicMemberGroupList = function (offset, limit, order, sortOrder) {
             if (!limit) {
                 limit = ITEMS_COUNT_PER_PAGE;
             }
@@ -277,11 +308,20 @@ angular
                 search = $scope.groupList.searchFilter.trim();
             }
 
+            if (order) {
+                $scope.groupList.searchOrderBy.property = order;
+            }
+            if (sortOrder) {
+                $scope.groupList.searchOrderBy.sortOrder = sortOrder;
+            }
+
             return TopicMemberGroup
                 .query({
                     topicId: $scope.topic.id,
                     offset: offset,
                     search: search,
+                    order: $scope.groupList.searchOrderBy.property,
+                    sortOrder: $scope.groupList.searchOrderBy.sortOrder,
                     limit: limit
                 }).$promise
                 .then(function (groups) {
@@ -301,6 +341,16 @@ angular
             var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
             $scope.loadTopicMemberGroupList(offset, ITEMS_COUNT_PER_PAGE);
         };
+
+        $scope.sortMemberGroups  = function (property) {
+            if (property === $scope.groupList.searchOrderBy.property && $scope.groupList.searchOrderBy.sortOrder === 'ASC') {
+               order = 'DESC'
+            } else {
+                order = 'ASC'
+            }
+
+            $scope.loadTopicMemberGroupList(0, ITEMS_COUNT_PER_PAGE, property, order);
+        }
 
         $scope.loadActivities = function (offset, limit) {
             $scope.activitiesOffset = offset || $scope.activitiesOffset;
