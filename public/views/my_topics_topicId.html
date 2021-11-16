@@ -419,22 +419,22 @@
                     <div class="mobile_text pretend_th" ng-if="wWidth <= 560">
                         <div class="th_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_ORDER_BY">Order by:</div>
                     </div>
-                    <div class="pretend_th" ng-click="groupList.searchOrderBy.property = 'name'">
+                    <div class="pretend_th" ng-click="sortMemberGroups('name')">
                         <div class="th_text">
                             <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_NAME">Name</span>
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="groupList.searchOrderBy.property === 'name'"></div>
+                            <div ng-class="{'sprite sprite-icon-list-ordering2x': groupList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': groupList.searchOrderBy.sortOrder === 'DESC' }" ng-if="groupList.searchOrderBy.property === 'name'"></div>
                         </div>
                     </div>
-                    <div class="pretend_th" ng-click="groupList.searchOrderBy.property = 'level'">
+                    <div class="pretend_th" ng-click="sortMemberGroups('level')">
                         <div class="th_text">
                             <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_RIGHTS">Rights</span>
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="groupList.searchOrderBy.property === 'level'"></div>
+                            <div ng-class="{'sprite sprite-icon-list-ordering2x': groupList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': groupList.searchOrderBy.sortOrder === 'DESC' }" ng-if="groupList.searchOrderBy.property === 'level'"></div>
                         </div>
                     </div>
-                    <div class="pretend_th" ng-click="groupList.searchOrderBy.property = 'members.users.count'">
+                    <div class="pretend_th" ng-click="sortMemberGroups('members.users.count')">
                         <div class="th_text">
                             <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_USERS">Users</span>
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="groupList.searchOrderBy.property === 'members.users.count'"></div>
+                            <div ng-class="{'sprite sprite-icon-list-ordering2x': groupList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': groupList.searchOrderBy.sortOrder === 'DESC' }" ng-if="groupList.searchOrderBy.property === 'members.users.count'"></div>
                         </div>
                     </div>
                     <div class="pretend_th not_sortable">
@@ -443,7 +443,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pretend_tr" ng-repeat="group in topic.members.groups.rows | orderBy: groupList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="group in topic.members.groups.rows">
                     <div class="pretend_td">
                         <div class="blue_link" ng-if="group.permission.level" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})" ui-sref-opts="{reload: true}" ng-bind="group.name">Group name</div>
                         <div ng-if="!group.permission.level"><i class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP">Inaccessible Group</i></div>
@@ -470,6 +470,7 @@
                     </div>
                     <div class="pretend_td">
                         <span class="pretend_table_mobile_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_USERS_COUNT" translate-values="{count: group.members.users.count}">Users: 0</span>
+                        <span ng-if="wWidth >= 560" ng-bind="group.members.users.count">1</span>
                     </div>
                     <div class="pretend_td recycle_bin_wrap">
                         <div class="btn_wrap recycle_bin" ng-if="topic.canUpdate()">
@@ -518,16 +519,16 @@
                     <div class="mobile_text pretend_th" ng-if="wWidth <= 560">
                         <div class="th_text" translate="VIEWS.MY_TOPICS_TOPICID.LBL_ORDER_BY">Order by:</div>
                     </div>
-                    <div class="pretend_th" ng-click="userList.searchOrderBy.property = 'name'">
+                    <div class="pretend_th" ng-click="sortMemberUsers('name');">
                         <div class="th_text">
                             <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_PROFILE">Profile</span>
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'name'"></div>
+                            <div ng-class="{'sprite sprite-icon-list-ordering2x': userList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': userList.searchOrderBy.sortOrder === 'DESC' }" ng-if="userList.searchOrderBy.property === 'name'"></div>
                         </div>
                     </div>
-                    <div class="pretend_th" ng-click="userList.searchOrderBy.property = 'level'">
+                    <div class="pretend_th" ng-click="sortMemberUsers('level')">
                         <div class="th_text">
                             <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_RIGHTS">Rights</span>
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="userList.searchOrderBy.property === 'level'"></div>
+                            <div ng-class="{'sprite sprite-icon-list-ordering2x': userList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': userList.searchOrderBy.sortOrder === 'DESC' }" ng-if="userList.searchOrderBy.property === 'level'"></div>
                         </div>
                     </div>
                     <div class="pretend_th not_sortable" ng-if="topic.canUpdate()">
@@ -537,7 +538,7 @@
                     </div>
                 </div>
                 <!-- TopicMemberUsers -->
-                <div class="pretend_tr" ng-repeat="user in topic.members.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="user in topic.members.users.rows">
                     <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
@@ -605,7 +606,7 @@
                     </div>
                 </div>
                 <!-- TopicInviteUsers -->
-                <div class="pretend_tr" ng-repeat="invite in topic.invites.users.rows | filter: userList.searchFilter | orderBy : userList.searchOrderBy.property">
+                <div class="pretend_tr" ng-repeat="invite in topic.invites.users.rows">
                     <div class="pretend_td">
                         <div class="profile_image_wrapper dark">
                             <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->

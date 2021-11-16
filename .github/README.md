@@ -122,3 +122,4 @@ We listen to our users in issues.
 
 * All pull requests to `master` branch
 * Live site runs on `prod` branch
+* All the other ways to contribute - https://citizenos.com/get-involved/
