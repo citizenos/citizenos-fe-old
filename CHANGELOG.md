@@ -1,3 +1,8 @@
+## 2021-11-17 - v. 0.1.5
+
+* Add "Manage participants" view under topic edit view
+* Alter "My topics" users and groups to support ordering in querys
+
 ## 2021-11-11 - v. 0.1.4
 
 * Dashboard - show extra User contact info in the Topic/Group members list for Topic/Group admins and moderators - https://github.com/citizenos/citizenos-fe/issues/670
