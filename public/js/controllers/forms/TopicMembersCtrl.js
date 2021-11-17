@@ -13,7 +13,7 @@ angular
 
         $scope.tabSelected = $stateParams.tab || 'participants';
 
-        var ITEMS_COUNT_PER_PAGE = 2;
+        var ITEMS_COUNT_PER_PAGE = 10;
 
         $scope.groupList = {
             isSearchVisible: false,
