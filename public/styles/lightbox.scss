@@ -147,6 +147,14 @@
         }
     }
 
+    .input_action_link {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0.8em;
+        font-size: .75em;
+    }
+
     #lightbox.date_picker_wrap {
         #lightbox_wrap {
             #lightbox_header {
@@ -206,7 +214,7 @@
 
                 @include mixins_n_extends.mobile {
                     padding-bottom: 38px;
-                    position: initial!important;
+                    position: initial !important;
                 }
 
                 .lightbox_section {
@@ -217,6 +225,7 @@
                     @include mixins_n_extends.mobile {
                         padding-top: 10px !important;
                     }
+
                     .input_row {
                         input {
                             width: auto;
@@ -243,6 +252,7 @@
                             margin-left: 0;
                         }
                     }
+
                     .left_row {
                         padding-right: 10px;
                         @media (max-width: 1200px) {
@@ -2062,11 +2072,13 @@
                 tr, .pretend_tr {
                     td, .pretend_td {
                         padding: 5px 0;
+
                         &:nth-child(1) {
                             font-size: 14px;
                             font-weight: vars.$bold;
                         }
                     }
+
                     &.with_padding {
                         td, .pretend_td {
                             padding-top: 20px;
@@ -2161,6 +2173,7 @@
             &.participants_list {
                 max-height: initial;
             }
+
             &.language_section {
                 padding-left: 25px !important;
             }
@@ -2759,12 +2772,14 @@
 
 .pagination_row {
     padding-top: 20px;
+
     .pagination_wrapper {
         display: inline-block;
         padding: inherit;
         border-top: 1px solid vars.$lightest_gray;
-       .pagination {
-           float: right;
+
+        .pagination {
+            float: right;
         }
     }
 }
