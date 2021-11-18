@@ -9,6 +9,8 @@ angular
         $scope.inviteMessageMaxLength = 1000;
         $scope.tabSelected = $stateParams.tab || 'invite';
 
+        var EMAIL_SEPARATOR_REGEXP = /[;,\s]/ig;
+
         $scope.topicList = {
             searchFilter: '',
             searchOrderBy: {
@@ -37,6 +39,7 @@ angular
             $scope.membersPage = 1;
             $scope.groupLevel = TopicMemberGroup.LEVELS.read;
             $scope.members = [];
+            $scope.invalid = [];
 
             $scope.TopicMemberUser = TopicMemberUser;
             $scope.TopicMemberGroup = TopicMemberGroup;
@@ -50,7 +53,7 @@ angular
         $scope.search = function (str) {
             $scope.searchString = str; // TODO: Hackish - Typeahead has term="searchString" but somehow the 2 way binding does not work there, investigate when time
             if (str && str.length >= 2) {
-                if (str.indexOf(',') > -1) {
+                if (str.match(EMAIL_SEPARATOR_REGEXP)) {
                     $scope.searchResults.users = [];
                     $scope.searchResults.groups = [];
                     $scope.searchResults.emails = [];
@@ -157,7 +160,7 @@ angular
                 sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
                 return;
             }
-            if (!member || (typeof member === 'string' && (validator.isEmail(member) || member.indexOf(',') > -1))) {
+            if (!member || (typeof member === 'string' && (validator.isEmail(member) || member.match(EMAIL_SEPARATOR_REGEXP) > -1))) {
                 return $scope.addTopicMemberUser();
             }
             if (member.hasOwnProperty('company')) {
@@ -229,8 +232,11 @@ angular
                     $scope.searchResults.combined = [];
                 }
             } else {
+                if(!$scope.searchString) return;
+
                 // Assume e-mail was entered.
-                var emails = $scope.searchString.replace(/[;,\s]/gi, ',').split(',');
+                var emails = $scope.searchString.replace(EMAIL_SEPARATOR_REGEXP, ',').split(',');
+
                 var filtered = _.filter(emails, function (email) {
                     return validator.isEmail(email.trim())
                 });
@@ -243,6 +249,7 @@ angular
                     $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchString);
                     return;
                 }
+
                 _.sortedUniq(filtered.sort()).forEach(function (email) {
                     email = email.trim();
                     if ($scope.members.length >= maxUsers) {
@@ -257,8 +264,15 @@ angular
                         });
                         orderMembers();
                     }
-                    $scope.invalid = invalid;
                 });
+
+                if (invalid && invalid.length) {
+                    invalid.forEach(function (item) {
+                        if ($scope.invalid.indexOf(item) === -1) {
+                            $scope.invalid.push(item);
+                        }
+                    });
+                }
 
                 $scope.searchResults.groups = [];
                 $scope.searchResults.users = [];

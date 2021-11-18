@@ -107,11 +107,13 @@ app.directive('typeahead', ["$timeout", function ($timeout) {
             $input.bind('keyup', function (e) {
                 if (e.keyCode === 13) { // ENTER
                     if (!scope.selectLimit || (scope.term && (scope.selectLimit <= scope.term.length)) || (scope.items && scope.items.length)) {
+                        console.log('typeahead', 'selectActive');
                         scope.$apply(function () {
                             controller.selectActive();
                         });
                     } else {
                         scope.$apply(function () {
+                            console.log('typeahead', 'enterAction');
                             controller.enterAction();
                         });
                     }
