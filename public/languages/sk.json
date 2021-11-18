@@ -893,7 +893,7 @@
       "NAV_LNK_SEND_TO_FOLLOW_UP": "Poslať na ďalšie sledovanie",
       "NAV_LNK_CLOSE_TOPIC": "Uzavrieť tému",
       "NAV_LNK_SETTINGS": "Nastavenia",
-      "NAV_LNK_ACTIONS": "@:DEFAULT.NAV_MOBILE.BTN_NASTAVENIA",
+      "NAV_LNK_ACTIONS": "@:DEFAULT.NAV_MOBILE.BTN_SETTINGS",
       "NAV_LNK_CATEGORIES": "Kategórie",
       "NAV_LNK_INVITE_USERS": "Pozvať užívateľov",
       "NAV_LNK_SHARE": "Zdieľať tému",
