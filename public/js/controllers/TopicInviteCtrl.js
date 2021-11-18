@@ -51,6 +51,8 @@ angular
         };
 
         $scope.search = function (str) {
+            console.log('search', str);
+
             $scope.searchString = str; // TODO: Hackish - Typeahead has term="searchString" but somehow the 2 way binding does not work there, investigate when time
             if (str && str.length >= 2) {
                 if (str.match(EMAIL_SEPARATOR_REGEXP)) {
@@ -160,7 +162,8 @@ angular
                 sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
                 return;
             }
-            if (!member || (typeof member === 'string' && (validator.isEmail(member) || member.match(EMAIL_SEPARATOR_REGEXP) > -1))) {
+            if (!member || (typeof member === 'string' && (validator.isEmail(member) || member.match(EMAIL_SEPARATOR_REGEXP)))) {
+                $log.debug('go to addTopicMemberUser');
                 return $scope.addTopicMemberUser();
             }
             if (member.hasOwnProperty('company')) {
@@ -278,6 +281,7 @@ angular
                 $scope.searchResults.users = [];
                 $scope.searchResults.emails = [];
                 $scope.searchResults.combined = [];
+                $scope.searchString = null;
             }
         };
 
@@ -298,7 +302,7 @@ angular
         };
 
         $scope.selectTab = function (tab) {
-            $scope.tabSelected = tab
+            $scope.tabSelected = tab;
             $location.search({tab: tab});
         };
 
