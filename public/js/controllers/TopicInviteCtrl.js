@@ -199,11 +199,13 @@ angular
 
         $scope.addCorrectedEmail = function (email, key) {
             if (validator.isEmail(email.trim())) {
-                $scope.addTopicMemberUser({
-                    userId: email,
-                    name: email,
-                    level: $scope.groupLevel
-                });
+                if (!_.find($scope.members, ['userId', email])) {
+                    $scope.addTopicMemberUser({
+                        userId: email,
+                        name: email,
+                        level: $scope.groupLevel
+                    });
+                }
                 $scope.invalid.splice(key, 1);
             }
         };
@@ -235,7 +237,7 @@ angular
                     $scope.searchResults.combined = [];
                 }
             } else {
-                if(!$scope.searchString) return;
+                if (!$scope.searchString) return;
 
                 // Assume e-mail was entered.
                 var emails = $scope.searchString.replace(EMAIL_SEPARATOR_REGEXP, ',').split(',');

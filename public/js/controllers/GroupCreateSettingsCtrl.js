@@ -26,9 +26,6 @@ angular
             }
         };
 
-        // FIXME: Dynamic
-        $scope.invalid = ['aadsasd', 'basdasd'];
-
         var maxUsers = 550;
         var itemsPerPage = 10;
 
@@ -67,6 +64,7 @@ angular
             $scope.membersPage = 1;
             $scope.memberTopics = [];
             $scope.members = [];
+            $scope.invalid = [];
             $scope.inviteMessageMaxLength = 1000;
 
             $scope.Group = Group;
@@ -244,7 +242,7 @@ angular
                 if (!$scope.searchStringUser) return;
 
                 // Assume e-mail was entered.
-                var emails = $scope.searchString.replace(EMAIL_SEPARATOR_REGEXP, ',').split(',');
+                var emails = $scope.searchStringUser.replace(EMAIL_SEPARATOR_REGEXP, ',').split(',');
 
                 var filtered = _.filter(emails, function (email) {
                     return validator.isEmail(email.trim())
@@ -254,26 +252,23 @@ angular
                     return !validator.isEmail(email.trim()) && email.trim().length > 0;
                 });
 
-                if (!filtered.length) {
-                    $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchStringUser);
-                    return;
+                if (filtered.length) {
+                    _.sortedUniq(filtered.sort()).forEach(function (email) {
+                        email = email.trim();
+                        if ($scope.members.length >= maxUsers) {
+                            sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
+                            return;
+                        }
+                        if (!_.find($scope.members, ['userId', email])) {
+                            $scope.members.push({
+                                userId: email,
+                                name: email,
+                                level: $scope.groupLevel
+                            });
+                            orderMembers();
+                        }
+                    });
                 }
-
-                _.sortedUniq(filtered.sort()).forEach(function (email) {
-                    email = email.trim();
-                    if ($scope.members.length >= maxUsers) {
-                        sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
-                        return;
-                    }
-                    if (!_.find($scope.members, ['userId', email])) {
-                        $scope.members.push({
-                            userId: email,
-                            name: email,
-                            level: $scope.groupLevel
-                        });
-                        orderMembers();
-                    }
-                });
 
                 if (invalid && invalid.length) {
                     invalid.forEach(function (item) {
@@ -303,13 +298,13 @@ angular
             $log.debug('addCorrectedEmail', email, key);
 
             if (validator.isEmail(email.trim())) {
-                $log.debug('addCorrectedEmail', 'VALID!');
-                $scope.addGroupMemberUser({
-                    userId: email,
-                    name: email,
-                    level: $scope.groupLevel
-                });
-                $log.debug('addCorrectedEmail', 'SPLICE', key);
+                if (!_.find($scope.members, ['userId', email])) {
+                    $scope.members.push({
+                        userId: email,
+                        name: email,
+                        level: $scope.groupLevel
+                    });
+                }
                 $scope.invalid.splice(key, 1);
             }
         };
