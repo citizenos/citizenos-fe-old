@@ -25,8 +25,14 @@ angular
                 property: 'title'
             }
         };
+
+        // FIXME: Dynamic
+        $scope.invalid = ['aadsasd', 'basdasd'];
+
         var maxUsers = 550;
         var itemsPerPage = 10;
+
+        var EMAIL_SEPARATOR_REGEXP = /[;,\s]/ig;
 
         var init = function () {
             // Group creation
@@ -226,22 +232,33 @@ angular
                     return;
                 } else {
                     var memberClone = angular.copy(member);
-                    memberClone.userId = member.id;
-                    memberClone.level = GroupMemberUser.LEVELS.read;
+                    memberClone.userId = member.userId;
+                    memberClone.level = $scope.groupLevel;
 
                     $scope.members.push(memberClone);
                     $scope.searchResults.users = [];
+
                     orderMembers();
                 }
             } else {
-                var emails = $scope.searchStringUser.match(/(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})/gi);
+                if (!$scope.searchStringUser) return;
+
+                // Assume e-mail was entered.
+                var emails = $scope.searchString.replace(EMAIL_SEPARATOR_REGEXP, ',').split(',');
+
                 var filtered = _.filter(emails, function (email) {
                     return validator.isEmail(email.trim())
                 });
+
+                var invalid = _.filter(emails, function (email) {
+                    return !validator.isEmail(email.trim()) && email.trim().length > 0;
+                });
+
                 if (!filtered.length) {
                     $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchStringUser);
                     return;
                 }
+
                 _.sortedUniq(filtered.sort()).forEach(function (email) {
                     email = email.trim();
                     if ($scope.members.length >= maxUsers) {
@@ -257,6 +274,16 @@ angular
                         orderMembers();
                     }
                 });
+
+                if (invalid && invalid.length) {
+                    invalid.forEach(function (item) {
+                        if ($scope.invalid.indexOf(item) === -1) {
+                            $scope.invalid.push(item);
+                        }
+                    });
+                }
+
+                $scope.searchStringUser = null;
             }
         };
 
@@ -266,6 +293,25 @@ angular
 
         $scope.updateGroupMemberUserLevel = function (member, level) {
             $scope.members[$scope.members.indexOf(member)].level = level;
+        };
+
+        $scope.removeInvalidEmail = function (key) {
+            $scope.invalid.splice(key, 1);
+        };
+
+        $scope.addCorrectedEmail = function (email, key) {
+            $log.debug('addCorrectedEmail', email, key);
+
+            if (validator.isEmail(email.trim())) {
+                $log.debug('addCorrectedEmail', 'VALID!');
+                $scope.addGroupMemberUser({
+                    userId: email,
+                    name: email,
+                    level: $scope.groupLevel
+                });
+                $log.debug('addCorrectedEmail', 'SPLICE', key);
+                $scope.invalid.splice(key, 1);
+            }
         };
 
         $scope.selectTab = function (tab) {
