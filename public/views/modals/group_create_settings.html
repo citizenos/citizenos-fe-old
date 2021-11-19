@@ -259,7 +259,7 @@
                 </div>
             </div>
 
-            <!-- INVITE USERS -->
+           <!-- INVITE USERS -->
             <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'users'">
 
                 <div class="lightbox_section" ng-if="form.group.canUpdate()">
@@ -287,14 +287,67 @@
                                 </div>
 
                                 <div class="search_text">
-                                    <div class="table_cell blue_link" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter to add</div>
+                                    <div class="table_cell blue_link"  ng-click="addGroupMemberUser()" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter to add</div>
                                 </div>
 
                             </typeahead>
 
                         </div>
                     </div>
+                </div>
 
+                <!-- INVALID INPUTS -->
+                <div class="lightbox_section double_row_list user_list" ng-if="invalid.length">
+                    <div class="category_title">
+                        <div class="input_text_margin_bottom  error_label">
+                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            <span translate="MODALS.TOPIC_SETTINGS_ERROR_MSG_INVALID_EMAILS_FOUND">Invalid e-mail formats found. Please correct and add before sending invite.</span>
+                        </div>
+                    </div>
+                    <table>
+                        <tr ng-repeat="(key, email) in invalid">
+                            <td>
+                                <input type="text" class="error_input" ng-model="email" ng-keypress="($event.which === 13)? addCorrectedEmail(email) : 0"/>
+
+                                <div class="mobile_extra_info">
+                                    <div class="left">
+                                        <div class="light_gray_button" ng-click="addCorrectedEmail(email)" translate="MODALS.TOPIC_SETTINGS_BTN_ADD">
+                                            Add
+                                        </div>
+                                    </div>
+
+                                    <div class="right">
+                                        <div class="btn_wrap recycle_bin white_bg">
+                                            <div class="btn" ng-click="removeInvalidEmail(key)">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="light_gray_button" ng-click="addCorrectedEmail(email, key)" translate="MODALS.TOPIC_SETTINGS_BTN_ADD">
+                                    Add
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn_wrap recycle_bin white_bg">
+                                    <div class="btn" ng-click="removeInvalidEmail(key)">
+                                        <div class="table_cell">
+                                            <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
                 </div>
 
                 <div class="lightbox_section double_row_list user_list" ng-if="members.length">
@@ -386,9 +439,7 @@
                         </div>
 
                         <table  ng-repeat-end ng-if="itemsExist(title)">
-                            <!--table  ng-repeat-end ng-if="itemsExist(title)"-->
                                 <tr ng-repeat="(memberKey, member) in members" ng-if="isOnPage($index, membersPage) && isInGroup(member, title)">
-                            <!--tr ng-repeat="(memberKey, member) in members"-->
                                 <td>
                                     <div class="profile_image_wrapper dark">
                                         <!--div class="profile_moon sprite"></div-->
