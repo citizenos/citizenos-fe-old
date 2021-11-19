@@ -307,11 +307,11 @@
                     <table>
                         <tr ng-repeat="(key, email) in invalid">
                             <td>
-                                <input type="text" class="error_input" ng-model="email" ng-keypress="($event.which === 13)? addCorrectedEmail(email) : 0"/>
+                                <input type="text" class="error_input" ng-model="email" ng-keypress="($event.which === 13)? addCorrectedEmail(email, key) : 0"/>
 
                                 <div class="mobile_extra_info">
                                     <div class="left">
-                                        <div class="light_gray_button" ng-click="addCorrectedEmail(email)" translate="MODALS.TOPIC_SETTINGS_BTN_ADD">
+                                        <div class="light_gray_button" ng-click="addCorrectedEmail(email, key)" translate="MODALS.TOPIC_SETTINGS_BTN_ADD">
                                             Add
                                         </div>
                                     </div>
