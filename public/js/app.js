@@ -134,7 +134,7 @@
                             $log.debug('Resolve language', $stateParams.language);
                             return sTranslate.setLanguage($stateParams.language);
                         },
-                        sAuthResolve: function ($q, $log, $state, $stateParams, $window, sAuth, sLocation) {
+                        sAuthResolve: function ($q, $log, $state, $stateParams, $window, sAuth, sLocation, ngDialog) {
                             if (sAuth.user.loggedIn) {
                                 return;
                             }
@@ -143,6 +143,13 @@
                                 .then(
                                     function () {
                                         $log.debug('Resolve user', sAuth.user, 'LOGGED IN');
+                                        if (!sAuth.user.email) {
+                                            console.log(sAuth.user.loggedIn)
+                                            sAuth.user.loggedIn = false;
+                                            var dialog = ngDialog.open({
+                                                template: '/views/modals/add_email.html'
+                                            });
+                                        }
                                         if (sAuth.user.loggedIn) {
                                             if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
                                                 return $state.go(

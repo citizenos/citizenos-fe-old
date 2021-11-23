@@ -1,0 +1,82 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing delete_topic wide_lightbox my_account_lightbox" ng-controller="AddEmailCtrl">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.ADD_EMAIL_HEADING">Close topic</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x"></div>
+                    </div>
+                </div>
+
+                <div class="line lightest_line"></div>
+
+            </div>
+
+
+            <div class="lightbox_content">
+
+                <div class="second_header">
+
+                    <div class="sprite sprite-icon-warn-topic2x"></div>
+                    <div class="warn_title" translate="MODALS.ADD_EMAIL_HEADING">Are you sure you want to continue?</div>
+
+                    <div id="lightbox_close" ng-click="closeThisDialog()">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+
+                <div class="lightbox_section">
+
+                    <div class="delete_info_text_wrap">
+                        <div>
+                            <div class="delete_info_text" translate="MODALS.ADD_EMAIL_DESCRIPTION">You can only be invited to join discussions and votes by e-mail. Please enter your valid e-mail to proceed.</div>
+                        </div>
+                    </div>
+                    <div class="delete_info_text_wrap section_with_padding">
+                        <div >
+                            <input id="email" ng-model="form.email" type="email" placeholder="{{'MODALS.ADD_EMAIL_PLACEHOLDER_EMAIL' | translate}}" focus-if="{{wWidth > 1024 && !isFormEmailProvided}}"
+                                       ng-class="{'error_input': errors.email}" maxlength="254" required>
+                        </div>
+                    </div>
+                    <div class="delete_info_text_wrap section_with_padding">
+                        <div>
+                            <div class="delete_info_text bold" translate="MODALS.ADD_EMAIL_TXT_VERIFY">Please verify your e-mail address via the email you will receive shortly after logging in. This way we can ensure you will receive the proper notifications.</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="lightbox_footer">
+                <div class="line lightest_line"></div>
+
+                <div class="lightbox_section">
+                    <div class="footer_button_wrap right">
+                        <div class="blue_link" translate="MODALS.ADD_EMAIL_LNK_CANCEL" ng-click="logout()">Cancel</div>
+                        <div class="blue_button" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button"
+                        translate="MODALS.ADD_EMAIL_LOG_IN">Log In
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="logout();closeThisDialog();"></div>
+
+</div>

@@ -30,7 +30,15 @@ angular
                     return pollSmartIdLoginStatus(token, 3000, 80);
                 })
                 .then(function () {
-                    handleLoginSuccess();
+                    console.log(sAuth.user);
+                    if (!sAuth.user.email) {
+                        var dialog = ngDialog.open({
+                            template: '/views/modals/add_email.html'
+                        });
+                    } else {
+                        handleLoginSuccess();
+                    }
+
                 }, function (err) {
                     $log.error('Something failed when trying to log in with mobile', err);
 

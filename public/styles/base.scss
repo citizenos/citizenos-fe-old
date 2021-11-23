@@ -459,6 +459,11 @@ table, .pretend_table {
 .row_with_padding {
     padding-top: 10px;
 }
+
+.section_with_padding {
+    padding-top: 20px;
+}
+
 .pretend_td, .pretend_th, .pagination_wrapper {
     @extend %table_cell;
 }

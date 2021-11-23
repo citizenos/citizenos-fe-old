@@ -16,7 +16,6 @@ angular
         sUser.update = function (name, email, password, company, imageUrl, preferences, language, termsVersion) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self');
             var userData = {
-                name: name,
                 email: email,
                 company: company,
                 imageUrl: imageUrl,
@@ -24,6 +23,10 @@ angular
                 preferences: preferences,
                 termsVersion: termsVersion
             };
+
+            if (name) {
+                userData.name = name;
+            }
 
             if (password) {
                 userData.password = password;
