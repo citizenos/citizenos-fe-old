@@ -107,7 +107,7 @@
                             <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_DEADLINE_EXT">WHEN THE DEADLINE IS REACHED, THE TOPIC WILL BE CLOSED</div>
                         </div>
                         <div class="settings_cell text-right">
-                            <span class="bold">{{form.topic.vote.endsAt | amDateFormat:'MM.DD.YYYY HH:mm Z'}}</span>
+                            <span class="bold">{{form.topic.vote.endsAt | amDateFormat:'L LT Z'}}</span>
                         </div>
                         <div class="settings_cell">
                             <div class="gray_button edit_deadline_button" cos-modal-datepicker ng-model="form.topic.vote.endsAt" cos-modal-on-save="doEditVoteDeadline" cos-modal-title="'MODALS.TOPIC_SETTINGS_MODAL_DEADLINE_TITLE'" cos-modal-description="'MODALS.TOPIC_SETTINGS_MODAL_DEADLINE_DESCRIPTION'"><span translate="MODALS.TOPIC_SETTINGS_BTN_EDIT_DEADLINE">Edit deadline</span></div>
