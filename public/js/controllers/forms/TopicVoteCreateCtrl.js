@@ -86,11 +86,11 @@ angular
             if (val < 10) {
                 val = '0' + val;
             }
-        }
+        };
 
         $scope.$parent.$parent.getTimeZoneName = function (value) {
             return ($scope.timezones.find(function(item) {return item.value === value})).name;
-        }
+        };
 
         $scope.$parent.$parent.voteForm = {
             options: [],
@@ -123,10 +123,10 @@ angular
                 }
             }
             $scope.setEndsAtTime();
-        }
+        };
 
         $scope.$parent.$parent.setEndsAtTime = function () {
-            $scope.voteForm.endsAt.date = $scope.voteForm.endsAt.date || new Date();
+            $scope.voteForm.endsAt.date = $scope.voteForm.endsAt.date || moment(new Date());
             $scope.voteForm.deadline = moment($scope.voteForm.endsAt.date);
             $scope.voteForm.deadline.utcOffset($scope.voteForm.endsAt.timezone, true);
             var hour = $scope.voteForm.endsAt.h;
@@ -201,11 +201,10 @@ angular
         $scope.$parent.$parent.daysToVoteEnd = function () {
             if ($scope.voteForm.deadline) {
                 if ($scope.voteForm.deadline === true) {
-                    $scope.voteForm.deadline = new Date();
+                    $scope.voteForm.deadline = moment(new Date()).startOf('day').add(1, 'day');
+                    $scope.voteForm.endsAt.date = $scope.voteForm.deadline;
                 }
-                var endDate = $scope.voteForm.deadline;
-                var diffTime = new Date(endDate).getTime() - new Date().getTime();
-                $scope.voteForm.numberOfDaysLeft = Math.ceil(diffTime / (1000 * 3600 * 24)); // Diff in days
+                $scope.voteForm.numberOfDaysLeft = $scope.voteForm.deadline.diff(new Date(), 'days') + 1;
             }
             return $scope.voteForm.numberOfDaysLeft;
         };
