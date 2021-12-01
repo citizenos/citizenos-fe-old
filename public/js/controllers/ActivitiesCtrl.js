@@ -61,7 +61,7 @@ angular
 
                     $scope.activities = $scope.activities.concat(activities);
 
-                    if ($scope.activities.length < 10 && $scope.showLoadMoreActivities) {
+                    if ($scope.activities.length <= 10 && $scope.showLoadMoreActivities) {
                         $scope.loadActivities();
                     }
 
