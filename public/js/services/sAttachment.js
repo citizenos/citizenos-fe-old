@@ -11,7 +11,9 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
         return new Promise (function (resolve) {
             var pickerCallback = function (data) {
                 if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+                    console.log('DATA', data);
                     var doc = data[google.picker.Response.DOCUMENTS][0];
+                    console.log('DOC', doc)
                     var attachment = {
                         name: doc[google.picker.Document.NAME],
                         type: doc[google.picker.Document.TYPE],
@@ -72,6 +74,7 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
         return new Promise(function (resolve, reject) {
             return Dropbox.choose({
                 success: function(files) {
+                    console.log('DROPBOX', files);
                     var attachment = {
                         name: files[0].name,
                         type: files[0].name.split('.').pop(),
@@ -101,6 +104,7 @@ app.service('sAttachment', ['$http', '$q', '$log', 'cosConfig', 'sLocation', 'To
                     redirectUri: sLocation.getAbsoluteUrl('/onedrive')
                 },
                 success: function (res) {
+                    console.log('ONEDRIVE', res);
                     var attachment = {
                         name: res.value[0].name,
                         type: res.value[0].name.split('.').pop(),

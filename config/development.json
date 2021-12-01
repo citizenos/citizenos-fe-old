@@ -5,7 +5,9 @@
         "self"
       ],
       "img-src": [
-        "*"
+        "self",
+        "data:",
+        "https://dev.api.citizenos.com:3003"
       ],
       "script-src": [
         "self",
@@ -19,7 +21,8 @@
         "https://maxcdn.bootstrapcdn.com"
       ],
       "script-src-elem": [
-        "self"
+        "self",
+        "https://apis.google.com"
       ],
       "font-src": [
         "self",

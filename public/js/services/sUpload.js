@@ -25,12 +25,6 @@ app.service('sUpload', ['$http', '$window', 'cosConfig', 'sLocation', function (
         });
     };
 
-    sUpload.delete = function(filepath, folder) {
-        var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload');
-        var filename = filepath.split('/').pop();
-        return $http.delete(path, {params: {'filename': filename, 'folder': folder}});
-    };
-
     sUpload.download = function (topicId, attachmentId, userId) {
         var path = sLocation.getAbsoluteUrlApi('/api/topics/:topicId/attachments/:attachmentId');
 

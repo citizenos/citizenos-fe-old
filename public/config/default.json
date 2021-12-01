@@ -45,14 +45,14 @@
   "attachments": {
     "limit": 10,
     "upload": {
-      "allowedFileTypes": ["asice", "txt", "pdf", "doc", "docx", "ddoc", "bdoc", "odf", "odt", "jpg", "jpeg", "img", "png", "rtf", "xls", "xlsx", "ppt", "pptx", "pps", "xlt"]
+      "allowedFileTypes": ["asice", "txt", "pdf", "doc", "docx", "ddoc", "bdoc", "odf", "odt", "jpg", "jpeg", "png", "rtf", "xls", "xlsx", "ppt", "pptx", "pps", "xlt"]
     },
     "dropbox": {
       "appKey": "lkk7j6f41sfpm5b"
     },
     "googleDrive": {
       "developerKey": "AIzaSyBuEp5_A9tMjIZbIWzZ3pyh9wzLVcikD6I",
-      "clientId": "11623449066-0pdp3p7mp4l4f3e7vm43pr7okjpmddmc.apps.googleusercontent.com"
+      "clientId": "11623449066-fua92rmgai358bqb63hqcc4sm1j17lev.apps.googleusercontent.com"
     },
     "oneDrive": {
       "clientId": "deb735fe-1c3d-489c-93f4-0a8927101d09"

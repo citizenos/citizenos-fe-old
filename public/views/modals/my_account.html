@@ -57,7 +57,7 @@
                                 <div class="account_picture">
                                     <!-- NB Remember to use image that has 2x size, meaning 160x160px for this <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">-->
                                     <img ng-if="form.imageUrl" ng-src="{{form.imageUrl}}">
-                                    <input type="file" id="profileImage" name="image" onchange="angular.element(this).scope().switchImage(this)" />
+                                    <input type="file" id="profileImage" name="image" cos-file-upload select="switchImage" />
                                     <div class="profile_image_filler" ng-if="!form.imageUrl">
                                         <div class="table_cell" cos-initials="form.name">
                                             ML
