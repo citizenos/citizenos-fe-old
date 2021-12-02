@@ -473,7 +473,7 @@
     "ADD_EMAIL_LNK_CANCEL": "@:LNK_CANCEL",
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
-    "ADD_EID_HEADING": "Connect your account with your eID?",
+    "ADD_EID_HEADING": "Ühenda oma konto oma digiallkirjaga?",
     "ADD_EID_DESCRIPTION": "Did you know you can sync your account with your eID? Click the button below to do this or continue without syncing (you can still do this later in your account settings).",
     "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Connect with ID-card / Mobile-ID",
     "ADD_EID_BTN_CONNECT_SMART_ID": "Connect with Smart-ID",
