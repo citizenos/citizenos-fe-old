@@ -474,11 +474,11 @@
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "ADD_EID_HEADING": "Yhdistetäänkö tilisi eID:hesi?",
-    "ADD_EID_DESCRIPTION": "Tiesitkö, että voit synkronoida tilisi eID:si kanssa? Synkronoi tilisi painamalla alla olevaa painiketta tai jatka ilman synkronointia. (Voit synkronoida tilisi myöhemmin tilin asetuksista.)",
+    "ADD_EID_DESCRIPTION": "Tiesitkö, että voit synkronoida tilisi eID:si kanssa? Synkronoi painamalla alla olevaa painiketta tai jatka ilman synkronointia. (Voit synkronoida tilisi myöhemmin tilin asetuksista.)",
     "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Yhdistä henkilökortilla / mobiilihenkilökortilla",
     "ADD_EID_BTN_CONNECT_SMART_ID": "Yhdistä Smart-ID:llä",
     "ADD_EID_LNK_BACK": "Takaisin",
-    "ADD_EID_BTN_CONTINUE": "Continue without connecting"
+    "ADD_EID_BTN_CONTINUE": "Jatka yhdistämättä"
   },
   "TXT_TOPIC_CATEGORY_ALL": "kaikki luokat",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
@@ -914,7 +914,7 @@
       "NAV_LNK_EDIT_TOPIC": "Muokkaa aihetta",
       "NAV_LNK_VIEW_TOPIC": "Näytä aihe",
       "NAV_LNK_LEAVE_TOPIC": "Lähde aiheesta",
-      "NAV_LNK_PARTICIPANTS": "Manage participants",
+      "NAV_LNK_PARTICIPANTS": "Hallitse osallistujia",
       "HEADER_FILES": "LIITTEET",
       "LNK_ADD_MANAGE_FILES": "Lisää/hallitse liitteitä",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Hyppää suoraan aiheeseen <b>{{topicTitle}}</b> skannaamalla tämä QR-koodi!",
