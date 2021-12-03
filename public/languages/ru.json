@@ -914,7 +914,7 @@
       "NAV_LNK_EDIT_TOPIC": "Редактировать тему",
       "NAV_LNK_VIEW_TOPIC": "Просмотр темы",
       "NAV_LNK_LEAVE_TOPIC": "Покинуть тему",
-      "NAV_LNK_PARTICIPANTS": "Manage participants",
+      "NAV_LNK_PARTICIPANTS": "Управление участниками",
       "HEADER_FILES": "Прикрепленные файлы",
       "LNK_ADD_MANAGE_FILES": "Добавить/редактировать файлы",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Перейти к теме <b>{{topicTitle}}</b>, отсканируя этот QR-код",
