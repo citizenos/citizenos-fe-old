@@ -473,12 +473,12 @@
     "ADD_EMAIL_LNK_CANCEL": "@:LNK_CANCEL",
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
-    "ADD_EID_HEADING": "Connect your account with your eID?",
-    "ADD_EID_DESCRIPTION": "Did you know you can sync your account with your eID? Click the button below to do this or continue without syncing (you can still do this later in your account settings).",
-    "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Connect with ID-card / Mobile-ID",
-    "ADD_EID_BTN_CONNECT_SMART_ID": "Connect with Smart-ID",
-    "ADD_EID_LNK_BACK": "Back",
-    "ADD_EID_BTN_CONTINUE": "Continue without connecting"
+    "ADD_EID_HEADING": "Möchten Sie Ihr Konto mit Ihrer eID verbinden?",
+    "ADD_EID_DESCRIPTION": "Wussten Sie schon, dass Sie Ihr Konto mit Ihrer eID synchronisieren können? Klicken Sie dazu unten auf die Schaltfläche oder fahren Sie ohne Synchronisieren fort (Sie können die Synchronisierung auch später in Ihren Kontoeinstellungen vornehmen).",
+    "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Mit ID-Karte/Mobil-ID verbinden",
+    "ADD_EID_BTN_CONNECT_SMART_ID": "Mit Smart-ID verbinden",
+    "ADD_EID_LNK_BACK": "Zurück",
+    "ADD_EID_BTN_CONTINUE": "Ohne Verbinden fortfahren"
   },
   "TXT_TOPIC_CATEGORY_ALL": "alle Kategorien",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
@@ -569,7 +569,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Entschuldigung, Sie haben nicht genügend Rechte, um auf die Ressource zuzugreifen :(",
-      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Wenn Sie eine Einladung zum Thema oder zur Gruppe haben, müssen Sie diese zuerst annehmen. Bitte schauen Sie in Ihrem Aktivitäten-Feed oder in Ihrem E-Mail-Postfach.",
       "HEADING_YOU_MAY_RECOVER": "Sie können dennoch den unglücklichen Vorfall lösen, indem Sie sich",
       "BTN_LOGIN": "Anmelden",
       "BTN_REQUEST_ACCESS": "Zugriff auf die Ressource anfordern"
