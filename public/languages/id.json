@@ -474,11 +474,11 @@
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "ADD_EID_HEADING": "Hubungkan akun Anda dengan identifikasi elektronik Anda?",
-    "ADD_EID_DESCRIPTION": "Did you know you can sync your account with your eID? Click the button below to do this or continue without syncing (you can still do this later in your account settings).",
-    "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Connect with ID-card / Mobile-ID",
-    "ADD_EID_BTN_CONNECT_SMART_ID": "Connect with Smart-ID",
-    "ADD_EID_LNK_BACK": "Back",
-    "ADD_EID_BTN_CONTINUE": "Continue without connecting"
+    "ADD_EID_DESCRIPTION": "Tahukah jika Anda dapat menyinkronkan akun dengan identifikasi elektronik Anda? Klik pada tombol di bawah ini untuk melakukannya atau teruskan tanpa sinkronisasi (Anda masih dapat melakukannya nanti dalam pengaturan akun Anda).",
+    "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Hubungkan dengan Kartu ID/Mobiil-ID",
+    "ADD_EID_BTN_CONNECT_SMART_ID": "Hubungkan dengan Smart-ID",
+    "ADD_EID_LNK_BACK": "Kembali",
+    "ADD_EID_BTN_CONTINUE": "Lanjutkan tanpa menghubungkan"
   },
   "TXT_TOPIC_CATEGORY_ALL": "setiap kategori",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
@@ -569,7 +569,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Maaf, Anda tidak punya cukup izin untuk mengakses :(",
-      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Anda harus menyetujuinya dahulu jika Anda memiliki undangan ke topik atau grup. Periksa feed aktivitas atau email Anda.",
       "HEADING_YOU_MAY_RECOVER": "Namun, Anda dapat memperbarui kondisi ini dengan",
       "BTN_LOGIN": "Masuk",
       "BTN_REQUEST_ACCESS": "Meminta akses"
@@ -914,7 +914,7 @@
       "NAV_LNK_EDIT_TOPIC": "Mengedit topik",
       "NAV_LNK_VIEW_TOPIC": "Lihat Topik",
       "NAV_LNK_LEAVE_TOPIC": "Meninggalkan topik",
-      "NAV_LNK_PARTICIPANTS": "Manage participants",
+      "NAV_LNK_PARTICIPANTS": "Kelola peserta",
       "HEADER_FILES": "LAMPIRAN",
       "LNK_ADD_MANAGE_FILES": "Tambah/atur lampiran",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Langsung masuk ke dalam topik <b>{{topicTitle}}</b> dengan memindai kode QR ini!",
@@ -953,7 +953,7 @@
     "ACTIVITY_USER_UPDATE_TOPICJOIN_ACTIVITYGROUP": "Topik <em>{{topicTitle}}</em>: pengguna <em>{{userName}}</em> dan yang lainnya telah memperbarui tautan bersama",
     "ACTIVITY_USER_UPDATE_TOPICJOIN_USERACTIVITYGROUP": "Topik <em>{{topicTitle}}</em>: pengguna <em>{{userName}}</em> telah memperbarui tautan bersama",
     "ACTIVITY_USER_UPDATE_TOPICJOIN": "Topik <em>{{topicTitle}}</em>: pengguna <em>{{userName}}</em> telah memperbarui beberapa atribut tautan bersama:",
-    "ACTIVITY_USER_UPDATE_GROUPJOIN_ACTIVITYGROUP": "Group <em>{{groupName}}</em>: user <em>{{userName}}</em> and others have updated the share link",
+    "ACTIVITY_USER_UPDATE_GROUPJOIN_ACTIVITYGROUP": "Grup <em>{{groupName}}</em>: pengguna <em>{{userName}}</em> dan yang lainnya telah memperbarui tautan bersama",
     "ACTIVITY_USER_UPDATE_GROUPJOIN_USERACTIVITYGROUP": "Group <em>{{groupName}}</em>: user <em>{{userName}}</em> has updated the share link",
     "ACTIVITY_USER_UPDATE_GROUPJOIN": "Group <em>{{groupName}}</em>: user <em>{{userName}}</em> has updated some share link attributes:",
     "ACTIVITY_USER_DELETE_USER_TOPIC": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_TOPICMEMBERUSER_NONE",
