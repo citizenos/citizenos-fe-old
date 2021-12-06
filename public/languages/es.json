@@ -474,8 +474,8 @@
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "ADD_EID_HEADING": "¿Quiere conectar su cuenta con su eID?",
-    "ADD_EID_DESCRIPTION": "¿Sabía que puede sincronizar su cuenta con su eID? Haga clic en el botón siguiente para hacerlo, o bien continúe sin sincronizar (podrá hacerlo más tarde desde la configuración de la cuenta).",
-    "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Conectar con tarjeta de identificación/Mobile ID",
+    "ADD_EID_DESCRIPTION": "¿Sabía que puede sincronizar su cuenta con su eID? Haga clic en el botón siguiente para sincronizarla, o bien continúe sin sincronizar (podrá hacerlo más tarde desde los ajustes de la cuenta).",
+    "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Conectar con documento de identidad/Mobile ID",
     "ADD_EID_BTN_CONNECT_SMART_ID": "Conectar con Smart-ID",
     "ADD_EID_LNK_BACK": "Volver",
     "ADD_EID_BTN_CONTINUE": "Continuar sin conectarse"
