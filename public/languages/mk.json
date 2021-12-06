@@ -569,7 +569,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Извинете, не поседувате таква дозвола за да добиете пристап до овој ресурс :(",
-      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Ако имате покана за тема или група. Мора прво да ја прифатите. Проверете го својот проток а активности или е-пошта.",
       "HEADING_YOU_MAY_RECOVER": "Се уште можете да се спасите од оваа непосакувана случка со",
       "BTN_LOGIN": "Најавување",
       "BTN_REQUEST_ACCESS": "Барање пристап до ресурсите"
@@ -850,7 +850,7 @@
       "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "прегледај уредувања",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "ARGUMENT_LNK_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
-      "ARGUMENT_LNK_COPIED": "Link copied",
+      "ARGUMENT_LNK_COPIED": "Линкот е копиран",
       "ARGUMENT_LNK_REPORT": "пријави",
       "PLACEHOLDER_EDIT_ARGUMENT_SUBJECT": "Ажурирајте го предметот на аргументирање...",
       "PLACEHOLDER_EDIT_ARGUMENT_TEXT": "Ажурирајте го вашиот одговор тука...",
