@@ -474,11 +474,11 @@
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "ADD_EID_HEADING": "Ühenda oma konto oma digiallkirjaga?",
-    "ADD_EID_DESCRIPTION": "Did you know you can sync your account with your eID? Click the button below to do this or continue without syncing (you can still do this later in your account settings).",
-    "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Connect with ID-card / Mobile-ID",
-    "ADD_EID_BTN_CONNECT_SMART_ID": "Connect with Smart-ID",
+    "ADD_EID_DESCRIPTION": "Kas teadsid, et saad siduda oma kasutajakonto oma digiallkirjaga? Selleks vajuta nupule allpool või jätka sidumata (seda saab teha ka hiljem konto seadete alt).",
+    "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Ühenda ID-kaardi/mobiil-IDga",
+    "ADD_EID_BTN_CONNECT_SMART_ID": "Ühenda Smart-IDga",
     "ADD_EID_LNK_BACK": "Tagasi",
-    "ADD_EID_BTN_CONTINUE": "Continue without connecting"
+    "ADD_EID_BTN_CONTINUE": "Jäta ühendamata"
   },
   "TXT_TOPIC_CATEGORY_ALL": "iga kategooria",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
