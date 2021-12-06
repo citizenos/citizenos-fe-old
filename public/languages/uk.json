@@ -962,7 +962,7 @@
     "ACTIVITY_USER_JOIN_TOPIC_USERACTIVITYGROUP": "Користувач <em>{{userName}}</em> приєднався до теми <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_JOIN_GROUP": "Користувач <em>{{userName}}</em> приєднався до групи <em>{{groupName}}</em> з рівнем доступу: {{accessLevel}}",
     "ACTIVITY_USER_JOIN_GROUP_ACTIVITYGROUP": "Користувач <em>{{userName}}</em> та інші приєдналися до групи <em>{{groupName}}</em>",
-    "ACTIVITY_USER_JOIN_GROUP_USERACTIVITYGROUP": "Користувач <em>{{userName}}</em> долучився до групи <em>{{groupName}}</em>",
+    "ACTIVITY_USER_JOIN_GROUP_USERACTIVITYGROUP": "Користувач <em>{{userName}}</em> приєднався до групи <em>{{groupName}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC": "Користувач <em>{{userName}}</em> залишив тему <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC_ACTIVITYGROUP": "Користувач <em>{{userName}}</em> та <em>{{groupCount}}</em> інших вийшли з теми <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_LEAVE_TOPIC_USERACTIVITYGROUP": "Користувач <em>{{userName}}</em> залишив тему <em>{{topicTitle}}</em>",
