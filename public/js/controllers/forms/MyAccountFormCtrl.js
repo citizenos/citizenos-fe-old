@@ -49,13 +49,12 @@ angular
 
             if ($scope.imageFile) {
                 sUpload
-                    .upload($scope.imageFile, 'users')
-                    .then(function (url) {
-                        $scope.form.imageUrl = url;
-                        sUser
-                            .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, url, $scope.form.preferences)
-                            .then(success, error);
-                    });
+                    .uploadUserImage($scope.imageFile)
+                    .then(function (response) {
+                        $scope.form.imageUrl = response.data.link;
+                        sAuth.user.imageUrl = response.data.link;
+                        ngDialog.closeAll(); // Close all dialogs, including the one open now...
+                    }, error);
 
             } else {
                 sUser

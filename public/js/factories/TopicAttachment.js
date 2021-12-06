@@ -12,6 +12,13 @@ angular
                 save: {
                     method: 'POST',
                     params: {topicId: '@topicId', attachmentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
+                    headers: {
+                        'content-type': function (data) {
+                            if (data.data.file) {
+                                return undefined;
+                            }
+                        }
+                    },
                     transformRequest: function (data) {
                         return angular.toJson(data);
                     },

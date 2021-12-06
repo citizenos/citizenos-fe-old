@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicAttachmentsCtrl', ['$scope', '$state', '$stateParams', '$log', '$document', '$translate', 'Topic', 'sNotification', 'sUpload', 'sAttachment', 'TopicAttachment', 'ngDialog', function ($scope, $state, $stateParams, $log, $document, $translate, Topic, sNotification, sUpload, sAttachment, TopicAttachment, ngDialog) {
+    .controller('TopicAttachmentsCtrl', ['$scope', '$state', '$stateParams', '$log', '$document', '$translate', 'sNotification', 'sUpload', 'sAttachment', 'TopicAttachment', 'ngDialog', function ($scope, $state, $stateParams, $log, $document, $translate, sNotification, sUpload, sAttachment, TopicAttachment, ngDialog) {
         $log.debug('TopicAttachmentsCtrl', $state, $stateParams);
 
         $scope.form = {
@@ -76,43 +76,33 @@ angular
 
         $scope.doSaveAttachment = function (attachment) {
             if (attachment.file) {
-                return sUpload
-                    .upload(attachment.file, $scope.topic.id)
-                    .then(function (fileUrl) {
-                        attachment.topicId = $scope.topic.id;
-                        attachment.link = fileUrl;
-                        var topicAttachment = new TopicAttachment(attachment);
-
-                        topicAttachment
-                            .$save()
-                            .then(function () {
-                                $scope.form.files.push(topicAttachment);
-                            })
-                            .catch(function (err) {
-                                if (err.data.errors) {
-                                    var keys = Object.keys(err.data.errors);
-                                    keys.forEach(function (key) {
-                                        sNotification.addError(err.data.errors[key]);
-                                    });
-                                } else if (err.data.status && err.data.status.message) {
-                                    sNotification.addError(err.data.status.message);
-                                } else {
-                                    console.log(err);
-                                    sNotification.addError(err.message);
-                                }
-                            });
-                    });
-            }
-
-            attachment.topicId = $scope.topic.id;
-            var topicAttachment = new TopicAttachment(attachment);
-            if (topicAttachment.id) {
-                topicAttachment.$update();
+                sUpload.topicAttachment($scope.topic.id, attachment)
+                .then(function (result) {
+                    var topicAttachment = new TopicAttachment(result.data);
+                    $scope.form.files.push(topicAttachment);
+                }).catch(function (err) {
+                    if (err.data.errors) {
+                        var keys = Object.keys(err.data.errors);
+                        keys.forEach(function (key) {
+                            sNotification.addError(err.data.errors[key]);
+                        });
+                    } else if (err.data.status && err.data.status.message) {
+                        sNotification.addError(err.data.status.message);
+                    } else {
+                        sNotification.addError(err.message);
+                    }
+                });
             } else {
-                topicAttachment.$save();
-            }
+                attachment.topicId = $scope.topic.id;
+                var topicAttachment = new TopicAttachment(attachment);
+                if (topicAttachment.id) {
+                    topicAttachment.$update();
+                } else {
+                    topicAttachment.$save();
+                }
 
-            $scope.form.files.push(topicAttachment);
+                $scope.form.files.push(topicAttachment);
+            }
         };
 
         $scope.editAttachment = function (attachment) {
