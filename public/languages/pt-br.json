@@ -467,7 +467,7 @@
     "TOPIC_MEMBERS_PLACEHOLDER_TOPIC_TITLE_PERMISSION": "@:VIEWS.MY_TOPICS_TOPICID.PLACEHOLDER_TOPIC_TITLE_PERMISSION",
     "TOPIC_MEMBERS_LNK_NAME": "@:VIEWS.MY_TOPICS_TOPICID.LNK_NAME",
     "TOPIC_MEMBERS_TXT_INVITE_PENDING": "@:VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING",
-    "ADD_EMAIL_HEADING": "Por favor, adicione o seu endereço de e-mail",
+    "ADD_EMAIL_HEADING": "Adicione o seu endereço de e-mail",
     "ADD_EMAIL_DESCRIPTION": "Forneça o seu endereço de e-mail para receber convites e notificações relevantes.",
     "ADD_EMAIL_TXT_VERIFY": "Importante: após o login, você receberá um e-mail de verificação no seu endereço de e-mail. Não se esqueça de verificar para concluir a inscrição!",
     "ADD_EMAIL_LNK_CANCEL": "@:LNK_CANCEL",
