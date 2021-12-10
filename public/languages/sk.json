@@ -1188,7 +1188,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Ľutujeme, ale túto tému sme nenašli. Buď v odkaze niečo chýba alebo bol vytvorený nový odkaz na zdieľanie.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Ľutujeme, jedna z poskytnutých možností hlasovania je neplatná. Možnosť hlasovania môže mať maximálne 200 znakov.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Hlasovanie bolo ukončené.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "Na vytvorenie hlasovania sú potrebné aspoň 2 možnosti hlasovania",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
