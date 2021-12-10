@@ -1188,6 +1188,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Omlouváme se, toto téma nelze najít. Buď odkaz chybí nebo byl vygenerován nový unikátní odkaz na sdílení.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Je nám líto, ale jedna z poskytnutých možností hlasování je neplatná. Volba hlasování může mít maximálně 200 znaků.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Hlasování skončilo.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
