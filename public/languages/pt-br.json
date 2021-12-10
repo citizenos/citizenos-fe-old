@@ -1188,6 +1188,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Desculpe, não foi possível encontrar o tópico. Ou tem algo faltando no link, ou um novo link de compartilhamento foi gerado.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Desculpe, uma das opções de voto é inválida. A opção de voto pode ter no máximo 200 caracteres.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "A votação terminou.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
