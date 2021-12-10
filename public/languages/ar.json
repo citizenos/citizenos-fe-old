@@ -1188,6 +1188,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Sorry, could not find this topic. Either the link is missing something or a new unique share link has been generated.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Sorry, one of the vote options provided is invalid. Vote option can have maximum of 200 characters.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "The voting has ended.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
