@@ -1188,6 +1188,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "No se encuentra el tema. Puede que el enlace no sea válido, o bien se ha generado un nuevo enlace para compartir único.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Una de las opciones de voto especificadas no es válida. Cada opción de voto puede tener como máximo 200 caracteres.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "La votación finalizó.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",

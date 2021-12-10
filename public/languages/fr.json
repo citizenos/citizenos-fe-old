@@ -1188,6 +1188,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Désolé, impossible de trouver ce sujet. Soit le lien est manquant, soit un nouveau lien de partage unique a été généré.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Désolé, une des options de vote fournies n'est pas valide. L'option de vote doit faire moins de 200 caractères.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Le vote est clôturé.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",

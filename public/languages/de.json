@@ -1188,6 +1188,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Wir konnten dieses Thema leider nicht finden. Entweder ist der Link nicht vollständig oder es wurde ein neuer eindeutiger Freigabelink generiert.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Entschuldigung, eine der angegebenen Abstimmungsoptionen ist ungültig. Abstimmungsoptionen dürfen höchsten 200 Zeichen lang sein.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Die Abstimmung ist abgeschlossen.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
