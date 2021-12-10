@@ -1188,6 +1188,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Sorry, dit topic kon niet worden gevonden. Er ontbreekt iets in de link of er is een nieuwe unieke deellink gegenereerd.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Sorry, een van de opgegeven stemopties is ongeldig. De stemoptie mag maximaal 200 tekens lang zijn.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "De stemming is afgelopen.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",

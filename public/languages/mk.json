@@ -1188,6 +1188,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Извинете, не ја најдовме темата. Или нешто му недостига на линкот или е генериран нов уникатен линк за споделување.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Простете, една од дадените опции за гласање е невалидна. Опцијата за гласање може да има најмногу 200 карактери.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Гласањето заврши.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",

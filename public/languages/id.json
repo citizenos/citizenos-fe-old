@@ -1188,6 +1188,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Maaf, tidak dapat menemukan topik ini. Mungkin tautan kurang sesuatu atau tautan bersama unik yang baru telah dihasilkan.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Maaf, salah satu opsi hak pilih yang tersedia tidak valid. Opsi hak pilih maksimum hanya bisa 200 karakter.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Pemungutan suara telah berakhir.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
