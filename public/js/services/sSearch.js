@@ -6,6 +6,30 @@ angular
         var searchPendingDefer;
 
         /**
+         * Search users
+         *
+         * NOTE: Each new requests cancels previous pending requests.
+         *
+         * @param {string} str Search string
+         *
+         * @returns {HttpPromise} Angular $http promise
+         */
+        sSearch.searchUsers = function (str) {
+            $log.debug('sSearch.search()', str);
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/search/users');
+
+
+            // Cancel all pending requests, there is no need to many in parallel as used in TypeAhead.
+            if (searchPendingDefer) {
+                searchPendingDefer.resolve('cancelled');
+            }
+
+            searchPendingDefer = $q.defer();
+
+            return $http.get(path, {timeout: searchPendingDefer.promise, params: angular.extend({str: str})});
+        };
+
+                /**
          * Search
          *
          * NOTE: Each new requests cancels previous pending requests.
@@ -29,5 +53,4 @@ angular
 
             return $http.get(path, {timeout: searchPendingDefer.promise, params: angular.extend({str: str}, params)});
         };
-
     }]);

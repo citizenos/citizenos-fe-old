@@ -61,27 +61,31 @@ angular
                     $scope.searchResults.emails = [];
                     $scope.searchResults.combined = [str];
                 } else {
-                    var include = ['my.group', 'public.user'];
+                    var include = ['my.group'];
                     sSearch
                         .search(str, {include: include})
-                        .then(function (response) {
-                            $scope.searchResults.users = [];
-                            $scope.searchResults.groups = [];
-                            $scope.searchResults.emails = [];
-                            $scope.searchResults.combined = [];
-                            if (response.data.data.results.public.users.rows.length) {
-                                response.data.data.results.public.users.rows.forEach(function (user) {
-                                    $scope.searchResults.users.push(user);
+                        .then(function (groupresponse) {
+                            sSearch
+                                .searchUsers(str)
+                                .then(function (userrespons) {
+                                    $scope.searchResults.users = [];
+                                    $scope.searchResults.groups = [];
+                                    $scope.searchResults.emails = [];
+                                    $scope.searchResults.combined = [];
+                                    if (userrespons.data.data.results.public.users.rows.length) {
+                                        userrespons.data.data.results.public.users.rows.forEach(function (user) {
+                                            $scope.searchResults.users.push(user);
+                                        });
+                                    } else if (validator.isEmail(str)) {
+                                        $scope.searchResults.emails.push($scope.searchString);
+                                    }
+                                    if (groupresponse.data.data.results.my.groups.rows.length) {
+                                        groupresponse.data.data.results.my.groups.rows.forEach(function (group) {
+                                            $scope.searchResults.groups.push(group);
+                                        });
+                                    }
+                                    $scope.searchResults.combined = $scope.searchResults.users.concat($scope.searchResults.groups).concat($scope.searchResults.emails);
                                 });
-                            } else if (validator.isEmail(str)) {
-                                $scope.searchResults.emails.push($scope.searchString);
-                            }
-                            if (response.data.data.results.my.groups.rows.length) {
-                                response.data.data.results.my.groups.rows.forEach(function (group) {
-                                    $scope.searchResults.groups.push(group);
-                                });
-                            }
-                            $scope.searchResults.combined = $scope.searchResults.users.concat($scope.searchResults.groups).concat($scope.searchResults.emails);
                         });
                 }
             } else {
