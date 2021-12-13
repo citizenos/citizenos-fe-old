@@ -481,6 +481,7 @@
     "ADD_EID_BTN_CONTINUE": "Jäta ühendamata"
   },
   "TXT_TOPIC_CATEGORY_ALL": "iga kategooria",
+  "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
   "TXT_TOPIC_CATEGORY_OPINIONFESTIVAL": "Arvamusfestival",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
@@ -599,7 +600,11 @@
       "TXT_HACKTIVIST_COMMUNITY": "Häktivistide kogukond",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Tavakodanikest koosnev häktivistide kogukond ühendab inimesi, kes seisavad e-demokraatia ja koostöös otsuste tegemise eest.",
       "LBL_ENVIRONMENT": "Keskkond",
-      "LBL_HACKTIVIST_COMMUNITY": "Demokraatia ja kodanikuühiskond"
+      "LBL_HACKTIVIST_COMMUNITY": "Demokraatia ja kodanikuühiskond",
+      "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY": "Don’t miss our news and updates!",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "",
+      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Gruppe: {{count}}",
