@@ -86,30 +86,31 @@ angular
                 var include = null;
                 if (type === 'topic') {
                     include = 'my.topic';
-                } else if (type === 'user') {
-                    include = 'public.user';
-                    $scope.searchStringUser = str;
-                }
-                sSearch
-                    .search(str, {
-                        include: include,
-                        'my.topic.level': 'admin'
-                    })
-                    .then(function (response) {
-                        $scope.searchResults.users = [];
-                        $scope.searchResults.topics = [];
-                        if (type === 'user') {
-                            response.data.data.results.public.users.rows.forEach(function (user) {
-                                $scope.searchResults.users.push(user);
-                            });
-                        }
-                        if (type === 'topic') {
+                    sSearch
+                        .search(str, {
+                            include: include,
+                            'my.topic.level': 'admin'
+                        })
+                        .then(function (response) {
+                            $scope.searchResults.users = [];
+                            $scope.searchResults.topics = [];
                             response.data.data.results.my.topics.rows.forEach(function (topic) {
                                 $scope.searchResults.topics.push(topic);
                             });
-                        }
+                        });
+                } else if (type === 'user') {
+                    $scope.searchStringUser = str;
+                    sSearch
+                        .searchUsers(str)
+                        .then(function (response) {
+                            $scope.searchResults.users = [];
+                            $scope.searchResults.topics = [];
+                            response.data.data.results.public.users.rows.forEach(function (user) {
+                                $scope.searchResults.users.push(user);
+                            });
+                        });
+                }
 
-                    });
             } else {
                 $scope.searchResults.users = [];
                 $scope.searchResults.topics = [];
