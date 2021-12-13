@@ -481,6 +481,7 @@
     "ADD_EID_BTN_CONTINUE": "Ohne Verbinden fortfahren"
   },
   "TXT_TOPIC_CATEGORY_ALL": "alle Kategorien",
+  "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
   "TXT_TOPIC_CATEGORY_OPINIONFESTIVAL": "Opinion Festival",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
@@ -599,7 +600,11 @@
       "TXT_HACKTIVIST_COMMUNITY": "Hacktivisten-Gemeinschaft",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Die Civic Hacktivisten-Gemeinschaft ist ein Treffpunkt für Menschen, die für E-Demokratie und gemeinschaftliche Entscheidungsfindung stehen.",
       "LBL_ENVIRONMENT": "Umwelt",
-      "LBL_HACKTIVIST_COMMUNITY": "Demokratie und Zivilgesellschaft"
+      "LBL_HACKTIVIST_COMMUNITY": "Demokratie und Zivilgesellschaft",
+      "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY": "Don’t miss our news and updates!",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "",
+      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Gruppen: {{count}}",
