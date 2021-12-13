@@ -186,13 +186,14 @@ angular
 
         Topic.CATEGORIES = {
             biotoopia: "biotoopia",
+            citizenos: "citizenos",
+            eestijazziarengusuunad: 'eestijazziarengusuunad', // Special project with http://www.jazz.ee/ - https://github.com/citizenos/citizenos-api/issues/73
             eurochangemakers: 'eurochangemakers',
+            hacktivistcommunity: 'hacktivistcommunity',
             opinionfestival: 'opinionfestival',
+            pyln: 'pyln',
             thetwelvemovie: 'thetwelvemovie',
             thirtyfourislandproject: 'thirtyfourislandproject',
-            hacktivistcommunity: 'hacktivistcommunity',
-            eestijazziarengusuunad: 'eestijazziarengusuunad', // Special project with http://www.jazz.ee/ - https://github.com/citizenos/citizenos-api/issues/73
-            pyln: 'pyln',
             business: 'business', // Business and industry
             transport: 'transport', // Public transport and road safety
             taxes: 'taxes', // Taxes and budgeting

@@ -42,13 +42,13 @@
   "TOOLTIP_TOPIC_VISIBILITY_PUBLIC": "@:TXT_TOPIC_VISIBILITY_PUBLIC",
   "TOOLTIP_TOPIC_VISIBILITY_PRIVATE": "@:TXT_TOPIC_VISIBILITY_PRIVATE",
   "HELP_WIDGET": {
-    "TITLE":"We’re here to help!",
-    "DESCRIPTION":"Got questions or comments? Just drop us a message below.",
+    "TITLE": "We’re here to help!",
+    "DESCRIPTION": "Got questions or comments? Just drop us a message below.",
     "LINK_FAQ": "Frequently asked questions",
     "LINK_HELP_PAGE": "Step-by-step guidance",
     "SEND_US_MESSAGE": "Send us a message",
     "PLACEHOLDER_WRITE_YOUR_EMAIL": "youremail@example.com",
-    "PLACEHOLDER_WRITE_YOUR_MESSAGE":"Your message here...",
+    "PLACEHOLDER_WRITE_YOUR_MESSAGE": "Your message here...",
     "BTN_SEND": "Send",
     "ERROR_INVALID_EMAIL": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "MSG_REQUEST_SENT": "Your help request has been sent!"
@@ -223,7 +223,7 @@
     "MY_ACCOUNT_TAB_PREFERENCES": "Preferences",
     "MY_ACCOUNT_TAB_ACCOUNT": "Account",
     "MY_ACCOUNT_LBL_SHOW_IN_SEARCH": "Show my profile in search results",
-    "MY_ACCOUNT_LBL_SHOW_IN_SEARCH_DESCRIPTION":"Display my name and e-mail in invite search results so that other people can easily invite me to groups and topics",
+    "MY_ACCOUNT_LBL_SHOW_IN_SEARCH_DESCRIPTION": "Display my name and e-mail in invite search results so that other people can easily invite me to groups and topics",
     "PASSWORD_FORGOT_HEADING": "Forgot your password?",
     "PASSWORD_FORGOT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "PASSWORD_FORGOT_SEND_RESET": "Send reset code",
@@ -458,7 +458,7 @@
     "TOPIC_MEMBERS_TAB_PARTICIPANTS": "Participants",
     "TOPIC_MEMBERS_TAB_GROUPS": "Groups",
     "TOPIC_MEMBERS_TAB_INVITED": "Invited",
-    "TOPIC_MEMBERS_PLACEHOLDER_NAME_PERMISSION":"@:VIEWS.MY_TOPICS_TOPICID.PLACEHOLDER_NAME_PERMISSION",
+    "TOPIC_MEMBERS_PLACEHOLDER_NAME_PERMISSION": "@:VIEWS.MY_TOPICS_TOPICID.PLACEHOLDER_NAME_PERMISSION",
     "TOPIC_MEMBERS_LBL_ORDER_BY": "@:VIEWS.MY_TOPICS_TOPICID.LBL_ORDER_BY",
     "TOPIC_MEMBERS_LNK_PROFILE": "@:VIEWS.MY_TOPICS_TOPICID.LNK_PROFILE",
     "TOPIC_MEMBERS_LNK_RIGHTS": "@:VIEWS.MY_TOPICS_TOPICID.LNK_RIGHTS",
@@ -481,6 +481,7 @@
     "ADD_EID_BTN_CONTINUE": "Continue without connecting"
   },
   "TXT_TOPIC_CATEGORY_ALL": "every category",
+  "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
   "TXT_TOPIC_CATEGORY_OPINIONFESTIVAL": "Opinion Festival",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
@@ -599,7 +600,11 @@
       "TXT_HACKTIVIST_COMMUNITY": "Hacktivist Community",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Civic hacktivist community is a meeting space for people who stand for e-democracy and collaborative decision-making.",
       "LBL_ENVIRONMENT": "Environment",
-      "LBL_HACKTIVIST_COMMUNITY": "Democracy and civil society"
+      "LBL_HACKTIVIST_COMMUNITY": "Democracy and civil society",
+      "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY": "Don’t miss our news and updates!",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "",
+      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Groups: {{count}}",
@@ -918,7 +923,7 @@
       "HEADER_FILES": "ATTACHMENTS",
       "LNK_ADD_MANAGE_FILES": "Add/manage attachments",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!",
-      "INLINE_COMMENT_SUGGEST_CHANGE" : "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
     }
   },
   "ACTIVITY_FEED": {
@@ -950,11 +955,11 @@
     "ACTIVITY_USER_UPDATE_TOPICINVITEUSER_NONE": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_TOPICMEMBERUSER_NONE",
     "ACTIVITY_USER_UPDATE_TOPICINVITEUSER_NONE_ACTIVITYGROUP": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_TOPICMEMBERUSER_NONE_ACTIVITYGROUP",
     "ACTIVITY_USER_UPDATE_TOPICINVITEUSER_NONE_USERACTIVITYGROUP": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_TOPICMEMBERUSER_NONE_USERACTIVITYGROUP",
-    "ACTIVITY_USER_UPDATE_TOPICJOIN_ACTIVITYGROUP":"Topic <em>{{topicTitle}}</em>: user <em>{{userName}}</em> and others have updated the share link",
-    "ACTIVITY_USER_UPDATE_TOPICJOIN_USERACTIVITYGROUP":"Topic <em>{{topicTitle}}</em>: user <em>{{userName}}</em> has updated the share link",
+    "ACTIVITY_USER_UPDATE_TOPICJOIN_ACTIVITYGROUP": "Topic <em>{{topicTitle}}</em>: user <em>{{userName}}</em> and others have updated the share link",
+    "ACTIVITY_USER_UPDATE_TOPICJOIN_USERACTIVITYGROUP": "Topic <em>{{topicTitle}}</em>: user <em>{{userName}}</em> has updated the share link",
     "ACTIVITY_USER_UPDATE_TOPICJOIN": "Topic <em>{{topicTitle}}</em>: user <em>{{userName}}</em> has updated some share link attributes:",
-    "ACTIVITY_USER_UPDATE_GROUPJOIN_ACTIVITYGROUP":"Group <em>{{groupName}}</em>: user <em>{{userName}}</em> and others have updated the share link",
-    "ACTIVITY_USER_UPDATE_GROUPJOIN_USERACTIVITYGROUP":"Group <em>{{groupName}}</em>: user <em>{{userName}}</em> has updated the share link",
+    "ACTIVITY_USER_UPDATE_GROUPJOIN_ACTIVITYGROUP": "Group <em>{{groupName}}</em>: user <em>{{userName}}</em> and others have updated the share link",
+    "ACTIVITY_USER_UPDATE_GROUPJOIN_USERACTIVITYGROUP": "Group <em>{{groupName}}</em>: user <em>{{userName}}</em> has updated the share link",
     "ACTIVITY_USER_UPDATE_GROUPJOIN": "Group <em>{{groupName}}</em>: user <em>{{userName}}</em> has updated some share link attributes:",
     "ACTIVITY_USER_DELETE_USER_TOPIC": "@:ACTIVITY_FEED.ACTIVITY_USER_UPDATE_TOPICMEMBERUSER_NONE",
     "ACTIVITY_USER_JOIN_TOPIC": "User <em>{{userName}}</em> has joined topic <em>{{topicTitle}}</em> with access level: {{accessLevel}}",

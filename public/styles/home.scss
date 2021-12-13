@@ -493,6 +493,38 @@
                 box-shadow: 0 0 8px 0 vars.$dark_gray;
             }
 
+            &.citizenos {
+                background: vars.$citizenos_background;
+
+                .line::before {
+                    background-image: linear-gradient(to bottom, rgba(vars.$citizenos_background, 0), vars.$citizenos_background);
+                }
+            }
+
+            &.eurochangemakers {
+                background: vars.$eurochangemakers_background;
+
+                .line::before {
+                    background-image: linear-gradient(to bottom, rgba(vars.$eurochangemakers_background, 0), vars.$eurochangemakers_background);
+                }
+            }
+
+            &.opinionfestival {
+                background: vars.$opinionfestival_background;
+
+                .line::before {
+                    background-image: linear-gradient(to bottom, rgba(vars.$opinionfestival_background, 0), vars.$opinionfestival_background);
+                }
+            }
+
+            &.biotoopia {
+                background: vars.$biotoopia_background;
+
+                .line::before {
+                    background-image: linear-gradient(to bottom, rgba(vars.$biotoopia_background, 0), vars.$biotoopia_background);
+                }
+            }
+
             &.politics {
                 background: vars.$category_politics;
 
@@ -521,6 +553,13 @@
                 background: vars.$category_environment; // #00b23b
                 .line::before {
                     background-image: linear-gradient(to bottom, rgba(vars.$category_environment, 0), vars.$category_environment);
+                }
+            }
+
+            &.thirtyfourislandproject {
+                background: vars.$thirtyfourislandproject_background;
+                .line::before {
+                    background-image: linear-gradient(to bottom, rgba(vars.$thirtyfourislandproject_background, 0), vars.$thirtyfourislandproject_background);
                 }
             }
 
@@ -577,11 +616,12 @@
             &.defense,
             &.environment,
             &.keepitcleanplan,
-            &.thirtyfourislandproject,
             &.agriculture,
             &.culture,
             &.communities,
             &.thetwelvemovie,
+            &.eurochangemakers,
+            &.biotoopia,
             &.integration {
                 color: vars.$white;
 
@@ -662,6 +702,7 @@
             &.society,
             &.varia,
             &.eestijazziarengusuunad,
+            &.citizenos,
             &.hacktivistcommunity {
                 color: vars.$black;
 
@@ -697,6 +738,26 @@
 
                 .line::before {
                     background-image: linear-gradient(to bottom, rgba(vars.$tutorial_background, 0), vars.$tutorial_background);
+                }
+            }
+
+            &.citizenos {
+                background-image: url('../imgs/citizenos_home_square_background.png');
+                background-repeat: no-repeat;
+                background-position: right -50px bottom 0px;
+                background-size: 300px;
+                background-color: vars.$citizenos_background;
+
+                @media (max-width: 667px) {
+                    background-image: none;
+                }
+
+                .main_text {
+                    height: 189px;
+                }
+
+                .line::before {
+                    background-image: linear-gradient(to bottom, rgba(vars.$citizenos_background, 0), vars.$citizenos_background);
                 }
             }
 
