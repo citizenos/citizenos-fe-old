@@ -481,6 +481,7 @@
     "ADD_EID_BTN_CONTINUE": "Продолжете без поврзување"
   },
   "TXT_TOPIC_CATEGORY_ALL": "секоја категорија",
+  "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
   "TXT_TOPIC_CATEGORY_OPINIONFESTIVAL": "Opinion Festival",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
@@ -599,7 +600,11 @@
       "TXT_HACKTIVIST_COMMUNITY": "Заедница на хактивисти",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Заедницата за граѓански хактивисти е собирно место за лицата кои поддржуваат е-демократија и соработка во донесувањето одлуки.",
       "LBL_ENVIRONMENT": "Средина",
-      "LBL_HACKTIVIST_COMMUNITY": "Демократија и граѓанско општество"
+      "LBL_HACKTIVIST_COMMUNITY": "Демократија и граѓанско општество",
+      "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY": "Don’t miss our news and updates!",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "",
+      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Групи: {{count}}",
