@@ -205,6 +205,11 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('citizenos', {
+                    url: '/citizenos',
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
                 .state('opinionfestival', {
                     url: '/opinionfestival',
                     parent: 'main',
