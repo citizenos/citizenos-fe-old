@@ -481,6 +481,7 @@
     "ADD_EID_BTN_CONTINUE": "Продовжити без зв'язування"
   },
   "TXT_TOPIC_CATEGORY_ALL": "всі категорії",
+  "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
   "TXT_TOPIC_CATEGORY_OPINIONFESTIVAL": "Свято думок",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "Фільм \"Дванадцять\"",
@@ -599,7 +600,11 @@
       "TXT_HACKTIVIST_COMMUNITY": "Хактивістська спільнота",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Громадянська хактивістська спільнота - це простір для зустрічі людей, які виступають за електронну демократію та спільне прийняття рішень.",
       "LBL_ENVIRONMENT": "Середовище",
-      "LBL_HACKTIVIST_COMMUNITY": "Демократія та громадянське суспільство"
+      "LBL_HACKTIVIST_COMMUNITY": "Демократія та громадянське суспільство",
+      "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY": "Don’t miss our news and updates!",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "",
+      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Групи: {{count}}",

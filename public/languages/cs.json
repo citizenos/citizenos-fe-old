@@ -481,6 +481,7 @@
     "ADD_EID_BTN_CONTINUE": "Pokračovat bez připojení"
   },
   "TXT_TOPIC_CATEGORY_ALL": "všechny kategorie",
+  "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
   "TXT_TOPIC_CATEGORY_OPINIONFESTIVAL": "Festival Názoru",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
@@ -599,7 +600,11 @@
       "TXT_HACKTIVIST_COMMUNITY": "Hacktivistická komunita",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Občanská hacktivistická komunita je prostor pro setkání lidí, kteří zastupují e-demokracii a spolurozhodování.",
       "LBL_ENVIRONMENT": "Životní prostředí",
-      "LBL_HACKTIVIST_COMMUNITY": "Demokracie a občanská společnost"
+      "LBL_HACKTIVIST_COMMUNITY": "Demokracie a občanská společnost",
+      "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY": "Don’t miss our news and updates!",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "",
+      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Skupiny: {{count}}",

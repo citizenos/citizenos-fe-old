@@ -481,6 +481,7 @@
     "ADD_EID_BTN_CONTINUE": "Продолжить без подключения"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Все существующие",
+  "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
   "TXT_TOPIC_CATEGORY_OPINIONFESTIVAL": "Фестиваль мнений",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "Фильм «12»",
@@ -599,7 +600,11 @@
       "TXT_HACKTIVIST_COMMUNITY": "Сообщество хактивистов",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Сообщество хактивистов — это пространство для общения людей, верящих в электронную демократию и совместное принятие решений.",
       "LBL_ENVIRONMENT": "Окружающая среда",
-      "LBL_HACKTIVIST_COMMUNITY": "Демократия и гражданское общество"
+      "LBL_HACKTIVIST_COMMUNITY": "Демократия и гражданское общество",
+      "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY": "Don’t miss our news and updates!",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "",
+      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Групп: {{count}}",

@@ -481,6 +481,7 @@
     "ADD_EID_BTN_CONTINUE": "Turpināt bez savienošanas"
   },
   "TXT_TOPIC_CATEGORY_ALL": "katrā kategorijā",
+  "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
   "TXT_TOPIC_CATEGORY_OPINIONFESTIVAL": "Viedokļu festivāls",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "Filma \"The Twelve\"",
@@ -599,7 +600,11 @@
       "TXT_HACKTIVIST_COMMUNITY": "Haktīvistu kopiena",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Pilsonisko haktīvistu kopiena ir vieta, kur satiekas cilvēki, kas atbalsta e-demokrātiju un kopīgu lēmumu pieņemšanu.",
       "LBL_ENVIRONMENT": "Vide",
-      "LBL_HACKTIVIST_COMMUNITY": "Demokrātija un pilsoniskā sabiedrība"
+      "LBL_HACKTIVIST_COMMUNITY": "Demokrātija un pilsoniskā sabiedrība",
+      "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY": "Don’t miss our news and updates!",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "",
+      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Grupas: {{count}}",
