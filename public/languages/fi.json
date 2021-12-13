@@ -481,6 +481,7 @@
     "ADD_EID_BTN_CONTINUE": "Jatka yhdistämättä"
   },
   "TXT_TOPIC_CATEGORY_ALL": "kaikki luokat",
+  "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
   "TXT_TOPIC_CATEGORY_OPINIONFESTIVAL": "Opinion Festival",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
@@ -599,7 +600,11 @@
       "TXT_HACKTIVIST_COMMUNITY": "Haktivistiyhteisö",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Tämä kansalaisyhteiskuntaan nojaava haktivistiyhteisö on kohtauspaikka verkkodemokratiaa ja yhteistä päätöksentekoa kannattaville ihmisille.",
       "LBL_ENVIRONMENT": "Ympäristö",
-      "LBL_HACKTIVIST_COMMUNITY": "Demokratia ja kansalaisyhteiskunta"
+      "LBL_HACKTIVIST_COMMUNITY": "Demokratia ja kansalaisyhteiskunta",
+      "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY": "Don’t miss our news and updates!",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "",
+      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Ryhmiä: {{count}}",

@@ -481,6 +481,7 @@
     "ADD_EID_BTN_CONTINUE": "Lanjutkan tanpa menghubungkan"
   },
   "TXT_TOPIC_CATEGORY_ALL": "setiap kategori",
+  "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
   "TXT_TOPIC_CATEGORY_BIOTOOPIA": "Biotoopia",
   "TXT_TOPIC_CATEGORY_OPINIONFESTIVAL": "Opinion Festival",
   "TXT_TOPIC_CATEGORY_THETWELVEMOVIE": "The Twelve Movie",
@@ -599,7 +600,11 @@
       "TXT_HACKTIVIST_COMMUNITY": "Masyarakat Hacktivist",
       "TXT_DESCRIPTION_HACKTIVIST_COMMUNITY": "Masyarakat hacktivist sipil adalah ruang bertemu bagi orang-orang yang mendukung demokrasi virtual dan pengambilan keputusan kolaboratif.",
       "LBL_ENVIRONMENT": "Lingkungan",
-      "LBL_HACKTIVIST_COMMUNITY": "Demokrasi dan masyarakat sipil"
+      "LBL_HACKTIVIST_COMMUNITY": "Demokrasi dan masyarakat sipil",
+      "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY": "Don’t miss our news and updates!",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "",
+      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Grup: {{count}}",
