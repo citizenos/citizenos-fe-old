@@ -1193,7 +1193,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Kahjuks seda teemat ei leitud. Sellest lingist on midagi puudu või on loodud uus unikaalne jagamislink.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Kahjuks pole üks hääletuse valikutest korrektne - see võib sisaldada kuni 200 tähemärki.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Hääletamine on lõppenud.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "Hääletuse loomiseks on vaja vähemalt kahte vastusevalikut",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
