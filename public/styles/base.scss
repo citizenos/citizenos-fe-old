@@ -297,6 +297,23 @@ h2 {
     }
 }
 
+.light_blue_button {
+    @extend .nature_green_button;
+    background: vars.$light_blue;
+    border: 1px solid vars.$light_blue;
+
+    &:hover {
+        @media (min-width: 1025px) {
+            background: vars.$light_blue !important;
+            border: 1px solid vars.$light_blue;
+        }
+    }
+
+    &.disabled {
+        background: vars.$light_blue;
+    }
+}
+
 .blue_white_button {
     @extend .nature_green_button;
     background: vars.$white;

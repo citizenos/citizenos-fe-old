@@ -193,7 +193,8 @@
 
                         .argument {
                             border-left: 4px solid vars.$nature_green;
-                            padding-right: 20px;
+                            padding-left: 16px;
+                            padding-right: 16px;
                         }
                     }
 
@@ -223,11 +224,23 @@
                             border-left: none;
                             border-right: 4px solid vars.$pinky_red;
                             padding-left: 16px;
+                            padding-right: 16px;
                         }
                     }
 
                     &.is_poi {
-                        background-color: vars.$lightest_blue2;
+                        .single_argument {
+                            background-color: vars.$lightest_blue2;
+                        }
+
+                        .argument {
+                            padding-left: 16px;
+                            padding-right: 16px;
+                        }
+                    }
+
+                    .single_argument.is_reply {
+                        background: none;
                     }
 
                     .is_reply {
@@ -254,11 +267,6 @@
                             padding-left: 46px !important;
                         }
 
-                    }
-
-                    &.is_poi {
-                        padding-left: 0;
-                        padding-right: 0;
                     }
 
                     .argument {
