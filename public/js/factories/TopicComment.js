@@ -174,6 +174,7 @@ angular
         TopicComment.COMMENT_TYPES = {
             pro: 'pro',
             con: 'con',
+            poi: 'poi',
             reply: 'reply'
         };
 

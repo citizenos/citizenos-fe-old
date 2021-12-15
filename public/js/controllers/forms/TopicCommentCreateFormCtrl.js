@@ -75,6 +75,10 @@ angular
             saveComment(null, TopicComment.COMMENT_TYPES.con);
         };
 
+        $scope.submitPoi = function () {
+            saveComment(null, TopicComment.COMMENT_TYPES.poi);
+        };
+
         $scope.submitReply = function (parentId, parentVersion) {
             $scope.form.subject = null;
             saveComment(parentId, $scope.form.type, parentVersion);

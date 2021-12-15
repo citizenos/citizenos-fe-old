@@ -2514,7 +2514,7 @@ a:link, a:visited {
     padding: 20px;
     margin-top: 20px;
     border: 1px solid #BADCFF;
-    background-color: #D5EAFF;
+    background-color: vars.$lightest_blue;
 
     @include mixins_n_extends.tablet {
         margin-top: 60px;

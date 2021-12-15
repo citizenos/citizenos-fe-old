@@ -6,6 +6,7 @@
                 <div class="data_left">
                     <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_PRO" translate-values="{countPro:topicComments.count.pro}">pro: 0</span>
                     <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_CON" translate-values="{countCon:topicComments.count.con}">con: 0</span>
+                    <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_POI" translate-values="{countPoi:topicComments.count.poi}">poi: 0</span>
                 </div>
                 <div class="data_right print_never">
                     <div cos-dropdown class="classic_dropdown borderless_dropdown">
@@ -41,7 +42,7 @@
             <div class="line lightest_line"></div>
         </div>
 
-        <div class="arguments_content" id="arguments" ng-if="(topicComments.count.pro + topicComments.count.con)">
+        <div class="arguments_content" id="arguments" ng-if="(topicComments.count.pro + topicComments.count.con + topicComments.count.poi)">
             <!-- FIRST COMMENT -->
             <div class="argument_wrap is_{{::comment.type}}" ng-repeat="comment in topicComments.rows | orderBy: topicComments.orderBy">
                 <div class="single_argument">
@@ -313,7 +314,7 @@
                                 </div>
                                 <div class="thumbs_up" ng-class="{'active': comment.votes.up.selected}" ng-if="app.user.loggedIn">
                                     <div class="table_cell" ng-click="doCommentVote(comment, 1)">
-                                        <div class="sprite sprite-icon-thumb-up">
+                                        <div class="sprite sprite-icon-thumb-up-gray">
                                         </div>
                                     </div>
                                     <div class="table_cell comment_vote_count" ng-click="doShowVotersList(comment)">
@@ -322,7 +323,7 @@
                                 </div>
                                 <div class="thumbs_down" ng-class="{'active': comment.votes.down.selected}" ng-if="app.user.loggedIn">
                                     <div class="table_cell" ng-click="doCommentVote(comment, -1)">
-                                        <div class="sprite sprite-icon-thumb-down">
+                                        <div class="sprite sprite-icon-thumb-down-gray">
                                         </div>
                                     </div>
                                     <div class="table_cell comment_vote_count" ng-click="doShowVotersList(comment)">
@@ -683,6 +684,9 @@
                 </label>
                 <div class="blue_button nature_green_button" cos-disabled="argumentForm.$invalid" ng-click="submitPro()"
                      translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_PRO">Post as a pro argument
+                </div>
+                <div class="blue_button nature_green_button" cos-disabled="argumentForm.$invalid" ng-click="submitPoi()"
+                     translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_POI">Make a point
                 </div>
                 <div class="blue_button pinky_red_button" cos-disabled="argumentForm.$invalid" ng-click="submitCon()"
                      translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_CON">Post as a con argument
