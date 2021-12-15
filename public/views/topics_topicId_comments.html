@@ -130,8 +130,10 @@
                                         <!-- NO CATEGORY -->
                                         <div class="dropdown_item">
                                             <div ng-if="::comment.canEdit()" class="item_name" ng-click="commentEditMode(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_EDIT">Edit</div>
-                                            <div ng-if="::comment.canDelete()" class="item_name" ng-click="doShowDeleteComment(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">Delete</div>
-                                            <div class="item_name" ng-click="copyCommentLink(comment.id, (comment.edits.length-1), $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{comment.id + '_v'+(comment.edits.length-1)}}" value=""/></div>
+                                            <div ng-if="::comment.canDelete()" class="item_name" ng-click="doShowDeleteComment(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">Delete
+                                            </div>
+                                            <div class="item_name" ng-click="copyCommentLink(comment.id, (comment.edits.length-1), $event)"><span translate="LNK_DIRECT_LINK">link</span><input
+                                                class="comment_link_input" id="comment_link_input_{{comment.id + '_v'+(comment.edits.length-1)}}" value=""/></div>
                                             <div class="item_name" ng-if="app.user.loggedIn" ng-click="doCommentReport(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_REPORT">Report</div>
                                         </div>
                                     </div>
@@ -151,6 +153,31 @@
                             </div>
 
                             <form cos-disabled="::!app.user.loggedIn" name="postArgument">
+                                <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': form.errors.type}">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text">
+                                            {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + form.type | uppercase) | translate}} <span ng-if="!form.type">*</span>
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                <div class="v_line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <div class="dropdown_item" ng-repeat="type in TopicCommentTypes">
+                                            <div class="item_name" ng-click="form.type = type">
+                                                {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <input id="comment_edit_subject" ng-if="comment.showEdit" ng-keyup="commentSubjectLengthCheck(comment, comment.editSubject)" translate
                                        translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_SUBJECT" ng-model="comment.editSubject" class="gray_borders"
                                        ng-class="{'error_input': comment.errors.subject}" maxlength="{{::maxLengthSubject}}" focus-if>
@@ -162,7 +189,8 @@
                                     </div>
                                 </label>
 
-                                <textarea cos-markdown id="comment_edit" ng-if="comment.showEdit" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_TEXT' | translate}}" class="gray_borders"
+                                <textarea cos-markdown id="comment_edit" ng-if="comment.showEdit" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_TEXT' | translate}}"
+                                          class="gray_borders"
                                           ng-model="comment.editText" ng-keyup="commentTextLengthCheck(comment, comment.editText)"
                                           ng-class="{'error_input': comment.errors.text}" maxlength="maxLengthText"></textarea>
 
@@ -174,6 +202,18 @@
                                 </label>
 
                                 <div class="argument_footer_with_buttons" ng-if="comment.showEdit">
+                                    <div class="blue_button" ng-click="commentEditMode(comment)">
+                                        <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_CANCEL_EDIT">
+                                            Cancel edit
+                                        </div>
+                                    </div>
+
+                                    <div class="blue_button" cos-disabled="argumentForm.$invalid || !form.type" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="saveComment()">
+                                        Post
+                                    </div>
+                                </div>
+
+                                <!--div class="argument_footer_with_buttons" ng-if="comment.showEdit">
                                     <div class="table_cell">
                                         <div class="blue_button nature_green_button" ng-click="updateComment(comment, COMMENT_TYPES.pro)">
                                             <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_POST_AS_PRO">
@@ -202,7 +242,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div-->
                             </form>
                         </div>
                         <!-- END EDIT COMMENT -->
@@ -291,7 +331,9 @@
                                 </div>
                                 <div class="argument_header_widget">
                                     <div class="table_cell">
-                                        <a href="#"  ng-click="copyCommentLink(comment.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{comment.id + '_v'+version}}" value=""/></a>
+                                        <a href="#" ng-click="copyCommentLink(comment.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input"
+                                                                                                                                                                id="comment_link_input_{{comment.id + '_v'+version}}"
+                                                                                                                                                                value=""/></a>
                                     </div>
                                 </div>
                                 <div class="clearer"></div>
@@ -451,7 +493,7 @@
                                 <div cos-dropdown class="classic_dropdown borderless_dropdown">
 
                                     <div class="dropdown_selection">
-                                        <div class="dropdown_text data_item"  translate="VIEWS.TOPICS_TOPICID.ARGUMENT_SELECT_ACTIONS">
+                                        <div class="dropdown_text data_item" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_SELECT_ACTIONS">
                                             Actions
                                         </div>
 
@@ -467,7 +509,8 @@
                                         <div class="dropdown_item">
                                             <div ng-if="::reply.canEdit()" class="item_name" ng-click="commentEditMode(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_EDIT">Edit</div>
                                             <div ng-if="::reply.canDelete()" class="item_name" ng-click="doShowDeleteComment(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">Delete</div>
-                                            <div class="item_name" ng-click="copyCommentLink(reply.id, (reply.edits.length-1), $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{reply.id + '_v'+(reply.edits.length-1)}}" value=""/></div>
+                                            <div class="item_name" ng-click="copyCommentLink(reply.id, (reply.edits.length-1), $event)"><span translate="LNK_DIRECT_LINK">link</span><input
+                                                class="comment_link_input" id="comment_link_input_{{reply.id + '_v'+(reply.edits.length-1)}}" value=""/></div>
                                             <div class="item_name" ng-if="app.user.loggedIn" ng-click="doCommentReport(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_REPORT">Report</div>
                                         </div>
                                     </div>
@@ -486,9 +529,9 @@
                                         to comment
                                     </h3>
                                 </div>
-                                <textarea  cos-markdown id="reply_edit" class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_REPLY' | translate}}"
+                                <textarea cos-markdown id="reply_edit" class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_REPLY' | translate}}"
                                           ng-keyup="commentTextLengthCheck(reply, reply.editText)" ng-class="{'error_input': reply.errors.text}"
-                                          ng-model="reply.editText" maxlength="maxLengthText" focus-if ></textarea>
+                                          ng-model="reply.editText" maxlength="maxLengthText" focus-if></textarea>
                                 <label for="reply_edit" class="error_label" ng-if="reply.errors.text">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -529,7 +572,9 @@
                                 </div>
                                 <div class="argument_header_widget">
                                     <div class="table_cell">
-                                        <a href="#" ng-click="copyCommentLink(reply.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input" id="comment_link_input_{{reply.id + '_v'+version}}" value=""/></a>
+                                        <a href="#" ng-click="copyCommentLink(reply.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input"
+                                                                                                                                                              id="comment_link_input_{{reply.id + '_v'+version}}"
+                                                                                                                                                              value=""/></a>
                                     </div>
                                 </div>
                                 <div class="clearer"></div>
@@ -540,7 +585,9 @@
                         </div>
                         <!-- END REPLY EDITS -->
                         <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
-                            <a ng-if="!reply.deletedAt && reply.isVisible()" href="#" class="replys_reply" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})" ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</a>
+                            <a ng-if="!reply.deletedAt && reply.isVisible()" href="#" class="replys_reply"
+                               ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
+                               ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</a>
                             <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text" ng-bind-html="reply.text | markdown"></div>
                             <div ng-if="!reply.isVisible()" class="argument_text italic">This comment has been deleted by {{reply.deletedBy.name}}</div>
                             <div class="argument_overlay">
@@ -592,7 +639,8 @@
                             <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT">Read our <a class="underlined_link" href="">code of conduct</a> for more information</span>
                         </div>
                         <div class="alert_argument" ng-if="reply.deletedAt && reply.isVisible()">
-                            <span class="replys_reply" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})" ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</span>
+                            <span class="replys_reply" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
+                                  ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</span>
                             <span class="italic" ng-click="reply.showDeletedComment = !reply.showDeletedComment">{{reply.text}}</span>
                         </div>
                         <!-- END REPLY DELETED -->
@@ -615,7 +663,7 @@
                                     <div class="sprite sprite-icon-thumb-up-gray">
                                     </div>
                                 </div>
-                                <div class="table_cell comment_vote_count"  ng-click="doShowVotersList(reply)">
+                                <div class="table_cell comment_vote_count" ng-click="doShowVotersList(reply)">
                                     {{reply.votes.up.count}}
                                 </div>
                             </div>
@@ -696,6 +744,7 @@
                         </div>
                     </div>
                 </div>
+
                 <input id="argument_subject" ng-model="form.subject" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}"
                        class="gray_borders" ng-class="{'error_input': form.errors.subject}" required ng-keyup="commentSubjectLengthCheck(form, form.subject)" maxlength="{{maxLengthSubject}}"
                        focus-if="focusArgumentSubject">
@@ -713,6 +762,7 @@
                         <span translate="{{form.errors.text}}"></span>
                     </div>
                 </label>
+
                 <div class="blue_button" cos-disabled="argumentForm.$invalid || !form.type" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="saveComment()">
                     Post
                 </div>
