@@ -157,7 +157,7 @@
 
                                     <div class="dropdown_selection">
                                         <div class="dropdown_text">
-                                            {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + form.type | uppercase) | translate}} <span ng-if="!form.type">*</span>
+                                            {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + comment.editType | uppercase) | translate}} <span ng-if="!comment.editType">*</span>
                                         </div>
 
                                         <div class="arrow_holder">
@@ -171,7 +171,7 @@
 
                                     <div class="dropdown">
                                         <div class="dropdown_item" ng-repeat="type in TopicCommentTypes">
-                                            <div class="item_name" ng-click="form.type = type">
+                                            <div class="item_name" ng-click="comment.editType = type">
                                                 {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
                                             </div>
                                         </div>
@@ -208,7 +208,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="blue_button" cos-disabled="argumentForm.$invalid || !form.type" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="saveComment()">
+                                    <div class="blue_button" cos-disabled="postArgument.$invalid || !comment.editType" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="updateComment(comment)">
                                         Post
                                     </div>
                                 </div>

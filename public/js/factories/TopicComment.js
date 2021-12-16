@@ -196,7 +196,7 @@ angular
         // Transform an argument (comment) tree to 2 levels - bring all replies and their replies to same level.
         function flattenTree (parentNode, currentNode) {
             if (currentNode.replies.rows.length > 0) {
-                if (parentNode != currentNode) {
+                if (parentNode !== currentNode) {
                     parentNode.replies.rows = parentNode.replies.rows.concat(currentNode.replies.rows);
                 }
                 currentNode.replies.rows.forEach(function (reply, i) {
