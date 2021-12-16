@@ -54,5 +54,9 @@
     },
     "reportUri": "https://dev.api.citizenos.com:3003/api/internal/report",
     "reportOnly": false
+  },
+  "customStyle": {
+    "css": "body {background-color: #dfaa;} .logo_area .logo { margin-top: 16px; margin-bottom: 16px; background-size: 100%;}",
+    "logo-src": "https://parnu.ee/images/pildid/symboolika/logo.gif"
   }
 }

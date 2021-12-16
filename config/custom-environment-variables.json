@@ -2,5 +2,9 @@
   "csp": {
     "__name": "CSP_CONFIG",
     "__format": "json"
+  },
+  "customStyle": {
+    "css": "CITIZENOS_CUSTOM_STYLE_CSS",
+    "logo-src": "CITIZENOS_CUSTOM_LOGO_SRC"
   }
 }
