@@ -46,7 +46,7 @@
             <!-- FIRST COMMENT -->
             <div class="argument_wrap is_{{::comment.type}}" ng-repeat="comment in topicComments.rows | orderBy: topicComments.orderBy">
                 <div class="single_argument">
-                    <div id="{{::comment.id + '_v' + (comment.edits.length-1)}}" class="argument" ng-class="{edit_argument: comment.showEdit}">
+                    <div id="{{::comment.id + '_v' + (comment.edits.length-1)}}" class="argument" ng-class="{post_argument_wrap: comment.showEdit}">
                         <!-- COMMENT HEADER -->
                         <div class="argument_header">
                             <div class="argumentator">
@@ -208,7 +208,7 @@
                                         </div>
                                     </div>
                                     <div class="table_cell">
-                                        <div class="blue_button blue_white_button" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_CANCEL_EDIT">
+                                        <div class="blue_button blue_white_button" ng-click="commentEditMode(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_CANCEL_EDIT">
                                             Cancel edit
                                         </div>
                                     </div>
@@ -431,7 +431,7 @@
 
                 <!-- COMMENT REPLY -->
                 <div class="single_argument is_reply" ng-if="comment.showReplies" ng-repeat="reply in comment.replies.rows" ng-click="">
-                    <div id="{{reply.id + '_v' + (reply.edits.length-1)}}" class="argument" ng-class="{edit_argument: reply.showEdit}">
+                    <div id="{{reply.id + '_v' + (reply.edits.length-1)}}" class="argument" ng-class="{post_argument_wrap: reply.showEdit}">
                         <!-- REPLY HEADER -->
                         <div class="argument_header">
                             <div class="reply_icon sprite sprite-icon-arrow-reply2x">
