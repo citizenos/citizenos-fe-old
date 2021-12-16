@@ -465,6 +465,7 @@
                                 & > .table_cell {
                                     display: block;
                                     padding: 0;
+                                    width: 100%;
 
                                     &:first-child {
                                         .blue_button {
@@ -698,20 +699,9 @@
                     float: left;
                 }
 
-                // FIXME: Remove when https://github.com/citizenos/citizenos-fe/issues/329 goes live with correct UX
-                .light_blue_button {
-                    margin-right: 10px;
-                }
-
                 @media (max-width: 621px) {
                     .nature_green_button, .pinky_red_button {
                         float: none;
-                    }
-
-                    // FIXME: Remove when https://github.com/citizenos/citizenos-fe/issues/329 goes live with correct UX
-                    .light_blue_button {
-                        float: none;
-                        margin: 10px 0 0 0;
                     }
 
                     .pinky_red_button {
