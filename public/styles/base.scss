@@ -321,10 +321,9 @@ h2 {
     border: 1px solid vars.$lightest_gray;
 
     &:hover {
-        @media (min-width: 1025px) {
-            background: vars.$medium_gray !important;
-            border: 1px solid vars.$mobile_border_gray;
-        }
+        background: vars.$medium_gray !important;
+        border: 1px solid vars.$mobile_border_gray;
+        color: vars.$mobile_border_gray;
     }
 
     &.disabled {

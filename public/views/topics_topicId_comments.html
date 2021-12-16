@@ -180,7 +180,7 @@
 
                                 <input id="comment_edit_subject" ng-if="comment.showEdit" ng-keyup="commentSubjectLengthCheck(comment, comment.editSubject)" translate
                                        translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_SUBJECT" ng-model="comment.editSubject" class="gray_borders"
-                                       ng-class="{'error_input': comment.errors.subject}" maxlength="{{::maxLengthSubject}}" focus-if>
+                                       ng-class="{'error_input': comment.errors.subject}" maxlength="{{::maxLengthSubject}}" focus-if required>
 
                                 <label for="comment_edit_subject" class="error_label" ng-if="comment.errors.subject">
                                     <div class="table_cell">
@@ -192,7 +192,7 @@
                                 <textarea cos-markdown id="comment_edit" ng-if="comment.showEdit" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_TEXT' | translate}}"
                                           class="gray_borders"
                                           ng-model="comment.editText" ng-keyup="commentTextLengthCheck(comment, comment.editText)"
-                                          ng-class="{'error_input': comment.errors.text}" maxlength="maxLengthText"></textarea>
+                                          ng-class="{'error_input': comment.errors.text}" maxlength="maxLengthText" required></textarea>
 
                                 <label for="comment_edit" class="error_label" ng-if="comment.errors.text">
                                     <div class="table_cell">
@@ -202,14 +202,15 @@
                                 </label>
 
                                 <div class="argument_footer_with_buttons" ng-if="comment.showEdit">
-                                    <div class="blue_button" ng-click="commentEditMode(comment)">
-                                        <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_CANCEL_EDIT">
-                                            Cancel edit
+                                    <div class="table_cell">
+                                        <div class="blue_button" cos-disabled="postArgument.$invalid || !comment.editType" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="updateComment(comment)">
+                                            Post
                                         </div>
                                     </div>
-
-                                    <div class="blue_button" cos-disabled="postArgument.$invalid || !comment.editType" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="updateComment(comment)">
-                                        Post
+                                    <div class="table_cell">
+                                        <div class="blue_button blue_white_button" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_CANCEL_EDIT">
+                                            Cancel edit
+                                        </div>
                                     </div>
                                 </div>
 
