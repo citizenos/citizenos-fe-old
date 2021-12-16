@@ -316,9 +316,7 @@
                         </div>
                         <!-- END COMMENT DELETED-->
                         <!-- COMMENT EDITS -->
-                        <div id="{{comment.id + '_v' + version}}" class="argument" ng-class="{is_con:edit.type=='con', is_pro: edit.type=='pro'}"
-                             ng-if="comment.showEdits && comment.isEdited() && !$last"
-                             ng-repeat="(version, edit) in comment.edits">
+                        <div id="{{comment.id + '_v' + version}}" class="argument" ng-class="'is_' + edit.type" ng-if="comment.showEdits && comment.isEdited() && !$last" ng-repeat="(version, edit) in comment.edits">
                             <div class="argument_header">
                                 <div class="argument_header_widget">
                                     <div class="table_cell" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">

@@ -230,7 +230,7 @@
 
                     &.is_poi {
                         .single_argument {
-                            background-color: vars.$lightest_blue2;
+                            background-color: rgba(vars.$light_blue, 0.2);
                         }
 
                         .argument {
@@ -279,6 +279,33 @@
                         transition-duration: 2s;
                         transition-timing-function: linear;
                         transition-property: background;
+
+                        &.is_pro {
+                            padding: 5px 0 4px 16px;
+                            border-left: 4px solid vars.$nature_green;
+                            margin-bottom: 20px;
+                            -webkit-transition-duration: 2s;
+                            -webkit-transition-timing-function: linear;
+                            -webkit-transition-property: background;
+                            /* Standard syntax */
+                            transition-duration: 2s;
+                            transition-timing-function: linear;
+                            transition-property: background;
+                            border-right: none;
+                            background-color: rgba(vars.$nature_green, 0.05);
+                        }
+
+                        &.is_con {
+                            border-right: 4px solid vars.$pinky_red;
+                            border-left: none;
+                            background-color: rgba(vars.$pinky_red, 0.05);
+                        }
+
+                        &.is_poi {
+                            border-right: none;
+                            border-left: none;
+                            background-color: rgba(vars.$light_blue, 0.2);
+                        }
 
                         &.edit_argument {
                             input {
