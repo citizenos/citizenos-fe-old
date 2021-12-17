@@ -209,6 +209,20 @@
                             @include linear_gradient(to bottom, rgba(0, 0, 0, 0) 0%, vars.$nature_green_light 65%, vars.$nature_green_light 100%);
                         }
 
+                        @media (max-width: 1200px) {
+                            padding-right: 4px;
+                        }
+
+                        @include mixins_n_extends.tablet {
+                            padding-right: 20%;
+                        }
+                        @media (max-width: 621px) {
+                            padding-right: 20px;
+                            .post_argument_wrap {
+                                padding-right: 0;
+                            }
+                        }
+
                         .argument {
                             border-left: 4px solid vars.$nature_green;
                             padding-left: 16px;
