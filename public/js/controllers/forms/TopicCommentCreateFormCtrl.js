@@ -10,17 +10,21 @@ angular
                 text: null,
                 errors: null
             };
+
+            $scope.TopicCommentTypes = angular.extend({}, TopicComment.COMMENT_TYPES);
+            delete $scope.TopicCommentTypes[TopicComment.COMMENT_TYPES.reply];
+
             $scope.maxLengthSubject = 128;
             $scope.maxLengthText = 2048;
             $scope.charactersLeft = $scope.maxLength;
         };
         init();
 
-        var saveComment = function (parentId, type, parentVersion) {
+        $scope.saveComment = function (parentId, parentVersion) {
             var comment = new TopicComment();
             comment.parentId = parentId;
             comment.parentVersion = parentVersion;
-            comment.type = type;
+            comment.type = $scope.form.type;
             comment.subject = $scope.form.subject;
             comment.text = $scope.form.text;
 
@@ -67,17 +71,9 @@ angular
             }
         };
 
-        $scope.submitPro = function () {
-            saveComment(null, TopicComment.COMMENT_TYPES.pro);
-        };
-
-        $scope.submitCon = function () {
-            saveComment(null, TopicComment.COMMENT_TYPES.con);
-        };
-
         $scope.submitReply = function (parentId, parentVersion) {
             $scope.form.subject = null;
-            saveComment(parentId, $scope.form.type, parentVersion);
+            $scope.saveComment(parentId, parentVersion);
         };
 
     }]);

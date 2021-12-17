@@ -7,7 +7,7 @@
 @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
     .sprite {
         background-image: url('../imgs/icons_sprite2x.png?v21');
-        background-size: 203px 4018px;
+        background-size: 203px 4114px;
     }
 }
 
@@ -909,6 +909,12 @@
     background-position: 0 -3401px;
 }
 
+.sprite-icon-thumb-up-gray {
+    width: 24px;
+    height: 24px;
+    background-position: 0 -4042px;
+}
+
 .sprite-icon-thumb-up-outline {
     width: 24px;
     height: 24px;
@@ -919,6 +925,12 @@
     width: 24px;
     height: 24px;
     background-position: 0 -3377px;
+}
+
+.sprite-icon-thumb-down-gray {
+    width: 24px;
+    height: 24px;
+    background-position: 0 -4018px;
 }
 
 .sprite-icon-thumb-down-outline {

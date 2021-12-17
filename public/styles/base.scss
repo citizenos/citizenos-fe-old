@@ -297,6 +297,23 @@ h2 {
     }
 }
 
+.light_blue_button {
+    @extend .nature_green_button;
+    background: vars.$light_blue;
+    border: 1px solid vars.$light_blue;
+
+    &:hover {
+        @media (min-width: 1025px) {
+            background: vars.$light_blue !important;
+            border: 1px solid vars.$light_blue;
+        }
+    }
+
+    &.disabled {
+        background: vars.$light_blue;
+    }
+}
+
 .blue_white_button {
     @extend .nature_green_button;
     background: vars.$white;
@@ -304,10 +321,9 @@ h2 {
     border: 1px solid vars.$lightest_gray;
 
     &:hover {
-        @media (min-width: 1025px) {
-            background: vars.$medium_gray !important;
-            border: 1px solid vars.$mobile_border_gray;
-        }
+        background: vars.$medium_gray !important;
+        border: 1px solid vars.$mobile_border_gray;
+        color: vars.$mobile_border_gray;
     }
 
     &.disabled {
@@ -2514,7 +2530,7 @@ a:link, a:visited {
     padding: 20px;
     margin-top: 20px;
     border: 1px solid #BADCFF;
-    background-color: #D5EAFF;
+    background-color: vars.$lightest_blue;
 
     @include mixins_n_extends.tablet {
         margin-top: 60px;
