@@ -1129,7 +1129,7 @@
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Táto mailová adresa sa už používa.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Meno môže mať dĺžku 1 až 255 znakov.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Účet s týmto emailom neexistuje.",
-  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Ospravedlňujeme sa, bolo vykonaných príliš veľa pokusov o prihlásenie a prihlasovanie bolo dočasne zakázané. Skúste to prosím neskôr, ak problém pretrváva, kontaktujte zákaznícku podporu.",
+  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too may attempts. Please try again later. If the problem persists, contact our customer support.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Heslo musí mať aspoň 6 znakov, musí obsahovať aspoň 1 číslicu, 1 malé písmeno a 1 veľké písmeno.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40003_PASSWORD": "Nesprávne heslo.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Overovanie účtu nebolo ukončené. Skontrolujte si prosím váš email.",
