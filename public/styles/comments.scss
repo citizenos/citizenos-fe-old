@@ -279,6 +279,7 @@
                         .single_argument {
                             background-color: vars.$light_blue_light;
                         }
+
                         .argument_overlay {
                             @include linear_gradient(to bottom, rgba(0, 0, 0, 0) 0%, vars.$light_blue_light 65%, vars.$light_blue_light 100%);
                         }
@@ -314,6 +315,10 @@
                                     left: -31px;
                                     top: 7px;
                                 }
+                            }
+
+                            &.post_argument_wrap {
+                                background-color: #F6F6F6;
                             }
                         }
 
