@@ -299,6 +299,10 @@
                     }
 
                     .is_reply {
+                        .argument_overlay {
+                            @include linear_gradient(to bottom, rgba(0, 0, 0, 0) 0%, vars.$white 65%, vars.$white 100%);
+                        }
+
                         .argument {
                             padding-left: 46px;
                             border-color: vars.$dark_gray;
