@@ -273,6 +273,9 @@
                     }
 
                     &.is_poi {
+                        padding-right: 0;
+                        padding-left: 0;
+
                         .single_argument {
                             background-color: vars.$light_blue_light;
                         }
