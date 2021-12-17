@@ -13,8 +13,8 @@
     "start": "node ./index.js",
     "start-dev": "npm install && concurrently --kill-others \"npm start\" \"./node_modules/gulp/bin/gulp.js\"",
     "dev": "npm install && concurrently --kill-others \"npm start\" \"./node_modules/gulp/bin/gulp.js\"",
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha --expose-gc --async-only --check-leaks --trace-deprecation --reporter spec --no-exit --recursive --ui tdd test/",
-    "prepare": "husky install"
+    "precommit": "./bin/hooks/no-unresolved-conflicts.sh",
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --expose-gc --async-only --check-leaks --trace-deprecation --reporter spec --no-exit --recursive --ui tdd test/"
   },
   "dependencies": {
     "angular-datepicker": "1.0.5",
