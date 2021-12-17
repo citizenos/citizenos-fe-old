@@ -240,19 +240,17 @@ angular
                 });
         };
 
-        $scope.updateComment = function (comment, editType) {
+        $scope.updateComment = function (comment) {
             if (comment.editType !== comment.type || comment.subject !== comment.editSubject || comment.text !== comment.editText) {
                 comment.subject = comment.editSubject;
                 comment.text = comment.editText;
-
-                if (editType) {
-                    comment.type = editType;
-                }
+                comment.type = comment.editType;
                 comment.topicId = $scope.topic.id;
 
                 comment
                     .$update()
                     .then(function (commentUpdated) {
+                        delete comment.errors;
                         return $state.go(
                             $state.current.name,
                             {
@@ -260,7 +258,8 @@ angular
                             }
                         );
                     }, function (err) {
-                        $log.error('err', err)
+                        $log.error('Failed to update comment', comment, err);
+                        comment.errors = err.data.errors;
                     });
             } else {
                 $scope.commentEditMode(comment);
@@ -270,6 +269,10 @@ angular
         $scope.commentEditMode = function (comment) {
             comment.editSubject = comment.subject;
             comment.editText = comment.text;
+            comment.editType = comment.type;
+            if (comment.showEdit) { // Visible, so we gonna hide, need to clear form errors
+                delete comment.errors;
+            }
             comment.showEdit = !comment.showEdit;
         };
 
@@ -280,7 +283,6 @@ angular
             for (var i = 0; i < rootComment.replies.rows.length; i++) {
                 if (rootComment.replies.rows[i].id === parentId) {
                     return rootComment.replies.rows[i].creator.name;
-                    break;
                 }
             }
         };
@@ -439,12 +441,12 @@ angular
         };
 
         $scope.getCommentUrl = function (commentIdWithVersion) {
-            return sLocation.getAbsoluteUrl('/topics/:topicId', {topicId: $scope.topic.id},{ commentId: commentIdWithVersion});
+            return sLocation.getAbsoluteUrl('/topics/:topicId', {topicId: $scope.topic.id}, {commentId: commentIdWithVersion});
         };
 
         $scope.copyCommentLink = function (mainid, version, event) {
-            var id = mainid + '_v'+(version);
-            var urlInputElement = document.getElementById('comment_link_input_'+id);
+            var id = mainid + '_v' + (version);
+            var urlInputElement = document.getElementById('comment_link_input_' + id);
             var url = $scope.getCommentUrl(id);
             urlInputElement.value = url;
             urlInputElement.focus();
@@ -453,9 +455,9 @@ angular
             document.execCommand('copy');
 
             var X = event.pageX;
-	        var Y = event.pageY;
+            var Y = event.pageY;
 
-            sNotification.inline($translate.instant('VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_COPIED'), X, Y-35);
+            sNotification.inline($translate.instant('VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_COPIED'), X, Y - 35);
         };
 
         $scope.goToParentComment = function (rootComment, parent, $event) {

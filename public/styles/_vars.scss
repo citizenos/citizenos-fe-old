@@ -2,15 +2,17 @@ $medium_black: #252525;
 $medium_black_seven: rgba(37, 37, 37, 0.7);
 $dark_black: #1A1A1A;
 $light_black: #3B3B3B;
-;
 $black: #000;
 $transparent_black: rgba(36, 36, 36, 0.95);
 
 $white: #FFF;
 $transparent_white: rgba(255, 255, 255, .69);
 $sky_blue: #6FB6FF;
+$light_blue: #BADCFF;
+$light_blue_light: #F5F8FF;
+$lightest_blue: #D5EAFF;
 $deep_sky_blue: #0680FC;
-$dark_blue: #0574e3;
+$dark_blue: #0574E3;
 $disabled_blue: #79B1E8;
 $disabled_gray: #CECEC0;
 $transparent_blue: rgba(6, 128, 252, 0.1);
@@ -68,12 +70,14 @@ $red: #e64100;
 
 $old_pink: #FFDAE0;
 $pinky_red: #ff1d42;
+$pinky_red_light: #FFF3F5;
 $pinky_red_dark: #e22645;
 $pinky_red_border: #e6193b;
 $pinky_red_dark_hover: #e6193b;
 $pinky_red_dark_border: #bf0f2c;
 
 $nature_green: #BAE830;
+$nature_green_light: #FBFEF4;
 $nature_green_border: #AED92E;
 $nature_green_dark: #b0dc2e;
 $nature_green_border_dark: #a5cc30;
@@ -87,7 +91,6 @@ $green_dark: #0c6449;
 $aqua_marine_border: #2be0aa;
 $aqua_marine_border_second: #28d4a0;
 $aqua_marine_text: #00ce8f;
-;
 
 $category_politics: rgba(0, 115, 153, 1);
 $category_taxes: rgba(62, 100, 142, 1);
