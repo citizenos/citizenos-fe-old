@@ -14,7 +14,8 @@ angular
             rows: [],
             count: {
                 pro: 0,
-                con: 0
+                con: 0,
+                poi: 0
             },
             page: 1,
             totalPages: 0,
@@ -152,6 +153,7 @@ angular
                             $scope.topicComments.count = {
                                 pro: 0,
                                 con: 0,
+                                poi: 0,
                                 total: 0
                             };
                         }
