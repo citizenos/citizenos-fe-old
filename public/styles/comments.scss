@@ -1,6 +1,7 @@
 @use 'vars';
 @use 'mixins_n_extends';
 @use 'icons';
+@use 'base';
 
 .comments_section {
     margin-top: 60px;
@@ -183,12 +184,29 @@
                         padding-right: 0;
                     }
 
+                    .argument_overlay {
+                        display: none;
+                        position: absolute;
+                        height: 62px;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                    }
+
+                    @mixin linear_gradient($direction, $list...) {
+                        background: linear-gradient($direction, $list);
+                    }
+
                     &.is_pro {
                         padding-left: 0;
                         padding-right: 20%;
 
                         .single_argument {
-                            background-color: rgba(vars.$nature_green, 0.05);
+                            background-color: vars.$nature_green_light;
+                        }
+
+                        .argument_overlay {
+                            @include linear_gradient(to bottom, rgba(0, 0, 0, 0) 0%, vars.$nature_green_light 65%, vars.$nature_green_light 100%);
                         }
 
                         .argument {
@@ -203,7 +221,11 @@
                         padding-right: 0;
 
                         .single_argument {
-                            background-color: rgba(vars.$pinky_red, 0.05);
+                            background-color: vars.$pinky_red_light;
+                        }
+
+                        .argument_overlay {
+                            @include linear_gradient(to bottom, rgba(0, 0, 0, 0) 0%, vars.$pinky_red_light 65%, vars.$pinky_red_light 100%);
                         }
 
                         @media (max-width: 1200px) {
@@ -230,7 +252,11 @@
 
                     &.is_poi {
                         .single_argument {
-                            background-color: rgba(vars.$light_blue, 0.2);
+                            background-color: vars.$light_blue_light;
+                        }
+
+                        .argument_overlay {
+                            @include linear_gradient(to bottom, rgba(0, 0, 0, 0) 0%, vars.$light_blue_light 65%, vars.$light_blue_light 100%);
                         }
 
                         .argument {
@@ -292,19 +318,19 @@
                             transition-timing-function: linear;
                             transition-property: background;
                             border-right: none;
-                            background-color: rgba(vars.$nature_green, 0.05);
+                            background-color: vars.$nature_green_light;
                         }
 
                         &.is_con {
                             border-right: 4px solid vars.$pinky_red;
                             border-left: none;
-                            background-color: rgba(vars.$pinky_red, 0.05);
+                            background-color: vars.$pinky_red_light;
                         }
 
                         &.is_poi {
                             border-right: none;
                             border-left: none;
-                            background-color: rgba(vars.$light_blue, 0.2);
+                            background-color: vars.$light_blue_light
                         }
 
                         &.edit_argument {
@@ -437,19 +463,6 @@
                                 margin-bottom: 5px;
                                 word-break: break-word;
                                 white-space: pre-line;
-                            }
-
-                            .argument_overlay {
-                                display: none;
-                                position: absolute;
-                                height: 62px;
-                                background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 1) 100%); /* FF3.6-15 */
-                                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 1) 100%); /* Chrome10-25,Safari5.1-6 */
-                                background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=0);
-                                right: 0;
-                                bottom: 0;
-                                left: 0;
                             }
 
                             .read_more_link {
