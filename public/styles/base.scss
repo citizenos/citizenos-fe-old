@@ -2336,6 +2336,14 @@ a:link, a:visited {
     height: 30px;
     z-index: 1;
 
+    &.dropdown_active {
+        .dropdown {
+            &.with_description {
+                display: flex;
+            }
+        }
+    }
+
     .dropdown_selection {
         padding: 5px 42px 6px 10px;
         position: relative;
@@ -2429,16 +2437,15 @@ a:link, a:visited {
         }
 
         &.with_description {
-            display: flex;
+            display: none;
+            flex-direction: row;
             font-size: initial;
             padding: 0;
             margin: 0;
 
             .column {
                 box-sizing: border-box;
-                float: left;
                 width: 50%;
-                border: 1px solid red;
             }
 
             .dropdown_item {
@@ -2446,18 +2453,17 @@ a:link, a:visited {
                 padding: 16px 15px;
 
                 &.active {
-                    background: vars.$lightest_gray;
+                    background: vars.$light_gray;
                 }
             }
 
             .dropdown_item_descriptions {
                 font-size: 0.875em;
-                background: vars.$lightest_gray;
+                background: vars.$light_gray;
 
                 .item_description {
                     display: none;
                     padding: 16px 15px;
-                    background: vars.$lightest_gray;
 
                     &.active {
                         display: block;

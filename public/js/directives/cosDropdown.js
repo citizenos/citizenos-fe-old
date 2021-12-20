@@ -8,7 +8,7 @@ angular
                     elem.toggleClass('dropdown_active');
                     elem.addClass('active_recent');
                 };
-                //elem.on('click', elementClickHandler);
+                elem.on('click', elementClickHandler);
 
                 var documentClickHandler = function () {
                     if (!elem.hasClass('active_recent')) {
@@ -16,7 +16,7 @@ angular
                     }
                     elem.removeClass('active_recent');
                 };
-                //$document.on('click', documentClickHandler);
+                $document.on('click', documentClickHandler);
 
                 scope.$on('$destroy', function () {
                     // Don't leave event handlers hanging
