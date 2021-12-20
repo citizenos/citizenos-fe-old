@@ -475,7 +475,6 @@ table, .pretend_table {
 .row_with_padding {
     padding-top: 10px;
 }
-
 .pretend_td, .pretend_th, .pagination_wrapper {
     @extend %table_cell;
 }
@@ -1053,11 +1052,9 @@ table, .pretend_table {
                     .item_name {
                         font-weight: 400;
                         padding-left: 10px;
-
                         &.bold {
                             font-weight: 700;
                         }
-
                         &:hover {
                             color: vars.$medium_black;
                             background: vars.$light_gray;
@@ -2428,44 +2425,6 @@ a:link, a:visited {
             }
         }
 
-        &.with_description {
-            display: flex;
-            font-size: initial;
-            padding: 0;
-            margin: 0;
-
-            .column {
-                box-sizing: border-box;
-                float: left;
-                width: 50%;
-                border: 1px solid red;
-            }
-
-            .dropdown_item {
-                font-weight: vars.$semi_bold;
-                padding: 16px 15px;
-
-                &.active {
-                    background: vars.$lightest_gray;
-                }
-            }
-
-            .dropdown_item_descriptions {
-                font-size: 0.875em;
-                background: vars.$lightest_gray;
-
-                .item_description {
-                    display: none;
-                    padding: 16px 15px;
-                    background: vars.$lightest_gray;
-
-                    &.active {
-                        display: block;
-                    }
-                }
-            }
-        }
-
     }
 
     .comment_creator_dropdown {
@@ -2816,7 +2775,6 @@ a:link, a:visited {
         right: 10px;
         top: 10px;
     }
-
     .help_content {
         width: 360px;
         height: 100vh;
@@ -2826,7 +2784,6 @@ a:link, a:visited {
             height: 90%;
         }
     }
-
     .help_top {
         border-radius: 4px 4px 0 0;
         width: 100%;
@@ -3008,7 +2965,7 @@ a:link, a:visited {
             padding: 20px 0 10px 0;
         }
 
-        .date_picker_wrap {
+        .date_picker_wrap  {
             background-color: vars.$white;
             border: solid 1px vars.$lightest_gray;
             border-radius: 4px;
@@ -3070,7 +3027,7 @@ a:link, a:visited {
                 }
 
                 .float_left {
-                    float: left;
+                    float:left;
                 }
 
                 .time_separator {
@@ -3087,7 +3044,7 @@ a:link, a:visited {
 
                 @media (max-width: 1500px) {
                     .classic_dropdown {
-                        float: right;
+                        float:right;
                         margin-left: auto;
                     }
                 }
@@ -3104,7 +3061,6 @@ a:link, a:visited {
                     .dropdown_text {
                         padding-right: 10px;
                     }
-
                     .arrow_holder {
                         height: 42px;
                     }

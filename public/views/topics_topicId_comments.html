@@ -203,8 +203,7 @@
 
                                 <div class="argument_footer_with_buttons" ng-if="comment.showEdit">
                                     <div class="table_cell">
-                                        <div class="blue_button" cos-disabled="postArgument.$invalid || !comment.editType" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST"
-                                             ng-click="updateComment(comment)">
+                                        <div class="blue_button" cos-disabled="postArgument.$invalid || !comment.editType" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="updateComment(comment)">
                                             Post
                                         </div>
                                     </div>
@@ -317,8 +316,7 @@
                         </div>
                         <!-- END COMMENT DELETED-->
                         <!-- COMMENT EDITS -->
-                        <div id="{{comment.id + '_v' + version}}" class="argument" ng-class="'is_' + edit.type" ng-if="comment.showEdits && comment.isEdited() && !$last"
-                             ng-repeat="(version, edit) in comment.edits">
+                        <div id="{{comment.id + '_v' + version}}" class="argument" ng-class="'is_' + edit.type" ng-if="comment.showEdits && comment.isEdited() && !$last" ng-repeat="(version, edit) in comment.edits">
                             <div class="argument_header">
                                 <div class="argument_header_widget">
                                     <div class="table_cell" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
@@ -721,7 +719,7 @@
                 </h3>
             </div>
             <form cos-disabled="!app.user.loggedIn" name="argumentForm">
-                <div cos-dropdown class="classic_dropdown dropdown_active" ng-class="{'error_input': form.errors.type}">
+                <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': form.errors.type}">
 
                     <div class="dropdown_selection">
                         <div class="dropdown_text">
@@ -737,25 +735,10 @@
                         </div>
                     </div>
 
-                    <div class="dropdown with_description">
-                        <div class="column">
-                            <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="'item_' + $index">
-                                <div class="item_name" ng-click="form.type = type">
-                                    {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="dropdown_item_descriptions">
-                                <div class="item_description item_0">
-                                    TODO: Description for PRO argument
-                                </div>
-                                <div class="item_description item_1">
-                                    TODO: Description for CON argument asdas dasd asdas dasd asdasdaskjdhalsk jdhlashd asdla jkshldaskjhd ljashldkjh aslkj dhlakshdlk jashdlkash lkdjhas ldkjh
-                                </div>
-                                <div class="item_description item_2">
-                                    Use this post type if you are agreeing with the content etc orem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget blandit ipsum.
-                                </div>
+                    <div class="dropdown">
+                        <div class="dropdown_item" ng-repeat="type in TopicCommentTypes">
+                            <div class="item_name" ng-click="form.type = type">
+                                {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
                             </div>
                         </div>
                     </div>
