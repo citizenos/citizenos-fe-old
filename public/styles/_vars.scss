@@ -1,19 +1,21 @@
-
 $medium_black: #252525;
 $medium_black_seven: rgba(37, 37, 37, 0.7);
 $dark_black: #1A1A1A;
-$light_black: #3B3B3B;;
+$light_black: #3B3B3B;
 $black: #000;
 $transparent_black: rgba(36, 36, 36, 0.95);
 
 $white: #FFF;
 $transparent_white: rgba(255, 255, 255, .69);
 $sky_blue: #6FB6FF;
+$light_blue: #BADCFF;
+$light_blue_light: #F5F8FF;
+$lightest_blue: #D5EAFF;
 $deep_sky_blue: #0680FC;
-$dark_blue: #0574e3;
+$dark_blue: #0574E3;
 $disabled_blue: #79B1E8;
 $disabled_gray: #CECEC0;
-$transparent_blue: rgba(6,128,252,0.1);
+$transparent_blue: rgba(6, 128, 252, 0.1);
 
 $dark_gray: #A1A1A1;
 $medium_gray: #EDEDED;
@@ -68,12 +70,14 @@ $red: #e64100;
 
 $old_pink: #FFDAE0;
 $pinky_red: #ff1d42;
+$pinky_red_light: #FFF3F5;
 $pinky_red_dark: #e22645;
 $pinky_red_border: #e6193b;
 $pinky_red_dark_hover: #e6193b;
 $pinky_red_dark_border: #bf0f2c;
 
 $nature_green: #BAE830;
+$nature_green_light: #FBFEF4;
 $nature_green_border: #AED92E;
 $nature_green_dark: #b0dc2e;
 $nature_green_border_dark: #a5cc30;
@@ -82,11 +86,11 @@ $dark_yellow: #fedc32;
 $pin_yellow: #ffc600;
 
 $aqua_marine: #2eecb4;
-$green_medium:  #28c798;
-$green_dark:  #0c6449;
+$green_medium: #28c798;
+$green_dark: #0c6449;
 $aqua_marine_border: #2be0aa;
 $aqua_marine_border_second: #28d4a0;
-$aqua_marine_text: #00ce8f;;
+$aqua_marine_text: #00ce8f;
 
 $category_politics: rgba(0, 115, 153, 1);
 $category_taxes: rgba(62, 100, 142, 1);
@@ -102,17 +106,19 @@ $category_transport: rgba(254, 247, 141, 1);
 $category_health: rgba(253, 214, 30, 1);
 $category_education: rgba(255, 212, 166, 1);
 $category_varia: rgba(241, 217, 255, 1);
-$category_society: rgba(255,142,96, 1);
+$category_society: rgba(255, 142, 96, 1);
 $category_youth: $category_varia; // TODO - get colors
 $category_science: $category_varia; // TODO - get colors
 
-$tutorial_background: rgba(6,128,252, 1);
+$tutorial_background: rgba(6, 128, 252, 1);
+$citizenos_background: rgba(186, 220, 255, 1);
 $hacktivist_community_background: rgba(255, 209, 0, 1);
 $thetwelvemovie_background: rgba(97, 146, 206, 1);
 $eestijazziarengusuunad_background: rgba(0, 255, 2, 1);
 $keepitclean_background: rgba(190, 215, 61, 1);
 $thirtyfourislandproject_background: rgba(190, 215, 61, 1);
-$opinionfestival_background: #D98B30;
+$eurochangemakers_background: rgba(11, 12, 154, 1);
+$biotoopia_background: rgba(11, 154, 15, 1);
+$opinionfestival_background: rgba(217, 139, 48, 1);
 $pyln_background: #D080B4;
-$geyc_background : #0b0c9a;
-$biotoopia_background: #0b9a0f;
+$geyc_background: #0b0c9a;

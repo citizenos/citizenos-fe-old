@@ -106,6 +106,7 @@ angular
 
             var error = function (response) {
                 var status = response.data.status;
+                console.log('ERROR', status);
 
                 switch (status.code) {
                     case 40001: // Account does not exist

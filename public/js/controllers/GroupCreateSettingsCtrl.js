@@ -25,8 +25,11 @@ angular
                 property: 'title'
             }
         };
+
         var maxUsers = 550;
         var itemsPerPage = 10;
+
+        var EMAIL_SEPARATOR_REGEXP = /[;,\s]/ig;
 
         var init = function () {
             // Group creation
@@ -61,6 +64,7 @@ angular
             $scope.membersPage = 1;
             $scope.memberTopics = [];
             $scope.members = [];
+            $scope.invalid = [];
             $scope.inviteMessageMaxLength = 1000;
 
             $scope.Group = Group;
@@ -82,30 +86,31 @@ angular
                 var include = null;
                 if (type === 'topic') {
                     include = 'my.topic';
-                } else if (type === 'user') {
-                    include = 'public.user';
-                    $scope.searchStringUser = str;
-                }
-                sSearch
-                    .search(str, {
-                        include: include,
-                        'my.topic.level': 'admin'
-                    })
-                    .then(function (response) {
-                        $scope.searchResults.users = [];
-                        $scope.searchResults.topics = [];
-                        if (type === 'user') {
-                            response.data.data.results.public.users.rows.forEach(function (user) {
-                                $scope.searchResults.users.push(user);
-                            });
-                        }
-                        if (type === 'topic') {
+                    sSearch
+                        .search(str, {
+                            include: include,
+                            'my.topic.level': 'admin'
+                        })
+                        .then(function (response) {
+                            $scope.searchResults.users = [];
+                            $scope.searchResults.topics = [];
                             response.data.data.results.my.topics.rows.forEach(function (topic) {
                                 $scope.searchResults.topics.push(topic);
                             });
-                        }
+                        });
+                } else if (type === 'user') {
+                    $scope.searchStringUser = str;
+                    sSearch
+                        .searchUsers(str)
+                        .then(function (response) {
+                            $scope.searchResults.users = [];
+                            $scope.searchResults.topics = [];
+                            response.data.data.results.public.users.rows.forEach(function (user) {
+                                $scope.searchResults.users.push(user);
+                            });
+                        });
+                }
 
-                    });
             } else {
                 $scope.searchResults.users = [];
                 $scope.searchResults.topics = [];
@@ -226,37 +231,55 @@ angular
                     return;
                 } else {
                     var memberClone = angular.copy(member);
-                    memberClone.userId = member.id;
-                    memberClone.level = GroupMemberUser.LEVELS.read;
+                    memberClone.userId = member.userId;
+                    memberClone.level = $scope.groupLevel;
 
                     $scope.members.push(memberClone);
                     $scope.searchResults.users = [];
+
                     orderMembers();
                 }
             } else {
-                var emails = $scope.searchStringUser.match(/(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})/gi);
+                if (!$scope.searchStringUser) return;
+
+                // Assume e-mail was entered.
+                var emails = $scope.searchStringUser.replace(EMAIL_SEPARATOR_REGEXP, ',').split(',');
+
                 var filtered = _.filter(emails, function (email) {
                     return validator.isEmail(email.trim())
                 });
-                if (!filtered.length) {
-                    $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchStringUser);
-                    return;
-                }
-                _.sortedUniq(filtered.sort()).forEach(function (email) {
-                    email = email.trim();
-                    if ($scope.members.length >= maxUsers) {
-                        sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
-                        return;
-                    }
-                    if (!_.find($scope.members, ['userId', email])) {
-                        $scope.members.push({
-                            userId: email,
-                            name: email,
-                            level: $scope.groupLevel
-                        });
-                        orderMembers();
-                    }
+
+                var invalid = _.filter(emails, function (email) {
+                    return !validator.isEmail(email.trim()) && email.trim().length > 0;
                 });
+
+                if (filtered.length) {
+                    _.sortedUniq(filtered.sort()).forEach(function (email) {
+                        email = email.trim();
+                        if ($scope.members.length >= maxUsers) {
+                            sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
+                            return;
+                        }
+                        if (!_.find($scope.members, ['userId', email])) {
+                            $scope.members.push({
+                                userId: email,
+                                name: email,
+                                level: $scope.groupLevel
+                            });
+                            orderMembers();
+                        }
+                    });
+                }
+
+                if (invalid && invalid.length) {
+                    invalid.forEach(function (item) {
+                        if ($scope.invalid.indexOf(item) === -1) {
+                            $scope.invalid.push(item);
+                        }
+                    });
+                }
+
+                $scope.searchStringUser = null;
             }
         };
 
@@ -266,6 +289,25 @@ angular
 
         $scope.updateGroupMemberUserLevel = function (member, level) {
             $scope.members[$scope.members.indexOf(member)].level = level;
+        };
+
+        $scope.removeInvalidEmail = function (key) {
+            $scope.invalid.splice(key, 1);
+        };
+
+        $scope.addCorrectedEmail = function (email, key) {
+            $log.debug('addCorrectedEmail', email, key);
+
+            if (validator.isEmail(email.trim())) {
+                if (!_.find($scope.members, ['userId', email])) {
+                    $scope.members.push({
+                        userId: email,
+                        name: email,
+                        level: $scope.groupLevel
+                    });
+                }
+                $scope.invalid.splice(key, 1);
+            }
         };
 
         $scope.selectTab = function (tab) {

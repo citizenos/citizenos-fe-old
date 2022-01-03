@@ -72,7 +72,7 @@ angular
             $timeout(function () {
                 el.remove();
             }, 1000);
-        }
+        };
 
         return sNotification;
     }]);

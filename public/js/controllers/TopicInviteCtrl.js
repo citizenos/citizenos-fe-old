@@ -9,6 +9,8 @@ angular
         $scope.inviteMessageMaxLength = 1000;
         $scope.tabSelected = $stateParams.tab || 'invite';
 
+        var EMAIL_SEPARATOR_REGEXP = /[;,\s]/ig;
+
         $scope.topicList = {
             searchFilter: '',
             searchOrderBy: {
@@ -37,6 +39,7 @@ angular
             $scope.membersPage = 1;
             $scope.groupLevel = TopicMemberGroup.LEVELS.read;
             $scope.members = [];
+            $scope.invalid = [];
 
             $scope.TopicMemberUser = TopicMemberUser;
             $scope.TopicMemberGroup = TopicMemberGroup;
@@ -48,35 +51,41 @@ angular
         };
 
         $scope.search = function (str) {
+            console.log('search', str);
+
             $scope.searchString = str; // TODO: Hackish - Typeahead has term="searchString" but somehow the 2 way binding does not work there, investigate when time
             if (str && str.length >= 2) {
-                if (str.indexOf(',') > -1) {
+                if (str.match(EMAIL_SEPARATOR_REGEXP)) {
                     $scope.searchResults.users = [];
                     $scope.searchResults.groups = [];
                     $scope.searchResults.emails = [];
                     $scope.searchResults.combined = [str];
                 } else {
-                    var include = ['my.group', 'public.user'];
+                    var include = ['my.group'];
                     sSearch
                         .search(str, {include: include})
-                        .then(function (response) {
-                            $scope.searchResults.users = [];
-                            $scope.searchResults.groups = [];
-                            $scope.searchResults.emails = [];
-                            $scope.searchResults.combined = [];
-                            if (response.data.data.results.public.users.rows.length) {
-                                response.data.data.results.public.users.rows.forEach(function (user) {
-                                    $scope.searchResults.users.push(user);
+                        .then(function (groupresponse) {
+                            sSearch
+                                .searchUsers(str)
+                                .then(function (userrespons) {
+                                    $scope.searchResults.users = [];
+                                    $scope.searchResults.groups = [];
+                                    $scope.searchResults.emails = [];
+                                    $scope.searchResults.combined = [];
+                                    if (userrespons.data.data.results.public.users.rows.length) {
+                                        userrespons.data.data.results.public.users.rows.forEach(function (user) {
+                                            $scope.searchResults.users.push(user);
+                                        });
+                                    } else if (validator.isEmail(str)) {
+                                        $scope.searchResults.emails.push($scope.searchString);
+                                    }
+                                    if (groupresponse.data.data.results.my.groups.rows.length) {
+                                        groupresponse.data.data.results.my.groups.rows.forEach(function (group) {
+                                            $scope.searchResults.groups.push(group);
+                                        });
+                                    }
+                                    $scope.searchResults.combined = $scope.searchResults.users.concat($scope.searchResults.groups).concat($scope.searchResults.emails);
                                 });
-                            } else if (validator.isEmail(str)) {
-                                $scope.searchResults.emails.push($scope.searchString);
-                            }
-                            if (response.data.data.results.my.groups.rows.length) {
-                                response.data.data.results.my.groups.rows.forEach(function (group) {
-                                    $scope.searchResults.groups.push(group);
-                                });
-                            }
-                            $scope.searchResults.combined = $scope.searchResults.users.concat($scope.searchResults.groups).concat($scope.searchResults.emails);
                         });
                 }
             } else {
@@ -157,7 +166,8 @@ angular
                 sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
                 return;
             }
-            if (!member || (typeof member === 'string' && (validator.isEmail(member) || member.indexOf(',') > -1))) {
+            if (!member || (typeof member === 'string' && (validator.isEmail(member) || member.match(EMAIL_SEPARATOR_REGEXP)))) {
+                $log.debug('go to addTopicMemberUser');
                 return $scope.addTopicMemberUser();
             }
             if (member.hasOwnProperty('company')) {
@@ -193,11 +203,13 @@ angular
 
         $scope.addCorrectedEmail = function (email, key) {
             if (validator.isEmail(email.trim())) {
-                $scope.addTopicMemberUser({
-                    userId: email,
-                    name: email,
-                    level: $scope.groupLevel
-                });
+                if (!_.find($scope.members, ['userId', email])) {
+                    $scope.addTopicMemberUser({
+                        userId: email,
+                        name: email,
+                        level: $scope.groupLevel
+                    });
+                }
                 $scope.invalid.splice(key, 1);
             }
         };
@@ -229,8 +241,11 @@ angular
                     $scope.searchResults.combined = [];
                 }
             } else {
+                if (!$scope.searchString) return;
+
                 // Assume e-mail was entered.
-                var emails = $scope.searchString.replace(/[;,\s]/gi, ',').split(',');
+                var emails = $scope.searchString.replace(EMAIL_SEPARATOR_REGEXP, ',').split(',');
+
                 var filtered = _.filter(emails, function (email) {
                     return validator.isEmail(email.trim())
                 });
@@ -243,6 +258,7 @@ angular
                     $log.debug('Ignoring member, as it does not look like e-mail', $scope.searchString);
                     return;
                 }
+
                 _.sortedUniq(filtered.sort()).forEach(function (email) {
                     email = email.trim();
                     if ($scope.members.length >= maxUsers) {
@@ -257,13 +273,21 @@ angular
                         });
                         orderMembers();
                     }
-                    $scope.invalid = invalid;
                 });
+
+                if (invalid && invalid.length) {
+                    invalid.forEach(function (item) {
+                        if ($scope.invalid.indexOf(item) === -1) {
+                            $scope.invalid.push(item);
+                        }
+                    });
+                }
 
                 $scope.searchResults.groups = [];
                 $scope.searchResults.users = [];
                 $scope.searchResults.emails = [];
                 $scope.searchResults.combined = [];
+                $scope.searchString = null;
             }
         };
 
@@ -284,7 +308,7 @@ angular
         };
 
         $scope.selectTab = function (tab) {
-            $scope.tabSelected = tab
+            $scope.tabSelected = tab;
             $location.search({tab: tab});
         };
 

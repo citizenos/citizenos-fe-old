@@ -6,10 +6,10 @@ const path = require('path');
 
 const LANGUAGE_FILE_DIRECTORY = fs.realpathSync('./public/languages');
 const SOURCE_FILE_PATH = path.join(LANGUAGE_FILE_DIRECTORY, 'en.json');
+
 /**
  * Validate localisation related files
  */
-
 suite('l10n', function () {
     /**
      * Generate array of all the properties in dot notation.

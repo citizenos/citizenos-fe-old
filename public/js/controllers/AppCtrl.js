@@ -233,7 +233,24 @@ angular
             $log.debug('AppCtrl.$translateChangeSuccess', sTranslate.currentLanguage);
             $scope.app.language = sTranslate.currentLanguage;
             $timeout(function () {
-                amMoment.changeLocale($scope.app.language);
+                var locale = $scope.app.language;
+
+                // Every "en" is defaulted to "en-GB" for date formatting BUT more precise locale determination below -  https://github.com/citizenos/citizenos-fe/issues/154
+                if (locale === 'en') {
+                    locale = 'en-GB';
+                }
+
+                // Go through User Agents list of languages, see if more precise locale is found in the list and use that for Moment - https://github.com/citizenos/citizenos-fe/issues/154
+                if ($window.navigator.languages) {
+                    var preciseLocales = $window.navigator.languages.filter(function (val) { // IE compatible "Array.prototype.find". We can dump this when we drop support for IE.
+                        return val.indexOf(locale + '-') > -1; //search for a more specific locale.. that is, if it is "en", we try to find "en-US, en-GB" etc.
+                    });
+                    if (preciseLocales && preciseLocales[0]) {
+                        locale = preciseLocales[0];
+                    }
+                }
+
+                amMoment.changeLocale(locale);
             }, 0);
         });
 
@@ -300,13 +317,13 @@ angular
                     .then(function (invites) {
                         if (invites.length) {
                             return invites[0].$accept()
-                            .then(function () {
-                                return $state.go(
-                                    'topics.view',
-                                    toParams
-                                )
-                                }
-                            );
+                                .then(function () {
+                                        return $state.go(
+                                            'topics.view',
+                                            toParams
+                                        )
+                                    }
+                                );
                         } else {
                             errorCheck();
                         }
