@@ -602,9 +602,9 @@
       "LBL_ENVIRONMENT": "Ympäristö",
       "LBL_HACKTIVIST_COMMUNITY": "Demokratia ja kansalaisyhteiskunta",
       "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
-      "TXT_CITIZENOS_COMMUNITY": "E-democracy discussions with Citizen OS team",
-      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "Join us in our platform development and e-democracy discussions.",
-      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
+      "TXT_CITIZENOS_COMMUNITY": "E-demokratiaa koskevat keskustelut Citizen OS -tiimin kanssa",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "Tule mukaan alustamme kehittämiseen ja e-demokratiaa koskeviin keskusteluihin.",
+      "LBL_CITIZENOS_COMMUNITY": "Citizen OS: ää koskevat aiheet"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Ryhmiä: {{count}}",
@@ -1137,7 +1137,7 @@
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Sähköpostiosoite on jo käytössä.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Nimi voi olla 1–255 merkin pituinen.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Tähän sähköpostiosoitteeseen liittyvää tiliä ei ole olemassa.",
-  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too may attempts. Please try again later. If the problem persists, contact our customer support.",
+  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Anteeksi, kirjautuminen on väliaikaisesti estetty liian monen yrityksen takia. Yritä myöhemmin uudelleen. Jos ongelma jatkuu, ota yhteyttä asiakastukeemme.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Salasanan tulee olla vähintään 6 merkin pituinen, ja sen tulee sisältää vähintään 1 numero, 1 pieni kirjain ja 1 iso kirjain.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40003_PASSWORD": "Väärä salasana.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Tiliä ei ole vielä vahvistettu. Ole hyvä ja tarkista sähköpostisi.",
