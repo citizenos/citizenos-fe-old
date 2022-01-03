@@ -570,7 +570,7 @@
   "VIEWS": {
     "401": {
       "HEADING_INSUFFICIENT_PERMISSIONS": "Ikävä kyllä sinulla ei ole riittäviä käyttöoikeuksia resurssin näyttämiseen :(",
-      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Jos sinulla on kutsu aiheeseen tai ryhmään, sinun täytyy hyväksyä se ensin. Tarkista aktiivisuussyötesta tai sähköpostista.",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Jos sinulla on kutsu aiheeseen tai ryhmään, sinun täytyy hyväksyä se ensin. Tarkista toimintasyötesta tai sähköpostista.",
       "HEADING_YOU_MAY_RECOVER": "Voit kuitenkin paikata tällaisen ikävän tilanteen",
       "BTN_LOGIN": "Kirjautumalla sisään",
       "BTN_REQUEST_ACCESS": "Pyytämällä resurssin käyttöoikeuksia"
@@ -1201,7 +1201,7 @@
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "Valitettavasti tätä aihetta ei löytynyt. Linkistä joko puuttuu jotain, tai aiheelle on luotu uusi uniikki jakolinkki.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Valitettavasti jokin annetuista äänestysvaihtoehdoista ei kelpaa. Äänestysvaihtoehdossa saa olla korkeintaan 200 merkkiä.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "Äänestys on päättynyt.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "At least 2 vote options are required to create a vote",
+  "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "Äänestyksen luomiseen tarvitaan vähintään 2 vaihtoehtoa",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40020": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40020",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40021": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40021",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40022": "@:MSG_ERROR_POST_API_AUTH_MOBILE_INIT_40022",
@@ -1240,7 +1240,7 @@
   "MSG_ERROR_40300": "Sinulla ei ole oikeuksia toimenpiteen suorittamiseen.",
   "MSG_ERROR_40400": "@:MSG_ERROR_POST_API_AUTH_SMARTID_INIT_40400",
   "MSG_ERROR_50000": "Järjestelmässämme meni jotakin vikaan. Olemme hyvin pahoillamme! Ole hyvä ja yritä vielä kerran. Mikäli virhe toistuu, ole hyvä ja ota yhteys asiakastukeemme.",
-  "MSG_ERROR_42900": "Sorry, you have reached the fair use limit of one or more APIs. Please try again later or contact customer support.",
+  "MSG_ERROR_42900": "Anteeksi, olet saavuttanut yhden tai useamman API: n kohtuullisen käytön rajan. Yritä myöhemmin uudelleen tai ota yhteyttä asiakastukeen.",
   "MSG_ERROR_NETWORK_PROBLEMS": "Ongelmia verkossa. Ole hyvä ja tarkista Internet-yhteytesi.",
   "MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT": "Liite on liian suuri! Liitteen suurin sallittu koko on 50 Mt.",
   "MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED": "Tiedostotyyppi ei ole sallittu! Sallitut tyypit ovat: {{allowedFileTypes}}",
