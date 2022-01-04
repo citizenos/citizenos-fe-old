@@ -1137,7 +1137,7 @@
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Ця електронна пошта вже використовується.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Ім'я може мати довжину від 1 до 255 символів.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Обліковий запис з такою е-поштою не існує.",
-  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too may attempts. Please try again later. If the problem persists, contact our customer support.",
+  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too many attempts. Please try again later. If the problem persists, contact our customer support.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Пароль має бути довжиною щонайменше 6 знаків, містити принаймні 1 цифру, 1 символ нижнього та 1 символ верхнього регістру.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40003_PASSWORD": "Невірний пароль.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Верифікацію облікового запису не було завершено. Будь-ласка, перевірте свою електронну пошту.",
