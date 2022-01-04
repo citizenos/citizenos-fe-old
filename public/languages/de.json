@@ -1137,7 +1137,7 @@
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Diese E-Mail-Adresse wird bereits verwendet.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Ein Name kann 1 bis 255 Zeichen lang sein.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Ein Konto mit dieser E-Mail existiert nicht.",
-  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too may attempts. Please try again later. If the problem persists, contact our customer support.",
+  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too many attempts. Please try again later. If the problem persists, contact our customer support.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Das Passwort muss mindestens 6 Zeichen lang sein und mindestens 1 Ziffer, 1 Klein- und 1 Großbuchstaben enthalten.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40003_PASSWORD": "Falsches Passwort.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Die Kontoverifizierung wurde nicht abgeschlossen. Bitte überprüfen Sie Ihre E-Mails.",
