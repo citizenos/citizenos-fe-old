@@ -126,7 +126,6 @@ angular
         };
 
         sAuth.logout = function () {
-            console.log('LOGOUT')
             var success = function (response) {
                 // Delete all user data except login status.
                 // Cant reference a new object here as Angular looses bindings.
