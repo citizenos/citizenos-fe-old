@@ -1137,7 +1137,7 @@
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "See e-posti aadress on juba kasutusel.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Nimes peab olema 1-255 tähemärki.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Sellise e-posti aadressiga kasutajat süsteemis ei ole.",
-  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too may attempts. Please try again later. If the problem persists, contact our customer support.",
+  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too many attempts. Please try again later. If the problem persists, contact our customer support.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Salasõna peab sisaldama vähemalt 6 tähemärki, 1 numbrit, 1 väike- ja 1 suurtäht.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40003_PASSWORD": "Vale salasõna.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Konto on veel kinnitamata. Palun vaata oma e-postkasti.",

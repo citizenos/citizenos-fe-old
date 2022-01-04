@@ -1137,7 +1137,7 @@
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Dit e-mailadres wordt al gebruikt.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "De naam kan 1 tot 255 tekens lang zijn.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Er bestaat geen account met dit e-mailadres.",
-  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too may attempts. Please try again later. If the problem persists, contact our customer support.",
+  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too many attempts. Please try again later. If the problem persists, contact our customer support.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Het wachtwoord moet minstens 6 tekens lang zijn en minstens 1 cijfer, 1 kleine letter en 1 hoofdletter bevatten.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40003_PASSWORD": "Verkeerd wachtwoord.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "De accountverificatie is niet voltooid. Controleer uw e-mail.",
