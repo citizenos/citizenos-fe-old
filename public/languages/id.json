@@ -1137,7 +1137,7 @@
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Alamat email ini sudah digunakan.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Nama bisa 1 sampai 255 huruf.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Akun pada email ini sudah terdaftar.",
-  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too may attempts. Please try again later. If the problem persists, contact our customer support.",
+  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too many attempts. Please try again later. If the problem persists, contact our customer support.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Kata sandi harus minimal 6 karakter, yang mengandung setidaknya 1 digit, 1 karakter kecil dan besar.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40003_PASSWORD": "Kata sandi salah.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Verifikasi akun belum selesai. Silakan cek e-mail Anda.",
