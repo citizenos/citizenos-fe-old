@@ -99,6 +99,14 @@
                                 </div>
                             </label>
 
+                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64">
+                            <label for="password" class="error_label" ng-if="errors.password">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.password}}"></span>
+                                </div>
+                            </label>
+
                         </div>
                     </div>
 
@@ -130,8 +138,16 @@
 
                     <div class="lightbox_section">
                         <div id="account_edit_section">
+                            <input id="newPassword" ng-model="form.newPassword" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NEW_PASSWORD' | translate}}" ng-class="{'error_input': errors.newPassword}" maxlength="64">
+                            <input id="password_confirm" ng-model="form.passwordConfirm" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD_CONFIRM' | translate}}" ng-class="{'error_input': errors.newPassword}" maxlength="64">
+                            <label for="newPassword" class="error_label" ng-if="errors.newPassword">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.newPassword}}"></span>
+                                </div>
+                            </label>
+
                             <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NEW_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64">
-                            <input id="password_confirm" ng-model="form.passwordConfirm" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD_CONFIRM' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64">
                             <label for="password" class="error_label" ng-if="errors.password">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
