@@ -10,6 +10,7 @@ angular
             name: null,
             email: null,
             password: null,
+            newPassword: null,
             company: null,
             imageUrl: null,
             passwordConfirm: null,
@@ -38,10 +39,10 @@ angular
                 $scope.errors = res.data.errors;
             };
 
-            if ($scope.form.password) {
-                if ($scope.form.password !== $scope.form.passwordConfirm) {
+            if ($scope.form.newPassword) {
+                if ($scope.form.newPassword !== $scope.form.passwordConfirm) {
                     $scope.errors = {
-                        password: 'MSG_ERROR_PASSWORD_MISMATCH'
+                        newPassword: 'MSG_ERROR_PASSWORD_MISMATCH'
                     };
                     return;
                 }
@@ -58,7 +59,7 @@ angular
 
             } else {
                 sUser
-                    .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, $scope.form.imageUrl, $scope.form.preferences)
+                    .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, $scope.form.imageUrl, $scope.form.preferences, null, null, $scope.form.newPassword)
                     .then(success, error);
             }
         };

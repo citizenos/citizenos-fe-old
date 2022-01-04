@@ -32,9 +32,7 @@ angular
                 .then(function () {
                     console.log(sAuth.user);
                     if (!sAuth.user.email) {
-                        var dialog = ngDialog.open({
-                            template: '/views/modals/add_email.html'
-                        });
+                        $window.location.reload();
                     } else {
                         handleLoginSuccess();
                     }
