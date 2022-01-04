@@ -474,6 +474,7 @@
     "ADD_EMAIL_LNK_CANCEL": "@:LNK_CANCEL",
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
+    "ADD_EMAIL_ERROR_MSG_INVALID": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "ADD_EID_HEADING": "Savienot jūsu kontu ar jūsu eID?",
     "ADD_EID_DESCRIPTION": "Vai zinājāt, ka varat sinhronizēt savu kontu ar savu eID? Noklikšķiniet uz pogas zemāk, lai veiktu šo darbību, vai turpiniet bez sinhronizācijas (jūs varat to izdarīt vēlāk konta iestatījumos).",
     "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Savienot ar ID karti/Mobile ID",
