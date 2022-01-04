@@ -30,7 +30,13 @@ angular
                     return pollSmartIdLoginStatus(token, 3000, 80);
                 })
                 .then(function () {
-                    handleLoginSuccess();
+                    console.log(sAuth.user);
+                    if (!sAuth.user.email) {
+                        $window.location.reload();
+                    } else {
+                        handleLoginSuccess();
+                    }
+
                 }, function (err) {
                     $log.error('Something failed when trying to log in with mobile', err);
 
