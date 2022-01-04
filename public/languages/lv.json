@@ -1137,7 +1137,7 @@
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "Šī e-pasta adrese jau tiek izmantota.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Atļautais nosaukuma garums ir no 1 līdz 255 rakstzīmēm.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Konts ar šādu e-pastu neeksistē.",
-  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too may attempts. Please try again later. If the problem persists, contact our customer support.",
+  "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too many attempts. Please try again later. If the problem persists, contact our customer support.",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_PASSWORD": "Parolei ir jābūt vismaz 6 rakstzīmes garai, jāsatur vismaz viens cipars, 1 mazais un 1 lielais burts.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40003_PASSWORD": "Nepareiza parole.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002": "Konta verifikācija nav pabeigta. Lūdzu, pārbaudiet savu e-pastu.",
