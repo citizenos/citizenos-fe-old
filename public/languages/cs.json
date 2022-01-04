@@ -474,6 +474,7 @@
     "ADD_EMAIL_LNK_CANCEL": "@:LNK_CANCEL",
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
+    "ADD_EMAIL_ERROR_MSG_INVALID": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "ADD_EID_HEADING": "Připojit svůj účet s Vaším eID?",
     "ADD_EID_DESCRIPTION": "Věděli jste, že můžete synchronizovat svůj účet s Vaším eID? Klikněte na tlačítko níže, abyste to udělali nebo pokračovali bez synchronizace (stále to můžete udělat později v nastavení účtu).",
     "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Propojit s občanským průkazem / mobilním ID",
