@@ -32,7 +32,7 @@ angular
                     .update(sAuth.user.name, $scope.form.email)
                     .then(success, error);
             } else {
-                $scope.errors = {email: true}
+                $scope.errors = {email: 'MODALS.ADD_EMAIL_ERROR_MSG_INVALID'}
             }
 
         }

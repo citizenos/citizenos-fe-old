@@ -51,6 +51,12 @@
                         <div >
                             <input id="email" ng-model="form.email" type="email" placeholder="{{'MODALS.ADD_EMAIL_PLACEHOLDER_EMAIL' | translate}}" focus-if="{{wWidth > 1024 && !isFormEmailProvided}}"
                                        ng-class="{'error_input': errors.email}" maxlength="254" required>
+                            <label for="email" class="error_label" ng-if="errors.email">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.email}}"></span>
+                                </div>
+                            </label>
                         </div>
                     </div>
                     <div class="delete_info_text_wrap section_with_padding">
