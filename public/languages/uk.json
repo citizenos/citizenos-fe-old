@@ -474,6 +474,7 @@
     "ADD_EMAIL_LNK_CANCEL": "@:LNK_CANCEL",
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
+    "ADD_EMAIL_ERROR_MSG_INVALID": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "ADD_EID_HEADING": "Зв’язати ваш обліковий запис із власним eID?",
     "ADD_EID_DESCRIPTION": "А ви знали, що можете синхронізувати ваш обліковий запис із власним eID? Для цього натисніть кнопку нижче або продовжуйте без синхронізації (ви можете це зробити пізніше у налаштуваннях свого облікового запису).",
     "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Зв’язати з ID-карткою/Mobile-ID",

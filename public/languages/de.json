@@ -474,6 +474,7 @@
     "ADD_EMAIL_LNK_CANCEL": "@:LNK_CANCEL",
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
+    "ADD_EMAIL_ERROR_MSG_INVALID": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "ADD_EID_HEADING": "Möchten Sie Ihr Konto mit Ihrer eID verbinden?",
     "ADD_EID_DESCRIPTION": "Wussten Sie schon, dass Sie Ihr Konto mit Ihrer eID synchronisieren können? Klicken Sie dazu unten auf die Schaltfläche oder fahren Sie ohne Synchronisieren fort (Sie können die Synchronisierung auch später in Ihren Kontoeinstellungen vornehmen).",
     "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Mit ID-Karte/Mobil-ID verbinden",

@@ -474,6 +474,7 @@
     "ADD_EMAIL_LNK_CANCEL": "@:LNK_CANCEL",
     "ADD_EMAIL_LOG_IN": "@:MODALS.LOGIN_BTN_LOGIN",
     "ADD_EMAIL_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
+    "ADD_EMAIL_ERROR_MSG_INVALID": "@:MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL",
     "ADD_EID_HEADING": "Hubungkan akun Anda dengan identifikasi elektronik Anda?",
     "ADD_EID_DESCRIPTION": "Tahukah jika Anda dapat menyinkronkan akun dengan identifikasi elektronik Anda? Klik pada tombol di bawah ini untuk melakukannya atau lanjutkan tanpa sinkronisasi (Anda masih dapat melakukannya nanti dalam pengaturan akun Anda).",
     "ADD_EID_BTN_CONNECT_ID_CARD_MID": "Hubungkan dengan Kartu ID/Mobiil-ID",
