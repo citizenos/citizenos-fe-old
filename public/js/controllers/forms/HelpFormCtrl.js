@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('HelpFormCtrl', ['$scope', '$http', '$location', 'sLocation', '$window', 'sNotification', function ($scope, $http, $location, sLocation, $window, sNotification) {
+    .controller('HelpFormCtrl', ['$scope', '$http', '$location', 'sLocation', '$window', '$cookies', 'sNotification', 'cosConfig' , function ($scope, $http, $location, sLocation, $window, $cookies, sNotification, cosConfig) {
         var init = function () {
             $scope.errors = null;
             $scope.form = {
@@ -11,13 +11,14 @@ angular
                 clientData: false
             };
             $scope.isLoading = false;
-            $scope.showHelp = false; // Hide mobile navigation when login flow is started
         };
 
         init();
-        $scope.closeHelp = function () {
-            $scope.showHelp = false;
-        };
+
+        $scope.closeTootlip = function() {
+            $scope.app.helptooltip = false;
+            $scope.app.helpBubbleAnimate();
+        }
 
         $scope.sendHelp = function () {
             $scope.isLoading = true;

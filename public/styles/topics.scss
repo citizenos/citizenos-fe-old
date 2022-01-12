@@ -1,6 +1,5 @@
 @use 'vars';
 @use 'mixins_n_extends';
-@use 'icons';
 
 #topics_root {
     @extend %default_setup;
@@ -266,39 +265,39 @@
                 }
 
                 .sprite-menu-icon-groups2x-dark {
-                    @extend .sprite-menu-icon-groups2x;
+                    @extend %sprite-menu-icon-groups2x;
                 }
 
                 .sprite-mytopics-icon-inprogress2x {
-                    @extend .sprite-mytopics-icon-inprogress2x-w;
+                    @extend %sprite-mytopics-icon-inprogress2x-w;
                 }
 
                 .sprite-mytopics-icon-followup2x {
-                    @extend .sprite-mytopics-icon-followup2x-w;
+                    @extend %sprite-mytopics-icon-followup2x-w;
                 }
 
                 .sprite-mytopics-icon-voting2x {
-                    @extend .sprite-mytopics-icon-voting2x-w;
+                    @extend %sprite-mytopics-icon-voting2x-w;
                 }
 
                 .sprite-mytopics-icon-closed2x {
-                    @extend .sprite-mytopics-icon-closed2x-w;
+                    @extend %sprite-mytopics-icon-closed2x-w;
                 }
 
                 .sprite-icon-lock2x {
-                    @extend .sprite-icon-lock2x-white;
+                    @extend %sprite-icon-lock2x-white;
                 }
 
                 .sprite-btn-filter-gray {
-                    @extend .sprite-btn-filter-white;
+                    @extend %sprite-btn-filter-white;
                 }
 
                 .sprite-btn-expand2x {
-                    @extend .sprite-btn-expand2x-white;
+                    @extend %sprite-btn-expand2x-white;
                 }
 
                 .sprite-btn-minimize2x {
-                    @extend .sprite-btn-minimize2x-white;
+                    @extend %sprite-btn-minimize2x-white;
                 }
 
                 .minimize_container:hover {
@@ -796,7 +795,7 @@
                                 }
 
                                 .sprite {
-                                    @extend .sprite-mytopics-icon-deletetopic02x;
+                                    @extend %sprite-mytopics-icon-deletetopic02x;
                                 }
                             }
 
