@@ -1,6 +1,5 @@
 @use 'vars';
 @use 'mixins_n_extends';
-@use 'icons';
 
 #topics_admin_root {
     @extend %default_setup;
@@ -205,7 +204,7 @@
                 &:hover {
                     .sprite {
                         margin-left: 0;
-                        @extend .sprite-icon-arrow-topic-tab2x-hover;
+                        @extend %sprite-icon-arrow-topic-tab2x-hover;
                     }
                 }
 
@@ -223,7 +222,7 @@
                     .sprite {
                         margin-left: auto;
                         margin-right: 0;
-                        @extend .sprite-icon-arrow-right-topic-tab2x-hover;
+                        @extend %sprite-icon-arrow-right-topic-tab2x-hover;
                     }
                 }
             }

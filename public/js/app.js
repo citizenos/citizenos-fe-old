@@ -62,6 +62,10 @@
                 sAuth
                     .status()
                     .then(function (user) {
+                        if (!sAuth.user.email) {
+                            sAuth.user.loggedIn = false;
+                        }
+
                         $log.debug('sAuth.success', user);
                         $log.debug('$urlRouterProvider.otherwise', 'status loaded', user);
 
@@ -134,15 +138,39 @@
                             $log.debug('Resolve language', $stateParams.language);
                             return sTranslate.setLanguage($stateParams.language);
                         },
-                        sAuthResolve: function ($q, $log, $state, $stateParams, $window, sAuth, sLocation) {
+                        sAuthResolve: function ($q, $log, $state, $cookies, $window, sAuth, sLocation, ngDialog) {
                             if (sAuth.user.loggedIn) {
                                 return;
                             }
+
+                            // If new window is opened while login-flow is in-progress without adding new e-mail we logout the current user to prevent taking over accounts
+                            if ($cookies.get('addEmailInProgress')) {
+                                $cookies.remove('addEmailInProgress');
+
+                                sAuth.logout();
+
+                                return $q.resolve(true);
+                            }
+
                             return sAuth
                                 .status()
                                 .then(
                                     function () {
+
                                         $log.debug('Resolve user', sAuth.user, 'LOGGED IN');
+                                        if (!sAuth.user.email) {
+                                            sAuth.user.loggedIn = false;
+                                            var dialog = ngDialog.open({
+                                                template: '/views/modals/add_email.html'
+                                            });
+
+                                            dialog.closePromise.then(function () {
+                                                if (!sAuth.user.email) {
+                                                    $cookies.remove('addEmailInProgress');
+                                                    sAuth.logout();
+                                                }
+                                            });
+                                        }
                                         if (sAuth.user.loggedIn) {
                                             if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
                                                 return $state.go(

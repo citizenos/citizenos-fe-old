@@ -1,6 +1,4 @@
-@use 'vars';
 @use 'mixins_n_extends';
-@use 'icons';
 
 #my_groups_root {
     @extend %default_setup;

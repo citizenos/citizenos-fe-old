@@ -1,0 +1,993 @@
+@use 'mixins_n_extends';
+/* Generated data URIs used for preview purposes only */
+/* Be sure that you replace data URIs with generated images */
+.sprite {
+    background-image: url('../imgs/icons_sprite.png?v21');
+}
+
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+    .sprite {
+        background-image: url('../imgs/icons_sprite2x.png?v21');
+        background-size: 203px 4114px;
+    }
+}
+
+.sprite-arrow-calendar-left2x {
+    width: 9px;
+    height: 14px;
+    background-position: 0 0;
+}
+
+.sprite-arrow-calendar-right2x {
+    width: 9px;
+    height: 14px;
+    background-position: 0 -14px;
+}
+
+.sprite-btn-expand2x {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -28px;
+}
+
+.sprite-btn-expand2x-white {
+    @extend %sprite-btn-expand2x-white;
+}
+
+.sprite-btn-minimize2x {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -60px;
+}
+
+.sprite-btn-minimize2x-white {
+    @extend %sprite-btn-minimize2x-white;
+}
+
+.sprite-btn-filter-white {
+    @extend %sprite-btn-filter-white;
+}
+
+.sprite-btn-filter-gray {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -3781px;
+}
+
+.sprite-btn-popup-close-2x-green {
+    width: 14px;
+    height: 14px;
+    background-position: 0 -92px;
+}
+
+.sprite-btn-popup-close2x {
+    width: 14px;
+    height: 14px;
+    background-position: 0 -106px;
+}
+
+.sprite-bullet-arrow2x {
+    width: 13px;
+    height: 5px;
+    background-position: 0 -120px;
+}
+
+.sprite-bullet-plus2x {
+    width: 9px;
+    height: 9px;
+    background-position: 0 -125px;
+}
+
+.sprite-checkmark2x {
+    width: 16px;
+    height: 12px;
+    background-position: 0 -134px;
+}
+
+.sprite-check-timeline-blue2x {
+    width: 28px;
+    height: 28px;
+    background-position: 0 -146px;
+}
+
+.sprite-check-timeline-blue-start2x {
+    width: 30px;
+    height: 30px;
+    background-position: 0 -174px;
+}
+
+.sprite-check-timeline-gray2x {
+    width: 28px;
+    height: 24px;
+    background-position: 0 -204px;
+}
+
+.sprite-check-timeline-green2x {
+    width: 28px;
+    height: 28px;
+    background-position: 0 -228px;
+}
+
+.sprite-check-timeline-green-start2x {
+    width: 30px;
+    height: 30px;
+    background-position: 0 -256px;
+}
+
+.sprite-check-timeline-yellow2x {
+    width: 28px;
+    height: 28px;
+    background-position: 0 -286px;
+}
+
+.sprite-check-timeline-yellow-start2x {
+    width: 30px;
+    height: 30px;
+    background-position: 0 -314px;
+}
+
+.sprite-cos-logo-small-positive2x {
+    width: 150px;
+    height: 28px;
+    background-position: 0 -344px;
+}
+
+.sprite-dropdown-arrowdown-big2x {
+    width: 13px;
+    height: 8px;
+    background-position: 0 -372px;
+}
+
+.sprite-dropdown-arrowdown-small2x {
+    width: 8px;
+    height: 6px;
+    background-position: 0 -380px;
+}
+
+.sprite-icon-about-addproposal2x {
+    width: 43px;
+    height: 53px;
+    background-position: 0 -386px;
+}
+
+.sprite-icon-about-discuss2x {
+    width: 50px;
+    height: 46px;
+    background-position: 0 -439px;
+}
+
+.sprite-icon-about-followup2x {
+    width: 37px;
+    height: 54px;
+    background-position: 0 -485px;
+}
+
+.sprite-icon-about-sign2x {
+    width: 46px;
+    height: 34px;
+    background-position: 0 -539px;
+}
+
+.sprite-icon-about-vote2x {
+    width: 44px;
+    height: 50px;
+    background-position: 0 -573px;
+}
+
+.sprite-icon-arrow-reply2x {
+    width: 12px;
+    height: 11px;
+    background-position: 0 -623px;
+}
+
+.sprite-icon-arrow-right-topic-tab2x {
+    width: 22px;
+    height: 12px;
+    background-position: 0 -634px;
+}
+
+.sprite-icon-arrow-right-topic-tab2x-hover {
+    @extend %sprite-icon-arrow-right-topic-tab2x-hover;
+}
+
+.sprite-icon-arrow-topic-tab2x {
+    width: 22px;
+    height: 12px;
+    background-position: 0 -658px;
+}
+
+.sprite-icon-arrow-topic-tab2x-hover {
+    @extend %sprite-icon-arrow-topic-tab2x-hover;
+}
+
+.sprite-icon-category-add2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -682px;
+}
+
+.sprite-icon-category-add2x-black {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -694px;
+}
+
+.sprite-icon-category-delete2x {
+    width: 10px;
+    height: 10px;
+    background-position: 0 -706px;
+}
+
+.sprite-icon-creategroup2x {
+    width: 84px;
+    height: 86px;
+    background-position: 0 -716px;
+}
+
+.sprite-icon-delegate2x {
+    width: 20px;
+    height: 24px;
+    background-position: 0 -802px;
+}
+
+.sprite-icon-joingroup2x {
+    width: 97px;
+    height: 71px;
+    background-position: 0 -826px;
+}
+
+.sprite-icon-list-ordering-down-black2x {
+    width: 6px;
+    height: 11px;
+    background-position: 0 -897px;
+}
+
+.sprite-icon-mobile-edit2x {
+    width: 18px;
+    height: 18px;
+    background-position: 0 -908px;
+}
+
+.sprite-icon-mobile-settings-active2x {
+    width: 20px;
+    height: 21px;
+    background-position: 0 -926px;
+}
+
+.sprite-icon-mobile-settings2x {
+    width: 20px;
+    height: 21px;
+    background-position: 0 -947px;
+}
+
+.sprite-icon-reportmessage-default2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -968px;
+}
+
+.sprite-icon-reportmessage-hover2x {
+    @extend %sprite-icon-reportmessage-hover2x;
+}
+
+.sprite-icon-social-twitter2x {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -992px;
+}
+
+.sprite-icon-thumbsdown-default2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -1012px;
+}
+
+.sprite-icon-thumbsdown-hover2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -1024px;
+}
+
+.sprite-icon-thumbsup-default2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -1036px;
+}
+
+.sprite-icon-thumbsup-hover2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -1048px;
+}
+
+.sprite-icon-back2x {
+    width: 16px;
+    height: 18px;
+    background-position: 0 -1060px;
+}
+
+.sprite-icon-certified-fb2x {
+    width: 14px;
+    height: 14px;
+    background-position: 0 -1078px;
+}
+
+.sprite-icon-certified-fb-2-x2x {
+    width: 28px;
+    height: 28px;
+    background-position: 0 -1092px;
+}
+
+.sprite-icon-certified-google2x {
+    width: 14px;
+    height: 14px;
+    background-position: 0 -1120px;
+}
+
+.sprite-icon-certified-google-2-x2x {
+    width: 28px;
+    height: 28px;
+    background-position: 0 -1134px;
+}
+
+.sprite-icon-certified-id2x {
+    width: 14px;
+    height: 14px;
+    background-position: 0 -1162px;
+}
+
+.sprite-icon-certified-id-2-x2x {
+    width: 28px;
+    height: 28px;
+    background-position: 0 -1176px;
+}
+
+.sprite-icon-certified-id-inverted2x {
+    width: 14px;
+    height: 14px;
+    background-position: 0 -1204px;
+}
+
+.sprite-icon-certified-id-inverted-2-x2x {
+    width: 28px;
+    height: 28px;
+    background-position: 0 -1218px;
+}
+
+.sprite-icon-closemenu-b-2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -1246px;
+}
+
+.sprite-icon-closemenu2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -1258px;
+}
+
+.sprite-icon-delete-topic2x {
+    width: 46px;
+    height: 40px;
+    background-position: 0 -1270px;
+}
+
+.sprite-icon-dropdown-arrowdown2x {
+    width: 11px;
+    height: 7px;
+    background-position: 0 -1310px;
+}
+
+.sprite-icon-favourite2x {
+    width: 22px;
+    height: 22px;
+    background-position: 0 -1317px;
+}
+
+.sprite-icon-favourite2x-white {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -1339px;
+}
+
+.sprite-icon-exclamation2x-white {
+    width: 12px;
+    height: 12px;
+    background-position: 5px -3159px;
+}
+
+.sprite-icon-favourite-notfilled2x {
+    width: 22px;
+    height: 22px;
+    background-position: 0 -1351px;
+}
+
+.sprite-icon-hamburger2x {
+    width: 16px;
+    height: 12px;
+    background-position: 0 -1373px;
+}
+
+.sprite-icon-inputfield-error2x {
+    width: 16px;
+    height: 14px;
+    background-position: 0 -1385px;
+}
+
+.sprite-icon-list-ordering2x {
+    width: 6px;
+    height: 11px;
+    background-position: 0 -1399px;
+}
+
+.sprite-icon-lock2x {
+    width: 8px;
+    height: 11px;
+    background-position: 0 -1410px;
+}
+
+.sprite-icon-lock2x-white {
+    @extend %sprite-icon-lock2x-white;
+}
+
+.sprite-icon-notification-check2x {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -1432px;
+}
+
+.sprite-icon-notification-error2x {
+    width: 16px;
+    height: 14px;
+    background-position: 0 -1448px;
+}
+
+.sprite-icon-notification-info2x {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -1462px;
+}
+
+.sprite-icon-box-info2x {
+    width: 22px;
+    height: 22px;
+    background-position: 0 -3171px;
+}
+
+.sprite-icon-search-b-2x {
+    width: 15px;
+    height: 15px;
+    background-position: 0 -1478px;
+}
+
+.sprite-icon-search-gray-2x {
+    width: 15px;
+    height: 15px;
+    background-position: 0 -1493px;
+}
+
+.sprite-icon-search2x {
+    width: 15px;
+    height: 15px;
+    background-position: 0 -1508px;
+}
+
+.sprite-id-kaart-big2x {
+    width: 96px;
+    height: 26px;
+    background-position: 0 -3289px;
+}
+
+.sprite-id-kaart-small2x {
+    width: 79px;
+    height: 26px;
+    background-position: 0 -3341px;
+}
+
+.sprite-i-d-kaart2x {
+    width: 142px;
+    height: 34px;
+    background-position: 0 -1543px;
+}
+
+.sprite-id-spinner2x {
+    width: 34px;
+    height: 35px;
+    background-position: 0 -1577px;
+}
+
+.sprite-img-idkaart2x {
+    width: 203px;
+    height: 98px;
+    background-position: 0 -1612px;
+}
+
+.sprite-inputfield-icon-delete2x {
+    width: 11px;
+    height: 13px;
+    background-position: 0 -1710px;
+}
+
+.sprite-login-icon-facebook2x {
+    width: 18px;
+    height: 18px;
+    background-position: 0 -3070px;
+}
+
+.sprite-login-icon-google2x {
+    width: 18px;
+    height: 18px;
+    background-position: 0 -3088px;
+}
+
+.sprite-login-icon-id2x {
+    width: 18px;
+    height: 18px;
+    background-position: 0 -3124px;
+}
+
+.sprite-login-icon-smartid2x {
+    width: 18px;
+    height: 18px;
+    background-position: 0 -3106px;
+}
+
+.sprite-menu-icon-about2x {
+    width: 18px;
+    height: 15px;
+    background-position: 0 -1764px;
+}
+
+.sprite-menu-icon-connections2x {
+    width: 21px;
+    height: 17px;
+    background-position: 0 -1779px;
+}
+
+.sprite-menu-icon-faq2x {
+    width: 17px;
+    height: 17px;
+    background-position: 0 -1796px;
+}
+
+.sprite-menu-icon-groups2x {
+    @extend %sprite-menu-icon-groups2x;
+}
+
+.sprite-menu-icon-groups2x-dark {
+    width: 17px;
+    height: 16px;
+    background-position: 0 -1829px;
+}
+
+.sprite-menu-icon-help2x {
+    width: 17px;
+    height: 17px;
+    background-position: 0 -1845px;
+}
+
+.sprite-menu-icon-logout2x {
+    width: 17px;
+    height: 16px;
+    background-position: 0 -1862px;
+}
+
+.sprite-menu-icon-topics2x {
+    width: 16px;
+    height: 18px;
+    background-position: 0 -1878px;
+}
+
+.sprite-menu-icon-activities2x {
+    width: 17px;
+    height: 17px;
+    background-position: 0 -3053px;
+}
+
+.sprite-mobiil-id-big2x {
+    width: 96px;
+    height: 26px;
+    background-position: 0 -3263px;
+}
+
+.sprite-mobiil-id-small2x {
+    width: 83px;
+    height: 26px;
+    background-position: 0 -3315px;
+}
+
+.sprite-smart-id-small2x {
+    width: 96px;
+    height: 26px;
+    background-position: 0px -3237px;
+}
+
+.sprite-mobiil-i-d2x {
+    width: 149px;
+    height: 34px;
+    background-position: 0 -1916px;
+}
+
+.sprite-smart-i-d2x {
+    width: 149px;
+    height: 34px;
+    background-position: 0 -2619px;
+}
+
+.sprite-mytopics-icon-closed2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -1950px;
+}
+
+.sprite-mytopics-icon-closed2x-w {
+    @extend %sprite-mytopics-icon-closed2x-w;
+}
+
+.sprite-mytopics-icon-deletetopic02x {
+    @extend %sprite-mytopics-icon-deletetopic02x;
+}
+
+.sprite-mytopics-icon-deletetopic2x {
+    width: 11px;
+    height: 13px;
+    background-position: 0 -1987px;
+}
+
+.sprite-mytopics-icon-followup2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -2000px;
+}
+
+.sprite-mytopics-icon-followup2x-w {
+    @extend %sprite-mytopics-icon-followup2x-w;
+}
+
+.sprite-mytopics-icon-inprogress2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -2024px;
+}
+
+.sprite-mytopics-icon-inprogress2x-w {
+    @extend %sprite-mytopics-icon-inprogress2x-w;
+}
+
+.sprite-mytopics-icon-voting2x {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -2048px;
+}
+
+.sprite-mytopics-icon-voting2x-w {
+    @extend %sprite-mytopics-icon-voting2x-w;
+}
+
+.sprite-tooltip-arrow2x {
+    width: 5px;
+    height: 9px;
+    background-position: 0 -2072px;
+}
+
+.sprite-tooltip-arrow-grey2x {
+    width: 9px;
+    height: 5px;
+    background-position: 0 -2081px;
+}
+
+.sprite-tooltip-arrow-grey-shadow2x {
+    width: 17px;
+    height: 10px;
+    background-position: 0 -2086px;
+}
+
+.sprite-voted-check2x {
+    @extend %sprite-voted-check2x;
+}
+
+.sprite-voted-nocheck2x {
+    @extend %sprite-voted-nocheck2x;
+}
+
+.sprite-x0-menu-icon-help2x {
+    width: 17px;
+    height: 17px;
+    background-position: 0 -2130px;
+}
+
+.sprite-x1-mytopics-icon-discuss-big2x {
+    width: 61px;
+    height: 58px;
+    background-position: 0 -2147px;
+}
+
+.sprite-x2-mytopics-icon-newtopic-big2x {
+    width: 70px;
+    height: 78px;
+    background-position: 0 -2205px;
+}
+
+.sprite-x3-icon-topbar-earch2x {
+    width: 18px;
+    height: 18px;
+    background-position: 0 -2283px;
+}
+
+.sprite-x4-icon-language-dropdown2x {
+    width: 11px;
+    height: 7px;
+    background-position: 0 -2301px;
+}
+
+.sprite-x5-cos-logo-small2x {
+    width: 150px;
+    height: 28px;
+    background-position: 0 -2308px;
+}
+
+.sprite-x6-cos-logo-big2x {
+    width: 150px;
+    height: 132px;
+    background-position: 0 -2336px;
+}
+
+.sprite-icon-edit2x {
+    width: 12px;
+    height: 13px;
+    background-position: 0 -2468px;
+}
+
+.sprite-icon-confirm2x {
+    width: 16px;
+    height: 12px;
+    background-position: 0 -4006px;
+}
+
+.sprite-topic-file-upload2x {
+    width: 34px;
+    height: 34px;
+    background-position: 0px -2480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sprite-topic-file-dropbox2x {
+    width: 35px;
+    height: 30px;
+    background-position: 0px -2515px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sprite-topic-file-onedrive2x {
+    width: 40px;
+    height: 25px;
+    background-position: 0 -2578px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sprite-topic-file-googledrive2x {
+    width: 37px;
+    height: 33px;
+    background-position: 0 -2545px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+///Activiy feed icons
+
+.sprite-icon-activity-comment-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -2653px;
+}
+
+.sprite-icon-activity-comment-new-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -2693px;
+}
+
+.sprite-icon-activity-group-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -2733px;
+}
+
+.sprite-icon-activity-group-new-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -2773px;
+}
+
+.sprite-icon-activity-invite-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -3649px; /**FIXME: ICON**/
+}
+
+.sprite-icon-activity-invite-new-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -3689px; /**FIXME: ICON**/
+}
+
+.sprite-icon-activity-personal-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -2813px;
+}
+
+.sprite-icon-activity-personal-new-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -2853px;
+}
+
+.sprite-icon-activity-topic-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -2893px;
+}
+
+.sprite-icon-activity-topic-new-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -2933px;
+}
+
+.sprite-icon-activity-vote-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -2973px;
+}
+
+.sprite-icon-activity-vote-new-2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -3013px;
+}
+
+.sprite-icon-attachment {
+    width: 13px;
+    height: 12px;
+    background-position: 0 -3141px;
+}
+
+.sprite-dropdown-arrowdown-blue2x {
+    width: 8px;
+    height: 5px;
+    background-position: 0 -3153px;
+}
+
+.sprite-bullet-arrow-blue2x {
+    @extend %sprite-bullet-arrow-blue2x;
+}
+
+.sprite-bullet-x-blue2x {
+    width: 10px;
+    height: 10px;
+    background-position: 0 -3367px;
+}
+
+.sprite-icon-thumb-up {
+    width: 24px;
+    height: 24px;
+    background-position: 0 -3401px;
+}
+
+.sprite-icon-thumb-up-gray {
+    width: 24px;
+    height: 24px;
+    background-position: 0 -4042px;
+}
+
+.sprite-icon-thumb-up-outline {
+    width: 24px;
+    height: 24px;
+    background-position: 0 -3449px;
+}
+
+.sprite-icon-thumb-down {
+    width: 24px;
+    height: 24px;
+    background-position: 0 -3377px;
+}
+
+.sprite-icon-thumb-down-gray {
+    width: 24px;
+    height: 24px;
+    background-position: 0 -4018px;
+}
+
+.sprite-icon-thumb-down-outline {
+    width: 24px;
+    height: 24px;
+    background-position: 0 -3425px;
+}
+
+.sprite-icon-edit-topic_white {
+    width: 14px;
+    height: 16px;
+    background-position: 0 -3473px;
+}
+
+.sprite-icon-edit-topic_black {
+    width: 14px;
+    height: 16px;
+    background-position: 0 -3489px;
+}
+
+.sprite-icon-warn-topic2x {
+    width: 40px;
+    height: 40px;
+    background-position: 0 -3505px;
+}
+
+.sprite-icon-arrow_down-white {
+    width: 8px;
+    height: 4px;
+    background-position: 0 -3545px;
+}
+
+.sprite-icon-no-results2x {
+    width: 100px;
+    height: 100px;
+    background-position: 0 -3549px;
+}
+
+.sprite-icon-eye-on {
+    width: 24px;
+    height: 16px;
+    background-position: 0 -3729px;
+}
+
+.sprite-icon-eye-off {
+    width: 24px;
+    height: 20px;
+    background-position: 0 -3745px;
+}
+
+.sprite-icon-private-topic {
+    width: 22px;
+    height: 22px;
+    background-position: 0 -3797px;
+}
+
+.sprite-icon-public-topic {
+    width: 22px;
+    height: 22px;
+    background-position: 0 -3819px;
+}
+
+.sprite-icon-refresh {
+    width: 23px;
+    height: 19px;
+    background-position: 0 -3841px;
+}
+
+.sprite-icon-social-twitter-v2 {
+    width: 44px;
+    height: 44px;
+    background-position: 0 -3948px;
+}
+
+.sprite-icon-social-linkedin-v2 {
+    width: 44px;
+    height: 44px;
+    background-position: 0 -3904px;
+}
+
+.sprite-icon-social-facebook-v2 {
+    width: 44px;
+    height: 44px;
+    background-position: 0 -3860px;
+}
+
+.sprite-icon-help-back {
+    width: 14px;
+    height: 14px;
+    background-position: 0 -3992px;
+}

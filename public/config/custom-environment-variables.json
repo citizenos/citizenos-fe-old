@@ -34,5 +34,6 @@
     }
   },
   "helplink": "CITIZENOS_HELP_LINK",
-  "newHelp": "CITIZENOS_HELP_NEW"
+  "newHelp": "CITIZENOS_HELP_NEW",
+  "showHelpTooltip": "CITIZENOS_SHOW_HELP_TOOLTIP"
 }

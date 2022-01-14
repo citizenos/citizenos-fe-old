@@ -1,7 +1,5 @@
 @use 'vars';
 @use 'mixins_n_extends';
-@use 'icons';
-@use 'base';
 
 .comments_section {
     margin-top: 60px;
@@ -675,7 +673,7 @@
 
                                 &:hover {
                                     .sprite.desktop_fix {
-                                        @extend .sprite-icon-reportmessage-hover2x;
+                                        @extend %sprite-icon-reportmessage-hover2x;
                                     }
                                 }
                             }
@@ -746,6 +744,22 @@
 
                 .classic_dropdown {
                     margin-bottom: 8px;
+
+                    .dropdown {
+                        &.with_description {
+                            .is_pro {
+                                background-color: vars.$nature_green_light;
+                            }
+
+                            .is_con {
+                                background-color: vars.$pinky_red_light;
+                            }
+
+                            .is_poi {
+                                background-color: vars.$light_blue_light;
+                            }
+                        }
+                    }
                 }
 
                 .post_argument_overlay {
