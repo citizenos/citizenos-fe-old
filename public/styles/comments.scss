@@ -738,7 +738,7 @@
                     margin-bottom: 15px;
 
                     &.error_input {
-                        margin-bottom: 0px;
+                        margin-bottom: 0;
                     }
                 }
 
@@ -746,6 +746,20 @@
                     margin-bottom: 8px;
 
                     .dropdown {
+                        .dropdown_item {
+                            &.is_pro {
+                                border-left: 2px solid vars.$nature_green;
+                            }
+
+                            &.is_con {
+                                border-left: 2px solid vars.$pinky_red;
+                            }
+
+                            &.is_poi {
+                                border-left: 2px solid vars.$light_blue;
+                            }
+                        }
+
                         &.with_description {
                             .is_pro {
                                 background-color: vars.$nature_green_light;

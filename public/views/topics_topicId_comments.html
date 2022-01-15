@@ -746,7 +746,7 @@
                             </div>
                         </div>
                         <div class="column dropdown_item_descriptions">
-                            <div class="item_description" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]">
+                            <div class="item_description" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]">
                                 <div>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</div>
                                 <div translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: '1000'}">Character limit: 2084</div>
                             </div>

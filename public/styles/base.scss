@@ -2448,9 +2448,11 @@ a:link, a:visited {
             .dropdown_item {
                 font-weight: vars.$semi_bold;
                 padding: 16px 15px;
+                border-right: 1px solid vars.$medium_gray;
 
                 &.active {
                     background: vars.$light_gray;
+                    border-right: none;
                 }
             }
 

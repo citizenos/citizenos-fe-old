@@ -42,15 +42,15 @@ angular
                             }
                             if (itemClass) {
                                 // Add active class to the dropdown items
-                                for (var i = 0; i < dropdownItems.length; i++) {
-                                    dropdownItems[i].classList.remove('active');
+                                for (var j = 0; j < dropdownItems.length; j++) {
+                                    dropdownItems[j].classList.remove('active');
                                 }
                                 elementClasses.add('active');
 
                                 // Add active to the relevant description
                                 var itemDescriptions = dropdownWithDescription.getElementsByClassName('item_description');
-                                for (var i = 0; i < itemDescriptions.length; i++) {
-                                    var itemDescriptionClassList = itemDescriptions[i].classList;
+                                for (var k = 0; k < itemDescriptions.length; k++) {
+                                    var itemDescriptionClassList = itemDescriptions[k].classList;
                                     if (itemDescriptionClassList.contains(itemClass)) {
                                         itemDescriptionClassList.add('active');
                                     } else {
