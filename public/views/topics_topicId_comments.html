@@ -411,7 +411,7 @@
                             </h3>
                         </div>
                         <form ng-if="app.user.loggedIn" name="argumentConReply">
-                            <textarea cos-markdown id="argument_con_reply_text" ng-model="form.editText" class="gray_borders" ng-keyup="commentTextLengthCheck(form, form.editText)"
+                            <textarea cos-markdown id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-keyup="commentTextLengthCheck(form, form.text)"
                                       ng-class="{'error_input': form.errors.text}"
                                       placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" maxlength="COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
                             <label for="argument_con_reply_text" class="error_label" ng-if="form.errors.text">
