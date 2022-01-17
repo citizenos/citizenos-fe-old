@@ -41,8 +41,8 @@
   "TOOLTIP_REPORT_TOPIC": "@:MODALS.TOPIC_REPORT_HEADING",
   "TOOLTIP_TOPIC_VISIBILITY_PUBLIC": "@:TXT_TOPIC_VISIBILITY_PUBLIC",
   "TOOLTIP_TOPIC_VISIBILITY_PRIVATE": "@:TXT_TOPIC_VISIBILITY_PRIVATE",
-  "HELP_CENTER_TOOLTIP_HEADING": "PRE VAŠU INFORMÁCIU",
-  "HELP_CENTER_TOOLTIP_DESCRIPTION": "Vždy, keď sa zaseknete alebo budete zmätení, otvorte Centrum pomoci a nájdite odpovede na svoje otázky. Centrum pomoci je vždy prístupné prostredníctvom bubliny v pravom dolnom rohu.",
+  "HELP_CENTER_TOOLTIP_HEADING": "FOR YOUR INFORMATION",
+  "HELP_CENTER_TOOLTIP_DESCRIPTION": "Whenever you find yourself stuck or confused, just open up the Help Center to find the answers to your questions. The Help Center is always accessible via the bubble in the bottom right corner.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
   "HELP_WIDGET": {
     "TITLE": "Sme tu, aby sme pomohli!",

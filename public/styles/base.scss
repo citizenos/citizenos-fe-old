@@ -474,11 +474,6 @@ table, .pretend_table {
 .row_with_padding {
     padding-top: 10px;
 }
-
-.section_with_padding {
-    padding-top: 20px;
-}
-
 .pretend_td, .pretend_th, .pagination_wrapper {
     @extend %table_cell;
 }
@@ -2337,6 +2332,14 @@ a:link, a:visited {
     height: 30px;
     z-index: 1;
 
+    &.dropdown_active {
+        .dropdown {
+            &.with_description {
+                display: flex;
+            }
+        }
+    }
+
     .dropdown_selection {
         padding: 5px 42px 6px 10px;
         position: relative;
@@ -2429,6 +2432,50 @@ a:link, a:visited {
             }
         }
 
+        &.with_description {
+            display: none;
+            flex-direction: row;
+            font-size: initial;
+            padding: 0;
+            margin: 0;
+
+            .column {
+                box-sizing: border-box;
+                width: 50%;
+            }
+
+            .dropdown_item {
+                font-weight: vars.$semi_bold;
+                padding: 16px 15px;
+                border-right: 1px solid vars.$medium_gray;
+
+                &.active {
+                    background: vars.$light_gray;
+                    border-right: none;
+                }
+            }
+
+            .dropdown_item_descriptions {
+                font-size: 0.875em;
+                background: vars.$light_gray;
+
+                .item_description {
+                    display: none;
+                    padding: 16px 15px;
+                    height: 100%;
+                    box-sizing: border-box;
+
+                    p:first-of-type {
+                        margin-top: 0;
+                    }
+
+                    &.active {
+                        display: block;
+                    }
+                }
+            }
+        }
+
     }
 
     .comment_creator_dropdown {
@@ -2436,7 +2483,6 @@ a:link, a:visited {
     }
 
     &.borderless_dropdown {
-        border: none;
         background: none;
         border: solid 1px rgba(0, 0, 0, 0);
 
@@ -2962,6 +3008,7 @@ a:link, a:visited {
             height: 90%;
         }
     }
+
     .help_top {
         border-radius: 4px 4px 0 0;
         width: 100%;
@@ -3143,7 +3190,7 @@ a:link, a:visited {
             padding: 20px 0 10px 0;
         }
 
-        .date_picker_wrap  {
+        .date_picker_wrap {
             background-color: vars.$white;
             border: solid 1px vars.$lightest_gray;
             border-radius: 4px;
@@ -3205,7 +3252,7 @@ a:link, a:visited {
                 }
 
                 .float_left {
-                    float:left;
+                    float: left;
                 }
 
                 .time_separator {
@@ -3222,7 +3269,7 @@ a:link, a:visited {
 
                 @media (max-width: 1500px) {
                     .classic_dropdown {
-                        float:right;
+                        float: right;
                         margin-left: auto;
                     }
                 }
