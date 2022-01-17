@@ -1,6 +1,5 @@
 @use 'mixins_n_extends';
 @use 'vars';
-@use 'icons';
 
 body, html {
     font-family: 'Noto Sans', sans-serif;
@@ -592,7 +591,7 @@ table, .pretend_table {
         background: vars.$pinky_red;
 
         .sprite.desktop_fix {
-            @extend .sprite-mytopics-icon-deletetopic02x;
+            @extend %sprite-mytopics-icon-deletetopic02x;
         }
 
         @include mixins_n_extends.tablet {
@@ -624,7 +623,7 @@ table, .pretend_table {
         }
 
         .sprite {
-            @extend .sprite-voted-check2x;
+            @extend %sprite-voted-check2x;
         }
     }
 }
@@ -632,7 +631,7 @@ table, .pretend_table {
 .btn_wrap.check.no {
 
     .sprite {
-        @extend .sprite-voted-nocheck2x;
+        @extend %sprite-voted-nocheck2x;
     }
 
     &:hover {
@@ -643,7 +642,7 @@ table, .pretend_table {
         }
 
         .sprite {
-            @extend .sprite-voted-nocheck2x;
+            @extend %sprite-voted-nocheck2x;
         }
     }
 }
@@ -2465,6 +2464,10 @@ a:link, a:visited {
                     padding: 16px 15px;
                     height: 100%;
                     box-sizing: border-box;
+
+                    p:first-of-type {
+                        margin-top: 0;
+                    }
 
                     &.active {
                         display: block;

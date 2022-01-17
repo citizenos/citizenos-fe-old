@@ -747,8 +747,8 @@
                         </div>
                         <div class="column dropdown_item_descriptions">
                             <div class="item_description" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]">
-                                <div>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</div>
-                                <div translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: '1000'}">Character limit: 2084</div>
+                                <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
+                                <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: maxLengthText}">Character limit: 2084</p>
                             </div>
                         </div>
                     </div>
@@ -775,16 +775,6 @@
                 <div class="blue_button" cos-disabled="argumentForm.$invalid || !form.type" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="saveComment()">
                     Post
                 </div>
-
-                <!--div class="blue_button nature_green_button" cos-disabled="argumentForm.$invalid" ng-click="submitPro()"
-                     translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_PRO">Post as a pro argument
-                </div>
-                <div class="blue_button light_blue_button" cos-disabled="argumentForm.$invalid" ng-click="submitPoi()"
-                     translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_POI">Make a point
-                </div>
-                <div class="blue_button pinky_red_button" cos-disabled="argumentForm.$invalid" ng-click="submitCon()"
-                     translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_AS_CON">Post as a con argument
-                </div-->
                 <div class="clearer"></div>
             </form>
         </div>
