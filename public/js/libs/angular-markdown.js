@@ -31,7 +31,7 @@ angular.module('cosmarkdown', ['ngSanitize']).
         code: function (text) {
           return '<code>'+ text + '</code>';
         }
-      }
+      };
 
       marked.use({renderer:renderer});
       var html = marked(input);
@@ -55,10 +55,9 @@ angular.module('cosmarkdown', ['ngSanitize']).
           }
 
           return curLength;
-        }
+        };
         var config = {
           placeholder: attrs.placeholder,
-          toolbar: ["bold", "italic", "strikethrough", "|", "ordered-list", "unordered-list", "preview"],
           toolbar: [
             {
               name: "bold",
@@ -129,7 +128,7 @@ angular.module('cosmarkdown', ['ngSanitize']).
               }
           }
           return true;
-      }
+      };
 
       simplemde.codemirror.setOption("maxLength", scope.limit);
       simplemde.codemirror.on("beforeChange", enforceMaxLength);

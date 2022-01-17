@@ -178,6 +178,15 @@ angular
             reply: 'reply'
         };
 
+        TopicComment.COMMENT_SUBJECT_MAXLENGTH = 128;
+
+        TopicComment.COMMENT_TYPES_MAXLENGTH = {
+            pro: 2048,
+            con: 2048,
+            poi: 500,
+            reply: 2048
+        };
+
         TopicComment.COMMENT_REPORT_TYPES = {
             abuse: 'abuse', // is abusive or insulting
             obscene: 'obscene', // contains obscene language
