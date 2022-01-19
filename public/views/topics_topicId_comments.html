@@ -263,7 +263,7 @@
                                 {{::comment.deletedBy.name}} (moderator)
                             </div>
                             <div class="argument_overlay"></div>
-                            <div class="read_more_link" ng-click="$parent.readMore = !$parent.readMore"
+                            <div class="blue_link read_more_link" ng-click="$parent.readMore = !$parent.readMore"
                                  translate="{{($parent.readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_READ_MORE'}}">Read more
                             </div>
                         </div>
@@ -593,7 +593,7 @@
                             <div ng-if="!reply.isVisible()" class="argument_text italic">This comment has been deleted by {{reply.deletedBy.name}}</div>
                             <div class="argument_overlay">
                             </div>
-                            <div class="read_more_link " ng-click="$parent.readMore = !$parent.readMore"
+                            <div class="blue_link read_more_link " ng-click="$parent.readMore = !$parent.readMore"
                                  translate="{{($parent.readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_REPLY_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_REPLY_READ_MORE'}}">
                                 Read more
                             </div>
