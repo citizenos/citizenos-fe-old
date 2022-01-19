@@ -900,7 +900,7 @@
       "LNK_ARGUMENT_REPLY": "Reply",
       "LNK_ARGUMENT_SHOW_REPLIES": "Show replies ({{count}})",
       "LNK_ARGUMENT_HIDE_REPLIES": "Hide replies",
-      "COMMENT_TYPE_SELECT_OPTION_NULL": "Select input type",
+      "COMMENT_TYPE_SELECT_OPTION_NULL": "Select statement type",
       "COMMENT_TYPE_SELECT_OPTION_PRO": "Add a pro argument",
       "COMMENT_TYPE_SELECT_OPTION_CON": "Add a con argument",
       "COMMENT_TYPE_SELECT_OPTION_POI": "Make a point",
