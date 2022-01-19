@@ -492,10 +492,10 @@
     "ADD_EID_BTN_CONNECT_SMART_ID": "Prepojiť so Smart ID",
     "ADD_EID_LNK_BACK": "Späť",
     "ADD_EID_BTN_CONTINUE": "Pokračovať bez prepojenia",
-    "USER_CONNECTION_REMOVE_CONFIRM_HEADING": "Odstrániť pripojenie užívateľa",
+    "USER_CONNECTION_REMOVE_CONFIRM_HEADING": "Remove connection",
     "USER_CONNECTION_REMOVE_CONFIRM_TXT_ARE_YOU_SURE": "Ste si istí, že chcete odstrániť svoje spojenie s {{connection}}?",
-    "USER_CONNECTION_REMOVE_CONFIRM_NO": "NIE, PRIPOJENIE TOHTO UŽÍVATEĽA ZACHOVAŤ",
-    "USER_CONNECTION_REMOVE_CONFIRM_YES": "ÁNO, PRIPOJENIE TOHTO UŽÍVATEĽA ODSTRÁNIŤ"
+    "USER_CONNECTION_REMOVE_CONFIRM_NO": "NO, KEEP THIS CONNECTION",
+    "USER_CONNECTION_REMOVE_CONFIRM_YES": "YES, DELETE THIS CONNECTION"
   },
   "TXT_TOPIC_CATEGORY_ALL": "každú kategóriu",
   "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
@@ -900,7 +900,7 @@
       "LNK_ARGUMENT_REPLY": "Odpoveď",
       "LNK_ARGUMENT_SHOW_REPLIES": "Ukázať odpovede ({{count}})",
       "LNK_ARGUMENT_HIDE_REPLIES": "Skryť odpovede",
-      "COMMENT_TYPE_SELECT_OPTION_NULL": "Vybrať typ vstupu",
+      "COMMENT_TYPE_SELECT_OPTION_NULL": "Select statement type",
       "COMMENT_TYPE_SELECT_OPTION_PRO": "Pridať argument za",
       "COMMENT_TYPE_SELECT_OPTION_CON": "Pridať argument proti",
       "COMMENT_TYPE_SELECT_OPTION_POI": "Vyjadrite svoj názor",
