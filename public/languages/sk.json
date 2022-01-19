@@ -900,7 +900,7 @@
       "LNK_ARGUMENT_REPLY": "Odpoveď",
       "LNK_ARGUMENT_SHOW_REPLIES": "Ukázať odpovede ({{count}})",
       "LNK_ARGUMENT_HIDE_REPLIES": "Skryť odpovede",
-      "COMMENT_TYPE_SELECT_OPTION_NULL": "Select statement type",
+      "COMMENT_TYPE_SELECT_OPTION_NULL": "Vybrať typ vyjadrenia",
       "COMMENT_TYPE_SELECT_OPTION_PRO": "Pridať argument za",
       "COMMENT_TYPE_SELECT_OPTION_CON": "Pridať argument proti",
       "COMMENT_TYPE_SELECT_OPTION_POI": "Vyjadrite svoj názor",
