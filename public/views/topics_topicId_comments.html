@@ -180,7 +180,7 @@
 
                                 <input id="comment_edit_subject" ng-if="comment.showEdit" ng-keyup="commentSubjectLengthCheck(comment, comment.editSubject)" translate
                                        translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_SUBJECT" ng-model="comment.editSubject" class="gray_borders"
-                                       ng-class="{'error_input': comment.errors.subject}" ng-maxlength="COMMENT_SUBJECT_MAXLENGTH" focus-if required>
+                                       ng-class="{'error_input': comment.errors.subject}" maxlength="COMMENT_SUBJECT_MAXLENGTH" focus-if required>
 
                                 <label for="comment_edit_subject" class="error_label" ng-if="comment.errors.subject">
                                     <div class="table_cell">
@@ -214,37 +214,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!--div class="argument_footer_with_buttons" ng-if="comment.showEdit">
-                                    <div class="table_cell">
-                                        <div class="blue_button nature_green_button" ng-click="updateComment(comment, COMMENT_TYPES.pro)">
-                                            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_POST_AS_PRO">
-                                                Post as a pro argument
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="table_cell">
-                                        <div class="blue_button light_blue_button" ng-click="updateComment(comment, COMMENT_TYPES.poi)">
-                                            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_POST_AS_POI">
-                                                Make a point
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="table_cell">
-                                        <div class="blue_button pinky_red_button" ng-click="updateComment(comment, COMMENT_TYPES.con)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_POST_AS_CON">
-                                            <div class="table_cell">
-                                                Post as a con argument
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="table_cell">
-                                        <div class="blue_button blue_white_button" ng-click="commentEditMode(comment)">
-                                            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_CANCEL_EDIT">
-                                                Cancel edit
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div-->
                             </form>
                         </div>
                         <!-- END EDIT COMMENT -->
@@ -420,7 +389,8 @@
                                     <span translate="{{form.errors.text}}"></span>
                                 </div>
                             </label>
-                            <div class="blue_button" cos-disabled="argumentConReply.$invalid" ng-click="submitReply(comment.id, (comment.edits.length-1))" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_REPLY">
+                            <div class="blue_button" cos-disabled="argumentConReply.$invalid" ng-click="submitReply(comment.id, (comment.edits.length-1))"
+                                 translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_REPLY">
                                 Post reply
                             </div>
                             <div class="clearer"></div>
@@ -748,14 +718,16 @@
                         <div class="column dropdown_item_descriptions">
                             <div class="item_description" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]">
                                 <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
-                                <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit: 2084</p>
+                                <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit:
+                                    2084</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <input id="argument_subject" ng-model="form.subject" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}"
-                       class="gray_borders" ng-class="{'error_input': form.errors.subject}" required ng-keyup="commentSubjectLengthCheck(form, form.subject)" ng-maxlength="{{COMMENT_SUBJECT_MAXLENGTH}}"
+                       class="gray_borders" ng-class="{'error_input': form.errors.subject}" required ng-keyup="commentSubjectLengthCheck(form, form.subject)"
+                       ng-maxlength="{{COMMENT_SUBJECT_MAXLENGTH}}"
                        focus-if="focusArgumentSubject">
                 <label for="argument_subject" class="error_label" ng-if="form.errors.subject">
                     <div class="table_cell">
@@ -764,7 +736,7 @@
                     </div>
                 </label>
                 <textarea cos-markdown id="argument_text" ng-model="form.text" class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}"
-                          ng-keyup="commentTextLengthCheck(form, form.text)" ng-class="{'error_input': form.errors.text}" maxlength="COMMENT_TYPES_MAXLENGTH[form.type] || COMMENT_TYPES_MAXLENGTH['pro']" required></textarea>
+                          ng-class="{'error_input': form.errors.text}" maxlength="COMMENT_TYPES_MAXLENGTH[form.type] || COMMENT_TYPES_MAXLENGTH['pro']" required></textarea>
                 <label for="argument_text" class="error_label" ng-if="form.errors.text">
                     <div class="table_cell">
                         <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -772,6 +744,7 @@
                     </div>
                 </label>
 
+                <div ng-if="COMMENT_TYPES_MAXLENGTH[form.type]" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[form.type]}">Character limit: 2084</div>
                 <div class="blue_button" cos-disabled="argumentForm.$invalid || !form.type" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="saveComment()">
                     Post
                 </div>

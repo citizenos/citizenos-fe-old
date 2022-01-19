@@ -61,15 +61,19 @@ angular
         };
 
         $scope.commentSubjectLengthCheck = function (comment, subject) {
+            console.log('commentTextLengthCheck', comment, subject);
+
             if (subject && subject.length > TopicComment.COMMENT_SUBJECT_MAXLENGTH) {
                 if (!comment.errors) {
                     comment.errors = {};
                 }
                 comment.errors.subject = 'VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ERROR_SUBJECT_TOO_LONG';
+                console.log('commentTextLengthCheck ERROR', comment, subject);
             } else {
                 if (comment.errors && comment.errors.subject) {
                     comment.errors.subject = null;
                 }
+                console.log('commentTextLengthCheck COOL', comment, subject);
             }
         };
 
