@@ -492,10 +492,10 @@
     "ADD_EID_BTN_CONNECT_SMART_ID": "Yhdistä Smart-ID:llä",
     "ADD_EID_LNK_BACK": "Takaisin",
     "ADD_EID_BTN_CONTINUE": "Jatka yhdistämättä",
-    "USER_CONNECTION_REMOVE_CONFIRM_HEADING": "Remove user connection",
+    "USER_CONNECTION_REMOVE_CONFIRM_HEADING": "Remove connection",
     "USER_CONNECTION_REMOVE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to remove your connection with {{connection}}?",
-    "USER_CONNECTION_REMOVE_CONFIRM_NO": "NO, KEEP THIS USER CONNECTION",
-    "USER_CONNECTION_REMOVE_CONFIRM_YES": "YES, DELETE THIS USER CONNECTION"
+    "USER_CONNECTION_REMOVE_CONFIRM_NO": "NO, KEEP THIS CONNECTION",
+    "USER_CONNECTION_REMOVE_CONFIRM_YES": "YES, DELETE THIS CONNECTION"
   },
   "TXT_TOPIC_CATEGORY_ALL": "kaikki luokat",
   "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
@@ -900,7 +900,7 @@
       "LNK_ARGUMENT_REPLY": "Vastaa",
       "LNK_ARGUMENT_SHOW_REPLIES": "Näytä vastaukset ({{count}})",
       "LNK_ARGUMENT_HIDE_REPLIES": "Piilota vastaukset",
-      "COMMENT_TYPE_SELECT_OPTION_NULL": "Valitse kannanoton tyyppi",
+      "COMMENT_TYPE_SELECT_OPTION_NULL": "Select statement type",
       "COMMENT_TYPE_SELECT_OPTION_PRO": "Lisää puolesta-kannanotto",
       "COMMENT_TYPE_SELECT_OPTION_CON": "Lisää vastaan-kannanotto",
       "COMMENT_TYPE_SELECT_OPTION_POI": "Tee välihuomautus",
