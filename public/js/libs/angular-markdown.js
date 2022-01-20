@@ -103,14 +103,14 @@ angular.module('cosmarkdown', ['ngSanitize']).provider('markdown', function () {
                 status: [{
                     className: "charCounter",
                     defaultValue: function (el) {
-                        if (scope.cosMarkdownTranslateCharacterStatusKey) {
+                        if (scope.cosMarkdownTranslateCharacterStatusKey && scope.limit) {
                             el.innerHTML = $translate.instant(scope.cosMarkdownTranslateCharacterStatusKey, {
                                 numberOfCharacters: scope.limit,
                             }) + ' (' + (scope.limit - getCharLength()) + ')';
                         }
                     },
                     onUpdate: function (el) {
-                        if (scope.cosMarkdownTranslateCharacterStatusKey) {
+                        if (scope.cosMarkdownTranslateCharacterStatusKey && scope.limit) {
                             el.innerHTML = $translate.instant(scope.cosMarkdownTranslateCharacterStatusKey, {
                                 numberOfCharacters: scope.limit,
                             }) + ' (' + (scope.limit - getCharLength()) + ')';

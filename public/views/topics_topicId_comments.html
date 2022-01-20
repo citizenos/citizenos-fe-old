@@ -726,9 +726,7 @@
                 </div>
 
                 <input id="argument_subject" ng-model="form.subject" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}"
-                       class="gray_borders" ng-class="{'error_input': form.errors.subject}" required ng-keyup="commentSubjectLengthCheck(form, form.subject)"
-                       ng-maxlength="{{COMMENT_SUBJECT_MAXLENGTH}}"
-                       focus-if="focusArgumentSubject">
+                       class="gray_borders" ng-class="{'error_input': form.errors.subject}" focus-if="focusArgumentSubject" maxlength="{{COMMENT_SUBJECT_MAXLENGTH}}" required>
                 <label for="argument_subject" class="error_label" ng-if="form.errors.subject">
                     <div class="table_cell">
                         <div class="sprite sprite-icon-inputfield-error2x"></div>

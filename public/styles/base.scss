@@ -405,6 +405,11 @@ input::-ms-clear {
     color: vars.$smooth_gray !important;
 }
 
+input:focus, textarea:focus {
+    border: 1px solid vars.$dark_gray;
+    outline: none;
+}
+
 b {
     font-weight: vars.$bold;
 }

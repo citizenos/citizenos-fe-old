@@ -45,23 +45,20 @@ angular
         };
 
         $scope.commentTextLengthCheck = function (comment, text) {
-            console.log('commentTextLengthCheck', comment, text);
             if (text && $scope.form.type && text.length > TopicComment.COMMENT_TYPES_MAXLENGTH[$scope.form.type]) {
                 if (!comment.errors) {
                     comment.errors = {};
                 }
                 comment.errors.text = 'VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ERROR_TEXT_TOO_LONG';
-                console.log('commentTextLengthCheck ERROR', comment, text);
             } else {
                 if (comment.errors && comment.errors.text) {
                     comment.errors.text = null;
                 }
-                console.log('commentTextLengthCheck COOL', comment, text);
             }
         };
 
         $scope.commentSubjectLengthCheck = function (comment, subject) {
-            console.log('commentTextLengthCheck', comment, subject);
+            console.log('commentTextLengthCheck', comment, subject, TopicComment.COMMENT_SUBJECT_MAXLENGTH);
 
             if (subject && subject.length > TopicComment.COMMENT_SUBJECT_MAXLENGTH) {
                 if (!comment.errors) {
