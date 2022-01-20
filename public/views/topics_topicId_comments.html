@@ -189,9 +189,8 @@
                                     </div>
                                 </label>
 
-                                <textarea cos-markdown id="comment_edit" ng-if="comment.showEdit" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_TEXT' | translate}}"
-                                          class="gray_borders"
-                                          ng-model="comment.editText" ng-keyup="commentTextLengthCheck(comment, comment.editText)"
+                                <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'"  id="comment_edit" ng-if="comment.showEdit" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_TEXT' | translate}}"
+                                          class="gray_borders" ng-model="comment.editText" ng-keyup="commentTextLengthCheck(comment, comment.editText)"
                                           ng-class="{'error_input': comment.errors.text}" maxlength="COMMENT_TYPES_MAXLENGTH[form.type] || COMMENT_TYPES_MAXLENGTH['pro']" required></textarea>
 
                                 <label for="comment_edit" class="error_label" ng-if="comment.errors.text">
@@ -380,9 +379,8 @@
                             </h3>
                         </div>
                         <form ng-if="app.user.loggedIn" name="argumentConReply">
-                            <textarea cos-markdown id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-keyup="commentTextLengthCheck(form, form.text)"
-                                      ng-class="{'error_input': form.errors.text}"
-                                      placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" maxlength="COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
+                            <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'"  id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-keyup="commentTextLengthCheck(form, form.text)"
+                                      ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" maxlength="COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
                             <label for="argument_con_reply_text" class="error_label" ng-if="form.errors.text">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -500,9 +498,8 @@
                                         to comment
                                     </h3>
                                 </div>
-                                <textarea cos-markdown id="reply_edit" class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_REPLY' | translate}}"
-                                          ng-keyup="commentTextLengthCheck(reply, reply.editText)" ng-class="{'error_input': reply.errors.text}"
-                                          ng-model="reply.editText" maxlength="COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
+                                <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'" id="reply_edit" class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_REPLY' | translate}}"
+                                          ng-keyup="commentTextLengthCheck(reply, reply.editText)" ng-class="{'error_input': reply.errors.text}" ng-model="reply.editText" maxlength="COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
                                 <label for="reply_edit" class="error_label" ng-if="reply.errors.text">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -660,7 +657,7 @@
                             </h3>
                         </div>
                         <form ng-if="app.user.loggedIn" name="argumentReplyForm">
-                            <textarea cos-markdown id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-keyup="commentTextLengthCheck(form, form.text)"
+                            <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'"  id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-keyup="commentTextLengthCheck(form, form.text)"
                                       ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" required
                                       maxlength="COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
                             <label for="argument_pro_reply_text" class="error_label" ng-if="form.errors.text">

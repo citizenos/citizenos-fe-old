@@ -494,10 +494,13 @@
                             }
 
                             .argument_text {
-                                font-size: 14px;
                                 margin-bottom: 5px;
                                 word-break: break-word;
                                 white-space: pre-line;
+
+                                p, ul, ol {
+                                    margin: 0;
+                                }
                             }
 
                             .read_more_link {
