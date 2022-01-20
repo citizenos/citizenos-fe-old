@@ -691,7 +691,7 @@
                 </h3>
             </div>
             <form cos-disabled="!app.user.loggedIn" name="argumentForm">
-                <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': form.errors.type}">
+                <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': form.errors.type, 'placeholder': !form.type}">
 
                     <div class="dropdown_selection">
                         <div class="dropdown_text">

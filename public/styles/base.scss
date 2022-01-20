@@ -382,6 +382,7 @@ h2 {
 
 input, textarea {
     font-family: 'Noto Sans', sans-serif;
+    font-size: inherit;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -389,6 +390,19 @@ input, textarea {
 
 input::-ms-clear {
     display: none;
+}
+
+::placeholder {
+    color: vars.$smooth_gray !important;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: vars.$smooth_gray !important;
+}
+
+.placeholder {
+    color: vars.$smooth_gray !important;
 }
 
 b {
