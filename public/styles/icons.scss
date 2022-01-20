@@ -1,3 +1,4 @@
+@use 'mixins_n_extends';
 /* Generated data URIs used for preview purposes only */
 /* Be sure that you replace data URIs with generated images */
 .sprite {
@@ -30,9 +31,7 @@
 }
 
 .sprite-btn-expand2x-white {
-    width: 16px;
-    height: 16px;
-    background-position: 0 -44px;
+    @extend %sprite-btn-expand2x-white;
 }
 
 .sprite-btn-minimize2x {
@@ -42,15 +41,11 @@
 }
 
 .sprite-btn-minimize2x-white {
-    width: 16px;
-    height: 16px;
-    background-position: 0 -76px;
+    @extend %sprite-btn-minimize2x-white;
 }
 
 .sprite-btn-filter-white {
-    width: 16px;
-    height: 16px;
-    background-position: 0 -3765px;
+    @extend %sprite-btn-filter-white;
 }
 
 .sprite-btn-filter-gray {
@@ -192,9 +187,7 @@
 }
 
 .sprite-icon-arrow-right-topic-tab2x-hover {
-    width: 22px;
-    height: 12px;
-    background-position: 0 -646px;
+    @extend %sprite-icon-arrow-right-topic-tab2x-hover;
 }
 
 .sprite-icon-arrow-topic-tab2x {
@@ -204,9 +197,7 @@
 }
 
 .sprite-icon-arrow-topic-tab2x-hover {
-    width: 22px;
-    height: 12px;
-    background-position: 0 -670px;
+    @extend %sprite-icon-arrow-topic-tab2x-hover;
 }
 
 .sprite-icon-category-add2x {
@@ -276,9 +267,7 @@
 }
 
 .sprite-icon-reportmessage-hover2x {
-    width: 12px;
-    height: 12px;
-    background-position: 0 -980px;
+    @extend %sprite-icon-reportmessage-hover2x;
 }
 
 .sprite-icon-social-twitter2x {
@@ -438,9 +427,7 @@
 }
 
 .sprite-icon-lock2x-white {
-    width: 8px;
-    height: 11px;
-    background-position: 0 -1421px;
+    @extend %sprite-icon-lock2x-white;
 }
 
 .sprite-icon-notification-check2x {
@@ -564,9 +551,7 @@
 }
 
 .sprite-menu-icon-groups2x {
-    width: 17px;
-    height: 16px;
-    background-position: 0 -1813px;
+    @extend %sprite-menu-icon-groups2x;
 }
 
 .sprite-menu-icon-groups2x-dark {
@@ -636,15 +621,11 @@
 }
 
 .sprite-mytopics-icon-closed2x-w {
-    width: 12px;
-    height: 12px;
-    background-position: 0 -1962px;
+    @extend %sprite-mytopics-icon-closed2x-w;
 }
 
 .sprite-mytopics-icon-deletetopic02x {
-    width: 11px;
-    height: 13px;
-    background-position: 0 -1974px;
+    @extend %sprite-mytopics-icon-deletetopic02x;
 }
 
 .sprite-mytopics-icon-deletetopic2x {
@@ -660,9 +641,7 @@
 }
 
 .sprite-mytopics-icon-followup2x-w {
-    width: 12px;
-    height: 12px;
-    background-position: 0 -2012px;
+    @extend %sprite-mytopics-icon-followup2x-w;
 }
 
 .sprite-mytopics-icon-inprogress2x {
@@ -672,9 +651,7 @@
 }
 
 .sprite-mytopics-icon-inprogress2x-w {
-    width: 12px;
-    height: 12px;
-    background-position: 0 -2036px;
+    @extend %sprite-mytopics-icon-inprogress2x-w;
 }
 
 .sprite-mytopics-icon-voting2x {
@@ -684,9 +661,7 @@
 }
 
 .sprite-mytopics-icon-voting2x-w {
-    width: 12px;
-    height: 12px;
-    background-position: 0 -2060px;
+    @extend %sprite-mytopics-icon-voting2x-w;
 }
 
 .sprite-tooltip-arrow2x {
@@ -708,15 +683,11 @@
 }
 
 .sprite-voted-check2x {
-    width: 23px;
-    height: 18px;
-    background-position: 0 -2096px;
+    @extend %sprite-voted-check2x;
 }
 
 .sprite-voted-nocheck2x {
-    width: 16px;
-    height: 16px;
-    background-position: 0 -2114px;
+    @extend %sprite-voted-nocheck2x;
 }
 
 .sprite-x0-menu-icon-help2x {
@@ -892,9 +863,7 @@
 }
 
 .sprite-bullet-arrow-blue2x {
-    width: 15px;
-    height: 5px;
-    background-position: 0 -3192px;
+    @extend %sprite-bullet-arrow-blue2x;
 }
 
 .sprite-bullet-x-blue2x {

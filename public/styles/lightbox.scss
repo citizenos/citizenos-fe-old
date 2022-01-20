@@ -1,6 +1,5 @@
 @use 'vars';
 @use 'mixins_n_extends';
-@use 'icons';
 
 .comment-popup {
     z-index: 9999;
@@ -1336,7 +1335,7 @@
                 top: -2px;
                 padding-right: 5px;
                 @extend .sprite;
-                @extend .sprite-bullet-arrow-blue2x;
+                @extend %sprite-bullet-arrow-blue2x;
             }
         }
 

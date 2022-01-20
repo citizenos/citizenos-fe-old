@@ -14,9 +14,8 @@ angular
             $scope.TopicCommentTypes = angular.extend({}, TopicComment.COMMENT_TYPES);
             delete $scope.TopicCommentTypes[TopicComment.COMMENT_TYPES.reply];
 
-            $scope.maxLengthSubject = 128;
-            $scope.maxLengthText = 2048;
-            $scope.charactersLeft = $scope.maxLength;
+            $scope.COMMENT_TYPES_MAXLENGTH = TopicComment.COMMENT_TYPES_MAXLENGTH;
+            $scope.COMMENT_SUBJECT_MAXLENGTH = TopicComment.COMMENT_SUBJECT_MAXLENGTH;
         };
         init();
 
@@ -46,7 +45,7 @@ angular
         };
 
         $scope.commentTextLengthCheck = function (comment, text) {
-            if (text && text.length > $scope.maxLengthText) {
+            if (text && $scope.form.type && text.length > TopicComment.COMMENT_TYPES_MAXLENGTH[$scope.form.type]) {
                 if (!comment.errors) {
                     comment.errors = {};
                 }
@@ -59,15 +58,19 @@ angular
         };
 
         $scope.commentSubjectLengthCheck = function (comment, subject) {
-            if (subject && subject.length > $scope.maxLengthSubject) {
+            console.log('commentTextLengthCheck', comment, subject, TopicComment.COMMENT_SUBJECT_MAXLENGTH);
+
+            if (subject && subject.length > TopicComment.COMMENT_SUBJECT_MAXLENGTH) {
                 if (!comment.errors) {
                     comment.errors = {};
                 }
                 comment.errors.subject = 'VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ERROR_SUBJECT_TOO_LONG';
+                console.log('commentTextLengthCheck ERROR', comment, subject);
             } else {
                 if (comment.errors && comment.errors.subject) {
                     comment.errors.subject = null;
                 }
+                console.log('commentTextLengthCheck COOL', comment, subject);
             }
         };
 
