@@ -2425,17 +2425,17 @@ a:link, a:visited {
 
         .dropdown_item {
             text-align: left;
+            cursor: pointer;
+
+            &:hover {
+                color: vars.$deep_sky_blue;
+                @include mixins_n_extends.tablet {
+                    color: vars.$medium_black;
+                }
+            }
 
             .item_name {
-                cursor: pointer;
                 padding: 5px 10px;
-
-                &:hover {
-                    color: vars.$deep_sky_blue;
-                    @include mixins_n_extends.tablet {
-                        color: vars.$medium_black;
-                    }
-                }
             }
 
             .item_category {

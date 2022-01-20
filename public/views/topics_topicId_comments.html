@@ -692,7 +692,6 @@
             </div>
             <form cos-disabled="!app.user.loggedIn" name="argumentForm">
                 <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': form.errors.type, 'placeholder': !form.type}">
-
                     <div class="dropdown_selection">
                         <div class="dropdown_text">
                             {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + form.type | uppercase) | translate}} <span ng-if="!form.type">*</span>
@@ -709,14 +708,14 @@
 
                     <div class="dropdown with_description">
                         <div class="column">
-                            <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]">
-                                <div class="item_name" ng-click="form.type = type">
+                            <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="form.type = type">
+                                <div class="item_name">
                                     {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
                                 </div>
                             </div>
                         </div>
                         <div class="column dropdown_item_descriptions">
-                            <div class="item_description" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]">
+                            <div class="item_description" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="form.type = type">
                                 <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
                                 <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit:
                                     2084</p>

@@ -4,6 +4,7 @@ angular
         return {
             restrict: 'A',
             link: function (scope, elem, attr) {
+
                 var elementClickHandler = function () {
                     elem.toggleClass('dropdown_active');
                     elem.addClass('active_recent');
