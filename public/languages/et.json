@@ -907,7 +907,7 @@
       "COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_PRO": "Use this option if you agree and want to leave an argument that is supportive or in favor of the topic.",
       "COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_CON": "Use this option if you disagree and want to leave an argument that does not support the topic.",
       "COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_POI": "Use this option if you want to make a short statement or a point, ask a question or clarity about the topic.",
-      "COMMENT_TYPE_CHARACTER_LIMIT": "Character limit: {{numberOfCharacters}}",
+      "COMMENT_TYPE_CHARACTER_LIMIT": "Tähemärkide piirang: {{numberOfCharacters}}",
       "PLACEHOLDER_WRITE_REPLY_HERE": "Kirjuta vastus siia...",
       "PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT": "Mis on sinu väide?",
       "PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT": "Kuidas oma väidet selgitad ja tõestad?",

@@ -3,6 +3,7 @@
 
 body, html {
     font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
     padding: 0;
     margin: 0;
     height: 100%;
@@ -381,7 +382,6 @@ h2 {
 
 input, textarea {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 14px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -2324,7 +2324,6 @@ a:link, a:visited {
 /* CLASSIC DROPDOWN */
 .classic_dropdown {
     color: vars.$medium_black;
-    font-size: 13px;
     border-radius: 4px;
     background-color: vars.$white;
     border: solid 1px vars.$lightest_gray;
@@ -3355,4 +3354,19 @@ a:link, a:visited {
 
 .no-opacity {
     opacity: 0;
+}
+
+.EasyMDEContainer {
+    font-size: inherit;
+
+    .editor-statusbar {
+        font-size: inherit;
+        text-align: inherit;
+        padding-left: 0;
+        padding-right: 0;
+
+        .charCounter {
+            margin: 0;
+        }
+    }
 }

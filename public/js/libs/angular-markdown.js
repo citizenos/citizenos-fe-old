@@ -41,10 +41,11 @@ angular.module('cosmarkdown', ['ngSanitize']).provider('markdown', function () {
         restrict: 'A',
         scope: {
             item: '=ngModel',
-            limit: '=maxlength'
+            limit: '=maxlength',
+            cosMarkdownTranslateCharacterStatusKey: '='
         },
         link: function (scope, element, attrs) {
-            console.log('angular-markdown', element, attrs);
+            console.log('cosMarkdown', scope, element, attrs);
 
             var curLength = 0;
             var getCharLength = function () {
@@ -102,10 +103,18 @@ angular.module('cosmarkdown', ['ngSanitize']).provider('markdown', function () {
                 status: [{
                     className: "charCounter",
                     defaultValue: function (el) {
-                        el.innerHTML = scope.limit - getCharLength();
+                        if (scope.cosMarkdownTranslateCharacterStatusKey) {
+                            el.innerHTML = $translate.instant(scope.cosMarkdownTranslateCharacterStatusKey, {
+                                numberOfCharacters: scope.limit,
+                            }) + ' (' + (scope.limit - getCharLength()) + ')';
+                        }
                     },
                     onUpdate: function (el) {
-                        el.innerHTML = scope.limit - getCharLength();
+                        if (scope.cosMarkdownTranslateCharacterStatusKey) {
+                            el.innerHTML = $translate.instant(scope.cosMarkdownTranslateCharacterStatusKey, {
+                                numberOfCharacters: scope.limit,
+                            }) + ' (' + (scope.limit - getCharLength()) + ')';
+                        }
                     }
                 }],
                 element: element[0],
