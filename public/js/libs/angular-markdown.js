@@ -139,7 +139,12 @@ angular.module('cosmarkdown', ['ngSanitize']).provider('markdown', function () {
                 return true;
             };
 
-            simplemde.codemirror.setOption("maxLength", scope.limit);
+            scope.$watch('limit', function (newVal, oldVal) {
+                if (newVal) {
+                    simplemde.codemirror.setOption("maxLength", newVal);
+                }
+            });
+
             simplemde.codemirror.on("beforeChange", enforceMaxLength);
             simplemde.codemirror.on("change", function () {
                 curLength = simplemde.value().length;
