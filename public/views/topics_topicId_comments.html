@@ -377,8 +377,8 @@
 
                     <!-- REPLY TO COMMENT  -->
                     <div class="post_argument_wrap" ng-if="comment.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                        <div class="post_argument_overlay" ng-if="!app.user.loggedIn">
-                            <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
+                        <div ng-if="!app.user.loggedIn">
+                            <h3 class="text-center" translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
                                 <div class="blue_link">log in</div>
                                 to comment
                             </h3>
@@ -655,8 +655,8 @@
                     </div>
                     <!-- REPLY TO REPLY -->
                     <div class="post_argument_wrap" ng-if="reply.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                        <div class="post_argument_overlay" ng-if="!app.user.loggedIn">
-                            <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
+                        <div ng-if="!app.user.loggedIn">
+                            <h3 class="text-center" translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
                                 <div class="blue_link">log in</div>
                                 to comment
                             </h3>
