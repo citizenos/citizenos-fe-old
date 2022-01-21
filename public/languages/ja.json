@@ -569,13 +569,13 @@
       "LNK_CITIZENOS_WEBSITE": "Citizen OS ウェブサイト"
     }
   },
-  "LBL_CONTEXT_MY_TOPICS": "my topics",
-  "LBL_CONTEXT_MY_GROUPS": "my groups",
-  "LBL_CONTEXT_PUBLIC_TOPICS": "public topics",
-  "LBL_CONTEXT_PUBLIC_GROUPS": "public groups",
+  "LBL_CONTEXT_MY_TOPICS": "マイトピック",
+  "LBL_CONTEXT_MY_GROUPS": "マイグループ",
+  "LBL_CONTEXT_PUBLIC_TOPICS": "公開トピック",
+  "LBL_CONTEXT_PUBLIC_GROUPS": "公開グループ",
   "DIRECTIVES": {
     "COS_MODAL": {
-      "BTN_SAVE": "Save",
+      "BTN_SAVE": "保存",
       "BTN_CANCEL": "@:LNK_CANCEL"
     },
     "COS_MODAL_DATEPICKER": {
@@ -589,7 +589,7 @@
       "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource :(",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Still, you may recover from the unfortunate event by",
-      "BTN_LOGIN": "Logging in",
+      "BTN_LOGIN": "ログイン中",
       "BTN_REQUEST_ACCESS": "Requesting access to the resource"
     },
     "HOME": {
@@ -600,8 +600,8 @@
       "LNK_EDIT_FILTER": "フィルターの編集",
       "LBL_CATEGORY": "カテゴリ:",
       "LBL_STATUS": "Status:",
-      "BTN_CATEGORY": "CATEGORY",
-      "BTN_STATUS": "STATUS",
+      "BTN_CATEGORY": "カテゴリ",
+      "BTN_STATUS": "ステータス",
       "BTN_SUBMIT_FILTER": "Submit filter",
       "HEADING_NO_RESUTS": "@:VIEWS.MY.NO_RESULTS_FOUND_TITLE",
       "HEADING_GET_STARTED": "We can’t display results for what you’re searching. Maybe try another search or initiate the discussion",
