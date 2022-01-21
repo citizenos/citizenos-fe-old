@@ -523,33 +523,33 @@
   "TXT_TOPIC_CATEGORY_VARIA": "Varia",
   "TXT_TOPIC_CATEGORY_YOUTH": "Youth (ユース)",
   "TXT_TOPIC_CATEGORY_SCIENCE": "科学技術",
-  "TXT_TOPIC_CATEGORY_SOCIETY": "Democracy and civil society",
+  "TXT_TOPIC_CATEGORY_SOCIETY": "民主主義と市民社会",
   "TXT_TOPIC_CATEGORY_EUROCHANGEMAKERS": "EuroChangeMakers",
   "LAYOUTS": {
     "MAIN": {
-      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "Search topics, groups…"
+      "PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS": "トピック/グループを検索…"
     }
   },
   "DEFAULT": {
     "NAV": {
-      "LNK_LOG_IN_REGISTER": "Log in / Register to Citizen OS",
+      "LNK_LOG_IN_REGISTER": "Citizen OSにログイン/登録",
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
-      "HEADING_TOPICS": "Topics",
-      "LNK_CREATE_TOPICS": "Create topic",
-      "LNK_MY_TOPICS": "My topics",
-      "LNK_PUBLIC_TOPICS": "Public topics",
+      "HEADING_TOPICS": "トピック",
+      "LNK_CREATE_TOPICS": "トピックを作成",
+      "LNK_MY_TOPICS": "マイトピック",
+      "LNK_PUBLIC_TOPICS": "公開トピック",
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
-      "LNK_CREATE_GROUPS": "Create group",
-      "LNK_MY_GROUPS": "My groups",
-      "LNK_ABOUT": "About",
+      "LNK_CREATE_GROUPS": "グループを作成",
+      "LNK_MY_GROUPS": "マイグループ",
+      "LNK_ABOUT": "プラットフォームについて",
       "LNK_FAQ": "FAQ",
-      "LNK_HELP": "Help",
-      "LNK_LOG_OUT": "Log out",
-      "LNK_ACTIVITY": "Activity feed"
+      "LNK_HELP": "ヘルプ",
+      "LNK_LOG_OUT": "ログアウト",
+      "LNK_ACTIVITY": "活動履歴"
     },
     "NAV_MOBILE": {
-      "BTN_SEARCH": "Search",
-      "BTN_OVERVIEW": "Overview",
+      "BTN_SEARCH": "検索",
+      "BTN_OVERVIEW": "概要",
       "BTN_EDIT": "Edit",
       "BTN_SETTINGS": "Actions",
       "BTN_MENU": "Menu",
