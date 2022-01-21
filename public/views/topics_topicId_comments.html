@@ -153,8 +153,7 @@
                             </div>
 
                             <form cos-disabled="::!app.user.loggedIn" name="postArgument">
-                                <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': form.errors.type}">
-
+                                <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': comment.errors.type, 'placeholder': !comment.editType}">
                                     <div class="dropdown_selection">
                                         <div class="dropdown_text">
                                             {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + comment.editType | uppercase) | translate}} <span ng-if="!comment.editType">*</span>
@@ -169,18 +168,25 @@
                                         </div>
                                     </div>
 
-                                    <div class="dropdown">
-                                        <div class="dropdown_item" ng-repeat="type in TopicCommentTypes">
-                                            <div class="item_name" ng-click="comment.editType = type">
-                                                {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
+                                    <div class="dropdown with_description">
+                                        <div class="column">
+                                            <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="comment.editType = type">
+                                                <div class="item_name">
+                                                    {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="column dropdown_item_descriptions">
+                                            <div class="item_description" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="comment.editType = type">
+                                                <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
+                                                <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit: 2084</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <input id="comment_edit_subject" ng-if="comment.showEdit" ng-keyup="commentSubjectLengthCheck(comment, comment.editSubject)" translate
-                                       translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_SUBJECT" ng-model="comment.editSubject" class="gray_borders"
-                                       ng-class="{'error_input': comment.errors.subject}" maxlength="COMMENT_SUBJECT_MAXLENGTH" focus-if required>
+                                <input id="comment_edit_subject" ng-if="comment.showEdit" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_SUBJECT" ng-model="comment.editSubject" class="gray_borders"
+                                       ng-class="{'error_input': comment.errors.subject}" maxlength="{{COMMENT_SUBJECT_MAXLENGTH}}" focus-if required>
 
                                 <label for="comment_edit_subject" class="error_label" ng-if="comment.errors.subject">
                                     <div class="table_cell">
@@ -190,8 +196,7 @@
                                 </label>
 
                                 <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'"  id="comment_edit" ng-if="comment.showEdit" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_TEXT' | translate}}"
-                                          class="gray_borders" ng-model="comment.editText" ng-keyup="commentTextLengthCheck(comment, comment.editText)"
-                                          ng-class="{'error_input': comment.errors.text}" maxlength="COMMENT_TYPES_MAXLENGTH[form.type] || COMMENT_TYPES_MAXLENGTH['pro']" required></textarea>
+                                          class="gray_borders" ng-model="comment.editText" ng-class="{'error_input': comment.errors.text}" maxlength="COMMENT_TYPES_MAXLENGTH[comment.editType] || COMMENT_TYPES_MAXLENGTH['pro']" required></textarea>
 
                                 <label for="comment_edit" class="error_label" ng-if="comment.errors.text">
                                     <div class="table_cell">
