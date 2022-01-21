@@ -550,23 +550,23 @@
     "NAV_MOBILE": {
       "BTN_SEARCH": "検索",
       "BTN_OVERVIEW": "概要",
-      "BTN_EDIT": "Edit",
+      "BTN_EDIT": "編集",
       "BTN_SETTINGS": "Actions",
-      "BTN_MENU": "Menu",
+      "BTN_MENU": "メニュー",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
       "HEADING_RESULTS_IN": "Context search results in",
-      "LNK_VIEW_MORE_RESULTS": "View more results",
-      "TXT_OOPS_NO_RESULTS": "Oops, we couldn’t find any results matching your search :(",
-      "TXT_MAYBE_TYPO": "Maybe you have a typo in your search?"
+      "LNK_VIEW_MORE_RESULTS": "さらに結果を読み込む",
+      "TXT_OOPS_NO_RESULTS": "検索に一致する結果が見つかりませんでした :(",
+      "TXT_MAYBE_TYPO": "誤字がないかご確認ください。"
     },
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
       "BTN_HOW_DOES_IT_WORK": "How does it work?",
-      "LNK_PRIVACY_POLICY": "Citizen OS Privacy Policy",
-      "LNK_CITIZENOS_WEBSITE": "Citizen OS Website"
+      "LNK_PRIVACY_POLICY": "Citizen OS プライバシーポリシー",
+      "LNK_CITIZENOS_WEBSITE": "Citizen OS ウェブサイト"
     }
   },
   "LBL_CONTEXT_MY_TOPICS": "my topics",
@@ -597,8 +597,8 @@
       "LNK_SHOW": "Show",
       "LNK_CLEAR_FILTERS": "Clear filters",
       "LBL_FILTER_THE_TOPICS": "Filter the topics",
-      "LNK_EDIT_FILTER": "Edit filter",
-      "LBL_CATEGORY": "Category:",
+      "LNK_EDIT_FILTER": "フィルターの編集",
+      "LBL_CATEGORY": "カテゴリ:",
       "LBL_STATUS": "Status:",
       "BTN_CATEGORY": "CATEGORY",
       "BTN_STATUS": "STATUS",
