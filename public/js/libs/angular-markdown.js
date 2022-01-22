@@ -45,8 +45,6 @@ angular.module('cosmarkdown', ['ngSanitize']).provider('markdown', function () {
             cosMarkdownTranslateCharacterStatusKey: '='
         },
         link: function (scope, element, attrs) {
-            console.log('cosMarkdown', scope, element, attrs);
-
             var curLength = 0;
             var getCharLength = function () {
                 if (scope.item && scope.item.length) {
@@ -55,77 +53,75 @@ angular.module('cosmarkdown', ['ngSanitize']).provider('markdown', function () {
 
                 return curLength;
             };
+            var CHAR_COUNTER_ELEMENT_CLASS_NAME = 'charCounter';
+
+            var updateCharacterCount = function (el) {
+                if (scope.cosMarkdownTranslateCharacterStatusKey && scope.limit) {
+                    el.innerHTML = $translate.instant(scope.cosMarkdownTranslateCharacterStatusKey, {
+                        numberOfCharacters: scope.limit,
+                    }) + ' (' + (scope.limit - getCharLength()) + ')';
+                }
+            };
+
             var config = {
                 placeholder: attrs.placeholder,
                 toolbar: [
                     {
-                        name: "bold",
+                        name: 'bold',
                         action: EasyMDE.toggleBold,
-                        className: "fa fa-bold",
+                        className: 'fa fa-bold',
                         title: $translate.instant('MDEDITOR_TOOLTIP_BOLD'),
                     },
                     {
-                        name: "italic",
+                        name: 'italic',
                         action: EasyMDE.toggleItalic,
-                        className: "fa fa-italic",
+                        className: 'fa fa-italic',
                         title: $translate.instant('MDEDITOR_TOOLTIP_ITALIC'),
                     },
                     {
-                        name: "strikethrough",
+                        name: 'strikethrough',
                         action: EasyMDE.toggleStrikethrough,
-                        className: "fa fa-strikethrough",
+                        className: 'fa fa-strikethrough',
                         title: $translate.instant('MDEDITOR_TOOLTIP_STRIKETHROUGH'),
                     },
                     '|',
                     {
-                        name: "ordered-list	",
+                        name: 'ordered-list	',
                         action: EasyMDE.toggleOrderedList,
-                        className: "fa fa-list-ol",
+                        className: 'fa fa-list-ol',
                         title: $translate.instant('MDEDITOR_TOOLTIP_ORDERED_LIST'),
                     },
                     {
-                        name: "unordered-list	",
+                        name: 'unordered-list	',
                         action: EasyMDE.toggleUnorderedList,
-                        className: "fa fa-list-ul",
+                        className: 'fa fa-list-ul',
                         title: $translate.instant('MDEDITOR_TOOLTIP_UNORDERED_LIST'),
                     },
                     {
-                        name: "preview	",
+                        name: 'preview	',
                         action: EasyMDE.togglePreview,
-                        className: "fa fa-eye no-disable",
+                        className: 'fa fa-eye no-disable',
                         title: $translate.instant('MDEDITOR_TOOLTIP_PREVIEW'),
                     }
                 ],
                 preview: true,
                 blockStyles: {
-                    italic: "_"
+                    italic: '_'
                 },
                 status: [{
-                    className: "charCounter",
-                    defaultValue: function (el) {
-                        if (scope.cosMarkdownTranslateCharacterStatusKey && scope.limit) {
-                            el.innerHTML = $translate.instant(scope.cosMarkdownTranslateCharacterStatusKey, {
-                                numberOfCharacters: scope.limit,
-                            }) + ' (' + (scope.limit - getCharLength()) + ')';
-                        }
-                    },
-                    onUpdate: function (el) {
-                        if (scope.cosMarkdownTranslateCharacterStatusKey && scope.limit) {
-                            el.innerHTML = $translate.instant(scope.cosMarkdownTranslateCharacterStatusKey, {
-                                numberOfCharacters: scope.limit,
-                            }) + ' (' + (scope.limit - getCharLength()) + ')';
-                        }
-                    }
+                    className: CHAR_COUNTER_ELEMENT_CLASS_NAME,
+                    defaultValue: updateCharacterCount,
+                    onUpdate: updateCharacterCount
                 }],
                 element: element[0],
                 initialValue: scope.item
             };
 
-            var simplemde = new markdown(config);
+            var easymde = new markdown(config);
             var enforceMaxLength = function (cm, change) {
-                var maxLength = cm.getOption("maxLength");
+                var maxLength = cm.getOption('maxLength');
                 if (maxLength && change.update) {
-                    var str = change.text.join("\n");
+                    var str = change.text.join('\n');
                     var delta = str.length - (cm.indexFromPos(change.to) - cm.indexFromPos(change.from));
                     if (delta <= 0) {
                         return true;
@@ -133,7 +129,7 @@ angular.module('cosmarkdown', ['ngSanitize']).provider('markdown', function () {
                     delta = cm.getValue().length + delta - maxLength;
                     if (delta > 0) {
                         str = str.substr(0, str.length - delta);
-                        change.update(change.from, change.to, str.split("\n"));
+                        change.update(change.from, change.to, str.split('\n'));
                     }
                 }
                 return true;
@@ -141,15 +137,21 @@ angular.module('cosmarkdown', ['ngSanitize']).provider('markdown', function () {
 
             scope.$watch('limit', function (newVal, oldVal) {
                 if (newVal) {
-                    simplemde.codemirror.setOption("maxLength", newVal);
+                    easymde.codemirror.setOption('maxLength', newVal);
+                    if (easymde.gui.statusbar) {
+                        var statusBarElement = easymde.gui.statusbar.getElementsByClassName(CHAR_COUNTER_ELEMENT_CLASS_NAME)[0];
+                        if (statusBarElement) {
+                            updateCharacterCount(statusBarElement);
+                        }
+                    }
                 }
             });
 
-            simplemde.codemirror.on("beforeChange", enforceMaxLength);
-            simplemde.codemirror.on("change", function () {
-                curLength = simplemde.value().length;
+            easymde.codemirror.on('beforeChange', enforceMaxLength);
+            easymde.codemirror.on('change', function () {
+                curLength = easymde.value().length;
                 scope.$apply(function () {
-                    scope.item = simplemde.value();
+                    scope.item = easymde.value();
                 });
             });
         }
