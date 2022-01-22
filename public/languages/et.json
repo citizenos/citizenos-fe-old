@@ -41,7 +41,7 @@
   "TOOLTIP_REPORT_TOPIC": "@:MODALS.TOPIC_REPORT_HEADING",
   "TOOLTIP_TOPIC_VISIBILITY_PUBLIC": "@:TXT_TOPIC_VISIBILITY_PUBLIC",
   "TOOLTIP_TOPIC_VISIBILITY_PRIVATE": "@:TXT_TOPIC_VISIBILITY_PRIVATE",
-  "HELP_CENTER_TOOLTIP_HEADING": "FOR YOUR INFORMATION",
+  "HELP_CENTER_TOOLTIP_HEADING": "MUIDE...",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Whenever you find yourself stuck or confused, just open up the Help Centre to find the answers to your questions. The Help Centre is always accessible via the bubble in the bottom right corner.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
   "HELP_WIDGET": {
@@ -621,7 +621,7 @@
       "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
       "TXT_CITIZENOS_COMMUNITY": "E-democracy discussions with Citizen OS team",
       "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "Join us in our platform development and e-democracy discussions.",
-      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
+      "LBL_CITIZENOS_COMMUNITY": "Citizen OSi puudutavad teemad"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Gruppe: {{count}}",
