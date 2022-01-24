@@ -552,7 +552,7 @@
             <div class="lightbox_content invite_url" ng-if="tabSelected === 'share' && group.canUpdate() && form.join.token">
 
                 <div class="lightbox_section" ng-if="group.canUpdate()">
-                    <h3 ng-translate="MODALS.TOPIC_SETTINGS_HEADING_LINK_SHARING">Link sharing</h3>
+                    <h3 translate="MODALS.TOPIC_SETTINGS_HEADING_LINK_SHARING">Link sharing</h3>
                     <div class="share_link">
                         <div class="table_row">
                             <div class="searchbox_with_icon_and_text only_text">
@@ -566,7 +566,7 @@
                             </div>
                         </div>
                         <div class="permissions">
-                            <div class="label" ng-translate="MODALS.GROUP_CREATE_SETTINGS_LABEL_DROPDOWN_PERMISSION_DESCRIPTION">Anyone with the link can</div>
+                            <div class="label" translate="MODALS.GROUP_CREATE_SETTINGS_LABEL_DROPDOWN_PERMISSION_DESCRIPTION">Anyone with the link can</div>
                             <div cos-dropdown class="classic_dropdown">
                                 <div class="dropdown_selection">
                                     <div class="dropdown_text">
@@ -601,18 +601,18 @@
                 </div>
 
                 <div class="lightbox_section social_sharing" ng-if="group.canUpdate()">
-                    <h3 ng-translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_SOCIAL_SHARING">Social sharing</h3>
+                    <h3 translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_SOCIAL_SHARING">Social sharing</h3>
                     <a href="#" socialshare socialshare-provider="facebook" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-facebook-v2"></div></a>
                     <a href="#" socialshare socialshare-provider="linkedin" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-linkedin-v2"></div></a>
                     <a href="#" socialshare socialshare-provider="twitter" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-twitter-v2"></div></a>
                 </div>
 
                 <div class="lightbox_section" ng-if="group.canUpdate()">
-                    <h3 ng-translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_QR_SHARING">QR sharing</h3>
+                    <h3 translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_QR_SHARING">QR sharing</h3>
                     <div class="qr_code">
                         <qrcode data="{{form.urlJoin}}" size="120" version="4" error-correction-level="L" download class="qr_img"></qrcode>
                     </div>
-                    <!--a href="#fixme" class="table_cell" ng-translate="MODALS.TOPIC_SETTINGS_LINK_QR_CODE_PDF">Download QR code PDF</a-->
+                    <!--a href="#fixme" class="table_cell" translate="MODALS.TOPIC_SETTINGS_LINK_QR_CODE_PDF">Download QR code PDF</a-->
                 </div>
 
             </div>
