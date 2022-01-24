@@ -45,6 +45,7 @@
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "お困りの際はヘルプセンターをご参照ください。ヘルプセンターは画面右下からアクセスできます。",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
   "HELP_WIDGET": {
+    "HEADER_TITLE": "Help centre",
     "TITLE": "何でもご相談ください",
     "DESCRIPTION": "ご質問やご意見がありましたら、以下にメッセージをお送りください。",
     "LINK_FAQ": "よくあるご質問",
