@@ -45,6 +45,7 @@
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Kui leiad end olevat ummikus või segaduses, ava Abikeskus, et leida oma küsimustele vastused. Abikeskusesse pääseb all paremas nurgas asuva \"mulli\" abil.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
   "HELP_WIDGET": {
+    "HEADER_TITLE": "Help centre",
     "TITLE": "Abistame sind rõõmuga!",
     "DESCRIPTION": "Kas sul on küsimusi või kommentaare? Allpool saad meile sõnumi saata.",
     "LINK_FAQ": "Korduma kippuvad küsimused",
