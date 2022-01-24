@@ -12,12 +12,41 @@ angular
             showNav: false,
             showSearchFiltersMobile: false,
             showTestingEnvNotification: $location.host() === 'test.app.citizenos.com',
+            showHelp: false,
             isLoading: true,
             unreadActivitiesCount: 0,
             currentUrlAbs: $location.absUrl()
         };
 
         $scope.app.user = sAuth.user;
+
+        $scope.app.toggleHelp = function () {
+            $scope.app.showHelp = !$scope.app.showHelp;
+        };
+
+        $scope.app.toggleHelpTooltip = function () {
+            $scope.app.helptooltip = true;
+        }
+
+        if (!$cookies.get('helptooltip') && cosConfig.showHelpTooltip) {
+            $cookies.put('helptooltip', true);
+            $scope.app.toggleHelpTooltip();
+            $timeout(function () {
+                if ($rootScope.wWidth > 560) {
+                    $scope.app.toggleHelp();
+                }
+            });
+        }
+
+
+        $scope.app.helpBubbleAnimate = function () {
+            var bubble = angular.element( document.querySelector( '#help_bubble' ) );
+            console.log(bubble);
+            bubble.addClass('animate');
+            $timeout(function () {
+                bubble.removeClass('animate');
+            }, 2000);
+        }
 
         sTranslate
             .getCurrentLanguage()

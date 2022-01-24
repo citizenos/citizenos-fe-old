@@ -1,11 +1,20 @@
 <div ng-controller="HelpFormCtrl">
-    <div class="help_widget" ng-if="showHelp && app.config.newHelp">
+    <div id="help_tooltip" ng-if="app.helptooltip" ng-class="{help_visible: app.showHelp}">
+        <div class="tip_heading" translate="HELP_CENTER_TOOLTIP_HEADING">FOR YOUR INFORMATION</div>
+        <div class="tip_desription" translate="HELP_CENTER_TOOLTIP_DESCRIPTION">Whenever you find yourself stuck or confused, just open up the Help Center to find the answers to your questions. The Help Center is always accessible via the bubble in the bottom right corner.</div>
+        <div class="help_bubble_icon" ><div class="help_icon"></div></div>
+        <div class="tip_button_wrap"><button class="blue_white_button tip_button" translate="HELP_CENTER_TOOLTIP_BTN_OK" ng-click="closeTootlip()">OK</button></div>
+        <div class="tip-arrow"  ng-class="{help_visible: app.showHelp}"></div>
+    </div>
+    <div id="dark_overlay" ng-if="(app.showHelp || app.helptooltip) && app.config.newHelp"></div>
+
+    <div class="help_widget" ng-if="app.showHelp && app.config.newHelp">
         <div class="help_top">
             <div class="help_back_link" ng-click="helpback()"><div class="sprite sprite-icon-help-back"></div></div>
             <div class="help_title_text_wrapper">
                 <div class="help_title_text">Help center</div>
             </div>
-            <div id="help_close" ng-click="closeHelp()">
+            <div id="help_close" ng-click="app.toggleHelp()">
                 <div class="table_cell">
                     <div class="sprite sprite sprite-btn-popup-close2x">
                     </div>
@@ -13,13 +22,13 @@
             </div>
         </div>
         <div class="help_content">
-            <iframe id="help_frame" name="help_frame" ng-if="showHelp" frameborder="0"  ng-src="https://citizenos.com/help?app=true" width="100%"></iframe>
+            <iframe id="help_frame" name="help_frame" ng-if="app.showHelp" frameborder="0"  ng-src="https://citizenos.com/help?app=true" width="100%"></iframe>
         </div>
     </div>
 
-    <div ng-show="!app.config.helpink" class="help_bubble" ng-click="showHelp = !showHelp"></div>
-    <a ng-if="app.config.helplink && !app.config.newHelp" class="help_bubble" ng-href={{app.config.helplink}} target="_blank"></a>
-    <div class="help_widget_old" ng-if="showHelp && !app.config.newHelp">
+    <div ng-show="!app.config.helplink || app.config.newHelp" id="help_bubble" ng-click="app.toggleHelp();"></div>
+    <a ng-if="app.config.helplink && !app.config.newHelp" id="help_bubble" ng-href={{app.config.helplink}} target="_blank"></a>
+    <div class="help_widget_old" ng-if="app.showHelp && !app.config.newHelp">
         <div id="help_close" ng-click="closeHelp()">
             <div class="table_cell">
                 <div class="sprite sprite sprite-icon-closemenu2x">

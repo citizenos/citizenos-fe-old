@@ -1,7 +1,5 @@
 @use 'vars';
 @use 'mixins_n_extends';
-@use 'icons';
-@use 'base';
 
 .comments_section {
     margin-top: 60px;
@@ -675,7 +673,7 @@
 
                                 &:hover {
                                     .sprite.desktop_fix {
-                                        @extend .sprite-icon-reportmessage-hover2x;
+                                        @extend %sprite-icon-reportmessage-hover2x;
                                     }
                                 }
                             }
