@@ -45,6 +45,7 @@
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Whenever you find yourself stuck or confused, just open up the Help Centre to find the answers to your questions. The Help Centre is always accessible via the bubble in the bottom right corner.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
   "HELP_WIDGET": {
+    "HEADER_TITLE": "Help centre",
     "TITLE": "Тука сме за помош!",
     "DESCRIPTION": "Имате прашања или коментари? Само пратете ни порака подолу.",
     "LINK_FAQ": "Најчесто поставувани прашања",
