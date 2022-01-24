@@ -33,8 +33,28 @@ angular
             sUser
                 .updateTermsVersion(cosConfig.legal.version)
                 .then(function () {
-                    $window.location.href = $stateParams.redirectSuccess;
+                    sUser
+                        .listUserConnections(sAuth.user.id)
+                        .then(
+                            function (connections) {
+                                var filtered = connections.rows.filter(function (con) {
+                                    return ['esteid', 'smartid'].indexOf(con.connectionId) > -1;
+                                });
+                                if (filtered.length) {
+                                    $window.location.href = $stateParams.redirectSuccess;
+                                } else {
+                                    var dialog = ngDialog.open({
+                                        template: '/views/modals/add_eid.html',
+                                        scope: $scope
+                                    });
+
+                                    dialog.closePromise.then(function () {
+                                        $window.location.href = $stateParams.redirectSuccess;
+                                    });
+                                }
+                            });
                 });
+
         };
 
     }]);

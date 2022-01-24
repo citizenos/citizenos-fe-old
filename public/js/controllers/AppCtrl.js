@@ -199,6 +199,7 @@ angular
             }
         };
 
+
         $scope.app.doLogout = function () {
             sAuth
                 .logout()

@@ -78,4 +78,10 @@ angular
             return $http.get(path).then(defaultSuccess, defaultError);
         };
 
+        sUser.addUserConnection = function (userId, connection, token, cert, redirectSuccess) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/:userId/userconnections/:connection', {userId: userId, connection: connection});
+
+            return $http.post(path, {token: token, cert: cert, redirectSuccess: redirectSuccess}).then(defaultSuccess, defaultError);
+        }
+
     }]);
