@@ -45,6 +45,7 @@
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Kdykoli se ocitnete v zaseknutí nebo zmatku, otevřete centrum nápovědy, abyste našli odpovědi na vaše otázky. Centrum nápovědy je vždy dostupné prostřednictvím bubliny v pravém dolním rohu.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "Ok",
   "HELP_WIDGET": {
+    "HEADER_TITLE": "Help centre",
     "TITLE": "Jsme tady, abychom pomohli!",
     "DESCRIPTION": "Máte dotazy nebo komentáře? Stačí nám poslat zprávu níže.",
     "LINK_FAQ": "Často kladené otázky",
