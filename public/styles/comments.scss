@@ -165,7 +165,6 @@
                 }
 
                 .argument_wrap {
-
                     .argument_edit_wrap {
                         padding-bottom: 20px;
                     }
@@ -494,10 +493,13 @@
                             }
 
                             .argument_text {
-                                font-size: 14px;
                                 margin-bottom: 5px;
                                 word-break: break-word;
                                 white-space: pre-line;
+
+                                p, ul, ol {
+                                    margin: 0;
+                                }
                             }
 
                             .read_more_link {
@@ -717,10 +719,10 @@
                 background: #F6F6F6;
                 padding: 20px;
                 position: relative;
+                margin-bottom: 20px;
 
                 input, textarea {
                     width: 100%;
-                    font-size: 13px;
                     box-sizing: border-box;
                     padding: 6px 10px;
                 }
@@ -738,12 +740,42 @@
                     margin-bottom: 15px;
 
                     &.error_input {
-                        margin-bottom: 0px;
+                        margin-bottom: 0;
                     }
                 }
 
                 .classic_dropdown {
                     margin-bottom: 8px;
+
+                    .dropdown {
+                        .dropdown_item {
+                            &.is_pro {
+                                border-left: 2px solid vars.$nature_green;
+                            }
+
+                            &.is_con {
+                                border-left: 2px solid vars.$pinky_red;
+                            }
+
+                            &.is_poi {
+                                border-left: 2px solid vars.$light_blue;
+                            }
+                        }
+
+                        &.with_description {
+                            .is_pro {
+                                background-color: vars.$nature_green_light;
+                            }
+
+                            .is_con {
+                                background-color: vars.$pinky_red_light;
+                            }
+
+                            .is_poi {
+                                background-color: vars.$light_blue_light;
+                            }
+                        }
+                    }
                 }
 
                 .post_argument_overlay {
