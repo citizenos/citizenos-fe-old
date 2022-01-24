@@ -18,7 +18,7 @@
 
             </div>
 
-            <div class="lightbox_content" ng-controller="LoginSmartIdFormCtrl">
+            <div class="lightbox_content">
                 <form name="loginMobiilIdForm" novalidate>
                     <div class="sign_in_section sid">
                         <div class="sprite_big sprite sprite-smart-i-d2x"></div>
@@ -51,8 +51,8 @@
                                 <div class="loader"></div>
                             </div>
                         </div>
-                        <button type="submit" ng-click="doLoginSmartId()" cos-disabled="formSmartId.$invalid || formSmartId.isLoading" class="blue_button"
-                                translate="MODALS.LOGIN_SMARTID_BTN_LOG_IN_SID">Log in with Smart-ID
+                        <button type="submit" ng-click="authSmartId()" cos-disabled="formSmartId.$invalid || formSmartId.isLoading" class="blue_button"
+                                translate="MODALS.LOGIN_SMARTID_BTN_AUTHENTICATE_SID">Log in with Smart-ID
                         </button>
                     </div>
                 </form>

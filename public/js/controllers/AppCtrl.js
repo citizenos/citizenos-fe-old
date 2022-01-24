@@ -199,9 +199,6 @@ angular
             }
         };
 
-        var dialog = ngDialog.open({
-            template: '/views/modals/add_eid.html'
-        });
 
         $scope.app.doLogout = function () {
             sAuth

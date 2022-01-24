@@ -17,7 +17,7 @@ angular
         };
         init();
 
-        $scope.doLoginSmartId = function () {
+        $scope.authSmartId = function () {
             $log.debug('LoginEsteIdFormCtrl.doLoginMobiilId()');
 
             $scope.formSmartId.isLoading = true;

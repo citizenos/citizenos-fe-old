@@ -19,7 +19,7 @@ angular
 
         $scope.authMethodsAvailable = $scope.ngDialogData.authMethodsAvailable;
 
-        $scope.doLoginMobiilId = function () {
+        $scope.authMobiilId = function () {
             $log.debug('LoginEsteIdFormCtrl.doLoginMobiilId()');
 
             $scope.formMobile.isLoading = true;
@@ -41,7 +41,7 @@ angular
                 });
         };
 
-        $scope.doLoginIdCard = function () {
+        $scope.authIdCard = function () {
             $log.debug('LoginEsteIdFormCtrl.doLoginIdCard()');
 
             $scope.isLoadingIdCard = true;

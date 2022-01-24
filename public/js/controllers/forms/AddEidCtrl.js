@@ -18,6 +18,7 @@ angular
             ngDialog
                 .open({
                     template: '/views/modals/login_esteid.html',
+                    controller: 'ConnectEsteIdFormCtrl',
                     scope: $scope, // Pass on $scope so that I can access AppCtrl
                     data: {
                         authMethodsAvailable: $scope.authMethodsAvailable
@@ -31,6 +32,7 @@ angular
         $scope.doConnectSmartId = function () {
             ngDialog
                 .open({
+                    controller: 'ConnectSmartIdFormCtrl',
                     template: '/views/modals/login_smartid.html',
                     scope: $scope // Pass on $scope so that I can access AppCtrl
                 });

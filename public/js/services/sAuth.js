@@ -102,6 +102,10 @@ angular
             return $http.get(path, {params: {token: token}}).then(success, defaultError);
         };
 
+        sAuth.idCardInit = function () {
+            return $http.get(cosConfig.features.authentication.idCard.url, {withCredentials: true}); // withCredentials so that client certificate is sent
+        };
+
         sAuth.loginIdCard = function () {
             var success = function (response) {
                 $log.debug('Auth.loginId', 'success');
@@ -112,8 +116,7 @@ angular
                 return response;
             };
 
-            return $http
-                .get(cosConfig.features.authentication.idCard.url, {withCredentials: true}) // withCredentials so that client certificate is sent
+            return sAuth.idCardInit()
                 .then(function (response) {
                     if (response.data.data.token) {
                         var path = sLocation.getAbsoluteUrlApi('/api/auth/id');

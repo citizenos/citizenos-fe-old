@@ -19,7 +19,7 @@
 
             <div class="line lightest_line"></div>
 
-            <div class="lightbox_content" ng-controller="LoginEsteIdFormCtrl">
+            <div class="lightbox_content">
 
                 <form name="loginMobiilIdForm" novalidate>
 
@@ -57,8 +57,8 @@
                                 <div class="loader"></div>
                             </div>
                         </div>
-                        <button type="submit" ng-click="doLoginMobiilId()" ng-if="wWidth <= 550" cos-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading || isLoadingIdCard"
-                                class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_MID">Log in with Mobiil-ID
+                        <button type="submit" ng-click="authMobiilId()" ng-if="wWidth <= 550" cos-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading || isLoadingIdCard"
+                                class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_AUTHENTICATE_MID">Log in with Mobiil-ID
                         </button>
                     </div>
 
@@ -72,22 +72,21 @@
                         <div ng-if="isLoadingIdCard" class="loader_wrap id_card_loader">
                             <div class="loader"></div>
                         </div>
-                        <button ng-click="doLoginIdCard()" ng-if="!isLoadingIdCard && wWidth <= 550" cos-disabled="formMobile.isLoading || isLoadingIdCard" class="blue_button"
-                                translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_ID">Log in with ID-Card
+                        <button ng-click="authIdCard()" ng-if="!isLoadingIdCard && wWidth <= 550" cos-disabled="formMobile.isLoading || isLoadingIdCard" class="blue_button"
+                                translate="MODALS.LOGIN_ESTEID_BTN_AUTHENTICATE_ID">Log in with ID-Card
                         </button>
                     </div>
 
                     <div class="clearer"></div>
-
                     <div ng-if="authMethodsAvailable.mobiilId && wWidth > 550" class="sign_in_section" ng-class="{'single_section': !authMethodsAvailable.idCard}">
-                        <button ng-click="doLoginMobiilId()" cos-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading || isLoadingIdCard" class="blue_button"
+                        <button ng-click="authMobiilId()" cos-disabled="loginMobiilIdForm.$invalid || formMobile.isLoading || isLoadingIdCard" class="blue_button"
                                 ng-class="{margin_mobile_id: !app.config.features.authentication.idCard}"
-                                translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_MID">Log in with Mobiil-ID
+                                translate="MODALS.LOGIN_ESTEID_BTN_AUTHENTICATE_MID">Log in with Mobiil-ID
                         </button>
                     </div>
 
                     <div ng-if="authMethodsAvailable.idCard && wWidth > 550" class="sign_in_section" ng-class="{'single_section': !authMethodsAvailable.mobiilId}">
-                        <button ng-click="doLoginIdCard()" cos-disabled="formMobile.isLoading || isLoadingIdCard" class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_LOG_IN_ID">Log in with
+                        <button ng-click="authIdCard()" cos-disabled="formMobile.isLoading || isLoadingIdCard" class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_AUTHENTICATE_ID">Log in with
                             ID-Card
                         </button>
                     </div>
