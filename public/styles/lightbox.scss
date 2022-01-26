@@ -1534,6 +1534,14 @@
         }
     }
 
+    #lightbox.add_eid {
+        @extend .id_signing;
+
+        .section_with_padding {
+            padding-top: 20px;
+        }
+    }
+
     /* DELETE TOPIC LIGHTBOX */
     #lightbox.id_signing.delete_topic {
 
