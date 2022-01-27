@@ -194,7 +194,7 @@
     "LOGIN_LNK_FORGOT_PASSWORD": "Zabudli ste svoje heslo?",
     "LOGIN_PLACEHOLDER_EMAIL": "Email",
     "LOGIN_PLACEHOLDER_PASSWORD": "Heslo",
-    "LOGIN_ESTEID_HEADING": "Choose an authentication method",
+    "LOGIN_ESTEID_HEADING": "Vyberte si spôsob overenia",
     "LOGIN_ESTEID_PLACEHOLDER_PHONE": "Telefónne číslo vrátane medzinárodnej predvoľby",
     "LOGIN_ESTEID_ERROR_PHONE": "Neplatné telefónne číslo. Zadajte, prosím, telefónne číslo s medzinárodnou predvoľbou +421.",
     "LOGIN_ESTEID_PLACEHOLDER_PID": "Osobný identifikačný kód",
@@ -493,10 +493,10 @@
     "ADD_EID_BTN_CONNECT_SMART_ID": "Prepojiť so Smart ID",
     "ADD_EID_LNK_BACK": "Späť",
     "ADD_EID_BTN_CONTINUE": "Pokračovať bez prepojenia",
-    "USER_CONNECTION_REMOVE_CONFIRM_HEADING": "Remove user connection",
+    "USER_CONNECTION_REMOVE_CONFIRM_HEADING": "Odstrániť pripojenie užívateľa",
     "USER_CONNECTION_REMOVE_CONFIRM_TXT_ARE_YOU_SURE": "Ste si istí, že chcete odstrániť svoje spojenie s {{connection}}?",
-    "USER_CONNECTION_REMOVE_CONFIRM_NO": "NO, KEEP THIS USER CONNECTION",
-    "USER_CONNECTION_REMOVE_CONFIRM_YES": "YES, DELETE THIS USER CONNECTION"
+    "USER_CONNECTION_REMOVE_CONFIRM_NO": "NIE, PRIPOJENIE TOHTO UŽÍVATEĽA ZACHOVAŤ",
+    "USER_CONNECTION_REMOVE_CONFIRM_YES": "ÁNO, PRIPOJENIE TOHTO UŽÍVATEĽA ODSTRÁNIŤ"
   },
   "TXT_TOPIC_CATEGORY_ALL": "každú kategóriu",
   "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
