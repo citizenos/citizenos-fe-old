@@ -6,21 +6,15 @@ angular
         function ($window, $document) {
             return {
                 scope: {
-                    onScroll: '=?',
-                    onScrollWindow: '=?'
+                    onScroll: '='
                 },
                 link: function (scope, elem, attrs) {
                     if (scope.onScroll) {
-                        var definedAction = function () {
-                            if (scope.onScroll) {
-                                return scope.onScroll();
-                            }
-                        };
+                        var scrollFunction = _.debounce(scope.onScroll, 100);
 
-                        var scrollFunc = _.debounce(definedAction, 100);
                         var elementScrollHandler = function () {
                             if ((elem[0].scrollTop + elem[0].offsetHeight) >= elem[0].scrollHeight) {
-                                scrollFunc();
+                                scrollFunction();
                             }
                         };
 
@@ -32,8 +26,12 @@ angular
                     }
 
                     if (scope.onScrollWindow) {
+                        var scrollWindowDebounce = _.debounce(scope.onScrollWindow, 100);
+
                         var windowScrollHandler = function () {
-                            console.error('cosScroll', windowScrollHandler, $window.innerHeight + $window.scrollY, $document[0].body.scrollHeight, $window.innerHeight + $window.scrollY >= $document[0].body.scrollHeight);
+                            if ($window.innerHeight + $window.scrollY >= $document[0].body.scrollHeight) {
+                                scrollWindowDebounce();
+                            }
                         };
 
                         var windowelement = angular.element($window);
