@@ -491,5 +491,8 @@ angular
                 $scope.app.doShowLogin();
             }
         };
-    }
-    ]);
+
+        $scope.onScroll = function () {
+            $log.error('TopicCommentCtrl', 'onScroll');
+        };
+    }]);
