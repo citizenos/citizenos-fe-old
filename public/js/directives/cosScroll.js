@@ -6,7 +6,8 @@ angular
         function ($window, $document) {
             return {
                 scope: {
-                    onScroll: '='
+                    onScroll: '=?',
+                    onScrollWindow: '=?'
                 },
                 link: function (scope, elem, attrs) {
                     if (scope.onScroll) {
@@ -34,11 +35,11 @@ angular
                             }
                         };
 
-                        var windowelement = angular.element($window);
-                        windowelement.on('scroll', scope.$apply.bind(scope, windowScrollHandler));
+                        var windowElement = angular.element($window);
+                        windowElement.on('scroll', scope.$apply.bind(scope, windowScrollHandler));
 
                         scope.$on('$destroy', function () {
-                            windowelement.off(windowScrollHandler);
+                            windowElement.off(windowScrollHandler);
                         });
                     }
                 }
