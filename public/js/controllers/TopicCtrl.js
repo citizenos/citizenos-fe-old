@@ -288,12 +288,12 @@ angular
         $scope.sortMemberUsers = function (property) {
             if (property === $scope.userList.searchOrderBy.property && $scope.userList.searchOrderBy.sortOrder === 'ASC') {
                 order = 'DESC'
-             } else {
-                 order = 'ASC'
-             }
+            } else {
+                order = 'ASC'
+            }
 
-             $scope.loadTopicMemberUserList(0, ITEMS_COUNT_PER_PAGE, property, order);
-             $scope.loadTopicInviteUserList(0, ITEMS_COUNT_PER_PAGE, property, order);
+            $scope.loadTopicMemberUserList(0, ITEMS_COUNT_PER_PAGE, property, order);
+            $scope.loadTopicInviteUserList(0, ITEMS_COUNT_PER_PAGE, property, order);
         };
 
         $scope.loadTopicMemberGroupList = function (offset, limit, order, sortOrder) {
@@ -342,15 +342,15 @@ angular
             $scope.loadTopicMemberGroupList(offset, ITEMS_COUNT_PER_PAGE);
         };
 
-        $scope.sortMemberGroups  = function (property) {
+        $scope.sortMemberGroups = function (property) {
+            var order = 'ASC';
+
             if (property === $scope.groupList.searchOrderBy.property && $scope.groupList.searchOrderBy.sortOrder === 'ASC') {
-               order = 'DESC'
-            } else {
-                order = 'ASC'
+                order = 'DESC'
             }
 
             $scope.loadTopicMemberGroupList(0, ITEMS_COUNT_PER_PAGE, property, order);
-        }
+        };
 
         $scope.loadActivities = function (offset, limit) {
             $scope.activitiesOffset = offset || $scope.activitiesOffset;
@@ -379,7 +379,7 @@ angular
                         $scope.activities = $scope.activities.concat(activities);
                     });
             } else {
-                return new Promise();
+                return new Promise.resolve();
             }
         };
 
@@ -680,12 +680,12 @@ angular
                     template: '/views/modals/topic_duplicate_confirm.html',
                 })
                 .then(function () {
-                   sTopic
-                    .duplicate($scope.topic)
-                    .then(function(duplicate) {
-                        console.log(duplicate)
-                        $state.go('topics.view', {topicId: duplicate.id});
-                    });
+                    sTopic
+                        .duplicate($scope.topic)
+                        .then(function (duplicate) {
+                            console.log(duplicate)
+                            $state.go('topics.view', {topicId: duplicate.id});
+                        });
                 }, angular.noop);
         };
 
