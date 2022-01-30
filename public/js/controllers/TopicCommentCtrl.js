@@ -492,7 +492,4 @@ angular
             }
         };
 
-        $scope.onScroll = function () {
-            $log.error('TopicCommentCtrl', 'onScroll');
-        };
     }]);
