@@ -494,7 +494,7 @@
     "ADD_EID_LNK_BACK": "Назад",
     "ADD_EID_BTN_CONTINUE": "Продолжете без поврзување",
     "USER_CONNECTION_REMOVE_CONFIRM_HEADING": "Отстранете ја врската на корисникот",
-    "USER_CONNECTION_REMOVE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to remove your connection with {{connection}}?",
+    "USER_CONNECTION_REMOVE_CONFIRM_TXT_ARE_YOU_SURE": "Сигурно ли сакате да ја отстраните врската со {{connection}}?",
     "USER_CONNECTION_REMOVE_CONFIRM_NO": "NO, KEEP THIS USER CONNECTION",
     "USER_CONNECTION_REMOVE_CONFIRM_YES": "YES, DELETE THIS USER CONNECTION"
   },
