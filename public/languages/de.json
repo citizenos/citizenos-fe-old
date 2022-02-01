@@ -620,9 +620,9 @@
       "LBL_ENVIRONMENT": "Umwelt",
       "LBL_HACKTIVIST_COMMUNITY": "Demokratie und Zivilgesellschaft",
       "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
-      "TXT_CITIZENOS_COMMUNITY": "E-democracy discussions with Citizen OS team",
-      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "Join us in our platform development and e-democracy discussions.",
-      "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
+      "TXT_CITIZENOS_COMMUNITY": "E-Demokratie-Diskussionen mit dem Team von Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "Beteiligen Sie sich an unserer Plattformentwicklung und an unseren E-Demokratie-Diskussionen.",
+      "LBL_CITIZENOS_COMMUNITY": "Themen über Citizen OS"
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Gruppen: {{count}}",
@@ -869,7 +869,7 @@
       "TAB_ARGUMENTS_HEADING": "@:VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT",
       "LBL_ARGUMENTS_COUNT_PRO": "pro: {{countPro}}",
       "LBL_ARGUMENTS_COUNT_CON": "contra: {{countCon}}",
-      "LBL_ARGUMENTS_COUNT_POI": "info: {{countPoi}}",
+      "LBL_ARGUMENTS_COUNT_POI": "Informationen: {{countPoi}}",
       "BTN_ADD_ARGUMENT": "Argument hinzufügen",
       "ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS": "Bearbeitungen anzeigen",
       "ARGUMENT_LNK_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
