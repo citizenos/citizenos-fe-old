@@ -495,8 +495,8 @@
     "ADD_EID_BTN_CONTINUE": "Lanjutkan tanpa menghubungkan",
     "USER_CONNECTION_REMOVE_CONFIRM_HEADING": "Copot sambungan pengguna",
     "USER_CONNECTION_REMOVE_CONFIRM_TXT_ARE_YOU_SURE": "Anda yakin ingin mencopot sambungan dengan {{connection}}?",
-    "USER_CONNECTION_REMOVE_CONFIRM_NO": "NO, KEEP THIS USER CONNECTION",
-    "USER_CONNECTION_REMOVE_CONFIRM_YES": "YES, DELETE THIS USER CONNECTION"
+    "USER_CONNECTION_REMOVE_CONFIRM_NO": "TIDAK, SIMPAN SAMBUNGAN PENGGUNA INI",
+    "USER_CONNECTION_REMOVE_CONFIRM_YES": "YA, HAPUS SAMBUNGAN PENGGUNA INI"
   },
   "TXT_TOPIC_CATEGORY_ALL": "setiap kategori",
   "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
@@ -620,8 +620,8 @@
       "LBL_ENVIRONMENT": "Lingkungan",
       "LBL_HACKTIVIST_COMMUNITY": "Demokrasi dan masyarakat sipil",
       "HEADING_CITIZENOS_COMMUNITY": "Citizen OS",
-      "TXT_CITIZENOS_COMMUNITY": "E-democracy discussions with Citizen OS team",
-      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "Join us in our platform development and e-democracy discussions.",
+      "TXT_CITIZENOS_COMMUNITY": "Diskusi demokrasi secara elektronik dengan tim Citizen OS",
+      "TXT_CITIZENOS_COMMUNITY_DESCRIPTION": "Gabung dengan kami dalam pengembangan platform kami dan diskusi demokrasi secara elektronik.",
       "LBL_CITIZENOS_COMMUNITY": "Topics about Citizen OS"
     },
     "MY": {
