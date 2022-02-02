@@ -46,6 +46,7 @@ angular
                 };
                 return;
             } else {
+                $log.error('doSignUp NEW USER', $scope.form);
                 sAuth
                     .signUp($scope.form.email, $scope.form.password, $scope.form.name, $scope.form.company, $scope.form.redirectSuccess, $scope.form.settings)
                     .then(success, error);

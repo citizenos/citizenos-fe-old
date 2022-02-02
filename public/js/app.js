@@ -1165,11 +1165,21 @@
                                     // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
                                     if (!sAuth.user.loggedIn) {
                                         var currentUrl = $state.href($state.current.name, $stateParams);
-                                        return $state.go('account.login', {
-                                            userId: $scope.invite.user.id,
-                                            redirectSuccess: currentUrl,
-                                            email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
-                                        });
+                                        if (!$scope.invite.user.isRegistered) {
+                                            // The invited User is not registered, the User has been created by the system - https://github.com/citizenos/citizenos-fe/issues/773
+                                            return $state.go('account.signup', {
+                                                userId: $scope.invite.user.id,
+                                                redirectSuccess: currentUrl,
+                                                email: $scope.invite.user.email, // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                                                name: null
+                                            });
+                                        } else {
+                                            return $state.go('account.login', {
+                                                userId: $scope.invite.user.id,
+                                                redirectSuccess: currentUrl,
+                                                email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
+                                            });
+                                        }
                                     }
 
                                     // 2. User logged in, but opens an invite NOT meant to that account  - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
