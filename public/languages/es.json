@@ -42,7 +42,7 @@
   "TOOLTIP_TOPIC_VISIBILITY_PUBLIC": "@:TXT_TOPIC_VISIBILITY_PUBLIC",
   "TOOLTIP_TOPIC_VISIBILITY_PRIVATE": "@:TXT_TOPIC_VISIBILITY_PRIVATE",
   "HELP_CENTER_TOOLTIP_HEADING": "INFORMACIÓN",
-  "HELP_CENTER_TOOLTIP_DESCRIPTION": "Si tiene alguna duda, vaya al Centro de ayuda y busque las respuestas a sus preguntas. Puede abrir el Centro de ayuda, use el icono de comentario de la esquina inferior derecha.",
+  "HELP_CENTER_TOOLTIP_DESCRIPTION": "Si tiene alguna duda, vaya al Centro de ayuda y busque las respuestas a sus preguntas. Para abrir el Centro de ayuda, use el icono de comentario de la esquina inferior derecha.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "Aceptar",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Centro de ayuda",
