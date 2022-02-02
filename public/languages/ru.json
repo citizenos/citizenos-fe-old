@@ -236,7 +236,7 @@
     "MY_ACCOUNT_BTN_CONNECT_GOOGLE": "Привязать к учетной записи Google",
     "MY_ACCOUNT_BTN_CONNECT_ESTEID": "Привязать к ID-карте / Mobiil-ID",
     "MY_ACCOUNT_BTN_CONNECT_SMARTID": "Привязать к Smart-ID",
-    "MY_ACCOUNT_REMOVE_CONNECTION": "Удалить привязку",
+    "MY_ACCOUNT_REMOVE_CONNECTION": "Удалить связь",
     "PASSWORD_FORGOT_HEADING": "Забыли свой пароль?",
     "PASSWORD_FORGOT_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
     "PASSWORD_FORGOT_SEND_RESET": "Отправить код сброса",
@@ -494,7 +494,7 @@
     "ADD_EID_LNK_BACK": "Назад",
     "ADD_EID_BTN_CONTINUE": "Продолжить без подключения",
     "USER_CONNECTION_REMOVE_CONFIRM_HEADING": "Удалить привязку пользователя",
-    "USER_CONNECTION_REMOVE_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to remove your connection with {{connection}}?",
+    "USER_CONNECTION_REMOVE_CONFIRM_TXT_ARE_YOU_SURE": "Вы уверены, что хотите удалить привязку ({{connection}})?",
     "USER_CONNECTION_REMOVE_CONFIRM_NO": "NO, KEEP THIS USER CONNECTION",
     "USER_CONNECTION_REMOVE_CONFIRM_YES": "YES, DELETE THIS USER CONNECTION"
   },
