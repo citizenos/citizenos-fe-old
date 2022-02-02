@@ -495,7 +495,7 @@
     "ADD_EID_BTN_CONTINUE": "Продолжить без подключения",
     "USER_CONNECTION_REMOVE_CONFIRM_HEADING": "Удалить привязку пользователя",
     "USER_CONNECTION_REMOVE_CONFIRM_TXT_ARE_YOU_SURE": "Вы уверены, что хотите удалить привязку ({{connection}})?",
-    "USER_CONNECTION_REMOVE_CONFIRM_NO": "НЕТ, СОХРАНИТЬ ЭТУ ПРИВЯЗКУ ПОЛЬЗОВАТЕЛЯ",
+    "USER_CONNECTION_REMOVE_CONFIRM_NO": "НЕТ, СОХРАНИТЬ ПРИВЯЗКУ ПОЛЬЗОВАТЕЛЯ",
     "USER_CONNECTION_REMOVE_CONFIRM_YES": "ДА, УДАЛИТЬ ПРИВЯЗКУ ПОЛЬЗОВАТЕЛЯ"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Все существующие",
