@@ -491,5 +491,5 @@ angular
                 $scope.app.doShowLogin();
             }
         };
-    }
-    ]);
+
+    }]);

@@ -5,9 +5,14 @@
             <form name="signUpForm" ng-controller="SignUpFormCtrl">
                 <div id="lightbox_header">
 
-                    <div id="lightbox_header_text">
+                    <div ng-if="!isInviteFlowSignUp" id="lightbox_header_text">
                         <div class="title" translate="MODALS.SIGN_UP_HEADING">Register</div>
-                        <div class="title_description_register" translate="MODALS.SIGN_UP_HEADING_DESCRIPTION">Register a free account now to get acces to Citizen OS: the platform for asynchronous meetings & citizen participation.</div>
+                        <div class="title_description_register" translate="MODALS.SIGN_UP_HEADING_DESCRIPTION">Register a free account now to get access to Citizen OS: the platform for asynchronous meetings & citizen participation.</div>
+                    </div>
+
+                    <div ng-if="isInviteFlowSignUp" id="lightbox_header_text">
+                        <div class="title" translate="MODALS.SIGN_UP_INVITE_FLOW_HEADING">Complete your account</div>
+                        <div class="title_description_register" translate="MODALS.SIGN_UP_INVITE_FLOW_HEADING_DESCRIPTION">Complete a free account now to get access to Citizen OS: the platform for asynchronous meetings & citizen participation.</div>
                     </div>
 
                     <div id="lightbox_close" ng-click="closeThisDialog()">
@@ -45,7 +50,7 @@
                                 </div>
                             </label>
                             <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64" required>
-                            <input id="password_confirm" ng-model="form.passwordConfirm" type="password" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_PASSWORD_CONFIRM' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64">
+                            <input id="password_confirm" ng-model="form.passwordConfirm" type="password" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_PASSWORD_CONFIRM' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64" required>
                             <label for="password_confirm" class="error_label" ng-if="errors.password">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -72,7 +77,8 @@
                         <div class="footer_button_wrap"></div>
                         <div class="footer_button_wrap right">
                             <a class="footer_link" ui-sref="account.login" translate="MODALS.SIGN_UP_HAVE_AN_ACCOUNT" >Have an account? Log in now</a>
-                            <button type="submit" ng-click="doSignUp()" ng-disabled="signUpForm.$invalid" class="blue_button login_button" translate="MODALS.SIGN_UP_BTN_SAVE">Register</button>
+                            <button ng-if="!isInviteFlowSignUp" type="submit" ng-click="doSignUp()" ng-disabled="signUpForm.$invalid" class="blue_button login_button" translate="MODALS.SIGN_UP_BTN_SAVE">Register</button>
+                            <button ng-if="isInviteFlowSignUp" type="submit" ng-click="doSignUp()" ng-disabled="signUpForm.$invalid" class="blue_button login_button" translate="MODALS.SIGN_UP_INVITE_FLOW_BTN_SAVE">Complete</button>
                         </div>
                     </div>
                 </div>

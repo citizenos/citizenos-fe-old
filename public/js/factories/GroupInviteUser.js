@@ -14,7 +14,11 @@ angular
                     method: 'GET',
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
-                            return angular.fromJson(data).data;
+                            var jsonResponse = angular.fromJson(data);
+                            // The API returns 20002 status code for non-registered User. Felt better not putting the isRegistered property to the User on the API side.
+                            // @see https://github.com/citizenos/citizenos-fe/issues/773
+                            jsonResponse.data.user.isRegistered = jsonResponse.status.code !== 20002;
+                            return jsonResponse.data;
                         } else {
                             return angular.fromJson(data);
                         }
