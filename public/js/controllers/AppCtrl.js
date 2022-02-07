@@ -27,15 +27,13 @@ angular
         $scope.app.toggleHelpTooltip = function () {
             $scope.app.helptooltip = true;
         }
-
         if (!$cookies.get('helptooltip') && cosConfig.showHelpTooltip) {
-            $cookies.put('helptooltip', true);
-            $scope.app.toggleHelpTooltip();
-            $timeout(function () {
-                if ($rootScope.wWidth > 560) {
-                    $scope.app.toggleHelp();
-                }
+            var exp =  new Date();
+            exp.setMonth(exp.getMonth()+6)
+            $cookies.put('helptooltip', true, {
+                expires: exp
             });
+            $scope.app.toggleHelpTooltip();
         }
 
 
