@@ -229,6 +229,11 @@ angular
                     params: {
                         offset: offsetNr,
                         limit: limitNr
+                    },
+                    transformResponse: function (data, headers, status) {
+                        if (status !== 404) {
+                            return angular.fromJson(data)
+                        }
                     }
                 })
                 .then(success, defaultError);
