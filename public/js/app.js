@@ -1006,7 +1006,7 @@
                     parent: 'main',
                     templateUrl: '/views/home.html',
                     resolve: {
-                        rTopicInviteUser: ['$stateParams', '$q', '$log', 'TopicInviteUser', function ($stateParams, $q, $log, TopicInviteUser) {
+                        rTopicInviteUser: ['$stateParams', '$q', '$log', 'TopicInviteUser', 'sNotification', function ($stateParams, $q, $log, TopicInviteUser, sNotification) {
                             var params = {
                                 id: $stateParams.inviteId,
                                 topicId: $stateParams.topicId
@@ -1021,6 +1021,12 @@
                                         return topicInvite;
                                     },
                                     function (err) {
+                                        if (err.status === 404) {
+                                            sNotification.removeAll();
+                                            sNotification.showDialog('MSG_ERROR_GET_API_USERS_TOPICS_INVITES_USERS_41002_HEADING', 'MSG_ERROR_GET_API_USERS_TOPICS_INVITES_USERS_41002');
+                                            return;
+                                        }
+
                                         return $q.resolve(err); // Resolve so that the page would load
                                     }
                                 );
@@ -1109,7 +1115,7 @@
                     parent: 'main',
                     templateUrl: '/views/home.html',
                     resolve: {
-                        rGroupInviteUser: ['$stateParams', '$q', '$log', 'GroupInviteUser', function ($stateParams, $q, $log, GroupInviteUser) {
+                        rGroupInviteUser: ['$stateParams', '$q', '$log', 'GroupInviteUser', 'sNotification', function ($stateParams, $q, $log, GroupInviteUser, sNotification) {
                             var params = {
                                 id: $stateParams.inviteId,
                                 groupId: $stateParams.groupId
@@ -1124,6 +1130,12 @@
                                         return groupInvite;
                                     },
                                     function (err) {
+                                        if (err.status === 404) {
+                                            sNotification.removeAll();
+                                            sNotification.showDialog('MSG_ERROR_GET_API_USERS_GROUPS_INVITES_USERS_41002_HEADING', 'MSG_ERROR_GET_API_USERS_GROUPS_INVITES_USERS_41002');
+                                            return;
+                                        }
+
                                         return $q.resolve(err); // Resolve so that the page would load
                                     }
                                 );

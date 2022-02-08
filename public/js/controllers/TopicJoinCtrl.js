@@ -19,8 +19,7 @@ angular
                 function (err) {
                     // IT does not exist or the Topic is PRIVATE and requires login
                     return joinTopic.$join({
-                        token: $stateParams.token,
-                        __doNotDisplayErrors: true
+                        token: $stateParams.token
                     });
                 }
             )
