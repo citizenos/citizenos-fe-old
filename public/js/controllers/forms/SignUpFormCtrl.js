@@ -19,9 +19,6 @@ angular
         // Direct links will have parameters in $stateParams, Login form will pass the "data" when opening the dialog.
         angular.extend($scope.form, $stateParams, $scope.$parent.ngDialogData);
 
-        // Is sign-up flow displayed as part of the invite flow flow? - https://github.com/citizenos/citizenos-fe/issues/773
-        $scope.isInviteFlowSignUp = $scope.form.redirectSuccess && $scope.form.redirectSuccess.match('/invites/(users|groups)/');
-
         $scope.errors = null;
 
         $scope.doSignUp = function () {

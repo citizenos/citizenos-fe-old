@@ -7,8 +7,7 @@ angular
 
         joinGroup
             .$join({
-                token: $stateParams.token,
-                __doNotDisplayErrors: true
+                token: $stateParams.token
             })
             .then(
                 function (res) {

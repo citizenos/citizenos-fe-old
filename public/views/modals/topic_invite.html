@@ -430,11 +430,8 @@
             <div class="lightbox_footer" ng-if="topic.canEdit()">
                 <div class="line lightest_line"></div>
                 <div class="blue_button_wrap">
-                    <div class="blue_button" ng-if="!members.length" ng-click="doSaveTopic()"
-                         translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC">Save topic
-                    </div>
-                    <div class="blue_button" ng-if="members.length" ng-click="doSaveTopic()"
-                         translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC_AND_INVITE">Save topic and send invite
+                    <div class="blue_button" cos-disabled="!members.length" ng-click="doSaveTopic()"
+                         translate="MODALS.TOPIC_SETTINGS_BTN_SEND_INVITES">Send invites
                     </div>
                 </div>
             </div>
