@@ -2480,13 +2480,31 @@ a:link, a:visited {
             }
 
             .dropdown_item {
-                font-weight: vars.$semi_bold;
                 padding: 16px 15px;
                 border-right: 1px solid vars.$medium_gray;
 
                 &.active {
                     background: vars.$light_gray;
                     border-right: none;
+                }
+
+                .item_name {
+                    font-weight: vars.$semi_bold;
+                }
+
+                .item_description {
+                    display: none;
+                    padding: 16px 15px;
+                    height: 100%;
+                    box-sizing: border-box;
+
+                    p:first-of-type {
+                        margin-top: 0;
+                    }
+
+                    &.active {
+                        display: block;
+                    }
                 }
             }
 
@@ -2508,6 +2526,10 @@ a:link, a:visited {
                         display: block;
                     }
                 }
+            }
+
+            .dropdown_selector {
+                height: 40px;
             }
         }
 

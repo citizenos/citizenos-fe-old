@@ -168,7 +168,24 @@
                                         </div>
                                     </div>
 
-                                    <div class="dropdown with_description">
+                                    <div class="dropdown with_description" ng-if="wWidth <= 560">
+                                        <div>
+                                            <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="comment.editType = type">
+                                                <div class="item_name">
+                                                    {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
+                                                </div>
+                                                <div class="item_descriptions">
+                                                    <div class="item_description" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="comment.editType = type">
+                                                        <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
+                                                        <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit: 2084</p>
+                                                        <button ng-if="app.isTouchDevice()  && ($index === 0 || comment.editType === type)" class="light_gray_button full_width dropdown_selector {{type}}" ng-click="comment.editType = type" translate="DROPDOWN_BTN_SELECT">Select</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown with_description" ng-if="wWidth > 560">
                                         <div class="column">
                                             <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="comment.editType = type">
                                                 <div class="item_name">
@@ -180,7 +197,7 @@
                                             <div class="item_description" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="comment.editType = type">
                                                 <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
                                                 <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit: 2084</p>
-                                                <button ng-if="app.isTouchDevice()" class="light_gray_button full_width dropdown_selector" ng-click="comment.editType = type" translate="DROPDOWN_BTN_SELECT">Select</button>
+                                                <button ng-if="app.isTouchDevice() && ($index === 0 || comment.editType === type)" class="light_gray_button full_width dropdown_selector" ng-click="comment.editType = type" translate="DROPDOWN_BTN_SELECT">Select</button>
                                             </div>
                                         </div>
                                     </div>
@@ -709,7 +726,25 @@
                         </div>
                     </div>
 
-                    <div class="dropdown with_description">
+                    <div class="dropdown with_description" ng-if="wWidth <= 560">
+                        <div>
+                            <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="form.type = type">
+                                <div class="item_name">
+                                    {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
+                                </div>
+                                <div>
+                                    <div class="item_description" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="form.type = type">
+                                        <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
+                                        <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit:
+                                            2084</p>
+                                        <button ng-if="app.isTouchDevice() && ($index === 0 || form.type === type)" class="light_gray_button full_width dropdown_selector" ng-click="form.type = type" translate="DROPDOWN_BTN_SELECT">Select</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown with_description" ng-if="wWidth > 560">
                         <div class="column">
                             <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="form.type = type">
                                 <div class="item_name">
@@ -722,7 +757,7 @@
                                 <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
                                 <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit:
                                     2084</p>
-                                <button ng-if="app.isTouchDevice()" class="light_gray_button full_width dropdown_selector" ng-click="form.type = type" translate="DROPDOWN_BTN_SELECT">Select</button>
+                                <button ng-if="app.isTouchDevice() && ($index === 0 || form.type === type)" class="light_gray_button full_width dropdown_selector" ng-click="form.type = type" translate="DROPDOWN_BTN_SELECT">Select</button>
                             </div>
                         </div>
                     </div>
