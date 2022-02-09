@@ -4,9 +4,17 @@ angular
         return {
             restrict: 'A',
             link: function (scope, elem, attr) {
+                var elementClickHandler = function ($event) {
+                    if (attr.cosDropdownMobile == 'true') {
+                        elem.addClass('dropdown_active');
 
-                var elementClickHandler = function () {
-                    elem.toggleClass('dropdown_active');
+                        if($event.target.classList.contains('dropdown_selector')) {
+                            elem.removeClass('dropdown_active');
+                        }
+                    } else {
+                        elem.toggleClass('dropdown_active');
+                    }
+
                     elem.addClass('active_recent');
                 };
                 elem.on('click', elementClickHandler);
