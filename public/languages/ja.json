@@ -522,11 +522,11 @@
   "TXT_TOPIC_CATEGORY_HEALTH": "ヘルスケアと社会福祉",
   "TXT_TOPIC_CATEGORY_WORK": "仕事と雇用",
   "TXT_TOPIC_CATEGORY_EDUCATION": "教育",
-  "TXT_TOPIC_CATEGORY_POLITICS": "Politics and public administration",
-  "TXT_TOPIC_CATEGORY_COMMUNITIES": "Communities and urban development",
+  "TXT_TOPIC_CATEGORY_POLITICS": "政治と行政",
+  "TXT_TOPIC_CATEGORY_COMMUNITIES": "コミュニティと都市開発",
   "TXT_TOPIC_CATEGORY_DEFENSE": "防衛とセキュリティ",
-  "TXT_TOPIC_CATEGORY_INTEGRATION": "Integration and human rights",
-  "TXT_TOPIC_CATEGORY_VARIA": "Varia",
+  "TXT_TOPIC_CATEGORY_INTEGRATION": "多文化社会と人権",
+  "TXT_TOPIC_CATEGORY_VARIA": "その他",
   "TXT_TOPIC_CATEGORY_YOUTH": "Youth (ユース)",
   "TXT_TOPIC_CATEGORY_SCIENCE": "科学技術",
   "TXT_TOPIC_CATEGORY_SOCIETY": "民主主義と市民社会",
@@ -557,12 +557,12 @@
       "BTN_SEARCH": "検索",
       "BTN_OVERVIEW": "概要",
       "BTN_EDIT": "編集",
-      "BTN_SETTINGS": "Actions",
+      "BTN_SETTINGS": "アクション",
       "BTN_MENU": "メニュー",
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "Context search results in",
+      "HEADING_RESULTS_IN": "検索結果:",
       "LNK_VIEW_MORE_RESULTS": "さらに結果を読み込む",
       "TXT_OOPS_NO_RESULTS": "検索に一致する結果が見つかりませんでした :(",
       "TXT_MAYBE_TYPO": "誤字がないかご確認ください。"
@@ -570,7 +570,7 @@
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
       "LNK_LOG_OUT": "@:DEFAULT.NAV.LNK_LOG_OUT",
-      "BTN_HOW_DOES_IT_WORK": "How does it work?",
+      "BTN_HOW_DOES_IT_WORK": "使い方",
       "LNK_PRIVACY_POLICY": "Citizen OS プライバシーポリシー",
       "LNK_CITIZENOS_WEBSITE": "Citizen OS ウェブサイト"
     }
@@ -592,8 +592,8 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource :(",
-      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "残念ながらリソースにアクセスする権限がありません :(",
+      "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "トピックまたはグループへの招待をお持ちの場合は、まず受諾する必要があります。アクティビティフィードまたはメールを確認してください。",
       "HEADING_YOU_MAY_RECOVER": "Still, you may recover from the unfortunate event by",
       "BTN_LOGIN": "ログイン中",
       "BTN_REQUEST_ACCESS": "リソースへのアクセスを要求しています"
