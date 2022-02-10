@@ -740,15 +740,15 @@
       "LBL_VIA": "グループを介して",
       "TXT_INVITE_PENDING": "保留中の招待",
       "TXT_NO_PERMISSION_TO_DELETE_MEMBER": "このメンバーを編集する権限がありません。",
-      "TXT_PERMISSION_VIA_GROUP": "Permission was granted via Group - you may remove User from the Group or override permissions by selecting appropriate value from the dropdown.",
-      "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "Activity feed & notifications",
-      "LNK_VIEW_OLDER": "View older"
+      "TXT_PERMISSION_VIA_GROUP": "グループを介して権限が付与されました。 ドロップダウンから、ユーザーをグループから削除したり、権限を上書きすることができます。",
+      "HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS": "アクティビティフィードと通知",
+      "LNK_VIEW_OLDER": "古い順"
     },
     "PARTNERS_CONSENT": {
-      "HEADING": "{{website}} would like to access following data from Your account:",
-      "TXT_VIEW_PROFILE": "View and edit Your Citizen OS profile - name, company, email, picture.",
-      "TXT_VIEW_TOPICS": "View and edit Your Citizen OS public Topics and Topics created via the {{website}} website.",
-      "TXT_VIEW_VOTES": "View and edit Your Citizen OS Votes in public Topics and Topics created via the {{website}} website.",
+      "HEADING": "{{website}} があなたのアカウントから次のデータにアクセスしようとしています：",
+      "TXT_VIEW_PROFILE": "プロフィールを表示・編集する (名前、所属、eメール、画像)。",
+      "TXT_VIEW_TOPICS": "{{website}} ウェブサイトで作成された公開トピックとトピックを表示・編集する。",
+      "TXT_VIEW_VOTES": "{{website}} ウェブサイトで作成された公開トピックとトピックの投票を表示・編集する。",
       "TXT_VIEW_GROUPS": "View and edit your Citizen OS groups.",
       "TXT_POLICY": "{{website}} will use this information in accordance with their respective <a href=\"{{linkPrivacyPolicy}}\" target=\"_blank\">terms of service and privacy policies</a>.",
       "_AGREE": "Accept",
