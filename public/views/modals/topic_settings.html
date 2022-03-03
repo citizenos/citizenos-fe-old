@@ -48,7 +48,7 @@
                 <div class="lightbox_section">
 
 
-                    <div class="settings_section" ng-if="topic.canEdit()">
+                    <div class="settings_section" ng-if="topic.canDelete()">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_MAKE_PRIVATE">Make your topic private</div>
                             <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_MAKE_PRIVATE_EXT">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
 
-                    <div class="line lightest_line" ng-if="topic.canEdit()"></div>
+                    <div class="line lightest_line" ng-if="topic.canDelete()"></div>
 
                     <div class="settings_section" ng-if="topic.canEdit()">
                         <div class="settings_cell">
