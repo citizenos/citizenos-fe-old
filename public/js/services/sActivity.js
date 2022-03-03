@@ -696,6 +696,9 @@ angular
             } else if ((object && object['@type'] === 'Topic')) {
                 stateName = 'topics.view';
                 params.topicId = object.id;
+            } else if ((object && object['@type'] === 'TopicMemberUser')) {
+                stateName = 'topics.view';
+                params.topicId = object.topicId;
             } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote') {
                 if (target && (target['@type'] === 'Topic' || object.topicId || target.topicId)) {
                     stateName = 'topics.view';
