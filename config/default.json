@@ -8,7 +8,8 @@
         "*",
         "self",
         "data:",
-        "https://dev.api.citizenos.com:3003"
+        "https://dev.api.citizenos.com:3003",
+        "https://citizenos-test.s3.eu-west-1.amazonaws.com"
       ],
       "script-src": [
         "self",
