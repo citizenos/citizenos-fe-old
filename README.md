@@ -29,7 +29,7 @@ CitizenOS front-end web application - https://app.citizenos.com.
 * Run the application:
     * Production/test - `node ./bin/www`. Note that Heroku and some other cloud envs pick up the starting point from `Procfile` (https://github.com/citizenos/citizenos-fe/blob/master/Procfile.txt)
     * Development - `npm run dev`
-* Open 
+* Open
     * Production/test - your configured public app url.
     * Development - https://dev.citizenos.com:3001 or http://dev.citizenos.com:3000 in your browser.
 
