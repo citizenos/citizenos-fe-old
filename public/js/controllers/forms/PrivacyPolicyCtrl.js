@@ -42,7 +42,7 @@ angular
                                 });
                                 if (filtered.length) {
                                     $window.location.href = $stateParams.redirectSuccess;
-                                } else {
+                                } else if ($window.navigator.languages.indexOf('et') > -1) {
                                     var dialog = ngDialog.open({
                                         template: '/views/modals/add_eid.html',
                                         scope: $scope
@@ -51,6 +51,8 @@ angular
                                     dialog.closePromise.then(function () {
                                         $window.location.href = $stateParams.redirectSuccess;
                                     });
+                                } else {
+                                    $window.location.href = $stateParams.redirectSuccess;
                                 }
                             });
                 });
