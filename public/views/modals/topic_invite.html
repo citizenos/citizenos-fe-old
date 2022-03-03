@@ -427,7 +427,7 @@
 
             </div>
 
-            <div class="lightbox_footer" ng-if="topic.canEdit()">
+            <div class="lightbox_footer" ng-if="topic.canEdit() && tabSelected === 'invite'">
                 <div class="line lightest_line"></div>
                 <div class="blue_button_wrap">
                     <div class="blue_button" cos-disabled="!members.length" ng-click="doSaveTopic()"
