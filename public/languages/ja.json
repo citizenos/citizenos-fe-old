@@ -664,8 +664,8 @@
         "TOPICS_IN_VOTING": "@:VIEWS.MY.FILTERS.TOPICS_IN_VOTING",
         "TOPICS_IN_FOLLOW_UP": "@:VIEWS.MY.FILTERS.TOPICS_IN_FOLLOW_UP",
         "TOPICS_CLOSED": "@:VIEWS.MY.FILTERS.TOPICS_CLOSED",
-        "STATUS_ASCENDING": "ステータス (日付の古い順)",
-        "STATUS_DESCENDING": "Status (descending)",
+        "STATUS_ASCENDING": "ステータス (古い順)",
+        "STATUS_DESCENDING": "ステータス (新しい順)",
         "PINNED_ASCENDING": "Attention (non-pinned first)",
         "PINNED_DESCENDING": "Attention (pinned first)",
         "ACTIVITY_ASCENDING": "Activity (latest)",
@@ -696,7 +696,7 @@
       "LNK_USERS": "ユーザー",
       "LBL_REMOVE_FROM_GROUP": "グループから削除",
       "LBL_USERS_COUNT": "Users: {{count}}",
-      "HEADING_USERS_LIST": "User list ({{count}})",
+      "HEADING_USERS_LIST": "ユーザーリスト ({{count}})",
       "LNK_PROFILE": "プロフィール"
     },
     "MY_TOPICS_TOPICID": {
