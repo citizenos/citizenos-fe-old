@@ -796,6 +796,7 @@
       "VOTE_CAST_YOUR_VOTE": "Envoyez votre vote",
       "VOTE_VOTES_COUNTED": "Votes comptés",
       "VOTE_HEADING_REQUIRE_HARD_ID": "Ce vote nécessite ID-card ou une signature par Mobiil-ID.",
+      "VOTE_HEADING_REQUIRE_LOG_IN": "@:VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE",
       "VOTE_TXT_REQUIRE_HARD_ID": "Ce document doit être signé avec une ID-card ou Mobiil-ID pour être enregistré. Vous ne pouvez pas voter sans être identifié.",
       "HEADING_VOTE_REGISTERED": "Votre vote a été enregistré!",
       "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
