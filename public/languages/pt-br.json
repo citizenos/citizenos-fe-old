@@ -381,7 +381,8 @@
     "GROUP_INVITE_VIEW_LBL_INVITED_BY": "Convidado por:",
     "GROUP_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Convite enviado para:",
     "GROUP_INVITE_VIEW_LBL_GROUP_LEVEL": "Direitos do grupo:",
-    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "Entre com o e-mail {{email}} para aceitar o convite",
+    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "@:MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS",
+    "GROUP_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN",
     "GROUP_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Você também pode:",
     "GROUP_INVITE_VIEW_LNK_LEARN_MORE": "Mais informações sobre o Citizen OS para quem recém chegou!",
     "GROUP_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "@:MODALS.TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT",
@@ -436,7 +437,8 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Convite enviado para:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Permissões do tópico:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Heads up!</b> You must complete creating your account with {{email}} to access this topic",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Entre com o e-mail {{email}} para aceitar o convite",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Create account",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Você também pode:",
@@ -593,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Desculpe, você não tem permissões suficientes para acessar o recurso :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Se você receber um convite para um tópico ou grupo, é necessário aceitá-lo primeiro. Verifique seu feed de atividades ou e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Ainda assim, você pode se recuperar desse evento infeliz",
       "BTN_LOGIN": "Fazendo login",
