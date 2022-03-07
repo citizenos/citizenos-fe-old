@@ -35,6 +35,9 @@ angular
         };
 
         $scope.$parent.$parent.selectOption = function (option) {
+            if (!$scope.topic.canVote()) {
+                return false;
+            }
             $scope.topic.vote.options.rows.forEach(function(opt) {
                 if (option.value === 'Neutral' || option.value === 'Veto' || $scope.topic.vote.maxChoices ===1) {
                     opt.selected = false;

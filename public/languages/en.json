@@ -795,6 +795,7 @@
       "VOTE_CAST_YOUR_VOTE": "Cast your vote",
       "VOTE_VOTES_COUNTED": "votes counted",
       "VOTE_HEADING_REQUIRE_HARD_ID": "This vote requires an ID-card or Mobiil-ID signing.",
+      "VOTE_HEADING_REQUIRE_LOG_IN": "@:VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE",
       "VOTE_TXT_REQUIRE_HARD_ID": "This document needs to be signed with an ID-card or Mobiil-ID to be registered. You cannot vote unless you identify yourself.",
       "HEADING_VOTE_REGISTERED": "Your vote has been registered!",
       "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",

@@ -341,10 +341,15 @@
                         <div class="vote_casting_message" ng-if="topic.vote.type === 'multiple' && topic.vote.maxChoices > 1">
                             <div class="message_content" translate="VIEWS.TOPICS_TOPICID.TXT_YOU_CAN_CHOOSE_OPTIONS" translate-values="{maxChoices: topic.vote.maxChoices}">This is a multiple choice vote. You can choose max 2 options that align with your view.</div>
                         </div>
-
+                        <div class="vote_casting_overlay" ng-if="topic.vote.authType === voteAuthTypes.soft && !topic.hasVoteEnded() && !app.user.loggedIn">
+                            <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
+                                <div class="blue_link">log in</div>
+                                to comment
+                            </h3>
+                        </div>
                         <div class="voting_platform_buttons" ng-if="!topic.hasVoteEnded()">
 
-                            <div class="voting_button" ng-click="selectOption(option)" ng-if="topic.canVote()" ng-class="(option.selected) ? 'active': ''" ng-repeat="(key, option) in topic.vote.options.rows">
+                            <div class="voting_button" ng-click="selectOption(option)" ng-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active': ''" ng-repeat="(key, option) in topic.vote.options.rows">
                                 <div class="table_cell left_side">
                                     <label class="checkcontainer" ng-if="!isRadio(topic.vote, option)">
                                         <input type="checkbox" class="vote_option_radio" checked="(option.selected) ? 'checked: ''" ng-click="selectOption(option)">
@@ -403,7 +408,7 @@
                             </div>
 
                         </div>
-                        <div class="line lightest_line multiplechoice"></div>
+                        <div class="line lightest_line multiplechoice" ng-if="!topic.hasVoteEnded()"></div>
                         <div class="vote_multiple_submit_section" ng-if="!topic.hasVoteEnded()">
                             <div class="table_cell" cos-disabled="!canSubmit()">
                                 <div class="blue_button" ng-click="doVote()" translate="VIEWS.TOPICS_TOPICID.VOTE_SUBMIT">Submit your vote</div>

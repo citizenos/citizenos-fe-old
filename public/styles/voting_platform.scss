@@ -260,6 +260,18 @@
         }
     }
 
+    .vote_casting_overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.5);
+        z-index: 2;
+        text-align: center;
+        padding: 2em;
+    }
+
     .graph_wrap {
         border-left: 1px solid vars.$lightest_gray;
         width: 100%;
@@ -527,6 +539,7 @@
 
 
 .voting_platform_wrap {
+    position: relative;
     background: vars.$white;
     margin: 40px 60px 22px;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
