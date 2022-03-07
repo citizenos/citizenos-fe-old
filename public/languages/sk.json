@@ -437,7 +437,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Pozvánka odoslaná:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Práva k téme:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Hlavu hore!</b> Pre prístup k tejto téme musíte dokončiť vytváranie svojho konta s {{email}}",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Prístup k témam a skupinám je možný len prostredníctvom konta Citizen OS, ktoré je zaregistrované na rovnakej e-mailovej adrese, na ktorú bola zaslaná pozvánka.",
     "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Vytvoriť konto",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
@@ -595,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Ľutujeme, na prístup k zdroju nemáte dostatočné oprávnenie",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Ak ste dostali pozvánku na tému alebo do skupiny, musíte ju najprv prijať. Skontrolujte si, prosím, svoj kanál s aktivitami alebo e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Napriek tomu sa môžete zotaviť z nešťastnej udalosti",
       "BTN_LOGIN": "Prihlasovanie",
