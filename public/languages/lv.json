@@ -796,6 +796,7 @@
       "VOTE_CAST_YOUR_VOTE": "Balsot",
       "VOTE_VOTES_COUNTED": "saskaitītās balsis",
       "VOTE_HEADING_REQUIRE_HARD_ID": "Šim balsojumam nepieciešama pieteikšanās ar ID karti vai Mobiil-ID.",
+      "VOTE_HEADING_REQUIRE_LOG_IN": "@:VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE",
       "VOTE_TXT_REQUIRE_HARD_ID": "Šis dokuments ir jāparaksta ar ID kari vai Mobiil-ID. Jūs nevarat balsot, kamēr nebūsiet identificējuši sevi.",
       "HEADING_VOTE_REGISTERED": "Jūsu balss ir reģistrēta!",
       "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
