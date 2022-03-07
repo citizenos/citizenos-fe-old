@@ -381,7 +381,8 @@
     "GROUP_INVITE_VIEW_LBL_INVITED_BY": "Zaproszony przez:",
     "GROUP_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Zaproszenie wysłane do:",
     "GROUP_INVITE_VIEW_LBL_GROUP_LEVEL": "Group rights:",
-    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "Zaloguj się przez e-mail {{email}}, aby zaakceptować zaproszenie",
+    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "@:MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS",
+    "GROUP_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN",
     "GROUP_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Możesz również:",
     "GROUP_INVITE_VIEW_LNK_LEARN_MORE": "Dowiedz się więcej o Citizen OS jeśli jesteś nowy!",
     "GROUP_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "@:MODALS.TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT",
@@ -436,7 +437,8 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Zaproszenie wysłane do:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Prawa tematu:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Heads up!</b> You must complete creating your account with {{email}} to access this topic",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Zaloguj się przez e-mail {{email}}, aby zaakceptować zaproszenie",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Create account",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Możesz również:",
@@ -593,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Przepraszamy, nie masz wystarczających uprawnień do dostępu do zasobu :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "If you have an invite to topic or group, you need to accept it first. Please check your activity feed or e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Nadal możesz przywrócić stan po niefortunnym wydarzeniu",
       "BTN_LOGIN": "Logowanie",
