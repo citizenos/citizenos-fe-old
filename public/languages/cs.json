@@ -796,6 +796,7 @@
       "VOTE_CAST_YOUR_VOTE": "Hlasujte",
       "VOTE_VOTES_COUNTED": "sečtené hlasy",
       "VOTE_HEADING_REQUIRE_HARD_ID": "Toto hlasování vyžaduje podpis občanského průkazu nebo průkazu Mobiil-ID.",
+      "VOTE_HEADING_REQUIRE_LOG_IN": "@:VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE",
       "VOTE_TXT_REQUIRE_HARD_ID": "Tento dokument musí být podepsán občanským průkazem nebo Mobiil-ID, aby mohl být registrován. Nemůžete hlasovat, dokud se neztotožníte.",
       "HEADING_VOTE_REGISTERED": "Váš hlas byl zaregistrován!",
       "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
