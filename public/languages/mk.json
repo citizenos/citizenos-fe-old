@@ -796,6 +796,7 @@
       "VOTE_CAST_YOUR_VOTE": "Изјаснете го вашиот глас",
       "VOTE_VOTES_COUNTED": "изброени гласови",
       "VOTE_HEADING_REQUIRE_HARD_ID": "Ова гласање бара лична карта или потпишување на Mobiil-ID.",
+      "VOTE_HEADING_REQUIRE_LOG_IN": "@:VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE",
       "VOTE_TXT_REQUIRE_HARD_ID": "Овој документ мора да биде потпишан со лична карта или Mobiil-ID за да биде регистриран. Не можете да гласате доколку не сте идентификувани.",
       "HEADING_VOTE_REGISTERED": "Вашиот глас е регистриран!",
       "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
