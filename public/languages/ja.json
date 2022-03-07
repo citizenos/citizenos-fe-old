@@ -381,7 +381,8 @@
     "GROUP_INVITE_VIEW_LBL_INVITED_BY": "招待者：",
     "GROUP_INVITE_VIEW_LBL_INVITATION_SENT_TO": "招待の送信先:",
     "GROUP_INVITE_VIEW_LBL_GROUP_LEVEL": "グループへの権限:",
-    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "招待を承認するには、メールアドレス {{email}} でログインしてください",
+    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "@:MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS",
+    "GROUP_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN",
     "GROUP_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "さらに：",
     "GROUP_INVITE_VIEW_LNK_LEARN_MORE": "Citizen OS について詳しく知る",
     "GROUP_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "@:MODALS.TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT",
@@ -436,7 +437,8 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "招待の受信者:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "トピック権限:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>お願い</b> このトピックにアクセスするには、 {{email}} でアカウントの作成を完了する必要があります。",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "招待を承認するには、メールアドレス {{email}} でログインしてください",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "アカウントを作成",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "さらに：",
@@ -593,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "残念ながらリソースにアクセスする権限がありません :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "トピックまたはグループへの招待をお持ちの場合は、まず受諾する必要があります。アクティビティフィードまたはメールを確認してください。",
       "HEADING_YOU_MAY_RECOVER": "Still, you may recover from the unfortunate event by",
       "BTN_LOGIN": "ログイン中",
