@@ -381,7 +381,8 @@
     "GROUP_INVITE_VIEW_LBL_INVITED_BY": "Kutsuja:",
     "GROUP_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Kutse saaja:",
     "GROUP_INVITE_VIEW_LBL_GROUP_LEVEL": "Grupi õigused:",
-    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "Kutse vastuvõtmiseks logi sisse meiliaadressiga {{email}}",
+    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "@:MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS",
+    "GROUP_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN",
     "GROUP_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Võid ka:",
     "GROUP_INVITE_VIEW_LNK_LEARN_MORE": "lugeda lisateavet Citizen OS-i kohta, kui oled uus kasutaja!",
     "GROUP_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "@:MODALS.TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT",
@@ -436,7 +437,8 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Kutse saaja:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Õigused teemas:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Tähelepanu!</b> Sul tuleb luua konto e-posti aadressiga {{email}}, et näha teemat",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Kutse vastuvõtmiseks logi sisse meiliaadressiga {{email}}",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Loo konto",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Võid külastada ka lehte:",
@@ -593,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Vabandust, sul ei ole sisenemisõigust :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Kui sul on kutse gruppi või teemasse, pead selle esmalt vastu võtma. Palun vaata oma tegevusvoogu või e-posti.",
       "HEADING_YOU_MAY_RECOVER": "Olukorra lahendamiseks on järgmised võimalused",
       "BTN_LOGIN": "Sisenemine",
