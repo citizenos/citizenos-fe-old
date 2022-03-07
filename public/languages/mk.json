@@ -381,7 +381,8 @@
     "GROUP_INVITE_VIEW_LBL_INVITED_BY": "Испраќач на поканата:",
     "GROUP_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Примач на пораката:",
     "GROUP_INVITE_VIEW_LBL_GROUP_LEVEL": "Вашите права во групата:",
-    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "Регистрирајте се со е-поштата {{email}} за да ја прифатите поканата",
+    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "@:MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS",
+    "GROUP_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN",
     "GROUP_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Можете исто така:",
     "GROUP_INVITE_VIEW_LNK_LEARN_MORE": "Дознајте повеќе за Citizen OS ако сте нов/нова!",
     "GROUP_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "@:MODALS.TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT",
@@ -436,7 +437,8 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Примач на пораката:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Права на темата:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Heads up!</b> You must complete creating your account with {{email}} to access this topic",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Регистрирајте се со е-поштата {{email}} за да ја прифатите поканата",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Create account",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Можете исто така:",
@@ -593,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Извинете, не поседувате таква дозвола за да добиете пристап до овој ресурс :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Ако имате покана за тема или група. Мора прво да ја прифатите. Проверете го својот проток на активности или е-пошта.",
       "HEADING_YOU_MAY_RECOVER": "Се уште можете да се спасите од оваа непосакувана случка со",
       "BTN_LOGIN": "Најавување",
