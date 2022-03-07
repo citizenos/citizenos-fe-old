@@ -48,9 +48,10 @@
                 </div>
 
                 <div class="lightbox_section" ng-if="!invite.user.isRegistered" translate="MODALS.TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT" translate-values="{email: invite.user.email}"><b>Heads up!</b> you must complete your account test@gmail.com to access this topic</div>
+                <div class="lightbox_section" ng-if="invite.user.isRegistered"><b translate="MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS">Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.</b></div>
 
                 <div class="lightbox_section">
-                    <div ng-if="invite.user.isRegistered" class="blue_button" ng-click="doAccept()" translate="MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS" translate-values="{email: invite.user.email}">Log-in as {{invite.user.email}} to accept invitation</div>
+                    <div ng-if="invite.user.isRegistered" class="blue_button" ng-click="doAccept()" translate="MODALS.TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN" translate-values="{email: invite.user.email}">Log-in as {{invite.user.email}} to accept invitation</div>
                     <div ng-if="!invite.user.isRegistered" class="blue_button" ng-click="doAccept()" translate="MODALS.TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT">Complete your account</div>
                 </div>
 
