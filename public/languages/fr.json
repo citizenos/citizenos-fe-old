@@ -595,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Oups, vous semblez ne pas disposer des permissions nécessaires pour accéder à cette ressource",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Si vous avez reçu une invitation à rejoindre un sujet ou un groupe, vous devez d'abord l'accepter. Veuillez vérifier votre fil d'actualité ou votre adresse e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Vous pouvez encore rattrapper le coup en",
       "BTN_LOGIN": "Connexion en cours",
