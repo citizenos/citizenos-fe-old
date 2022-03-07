@@ -381,7 +381,8 @@
     "GROUP_INVITE_VIEW_LBL_INVITED_BY": "Eingeladen von:",
     "GROUP_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Einladung gesendet an:",
     "GROUP_INVITE_VIEW_LBL_GROUP_LEVEL": "Gruppenrechte:",
-    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "Melden Sie sich mit der E-Mail-Adresse {{email}} an, um die Einladung anzunehmen",
+    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "@:MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS",
+    "GROUP_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN",
     "GROUP_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Sie können auch:",
     "GROUP_INVITE_VIEW_LNK_LEARN_MORE": "Mehr über Citizen OS erfahren, wenn Sie hier neu sind!",
     "GROUP_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "@:MODALS.TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT",
@@ -436,7 +437,8 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Einladung gesendet an:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Themenrechte:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Heads up!</b> You must complete creating your account with {{email}} to access this topic",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Melden Sie sich mit der E-Mail-Adresse {{email}} an, um die Einladung anzunehmen",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Create account",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Sie können auch:",
@@ -593,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Entschuldigung, Sie haben nicht genügend Rechte, um auf die Ressource zuzugreifen :(",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Wenn Sie eine Einladung zum Thema oder zur Gruppe haben, müssen Sie diese zuerst annehmen. Bitte schauen Sie in Ihrem Aktivitäten-Feed oder in Ihrem E-Mail-Postfach.",
       "HEADING_YOU_MAY_RECOVER": "Sie können dennoch den unglücklichen Vorfall lösen, indem Sie sich",
       "BTN_LOGIN": "Anmelden",
