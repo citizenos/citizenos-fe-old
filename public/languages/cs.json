@@ -381,7 +381,8 @@
     "GROUP_INVITE_VIEW_LBL_INVITED_BY": "Pozván:",
     "GROUP_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Pozvánka odeslána:",
     "GROUP_INVITE_VIEW_LBL_GROUP_LEVEL": "Práva skupiny:",
-    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "Přihlaste se pomocí e-mailu {{email}} pro přijetí pozvánky",
+    "GROUP_INVITE_VIEW_BTN_LOGIN_AS": "@:MODALS.TOPIC_INVITE_VIEW_BTN_LOGIN_AS",
+    "GROUP_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN",
     "GROUP_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Můžete také:",
     "GROUP_INVITE_VIEW_LNK_LEARN_MORE": "Zjistěte více o Citizen OS pokud jste nový!",
     "GROUP_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "@:MODALS.TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT",
@@ -436,7 +437,8 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Pozvánka odeslána:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Práva k tématu:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Upozornění!</b> pro přístup k tomuto tématu musíte dokončit svůj účet {{email}}",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Přihlaste se pomocí e-mailu {{email}} pro přijetí pozvánky",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Vytvořit účet",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Můžete také:",
@@ -593,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Omlouváme se, ale pro přístup ke zdroji nemáte dostatečná oprávnění: (",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Pokud máte pozvánku k tématu nebo skupině, musíte ji nejdříve přijmout. Zkontrolujte prosím svůj kanál aktivity nebo e-mail.",
       "HEADING_YOU_MAY_RECOVER": "Přesto se můžete zotavit z nešťastné události",
       "BTN_LOGIN": "Přihlášení",
