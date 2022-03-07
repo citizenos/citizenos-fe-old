@@ -796,6 +796,7 @@
       "VOTE_CAST_YOUR_VOTE": "Emita su voto",
       "VOTE_VOTES_COUNTED": "votos contabilizados",
       "VOTE_HEADING_REQUIRE_HARD_ID": "Para realizar este voto, se necesita una firma con tarjeta de identificación o Mobiil-ID.",
+      "VOTE_HEADING_REQUIRE_LOG_IN": "@:VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE",
       "VOTE_TXT_REQUIRE_HARD_ID": "Para firmar y registrar este documento, se necesita una tarjeta de identificación o Mobiil-ID. Solo se puede votar después de identificarse.",
       "HEADING_VOTE_REGISTERED": "¡Se registró su voto!",
       "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
