@@ -436,8 +436,8 @@
     "TOPIC_INVITE_VIEW_LBL_INVITED_BY": "Kutsuja:",
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Kutsun vastaanottaja:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Aiheen oikeudet:",
-    "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Heads up!</b> You must complete creating your account with {{email}} to access this topic",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Huomio!</b> Sinun on luotava käyttäjätilisi loppuun sähköpostillasi {{email}} päästäksesi tähän aiheeseen",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Aiheita ja ryhmiä voi käyttää vain Citizen OS -tilillä, joka on rekisteröity samaan sähköpostiosoitteeseen, johon kutsu lähetettiin.",
     "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Luo tili",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
@@ -595,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Ikävä kyllä sinulla ei ole riittäviä käyttöoikeuksia resurssin näyttämiseen",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Jos sinulla on kutsu aiheeseen tai ryhmään, sinun täytyy hyväksyä se ensin. Tarkista toimintasyötesta tai sähköpostista.",
       "HEADING_YOU_MAY_RECOVER": "Voit kuitenkin paikata tällaisen ikävän tilanteen",
       "BTN_LOGIN": "Kirjautumalla sisään",
