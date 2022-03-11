@@ -1158,14 +1158,14 @@
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_SMARTID": "Smart-ID",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_ESTEID": "Estonian ID-card / Mobiil-ID",
     "ACTIVITY_USERCONNECTION_CONNECTION_NAME_CITIZENOS": "Citizen OS",
-    "FILTER_ALL": "All activities",
+    "FILTER_ALL": "全てのアクティビティ",
     "FILTER_USERTOPICS": "Activities related to my topics",
     "FILTER_USERGROUPS": "Activities related to my groups",
     "FILTER_USER": "Activities related to user",
-    "FILTER_SELF": "My activities"
+    "FILTER_SELF": "マイアクティビティ"
   },
-  "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "Invalid email.",
-  "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "The email address is already in use.",
+  "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_EMAIL": "メールアドレスが無効です",
+  "MSG_ERROR_POST_API_AUTH_SIGNUP_40001_EMAIL": "このメール アドレスは既に使用されています。",
   "MSG_ERROR_POST_API_AUTH_SIGNUP_40000_NAME": "Name can be 1 to 255 characters long.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_40002_EMAIL": "Account with this email does not exist.",
   "MSG_ERROR_POST_API_AUTH_LOGIN_42900": "Sorry, logging in has been temporarily disabled due to too many attempts. Please try again later. If the problem persists, contact our customer support.",
