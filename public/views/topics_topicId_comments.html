@@ -1,12 +1,13 @@
 <div class="arguments_container" ng-controller="TopicCommentCtrl">
     <div class="arguments_wrap">
         <div class="arguments_header">
-            <div class="number_of_arguments" translate="VIEWS.TOPICS_TOPICID.TAB_ARGUMENTS_HEADING" translate-values="{count: (topicComments.count.pro + topicComments.count.con)}">0 arguments</div>
+            <div class="number_of_arguments" translate="VIEWS.TOPICS_TOPICID.TAB_ARGUMENTS_HEADING" translate-values="{count: (topicComments.count.total)}">0 arguments</div>
             <div class="arguments_data">
                 <div class="data_left">
                     <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_PRO" translate-values="{countPro:topicComments.count.pro}">pro: 0</span>
                     <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_CON" translate-values="{countCon:topicComments.count.con}">con: 0</span>
                     <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_POI" translate-values="{countPoi:topicComments.count.poi}">poi: 0</span>
+                    <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_REPLY" translate-values="{countReplies:topicComments.count.poi}">replies: 0</span>
                 </div>
                 <div class="data_right print_never">
                     <div cos-dropdown class="classic_dropdown borderless_dropdown">
@@ -580,7 +581,8 @@
                                ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
                                ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</a>
                             <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text" ng-bind-html="reply.text | markdown"></div>
-                            <div ng-if="!reply.isVisible()" class="argument_text italic">This comment has been deleted by {{reply.deletedBy.name}}</div>
+                            <div ng-if="!reply.isVisible()" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY"
+                            translate-values="{usersFullName: comment.deletedBy.name}">This comment has been deleted by {{reply.deletedBy.name}}</div>
                             <div class="argument_overlay">
                             </div>
                             <div class="blue_link read_more_link " ng-click="$parent.readMore = !$parent.readMore"
