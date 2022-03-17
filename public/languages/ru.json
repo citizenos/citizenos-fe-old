@@ -437,7 +437,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Приглашение отправлено:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Выдать права:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Внимание!</b> Вы должны завершить создание учетной записи с эл. почтой {{email}} для доступа к этой теме",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Темы и группы доступны только с помощью учетной записи Citizen OS, зарегистрированной с тем же электронным адресом, на который было направлено приглашение.",
     "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Создать учетную запись",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
@@ -595,7 +595,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Извините, у Вас нет права входа",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Если у вас есть приглашение в тему или группу, сначала нужно его принять. Проверьте ленту новостей и эл. почту.",
       "HEADING_YOU_MAY_RECOVER": "Для разрешения ситуации имеются следующие возможности",
       "BTN_LOGIN": "Вход",
