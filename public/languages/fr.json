@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "POUR VOTRE INFORMATION",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Chaque fois que vous vous trouvez bloqué ou confus, il vous suffit d'ouvrir le Centre d'aide pour trouver les réponses à vos questions. Le Centre d'aide est toujours accessible via la bulle en bas à droite.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Centre d’aide",
     "TITLE": "Nous sommes là pour vous aider !",
