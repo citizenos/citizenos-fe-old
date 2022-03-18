@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "JŪSU ZINĀŠANAI",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Ikreiz, kad nezināt, kā rīkoties tālāk, vienkārši atveriet Palīdzības centru, lai atrastu atbildes uz saviem jautājumiem. Palīdzības centram vienmēr var piekļūt, atverot burbuli apakšējā labajā stūrī.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "Labi",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Palīdzības centrs",
     "TITLE": "Esam šeit, lai palīdzētu!",

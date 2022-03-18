@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "PARA SUA INFORMAÇÃO",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Sempre que você não souber o que fazer, abra a Central de Ajuda para encontrar respostas às suas perguntas. A Central de Ajuda é acessível pela bolha no canto inferior direito.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "Ok",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Central de ajuda",
     "TITLE": "Estamos aqui para ajudar!",

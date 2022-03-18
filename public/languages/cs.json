@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "PRO VAŠI INFORMACI",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Kdykoli se ocitnete v zaseknutí nebo zmatku, otevřete centrum nápovědy, abyste našli odpovědi na vaše otázky. Centrum nápovědy je vždy dostupné prostřednictvím bubliny v pravém dolním rohu.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "Ok",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Centrum nápovědy",
     "TITLE": "Jsme tady, abychom pomohli!",

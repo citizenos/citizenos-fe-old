@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "ДО ВАШОГО ВІДОМА",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Якщо вам щось незрозуміло або ви розгубилися, просто відкрийте Довідковий центр, щоб знайти відповіді на свої запитання. Довідковий центр завжди доступний через спливаючу підказку в нижньому правому куті. ",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Довідковий центр",
     "TITLE": "З радістю допоможемо!",
