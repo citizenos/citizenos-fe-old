@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "ИНФОРМАЦИЈА ЗА ВАС",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Кога и да се почувствувате заглавено или збунето, само отворете го Центарот за помош за да ги најдете одговорите на вашите прашања. Центарот за помош е секогаш достапен преку прозорецот за дијалог во долниот десен агол.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "ВО РЕД",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Центар за помош",
     "TITLE": "Тука сме за помош!",
