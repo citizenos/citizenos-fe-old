@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "INFORMASI UNTUK ANDA",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Kapan pun Anda menemui jalan buntu atau kebingungan, cukup buka Pusat Bantuan untuk menemukan jawaban atas pertanyaan Anda. Pusat Bantuan selalu bisa diakses melalui gelembung di sudut kanan bawah.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "Oke",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Pusat bantuan",
     "TITLE": "Kami di sini untuk membantu!",

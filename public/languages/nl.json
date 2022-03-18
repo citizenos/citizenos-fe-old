@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "TER INFORMATIE",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Wanneer u vastzit of verward bent, open dan het Helpcentrum om antwoorden op uw vragen te vinden. Het Helpcentrum is altijd toegankelijk via de bubbel rechtsonder.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Helpcentrum",
     "TITLE": "We zijn er om te helpen!",

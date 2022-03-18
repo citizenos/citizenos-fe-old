@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "その他の情報",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "お困りの際はヘルプセンターをご参照ください。ヘルプセンターは画面右下からアクセスできます。",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "ヘルプセンター",
     "TITLE": "何でもご相談ください",

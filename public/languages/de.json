@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "ZUR INFORMATION",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Wenn Sie nicht weiter wissen oder verwirrt sind, können Sie einfach das Hilfezentrum öffnen. Dort finden Sie Antworten auf Ihre Fragen. Das Hilfezentrum ist über die Sprechblase in der unteren rechten Ecke verfügbar.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Hilfezentrum",
     "TITLE": "Wir helfen immer gern!",
