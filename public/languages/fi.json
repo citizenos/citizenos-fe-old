@@ -45,6 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "TIEDOKSI",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Jos olet umpikujassa tai et tiedä, mitä tehdä, löydät vastauksia kysymyksiisi Ohjekeskuksesta. Ohjekeskuksen voi avata milloin tahansa oikeassa alakulmassa olevasta puhekuplakuvakkeesta.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
+  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Ohjekeskus",
     "TITLE": "Autamme mielellämme!",
