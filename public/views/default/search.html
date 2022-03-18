@@ -3,6 +3,11 @@
         <div class="logo sprite sprite-x5-cos-logo-small2x">
         </div>
     </div>
+    <div id="donate_wrap" ng-if="!app.showSearchResults && !$parent.isVisible()">
+        <div class="donate_item" id="donate_icon"></div>
+        <div class="donate_item" id="donate_text" translate="DONATE_TXT">Help us keep the platform free</div>
+        <a class="donate_item" id="donate_button" href="https://citizenos.com/donate/" translate="DONATE_BTN">Donate</a>
+    </div>
     <typeahead class="auto-complete" items="searchResults.combined" term="form.searchInput" search="doSearch(term)" select-limit="3" enter-action="enterAction(item)"
                select="goToView(item)" placeholder="{{'LAYOUTS.MAIN.PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS' | translate}}">
 
