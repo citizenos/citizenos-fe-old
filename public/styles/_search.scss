@@ -278,4 +278,59 @@
             }
         }
     }
+
+    #donate_wrap {
+        @include mixins_n_extends.mobile {
+            display: none;
+        }
+
+        position: absolute;
+        height: 60px;
+        right: 0px;
+        top: 0px;
+        background: #D5EAFF;
+        border-radius: 0px;
+        padding: 10px;
+
+        .donate_item {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #donate_icon {
+            position: static;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            background-image: url('../imgs/icon donate.svg');
+        }
+
+        #donate_text {
+            position: static;
+            font-family: 'Open Sans';
+            font-style: normal;
+            color: #0680FC;
+            margin: 0px 10px;
+        }
+
+        #donate_button {
+            padding: 10px;
+            background: #0680FC;
+            border: 1px solid #0574E3;
+            box-sizing: border-box;
+            border-radius: 4px;
+            margin: 0px 20px;
+
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 20px;
+
+            text-align: center;
+
+            /* White */
+
+            color: #FFFFFF;
+        }
+    }
 }
