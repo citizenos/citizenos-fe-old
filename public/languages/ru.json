@@ -45,7 +45,7 @@
   "HELP_CENTER_TOOLTIP_HEADING": "ПОЛЕЗНАЯ ИНФОРМАЦИЯ",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Если вы не знаете, что делать, откройте справочный центр, чтобы найти ответы на интересующие вас вопросы. Справочный центр доступен в любое время, в него можно перейти, нажав на кружок в правом нижнем углу.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "ОК",
-  "DONATE_TXT": "Help us keep the platform free",
+  "DONATE_TXT": "Помогите нам сохранить платформу бесплатной",
   "DONATE_BTN": "Donate",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Справочный центр",
