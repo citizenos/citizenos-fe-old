@@ -288,49 +288,48 @@
         height: 60px;
         right: 0px;
         top: 0px;
-        background: #D5EAFF;
         border-radius: 0px;
-        padding: 10px;
+        background: #F5E6E8;
+        border-radius: 32px 0px 0px 32px;
 
         .donate_item {
             display: inline-block;
             vertical-align: middle;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
         #donate_icon {
             position: static;
             width: 20px;
             height: 20px;
-            margin-left: 10px;
-            background-image: url('../imgs/icon donate.svg');
+            margin-left: 20px;
+            background-image: url('../imgs/icon_donate.png');
         }
 
         #donate_text {
+            font-family: 'Noto Sans', sans-serif;
             position: static;
-            font-family: 'Open Sans';
             font-style: normal;
-            color: #0680FC;
-            margin: 0px 10px;
+            color: #8E4765;
+            margin-left: 10px;
         }
 
         #donate_button {
-            padding: 10px;
-            background: #0680FC;
-            border: 1px solid #0574E3;
+            padding: 10px 20px;
             box-sizing: border-box;
             border-radius: 4px;
-            margin: 0px 20px;
 
-            font-family: 'Open Sans';
-            font-style: normal;
+            font-family: 'Noto Sans', sans-serif;
             font-weight: 700;
             font-size: 14px;
             line-height: 20px;
-
             text-align: center;
-
-            /* White */
-
-            color: #FFFFFF;
+            color: #8E4765;
+            background: linear-gradient(180deg, #ECD5D6 0%, #E598B8 100%);
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
         }
     }
 }
