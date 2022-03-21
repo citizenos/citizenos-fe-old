@@ -45,8 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "MUIDE...",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "Kui leiad end olevat ummikus või segaduses, ava Abikeskus, et leida oma küsimustele vastused. Abikeskusesse pääseb all paremas nurgas asuva \"mulli\" abil.",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
-  "DONATE_TXT": "Help us keep the platform free",
-  "DONATE_BTN": "Donate",
+  "DONATE_TXT": "Aita meil hoida platvorm tasuta",
+  "DONATE_BTN": "Toeta",
   "HELP_WIDGET": {
     "HEADER_TITLE": "Abikeskus",
     "TITLE": "Abistame sind rõõmuga!",
