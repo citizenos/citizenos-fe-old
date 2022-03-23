@@ -89,7 +89,7 @@ angular
                 }
             }
             for(var i=0; i < activities.length; i++) {
-                var objectId = activities[i].data.object.id;
+                var objectId = activities[i].data.object.id || activities[i].data.object.topicId || activities[i].data.object.groupId;
 
                 if (activities[i].data.target) {
                     var targetId = activities[i].data.target.id;
@@ -116,7 +116,6 @@ angular
                 } else {
                     userActivityGroups[userGroupKey].push(activities[i]);
                 }
-
             }
 
             // Filter out the final activities
