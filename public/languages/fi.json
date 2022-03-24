@@ -1287,6 +1287,8 @@
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Uusien jäsenten raja saavutettu",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Valittujen vaihtoehtojen määrä ei vastaa äänestysasetuksia!",
   "MSG_ERROR_LOGOUT_FAILED": "Valitettavasti uloskirjautuminen epäonnistui. Yritä uudelleen. Jos ongelma jatkuu, ota yhteyttä tukeen.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "No invites were sent because invalid data or invites have already been sent",
+  "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
   "MDEDITOR_TOOLTIP_BOLD": "Lihavoitu",
   "MDEDITOR_TOOLTIP_ITALIC": "Kursivoitu",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Yliviivattu",

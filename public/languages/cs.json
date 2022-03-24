@@ -1287,6 +1287,8 @@
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Dosažen limit nových členů",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Počet vybraných možností se neshoduje s nastavením hlasování!",
   "MSG_ERROR_LOGOUT_FAILED": "Omlouváme se, odhlášení se nezdařilo. Zkuste to prosím znovu. Pokud problém přetrvává, kontaktujte podporu.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "No invites were sent because invalid data or invites have already been sent",
+  "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
   "MDEDITOR_TOOLTIP_BOLD": "Tučně",
   "MDEDITOR_TOOLTIP_ITALIC": "Kurzíva",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Přeškrtnuté",
