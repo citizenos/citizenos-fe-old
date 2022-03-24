@@ -672,7 +672,7 @@
         "STATUS_DESCENDING": "ステータス (新しい順)",
         "PINNED_ASCENDING": "Attention (non-pinned first)",
         "PINNED_DESCENDING": "Attention (pinned first)",
-        "ACTIVITY_ASCENDING": "Activity (latest)",
+        "ACTIVITY_ASCENDING": "活動(新しい順)",
         "ACTIVITY_DESCENDING": "活動履歴(古い順)"
       }
     },
