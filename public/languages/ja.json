@@ -45,8 +45,8 @@
   "HELP_CENTER_TOOLTIP_HEADING": "その他の情報",
   "HELP_CENTER_TOOLTIP_DESCRIPTION": "お困りの際はヘルプセンターをご参照ください。ヘルプセンターは画面右下からアクセスできます。",
   "HELP_CENTER_TOOLTIP_BTN_OK": "OK",
-  "DONATE_TXT": "Help us keep the platform free",
-  "DONATE_BTN": "Donate",
+  "DONATE_TXT": "プラットフォームの維持にご協力ください",
+  "DONATE_BTN": "寄附する",
   "HELP_WIDGET": {
     "HEADER_TITLE": "ヘルプセンター",
     "TITLE": "何でもご相談ください",
@@ -439,7 +439,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "招待の受信者:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "トピック権限:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>お願い</b> このトピックにアクセスするには、 {{email}} でアカウントの作成を完了する必要があります。",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "トピックとグループは、招待状が送信されたメールアドレスのアカウントでのみアクセスできます。",
     "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "アカウントを作成",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
@@ -597,7 +597,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "残念ながらリソースにアクセスする権限がありません",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "トピックまたはグループへの招待をお持ちの場合は、まず受諾する必要があります。アクティビティフィードまたはメールを確認してください。",
       "HEADING_YOU_MAY_RECOVER": "Still, you may recover from the unfortunate event by",
       "BTN_LOGIN": "ログイン中",
@@ -640,7 +640,7 @@
       "HEADING_AT_LEAST_WE_HELP": "何か不明な点があればお知らせください",
       "TXT_CREATING_A NEW_GROUP": "グループの新規作成",
       "HEADING_NOT_PARTICIPATED": "トピックに参加してみましょう！",
-      "HEADING_GET_INVOLVED": "You can get involved by",
+      "HEADING_GET_INVOLVED": "参加方法：",
       "MY_CREATING_A_NEW_TOPIC": "トピックの新規作成",
       "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "NO_RESULTS_FOUND_TITLE": "一致する結果が見つかりませんでした",
