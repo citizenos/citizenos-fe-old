@@ -1287,6 +1287,8 @@
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Досягнуто ліміту нових учасників",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Кількість обраних опцій не відповідає налаштуванням голосування!",
   "MSG_ERROR_LOGOUT_FAILED": "Вибачте, вийти не вдалося. Будь ласка, спробуйте ще раз. Якщо проблема залишається, будь ласка, зв'яжіться з підтримкою.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "No invites were sent because invalid data or invites have already been sent",
+  "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
   "MDEDITOR_TOOLTIP_BOLD": "Жирний",
   "MDEDITOR_TOOLTIP_ITALIC": "Курсив",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Закреслений",

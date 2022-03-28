@@ -1287,6 +1287,8 @@
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Достигнато е ограничувањето на бројот нови членови",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Избраниот број оции не е во согласност со поставките за гласање!",
   "MSG_ERROR_LOGOUT_FAILED": "Извинете, одјавувањето е неуспешно. Обидете се повторно. Ако продолжи проблемот, контактирајте ја службата за поддршка.",
+  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "No invites were sent because invalid data or invites have already been sent",
+  "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
   "MDEDITOR_TOOLTIP_BOLD": "Задебелено",
   "MDEDITOR_TOOLTIP_ITALIC": "Курзив",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Пречкртај",
