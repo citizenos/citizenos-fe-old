@@ -1287,7 +1287,7 @@
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Uute liikmete piirarv on täis",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Määratletud valikute arv ei ole kooskõlas teiste hääletamise suvanditega!",
   "MSG_ERROR_LOGOUT_FAILED": "Vabandust, väljalogimine nurjus. Palun proovi uuesti. Probleemi püsimisel võta palun ühendust klienditoega.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "No invites were sent because invalid data or invites have already been sent",
+  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Sending invites failed: duplicate action or invalid data provided",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
   "MDEDITOR_TOOLTIP_BOLD": "Paks",
   "MDEDITOR_TOOLTIP_ITALIC": "Kursiiv",
