@@ -1287,7 +1287,7 @@
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Limiet voor nieuwe leden bereikt",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Aantal geselecteerde opties komt niet overeen met de steminstellingen!",
   "MSG_ERROR_LOGOUT_FAILED": "Sorry, het uitloggen is mislukt. Probeer het opnieuw. Als het probleem zich blijft voordoen, neem dan contact op met de ondersteuning.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "No invites were sent because invalid data or invites have already been sent",
+  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Sending invites failed: duplicate action or invalid data provided",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
   "MDEDITOR_TOOLTIP_BOLD": "Vetgedrukt",
   "MDEDITOR_TOOLTIP_ITALIC": "Cursief",
