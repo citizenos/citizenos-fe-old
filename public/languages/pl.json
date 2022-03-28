@@ -1287,7 +1287,7 @@
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Osiągnięto limit nowych członków",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Wybrana liczba opcji nie pasuje do ustawień głosowania!",
   "MSG_ERROR_LOGOUT_FAILED": "Sorry, logging out has failed. Please try again. If the problem persists, please contact support.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "No invites were sent because invalid data or invites have already been sent",
+  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Sending invites failed: duplicate action or invalid data provided",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
   "MDEDITOR_TOOLTIP_BOLD": "Bold",
   "MDEDITOR_TOOLTIP_ITALIC": "Kursywa",
