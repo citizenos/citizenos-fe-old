@@ -1289,6 +1289,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "Omlouváme se, odhlášení se nezdařilo. Zkuste to prosím znovu. Pokud problém přetrvává, kontaktujte podporu.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Odesílání pozvánek selhalo: duplicitní akce nebo poskytnutá neplatná data",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Page redirected due to account switch",
   "MDEDITOR_TOOLTIP_BOLD": "Tučně",
   "MDEDITOR_TOOLTIP_ITALIC": "Kurzíva",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Přeškrtnuté",
