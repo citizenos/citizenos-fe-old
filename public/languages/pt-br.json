@@ -1289,6 +1289,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "Ocorreu um erro ao sair. Tente novamente. Se o problema persistir, entre em contato com o suporte.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Sending invites failed: duplicate action or invalid data provided",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Page redirected due to account switch",
   "MDEDITOR_TOOLTIP_BOLD": "Negrito",
   "MDEDITOR_TOOLTIP_ITALIC": "Itálico",
   "MDEDITOR_TOOLTIP_STRIKETHROUGH": "Tachado",
