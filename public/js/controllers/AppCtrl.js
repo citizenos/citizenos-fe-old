@@ -385,6 +385,7 @@ angular
 
         // Update new activities count
         var newActivitiesWatcher = null;
+        var authStatusWatcher = null;
         $scope.$watch(
             function () {
                 return $scope.app.user.loggedIn;
@@ -395,10 +396,27 @@ angular
                     newActivitiesWatcher = $interval(function () {
                         getUnreadActivities();
                     }, 30000);
+                    authStatusWatcher = $interval(function () {
+                        sAuth.status();
+                    }, 10000);
                 } else if (newActivitiesWatcher) {
                     $interval.cancel(newActivitiesWatcher);
+                    $interval.cancel(authStatusWatcher);
                     newActivitiesWatcher = undefined;
+                    authStatusWatcher = undefined;
                     $scope.app.unreadActivitiesCount = 0;
+                }
+            });
+
+        $scope.$watch(
+            function () {
+                return $scope.app.user.id;
+            },
+            function (newId, oldId) {
+                if (oldId && newId !== oldId) {
+                    $state.go('home');
+                    if (newId)
+                        return sNotification.addInfo('MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT')
                 }
             });
     }]);

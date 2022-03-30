@@ -1287,7 +1287,7 @@
   "MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT": "Batas anggota baru telah dicapai",
   "MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS": "Jumlah opsi yang dipilih tidak sesuai dengan pengaturan hak pilih!",
   "MSG_ERROR_LOGOUT_FAILED": "Maaf, gagal keluar. Silakan coba lagi. Jika masalah terus terjadi, hubungi dukungan.",
-  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "No invites were sent because invalid data or invites have already been sent",
+  "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Sending invites failed: duplicate action or invalid data provided",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
   "MDEDITOR_TOOLTIP_BOLD": "Bold",
   "MDEDITOR_TOOLTIP_ITALIC": "Italic",

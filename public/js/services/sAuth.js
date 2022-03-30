@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .service('sAuth', ['$http', '$q', '$log', 'sLocation', 'hwcrypto', 'cosConfig', function ($http, $q, $log, sLocation, hwcrypto, cosConfig) {
+    .service('sAuth', ['$http', '$q', '$log', '$cookies', 'sLocation', 'cosConfig', function ($http, $q, $log, $cookies, sLocation, cosConfig) {
         var sAuth = this;
 
         sAuth.user = {

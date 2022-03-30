@@ -3,7 +3,7 @@
 angular
     .module('citizenos')
     .controller('HomeCtrl', ['$scope', '$log', '$location', '$window', '$state', '$stateParams', 'sTopic', function ($scope, $log, $location, $window, $state, $stateParams, sTopic) {
-        $log.debug('HomeCtrl', $state);
+        $log.info('HomeCtrl', $state, $stateParams);
 
         // Constant marking the "clear" or all options will do
         $scope.FILTERS_ALL = 'all';
