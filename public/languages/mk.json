@@ -811,7 +811,7 @@
       "VOTE_REVOKE_DELEGATION": "Забрани ја вашата делегација",
       "VOTE_HEADING_VOTE_CLOSED": "Гласањето е затворено!",
       "LBL_VOTE_RESULTS": "Резултати од гласањето",
-      "VOTE_TXT_VOTE_CLOSED": "Сите членови гласаа. Можете да го преземете целиот документ тука.",
+      "VOTE_TXT_VOTE_CLOSED": "To download voting results, select a suitable format below. Our \"human-readable\" container comes with an additional file (comma-separated table, .csv) containing data of each individual vote, as required by Riigikogu and local goverments. For systems that can't process such info (a la Äriregister) please select \"machine-readable\" file.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Гласовите се дадени. Ве молиме, пратете ја темата на проследување, потоа вратете се тука за да ги симнете резултатите од гасањето.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Преземи потпишан фајл (BDOC)",
       "FINAL_OPTION_WITHOUT_CSV": "Датотека читлива од машина (Äriregister)",
