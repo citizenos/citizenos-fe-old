@@ -811,7 +811,7 @@
       "VOTE_REVOKE_DELEGATION": "Tühista volitus",
       "VOTE_HEADING_VOTE_CLOSED": "Hääletus on lõppenud!",
       "LBL_VOTE_RESULTS": "Hääletustulemused",
-      "VOTE_TXT_VOTE_CLOSED": "Kõik on hääletanud. Valmis dokumendi saad alla laadida siit.",
+      "VOTE_TXT_VOTE_CLOSED": "To download voting results, select a suitable format below. Our \"human-readable\" container comes with an additional file (comma-separated table, .csv) containing data of each individual vote, as required by Riigikogu and local goverments. For systems that can't process such info (a la Äriregister) please select \"machine-readable\" file.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Hääled on nüüd antud. Palun liiguta teema elluviimisfaasi ja seejärel naase siia, et laadida alla hääletustulemused.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Lae alla allkirjadega fail (BDOC)",
       "FINAL_OPTION_WITHOUT_CSV": "Masinloetav fail (Äriregister)",
