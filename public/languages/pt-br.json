@@ -811,7 +811,7 @@
       "VOTE_REVOKE_DELEGATION": "Revogar sua delegação",
       "VOTE_HEADING_VOTE_CLOSED": "Votação encerrada!",
       "LBL_VOTE_RESULTS": "Resultados da votação",
-      "VOTE_TXT_VOTE_CLOSED": "Todos fizeram seus votos. Você pode baixar o documento completo aqui.",
+      "VOTE_TXT_VOTE_CLOSED": "To download voting results, select a suitable format below. Our \"human-readable\" container comes with an additional file (comma-separated table, .csv) containing data of each individual vote, as required by Riigikogu and local goverments. For systems that can't process such info (a la Äriregister) please select \"machine-readable\" file.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Os votos foram lançados. Por favor, envie o tópico para acompanhamento e volte aqui para baixar os resultados das votações.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Baixe o arquivo assinado (BDOC)",
       "FINAL_OPTION_WITHOUT_CSV": "Arquivo legível por máquinas (Äriregister)",
