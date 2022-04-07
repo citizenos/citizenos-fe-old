@@ -112,7 +112,7 @@ angular
                     // Now we got only 2 levels in the tree - arguments and replies.
                     if (comments && comments.length) {
                         $scope.topicComments.count = comments[0].count;
-                        $scope.topicComments.totalPages = Math.ceil($scope.topicComments.count.total / limit);
+                        $scope.topicComments.totalPages = Math.ceil(($scope.topicComments.count.total - $scope.topicComments.count.reply)  / limit);
                         $scope.topicComments.page = Math.ceil((offset + limit) / limit);
 
                         $stateParams.argumentsPage = $scope.topicComments.page;
