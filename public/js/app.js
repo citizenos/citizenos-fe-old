@@ -280,9 +280,8 @@
                 })
                 .state('account', {
                     url: '/account',
-                    abstract: true,
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    templateUrl: '/views/account.html'
                 })
                 .state('account.tos', {
                     url: '/tos?redirectSuccess',
