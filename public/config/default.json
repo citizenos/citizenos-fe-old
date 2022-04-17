@@ -35,7 +35,12 @@
       "en": "https://citizenos.com/faq/",
       "et": "https://citizenos.com/et/kkk/"
     },
-    "about": "https://citizenos.com/product"
+    "about": "https://citizenos.com/product",
+    "donate": {
+      "en": "https://citizenos.com/donate/",
+      "et": "https://citizenos.com/et/toeta/",
+      "ru": "https://citizenos.com/ru/pomoch-proektu/"
+    }
   },
   "legal": {
     "termsOfUse": "https://citizenos.com/legal/api/",
