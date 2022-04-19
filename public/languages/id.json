@@ -438,10 +438,10 @@
     "TOPIC_INVITE_VIEW_LBL_INVITED_BY": "Diundang oleh:",
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Undangan dikirim kepada:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Hak topik:",
-    "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Heads up!</b> You must complete creating your account with {{email}} to access this topic",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Peringatan!</b> Anda harus menyelesaikan pembuatan akun dengan {{email}} untuk mengakses topik ini",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topik dan grup hanya dapat diakses dengan menggunakan akun Citizen OS yang terdaftar dengan alamat email yang sama dengan alamat email tempat undangan terkirim.",
     "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
-    "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Create account",
+    "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Buat akun",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
     "TOPIC_INVITE_VIEW_LBL_ADDITIONAL_ACTIONS": "Anda juga dapat:",
     "TOPIC_INVITE_VIEW_LNK_LEARN_MORE": "Lihat selengkapnya tentang Citizen OS jika Anda baru di sini!",
@@ -597,7 +597,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "Sorry, you haven't got sufficient permissions to access the resource",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "Maaf, Anda tidak memiliki cukup izin untuk mengakses sumber daya",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Anda harus menyetujuinya dahulu jika Anda memiliki undangan ke topik atau grup. Periksa feed aktivitas atau email Anda.",
       "HEADING_YOU_MAY_RECOVER": "Namun, Anda dapat memperbarui kondisi ini dengan",
       "BTN_LOGIN": "Masuk",
