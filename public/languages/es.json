@@ -438,7 +438,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITED_BY": "Invitado por:",
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Invitación enviada a:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Derechos del tema:",
-    "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>¡Aviso!</b> Debe terminar de crear la cuenta con {{email}} para acceder a este tema",
+    "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>¡Aviso!</b> Para acceder a este tema, necesita terminar de crear la cuenta con {{email}}",
     "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Solo se puede acceder a los temas y grupos con una cuenta de Citizen OS registrada con la misma dirección de correo electrónico a la que se envió la invitación.",
     "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Crear cuenta",
@@ -597,7 +597,7 @@
   },
   "VIEWS": {
     "401": {
-      "HEADING_INSUFFICIENT_PERMISSIONS": "No tiene permisos suficientes para acceder al recurso",
+      "HEADING_INSUFFICIENT_PERMISSIONS": "No tiene los permisos necesarios para acceder al recurso",
       "DESCRIPTION_INSUFFICIENT_PERMISSIONS": "Si tiene una invitación a un tema o grupo, primero tiene que aceptarla. Consulte su correo electrónico o fuente de actividades.",
       "HEADING_YOU_MAY_RECOVER": "Aun así, puede recuperarse del desafortunado evento si",
       "BTN_LOGIN": "Inicia la sesión",
@@ -1235,7 +1235,7 @@
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_40017": "@:MSG_ERROR_GET_API_AUTH_MOBILE_STATUS_40017",
   "MSG_ERROR_GET_API_TOPICS_VOTES_STATUS_50001": "Error del servicio DigiDoc. Vuelva a intentarlo y, si el problema persiste, póngase en contacto con el servicio de atención al cliente.",
   "MSG_ERROR_POST_API_TOPICS_JOIN_TOKEN_40001": "No se encuentra el tema. Puede que el enlace no sea válido, o bien se ha generado un nuevo enlace para compartir único.",
-  "MSG_ERROR_POST_API_GROUPS_JOIN_TOKEN_40001": "No se encuentra este grupo. Puede que el enlace esté incompleto o que se haya generado un nuevo enlace para compartir único.",
+  "MSG_ERROR_POST_API_GROUPS_JOIN_TOKEN_40001": "No se encuentra el grupo. Puede que el enlace esté incompleto o que se haya generado un nuevo enlace para compartir único.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000_VALUE": "Una de las opciones de voto especificadas no es válida. Cada opción de voto puede tener como máximo 200 caracteres.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40000": "La votación finalizó.",
   "MSG_ERROR_POST_API_USERS_TOPICS_VOTES_40001": "Se necesitan como mínimo 2 opciones de voto para crear una votación",
