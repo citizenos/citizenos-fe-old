@@ -15,7 +15,11 @@ angular
             imageUrl: null,
             passwordConfirm: null,
             preferences: {
-                showInSearch: false
+                showInSearch: false,
+                notifications: {
+                    topics: {},
+                    groups: {}
+                }
             }
         };
 
@@ -58,6 +62,7 @@ angular
                     }, error);
 
             } else {
+                console.log('UPDATE')
                 sUser
                     .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, $scope.form.imageUrl, $scope.form.preferences, null, null, $scope.form.newPassword)
                     .then(success, error);

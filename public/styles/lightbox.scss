@@ -146,6 +146,34 @@
         }
     }
 
+    table {
+        tr {
+            input.checkbox{
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 20px;
+                width: 20px;
+                background-color: vars.$white;
+                display: block;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    display: none;
+                    left: 5px;
+                    top: 2px;
+                    width: 7px;
+                    height: 10px;
+                    border: solid vars.$aqua_marine_border;
+                    border-width: 0 3px 3px 0;
+                    -webkit-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
     #lightbox.date_picker_wrap {
         #lightbox_wrap {
             #lightbox_header {
@@ -2221,6 +2249,10 @@
                         padding-left: 20px;
                     }
 
+                    &.no_padding {
+                        padding-left: 0;
+                    }
+
                     &.with_dropdown {
                         padding: 0;
                     }
@@ -2237,6 +2269,54 @@
                     input, .classic_dropdown {
                         float: right;
                         width: 180px;
+                    }
+
+                    .checkcontainer {
+                        clear: both;
+                        display: block;
+
+                        span {
+                            font-size: 14px;
+                        }
+
+                        input.checkbox {
+                            width: 1px;
+                            height: 1px;
+                            border: none;
+                        }
+
+                        .option_checkbox {
+                            position: relative;
+                            float:none;
+                            top: 5px;
+                            left: 0;
+                            height: 18px;
+                            width: 18px;
+                            display: inline-block;
+                            border: 2px solid vars.$black;
+                            border-radius: 3px;
+                            margin-right: 7px;
+
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                display: none;
+                                left: 5px;
+                                top: 0px;
+                                width: 7px;
+                                height: 12px;
+                                border: solid vars.$black;
+                                border-width: 0 2px 2px 0;
+                                -webkit-transform: rotate(45deg);
+                                -ms-transform: rotate(45deg);
+                                transform: rotate(45deg);
+                            }
+                        }
+
+                        input:checked ~ .option_checkbox:after {
+                            display: block;
+                        }
+
                     }
 
                     .lbl_input_no_margin {

@@ -1,0 +1,368 @@
+@use 'vars';
+@use 'mixins_n_extends';
+
+#root_account {
+    @extend %default_setup;
+
+    .content_wrap {
+        .header {
+            background-color: vars.$white;
+            padding: 16px 40px 0;
+
+            .title {
+                h1 {
+                    color: vars.$medium_black;
+                    font-weight: 700;
+                    font-family: 'Noto Sans', sans-serif;
+                    font-style: normal;
+                    font-size: 26px;
+                    line-height: 32px;
+                }
+            }
+            .header_row_wrap {
+                width: 100%;
+                display: table-row;
+
+                @include mixins_n_extends.mobile {
+                    width: 200%;
+                    overflow: hidden;
+                }
+
+                .header_row {
+                    top: 54px;
+                    overflow: hidden;
+
+                    @include mixins_n_extends.mobile {
+                        float: left;
+                        padding: 0 0 0 10px;
+                    }
+
+                    .tab_button {
+                        float: left;
+                        position: relative;
+                        height: 40px;
+                        overflow: hidden;
+                        padding-left: 0;
+                        padding-right: 20px;
+                        box-sizing: border-box;
+                        cursor: pointer;
+                        .tab_buttom_wrap {
+                            position: relative;
+                            height: 40px;
+                            margin: 0 auto;
+
+                            .tab_button_text {
+                                font-size: 14px;
+                                padding-top: 10px;
+                                opacity: 0.7;
+                                text-transform: uppercase;
+                            }
+
+                            .blue_bottom_line {
+                                width: 0%;
+                                left: 50%;
+                                height: 2px;
+                                position: absolute;
+                                background: vars.$deep_sky_blue;
+                                transition: all 300ms cubic-bezier(.45, .78, 0, 1);
+                                bottom: 0;
+
+                                @include mixins_n_extends.tablet {
+                                    transition: none;
+                                }
+
+                                margin-top: -2px;
+                            }
+
+                            &:hover {
+                                .blue_bottom_line {
+                                    width: 100%;
+                                    left: 0%;
+                                    @include mixins_n_extends.tablet {
+                                        transition: none;
+
+                                        width: auto;
+                                        left: initial;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .tab_button.active {
+                        .tab_buttom_wrap {
+                            .tab_button_text {
+                                opacity: 1;
+                            }
+
+                            .blue_bottom_line {
+                                width: 100%;
+                                left: 0%;
+                                height: 2px;
+                                background: vars.$deep_sky_blue;
+                            }
+                        }
+                    }
+
+                    .blue_button_wrap {
+                        float: right;
+
+                        .blue_button {
+                            padding-left: 10px;
+                            padding-right: 10px;
+                            border-radius: 4px;
+                            position: relative;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .content_description {
+            font-family: 'Noto Sans', sans-serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 15px;
+            padding: 40px 10px 0 40px;
+            margin-bottom: -15px;
+        }
+
+        .content {
+            background: #FFFFFF;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+            margin: 40px 40px 0 40px;
+            padding: 10px;
+
+            .profile_line {
+                position: relative;
+                display: inline-block;
+                height: 197px;
+                @include mixins_n_extends.mobile {
+                    display: none;
+                }
+            }
+
+            .content_section {
+                padding: 20px;
+                .settings_cell {
+                    display: inline-block;
+                    position: relative;
+                    &.setting_toggle {
+                        position: absolute;
+                        right: 40px;
+                    }
+
+                    .setting_title {
+                        font-size: 16px;
+                        font-weight: vars.$bold;
+                        display: inline-block;
+                    }
+
+                    .setting_description {
+                        font-size: 11px;
+                    }
+                }
+
+                table {
+                    .title_item {
+                        display: inline-block;
+                        width: max-content;
+                        min-width: 150px;
+                        min-height: 20px;
+                    }
+                    th {
+                        text-decoration: none;
+                        font-weight: 700;
+                        font-size: 14px;
+                        color: vars.$medium_black;
+                        border-bottom: none;
+                    }
+                    tr  {
+
+                        td {
+
+                            &.setting_title {
+                                font-weight: 400;
+                                font-size: 13px;
+                                line-height: 24px;
+                                padding: 5px;
+                            }
+
+                            .option_checkbox {
+                                position: relative;
+                                top: 0;
+                                left: 0;
+                                height: 20px;
+                                width: 20px;
+                                background-color: vars.$white;
+                                display: block;
+
+                                &:after {
+                                    content: "";
+                                    position: absolute;
+                                    display: none;
+                                    left: 5px;
+                                    top: 2px;
+                                    width: 7px;
+                                    height: 10px;
+                                    border: solid vars.$aqua_marine_border;
+                                    border-width: 0 3px 3px 0;
+                                    -webkit-transform: rotate(45deg);
+                                    -ms-transform: rotate(45deg);
+                                    transform: rotate(45deg);
+                                }
+                            }
+                        }
+
+                        .toggle_cell {
+                            margin-left: 50%;
+                            margin-right: 50%;
+                            position: relative;
+                        }
+
+                    }
+                }
+            }
+            #image_edit_section {
+                display: inline-block;
+                width: 210px;
+                height: auto;
+                text-align: center;
+
+                .profile_image_wrapper {
+                    margin-left: 38px;
+
+                    @include mixins_n_extends.mobile {
+                        width: 100%;
+                        margin-left: 20px;
+                        margin-right: 20px;
+
+                        .account_picture {
+                            width: 140px;
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                    }
+                }
+
+                #edit_image_properties {
+                    display: block;
+
+                    .blue_link {
+                        display: inline-block;
+                        margin-bottom: 3px;
+                    }
+
+                    span {
+                        opacity: .69;
+                    }
+
+                    @include mixins_n_extends.mobile {
+                        //text-align: center;
+                        margin-left: 20px;
+                    }
+                }
+
+                @include mixins_n_extends.mobile {
+                    width: 100%;
+                    position: relative;
+                }
+            }
+
+
+            #profile_edit_section {
+                width: auto;
+                display: inline-block;
+                margin-left: 20px;
+                margin-right: 20px;
+                position: relative;
+
+                @include mixins_n_extends.mobile {
+                    position: relative;
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+
+            .input_wrap {
+                padding-top: 20px;
+                font-size: 13px;
+
+                span {
+                    clear: both;
+                    display: block;
+                    padding-bottom: 4px;
+                }
+
+                input {
+                    background: vars.$white;
+                    border: 1px solid vars.$lightest_gray;;
+                    box-sizing: border-box;
+                    border-radius: 4px;
+                    line-height: 20px;
+                    padding: 10px;
+                    min-width: 340px;
+                }
+            }
+            .table_setting_cell {
+                .option_checkbox {
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    height: 20px;
+                    width: 20px;
+                    background-color: vars.$white;
+                    display: block;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        display: none;
+                        left: 5px;
+                        top: 2px;
+                        width: 7px;
+                        height: 10px;
+                        border: solid vars.$aqua_marine_border;
+                        border-width: 0 3px 3px 0;
+                        -webkit-transform: rotate(45deg);
+                        -ms-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+        }
+
+        .footer {
+            background: #FFFFFF;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+            margin: 0 40px 40px 40px;
+            padding: 10px 32px 38px;
+
+            .delete_account {
+                display: inline-block;
+                padding-top: 25px;
+                width: max-content;
+
+                span {
+                    display: inline-block;
+                    color: vars.$pinky_red;
+                }
+            }
+
+            .blue_button_wrap {
+                margin-top: 20px;
+                display: inline-block;
+                right: 60px;
+                position: absolute;
+                padding-bottom: 20px;
+
+                .blue_button {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+        }
+    }
+}

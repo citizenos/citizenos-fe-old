@@ -84,4 +84,9 @@ angular
             return $http.post(path, {token: token, cert: cert, redirectSuccess: redirectSuccess}).then(defaultSuccess, defaultError);
         }
 
+        sUser.updatePreferences = function (preferences) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/notifications');
+            return $http.put(path, preferences);
+        };
+
     }]);
