@@ -811,7 +811,7 @@
       "VOTE_REVOKE_DELEGATION": "Uw overdracht intrekken",
       "VOTE_HEADING_VOTE_CLOSED": "De stemming is gesloten!",
       "LBL_VOTE_RESULTS": "Stemresultaten",
-      "VOTE_TXT_VOTE_CLOSED": "Selecteer hieronder een geschikte indeling om de stemresultaten te downloaden. Onze \"mensleesbare\" container bevat een extra bestand (door komma's gescheiden tabel, .csv) met de gegevens van elke afzonderlijke stemming, zoals vereist door Riigikogu en lokale overheden. Voor systemen die dergelijke gegevens niet kunnen verwerken (zoals Äriregister) selecteert u een \"machineleesbaar\" bestand.",
+      "VOTE_TXT_VOTE_CLOSED": "To download voting results, select a suitable format below. Our \"human-readable\" container comes with an additional file (comma-separated table, .csv) containing data of each individual vote, as required by Riigikogu and local governments. For systems that can't process such info (a la Äriregister) please select \"machine-readable\" file.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "De stemmen zijn uitgebracht. Stuur een topic om op te volgen en kom hier terug om de stemresultaten te downloaden.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Ondertekend bestand (BDOC) downloaden",
       "FINAL_OPTION_WITHOUT_CSV": "Machine-leesbaar bestand (Äriregister)",
