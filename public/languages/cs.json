@@ -811,7 +811,7 @@
       "VOTE_REVOKE_DELEGATION": "Zrušit delegování",
       "VOTE_HEADING_VOTE_CLOSED": "Hlasování je uzavřeno!",
       "LBL_VOTE_RESULTS": "Výsledky hlasování",
-      "VOTE_TXT_VOTE_CLOSED": "To download voting results, select a suitable format below. Our \"human-readable\" container comes with an additional file (comma-separated table, .csv) containing data of each individual vote, as required by Riigikogu and local goverments. For systems that can't process such info (a la Äriregister) please select \"machine-readable\" file.",
+      "VOTE_TXT_VOTE_CLOSED": "To download voting results, select a suitable format below. Our \"human-readable\" container comes with an additional file (comma-separated table, .csv) containing data of each individual vote, as required by Riigikogu and local governments. For systems that can't process such info (a la Äriregister) please select \"machine-readable\" file.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Hlasy byly nyní odeslány. Zašlete prosím téma k následování a pak se vraťte sem, abyste si stáhli výsledky hlasování.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Stáhnout podepsaný soubor (BDOC)",
       "FINAL_OPTION_WITHOUT_CSV": "Strojově čitelný soubor (Äriregister)",
