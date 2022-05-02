@@ -811,7 +811,7 @@
       "VOTE_REVOKE_DELEGATION": "Odvolajte svoju delegáciu",
       "VOTE_HEADING_VOTE_CLOSED": "Hlasovanie je uzatvorené!",
       "LBL_VOTE_RESULTS": "Výsledky hlasovania",
-      "VOTE_TXT_VOTE_CLOSED": "To download voting results, select a suitable format below. Our \"human-readable\" container comes with an additional file (comma-separated table, .csv) containing data of each individual vote, as required by Riigikogu and local governments. For systems that can't process such info (a la Äriregister) please select \"machine-readable\" file.",
+      "VOTE_TXT_VOTE_CLOSED": "Ak si chcete stiahnuť výsledky hlasovania, vyberte si vhodný formát nižšie. Náš \"ľudsky čitateľný\" kontajner sa dodáva s dodatočným súborom (tabuľka oddelená čiarkami, .csv), ktorý obsahuje údaje o každom jednotlivom hlasovaní. Pre systémy, ktoré takéto informácie nedokážu spracovať, vyberte súbor \"strojovo čitateľný\".",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Hlasy boli teraz udelené. Pošlite prosím tému na sledovanie, potom sa sem vráťte pre stiahnutie výsledkov hlasovania.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Stiahnuť podpísaný súbor (BDOC) - neplatí pre užívateľov zo Slovenska",
       "FINAL_OPTION_WITHOUT_CSV": "Strojom čitateľný súbor",
