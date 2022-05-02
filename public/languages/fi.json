@@ -811,7 +811,7 @@
       "VOTE_REVOKE_DELEGATION": "Kumoa äänesi delegointi",
       "VOTE_HEADING_VOTE_CLOSED": "Äänestys on päättynyt!",
       "LBL_VOTE_RESULTS": "Äänestyksen tulokset",
-      "VOTE_TXT_VOTE_CLOSED": "To download voting results, select a suitable format below. Our \"human-readable\" container comes with an additional file (comma-separated table, .csv) containing data of each individual vote, as required by Riigikogu and local governments. For systems that can't process such info (a la Äriregister) please select \"machine-readable\" file.",
+      "VOTE_TXT_VOTE_CLOSED": "Lataa äänestystulokset valitsemalla sopiva muoto alta. \"Ihmisen luettava\" -vaihtoehto sisältää ylimääräisen tiedoston (pilkuilla eroteltu taulukko, .csv), jossa on tiedot jokaisesta yksittäisestä äänestä. Riigikogu ja paikallishallitukset vaativat nämä tiedot. Jos käytät järjestelmää, joka ei pysty käsittelemään tällaisia tietoja (esim. Äriregister), valitse \"koneellisesti luettava\" tiedosto.",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Äänet on nyt annettu. Lähetä aihe seurantaan ja palaa sitten tänne lataamaan äänestystulokset.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Lataa allekirjoitettu tiedosto (BDOC)",
       "FINAL_OPTION_WITHOUT_CSV": "Koneellisesti luettava tiedosto (Äriregister)",
