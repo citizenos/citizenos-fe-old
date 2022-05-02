@@ -811,7 +811,7 @@
       "VOTE_REVOKE_DELEGATION": "Batalkan delegasi pilihan",
       "VOTE_HEADING_VOTE_CLOSED": "Masa pemilihan sudah ditutup!",
       "LBL_VOTE_RESULTS": "Hasil pemungutan suara",
-      "VOTE_TXT_VOTE_CLOSED": "To download voting results, select a suitable format below. Our \"human-readable\" container comes with an additional file (comma-separated table, .csv) containing data of each individual vote, as required by Riigikogu and local governments. For systems that can't process such info (a la Äriregister) please select \"machine-readable\" file.",
+      "VOTE_TXT_VOTE_CLOSED": "Untuk mengunduh hasil pemungutan suara, pilih format yang sesuai di bawah ini. Penampung kami \"yang bisa dibaca manusia\" hadir dengan file tambahan (tabel yang dipisahkan koma, .csv) yang berisi data dari hak pilih individu, seperti diharuskan oleh Riigikogu dan pemerintah lokal. Untuk sistem yang tidak dapat memproses info seperti itu (ala Äriregister), silakan pilih file \"yang bisa dibaca mesin\".",
       "VOTE_TXT_VOTE_CLOSED_EXPIRED": "Sekarang hak pilih telah diberikan. Silakan mengirim topik untuk tindak lanjut, kemudian kembali ke sini untuk mengunduh hasil voting.",
       "BTN_DOWNLOAD_FINAL_BDOC": "Unduh dokumen yang sudah tertandatangani (BDOC)",
       "FINAL_OPTION_WITHOUT_CSV": "File yang bisa dibaca mesin (Äriregister)",
