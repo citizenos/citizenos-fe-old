@@ -326,10 +326,10 @@ angular
                     $scope.settings = {
                         topicId: self.id,
                         preferences: existingSettings.preferences || {
-                            updates: false,
-                            discussion: false,
-                            reports: false,
-                            events: false
+                            Topic: false,
+                            TopicComment: false,
+                            TopicReport: false,
+                            TopicEvent: false
                         },
                         allowNotifications: existingSettings.allowNotifications || false
                     };

@@ -280,6 +280,12 @@
                 })
                 .state('account', {
                     url: '/account',
+                    abstract: true,
+                    parent: 'main',
+                    templateUrl: '/views/home.html'
+                })
+                .state('account.settings', {
+                    url: '/account',
                     parent: 'main',
                     templateUrl: '/views/account.html'
                 })

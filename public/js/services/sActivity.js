@@ -408,7 +408,6 @@ angular
             if (fieldNameKey) {
                 var translatedField = $translate.instant(fieldNameKey);
                 activity.values.fieldName = translatedField;
-                activity.values.groupItemValue = translatedField;
             }
             if (newValueKey) {
                 var newVal = $translate.instant(newValueKey);
@@ -416,10 +415,8 @@ angular
                     newVal =  Object.values(newVal).join(';');
                 }
                 activity.values.newValue = newVal;
-                activity.values.groupItemValue += ': ' + newVal;
             } else {
                 activity.values.newValue = newValue;
-                activity.values.groupItemValue += ': ' + newValue;
             }
 
         };
@@ -581,24 +578,9 @@ angular
                 values.connectionName = getAactivityUserConnectionName(activity);
                 getActivityUserLevel(activity, values);
 
-                values.groupItemValue =  values.userName;
-                if (values.userName2) {
-                    values.groupItemValue = values.userName2;
-                }
-                if (values.attachmentName) {
-                    values.groupItemValue = values.attachmentName;
-                }
-                if (values.connectionName) {
-                    values.groupItemValue = values.connectionName;
-                }
-
                 var dataobject = activity.data.object;
                 if (Array.isArray(dataobject)) {
                     dataobject = dataobject[0];
-                }
-
-                if (dataobject['@type'] === 'Comment') {
-                    values.groupItemValue = dataobject.text;
                 }
 
                 if (dataobject['@type'] === 'CommentVote' && activity.data.type === 'Create') {
@@ -611,7 +593,6 @@ angular
                     }
                     $translate(str + val).then(function (value) {
                         values.reaction = value;
-                        values.groupItemValue = value;
                     });
                 }
             }
