@@ -85,6 +85,11 @@
                                             <span>Reports</span>
                                         </label>
                                         <label class="checkcontainer">
+                                            <input type="checkbox" class="checkbox" ng-disabled="!settings.allowNotifications" ng-checked="settings.preferences.TopicVoteList" ng-click="settings.preferences.TopicVoteList = !settings.preferences.TopicVoteList">
+                                            <span class="option_checkbox"></span>
+                                            <span>Voting</span>
+                                        </label>
+                                        <label class="checkcontainer">
                                             <input type="checkbox" class="checkbox" ng-disabled="!settings.allowNotifications" ng-checked="settings.preferences.TopicEvent" ng-click="settings.preferences.TopicEvent = !settings.preferences.TopicEvent">
                                             <span class="option_checkbox"></span>
                                             <span>Follow up events</span>

@@ -158,6 +158,75 @@ angular
             });
         };
 
+        $scope.app.doShowTopicNotificationSettings = function (topicId) {
+            if (!sAuth.user.loggedIn) {
+                return;
+            }
+
+            var existingSettings = false;
+            sUser.getTopicNotificationSettings(topicId).then(function(settings) {
+                existingSettings = settings;
+
+
+            var dialog = ngDialog.open({
+                template: '/views/modals/set_topic_notifications.html',
+                controller: ['$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', function ($scope, $state, $stateParams, $log, $location, ngDialog) {
+                    $log.debug('TopicNotificationsCtrl', $state, $stateParams);
+                    $scope.tabSelected = $stateParams.tab || 'general';
+                    $scope.settings = {
+                        topicId: topicId,
+                        preferences: existingSettings.preferences || {
+                            Topic: false,
+                            TopicComment: false,
+                            TopicReport: false,
+                            TopicVoteList: false,
+                            TopicEvent: false
+                        },
+                        allowNotifications: existingSettings.allowNotifications || false
+                    };
+                    $scope.toggleAllNotifications = function () {
+                        var toggle = true;
+                        if (Object.values($scope.settings.preferences).indexOf(false) === -1) {
+                            toggle = false;
+                        }
+                        Object.keys($scope.settings.preferences).forEach(function (key) {
+                            if (toggle) {
+                                return $scope.settings.preferences[key] = true;
+                            }
+
+                            $scope.settings.preferences[key] = false;
+                        });
+                    };
+
+                    $scope.allChecked = function () {
+                        return (Object.values($scope.settings.preferences).indexOf(false) === -1)
+                    };
+
+                    $scope.selectOption = function (option) {
+                        option = !option;
+                    };
+
+                    $scope.selectTab = function (tab) {
+                        $scope.tabSelected = tab;
+                        $location.search({tab: tab});
+                    };
+
+                    $scope.doSaveSettings = function () {
+                        sUser.updateTopicNotificationSettings(topicId, $scope.settings)
+                            .then(function (data) {
+                                console.log(data);
+                                $scope.settings = data;
+                            }, function (err) {
+                                sNotification.addError(err);
+                            });
+                        dialog.close();
+                    };
+                }]
+            });
+            })
+
+        };
+
         $scope.app.doShowLanguageSelect = function () {
             $log.debug('AppCtrl.doShowLanguageSelect()');
 

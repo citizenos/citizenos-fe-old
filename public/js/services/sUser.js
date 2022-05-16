@@ -84,9 +84,16 @@ angular
             return $http.post(path, {token: token, cert: cert, redirectSuccess: redirectSuccess}).then(defaultSuccess, defaultError);
         }
 
-        sUser.updatePreferences = function (preferences) {
-            var path = sLocation.getAbsoluteUrlApi('/api/users/self/notifications');
-            return $http.put(path, preferences);
+        sUser.getTopicNotificationSettings = function (topicId) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/notificationsettings', {topicId: topicId});
+
+            return $http.get(path).then(defaultSuccess, defaultError);
+        };
+
+        sUser.updateTopicNotificationSettings = function (topicId, preferences) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/notificationsettings', {topicId: topicId});
+
+            return $http.put(path, preferences).then(defaultSuccess, defaultError);
         };
 
     }]);

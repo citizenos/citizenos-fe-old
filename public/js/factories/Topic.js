@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .factory('Topic', ['$log', '$resource', 'sLocation', 'sAuth', 'sUser', 'TopicMemberUser', 'TopicVote', 'Vote', 'ngDialog', function ($log, $resource, sLocation, sAuth, sUser, TopicMemberUser, TopicVote, Vote, ngDialog) {
+    .factory('Topic', ['$log', '$resource', 'sLocation', 'sAuth', 'sUser', 'TopicMemberUser', 'TopicVote', 'Vote', function ($log, $resource, sLocation, sAuth, sUser, TopicMemberUser, TopicVote, Vote) {
         $log.debug('citizenos.factory.Topic');
 
         var getUrlPrefix = function () {
@@ -305,71 +305,6 @@ angular
                         self.pinned = false;
                     })
             }
-        };
-
-        Topic.prototype.configureTopicNotifications = function () {
-            if (!sAuth.user.loggedIn) {
-                return;
-            }
-            var self = this;
-            var existingSettings = false;
-            if (sAuth.user.preferences && sAuth.user.preferences.notifications && sAuth.user.preferences.notifications.topics) {
-                existingSettings = sAuth.user.preferences.notifications.topics.find(function(item) {
-                    return item.topicId = self.id;
-                });
-            }
-            var dialog = ngDialog.open({
-                template: '/views/modals/set_topic_notifications.html',
-                controller: ['$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', function ($scope, $state, $stateParams, $log, $location, ngDialog) {
-                    $log.debug('TopicNotificationsCtrl', $state, $stateParams);
-                    $scope.tabSelected = $stateParams.tab || 'general';
-                    $scope.settings = {
-                        topicId: self.id,
-                        preferences: existingSettings.preferences || {
-                            Topic: false,
-                            TopicComment: false,
-                            TopicReport: false,
-                            TopicEvent: false
-                        },
-                        allowNotifications: existingSettings.allowNotifications || false
-                    };
-                    $scope.toggleAllNotifications = function () {
-                        var toggle = true;
-                        if (Object.values($scope.settings.preferences).indexOf(false) === -1) {
-                            toggle = false;
-                        }
-                        Object.keys($scope.settings.preferences).forEach(function (key) {
-                            if (toggle) {
-                                return $scope.settings.preferences[key] = true;
-                            }
-
-                            $scope.settings.preferences[key] = false;
-                        });
-                    };
-
-                    $scope.allChecked = function () {
-                        return (Object.values($scope.settings.preferences).indexOf(false) === -1)
-                    };
-
-                    $scope.selectOption = function (option) {
-                        option = !option;
-                    };
-
-                    $scope.selectTab = function (tab) {
-                        $scope.tabSelected = tab;
-                        $location.search({tab: tab});
-                    };
-
-                    $scope.doSaveSettings = function () {
-                        sUser.updatePreferences($scope.settings)
-                            .then(function (data) {
-                                console.log(data.preferences);
-                            });
-                        dialog.close();
-                    };
-                }]
-            });
-
         };
 
         return Topic;
