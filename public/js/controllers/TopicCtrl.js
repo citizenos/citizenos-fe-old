@@ -891,6 +891,10 @@ angular
             });
         }
 
+        if ($stateParams.notificationSettings) {
+            $scope.app.doShowTopicNotificationSettings($scope.topic.id);
+        }
+
         $scope.downloadAttachment = function (attachment) {
             return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
         };
