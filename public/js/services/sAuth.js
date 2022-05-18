@@ -47,10 +47,11 @@ angular
             return $http.post(path, data).then(success, defaultError);
         };
 
-        sAuth.loginMobiilIdInit = function (pid, phoneNumber) {
+        sAuth.loginMobiilIdInit = function (pid, phoneNumber, userId) {
             var data = {
                 pid: pid,
-                phoneNumber: phoneNumber
+                phoneNumber: phoneNumber,
+                userId: userId
             };
 
             var success = function (response) {
@@ -74,10 +75,11 @@ angular
             return $http.get(path, {params: {token: token}}).then(success, defaultError);
         };
 
-        sAuth.loginSmartIdInit = function (pid, countryCode) {
+        sAuth.loginSmartIdInit = function (pid, countryCode, userId) {
             var data = {
                 pid: pid,
-                countryCode: countryCode
+                countryCode: countryCode,
+                userId: userId
             };
 
             var success = function (response) {
@@ -106,7 +108,7 @@ angular
             return $http.get(cosConfig.features.authentication.idCard.url, {withCredentials: true}); // withCredentials so that client certificate is sent
         };
 
-        sAuth.loginIdCard = function () {
+        sAuth.loginIdCard = function (userId) {
             var success = function (response) {
                 $log.debug('Auth.loginId', 'success');
                 if ([20002, 20003].indexOf(response.data.status.code) > -1) {
@@ -120,6 +122,9 @@ angular
                 .then(function (response) {
                     if (response.data.data.token) {
                         var path = sLocation.getAbsoluteUrlApi('/api/auth/id');
+                        if (userId) {
+                            response.data.data.userId = userId;
+                        }
                         return $http.get(path, {params: response.data.data});
                     } else {
                         return response;

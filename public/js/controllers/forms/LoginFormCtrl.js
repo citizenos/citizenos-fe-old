@@ -21,7 +21,6 @@ angular
             $scope.app.showNav = false; // Hide mobile navigation when login flow is started
         };
         init();
-
         angular.extend($scope.form, $stateParams);
 
         // UserConnections to know which auth methods to show - https://github.com/citizenos/citizenos-fe/issues/657
@@ -210,7 +209,8 @@ angular
                     controller: 'LoginEsteIdFormCtrl',
                     scope: $scope, // Pass on $scope so that I can access AppCtrl
                     data: {
-                        authMethodsAvailable: $scope.authMethodsAvailable
+                        authMethodsAvailable: $scope.authMethodsAvailable,
+                        userId: $stateParams.userId
                     }
                 });
         };
@@ -223,7 +223,11 @@ angular
                 .open({
                     controller: 'LoginSmartIdFormCtrl',
                     template: '/views/modals/login_smartid.html',
-                    scope: $scope // Pass on $scope so that I can access AppCtrl
+                    scope: $scope, // Pass on $scope so that I can access AppCtrl
+                    data: {
+                        authMethodsAvailable: $scope.authMethodsAvailable,
+                        userId: $stateParams.userId
+                    }
                 });
         };
 
