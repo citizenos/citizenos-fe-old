@@ -16,14 +16,14 @@ angular
             $scope.isLoadingIdCard = false;
         };
         init();
-
+        console.log($scope.ngDialogData);
         $scope.authSmartId = function () {
             $log.debug('LoginEsteIdFormCtrl.doLoginMobiilId()');
 
             $scope.formSmartId.isLoading = true;
 
             sAuth
-                .loginSmartIdInit($scope.formSmartId.pid, $scope.formSmartId.countryCode)
+                .loginSmartIdInit($scope.formSmartId.pid, $scope.formSmartId.countryCode, $scope.ngDialogData.userId)
                 .then(function (loginSmartIdInitResult) {
                     $scope.formSmartId.challengeID = loginSmartIdInitResult.challengeID;
                     var token = loginSmartIdInitResult.token;
