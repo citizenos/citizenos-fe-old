@@ -513,7 +513,7 @@
     "TOPIC_NOTIFICATION_SETTINGS_TAB_GENERAL": "Všeobecné",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_CHANNELS": "Kanály",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Notifikácie tém",
-    "TOPIC_NOTIFICATION_SETTINGS_LBL_NOTIFY_ME_ABOUT": "Notify me about:"
+    "TOPIC_NOTIFICATION_SETTINGS_LBL_NOTIFY_ME_ABOUT": "Upozorniť ma na:"
   },
   "TXT_TOPIC_CATEGORY_ALL": "každú kategóriu",
   "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
@@ -969,7 +969,7 @@
       "NAV_LNK_VIEW_TOPIC": "Zobraziť tému",
       "NAV_LNK_LEAVE_TOPIC": "Opustiť tému",
       "NAV_LNK_PARTICIPANTS": "Spravovať účastníkov",
-      "NAV_LNK_SET_TOPIC_NOTIFICATIONS": "Set topic notifications",
+      "NAV_LNK_SET_TOPIC_NOTIFICATIONS": "Nastaviť notifikácie tém",
       "HEADER_FILES": "PRÍLOHY",
       "LNK_ADD_MANAGE_FILES": "Pridať/spravovať prílohy",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skočte priamo do témy <b>{{topicTitle}}</b>oskenovaním tohto QR kódu!",
