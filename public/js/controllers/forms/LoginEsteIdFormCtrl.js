@@ -16,7 +16,7 @@ angular
             $scope.isLoadingIdCard = false;
         };
         init();
-
+        console.log($scope.ngDialogData)
         $scope.authMethodsAvailable = $scope.ngDialogData.authMethodsAvailable;
 
         $scope.authMobiilId = function () {
@@ -25,7 +25,7 @@ angular
             $scope.formMobile.isLoading = true;
 
             sAuth
-                .loginMobiilIdInit($scope.formMobile.pid, $scope.formMobile.phoneNumber)
+                .loginMobiilIdInit($scope.formMobile.pid, $scope.formMobile.phoneNumber, $scope.ngDialogData.userId)
                 .then(function (loginMobileIdInitResult) {
                     $scope.formMobile.challengeID = loginMobileIdInitResult.challengeID;
                     var token = loginMobileIdInitResult.token;
@@ -47,7 +47,7 @@ angular
             $scope.isLoadingIdCard = true;
 
             sAuth
-                .loginIdCard()
+                .loginIdCard($scope.ngDialogData.userId)
                 .then(
                     function () {
                         handleLoginSuccess();

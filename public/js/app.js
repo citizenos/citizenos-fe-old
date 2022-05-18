@@ -373,7 +373,7 @@
                         if (sAuthResolve) {
                             return $state.go('home');
                         }
-
+                        console.log(rUserConnections);
                         var dialogData = {
                             userConnections: rUserConnections
                         };
