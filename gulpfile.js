@@ -19,9 +19,9 @@ var pkg = JSON.parse(fs.readFileSync('package.json'));
 const jshintTask = function () {
     return pipeline(
         gulp.src([
-            'public/js/**/*.js',
-            '!public/js/libs/**/*.js',
-            '!public/js/*.bundle.js'
+            'public/js/**/*.ts',
+            '!public/js/libs/**/*.ts',
+            '!public/js/*.bundle.ts'
         ]),
         jshint(),
         jshint.reporter(stylish)
@@ -31,25 +31,25 @@ const jshintTask = function () {
 var uglifyTask =  function() {
     return pipeline(
         gulp.src([
-            'public/js/libs/easymde.min.js',
-            'public/js/libs/marked.min.js',
-            'public/js/libs/OneDrive.js',
-            'public/js/libs/moment-with-locales.js',
-            'public/js/libs/hwcrypto-legacy.js',
-            'public/js/libs/hwcrypto.js',
-            'public/js/libs/angular.js',
-            'public/js/libs/angular-touch.js',
-            'public/js/libs/angular-resource.js',
-            'public/js/libs/angular-ui-router.js',
-            'public/js/libs/angular-translate.js',
-            'public/js/libs/angular-raven.js',
-            'public/js/libs/**/*.js',
-            'public/js/app.js',
-            'public/js/factories/**/*.js',
-            'public/js/services/**/*.js',
-            'public/js/filters/**/*.js',
-            'public/js/directives/**/*.js',
-            'public/js/controllers/**/*.js'
+            'public/js/libs/easymde.min.ts',
+            'public/js/libs/marked.min.ts',
+            'public/js/libs/OneDrive.ts',
+            'public/js/libs/moment-with-locales.ts',
+            'public/js/libs/hwcrypto-legacy.ts',
+            'public/js/libs/hwcrypto.ts',
+            'public/js/libs/angular.ts',
+            'public/js/libs/angular-touch.ts',
+            'public/js/libs/angular-resource.ts',
+            'public/js/libs/angular-ui-router.ts',
+            'public/js/libs/angular-translate.ts',
+            'public/js/libs/angular-raven.ts',
+            'public/js/libs/**/*.ts',
+            'public/js/app.ts',
+            'public/js/factories/**/*.ts',
+            'public/js/services/**/*.ts',
+            'public/js/filters/**/*.ts',
+            'public/js/directives/**/*.ts',
+            'public/js/controllers/**/*.ts'
         ], {allowEmpty: true}),
         sourcemaps.init({loadMaps: true}),
         plumber(),
@@ -57,7 +57,7 @@ var uglifyTask =  function() {
             mangle: false,
             compress: false
         }),
-        concat(pkg.name + '.bundle.js'),
+        concat(pkg.name + '.bundle.ts'),
         sourcemaps.write('.'),
         gulp.dest('public/js/')
     );
@@ -75,7 +75,7 @@ var cachebreaker = function() {
 };
 
 var watchTask = function() {
-        watch(['public/js/**/*.js', '!public/js/*.bundle.js', '!public/js/widgets.arguments.js'], series(
+        watch(['public/js/**/*.ts', '!public/js/*.bundle.ts', '!public/js/widgets.arguments.ts'], series(
                 uglifyTask,
                 cachebreaker
             )
