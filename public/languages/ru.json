@@ -512,7 +512,7 @@
     "TOPIC_NOTIFICATION_SETTINGS_TITLE_DESCRIPTION": "Настройки уведомлений применяются только к данной теме",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_GENERAL": "Общие",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_CHANNELS": "Channels",
-    "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Уведомления о теме",
+    "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Уведомления по теме",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_NOTIFY_ME_ABOUT": "Notify me about:"
   },
   "TXT_TOPIC_CATEGORY_ALL": "Все существующие",
@@ -969,7 +969,7 @@
       "NAV_LNK_VIEW_TOPIC": "Просмотр темы",
       "NAV_LNK_LEAVE_TOPIC": "Покинуть тему",
       "NAV_LNK_PARTICIPANTS": "Управление участниками",
-      "NAV_LNK_SET_TOPIC_NOTIFICATIONS": "Set topic notifications",
+      "NAV_LNK_SET_TOPIC_NOTIFICATIONS": "Настройка уведомлений по теме",
       "HEADER_FILES": "Прикрепленные файлы",
       "LNK_ADD_MANAGE_FILES": "Добавить/редактировать файлы",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Перейти к теме <b>{{topicTitle}}</b>, отсканируя этот QR-код",
