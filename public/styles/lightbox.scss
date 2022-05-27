@@ -2170,7 +2170,7 @@
         }
 
         .lightbox_section {
-            max-height: 430px;
+            max-height: 544px;
             padding-top: 20px !important;
             padding-bottom: 20px !important;
             overflow-y: visible;
@@ -2237,6 +2237,12 @@
                     input, .classic_dropdown {
                         float: right;
                         width: 180px;
+
+                        &.reminder_dropdown {
+                            float: left;
+                            margin-top: 10px;
+                            width: 100%;
+                        }
                     }
 
                     .lbl_input_no_margin {

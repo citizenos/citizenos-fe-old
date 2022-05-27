@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'Topic', 'TopicVote', function ($scope, $state, $stateParams, $log, $location, Topic, TopicVote) {
+    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', '$translate', '$timeout', 'Topic', 'TopicVote', function ($scope, $state, $stateParams, $log, $location, $translate, $timeout, Topic, TopicVote) {
         $log.debug('TopicSettingsCtrl', $state, $stateParams);
 
         $scope.levels = {
@@ -44,6 +44,9 @@ angular
                     .then(function (topicVote) {
                         $scope.topic.vote = topicVote;
                         $scope.form.topic.vote = angular.copy(topicVote);
+                        if (topicVote.reminderTime && !topicVote.reminderSent) {
+                            $scope.form.topic.vote.reminder = true;
+                        }
                     });
             }
 
@@ -83,11 +86,35 @@ angular
             $scope.form.topic.hashtag = null;
         };
 
-        $scope.doEditVoteDeadline = function () {
+        $scope.$watch(
+            function () {
+                return $scope.form.topic.vote.reminder
+            },
+            function (newVal, oldVal) {
+                if (oldVal !== undefined && newVal === true) {
+                    return $scope.setVoteReminder($scope.reminderOptions[0]);
+                }
+                else if (oldVal === true && newVal === false) {
+                    $scope.doEditVoteDeadline();
+                }
+            }
+        );
 
+        $scope.doEditVoteDeadline = function () {
+            if (!$scope.form.topic.vote.reminder && !$scope.form.topic.vote.reminderSent) {
+                $scope.form.topic.vote.reminderTime = null;
+            }
             $scope.form.topic.vote.topicId = $scope.topic.id;
+
             return $scope.form.topic.vote
-                .$update();
+                .$update()
+                .then(function(voteValue) {
+                    if (voteValue.reminderTime && !voteValue.reminderSent) {
+                        $scope.form.topic.vote.reminder = true;
+                    } else {
+                        $scope.form.topic.vote.reminder = false;
+                    }
+                });
         };
 
         $scope.selectTab = function (tab) {
@@ -110,6 +137,36 @@ angular
                 property = '-' + property;
             }
             $scope.topicList.searchOrderBy.property = property;
+        };
+
+        $scope.reminderOptions = [{value: 1, unit: 'days'}, {value: 2, unit: 'days'}, {value: 3, unit: 'days'}, {value: 1, unit: 'weeks'}, {value: 2, unit: 'weeks'}, {value: 1, unit: 'month'}];
+
+        $scope.isVisibleReminderOption = function (time) {
+            var timeItem = moment($scope.topic.vote.endsAt).clone().subtract(time.value, time.unit);
+            var now = moment();
+            if (moment(moment(timeItem.toString())) > now) return true;
+
+            return false;
+        };
+
+        $scope.selectedReminderOption = function () {
+            var days = moment($scope.topic.vote.endsAt).clone().diff($scope.form.topic.vote.reminderTime, 'days');
+            var weeks = moment($scope.topic.vote.endsAt).clone().diff($scope.form.topic.vote.reminderTime, 'weeks');
+            var months = moment($scope.topic.vote.endsAt).clone().diff($scope.form.topic.vote.reminderTime, 'months');
+            var item = $scope.reminderOptions.find(function (item) {
+                if ( item.value === days && item.unit === 'days') return item;
+                else if ( item.value === weeks && item.unit === 'weeks') return item;
+                else if ( item.value === months && item.unit === 'month') return item;
+            });
+            if (item) {
+                return $translate.instant('OPTION_' + item.value + '_'+ item.unit.toUpperCase());
+            }
+        };
+
+        $scope.setVoteReminder = function (time) {
+            var reminderTime = moment($scope.form.topic.vote.endsAt).clone().subtract(time.value, time.unit);
+            $scope.form.topic.vote.reminderTime = reminderTime.format();
+            $scope.doEditVoteDeadline();
         };
 
         $scope.doSaveTopic = function () {

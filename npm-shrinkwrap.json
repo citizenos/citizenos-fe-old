@@ -180,7 +180,7 @@
     "angular-moment": {
       "version": "1.3.0",
       "resolved": "https://registry.npmjs.org/angular-moment/-/angular-moment-1.3.0.tgz",
-      "integrity": "sha1-9QH2a2/Mgy2NNviQXMepMSOrKvA=",
+      "integrity": "sha512-KG8rvO9MoaBLwtGnxTeUveSyNtrL+RNgGl1zqWN36+HDCCVGk2DGWOzqKWB6o+eTTbO3Opn4hupWKIElc8XETA==",
       "requires": {
         "moment": ">=2.8.0 <3.0.0"
       }

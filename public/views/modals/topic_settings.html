@@ -116,6 +116,38 @@
                     </div>
                     <div class="line lightest_line" ng-if="topic.canEdit()"></div>
 
+                    <div class="settings_section" ng-if="topic.canSendToFollowUp() && topic.canEdit()">
+                        <div class="settings_cell">
+                            <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_REMINDER">Deadline</div>
+                            <div class="setting_description">
+                                <span translate="MODALS.TOPIC_SETTINGS_LBL_REMINDER_EXT">WHEN THE DEADLINE IS REACHED, THE TOPIC WILL BE CLOSED</span>
+                                <div cos-dropdown class="classic_dropdown reminder_dropdown"  ng-if="form.topic.vote.reminder">
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text">{{selectedReminderOption()}}</div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                <div class="v_line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <div class="dropdown_item" ng-if="isVisibleReminderOption(option)" ng-repeat="(key, option) in reminderOptions">
+                                            <div class="item_name" ng-click="setVoteReminder(option)">{{'OPTION_' + option.value + '_'+ option.unit.toUpperCase() | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings_cell">
+                            <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="form.topic.vote.reminder"></div>
+                        </div>
+
+                    </div>
+                    <div class="line lightest_line" ng-if="topic.canEdit()"></div>
+
                     <div class="settings_section" ng-if="topic.canLeave()">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_LEAVE_TOPIC">Leave topic</div>

@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('TopicVoteCreateCtrl', ['$scope', '$state', '$log', 'sNotification', 'Vote', function ($scope, $state, $log, sNotification, Vote) {
+    .controller('TopicVoteCreateCtrl', ['$scope', '$state', '$log', '$translate', 'sNotification', 'Vote', function ($scope, $state, $log, $translate, sNotification, Vote) {
         $log.debug('TopicVoteCreateCtrl');
 
         $scope.$parent.$parent.datePickerMin = new Date();
@@ -135,6 +135,21 @@ angular
             $scope.voteForm.deadline.minute($scope.voteForm.endsAt.min);
         };
 
+        $scope.$parent.$parent.reminderOptions = [{value: 1, unit: 'days'}, {value: 2, unit: 'days'}, {value: 3, unit: 'days'}, {value: 1, unit: 'weeks'}, {value: 2, unit: 'weeks'}, {value: 1, unit: 'month'}];
+
+        $scope.$parent.$parent.isVisibleReminderOption = function (time) {
+            var timeItem = $scope.voteForm.deadline.clone().subtract(time.value, time.unit);
+            var now = moment();
+            if (moment(moment(timeItem.toString())) > now) return true;
+
+            return false;
+        };
+
+        $scope.$parent.$parent.setVoteReminder = function (time) {
+            var reminderTime = $scope.voteForm.deadline.clone().subtract(time.value, time.unit);
+            $scope.voteForm.reminderTime = reminderTime.format();
+        };
+
         $scope.$watch(
             function () {
                 return $scope.voteForm.endsAt.date
@@ -209,6 +224,23 @@ angular
             return $scope.voteForm.numberOfDaysLeft;
         };
 
+        $scope.$parent.$parent.selectedReminderOption = function () {
+            var days = moment($scope.voteForm.endsAt).clone().diff($scope.voteForm.reminderTime, 'days');
+            var weeks = moment($scope.voteForm.endsAt).clone().diff($scope.voteForm.reminderTime, 'weeks');
+            var months = moment($scope.voteForm.endsAt).clone().diff($scope.voteForm.reminderTime, 'months');
+            var item = $scope.$parent.$parent.reminderOptions.find(function (item) {
+                if ( item.value === days && item.unit === 'days') return item;
+                else if ( item.value === weeks && item.unit === 'weeks') return item;
+                else if ( item.value === months && item.unit === 'month') return item;
+            });
+            if (!item) {
+                item = $scope.$parent.$parent.reminderOptions[0];
+                $scope.$parent.$parent.setVoteReminder(item);
+            }
+
+            return $translate.instant('OPTION_' + item.value + '_'+ item.unit.toUpperCase());
+        };
+
         $scope.$parent.$parent.createVote = function () {
             sNotification.removeAll();
 
@@ -227,6 +259,11 @@ angular
                 }
             }
 
+            if (!$scope.voteForm.reminder) {
+                $scope.voteForm.reminderTime = null;
+            }
+
+            vote.reminderTime = $scope.voteForm.reminderTime;
             var autoClose = [];
             for (var i in $scope.voteForm.autoClose) {
                 var option = $scope.voteForm.autoClose[i];
