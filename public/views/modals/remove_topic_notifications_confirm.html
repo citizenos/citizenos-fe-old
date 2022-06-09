@@ -1,0 +1,68 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing delete_topic wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.REMOVE_TOPIC_NOTIFICATIONS_CONFIRM_TITLE">Turn of topic notifications</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="line lightest_line"></div>
+
+            </div>
+
+
+            <div class="lightbox_content">
+
+                <div class="second_header">
+
+                    <div class="sprite sprite-icon-delete-topic2x"></div>
+                    <div class="delete_title" translate="MODALS.REMOVE_TOPIC_NOTIFICATIONS_CONFIRM_ARE_YOU_SURE">Are you sure you want to turn off notifications for this topic?</div>
+
+                    <div id="lightbox_close" ng-click="closeThisDialog()">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+
+                <div id="delete_info_wrap">
+
+                    <div class="delete_info_button_wrap">
+
+                        <div class="table_cell">
+                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.REMOVE_TOPIC_NOTIFICATIONS_CONFIRM_NO">NO, KEEP NOTIFING</div>
+                        </div>
+
+                        <div class="table_cell">
+                            <div class="blue_button yes" ng-click="confirm()" translate="MODALS.REMOVE_TOPIC_NOTIFICATIONS_CONFIRM_YES">YES, TURN OF NOTIFICATIONS FOR THIS TOPIC</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
+
+</div>

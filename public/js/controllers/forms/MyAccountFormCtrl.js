@@ -2,10 +2,11 @@
 
 angular
     .module('citizenos')
-    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$document', '$window', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', function ($scope, $log, $stateParams, $document, $window, ngDialog, sNotification, sAuth, sUser, sUpload) {
+    .controller('MyAccountFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$document', '$window', '$location', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', 'sTopic', function ($scope, $log, $state, $stateParams, $document, $window, $location, ngDialog, sNotification, sAuth, sUser, sUpload, sTopic) {
         $log.debug('MyAccountFormCtrl');
-
-        $scope.tabSelected = 'profile';
+        if (!sAuth.user.loggedIn) return $state.go('home')
+        $scope.tabSelected = $stateParams.tab || 'profile';
+        var ITEMS_COUNT_PER_PAGE = 1;
         $scope.form = {
             name: null,
             email: null,
@@ -21,6 +22,40 @@ angular
                     groups: {}
                 }
             }
+        };
+
+        $scope.notifications = {
+            topics: {
+                rows: [],
+
+            }
+        };
+
+        var loadNotificationSettingsList = function (offset, limit) {
+            if (!offset) {
+                offset = 0;
+            }
+            if (!limit) {
+                limit = ITEMS_COUNT_PER_PAGE;
+            }
+
+            sTopic.notificationSettingsList(offset, limit)
+                .then(function (items) {
+                    $scope.notifications.topics = items;
+                    $scope.notifications.topics.totalPages = Math.ceil($scope.notifications.topics.count / limit);
+                    $scope.notifications.topics.page = Math.ceil((offset + limit) / limit);
+                });
+        };
+        loadNotificationSettingsList(0);
+
+        $scope.loadNotificationSettingsPage = function (page) {
+            var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
+            loadNotificationSettingsList(offset, ITEMS_COUNT_PER_PAGE);
+        };
+
+        $scope.removeTopicNotifications = function (topicId) {
+            $scope.app.removeTopicNotifications(topicId)
+                .then(loadNotificationSettingsList);
         };
 
         $scope.imageFile = null;
@@ -102,6 +137,7 @@ angular
 
         $scope.selectTab = function (tab) {
             $scope.tabSelected = tab;
+            $location.search({tab: tab});
         }
 
         $scope.doDeleteAccount = function () {

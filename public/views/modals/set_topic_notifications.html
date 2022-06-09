@@ -45,19 +45,6 @@
             <div class="lightbox_content settings_section_wrap" ng-if="tabSelected === 'general'">
 
                 <div class="lightbox_section">
-
-                    <div class="settings_section">
-                        <div class="settings_cell">
-                            <div class="setting_title" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS">Topic notifications</div>
-                        </div>
-                        {{setting.allowNotifications}}
-                        <div class="settings_cell">
-                            <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="settings.allowNotifications" ></div>
-                        </div>
-                    </div>
-
-                    <div class="line lightest_line"></div>
-
                     <div class="settings_section" >
                         <div class="settings_cell no_padding">
                             <div class="setting_title" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_NOTIFY_ME_ABOUT">Notify me about:</div>
@@ -65,27 +52,27 @@
                                 <tr>
                                     <td>
                                         <label class="checkcontainer" >
-                                            <input type="checkbox" ng-disabled="!settings.allowNotifications" class="checkbox" ng-checked="allChecked()" ng-click="toggleAllNotifications()">
+                                            <input type="checkbox" class="checkbox" ng-checked="allChecked()" ng-click="toggleAllNotifications()">
                                             <span class="option_checkbox"></span>
                                             <span>All actions in this topic</span>
                                         </label>
                                         <label class="checkcontainer">
-                                            <input type="checkbox" class="checkbox" ng-disabled="!settings.allowNotifications" ng-checked="settings.preferences.Topic" ng-click="settings.preferences.Topic = !settings.preferences.Topic">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.Topic" ng-click="settings.preferences.Topic = !settings.preferences.Topic">
                                             <span class="option_checkbox"></span>
                                             <span>Topic updates (content, status, categories etc.)</span>
                                         </label>
                                         <label class="checkcontainer">
-                                            <input type="checkbox" class="checkbox" ng-disabled="!settings.allowNotifications" ng-checked="settings.preferences.TopicComment" ng-click="settings.preferences.TopicComment = !settings.preferences.TopicComment">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicComment" ng-click="settings.preferences.TopicComment = !settings.preferences.TopicComment">
                                             <span class="option_checkbox"></span>
                                             <span>Topic discussion (arguments ,replies)</span>
                                         </label>
                                         <label class="checkcontainer">
-                                            <input type="checkbox" class="checkbox" ng-disabled="!settings.allowNotifications" ng-checked="settings.preferences.TopicReport" ng-click="settings.preferences.TopicReport = !settings.preferences.TopicReport">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicReport" ng-click="settings.preferences.TopicReport = !settings.preferences.TopicReport">
                                             <span class="option_checkbox"></span>
                                             <span>Reports</span>
                                         </label>
                                         <label class="checkcontainer">
-                                            <input type="checkbox" class="checkbox" ng-disabled="!settings.allowNotifications" ng-checked="settings.preferences.TopicVoteList" ng-click="settings.preferences.TopicVoteList = !settings.preferences.TopicVoteList">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicVoteList" ng-click="settings.preferences.TopicVoteList = !settings.preferences.TopicVoteList">
                                             <span class="option_checkbox"></span>
                                             <span>Voting</span>
                                         </label>
@@ -150,8 +137,8 @@
                 <div class="line lightest_line"></div>
                 <div class="lightbox_section">
                     <div class="footer_button_wrap right">
-                        <div class="blue_link" translate="MODALS.ADD_EID_LNK_BACK" ng-click="closeThisDialog()">Back</div>
-                        <div class="blue_button" ng-click="doSaveSettings()" translate="MODALS.TOPIC_SETTINGS_BTN_SAVE_TOPIC">Save topic</div>
+                        <div class="blue_link" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LNK_BACK" ng-click="closeThisDialog()">Back</div>
+                        <div class="blue_button" ng-click="doSaveSettings()" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_BTN_SAVE">Save topic</div>
                     </div>
                 </div>
             </div>

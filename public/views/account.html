@@ -98,7 +98,16 @@
                                 </div>
                             </label>
                         </div>
-
+                        <div class="input_wrap" ng-if="form.email !== app.user.email">
+                            <span translate="MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD">Password</span>
+                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64">
+                            <label for="password" class="error_label" ng-if="errors.password">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{errors.password}}"></span>
+                                </div>
+                            </label>
+                        </div>
                     </div>
                 </div>
         </div>
@@ -117,10 +126,17 @@
                 </div>
             </div>
         </div>
-        <div class="content_description" ng-if="tabSelected === 'notifications'">Make your topic private</div>
+        <!--div class="content_description" ng-if="tabSelected === 'notifications'">Make your topic private</div-->
         <div class="content" ng-if="tabSelected === 'notifications'">
             <div class="content_section">
                 <div class="settings_section">
+                    <table>
+                        <tr><th translate="MODALS.MY_ACCOUNT_LBL_NOTIFICATION_TOPICS">Topics with notifications</th><th></th></tr>
+                        <tr ng-repeat="(key, topic) in notifications.topics.rows"><td><a class="blue_link" ng-click="app.doShowTopicNotificationSettings(topic.Topic.id)">{{topic.Topic.title}}</a></td><td><span ng-click="removeTopicNotifications(topic.Topic.id)"><span class="item_text remove blue_link" translate="MODALS.MY_ACCOUNT_REMOVE_TOPIC_NOTIFICATIONS">Remove</span><div class="delete_icon sprite sprite-mytopics-icon-deletetopic2x"></div</span></td></tr>
+                        <tr><td><div class="pagination" cos-pagination select="loadNotificationSettingsPage" total-pages=" notifications.topics.totalPages" page=" notifications.topics.page"></div></td></tr>
+                    </table>
+                </div>
+                <!--div class="settings_section">
                     <table>
                         <tr>
                             <th></th>
@@ -149,7 +165,7 @@
                             <td></td>
                         </tr>
                     </table>
-                    <!--div class="settings_cell">
+                    <div class="settings_cell">
                         <div class="table_setting_title">
                             <span>All actions</span>
                         </div>
@@ -213,8 +229,8 @@
                         <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
                                 ng-model="form.preferences.showInSearch"></div>
                         <div class="setting_title" translate="MODALS.MY_ACCOUNT_LBL_SHOW_IN_SEARCH">Make your topic private</div>
-                    </div-->
-                </div>
+                    </div>
+                </div-->
             </div>
         </div>
         <div class="content" ng-if="tabSelected === 'account'">
