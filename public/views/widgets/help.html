@@ -6,7 +6,7 @@
         <div class="tip_button_wrap"><button class="blue_white_button tip_button" translate="HELP_CENTER_TOOLTIP_BTN_OK" ng-click="closeTootlip()">OK</button></div>
         <div class="tip-arrow"  ng-class="{help_visible: app.showHelp}"></div>
     </div>
-    <div id="dark_overlay" ng-if="(app.showHelp || app.helptooltip) && app.config.newHelp"></div>
+    <div id="dark_overlay" ng-if="(app.showHelp || app.helptooltip) && app.config.newHelp" ng-click="app.toggleHelp()"></div>
 
     <div class="help_widget" ng-if="app.showHelp && app.config.newHelp">
         <div class="help_top">
