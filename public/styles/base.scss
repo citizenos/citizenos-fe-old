@@ -3344,7 +3344,7 @@ a:link, a:visited {
                 display: table-row;
 
                 .time_input {
-                    width: 35px;
+                    width: 40px;
                     height: 38px;
                     border: 1px solid #e5e5e5;
                     border-radius: 4px;
@@ -3374,7 +3374,6 @@ a:link, a:visited {
 
                 @media (max-width: 1500px) {
                     .classic_dropdown {
-                        float: right;
                         margin-left: auto;
                     }
                 }
