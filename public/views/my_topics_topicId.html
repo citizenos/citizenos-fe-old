@@ -185,18 +185,20 @@
                                 </div>
                                 <div class="text_box no_margin" ng-if="$first && group.show">
                                     <div class="activity_group_row" ng-repeat="item in group.values" ng-click="activityRedirect(item)">
-                                        <div class="profile_image_wrapper dark">
-                                            <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
-                                            <div class="account_picture">
-                                                <div class="profile_image_filler">
-                                                    <div class="table_cell" cos-initials="item.values.userName">
-                                                        ML
+                                        <div class="contents">
+                                            <div class="contents_image">
+                                                <div class="profile_image_wrapper dark">
+                                                    <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
+                                                    <div class="account_picture">
+                                                        <div class="profile_image_filler">
+                                                            <div class="table_cell" cos-initials="item.values.userName">
+                                                                ML
+                                                            </div>
+                                                            <div class="profile_circle"></div>
+                                                        </div>
                                                     </div>
-                                                    <div class="profile_circle"></div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="contents">
                                             <div class="contents_data">
                                                 <span translate="{{item.string}}" translate-values="item.values">User Tom has added a new argument for topic: HELP.</span>
                                                 <i ng-if="showActivityUpdateVersions(item)">
@@ -205,8 +207,8 @@
 
                                                     <div class="activity_new" translate="ACTIVITY_FEED.ACTIVITY_NEW_VERSION" translate-values="{newValue: '{{(item.values.newValue | limitTo: 200) + (item.values.newValue.length > 200 ? '...' : '')}}'}"></div>
                                                 </i>
+                                                <div class="date_area" ng-bind="item.updatedAt | amDateFormat : 'L LT'">55.07.2056 11:23</div>
                                             </div>
-                                            <div class="date_area" ng-bind="item.updatedAt | amDateFormat : 'L LT'">55.07.2056 11:23</div>
                                         </div>
                                     </div>
                                 </div>

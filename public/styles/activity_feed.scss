@@ -103,6 +103,19 @@
                                     }
                                 }
                             }
+                            .contents_image {
+                                display: inline-block;
+                                vertical-align: top;
+
+                                .profile_image_wrapper {
+                                    float:none;
+                                }
+                            }
+
+                            .contents_data {
+                                display: inline-block;
+                                width: calc(100% - 60px);
+                            }
                         }
 
 
@@ -257,7 +270,7 @@
                         background: none;
                         box-shadow: none;
                         margin-bottom: 20px;
-                        padding: 0 20px 0 10px;
+                        padding: 0 50px 0 10px;
 
                         .activity_link, .activity_conjunctive {
                             display: none !important;;
