@@ -1063,7 +1063,7 @@
     "ACTIVITY_MODERATOR_DELETE_COMMENT_TOPIC": "Kasutaja <em>{{userName}}</em> (moderaator) eemaldas argumendi teemast \"<em>{{topicTitle}}</em>\"",
     "ACTIVITY_MODERATOR_DELETE_COMMENT_TOPIC_USERACTIVITYGROUP": "Kasutaja <em>{{userName}}</em> (moderaator) kustutas teemast \"<em>{{topicTitle}}</em>\" <em>{{groupCount}}</em> argumenti",
     "ACTIVITY_USER_ADD_REPORT_COMMENT": "Kasutaja <em>{{userName}}</em> teatas sobimatust argumendist: ",
-    "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP": "User <em>{{userName}}</em> has left a reaction <em>{{reaction}}</em> on an argument in topic: <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP": "Kasutaja <em>{{userName}}</em> on jätnud teemas \"<em>{{topicTitle}}</em>\" postitatud argumendile <em>{{reaction}}</em> tagasiside",
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP_ACTIVITYGROUP": "User <em>{{userName}}</em> and <em>{{groupCount}}</em> others have left a reaction <em>{{reaction}}</em> on an argument in topic: <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP_USERACTIVITYGROUP": "User <em>{{userName}}</em> has left <em>{{groupCount}}</em> reactions <em>{{reaction}}</em> on an argument in topic: <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP": "User <em>{{userName}}</em> has updated his/her reaction on an argument in topic: <em>{{topicTitle}}</em>",
