@@ -166,17 +166,28 @@ angular
             var existingSettings = false;
             sTopic.getTopicNotificationSettings(topicId).then(function(settings) {
                 existingSettings = settings;
-
                 var dialog = ngDialog.open({
                     template: '/views/modals/set_topic_notifications.html',
-                    controller: ['$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', function ($scope, $state, $stateParams, $log, $location, ngDialog) {
+                    controller: ['$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', 'Topic', function ($scope, $state, $stateParams, $log, $location, ngDialog, Topic) {
                         $log.debug('TopicNotificationsCtrl', $state, $stateParams);
-                        $scope.tabSelected = $stateParams.tab || 'general';
+                        var supportedTabs = ['general'];
+                        $scope.tabSelected = 'general';
+                        if (supportedTabs.indexOf($stateParams.tab) > -1 ) {
+                            $scope.tabSelected = $stateParams.tab;
+                        }
+
+                        new Topic({id: topicId})
+                        .$get()
+                        .then(function (topic) {
+                            $scope.topic = topic;
+                        });
+
                         $scope.settings = {
                             topicId: topicId,
                             preferences: existingSettings.preferences || {
                                 Topic: false,
                                 TopicComment: false,
+                                CommentVote: false,
                                 TopicReport: false,
                                 TopicVoteList: false,
                                 TopicEvent: false

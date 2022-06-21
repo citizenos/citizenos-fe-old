@@ -6,7 +6,7 @@ angular
         $log.debug('MyAccountFormCtrl');
         if (!sAuth.user.loggedIn) return $state.go('home')
         $scope.tabSelected = $stateParams.tab || 'profile';
-        var ITEMS_COUNT_PER_PAGE = 1;
+        var ITEMS_COUNT_PER_PAGE = 10;
         $scope.form = {
             name: null,
             email: null,

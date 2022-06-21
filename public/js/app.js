@@ -285,7 +285,7 @@
                     templateUrl: '/views/home.html'
                 })
                 .state('account.settings', {
-                    url: '/account?tab',
+                    url: '/myaccount?tab',
                     parent: 'main',
                     templateUrl: '/views/account.html'
                 })
