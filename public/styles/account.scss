@@ -146,6 +146,37 @@
 
             .content_section {
                 padding: 20px;
+
+                .topic_search_input {
+                    width: 100%;
+                }
+                .notification_settings_table {
+                    .notification_setting_row {
+                        height: 56px;
+                        background-color: vars.$white;
+                        &:nth-child(even) {
+                            background-color: vars.$light_gray;;
+                        }
+                        th {
+                            padding: 0 20px;
+                            font-weight: normal;
+                        }
+                        td {
+                            padding: 0 20px;
+                            vertical-align: middle;
+                            text-align: right;
+
+                            &:first-child {
+                                text-align: left;
+                            }
+                            .toggle_cell {
+                                bottom: 14px;
+                            }
+                        }
+                    }
+
+                }
+
                 .settings_cell {
                     display: inline-block;
                     position: relative;
@@ -372,6 +403,17 @@
                 .blue_button {
                     padding-left: 20px;
                     padding-right: 20px;
+                }
+            }
+
+            &.pagination_footer {
+                margin: 0 40px 0px 40px;
+                padding: 0 32px 20px;
+                text-align: right;
+
+                .pagination {
+                    margin-top: 10px;
+                    display: inline-block;
                 }
             }
         }

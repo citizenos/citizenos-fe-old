@@ -79,9 +79,9 @@ angular
             return $http.delete(path).then(defaultSuccess, defaultError);
         };
 
-        sTopic.notificationSettingsList = function (offset, limit) {
+        sTopic.notificationSettingsList = function (offset, limit, search) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/notificationsettings/topics');
 
-            return $http.get(path, {params: {offset: offset, limit: limit}}).then(defaultSuccess, defaultError);
+            return $http.get(path, {params: {offset: offset, limit: limit, search: search}}).then(defaultSuccess, defaultError);
         };
     }]);

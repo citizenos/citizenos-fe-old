@@ -130,10 +130,25 @@
         <div class="content" ng-if="tabSelected === 'notifications'">
             <div class="content_section">
                 <div class="settings_section">
-                    <table>
-                        <tr><th translate="MODALS.MY_ACCOUNT_LBL_NOTIFICATION_TOPICS">Topics with notifications</th><th></th></tr>
-                        <tr ng-repeat="(key, topic) in notifications.topics.rows"><td><a class="blue_link" ng-click="app.doShowTopicNotificationSettings(topic.Topic.id)">{{topic.Topic.title}}</a></td><td><span ng-click="removeTopicNotifications(topic.Topic.id)"><span class="item_text remove blue_link" translate="MODALS.MY_ACCOUNT_REMOVE_TOPIC_NOTIFICATIONS">Remove</span><div class="delete_icon sprite sprite-mytopics-icon-deletetopic2x"></div</span></td></tr>
-                        <tr><td><div class="pagination" cos-pagination select="loadNotificationSettingsPage" total-pages=" notifications.topics.totalPages" page=" notifications.topics.page"></div></td></tr>
+                    <div class="settings_cell">
+                        <div class="setting_title" translate="MODALS.MY_ACCOUNT_LBL_NOTIFICATION_TOPICS">Topics with notifications</div>
+                    </div>
+                    <div class="searchbox_with_icon_and_text only_text">
+                        <div class="input_wrap">
+                            <input class="topic_search_input" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_SEARCH' | translate}}" ng-change="loadNotificationSettingsPage(1)" ng-model-options="{debounce:250}" ng-model="notifications.search">
+                        </div>
+                    </div>
+                    <table class="notification_settings_table">
+                        <tr class="notification_setting_row"><th translate="MODALS.MY_ACCOUNT_TABLE_HEADER_TOPIC">Topics</th><th translate="MODALS.MY_ACCOUNT_TABLE_HEADER_NOTIFICATIONS">Notifications</th></tr>
+                        <tr class="notification_setting_row" ng-repeat="(key, topic) in notifications.topics.rows">
+                            <td><a class="blue_link" ui-sref="topics.view({topicId: topic.Topic.id})">{{topic.Topic.title}}</a></td>
+                            <td>
+                                <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="topic.allowNotifications" ng-click="removeTopicNotifications(topic)"></div>
+                            </td>
+                            <td>
+                                <a class="blue_link" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SET_TOPIC_NOTIFICATIONS" ng-click="app.doShowTopicNotificationSettings(topic.Topic.id)">Set topic notifications</a>
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <!--div class="settings_section">
@@ -263,7 +278,12 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
+        <div class="footer pagination_footer" ng-if="tabSelected === 'notifications'">
+            <div class="line lightest_line"></div>
+            <div class="pagination" cos-pagination select="loadNotificationSettingsPage" total-pages=" notifications.topics.totalPages" page=" notifications.topics.page"></div>
+        </div>
+
+        <div class="footer" ng-if="tabSelected !== 'notifications'">
 
             <div class="line lightest_line"></div>
             <span class="delete_account" ng-click="doDeleteAccount()">

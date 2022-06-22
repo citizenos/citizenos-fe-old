@@ -6,7 +6,7 @@ angular
         $log.debug('MyAccountFormCtrl');
         if (!sAuth.user.loggedIn) return $state.go('home')
         $scope.tabSelected = $stateParams.tab || 'profile';
-        var ITEMS_COUNT_PER_PAGE = 10;
+        var ITEMS_COUNT_PER_PAGE = 5;
         $scope.form = {
             name: null,
             email: null,
@@ -25,6 +25,7 @@ angular
         };
 
         $scope.notifications = {
+            search: '',
             topics: {
                 rows: [],
 
@@ -32,14 +33,15 @@ angular
         };
 
         var loadNotificationSettingsList = function (offset, limit) {
+
             if (!offset) {
                 offset = 0;
             }
             if (!limit) {
                 limit = ITEMS_COUNT_PER_PAGE;
             }
-
-            sTopic.notificationSettingsList(offset, limit)
+            console.log($scope.notifications.search)
+            sTopic.notificationSettingsList(offset, limit, $scope.notifications.search)
                 .then(function (items) {
                     $scope.notifications.topics = items;
                     $scope.notifications.topics.totalPages = Math.ceil($scope.notifications.topics.count / limit);
@@ -49,13 +51,18 @@ angular
         loadNotificationSettingsList(0);
 
         $scope.loadNotificationSettingsPage = function (page) {
+            if (page < 1) page = 1;
             var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
             loadNotificationSettingsList(offset, ITEMS_COUNT_PER_PAGE);
         };
 
-        $scope.removeTopicNotifications = function (topicId) {
-            $scope.app.removeTopicNotifications(topicId)
-                .then(loadNotificationSettingsList);
+        $scope.removeTopicNotifications = function (topic) {
+            $scope.app.removeTopicNotifications(topic.Topic.id, topic.allowNotifications)
+                .then(loadNotificationSettingsList, function () {
+                    $scope.$apply(function () {
+                        topic.allowNotifications = true;
+                    });
+                });
         };
 
         $scope.imageFile = null;

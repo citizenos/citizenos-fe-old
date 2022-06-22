@@ -146,8 +146,10 @@
     <div id="activities_list" class="info_container">
 
         <div class="container_header" ng-click="doToggleActivities();">
-            <div class="header_text" translate="VIEWS.MY_TOPICS_TOPICID.HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS">
-                Activity feed & notifications
+            <div class="header_text">
+                <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_ACTIVITY_FEED_AND_NOTIFICATIONS">Activity feed & notifications</span>
+                <span>|</span>
+                <a class="blue_link" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SET_TOPIC_NOTIFICATIONS" ng-click="$event.stopPropagation(); app.doShowTopicNotificationSettings(topic.id)">Set topic notifications</a>
             </div>
             <div class="minimize_container">
                 <div ng-class="!app.activityFeed ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>

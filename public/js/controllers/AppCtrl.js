@@ -247,17 +247,20 @@ angular
 
         };
 
-        $scope.app.removeTopicNotifications = function (topicId) {
+        $scope.app.removeTopicNotifications = function (topicId, setting) {
             console.log(topicId);
-            return new Promise (function (resolve) {
+            return new Promise (function (resolve, reject) {
                 return ngDialog
                 .openConfirm({
                     template: '/views/modals/remove_topic_notifications_confirm.html',
                 })
-                .then(function () {
+                .then(function (data) {
+                    console.log(data);
                     return sTopic.deleteTopicNotificationSettings(topicId)
                         .then(resolve);
-                }, angular.noop);
+                }, function () {
+                    return reject();
+                });
             });
         };
 
