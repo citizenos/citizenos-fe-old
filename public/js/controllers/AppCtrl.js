@@ -214,6 +214,9 @@ angular
 
                         $scope.selectOption = function (option) {
                             option = !option;
+                            if (option === true) {
+                                $scope.settings.allowNotifications = true;
+                            }
                         };
 
                         $scope.selectTab = function (tab) {
@@ -222,18 +225,15 @@ angular
                         };
 
                         $scope.doSaveSettings = function () {
-                            $scope.settings.allowNotifications = false;
-                            Object.values($scope.settings.preferences).forEach(function (item) {
-                                if(item === true) {
-                                    $scope.settings.allowNotifications = true;
-                                }
-                            });
                             if (!$scope.settings.allowNotifications) {
                                 sTopic.deleteTopicNotificationSettings(topicId);
                             } else {
                                 sTopic.updateTopicNotificationSettings(topicId, $scope.settings)
                                     .then(function (data) {
                                         $scope.settings = data;
+                                        if ($state.current.name === 'account.settings') {
+                                            $state.reload(true);
+                                        }
                                     }, function (err) {
                                         sNotification.addError(err);
                                     });

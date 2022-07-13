@@ -57,12 +57,33 @@ angular
         };
 
         $scope.removeTopicNotifications = function (topic) {
-            $scope.app.removeTopicNotifications(topic.Topic.id, topic.allowNotifications)
-                .then(loadNotificationSettingsList, function () {
-                    $scope.$apply(function () {
-                        topic.allowNotifications = true;
+            if (!topic.allowNotifications) {
+                $scope
+                    .app
+                    .removeTopicNotifications(topic.topicId, topic.allowNotifications)
+                    .then(loadNotificationSettingsList, function () {
+                        $scope.$apply(function () {
+                            topic.allowNotifications = true;
+                        });
                     });
+            } else {
+                sTopic.updateTopicNotificationSettings(topic.topicId, {
+                    preferences: {
+                        Topic: true,
+                        TopicComment: true,
+                        CommentVote: true,
+                        TopicReport: true,
+                        TopicVoteList: true,
+                        TopicEvent: true
+                    },
+                    allowNotifications: true
+                })
+                .then(function (data) {
+                    $scope.settings = data;
+                }, function (err) {
+                    sNotification.addError(err);
                 });
+            }
         };
 
         $scope.imageFile = null;

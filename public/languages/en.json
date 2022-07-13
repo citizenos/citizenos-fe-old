@@ -517,7 +517,7 @@
     "TOPIC_NOTIFICATION_SETTINGS_TITLE_DESCRIPTION": "These settings will relate only to this topic {{topicTitle}}",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_GENERAL": "General",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_CHANNELS": "Channels",
-    "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Topic notifications",
+    "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Toggle topic notifications for this topic",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_NOTIFY_ME_ABOUT": "Notify me about:",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_ALL_ACTIONS": "All actions in this topic",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_UPDATES": "Topic updates (content, status, categories, reports etc.)",

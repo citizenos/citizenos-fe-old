@@ -141,12 +141,12 @@
                     <table class="notification_settings_table">
                         <tr class="notification_setting_row"><th translate="MODALS.MY_ACCOUNT_TABLE_HEADER_TOPIC">Topics</th><th translate="MODALS.MY_ACCOUNT_TABLE_HEADER_NOTIFICATIONS">Notifications</th></tr>
                         <tr class="notification_setting_row" ng-repeat="(key, topic) in notifications.topics.rows">
-                            <td><a class="blue_link" ui-sref="topics.view({topicId: topic.Topic.id})">{{topic.Topic.title}}</a></td>
+                            <td><a class="blue_link" ui-sref="topics.view({topicId: topic.topicId})">{{topic.title}}</a></td>
                             <td>
                                 <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="topic.allowNotifications" ng-click="removeTopicNotifications(topic)"></div>
                             </td>
                             <td>
-                                <a class="blue_link" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SET_TOPIC_NOTIFICATIONS" ng-click="app.doShowTopicNotificationSettings(topic.Topic.id)">Set topic notifications</a>
+                                <a class="blue_link" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SET_TOPIC_NOTIFICATIONS" ng-click="app.doShowTopicNotificationSettings(topic.topicId)">Set topic notifications</a>
                             </td>
                         </tr>
                     </table>

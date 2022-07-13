@@ -171,6 +171,7 @@
                             }
                             .toggle_cell {
                                 bottom: 14px;
+                                position: relative;
                             }
                         }
                     }
@@ -254,12 +255,6 @@
                                 display: inline-block;
                                 margin-left: 10px;
                             }
-                        }
-
-                        .toggle_cell {
-                            margin-left: 50%;
-                            margin-right: 50%;
-                            position: relative;
                         }
 
                     }
