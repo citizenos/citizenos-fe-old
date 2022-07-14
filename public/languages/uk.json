@@ -860,7 +860,7 @@
       "VOTE_LBL_AUTH_SOFT_ID": "Вхід через соціальні мережі",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "НЕОБХІДНО УВІЙТИ ДО ПЛАТФОРМИ CITIZEN OS",
       "VOTE_LBL_AUTH_HARD_ID": "ідентифікація за допомогою е-ID",
-      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "НЕОБХІДНЕ ПІДПИСАННЯ ЗА ДОПОМОГОЮ ID-КАРТИ АБО MOBILE-ID",
+      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "ID-Card, Mobiil-ID or Smart-ID signing is required",
       "VOTE_LBL_DELEGATION": "Делегування",
       "VOTE_LBL_DELEGATION_EXPLANATION": "ДОЗВОЛИТИ КОРИСТУВАЧАМ ДЕЛЕГУВАТИ ЇХ ПРАВО ГОЛОСУВАТИ.",
       "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "Коли е-ID обрано в якості методу голосування, делегування права голосувати неможливе.",
