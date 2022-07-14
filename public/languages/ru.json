@@ -860,7 +860,7 @@
       "VOTE_LBL_AUTH_SOFT_ID": "Вход через социальные сети",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "ГОЛОСОВАНИЕ ТРЕБУЕТ ВХОДА В СИСТЕМУ CITIZEN OS",
       "VOTE_LBL_AUTH_HARD_ID": "идентификация с помощью электронного удостоверения личности",
-      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "ТРЕБУЕТСЯ ДИГИТАЛЬНАЯ ПОДПИСЬ С ПОМОЩЬЮ ID-КАРТЫ ИЛИ МОБИЛЬНОГО ТЕЛЕФОНА",
+      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "ID-Card, Mobiil-ID or Smart-ID signing is required",
       "VOTE_LBL_DELEGATION": "Передать полномочия",
       "VOTE_LBL_DELEGATION_EXPLANATION": "РАЗРЕШИТЬ ПОЛЬЗОВАТЕЛЯМ ПЕРЕДАВАТЬ ПОЛНОМОЧИЯ",
       "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "Когда для голосования выбран способ идентификации с помощью электронного удостоверения личности, передача полномочий невозможна.",
