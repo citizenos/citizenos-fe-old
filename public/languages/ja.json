@@ -860,7 +860,7 @@
       "VOTE_LBL_AUTH_SOFT_ID": "ソーシャルメディアでのログイン",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "CITIZENOSログインが必要",
       "VOTE_LBL_AUTH_HARD_ID": "e-ID(エストニアのみ)",
-      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "IDカードまたはモバイル署名が必要",
+      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "ID-Card, Mobiil-ID or Smart-ID signing is required",
       "VOTE_LBL_DELEGATION": "代理投票",
       "VOTE_LBL_DELEGATION_EXPLANATION": "他のユーザーへの投票権の委任を許可する",
       "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "eIDが投票の方法である場合、委任は許可されません (エストニアのみ)",
