@@ -860,7 +860,7 @@
       "VOTE_LBL_AUTH_SOFT_ID": "Masuk dengan Akun Media Sosial",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "DIPERLUKAN LOGIN Citizen OS",
       "VOTE_LBL_AUTH_HARD_ID": "identifikasi elektronik",
-      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "DIPERLUKAN KTP ATAU TANDA TANGAN MOBILE",
+      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "ID-Card, Mobiil-ID or Smart-ID signing is required",
       "VOTE_LBL_DELEGATION": "Perwakilan",
       "VOTE_LBL_DELEGATION_EXPLANATION": "MEMPERBOLEHKAN PENGGUNA UNTUK MENYAMPAIKAN HAK PILIH MEREKA.",
       "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "Memberikan perwakilan pilihan tidak diperbolehkan ketika menggunakan identitas elektronik untuk pemungutan suara,.",

@@ -860,7 +860,7 @@
       "VOTE_LBL_AUTH_SOFT_ID": "Pieteikšanās ar sociālo tīklu kontu",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "NEPIECIEŠAMA PIETEIKŠANĀS CITIZEN OS",
       "VOTE_LBL_AUTH_HARD_ID": "eID",
-      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "NEPIECIEŠAMA PIETEIKŠANĀS AR ID-KARTI VAI MOBILO IERĪCI",
+      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "ID-Card, Mobiil-ID or Smart-ID signing is required",
       "VOTE_LBL_DELEGATION": "Deleģēšana",
       "VOTE_LBL_DELEGATION_EXPLANATION": "ĻAUJ LIETOTĀJIEM NODOT SAVU BALSI CITAM.",
       "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "Kad ir izvēlēta eID balsošanas metode, deleģēšana nav atļauta.",
