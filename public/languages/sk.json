@@ -1319,6 +1319,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "Ľutujeme, odhlasovanie zlyhalo. Skúste znova prosím. Ak problém pretrváva, kontaktujte prosím podporu.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Odoslanie pozvánok zlyhalo: duplicitná akcia alebo zadané neplatné údaje",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_ERROR_NO_CERTIFICATES": "",
   "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Presmerovanie stránky z dôvodu prepnutia účtu",
   "MDEDITOR_TOOLTIP_BOLD": "Tučné",
   "MDEDITOR_TOOLTIP_ITALIC": "Kurzíva",
