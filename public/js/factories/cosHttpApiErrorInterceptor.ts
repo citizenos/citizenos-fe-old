@@ -1,4 +1,5 @@
 import * as angular from 'angular';
+
 angular
     .module('citizenos')
     .factory('cosHttpApiErrorInterceptor', ['$log', '$q', '$translate', '$filter', 'sNotification', function ($log, $q, $translate, $filter, sNotification) {
@@ -17,7 +18,7 @@ angular
          * @see {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.filter:translate}
          */
         var translate = function (key, interpolateParams) {
-            if (!key || typeof key !== 'string') throw new Error('cosHttpInterceptor.translate()', 'Invalid parameter value', arguments);
+            if (!key || typeof key !== 'string') throw new Error(`cosHttpInterceptor.translate()', 'Invalid parameter value, ${arguments}`);
             return $filter('translate')(key, interpolateParams);
         };
 
@@ -30,7 +31,7 @@ angular
          */
         var errorsToKeys = function (errorResponse) {
             if (!errorResponse) {
-                throw new Error('cosHttpApiErrorInterceptor.errorsToKeys()', 'Missing one or more required parameters', arguments);
+                throw new Error(`cosHttpApiErrorInterceptor.errorsToKeys(), Missing one or more required parameters, ${arguments}`);
             }
 
             if (errorResponse.data && errorResponse.data.errors) {
@@ -68,7 +69,7 @@ angular
                 var translationKey = getGeneralErrorTranslationKey(errorResponse);
                 translationKey += '_' + key.toUpperCase();
 
-                if (translationKey !== translate(translationKey)) {
+                if (translationKey !== translate(translationKey, {})) {
                     errors[key] = translationKey;
                 } else {
                     errors[key] = errors[key] + ' *'; // Add asterisk to the end so its easy to see that untranslated message was shown
@@ -97,9 +98,9 @@ angular
                 .replace(':statusCode', statusCode);
 
             // The key exists
-            if (translationKey !== translate(translationKey) && errorResponse.data.status) {
+            if (translationKey !== translate(translationKey, {}) && errorResponse.data.status) {
                 errorResponse.data.status.message = translationKey;
-                if (translationKeyHeading !== translate(translationKeyHeading)) {
+                if (translationKeyHeading !== translate(translationKeyHeading, {})) {
                     // We have a translation for a heading which means we want to show the error/info dialog
                     sNotification.showDialog(translationKeyHeading, translationKey);
                 } else {
@@ -107,7 +108,7 @@ angular
                     sNotification.addError(translationKey);
                 }
                 // Use fallback to generic error
-            } else if (translationKeyFallback !== translate(translationKeyFallback)) {
+            } else if (translationKeyFallback !== translate(translationKeyFallback, {})) {
                 if (errorResponse.data.status) {
                     errorResponse.data.status.message = translationKeyFallback;
                 }

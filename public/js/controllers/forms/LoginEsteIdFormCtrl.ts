@@ -1,9 +1,10 @@
 'use strict';
 import * as angular from 'angular';
+import * as hwcrypto from 'hwcrypto-js';
 
 angular
     .module('citizenos')
-    .controller('LoginEsteIdFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$timeout', 'ngDialog', 'sLocation', 'sAuth', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $timeout, ngDialog, sLocation, sAuth, sNotification) {
+    .controller('LoginEsteIdFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$timeout', 'ngDialog', 'sLocation', 'sAuth', 'sNotification', '$q', function ($scope, $log, $state, $stateParams, $window, $timeout, ngDialog, sLocation, sAuth, sNotification, $q) {
         $log.debug('LoginEsteIdFormCtrl');
 
         var init = function () {

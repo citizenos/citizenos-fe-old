@@ -194,7 +194,7 @@ angular
 
                                     var halfVariable = ($rootScope.tabsVisibleAreaWidth / ($rootScope.tabFinalLength + 10) % 1).toFixed(2);
 
-                                    if (halfVariable < 0.18 || halfVariable > 0.8) {
+                                    if (Number(halfVariable) < 0.18 || Number(halfVariable) > 0.8) {
                                         $rootScope.trainPosition -= 50;
                                     }
                                 }

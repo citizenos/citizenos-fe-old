@@ -280,10 +280,10 @@ angular
                 limit: limitNr
             };
             if (include) {
-                paramsObj.include = include;
+                paramsObj['include'] = include;
             }
             if (filter) {
-                paramsObj.filter = filter;
+                paramsObj['filter'] = filter;
             }
             return $http
                 .get(path, {params: paramsObj})
@@ -298,10 +298,10 @@ angular
                 sourcePartnerId: sourcePartnerId
             };
             if (include) {
-                paramsObj.include = include;
+                paramsObj['include'] = include;
             }
             if (filter) {
-                paramsObj.filter = filter;
+                paramsObj['filter'] = filter;
             }
 
             return $http
@@ -575,23 +575,23 @@ angular
 
             if (activity.data.object) {
                 getActivityUsers(activity, values);
-                values.topicTitle = getActivityTopicTitle(activity);
-                values.className = getActivityClassName(activity);
-                values.description = getActivityDescription(activity);
-                values.groupName = getActivityGroupName(activity);
-                values.attachmentName = getActivityAttachmentName(activity);
-                values.connectionName = getAactivityUserConnectionName(activity);
+                values['topicTitle'] = getActivityTopicTitle(activity);
+                values['className'] = getActivityClassName(activity);
+                values['description'] = getActivityDescription(activity);
+                values['groupName'] = getActivityGroupName(activity);
+                values['attachmentName'] = getActivityAttachmentName(activity);
+                values['connectionName'] = getAactivityUserConnectionName(activity);
                 getActivityUserLevel(activity, values);
 
-                values.groupItemValue =  values.userName;
-                if (values.userName2) {
-                    values.groupItemValue = values.userName2;
+                values['groupItemValue'] =  values['userName'];
+                if (values['userName2']) {
+                    values['groupItemValue'] = values['userName2'];
                 }
-                if (values.attachmentName) {
-                    values.groupItemValue = values.attachmentName;
+                if (values['attachmentName']) {
+                    values['groupItemValue'] = values['attachmentName'];
                 }
-                if (values.connectionName) {
-                    values.groupItemValue = values.connectionName;
+                if (values['connectionName']) {
+                    values['groupItemValue'] = values['connectionName'];
                 }
 
                 var dataobject = activity.data.object;
@@ -600,7 +600,7 @@ angular
                 }
 
                 if (dataobject['@type'] === 'Comment') {
-                    values.groupItemValue = dataobject.text;
+                    values['groupItemValue'] = dataobject.text;
                 }
 
                 if (dataobject['@type'] === 'CommentVote' && activity.data.type === 'Create') {
@@ -612,8 +612,8 @@ angular
                         val = 'REMOVE';
                     }
                     $translate(str + val).then(function (value) {
-                        values.reaction = value;
-                        values.groupItemValue = value;
+                        values['reaction'] = value;
+                        values['groupItemValue'] = value;
                     });
                 }
             }
@@ -676,61 +676,61 @@ angular
                 // The invited user is viewing
                 if (sAuth.user.loggedIn && sAuth.user.id === target.id) {
                     stateName = 'topicsTopicIdInvitesUsers';
-                    params.topicId = object.id;
-                    params.inviteId = target.inviteId; // HACKISH! Change once issue resolves - https://github.com/w3c/activitystreams/issues/506
+                    params['topicId'] = object.id;
+                    params['inviteId'] = target.inviteId; // HACKISH! Change once issue resolves - https://github.com/w3c/activitystreams/issues/506
                 } else {
                     // Creator of the invite or a person who has read permissions is viewing
                     stateName = 'topics.view';
-                    params.topicId = object.id;
+                    params['topicId'] = object.id;
                 }
             } else if (activityType === 'Invite' && target['@type'] === 'User' && object['@type'] === 'Group') { // https://github.com/citizenos/citizenos-fe/issues/348
                 // The invited user is viewing
                 if (sAuth.user.loggedIn && sAuth.user.id === target.id) {
                     stateName = 'groupsGroupIdInvitesUsers';
-                    params.groupId = object.id;
-                    params.inviteId = target.inviteId; // HACKISH! Change once issue resolves - https://github.com/w3c/activitystreams/issues/506
+                    params['groupId'] = object.id;
+                    params['inviteId'] = target.inviteId; // HACKISH! Change once issue resolves - https://github.com/w3c/activitystreams/issues/506
                 } else {
                     // Creator of the invite or a person who has read permissions is viewing
                     stateName = 'group.view';
-                    params.groupId = object.id;
+                    params['groupId'] = object.id;
                 }
             } else if ((object && object['@type'] === 'Topic')) {
                 stateName = 'topics.view';
-                params.topicId = object.id;
+                params['topicId'] = object.id;
             } else if ((object && object['@type'] === 'TopicMemberUser')) {
                 stateName = 'topics.view';
-                params.topicId = object.topicId;
+                params['topicId'] = object.topicId;
             } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote') {
                 if (target && (target['@type'] === 'Topic' || object.topicId || target.topicId)) {
                     stateName = 'topics.view';
-                    params.topicId = object.topicId || target.topicId || target.id;
-                    params.commentId = object.commentId || object.id;
+                    params['topicId'] = object.topicId || target.topicId || target.id;
+                    params['commentId'] = object.commentId || object.id;
                     // hash = object.commentId || object.id;
                 }
             } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteList' && target && target['@type'] === 'Topic') {
                 stateName = 'topics.view.votes.view';
-                params.topicId = target.topicId || target.id;
-                params.voteId = object.voteId || object.id;
+                params['topicId'] = target.topicId || target.id;
+                params['voteId'] = object.voteId || object.id;
             } else if (object['@type'] === 'Group' || object['@type'] === 'TopicMemberGroup') {
                 stateName = 'my.groups.groupId';
-                params.groupId = object.id || object.groupId;
+                params['groupId'] = object.id || object.groupId;
             } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteFinalContainer' ) {
                 stateName = 'topics.view.votes.view';
-                params.topicId = object.topicId || object.id;
-                params.voteId = object.voteId || object.id;
+                params['topicId'] = object.topicId || object.id;
+                params['voteId'] = object.voteId || object.id;
             } else if (target && target['@type'] === 'Topic' || target.topicId) {
                 stateName = 'topics.view';
-                params.topicId = target.topicId || target.id
+                params['topicId'] = target.topicId || target.id
             }
 
             if (target && target['@type'] === 'Group') {
                 stateName = 'my.groups.groupId';
-                params.groupId = target.id;
+                params['groupId'] = target.id;
             }
 
             if (!stateName && origin && origin['@type'] === 'Topic') {
                 stateName = 'topics.view';
-                params.topicId  = origin.id;
+                params['topicId']  = origin.id;
             }
             if (stateName) {
                 //  ngDialog.closeAll();

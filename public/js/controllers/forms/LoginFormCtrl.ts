@@ -1,5 +1,6 @@
 'use strict';
 import * as angular from 'angular';
+import * as _ from 'lodash';
 
 angular
     .module('citizenos')
@@ -65,9 +66,9 @@ angular
                 targetWidth = mobile() ? null : w,
                 targetHeight = mobile() ? null : h,
                 V = screenX < 0 ? window.screen.width + screenX : screenX,
-                left = parseInt(V + (outerWidth - targetWidth) / 2, 10),
-                right = parseInt(screenY + (outerHeight - targetHeight) / 2.5, 10),
-                features = [];
+                left = Number(V) + Number(outerWidth - targetWidth) / 2;
+                var right = screenY + (outerHeight - targetHeight) / 2.5;
+                var features = [];
             if (targetWidth !== null) {
                 features.push('width=' + targetWidth);
             }
@@ -139,7 +140,7 @@ angular
          */
         $scope.doLoginPartnerPopup = function (partnerId) {
             if (_.values($scope.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
-                throw new Error('LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', partnerId);
+                throw new Error(`LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', ${partnerId}`);
             }
 
             var url = sLocation.getAbsoluteUrlApi(
@@ -186,7 +187,7 @@ angular
         // Popup version was initially needed only for the widget logins. Maybe worth making an exception for the widgets and revert everything else to normal.
         $scope.doLoginPartnerNoPopup = function (partnerId) {
             if (_.values($scope.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
-                throw new Error('LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', partnerId);
+                throw new Error(`LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', ${partnerId}`);
             }
 
             var url = sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', {partnerId: partnerId});

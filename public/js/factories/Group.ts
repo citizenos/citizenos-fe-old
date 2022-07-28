@@ -1,4 +1,5 @@
 import * as angular from 'angular';
+import * as _ from 'lodash';
 angular
     .module('citizenos')
     .factory('Group', ['$log', '$resource', 'sLocation', '$http', 'Topic', 'GroupMemberUser', function ($log, $resource, sLocation, $http, Topic, GroupMemberUser) {
@@ -56,8 +57,8 @@ angular
                     url: sLocation.getAbsoluteUrlApi('/api/users/self/groups'),
                     transformRequest: function (data) {
                         var requestObject = {};
-                        requestObject.name = data.name;
-                        requestObject.visibility = data.visibility;
+                        requestObject['name'] = data.name;
+                        requestObject['visibility'] = data.visibility;
                         return angular.toJson(requestObject);
                     },
                     transformResponse: function (data, headersGetter, status) {

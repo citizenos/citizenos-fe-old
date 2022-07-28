@@ -10,7 +10,7 @@ angular
             {
                 save: {
                     method: 'POST',
-                    transformResponse: function (data) {
+                    transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) {
                             return angular.fromJson(data).data;
                         } else {

@@ -1,4 +1,6 @@
 import * as angular from 'angular';
+import * as _ from 'lodash';
+
 angular
     .module('citizenos')
     .factory('TopicComment', ['$log', '$resource', '$sce', '$filter', 'sLocation', 'sAuth', 'marked', function ($log, $resource, $sce, $filter, sLocation, sAuth, marked) {

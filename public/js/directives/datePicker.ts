@@ -1,6 +1,8 @@
 // https://github.com/g00fy-/angular-datepicker/releases/tag/2.0.3
 // NOTE: Modified - removed dateRange stuff, removed default template
 'use strict';
+import * as angular from 'angular';
+import * as moment from 'moment-timezone';
 
 (function(angular){
     /* global moment */
@@ -274,7 +276,7 @@
                         valid = isSame(minDate, date);
                     }
                     if (maxDate && maxDate.isBefore(date)) {
-                        valid &= isSame(maxDate, date);
+                        valid && isSame(maxDate, date);
                     }
                     return valid;
                 }
@@ -298,19 +300,19 @@
 
                     switch (view) {
                         case 'minutes':
-                            is &= ~~(now.minutes() / step) === ~~(date.minutes() / step);
+                            is && ~~(now.minutes() / step) === ~~(date.minutes() / step);
                         /* falls through */
                         case 'hours':
-                            is &= now.hours() === date.hours();
+                            is && now.hours() === date.hours();
                         /* falls through */
                         case 'date':
-                            is &= now.date() === date.date();
+                            is && now.date() === date.date();
                         /* falls through */
                         case 'month':
-                            is &= now.month() === date.month();
+                            is &&now.month() === date.month();
                         /* falls through */
                         case 'year':
-                            is &= now.year() === date.year();
+                            is && now.year() === date.year();
                     }
                     return is;
                 }
@@ -423,10 +425,10 @@
                     actualOffset;
 
                 for (var i = 0; i < 12; i++) {
-                    pushedDate = createNewDate(year, 0, 1, 0 - offset);
+                    pushedDate = createNewDate(year, 0, 1, 0 - offset, 0);
                     actualOffset = pushedDate.utcOffset() / 60;
                     if (actualOffset !== offset) {
-                        pushedDate = createNewDate(year, 0, 1, 0 - actualOffset);
+                        pushedDate = createNewDate(year, 0, 1, 0 - actualOffset, 0);
                         offset = actualOffset;
                     }
                     years.push(pushedDate);
@@ -446,10 +448,10 @@
                     actualOffset;
 
                 for (var i = 0; i < 7; i++) {
-                    pushedDate = createNewDate(year, month, day, 0 - offset, 0, false);
+                    pushedDate = createNewDate(year, month, day, 0 - offset, 0);
                     actualOffset = pushedDate.utcOffset() / 60;
                     if (actualOffset !== offset) {
-                        pushedDate = createNewDate(year, month, day, 0 - actualOffset, 0, false);
+                        pushedDate = createNewDate(year, month, day, 0 - actualOffset, 0);
                     }
                     days.push(pushedDate);
                     day++;
@@ -464,10 +466,10 @@
                     actualOffset;
 
                 for (var month = 0; month < 12; month++) {
-                    pushedDate = createNewDate(year, month, 1, 0 - offset, 0, false);
+                    pushedDate = createNewDate(year, month, 1, 0 - offset, 0);
                     actualOffset = pushedDate.utcOffset() / 60;
                     if (actualOffset !== offset) {
-                        pushedDate = createNewDate(year, month, 1, 0 - actualOffset, 0, false);
+                        pushedDate = createNewDate(year, month, 1, 0 - actualOffset, 0);
                     }
                     months.push(pushedDate);
                 }
@@ -482,10 +484,10 @@
                     offset = m.utcOffset() / 60;
 
                 for (hour = 0 ; hour < 24 ; hour++) {
-                    pushedDate = createNewDate(year, month, day, hour - offset, 0, false);
+                    pushedDate = createNewDate(year, month, day, hour - offset, 0);
                     actualOffset = pushedDate.utcOffset() / 60;
                     if (actualOffset !== offset) {
-                        pushedDate = createNewDate(year, month, day, hour - actualOffset, 0, false);
+                        pushedDate = createNewDate(year, month, day, hour - actualOffset, 0);
                     }
                     hours.push(pushedDate);
                 }
@@ -560,10 +562,8 @@
                 // Removed the parent scope traversing - it's a bad idea. Probably was because of the ng-if child scope issue?
                 if (scope[name]) {
                     result = this.createMoment(scope[name]);
-                    if(!result.isValid()) {
-                        result = false;
-                    }
                 }
+
                 return result;
             },
             eventIsForPicker: function (targetIDs, pickerID) {
