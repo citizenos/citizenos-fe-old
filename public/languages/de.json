@@ -860,7 +860,7 @@
       "VOTE_LBL_AUTH_SOFT_ID": "Anmeldung über soziale Netzwerke",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "CITIZEN OS - ANMELDUNG ST ERFORDERLICH",
       "VOTE_LBL_AUTH_HARD_ID": "elektronische Identifizierung",
-      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "UNTERZEICHNUNG MIT DER ID-KARTE ODER MOBILE UNTERSCHRIFT SIND ERFORDERLICH",
+      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "ID-Card, Mobiil-ID or Smart-ID signing is required",
       "VOTE_LBL_DELEGATION": "Befugnis zur Stimmabgabe",
       "VOTE_LBL_DELEGATION_EXPLANATION": "BENUTZERN ERLAUBEN IHR STIMMRECHT ZU ÜBERTRAGEN.",
       "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "Wenn Sie für die Abstimmung sich elektronisch identifizieren lassen, ist die Übertragung Ihrer Stimme an Dritte nicht erlaubt.",
