@@ -1319,6 +1319,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "Ocorreu um erro ao sair. Tente novamente. Se o problema persistir, entre em contato com o suporte.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Falha ao enviar convites: ação duplicada ou dados inválidos fornecidos",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_ERROR_NO_CERTIFICATES": "",
   "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Página redirecionada devido à mudança de conta",
   "MDEDITOR_TOOLTIP_BOLD": "Negrito",
   "MDEDITOR_TOOLTIP_ITALIC": "Itálico",
