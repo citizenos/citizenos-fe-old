@@ -1319,6 +1319,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "Valitettavasti uloskirjautuminen epäonnistui. Yritä uudelleen. Jos ongelma jatkuu, ota yhteyttä tukeen.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Kutsujen lähettäminen epäonnistui: toiminta toistettu tai tai virheellisiä tietoja annettu",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_ERROR_NO_CERTIFICATES": "",
   "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Sivun uudelleenohjaus tilin vaihtamisen takia",
   "MDEDITOR_TOOLTIP_BOLD": "Lihavoitu",
   "MDEDITOR_TOOLTIP_ITALIC": "Kursivoitu",
