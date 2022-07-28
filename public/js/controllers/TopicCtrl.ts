@@ -354,10 +354,12 @@ angular
         };
 
         $scope.loadActivities = function (offset, limit) {
-            $scope.activitiesOffset = offset || $scope.activitiesOffset;
             $scope.activitiesLimit = limit || $scope.activitiesLimit;
             if ($scope.activities.length && !offset && !limit) {
                 $scope.activitiesOffset += $scope.activitiesLimit;
+            }
+            if (offset !== undefined) {
+                $scope.activitiesOffset = offset;
             }
             if ($scope.topic) {
                 return sActivity.getTopicActivities($scope.topic.id, $scope.activitiesOffset, $scope.activitiesLimit)
@@ -890,6 +892,10 @@ angular
                         break;
                 }
             });
+        }
+
+        if ($stateParams.notificationSettings) {
+            $scope.app.doShowTopicNotificationSettings($scope.topic.id);
         }
 
         $scope.downloadAttachment = function (attachment) {

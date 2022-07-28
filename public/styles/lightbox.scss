@@ -1389,6 +1389,7 @@
 
             #lightbox_header {
                 position: relative;
+                display: table;
 
                 #lightbox_close {
                     height: 54px;
@@ -1801,7 +1802,6 @@
                 height: auto;
                 background: vars.$white;
                 border-radius: 4px 4px 0 0;
-                display: table;
                 box-sizing: border-box;
                 color: vars.$medium_black;
 
@@ -1810,7 +1810,6 @@
                 }
 
                 #lightbox_header_text {
-                    @extend %table_cell;
                     font-weight: vars.$bold;
                     font-size: 16px;
                     padding: 15px 0 15px 20px;
