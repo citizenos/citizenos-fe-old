@@ -2,7 +2,7 @@
 
 angular
     .module('citizenos')
-    .controller('LoginEsteIdFormCtrl', ['$scope', '$log', '$state', '$window', '$timeout', 'ngDialog', 'sLocation', 'sAuth', function ($scope, $log, $state, $window, $timeout, ngDialog, sLocation, sAuth) {
+    .controller('LoginEsteIdFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$timeout', 'ngDialog', 'sLocation', 'sAuth', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $timeout, ngDialog, sLocation, sAuth, sNotification) {
         $log.debug('LoginEsteIdFormCtrl');
 
         var init = function () {
@@ -46,18 +46,32 @@ angular
 
             $scope.isLoadingIdCard = true;
 
-            sAuth
-                .loginIdCard($scope.ngDialogData.userId)
-                .then(
-                    function () {
-                        handleLoginSuccess();
-                    },
-                    function (err) {
-                        $log.error('Something failed when trying to log in with card', err);
+            hwcrypto
+                .getCertificate({language: $stateParams.language || 'en'})
+                .then(function() {
+                    sAuth
+                    .loginIdCard($scope.ngDialogData.userId)
+                    .then(
+                        function () {
+                            handleLoginSuccess();
+                        },
+                        function (err) {
+                            $log.error('Something failed when trying to log in with card', err);
 
+                            $scope.isLoadingIdCard = false;
+                        }
+                    );
+                }, function(err) {
+                    $scope.$apply(function () {
                         $scope.isLoadingIdCard = false;
+                    });
+                    var message = err.message
+                    if (message === 'no_certificates') {
+                        message = 'MSG_ERROR_HWCRYPTO_NO_CERTIFICATES';
                     }
-                );
+
+                    sNotification.addError(message);
+                });
         };
 
         var handleLoginSuccess = function () {
