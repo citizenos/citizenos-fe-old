@@ -1319,6 +1319,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "Вибачте, вийти не вдалося. Будь ласка, спробуйте ще раз. Якщо проблема залишається, будь ласка, зв'яжіться з підтримкою.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Надсилання запрошень не вдалося: дублювання дії або надано неправильні дані",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_ERROR_NO_CERTIFICATES": "",
   "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Сторінка переадресована через перемикання облікового запису",
   "MDEDITOR_TOOLTIP_BOLD": "Жирний",
   "MDEDITOR_TOOLTIP_ITALIC": "Курсив",

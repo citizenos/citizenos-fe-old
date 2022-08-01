@@ -1319,6 +1319,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "Leider konnten Sie nicht abgemeldet werden. Bitte versuchen Sie es erneut. Sollte das Problem weiterhin bestehen, wenden Sie sich bitte an den Kundendienst.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Senden der Einladungen fehlgeschlagen: doppelte Aktion oder angegebene Daten waren ungültig",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_ERROR_NO_CERTIFICATES": "",
   "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Seite weitergeleitet wegen Kontowechsel",
   "MDEDITOR_TOOLTIP_BOLD": "Fett",
   "MDEDITOR_TOOLTIP_ITALIC": "Kursiv",
