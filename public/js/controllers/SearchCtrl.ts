@@ -107,7 +107,7 @@ angular
                 if (model == 'topic') {
                     if (sAuth.user.loggedIn) {
                         $state.go(
-                            'my.topics.topicId',
+                            'my/topics/topicId',
                             {
                                 topicId: item.id,
                                 filter: 'all'
@@ -118,7 +118,7 @@ angular
                         );
                     } else {
                         $state.go(
-                            'topics.view',
+                            'topics/view',
                             {
                                 topicId: item.id
                             },
@@ -129,7 +129,7 @@ angular
                     }
                 } else if (model === 'group') {
                     $state.go(
-                        'my.groups.groupId',
+                        'my/groups/groupId',
                         {
                             groupId: item.id,
                             filter: 'grouped'

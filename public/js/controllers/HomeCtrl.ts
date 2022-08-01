@@ -103,7 +103,7 @@ angular
         $scope.loadTopicList = function () {
             $log.debug('HomeCtrl.loadTopicList()');
             if ($stateParams.category && !sTopic.CATEGORIES[$stateParams.category]) {
-                return $state.go('error.404');
+                return $state.go('error/404');
             }
             if ($scope.isTopicListLoading === true) {
                 $log.warn('HomeCtrl.loadTopicList()', 'Topic list already loading, will skip this request.');

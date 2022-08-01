@@ -15,7 +15,7 @@ angular
                 id: 'all',
                 name: 'VIEWS.MY.FILTERS.SHOW_ALL_MY_TOPICS',
                 onSelect: function () {
-                    $state.go('my.topics', {filter: this.id}, {reload: true});
+                    $state.go('my/topics', {filter: this.id}, {reload: true});
                 }
             },
             {
@@ -25,77 +25,77 @@ angular
                         id: 'public',
                         name: 'VIEWS.MY.FILTERS.MY_PUBLIC_TOPICS',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'private',
                         name: 'VIEWS.MY.FILTERS.MY_PRIVATE_TOPICS',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'haveVoted',
                         name: 'VIEWS.MY.FILTERS.TOPICS_I_HAVE_VOTED',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'haveNotVoted',
                         name: 'VIEWS.MY.FILTERS.TOPICS_I_HAVE_NOT_VOTED',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'iCreated',
                         name: 'VIEWS.MY.FILTERS.TOPICS_I_CREATED',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'inProgress',
                         name: 'VIEWS.MY.FILTERS.TOPICS_IN_PROGRESS',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'voting',
                         name: 'VIEWS.MY.FILTERS.TOPICS_IN_VOTING',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'followUp',
                         name: 'VIEWS.MY.FILTERS.TOPICS_IN_FOLLOW_UP',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'closed',
                         name: 'VIEWS.MY.FILTERS.TOPICS_CLOSED',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'pinnedTopics',
                         name: 'VIEWS.MY.FILTERS.TOPICS_PINNED',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     },
                     {
                         id: 'showModerated',
                         name: 'VIEWS.MY.FILTERS.TOPICS_MODERATED',
                         onSelect: function () {
-                            $state.go('my.topics', {filter: this.id}, {reload: true});
+                            $state.go('my/topics', {filter: this.id}, {reload: true});
                         }
                     }
                 ]
@@ -104,7 +104,7 @@ angular
                 id: 'grouped',
                 name: 'VIEWS.MY.FILTERS.TOPICS_ORDERED_BY_GROUPS',
                 onSelect: function () {
-                    $state.go('my.groups', {filter: this.id}, {reload: true});
+                    $state.go('my/groups', {filter: this.id}, {reload: true});
                 }
             }
         ];
@@ -186,12 +186,12 @@ angular
                         if ($state.is('my.groups') || $state.is('my.topics')) {
                             var item = $scope.itemList[0];
                             if ($scope.isGroup(item)) {
-                                $state.go('my.groups.groupId', {
+                                $state.go('my/groups/groupId', {
                                     groupId: item.id,
                                     filter: 'grouped'
                                 });
                             } else {
-                                $state.go('my.topics.topicId', {topicId: item.id});
+                                $state.go('my/topics/topicId', {topicId: item.id});
                             }
                         }
                     });
@@ -266,12 +266,12 @@ angular
                     params.editMode = true;
                 }
 
-                $state.go('topics.view', params);
+                $state.go('topics/view', params);
             } else if (status === Topic.STATUSES.voting) {
                 params.voteId = topic.voteId;
-                $state.go('topics.view.votes.view', params);
+                $state.go('topics/view/votes/view', params);
             } else {
-                $state.go('topics.view.followUp', params);
+                $state.go('topics/view/followUp', params);
             }
         };
 

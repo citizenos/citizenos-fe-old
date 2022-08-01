@@ -14,7 +14,7 @@ angular
             $timeout(function () {
                 $stateParams.voteId = rTopic.voteId;
 
-                return $state.go('topics.view.votes.view', $stateParams);
+                return $state.go('topics/view/votes/view', $stateParams);
             });
         }
 
@@ -422,7 +422,7 @@ angular
                 .then(function () {
                     if (!$scope.topic.voteId && !$scope.topic.vote) {
                         $scope.app.topics_settings = false;
-                        $state.go('topics.view.votes.create', {
+                        $state.go('topics/view/votes/create', {
                             topicId: $scope.topic.id,
                             commentId: null
                         });
@@ -439,7 +439,7 @@ angular
                                 function (topicPatched) {
                                     $scope.topic.status = topicPatched.status;
                                     $scope.app.topics_settings = false;
-                                    $state.go('topics.view.votes.view', {
+                                    $state.go('topics/view/votes/view', {
                                             topicId: $scope.topic.id,
                                             voteId: $scope.topic.vote.id,
                                             commentId: null,
@@ -501,8 +501,8 @@ angular
                             function (topicPatched) {
                                 $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
-                                if ($state.is('topics.view.votes.view')) {
-                                    $state.go('topics.view', {topicId: $scope.topic.id}, {
+                                if ($state.is('topics/view/votes/view')) {
+                                    $state.go('topics/view', {topicId: $scope.topic.id}, {
                                         reload: true,
                                         commentId: null
                                     });
@@ -525,7 +525,7 @@ angular
             $scope.app.topics_settings = false;
             if ($scope.app.editMode === true) {
                 $state.go(
-                    'topics.view',
+                    'topics/view',
                     {
                         topicId: $scope.topic.id,
                         editMode: $scope.app.editMode,
@@ -534,7 +534,7 @@ angular
                 );
             } else {
                 $state.go(
-                    'topics.view',
+                    'topics/view',
                     {
                         topicId: $scope.topic.id,
                         editMode: null,
@@ -568,7 +568,7 @@ angular
                     $scope.topic
                         .$delete()
                         .then(function () {
-                            $state.go('my.topics', null, {reload: true});
+                            $state.go('my/topics', null, {reload: true});
                         });
                 }, angular.noop);
         };
@@ -586,7 +586,7 @@ angular
                     topicMemberUser
                         .$delete({topicId: $scope.topic.id})
                         .then(function () {
-                            $state.go('my.topics', null, {reload: true});
+                            $state.go('my/topics', null, {reload: true});
                         });
                 });
         };
@@ -687,7 +687,7 @@ angular
                         .duplicate($scope.topic)
                         .then(function (duplicate) {
                             console.log(duplicate)
-                            $state.go('topics.view', {topicId: duplicate.id});
+                            $state.go('topics/view', {topicId: duplicate.id});
                         });
                 }, angular.noop);
         };

@@ -13,7 +13,7 @@ angular
             })
             .then(
                 function (res) { // IF IT RETURNS, it is a PUBLIC topic and send straight to the Topic view - https://github.com/citizenos/citizenos-fe/issues/405#issuecomment-943336961
-                    return $state.go('topics.view', {
+                    return $state.go('topics/view', {
                         topicId: res.id
                     });
                 },
@@ -27,7 +27,7 @@ angular
             .then(
                 function (res) {
                     if (res && res.data) {
-                        $state.go('topics.view', {
+                        $state.go('topics/view', {
                             topicId: res.data.id
                         });
                     }
@@ -36,7 +36,7 @@ angular
                     var status = res.data.status;
                     if (status.code === 40100) { // Unauthorized
                         var currentUrl = $state.href($state.current.name, $stateParams);
-                        $state.go('account.login', {redirectSuccess: currentUrl});
+                        $state.go('account/login', {redirectSuccess: currentUrl});
                     } else if (status.code === 40001) { // Matching token not found.
                         $state.go('home');
                     } else {

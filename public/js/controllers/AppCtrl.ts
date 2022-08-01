@@ -337,7 +337,7 @@ angular
             $log.debug('$stateChangeError', 'event', event, 'toState', toState, 'toParams', toParams, 'fromState', fromState, 'fromParams', fromParams, 'error', error);
             var errorCheck = function () {
                 if (error && error.status && error.data && error.config) { // $http failure in "resolve"
-                    var stateError = 'error.' + error.status;
+                    var stateError = 'error/' + error.status;
                     $log.debug('$stateChangeError', '"resolve" failed in route definition.');
                     $state.go(stateError, {language: fromParams.language || $scope.app.user.language}, {location: false});
                 }
@@ -352,7 +352,7 @@ angular
                             return invites[0].$accept()
                                 .then(function () {
                                         return $state.go(
-                                            'topics.view',
+                                            'topics/view',
                                             toParams
                                         )
                                     }

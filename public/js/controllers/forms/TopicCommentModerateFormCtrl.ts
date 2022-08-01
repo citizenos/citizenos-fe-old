@@ -35,7 +35,7 @@ angular
                 .post(path, $scope.form, config)
                 .then(
                     function () {
-                        return $state.go('topics.view', {language: $stateParams.language, topicId: $scope.ngDialogData.topic.id}, {reload: true});
+                        return $state.go('topics/view', {language: $stateParams.language, topicId: $scope.ngDialogData.topic.id}, {reload: true});
                     },
                     function (res) {
                         $scope.errors = res.data.errors;

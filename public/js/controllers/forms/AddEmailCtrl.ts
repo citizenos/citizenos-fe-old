@@ -43,7 +43,7 @@ angular
             .logout()
             .then(function () {
                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
-                return $state.go('account.login');
+                return $state.go('account/login');
             });
         }
     }]);

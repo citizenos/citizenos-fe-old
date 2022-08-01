@@ -258,7 +258,7 @@ angular
                 .$save(
                     function (vote, putResponseHeaders) {
                         $scope.$parent.$parent.voteForm.errors = null;
-                        $state.go('topics.view.votes.view', {
+                        $state.go('topics/view/votes/view', {
                             topicId: $scope.topic.id,
                             voteId: vote.id
                         }, {reload: true});

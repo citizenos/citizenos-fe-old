@@ -41,7 +41,7 @@ angular
                     $scope.group
                         .$delete()
                         .then(function () {
-                            $state.go('my.groups', null, {reload: true});
+                            $state.go('my/groups', null, {reload: true});
                         });
                 }, angular.noop);
         };
@@ -479,7 +479,7 @@ angular
                     groupMemberUser
                         .$delete({groupId: $scope.group.id})
                         .then(function () {
-                            $state.go('my.groups', null, {reload: true});
+                            $state.go('my/groups', null, {reload: true});
                         });
                 });
         };

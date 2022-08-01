@@ -138,7 +138,7 @@ angular
         };
 
         $scope.addNewGroupMemberTopic = function (title, newMemberTopicLevel) {
-            $state.go('topics.create', {
+            $state.go('topics/create', {
                 groupId: $scope.group.id,
                 title: title,
                 groupLevel: newMemberTopicLevel
@@ -371,7 +371,7 @@ angular
                 .then(
                     function () {
                         $timeout(function () { // Avoid $digest already in progress
-                            $state.go('my.groups.groupId', {
+                            $state.go('my/groups/groupId', {
                                 groupId: $scope.form.group.id,
                                 filter: 'grouped'
                             }, {reload: true});

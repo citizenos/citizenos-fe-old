@@ -432,7 +432,7 @@ import * as _ from 'lodash';
                     parent: 'topics',
                     controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', 'GroupMemberTopic', function ($scope, $state, $stateParams, sAuth, Topic, GroupMemberTopic) {
                         if (!sAuth.user.loggedIn) {
-                            return $state.go('account.login', null, {location: false});
+                            return $state.go('account/login', null, {location: false});
                         }
 
                         var topic = new Topic();
@@ -455,14 +455,14 @@ import * as _ from 'lodash';
                                     groupMemberTopic
                                         .$save()
                                         .then(function () {
-                                            $state.go('topics.view', {
+                                            $state.go('topics/view', {
                                                 language: $stateParams.language,
                                                 topicId: topic.id,
                                                 editMode: true
                                             });
                                         });
                                 } else {
-                                    $state.go('topics.view', {
+                                    $state.go('topics/view', {
                                         language: $stateParams.language,
                                         topicId: topic.id,
                                         editMode: true
@@ -716,7 +716,7 @@ import * as _ from 'lodash';
                         rVote: ['rTopic', '$state', '$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
                             if (rTopic.voteId) {
                                 $timeout(function () {
-                                    $state.go('topics/view/votes.view', {
+                                    $state.go('topics/view/votes/view', {
                                         language: $stateParams.language,
                                         topicId: rTopic.id,
                                         voteId: rTopic.voteId
@@ -744,7 +744,7 @@ import * as _ from 'lodash';
                             if ([Topic.STATUSES.closed, Topic.STATUSES.followUp].indexOf(rTopic.status) > -1) {
                                 return $q.resolve();
                             } else {
-                                $state.go('topics.view', {
+                                $state.go('topics/view', {
                                     language: $stateParams.language,
                                     topicId: rTopic.id
                                 }); //if topic editing or voting is still in progress
@@ -939,10 +939,10 @@ import * as _ from 'lodash';
                                                     }
                                                 );
                                         } else {
-                                            $state.go('error.404');
+                                            $state.go('error/404');
                                         }
                                     }, function () {
-                                        $state.go('error.404');
+                                        $state.go('error/404');
                                     });
                             } else {
                                 return group;
@@ -984,7 +984,7 @@ import * as _ from 'lodash';
 
                             return;
                         }
-                        $state.go('error.404');
+                        $state.go('error/404');
                     }]
                 })
                 .state('join', { // Join a Topic via shared url - DEPRECATED, use "topicJoin" instead - https://github.com/citizenos/citizenos-fe/issues/311
@@ -1047,7 +1047,7 @@ import * as _ from 'lodash';
                                 .then(
                                     function () {
                                         return $state.go(
-                                            'topics.view',
+                                            'topics/view',
                                             {
                                                 topicId: rTopicInviteUser.topicId
                                             }
@@ -1074,14 +1074,14 @@ import * as _ from 'lodash';
                                         var currentUrl = $state.href($state.current.name, $stateParams);
                                         if (!$scope.invite.user.isRegistered) {
                                             // The invited User is not registered, the User has been created by the system - https://github.com/citizenos/citizenos-fe/issues/773
-                                            return $state.go('account.signup', {
+                                            return $state.go('account/signup', {
                                                 userId: $scope.invite.user.id,
                                                 redirectSuccess: currentUrl,
                                                 email: $scope.invite.user.email, // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
                                                 name: null
                                             });
                                         } else {
-                                            return $state.go('account.login', {
+                                            return $state.go('account/login', {
                                                 userId: $scope.invite.user.id,
                                                 redirectSuccess: currentUrl,
                                                 email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
@@ -1096,7 +1096,7 @@ import * as _ from 'lodash';
                                             .then(function () {
                                                 var currentUrl = $state.href($state.current.name, $stateParams);
                                                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
-                                                return $state.go('account.login', {
+                                                return $state.go('account/login', {
                                                     userId: $scope.invite.user.id,
                                                     redirectSuccess: currentUrl,
                                                     email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
@@ -1183,14 +1183,14 @@ import * as _ from 'lodash';
                                         var currentUrl = $state.href($state.current.name, $stateParams);
                                         if (!$scope.invite.user.isRegistered) {
                                             // The invited User is not registered, the User has been created by the system - https://github.com/citizenos/citizenos-fe/issues/773
-                                            return $state.go('account.signup', {
+                                            return $state.go('account/signup', {
                                                 userId: $scope.invite.user.id,
                                                 redirectSuccess: currentUrl,
                                                 email: $scope.invite.user.email, // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
                                                 name: null
                                             });
                                         } else {
-                                            return $state.go('account.login', {
+                                            return $state.go('account/login', {
                                                 userId: $scope.invite.user.id,
                                                 redirectSuccess: currentUrl,
                                                 email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
@@ -1205,7 +1205,7 @@ import * as _ from 'lodash';
                                             .then(function () {
                                                 var currentUrl = $state.href($state.current.name, $stateParams);
                                                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
-                                                return $state.go('account.login', {
+                                                return $state.go('account/login', {
                                                     userId: $scope.invite.user.id,
                                                     redirectSuccess: currentUrl,
                                                     email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
@@ -1342,7 +1342,7 @@ import * as _ from 'lodash';
                     url: '/arguments',
                     parent: 'widgets/wrapped/sourcePartnerObjectId',
                     controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
-                        $state.go('widgets.wrapped.arguments', {
+                        $state.go('widgets/wrapped/arguments', {
                             topicId: TopicResolve.id,
                             widgetId: $stateParams.widgetId
                         });
@@ -1392,7 +1392,7 @@ import * as _ from 'lodash';
                     url: '/activities',
                     parent: 'widgets/wrapped/sourcePartnerObjectId',
                     controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
-                        $state.go('widgets.topicActivities', {
+                        $state.go('widgets/topicActivities', {
                             topicId: TopicResolve.id,
                             widgetId: $stateParams.widgetId
                         });
