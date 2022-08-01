@@ -2,6 +2,7 @@
 
 /* global window _*/
 import * as angular from 'angular';
+import * as _ from 'lodash';
 
 angular
     .module('citizenos')
@@ -287,10 +288,9 @@ angular
         };
 
         $scope.sortMemberUsers = function (property) {
+            var order = 'ASC'
             if (property === $scope.userList.searchOrderBy.property && $scope.userList.searchOrderBy.sortOrder === 'ASC') {
                 order = 'DESC'
-            } else {
-                order = 'ASC'
             }
 
             $scope.loadTopicMemberUserList(0, ITEMS_COUNT_PER_PAGE, property, order);
@@ -382,7 +382,7 @@ angular
                         $scope.activities = $scope.activities.concat(activities);
                     });
             } else {
-                return new Promise.resolve();
+                return Promise.resolve();
             }
         };
 
@@ -703,7 +703,7 @@ angular
         };
 
         var toggleTabParam = function (tabName) {
-            return new Promise(function (resolve) {
+            return new Promise<void>(function (resolve) {
                 var tabIndex;
                 if ($stateParams.openTabs) {
                     tabIndex = $stateParams.openTabs.indexOf(tabName);
@@ -927,7 +927,7 @@ angular
             }
         });
 
-        var checkIfInView = function (elemId, from) {
+        var checkIfInView = function (elemId) {
             var elem = document.getElementById(elemId);
             var bounding = elem.getBoundingClientRect();
 

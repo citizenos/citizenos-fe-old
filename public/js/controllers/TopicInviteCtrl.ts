@@ -1,5 +1,7 @@
 'use strict';
 import * as angular from 'angular';
+import * as _ from 'lodash';
+import * as validator from 'validator';
 
 angular
     .module('citizenos')
@@ -328,7 +330,7 @@ angular
                     var topicMemberUsersToSave = [];
                     $scope.members.forEach(function (member) {
                         if (member.groupId) {
-                            var member = {
+                            member = {
                                 id: member.id,
                                 topicId: $scope.topic.id,
                                 level: member.level
@@ -403,7 +405,7 @@ angular
         };
 
         $scope.copyInviteLink = function () {
-            var urlInputElement = document.getElementById('url_invite_topic_input');
+            var urlInputElement = document.getElementById('url_invite_topic_input') as HTMLInputElement || null;
             urlInputElement.focus();
             urlInputElement.select();
             urlInputElement.setSelectionRange(0, 99999);

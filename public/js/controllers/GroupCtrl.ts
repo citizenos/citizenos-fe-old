@@ -1,5 +1,6 @@
 'use strict';
 import * as angular from 'angular';
+import * as _ from 'lodash';
 
 angular
     .module('citizenos')
@@ -65,7 +66,10 @@ angular
                 groupId: $scope.group.id,
                 limit: limit,
                 search: search,
-                offset: offset
+                offset: offset,
+                statuses: null,
+                order: null,
+                sortOrder: null
             };
             if (statuses.indexOf(order) > -1) {
                 searchParams.statuses = order;
@@ -347,7 +351,7 @@ angular
         };
 
         var toggleTabParam = function (tabName) {
-            return new Promise(function (resolve) {
+            return new Promise<void>(function (resolve) {
                 var tabIndex;
                 if ($stateParams.openTabs) {
                     tabIndex = $stateParams.openTabs.indexOf(tabName);
@@ -485,7 +489,7 @@ angular
             $scope.loadMemberUsersList();
         }
 
-        var checkIfInView = function (elemId, from) {
+        var checkIfInView = function (elemId) {
             var elem = document.getElementById(elemId);
             var bounding = elem.getBoundingClientRect();
 

@@ -449,7 +449,7 @@ angular
 
         $scope.copyCommentLink = function (mainid, version, event) {
             var id = mainid + '_v' + (version);
-            var urlInputElement = document.getElementById('comment_link_input_' + id);
+            var urlInputElement = document.getElementById('comment_link_input_' + id) as HTMLInputElement || null;
             var url = $scope.getCommentUrl(id);
             urlInputElement.value = url;
             urlInputElement.focus();

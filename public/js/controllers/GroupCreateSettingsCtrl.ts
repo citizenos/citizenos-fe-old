@@ -1,7 +1,7 @@
 'use strict';
 import * as angular from 'angular';
 import * as _ from 'lodash';
-var validator = require('validator');
+import * as validator from 'validator';
 
 angular
     .module('citizenos')
@@ -423,7 +423,7 @@ angular
         };
 
         $scope.copyInviteLink = function () {
-            var urlInputElement = document.getElementById('url_invite_group_input');
+            var urlInputElement = document.getElementById('url_invite_group_input') as HTMLInputElement || null;
             urlInputElement.focus();
             urlInputElement.select();
             urlInputElement.setSelectionRange(0, 99999);

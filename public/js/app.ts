@@ -1,8 +1,10 @@
 'use strict';
+import * as angular from 'angular';
+import * as _ from 'lodash';
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', 'monospaced.qrcode', '720kb.tooltips', '720kb.socialshare', 'angularLoad', 'cosmarkdown']);
+    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', '720kb.tooltips', '720kb.socialshare', 'angularLoad', 'cosmarkdown']);
 
     module
         .constant('cosConfig', window.__config || {});
@@ -123,9 +125,10 @@
                 }
             });
 
-            $urlRouterProvider.config({
-                absolute: true // All urls absolute by default
-            });
+            var sTranslateResolve = function ($stateParams, $log, sTranslate) {
+                $log.debug('Resolve language', $stateParams.language);
+                return sTranslate.setLanguage($stateParams.language);
+            };
 
             $stateProvider
                 .state('index', {
@@ -133,12 +136,8 @@
                     abstract: true,
                     template: '<div ui-view class="full_height"></div>',
                     resolve: {
-                        /* @ngInject */
-                        sTranslateResolve: function ($stateParams, $log, sTranslate) {
-                            $log.debug('Resolve language', $stateParams.language);
-                            return sTranslate.setLanguage($stateParams.language);
-                        },
-                        sAuthResolve: function ($q, $log, $state, $cookies, $window, sAuth, sLocation, ngDialog) {
+                        sTranslateResolve: ['$stateParams', '$log', 'sTranslate', sTranslateResolve],
+                        sAuthResolve: ['$q', '$log', '$state', '$cookies', '$window', 'sAuth', 'sLocation', 'ngDialog', function ($q, $log, $state, $cookies, $window, sAuth, sLocation, ngDialog) {
                             if (sAuth.user.loggedIn) {
                                 return;
                             }
@@ -192,7 +191,7 @@
                                         return $q.resolve(false);
                                     }
                                 );
-                        }
+                        }]
                     }
                 })
                 .state('main', {
@@ -201,8 +200,7 @@
                     parent: 'index',
                     templateUrl: '/views/layouts/main.html',
                     resolve: {
-                        /* @ngInject */
-                        sActivitiesResolve: function ($log, $q, sAuthResolve, sAuth, sActivity) {
+                        sActivitiesResolve: ['$log', '$q', 'sAuthResolve', 'sAuth', 'sActivity', function ($log, $q, sAuthResolve, sAuth, sActivity) {
                             $log.debug('Resolve unreadActivities');
                             if (sAuth.user.loggedIn) {
                                 return sActivity
@@ -220,7 +218,7 @@
                                 return $q.resolve(false);
                             }
 
-                        }
+                        }]
                     }
                 })
                 .state('home', {
@@ -368,9 +366,10 @@
                         if (sAuthResolve) {
                             return $state.go('home');
                         }
-                        console.log(rUserConnections);
+
                         var dialogData = {
-                            userConnections: rUserConnections
+                            userConnections: rUserConnections,
+                            email: null
                         };
 
                         if (rHiddenParams && rHiddenParams.email) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
@@ -400,7 +399,7 @@
                         });
                     }]
                 })
-                .state('account.passwordForgot', {
+                .state('account/passwordForgot', {
                     url: '/password/forgot',
                     parent: 'account',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
@@ -411,7 +410,7 @@
                         });
                     }]
                 })
-                .state('account.passwordReset', {
+                .state('account/passwordReset', {
                     url: '/password/reset/:passwordResetCode?email',
                     parent: 'account',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
@@ -428,7 +427,7 @@
                     parent: 'main',
                     template: '<div ui-view></div>',
                 })
-                .state('topics.create', {
+                .state('topics/create', {
                     url: '/create?title&groupId&groupLevel',
                     parent: 'topics',
                     controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', 'GroupMemberTopic', function ($scope, $state, $stateParams, sAuth, Topic, GroupMemberTopic) {
@@ -472,7 +471,7 @@
                             });
                     }]
                 })
-                .state('topics.view', {
+                .state('topics/view', {
                     url: '/:topicId?editMode&commentId&argumentsPage',
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
@@ -488,9 +487,9 @@
                     },
                     controller: 'TopicCtrl'
                 })
-                .state('topics.view.settings', {
+                .state('topics/view/settings', {
                     url: '/settings?tab',
-                    parent: 'topics.view',
+                    parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({
@@ -505,9 +504,9 @@
                         });
                     }]
                 })
-                .state('topics.view.invite', {
+                .state('topics/view/invite', {
                     url: '/invite?tab',
-                    parent: 'topics.view',
+                    parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({
@@ -522,9 +521,9 @@
                         });
                     }]
                 })
-                .state('topics.view.participants', {
+                .state('topics/view/participants', {
                     url: '/participants?tab',
-                    parent: 'topics.view',
+                    parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({
@@ -539,9 +538,9 @@
                         });
                     }]
                 })
-                .state('topics.view.files', {
+                .state('topics/view/files', {
                     url: '/files',
-                    parent: 'topics.view',
+                    parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({
@@ -556,9 +555,9 @@
                         });
                     }]
                 })
-                .state('topics.view.report', {
+                .state('topics/view/report', {
                     url: '/report',
-                    parent: 'topics.view',
+                    parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         if (!$scope.app.user.loggedIn) {
@@ -582,9 +581,9 @@
                         });
                     }]
                 })
-                .state('topics.view.reportsModerate', { // Cant use topics.view.reports.moderate as that would assume this route is child of topics.view.reports which it is not
+                .state('topics/view/reportsModerate', { // Cant use topics/view/reports.moderate as that would assume this route is child of topics/view/reports which it is not
                     url: '/reports/:reportId/moderate',
-                    parent: 'topics.view',
+                    parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         if (!$scope.app.user.loggedIn) {
@@ -608,9 +607,9 @@
                         });
                     }]
                 })
-                .state('topics.view.reportsReview', { // Cant use topics.view.reports.moderate as that would assume this route is child of topics.view.reports which it is not
+                .state('topics/view/reportsReview', { // Cant use topics/view/reports.moderate as that would assume this route is child of topics/view/reports which it is not
                     url: '/reports/:reportId/review',
-                    parent: 'topics.view',
+                    parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         if (!$scope.app.user.loggedIn) {
@@ -634,9 +633,9 @@
                         });
                     }]
                 })
-                .state('topics.view.reportsResolve', {
+                .state('topics/view/reportsResolve', {
                     url: '/reports/:reportId/resolve',
-                    parent: 'topics.view',
+                    parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         if (!$scope.app.user.loggedIn) {
@@ -660,9 +659,9 @@
                         });
                     }]
                 })
-                .state('topics.view.commentsReportsModerate', {
+                .state('topics/view/commentsReportsModerate', {
                     url: '/comments/:reportedCommentId/reports/:reportId/moderate?token',
-                    parent: 'topics.view',
+                    parent: 'topics/view',
                     resolve: {
                         rTopicComment: ['$stateParams', '$http', 'sLocation', function ($stateParams, $http, sLocation) {
                             var path = sLocation.getAbsoluteUrlApi(
@@ -702,14 +701,14 @@
                         });
                     }]
                 })
-                .state('topics.view.votes', {
+                .state('topics/view/votes', {
                     abstract: true,
                     url: '/votes',
-                    parent: 'topics.view',
+                    parent: 'topics/view',
                     template: '<div ui-view></div>'
                 })
-                .state('topics.view.votes.create', {
-                    parent: 'topics.view.votes',
+                .state('topics/view/votes/create', {
+                    parent: 'topics/view/votes',
                     url: '/create',
                     template: '<div ui-view></div>',
                     controller: 'TopicVoteCreateCtrl',
@@ -717,7 +716,7 @@
                         rVote: ['rTopic', '$state', '$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
                             if (rTopic.voteId) {
                                 $timeout(function () {
-                                    $state.go('topics.view.votes.view', {
+                                    $state.go('topics/view/votes.view', {
                                         language: $stateParams.language,
                                         topicId: rTopic.id,
                                         voteId: rTopic.voteId
@@ -730,14 +729,14 @@
                         }]
                     }
                 })
-                .state('topics.view.votes.view', {
-                    parent: 'topics.view.votes',
+                .state('topics/view/votes/view', {
+                    parent: 'topics/view/votes',
                     url: '/:voteId',
                     template: '<div ui-view></div>',
                     controller: 'TopicVoteCtrl'
                 })
-                .state('topics.view.followUp', {
-                    parent: 'topics.view',
+                .state('topics/view/followUp', {
+                    parent: 'topics/view',
                     url: '/followUp',
                     template: '<div ui-view></div>',
                     resolve: {
@@ -765,7 +764,13 @@
                             var filterParam = $stateParams.filter || 'all';
                             var urlParams = {
                                 prefix: null,
-                                userId: null
+                                userId: null,
+                                visibility: null,
+                                hasVoted: null,
+                                creatorId: null,
+                                statuses: null,
+                                pinned: null,
+                                showModerated: null
                             };
                             var path = $location.path();
 
@@ -775,10 +780,7 @@
                             }
 
                             if (sAuthResolve || sAuth.user.loggedIn) {
-                                urlParams = {
-                                    prefix: 'users',
-                                    userId: 'self'
-                                }
+                                Object.assign(urlParams, {prefix: 'users', userId: 'self'});
                             }
 
                             switch (filterParam) {
@@ -825,20 +827,22 @@
                         }]
                     }
                 })
-                .state('my.topics', {
+                .state('my/topics', {
                     url: '/topics',
                     parent: 'my',
                     template: '<div ui-view></div>'
                 })
-                .state('my.topics.topicId', {
+                .state('my/topics/topicId', {
                     url: '/:topicId',
-                    parent: 'my.topics',
+                    parent: 'my/topics',
                     templateUrl: '/views/my_topics_topicId.html',
                     resolve: {
                         rTopic: ['$stateParams', '$anchorScroll', 'Topic', 'sAuthResolve', function ($stateParams, $anchorScroll, Topic, sAuthResolve) {
                             var urlParams = {
                                 topicId: $stateParams.topicId,
-                                include: 'vote'
+                                include: 'vote',
+                                prefix: null,
+                                userId: null
                             };
                             if (sAuthResolve) {
                                 urlParams.prefix = 'users';
@@ -853,9 +857,9 @@
                     },
                     controller: 'TopicCtrl'
                 })
-                .state('my.topics.topicId.settings', {
+                .state('my/topics/topicId/settings', {
                     url: '/settings?tab',
-                    parent: 'my.topics.topicId',
+                    parent: 'my/topics/topicId',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({
@@ -870,9 +874,9 @@
                         });
                     }]
                 })
-                .state('my.topics.topicId.invite', {
+                .state('my/topics/topicId/invite', {
                     url: '/invite?tab',
-                    parent: 'my.topics.topicId',
+                    parent: 'my/topics/topicId',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({
@@ -887,14 +891,14 @@
                         });
                     }]
                 })
-                .state('my.groups', {
+                .state('my/groups', {
                     url: '/groups',
                     parent: 'my',
                     template: '<div ui-view></div>'
                 })
-                .state('my.groups.create', {
+                .state('my/groups/create', {
                     url: '/create',
-                    parent: 'my.groups',
+                    parent: 'my/groups',
                     controller: ['$scope', '$stateParams', '$state', 'ngDialog', function ($scope, $stateParams, $state, ngDialog) {
                         var dialog = ngDialog.open({
                             template: '/views/modals/group_create_settings.html',
@@ -909,12 +913,12 @@
                         });
                     }]
                 })
-                .state('my.groups.groupId', {
+                .state('my/groups/groupId', {
                     url: '/:groupId',
-                    parent: 'my.groups',
+                    parent: 'my/groups',
                     templateUrl: '/views/my_groups_groupId.html',
                     resolve: {
-                        rGroup: ['$state', '$stateParams', '$anchorScroll', 'Group', 'rItems', 'GroupInviteUser', function ($state, $stateParams, $anchorScroll, Group, rItems, GroupInviteUser) {
+                        rGroup: ['$state', '$stateParams', '$anchorScroll', 'rItems', 'GroupInviteUser', function ($state, $stateParams, $anchorScroll, rItems, GroupInviteUser) {
                             $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
                             var group = _.find(rItems, {id: $stateParams.groupId});
 
@@ -929,7 +933,7 @@
                                                 .$accept()
                                                 .then(function () {
                                                         return $state.go(
-                                                            'my.groups.groupId',
+                                                            'my/groups/groupId',
                                                             $stateParams
                                                         )
                                                     }
@@ -947,9 +951,9 @@
                     },
                     controller: 'GroupCtrl'
                 })
-                .state('my.groups.groupId.settings', {
+                .state('my/groups/groupId/settings', {
                     url: '/settings?tab',
-                    parent: 'my.groups.groupId',
+                    parent: 'my/groups/groupId',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var dialog = ngDialog.open({
@@ -1152,7 +1156,7 @@
                                 .then(
                                     function () {
                                         return $state.go(
-                                            'my.groups.groupId',
+                                            'my/groups/groupId',
                                             {
                                                 groupId: rGroupInviteUser.groupId
                                             }
@@ -1235,12 +1239,12 @@
                     controller: 'PartnerCtrl',
                     templateUrl: '/views/layouts/partner.html'
                 })
-                .state('partners.login', {
+                .state('partners/login', {
                     url: '/login',
                     parent: 'partners',
                     templateUrl: '/views/partners_login.html'
                 })
-                .state('partners.consent', {
+                .state('partners/consent', {
                     url: '/consent',
                     parent: 'partners',
                     templateUrl: '/views/partners_consent.html'
@@ -1309,20 +1313,19 @@
                         }
                     }]
                 })
-                .state('widgets.wrapped', {
+                .state('widgets/wrapped', {
                     url: null,
                     parent: 'widgets',
                     abstract: true,
                     templateUrl: '/views/layouts/widget.html'
                 })
-                .state('widgets.wrapped.sourcePartnerObjectId', {
+                .state('widgets/wrapped/sourcePartnerObjectId', {
                     url: '/partners/:partnerId/topics/:sourcePartnerObjectId',
                     parent: 'widgets',
                     abstract: true,
                     template: '<div ui-view></div>',
                     resolve: {
-                        /* @ngInject */
-                        TopicResolve: function ($http, $state, $stateParams, sLocation) {
+                        TopicResolve: ['$http', '$stateParams', 'sLocation', function ($http, $stateParams, sLocation) {
                             var path = sLocation.getAbsoluteUrlApi(
                                 '/api/partners/:partnerId/topics/:sourcePartnerObjectId',
                                 $stateParams
@@ -1332,12 +1335,12 @@
                                 .then(function (res) {
                                     return res.data.data;
                                 });
-                        }
+                        }]
                     }
                 })
-                .state('widgets.wrapped.sourcePartnerObjectId.arguments', {
+                .state('widgets/wrapped/sourcePartnerObjectId/arguments', {
                     url: '/arguments',
-                    parent: 'widgets.wrapped.sourcePartnerObjectId',
+                    parent: 'widgets/wrapped/sourcePartnerObjectId',
                     controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
                         $state.go('widgets.wrapped.arguments', {
                             topicId: TopicResolve.id,
@@ -1345,51 +1348,49 @@
                         });
                     }]
                 })
-                .state('widgets.wrapped.arguments', {
+                .state('widgets/wrapped/arguments', {
                     url: '/topics/:topicId/arguments',
-                    parent: 'widgets.wrapped',
+                    parent: 'widgets/wrapped',
                     template: '<div class="comments_section"><div class="comments_content"><div ng-include="\'views/topics_topicId_comments.html\'"></div></div></div>'
                 })
-                .state('widgets.activities', {
+                .state('widgets/activities', {
                     url: '/activities',
                     parent: 'widgets',
                     templateUrl: '/views/widgets/activities.html',
                     resolve: {
                         /* @ngInject */
-                        ActivitiesResolve: function ($http, $stateParams, sActivity) {
+                        ActivitiesResolve: ['sActivity', function (sActivity) {
                             return sActivity.getActivitiesUnauth(0, 100);
-                        }
+                        }]
                     },
                     controller: 'ActivitiesWidgetCtrl'
                 })
-                .state('widgets.topicActivities', {
+                .state('widgets/topicActivities', {
                     url: '/topics/:topicId/activities',
                     parent: 'widgets',
                     templateUrl: '/views/widgets/activities.html',
                     resolve: {
-                        /* @ngInject */
-                        ActivitiesResolve: function ($http, $stateParams, sActivity) {
+                        ActivitiesResolve: ['$stateParams', 'sActivity', function ($stateParams, sActivity) {
                             return sActivity.getTopicActivitiesUnauth($stateParams.topicId);
-                        }
+                        }]
                     },
                     controller: 'ActivitiesWidgetCtrl'
                 })
-                .state('widgets.partnerActivities', {
+                .state('widgets/partnerActivities', {
                     url: '/partners/:partnerId/activities?filter',
                     parent: 'widgets',
                     templateUrl: '/views/widgets/activities.html',
                     resolve: {
-                        /* @ngInject */
-                        ActivitiesResolve: function ($http, $stateParams, sActivity) {
+                        ActivitiesResolve: ['$stateParams', 'sActivity', function ($stateParams, sActivity) {
                             var filters = $stateParams.filter;
                             return sActivity.getActivitiesUnauth(0, 50, null, filters, $stateParams.partnerId);
-                        }
+                        }]
                     },
                     controller: 'ActivitiesWidgetCtrl'
                 })
-                .state('widgets.partnerTopicActivities', {
+                .state('widgets/partnerTopicActivities', {
                     url: '/activities',
-                    parent: 'widgets.wrapped.sourcePartnerObjectId',
+                    parent: 'widgets/wrapped/sourcePartnerObjectId',
                     controller: ['$state', '$stateParams', 'TopicResolve', function ($state, $stateParams, TopicResolve) {
                         $state.go('widgets.topicActivities', {
                             topicId: TopicResolve.id,
@@ -1418,17 +1419,17 @@
                     abstract: true,
                     template: '<div ui-view class="full_height"></div>'
                 })
-                .state('error.401', {
+                .state('error/401', {
                     url: '/401',
                     parent: 'error',
                     templateUrl: '/views/401.html'
                 })
-                .state('error.403', {
+                .state('error/403', {
                     url: '/403',
                     parent: 'error',
                     templateUrl: '/views/401.html'
                 })
-                .state('error.404', {
+                .state('error/404', {
                     url: '/404',
                     parent: 'error',
                     templateUrl: '/views/404.html'

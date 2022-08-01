@@ -7,6 +7,9 @@ module.exports = {
         compareBeforeEmit: false,
         filename: "bundle.js"
     },
+    optimization: {
+        minimize: false
+    },
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },

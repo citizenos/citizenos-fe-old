@@ -191,7 +191,7 @@
                     if (argumentsData[widgetId].click) {
                         var event = new CustomEvent('citizenos.widget.click', {
                             detail: argumentsData[widgetId].click
-                        });
+                        }) as any;
                         widgetElement.dispatchEvent(event);
                     }
                 }

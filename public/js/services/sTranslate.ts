@@ -4,7 +4,7 @@ import * as angular from 'angular';
 
 angular
     .module('citizenos')
-    .service('sTranslate', ['$state', '$stateParams', '$translate', '$log', '$filter', '$cookies', '$q', '$timeout', 'cosConfig', 'amMoment', function ($state, $stateParams, $translate, $log, $filter, $cookies, $q, $timeout, cosConfig, amMoment) {
+    .service('sTranslate', ['$state', '$stateParams', '$translate', '$log', '$q', 'cosConfig', function ($state, $stateParams, $translate, $log, $q, cosConfig) {
         var sTranslate = this;
 
         sTranslate.LANGUAGES = Object.keys(cosConfig.language.list);

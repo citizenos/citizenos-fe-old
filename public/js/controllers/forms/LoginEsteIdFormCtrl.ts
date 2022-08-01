@@ -1,6 +1,5 @@
 'use strict';
 import * as angular from 'angular';
-import * as hwcrypto from 'hwcrypto-js';
 
 angular
     .module('citizenos')
@@ -48,7 +47,7 @@ angular
 
             $scope.isLoadingIdCard = true;
 
-            hwcrypto
+            window.hwcrypto
                 .getCertificate({language: $stateParams.language || 'en'})
                 .then(function() {
                     sAuth

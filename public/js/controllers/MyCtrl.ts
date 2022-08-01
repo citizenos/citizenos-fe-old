@@ -1,5 +1,6 @@
 'use strict';
 import * as angular from 'angular';
+import * as _ from 'lodash';
 
 angular
     .module('citizenos')
@@ -227,7 +228,7 @@ angular
 
         $scope.doOrderGroupTopicList = function (group, order) {
             var statuses = ['inProgress', 'voting', 'followUp', 'closed'];
-            var searchParams = {groupId: group.id};
+            var searchParams = {groupId: group.id, statuses: null, order: null, sortOrder: null};
             if (statuses.indexOf(order) > -1) {
                 searchParams.statuses = order;
             }
@@ -259,7 +260,7 @@ angular
 
         $scope.goToTopicView = function (topic, editMode) {
             var status = topic.status;
-            var params = {topicId: topic.id};
+            var params = {topicId: topic.id, editMode: null, voteId: null};
             if (status === Topic.STATUSES.inProgress) {
                 if (topic.canEdit() && editMode) {
                     params.editMode = true;

@@ -1,5 +1,6 @@
 'use strict';
 import * as angular from 'angular';
+import * as _ from 'lodash';
 
 angular
     .module('citizenos')
@@ -48,6 +49,7 @@ angular
         };
 
         $scope.helpback = function () {
-            document.getElementById("help_frame").src = document.getElementById("help_frame").src;
+            const helpFrame = document.getElementById("help_frame") as HTMLIFrameElement | null;
+            helpFrame.src = helpFrame.src;
         }
     }]);
