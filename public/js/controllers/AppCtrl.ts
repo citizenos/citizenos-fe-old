@@ -28,10 +28,10 @@ angular
         $scope.app.toggleHelpTooltip = function () {
             $scope.app.helptooltip = true;
         }
-        if (!$cookies.get('helptooltip') && cosConfig.showHelpTooltip) {
+        if (!$cookies.getObject('helptooltip') && cosConfig.showHelpTooltip) {
             var exp =  new Date();
             exp.setMonth(exp.getMonth()+6)
-            $cookies.put('helptooltip', true, {
+            $cookies.putObject('helptooltip', true, {
                 expires: exp
             });
             $scope.app.toggleHelpTooltip();
@@ -191,8 +191,8 @@ angular
                     });
             } else {
                 if (sTranslate.checkLanguageIsValid(language)) {
-                    $cookies.put('language', language);
-                    $log.debug('langCookie', $cookies.get('language'));
+                    $cookies.putObject('language', language);
+                    $log.debug('langCookie', $cookies.getObject('language'));
                 }
                 sTranslate.switchLanguage(language);
             }

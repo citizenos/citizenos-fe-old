@@ -98,16 +98,16 @@
                     </div>
                     <div class="tabs_rails">
                         <div class="tabs_train" slide-controller identifier="tabsTrain" dimensions>
-                            <div class="tab" ui-sref="topics.view({topicId: topic.id, commentId: null})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
+                            <div class="tab" ui-sref="topics/view({topicId: topic.id, commentId: null})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
                                  dimensions>
                                 <div ng-if="!app.editMode" class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
                                 <div ng-if="app.editMode" class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_EDIT">EDIT</div>
                             </div>
-                            <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics.view.votes.view({topicId: topic.id, voteId:topic.voteId, commentId: null})"
+                            <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics/view/votes/view({topicId: topic.id, voteId:topic.voteId, commentId: null})"
                                  ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" dimensions>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VOTE">Vote</div>
                             </div>
-                            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="tab" ui-sref="topics.view.followUp({topicId: topic.id, commentId: null})"
+                            <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="tab" ui-sref="topics/view/followUp({topicId: topic.id, commentId: null})"
                                  ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.followUp' | isState)}" dimensions>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_FOLLOW_UP">Follow up</div>
                             </div>
@@ -170,11 +170,11 @@
                                 <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_REPORTED">This topic has been reported.</span>&nbsp;<a ng-click="doShowReportOverlay()" href=""
                                                                                                                                           translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_VIEW_REPORT_DETAILS">View
                                 details</a>
-                                <span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsModerate({topicId: topic.id, reportId: topic.report.id})"
+                                <span ng-if="topic.report.type && !topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics/view/reportsModerate({topicId: topic.id, reportId: topic.report.id})"
                                                                                                               ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_MODERATE">Moderate</a></span>
-                                <span ng-if="topic.report.type">&nbsp;<a ui-sref="topics.view.reportsResolve({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}"
+                                <span ng-if="topic.report.type">&nbsp;<a ui-sref="topics/view/reportsResolve({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}"
                                                                          translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_RESOLVE">Mark as resolved</a></span>
-                                <span ng-if="topic.canEdit() && topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})"
+                                <span ng-if="topic.canEdit() && topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics/view/reportsReview({topicId: topic.id, reportId: topic.report.id})"
                                                                                                            ui-sref-opts="{reload:false}"
                                                                                                            translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_SUBMIT_FOR_REVIEW">Submit for review</a></span>
                             </div>
@@ -937,7 +937,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="container_report" ng-if="topic.visibility === VISIBILITY.public && !topic.report" ui-sref="topics.view.report">
+                            <div class="container_report" ng-if="topic.visibility === VISIBILITY.public && !topic.report" ui-sref="topics/view/report">
                                 <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{'TOOLTIP_REPORT_TOPIC' | translate}}</span>">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-exclamation2x-white"></div>
@@ -982,7 +982,7 @@
                                             <span ng-if="!$last" class="info_section_separator"> | </span>
                                         </span>
                                         <span ng-if="!topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none
-                                            <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics.view.settings({topicId: topic.id, tab: 'categories'})"
+                                            <span ng-if="topic.canEdit()" class="blue_link" ui-sref="topics/view/settings({topicId: topic.id, tab: 'categories'})"
                                                   translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span>
                                         </span>
                                     </div>
@@ -1011,7 +1011,7 @@
                                               translate-values="{mentionsCount: (topicSocialMentions.length ||0)}">0 social mentions</span>
                                         <span ng-if="!topic.hashtag && topic.canEdit()" class="info_section_separator"> | </span>
                                         <span class="blue_link" ng-if="!topic.hashtag && topic.canEdit()"
-                                              ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"
+                                              ui-sref="topics/view/settings({topicId: topic.id, tab: 'settings'})"
                                               translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG"> add hashtag</span>
                                         <span ng-if="topic.hashtag" class="black_text"> #{{topic.hashtag}}</span>
                                     </div>
@@ -1028,7 +1028,7 @@
                                             <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment" target="_blank" href="{{attachment.link}}">{{attachment.name}} <span
                                                 class="btn blue_button file_type">{{attachment.type}}</span></a>
                                         </div>
-                                        <div ui-sref="topics.view.files" ng-if="topic.canEdit()" class="blue_link info_section_add_attachments"
+                                        <div ui-sref="topics/view/files" ng-if="topic.canEdit()" class="blue_link info_section_add_attachments"
                                              translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files
                                         </div>
                                     </div>
@@ -1078,7 +1078,7 @@
                     <div ng-if="!app.editMode" class="blue_button" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_EDIT_TOPIC" ng-click="app.doToggleEditMode()">Edit topic</div>
                 </div>
                 <div ng-if="topic.canEdit() && topic.report.moderatedReasonType" class="options_wrap">
-                    <div class="blue_button" ui-sref="topics.view.reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}"
+                    <div class="blue_button" ui-sref="topics/view/reportsReview({topicId: topic.id, reportId: topic.report.id})" ui-sref-opts="{reload:false}"
                          translate="VIEWS.TOPICS_TOPICID.NAV_BTN_SUBMIT_FOR_REVIEW">Submit for review
                     </div>
                 </div>
@@ -1095,12 +1095,12 @@
                         </div>
                         <div class="blue_link" ng-if="topic.canUpdate()" ng-click="closeTopic()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_CLOSE_TOPIC">Close topic</div>
                         <div class="line lightest_line" ng-if="topic.canUpdate()"></div>
-                        <div class="blue_link" ng-if="topic.canDelete() || topic.canLeave()" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_ACTIONS">Actions</div>
-                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.invite({topicId: topic.id, tab: 'invite'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_INVITE_USERS">Invite users</div>
-                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.invite({topicId: topic.id, tab: 'share'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SHARE">Share topic</div>
-                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics.view.participants({topicId: topic.id, tab: 'participants'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_PARTICIPANTS">Manage participants</div>
+                        <div class="blue_link" ng-if="topic.canDelete() || topic.canLeave()" ui-sref="topics/view/settings({topicId: topic.id, tab: 'settings'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_ACTIONS">Actions</div>
+                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics/view/invite({topicId: topic.id, tab: 'invite'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_INVITE_USERS">Invite users</div>
+                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics/view/invite({topicId: topic.id, tab: 'share'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SHARE">Share topic</div>
+                        <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="topics/view/participants({topicId: topic.id, tab: 'participants'})" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_PARTICIPANTS">Manage participants</div>
                         <div class="blue_link" ng-if="topic.canUpdate()" ng-click="duplicateTopic()" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_DUPLICATE_TOPIC">Duplicate topic</div>
-                        <div ng-if="topic.visibility === VISIBILITY.public && !topic.report" class="blue_link" ui-sref="topics.view.report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report
+                        <div ng-if="topic.visibility === VISIBILITY.public && !topic.report" class="blue_link" ui-sref="topics/view/report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report
                             topic
                         </div>
                     </div>
@@ -1116,7 +1116,7 @@
                             <a ng-if="attachment.source !== ATTACHMENT_SOURCES.upload" target="_blank" class="blue_link" href="{{attachment.link}}">{{attachment.name}} <span class="btn blue_button file_type">{{attachment.type}}</span></a>
                         </div>
                         <div class="line lightest_line" ng-if="topicAttachments.length"></div>
-                        <div ui-sref="topics.view.files" ng-if="topic.canEdit()" class="blue_link" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
+                        <div ui-sref="topics/view/files" ng-if="topic.canEdit()" class="blue_link" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
                     </div>
                 </div>
             </div>

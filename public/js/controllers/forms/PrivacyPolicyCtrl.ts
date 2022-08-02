@@ -7,9 +7,10 @@ angular
         $log.debug('PrivacyPolicyCtrl', '$state', $state, $stateParams);
 
         $scope.reject = function () {
+            var data = angular.extend({}, $stateParams);
             ngDialog.openConfirm({
                     template: '/views/modals/user_delete_confirm.html',
-                    data: $stateParams,
+                    data: data,
                     scope: $scope, // Pass on $scope so that I can access AppCtrl,
                     closeByEscape: false,
                     closeByNavigation: false

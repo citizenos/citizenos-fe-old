@@ -2,7 +2,7 @@
 
     <div class="social_mentions_header">
         <div class="social_mentions_description" translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_HEADING">Social mentions</div>
-        <div class="social_mentions_hashtag" ng-if="topic.hashtag" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})">
+        <div class="social_mentions_hashtag" ng-if="topic.hashtag" ui-sref="topics/view/settings({topicId: topic.id, tab: 'settings'})">
             #{{topic.hashtag}}
         </div>
         <div class="clearer"></div>
@@ -12,14 +12,14 @@
     <div class="social_mentions_wrap">
         <div class="social_mentions_message_info" ng-if="!topic.hashtag">
             <span translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED">Sorry, we cannot show you the social mentions as there is no hashtag defined for this Topic. Users with editor permissions can add the hashtag to fetch social mentions.</span>
-            <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"
+            <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics/view/settings({topicId: topic.id, tab: 'settings'})"
                  translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG">Add hashtag
             </div>
         </div>
         <div class="social_mentions_message_info" ng-if="topic.hashtag && !topicSocialMentions.length">
             <span translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_NO_MENTIONS_FOUND">Sorry, no social mentions found on Twitter for the hashtag</span> <span
-            ng-class="{blue_link: topic.canEdit()}" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"/>#{{topic.hashtag}}</span>
-            <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics.view.settings({topicId: topic.id, tab: 'settings'})"
+            ng-class="{blue_link: topic.canEdit()}" ui-sref="topics/view/settings({topicId: topic.id, tab: 'settings'})"/>#{{topic.hashtag}}</span>
+            <div ng-if="topic.canEdit()" class="blue_button" ui-sref="topics/view/settings({topicId: topic.id, tab: 'settings'})"
                  translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_BTN_CHANGE_HASHTAG">Change hashtag
             </div>
         </div>

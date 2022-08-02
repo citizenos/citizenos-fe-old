@@ -62,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="header_text" ui-sref="my.groups.groupId({groupId: item.id, filter: 'grouped'})" ng-bind="item.name+' ('+item.members.topics.count+')'">
+                    <a class="header_text" ui-sref="my/groups/groupId({groupId: item.id, filter: 'grouped'})" ng-bind="item.name+' ('+item.members.topics.count+')'">
                         item (0)
                     </a>
                     <div cos-dropdown class="classic_dropdown minimize_container" >
@@ -92,7 +92,7 @@
                 </div>
 
                 <!-- Group member Topic -->
-                <a ng-if="isGroupMemberTopicsVisible(item)" ng-repeat="groupMemberTopic in item.members.topics.rows" class="small_topic" ui-sref="my.topics.topicId({topicId: groupMemberTopic.id})" ui-sref-active="active">
+                <a ng-if="isGroupMemberTopicsVisible(item)" ng-repeat="groupMemberTopic in item.members.topics.rows" class="small_topic" ui-sref="my/topics/topicId({topicId: groupMemberTopic.id})" ui-sref-active="active">
                     <div class="container_pin" ng-class="groupMemberTopic.pinned ? 'pinned' : ''" ng-click="groupMemberTopic.togglePin();">
                         <div class="ff_table_fix">
                             <div class="table_cell">
@@ -148,7 +148,7 @@
                 </a>
 
                 <!-- Topics -->
-                <div ng-if="!isGroup(item)" class="small_topic" ui-sref="my.topics.topicId({topicId: item.id})" ng-class="isActiveTopic(item) ? 'active': ''">
+                <div ng-if="!isGroup(item)" class="small_topic" ui-sref="my/topics/topicId({topicId: item.id})" ng-class="isActiveTopic(item) ? 'active': ''">
                     <div class="container_pin" ng-class="item.pinned ? 'pinned' : ''" ng-click="item.togglePin();">
                         <div class="ff_table_fix" translate translate-attr-title="TOOLTIP_PIN_TOPIC">
                             <div class="table_cell">

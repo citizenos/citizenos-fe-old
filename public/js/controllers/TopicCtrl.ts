@@ -56,9 +56,10 @@ angular
         $scope.hideTopicContent = true;
 
         $scope.doShowReportOverlay = function () {
+            var data = angular.extend({}, $stateParams);
             ngDialog.openConfirm({
                 template: '/views/modals/topic_reports_reportId.html',
-                data: $stateParams,
+                data: data,
                 scope: $scope, // Pass on $scope so that I can access AppCtrl,
                 closeByEscape: false
             })

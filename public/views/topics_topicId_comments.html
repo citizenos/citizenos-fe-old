@@ -578,7 +578,7 @@
                         <!-- END REPLY EDITS -->
                         <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
                             <a ng-if="!reply.deletedAt && reply.isVisible()" href="#" class="replys_reply"
-                               ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
+                               ui-sref="topics/view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
                                ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</a>
                             <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text" ng-bind-html="reply.text | markdown"></div>
                             <div ng-if="!reply.isVisible()" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY"
@@ -632,7 +632,7 @@
                             <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT">Read our <a class="underlined_link" href="">code of conduct</a> for more information</span>
                         </div>
                         <div class="alert_argument" ng-if="reply.deletedAt && reply.isVisible()">
-                            <span class="replys_reply" ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
+                            <span class="replys_reply" ui-sref="topics/view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
                                   ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</span>
                             <span class="italic" ng-click="reply.showDeletedComment = !reply.showDeletedComment">{{reply.text}}</span>
                         </div>

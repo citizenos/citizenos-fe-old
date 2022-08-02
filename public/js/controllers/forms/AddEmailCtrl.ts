@@ -10,7 +10,7 @@ angular
             password: null
         };
         // We don't want that after closing browser tab or window any other user could possibly access the login-flow and add their e-mail to other user account
-        $cookies.put('addEmailInProgress', true);
+        $cookies.putObject('addEmailInProgress', true);
 
         $scope.doUpdateProfile = function () {
             $scope.errors = null;

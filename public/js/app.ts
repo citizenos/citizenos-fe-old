@@ -53,9 +53,9 @@ import * as _ from 'lodash';
                 if (langkeys.indexOf(clientLang) > -1) {
                     useLang = clientLang;
                 }
-                if (langkeys.indexOf($cookies.get('language')) > -1) {
-                    $log.debug('cookieLang', $cookies.get('language'));
-                    useLang = $cookies.get('language');
+                if (langkeys.indexOf($cookies.getObject('language')) > -1) {
+                    $log.debug('cookieLang', $cookies.getObject('language'));
+                    useLang = $cookies.getObject('language');
                 }
                 $log.debug('$urlRouterProvider.otherwise', 'Language detected before status', useLang);
 
@@ -94,29 +94,29 @@ import * as _ from 'lodash';
 
                     // Try to resolve the link to a state. We don't wanna use $location.href as it would reload the whole page, call all the API-s again.
                     // https://github.com/angular-ui/ui-router/issues/1651
-                    for (var i = 0; i < statesList.length; i++) {
-                        var stateObj = statesList[i];
+                    statesList.forEach(function (stateObj) {
                         if (stateObj.name) {
                             var privatePortion = stateObj.$$state();
 
                             if (privatePortion.url) {
                                 var params = privatePortion.url.exec(returnLink, $location.search());
+                                console.log('PARAMS', stateObj,returnLink, params, $location.search());
                                 if (params) {
                                     stateNext = {
                                         name: stateObj.name,
                                         params: params
                                     };
                                     $log.debug('$urlRouterProvider.otherwise', 'Matched state', stateNext);
-                                    break; // Stop the loop, we found our state
                                 }
                             }
                         }
-                    }
-
+                    });
+                    console.log(stateNext);
                     if (stateNext) {
                         if (stateNext.params && stateNext.params.language === 'aa') { // Crowdin language selected, we need a full page reload for the in-context script to work.
                             window.location.href = $state.href(stateNext.name, stateNext.params);
                         } else {
+                            console.log(stateNext.name, stateNext.params, {location: 'replace'})
                             $state.go(stateNext.name, stateNext.params, {location: 'replace'});
                         }
                     } else {
@@ -143,7 +143,7 @@ import * as _ from 'lodash';
                             }
 
                             // If new window is opened while login-flow is in-progress without adding new e-mail we logout the current user to prevent taking over accounts
-                            if ($cookies.get('addEmailInProgress')) {
+                            if ($cookies.getObject('addEmailInProgress')) {
                                 $cookies.remove('addEmailInProgress');
 
                                 sAuth.logout();
@@ -173,7 +173,7 @@ import * as _ from 'lodash';
                                         if (sAuth.user.loggedIn) {
                                             if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
                                                 return $state.go(
-                                                    'account.tos',
+                                                    'account/tos',
                                                     {
                                                         redirectSuccess: sLocation.getAbsoluteUrl($window.location.pathname) + $window.location.search
                                                     },
@@ -282,7 +282,7 @@ import * as _ from 'lodash';
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
-                .state('account.tos', {
+                .state('account/tos', {
                     url: '/tos?redirectSuccess',
                     controller: ['$scope', 'ngDialog', function ($scope, ngDialog) {
                         ngDialog.open({
@@ -293,7 +293,7 @@ import * as _ from 'lodash';
                         });
                     }]
                 })
-                .state('account.signup', {
+                .state('account/signup', {
                     url: '/signup?name&redirectSuccess',  // NOTE: Also supports email via "params" conf and rHiddenParams
                     resolve: {
                         rHiddenParams: ['$stateParams', function ($stateParams) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
@@ -317,10 +317,9 @@ import * as _ from 'lodash';
                             dialogData.email = rHiddenParams.email;
                             dialogData.name = rHiddenParams.name;
                         }
-
                         var dialog = ngDialog.open({
                             template: '/views/modals/sign_up.html',
-                            data: $stateParams,
+                            data: dialogData,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
 
@@ -331,7 +330,7 @@ import * as _ from 'lodash';
                         });
                     }]
                 })
-                .state('account.login', {
+                .state('account/login', {
                     url: '/login?userId&redirectSuccess', // NOTE: Also supports email via "params" conf and rHiddenParams
                     resolve: {
                         rHiddenParams: ['$stateParams', function ($stateParams) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
@@ -363,6 +362,7 @@ import * as _ from 'lodash';
                         email: null // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
                     },
                     controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rUserConnections', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rUserConnections, rHiddenParams) {
+                        console.log('HERE')
                         if (sAuthResolve) {
                             return $state.go('home');
                         }
@@ -389,12 +389,13 @@ import * as _ from 'lodash';
                         });
                     }]
                 })
-                .state('account.profile', { // TODO: Naming inconsistency but /account/myaccount would be funny. Maybe rename all related files to profile?
+                .state('account/profile', { // TODO: Naming inconsistency but /account/myaccount would be funny. Maybe rename all related files to profile?
                     url: '/profile',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         ngDialog.open({
                             template: '/views/modals/my_account.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                     }]
@@ -403,9 +404,10 @@ import * as _ from 'lodash';
                     url: '/password/forgot',
                     parent: 'account',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         ngDialog.open({
                             template: '/views/modals/password_forgot.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                     }]
@@ -414,9 +416,10 @@ import * as _ from 'lodash';
                     url: '/password/reset/:passwordResetCode?email',
                     parent: 'account',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         ngDialog.open({
                             template: '/views/modals/password_reset.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                     }]
@@ -492,9 +495,10 @@ import * as _ from 'lodash';
                     parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_settings.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -509,9 +513,10 @@ import * as _ from 'lodash';
                     parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_invite.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -526,9 +531,10 @@ import * as _ from 'lodash';
                     parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_members.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -543,9 +549,10 @@ import * as _ from 'lodash';
                     parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_attachments.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -568,10 +575,10 @@ import * as _ from 'lodash';
                                 });
                             return;
                         }
-
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_report.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -594,10 +601,10 @@ import * as _ from 'lodash';
                                 });
                             return;
                         }
-
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_reports_reportId_moderate.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -620,10 +627,10 @@ import * as _ from 'lodash';
                                 });
                             return;
                         }
-
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_reports_reportId_review.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -646,10 +653,10 @@ import * as _ from 'lodash';
                                 });
                             return;
                         }
-
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_reports_reportId_resolve.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -775,7 +782,6 @@ import * as _ from 'lodash';
                             var path = $location.path();
 
                             if (!$stateParams.filter && (path.indexOf('groups') > -1)) {
-                                $stateParams.filter = 'grouped';
                                 filterParam = 'grouped';
                             }
 
@@ -862,9 +868,10 @@ import * as _ from 'lodash';
                     parent: 'my/topics/topicId',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_settings.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -879,9 +886,10 @@ import * as _ from 'lodash';
                     parent: 'my/topics/topicId',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_invite.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -900,9 +908,10 @@ import * as _ from 'lodash';
                     url: '/create',
                     parent: 'my/groups',
                     controller: ['$scope', '$stateParams', '$state', 'ngDialog', function ($scope, $stateParams, $state, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/group_create_settings.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
 
@@ -956,9 +965,10 @@ import * as _ from 'lodash';
                     parent: 'my/groups/groupId',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/group_create_settings.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                         dialog.closePromise.then(function (data) {
@@ -1060,10 +1070,10 @@ import * as _ from 'lodash';
                         if (sAuth.user.loggedIn && rTopicInviteUser.user.id === sAuth.user.id) {
                             return doAccept();
                         }
-
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/topic_topicId_invites_users_inviteId.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope, // pass on scope, so that modal has access to App scope ($scope.app)
                             controller: ['$scope', '$log', function ($scope, $log) {
                                 $scope.invite = rTopicInviteUser;
@@ -1169,10 +1179,10 @@ import * as _ from 'lodash';
                         if (sAuth.user.loggedIn && rGroupInviteUser.user.id === sAuth.user.id) {
                             return doAccept();
                         }
-
+                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '/views/modals/group_groupId_invites_users_inviteId.html',
-                            data: $stateParams,
+                            data: data,
                             scope: $scope, // pass on scope, so that modal has access to App scope ($scope.app)
                             controller: ['$scope', '$log', function ($scope, $log) {
                                 $scope.invite = rGroupInviteUser;

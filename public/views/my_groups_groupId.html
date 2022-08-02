@@ -52,7 +52,7 @@
                                 <span class="item_link blue_link" ng-click="doShowMemberTopicList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                                 <span ng-if="group.canUpdate()">
                                     <span class="separator">|</span>
-                                    <span class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</span>
+                                    <span class="item_link blue_link" ui-sref="my/groups/groupId/settings({groupId: group.id, tab: 'topics'})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</span>
                                 </span>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                                 <span class="item_link blue_link" ng-click="doShowMemberUserList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                                 <span ng-if="group.canUpdate()">
                                     <span class="separator">|</span>
-                                    <span class="item_link blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})"
+                                    <span class="item_link blue_link" ui-sref="my/groups/groupId/settings({groupId: group.id, tab: 'users'})"
                                           translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</span>
                                 </span>
                             </div>
@@ -94,7 +94,7 @@
                             <div class="item_text">
                                 <span ng-bind="group.members.topics.latest.title">latest title</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link bold" ui-sref="topics.view({topicId: group.members.topics.latest.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
+                                <span class="item_link blue_link bold" ui-sref="topics/view({topicId: group.members.topics.latest.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -103,7 +103,7 @@
                     <div class="content_item">
                         <div class="item_description" translate="VIEWS.MY_GROUPS_GROUPID.LBL_GROUP_ACTIONS">Group actions</div>
                         <div class="item_content">
-                            <span class="item_text blue_link" ng-if="group.canUpdate()" ui-sref="my.groups.groupId.settings({groupId: group.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_SETTINGS">settings</span>
+                            <span class="item_text blue_link" ng-if="group.canUpdate()" ui-sref="my/groups/groupId/settings({groupId: group.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_SETTINGS">settings</span>
                             <span class="separator" ng-if="group.canUpdate()">|</span>
                             <span class="item_text blue_link" ng-click="doLeaveGroup()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_LEAVE">leave</span>
                             <span ng-if="group.canDelete()">
@@ -187,7 +187,7 @@
                      translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter
                 </div>
                 <span ng-if="group.canUpdate()">|
-                    <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'topics'})" ng-click="$event.stopPropagation()"
+                    <div class="blue_link" ui-sref="my/groups/groupId/settings({groupId: group.id, tab: 'topics'})" ng-click="$event.stopPropagation()"
                          translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</div>
                 </span>
             </div>
@@ -253,7 +253,7 @@
                 </div>
                 <div class="pretend_tr" ng-repeat="topic in group.members.topics.rows">
                     <div class="pretend_td">
-                        <div class="blue_link" ui-sref="my.topics.topicId({topicId: topic.id})" ng-bind="topic.title">topic.title</div>
+                        <div class="blue_link" ui-sref="my/topics/topicId({topicId: topic.id})" ng-bind="topic.title">topic.title</div>
                     </div>
                     <div class="pretend_td" ng-if="topic.canUpdate()">
                         <div cos-dropdown class="classic_dropdown">
@@ -310,7 +310,7 @@
                      translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter
                 </div>
                 <span ng-if="group.canUpdate()">|
-                    <div class="blue_link" ui-sref="my.groups.groupId.settings({groupId: group.id, tab: 'users'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</div>
+                    <div class="blue_link" ui-sref="my/groups/groupId/settings({groupId: group.id, tab: 'users'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</div>
                 </span>
             </div>
             <div class="minimize_container">

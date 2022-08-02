@@ -100,7 +100,7 @@
                                             <span ng-bind="user.email"></span>
                                         </div>
                                         <div class="via" ng-if="user.groups.rows.length && !user.levelUser">
-                                            <span translate="MODALS.TOPIC_MEMBERS_LBL_VIA">via</span> <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}})</span><i
+                                            <span translate="MODALS.TOPIC_MEMBERS_LBL_VIA">via</span> <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my/groups/groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}})</span><i
                                             ng-if="!group.name" class="disabled" translate="MODALS.TOPIC_MEMBERS_LBL_INACCESSIBLE_GROUP" translate-values="{level: ('TXT_TOPIC_LEVELS_' + group.level | uppercase | translate)}">Inaccessible Group</i> <i class="disabled">(<span  translate="{{'TXT_TOPIC_LEVELS_' + group.level | uppercase }}">admin</span>)</i></span>
                                         </div>
                                     </div>
@@ -181,7 +181,7 @@
                         </tr>
                         <tr ng-class="{'with_padding': $first}" ng-repeat="group in topic.members.groups.rows">
                             <td>
-                                <div class="blue_link" ng-if="group.permission.level" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})" ui-sref-opts="{reload: true}" ng-bind="group.name">Group name</div>
+                                <div class="blue_link" ng-if="group.permission.level" ui-sref="my/groups/groupId({groupId: group.id, filter: 'grouped'})" ui-sref-opts="{reload: true}" ng-bind="group.name">Group name</div>
                                 <div ng-if="!group.permission.level"><i class="disabled" translate="MODALS.TOPIC_MEMBERS_LBL_INACCESSIBLE_GROUP">Inaccessible Group</i></div>
                             </td>
                             <td>

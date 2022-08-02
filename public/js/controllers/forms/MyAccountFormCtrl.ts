@@ -101,9 +101,10 @@ angular
         }
 
         $scope.doDeleteAccount = function () {
+            var data = angular.extend({}, $stateParams);
             ngDialog.openConfirm({
                 template: '/views/modals/user_delete_confirm.html',
-                data: $stateParams,
+                data: data,
                 scope: $scope, // Pass on $scope so that I can access AppCtrl,
                 closeByEscape: false,
                 closeByNavigation: false

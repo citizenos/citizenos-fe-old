@@ -16,7 +16,7 @@
         <div class="container_content" ng-if="generalInfo.isVisible">
 
             <div class="content_top">
-                <div class="container_title" ui-sref="topics.view({topicId: topic.id})" ng-bind="topic.title">Topic title</div>
+                <div class="container_title" ui-sref="topics/view({topicId: topic.id})" ng-bind="topic.title">Topic title</div>
                 <div class="container_visibility" >
                     <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+topic.visibility | uppercase) | translate}}</span>">
                         <div class="table_cell">
@@ -113,11 +113,11 @@
                     <div class="content_item">
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_TOPIC_ACTIONS">Topic actions</div>
                         <div class="item_content">
-                            <span class="item_text blue_link" ng-if="topic.canUpdate()" ui-sref="my.topics.topicId.settings({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_SETTINGS">settings</span>
+                            <span class="item_text blue_link" ng-if="topic.canUpdate()" ui-sref="my/topics/topicId/settings({topicId: topic.id})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_SETTINGS">settings</span>
                             <span class="separator" ng-if="topic.canUpdate()">|</span>
                             <span class="item_text blue_link" ng-click="goToTopicView(topic)" translate="VIEWS.MY_TOPICS_TOPICID.LNK_VIEW">view</span>
                             <span class="separator" ng-if="topic.canEditDescription()">|</span>
-                            <span class="item_text blue_link" ng-if="topic.canEditDescription()" ui-sref="topics.view({topicId: topic.id, editMode: true})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span>
+                            <span class="item_text blue_link" ng-if="topic.canEditDescription()" ui-sref="topics/view({topicId: topic.id, editMode: true})" translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span>
                             <span class="separator">|</span>
                             <span class="item_text blue_link" ng-click="doLeaveTopic()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_LEAVE">leave</span>
                             <span ng-if="topic.canDelete()">
@@ -401,7 +401,7 @@
             <div class="header_text"><span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_GROUP_LIST">Group list</span> <span ng-bind="'('+topic.members.groups.count+')'">0</span> |
                 <div class="blue_link" ng-if="topic.members.groups.count" ng-click="groupList.isSearchVisible = !groupList.isSearchVisible; doShowMemberGroupList(); $event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
                 <span ng-if="topic.members.groups.count && topic.canUpdate()">|</span>
-                <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="my.topics.topicId.invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
+                <div class="blue_link" ng-if="topic.canUpdate()" ui-sref="my/topics/topicId/invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
             </div>
             <div class="minimize_container" ng-if="topic.members.groups.count">
                 <div ng-class="!groupList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -447,7 +447,7 @@
                 </div>
                 <div class="pretend_tr" ng-repeat="group in topic.members.groups.rows">
                     <div class="pretend_td">
-                        <div class="blue_link" ng-if="group.permission.level" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})" ui-sref-opts="{reload: true}" ng-bind="group.name">Group name</div>
+                        <div class="blue_link" ng-if="group.permission.level" ui-sref="my/groups/groupId({groupId: group.id, filter: 'grouped'})" ui-sref-opts="{reload: true}" ng-bind="group.name">Group name</div>
                         <div ng-if="!group.permission.level"><i class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP">Inaccessible Group</i></div>
                     </div>
                     <div class="pretend_td">
@@ -501,7 +501,7 @@
                 <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'(' + topic.members.users.count + ')'">(0)</span> |
                 <div class="blue_link" ng-click="userList.isSearchVisible = !userList.isSearchVisible; doShowMemberUserList(); $event.stopPropagation();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
                 <span ng-if="topic.canUpdate()">|</span>
-                <div class="blue_link" ng-if="topic.canUpdate()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my.topics.topicId.invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>
+                <div class="blue_link" ng-if="topic.canUpdate()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my/topics/topicId/invite({topicId: topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>
             </div>
             <div class="minimize_container">
                 <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
@@ -563,7 +563,7 @@
                                     </span>
                                     <span ng-if="user.groups.rows.length && !user.levelUser">
                                         <span ng-if="user.email || user.phoneNumber"> • </span>
-                                        <span translate="VIEWS.MY_TOPICS_TOPICID.LBL_VIA">via</span> <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my.groups.groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}})</span><i
+                                        <span translate="VIEWS.MY_TOPICS_TOPICID.LBL_VIA">via</span> <span ng-repeat="group in user.groups.rows"><span ng-if="!$first">, </span><span ng-if="group.name" class="blue_link" ui-sref="my/groups/groupId({groupId: group.id, filter: 'grouped'})">{{group.name}} ({{'TXT_TOPIC_LEVELS_' + group.level | uppercase | translate}})</span><i
                                         ng-if="!group.name" class="disabled" translate="VIEWS.MY_TOPICS_TOPICID.LBL_INACCESSIBLE_GROUP" translate-values="{level: ('TXT_TOPIC_LEVELS_' + group.level | uppercase | translate)}">Inaccessible Group</i> <i class="disabled">(<span  translate="{{'TXT_TOPIC_LEVELS_' + group.level | uppercase }}">admin</span>)</i></span>
                                     </span>
                                 </div>
