@@ -20,7 +20,7 @@ angular
         };
 
         $scope.memberGroups = ['users', 'emails'];
-        $scope.tabSelected = $stateParams.tab || 'settings';
+        $scope.app.tabSelected = $stateParams.tab || 'settings';
 
         $scope.topicList = {
             searchFilter: '',
@@ -313,11 +313,6 @@ angular
             }
         };
 
-        $scope.selectTab = function (tab) {
-            $scope.tabSelected = tab;
-            $location.search({tab: tab});
-        };
-
         $scope.doSaveGroup = function () {
             $scope.errors = null;
 
@@ -371,6 +366,8 @@ angular
                 .then(
                     function () {
                         $timeout(function () { // Avoid $digest already in progress
+                            var dialogs = ngDialog.getOpenDialogs();
+                            ngDialog.close(dialogs[0], '$closeButton');
                             $state.go('my/groups/groupId', {
                                 groupId: $scope.form.group.id,
                                 filter: 'grouped'
@@ -380,7 +377,7 @@ angular
                     function (errorResponse) {
                         if (errorResponse.data && errorResponse.data.errors) {
                             $scope.errors = errorResponse.data.errors;
-                            $scope.tabSelected = 'settings';
+                            $scope.app.tabSelected = 'settings';
                         }
                     }
                 );

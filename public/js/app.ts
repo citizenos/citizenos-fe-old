@@ -97,10 +97,8 @@ import * as _ from 'lodash';
                     statesList.forEach(function (stateObj) {
                         if (stateObj.name) {
                             var privatePortion = stateObj.$$state();
-
                             if (privatePortion.url) {
                                 var params = privatePortion.url.exec(returnLink, $location.search());
-                                console.log('PARAMS', stateObj,returnLink, params, $location.search());
                                 if (params) {
                                     stateNext = {
                                         name: stateObj.name,
@@ -111,12 +109,10 @@ import * as _ from 'lodash';
                             }
                         }
                     });
-                    console.log(stateNext);
                     if (stateNext) {
                         if (stateNext.params && stateNext.params.language === 'aa') { // Crowdin language selected, we need a full page reload for the in-context script to work.
                             window.location.href = $state.href(stateNext.name, stateNext.params);
                         } else {
-                            console.log(stateNext.name, stateNext.params, {location: 'replace'})
                             $state.go(stateNext.name, stateNext.params, {location: 'replace'});
                         }
                     } else {
@@ -139,7 +135,7 @@ import * as _ from 'lodash';
                         sTranslateResolve: ['$stateParams', '$log', 'sTranslate', sTranslateResolve],
                         sAuthResolve: ['$q', '$log', '$state', '$cookies', '$window', 'sAuth', 'sLocation', 'ngDialog', function ($q, $log, $state, $cookies, $window, sAuth, sLocation, ngDialog) {
                             if (sAuth.user.loggedIn) {
-                                return;
+                                return $q.resolve(true);
                             }
 
                             // If new window is opened while login-flow is in-progress without adding new e-mail we logout the current user to prevent taking over accounts
@@ -294,6 +290,7 @@ import * as _ from 'lodash';
                     }]
                 })
                 .state('account/signup', {
+                    parent: 'account',
                     url: '/signup?name&redirectSuccess',  // NOTE: Also supports email via "params" conf and rHiddenParams
                     resolve: {
                         rHiddenParams: ['$stateParams', function ($stateParams) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
@@ -331,6 +328,7 @@ import * as _ from 'lodash';
                     }]
                 })
                 .state('account/login', {
+                    parent: 'account',
                     url: '/login?userId&redirectSuccess', // NOTE: Also supports email via "params" conf and rHiddenParams
                     resolve: {
                         rHiddenParams: ['$stateParams', function ($stateParams) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
@@ -362,7 +360,6 @@ import * as _ from 'lodash';
                         email: null // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
                     },
                     controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rUserConnections', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rUserConnections, rHiddenParams) {
-                        console.log('HERE')
                         if (sAuthResolve) {
                             return $state.go('home');
                         }
@@ -390,6 +387,7 @@ import * as _ from 'lodash';
                     }]
                 })
                 .state('account/profile', { // TODO: Naming inconsistency but /account/myaccount would be funny. Maybe rename all related files to profile?
+                    parent: 'account',
                     url: '/profile',
                     controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
                         var data = angular.extend({}, $stateParams);
@@ -494,17 +492,18 @@ import * as _ from 'lodash';
                     url: '/settings?tab',
                     parent: 'topics/view',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                    controller: ['$scope', '$state', '$transitions', '$stateParams', '$timeout', 'ngDialog', function ($scope, $state, $transitions, $stateParams, $timeout, ngDialog) {
                         var data = angular.extend({}, $stateParams);
-                        var dialog = ngDialog.open({
-                            template: '/views/modals/topic_settings.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                        dialog.closePromise.then(function (data) {
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
-                            }
+                        var createDialog = function () {
+                            var dialog = ngDialog.open({
+                                template: '/views/modals/topic_settings.html',
+                                data: data,
+                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                            });
+                        };
+                        createDialog();
+                        $transitions.onSuccess({}, function(transition) {
+                            if (transition.from().name === transition.to().name) createDialog();
                         });
                     }]
                 })
@@ -514,16 +513,28 @@ import * as _ from 'lodash';
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var data = angular.extend({}, $stateParams);
-                        var dialog = ngDialog.open({
-                            template: '/views/modals/topic_invite.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                        dialog.closePromise.then(function (data) {
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
-                            }
-                        });
+                        var createDialog = function () {
+                            ngDialog.closeAll();
+                            var dialog = ngDialog.open({
+                                template: '/views/modals/topic_invite.html',
+                                data: data,
+                                preCloseCallback: function (value) {
+                                    if (value === '$closeButton') {
+                                        return true;
+                                    }
+                                    return false;
+                                },
+                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                            });
+
+                            dialog.closePromise.then(function (data) {
+                                if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                    $state.go('^');
+                                }
+                            });
+                        }
+
+                        createDialog();
                     }]
                 })
                 .state('topics/view/participants', {
@@ -532,16 +543,28 @@ import * as _ from 'lodash';
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var data = angular.extend({}, $stateParams);
-                        var dialog = ngDialog.open({
-                            template: '/views/modals/topic_members.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                        dialog.closePromise.then(function (data) {
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
-                            }
-                        });
+                        var createDialog = function () {
+                            ngDialog.closeAll();
+                            var dialog = ngDialog.open({
+                                template: '/views/modals/topic_members.html',
+                                data: data,
+                                preCloseCallback: function (value) {
+                                    if (value === '$closeButton') {
+                                        return true;
+                                    }
+                                    return false;
+                                },
+                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                            });
+
+                            dialog.closePromise.then(function (data) {
+                                if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                    $state.go('^');
+                                }
+                            });
+                        }
+
+                        createDialog();
                     }]
                 })
                 .state('topics/view/files', {
@@ -867,18 +890,32 @@ import * as _ from 'lodash';
                     url: '/settings?tab',
                     parent: 'my/topics/topicId',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                    controller: ['$scope', '$state', '$stateParams', '$transitions', '$timeout', 'ngDialog', function ($scope, $state, $stateParams, $transitions, $timeout, ngDialog) {
                         var data = angular.extend({}, $stateParams);
-                        var dialog = ngDialog.open({
-                            template: '/views/modals/topic_settings.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                        dialog.closePromise.then(function (data) {
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
-                            }
-                        });
+                        var createDialog = function () {
+                            ngDialog.closeAll();
+                            var dialog = ngDialog.open({
+                                template: '/views/modals/topic_settings.html',
+                                data: data,
+                                preCloseCallback: function (value) {
+                                    if (value === '$closeButton') {
+                                        return true;
+                                    }
+                                    return false;
+                                },
+                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                            });
+
+                            dialog.closePromise.then(function (data) {
+                                if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                    $timeout(function () {
+                                        $state.go('^');
+                                    });
+                                }
+                            });
+                        }
+
+                        createDialog();
                     }]
                 })
                 .state('my/topics/topicId/invite', {
@@ -887,16 +924,28 @@ import * as _ from 'lodash';
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var data = angular.extend({}, $stateParams);
-                        var dialog = ngDialog.open({
-                            template: '/views/modals/topic_invite.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                        dialog.closePromise.then(function (data) {
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
-                            }
-                        });
+                        var createDialog = function () {
+                            ngDialog.closeAll();
+                            var dialog = ngDialog.open({
+                                template: '/views/modals/topic_invite.html',
+                                data: data,
+                                preCloseCallback: function (value) {
+                                    if (value === '$closeButton') {
+                                        return true;
+                                    }
+                                    return false;
+                                },
+                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                            });
+
+                            dialog.closePromise.then(function (data) {
+                                if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                    $state.go('^');
+                                }
+                            });
+                        }
+
+                        createDialog();
                     }]
                 })
                 .state('my/groups', {
@@ -909,17 +958,16 @@ import * as _ from 'lodash';
                     parent: 'my/groups',
                     controller: ['$scope', '$stateParams', '$state', 'ngDialog', function ($scope, $stateParams, $state, ngDialog) {
                         var data = angular.extend({}, $stateParams);
-                        var dialog = ngDialog.open({
-                            template: '/views/modals/group_create_settings.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
+                        var createDialog = function () {
+                            ngDialog.closeAll();
+                            ngDialog.open({
+                                template: '/views/modals/group_create_settings.html',
+                                data: data,
+                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                            });
+                        }
 
-                        dialog.closePromise.then(function (data) {
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
-                            }
-                        });
+                        createDialog();
                     }]
                 })
                 .state('my/groups/groupId', {
@@ -966,16 +1014,22 @@ import * as _ from 'lodash';
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var data = angular.extend({}, $stateParams);
-                        var dialog = ngDialog.open({
-                            template: '/views/modals/group_create_settings.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
-                        });
-                        dialog.closePromise.then(function (data) {
-                            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
-                            }
-                        });
+                        var createDialog = function () {
+                            ngDialog.closeAll();
+                            var dialog = ngDialog.open({
+                                template: '/views/modals/group_create_settings.html',
+                                data: data,
+                                preCloseCallback: function (value) {
+                                    if (value === '$closeButton') {
+                                        return true;
+                                    }
+                                    return false;
+                                },
+                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                            });
+                        }
+
+                        createDialog();
                     }]
                 })
                 .state('groupJoin', { // Join a Topic via shared url

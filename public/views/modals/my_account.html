@@ -20,21 +20,21 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="topicSettingsSlider">
-                        <div class="tab_button" ng-click="selectTab('profile')" ng-class="tabSelected === 'profile' ? 'active' : ''">
+                        <div class="tab_button" ng-click="app.selectTab('profile')" ng-class="app.tabSelected === 'profile' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_PROFILE">PROFILE</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
 
-                        <div class="tab_button" ng-click="selectTab('preferences')" ng-class="tabSelected === 'preferences' ? 'active' : ''">
+                        <div class="tab_button" ng-click="app.selectTab('preferences')" ng-class="app.tabSelected === 'preferences' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_PREFERENCES">PREFERENCES</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
 
-                        <div class="tab_button" ng-click="selectTab('account')" ng-class="tabSelected === 'account' ? 'active' : ''">
+                        <div class="tab_button" ng-click="app.selectTab('account')" ng-class="app.tabSelected === 'account' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_ACCOUNT">ACCOUNT</div>
                                 <div class="blue_bottom_line"></div>
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="lightbox_content" ng-if="tabSelected === 'profile'">
+            <div class="lightbox_content" ng-if="app.tabSelected === 'profile'">
                 <div id="login_lightbox">
                     <div class="line lightest_line"></div>
 
@@ -112,7 +112,7 @@
 
                 </div>
             </div>
-            <div class="lightbox_content" ng-if="tabSelected === 'preferences'">
+            <div class="lightbox_content" ng-if="app.tabSelected === 'preferences'">
                 <div id="login_lightbox">
                     <div class="line lightest_line"></div>
 
@@ -132,7 +132,7 @@
                 </div>
             </div>
 
-            <div class="lightbox_content" ng-if="tabSelected === 'account'">
+            <div class="lightbox_content" ng-if="app.tabSelected === 'account'">
                 <div id="login_lightbox">
                     <div class="line lightest_line"></div>
 

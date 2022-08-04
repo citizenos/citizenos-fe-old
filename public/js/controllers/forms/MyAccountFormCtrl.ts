@@ -6,7 +6,7 @@ angular
     .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$document', '$window', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', function ($scope, $log, $stateParams, $document, $window, ngDialog, sNotification, sAuth, sUser, sUpload) {
         $log.debug('MyAccountFormCtrl');
 
-        $scope.tabSelected = 'profile';
+        $scope.app.tabSelected = 'profile';
         $scope.form = {
             name: null,
             email: null,

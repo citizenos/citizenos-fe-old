@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 
 angular
     .module('citizenos')
-    .controller('TopicMembersCtrl', ['$scope', '$log', '$stateParams', '$filter', '$location', 'ngDialog', 'sAuth', 'TopicMemberUser', 'TopicInviteUser', 'TopicMemberGroup', function ($scope, $log, $stateParams, $filter, $location, ngDialog, sAuth, TopicMemberUser, TopicInviteUser, TopicMemberGroup) {
+    .controller('TopicMembersCtrl', ['$scope', '$log', '$state', '$stateParams', '$filter', '$location', 'ngDialog', 'sAuth', 'TopicMemberUser', 'TopicInviteUser', 'TopicMemberGroup', function ($scope, $log, $state, $stateParams, $filter, $location, ngDialog, sAuth, TopicMemberUser, TopicInviteUser, TopicMemberGroup) {
         $log.debug('TopicMembersCtrl');
 
         $scope.topic.members = {
@@ -13,7 +13,7 @@ angular
             invited: []
         };
 
-        $scope.tabSelected = $stateParams.tab || 'participants';
+        $scope.app.tabSelected = $stateParams.tab || 'participants';
 
         var ITEMS_COUNT_PER_PAGE = 10;
 
@@ -42,11 +42,6 @@ angular
                 property: 'name',
                 sortOrder: 'ASC'
             }
-        };
-
-        $scope.selectTab = function (tab) {
-            $scope.tabSelected = tab
-            $location.search({tab: tab});
         };
 
         $scope.loadMemberUserList = function (offset, limit, order, sortOrder) {

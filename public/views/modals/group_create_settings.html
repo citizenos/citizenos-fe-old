@@ -13,7 +13,7 @@
                     <div class="title_description" ng-if="group.id">{{group.name}}</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="closeThisDialog()">
+                <div id="lightbox_close" ng-click="closeThisDialog('$closeButton')">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
                         </div>
@@ -24,25 +24,25 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="createGroupSlider">
-                        <div class="tab_button" ng-click="selectTab('settings')" ng-class="tabSelected === 'settings' ? 'active' : ''">
+                        <div class="tab_button" ng-click="app.selectTab('settings')" ng-class="app.tabSelected === 'settings' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.GROUP_CREATE_SETTINGS_TAB_SETTINGS">SETTINGS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="selectTab('topics')" ng-class="tabSelected === 'topics' ? 'active' : ''">
+                        <div class="tab_button" ng-click="app.selectTab('topics')" ng-class="app.tabSelected === 'topics' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.GROUP_CREATE_SETTINGS_TAB_ADD_TOPICS">ADD TOPICS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="selectTab('users')" ng-class="tabSelected === 'users' ? 'active' : ''">
+                        <div class="tab_button" ng-click="app.selectTab('users')" ng-class="app.tabSelected === 'users' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.GROUP_CREATE_SETTINGS_TAB_INVITE_USERS">INVITE USERS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="selectTab('share')" ng-class="tabSelected === 'share' ? 'active' : ''" ng-if="form.group.join">
+                        <div class="tab_button" ng-click="app.selectTab('share')" ng-class="app.tabSelected === 'share' ? 'active' : ''" ng-if="form.group.join">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.GROUP_CREATE_SETTINGS_TAB_SHARE">SHARE</div>
                                 <div class="blue_bottom_line"></div>
@@ -55,7 +55,7 @@
             <div class="line lightest_line"></div>
 
             <!-- SETTINGS -->
-            <div class="lightbox_content settings_section_wrap" ng-if="tabSelected === 'settings'">
+            <div class="lightbox_content settings_section_wrap" ng-if="app.tabSelected === 'settings'">
 
                 <div class="lightbox_section">
 
@@ -124,7 +124,7 @@
             </div>
 
             <!-- ADD TOPICS -->
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'topics'">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="app.tabSelected === 'topics'">
                 <div class="lightbox_section" ng-if="group.id">
                     <div class="settings_section">
                         <div class="settings_cell">
@@ -165,7 +165,7 @@
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_ADD_TOPICS">Add topics searching by title</div>
                     <div cos-dropdown ng-class="{search_with_dropdown : searchResults.topics.length, dropdown_active : searchResults.topics.length}">
                         <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
-                                   select="addGroupMemberTopic(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_TOPIC' | translate}}">
+                                    select="addGroupMemberTopic(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_TOPIC' | translate}}">
                             <div class="search_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-search-gray-2x"></div>
@@ -197,13 +197,13 @@
                             <div class="black_link" ng-click="doOrderTopics('title')">
                                 <span translate="MODALS.GROUP_CREATE_SETTINGS_TH_TITLE">Title A-Z</span>
                                 <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'title' || topicList.searchOrderBy.property === '-title'"
-                                     ng-class="{desc : topicList.searchOrderBy.property === '-title'}"></div>
+                                        ng-class="{desc : topicList.searchOrderBy.property === '-title'}"></div>
                             </div>
                             <div class="black_link" ng-click="doOrderTopics('members.users.count')">
                                 <span translate="MODALS.GROUP_CREATE_SETTINGS_TH_USERS">Users</span>
                                 <div class="sprite sprite-icon-list-ordering2x"
-                                     ng-if="topicList.searchOrderBy.property === 'members.users.count' || topicList.searchOrderBy.property === '-members.users.count'"
-                                     ng-class="{desc : topicList.searchOrderBy.property === '-members.users.count'}"></div>
+                                        ng-if="topicList.searchOrderBy.property === 'members.users.count' || topicList.searchOrderBy.property === '-members.users.count'"
+                                        ng-class="{desc : topicList.searchOrderBy.property === '-members.users.count'}"></div>
                             </div>
                         </div>
                     </div>
@@ -259,20 +259,20 @@
                 </div>
             </div>
 
-           <!-- INVITE USERS -->
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'users'">
+            <!-- INVITE USERS -->
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="app.tabSelected === 'users'">
 
                 <div class="lightbox_section" ng-if="form.group.canUpdate()">
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_INVITE_LBL_OPTIONAL_MESSAGE">Add an optional invitation message</div>
                     <textarea id="invite_body" translate translate-attr-placeholder="MODALS.GROUP_CREATE_SETTINGS_INVITE_PLACHOLDER_OPTIONAL_MESSAGE" class="gray_borders"
-                              placeholder="Edit your reply here..." ng-model="form.inviteMessage" maxlength="{{::inviteMessageMaxLength}}"></textarea>
+                                placeholder="Edit your reply here..." ng-model="form.inviteMessage" maxlength="{{::inviteMessageMaxLength}}"></textarea>
 
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_INVITE_USERS">Invite users via their name or e-mail address</div>
 
                     <div class="searchbox_with_icon_and_text only_text">
                         <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length, dropdown_active : searchResults.users.length}">
                             <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
-                                       select="addGroupMemberUser(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_BY_NAME_EMAIL' | translate}}">
+                                        select="addGroupMemberUser(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_BY_NAME_EMAIL' | translate}}">
                                 <div class="search_area_wrap">
                                     <div class="search_dropdown_area" ng-class="{hidden: !searchResults.users.length}">
                                         <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
@@ -549,7 +549,7 @@
             </div>
 
             <!-- SHARE -->
-            <div class="lightbox_content invite_url" ng-if="tabSelected === 'share' && group.canUpdate() && form.join.token">
+            <div class="lightbox_content invite_url" ng-if="app.tabSelected === 'share' && group.canUpdate() && form.join.token">
 
                 <div class="lightbox_section" ng-if="group.canUpdate()">
                     <h3 translate="MODALS.TOPIC_SETTINGS_HEADING_LINK_SHARING">Link sharing</h3>

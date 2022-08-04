@@ -173,18 +173,16 @@ angular
             selected: _.find(groupFilters, {id: filterParam}) || _.chain(groupFilters).map('children').flatten().find({id: filterParam}).value() || groupFilters[0]
         };
 
-        $scope.$watch(
-            function () {
-                return $scope.itemList;
-            },
+        $scope.$watch('itemList.length',
             function (newList) {
-                if (!newList || !newList.length) return;
+                if (!newList) return;
                 // Navigate to first item in the list on big screens.
                 if ($rootScope.wWidth > 750) {
 
                     $timeout(function () {
-                        if ($state.is('my.groups') || $state.is('my.topics')) {
+                        if ($state.is('my/groups') || $state.is('my/topics')) {
                             var item = $scope.itemList[0];
+                            console.log(item);
                             if ($scope.isGroup(item)) {
                                 $state.go('my/groups/groupId', {
                                     groupId: item.id,
@@ -196,7 +194,7 @@ angular
                         }
                     });
                 }
-            }
+            }, true
         );
 
         $scope.isGroup = function (object) {

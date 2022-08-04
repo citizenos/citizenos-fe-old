@@ -3,7 +3,7 @@ import * as angular from 'angular';
 
 angular
     .module('citizenos')
-    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'Topic', 'TopicVote', function ($scope, $state, $stateParams, $log, $location, Topic, TopicVote) {
+    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', '$timeout', 'Topic', 'TopicVote', 'ngDialog', function ($scope, $state, $stateParams, $log, $location, $timeout, Topic, TopicVote, ngDialog) {
         $log.debug('TopicSettingsCtrl', $state, $stateParams);
 
         $scope.levels = {
@@ -18,7 +18,7 @@ angular
             urlJoin: null
         };
         $scope.cosToggleTextOn = 'public';
-        $scope.tabSelected = $stateParams.tab || 'settings';
+        $scope.app.tabSelected = $stateParams.tab || 'settings';
 
         $scope.topicList = {
             searchFilter: '',
@@ -91,11 +91,6 @@ angular
                 .$update();
         };
 
-        $scope.selectTab = function (tab) {
-            $scope.tabSelected = tab;
-            $location.search({tab: tab});
-        };
-
         $scope.addTopicCategory = function (category) {
             if ($scope.form.topic.categories.indexOf(category) === -1 && $scope.form.topic.categories.length < Topic.CATEGORIES_COUNT_MAX) {
                 $scope.form.topic.categories.push(category);
@@ -128,7 +123,11 @@ angular
                 .$update()
                 .then(
                     function () {
-                        $state.go($state.current.parent, {topicId: $scope.topic.id}, {reload: true});
+                        $timeout(function () { // Avoid $digest already in progress
+                            var dialogs = ngDialog.getOpenDialogs();
+                            ngDialog.close(dialogs[0], '$closeButton');
+                            $state.go($state.current.parent, {topicId: $scope.topic.id}, {reload: true});
+                        });
                     },
                     function (errorResponse) {
                         if (errorResponse.data && errorResponse.data.errors) {

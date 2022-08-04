@@ -680,7 +680,7 @@ angular
                     params['inviteId'] = target.inviteId; // HACKISH! Change once issue resolves - https://github.com/w3c/activitystreams/issues/506
                 } else {
                     // Creator of the invite or a person who has read permissions is viewing
-                    stateName = 'topics.view';
+                    stateName = 'topics/view';
                     params['topicId'] = object.id;
                 }
             } else if (activityType === 'Invite' && target['@type'] === 'User' && object['@type'] === 'Group') { // https://github.com/citizenos/citizenos-fe/issues/348
@@ -691,45 +691,45 @@ angular
                     params['inviteId'] = target.inviteId; // HACKISH! Change once issue resolves - https://github.com/w3c/activitystreams/issues/506
                 } else {
                     // Creator of the invite or a person who has read permissions is viewing
-                    stateName = 'group.view';
+                    stateName = 'group/view';
                     params['groupId'] = object.id;
                 }
             } else if ((object && object['@type'] === 'Topic')) {
-                stateName = 'topics.view';
+                stateName = 'topics/view';
                 params['topicId'] = object.id;
             } else if ((object && object['@type'] === 'TopicMemberUser')) {
-                stateName = 'topics.view';
+                stateName = 'topics/view';
                 params['topicId'] = object.topicId;
             } else if (object['@type'] === 'Comment' || object['@type'] === 'CommentVote') {
                 if (target && (target['@type'] === 'Topic' || object.topicId || target.topicId)) {
-                    stateName = 'topics.view';
+                    stateName = 'topics/view';
                     params['topicId'] = object.topicId || target.topicId || target.id;
                     params['commentId'] = object.commentId || object.id;
                     // hash = object.commentId || object.id;
                 }
             } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteList' && target && target['@type'] === 'Topic') {
-                stateName = 'topics.view.votes.view';
+                stateName = 'topics/view/votes/view';
                 params['topicId'] = target.topicId || target.id;
                 params['voteId'] = object.voteId || object.id;
             } else if (object['@type'] === 'Group' || object['@type'] === 'TopicMemberGroup') {
-                stateName = 'my.groups.groupId';
+                stateName = 'my/groups/groupId';
                 params['groupId'] = object.id || object.groupId;
             } else if (object['@type'] === 'Vote' || object['@type'] === 'VoteFinalContainer' ) {
-                stateName = 'topics.view.votes.view';
+                stateName = 'topics/view/votes/view';
                 params['topicId'] = object.topicId || object.id;
                 params['voteId'] = object.voteId || object.id;
             } else if (target && target['@type'] === 'Topic' || target.topicId) {
-                stateName = 'topics.view';
+                stateName = 'topics/view';
                 params['topicId'] = target.topicId || target.id
             }
 
             if (target && target['@type'] === 'Group') {
-                stateName = 'my.groups.groupId';
+                stateName = 'my/groups/groupId';
                 params['groupId'] = target.id;
             }
 
             if (!stateName && origin && origin['@type'] === 'Topic') {
-                stateName = 'topics.view';
+                stateName = 'topics/view';
                 params['topicId']  = origin.id;
             }
             if (stateName) {

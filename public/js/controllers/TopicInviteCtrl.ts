@@ -5,12 +5,12 @@ import * as validator from 'validator';
 
 angular
     .module('citizenos')
-    .controller('TopicInviteCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', 'sSearch', 'sLocation', 'sNotification', 'sAuth', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicJoin', function ($scope, $state, $stateParams, $log, $location, ngDialog, sSearch, sLocation, sNotification, sAuth, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup, TopicJoin) {
+    .controller('TopicInviteCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', '$timeout', 'ngDialog', 'sSearch', 'sLocation', 'sNotification', 'sAuth', 'Topic', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicJoin', function ($scope, $state, $stateParams, $log, $location, $timeout, ngDialog, sSearch, sLocation, sNotification, sAuth, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup, TopicJoin) {
         $log.debug('TopicInviteCtrl', $state, $stateParams);
 
         $scope.memberGroups = ['groups', 'users'];
         $scope.inviteMessageMaxLength = 1000;
-        $scope.tabSelected = $stateParams.tab || 'invite';
+        $scope.app.tabSelected = $stateParams.tab || 'invite';
 
         var EMAIL_SEPARATOR_REGEXP = /[;,\s]/ig;
 
@@ -310,11 +310,6 @@ angular
             $scope.members[$scope.members.indexOf(group)].level = level;
         };
 
-        $scope.selectTab = function (tab) {
-            $scope.tabSelected = tab;
-            $location.search({tab: tab});
-        };
-
         $scope.doSaveTopic = function () {
             $scope.errors = null;
 
@@ -358,7 +353,11 @@ angular
                 })
                 .then(
                     function () {
-                        $state.go($state.current.parent, {topicId: $scope.topic.id}, {reload: true});
+                        $timeout(function () { // Avoid $digest already in progress
+                            var dialogs = ngDialog.getOpenDialogs();
+                            ngDialog.close(dialogs[0], '$closeButton');
+                            $state.go($state.current.parent, {topicId: $scope.topic.id}, {reload: true});
+                        });
                     },
                     function (errorResponse) {
                         if (errorResponse.data && errorResponse.data.errors) {

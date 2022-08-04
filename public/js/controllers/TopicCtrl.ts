@@ -34,7 +34,7 @@ angular
                 $scope.app.metainfo.image = docImageSrc;
             }
 
-            if (sAuth.user.loggedIn && $state.current.name.indexOf('topics.view') === 0) {
+            if (sAuth.user.loggedIn && $state.current.name.indexOf('topics/view') === 0) {
                 var t = new Topic({id: $scope.topic.id});
                 t
                     .$getInlineComments()
@@ -705,28 +705,29 @@ angular
 
         var toggleTabParam = function (tabName) {
             return new Promise<void>(function (resolve) {
+                var params = angular.extend({}, $stateParams);
                 var tabIndex;
-                if ($stateParams.openTabs) {
-                    tabIndex = $stateParams.openTabs.indexOf(tabName);
+                if (params.openTabs) {
+                    tabIndex = params.openTabs.indexOf(tabName);
                 }
 
                 if (tabIndex > -1) {
-                    if (!Array.isArray($stateParams.openTabs)) {
-                        $stateParams.openTabs = null;
-                    } else if ($stateParams.openTabs) {
-                        $stateParams.openTabs.splice(tabIndex, 1);
+                    if (!Array.isArray(params.openTabs)) {
+                        params.openTabs = null;
+                    } else if (params.openTabs) {
+                        params.openTabs.splice(tabIndex, 1);
                     }
                 } else {
-                    if (!$stateParams.openTabs) {
-                        $stateParams.openTabs = [];
+                    if (!params.openTabs) {
+                        params.openTabs = [];
                     }
-                    if (!Array.isArray($stateParams.openTabs)) {
-                        $stateParams.openTabs = [$stateParams.openTabs];
+                    if (!Array.isArray(params.openTabs)) {
+                        params.openTabs = [params.openTabs];
                     }
-                    $stateParams.openTabs.push(tabName);
+                    params.openTabs.push(tabName);
                 }
 
-                $state.transitionTo($state.current.name, $stateParams, {
+                $state.transitionTo($state.current.name, params, {
                     notify: true,
                     reload: false
                 }).then(function () {
@@ -872,12 +873,13 @@ angular
         };
 
         if ($stateParams.openTabs) {
+            var params = angular.extend({}, $stateParams);
             $scope.userList.isVisible = false;
             $scope.groupList.isVisible = false;
             if (!Array.isArray($stateParams.openTabs)) {
-                $stateParams.openTabs = [$stateParams.openTabs];
+                params.openTabs = [$stateParams.openTabs];
             }
-            $stateParams.openTabs.forEach(function (tab) {
+            params.openTabs.forEach(function (tab) {
                 switch (tab) {
                     case 'user_list':
                         $scope.doShowMemberUserList();

@@ -3,7 +3,7 @@ import * as angular from 'angular';
 
 angular
     .module('citizenos')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'sTopic', 'TopicInviteUser', function ($scope, $rootScope, $log, $state, $window, $location, $timeout, $interval, $cookies, $anchorScroll, $translate, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity, sTopic, TopicInviteUser) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$log', '$state', '$stateParams', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'sTopic', 'TopicInviteUser', function ($scope, $rootScope, $log, $state, $stateParams, $window, $location, $timeout, $interval, $cookies, $anchorScroll, $translate, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity, sTopic, TopicInviteUser) {
         $log.debug('AppCtrl', $location.host());
 
         $scope.app = {
@@ -16,7 +16,8 @@ angular
             showHelp: false,
             isLoading: true,
             unreadActivitiesCount: 0,
-            currentUrlAbs: $location.absUrl()
+            currentUrlAbs: $location.absUrl(),
+            tabSelect: null
         };
 
         $scope.app.user = sAuth.user;
@@ -215,6 +216,13 @@ angular
                 );
         };
 
+        $scope.app.selectTab = function (tab) {
+            $scope.app.tabSelected = tab;
+            var params = angular.extend({}, $stateParams);
+            params.tab = tab;
+            $state.transitionTo($state.current.name, params, {location: true, notify: false, reload: false});
+        };
+
         $scope.app.doWidgetLogout = function () {
             sAuth
                 .logout()
@@ -291,7 +299,7 @@ angular
             $timeout(function () {
                 $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady', $state.$current.name);
 
-                var metaDataViews = ['topics.view', 'my.topics.topicId'];
+                var metaDataViews = ['topics/view', 'my/topics/topicId'];
                 var isView = false;
                 metaDataViews.forEach(function (item) {
                     if ($state.current.name.indexOf(item) > -1) {
@@ -325,7 +333,7 @@ angular
         });
 
         $rootScope.displaySearch = function () {
-            var allowedState = ['home', 'my.groups', 'my.topics', 'my.groups.groupId', 'my.topics.topicId'];
+            var allowedState = ['home', 'my/groups', 'my/topics', 'my/groups/groupId', 'my/topics/topicId'];
             if (allowedState.indexOf($state.current.name) > -1) {
                 return true;
             }

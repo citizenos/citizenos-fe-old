@@ -11,7 +11,7 @@
                     <div class="title_description">{{form.topic.title}}</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="closeThisDialog()">
+                <div id="lightbox_close" ng-click="closeThisDialog('$closeButton')">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
                         </div>
@@ -22,19 +22,19 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="topicSettingsSlider">
-                        <div class="tab_button" ng-click="selectTab('participants')" ng-class="tabSelected === 'participants' ? 'active' : ''">
+                        <div class="tab_button" ng-click="app.selectTab('participants')" ng-class="app.tabSelected === 'participants' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_MEMBERS_TAB_PARTICIPANTS">PARTICIPANTS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="selectTab('groups')" ng-class="tabSelected === 'groups' ? 'active' : ''">
+                        <div class="tab_button" ng-click="app.selectTab('groups')" ng-class="app.tabSelected === 'groups' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_MEMBERS_TAB_GROUPS">GROUPS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="selectTab('invited')" ng-class="tabSelected === 'invited' ? 'active' : ''">
+                        <div class="tab_button" ng-click="app.selectTab('invited')" ng-class="app.tabSelected === 'invited' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_MEMBERS_TAB_INVITED">INVITED</div>
                                 <div class="blue_bottom_line"></div>
@@ -47,7 +47,7 @@
 
             <div class="line lightest_line"></div>
             <!-- PARTICIPANTS USERS -->
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'participants'">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="app.tabSelected === 'participants'">
                 <div class="lightbox_section">
                     <table>
                         <tr>
@@ -149,7 +149,7 @@
             </div>
 
             <!-- GROUPS -->
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'groups'">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="app.tabSelected === 'groups'">
                 <div class="lightbox_section">
                     <table>
                         <tr>
@@ -225,7 +225,7 @@
 
             </div>
 
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="tabSelected === 'invited'">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="app.tabSelected === 'invited'">
                 <div class="lightbox_section">
                     <table>
                         <tr>

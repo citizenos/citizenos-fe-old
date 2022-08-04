@@ -98,17 +98,17 @@
                     </div>
                     <div class="tabs_rails">
                         <div class="tabs_train" slide-controller identifier="tabsTrain" dimensions>
-                            <div class="tab" ui-sref="topics/view({topicId: topic.id, commentId: null})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view' | isState)}"
+                            <div class="tab" ui-sref="topics/view({topicId: topic.id, commentId: null})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics/view' | isState)}"
                                  dimensions>
                                 <div ng-if="!app.editMode" class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
                                 <div ng-if="app.editMode" class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_EDIT">EDIT</div>
                             </div>
                             <div ng-if="topic.voteId || topic.vote && topic.vote.id" class="tab" ui-sref="topics/view/votes/view({topicId: topic.id, voteId:topic.voteId, commentId: null})"
-                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.votes.view' | isState)}" dimensions>
+                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics/view/votes/view' | isState)}" dimensions>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VOTE">Vote</div>
                             </div>
                             <div ng-if="[STATUSES.closed, STATUSES.followUp].indexOf(topic.status) > -1" class="tab" ui-sref="topics/view/followUp({topicId: topic.id, commentId: null})"
-                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics.view.followUp' | isState)}" dimensions>
+                                 ui-sref-opts="{reload: true}" ng-class="{selected: ('topics/view/followUp' | isState)}" dimensions>
                                 <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_FOLLOW_UP">Follow up</div>
                             </div>
                         </div>
@@ -186,7 +186,7 @@
 
                     <!-- Create a milestone -->
 
-                    <div class="voting_platform_wrap create_a_milestone_wrap print_never" ng-if="('topics.view.followUp' | isState) && topic.canEdit()">
+                    <div class="voting_platform_wrap create_a_milestone_wrap print_never" ng-if="('topics/view/followUp' | isState) && topic.canEdit()">
 
                         <div class="vote_casting_header">
                             <div class="vote_casting_header_section">
@@ -233,7 +233,7 @@
                     </div>
 
 
-                    <div class="milestones_in_descriptions_wrap" ng-if="('topics.view.followUp' | isState)">
+                    <div class="milestones_in_descriptions_wrap" ng-if="('topics/view/followUp' | isState)">
                         <div class="milestone_description" ng-repeat="(key, event) in topicEvents">
                             <div class="milestone_description_header">
                                 <div class="table_cell">
@@ -435,8 +435,8 @@
                                     <div class="table_cell" ng-click="sendToFollowUp('topics.view.votes.view')" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow</div>
                                 </div>
                             </div>
-                            <div class="info_box_wrap" ng-if="multipleWinners && (topic.hasVoteEndedExpired() || topic.hasVoteEnded()) && ('topics.view.votes.view' | isState) && showInfoWinners && topic.canUpdate()">
-                                <div class="info_box" ng-class="{'info_box_show': multipleWinners && (topic.hasVoteEndedExpired() || topic.hasVoteEnded()) && ('topics.view.votes.view' | isState)}">
+                            <div class="info_box_wrap" ng-if="multipleWinners && (topic.hasVoteEndedExpired() || topic.hasVoteEnded()) && ('topics/view/votes/view' | isState) && showInfoWinners && topic.canUpdate()">
+                                <div class="info_box" ng-class="{'info_box_show': multipleWinners && (topic.hasVoteEndedExpired() || topic.hasVoteEnded()) && ('topics/view/votes/view' | isState)}">
                                     <div class="info_icon">
                                         <div class="sprite sprite-icon-box-info2x"></div>
                                     </div>
@@ -927,7 +927,7 @@
 
                     </div>
 
-                    <div class="iframe_content_wrap" ng-if="!('topics.view.followUp' | isState)">
+                    <div class="iframe_content_wrap" ng-if="!('topics/view/followUp' | isState)">
 
                         <div class="topic_info print_never" ng-if="!app.editMode">
                             <div class="container_visibility" >
@@ -1041,7 +1041,7 @@
 
                         <div id="topic_content_area" class="topic_content">
                             <iframe cos-etherpad ng-if="!hideTopicContent && topic.canEdit() && app.editMode" frameborder="0" scrolling="no"
-                                    ng-class="{hidden: !topic.padUrl || ('topics.view.followUp' | isState)}"
+                                    ng-class="{hidden: !topic.padUrl || ('topics/view/followUp' | isState)}"
                                     ng-src="{{topic.padUrl}}" width="100%" height="600"></iframe>
                             <!--ng-bind-html ng-if="!hideTopicContent && !app.editMode" ng-bind-html="topic.description"></ng-bind-html -->
                             <div ng-if="!hideTopicContent && !app.editMode" cos-topic-compiler="topic.description"></div>

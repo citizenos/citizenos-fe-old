@@ -19,7 +19,8 @@
       ],
       "style-src": [
         "self",
-        "https://fonts.googleapis.com"
+        "https://fonts.googleapis.com",
+        "https://ajax.googleapis.com/ajax/libs/angular_material/1.2.1/angular-material.min.css"
       ],
       "script-src-elem": [
         "self",

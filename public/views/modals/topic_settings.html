@@ -11,7 +11,7 @@
                     <div class="title_description">{{form.topic.title}}</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="closeThisDialog()">
+                <div id="lightbox_close" ng-click="closeThisDialog('$closeButton')">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
                         </div>
@@ -22,13 +22,13 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="topicSettingsSlider">
-                        <div class="tab_button" ng-click="selectTab('settings')" ng-class="tabSelected === 'settings' ? 'active' : ''">
+                        <div class="tab_button" ng-click="app.selectTab('settings')" ng-class="app.tabSelected === 'settings' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_SETTINGS_TAB_SETTINGS">ACTIONS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-if="topic.canEdit()" ng-click="selectTab('categories')" ng-class="tabSelected === 'categories' ? 'active' : ''">
+                        <div class="tab_button" ng-if="topic.canEdit()" ng-click="app.selectTab('categories')" ng-class="app.tabSelected === 'categories' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_SETTINGS_TAB_CATEGORIES">CATEGORIES</div>
                                 <div class="blue_bottom_line"></div>
@@ -42,7 +42,7 @@
             <div class="line lightest_line"></div>
 
             <!-- SETTINGS -->
-            <div class="lightbox_content settings_section_wrap" ng-if="tabSelected === 'settings'">
+            <div class="lightbox_content settings_section_wrap" ng-if="app.tabSelected === 'settings'">
 
 
                 <div class="lightbox_section">
@@ -148,7 +148,7 @@
 
 
             <!-- CATEGORIES -->
-            <div class="lightbox_content categories_section_wrap" ng-if="tabSelected === 'categories'">
+            <div class="lightbox_content categories_section_wrap" ng-if="app.tabSelected === 'categories'">
                 <div class="lightbox_section" ng-if="topic.canEdit()">
                     <div class="tip" translate="MODALS.TOPIC_SETTINGS_TXT_ASSIGN_CATEGORIES">Assign up to 3 categories</div>
                     <div class="selected_categories">
@@ -192,7 +192,7 @@
         </div>
     </div>
 
-    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()">
+    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog('close')">
     </div>
 
 </div>
