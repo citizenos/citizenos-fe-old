@@ -1319,6 +1319,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "Przepraszamy, wylogowanie nie powiodło się. Spróbuj ponownie. Jeśli problem nie ustąpi, skontaktuj się z pomocą techniczną.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Wysłanie zaproszeń nie powiodło się: zduplikowane działanie lub podano nieprawidłowe dane",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_ERROR_NO_CERTIFICATES": "",
   "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Stronę przekierowano z powodu zmiany konta",
   "MDEDITOR_TOOLTIP_BOLD": "Pogrubienie",
   "MDEDITOR_TOOLTIP_ITALIC": "Kursywa",

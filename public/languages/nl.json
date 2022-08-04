@@ -1319,6 +1319,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "Sorry, het uitloggen is mislukt. Probeer het opnieuw. Als het probleem zich blijft voordoen, neem dan contact op met de ondersteuning.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Sturen van uitnodigingen mislukt: dubbele actie of ongeldige gegevens opgegeven",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_ERROR_NO_CERTIFICATES": "",
   "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Pagina omgeleid vanwege accountwisseling",
   "MDEDITOR_TOOLTIP_BOLD": "Vetgedrukt",
   "MDEDITOR_TOOLTIP_ITALIC": "Cursief",

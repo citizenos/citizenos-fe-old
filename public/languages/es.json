@@ -1319,6 +1319,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "No se pudo cerrar la sesión. Vuelva a intentarlo. Si el problema persiste, póngase en contacto con el servicio de asistencia.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Error al enviar invitaciones: acción duplicada o datos no válidos",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_ERROR_NO_CERTIFICATES": "",
   "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Página redirigida debido a un cambio de cuenta",
   "MDEDITOR_TOOLTIP_BOLD": "Negrita",
   "MDEDITOR_TOOLTIP_ITALIC": "Cursiva",

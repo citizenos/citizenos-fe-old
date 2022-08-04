@@ -1319,6 +1319,7 @@
   "MSG_ERROR_LOGOUT_FAILED": "Désolé, la déconnexion a échoué. Veuillez réessayer. Si le problème persiste, veuillez contacter l'assistance.",
   "MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001": "Échec de l'envoi d'invitations : action dupliquée ou données non valides fournies",
   "MSG_ERROR_POST_API_USERS_GROUPS_INVITES_USERS_40001": "@:MSG_ERROR_POST_API_USERS_TOPICS_INVITES_USERS_40001",
+  "MSG_ERROR_NO_CERTIFICATES": "",
   "MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT": "Page redirigée en raison d'un changement de compte",
   "MDEDITOR_TOOLTIP_BOLD": "Gras",
   "MDEDITOR_TOOLTIP_ITALIC": "Italique",
