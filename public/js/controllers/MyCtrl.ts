@@ -6,9 +6,11 @@ angular
     .module('citizenos')
     .controller('MyCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$q', '$log', '$timeout', 'Group', 'Topic', 'GroupMemberTopic', 'rItems', 'sAuth', function ($rootScope, $scope, $state, $stateParams, $q, $log, $timeout, Group, Topic, GroupMemberTopic, rItems, sAuth) {
         $log.debug('MyCtrl', $stateParams, rItems);
-
-        $scope.itemList = rItems;
-
+        if (rItems.name === 'GroupService') {
+            $scope.itemList = rItems.groups;
+        } else {
+            $scope.itemList = rItems;
+        }
         // All the Topic filters in the dropdown
         var filters = [
             {
@@ -182,7 +184,6 @@ angular
                     $timeout(function () {
                         if ($state.is('my/groups') || $state.is('my/topics')) {
                             var item = $scope.itemList[0];
-                            console.log(item);
                             if ($scope.isGroup(item)) {
                                 $state.go('my/groups/groupId', {
                                     groupId: item.id,

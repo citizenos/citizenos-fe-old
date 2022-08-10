@@ -191,9 +191,7 @@
                                                     <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
                                                     <div class="account_picture">
                                                         <div class="profile_image_filler">
-                                                            <div class="table_cell" cos-initials="item.values.userName">
-                                                                ML
-                                                            </div>
+                                                            <cos-initials class="table_cell" ng-model="item.values.userName"></cos-initials>
                                                             <div class="profile_circle"></div>
                                                         </div>
                                                     </div>
@@ -308,9 +306,7 @@
                                                 <div class="account_picture">
                                                     <img ng-if="topic.vote.delegation.imageUrl" ng-src="{{topic.vote.delegation.imageUrl}}">
                                                     <div ng-if="!topic.vote.delegation.imageUrl" class="profile_image_filler">
-                                                        <div class="table_cell" cos-initials="topic.vote.delegation.name | limitTo: 1">
-                                                            C
-                                                        </div>
+                                                        <cos-initials class="table_cell" ng-model="topic.vote.delegation.name" initial-limit="1"></cos-initials>
                                                         <div class="profile_circle"></div>
                                                     </div>
                                                 </div>
@@ -379,7 +375,7 @@
                             <div class="item_text">
                                 <span ng-bind="(topic.vote.endsAt | amDateFormat : 'L LT Z') || ('VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE_NONE' | translate)">12/12/2017</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link" cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE' | translate" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt"><span translate="VIEWS.MY_TOPICS_TOPICID.LNK_EDIT">edit</span></span>
+                                <cos-modal-datepicker ng-model="topic.vote.endsAt" cos-modal-title="'VIEWS.MY_TOPICS_TOPICID.LBL_VOTE_DEADLINE' | translate" cos-modal-description="topic.title" cos-modal-on-save="doSaveVoteEndsAt"></cos-modal-datepicker>
                             </div>
                         </div>
                     </div>
@@ -547,9 +543,7 @@
                             <div class="account_picture">
                                 <img ng-if="user.imageUrl" ng-src="{{user.imageUrl}}">
                                 <div ng-if="!user.imageUrl" class="profile_image_filler">
-                                    <div class="table_cell" cos-initials="user.name">
-                                        ML
-                                    </div>
+                                    <cos-initials class="table_cell" ng-model="user.name"></cos-initials>
                                     <div class="profile_circle"></div>
                                 </div>
                             </div>
@@ -615,9 +609,7 @@
                             <div class="account_picture">
                                 <img ng-if="invite.user.imageUrl" ng-src="{{invite.user.imageUrl}}">
                                 <div ng-if="!invite.user.imageUrl" class="profile_image_filler">
-                                    <div class="table_cell" cos-initials="invite.user.name">
-                                        ML
-                                    </div>
+                                    <cos-initials class="table_cell" ng-model="invite.user.name"></cos-initials>
                                     <div class="profile_circle"></div>
                                 </div>
                             </div>

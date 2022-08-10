@@ -10,7 +10,7 @@ import * as _ from 'lodash';
         .constant('cosConfig', window.__config || {});
 
     module
-        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
+        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', '$transitionsProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, $transitionsProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
             var langReg = Object.keys(cosConfig.language.list).join('|');
 
             $locationProvider.html5Mode({
@@ -24,7 +24,6 @@ import * as _ from 'lodash';
 
             $httpProvider.interceptors.push('cosHttpApiUnauthorizedInterceptor');
             $httpProvider.interceptors.push('cosHttpApiErrorInterceptor');
-
             // This is to enable resolving link to state later
             $stateProvider.decorator('parent', function (internalStateObj, parentFn) {
                 // This fn is called by StateBuilder each time a state is registered
@@ -133,7 +132,7 @@ import * as _ from 'lodash';
                     template: '<div ui-view class="full_height"></div>',
                     resolve: {
                         sTranslateResolve: ['$stateParams', '$log', 'sTranslate', sTranslateResolve],
-                        sAuthResolve: ['$q', '$log', '$state', '$cookies', '$window', 'sAuth', 'sLocation', 'ngDialog', function ($q, $log, $state, $cookies, $window, sAuth, sLocation, ngDialog) {
+                        sAuthResolve: ['$q', '$log', '$state', '$stateParams', '$cookies', '$window', 'sAuth', 'sLocation', 'ngDialog', function ($q, $log, $state, $stateParams, $cookies, $window, sAuth, sLocation, ngDialog) {
                             if (sAuth.user.loggedIn) {
                                 return $q.resolve(true);
                             }
@@ -168,10 +167,14 @@ import * as _ from 'lodash';
                                         }
                                         if (sAuth.user.loggedIn) {
                                             if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
+                                                console.log(sAuth.user);
+
+                                                console.log(sLocation.getAbsoluteUrl($window.location.pathname) + $window.location.search)
                                                 return $state.go(
                                                     'account/tos',
                                                     {
-                                                        redirectSuccess: sLocation.getAbsoluteUrl($window.location.pathname) + $window.location.search
+                                                        redirectSuccess: sLocation.getAbsoluteUrl($window.location.pathname) + $window.location.search,
+                                                        language: $stateParams.language
                                                     },
                                                     {
                                                         location: false
@@ -790,7 +793,7 @@ import * as _ from 'lodash';
                     controller: 'MyCtrl',
                     resolve: {
                         // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$location', '$q', '$window', 'Topic', 'Group', 'sAuth', 'sAuthResolve', function ($state, $stateParams, $location, $q, $window, Topic, Group, sAuth, sAuthResolve) {
+                        rItems: ['$state', '$stateParams', '$location', '$q', '$window', 'Topic', 'GroupService', 'sAuth', 'sAuthResolve', function ($state, $stateParams, $location, $q, $window, Topic, GroupService, sAuth, sAuthResolve) {
                             var filterParam = $stateParams.filter || 'all';
                             var urlParams = {
                                 prefix: null,
@@ -849,7 +852,14 @@ import * as _ from 'lodash';
                                     urlParams.showModerated = true;
                                     return Topic.query(urlParams).$promise;
                                 case 'grouped':
-                                    return Group.query().$promise;
+                                    if (GroupService.isLoading !== false) {
+                                        return GroupService.isLoading.then(function () {
+                                            console.log('READY', GroupService)
+                                            return GroupService;
+                                        });
+                                    }
+                                    return GroupService;
+
                                 default:
                                     return $q.reject();
                             }
@@ -975,9 +985,11 @@ import * as _ from 'lodash';
                     parent: 'my/groups',
                     templateUrl: '/views/my_groups_groupId.html',
                     resolve: {
-                        rGroup: ['$state', '$stateParams', '$anchorScroll', 'rItems', 'GroupInviteUser', function ($state, $stateParams, $anchorScroll, rItems, GroupInviteUser) {
+                        rGroup: ['$state', '$stateParams', '$anchorScroll', 'rItems', 'Group', 'GroupService', 'GroupInviteUser', function ($state, $stateParams, $anchorScroll, rItems, Group, GroupService, GroupInviteUser) {
                             $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
-                            var group = _.find(rItems, {id: $stateParams.groupId});
+                            console.log(rItems);
+                            var group = rItems.getGroup($stateParams.groupId);
+                            console.log(group, GroupService.groups)
 
                             if (!group) {
                                 return GroupInviteUser
@@ -1528,5 +1540,7 @@ import * as _ from 'lodash';
                 .useLocalStorage()
                 .useMissingTranslationHandlerLog()
                 .translations(cosConfig.language.debug, {});
+
+
         }]);
 })();

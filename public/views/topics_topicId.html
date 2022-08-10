@@ -387,9 +387,7 @@
                                             <div class="account_picture">
                                                 <img ng-if="topic.vote.delegation.imageUrl" ng-src="{{topic.vote.delegation.imageUrl}}">
                                                 <div ng-if="!topic.vote.delegation.imageUrl" class="profile_image_filler">
-                                                    <div class="table_cell" cos-initials="topic.vote.delegation.name | limitTo: 1">
-                                                        C
-                                                    </div>
+                                                    <cos-initials class="table_cell" ng-model="topic.vote.delegation.name" initial-limit="1"></cos-initials>
                                                     <div class="profile_circle"></div>
                                                 </div>
                                             </div>

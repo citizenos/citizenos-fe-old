@@ -5,7 +5,7 @@ import * as validator from 'validator';
 
 angular
     .module('citizenos')
-    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'ngDialog', 'sAuth', 'sSearch', 'sLocation', 'sNotification', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', function ($scope, $state, $stateParams, $timeout, $log, $location, ngDialog, sAuth, sSearch, sLocation, sNotification, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser, GroupJoin) {
+    .controller('GroupCreateSettingsCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$log', '$location', 'ngDialog', 'sAuth', 'sSearch', 'sLocation', 'sNotification', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', 'GroupService', function ($scope, $state, $stateParams, $timeout, $log, $location, ngDialog, sAuth, sSearch, sLocation, sNotification, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser, GroupJoin, GroupService) {
         $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
 
         $scope.levels = {
@@ -367,6 +367,7 @@ angular
                     function () {
                         $timeout(function () { // Avoid $digest already in progress
                             var dialogs = ngDialog.getOpenDialogs();
+                            GroupService.reload();
                             ngDialog.close(dialogs[0], '$closeButton');
                             $state.go('my/groups/groupId', {
                                 groupId: $scope.form.group.id,

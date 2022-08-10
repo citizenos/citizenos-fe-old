@@ -59,9 +59,7 @@
                                     <img ng-if="form.imageUrl" ng-src="{{form.imageUrl}}">
                                     <input type="file" id="profileImage" name="image" cos-file-upload select="switchImage" />
                                     <div class="profile_image_filler" ng-if="!form.imageUrl">
-                                        <div class="table_cell" cos-initials="form.name">
-                                            ML
-                                        </div>
+                                        <cos-initials class="table_cell" ng-model="form.name"></cos-initials>
                                         <div class="profile_circle"></div>
                                     </div>
                                 </div>

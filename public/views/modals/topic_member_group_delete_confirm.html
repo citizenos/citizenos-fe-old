@@ -23,9 +23,7 @@
                     <div class="table">
                         <div class="profile_image_cell">
                             <div class="group_circle big" ng-if="!group.imageUrl">
-                                <div class="table_cell" cos-initials="ngDialogData.group.name | limitTo: 1">
-                                    G
-                                </div>
+                                <cos-initials class="table_cell" ng-model="ngDialogData.group.name" initial-limit="1"></cos-initials>
                             </div>
                             <img ng-if="group.imageUrl" ng-src="group.imageUrl">{{group.name}}
                         </div>

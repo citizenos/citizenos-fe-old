@@ -57,9 +57,7 @@
                     <div class="header_img_wrap">
                         <img ng-if="item.imageUrl" ng-src="{{item.imageUrl}}">
                         <div ng-if="!item.imageUrl" class="group_circle small">
-                            <div class="table_cell" cos-initials="item.name | limitTo: 1">
-                                C
-                            </div>
+                            <cos-initials class="table_cell" ng-model="item.name" initial-limit="1"></cos-initials>
                         </div>
                     </div>
                     <a class="header_text" ui-sref="my/groups/groupId({groupId: item.id, filter: 'grouped'})" ng-bind="item.name+' ('+item.members.topics.count+')'">

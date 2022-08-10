@@ -28,5 +28,6 @@ import './factories';
 import './services';
 import './filters';
 import './directives';
+import './components';
 import './controllers';
 import "../styles";

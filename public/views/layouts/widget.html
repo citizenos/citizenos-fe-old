@@ -14,9 +14,7 @@
                     <div id="widget_user_image" class="account_picture">
                         <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">
                         <div class="profile_image_filler" ng-if="!app.user.imageUrl">
-                            <div class="tabel_cell" cos-initials="app.user.name">
-                                ML
-                            </div>
+                            <cos-initials class="table_cell" ng-model="app.user.name"></cos-initials>
                             <div class="profile_circle"></div>
                         </div>
                     </div>

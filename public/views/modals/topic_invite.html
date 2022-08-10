@@ -251,9 +251,7 @@
                                     <div class="account_picture">
                                         <img ng-if="member.imageUrl" src="{{member.imageUrl}}">
                                         <div class="profile_image_filler">
-                                            <div class="table_cell" cos-initials="member.name">
-                                                ML
-                                            </div>
+                                            <cos-initials class="table_cell" ng-model="member.name"></cos-initials>
                                             <div class="profile_circle"></div>
                                         </div>
                                     </div>

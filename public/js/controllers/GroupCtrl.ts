@@ -48,57 +48,7 @@ angular
 
         $scope.GroupMemberTopic = GroupMemberTopic;
         $scope.loadMemberTopicsList = function (offset, limit, order) {
-            order = order || '';
-            if (!limit) {
-                limit = ITEMS_COUNT_PER_PAGE;
-            }
-            if (!offset) {
-                offset = 0;
-            }
-
-            var search = null;
-            if ($scope.topicList.searchFilter) {
-                search = $scope.topicList.searchFilter.trim();
-            }
-
-            var statuses = ['inProgress', 'voting', 'followUp', 'closed'];
-            var searchParams = {
-                groupId: $scope.group.id,
-                limit: limit,
-                search: search,
-                offset: offset,
-                statuses: null,
-                order: null,
-                sortOrder: null
-            };
-            if (statuses.indexOf(order) > -1) {
-                searchParams.statuses = order;
-            }
-            var param = order.split('.')[0];
-            var sortOrder = order.split('.')[1];
-            var orderParams = ['status', 'pinned', 'lastActivity'];
-            if (orderParams.indexOf(param) > -1) {
-                searchParams.order = param;
-                if (sortOrder === 'descending') {
-                    searchParams.sortOrder = 'desc';
-                }
-            }
-            $scope.group.members.topics.order = order;
-            return GroupMemberTopic
-                .query(searchParams).$promise
-                .then(function (topics) {
-                    $scope.group.members.topics.rows = topics;
-                    $scope.group.members.topics.count = topics.length;
-
-                    if (topics.length) {
-                        $scope.group.members.topics.count = topics[0].countTotal;
-                    }
-
-                    $scope.group.members.topics.totalPages = Math.ceil($scope.group.members.topics.count / limit);
-                    $scope.group.members.topics.page = Math.ceil((offset + limit) / limit);
-
-                    return topics;
-                });
+            $scope.group.getMemberTopics(offset, limit, order, $scope.topicList.searchFilter);
         };
 
         $scope.loadMemberTopicsPage = function (page) {
@@ -107,7 +57,8 @@ angular
         };
 
         $scope.loadMemberUsersList = function (offset, limit) {
-            if (!limit) {
+            $scope.group.getMemberUsers(offset, limit || ITEMS_COUNT_PER_PAGE, null);
+        /*    if (!limit) {
                 limit = ITEMS_COUNT_PER_PAGE;
             }
             if (!offset) {
@@ -137,7 +88,7 @@ angular
                     $scope.group.members.users.totalPages = Math.ceil($scope.group.members.users.count / limit);
                     $scope.group.members.users.page = Math.ceil((offset + limit) / limit);
                     return users;
-                });
+                });*/
         };
 
         $scope.loadInviteUserList = function (offset, limit) {
@@ -200,12 +151,9 @@ angular
         };
 
         $scope.doShowMemberTopicList = function () {
-            $scope.loadMemberTopicsList()
-                .then(function () {
-                    if ($scope.group.members.topics.count) {
-                        $scope.topicList.isVisible = true;
-                    }
-                });
+            $scope.loadMemberTopicsList();
+
+            $scope.topicList.isVisible = true;
         };
 
         $scope.doToggleMemberTopicList = function () {
@@ -436,36 +384,6 @@ angular
                             });
                     }, angular.noop);
             }
-        };
-
-        $scope.doDeleteInviteUser = function (groupInviteUser) {
-            ngDialog
-                .openConfirm({
-                    template: '/views/modals/group_invite_user_delete_confirm.html',
-                    data: {
-                        user: groupInviteUser.user
-                    }
-                })
-                .then(function (isAll) {
-                    var promisesToResolve = [];
-
-                    // Delete all
-                    if (isAll) {
-                        $scope.group.invites.users._rows.forEach(function (invite) {
-                            if (invite.user.id === groupInviteUser.user.id) {
-                                promisesToResolve.push(invite.$delete({groupId: $scope.group.id}));
-                            }
-                        });
-                    } else { // Delete single
-                        promisesToResolve.push(groupInviteUser.$delete({groupId: $scope.group.id}));
-                    }
-
-                    $q
-                        .all(promisesToResolve)
-                        .then(function () {
-                            return $scope.loadInviteUserList();
-                        });
-                }, angular.noop);
         };
 
         $scope.doLeaveGroup = function () {

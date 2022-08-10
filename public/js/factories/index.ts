@@ -5,6 +5,7 @@ import './GroupJoin';
 import './GroupMemberTopic';
 import './GroupMemberUser';
 import './Group';
+import './GroupService';
 import './Mention';
 import './TopicAttachment';
 import './TopicComment';

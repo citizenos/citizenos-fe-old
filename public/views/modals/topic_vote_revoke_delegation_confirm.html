@@ -27,9 +27,7 @@
                                 <div class="account_picture">
                                     <img ng-if="ngDialogData.user.imageUrl" ng-src="{{ngDialogData.user.imageUrl}}">
                                     <div ng-if="!ngDialogData.user.imageUrl" class="profile_image_filler">
-                                        <div class="table_cell" cos-initials="ngDialogData.user.name">
-                                            ML
-                                        </div>
+                                        <cos-initials class="table_cell" ng-model="ngDialogData.user.name"></cos-initials>
                                         <div class="profile_circle"></div>
                                     </div>
                                 </div>
