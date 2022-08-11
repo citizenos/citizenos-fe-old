@@ -55,7 +55,7 @@
                                     <div ng-if="::!comment.creator.email" class="classic_dropdown borderless_dropdown">
 
                                         <div class="dropdown_selection">
-                                            <div class="dropdown_text data_item">
+                                            <div class="dropdown_text data_item bold">
                                                 {{::comment.creator.name}}
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@
                                     <div cos-dropdown ng-if="::comment.creator.email" class="classic_dropdown borderless_dropdown">
 
                                         <div class="dropdown_selection">
-                                            <div class="dropdown_text data_item">
+                                            <div class="dropdown_text data_item bold">
                                                 {{::comment.creator.name}}
                                             </div>
 
@@ -380,11 +380,11 @@
                             </div>
                             <div class="link_wrap" ng-if="comment.replies.rows.length" ng-click="comment.showReplies = !comment.showReplies">
                                 <div class="table_cell">
-                                    <div ng-if="!comment.showReplies" class="blue_link black_text" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_SHOW_REPLIES"
+                                    <div ng-if="!comment.showReplies" class="blue_link bold" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_SHOW_REPLIES"
                                          translate-values="{count: comment.replies.rows.length}">
                                         Show Replies
                                     </div>
-                                    <div ng-if="comment.showReplies" class="blue_link black_text" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_HIDE_REPLIES">
+                                    <div ng-if="comment.showReplies" class="blue_link bold" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_HIDE_REPLIES">
                                         Hide Replies
                                     </div>
                                 </div>
@@ -433,7 +433,7 @@
                                     <div cos-dropdown class="classic_dropdown borderless_dropdown">
 
                                         <div class="dropdown_selection">
-                                            <div class="dropdown_text data_item">
+                                            <div class="dropdown_text data_item bold">
                                                 {{reply.creator.name}}
                                             </div>
 
@@ -577,10 +577,9 @@
                         </div>
                         <!-- END REPLY EDITS -->
                         <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
-                            <a ng-if="!reply.deletedAt && reply.isVisible()" href="#" class="replys_reply"
-                               ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
-                               ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</a>
-                            <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text" ng-bind-html="reply.text | markdown"></div>
+                            <div ng-if="!reply.deletedAt && reply.isVisible()" class="argument_text"><a ng-if="!reply.deletedAt && reply.isVisible()" href="#" class="replys_reply"
+                                ui-sref="topics.view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
+                                ng-click="goToParentComment(comment, reply.parent, $event)">@{{getParentAuthor(comment, reply.parent.id)}}</a><span class="reply_content" ng-bind-html="reply.text | markdown"></span></div>
                             <div ng-if="!reply.isVisible()" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY"
                             translate-values="{usersFullName: comment.deletedBy.name}">This comment has been deleted by {{reply.deletedBy.name}}</div>
                             <div class="argument_overlay">
