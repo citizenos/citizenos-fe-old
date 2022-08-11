@@ -257,7 +257,7 @@
     "PASSWORD_RESET_BTN_RESET_PASSWORD": "Obnovte si heslo",
     "PASSWORD_RESET_LNK_CANCEL": "@:LNK_CANCEL",
     "SIGN_UP_HEADING": "Zaregistrujte si bezplatný účet",
-    "SIGN_UP_HEADING_DESCRIPTION": "Zaregistrujte si teraz bezplatný účet, aby ste získali prístup do Citizen OS: platformy pre asynchrónne stretnutia a občiansku participáciu.",
+    "SIGN_UP_HEADING_DESCRIPTION": "Create an account to get free unlimited access to Citizen OS platform",
     "SIGN_UP_PLACEHOLDER_NAME": "@:MODALS.MY_ACCOUNT_PLACEHOLDER_NAME",
     "SIGN_UP_PLACEHOLDER_COMPANY": "@:MODALS.MY_ACCOUNT_PLACEHOLDER_COMPANY",
     "SIGN_UP_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
