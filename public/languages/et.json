@@ -257,7 +257,7 @@
     "PASSWORD_RESET_BTN_RESET_PASSWORD": "Muuda salasõna",
     "PASSWORD_RESET_LNK_CANCEL": "@:LNK_CANCEL",
     "SIGN_UP_HEADING": "Uue konto registreerimine",
-    "SIGN_UP_HEADING_DESCRIPTION": "Registreeri tasuta konto kohe, et saada juurdepääs Citizen OS-ile – tasuta platvormile asünkroonsete koosolekute läbiviimiseks ja kodanike kaasamiseks.",
+    "SIGN_UP_HEADING_DESCRIPTION": "Create an account to get free unlimited access to Citizen OS platform",
     "SIGN_UP_PLACEHOLDER_NAME": "@:MODALS.MY_ACCOUNT_PLACEHOLDER_NAME",
     "SIGN_UP_PLACEHOLDER_COMPANY": "@:MODALS.MY_ACCOUNT_PLACEHOLDER_COMPANY",
     "SIGN_UP_PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
