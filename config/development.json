@@ -16,7 +16,8 @@
         "self",
         "https://dev.stats.citizenos.com",
         "https://cdn.crowdin.com",
-        "https://apis.google.com"
+        "https://apis.google.com",
+        "'unsafe-eval'"
       ],
       "style-src": [
         "self",
@@ -40,6 +41,7 @@
         "https://citizenos-citizenos-api-test.herokuapp.com",
         "https://id-test.citizenos.com",
         "https://sentry.io",
+        "https://cdn.jsdelivr.net/",
         "https://graph.microsoft.com"
       ],
       "base-uri": [

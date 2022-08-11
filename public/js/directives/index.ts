@@ -1,16 +1,11 @@
 import './cosDisabled';
 import './cosDropdown';
-import './cosEtherpad';
-import './cosFileUpload';
 import './cosInlineComment';
-import './cosInput';
 import './cosModal';
-import './cosPagination';
 import './cosRequired';
 import './cosResize';
 import './cosScroll';
 import './cosStyles';
-import './cosToggle';
 import './cosTopicCompiler';
 import './cosTouchSlider';
 import './cosViewInput';

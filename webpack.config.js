@@ -1,12 +1,15 @@
 const path = require('path');
+const webpack = require('webpack');
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: "./public/js/main.ts",
     watch: true,
+    bail: false,
     output: {
         path: path.resolve(__dirname, 'public', 'js'),
-        compareBeforeEmit: false,
+        compareBeforeEmit: true,
         filename: "bundle.js"
     },
     optimization: {
@@ -47,5 +50,12 @@ module.exports = {
           filename: "[name].css",
           chunkFilename: "[id].css",
         }),
+        new webpack.ContextReplacementPlugin(
+            // if you have anymore problems tweet me at @gdi2290
+            // The (\\|\/) piece accounts for path separators for Windows and MacOS
+            /(.+)?angular(\\|\/)core(.+)?/,
+            path.join(__dirname, 'src'), // location of your src
+            {} // a map of your routes
+        )
     ],
 }

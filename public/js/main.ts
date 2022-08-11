@@ -31,3 +31,30 @@ import './directives';
 import './components';
 import './controllers';
 import "../styles";
+
+import './polyfills.ts';
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { UpgradeModule } from '@angular/upgrade/static';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+@NgModule({
+    imports: [
+        BrowserModule,
+        UpgradeModule
+    ]
+})
+
+export class AppModule {
+    ngDoBootstrap () {
+    }
+};
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+    .then(module => {
+        console.log('ANGULAR DUALBOOT');
+        const upgrade = module.injector.get(UpgradeModule) as UpgradeModule;
+        upgrade.bootstrap(document.body.parentElement, ['citizenos']);
+    })
+    .catch(err => console.error(err));

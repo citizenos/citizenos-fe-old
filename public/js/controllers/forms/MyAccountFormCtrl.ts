@@ -1,5 +1,6 @@
 'use strict';
 import * as angular from 'angular';
+import * as $ from 'jquery';
 
 angular
     .module('citizenos')
@@ -22,7 +23,9 @@ angular
 
         $scope.imageFile = null;
         angular.extend($scope.form, sAuth.user);
-
+        if (!$scope.form.preferences.showInSearch) {
+            $scope.form.preferences.showInSearch = false;
+        }
         $scope.doUpdateProfile = function () {
             $scope.errors = null;
 
@@ -60,16 +63,18 @@ angular
 
             } else {
                 sUser
-                    .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, $scope.form.imageUrl, $scope.form.preferences, null, null, $scope.form.newPassword)
+                    .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, $scope.form.imageUrl, $scope.form.preferences, null, sAuth.user.termsVersion, $scope.form.newPassword)
                     .then(success, error);
             }
         };
 
         $scope.uploadImage = function () {
-            $document[0].getElementById('profileImage').click();
+            console.log($document[0].getElementById('profileImage'))
+            $($document[0].getElementById('profileImage')).find('input').click();
         };
 
         $scope.switchImage = function (files) {
+            console.log('switchImage', files);
             $scope.imageFile = files[0];
             var reader = new FileReader();
             reader.onload = (function () {

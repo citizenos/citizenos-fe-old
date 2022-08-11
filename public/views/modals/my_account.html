@@ -57,7 +57,7 @@
                                 <div class="account_picture">
                                     <!-- NB Remember to use image that has 2x size, meaning 160x160px for this <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">-->
                                     <img ng-if="form.imageUrl" ng-src="{{form.imageUrl}}">
-                                    <input type="file" id="profileImage" name="image" cos-file-upload select="switchImage" />
+                                    <cos-file-upload id="profileImage" select="switchImage"></cos-file-upload>
                                     <div class="profile_image_filler" ng-if="!form.imageUrl">
                                         <cos-initials class="table_cell" ng-model="form.name"></cos-initials>
                                         <div class="profile_circle"></div>
@@ -122,8 +122,8 @@
                             </div>
 
                             <div class="settings_cell">
-                                <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
-                                        ng-model="form.preferences.showInSearch"></div>
+                                <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                        model="form.preferences.showInSearch"></cos-toggle>
                             </div>
                         </div>
                     </div>

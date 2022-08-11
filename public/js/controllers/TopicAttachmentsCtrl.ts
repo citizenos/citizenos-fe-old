@@ -1,5 +1,6 @@
 'use strict';
 import * as angular from 'angular';
+import * as $ from 'jquery';
 
 angular
     .module('citizenos')
@@ -23,7 +24,7 @@ angular
         $scope.init();
 
         $scope.uploadFile = function () {
-            $document[0].getElementById('addFile').click();
+            $($document[0].getElementById('addFile')).find('input').click();
         };
 
         $scope.selectFile = function (files) {

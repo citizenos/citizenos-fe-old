@@ -283,6 +283,7 @@ import * as _ from 'lodash';
                 })
                 .state('account/tos', {
                     url: '/tos?redirectSuccess',
+                    parent: 'main',
                     controller: ['$scope', 'ngDialog', function ($scope, ngDialog) {
                         ngDialog.open({
                             template: '/views/modals/privacy_policy.html',

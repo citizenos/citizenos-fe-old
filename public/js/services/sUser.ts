@@ -23,8 +23,8 @@ angular
                 imageUrl: imageUrl,
                 language: language,
                 preferences: preferences,
-                termsVersion: null,
-                newPassword: null
+                termsVersion: termsVersion,
+                newPassword: newPassword
             };
 
             if (name) {
@@ -35,14 +35,14 @@ angular
                 userData.password = password;
             }
 
-            if (termsVersion) {
-                userData.termsVersion = termsVersion;
+            if (!termsVersion) {
+                delete userData.termsVersion;
             }
 
-            if (newPassword) {
+            if (!newPassword) {
                 userData.newPassword = newPassword;
             }
-
+            console.log('USER DATA', userData);
             return $http.put(path, userData);
         };
 

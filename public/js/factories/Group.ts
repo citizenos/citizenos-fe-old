@@ -184,7 +184,6 @@ angular
             return GroupMemberTopic
                 .query(searchParams).$promise
                 .then(function (topics) {
-                    console.log(topics);
                     group.membertopics.topics = topics;
                     group.membertopics.count = topics.length;
 

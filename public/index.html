@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="citizenos" ng-strict-di="true" lang="{{app.language}}" ng-controller="AppCtrl" ng-csp>
+<html ng-strict-di="true" lang="{{app.language}}" ng-controller="AppCtrl" ng-csp>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
@@ -18,7 +18,6 @@
 
     <script src="settings.js?v=39d97168bcb6ef4617eeb79bc99f4f96"></script>
     <script src= "js/libs/marked.min.js?v=7fef42e249905a4d04267694cf65e7e4"></script>
-    <script src="js/bundle.js?v=e10879057613c5f64e5884d834b8cb95"></script>
     <script src="page.js?v=f8396d0396f865d7b614bba08f08fd31" data-name="TokenSigning"></script>
 
     <meta name="theme-color" content="#1a1a1a">
@@ -38,7 +37,6 @@
 </head>
 
 <body ng-class="app.topics_settings || app.showSearchFiltersMobile || app.showSearchResults ? 'body_fixed' : 'body_not_fixed'" cos-resize>
-    <div ng-app="viewTemplateCache"></div>
     <!-- INFO BAR - base.scss -->
     <div class="info_bar_wrap">
         <!-- ORANGE MESSAGE for TESTING ENV NOTIFICATION -->
@@ -112,8 +110,8 @@
     <!-- Cant have ui-view without a wrapper element. Search results depend on the outer element height, thus the style -->
     <div ui-view class="full_height"></div>
     <div ng-include="'views/widgets/help.html'"></div>
-
     <script src="js/home.js?v=cc26daed497d0cf8115283abb028363d"></script>
     <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
+    <script src="js/bundle.js?v=e10879057613c5f64e5884d834b8cb95"></script>
 </body>
 </html>

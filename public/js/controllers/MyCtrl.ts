@@ -184,6 +184,7 @@ angular
                     $timeout(function () {
                         if ($state.is('my/groups') || $state.is('my/topics')) {
                             var item = $scope.itemList[0];
+                            console.log(item);
                             if ($scope.isGroup(item)) {
                                 $state.go('my/groups/groupId', {
                                     groupId: item.id,
