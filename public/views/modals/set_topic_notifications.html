@@ -67,22 +67,22 @@
                                             <span translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_ALL_ACTIONS">All actions in this topic</span>
                                         </label>
                                         <label class="checkcontainer">
-                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.Topic && settings.preferences.TopicReport" ng-click="selectOption(settings.preferences.Topic);selectOption(settings.preferences.TopicReport);">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.Topic && settings.preferences.TopicReport" ng-click="selectOption('Topic');selectOption('TopicReport');">
                                             <span class="option_checkbox"></span>
                                             <span translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_UPDATES">Topic updates (content, status, categories etc.)</span>
                                         </label>
                                         <label class="checkcontainer">
-                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicComment && settings.preferences.CommentVote" ng-click="selectOption(settings.preferences.TopicComment);selectOption(settings.preferences.CommentVote);">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicComment && settings.preferences.CommentVote" ng-click="selectOption('TopicComment');selectOption('CommentVote');">
                                             <span class="option_checkbox"></span>
                                             <span translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_DISCUSSION">Topic discussion (arguments ,replies)</span>
                                         </label>
                                         <label class="checkcontainer">
-                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicVoteList" ng-click="selectOption(settings.preferences.TopicVoteList)">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicVoteList" ng-click="selectOption('TopicVoteList')">
                                             <span class="option_checkbox"></span>
                                             <span translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_VOTING">Voting</span>
                                         </label>
                                         <label class="checkcontainer">
-                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicEvent" ng-click="selectOption(settings.preferences.TopicEvent)">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicEvent" ng-click="selectOption('TopicEvent')">
                                             <span class="option_checkbox"></span>
                                             <span translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_FOLLOW_UP">Follow up events</span>
                                         </label>

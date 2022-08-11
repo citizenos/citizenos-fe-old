@@ -39,7 +39,6 @@ angular
 
         $scope.app.helpBubbleAnimate = function () {
             var bubble = angular.element( document.querySelector( '#help_bubble' ) );
-            console.log(bubble);
             bubble.addClass('animate');
             $timeout(function () {
                 bubble.removeClass('animate');
@@ -213,8 +212,8 @@ angular
                         };
 
                         $scope.selectOption = function (option) {
-                            option = !option;
-                            if (option === true) {
+                            $scope.settings.preferences[option] = !$scope.settings.preferences[option];
+                            if ($scope.settings.preferences[option] === true) {
                                 $scope.settings.allowNotifications = true;
                             }
                         };
@@ -248,14 +247,12 @@ angular
         };
 
         $scope.app.removeTopicNotifications = function (topicId, setting) {
-            console.log(topicId);
             return new Promise (function (resolve, reject) {
                 return ngDialog
                 .openConfirm({
                     template: '/views/modals/remove_topic_notifications_confirm.html',
                 })
                 .then(function (data) {
-                    console.log(data);
                     return sTopic.deleteTopicNotificationSettings(topicId)
                         .then(resolve);
                 }, function () {
