@@ -1,11 +1,12 @@
 <!-- MOBILE HEADER NAV -->
 <div id="mobile_header" ng-if="wWidth <= 1024">
     <div ng-include="'views/default/nav_mobile.html'"></div>
+    <nav-mobile></nav-mobile>
 </div>
 
 <!-- NAV -->
 <nav ng-class="app.showNav ? 'nav_is_open' : ''" ng-click="app.showSearchResults = false" ng-swipe-right="app.showNav = false">
-    <div ng-include="'views/default/nav.html'"></div>
+    <nav></nav>
 </nav>
 
 <!-- CONTENT -->

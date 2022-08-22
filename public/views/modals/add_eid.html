@@ -1,6 +1,6 @@
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox">
-    <div id="lightbox" class="add_eid delete_topic wide_lightbox my_account_lightbox" ng-controller="AddEidCtrl">
+    <div id="lightbox" class="add_eid delete_topic wide_lightbox my_account_lightbox">
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="delete_info_text_wrap section_with_padding">
-                        <div ng-if="authMethodsAvailable.mobiilId || authMethodsAvailable.idCard" id="id_card" ng-click="doConnectEsteId()" class="social_button">
+                        <div ng-if="$ctrl.authMethodsAvailable.mobiilId || $ctrl.authMethodsAvailable.idCard" id="id_card" ng-click="$ctrl.doConnectEsteId()" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-id2x"></div>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
 
-                        <div ng-if="authMethodsAvailable.smartId" id="smart_id" ng-click="doConnectSmartId()" class="social_button">
+                        <div ng-if="$ctrl.authMethodsAvailable.smartId" id="smart_id" ng-click="$ctrl.doConnectSmartId()" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-smartid2x"></div>
@@ -79,8 +79,8 @@
 
                 <div class="lightbox_section">
                     <div class="footer_button_wrap right">
-                        <div class="blue_link" translate="MODALS.ADD_EID_LNK_BACK" ng-click="back()">Back</div>
-                        <div class="blue_button" ng-click="closeThisDialog()" ng-disabled="myAccountForm.$invalid" class="blue_button"
+                        <div class="blue_link" translate="MODALS.ADD_EID_LNK_BACK" ng-click="$ctrl.back()">Back</div>
+                        <div class="blue_button" ng-click="closeThisDialog()" ng-disabled="$ctrl.myAccountForm.$invalid" class="blue_button"
                         translate="MODALS.ADD_EID_BTN_CONTINUE" >Continue without connecting</div>
                     </div>
                 </div>
@@ -88,6 +88,6 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="logout();closeThisDialog();"></div>
+    <div id="close_lightbox" ng-click="$ctrl.logout();closeThisDialog();"></div>
 
 </div>

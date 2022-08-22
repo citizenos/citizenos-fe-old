@@ -2,57 +2,96 @@
 import * as angular from 'angular';
 import * as _ from 'lodash';
 
-angular
-    .module('citizenos')
-    .controller('LoginFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$window', '$document', '$interval', 'cosConfig', 'ngDialog', 'sAuth', 'sLocation', 'sUser', 'sNotification', function ($scope, $log, $state, $stateParams, $window, $document, $interval, cosConfig, ngDialog, sAuth, sLocation, sUser, sNotification) {
-        $log.debug('LoginFormCtrl');
+let loginFormComponent =  {
+    selector: 'loginForm',
+    templateUrl: '../../../views/modals/login.html',
+    bindings: {
+        ngDialogData: '='
+    },
+    controller: ['$log', '$state', '$stateParams', '$window', '$document', '$interval', 'cosConfig', 'ngDialog', 'sAuth', 'sLocation', 'sUser', 'sNotification', 'AppService', class LoginFormController {
+        private $log;
+        private $state;
+        private $stateParams;
+        private $window;
+        private $document;
+        private $interval;
+        private ngDialog;
+        private sAuth;
+        private sLocation;
+        private sUser;
+        private sNotification;
+        public app;
 
-        $scope.LOGIN_PARTNERS = {
+        public LOGIN_PARTNERS = {
             facebook: 'facebook',
             google: 'google'
         };
-        $scope.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
-        $scope.isFormEmailProvided = $scope.$parent.ngDialogData && $scope.$parent.ngDialogData.email;
-        $scope.linkRegister = sLocation.getAbsoluteUrl('/account/signup');
+        public authMethodsAvailable;
+        public isFormEmailProvided;
+        private ngDialogData;
+        private linkRegister;
+        private form;
+        private errors;
 
-        var init = function () {
-            $scope.form = {
-                email: $scope.isFormEmailProvided ? $scope.$parent.ngDialogData.email : null,
-                password: null
-            };
-            $scope.app.showNav = false; // Hide mobile navigation when login flow is started
-        };
-        init();
-        angular.extend($scope.form, $stateParams);
+        constructor ($log, $state, $stateParams, $window, $document, $interval, cosConfig, ngDialog, sAuth, sLocation, sUser, sNotification, AppService) {
+            console.log('LoginController')
+            this.app = AppService;
+            this.$log = $log;
+            this.$state = $state;
+            this.$stateParams = $stateParams;
+            this.$window = $window;
+            this.$document = $document;
+            this.$interval = $interval;
+            this.ngDialog = ngDialog;
+            this.sAuth = sAuth;
+            this.sLocation = sLocation;
+            this.sUser = sUser;
+            this.sNotification = sNotification;
 
-        // UserConnections to know which auth methods to show - https://github.com/citizenos/citizenos-fe/issues/657
-        var userConnections = $scope.$parent.ngDialogData ? $scope.$parent.ngDialogData.userConnections : null;
-        if (userConnections) {
-            var userAuthMethods = [];
+            this.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
+            this.isFormEmailProvided = this.ngDialogData && this.ngDialogData.email;
+            this.linkRegister = sLocation.getAbsoluteUrl('/account/signup');
 
-            if (userConnections.rows.length) {
-                // Check out from the UserConnection.connectionId map which authentication methods apply
-                userConnections.rows.forEach(function (val) {
-                    userAuthMethods = userAuthMethods.concat(sUser.USER_CONNECTION_IDS_TO_AUTH_METHOD_MAP[val.connectionId]);
+            this.init();
+            angular.extend(this.form, $stateParams);
+
+            // UserConnections to know which auth methods to show - https://github.com/citizenos/citizenos-fe/issues/657
+            const userConnections = this.ngDialogData ? this.ngDialogData.userConnections : null;
+            if (userConnections) {
+                let userAuthMethods = [];
+
+                if (userConnections.rows.length) {
+                    // Check out from the UserConnection.connectionId map which authentication methods apply
+                    userConnections.rows.forEach(function (val) {
+                        userAuthMethods = userAuthMethods.concat(sUser.USER_CONNECTION_IDS_TO_AUTH_METHOD_MAP[val.connectionId]);
+                    });
+
+                    // Reduce to unique values
+                    userAuthMethods = userAuthMethods.filter(function (val, i, res) {
+                        return res.indexOf(val) === i;
+                    });
+                } else {
+                    // IF no UserConnections is returned, that is a for an unregistered user, show 'citizenos' auth method.
+                    userAuthMethods.push('citizenos');
+                }
+
+                // Initially the authMethods that are configured are all available, modify the list so that only those User has available are enabled
+                Object.keys(this.authMethodsAvailable).forEach(function (val) {
+                    this.authMethodsAvailable[val] = userAuthMethods.indexOf(val) > -1;
                 });
-
-                // Reduce to unique values
-                userAuthMethods = userAuthMethods.filter(function (val, i, res) {
-                    return res.indexOf(val) === i;
-                });
-            } else {
-                // IF no UserConnections is returned, that is a for an unregistered user, show 'citizenos' auth method.
-                userAuthMethods.push('citizenos');
             }
-
-            // Initially the authMethods that are configured are all available, modify the list so that only those User has available are enabled
-            Object.keys($scope.authMethodsAvailable).forEach(function (val) {
-                $scope.authMethodsAvailable[val] = userAuthMethods.indexOf(val) > -1;
-            });
         }
 
-        var popupCenter = function (url, title, w, h) {
-            var userAgent = navigator.userAgent,
+        init () {
+            this.form = {
+                email: this.isFormEmailProvided ? this.ngDialogData.email : null,
+                password: null
+            };
+            this.app.showNav = false; // Hide mobile navigation when login flow is started
+        }
+
+        popupCenter (url, title, w, h) {
+            const userAgent = navigator.userAgent,
                 mobile = function () {
                     return /\b(iPhone|iP[ao]d)/.test(userAgent) ||
                         /\b(iP[ao]d)/.test(userAgent) ||
@@ -88,48 +127,47 @@ angular
             return newWindow;
         };
 
-        $scope.doLogin = function () {
-            $log.debug('LoginFormCtrl.doLogin()');
+        doLogin () {
+            this.$log.debug('LoginFormCtrl.doLogin()');
 
-            $scope.errors = null;
-
-            var success = function (response) {
-                if ($state.is('partners.consent') || $state.is('partners.login')) {
-                    return $window.location.href = sLocation.getAbsoluteUrlApi('/api/auth/openid/authorize');
+            this.errors = null;
+            const success = (response) => {
+                if (this.$state.is('partners.consent') || this.$state.is('partners.login')) {
+                    return this.$window.location.href = this.sLocation.getAbsoluteUrlApi('/api/auth/openid/authorize');
                 } else {
-                    if ($stateParams.redirectSuccess) {
-                        $window.location.href = $stateParams.redirectSuccess;
+                    if (this.$stateParams.redirectSuccess) {
+                        this.$window.location.href = this.$stateParams.redirectSuccess;
                     } else {
-                        $window.location.reload();
+                        this.$window.location.reload();
                     }
                 }
             };
 
             var error = function (response) {
-                var status = response.data.status;
+                const status = response.data.status;
                 console.log('ERROR', status);
 
                 switch (status.code) {
                     case 40001: // Account does not exist
-                        sNotification.removeAll();
-                        $scope.errors = {accoundDoesNotExist: true};
+                        this.sNotification.removeAll();
+                        this.errors = {accoundDoesNotExist: true};
                         break;
                     default:
-                        $scope.errors = response.data.errors;
+                        this.errors = response.data.errors;
                 }
             };
 
-            sAuth
-                .login($scope.form.email, $scope.form.password)
+            this.sAuth
+                .login(this.form.email, this.form.password)
                 .then(success, error);
         };
 
-        $scope.doLoginPartner = function (partnerId) {
+        doLoginPartner (partnerId) {
             // All /widgets/* require pop-up login flow as they are in the iframe
-            if ($state.includes('widgets')) {
-                $scope.doLoginPartnerPopup(partnerId);
+            if (this.$state.includes('widgets')) {
+                this.doLoginPartnerPopup(partnerId);
             } else {
-                $scope.doLoginPartnerNoPopup(partnerId);
+                this.doLoginPartnerNoPopup(partnerId);
             }
         };
 
@@ -138,81 +176,80 @@ angular
          *
          * @param {string} partnerId String representing the partner. For ex "facebook", "google".
          */
-        $scope.doLoginPartnerPopup = function (partnerId) {
-            if (_.values($scope.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
-                throw new Error(`LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', ${partnerId}`);
+        doLoginPartnerPopup (partnerId) {
+            if (_.values(this.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
+                throw new Error(`LoginFormCtrl.doLoginPartner() Invalid parameter for partnerId ${partnerId}`);
             }
 
-            var url = sLocation.getAbsoluteUrlApi(
+            const url = this.sLocation.getAbsoluteUrlApi(
                 '/api/auth/:partnerId',
                 {
                     partnerId: partnerId
                 },
                 {
-                    redirectSuccess: sLocation.getAbsoluteUrl('/auth/callback'),
+                    redirectSuccess: this.sLocation.getAbsoluteUrl('/auth/callback'),
                     display: 'popup'
                 }
             );
 
-            var redirectSuccess = $stateParams.redirectSuccess || sLocation.currentUrl(); // Final url to land after successful login
+            const redirectSuccess = this.$stateParams.redirectSuccess || this.sLocation.currentUrl(); // Final url to land after successful login
 
-            var loginWindow = popupCenter(url, 'CitizenOS Partner Login', 470, 500);
+            const loginWindow = this.popupCenter(url, 'CitizenOS Partner Login', 470, 500);
 
-            if ($document[0].documentMode || $window.navigator.userAgent.indexOf('Edge') > -1) {
-                var popupCheck = $interval(function () {
+            if (this.$document[0].documentMode || this.$window.navigator.userAgent.indexOf('Edge') > -1) {
+                const popupCheck = this.$interval(function () {
                     if (loginWindow.closed) {
-                        $interval.cancel(popupCheck);
-                        $window.focus();
-                        sAuth
+                        this.$interval.cancel(popupCheck);
+                        this.$window.focus();
+                        this.sAuth
                             .status()
                             .then(function (user) {
                                 if (user) {
-                                    $window.location.href = redirectSuccess;
+                                    this.$window.location.href = redirectSuccess;
                                 }
                             });
                     }
                 }, 250);
             }
 
-            var messageHandler = function (message) {
+            const messageHandler = (message) => {
                 loginWindow.close();
-                $window.focus();
-                $window.location.href = redirectSuccess;
+                this.$window.focus();
+                this.$window.location.href = redirectSuccess;
             };
-            $window.addEventListener('message', messageHandler, false);
+            this.$window.addEventListener('message', messageHandler, false);
         };
-
 
         // No-popup partner login version. Used for /partners/{partnerId}/login pages where the popup version would add too much extra complexity with the redirect urls.
         // Popup version was initially needed only for the widget logins. Maybe worth making an exception for the widgets and revert everything else to normal.
-        $scope.doLoginPartnerNoPopup = function (partnerId) {
-            if (_.values($scope.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
-                throw new Error(`LoginFormCtrl.doLoginPartner()', 'Invalid parameter for partnerId', ${partnerId}`);
+        doLoginPartnerNoPopup (partnerId) {
+            if (_.values(this.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
+                throw new Error(`LoginFormCtrl.doLoginPartner() Invalid parameter for partnerId ${partnerId}`);
             }
 
-            var url = sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', {partnerId: partnerId});
-            if ($stateParams.redirectSuccess) {
-                url += '?redirectSuccess=' + encodeURIComponent($stateParams.redirectSuccess);
+            var url = this.sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', {partnerId: partnerId});
+            if (this.$stateParams.redirectSuccess) {
+                url += '?redirectSuccess=' + encodeURIComponent(this.$stateParams.redirectSuccess);
             } else {
-                var redirectSuccess = sLocation.currentUrl();
+                var redirectSuccess = this.sLocation.currentUrl();
                 url += '?redirectSuccess=' + redirectSuccess + '?'; // HACK: + '?' avoids digest loop on Angular side for Google callbacks.
             }
 
-            $window.location.href = url;
+            this.$window.location.href = url;
         };
 
         /**
          * Login with Estonian ID-Card
          */
-        $scope.doLoginEsteId = function () {
-            ngDialog
+         doLoginEsteId () {
+            this.ngDialog
                 .open({
                     template: '/views/modals/login_esteid.html',
                     controller: 'LoginEsteIdFormCtrl',
-                    scope: $scope, // Pass on $scope so that I can access AppCtrl
+                    scope: this, // Pass on $scope so that I can access AppCtrl
                     data: {
-                        authMethodsAvailable: $scope.authMethodsAvailable,
-                        userId: $stateParams.userId
+                        authMethodsAvailable: this.authMethodsAvailable,
+                        userId: this.$stateParams.userId
                     }
                 });
         };
@@ -220,15 +257,15 @@ angular
         /**
          * Login with Smart-ID
          */
-        $scope.doLoginSmartId = function () {
-            ngDialog
+        doLoginSmartId () {
+            this.ngDialog
                 .open({
                     controller: 'LoginSmartIdFormCtrl',
                     template: '/views/modals/login_smartid.html',
-                    scope: $scope, // Pass on $scope so that I can access AppCtrl
+                    scope: this, // Pass on $scope so that I can access AppCtrl
                     data: {
-                        authMethodsAvailable: $scope.authMethodsAvailable,
-                        userId: $stateParams.userId
+                        authMethodsAvailable: this.authMethodsAvailable,
+                        userId: this.$stateParams.userId
                     }
                 });
         };
@@ -236,11 +273,15 @@ angular
         /**
          * Password reset
          */
-        $scope.doResetPassword = function () {
-            ngDialog
+        doResetPassword () {
+            this.ngDialog
                 .open({
                     template: '/views/modals/password_forgot.html',
-                    scope: $scope // Pass on $scope so that I can access AppCtrl
+                    scope: this // Pass on $scope so that I can access AppCtrl
                 });
         };
-    }]);
+    }]
+};
+angular
+    .module('citizenos')
+    .component(loginFormComponent.selector, loginFormComponent);

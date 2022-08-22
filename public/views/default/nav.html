@@ -1,10 +1,10 @@
-<div ng-if="wWidth > 1024">
+<div>
     <div class="logo_area">
         <!-- Only show this if the user is logged in -->
-        <div class="logo sprite sprite-x5-cos-logo-small2x" ng-click="app.showSearchResults = false" ng-if="app.user.loggedIn" ui-sref="home">
+        <div class="logo sprite sprite-x5-cos-logo-small2x" ng-click="$ctrl.sapp.showSearchResults = false" ng-if="$ctrl.sapp.user.loggedIn" ui-sref="home">
         </div>
         <!-- Only show this if the user is NOT logged in -->
-        <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="!app.user.loggedIn" ui-sref="home">
+        <div class="logo sprite sprite-x6-cos-logo-big2x" ng-if="!$ctrl.sapp.user.loggedIn" ui-sref="home">
         </div>
     </div>
 </div>
@@ -14,10 +14,10 @@
 
 
     <!-- Only show this if the user is NOT logged in -->
-    <div class="blue_button" ng-click="app.doShowLogin()" ng-if="!app.user.loggedIn" translate="DEFAULT.NAV.LNK_LOG_IN_REGISTER">Log in / Register</div>
+    <div class="blue_button" ng-click="$ctrl.sapp.doShowLogin()" ng-if="!$ctrl.sapp.user.loggedIn" translate="DEFAULT.NAV.LNK_LOG_IN_REGISTER">Log in / Register</div>
 
     <!-- Only show this if the user is logged in -->
-    <div ng-if="app.user.loggedIn">
+    <div ng-if="$ctrl.sapp.user.loggedIn">
 
         <div id="account_area">
 
@@ -25,9 +25,9 @@
                 <div class="profile_image_wrapper">
                     <!--div class="profile_moon sprite sprite-icon-certified-google2x"></div-->
                     <div class="account_picture">
-                        <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">
-                        <div class="profile_image_filler" ng-if="!app.user.imageUrl">
-                            <cos-initials class="table_cell" ng-model="app.user.name"></cos-initials>
+                        <img ng-if="$ctrl.sapp.user.imageUrl" ng-src="{{$ctrl.sapp.user.imageUrl}}" src="">
+                        <div class="profile_image_filler" ng-if="!$ctrl.sapp.user.imageUrl">
+                            <cos-initials class="table_cell" ng-model="$ctrl.sapp.user.name"></cos-initials>
                             <div class="profile_circle"></div>
                         </div>
                     </div>
@@ -35,8 +35,8 @@
             </div>
 
             <div id="account_text">
-                <div class="section_header bold_white">{{app.user.name}}</div>
-                <a ng-click="app.doShowMyAccount()" id="account_action" href="" translate="DEFAULT.NAV.LNK_MY_ACCOUNT">My Account</a>
+                <div class="section_header bold_white">{{$ctrl.sapp.user.name}}</div>
+                <a ng-click="$ctrl.sapp.doShowMyAccount()" id="account_action" href="" translate="DEFAULT.NAV.LNK_MY_ACCOUNT">My Account</a>
             </div>
 
         </div>
@@ -46,12 +46,12 @@
 
         <!-- Nav section -->
         <div class="section">
-            <a ng-click="app.doShowActivityModal()" class="section_item" ng-class="{active: app.isShowActivityModal}">
+            <a ng-click="$ctrl.sapp.doShowActivityModal()" class="section_item" ng-class="{active: $ctrl.sapp.isShowActivityModal}">
                 <div class="section_icon">
                     <div class="table_cell">
-                        <div ng-if="!app.unreadActivitiesCount" class="sprite sprite-menu-icon-activities2x"></div>
-                        <div ng-if="app.unreadActivitiesCount" class="activities_counter">
-                            {{app.unreadActivitiesCount}}
+                        <div ng-if="!$ctrl.sapp.unreadActivitiesCount" class="sprite sprite-menu-icon-activities2x"></div>
+                        <div ng-if="$ctrl.sapp.unreadActivitiesCount" class="activities_counter">
+                            {{$ctrl.sapp.unreadActivitiesCount}}
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
     <!-- Nav section -->
     <div class="section">
 
-        <a ng-if="app.config.links.about" class="section_item" ng-href="{{app.config.links.about}}">
+        <a ng-if="app.config.links.about" class="section_item" ng-href="{{$ctrl.sapp.config.links.about}}">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-about2x"></div>
@@ -143,7 +143,7 @@
             <span translate="DEFAULT.NAV.LNK_ABOUT">About</span>
         </a>
 
-        <a class="section_item" ng-click="app.toggleHelp()">
+        <a class="section_item" ng-click="$ctrl.sapp.toggleHelp()">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-help2x"></div>
@@ -151,13 +151,13 @@
             </div>
             <span translate="DEFAULT.NAV.LNK_HELP">Help</span>
         </a>
-        <a class="section_item" ng-click="app.doShowLanguageSelect()">
+        <a class="section_item" ng-click="$ctrl.sapp.doShowLanguageSelect()">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-x0-menu-icon-help2x"></div>
                     </div>
                 </div>
-                {{app.config.language.list[app.language]}}
+                {{$ctrl.sapp.config.language.list[$ctrl.sapp.language]}}
         </a>
     </div>
 
@@ -171,7 +171,7 @@
 
         <div class="section">
 
-            <a ng-click="app.doLogout();" class="section_item" href="">
+            <a ng-click="$ctrl.sapp.doLogout();" class="section_item" href="">
                 <div class="section_icon">
                     <div class="table_cell">
                         <div class="sprite sprite-menu-icon-logout2x"></div>
@@ -182,7 +182,7 @@
 
         </div>
     </div>
-    <div id="nav_partner_wrap" ng-if="app.displayEmpoweredIcon()">
+    <div id="nav_partner_wrap" ng-if="$ctrl.sapp.displayEmpoweredIcon()">
         <a href="https://citizenos.com" target="_blank">
             <div id="nav_partner_items">
                 <span>Empowered by </span>

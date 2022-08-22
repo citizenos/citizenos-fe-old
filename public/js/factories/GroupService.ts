@@ -68,44 +68,7 @@ angular
               self.page += 1;
               self.loadGroups();
             }
-          },
-        /*  updateContact: function(person) {
-            var d = $q.defer();
-            self.isSaving = true;
-            person.$update().then(function() {
-              self.isSaving = false;
-              toaster.pop("success", "Updated " + person.name);
-              d.resolve();
-            });
-            return d.promise;
-          },
-          removeContact: function(person) {
-            var d = $q.defer();
-            self.isDeleting = true;
-            name = person.name;
-            person.$remove().then(function() {
-              self.isDeleting = false;
-              var index = self.persons.indexOf(person);
-              self.persons.splice(index, 1);
-              toaster.pop("success", "Deleted " + name);
-              d.resolve();
-            });
-            return d.promise;
-          },
-          createContact: function(person) {
-            var d = $q.defer();
-            self.isSaving = true;
-            Contact.save(person).$promise.then(function() {
-              self.isSaving = false;
-              self.hasMore = true;
-              self.page = 1;
-              self.persons = [];
-              self.loadGroups();
-              toaster.pop("success", "Created " + person.name);
-              d.resolve();
-            });
-            return d.promise;
-          }*/
+          }
         };
 
         self.loadGroups();

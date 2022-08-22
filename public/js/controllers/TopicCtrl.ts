@@ -1,12 +1,11 @@
 'use strict';
-
-/* global window _*/
 import * as angular from 'angular';
 import * as _ from 'lodash';
+/* global window _*/
 
 angular
     .module('citizenos')
-    .controller('TopicCtrl', ['$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$timeout', '$window', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'sTopic', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'Mention', 'TopicAttachment', 'rTopic', function ($scope, $state, $translate, $stateParams, $q, $log, $sce, $timeout, $window, ngDialog, sAuth, sActivity, sUpload, sTopic, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, Mention, TopicAttachment, rTopic) {
+    .controller('TopicCtrl', ['$scope', '$state', '$translate', '$stateParams', '$q', '$log', '$sce', '$timeout', '$window', 'ngDialog', 'sAuth', 'sActivity', 'sUpload', 'sTopic', 'Topic', 'TopicMemberGroup', 'TopicMemberUser', 'TopicInviteUser', 'TopicAttachment', 'rTopic', function ($scope, $state, $translate, $stateParams, $q, $log, $sce, $timeout, $window, ngDialog, sAuth, sActivity, sUpload, sTopic, Topic, TopicMemberGroup, TopicMemberUser, TopicInviteUser, TopicAttachment, rTopic) {
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
@@ -14,7 +13,7 @@ angular
             $timeout(function () {
                 $stateParams.voteId = rTopic.voteId;
 
-                return $state.go('topics/view/votes/view', $stateParams);
+                return $state.go('topics.view.votes.view', $stateParams);
             });
         }
 
@@ -34,7 +33,7 @@ angular
                 $scope.app.metainfo.image = docImageSrc;
             }
 
-            if (sAuth.user.loggedIn && $state.current.name.indexOf('topics/view') === 0) {
+            if (sAuth.user.loggedIn && $state.current.name.indexOf('topics.view') === 0) {
                 var t = new Topic({id: $scope.topic.id});
                 t
                     .$getInlineComments()
@@ -56,10 +55,9 @@ angular
         $scope.hideTopicContent = true;
 
         $scope.doShowReportOverlay = function () {
-            var data = angular.extend({}, $stateParams);
             ngDialog.openConfirm({
                 template: '/views/modals/topic_reports_reportId.html',
-                data: data,
+                data: $stateParams,
                 scope: $scope, // Pass on $scope so that I can access AppCtrl,
                 closeByEscape: false
             })
@@ -289,11 +287,10 @@ angular
         };
 
         $scope.sortMemberUsers = function (property) {
-            var order = 'ASC'
+            var order = 'ASC';
             if (property === $scope.userList.searchOrderBy.property && $scope.userList.searchOrderBy.sortOrder === 'ASC') {
                 order = 'DESC'
             }
-
             $scope.loadTopicMemberUserList(0, ITEMS_COUNT_PER_PAGE, property, order);
             $scope.loadTopicInviteUserList(0, ITEMS_COUNT_PER_PAGE, property, order);
         };
@@ -383,7 +380,7 @@ angular
                         $scope.activities = $scope.activities.concat(activities);
                     });
             } else {
-                return Promise.resolve();
+                return Promise<void>.resolve();
             }
         };
 
@@ -393,7 +390,7 @@ angular
                 $scope.loadActivities(0)
                     .then(function () {
                         $scope.app.activityFeed = true;
-                        checkIfInView('activities_list');
+                        checkIfInView('activities_list', null);
                     });
             } else {
                 $scope.app.activityFeed = !$scope.app.activityFeed;
@@ -412,7 +409,7 @@ angular
         $scope.doToggleVoteResults = function () {
             $scope.voteResults.isVisible = !$scope.voteResults.isVisible;
             if ($scope.voteResults.isVisible) {
-                checkIfInView('vote_results');
+                checkIfInView('vote_results', null);
             }
         }
         $scope.sendToVote = function () {
@@ -423,7 +420,7 @@ angular
                 .then(function () {
                     if (!$scope.topic.voteId && !$scope.topic.vote) {
                         $scope.app.topics_settings = false;
-                        $state.go('topics/view/votes/create', {
+                        $state.go('topics.view.votes.create', {
                             topicId: $scope.topic.id,
                             commentId: null
                         });
@@ -440,7 +437,7 @@ angular
                                 function (topicPatched) {
                                     $scope.topic.status = topicPatched.status;
                                     $scope.app.topics_settings = false;
-                                    $state.go('topics/view/votes/view', {
+                                    $state.go('topics.view.votes.view', {
                                             topicId: $scope.topic.id,
                                             voteId: $scope.topic.vote.id,
                                             commentId: null,
@@ -502,8 +499,8 @@ angular
                             function (topicPatched) {
                                 $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
-                                if ($state.is('topics/view/votes/view')) {
-                                    $state.go('topics/view', {topicId: $scope.topic.id}, {
+                                if ($state.is('topics.view.votes.view')) {
+                                    $state.go('topics.view', {topicId: $scope.topic.id}, {
                                         reload: true,
                                         commentId: null
                                     });
@@ -513,20 +510,12 @@ angular
                 }, angular.noop);
         };
 
-        $scope.loadTopicSocialMentions = function () {
-            if ($scope.topic.hashtag) {
-                $scope.topicSocialMentions = Mention.query({topicId: $scope.topic.id});
-            }
-        };
-
-        $scope.loadTopicSocialMentions();
-
         $scope.app.doToggleEditMode = function () {
             $scope.app.editMode = !$scope.app.editMode;
             $scope.app.topics_settings = false;
             if ($scope.app.editMode === true) {
                 $state.go(
-                    'topics/view',
+                    'topics.view',
                     {
                         topicId: $scope.topic.id,
                         editMode: $scope.app.editMode,
@@ -535,7 +524,7 @@ angular
                 );
             } else {
                 $state.go(
-                    'topics/view',
+                    'topics.view',
                     {
                         topicId: $scope.topic.id,
                         editMode: null,
@@ -569,7 +558,7 @@ angular
                     $scope.topic
                         .$delete()
                         .then(function () {
-                            $state.go('my/topics', null, {reload: true});
+                            $state.go('my.topics', null, {reload: true});
                         });
                 }, angular.noop);
         };
@@ -587,7 +576,7 @@ angular
                     topicMemberUser
                         .$delete({topicId: $scope.topic.id})
                         .then(function () {
-                            $state.go('my/topics', null, {reload: true});
+                            $state.go('my.topics', null, {reload: true});
                         });
                 });
         };
@@ -621,7 +610,7 @@ angular
                 .then(function () {
                     if (!doShowList) {
                         $scope.doShowMemberGroupList();
-                        checkIfInView('group_list');
+                        checkIfInView('group_list', null);
                     }
                 });
         };
@@ -688,7 +677,7 @@ angular
                         .duplicate($scope.topic)
                         .then(function (duplicate) {
                             console.log(duplicate)
-                            $state.go('topics/view', {topicId: duplicate.id});
+                            $state.go('topics.view', {topicId: duplicate.id});
                         });
                 }, angular.noop);
         };
@@ -705,29 +694,28 @@ angular
 
         var toggleTabParam = function (tabName) {
             return new Promise<void>(function (resolve) {
-                var params = angular.extend({}, $stateParams);
                 var tabIndex;
-                if (params.openTabs) {
-                    tabIndex = params.openTabs.indexOf(tabName);
+                if ($stateParams.openTabs) {
+                    tabIndex = $stateParams.openTabs.indexOf(tabName);
                 }
 
                 if (tabIndex > -1) {
-                    if (!Array.isArray(params.openTabs)) {
-                        params.openTabs = null;
-                    } else if (params.openTabs) {
-                        params.openTabs.splice(tabIndex, 1);
+                    if (!Array.isArray($stateParams.openTabs)) {
+                        $stateParams.openTabs = null;
+                    } else if ($stateParams.openTabs) {
+                        $stateParams.openTabs.splice(tabIndex, 1);
                     }
                 } else {
-                    if (!params.openTabs) {
-                        params.openTabs = [];
+                    if (!$stateParams.openTabs) {
+                        $stateParams.openTabs = [];
                     }
-                    if (!Array.isArray(params.openTabs)) {
-                        params.openTabs = [params.openTabs];
+                    if (!Array.isArray($stateParams.openTabs)) {
+                        $stateParams.openTabs = [$stateParams.openTabs];
                     }
-                    params.openTabs.push(tabName);
+                    $stateParams.openTabs.push(tabName);
                 }
 
-                $state.transitionTo($state.current.name, params, {
+                $state.transitionTo($state.current.name, $stateParams, {
                     notify: true,
                     reload: false
                 }).then(function () {
@@ -747,7 +735,7 @@ angular
                     if (!doShowList) {
                         $scope.doShowMemberUserList()
                             .then(function () {
-                                checkIfInView('user_list');
+                                checkIfInView('user_list', null);
                             });
                     }
                 });
@@ -757,19 +745,19 @@ angular
             if (!$scope.userList.isVisible) {
                 $scope.doShowMemberUserList()
                     .then(function () {
-                        checkIfInView('user_list');
+                        checkIfInView('user_list', null);
                     });
             } else {
-                checkIfInView('user_list');
+                checkIfInView('user_list', null);
             }
         };
 
         $scope.viewMemberGroups = function () {
             if (!$scope.groupList.isVisible) {
                 $scope.doShowMemberGroupList();
-                checkIfInView('group_list')
+                checkIfInView('group_list', null)
             } else {
-                checkIfInView('group_list');
+                checkIfInView('group_list', null);
             }
         };
 
@@ -873,13 +861,12 @@ angular
         };
 
         if ($stateParams.openTabs) {
-            var params = angular.extend({}, $stateParams);
             $scope.userList.isVisible = false;
             $scope.groupList.isVisible = false;
             if (!Array.isArray($stateParams.openTabs)) {
-                params.openTabs = [$stateParams.openTabs];
+                $stateParams.openTabs = [$stateParams.openTabs];
             }
-            params.openTabs.forEach(function (tab) {
+            $stateParams.openTabs.forEach(function (tab) {
                 switch (tab) {
                     case 'user_list':
                         $scope.doShowMemberUserList();
@@ -930,7 +917,7 @@ angular
             }
         });
 
-        var checkIfInView = function (elemId) {
+        var checkIfInView = function (elemId, from) {
             var elem = document.getElementById(elemId);
             var bounding = elem.getBoundingClientRect();
 

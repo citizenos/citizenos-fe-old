@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 
 angular
     .module('citizenos')
-    .factory('Group', ['$log', '$resource', 'sLocation', '$http', 'Topic', 'GroupMemberUser', 'GroupMemberTopic', function ($log, $resource, sLocation, $http, Topic, GroupMemberUser, GroupMemberTopic) {
+    .factory('Group', ['$log', '$resource', 'sLocation', '$http', 'Topic', 'GroupMemberUser', function ($log, $resource, sLocation, $http, Topic, GroupMemberUser) {
         $log.debug('citizenos.factory.Group');
         var Group = $resource(
             sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId'),
@@ -99,103 +99,6 @@ angular
 
         Group.prototype.canDelete = function () {
             return this.canUpdate();
-        };
-        Group.prototype.memberusers = {
-            users: [],
-            count: 0,
-            totalPages: 0,
-            page: 0
-        };
-
-        Group.prototype.getMemberUsers = function (offset, limit, search) {
-            var group = this;
-            if (!limit) {
-                limit = 10;
-            }
-            if (!offset) {
-                offset = 0;
-            }
-            return GroupMemberUser.query({
-                groupId: group.id,
-                limit: limit,
-                search: search,
-                offset: offset
-            }).$promise
-            .then(function (users) {
-                group.memberusers.users = users;
-                group.memberusers.count = users.length;
-
-                if (users.length) {
-                    group.memberusers.count = users[0].countTotal;
-                }
-
-                group.memberusers.totalPages = Math.ceil(group.memberusers.count / limit);
-                group.memberusers.page = Math.ceil((offset + limit) / limit);
-
-                return users;
-            });
-        };
-
-        Group.prototype.membertopics = {
-            topics: [],
-            count: 0,
-            totalPages: 0,
-            page: 0
-        };
-
-        Group.prototype.getMemberTopics = function (offset, limit, order, search) {
-            var ITEMS_COUNT_PER_PAGE = 10;
-            var group = this;
-            order = order || '';
-            if (!limit) {
-                limit = ITEMS_COUNT_PER_PAGE;
-            }
-            if (!offset) {
-                offset = 0;
-            }
-
-            if (search) {
-                search = search.trim();
-            }
-
-            var statuses = Topic.STATUSES;
-            var searchParams = {
-                groupId: group.id,
-                limit: limit,
-                search: search,
-                offset: offset,
-                statuses: null,
-                order: null,
-                sortOrder: null
-            };
-            if (statuses[order]) {
-                searchParams.statuses = order;
-            }
-            var param = order.split('.')[0];
-            var sortOrder = order.split('.')[1];
-            var orderParams = ['status', 'pinned', 'lastActivity'];
-            if (orderParams.indexOf(param) > -1) {
-                searchParams.order = param;
-                if (sortOrder === 'descending') {
-                    searchParams.sortOrder = 'desc';
-                }
-            }
-            group.membertopics.order = order;
-            return GroupMemberTopic
-                .query(searchParams).$promise
-                .then(function (topics) {
-                    group.membertopics.topics = topics;
-                    group.membertopics.count = topics.length;
-
-                    if (topics.length) {
-                        group.membertopics.count = topics[0].countTotal;
-                    }
-
-                    group.membertopics.totalPages = Math.ceil(group.membertopics.count / limit);
-                    group.membertopics.page = Math.ceil((offset + limit) / limit);
-
-                    return topics;
-                });
         };
 
         return Group;

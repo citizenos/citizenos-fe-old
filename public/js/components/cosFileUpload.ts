@@ -4,12 +4,14 @@ let cosFileUpload = {
     selector: 'cosFileUpload',
     template: `<input type="file" multiple="{{$ctrl.multiple}}" />`,
     bindings: {
-        select: '=?',
+        select: '=',
+        imageItem: '=',
         multiple: '@?'
     },
     controller: ['$element', class CosFileUploadController {
         private $element;
-        private select;
+        public select;
+        public imageItem;
         private multiple;
 
         constructor ($element) {
@@ -18,7 +20,9 @@ let cosFileUpload = {
         }
 
         change () {
-            this.select(this.$element.find('input')[0].files);
+            const files = this.$element.find('input')[0].files;
+            this.select(files);
+            this.imageItem = files;
         }
     }]
 }

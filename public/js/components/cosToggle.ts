@@ -1,5 +1,4 @@
 import * as angular from 'angular';
-import * as moment from 'moment';
 
 let cosToggle = {
     selector: 'cosToggle',

@@ -1,3 +1,4 @@
+import './AppService';
 import './cosHttpApiErrorInterceptor';
 import './cosHttpApiUnauthorizedInterceptor';
 import './GroupInviteUser';

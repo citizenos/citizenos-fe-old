@@ -1,9 +1,9 @@
-<div class="logo_area" ng-click="!app.showSearchResults" ui-sref="home">
+<div class="logo_area" ng-click="!$ctrl.sapp.showSearchResults" ui-sref="home">
     <div class="logo sprite sprite-x5-cos-logo-small2x">
     </div>
 </div>
 
-<div class="header_button search overview_active" ng-click="app.showSearch = !app.showSearch;" ng-style="{'display': app.showSearch ? 'none ' : 'relative'}">
+<div class="header_button search overview_active" ng-click="$ctrl.sapp.showSearch = !$ctrl.sapp.showSearch;" ng-style="{'display': $ctrl.sapp.showSearch ? 'none ' : 'relative'}">
     <div class="header_button_icon">
         <div class="sprite sprite-icon-search2x">
         </div>
@@ -40,7 +40,7 @@
 </div>
 
 <div ng-if="wWidth <= 1024">
-    <div class="header_button edit" ng-if="app.topic.canEdit()" ng-click="app.doToggleEditMode()" ng-class="app.editMode ? 'active': ''" ng-if="('topics.**' | includedByState) && app.user.loggedIn">
+    <div class="header_button edit" ng-if="$ctrl.sapp.topic.canEdit()" ng-click="$ctrl.sapp.doToggleEditMode()" ng-class="$ctrl.sapp.editMode ? 'active': ''" ng-if="('topics.**' | includedByState) && $ctrl.sapp.user.loggedIn">
         <div class="header_button_icon">
             <div class="sprite sprite-icon-mobile-edit2x">
             </div>
@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<div class="header_button settings" ng-click="app.topics_settings = !app.topics_settings" ng-class="app.topics_settings ? 'active': ''" ng-if="('topics.**' | includedByState) && app.user.loggedIn">
+<div class="header_button settings" ng-click="$ctrl.sapp.topics_settings = !$ctrl.sapp.topics_settings" ng-class="$ctrl.sapp.topics_settings ? 'active': ''" ng-if="('topics.**' | includedByState) && $ctrl.sapp.user.loggedIn">
     <div class="header_button_icon">
         <div class="sprite sprite-icon-mobile-settings2x">
         </div>
@@ -62,25 +62,25 @@
 
     <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_SETTINGS">Actions</div>
 
-    <div class="line_holder" ng-if="!app.editMode">
+    <div class="line_holder" ng-if="!$ctrl.sapp.editMode">
         <div class="v_line dark_line"></div>
         <div class="v_line light_line"></div>
     </div>
 </div>
 
-<div class="header_button" ng-click="app.showNav = !app.showNav">
+<div class="header_button" ng-click="$ctrl.sapp.showNav = !$ctrl.sapp.showNav">
     <div class="line_holder first_holder">
         <div class="v_line light_line"></div>
         <div class="v_line dark_line"></div>
     </div>
 
     <div class="header_button_icon">
-        <div class="sprite" ng-class="app.showNav ? 'sprite-icon-closemenu2x' : 'sprite-icon-hamburger2x'">
+        <div class="sprite" ng-class="$ctrl.sapp.showNav ? 'sprite-icon-closemenu2x' : 'sprite-icon-hamburger2x'">
         </div>
     </div>
     <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_MENU">Menu</div>
 </div>
 
-<div id="search_area" ng-class="{hidden: !app.showSearch}">
+<div id="search_area" ng-class="{hidden: !$ctrl.sapp.showSearch}">
     <div ng-include="'views/default/search.html'"></div>
 </div>

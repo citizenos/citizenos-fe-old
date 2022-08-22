@@ -116,8 +116,9 @@ angular
 
             return ngDialog
                 .open({
-                    template: '/views/modals/login.html',
-                    scope: $scope
+                    template: '<login-form></login-form>',
+                    scope: $scope,
+                    plain: true
                 });
         };
 
@@ -128,27 +129,6 @@ angular
                 template: '/views/modals/my_account.html',
                 scope: $scope
             });
-        };
-
-        $scope.app.doShowActivityModal = function () {
-            $log.debug('AppCtrl.doShowActivityModal()');
-            var openDias = ngDialog.getOpenDialogs();
-
-            if (openDias.length) {
-                ngDialog.closeAll();
-            } else {
-                var dialog = ngDialog.open({
-                    template: '/views/modals/activity_modal.html',
-                    scope: $scope
-                });
-
-                $scope.app.isShowActivityModal = true;
-
-                dialog.closePromise
-                    .then(function () {
-                        $scope.app.isShowActivityModal = false;
-                    });
-            }
         };
 
         $scope.app.doShowTopicSettings = function () {

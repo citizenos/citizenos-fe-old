@@ -1059,8 +1059,7 @@
                         <div class="clearer"></div>
                         <div class="comments_content">
                             <div ng-if="app.activeCommentSection == 'arguments' || app.activeCommentSection == undefined" ng-include="'views/topics_topicId_comments.html'"></div>
-
-                            <div ng-if="app.activeCommentSection == 'socialMentions'" ng-include="'views/topics_topicId_mentions.html'"></div>
+                            <topic-social-mentions topicId="topic.id" hashtag="topic.hashtag" can-edit="topic.canEdit" ng-if="app.activeCommentSection == 'socialMentions'"></topic-social-mentions>
                         </div>
                     </div>
 

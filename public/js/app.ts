@@ -10,9 +10,9 @@ import * as _ from 'lodash';
         .constant('cosConfig', window.__config || {});
 
     module
-        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', '$transitionsProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, $transitionsProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig) {
+        .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', '$transitionsProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', '$logProvider', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, $transitionsProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig, $logProvider) {
             var langReg = Object.keys(cosConfig.language.list).join('|');
-
+            $logProvider.debugEnabled(true);
             $locationProvider.html5Mode({
                 enabled: true,
                 rewriteLinks: true,
@@ -367,7 +367,7 @@ import * as _ from 'lodash';
                         if (sAuthResolve) {
                             return $state.go('home');
                         }
-
+                        console.log(rUserConnections);
                         var dialogData = {
                             userConnections: rUserConnections,
                             email: null
@@ -378,7 +378,7 @@ import * as _ from 'lodash';
                         }
 
                         var dialog = ngDialog.open({
-                            template: '/views/modals/login.html',
+                            template: '<login-form></login-form>',
                             data: dialogData,
                             scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
@@ -578,9 +578,9 @@ import * as _ from 'lodash';
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
                         var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
-                            template: '/views/modals/topic_attachments.html',
+                            template: '<topic-attachment-modal></topic-attachment-modal>',
                             data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                            plain: true
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
@@ -901,20 +901,18 @@ import * as _ from 'lodash';
                     url: '/settings?tab',
                     parent: 'my/topics/topicId',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', '$transitions', '$timeout', 'ngDialog', function ($scope, $state, $stateParams, $transitions, $timeout, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
+                    controller: ['$state', '$stateParams', '$timeout', 'ngDialog', 'rTopic', function ($state, $stateParams, $timeout, ngDialog, rTopic) {
                         var createDialog = function () {
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
-                                template: '/views/modals/topic_settings.html',
-                                data: data,
+                                template: '<topic-settings></topic-settings>',
+                                plain: true,
                                 preCloseCallback: function (value) {
                                     if (value === '$closeButton') {
                                         return true;
                                     }
                                     return false;
-                                },
-                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                                }
                             });
 
                             dialog.closePromise.then(function (data) {

@@ -1,101 +1,120 @@
 'use strict';
 import * as angular from 'angular';
 
-angular
-    .module('citizenos')
-    .controller('ActivitiesCtrl', ['$scope', '$stateParams', '$document', '$translate', 'sActivity', function ($scope, $stateParams, $document, $translate, sActivity) {
-        $scope.activitiesOffset = 0;
-        $scope.activitiesLimit = 25;
-        $scope.activities = [];
-        $scope.filter = 'all';
-        $scope.activityfilters = ['all', 'userTopics', 'userGroups', 'user', 'self'];
-        var lastViewTime = null;
+let activityFeed = {
+    selector: 'activityFeed',
+    templateUrl: '../../../views/modals/activity_modal.html',
+    bindings: {},
+    controller: ['$translate', 'sActivity', 'AppService', class ActivityController {
+        public activitiesOffset = 0;
+        public activitiesLimit = 25;
+        public activities = [];
+        public filter = 'all';
+        public activityfilters = ['all', 'userTopics', 'userGroups', 'user', 'self'];
+        private lastViewTime;
+        public filer;
+        public sapp;
+        public showLoadMoreActivities;
 
-        $scope.loadActivities = function (offset, limit) {
-            $scope.activitiesOffset = offset || $scope.activitiesOffset;
+        private sActivity;
+        private $translate;
+
+        constructor ( $translate, sActivity, AppService) {
+            this.sapp = AppService;
+            this.$translate = $translate;
+            this.sActivity = sActivity;
+
+            this.loadActivities(null, null);
+        }
+
+        keyCounter (objIn) {
+            return Object.keys(objIn).length;
+        };
+
+        getGroupItems (values) {
+            const returnArray = [];
+            Object.keys(values).forEach((key) => {
+                returnArray.push(values[key]);
+            });
+
+            return returnArray;
+        };
+
+        loadActivities (offset, limit) {
+            const self = this;
+            this.activitiesOffset = offset || this.activitiesOffset;
             if (offset === 0) {
-                $scope.activitiesOffset = 0;
+                this.activitiesOffset = 0;
             }
 
-            $scope.activitiesLimit = limit || $scope.activitiesLimit;
-            if ($scope.activities.length && !offset && !limit) {
-                $scope.activitiesOffset += $scope.activitiesLimit;
+            this.activitiesLimit = limit || this.activitiesLimit;
+            if (this.activities.length && !offset && !limit) {
+                this.activitiesOffset += this.activitiesLimit;
             }
 
-            var filterValue = $scope.filter;
+            let filterValue = this.filter;
             if (filterValue === 'all') {
                 filterValue = null;
             }
 
-            $scope.keyCounter = function (objIn) {
-                return Object.keys(objIn).length;
-            };
-
-            $scope.getGroupItems = function (values) {
-                var returnArray = [];
-                Object.keys(values).forEach(function (key) {
-                    returnArray.push(values[key]);
-                });
-
-                return returnArray;
-            };
-
-            sActivity
-                .getActivities($scope.activitiesOffset, $scope.activitiesLimit, filterValue)
-                .then(function (activities) {
-                    $scope.showLoadMoreActivities = activities.length > 0;
-                    $scope.app.unreadActivitiesCount = 0;
-                    activities.forEach(function (activityGroups, groupKey) {
-                        Object.keys(activityGroups.values).forEach(function (key) {
+            this.sActivity
+                .getActivities(this.activitiesOffset, this.activitiesLimit, filterValue)
+                .then((activities) => {
+                    self.showLoadMoreActivities = activities.length > 0;
+                    self.sapp.unreadActivitiesCount = 0;
+                    activities.forEach((activityGroups, groupKey) => {
+                        Object.keys(activityGroups.values).forEach((key) => {
                             var activity = activityGroups.values[key];
 
                             if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
-                                if (!lastViewTime || activity.updatedAt > lastViewTime) {
-                                    lastViewTime = activity.updatedAt;
+                                if (!self.lastViewTime || activity.updatedAt > self.lastViewTime) {
+                                    self.lastViewTime = activity.updatedAt;
                                 }
                                 activities.splice(groupKey, 1);
-                            } else if (!lastViewTime || activity.updatedAt > lastViewTime) {
+                            } else if (!self.lastViewTime || activity.updatedAt > self.lastViewTime) {
                                 activity.isNew = '-new';
                             }
                         });
                     });
 
-                    $scope.activities = $scope.activities.concat(activities);
+                    self.activities = self.activities.concat(activities);
 
-                    if ($scope.activities.length <= 10 && $scope.showLoadMoreActivities) {
-                        $scope.loadActivities();
+                    if (self.activities.length <= 10 && self.showLoadMoreActivities) {
+                        self.loadActivities(null, null);
                     }
 
                 });
         };
-        $scope.loadActivities();
 
-        $scope.filterActivities = function (filter) {
-            $scope.filter = filter;
-            $scope.activities = [];
-            $scope.loadActivities(0);
+        filterActivities (filter) {
+            this.filter = filter;
+            this.activities = [];
+            this.loadActivities(0, null);
         };
 
-        $scope.showActivityDescription = function (activity) {
-            return sActivity.showActivityDescription(activity);
+        showActivityDescription (activity) {
+            return this.sActivity.showActivityDescription(activity);
         };
 
-        $scope.showActivityUpdateVersions = function (activity) {
-            return sActivity.showActivityUpdateVersions(activity);
+        showActivityUpdateVersions (activity) {
+            return this.sActivity.showActivityUpdateVersions(activity);
         };
 
-        $scope.activityRedirect = function (activity) {
-            return sActivity.handleActivityRedirect(activity);
+        activityRedirect (activity) {
+            return this.sActivity.handleActivityRedirect(activity);
         };
 
-        $scope.translateGroup = function (key, group) {
-            var values = group[0].values;
+        translateGroup (key, group) {
+            const values = group[0].values;
             values.groupCount = group.length;
             if (key.indexOf('USERACTIVITYGROUP') === -1) {
                 values.groupCount--;
             }
 
-            return $translate.instant(key.split(':')[0], values);
+            return this.$translate.instant(key.split(':')[0], values);
         };
-    }
-    ]);
+    }]
+}
+angular
+    .module('citizenos')
+    .component(activityFeed.selector, activityFeed);

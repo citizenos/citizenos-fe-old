@@ -2,7 +2,7 @@
 <div id="root_lightbox">
     <div id="lightbox" class="my_account_lightbox wide_lightbox with_title_description with_header_menu">
         <div id="lightbox_wrap">
-            <form name="myAccountForm" ng-controller="MyAccountFormCtrl">
+            <form name="myAccountForm">
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
@@ -20,21 +20,21 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="topicSettingsSlider">
-                        <div class="tab_button" ng-click="app.selectTab('profile')" ng-class="app.tabSelected === 'profile' ? 'active' : ''">
+                        <div class="tab_button" ng-click="$ctrl.sapp.selectTab('profile')" ng-class="$ctrl.sapp.tabSelected === 'profile' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_PROFILE">PROFILE</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
 
-                        <div class="tab_button" ng-click="app.selectTab('preferences')" ng-class="app.tabSelected === 'preferences' ? 'active' : ''">
+                        <div class="tab_button" ng-click="$ctrl.sapp.selectTab('preferences')" ng-class="$ctrl.sapp.tabSelected === 'preferences' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_PREFERENCES">PREFERENCES</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
 
-                        <div class="tab_button" ng-click="app.selectTab('account')" ng-class="app.tabSelected === 'account' ? 'active' : ''">
+                        <div class="tab_button" ng-click="$ctrl.sapp.selectTab('account')" ng-class="$ctrl.sapp.tabSelected === 'account' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_ACCOUNT">ACCOUNT</div>
                                 <div class="blue_bottom_line"></div>
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="lightbox_content" ng-if="app.tabSelected === 'profile'">
+            <div class="lightbox_content" ng-if="$ctrl.sapp.tabSelected === 'profile'">
                 <div id="login_lightbox">
                     <div class="line lightest_line"></div>
 
@@ -56,17 +56,17 @@
                                 <!--div class="profile_moon sprite sprite-icon-certified-google-2-x2x"></div-->
                                 <div class="account_picture">
                                     <!-- NB Remember to use image that has 2x size, meaning 160x160px for this <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">-->
-                                    <img ng-if="form.imageUrl" ng-src="{{form.imageUrl}}">
-                                    <cos-file-upload id="profileImage" select="switchImage"></cos-file-upload>
-                                    <div class="profile_image_filler" ng-if="!form.imageUrl">
-                                        <cos-initials class="table_cell" ng-model="form.name"></cos-initials>
+                                    <img ng-if="$ctrl.form.imageUrl" ng-src="{{$ctrl.form.imageUrl}}">
+                                    <cos-file-upload id="profileImage" select="$ctrl.switchImage" image-item="$ctrl.form.imageUrl" cos-file-upload>
+                                    <div class="profile_image_filler" ng-if="!$ctrl.form.imageUrl">
+                                        <cos-initials class="table_cell" ng-model="$ctrl.form.name"></cos-initials>
                                         <div class="profile_circle"></div>
                                     </div>
                                 </div>
                             </div>
                             <div id="edit_image_properties">
-                                <div class="blue_link" ng-click="uploadImage()" translate="MODALS.MY_ACCOUNT_UPLOAD_AVATAR">Upload new</div> |
-                                <div class="blue_link" ng-click="deleteProfileImage()" translate="MODALS.MY_ACCOUNT_DELETE_AVATAR">Delete</div>
+                                <div class="blue_link" ng-click="$ctrl.uploadImage()" translate="MODALS.MY_ACCOUNT_UPLOAD_AVATAR">Upload new</div> |
+                                <div class="blue_link" ng-click="$ctrl.deleteProfileImage()" translate="MODALS.MY_ACCOUNT_DELETE_AVATAR">Delete</div>
                                 <br>
                                 <span translate="MODALS.MY_ACCOUNT_AVATAR_RESTRICTIONS">Max 500kb jpg, gif or png</span>
                             </div>
@@ -75,33 +75,33 @@
                         <div class="profile_line v_line lightest_line"></div>
 
                         <div id="profile_edit_section">
-                            <input id="name" ng-model="form.name" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NAME' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': errors.name}" maxlength="255" required>
-                            <label for="name" class="error_label" ng-if="errors.name">
+                            <input id="name" ng-model="$ctrl.form.name" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NAME' | translate}}" focus-if="{{wWidth > 1024}}" ng-class="{'error_input': $ctrl.errors.name}" maxlength="255" required>
+                            <label for="name" class="error_label" ng-if="$ctrl.errors.name">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.name}}"></span>
+                                    <span translate="{{$ctrl.errors.name}}"></span>
                                 </div>
                             </label>
-                            <input id="company" ng-model="form.company" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_COMPANY' | translate}}" ng-class="{'error_input': errors.company}" maxlength="255">
-                            <label for="company" class="error_label" ng-if="errors.company">
+                            <input id="company" ng-model="$ctrl.form.company" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_COMPANY' | translate}}" ng-class="{'error_input': $ctrl.errors.company}" maxlength="255">
+                            <label for="company" class="error_label" ng-if="$ctrl.errors.company">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.company}}"></span>
+                                    <span translate="{{$ctrl.errors.company}}"></span>
                                 </div>
                             </label>
-                            <input id="email" ng-model="form.email" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_EMAIL' | translate}}" ng-class="{'error_input': errors.email}"  maxlength="254" required>
-                            <label for="email" class="error_label" ng-if="errors.email">
+                            <input id="email" ng-model="$ctrl.form.email" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_EMAIL' | translate}}" ng-class="{'error_input': $ctrl.errors.email}"  maxlength="254" required>
+                            <label for="email" class="error_label" ng-if="$ctrl.errors.email">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.email}}"></span>
+                                    <span translate="{{$ctrl.errors.email}}"></span>
                                 </div>
                             </label>
 
-                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64">
-                            <label for="password" class="error_label" ng-if="errors.password">
+                            <input id="password" ng-model="$ctrl.form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': $ctrl.errors.password}" maxlength="64">
+                            <label for="password" class="error_label" ng-if="$ctrl.errors.password">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.password}}"></span>
+                                    <span translate="{{$ctrl.errors.password}}"></span>
                                 </div>
                             </label>
 
@@ -110,7 +110,7 @@
 
                 </div>
             </div>
-            <div class="lightbox_content" ng-if="app.tabSelected === 'preferences'">
+            <div class="lightbox_content" ng-if="$ctrl.sapp.tabSelected === 'preferences'">
                 <div id="login_lightbox">
                     <div class="line lightest_line"></div>
 
@@ -123,33 +123,33 @@
 
                             <div class="settings_cell">
                                 <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
-                                        model="form.preferences.showInSearch"></cos-toggle>
+                                        model="$ctrl.form.preferences.showInSearch"></cos-toggle>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="lightbox_content" ng-if="app.tabSelected === 'account'">
+            <div class="lightbox_content" ng-if="$ctrl.sapp.tabSelected === 'account'">
                 <div id="login_lightbox">
                     <div class="line lightest_line"></div>
 
                     <div class="lightbox_section">
                         <div id="account_edit_section">
-                            <input id="newPassword" ng-model="form.newPassword" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NEW_PASSWORD' | translate}}" ng-class="{'error_input': errors.newPassword}" maxlength="64">
-                            <input id="password_confirm" ng-model="form.passwordConfirm" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD_CONFIRM' | translate}}" ng-class="{'error_input': errors.newPassword}" maxlength="64">
-                            <label for="newPassword" class="error_label" ng-if="errors.newPassword">
+                            <input id="newPassword" ng-model="$ctrl.form.newPassword" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NEW_PASSWORD' | translate}}" ng-class="{'error_input': $ctrl.errors.newPassword}" maxlength="64">
+                            <input id="password_confirm" ng-model="$ctrl.form.passwordConfirm" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD_CONFIRM' | translate}}" ng-class="{'error_input': $ctrl.errors.newPassword}" maxlength="64">
+                            <label for="newPassword" class="error_label" ng-if="$ctrl.errors.newPassword">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.newPassword}}"></span>
+                                    <span translate="{{$ctrl.errors.newPassword}}"></span>
                                 </div>
                             </label>
 
-                            <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NEW_PASSWORD' | translate}}" ng-class="{'error_input': errors.password}" maxlength="64">
-                            <label for="password" class="error_label" ng-if="errors.password">
+                            <input id="password" ng-model="$ctrl.form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NEW_PASSWORD' | translate}}" ng-class="{'error_input': $ctrl.errors.password}" maxlength="64">
+                            <label for="password" class="error_label" ng-if="$ctrl.errors.password">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.password}}"></span>
+                                    <span translate="{{$ctrl.errors.password}}"></span>
                                 </div>
                             </label>
                         </div>
@@ -160,14 +160,14 @@
             <div class="lightbox_footer">
                 <div class="line lightest_line"></div>
                 <div class="table_cell">
-                    <span class="delete_account" ng-click="doDeleteAccount()">
+                    <span class="delete_account" ng-click="$ctrl.doDeleteAccount()">
                         <span class="sprite sprite-mytopics-icon-deletetopic2x"></span>
                         <span class="item_text remove blue_link ng-scope" translate="MODALS.MY_ACCOUNT_LNK_DELETE">Delete account</span>
                     </span>
                 </div>
                 <div class="table_cell">
                     <div class="blue_button_wrap">
-                        <div class="blue_button" ng-click="doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button"
+                        <div class="blue_button" ng-click="$ctrl.doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button"
                             translate="MODALS.MY_ACCOUNT_BTN_SAVE">Save changes
                         </div>
                     </div>

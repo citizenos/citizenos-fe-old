@@ -1,72 +1,115 @@
 'use strict';
 import * as angular from 'angular';
 
-angular
-    .module('citizenos')
-    .controller('TopicSettingsCtrl', ['$scope', '$state', '$stateParams', '$log', '$location', '$timeout', 'Topic', 'TopicVote', 'ngDialog', function ($scope, $state, $stateParams, $log, $location, $timeout, Topic, TopicVote, ngDialog) {
-        $log.debug('TopicSettingsCtrl', $state, $stateParams);
-
-        $scope.levels = {
+let topicSettings = {
+    selector: 'topicSettings',
+    templateUrl: '../../views/modals/topics_settings.html',
+    bindings: {},
+    controller: ['$state', '$stateParams', '$log', '$timeout', '$anchorScroll', 'Topic', 'TopicVote', 'TopicMemberUser', 'ngDialog', 'AppService',  class TopicSettingsController {
+        public levels = {
             none: 0,
             read: 1,
             edit: 2,
             admin: 3
         };
-        $scope.form = {
+        public form = {
             topic: null,
             description: null,
             urlJoin: null
         };
-        $scope.cosToggleTextOn = 'public';
-        $scope.app.tabSelected = $stateParams.tab || 'settings';
-
-        $scope.topicList = {
+        public cosToggleTextOn = 'public';
+        public topicList = {
             searchFilter: '',
             searchOrderBy: {
                 property: 'title'
             }
         };
+        public searchString = null;
+        public searchResults = {};
+        public errors = null;
 
-        var init = function () {
+        public sapp;
+        public topic;
+        public topicId;
+
+        private $state;
+        private $timeout;
+        private Topic;
+        private TopicVote;
+        private TopicMemberUser;
+        private ngDialog;
+
+        constructor ($state, $stateParams, $log, $timeout, $anchorScroll, Topic, TopicVote, TopicMemberUser, ngDialog, AppService) {
+          //  super();
+            $log.debug('TopicSettingsCtrl', $state, $stateParams);
+            this.$state = $state;
+            this.$timeout = $timeout;
+            this.Topic = Topic;
+            this.TopicVote = TopicVote;
+            this.TopicMemberUser = TopicMemberUser;
+            this.ngDialog = ngDialog;
+            this.sapp = AppService;
+            this.sapp.tabSelected = $stateParams.tab || 'settings';
+
+            const urlParams = {
+                topicId: $stateParams.topicId,
+                include: 'vote',
+                prefix: null,
+                userId: null
+            };
+            if (AppService.user.loggedIn) {
+                urlParams.prefix = 'users';
+                urlParams.userId = 'self';
+            }
+            const self = this;
+            Topic.get(urlParams).$promise
+                .then((topic) => {
+                    $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
+                    console.log(topic);
+                    console.log(self);
+                    self.topic = topic;
+                    self.init();
+                });
+        }
+
+        init () {
             // Create a copy of parent scopes Topic, so that while modifying we don't change parent state
-            $scope.form = {
+            this.form = {
                 topic: null,
                 description: null,
                 urlJoin: null
             };
-            $scope.form.topic = angular.copy($scope.topic);
+            this.form.topic = angular.copy(this.topic);
 
-            if ($scope.topic.status === Topic.STATUSES.voting && $scope.topic.voteId) {
-                new TopicVote({
-                    topicId: $scope.topic.id,
-                    id: $scope.topic.voteId
+            if (this.topic.status === this.Topic.STATUSES.voting && this.topic.voteId) {
+                new this.TopicVote({
+                    topicId: this.topic.id,
+                    id: this.topic.voteId
                 })
-                    .$get()
-                    .then(function (topicVote) {
-                        $scope.topic.vote = topicVote;
-                        $scope.form.topic.vote = angular.copy(topicVote);
-                    });
+                .$get()
+                .then(function (topicVote) {
+                    this.topic.vote = topicVote;
+                    this.form.topic.vote = angular.copy(topicVote);
+                });
             }
 
-            $scope.form.description = angular.element($scope.topic.description).text().replace($scope.topic.title, '');
-            $scope.Topic = Topic;
+            this.form.description = angular.element(this.topic.description).text().replace(this.topic.title, '');
 
-            $scope.searchString = null;
-            $scope.searchResults = {};
-
-            $scope.errors = null;
+            this.searchString = null;
+            this.searchResults = {};
+            this.errors = null;
 
         };
 
-        $scope.checkHashtag = function () {
-            var length = 0;
-            var str = $scope.form.topic.hashtag;
-            var hashtagMaxLength = 59;
+        checkHashtag () {
+            let length = 0;
+            const str = this.form.topic.hashtag;
+            const hashtagMaxLength = 59;
 
             if (str) {
                 length = str.length;
-                for (var i = 0; i < str.length; i++) {
-                    var code = str.charCodeAt(i);
+                for (let i = 0; i < str.length; i++) {
+                    const code = str.charCodeAt(i);
                     if (code > 0x7f && code <= 0x7ff) length++;
                     else if (code > 0x7ff && code <= 0xffff) length += 2;
                     if (code >= 0xDC00 && code <= 0xDFFF) i++; //trail surrogate
@@ -74,68 +117,103 @@ angular
             }
 
             if ((hashtagMaxLength - length) < 0) {
-                $scope.errors = {hashtag: 'MSG_ERROR_40000_TOPIC_HASHTAG'};
-            } else if ($scope.errors && $scope.errors.hashtag) {
-                $scope.errors.hashtag = null;
+                this.errors = {hashtag: 'MSG_ERROR_40000_TOPIC_HASHTAG'};
+            } else if (this.errors && this.errors.hashtag) {
+                this.errors.hashtag = null;
             }
         };
 
-        $scope.doDeleteHashtag = function () {
-            $scope.form.topic.hashtag = null;
+        doDeleteHashtag () {
+            this.form.topic.hashtag = null;
         };
 
-        $scope.doEditVoteDeadline = function () {
+        doEditVoteDeadline () {
+            this.form.topic.vote.topicId = this.topic.id;
 
-            $scope.form.topic.vote.topicId = $scope.topic.id;
-            return $scope.form.topic.vote
-                .$update();
+            return this.form.topic.vote.$update();
         };
 
-        $scope.addTopicCategory = function (category) {
-            if ($scope.form.topic.categories.indexOf(category) === -1 && $scope.form.topic.categories.length < Topic.CATEGORIES_COUNT_MAX) {
-                $scope.form.topic.categories.push(category);
+        addTopicCategory (category) {
+            if (this.form.topic.categories.indexOf(category) === -1 && this.form.topic.categories.length < this.Topic.CATEGORIES_COUNT_MAX) {
+                this.form.topic.categories.push(category);
             }
         };
 
-        $scope.removeTopicCategory = function (category) {
-            $scope.form.topic.categories.splice($scope.form.topic.categories.indexOf(category), 1);
+        removeTopicCategory (category) {
+            this.form.topic.categories.splice(this.form.topic.categories.indexOf(category), 1);
         };
 
-        $scope.doOrderTopics = function (property) {
-            if ($scope.topicList.searchOrderBy.property == property) {
+        doOrderTopics (property) {
+            if (this.topicList.searchOrderBy.property == property) {
                 property = '-' + property;
             }
-            $scope.topicList.searchOrderBy.property = property;
+            this.topicList.searchOrderBy.property = property;
         };
 
-        $scope.doSaveTopic = function () {
-            $scope.errors = null;
+        doSaveTopic () {
+            const self = this;
+            this.errors = null;
+            this.form.topic.visibility = 'public';
+            if (this.form.topic.visibility === true || this.form.topic.visibility === 'private') {
+                this.form.topic.visibility = 'private';
+            }
 
-            if ($scope.form.topic.visibility === true || $scope.form.topic.visibility === 'private') {
-                $scope.form.topic.visibility = 'private';
-            } else {
-                $scope.form.topic.visibility = 'public';
+            if (this.form.topic.endsAt && this.topic.endsAt === this.form.topic.endsAt) { //Remove endsAt field so that topics with endsAt value set could be updated if endsAt is not changed
+                delete this.form.topic.endsAt;
             }
-            if ($scope.form.topic.endsAt && $scope.topic.endsAt === $scope.form.topic.endsAt) { //Remove endsAt field so that topics with endsAt value set could be updated if endsAt is not changed
-                delete $scope.form.topic.endsAt;
-            }
-            $scope.form.topic
+            this.form.topic
                 .$update()
-                .then(
-                    function () {
-                        $timeout(function () { // Avoid $digest already in progress
-                            var dialogs = ngDialog.getOpenDialogs();
-                            ngDialog.close(dialogs[0], '$closeButton');
-                            $state.go($state.current.parent, {topicId: $scope.topic.id}, {reload: true});
-                        });
-                    },
-                    function (errorResponse) {
-                        if (errorResponse.data && errorResponse.data.errors) {
-                            $scope.errors = errorResponse.data.errors;
-                        }
+                .then(() => {
+                    self.$timeout(() => { // Avoid $digest already in progress
+                        const dialogs = self.ngDialog.getOpenDialogs();
+                        self.ngDialog.close(dialogs[0], '$closeButton');
+                        self.$state.go(self.$state.current.parent, {topicId: self.topic.id}, {reload: true});
+                    });
+                },
+                (errorResponse) => {
+                    if (errorResponse.data && errorResponse.data.errors) {
+                        self.errors = errorResponse.data.errors;
                     }
-                );
+                }
+            );
         };
 
-        init();
-    }]);
+        /*doLeaveTopic () {
+            const self = this;
+            this.ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_member_user_leave_confirm.html',
+                    data: {
+                        topic: this.topic
+                    }
+                })
+                .then(() => {
+                    var topicMemberUser = new self.TopicMemberUser({id: self.sapp.user.id});
+                    topicMemberUser
+                        .$delete({topicId: self.topic.id})
+                        .then(function () {
+                            self.$state.go('my/topics', null, {reload: true});
+                        });
+                });
+        };
+
+        doDeleteTopic = () {
+            $log.debug('doDeleteTopic');
+
+            ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_delete_confirm.html'
+                })
+                .then(function () {
+                    $scope.topic
+                        .$delete()
+                        .then(function () {
+                            $state.go('my/topics', null, {reload: true});
+                        });
+                }, angular.noop);
+        };*/
+    }]
+}
+angular
+    .module('citizenos')
+    .component(topicSettings.selector, topicSettings);

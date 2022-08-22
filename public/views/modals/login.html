@@ -1,7 +1,7 @@
 <!-- LIGHTBOX SKELETON -->
 <div id="root_lightbox">
     <div id="lightbox" class="wide_lightbox">
-        <div id="lightbox_wrap" ng-controller="LoginFormCtrl">
+        <div id="lightbox_wrap">
             <form name="loginForm">
             <div id="lightbox_header">
 
@@ -21,9 +21,9 @@
             <div class="lightbox_content">
                 <div id="login_lightbox">
                     <div class="line lightest_line"></div>
-                    <div class="lightbox_section" ng-if="authMethodsAvailable.facebook || authMethodsAvailable.google || authMethodsAvailable.mobiilId || authMethodsAvailable.idCard || authMethodsAvailable.smartId">
+                    <div class="lightbox_section" ng-if="$ctrl.authMethodsAvailable.facebook || $ctrl.authMethodsAvailable.google || $ctrl.authMethodsAvailable.mobiilId || $ctrl.authMethodsAvailable.idCard || $ctrl.authMethodsAvailable.smartId">
 
-                        <div ng-if="authMethodsAvailable.facebook" id="facebook" ng-click="doLoginPartner(LOGIN_PARTNERS.facebook)" class="social_button">
+                        <div ng-if="$ctrl.authMethodsAvailable.facebook" id="facebook" ng-click="$ctrl.doLoginPartner($ctrl.LOGIN_PARTNERS.facebook)" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-facebook2x"></div>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
 
-                        <div ng-if="authMethodsAvailable.google" id="google" ng-click="doLoginPartner(LOGIN_PARTNERS.google)" class="social_button">
+                        <div ng-if="$ctrl.authMethodsAvailable.google" id="google" ng-click="$ctrl.doLoginPartner($ctrl.LOGIN_PARTNERS.google)" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-google2x"></div>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
 
-                        <div ng-if="authMethodsAvailable.mobiilId || authMethodsAvailable.idCard" id="id_card" ng-click="doLoginEsteId()" class="social_button">
+                        <div ng-if="$ctrl.authMethodsAvailable.mobiilId || $ctrl.authMethodsAvailable.idCard" id="id_card" ng-click="$ctrl.doLoginEsteId()" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-id2x"></div>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <div ng-if="authMethodsAvailable.smartId" id="smart_id" ng-click="doLoginSmartId()" class="social_button">
+                        <div ng-if="$ctrl.authMethodsAvailable.smartId" id="smart_id" ng-click="$ctrl.doLoginSmartId()" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-smartid2x"></div>
@@ -69,38 +69,38 @@
 
                     </div>
 
-                    <div ng-if="authMethodsAvailable.citizenos">
+                    <div ng-if="$ctrl.authMethodsAvailable.citizenos">
                         <div class="line lightest_line"></div>
 
                         <div class="lightbox_section">
                                 <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
                                 <p class="bold" translate="MODALS.LOGIN_EMAIL_HEADING">Log in / Register to Citizen OS</p>
-                                <div class="error_no_account" ng-if="errors.accoundDoesNotExist">
+                                <div class="error_no_account" ng-if="$ctrl.errors.accoundDoesNotExist">
                                     <div class="icon_cell"><div class="sprite sprite-icon-inputfield-error2x"></div></div>
                                     <div class="table_cell">
-                                        <span translate="MODALS.LOGIN_ERROR_NO_ACCOUNT" translate-values="{linkRegister: linkRegister}">We couldn’t find an account with that e-mail & password combination. Maybe you want to <a>register a new account?</a></span>
+                                        <span translate="MODALS.LOGIN_ERROR_NO_ACCOUNT" translate-values="{linkRegister: $ctrl.linkRegister}">We couldn’t find an account with that e-mail & password combination. Maybe you want to <a>register a new account?</a></span>
                                     </div>
                                 </div>
-                                <input id="email" ng-model="form.email" type="email" placeholder="{{'MODALS.LOGIN_PLACEHOLDER_EMAIL' | translate}}" focus-if="{{wWidth > 1024 && !isFormEmailProvided}}"
-                                       ng-class="{'error_input': errors.email}" maxlength="254" required>
-                                <label for="email" class="error_label" ng-if="errors.email">
+                                <input id="email" ng-model="$ctrl.form.email" type="email" placeholder="{{'MODALS.LOGIN_PLACEHOLDER_EMAIL' | translate}}" focus-if="{{wWidth > 1024 && !$ctrl.isFormEmailProvided}}"
+                                       ng-class="{'error_input': $ctrl.errors.email}" maxlength="254" required>
+                                <label for="email" class="error_label" ng-if="$ctrl.errors.email">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                        <span translate="{{errors.email}}"></span>
+                                        <span translate="{{$ctrl.errors.email}}"></span>
                                     </div>
                                 </label>
                                 <div class="input_with_icon clickable">
-                                    <input id="password" ng-model="form.password" type="password" placeholder="{{'MODALS.LOGIN_PLACEHOLDER_PASSWORD' | translate}}"
-                                       focus-if="isFormEmailProvided" ng-class="{'error_input': errors.password}" maxlength="64" required cos-view-input>
+                                    <input id="password" ng-model="$ctrl.form.password" type="password" placeholder="{{'MODALS.LOGIN_PLACEHOLDER_PASSWORD' | translate}}"
+                                       focus-if="$ctrl.isFormEmailProvided" ng-class="{'error_input': $ctrl.errors.password}" maxlength="64" required cos-view-input>
                                 </div>
-                                <label for="password" class="error_label" ng-if="errors.password">
+                                <label for="password" class="error_label" ng-if="$ctrl.errors.password">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                        <span translate="{{errors.password}}"></span>
+                                        <span translate="{{$ctrl.errors.password}}"></span>
                                     </div>
                                 </label>
                                 <div class="link_section">
-                                    <a class="lightbox_link" ng-click="doResetPassword()" href="" translate="MODALS.LOGIN_LNK_FORGOT_PASSWORD">Forgot password?</a>
+                                    <a class="lightbox_link" ng-click="$ctrl.doResetPassword()" href="" translate="MODALS.LOGIN_LNK_FORGOT_PASSWORD">Forgot password?</a>
                                 </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                     <div class="footer_button_wrap"></div>
                     <div class="footer_button_wrap right">
                         <a class="footer_link" ui-sref="account/signup" translate="MODALS.LOGIN_LNK_NO_ACCOUNT_REGISTER">No account? Sign up now</a>
-                        <button type="submit" ng-click="doLogin()" cos-disabled="loginForm.$invalid" class="blue_button login_button" translate="MODALS.LOGIN_BTN_LOGIN">Log in / Register</button>
+                        <button type="submit" ng-click="$ctrl.doLogin()" cos-disabled="loginForm.$invalid" class="blue_button login_button" translate="MODALS.LOGIN_BTN_LOGIN">Log in / Register</button>
                     </div>
                 </div>
             </div>

@@ -2,34 +2,59 @@
 import * as angular from 'angular';
 import * as $ from 'jquery';
 
-angular
-    .module('citizenos')
-    .controller('TopicAttachmentsCtrl', ['$scope', '$state', '$stateParams', '$log', '$document', '$translate', 'sNotification', 'sUpload', 'sAttachment', 'TopicAttachment', 'ngDialog', function ($scope, $state, $stateParams, $log, $document, $translate, sNotification, sUpload, sAttachment, TopicAttachment, ngDialog) {
-        $log.debug('TopicAttachmentsCtrl', $state, $stateParams);
-
-        $scope.form = {
+let topicAttachmentModal = {
+    selector: 'topicAttachmentModal',
+    templateUrl: '../../../views/modals/topic_attachments.html',
+    controller: ['$state', '$stateParams', '$log', '$document', '$translate', 'sNotification', 'sUpload', 'sAttachment', 'TopicAttachment', 'ngDialog', 'AppService', 'rTopic', class TopicAttachmentsController {
+        public form = {
             files: []
         };
+        private saveInProgress = false;
+        public topic;
+        private $state;
+        private $stateParams;
+        private $document;
+        private $translate;
+        private sNotification;
+        private sUpload;
+        private sAttachment;
+        private TopicAttachment;
+        private ngDialog;
+        private AppService;
 
-        $scope.saveInProgress = false;
+        constructor ($state, $stateParams, $log, $document, $translate, sNotification, sUpload, sAttachment, TopicAttachment, ngDialog, AppService, rTopic) {
+            $log.debug('TopicAttachmentsCtrl', $state, $stateParams);
+            this.$state = $state;
+            this.$stateParams = $stateParams;
+            this.$document = $document;
+            this.$translate = $translate;
+            this.sNotification = sNotification;
+            this.sUpload = sUpload;
+            this.sAttachment = sAttachment;
+            this.TopicAttachment = TopicAttachment;
+            this.ngDialog = ngDialog;
+            this.AppService = AppService;
+            this.topic = rTopic;
 
-        $scope.init = function () {
-            TopicAttachment
-                .query({topicId: $scope.topic.id}).$promise
+            this.init();
+        }
+
+        init () {
+            const self = this;
+            self.TopicAttachment
+                .query({topicId: self.topic.id}).$promise
                 .then(function (attachments) {
-                    $scope.form.files = attachments;
+                    self.form.files = attachments;
                 });
         };
 
-        $scope.init();
-
-        $scope.uploadFile = function () {
-            $($document[0].getElementById('addFile')).find('input').click();
+        uploadFile () {
+            $(this.$document[0].getElementById('addFile')).find('input').click();
         };
 
-        $scope.selectFile = function (files) {
-            for (var i = 0; i < files.length; i++) {
-                var attachment = {
+        selectFile (files) {
+            for (let i = 0; i < files.length; i++) {
+                const attachment = {
                     name: files[i].name,
                     type: files[i].name.split('.').pop(),
                     source: 'upload',
@@ -38,97 +63,106 @@ angular
                 };
 
                 if (attachment.size > 50000000) {
-                    sNotification.addError('MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT');
-                } else if (sUpload.ALLOWED_FILE_TYPES.indexOf(attachment.type.toLowerCase()) === -1) {
-                    var fileTypeError = $translate.instant('MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED', {allowedFileTypes: sUpload.ALLOWED_FILE_TYPES.toString()});
-                    sNotification.addError(fileTypeError);
+                    this.sNotification.addError('MSG_ERROR_ATTACHMENT_SIZE_OVER_LIMIT');
+                } else if (this.sUpload.ALLOWED_FILE_TYPES.indexOf(attachment.type.toLowerCase()) === -1) {
+                    const fileTypeError = this.$translate.instant('MSG_ERROR_ATTACHMENT_TYPE_NOT_ALLOWED', {allowedFileTypes: this.sUpload.ALLOWED_FILE_TYPES.toString()});
+                    this.sNotification.addError(fileTypeError);
                 } else {
-                    $scope.appendAttachment(attachment);
+                    this.appendAttachment(attachment);
                 }
             }
         };
 
-        function handleAttachment (attachment) {
+        handleAttachment (attachment) {
             if (attachment) {
-                $scope.appendAttachment(attachment);
+                this.appendAttachment(attachment);
             }
         }
 
-        $scope.dropboxSelect = function () {
-            sAttachment
+        dropboxSelect () {
+            const self = this;
+            this.sAttachment
                 .dropboxSelect()
-                .then(handleAttachment);
+                .then(self.handleAttachment);
         };
 
-        $scope.oneDriveSelect = function () {
-            sAttachment
+        oneDriveSelect () {
+            const self = this;
+            this.sAttachment
                 .oneDriveSelect()
-                .then(handleAttachment);
+                .then(self.handleAttachment);
         };
 
-        $scope.googleDriveSelect = function () {
-            sAttachment
+        googleDriveSelect () {
+            const self = this;
+            this.sAttachment
                 .googleDriveSelect()
-                .then(handleAttachment);
+                .then(self.handleAttachment);
         };
 
-        $scope.appendAttachment = function (attachment) {
-            $scope.doSaveAttachment(attachment);
+        appendAttachment (attachment) {
+            this.doSaveAttachment(attachment);
         };
 
-        $scope.doSaveAttachment = function (attachment) {
+        doSaveAttachment (attachment) {
+            const self = this;
             if (attachment.file) {
-                sUpload.topicAttachment($scope.topic.id, attachment)
-                .then(function (result) {
-                    var topicAttachment = new TopicAttachment(result.data);
-                    $scope.form.files.push(topicAttachment);
-                }).catch(function (err) {
+                return self.sUpload.topicAttachment(self.topic.id, attachment)
+                .then((result) => {
+                    var topicAttachment = new self.TopicAttachment(result.data);
+                    self.form.files.push(topicAttachment);
+                }).catch((err) => {
                     if (err.data.errors) {
                         var keys = Object.keys(err.data.errors);
                         keys.forEach(function (key) {
-                            sNotification.addError(err.data.errors[key]);
+                            self.sNotification.addError(err.data.errors[key]);
                         });
                     } else if (err.data.status && err.data.status.message) {
-                        sNotification.addError(err.data.status.message);
+                        self.sNotification.addError(err.data.status.message);
                     } else {
-                        sNotification.addError(err.message);
+                        self.sNotification.addError(err.message);
                     }
                 });
-            } else {
-                attachment.topicId = $scope.topic.id;
-                var topicAttachment = new TopicAttachment(attachment);
-                if (topicAttachment.id) {
-                    topicAttachment.$update();
-                } else {
-                    topicAttachment.$save();
-                }
-
-                $scope.form.files.push(topicAttachment);
             }
+            attachment.topicId = self.topic.id;
+            const topicAttachment = new self.TopicAttachment(attachment);
+            if (topicAttachment.id) {
+                topicAttachment.$update();
+            } else {
+                topicAttachment.$save();
+            }
+
+            self.form.files.push(topicAttachment);
         };
 
-        $scope.editAttachment = function (attachment) {
+        editAttachment (attachment) {
             attachment.editMode = !attachment.editMode;
-            attachment.topicId = $scope.topic.id;
-            var topicAttachment = new TopicAttachment(attachment);
+            attachment.topicId = this.topic.id;
+            const topicAttachment = new this.TopicAttachment(attachment);
             if (!attachment.editMode && attachment.id) {
                 topicAttachment.$update();
             }
         };
 
-        $scope.deleteAttachment = function (key, attachment) {
-            ngDialog
+        deleteAttachment (key, attachment) {
+            const self = this;
+            self.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_attachment_delete_confirm.html'
                 })
-                .then(function () {
-                    $scope.form.files.splice(key, 1);
+                .then(() => {
+                    self.form.files.splice(key, 1);
                     if (attachment.id) {
-                        TopicAttachment.delete({
+                        self.TopicAttachment.delete({
                             attachmentId: attachment.id,
-                            topicId: $scope.topic.id
+                            topicId: self.topic.id
                         });
                     }
                 }, angular.noop);
         };
-    }]);
+    }]
+}
+
+angular
+    .module('citizenos')
+    .component(topicAttachmentModal.selector, topicAttachmentModal);

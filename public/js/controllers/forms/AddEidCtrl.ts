@@ -1,28 +1,49 @@
 'use strict';
 import * as angular from 'angular';
 
-angular
-    .module('citizenos')
-    .controller('AddEidCtrl', ['$scope', '$log', '$state', '$cookies', 'ngDialog', 'sAuth', 'sUser', 'sNotification', 'cosConfig', function ($scope, $log, $state, $cookies, ngDialog, sAuth, sUser, sNotification, cosConfig) {
-        $log.debug('AddEidCtrl');
-        $scope.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
+let AddEidComponent = {
+    selector: 'addEid',
+    templateUrl: '../../views/modals/add_eid.html',
+    bindings: '',
+    controller: ['$log', '$cookies', 'ngDialog', 'sAuth', 'sUser', 'sNotification', 'cosConfig', class AddEidController {
+        private $log;
+        private $cookies;
+        private ngDialog;
+        private sAuth;
+        private sUser;
+        private sNotification;
 
-        $scope.form = {
+        public authMethodsAvailable;
+        public form = {
             email: null,
             password: null
-        };
+        }
+        public errors;
+
+        constructor ($log, $cookies, ngDialog, sAuth, sUser, sNotification, cosConfig) {
+            $log.debug('AddEidCtrl');
+            this.$log = $log;
+            this.$cookies = $cookies;
+            this.ngDialog = ngDialog;
+            this.sAuth = sAuth;
+            this.sUser = sUser;
+            this.sNotification = sNotification;
+            this.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
+
+        }
 
         /**
          * Login with Estonian ID-Card
          */
-         $scope.doConnectEsteId = function () {
-            ngDialog
+         doConnectEsteId () {
+            const ctrl = this;
+            this.ngDialog
                 .open({
                     template: '/views/modals/login_esteid.html',
                     controller: 'ConnectEsteIdFormCtrl',
-                    scope: $scope, // Pass on $scope so that I can access AppCtrl
+                    scope: ctrl, // Pass on $scope so that I can access AppCtrl
                     data: {
-                        authMethodsAvailable: $scope.authMethodsAvailable
+                        authMethodsAvailable: ctrl.authMethodsAvailable
                     }
                 });
         };
@@ -30,38 +51,45 @@ angular
         /**
          * Login with Smart-ID
          */
-        $scope.doConnectSmartId = function () {
-            ngDialog
+        doConnectSmartId () {
+            const ctrl = this;
+            this.ngDialog
                 .open({
                     controller: 'ConnectSmartIdFormCtrl',
                     template: '/views/modals/login_smartid.html',
-                    scope: $scope // Pass on $scope so that I can access AppCtrl
+                    scope: ctrl // Pass on $scope so that I can access AppCtrl
                 });
         };
 
-        $scope.doUpdateProfile = function () {
-            $scope.errors = null;
+        doUpdateProfile () {
+            const ctrl = this;
+            let errors = this.errors = null;
 
-            var success = function (res) {
+            const success = (res) => {
                 // E-mail address was changed!
-                $cookies.remove('addEmailInProgress');
-                angular.extend(sAuth.user, res.data.data);
-                sNotification.addInfo('MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS');
-                sAuth.user.loggedIn = true;
-                ngDialog.closeAll(); // Close all dialogs, including the one open now...
+                ctrl.$cookies.remove('addEmailInProgress');
+                angular.extend(ctrl.sAuth.user, res.data.data);
+                ctrl.sNotification.addInfo('MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS');
+                ctrl.sAuth.user.loggedIn = true;
+                ctrl.ngDialog.closeAll(); // Close all dialogs, including the one open now...
             };
 
-            var error = function (res) {
-                $scope.errors = res.data.errors;
+            const error = (res) => {
+                errors = res.data.errors;
             };
 
-            if ($scope.form.email) {
-                sUser
-                    .update(sAuth.user.name, $scope.form.email)
+            if (ctrl.form.email) {
+                ctrl.sUser
+                    .update(ctrl.sAuth.user.name, ctrl.form.email)
                     .then(success, error);
             } else {
-                $scope.errors = {email: 'MODALS.ADD_EMAIL_ERROR_MSG_INVALID'}
+                errors = {email: 'MODALS.ADD_EMAIL_ERROR_MSG_INVALID'}
             }
 
         }
-    }]);
+    }]
+}
+
+angular
+    .module('citizenos')
+    .component(AddEidComponent.selector, AddEidComponent);
