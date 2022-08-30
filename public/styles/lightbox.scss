@@ -191,14 +191,6 @@
                     }
                 }
 
-                #lightbox_close {
-                    height: 54px;
-                    border-radius: 0 4px;
-                    position: absolute;
-                    float: none;
-                    right: 0;
-                }
-
             }
 
             .lightbox_content {
@@ -344,10 +336,6 @@
         #lightbox_wrap {
             #lightbox_header {
                 height: auto;
-
-                #lightbox_close {
-                    height: 54px;
-                }
 
                 .confirm_description_wrap {
                     display: table-row;
@@ -502,15 +490,6 @@
                         font-size: 14px;
                         line-height: 24px;
                     }
-                }
-
-                #lightbox_close {
-                    height: 54px;
-                    border-radius: 0 4px 0 4px;
-                    position: absolute;
-                    float: none;
-                    right: 0;
-                    top: 0;
                 }
 
                 .header_row_with_title {
@@ -1391,14 +1370,6 @@
                 position: relative;
                 display: table;
 
-                #lightbox_close {
-                    height: 54px;
-                    border-radius: 0 4px;
-                    position: absolute;
-                    float: none;
-                    right: 0;
-                }
-
                 #lightbox_header_text {
                     height: 80px !important;
                     font-weight: 400;
@@ -1641,16 +1612,6 @@
                         font-size: 14px;
                     }
 
-                    #lightbox_close {
-                        right: 0;
-                        top: 0;
-                        height: 54px;
-                        position: absolute;
-                        @include mixins_n_extends.mobile {
-                            display: none;
-                        }
-                    }
-
                 }
 
                 .line_wrap {
@@ -1773,12 +1734,13 @@
         #lightbox_wrap {
 
             #lightbox_close {
-                width: 54px;
-                height: 100%;
-                display: table;
-                float: right;
-                cursor: pointer;
-                border-radius: 0 4px 0 0;
+                border-radius: 0 4px;
+                position: absolute;
+                float: none;
+                right: 0;
+                top: 0;
+                padding: 15px;
+
                 @include mixins_n_extends.mobile {
                     border-radius: 0
                 }
@@ -2148,14 +2110,6 @@
                     }
                 }
 
-            }
-
-            #lightbox_close {
-                height: 42px;
-                border-radius: 0 4px;
-                position: absolute;
-                float: none;
-                right: 0;
             }
         }
     }

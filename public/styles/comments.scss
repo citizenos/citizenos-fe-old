@@ -306,6 +306,11 @@
 
                             .replys_reply {
                                 @extend .blue_link;
+                                margin-right: 5px;
+                            }
+
+                            .reply_content {
+                                display: inline-flex;
                             }
 
                             .argument_header {
