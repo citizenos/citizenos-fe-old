@@ -517,7 +517,7 @@
     "TOPIC_NOTIFICATION_SETTINGS_TITLE_DESCRIPTION": "Tieto nastavenia sa budú týkať iba tejto témy {{topicTitle}}",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_GENERAL": "Všeobecné",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_CHANNELS": "Kanály",
-    "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Notifikácie tém",
+    "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Toggle notifications for this topic",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_NOTIFY_ME_ABOUT": "Upozorniť ma na:",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_ALL_ACTIONS": "Všetky akcie v tejto téme",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_UPDATES": "Aktualizácie tém (obsah, stav, kategórie, správy atď.)",
