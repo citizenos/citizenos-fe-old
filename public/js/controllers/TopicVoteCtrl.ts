@@ -197,12 +197,4 @@ angular
             return value / $scope.topic.vote.getVoteCountTotal() * 100;
         };
 
-        $scope.$parent.$parent.getOptionLetter = function (index) {
-            if (index < 26) {
-                return String.fromCharCode(65 + index);
-            } else {
-                return String.fromCharCode(65 + Math.floor(index/26)-1) + (String.fromCharCode(65 + index % 26))
-            }
-        };
-
     }]);

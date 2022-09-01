@@ -1,0 +1,54 @@
+<!--ng-if="!$ctrl.isGroup(item)" class="small_topic" ui-sref="my/topics/topicId({topicId: item.id})"-->
+<div class="small_topic " class="small_topic"  ng-class="$ctrl.isActiveItem(item) ? 'active': ''" ng-click="$ctrl.goToItemView()" >
+    <div class="container_pin" ng-class="$ctrl.item.pinned ? 'pinned' : ''" ng-click="$ctrl.item.togglePin();">
+        <div class="ff_table_fix" translate translate-attr-title="TOOLTIP_PIN_TOPIC">
+            <div class="table_cell">
+                <div class="sprite sprite-icon-favourite2x-white"></div>
+                <div class="yellow_bg"></div>
+            </div>
+        </div>
+    </div>
+    <div class="small_topic_header">
+        <div class="small_topic_left_cont" ng-if="$ctrl.item.status">
+            <div class="small_topic_icon">
+                <div class="sprite" ng-class="'sprite-mytopics-icon-' + ($ctrl.item.status | lowercase) + '2x'"></div>
+            </div>
+            <div class="small_topic_small_text">{{'TXT_TOPIC_STATUS_' + $ctrl.item.status | uppercase | translate}}</div>
+        </div>
+
+        <div class="small_topic_right_cont" ng-if="$ctrl.item.members.groups.count > 0">
+            <div class="small_topic_icon">
+                <div ></div>
+            </div>
+            <div class="small_topic_small_text" translate="VIEWS.MY.LBL_GROUPS_COUNT" translate-values="{count: $ctrl.item.members.groups.count}">0 groups</div>
+        </div>
+        <div class="clearer"></div>
+    </div>
+
+    <a class="small_topic_title">
+        <div class="title_div" ng-bind="$ctrl.item.title || $ctrl.item.name">title</div>
+        <div class="container_visibility" >
+            <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+$ctrl.item.visibility | uppercase) | translate}}</span>">
+                <div class="table_cell">
+                    <div class="sprite" ng-class="{'sprite-icon-public-topic': !$ctrl.item.isPrivate(), 'sprite-icon-private-topic': $ctrl.item.isPrivate()}"></div>
+                </div>
+            </div>
+        </div>
+    </a>
+
+    <div class="line lightest_line"></div>
+
+    <div class="small_topic_footer">
+        <div class="small_topic_left_cont">
+            <div class="small_topic_link" ng-click="$ctrl.goToView(true); $event.stopPropagation();" ng-if="$ctrl.item.status==='inProgress'">
+                <div class="small_topic_icon">
+                    <div class="sprite" ng-class="$ctrl.isActiveItem() ? 'sprite-icon-edit-topic_white': 'sprite-icon-edit-topic_black'"></div>
+                </div>
+                <div class="small_topic_small_text small_topic_link" translate="VIEWS.MY.LNK_TOPIC_EDIT">Edit</div>
+            </div>
+        </div>
+        <div class="small_topic_right_cont">
+            <div class="small_topic_small_text" ng-bind="($ctrl.item.updatedAt || $ctrl.item.createdAt) | amDateFormat : 'L LT'">12/12/2015</div>
+        </div>
+    </div>
+</div>

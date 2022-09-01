@@ -1,0 +1,34 @@
+<div class="argument_edit_wrap">
+    <form ng-if="$ctrl.app.user.loggedIn" name="replyEdit">
+        <div class="post_argument_overlay" ng-if="!$ctrl.app.user.loggedIn">
+            <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
+                <div class="blue_link">log in</div>
+                to comment
+            </h3>
+        </div>
+        <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'" id="reply_edit" class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_REPLY' | translate}}"
+                  ng-keyup="$ctrl.commentTextLengthCheck(reply, reply.editText)" ng-class="{'error_input': reply.errors.text}" ng-model="$ctrl.reply.editText" maxlength="$ctrl.COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
+        <label for="reply_edit" class="error_label" ng-if="$ctrl.reply.errors.text">
+            <div class="table_cell">
+                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                <span translate="{{$ctrl.reply.errors.text}}"></span>
+            </div>
+        </label>
+        <div ng-if="$ctrl.reply.showEdit" class="argument_footer_with_buttons">
+            <div class="table_cell">
+                <div class="blue_button" ng-click="$ctrl.updateComment()">
+                    <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_BTN_SAVE_EDIT_REPLY">
+                        Save
+                    </div>
+                </div>
+            </div>
+            <div class="table_cell">
+                <div class="blue_button blue_white_button" ng-click="$ctrl.commentEditMode()">
+                    <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_BTN_CANCEL_EDIT_REPLY">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

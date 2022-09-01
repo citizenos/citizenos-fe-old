@@ -1,0 +1,19 @@
+<div class="graph_wrap">
+    <div class="graph_row" ng-class="option.winner ? 'active' : ''" ng-repeat="(key, option) in $ctrl.options.rows">
+        <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
+        <div class="graph_row_fill" cos-styles='{"width" : "{{$ctrl.getVoteValuePercentage(option.voteCount)}}%"}' tooltips
+             tooltip-template="{{((optionTranslation = ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase | translate)) != ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase)) ? optionTranslation : (option.value | linky)}}"
+             tooltip-smart="true">
+            <div class="graph_row_text_wrap">
+                <div class="table_cell">
+                    <div class="graph_row_text">
+                        <span translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
+                              translate-default="{{option.value | linky}}"></span><br>
+                        <span class="bold">{{option.voteCount || 0}}</span><span class="bold bullet"  ng-if="option.selected">•</span><span class="bold" ng-if="option.selected" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_YOUR_VOTE">Your vote</span><!--span class="bold" ng-if="option.delegated" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_YOUR_VOTE_DELEGATED" translate-values="{userName: $ctrl.vote.delegation.name}">Your vote delegated to </span-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

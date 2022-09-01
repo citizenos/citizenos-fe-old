@@ -170,10 +170,6 @@ angular
             return this.canEdit();
         };
 
-        TopicComment.prototype.isVisible = function () {
-            return (!this.deletedAt && !this.showDeletedComment) || (this.deletedAt && this.showDeletedComment);
-        };
-
         TopicComment.COMMENT_TYPES = {
             pro: 'pro',
             con: 'con',

@@ -1,0 +1,83 @@
+<div id="post_argument_wrap" class="post_argument_wrap print_never">
+    <div class="post_argument_overlay" ng-if="!$ctrl.app.user.loggedIn">
+        <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
+            <div class="blue_link">log in</div>
+            to comment
+        </h3>
+    </div>
+    <form cos-disabled="!$ctrl.app.user.loggedIn" name="argumentForm">
+        <div cos-dropdown cos-dropdown-mobile="{{$ctrl.app.isTouchDevice()}}" class="classic_dropdown" ng-class="{'error_input': $ctrl.form.errors.type, 'placeholder': !$ctrl.form.type}">
+            <div class="dropdown_selection">
+                <div class="dropdown_text">
+                    {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + $ctrl.form.type | uppercase) | translate}} <span ng-if="!$ctrl.form.type">*</span>
+                </div>
+
+                <div class="arrow_holder">
+                    <div class="table_cell">
+                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                        <div class="v_line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown with_description" ng-if="$ctrl.app.wWidth <= 560">
+                <div>
+                    <div class="dropdown_item" ng-repeat="type in $ctrl.COMMENT_TYPES" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="$ctrl.form.type = type">
+                        <div class="item_name">
+                            {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
+                        </div>
+                        <div>
+                            <div class="item_description" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="$ctrl.form.type = type">
+                                <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
+                                <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: $ctrl.COMMENT_TYPES_MAXLENGTH[type]}">Character limit:
+                                    2084</p>
+                                <button ng-if="$ctrl.app.isTouchDevice() && ($index === 0 || $ctrl.form.type === type)" class="light_gray_button full_width dropdown_selector" ng-click="$ctrl.form.type = type" translate="DROPDOWN_BTN_SELECT">Select</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown with_description" ng-if="$ctrl.app.wWidth > 560">
+                <div class="column">
+                    <div class="dropdown_item" ng-repeat="type in $ctrl.COMMENT_TYPES" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="$ctrl.form.type = type">
+                        <div class="item_name">
+                            {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="column dropdown_item_descriptions">
+                    <div class="item_description" ng-repeat="type in $ctrl.COMMENT_TYPES" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="$ctrl.form.type = type">
+                        <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
+                        <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: $ctrl.COMMENT_TYPES_MAXLENGTH[type]}">Character limit:
+                            2084</p>
+                        <button ng-if="$ctrl.app.isTouchDevice() && ($index === 0 || $ctrl.form.type === type)" class="light_gray_button full_width dropdown_selector" ng-click="$ctrl.form.type = type" translate="DROPDOWN_BTN_SELECT">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input id="argument_subject" ng-model="$ctrl.form.subject" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}"
+               class="gray_borders" ng-class="{'error_input': $ctrl.form.errors.subject}" focus-if="$ctrl.focusArgumentSubject" maxlength="{{$ctrl.COMMENT_SUBJECT_MAXLENGTH}}" required>
+        <label for="argument_subject" class="error_label" ng-if="$ctrl.form.errors.subject">
+            <div class="table_cell">
+                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                <span translate="{{$ctrl.form.errors.subject}}"></span>
+            </div>
+        </label>
+        <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'" id="argument_text" ng-model="$ctrl.form.text" class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}"
+                  ng-class="{'error_input': form.errors.text}" maxlength="$ctrl.COMMENT_TYPES_MAXLENGTH[form.type] || $ctrl.COMMENT_TYPES_MAXLENGTH['pro']" required></textarea>
+        <label for="argument_text" class="error_label" ng-if="$ctrl.form.errors.text">
+            <div class="table_cell">
+                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                <span translate="{{$ctrl.form.errors.text}}"></span>
+            </div>
+        </label>
+
+        <div class="blue_button" cos-disabled="argumentForm.$invalid || !$ctrl.form.type" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="$ctrl.saveComment()">
+            Post
+        </div>
+        <div class="clearer"></div>
+    </form>
+</div>

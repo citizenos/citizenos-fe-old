@@ -33,7 +33,6 @@ import './MyCtrl';
 import './PartnerCtrl';
 import './SearchCtrl';
 import './TopicAttachmentsCtrl';
-import './TopicCommentCtrl';
 import './TopicCommentVoteCtrl';
 import './TopicCtrl';
 import './TopicFollowUpCtrl';

@@ -101,5 +101,9 @@ angular
             return this.canUpdate();
         };
 
+        Group.prototype.isPrivate = function () {
+            return this.visibility === Group.VISIBILITY.private;
+        };
+
         return Group;
     }]);

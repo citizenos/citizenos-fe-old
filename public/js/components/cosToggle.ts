@@ -18,7 +18,7 @@ let cosToggle = {
     bindings: {
         model: '=?',
         value: '=?',
-        offvalue: '=?',
+        offValue: '=?',
         cosToggleTextOn: '=?',
         cosToggleTextOff: '=?',
         cosToggleDatepickerToggle: '=?'
@@ -26,7 +26,7 @@ let cosToggle = {
     controller: ['$element', class CosToggleController {
         private model;
         private value;
-        private offvalue;
+        private offValue;
         private cosToggleTextOn;
         private cosToggleTextOff;
         private cosToggleDatepickerToggle;
@@ -38,8 +38,8 @@ let cosToggle = {
         cosToggle () {
             console.log(this.value, this.model);
             if(this.value){
-                if(this.model === this.value && this.offvalue){
-                    this.model = this.offvalue;
+                if(this.model === this.value && this.offValue){
+                    this.model = this.offValue;
                 } else {
                     this.model = this.value;
                 }

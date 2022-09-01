@@ -191,7 +191,10 @@ import * as _ from 'lodash';
                                     }
                                 );
                         }]
-                    }
+                    },
+                    controller: ['$rootScope', 'AppService', function ($rootScope, AppService) {
+                        $rootScope.app = AppService;
+                    }]
                 })
                 .state('main', {
                     url: null,
@@ -363,8 +366,10 @@ import * as _ from 'lodash';
                     params: {
                         email: null // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
                     },
-                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rUserConnections', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rUserConnections, rHiddenParams) {
+                    template: '<login-form></login-form>'
+                    /*controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rUserConnections', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rUserConnections, rHiddenParams) {
                         if (sAuthResolve) {
+                            console.log()
                             return $state.go('home');
                         }
                         console.log(rUserConnections);
@@ -384,11 +389,12 @@ import * as _ from 'lodash';
                         });
 
                         dialog.closePromise.then(function (data) {
+                            console.log('close promise', data.value);
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
                                 return $state.go('home');
                             }
                         });
-                    }]
+                    }]*/
                 })
                 .state('account/profile', { // TODO: Naming inconsistency but /account/myaccount would be funny. Maybe rename all related files to profile?
                     parent: 'account',
@@ -744,8 +750,8 @@ import * as _ from 'lodash';
                 .state('topics/view/votes/create', {
                     parent: 'topics/view/votes',
                     url: '/create',
-                    template: '<div ui-view></div>',
-                    controller: 'TopicVoteCreateCtrl',
+                    template: '<topic-vote-create></topic-vote-create>',
+                   /* controller: 'TopicVoteCreateCtrl',
                     resolve: {
                         rVote: ['rTopic', '$state', '$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
                             if (rTopic.voteId) {
@@ -761,7 +767,7 @@ import * as _ from 'lodash';
                                 return $q.resolve();
                             }
                         }]
-                    }
+                    }*/
                 })
                 .state('topics/view/votes/view', {
                     parent: 'topics/view/votes',
@@ -790,82 +796,7 @@ import * as _ from 'lodash';
                 .state('my', {
                     url: '/my?filter&openTabs',
                     parent: 'main',
-                    templateUrl: '/views/my.html',
-                    controller: 'MyCtrl',
-                    resolve: {
-                        // Array of Topics / Groups
-                        rItems: ['$state', '$stateParams', '$location', '$q', '$window', 'Topic', 'GroupService', 'sAuth', 'sAuthResolve', function ($state, $stateParams, $location, $q, $window, Topic, GroupService, sAuth, sAuthResolve) {
-                            var filterParam = $stateParams.filter || 'all';
-                            var urlParams = {
-                                prefix: null,
-                                userId: null,
-                                visibility: null,
-                                hasVoted: null,
-                                creatorId: null,
-                                statuses: null,
-                                pinned: null,
-                                showModerated: null
-                            };
-                            var path = $location.path();
-
-                            if (!$stateParams.filter && (path.indexOf('groups') > -1)) {
-                                filterParam = 'grouped';
-                            }
-
-                            if (sAuthResolve || sAuth.user.loggedIn) {
-                                Object.assign(urlParams, {prefix: 'users', userId: 'self'});
-                            }
-
-                            switch (filterParam) {
-                                case 'all':
-                                    return Topic.query(urlParams).$promise;
-                                case 'public':
-                                    urlParams.visibility = Topic.VISIBILITY.public;
-                                    return Topic.query(urlParams).$promise;
-                                case 'private':
-                                    urlParams.visibility = Topic.VISIBILITY.private;
-                                    return Topic.query(urlParams).$promise;
-                                case 'haveVoted':
-                                    urlParams.hasVoted = true;
-                                    return Topic.query(urlParams).$promise;
-                                case 'haveNotVoted':
-                                    urlParams.hasVoted = false;
-                                    return Topic.query(urlParams).$promise;
-                                case 'iCreated':
-                                    urlParams.creatorId = sAuth.user.id;
-                                    return Topic.query(urlParams).$promise;
-                                case 'inProgress':
-                                    urlParams.statuses = Topic.STATUSES.inProgress;
-                                    return Topic.query(urlParams).$promise;
-                                case 'voting':
-                                    urlParams.statuses = Topic.STATUSES.voting;
-                                    return Topic.query(urlParams).$promise;
-                                case 'followUp':
-                                    urlParams.statuses = Topic.STATUSES.followUp;
-                                    return Topic.query(urlParams).$promise;
-                                case 'closed':
-                                    urlParams.statuses = Topic.STATUSES.closed;
-                                    return Topic.query(urlParams).$promise;
-                                case 'pinnedTopics':
-                                    urlParams.pinned = true;
-                                    return Topic.query(urlParams).$promise;
-                                case 'showModerated':
-                                    urlParams.showModerated = true;
-                                    return Topic.query(urlParams).$promise;
-                                case 'grouped':
-                                    if (GroupService.isLoading !== false) {
-                                        return GroupService.isLoading.then(function () {
-                                            console.log('READY', GroupService)
-                                            return GroupService;
-                                        });
-                                    }
-                                    return GroupService;
-
-                                default:
-                                    return $q.reject();
-                            }
-                        }]
-                    }
+                    template: '<my-view></my-view>'
                 })
                 .state('my/topics', {
                     url: '/topics',
@@ -875,27 +806,7 @@ import * as _ from 'lodash';
                 .state('my/topics/topicId', {
                     url: '/:topicId',
                     parent: 'my/topics',
-                    templateUrl: '/views/my_topics_topicId.html',
-                    resolve: {
-                        rTopic: ['$stateParams', '$anchorScroll', 'Topic', 'sAuthResolve', function ($stateParams, $anchorScroll, Topic, sAuthResolve) {
-                            var urlParams = {
-                                topicId: $stateParams.topicId,
-                                include: 'vote',
-                                prefix: null,
-                                userId: null
-                            };
-                            if (sAuthResolve) {
-                                urlParams.prefix = 'users';
-                                urlParams.userId = 'self';
-                            }
-                            return Topic.get(urlParams).$promise
-                                .then(function (topic) {
-                                    $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
-                                    return topic;
-                                });
-                        }]
-                    },
-                    controller: 'TopicCtrl'
+                    template: '<my-topics-topic></my-topics-topic>'
                 })
                 .state('my/topics/topicId/settings', {
                     url: '/settings?tab',

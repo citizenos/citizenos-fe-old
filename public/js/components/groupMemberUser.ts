@@ -1,7 +1,7 @@
 import * as angular from 'angular';
 
-let groupMemberUser = {
-    selector: 'groupMemberUser',
+let myMemberUser = {
+    selector: 'myMemberUser',
     template:  `
         <div class="pretend_td">
             <div class="profile_image_wrapper dark">
@@ -59,21 +59,25 @@ let groupMemberUser = {
     bindings: {
         member: '=',
         canUpdate: '=?',
-        group: '='
+        group: '=?',
+        topic: '=?'
     },
-    controller: ['ngDialog', 'GroupMemberUser', 'sAuth', '$state', class GroupMemberUserController {
+    controller: ['ngDialog', 'GroupMemberUser', 'TopicMemberUser', 'sAuth', '$state', class MyMemberUserController {
         private member;
         private canUpdate;
         private group;
+        private topic;
 
         private ngDialog;
         private GroupMemberUser;
+        private TopicMemberUser;
         private sAuth;
         private $state;
 
-        constructor (ngDialog, GroupMemberUser, sAuth, $state) {
+        constructor (ngDialog, GroupMemberUser, TopicMemberUser, sAuth, $state) {
             this.ngDialog = ngDialog;
             this.GroupMemberUser = GroupMemberUser;
+            this.TopicMemberUser = TopicMemberUser;
             this.sAuth = sAuth;
             this.$state = $state;
         }
@@ -95,24 +99,45 @@ let groupMemberUser = {
 
         doDeleteMemberUser () {
             const member = this.member
-            const group = this.group
-            if (member.id === this.sAuth.user.id) { // IF User tries to delete himself, show "Leave" dialog instead
-                this.doLeaveGroup();
+            if (this.group) {
+                const group = this.group
+                if (member.id === this.sAuth.user.id) { // IF User tries to delete himself, show "Leave" dialog instead
+                    this.doLeaveGroup();
+                } else {
+                    this.ngDialog
+                        .openConfirm({
+                            template: '/views/modals/group_member_user_delete_confirm.html',
+                            data: {
+                                user: member
+                            }
+                        })
+                        .then(() => {
+                            member
+                                .$delete({groupId: group.id})
+                                .then(() => {
+                                    group.getMemberUsers();
+                                });
+                        }, angular.noop);
+                }
             } else {
+                const topic = this.topic;
+                if (member.id = this.sAuth.user.id) {
+                    this.doLeaveTopic();
+                }
                 this.ngDialog
-                    .openConfirm({
-                        template: '/views/modals/group_member_user_delete_confirm.html',
-                        data: {
-                            user: member
-                        }
-                    })
-                    .then(function () {
-                        member
-                            .$delete({groupId: group.id})
-                            .then(function () {
-                                group.getMemberUsers();
-                            });
-                    }, angular.noop);
+                .openConfirm({
+                    template: '/views/modals/topic_member_user_delete_confirm.html',
+                    data: {
+                        user: member
+                    }
+                })
+                .then(() => {
+                    member
+                        .$delete({topicId: topic.id})
+                        .then(() => {
+                        //    return $scope.loadTopicMemberUserList(); // Good old topic.members.users.splice wont work due to group permission inheritance
+                        });
+                }, angular.noop);
             }
         };
 
@@ -128,12 +153,31 @@ let groupMemberUser = {
                         group: group
                     }
                 })
-                .then(function () {
-                    var groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
+                .then(() => {
+                    const groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
                     groupMemberUser
                         .$delete({groupId: group.id})
-                        .then(function () {
+                        .then(() => {
                             group.getMemberUsers();
+                        });
+                });
+        };
+
+        doLeaveTopic () {
+            const self = this;
+            self.ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_member_user_leave_confirm.html',
+                    data: {
+                        topic: self.topic
+                    }
+                })
+                .then(() => {
+                    const topicMemberUser = new self.TopicMemberUser({id: self.sAuth.user.id});
+                    topicMemberUser
+                        .$delete({topicId: self.topic.id})
+                        .then(() => {
+                            self.$state.go('my.topics', null, {reload: true});
                         });
                 });
         };
@@ -142,4 +186,4 @@ let groupMemberUser = {
 
 angular
     .module('citizenos')
-    .component(groupMemberUser.selector, groupMemberUser);
+    .component(myMemberUser.selector, myMemberUser);

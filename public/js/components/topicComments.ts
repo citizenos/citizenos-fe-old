@@ -6,9 +6,7 @@ let topicComments = {
     selector: 'topicComments',
     templateUrl: '../../views/topics_topicId_comments.html',
     bindings: {
-        topicId: '=',
-        hashtag: '=',
-        canEdit: '='
+        topicId: '='
     },
     controller: ['$state', '$stateParams', '$timeout', '$log', '$translate', '$q', '$document', 'ngDialog', 'sLocation', 'sNotification', 'TopicComment', 'AppService', class TopicCommentsController {
         private $log;
@@ -27,6 +25,7 @@ let topicComments = {
         private COMMENT_COUNT_PER_PAGE = 10;
         public COMMENT_TYPES;
         public topic;
+        public topicId;
         public app;
         public focusArgumentSubject = false;
 
@@ -47,7 +46,7 @@ let topicComments = {
         };
         constructor ($state, $stateParams, $timeout, $log, $translate, $q, $document, ngDialog, sLocation, sNotification, TopicComment, AppService) {
             this.$state = $state;
-            this.$state = $stateParams;
+            this.$stateParams = $stateParams;
             this.$timeout = $timeout;
             this.$log = $log;
             this.$translate = $translate;
@@ -58,7 +57,6 @@ let topicComments = {
             this.sNotification = sNotification;
             this.TopicComment = TopicComment;
             this.app = AppService;
-
             this.topicComments = angular.extend(this.topicComments, {
                 orderBy: TopicComment.COMMENT_ORDER_BY.date,
                 orderByTranslation: $translate.instant('VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ORDER_BY_DATE'),
@@ -120,10 +118,13 @@ let topicComments = {
             if (!offset) {
                 offset = 0;
             }
+            if (!self.topicId) {
+                self.topicId = self.$stateParams.topicId;
+            }
 
             self.TopicComment
                 .query({
-                    topicId: self.topic.id,
+                    topicId: self.topicId,
                     orderBy: self.topicComments.orderBy,
                     offset: offset,
                     limit: limit
@@ -209,9 +210,11 @@ let topicComments = {
         };
 
         init () {
-            const commentIdInParams = this._parseCommentIdAndVersion(this.$stateParams.commentId).commentId;
-            if (commentIdInParams) {
-                this.$stateParams.argumentsPage = 1; // Override the set page number as comment may be on any page by now
+            if (this.$stateParams.commentId) {
+                const commentIdInParams = this._parseCommentIdAndVersion(this.$stateParams.commentId).commentId;
+                if (commentIdInParams) {
+                    this.$stateParams.argumentsPage = 1; // Override the set page number as comment may be on any page by now
+                }
             }
 
             this.loadPage(this.$stateParams.argumentsPage, true);
@@ -231,7 +234,7 @@ let topicComments = {
 
             const topicComment = new this.TopicComment({
                 id: comment.id,
-                topicId: this.topic.id
+                topicId: this.topicId
             });
             topicComment.value = value;
             topicComment
@@ -245,7 +248,7 @@ let topicComments = {
             const self = this;
             const topicComment = new this.TopicComment({
                 id: comment.id,
-                topicId: this.topic.id
+                topicId: this.topicId
             });
             topicComment
                 .$votes()
@@ -268,7 +271,7 @@ let topicComments = {
                     data: {
                         comment: comment,
                         topic: {
-                            id: this.topic.id
+                            id: this.topicId
                         }
                     }
                 });
@@ -280,7 +283,7 @@ let topicComments = {
                 comment.subject = comment.editSubject;
                 comment.text = comment.editText;
                 comment.type = comment.editType;
-                comment.topicId = this.topic.id;
+                comment.topicId = this.topicId;
 
                 comment
                     .$update()
@@ -334,7 +337,7 @@ let topicComments = {
                     }
                 })
                 .then(() => {
-                    comment.topicId = self.topic.id;
+                    comment.topicId = self.topicId;
                     comment
                         .$delete()
                         .then(() => {
@@ -363,7 +366,7 @@ let topicComments = {
                     }
                 })
                 .then(() => {
-                    comment.topicId = self.topic.id;
+                    comment.topicId = self.topicId;
                     comment.$delete()
                         .then(() => {
                             return self.$state.go(
@@ -402,7 +405,7 @@ let topicComments = {
                 return;
             }
 
-            const commentElement = angular.element(self.$document.getElementById(commentIdWithVersion));
+            const commentElement = angular.element(self.$document[0].getElementById(commentIdWithVersion));
 
             // The referenced comment was found on the page displayed
             if (commentElement.length) {
@@ -436,7 +439,7 @@ let topicComments = {
                         self.$timeout(() => { // TODO:  After "showEdits" is set, angular will render the edits and that takes time. Any better way to detect of it to be done?
                             self.app.scrollToAnchor(commentIdWithVersion)
                                 .then(() => {
-                                    const commentElement = angular.element(self.$document.getElementById(commentIdWithVersion));
+                                    const commentElement = angular.element(self.$document[0].getElementById(commentIdWithVersion));
                                     commentElement.addClass('highlight');
                                     return self.$timeout(() => {
                                         commentElement.removeClass('highlight');
@@ -451,13 +454,13 @@ let topicComments = {
 
                                 // Expand edits only if an actual edit is referenced.
                                 const replyEdits = self.topicComments.rows[i].replies.rows[j].edits;
-                                if (replyEdits.length && commentVersion <= replyEdits.length - 1) {
+                                if (replyEdits.length && commentVersion !== replyEdits.length -1) {
                                     self.topicComments.rows[i].replies.rows[j].showEdits = true; // In case the reply has edits and that is referenced.
                                 }
                                 self.$timeout(() => { // TODO:  After "showEdits" is set, angular will render the edits and that takes time. Any better way to detect of it to be done?
                                     this.app.scrollToAnchor(commentIdWithVersion)
                                         .then(() => {
-                                            const commentElement = angular.element(self.$document.getElementById(commentIdWithVersion));
+                                            const commentElement = angular.element(self.$document[0].getElementById(commentIdWithVersion));
                                             commentElement.addClass('highlight');
                                             self.$state.commentId = commentIdWithVersion;
                                             self.$timeout(() => {
@@ -478,18 +481,18 @@ let topicComments = {
         };
 
         getCommentUrl (commentIdWithVersion) {
-            return this.sLocation.getAbsoluteUrl('/topics/:topicId', {topicId: this.topic.id}, {commentId: commentIdWithVersion});
+            return this.sLocation.getAbsoluteUrl('/topics/:topicId', {topicId: this.topicId}, {commentId: commentIdWithVersion});
         };
 
         copyCommentLink (mainid, version, event) {
             const id = mainid + '_v' + (version);
-            const urlInputElement = this.$document.getElementById('comment_link_input_' + id) as HTMLInputElement || null;
+            const urlInputElement = this.$document[0].getElementById('comment_link_input_' + id) as HTMLInputElement || null;
             const url = this.getCommentUrl(id);
             urlInputElement.value = url;
             urlInputElement.focus();
             urlInputElement.select();
             urlInputElement.setSelectionRange(0, 99999);
-            this.$document.execCommand('copy');
+            this.$document[0].execCommand('copy');
 
             var X = event.pageX;
             var Y = event.pageY;

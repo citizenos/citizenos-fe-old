@@ -9,14 +9,17 @@ angular
         $log.debug('TopicCtrl', $scope);
         var lastViewTime = null;
 
-        if ($state.$current.name === 'topics.view' && rTopic.status === Topic.STATUSES.voting) {
+        if ($state.$current.name === 'topics/view' && rTopic.status === Topic.STATUSES.voting) {
             $timeout(function () {
-                $stateParams.voteId = rTopic.voteId;
+                var stateParams = Object.assign({}, $stateParams)
+                stateParams.voteId = rTopic.voteId;
 
-                return $state.go('topics.view.votes.view', $stateParams);
+                return $state.go('topics/view/votes/view', stateParams);
             });
         }
-
+        if ($state.$current.name === 'topics/view/votes/create') {
+            $scope.showVoteCreateForm = !$scope.showVoteCreateForm;
+        }
         $scope.topic = rTopic;
         $scope.app.topic = rTopic;
         var ITEMS_COUNT_PER_PAGE = 10;
@@ -33,7 +36,7 @@ angular
                 $scope.app.metainfo.image = docImageSrc;
             }
 
-            if (sAuth.user.loggedIn && $state.current.name.indexOf('topics.view') === 0) {
+            if (sAuth.user.loggedIn && $state.current.name.indexOf('topics/view/votes/view') === 0) {
                 var t = new Topic({id: $scope.topic.id});
                 t
                     .$getInlineComments()
@@ -76,9 +79,9 @@ angular
         // Topic has been moderated, we need to show User warning AND hide Topic content
         // As the controller is used both in /my/topics/:topicId and /topics/:topicId the dialog is directly opened
         if ($scope.isTopicReported) {
-            // NOTE: Well.. all views that are under the topics.view would trigger doble overlays which we don't want
+            // NOTE: Well.. all views that are under the topics/view/votes/view would trigger doble overlays which we don't want
             // Not nice, but I guess the problem starts with the 2 views using same controller. Ideally they should have a parent controller and extend that with their specific functionality
-            if ($state.is('topics.view') || $state.is('my.topics.topicId')) {
+            if ($state.is('topics/view') || $state.is('my/topics/topicId')) {
                 $scope.doShowReportOverlay();
             }
         } else {
@@ -94,8 +97,9 @@ angular
             $scope.topic.padUrl = padURL.href; // Change of PAD URL here has to be before $sce.trustAsResourceUrl($scope.topic.padUrl);
             if (!$scope.topic.canEditDescription() && ($stateParams.editMode && $stateParams.editMode === 'true')) {
                 $scope.app.editMode = false;
-                delete $stateParams.editMode;
-                $state.transitionTo($state.current.name, $stateParams, {
+                var stateParams = Object.assign({}, $stateParams);
+                delete stateParams.editMode;
+                $state.transitionTo($state.current.name, stateParams, {
                     notify: false,
                     reload: false
                 });
@@ -145,26 +149,9 @@ angular
         $scope.app.editMode = ($stateParams.editMode && $stateParams.editMode === 'true') || false;
         $scope.showInfoEdit = $scope.app.editMode;
         $scope.showVoteArea = false;
-        $scope.multipleWinners = false;
-        $scope.showInfoWinners = false;
 
         $scope.STATUSES = Topic.STATUSES;
         $scope.VISIBILITY = Topic.VISIBILITY;
-
-        /*    if ($scope.topic.vote) {
-                $scope.topic.vote.$get(function(v){
-                    var winnerCount = 0;
-                    v.options.rows.forEach(function (option) {
-                        if (option.winner) {
-                            winnerCount++;
-                            if (winnerCount > 1) {
-                                $scope.showInfoWinners = true;
-                                $scope.multipleWinners = true;
-                            }
-                        }
-                    });
-                });
-            }*/
 
         $scope.activitiesOffset = 0;
         $scope.activitiesLimit = 25;
@@ -419,13 +406,15 @@ angular
                 })
                 .then(function () {
                     if (!$scope.topic.voteId && !$scope.topic.vote) {
+                        console.log('ZDES');
                         $scope.app.topics_settings = false;
-                        $state.go('topics.view.votes.create', {
+                        return $state.go('topics/view/votes/create', {
                             topicId: $scope.topic.id,
                             commentId: null
                         });
                     } else if (($scope.topic.voteId || $scope.topic.vote && $scope.topic.vote.id) && $scope.topic.status !== $scope.STATUSES.voting) {
                         $log.debug('sendToVote');
+                        console.log('ZDES 1');
                         return new Topic(
                             {
                                 id: $scope.topic.id,
@@ -437,7 +426,7 @@ angular
                                 function (topicPatched) {
                                     $scope.topic.status = topicPatched.status;
                                     $scope.app.topics_settings = false;
-                                    $state.go('topics.view.votes.view', {
+                                    $state.go('topics/view/votes/view', {
                                             topicId: $scope.topic.id,
                                             voteId: $scope.topic.vote.id,
                                             commentId: null,
@@ -448,6 +437,7 @@ angular
                                 }
                             );
                     }
+                    console.log('NOOP');
                     return false;
                 }, angular.noop);
         };
@@ -467,7 +457,7 @@ angular
                             function (topicPatched) {
                                 $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
-                                var stateNext = stateSuccess || 'topics.view.followUp';
+                                var stateNext = stateSuccess || 'topics/view/followUp';
                                 var stateParams = angular.extend({}, $stateParams, {
                                     editMode: null,
                                     commentId: null
@@ -499,8 +489,8 @@ angular
                             function (topicPatched) {
                                 $scope.topic.status = topicPatched.status;
                                 $scope.app.topics_settings = false;
-                                if ($state.is('topics.view.votes.view')) {
-                                    $state.go('topics.view', {topicId: $scope.topic.id}, {
+                                if ($state.is('topics/view/votes/view')) {
+                                    $state.go('topics/view', {topicId: $scope.topic.id}, {
                                         reload: true,
                                         commentId: null
                                     });
@@ -515,7 +505,7 @@ angular
             $scope.app.topics_settings = false;
             if ($scope.app.editMode === true) {
                 $state.go(
-                    'topics.view',
+                    'topics/view',
                     {
                         topicId: $scope.topic.id,
                         editMode: $scope.app.editMode,
@@ -524,7 +514,7 @@ angular
                 );
             } else {
                 $state.go(
-                    'topics.view',
+                    'topics/view',
                     {
                         topicId: $scope.topic.id,
                         editMode: null,
@@ -677,7 +667,7 @@ angular
                         .duplicate($scope.topic)
                         .then(function (duplicate) {
                             console.log(duplicate)
-                            $state.go('topics.view', {topicId: duplicate.id});
+                            $state.go('topics/view', {topicId: duplicate.id});
                         });
                 }, angular.noop);
         };
@@ -695,27 +685,28 @@ angular
         var toggleTabParam = function (tabName) {
             return new Promise<void>(function (resolve) {
                 var tabIndex;
+                var stateParams = Object.assign({}, $stateParams);
+                console.log($stateParams.openTabs);
                 if ($stateParams.openTabs) {
                     tabIndex = $stateParams.openTabs.indexOf(tabName);
                 }
-
                 if (tabIndex > -1) {
                     if (!Array.isArray($stateParams.openTabs)) {
-                        $stateParams.openTabs = null;
+                        stateParams.openTabs = null;
                     } else if ($stateParams.openTabs) {
-                        $stateParams.openTabs.splice(tabIndex, 1);
+                        stateParams.openTabs.splice(tabIndex, 1);
                     }
                 } else {
                     if (!$stateParams.openTabs) {
-                        $stateParams.openTabs = [];
+                        stateParams.openTabs = [];
                     }
-                    if (!Array.isArray($stateParams.openTabs)) {
-                        $stateParams.openTabs = [$stateParams.openTabs];
+                    if (!Array.isArray($stateParams.openTabs) && $stateParams.openTabs) {
+                        stateParams.openTabs = [$stateParams.openTabs];
                     }
-                    $stateParams.openTabs.push(tabName);
+                    stateParams.openTabs.push(tabName);
                 }
-
-                $state.transitionTo($state.current.name, $stateParams, {
+                console.log(stateParams);
+                $state.transitionTo($state.current.name, stateParams, {
                     notify: true,
                     reload: false
                 }).then(function () {
@@ -863,10 +854,11 @@ angular
         if ($stateParams.openTabs) {
             $scope.userList.isVisible = false;
             $scope.groupList.isVisible = false;
+            var stateParams = Object.assign({}, $stateParams);
             if (!Array.isArray($stateParams.openTabs)) {
-                $stateParams.openTabs = [$stateParams.openTabs];
+                stateParams.openTabs = [$stateParams.openTabs];
             }
-            $stateParams.openTabs.forEach(function (tab) {
+            stateParams.openTabs.forEach(function (tab) {
                 switch (tab) {
                     case 'user_list':
                         $scope.doShowMemberUserList();
@@ -892,16 +884,6 @@ angular
             return sUpload.download($scope.topic.id, attachment.id, $scope.app.user.id);
         };
 
-        $scope.downloadContainer = function (includeCSV) {
-            var url = $scope.topic.vote.downloads.bdocFinal;
-            if (!url) return;
-            if (includeCSV) {
-                url += '&include[]=csv';
-            }
-
-            window.location.href = url;
-        };
-
         $scope.translateGroup = function (key, group) {
             var values = group[0].values;
             values.groupCount = group.length;
@@ -912,7 +894,7 @@ angular
         $scope.$watch(function () {
             return $state.$current.name
         }, function (newVal, oldVal) {
-            if (oldVal === 'topics.view.files') {
+            if (oldVal === 'topics/view/files') {
                 $scope.loadTopicAttachments();
             }
         });

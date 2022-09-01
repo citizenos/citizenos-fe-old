@@ -1,0 +1,232 @@
+<div class="voting_platform_wrap vote_casting_wrap">
+
+    <div class="vote_casting_header">
+        <div class="vote_casting_header_section">
+            <div class="table_cell bold vote_casting_description" ng-if="!$ctrl.hasVoteEndedExpired() && !$ctrl.hasVoteEnded()" translate="VIEWS.TOPICS_TOPICID.VOTE_CAST_YOUR_VOTE">Cast your vote</div>
+            <div class="table_cell bold vote_casting_description" ng-if="$ctrl.hasVoteEndedExpired() || $ctrl.hasVoteEnded()" translate="VIEWS.TOPICS_TOPICID.LBL_VOTE_RESULTS">Cast your vote</div>
+        </div>
+        <div class="vote_casting_header_section">
+            <div class="table_cell">
+                <span class="bold">{{$ctrl.vote.votersCount || 0}}</span><span ng-if="$ctrl.visibility === $ctrl.VISIBILITY.private">/{{topic.members.users.count}}</span> <span
+                translate="VIEWS.TOPICS_TOPICID.VOTE_VOTES_COUNTED"> votes counted</span>
+            </div>
+        </div>
+        <div class="clearer"></div>
+    </div>
+
+    <div class="line lightest_line"></div>
+
+    <div class="vote_casting_message with_upper_right_links" ng-if="$ctrl.vote.authType === $ctrl.VOTE_AUTH_TYPES.hard && !$ctrl.hasVoteEnded()">
+
+        <div class="message_header">
+            <div class="message_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_REQUIRE_HARD_ID">This vote requires an ID card or Mobile ID signing.</div>
+            <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_REQUIRE_HARD_ID">This document needs a signing by ID card or Mobile ID to be registered. You can
+                not
+                vote if you don’t identify yourself.
+            </div>
+            <div class="float_wrap">
+                <div class="icon_wrapper">
+                    <div class="sprite sprite-id-kaart-big2x"></div>
+                </div>
+                <div class="icon_wrapper">
+                    <div class="sprite sprite-mobiil-id-big2x"></div>
+                </div>
+                <div class="icon_wrapper">
+                    <div class="sprite sprite-smart-id-small2x"></div>
+                </div>
+                <div class="clearer"></div>
+            </div>
+            <div class="clearer"></div>
+
+        </div>
+
+
+    </div>
+
+    <div class="vote_casting_message with_upper_right_links with_border" ng-if="$ctrl.userHasVoted && !$ctrl.hasVoteEnded()">
+
+        <div class="message_header">
+            <div class="message_title" translate="VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED">Your vote has been registered!</div>
+            <div class="float_wrap">
+                <div class="blue_link" ng-class="{hidden: $ctrl.vote.authType !== $ctrl.VOTE_AUTH_TYPES.hard}"><a ng-href="{{$ctrl.vote.downloads.bdocVote}}"
+                                                                                                          translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_USER_BDOC" download>Download
+                    your DDOC</a></div>
+            </div>
+            <div class="clearer"></div>
+        </div>
+
+        <div class="message_content" ng-class="{hidden: $ctrl.vote.authType !== $ctrl.VOTE_AUTH_TYPES.hard}" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_REGISTERED">This document needs a
+            signing by
+            ID card or Mobile ID to be registered. You can not vote if you don’t identify yourself.
+        </div>
+
+    </div>
+
+    <div class="vote_casting_message" ng-if="$ctrl.vote.type === 'multiple' && $ctrl.vote.maxChoices > 1">
+        <div class="message_content" translate="VIEWS.TOPICS_TOPICID.TXT_YOU_CAN_CHOOSE_OPTIONS" translate-values="{maxChoices: $ctrl.vote.maxChoices}">This is a multiple choice vote. You can choose max 2 options that align with your view.</div>
+    </div>
+    <div class="vote_casting_overlay" ng-if="$ctrl.vote.authType === $ctrl.VOTE_AUTH_TYPES.soft && !$ctrl.hasVoteEnded() && !$ctrl.app.user.loggedIn">
+        <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
+            <div class="blue_link">log in</div>
+            to comment
+        </h3>
+    </div>
+    <div class="voting_platform_buttons" ng-if="!$ctrl.hasVoteEnded()">
+
+        <div class="voting_button" ng-click="$ctrl.selectOption(option)" ng-disabled="!topic.canVote()" ng-class="(option.selected) ? 'active': ''" ng-repeat="(key, option) in $ctrl.vote.options.rows">
+            <div class="table_cell left_side">
+                <label class="checkcontainer" ng-if="!isRadio($ctrl.vote, option)">
+                    <input type="checkbox" class="vote_option_radio" checked="(option.selected) ? 'checked: ''" ng-click="$ctrl.selectOption(option)">
+                    <span class="option_checkbox"></span>
+                </label>
+                <label class="checkcontainer" ng-if="isRadio($ctrl.vote, option)">
+                    <input type="radio" class="vote_option_radio" ng-click="$ctrl.selectOption(option)">
+                    <span class="option_radio"></span>
+                </label>
+
+            </div>
+            <div class="table_cell right_side" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}"
+                 translate-default="{{option.value | linky}}"></div>
+        </div>
+
+    </div>
+
+    <div class="delegation_section" ng-if="!$ctrl.hasVoteEnded()">
+
+        <div class="voting_button" ng-if="(topic.canDelegate() && $ctrl.vote.authType !== $ctrl.VOTE_AUTH_TYPES.hard)"
+             ng-class="$ctrl.vote.delegation ? 'active' : ''" ng-click="doDelegate()">
+            <div class="table_cell left_side">
+                <div class="sprite sprite-icon-delegate2x"></div>
+            </div>
+            <div class="table_cell right_side" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_DELEGATE">Delegate your vote</div>
+        </div>
+
+        <div class="delegation_information" ng-if="$ctrl.vote.delegation">
+            <div class="delegation_title" translate="VIEWS.TOPICS_TOPICID.VOTE_DELEGATED_TO">You delegated your vote to</div>
+            <div class="delegations">
+
+                <div class="table_cell">
+                    <div class="profile_image_wrapper dark">
+                        <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
+                        <div class="account_picture">
+                            <img ng-if="$ctrl.vote.delegation.imageUrl" ng-src="{{$ctrl.vote.delegation.imageUrl}}">
+                            <div ng-if="!$ctrl.vote.delegation.imageUrl" class="profile_image_filler">
+                                <cos-initials class="table_cell" ng-model="$ctrl.vote.delegation.name" initial-limit="1"></cos-initials>
+                                <div class="profile_circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="name_wrap">
+                        <div class="table_cell">
+                            <div class="blue_link bold">{{$ctrl.vote.delegation.name}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table_cell">
+                    <div class="blue_button" ng-click="$ctrl.doRevokeDelegation()" translate="VIEWS.TOPICS_TOPICID.VOTE_REVOKE_DELEGATION">Revoke your delegation</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="line lightest_line multiplechoice" ng-if="!$ctrl.hasVoteEnded()"></div>
+    <div class="vote_multiple_submit_section" ng-if="!$ctrl.hasVoteEnded()">
+        <div class="table_cell" cos-disabled="!$ctrl.canSubmit()">
+            <div class="blue_button" ng-click="$ctrl.doVote()" translate="VIEWS.TOPICS_TOPICID.VOTE_SUBMIT">Submit your vote</div>
+        </div>
+    </div>
+
+    <!-- Statistics graph start -->
+    <div class="vote_casting_message" ng-if="$ctrl.hasVoteEndedExpired() || $ctrl.hasVoteEnded()">
+
+        <div class="message_header">
+            <div class="message_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_VOTE_CLOSED">Voting has ended!</div>
+            <div class="clearer"></div>
+        </div>
+
+        <div ng-if="topic.canUpdate()" class="message_content print_never" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED">Everyone has cast their votes. You can
+            download the full document here.
+        </div>
+
+        <div ng-if="$ctrl.hasVoteEndedExpired() && topic.canUpdate()" class="print_never">
+            <div class="message_content" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_VOTE_CLOSED_EXPIRED">Votes have now been cast. Please send topic to follow-up, then return here to
+                download voting results.
+            </div>
+            <div class="voting_button voting_button_blue active">
+                <div class="table_cell" ng-click="$ctrl.sendToFollowUp('topics.view.votes.view')" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow</div>
+            </div>
+        </div>
+        <div class="info_box_wrap" ng-if="$ctrl.multipleWinners && ($ctrl.hasVoteEndedExpired() || $ctrl.hasVoteEnded()) && ('topics/view/votes/view' | isState) && $ctrl.showInfoWinners && topic.canUpdate()">
+            <div class="info_box" ng-class="{'info_box_show': $ctrl.multipleWinners && ($ctrl.hasVoteEndedExpired() || $ctrl.hasVoteEnded()) && ('topics/view/votes/view' | isState)}">
+                <div class="info_icon">
+                    <div class="sprite sprite-icon-box-info2x"></div>
+                </div>
+
+                <div>
+                    <div class="info_row">
+                        <p class="info_box_heading" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TITLE_DRAW">
+                            Looks like your voting process resulted in a draw.
+                        </p>
+                        <p class="info_bar_text" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_DRAW_DESCRIPTION">
+                            Sometimes having several winning options is a good thing, but there are times, when you just really need one clear winner.
+                        </p>
+                        <p class="info_box_heading" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TITLE_DRAW_WHAT_NOW">
+                            Here's what you could do now:
+                        </p>
+                        <p class="info_bar_text" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_DRAW_WHAT_NOW">
+                            It might be possible to solve this offline - for example, a co-located team could flip a coin between the two winning options.
+                            Also, if you had votes going to non-winning options, we suggest you run another vote between the two previously winning options only. This time, you
+                            could pre-determine a tie-breaker in case you have another draw: a coin flip, a default winning option (usually status quo wins in a draw), a person
+                            whose vote is decisive etc.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="$ctrl.vote.authType===$ctrl.VOTE_AUTH_TYPES.hard && $ctrl.vote.downloads.bdocFinal" cos-dropdown class="bar_select">
+
+            <div class="select_text">
+                {{'VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_BDOC' | translate}}
+                <div class="icon_holder">
+                    <div class="table_cell">
+                        <div class="sprite sprite-icon-arrow_down-white"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown big_drop">
+                <div class="line lightest_line"></div>
+
+                <div class="dropdown_item" ng-click="$ctrl.downloadContainer(false)">
+                    <div class="item_name" translate="VIEWS.TOPICS_TOPICID.FINAL_OPTION_WITHOUT_CSV">
+                        Container without CSV
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="dropdown_item" ng-click="$ctrl.downloadContainer(true)">
+                    <div class="item_name" translate="VIEWS.TOPICS_TOPICID.FINAL_OPTION_WITH_CSV">
+                        Container with CSV
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+            </div>
+        </div>
+
+        <a class="print_never" ng-if="$ctrl.vote.authType === $ctrl.VOTE_AUTH_TYPES.soft && $ctrl.vote.downloads.zipFinal" ng-href="{{$ctrl.vote.downloads.zipFinal}}" download>
+            <div class="voting_button voting_button_blue active">
+                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.BTN_DOWNLOAD_FINAL_ZIP">Download full ZIP</div>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- Regular graph -->
+    <regular-graph ng-if="$ctrl.vote.type === $ctrl.VOTE_TYPES.regular && ($ctrl.hasVoteEndedExpired() || $ctrl.hasVoteEnded())" options="$ctrl.vote.options"></regular-graph>
+
+    <!-- Big graph -->
+    <big-graph ng-if="$ctrl.vote.type === $ctrl.VOTE_TYPES.multiple && ($ctrl.hasVoteEndedExpired() || $ctrl.hasVoteEnded())" options="$ctrl.vote.options"></big-graph>
+    <!-- Statistics graph end -->
+
+</div>

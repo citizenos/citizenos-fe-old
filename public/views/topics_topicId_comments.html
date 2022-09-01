@@ -145,112 +145,19 @@
                         </div>
                         <!-- END COMMENT HEADER -->
                         <!-- EDIT COMMENT -->
-                        <div class="argument_edit_wrap" ng-if="comment.showEdit" ng-controller="TopicCommentCreateFormCtrl">
-                            <div class="post_argument_overlay" ng-if="!app.user.loggedIn">
-                                <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
-                                    <div class="blue_link">log in</div>
-                                    to comment
-                                </h3>
-                            </div>
-
-                            <form cos-disabled="::!app.user.loggedIn" name="postArgument">
-                                <div cos-dropdown cos-dropdown-mobile="{{app.isTouchDevice()}}" class="classic_dropdown" ng-class="{'error_input': comment.errors.type, 'placeholder': !comment.editType}">
-                                    <div class="dropdown_selection">
-                                        <div class="dropdown_text">
-                                            {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + comment.editType | uppercase) | translate}} <span ng-if="!comment.editType">*</span>
-                                        </div>
-
-                                        <div class="arrow_holder">
-                                            <div class="table_cell">
-                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
-
-                                                <div class="v_line"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="dropdown with_description" ng-if="wWidth <= 560">
-                                        <div>
-                                            <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="comment.editType = type">
-                                                <div class="item_name">
-                                                    {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
-                                                </div>
-                                                <div class="item_descriptions">
-                                                    <div class="item_description" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="comment.editType = type">
-                                                        <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
-                                                        <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit: 2084</p>
-                                                        <button ng-if="app.isTouchDevice()  && ($index === 0 || comment.editType === type)" class="light_gray_button full_width dropdown_selector {{type}}" ng-click="comment.editType = type" translate="DROPDOWN_BTN_SELECT">Select</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="dropdown with_description" ng-if="wWidth > 560">
-                                        <div class="column">
-                                            <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="comment.editType = type">
-                                                <div class="item_name">
-                                                    {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="column dropdown_item_descriptions">
-                                            <div class="item_description" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="comment.editType = type">
-                                                <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
-                                                <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit: 2084</p>
-                                                <button ng-if="app.isTouchDevice() && ($index === 0 || comment.editType === type)" class="light_gray_button full_width dropdown_selector" ng-click="comment.editType = type" translate="DROPDOWN_BTN_SELECT">Select</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <input id="comment_edit_subject" ng-if="comment.showEdit" translate translate-attr-placeholder="VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_SUBJECT" ng-model="comment.editSubject" class="gray_borders"
-                                       ng-class="{'error_input': comment.errors.subject}" maxlength="{{COMMENT_SUBJECT_MAXLENGTH}}" focus-if required>
-
-                                <label for="comment_edit_subject" class="error_label" ng-if="comment.errors.subject">
-                                    <div class="table_cell">
-                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                        <span translate="{{comment.errors.subject}}"></span>
-                                    </div>
-                                </label>
-
-                                <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'"  id="comment_edit" ng-if="comment.showEdit" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_ARGUMENT_TEXT' | translate}}"
-                                          class="gray_borders" ng-model="comment.editText" ng-class="{'error_input': comment.errors.text}" maxlength="COMMENT_TYPES_MAXLENGTH[comment.editType] || COMMENT_TYPES_MAXLENGTH['pro']" required></textarea>
-
-                                <label for="comment_edit" class="error_label" ng-if="comment.errors.text">
-                                    <div class="table_cell">
-                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                        <span translate="{{comment.errors.text}}"></span>
-                                    </div>
-                                </label>
-
-                                <div class="argument_footer_with_buttons" ng-if="comment.showEdit">
-                                    <div class="table_cell">
-                                        <div class="blue_button" cos-disabled="postArgument.$invalid || !comment.editType" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST"
-                                             ng-click="updateComment(comment)">
-                                            Post
-                                        </div>
-                                    </div>
-                                    <div class="table_cell">
-                                        <div class="blue_button blue_white_button" ng-click="commentEditMode(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_EDIT_BTN_CANCEL_EDIT">
-                                            Cancel edit
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        <comment-edit ng-if="comment.showEdit" comment="comment" topic-id="$ctrl.topicId"></comment-edit>
                         <!-- END EDIT COMMENT -->
                         <!-- COMMENT CONTENT -->
                         <div class="argument_title">
-                            <span ng-if="::comment.isVisible()">{{::comment.subject}}</span>
+                            <span ng-if="::comment.isVisible() && !comment.showDeletedComment">{{::comment.subject}}</span>
                         </div>
 
                         <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
-                            <div ng-if="::comment.isVisible()" class="argument_text" ng-bind-html="::comment.text | markdown">Comment text</div>
-                            <div ng-if="!comment.isVisible() && comment.deletedBy.id === comment.creator.id" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY"
+                            <div ng-if="::comment.isVisible() && !comment.showDeletedComment" class="argument_text" ng-bind-html="::comment.text | markdown">Comment text</div>
+                            <div ng-if="!comment.isVisible() && !comment.showDeletedComment && comment.deletedBy.id === comment.creator.id" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY"
                                  translate-values="{usersFullName: comment.deletedBy.name}">This comment has been deleted by {{::comment.deletedBy.name}}
                             </div>
-                            <div ng-if="!comment.isVisible() && comment.deletedBy.id !== comment.creator.id" class="argument_text italic"
+                            <div ng-if="!comment.isVisible() && !comment.showDeletedComment && comment.deletedBy.id !== comment.creator.id" class="argument_text italic"
                                  translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY_MODERATOR" translate-values="{usersFullName: comment.deletedBy.name}">This comment has been deleted by
                                 {{::comment.deletedBy.name}} (moderator)
                             </div>
@@ -300,7 +207,7 @@
                             <b ng-if="comment.deletedReasonText" class="italic">{{::comment.deletedReasonText}}</b>
                             <br>
                             <br>
-                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT" translate-values="{codeOfConduct: app.config.moderation.codeOfConduct}">Read our <a
+                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT" translate-values="{codeOfConduct: $ctrl.app.config.moderation.codeOfConduct}">Read our <a
                                 class="underlined_link" href="">code of conduct</a> for more information</span>
                         </div>
                         <div class="alert_argument" ng-if="comment.deletedAt && comment.isVisible()">
@@ -395,29 +302,7 @@
                     </div>
 
                     <!-- REPLY TO COMMENT  -->
-                    <div class="post_argument_wrap" ng-if="comment.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                        <div ng-if="!app.user.loggedIn">
-                            <h3 class="text-center" translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
-                                <div class="blue_link">log in</div>
-                                to comment
-                            </h3>
-                        </div>
-                        <form ng-if="app.user.loggedIn" name="argumentConReply">
-                            <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'"  id="argument_con_reply_text" ng-model="form.text" class="gray_borders" ng-keyup="commentTextLengthCheck(form, form.text)"
-                                      ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" maxlength="COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
-                            <label for="argument_con_reply_text" class="error_label" ng-if="form.errors.text">
-                                <div class="table_cell">
-                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{form.errors.text}}"></span>
-                                </div>
-                            </label>
-                            <div class="blue_button" cos-disabled="argumentConReply.$invalid" ng-click="submitReply(comment.id, (comment.edits.length-1))"
-                                 translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_REPLY">
-                                Post reply
-                            </div>
-                            <div class="clearer"></div>
-                        </form>
-                    </div>
+                    <comment-reply ng-if="comment.showReply" comment="comment" topic-id="$ctrl.topicId"></comment-reply>
                     <!-- END REPLY TO COMMENT -->
                 </div>
 
@@ -514,43 +399,11 @@
                         </div>
                         <!-- END REPLY HEADER -->
                         <!-- REPLY EDIT-->
-                        <div class="argument_edit_wrap" ng-if="reply.showEdit" ng-controller="TopicCommentCreateFormCtrl">
-                            <form ng-if="app.user.loggedIn" name="replyEdit">
-                                <div class="post_argument_overlay" ng-if="!app.user.loggedIn">
-                                    <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
-                                        <div class="blue_link">log in</div>
-                                        to comment
-                                    </h3>
-                                </div>
-                                <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'" id="reply_edit" class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EDIT_REPLY' | translate}}"
-                                          ng-keyup="commentTextLengthCheck(reply, reply.editText)" ng-class="{'error_input': reply.errors.text}" ng-model="reply.editText" maxlength="COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
-                                <label for="reply_edit" class="error_label" ng-if="reply.errors.text">
-                                    <div class="table_cell">
-                                        <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                        <span translate="{{reply.errors.text}}"></span>
-                                    </div>
-                                </label>
-                                <div ng-if="reply.showEdit" class="argument_footer_with_buttons">
-                                    <div class="table_cell">
-                                        <div class="blue_button" ng-click="updateComment(reply)">
-                                            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_BTN_SAVE_EDIT_REPLY">
-                                                Save
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="table_cell">
-                                        <div class="blue_button blue_white_button" ng-click="commentEditMode(reply)">
-                                            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_BTN_CANCEL_EDIT_REPLY">
-                                                Cancel
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        <reply-edit reply="reply" topic-id="$ctrl.topicId" ng-if="reply.showEdit"></reply-edit>
                         <!--END REPLY EDIT-->
                         <!-- REPLY EDITS -->
                         <div id="{{reply.id + '_v' + version}}" class="argument" ng-if="reply.showEdits && reply.isEdited() && !$last" ng-repeat="(version, edit) in reply.edits">
+                            {{reply.showEdits}}
                             <div class="argument_header" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
                                 <div class="argument_header_widget">
                                     <div class="table_cell" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
@@ -564,7 +417,7 @@
                                 </div>
                                 <div class="argument_header_widget">
                                     <div class="table_cell">
-                                        <a href="#" ng-click="copyCommentLink(reply.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input"
+                                        <a href="#" ng-click="$ctrl.copyCommentLink(reply.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input"
                                                                                                                                                               id="comment_link_input_{{reply.id + '_v'+version}}"
                                                                                                                                                               value=""/></a>
                                     </div>
@@ -674,120 +527,14 @@
                         <!-- REPLY FOOTER -->
                     </div>
                     <!-- REPLY TO REPLY -->
-                    <div class="post_argument_wrap" ng-if="reply.showReply" ng-controller="TopicCommentCreateFormCtrl">
-                        <div ng-if="!app.user.loggedIn">
-                            <h3 class="text-center" translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
-                                <div class="blue_link">log in</div>
-                                to comment
-                            </h3>
-                        </div>
-                        <form ng-if="app.user.loggedIn" name="argumentReplyForm">
-                            <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'"  id="argument_pro_reply_text" class="gray_borders" ng-model="form.text" ng-keyup="commentTextLengthCheck(form, form.text)"
-                                      ng-class="{'error_input': form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" required
-                                      maxlength="COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
-                            <label for="argument_pro_reply_text" class="error_label" ng-if="form.errors.text">
-                                <div class="table_cell">
-                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{form.errors.text}}"></span>
-                                </div>
-                            </label>
-                            <div class="blue_button" cos-disabled="argumentReplyForm.$invalid" ng-click="submitReply(reply.id, (reply.edits.length-1))"
-                                 translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_REPLY_POST_REPLY">
-                                Post reply
-                            </div>
-                            <div class="clearer"></div>
-                        </form>
-                    </div>
-                    <!-- END REPLY TO REPLY -->
+                    <comment-reply ng-if="reply.showReply" comment="reply" topic-id="$ctrl.topicId"></comment-reply>
                 </div>
             </div>
             <div class="pagination" cos-pagination select="$ctrl.loadPage" total-pages="$ctrl.topicComments.totalPages" page="$ctrl.topicComments.page"></div>
 
         </div>
 
-        <div id="post_argument_wrap" class="post_argument_wrap print_never" ng-controller="TopicCommentCreateFormCtrl">
-            <div class="post_argument_overlay" ng-if="!app.user.loggedIn">
-                <h3 translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
-                    <div class="blue_link">log in</div>
-                    to comment
-                </h3>
-            </div>
-            <form cos-disabled="!app.user.loggedIn" name="argumentForm">
-                <div cos-dropdown cos-dropdown-mobile="{{app.isTouchDevice()}}" class="classic_dropdown" ng-class="{'error_input': form.errors.type, 'placeholder': !form.type}">
-                    <div class="dropdown_selection">
-                        <div class="dropdown_text">
-                            {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + form.type | uppercase) | translate}} <span ng-if="!form.type">*</span>
-                        </div>
-
-                        <div class="arrow_holder">
-                            <div class="table_cell">
-                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
-
-                                <div class="v_line"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dropdown with_description" ng-if="wWidth <= 560">
-                        <div>
-                            <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="form.type = type">
-                                <div class="item_name">
-                                    {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
-                                </div>
-                                <div>
-                                    <div class="item_description" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="form.type = type">
-                                        <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
-                                        <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit:
-                                            2084</p>
-                                        <button ng-if="app.isTouchDevice() && ($index === 0 || form.type === type)" class="light_gray_button full_width dropdown_selector" ng-click="form.type = type" translate="DROPDOWN_BTN_SELECT">Select</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dropdown with_description" ng-if="wWidth > 560">
-                        <div class="column">
-                            <div class="dropdown_item" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, 'is_' + type.toLowerCase()]" ng-click="form.type = type">
-                                <div class="item_name">
-                                    {{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_' + type | uppercase) | translate}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column dropdown_item_descriptions">
-                            <div class="item_description" ng-repeat="type in TopicCommentTypes" ng-class="['item_' + $index, {active: $index === 0}, 'is_' + type.toLowerCase()]" ng-click="form.type = type">
-                                <p>{{('VIEWS.TOPICS_TOPICID.COMMENT_TYPE_SELECT_OPTION_DESCRIPTION_' + type | uppercase) | translate}}</p>
-                                <p class="bold" translate="VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT" translate-values="{numberOfCharacters: COMMENT_TYPES_MAXLENGTH[type]}">Character limit:
-                                    2084</p>
-                                <button ng-if="app.isTouchDevice() && ($index === 0 || form.type === type)" class="light_gray_button full_width dropdown_selector" ng-click="form.type = type" translate="DROPDOWN_BTN_SELECT">Select</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <input id="argument_subject" ng-model="form.subject" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ADD_SUBJECT_TO_ARGUMENT' | translate}}"
-                       class="gray_borders" ng-class="{'error_input': form.errors.subject}" focus-if="focusArgumentSubject" maxlength="{{COMMENT_SUBJECT_MAXLENGTH}}" required>
-                <label for="argument_subject" class="error_label" ng-if="form.errors.subject">
-                    <div class="table_cell">
-                        <div class="sprite sprite-icon-inputfield-error2x"></div>
-                        <span translate="{{form.errors.subject}}"></span>
-                    </div>
-                </label>
-                <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'" id="argument_text" ng-model="form.text" class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}"
-                          ng-class="{'error_input': form.errors.text}" maxlength="COMMENT_TYPES_MAXLENGTH[form.type] || COMMENT_TYPES_MAXLENGTH['pro']" required></textarea>
-                <label for="argument_text" class="error_label" ng-if="form.errors.text">
-                    <div class="table_cell">
-                        <div class="sprite sprite-icon-inputfield-error2x"></div>
-                        <span translate="{{form.errors.text}}"></span>
-                    </div>
-                </label>
-
-                <div class="blue_button" cos-disabled="argumentForm.$invalid || !form.type" translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST" ng-click="saveComment()">
-                    Post
-                </div>
-                <div class="clearer"></div>
-            </form>
-        </div>
+        <post-argument topic-id="$ctrl.topicId"></post-argument>
 
     </div>
 

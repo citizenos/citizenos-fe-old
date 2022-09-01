@@ -1,0 +1,23 @@
+<div class="post_argument_wrap">
+    <div ng-if="!$ctrl.app.user.loggedIn">
+        <h3 class="text-center" translate-compile translate="VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE">You need to
+            <div class="blue_link">log in</div>
+            to comment
+        </h3>
+    </div>
+    <form ng-if="$ctrl.app.user.loggedIn" name="argumentReply">
+        <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'"  id="argument_reply_text" ng-model="$ctrl.form.text" class="gray_borders" ng-keyup="$ctrl.commentTextLengthCheck(form, form.text)"
+                  ng-class="{'error_input': $ctrl.form.errors.text}" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_WRITE_REPLY_HERE' | translate}}" maxlength="$ctrl.COMMENT_TYPES_MAXLENGTH['reply']" focus-if></textarea>
+        <label for="argument_reply_text" class="error_label" ng-if="$ctrl.form.errors.text">
+            <div class="table_cell">
+                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                <span translate="{{$ctrl.form.errors.text}}"></span>
+            </div>
+        </label>
+        <div class="blue_button" cos-disabled="argumentReply.$invalid" ng-click="$ctrl.submitReply()"
+             translate="VIEWS.TOPICS_TOPICID.BTN_ARGUMENT_POST_REPLY">
+            Post reply
+        </div>
+        <div class="clearer"></div>
+    </form>
+</div>

@@ -211,34 +211,6 @@ angular
         }
     ]);
 
-//Movement of tabs train
-angular
-    .module('citizenos')
-    .controller('buttonsSlider', ['$scope', '$rootScope', function ($scope, $rootScope) {
-
-        //When left arrow is clicked move the tabs train to left
-        $scope.moveLeft = function () {
-            if ($scope.trainPosition < -$scope.tabFinalLength) {
-                $scope.trainPosition += $scope.tabFinalLength;
-            } else {
-                $scope.trainPosition = 0;
-            }
-        };
-
-        //When right arrow is clicked move the tabs train to right
-        $scope.moveRight = function () {
-            if ($scope.trainPosition > -$scope.tabsTrainWidth + $scope.tabsVisibleAreaWidth - 10) {
-                $scope.trainPosition -= $scope.tabFinalLength;
-            }
-
-            //If end of the line
-            if ($scope.trainPosition < -$scope.tabsTrainWidth + $scope.tabsVisibleAreaWidth - 10) {
-                $scope.trainPosition = -$scope.tabsTrainWidth + $scope.tabsVisibleAreaWidth - 10;
-            }
-        }
-
-    }]);
-
 //Get div height for comment hiding
 angular
     .module('citizenos')

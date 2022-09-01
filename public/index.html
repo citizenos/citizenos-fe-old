@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-strict-di="true" lang="{{app.language}}" ng-controller="AppCtrl" ng-csp>
+<html ng-strict-di="true" lang="{{app.language}}" ng-csp>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
@@ -18,9 +18,22 @@
 
     <script src="settings.js?v=39d97168bcb6ef4617eeb79bc99f4f96"></script>
     <script src= "js/libs/marked.min.js?v=7fef42e249905a4d04267694cf65e7e4"></script>
+    <script src="js/citizenos-fe.bundle.js?v=1f3a67940c6e89942ea406d63e2d8fbf"></script>
     <script src="page.js?v=f8396d0396f865d7b614bba08f08fd31" data-name="TokenSigning"></script>
 
     <meta name="theme-color" content="#1a1a1a">
+    <title ng-if="app.metainfo.title">{{app.metainfo.title}}</title>
+    <link ng-if="app.metainfo.icon" rel="shortcut icon" ng-href="{{app.metainfo.icon}}" type="image/x-icon"/>
+    <link ng-if="app.metainfo.iconHires" rel="icon" ng-href="{{app.metainfo.iconHires}}" sizes="192x192" type="image/png">
+    <meta ng-if="app.metainfo.description" content="{{app.metainfo.description}}" name="description">
+    <meta ng-if="app.metainfo.keywords" name="keywords" content="{{app.metainfo.keywords}}">
+    <meta ng-if="app.metainfo.author" name="author" content="{{app.metainfo.author}}">
+
+    <meta ng-if="app.metainfo.title" property="og:title" content="{{app.metainfo.title}}">
+    <meta ng-if="app.metainfo.image" property="og:image" content="{{app.metainfo.image}}">
+    <meta ng-if="app.metainfo.description" property="og:description" content="{{app.metainfo.description}}">
+    <meta ng-if="app.metainfo.url" property="og:url" content="{{app.metainfo.url}}">
+    <meta ng-if="app.metainfo.site_name" property="og:site_name" content="{{app.metainfo.site_name}}">
     <link rel="alternate" ng-repeat="(lang, path) in app.metainfo.hreflang" hreflang="{{lang}}" href="{{path}}">
 </head>
 
@@ -100,6 +113,6 @@
     <div ng-include="'views/widgets/help.html'"></div>
     <script src="js/home.js?v=cc26daed497d0cf8115283abb028363d"></script>
     <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
-    <script src="js/bundle.js?v=e10879057613c5f64e5884d834b8cb95"></script>
+    <script src="js/bundle.js?v=f3ac2bca458fd16a69ddb8b4686b4562"></script>
 </body>
 </html>

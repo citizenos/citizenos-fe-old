@@ -1,0 +1,374 @@
+<div class="voting_platform_wrap">
+    <div class="platform_description" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_CREATE">Create a voting platform</div>
+    <div class="voting_platform_section">
+        <div class="line lightest_line"></div>
+        <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP1">Step 1: Choose voting type</div>
+
+        <div class="voting_platform_buttons_wrap">
+
+            <div class="table_cell" ng-click="$ctrl.setVoteType(type)" ng-repeat="type in $ctrl.VOTE_TYPES">
+                <div class="voting_platform_radio_wrap" ng-class="$ctrl.voteForm.voteType == type? 'active' : ''">
+                    <div class="check"></div>
+                    <input class="voting_platform_radio" type="radio" ng-checked="$ctrl.voteForm.voteType==type" name="{{'voteType'+type}}"/>
+                </div>
+                <div class="voting_platform_button" ng-class="$ctrl.voteForm.voteType == type? 'active' : ''">
+                    <div class="table_cell">
+                        <div class="button_title">{{('VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_'+type) | uppercase | translate}}</div>
+                        <div class="button_description">{{'VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_'+type+'_EXPLANATION' | uppercase | translate}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--div class="table_cell"  ng-click="$ctrl.setVoteType(voteTypes.multiple)" >
+                <div class="voting_platform_radio_wrap" ng-class="voteForm.voteType == 'multiple' ? 'active' : ''">
+                    <div class="check"></div>
+                    <input class="voting_platform_radio" type="radio" ng-checked="voteForm.voteType=='multiple'" name="voteTypeMultiple"/>
+                </div>
+                <div-- class="voting_platform_button" ng-class="voteForm.voteType == 'multiple' ? 'active' : ''">
+                    <div class="table_cell">
+                        <div class="button_title" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_MULTIPLECHOICE">MULTIPLECHOICE</div>
+                        <div class="button_description" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_TYPE_MULTIPLECHOICE_EXPLANATION">(ie. A/B/C/D/…)</div>
+                    </div>
+                </div-->
+            </!--div>
+
+        </div>
+
+        <div class="clearer"></div>
+
+    </div>
+
+    <div class="line lightest_line"></div>
+
+    <div class="voting_platform_section" ng-if="$ctrl.voteForm.voteType">
+        <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP2">Step 2: Define answers</div>
+
+        <!-- regular -->
+        <div class="define_answers_wrap" ng-if="$ctrl.voteForm.voteType == 'regular'">
+            <div class="table_cell">
+                <div class="table">
+                    <div class="table_cell">
+                        <div class="gray_toggle_box">
+                            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_YES">Yes</div>
+                            <div class="table_cell">
+                                <cos-toggle  cos-disabled="true" model="$ctrl.voteForm.options[0].enabled" cos-toggle-text-on="'TOGGLE_ON' | translate"
+                                     cos-toggle-text-off="'TOGGLE_OFF' | translate"></cos-toggle>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table_cell">
+                        <div class="gray_toggle_box">
+                            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_NO">No</div>
+                            <div class="table_cell">
+                                <cos-toggle cos-disabled="true" cos-toggle model="$ctrl.voteForm.options[1].enabled" cos-toggle-text-on="'TOGGLE_ON' | translate"
+                                     cos-toggle-text-off="'TOGGLE_OFF' | translate"></cos-toggle>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table_cell">
+                <div class="table">
+                    <div class="table_cell">
+                        <div class="gray_toggle_box">
+                            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_NEUTRAL">Neutral</div>
+                            <div class="table_cell">
+                                <cos-toggle model="$ctrl.voteForm.extraOptions.neutral.enabled" cos-toggle-text-on="'TOGGLE_ON' | translate"
+                                     cos-toggle-text-off="'TOGGLE_OFF' | translate"></cos-toggle>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table_cell">
+                        <div class="gray_toggle_box">
+                            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_VETO">Veto</div>
+                            <div class="table_cell">
+                                <cos-toggle model="$ctrl.voteForm.extraOptions.veto.enabled" cos-toggle-text-on="'TOGGLE_ON' | translate"
+                                     cos-toggle-text-off="'TOGGLE_OFF' | translate"></cos-toggle>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- multiplechoice -->
+        <div class="double_cell_layout section_padding" ng-if="$ctrl.voteForm.voteType == 'multiple'">
+            <div class="left_row">
+
+                <div class="input_with_icon clickable" ng-repeat="(key, option) in $ctrl.voteForm.options">
+                    <input id="{{'voteOption' + $index}}" class="gray_borders" ng-model="option.value" ng-class="{'error_input': option.value && $ctrl.voteForm.errors.value}"
+                           placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_ENTER_A_POSSIBLE_ANSWER' | translate}}">
+                    <div class="icon_table" ng-class="{'error': option.value && $ctrl.voteForm.errors.value}">
+                        <div class="icon_cell" ng-click="removeOption(key)">
+                            <div class="sprite sprite-inputfield-icon-delete2x"></div>
+                        </div>
+                    </div>
+                    <label for="{{'voteOption' + $index}}" class="error_label" ng-if="option.value && $ctrl.voteForm.errors.value">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            <span translate="{{$ctrl.voteForm.errors.value}}"></span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="blue_button" ng-click="$ctrl.addOption()" translate="VIEWS.TOPICS_TOPICID.VOTE_BTB_ADD_OPTION">Add another answer</div>
+            </div>
+            <div class="right_row add_bottom_borders">
+
+                <div class="gray_toggle_box">
+                    <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_NEUTRAL">Neutral</div>
+                    <div class="table_cell">
+                        <cos-toggle model="$ctrl.voteForm.extraOptions.neutral.enabled" cos-toggle-text-on="'TOGGLE_ON' | translate"
+                             cos-toggle-text-off="'TOGGLE_OFF' | translate"></cos-toggle>
+                    </div>
+                </div>
+
+                <div class="gray_toggle_box">
+                    <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_VETO">Veto</div>
+                    <div class="table_cell">
+                        <cos-toggle model="$ctrl.voteForm.extraOptions.veto.enabled" cos-toggle-text-on="'TOGGLE_ON' | translate"
+                             cos-toggle-text-off="'TOGGLE_OFF' | translate"></cos-toggle>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="line lightest_line" ng-if="$ctrl.voteForm.voteType == 'multiple'"></div>
+
+    <div class="voting_platform_section" ng-if="$ctrl.voteForm.voteType == 'multiple'">
+        <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP_DEFINE_OPTION_COUNT"></div>
+
+        <div class="vote_options_count_wrap" ng-if="$ctrl.voteForm.voteType == 'multiple'">
+            <p translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_DESCRIPTION_CHOICE_RANGE">Define up to how many choices a person can vote for. For example, you have 4 choices but you allow people to choose up to 2 out of them. You can only add as many as you have choices to choose from.</p>
+
+            <div class="options_selector_wrapper">
+                <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_MIN_CHOICES">Min choices:</div>
+                <div class="options_count_input_wrap">
+                    <div class="gray_button options_count_input_subtract" ng-click="$ctrl.optionsCountDown('min')">-</div>
+                    <input class="options_count_input" type="number" ng-min="1" ng-model="$ctrl.voteForm.minChoices"/>
+                    <div class="gray_button options_count_input_add" ng-click="$ctrl.optionsCountUp('min')">+</div>
+                </div>
+            </div>
+            <div class="options_selector_wrapper">
+                <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_MAX_CHOICES">Max choices:</div>
+                <div class="options_count_input_wrap">
+                    <div class="gray_button options_count_input_subtract" ng-click="$ctrl.optionsCountDown()">-</div>
+                    <input class="options_count_input" type="number" ng-min="1" ng-model="$ctrl.voteForm.maxChoices"/>
+                    <div class="gray_button options_count_input_add" ng-click="$ctrl.optionsCountUp()">+</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="line lightest_line" ng-if="$ctrl.voteForm.voteType"></div>
+
+
+    <div class="voting_platform_section" ng-if="$ctrl.voteForm.voteType">
+        <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP3" translate-values="{stepNum: getStepNum(3)}">Step 3: User vote casting</div>
+
+        <div class="double_cell_layout ten_px_margin_between section_padding">
+            <div class="left_row add_bottom_borders">
+                <div class="gray_toggle_box">
+                    <div class="table_cell">
+                        <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_AUTH_HARD_ID">Hard-ID</div>
+                        <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_AUTH_HARD_ID_EXPLANATION">ID-CARD OR MOBILE ID SIGNING IS REQUIRED</div>
+                        <div class="toggle_box_icons">
+                            <div class="icon_wrapper">
+                                <div class="sprite sprite-id-kaart-small2x"></div>
+                            </div>
+                            <div class="icon_wrapper">
+                                <div class="sprite sprite-mobiil-id-small2x"></div>
+                            </div>
+                            <div class="icon_wrapper">
+                                <div class="sprite sprite-smart-id-small2x"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table_cell">
+                        <cos-toggle value="$ctrl.VOTE_AUTH_TYPES.hard" off-value="$ctrl.VOTE_AUTH_TYPES.soft" model="$ctrl.voteForm.authType" cos-toggle-text-on="'TOGGLE_ON' | translate"
+                             cos-toggle-text-off="'TOGGLE_OFF' | translate"></cos-toggle>
+                    </div>
+                </div>
+            </div>
+            <div class="right_row add_bottom_borders">
+
+                <div class="gray_toggle_box">
+                    <div class="table_cell">
+                        <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DELEGATION">Delegation</div>
+                        <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DELEGATION_EXPLANATION">ALLOW USERS TO PASS ON THEIR VOTING RIGHT.</div>
+                    </div>
+                    <div class="table_cell">
+                        <cos-toggle cos-disabled="($ctrl.voteForm.authType == $ctrl.VOTE_AUTH_TYPES.hard)" model="$ctrl.voteForm.delegationIsAllowed"
+                             cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"></cos-toggle>
+                    </div>
+                </div>
+
+                <div class="gray_toggle_box" ng-if="($ctrl.voteForm.authType == $ctrl.VOTE_AUTH_TYPES.hard)">
+                    <div class="toggle_box_warning">
+                        <div class="sprite sprite-icon-inputfield-error2x"></div>
+                        <span
+                            translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID">When Hard-ID is the chosen method of voting, delegation is not allowed.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="line lightest_line" ng-if="$ctrl.voteForm.voteType"></div>
+
+    <div class="voting_platform_section" ng-if="$ctrl.voteForm.voteType">
+        <div class="voting_platform_section_title" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP4" translate-values="{stepNum: getStepNum(4)}">Step 4: End of voting system</div>
+        <div class="voting_platform_section_description" translate="VIEWS.TOPICS_TOPICID.VOTE_HEADING_STEP4_DESCRIPTION">You can choose either deadline or vote amount or combine them. When you combine them, the first that is reached will end the voting system.</div>
+        <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes ten_px_padding">
+            <div class="left_row add_bottom_borders">
+                <div class="gray_toggle_box">
+                    <div class="table_cell">
+                        <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_DEADLINE">Deadline</div>
+                    </div>
+                    <div class="table_cell">
+                        <cos-toggle model="$ctrl.voteForm.deadline" cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                            cos-toggle-datepicker-toggle="true"></cos-toggle>
+                    </div>
+                </div>
+                <div class="picker_content" ng-class="$ctrl.voteForm.deadline ? 'active' : ''" ng-if="$ctrl.voteForm.deadline">
+                    <div class="bubble_content">
+
+                        <div class="bubble_section">
+
+                            <div class="bubble_description">
+                                <div class="picker_deadline_date">
+                                    {{$ctrl.getDeadline() | amDateFormat:'L LT Z'}}
+                                </div>
+                                <div class="picker_days_left" translate="VIEWS.TOPICS_TOPICID.VOTE_TXT_DEADLINE_CALENDAR_DAYS_LEFT"
+                                    translate-values="{numberOfDaysLeft: $ctrl.voteForm.numberOfDaysLeft}">0 days left
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+                        </div>
+                        <div class="double_cell_layout">
+                            <div class="left_row gray_toggle_box">
+                                <div class="set_vote_time_wrap">
+                                    <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_TIME">Set a time</div>
+                                    <div class="input_row">
+                                        <input class="time_input" ng-model="$ctrl.voteForm.endsAt.h" ng-change="$ctrl.formatTime($ctrl.voteForm.endsAt.h); $ctrl.setEndsAtTime()" type="number" min="0" max="{{$ctrl.HCount}}" step="1"/><span class="time_separator">:</span><input type="number" class="time_input" min="0" max="60" step="5" ng-model="$ctrl.voteForm.endsAt.min" ng-change="$ctrl.formatTime($ctrl.voteForm.endsAt.min);$ctrl.setEndsAtTime()" />
+
+                                        <div cos-dropdown class="classic_dropdown">
+
+                                            <div class="dropdown_selection">
+                                                <div class="dropdown_text">
+                                                    {{'VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_'+$ctrl.voteForm.endsAt.timeFormat | uppercase | translate}}
+                                                </div>
+
+                                                <div class="arrow_holder">
+                                                    <div class="table_cell">
+                                                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+
+                                                <div class="dropdown_item">
+
+                                                    <div class="item_names_wrap">
+                                                        <div class="item_name" translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_24" ng-click="$ctrl.voteForm.endsAt.timeFormat = 24; $ctrl.setTimeFormat()">
+                                                            24 hr clock
+                                                        </div>
+                                                        <div class="item_name"translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_AM" ng-click="$ctrl.voteForm.endsAt.timeFormat = 'AM'; $ctrl.setTimeFormat()">
+                                                            AM
+                                                        </div>
+                                                        <div class="item_name"translate="VIEWS.TOPICS_TOPICID.VOTE_SETTING_TIME_OPTION_PM" ng-click="$ctrl.voteForm.endsAt.timeFormat = 'PM'; $ctrl.setTimeFormat()">
+                                                            PM
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="clearer"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="set_vote_timezone_wrap">
+                                    <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_TIMEZONE">Set a time</div>
+                                    <div class="input_row">
+                                        <div cos-dropdown class="classic_dropdown timezone_dropdown">
+
+                                            <div class="dropdown_selection">
+                                                <div class="dropdown_text">
+                                                    {{$ctrl.getTimeZoneName($ctrl.voteForm.endsAt.timezone)}}
+                                                </div>
+
+                                                <div class="arrow_holder">
+                                                    <div class="table_cell">
+                                                        <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                        <div class="v_line"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+
+                                                <div class="dropdown_item" ng-class="zone === $ctrl.voteForm.endsAt.timezone ? 'bold' : ''"  ng-repeat="zone in $ctrl.timezones">
+                                                    <div class="item_names_wrap">
+                                                        <div class="item_name" ng-click="$ctrl.voteForm.endsAt.timezone = zone.value;$ctrl.setEndsAtTime()">
+                                                            {{zone.name}}
+                                                        </div>
+                                                    </div>
+                                                    <!--div class="item_props">
+                                                        404 topics
+                                                    </div-->
+                                                    <div class="clearer"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right_row gray_toggle_box">
+                                    <div class="toggle_box_title datepicker_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_DATE">Set date</div>
+                                    <div ng-click="$ctrl.setEndsAtTime()" class="date_picker_wrap" date-picker="$ctrl.voteForm.endsAt.date" min-date="$ctrl.datePickerMin" max-view="date" min-view="date"
+                                        template="/views/directives/date_picker.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes section_padding">
+            <div class="left_row">
+                <div class="gray_toggle_box">
+                    <div class="table_cell">
+                        <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_ALL_VOTES_ARE_IN">All votes are in</div>
+                        <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_ALL_VOTES_ARE_IN_EXPLANATION">WHEN EVERY USER IN THE TOPIC HAS VOTED, THE VOTE SYSTEM CLOSES.</div>
+                    </div>
+                    <div class="table_cell">
+                        <cos-toggle model="$ctrl.voteForm.autoClose.allMembersVoted.enabled" cos-toggle-text-on="'TOGGLE_ON' | translate"
+                             cos-toggle-text-off="'TOGGLE_OFF' | translate"></cos-toggle>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="line lightest_line" ng-if="$ctrl.voteForm.voteType"></div>
+
+    <div class="voting_platform_section" ng-if="$ctrl.voteForm.voteType">
+
+        <div class="blue_button aqua_marine_background black_text" ng-click="$ctrl.createVote()">
+            <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.VOTE_BTN_CREATE_VOTE">CREATE VOTING SYSTEM</div>
+        </div>
+
+    </div>
+
+
+</div>
