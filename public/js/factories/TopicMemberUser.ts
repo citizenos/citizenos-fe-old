@@ -41,7 +41,6 @@ angular
 
         // FIXME: Should be inherited from Topic?
         TopicMemberUser.LEVELS = {
-            none: 'none', // Enables to override inherited permissions.
             read: 'read',
             edit: 'edit',
             admin: 'admin'

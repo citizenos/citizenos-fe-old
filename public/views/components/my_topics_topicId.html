@@ -425,8 +425,9 @@
                     </div>
                     <div class="pretend_th" ng-click="$ctrl.sortMemberGroups('level')">
                         <div class="th_text">
-                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_RIGHTS">Rights</span>
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_ROLES">Roles</span>
                             <div ng-class="{'sprite sprite-icon-list-ordering2x': $ctrl.groupList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': $ctrl.groupList.searchOrderBy.sortOrder === 'DESC' }" ng-if="$ctrl.groupList.searchOrderBy.property === 'level'"></div>
+
                         </div>
                     </div>
                     <div class="pretend_th" ng-click="$ctrl.sortMemberGroups('members.users.count')">
@@ -525,7 +526,7 @@
                     </div>
                     <div class="pretend_th" ng-click="$ctrl.sortMemberUsers('level')">
                         <div class="th_text">
-                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_RIGHTS">Rights</span>
+                            <span translate="VIEWS.MY_TOPICS_TOPICID.LNK_ROLES">Roles</span>
                             <div ng-class="{'sprite sprite-icon-list-ordering2x': $ctrl.userList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': $ctrl.userList.searchOrderBy.sortOrder === 'DESC' }" ng-if="$ctrl.userList.searchOrderBy.property === 'level'"></div>
                         </div>
                     </div>
