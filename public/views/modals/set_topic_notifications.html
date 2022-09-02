@@ -1,0 +1,157 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+
+    <div id="lightbox" class="wide_lightbox with_title_description with_header_menu">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_TITLE">Set topic notifications</div>
+                    <div class="title_description" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_TITLE_DESCRIPTION">These settings will relate only to this topic</div>
+                    <div class="title_description" ng-bind="topic.title"></div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+                <!--div class="header_row_wrap">
+                    <div class="header_row" slide-controller identifier="topicSettingsSlider">
+                        <div class="tab_button" ng-click="selectTab('general')" ng-class="tabSelected === 'general' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_TAB_GENERAL">GENERAL</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+                        <div class="tab_button" ng-click="selectTab('channels')" ng-class="tabSelected === 'channels' ? 'active' : ''">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_TAB_CHANNELS">CHANNELS</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div-->
+            </div>
+
+
+            <div class="line lightest_line"></div>
+
+            <!-- SETTINGS -->
+            <div class="lightbox_content settings_section_wrap" ng-if="tabSelected === 'general'">
+
+                <div class="lightbox_section">
+                    <div class="settings_section">
+                        <div class="settings_cell toggle_cell_title" ng-class="{'toggle_cell_off': !settings.allowNotifications, 'toggle_cell_on': settings.allowNotifications}">
+                            <div class="setting_title" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS">Topic notifications</div>
+                        </div>
+                        <div class="settings_cell toggle_cell_wrap" ng-class="{'toggle_cell_off': !settings.allowNotifications, 'toggle_cell_on': settings.allowNotifications}">
+                            <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="settings.allowNotifications" ng-click="toggleAllNotifications()"></div>
+                        </div>
+                    </div>
+                    <div class="line lightest_line"></div>
+                    <div class="settings_section" >
+                        <div class="settings_cell no_padding">
+                            <div class="setting_title" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_NOTIFY_ME_ABOUT">Notify me about:</div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label class="checkcontainer" >
+                                            <input type="checkbox" class="checkbox" ng-checked="allChecked()" ng-click="toggleAllNotifications()">
+                                            <span class="option_checkbox"></span>
+                                            <span translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_ALL_ACTIONS">All actions in this topic</span>
+                                        </label>
+                                        <label class="checkcontainer">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.Topic && settings.preferences.TopicReport" ng-click="selectOption('Topic');selectOption('TopicReport');">
+                                            <span class="option_checkbox"></span>
+                                            <span translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_UPDATES">Topic updates (content, status, categories etc.)</span>
+                                        </label>
+                                        <label class="checkcontainer">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicComment && settings.preferences.CommentVote" ng-click="selectOption('TopicComment');selectOption('CommentVote');">
+                                            <span class="option_checkbox"></span>
+                                            <span translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_DISCUSSION">Topic discussion (arguments ,replies)</span>
+                                        </label>
+                                        <label class="checkcontainer">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicVoteList" ng-click="selectOption('TopicVoteList')">
+                                            <span class="option_checkbox"></span>
+                                            <span translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_VOTING">Voting</span>
+                                        </label>
+                                        <label class="checkcontainer">
+                                            <input type="checkbox" class="checkbox" ng-checked="settings.preferences.TopicEvent" ng-click="selectOption('TopicEvent')">
+                                            <span class="option_checkbox"></span>
+                                            <span translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_FOLLOW_UP">Follow up events</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORIES -->
+            <div class="lightbox_content settings_section_wrap" ng-if="tabSelected === 'channels'">
+                <div class="lightbox_section">
+                    <div class="settings_section" >
+                        <div class="settings_cell no_padding">
+                            <div class="setting_title" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_NOTIFY_ME_IN_CHANNELS">Notify me in channels:</div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label class="checkcontainer">
+                                            <input type="checkbox" class="checkbox" ng-checked="allChecked()" ng-click="toggleAllNotifications()">
+                                            <span class="option_checkbox"></span>
+                                            <span>All channels</span>
+                                        </label>
+                                        <label class="checkcontainer">
+                                            <input type="checkbox" class="checkbox" ng-checked="notifications.updates" ng-click="notifications.updates = !notifications.updates">
+                                            <span class="option_checkbox"></span>
+                                            <span>Push (web and mobile)</span>
+                                        </label>
+                                        <label class="checkcontainer">
+                                            <input type="checkbox" class="checkbox" ng-checked="notifications.discussion" ng-click="notifications.discussion = !notifications.discussion">
+                                            <span class="option_checkbox"></span>
+                                            <span>Email</span>
+                                        </label>
+                                        <label class="checkcontainer">
+                                            <input type="checkbox" class="checkbox" ng-checked="notifications.reports" ng-click="notifications.reports = !notifications.reports">
+                                            <span class="option_checkbox"></span>
+                                            <span>SMS</span>
+                                        </label>
+                                        <label class="checkcontainer">
+                                            <input type="checkbox" class="checkbox" ng-checked="notifications.events" ng-click="notifications.events = !notifications.events">
+                                            <span class="option_checkbox"></span>
+                                            <span>Slack</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lightbox_footer">
+                <div class="line lightest_line"></div>
+                <div class="lightbox_section">
+                    <div class="footer_button_wrap right">
+                        <div class="blue_link" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LNK_CANCEL" ng-click="closeThisDialog()">CANCEL</div>
+                        <div class="blue_button" ng-click="doSaveSettings()" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_BTN_SAVE">Save topic</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()">
+    </div>
+
+</div>

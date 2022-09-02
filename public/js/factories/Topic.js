@@ -1,6 +1,6 @@
 angular
     .module('citizenos')
-    .factory('Topic', ['$log', '$resource', 'sLocation', 'sAuth', 'TopicMemberUser', 'TopicVote', 'Vote', function ($log, $resource, sLocation, sAuth, TopicMemberUser, TopicVote, Vote) {
+    .factory('Topic', ['$log', '$resource', 'sLocation', 'sAuth', 'sUser', 'TopicMemberUser', 'TopicVote', 'Vote', function ($log, $resource, sLocation, sAuth, sUser, TopicMemberUser, TopicVote, Vote) {
         $log.debug('citizenos.factory.Topic');
 
         var getUrlPrefix = function () {

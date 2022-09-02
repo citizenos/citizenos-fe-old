@@ -1103,6 +1103,7 @@
                         <div ng-if="topic.visibility === VISIBILITY.public && !topic.report" class="blue_link" ui-sref="topics.view.report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report
                             topic
                         </div>
+                        <div class="blue_link" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SET_TOPIC_NOTIFICATIONS" ng-click="app.doShowTopicNotificationSettings(topic.id)">Set topic notifications</div>
                     </div>
                 </div>
                 <div class="options_wrap" ng-if="wWidth > 767">

@@ -2,10 +2,11 @@
 
 angular
     .module('citizenos')
-    .controller('MyAccountFormCtrl', ['$scope', '$log', '$stateParams', '$document', '$window', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', function ($scope, $log, $stateParams, $document, $window, ngDialog, sNotification, sAuth, sUser, sUpload) {
+    .controller('MyAccountFormCtrl', ['$scope', '$log', '$state', '$stateParams', '$document', '$window', '$location', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', 'sTopic', function ($scope, $log, $state, $stateParams, $document, $window, $location, ngDialog, sNotification, sAuth, sUser, sUpload, sTopic) {
         $log.debug('MyAccountFormCtrl');
-
-        $scope.tabSelected = 'profile';
+        if (!sAuth.user.loggedIn) return $state.go('home')
+        $scope.tabSelected = $stateParams.tab || 'profile';
+        var ITEMS_COUNT_PER_PAGE = 5;
         $scope.form = {
             name: null,
             email: null,
@@ -15,7 +16,73 @@ angular
             imageUrl: null,
             passwordConfirm: null,
             preferences: {
-                showInSearch: false
+                showInSearch: false,
+                notifications: {
+                    topics: {},
+                    groups: {}
+                }
+            }
+        };
+
+        $scope.notifications = {
+            search: '',
+            topics: {
+                rows: [],
+
+            }
+        };
+
+        var loadNotificationSettingsList = function (offset, limit) {
+
+            if (!offset) {
+                offset = 0;
+            }
+            if (!limit) {
+                limit = ITEMS_COUNT_PER_PAGE;
+            }
+            console.log($scope.notifications.search)
+            sTopic.notificationSettingsList(offset, limit, $scope.notifications.search)
+                .then(function (items) {
+                    $scope.notifications.topics = items;
+                    $scope.notifications.topics.totalPages = Math.ceil($scope.notifications.topics.count / limit);
+                    $scope.notifications.topics.page = Math.ceil((offset + limit) / limit);
+                });
+        };
+        loadNotificationSettingsList(0);
+
+        $scope.loadNotificationSettingsPage = function (page) {
+            if (page < 1) page = 1;
+            var offset = (page - 1) * ITEMS_COUNT_PER_PAGE;
+            loadNotificationSettingsList(offset, ITEMS_COUNT_PER_PAGE);
+        };
+
+        $scope.removeTopicNotifications = function (topic) {
+            if (!topic.allowNotifications) {
+                $scope
+                    .app
+                    .removeTopicNotifications(topic.topicId, topic.allowNotifications)
+                    .then(loadNotificationSettingsList, function () {
+                        $scope.$apply(function () {
+                            topic.allowNotifications = true;
+                        });
+                    });
+            } else {
+                sTopic.updateTopicNotificationSettings(topic.topicId, {
+                    preferences: {
+                        Topic: true,
+                        TopicComment: true,
+                        CommentVote: true,
+                        TopicReport: true,
+                        TopicVoteList: true,
+                        TopicEvent: true
+                    },
+                    allowNotifications: true
+                })
+                .then(function (data) {
+                    $scope.settings = data;
+                }, function (err) {
+                    sNotification.addError(err);
+                });
             }
         };
 
@@ -58,6 +125,7 @@ angular
                     }, error);
 
             } else {
+                console.log('UPDATE')
                 sUser
                     .update($scope.form.name, $scope.form.email, $scope.form.password, $scope.form.company, $scope.form.imageUrl, $scope.form.preferences, null, null, $scope.form.newPassword)
                     .then(success, error);
@@ -97,6 +165,7 @@ angular
 
         $scope.selectTab = function (tab) {
             $scope.tabSelected = tab;
+            $location.search({tab: tab});
         }
 
         $scope.doDeleteAccount = function () {

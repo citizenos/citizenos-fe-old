@@ -284,6 +284,11 @@
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('account.settings', {
+                    url: '/myaccount?tab',
+                    parent: 'main',
+                    templateUrl: '/views/account.html'
+                })
                 .state('account.tos', {
                     url: '/tos?redirectSuccess',
                     controller: ['$scope', 'ngDialog', function ($scope, ngDialog) {
@@ -473,7 +478,7 @@
                     }]
                 })
                 .state('topics.view', {
-                    url: '/:topicId?editMode&commentId&argumentsPage',
+                    url: '/:topicId?editMode&commentId&argumentsPage&notificationSettings',
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {

@@ -39,7 +39,6 @@ angular
 
         $scope.app.helpBubbleAnimate = function () {
             var bubble = angular.element( document.querySelector( '#help_bubble' ) );
-            console.log(bubble);
             bubble.addClass('animate');
             $timeout(function () {
                 bubble.removeClass('animate');
@@ -155,6 +154,110 @@ angular
             ngDialog.open({
                 template: '/views/modals/topic_settings.html',
                 scope: $scope
+            });
+        };
+
+        $scope.app.doShowTopicNotificationSettings = function (topicId) {
+            if (!sAuth.user.loggedIn) {
+                return;
+            }
+
+            var existingSettings = false;
+            sTopic.getTopicNotificationSettings(topicId).then(function(settings) {
+                existingSettings = settings;
+                var dialog = ngDialog.open({
+                    template: '/views/modals/set_topic_notifications.html',
+                    controller: ['$scope', '$state', '$stateParams', '$log', '$location', 'ngDialog', 'Topic', function ($scope, $state, $stateParams, $log, $location, ngDialog, Topic) {
+                        $log.debug('TopicNotificationsCtrl', $state, $stateParams);
+                        var supportedTabs = ['general'];
+                        $scope.tabSelected = 'general';
+                        if (supportedTabs.indexOf($stateParams.tab) > -1 ) {
+                            $scope.tabSelected = $stateParams.tab;
+                        }
+
+                        new Topic({id: topicId})
+                        .$get()
+                        .then(function (topic) {
+                            $scope.topic = topic;
+                        });
+
+                        $scope.settings = {
+                            topicId: topicId,
+                            preferences: existingSettings.preferences || {
+                                Topic: false,
+                                TopicComment: false,
+                                CommentVote: false,
+                                TopicReport: false,
+                                TopicVoteList: false,
+                                TopicEvent: false
+                            },
+                            allowNotifications: existingSettings.allowNotifications || false
+                        };
+                        $scope.toggleAllNotifications = function () {
+                            var toggle = true;
+                            if (Object.values($scope.settings.preferences).indexOf(false) === -1) {
+                                toggle = false;
+                            }
+                            Object.keys($scope.settings.preferences).forEach(function (key) {
+                                if (toggle) {
+                                    return $scope.settings.preferences[key] = true;
+                                }
+
+                                $scope.settings.preferences[key] = false;
+                            });
+                        };
+
+                        $scope.allChecked = function () {
+                            return (Object.values($scope.settings.preferences).indexOf(false) === -1)
+                        };
+
+                        $scope.selectOption = function (option) {
+                            $scope.settings.preferences[option] = !$scope.settings.preferences[option];
+                            if ($scope.settings.preferences[option] === true) {
+                                $scope.settings.allowNotifications = true;
+                            }
+                        };
+
+                        $scope.selectTab = function (tab) {
+                            $scope.tabSelected = tab;
+                            $location.search({tab: tab});
+                        };
+
+                        $scope.doSaveSettings = function () {
+                            if (!$scope.settings.allowNotifications) {
+                                sTopic.deleteTopicNotificationSettings(topicId);
+                            } else {
+                                sTopic.updateTopicNotificationSettings(topicId, $scope.settings)
+                                    .then(function (data) {
+                                        $scope.settings = data;
+                                        if ($state.current.name === 'account.settings') {
+                                            $state.reload(true);
+                                        }
+                                    }, function (err) {
+                                        sNotification.addError(err);
+                                    });
+                            }
+
+                            dialog.close();
+                        };
+                    }]
+                });
+            });
+
+        };
+
+        $scope.app.removeTopicNotifications = function (topicId, setting) {
+            return new Promise (function (resolve, reject) {
+                return ngDialog
+                .openConfirm({
+                    template: '/views/modals/remove_topic_notifications_confirm.html',
+                })
+                .then(function (data) {
+                    return sTopic.deleteTopicNotificationSettings(topicId)
+                        .then(resolve);
+                }, function () {
+                    return reject();
+                });
             });
         };
 
