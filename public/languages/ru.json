@@ -517,7 +517,7 @@
     "TOPIC_NOTIFICATION_SETTINGS_TITLE_DESCRIPTION": "Настройки применяются только к теме {{topicTitle}}",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_GENERAL": "Общие",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_CHANNELS": "Каналы",
-    "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Уведомления по теме",
+    "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Toggle notifications for this topic",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_NOTIFY_ME_ABOUT": "Получать уведомления:",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_ALL_ACTIONS": "Все действия в этой теме",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_UPDATES": "Обновления темы (содержание, статус, категории, отчеты и т. д.)",
