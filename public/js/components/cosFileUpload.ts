@@ -21,7 +21,6 @@ let cosFileUpload = {
 
         change () {
             const files = this.$element.find('input')[0].files;
-            this.select(files);
             this.imageItem = files;
         }
     }]

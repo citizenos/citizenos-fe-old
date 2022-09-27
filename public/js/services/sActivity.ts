@@ -1,6 +1,6 @@
 'use strict';
 import * as angular from 'angular';
-import * as _ from 'lodash';
+import {sortBy, find, cloneDeep} from 'lodash';
 import * as jsonpatch from 'fast-json-patch';
 angular
     .module('citizenos')
@@ -29,14 +29,14 @@ angular
                         if (activity.data.origin['@type'] === 'Topic') {
                             activity.data.origin.description = null;
                         }
-                        var resultObject = _.cloneDeep(activity.data.origin);
+                        var resultObject = cloneDeep(activity.data.origin);
                         activity.data.resultObject = jsonpatch.applyPatch(resultObject, activity.data.result).newDocument;
                         activity.data.result.forEach(function (item) {
                             var field = item.path.split('/')[1];
                             if (['deletedById', 'deletedByReportId', 'edits'].indexOf(field) > -1 ) {
                                 item = null;
                             } else {
-                                var change = _.find(resultItems, function (resItem) {
+                                var change = find(resultItems, function (resItem) {
                                     return resItem.path.indexOf(field) > -1;
                                 });
 
@@ -52,7 +52,7 @@ angular
                         });
                         activity.data.result = resultItems;
                         while (i < activity.data.result.length) {
-                            var act = _.cloneDeep(activity);
+                            var act = cloneDeep(activity);
                             var change = activity.data.result[i];
                             act.data.result = [change];
                             if (act.data.target) {
@@ -148,7 +148,7 @@ angular
                             return 0;
                         });
                     }
-                    _.sortBy(final[groupKey], ['updatedAt']).reverse();
+                    sortBy(final[groupKey], ['updatedAt']).reverse();
                 } else {
                     final[activity.id] = [activity];
                 }
@@ -158,7 +158,7 @@ angular
                 returnActivities.push({referer: key, values: final[key]});
             });
 
-            return _.sortBy(returnActivities, [function(o) { return o.values[0].updatedAt; }]).reverse();
+            return sortBy(returnActivities, [function(o) { return o.values[0].updatedAt; }]).reverse();
         };
 
         var buildActivityString = function (activity) {
@@ -410,7 +410,6 @@ angular
             if (fieldNameKey) {
                 var translatedField = $translate.instant(fieldNameKey);
                 activity.values.fieldName = translatedField;
-                activity.values.groupItemValue = translatedField;
             }
             if (newValueKey) {
                 var newVal = $translate.instant(newValueKey);
@@ -418,10 +417,8 @@ angular
                     newVal =  Object.values(newVal).join(';');
                 }
                 activity.values.newValue = newVal;
-                activity.values.groupItemValue += ': ' + newVal;
             } else {
                 activity.values.newValue = newValue;
-                activity.values.groupItemValue += ': ' + newValue;
             }
 
         };
@@ -583,24 +580,9 @@ angular
                 values['connectionName'] = getAactivityUserConnectionName(activity);
                 getActivityUserLevel(activity, values);
 
-                values['groupItemValue'] =  values['userName'];
-                if (values['userName2']) {
-                    values['groupItemValue'] = values['userName2'];
-                }
-                if (values['attachmentName']) {
-                    values['groupItemValue'] = values['attachmentName'];
-                }
-                if (values['connectionName']) {
-                    values['groupItemValue'] = values['connectionName'];
-                }
-
                 var dataobject = activity.data.object;
                 if (Array.isArray(dataobject)) {
                     dataobject = dataobject[0];
-                }
-
-                if (dataobject['@type'] === 'Comment') {
-                    values['groupItemValue'] = dataobject.text;
                 }
 
                 if (dataobject['@type'] === 'CommentVote' && activity.data.type === 'Create') {
@@ -613,7 +595,6 @@ angular
                     }
                     $translate(str + val).then(function (value) {
                         values['reaction'] = value;
-                        values['groupItemValue'] = value;
                     });
                 }
             }
@@ -640,6 +621,9 @@ angular
         sActivity.showActivityUpdateVersions = function (activity) {
             if (activity.data.type === 'Update') {
                 if (activity.data.result && (Array.isArray(activity.data.object) && activity.data.object[0]['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1 || !Array.isArray(activity.data.object) && activity.data.object['@type'] === 'Topic' && activity.data.result[0].path.indexOf('description') > -1)) {
+                    return false;
+                }
+                if (activity.data.object['@type'] === 'UserNotificationSettings' && activity.data.type === 'Update') {
                     return false;
                 }
 

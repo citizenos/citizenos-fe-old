@@ -19,4 +19,13 @@ angular
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/topics', {groupId: groupId});
             return $http.get(path);
         }
+        sGroup.publicMembersList = function (groupId, params) {
+            var path = sLocation.getAbsoluteUrlApi('/api/groups/:groupId/members/users', {groupId: groupId}, params);
+            return $http.get(path);
+        };
+
+        sGroup.publicTopicsList = function (groupId, params) {
+            var path = sLocation.getAbsoluteUrlApi('/api/groups/:groupId/members/topics', {groupId: groupId}, params);
+            return $http.get(path);
+        }
     }]);

@@ -1,10 +1,9 @@
 'use strict';
 import * as angular from 'angular';
-import * as _ from 'lodash';
 
 (function () {
 
-    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', '720kb.tooltips', '720kb.socialshare', 'angularLoad', 'cosmarkdown']);
+    var module = angular.module('citizenos', ['ui.router', 'pascalprecht.translate', 'ngSanitize', 'ngResource', 'ngTouch', 'ngDialog', 'angularMoment', 'focus-if', 'angular-loading-bar', 'ngCookies', 'angularHwcrypto', 'typeahead', 'datePicker', '720kb.tooltips', '720kb.socialshare', 'angularLoad', 'cosmarkdown', 'monospaced.qrcode']);
 
     module
         .constant('cosConfig', window.__config || {});
@@ -228,6 +227,43 @@ import * as _ from 'lodash';
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('public/groups', {
+                    url: '/groups?groupStatus',
+                    parent: 'main',
+                    template: '<public-groups><public-groups>'
+                })
+                .state('public/groups/view', {
+                    url: '/groups/:groupId?groupStatus&tab',
+                    parent: 'main',
+                    template: '<public-group><public-group>'
+                })
+                .state('public/groups/view/settings', {
+                    url: '/settings?tab',
+                    parent: 'public/groups/view',
+                    reloadOnSearch: false,
+                    controller: ['$state', 'ngDialog', function ($state, ngDialog) {
+                        var createDialog = function () {
+                            ngDialog.closeAll();
+                            var dialog = ngDialog.open({
+                                template: '<group-settings></group-settings>',
+                                plain: true,
+                                preCloseCallback: function (value) {
+                                    if (value === '$closeButton') {
+                                        return true;
+                                    }
+                                    return false;
+                                }
+                            });
+                            dialog
+                                .closePromise
+                                .then(function () {
+                                    $state.go('^', {}, {reload: true});
+                                });
+                        }
+
+                        createDialog();
+                    }]
+                })
                 .state('category', {
                     url: '/topics/categories/:category?topicStatus',
                     parent: 'main',
@@ -284,9 +320,14 @@ import * as _ from 'lodash';
                     parent: 'main',
                     templateUrl: '/views/home.html'
                 })
+                .state('account/settings', {
+                    url: '/myaccount?tab',
+                    parent: 'main',
+                    template: '<my-account></my-account>'
+                })
                 .state('account/tos', {
                     url: '/tos?redirectSuccess',
-                    parent: 'main',
+                    parent: 'account',
                     controller: ['$scope', 'ngDialog', function ($scope, ngDialog) {
                         ngDialog.open({
                             template: '/views/modals/privacy_policy.html',
@@ -366,8 +407,7 @@ import * as _ from 'lodash';
                     params: {
                         email: null // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
                     },
-                    template: '<login-form></login-form>'
-                    /*controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rUserConnections', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rUserConnections, rHiddenParams) {
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rUserConnections', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rUserConnections, rHiddenParams) {
                         if (sAuthResolve) {
                             console.log()
                             return $state.go('home');
@@ -384,8 +424,8 @@ import * as _ from 'lodash';
 
                         var dialog = ngDialog.open({
                             template: '<login-form></login-form>',
-                            data: dialogData,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                            plain: true,
+                            data: dialogData
                         });
 
                         dialog.closePromise.then(function (data) {
@@ -393,18 +433,6 @@ import * as _ from 'lodash';
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
                                 return $state.go('home');
                             }
-                        });
-                    }]*/
-                })
-                .state('account/profile', { // TODO: Naming inconsistency but /account/myaccount would be funny. Maybe rename all related files to profile?
-                    parent: 'account',
-                    url: '/profile',
-                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
-                        ngDialog.open({
-                            template: '/views/modals/my_account.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
                         });
                     }]
                 })
@@ -483,15 +511,16 @@ import * as _ from 'lodash';
                     }]
                 })
                 .state('topics/view', {
-                    url: '/:topicId?editMode&commentId&argumentsPage',
+                    url: '/:topicId?editMode&commentId&argumentsPage&notificationSettings',
                     parent: 'topics',
                     templateUrl: '/views/topics_topicId.html',
                     resolve: {
-                        rTopic: ['$state', '$stateParams', 'Topic', 'sAuthResolve', function ($state, $stateParams, Topic, sAuthResolve) {
+                        rTopic: ['$state', '$stateParams', 'Topic', 'sAuthResolve','AppService', function ($state, $stateParams, Topic, sAuthResolve, AppService) {
                             // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
                             return new Topic({id: $stateParams.topicId})
                                 .$get()
                                 .then(function (topic) {
+                                    AppService.topic = topic;
                                     return topic;
                                 });
                         }]
@@ -521,20 +550,18 @@ import * as _ from 'lodash';
                     url: '/invite?tab',
                     parent: 'topics/view',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
+                    controller: ['$state', 'ngDialog', function ($state, ngDialog) {
                         var createDialog = function () {
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
-                                template: '/views/modals/topic_invite.html',
-                                data: data,
+                                template: '<topic-invite></topic-invite>',
+                                plain: true,
                                 preCloseCallback: function (value) {
                                     if (value === '$closeButton') {
                                         return true;
                                     }
                                     return false;
-                                },
-                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                                }
                             });
 
                             dialog.closePromise.then(function (data) {
@@ -796,23 +823,35 @@ import * as _ from 'lodash';
                 .state('my', {
                     url: '/my?filter&openTabs',
                     parent: 'main',
-                    template: '<my-view></my-view>'
+                    template: '<div ui-view></div>'
                 })
                 .state('my/topics', {
                     url: '/topics',
                     parent: 'my',
-                    template: '<div ui-view></div>'
+                    template: '<my-topics></my-topics>'
                 })
                 .state('my/topics/topicId', {
                     url: '/:topicId',
                     parent: 'my/topics',
+                    resolve: {
+                        rTopic: ['$stateParams', 'Topic', 'sAuthResolve', 'AppService', function ($stateParams, Topic, sAuthResolve, AppService) {
+                            // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
+                            console.log('RESOLVE RTOPIC')
+                            return new Topic({id: $stateParams.topicId})
+                                .$get()
+                                .then(function (topic) {
+                                    AppService.topic = topic;
+                                    return topic;
+                                });
+                        }]
+                    },
                     template: '<my-topics-topic></my-topics-topic>'
                 })
                 .state('my/topics/topicId/settings', {
                     url: '/settings?tab',
                     parent: 'my/topics/topicId',
                     reloadOnSearch: false,
-                    controller: ['$state', '$stateParams', '$timeout', 'ngDialog', 'rTopic', function ($state, $stateParams, $timeout, ngDialog, rTopic) {
+                    controller: ['$state', '$stateParams', '$timeout', 'ngDialog', function ($state, $stateParams, $timeout, ngDialog) {
                         var createDialog = function () {
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
@@ -842,20 +881,18 @@ import * as _ from 'lodash';
                     url: '/invite?tab',
                     parent: 'my/topics/topicId',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
+                    controller: ['$state', 'ngDialog', 'rTopic', function ($state, ngDialog, rTopic) {
                         var createDialog = function () {
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
-                                template: '/views/modals/topic_invite.html',
-                                data: data,
+                                template: '<topic-invite></topic-invite>',
+                                plain: true,
                                 preCloseCallback: function (value) {
                                     if (value === '$closeButton') {
                                         return true;
                                     }
                                     return false;
-                                },
-                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                                }
                             });
 
                             dialog.closePromise.then(function (data) {
@@ -871,20 +908,22 @@ import * as _ from 'lodash';
                 .state('my/groups', {
                     url: '/groups',
                     parent: 'my',
-                    template: '<div ui-view></div>'
+                    template: '<my-groups></my-groups>'
                 })
                 .state('my/groups/create', {
                     url: '/create',
                     parent: 'my/groups',
-                    controller: ['$scope', '$stateParams', '$state', 'ngDialog', function ($scope, $stateParams, $state, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
+                    controller: ['$state', 'ngDialog', function ($state, ngDialog) {
                         var createDialog = function () {
                             ngDialog.closeAll();
-                            ngDialog.open({
-                                template: '/views/modals/group_create_settings.html',
-                                data: data,
-                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                            var dialog = ngDialog.open({
+                                template: '<group-create></group-create>',
+                                plain: true
                             });
+                            dialog.closePromise
+                                .then(function () {
+                                    $state.go('^');
+                                });
                         }
 
                         createDialog();
@@ -893,62 +932,37 @@ import * as _ from 'lodash';
                 .state('my/groups/groupId', {
                     url: '/:groupId',
                     parent: 'my/groups',
-                    templateUrl: '/views/my_groups_groupId.html',
                     resolve: {
-                        rGroup: ['$state', '$stateParams', '$anchorScroll', 'rItems', 'Group', 'GroupService', 'GroupInviteUser', function ($state, $stateParams, $anchorScroll, rItems, Group, GroupService, GroupInviteUser) {
-                            $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
-                            console.log(rItems);
-                            var group = rItems.getGroup($stateParams.groupId);
-                            console.log(group, GroupService.groups)
-
-                            if (!group) {
-                                return GroupInviteUser
-                                    .query({
-                                        groupId: $stateParams.groupId
-                                    }).$promise
-                                    .then(function (invites) {
-                                        if (invites.length) {
-                                            return invites[0]
-                                                .$accept()
-                                                .then(function () {
-                                                        return $state.go(
-                                                            'my/groups/groupId',
-                                                            $stateParams
-                                                        )
-                                                    }
-                                                );
-                                        } else {
-                                            $state.go('error/404');
-                                        }
-                                    }, function () {
-                                        $state.go('error/404');
-                                    });
-                            } else {
-                                return group;
+                        rGroup: ['$stateParams', 'sAuthResolve', 'GroupService', 'AppService', function ($stateParams, sAuthResolve, GroupService, AppService) {
+                            // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
+                            if (!GroupService.groups) {
+                                return GroupService.reload();
                             }
                         }]
                     },
-                    controller: 'GroupCtrl'
+                    template: '<my-groups-group></my-groups-group>'
                 })
                 .state('my/groups/groupId/settings', {
                     url: '/settings?tab',
                     parent: 'my/groups/groupId',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
+                    controller: ['$state', '$stateParams', 'ngDialog', function ($state, $stateParams, ngDialog) {
                         var createDialog = function () {
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
-                                template: '/views/modals/group_create_settings.html',
-                                data: data,
+                                template: '<group-settings></group-settings>',
+                                plain: true,
                                 preCloseCallback: function (value) {
                                     if (value === '$closeButton') {
                                         return true;
                                     }
                                     return false;
-                                },
-                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                                }
                             });
+                            dialog.closePromise
+                                .then(function () {
+                                    $state.go('^');
+                                });
                         }
 
                         createDialog();
@@ -957,7 +971,30 @@ import * as _ from 'lodash';
                 .state('groupJoin', { // Join a Topic via shared url
                     url: '/groups/join/:token',
                     parent: 'main',
-                    controller: 'GroupJoinCtrl'
+                    controller: ['$state', '$stateParams', 'Group', '$log', function ($state, $stateParams, Group, $log) {
+                        Group
+                            .join($stateParams.token)
+                            .then(
+                                function (res) {
+                                    if (res.id) {
+                                        $state.go('my/groups/groupId', {
+                                            groupId: res.id
+                                        });
+                                    }
+                                },
+                                function (res) {
+                                    var status = res.status;
+                                    if (status.code === 40100) { // Unauthorized
+                                        var currentUrl = $state.href($state.current.name, $stateParams);
+                                        $state.go('account/login', {redirectSuccess: currentUrl});
+                                    } else if (status.code === 40001) { // Matching token not found.
+                                        $state.go('home');
+                                    } else {
+                                        $log.error('Failed to join Topic', res);
+                                    }
+                                }
+                            );
+                    }]
                 })
                 .state('about', {
                     url: '/about',

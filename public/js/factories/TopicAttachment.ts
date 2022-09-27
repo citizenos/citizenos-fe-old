@@ -1,5 +1,5 @@
 import * as angular from 'angular';
-import * as _ from 'lodash';
+import {isObject} from 'lodash';
 
 angular
     .module('citizenos')
@@ -51,8 +51,8 @@ angular
                     params: {topicId: '@topicId', attachmentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformRequest: function (data) {
                         var requestObject = {};
-                        _.forEach(data.toJSON(), function (value, key) { // Remove all object properties as we have none we care about in the server side
-                            if (!_.isObject(value)) {
+                        data.toJSON().forEach(function (value, key) { // Remove all object properties as we have none we care about in the server side
+                            if (!isObject(value)) {
                                 requestObject[key] = value;
                             }
                         });

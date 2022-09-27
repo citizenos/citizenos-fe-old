@@ -9,7 +9,7 @@
  *
  */
  import * as angular from 'angular';
- import * as _ from 'lodash';
+ import {debounce} from 'lodash';
  import * as $ from 'jquery';
 
 let cosEtherpad = {
@@ -71,7 +71,7 @@ let cosEtherpad = {
         };
 
         sendScrollMessage () {
-            _.debounce(function () {
+            debounce(function () {
                 const targetWindow = this.$element[0].contentWindow;
 
                 let yOffsetExtra = 0; // Additional Y offset in case there is a floating header element

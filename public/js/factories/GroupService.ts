@@ -1,77 +1,76 @@
 import * as angular from 'angular';
 
-angular
-    .module('citizenos')
-    .factory("GroupService", ['Group', '$rootScope', '$q', function(Group, $rootScope, $q) {
-        var self = {
-          name: 'GroupService',
-          getGroup: function(id) {
-            console.log(id);
-            for (var i = 0; i < self.groups.length; i++) {
-              var obj = self.groups[i];
-              if (obj.id == id) {
-                return obj;
-              }
-            }
-          },
-          page: 1,
-          hasMore: true,
-          isLoading: false,
-          isSaving: false,
-          groups: [],
-          search: null,
-          sorting: "name",
-          ordering: "ASC",
-          doSearch: function() {
-            self.hasMore = true;
-            self.page = 1;
-            self.groups = [];
-            self.loadGroups();
-          },
-          doOrder: function() {
-            self.hasMore = true;
-            self.page = 1;
-            self.groups = [];
-            self.loadGroups();
-          },
-          reload: function () {
-            self.groups = [];
-            self.loadGroups();
-          },
-          loadGroups: function() {
-            var d = $q.defer();
-            if (self.hasMore && !self.isLoading) {
-              self.isLoading = d.promise;
+export class GroupService {
+    private Group;
+    private page = 1;
+    private hasMore = true;
+    private isLoading = false;
+    private isSaving = false;
+    private groups = [];
+    private search = null;
+    private orderBy = 'name';
+    private order = 'ASC';
 
-              var params = {
-                _page: self.page,
-                _sort: self.sorting,
-                _order: self.ordering,
-                q: self.search
-              };
-
-              Group.query(params, function(data) {
-                angular.forEach(data, function(person) {
-                  self.groups.push(new Group(person));
-                });
-
-                if (data.length === 0) {
-                  self.hasMore = false;
-                }
-                self.isLoading = false;
-                d.resolve();
-              });
-            }
-          },
-          loadMore: function() {
-            if (self.hasMore && !self.isLoading) {
-              self.page += 1;
-              self.loadGroups();
-            }
+    constructor(Group) {
+        this.Group = Group;
+        this.loadGroups();
+    }
+    getGroup (id) {
+        for (var i = 0; i < this.groups.length; i++) {
+          const obj = this.groups[i];
+          if (obj.id == id) {
+            return obj;
           }
-        };
+        }
+      }
+    doSearch () {
+        this.hasMore = true;
+        this.page = 1;
+        this.groups = [];
+        this.loadGroups();
+    }
+    doOrder() {
+        this.hasMore = true;
+        this.page = 1;
+        this.groups = [];
+        this.loadGroups();
+    }
+    reload () {
+        this.groups = [];
+        this.loadGroups();
+    }
+    loadGroups() {
+        if (this.hasMore && !this.isLoading) {
+            this.isLoading = true;
 
-        self.loadGroups();
+            let params = {
+              page: this.page,
+              orderBy: this.orderBy,
+              order: this.order,
+              str: this.search
+            };
 
-        return self;
-      }]);
+            this.Group.query(params).then((res) => {
+              for (let group of res.data.data.rows) {
+                this.groups.push(group);
+              }
+
+              if (!res.data) {
+                this.hasMore = false;
+              }
+              this.isLoading = false;
+            });
+        }
+    }
+
+    loadMore () {
+        if (this.hasMore && !this.isLoading) {
+            this.page += 1;
+            this.loadGroups();
+        }
+    }
+};
+
+angular
+  .module("citizenos")
+  .service("GroupService", GroupService);

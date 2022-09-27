@@ -349,6 +349,9 @@
     "GROUP_CREATE_SETTINGS_LBL_GROUP_NAME": "Group name",
     "GROUP_CREATE_SETTINGS_LBL_GROUP_NAME_EXP": "Use a name that is clear and understandable",
     "GROUP_CREATE_SETTINGS_PLACEHOLDER_GROUP_NAME": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_NAME",
+    "GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION": "Group description",
+    "GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION_EXP": "Add a group description ({max}} characters)",
+    "GROUP_CREATE_SETTINGS_PLACEHOLDER_GROUP_DESCRIPTION": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION",
     "GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP": "Leave group",
     "GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP_EXP": "Leaving a group will result in giving up any rights you may have as user in that group",
     "GROUP_CREATE_SETTINGS_BTN_LEAVE_GROUP": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP",
@@ -529,7 +532,13 @@
     "REMOVE_TOPIC_NOTIFICATIONS_CONFIRM_TITLE": "Turn off topic notifications",
     "REMOVE_TOPIC_NOTIFICATIONS_CONFIRM_ARE_YOU_SURE": "Are you sure you want to turn off notifications for this topic?",
     "REMOVE_TOPIC_NOTIFICATIONS_CONFIRM_NO": "NO, KEEP SENDING NOTIFICATIONS",
-    "REMOVE_TOPIC_NOTIFICATIONS_CONFIRM_YES": "YES, TURN OFF NOTIFICATIONS FOR THIS TOPIC"
+    "REMOVE_TOPIC_NOTIFICATIONS_CONFIRM_YES": "YES, TURN OFF NOTIFICATIONS FOR THIS TOPIC",
+    "GROUP_JOIN_CONFIRM_HEADING": "Are you sure you want to join this public group?",
+    "GROUP_JOIN_CONFIRM_TXT_ARE_YOU_SURE": "Are you sure you want to join this public group?",
+    "GROUP_JOIN_CONFIRM_TXT_DESC": "By joining this group you agree to the following:",
+    "GROUP_JOIN_CONFIRM_TXT_POINT1": "Your user name is publicly visible in the group members list by all group members",
+    "GROUP_JOIN_CONFIRM_TXT_POINT2": "You, similar to other members, will have only reading rights.",
+    "GROUP_JOIN_CONFIRM_TXT_POINT3": "The group activity is displayed under the \"My activity\" feed"
   },
   "TXT_TOPIC_CATEGORY_ALL": "every category",
   "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
@@ -575,6 +584,7 @@
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
       "LNK_CREATE_GROUPS": "Create group",
       "LNK_MY_GROUPS": "My groups",
+      "LNK_PUBLIC_GROUPS": "Public groups",
       "LNK_ABOUT": "About",
       "LNK_FAQ": "FAQ",
       "LNK_HELP": "Help",
@@ -990,6 +1000,27 @@
       "LNK_ADD_MANAGE_FILES": "Add/manage attachments",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!",
       "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+    },
+    "PUBLIC_GROUPS": {
+      "BTN_JOIN_GROUP": "@:VIEWS.PUBLIC_GROUP.BTN_JOIN_GROUP",
+      "BTN_LEAVE_GROUP": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP"
+    },
+    "PUBLIC_GROUP": {
+      "LNK_TITLE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_TITLE",
+      "LNK_LAST_ACTIVITY": "Latest activity",
+      "LNK_STATUS": "@:VIEWS.MY_TOPICS_TOPICID.LBL_STATUS",
+      "LNK_BACK_TO_PUBLIC_GROUPS": "Back to all public groups",
+      "DROPDOWN_GROUP_ACTIONS": "Group actions",
+      "ACTION_OPTION_SETTINGS": "@:VIEWS.MY_GROUPS_GROUPID.LNK_SETTINGS",
+      "ACTION_OPTION_LEAVE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_LEAVE",
+      "ACTION_OPTION_DELETE": "@:VIEWS.MY_GROUPS_GROUPID.LNK_DELETE",
+      "TAB_TOPICS": "@:DEFAULT.NAV.HEADING_TOPICS",
+      "TAB_MEMBERS": "@:VIEWS.MY_GROUPS_GROUPID.LNK_USERS",
+      "HEADING_NO_RESUTS": "No topics yet!",
+      "HEADING_DESCRIPTION": "Seems there are no topics belonging to this group yet.",
+      "BTN_ADD_TOPICS": "@:MODALS.GROUP_CREATE_SETTINGS_TAB_ADD_TOPICS",
+      "BTN_JOIN_GROUP": "Join group",
+      "BTN_LEAVE_GROUP": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP"
     }
   },
   "ACTIVITY_FEED": {

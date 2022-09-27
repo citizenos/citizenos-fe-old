@@ -3,7 +3,7 @@
  Enables function calling from key combinations
  */
 import * as angular from 'angular';
-import * as _ from 'lodash';
+import {values} from 'lodash';
 angular
     .module('citizenos')
     .service('sHotkeys', ['$state', '$document', '$log', function ($state, $document, $log) {
@@ -61,8 +61,8 @@ angular
             var combo = [];
             for (var i = 0; i < keysList.length; i++) {
                 var key = keysList[i].toLowerCase();
-                if (_.values(KEYMAP).indexOf(key) > -1) {
-                    var code = Object.keys(KEYMAP)[_.values(KEYMAP).indexOf(key)];
+                if (values(KEYMAP).indexOf(key) > -1) {
+                    var code = Object.keys(KEYMAP)[values(KEYMAP).indexOf(key)];
                     combo.push(parseInt(code));
                 }
                 else {

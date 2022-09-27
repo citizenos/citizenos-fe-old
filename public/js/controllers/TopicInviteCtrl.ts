@@ -1,6 +1,6 @@
 'use strict';
 import * as angular from 'angular';
-import * as _ from 'lodash';
+import {find, filter, sortedUniq} from 'lodash';
 import * as validator from 'validator';
 
 angular
@@ -190,7 +190,7 @@ angular
             if (!group || !group.id || !group.name) {
                 return false;
             }
-            var member = _.find($scope.members, function (o) {
+            var member = find($scope.members, function (o) {
                 return o.id === group.id;
             });
 
@@ -206,7 +206,7 @@ angular
 
         $scope.addCorrectedEmail = function (email, key) {
             if (validator.isEmail(email.trim())) {
-                if (!_.find($scope.members, ['userId', email])) {
+                if (!find($scope.members, ['userId', email])) {
                     $scope.addTopicMemberUser({
                         userId: email,
                         name: email,
@@ -223,7 +223,7 @@ angular
 
         $scope.addTopicMemberUser = function (member) {
             if (member) {
-                if (_.find($scope.members, {userId: member.id})) {
+                if (find($scope.members, {userId: member.id})) {
                     // Ignore duplicates
                     $scope.searchString = null;
                     $scope.searchResults.users = [];
@@ -249,11 +249,11 @@ angular
                 // Assume e-mail was entered.
                 var emails = $scope.searchString.replace(EMAIL_SEPARATOR_REGEXP, ',').split(',');
 
-                var filtered = _.filter(emails, function (email) {
+                var filtered = filter(emails, function (email) {
                     return validator.isEmail(email.trim())
                 });
 
-                var invalid = _.filter(emails, function (email) {
+                var invalid = filter(emails, function (email) {
                     return !validator.isEmail(email.trim()) && email.trim().length > 0;
                 });
 
@@ -262,13 +262,13 @@ angular
                     return;
                 }
 
-                _.sortedUniq(filtered.sort()).forEach(function (email) {
+                sortedUniq(filtered.sort()).forEach(function (email) {
                     email = email.trim();
                     if ($scope.members.length >= maxUsers) {
                         sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
                         return;
                     }
-                    if (!_.find($scope.members, ['userId', email])) {
+                    if (!find($scope.members, ['userId', email])) {
                         $scope.members.push({
                             userId: email,
                             name: email,

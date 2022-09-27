@@ -1,0 +1,269 @@
+@use 'vars';
+@use 'mixins_n_extends';
+
+#back_link {
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    background: vars.$light_gray;
+    margin-bottom: -10px;
+    text-align: left;
+
+    a {
+        margin-left: 10px;
+        display: inline-block;
+        color: vars.$black;
+    }
+}
+#group_root {
+    @extend %default_setup;
+    padding: 0 20px 10px 20px;
+    background: vars.$light_gray;
+    position: absolute;
+    top: 50px;
+
+    .no_results {
+        text-align: center;
+
+        .title_area {
+            h3 {
+                font-weight: 700;
+                font-size: 26px;
+                line-height: 36px;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 24px;
+            }
+        }
+
+        .big_button{
+            .button_cell{
+                .topic_text{
+                    padding: 10px 24px;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+        .no_results_img {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    .group_wrap {
+        background: vars.$white;
+        margin-top: 10px;
+        box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
+        width: 100%;
+
+        .group_shown_content {
+            padding: 30px 20px 16px;
+            position: relative;
+            @media (max-width: 768px) {
+                padding-bottom: 69px;
+            }
+
+            .group_header {
+                display: table;
+                width: 100%;
+                box-sizing: border-box;
+                margin-bottom: 20px;
+
+                .group_info {
+                    display: inline-block;
+                    position: absolute;
+
+                    .group_name {
+                        color: vars.$black;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 26px;
+                        line-height: 32px;
+                        margin-bottom: 16px;
+                    }
+                    .group_details {
+                        font-size: 14px;
+                        line-height: 24px;
+                        color: vars.$medium_black;
+                    }
+                }
+
+                .group_actions_wrap {
+                    display: inline-block;
+                    right: 20px;
+                    position: absolute;
+
+                    .group_members {
+                        display: inline-block;
+                        background: vars.$light_gray;
+                        border-radius: 4px;
+                        padding: 10px 16px;
+
+                        .icon {
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+
+                        .count {
+                            margin-left: 8px;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                    .group_actions {
+                        margin-left: 15px;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+
+                .group_icon {
+                    display: inline-block;
+
+                    .group_circle {
+                        margin-top: 0;
+                        .group_icon {
+                            width: 96px;
+                            height: 96px;
+                            img {
+                                width: 96px;
+                                height: 96px;
+                            }
+                        }
+                    }
+                }
+
+                .button_cell {
+                    @extend %table_cell;
+                    @media (max-width: 768px) {
+                        position: absolute;
+                        display: block;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        padding: 20px;
+                        .blue_button {
+                            float: none;
+                        }
+                    }
+                }
+
+                .blue_button {
+                    float: right;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+        }
+
+        .content {
+            background: vars.$white;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+    }
+    .header_row_wrap {
+        width: 100%;
+        display: table-row;
+
+        @include mixins_n_extends.mobile {
+            width: 200%;
+            overflow: hidden;
+        }
+
+        .header_row {
+            padding: 0 20px 0 10px;
+            top: 54px;
+            overflow: hidden;
+
+            @include mixins_n_extends.mobile {
+                float: left;
+                padding: 0 0 0 10px;
+            }
+
+            .tab_button {
+                float: left;
+                position: relative;
+                height: 40px;
+                overflow: hidden;
+                padding-left: 10px;
+                padding-right: 10px;
+                box-sizing: border-box;
+                cursor: pointer;
+
+                .tab_buttom_wrap {
+                    position: relative;
+                    height: 40px;
+                    margin: 0 auto;
+
+                    .tab_button_text {
+                        font-size: 14px;
+                        padding-top: 10px;
+                        opacity: 0.7;
+                    }
+
+                    .blue_bottom_line {
+                        width: 0%;
+                        left: 50%;
+                        height: 2px;
+                        position: absolute;
+                        background: vars.$deep_sky_blue;
+                        transition: all 300ms cubic-bezier(.45, .78, 0, 1);
+                        bottom: 0;
+
+                        @include mixins_n_extends.tablet {
+                            transition: none;
+                        }
+
+                        margin-top: -2px;
+                    }
+
+                    &:hover {
+                        .blue_bottom_line {
+                            width: 100%;
+                            left: 0%;
+                            @include mixins_n_extends.tablet {
+                                transition: none;
+
+                                width: auto;
+                                left: initial;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .tab_button.active {
+                .tab_buttom_wrap {
+                    .tab_button_text {
+                        opacity: 1;
+                    }
+
+                    .blue_bottom_line {
+                        width: 100%;
+                        left: 0%;
+                        height: 2px;
+                        background: vars.$deep_sky_blue;
+                    }
+                }
+            }
+
+            .blue_button_wrap {
+                float: right;
+
+                .blue_button {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    border-radius: 4px;
+                    position: relative;
+                }
+            }
+
+        }
+    }
+}

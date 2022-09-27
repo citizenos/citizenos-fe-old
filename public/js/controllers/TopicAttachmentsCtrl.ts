@@ -4,7 +4,7 @@ import * as $ from 'jquery';
 
 let topicAttachmentModal = {
     selector: 'topicAttachmentModal',
-    templateUrl: '../../../views/modals/topic_attachments.html',
+    templateUrl: '/views/modals/topic_attachments.html',
     controller: ['$state', '$stateParams', '$log', '$document', '$translate', 'sNotification', 'sUpload', 'sAttachment', 'TopicAttachment', 'ngDialog', 'AppService', 'rTopic', class TopicAttachmentsController {
         public form = {
             files: []

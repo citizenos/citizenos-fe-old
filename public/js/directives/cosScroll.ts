@@ -1,6 +1,6 @@
 'use strict'
 import * as angular from 'angular';
-import * as _ from 'lodash';
+import {debounce} from 'lodash';
 
 angular
     .module('citizenos')
@@ -13,7 +13,7 @@ angular
                 },
                 link: function (scope, elem, attrs) {
                     if (scope.onScroll) {
-                        var scrollFunction = _.debounce(scope.onScroll, 100);
+                        var scrollFunction = debounce(scope.onScroll, 100);
 
                         var elementScrollHandler = function () {
                             if ((elem[0].scrollTop + elem[0].offsetHeight) >= elem[0].scrollHeight) {
@@ -29,7 +29,7 @@ angular
                     }
 
                     if (scope.onScrollWindow) {
-                        var scrollWindowDebounce = _.debounce(scope.onScrollWindow, 100);
+                        var scrollWindowDebounce = debounce(scope.onScrollWindow, 100);
 
                         var windowScrollHandler = function () {
                             if ($window.innerHeight + $window.scrollY >= $document[0].body.scrollHeight) {

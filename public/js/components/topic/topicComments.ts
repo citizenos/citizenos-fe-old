@@ -4,7 +4,7 @@ import * as angular from 'angular';
 
 let topicComments = {
     selector: 'topicComments',
-    templateUrl: '../../views/topics_topicId_comments.html',
+    templateUrl: '/views/topics_topicId_comments.html',
     bindings: {
         topicId: '='
     },

@@ -7,6 +7,8 @@ import './GroupMemberTopic';
 import './GroupMemberUser';
 import './Group';
 import './GroupService';
+import './PublicGroup';
+import './PublicGroupService';
 import './Mention';
 import './TopicAttachment';
 import './TopicComment';

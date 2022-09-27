@@ -3,7 +3,7 @@ import * as angular from 'angular';
 
 let topicSettings = {
     selector: 'topicSettings',
-    templateUrl: '../../views/modals/topics_settings.html',
+    templateUrl: '/views/modals/topic_settings.html',
     bindings: {},
     controller: ['$state', '$stateParams', '$log', '$timeout', '$anchorScroll', 'Topic', 'TopicVote', 'TopicMemberUser', 'ngDialog', 'AppService',  class TopicSettingsController {
         public levels = {
@@ -28,7 +28,7 @@ let topicSettings = {
         public searchResults = {};
         public errors = null;
 
-        public sapp;
+        public app;
         public topic;
         public topicId;
 
@@ -48,8 +48,8 @@ let topicSettings = {
             this.TopicVote = TopicVote;
             this.TopicMemberUser = TopicMemberUser;
             this.ngDialog = ngDialog;
-            this.sapp = AppService;
-            this.sapp.tabSelected = $stateParams.tab || 'settings';
+            this.app = AppService;
+            this.app.tabSelected = $stateParams.tab || 'settings';
 
             const urlParams = {
                 topicId: $stateParams.topicId,
@@ -178,7 +178,7 @@ let topicSettings = {
             );
         };
 
-        /*doLeaveTopic () {
+        doLeaveTopic () {
             const self = this;
             this.ngDialog
                 .openConfirm({
@@ -188,30 +188,29 @@ let topicSettings = {
                     }
                 })
                 .then(() => {
-                    var topicMemberUser = new self.TopicMemberUser({id: self.sapp.user.id});
+                    const topicMemberUser = new self.TopicMemberUser({id: self.app.user.id});
                     topicMemberUser
                         .$delete({topicId: self.topic.id})
-                        .then(function () {
+                        .then(() => {
                             self.$state.go('my/topics', null, {reload: true});
                         });
                 });
         };
 
-        doDeleteTopic = () {
-            $log.debug('doDeleteTopic');
-
-            ngDialog
+        doDeleteTopic () {
+            const self = this;
+            this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_delete_confirm.html'
                 })
-                .then(function () {
-                    $scope.topic
+                .then(() => {
+                    self.topic
                         .$delete()
-                        .then(function () {
-                            $state.go('my/topics', null, {reload: true});
+                        .then(() => {
+                            self.$state.go('my/topics', null, {reload: true});
                         });
                 }, angular.noop);
-        };*/
+        };
     }]
 }
 angular

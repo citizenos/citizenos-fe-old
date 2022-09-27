@@ -3,7 +3,7 @@ import * as angular from 'angular';
 
 let AddEidComponent = {
     selector: 'addEid',
-    templateUrl: '../../views/modals/add_eid.html',
+    templateUrl: '/views/modals/add_eid.html',
     bindings: '',
     controller: ['$log', '$cookies', 'ngDialog', 'sAuth', 'sUser', 'sNotification', 'cosConfig', class AddEidController {
         private $log;

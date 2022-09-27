@@ -13,6 +13,7 @@ import 'angular-translate-storage-local';
 import 'angular-translate-storage-cookie';
 import 'angular-translate-loader-static-files';
 import 'angular-translate-handler-log';
+import 'angular-qrcode';
 import '@uirouter/angularjs';
 import 'easymde';
 import 'moment';

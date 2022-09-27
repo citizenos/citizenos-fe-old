@@ -2,7 +2,7 @@ import * as angular from 'angular';
 
 angular
     .module('citizenos')
-    .factory("AppService", ['$rootScope', '$log', '$state', '$stateParams', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'TopicInviteUser', function ($rootScope, $log, $state, $stateParams, $window, $location, $timeout, $interval, $cookies, $anchorScroll, $translate, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity, TopicInviteUser) {
+    .factory("AppService", ['$rootScope', '$log', '$state', '$stateParams', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'sTopic', 'TopicInviteUser', function ($rootScope, $log, $state, $stateParams, $window, $location, $timeout, $interval, $cookies, $anchorScroll, $translate, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity, sTopic, TopicInviteUser) {
         var self = {
             config: cosConfig,
             showSearch: false,
@@ -17,11 +17,13 @@ angular
             tabSelect: null,
             user: sAuth.user,
             topic: null,
+            group: null,
             notifications: sNotification,
             helptooltip: false,
             isShowActivityModal: false,
             language: null,
             tabSelected: null,
+            dialog: null,
             metainfo: {
                 title: null,
                 description: null,
@@ -209,6 +211,30 @@ angular
             },
             isTouchDevice: function () {
                 return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
+            },
+            doShowTopicNotificationSettings: function (topicId) {
+                if (!sAuth.user.loggedIn) {
+                    return;
+                }
+                var dialog = ngDialog.open({
+                    template: '<set-topic-notifications topic-id="'+topicId+'"></set-topic-notifications>',
+                    plain: true
+                });
+
+            },
+            removeTopicNotifications: function (topicId, setting) {
+                return new Promise (function (resolve, reject) {
+                    return ngDialog
+                    .openConfirm({
+                        template: '/views/modals/remove_topic_notifications_confirm.html',
+                    })
+                    .then(function (data) {
+                        return sTopic.deleteTopicNotificationSettings(topicId)
+                            .then(resolve);
+                    }, function () {
+                        return reject();
+                    });
+                });
             }
         };
 
@@ -328,7 +354,7 @@ angular
         });
 
         $rootScope.displaySearch = function () {
-            var allowedState = ['home', 'my/groups', 'my/topics', 'my/groups/groupId', 'my/topics/topicId'];
+            var allowedState = ['home', 'my/groups', 'my/topics', 'public/groups', 'public/groups/view', 'my/groups/groupId', 'my/topics/topicId'];
             if (allowedState.indexOf($state.current.name) > -1) {
                 return true;
             }

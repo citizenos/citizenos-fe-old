@@ -3,7 +3,7 @@ import * as angular from 'angular';
 
 let activityFeed = {
     selector: 'activityFeed',
-    templateUrl: '../../../views/modals/activity_modal.html',
+    templateUrl: '/views/modals/activity_modal.html',
     bindings: {},
     controller: ['$translate', 'sActivity', 'AppService', class ActivityController {
         public activitiesOffset = 0;

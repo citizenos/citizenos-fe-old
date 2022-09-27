@@ -1,21 +1,21 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="full_screen" ng-controller="GroupCreateSettingsCtrl">
+<div id="root_lightbox" class="full_screen">
 
-    <div id="lightbox" class="wide_lightbox with_header_menu" ng-class="form.group.id ? 'with_title_description' : ''">
+    <div id="lightbox" class="wide_lightbox with_header_menu" ng-class="$ctrl.group.id ? 'with_title_description' : ''">
 
         <div id="lightbox_wrap">
 
             <div id="lightbox_header">
 
                 <div id="lightbox_header_text">
-                    <div class="title" ng-if="!form.group.id" translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_CREATE">Create a group</div>
-                    <div class="title" ng-if="form.group.id" translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_EDIT">Edit group settings</div>
-                    <div class="title_description" ng-if="group.id">{{group.name}}</div>
+                    <div class="title" ng-if="!$ctrl.group.id" translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_CREATE">Create a group</div>
+                    <div class="title" ng-if="$ctrl.group.id" translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_EDIT">Edit group settings</div>
+                    <div class="title_description" ng-if="$ctrl.group.id">{{$ctrl.group.name}}</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="closeThisDialog('$closeButton')">
-                    <div class="table_cell">
-                        <div class="sprite sprite-btn-popup-close2x">
+                <div id="lightbox_close" class="ngdialog-close" ng-click="$ctrl.closeThisDialog('$closeButton')">
+                    <div class="table_cell ngdialog-close">
+                        <div class="sprite sprite-btn-popup-close2x ngdialog-close">
                         </div>
                     </div>
                 </div>
@@ -24,27 +24,9 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="createGroupSlider">
-                        <div class="tab_button" ng-click="app.selectTab('settings')" ng-class="app.tabSelected === 'settings' ? 'active' : ''">
+                        <div class="tab_button" ng-repeat="tab in $ctrl.tabs" ng-click="$ctrl.app.selectTab(tab.id)" ng-class="$ctrl.app.tabSelected === tab.id ? 'active' : ''">
                             <div class="tab_buttom_wrap">
-                                <div class="tab_button_text" translate="MODALS.GROUP_CREATE_SETTINGS_TAB_SETTINGS">SETTINGS</div>
-                                <div class="blue_bottom_line"></div>
-                            </div>
-                        </div>
-                        <div class="tab_button" ng-click="app.selectTab('topics')" ng-class="app.tabSelected === 'topics' ? 'active' : ''">
-                            <div class="tab_buttom_wrap">
-                                <div class="tab_button_text" translate="MODALS.GROUP_CREATE_SETTINGS_TAB_ADD_TOPICS">ADD TOPICS</div>
-                                <div class="blue_bottom_line"></div>
-                            </div>
-                        </div>
-                        <div class="tab_button" ng-click="app.selectTab('users')" ng-class="app.tabSelected === 'users' ? 'active' : ''">
-                            <div class="tab_buttom_wrap">
-                                <div class="tab_button_text" translate="MODALS.GROUP_CREATE_SETTINGS_TAB_INVITE_USERS">INVITE USERS</div>
-                                <div class="blue_bottom_line"></div>
-                            </div>
-                        </div>
-                        <div class="tab_button" ng-click="app.selectTab('share')" ng-class="app.tabSelected === 'share' ? 'active' : ''" ng-if="form.group.join">
-                            <div class="tab_buttom_wrap">
-                                <div class="tab_button_text" translate="MODALS.GROUP_CREATE_SETTINGS_TAB_SHARE">SHARE</div>
+                                <div class="tab_button_text" translate="{{'MODALS.GROUP_CREATE_SETTINGS_TAB_'+tab.name}}">SETTINGS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
@@ -55,66 +37,105 @@
             <div class="line lightest_line"></div>
 
             <!-- SETTINGS -->
-            <div class="lightbox_content settings_section_wrap" ng-if="app.tabSelected === 'settings'">
+            <div class="lightbox_content settings_section_wrap" ng-if="$ctrl.app.tabSelected === 'settings'">
 
                 <div class="lightbox_section">
 
-                    <div class="settings_section full_width">
+                    <div class="settings_section" ng-if="$ctrl.isVisible('visibility')">
+                        <div class="settings_cell">
+                            <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_MAKE_PRIVATE">Make your topic private</div>
+                            <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_MAKE_PRIVATE_EXT">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
+                        </div>
+
+                        <div class="settings_cell">
+                            <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                 value="$ctrl.Group.VISIBILITY.private" off-value="$ctrl.Group.VISIBILITY.public" model="$ctrl.group.visibility"></cos-toggle>
+                        </div>
+                    </div>
+
+                    <div class="line lightest_line" ng-if="$ctrl.isVisible('visibility')"></div>
+                    {{$ctrl.canUpdate()}}
+                    <div class="settings_section full_width" ng-if="$ctrl.isVisible('name')">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_NAME">Group name</div>
                             <div class="setting_description" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_NAME_EXP">USE A NAME THAT IS CLEAR AND UNDERSTANDABLE</div>
-                            <input id="groupName" cos-disabled="!form.group.canUpdate()" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_GROUP_NAME' | translate}}" ng-model="form.group.name" ng-class="{'error_input': errors.name}">
-                            <label for="groupName" class="error_label" ng-if="errors.name">
+
+                            <input id="groupName" cos-disabled="!$ctrl.canUpdate()" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_GROUP_NAME' | translate}}" ng-model="$ctrl.group.name" ng-class="{'error_input': $ctrl.errors.name}">
+                            <label for="groupName" class="error_label" ng-if="$ctrl.errors.name">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-inputfield-error2x"></div>
-                                    <span translate="{{errors.name}}"></span>
+                                    <span translate="{{$ctrl.errors.name}}"></span>
                                 </div>
                             </label>
                         </div>
                     </div>
 
-                    <!--<div class="line lightest_line"></div-->
-                    <!--div class="settings_section group_image">
+                    <div class="line lightest_line" ng-if="$ctrl.isVisible('name')"></div>
+
+                    <div class="settings_section full_width" ng-if="$ctrl.isVisible('description')">
+                        <div class="settings_cell">
+                            <div class="setting_title" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION">Group name</div>
+                            <div class="setting_description" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION_EXP">USE A NAME THAT IS CLEAR AND UNDERSTANDABLE</div>
+                            <textarea id="groupDescription" cos-disabled="!$ctrl.canUpdate()" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_GROUP_DESCRIPTION' | translate}}" ng-model="$ctrl.group.description" ng-class="{'error_input': $ctrl.errors.description}"></textarea>
+                            <label for="groupDescription" class="error_label" ng-if="$ctrl.errors.description">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{$ctrl.errors.description}}"></span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="line lightest_line" ng-if="$ctrl.isVisible('description')"></div>
+
+                    <div class="settings_section group_image" ng-if="$ctrl.isVisible('image')">
 
                         <div class="settings_cell">
                             <div class="setting_title">
                                 Group image
                             </div>
                             <div class="button_holder">
-                                <div class="gray_button">Upload another image</div>
-                                <div class="blue_link red_text">Remove image</div>
+                                <cos-file-upload id="group_image_upload" class="image_item" image-item="$ctrl.imageFile" cos-file-upload></cos-file-upload>
+                                <div class="gray_button" ng-click="$ctrl.uploadImage()">Upload image</div>
+                                <div class="pink_button red_text" ng-if="$ctrl.group.imageUrl || $ctrl.group.tmpImageUrl" ng-click="$ctrl.deleteGroupImage()">Remove image</div>
                             </div>
                         </div>
                         <div class="clearer"></div>
 
-                        <div class="settings_cell">
-                            <img src='.././imgs/profile_large.jpg')>
+                        <div class="settings_cell profile_image_wrapper">
+                            <div class="account_picture">
+                                <img ng-if="$ctrl.group.imageUrl || $ctrl.group.tmpImageUrl" ng-src="{{$ctrl.group.imageUrl || $ctrl.group.tmpImageUrl}}">
+                                <div class="profile_image_filler" ng-if="!$ctrl.group.imageUrl ||  !$ctrl.group.tmpImageUrl">
+                                    <cos-initials class="table_cell" ng-if="$ctrl.group.name"  ng-model="$ctrl.group.name"></cos-initials>
+                                    <div class="profile_circle"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="line lightest_line"></div-->
 
+                    <div class="line lightest_line" ng-if="$ctrl.isVisible('image')"></div>
 
-                    <div class="line lightest_line" ng-if="group.id"></div>
-                    <div class="settings_section" ng-if="group.id">
+                    <div class="settings_section" ng-if="$ctrl.isVisible('image')">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP">Leave group</div>
                             <div class="setting_description" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP_EXP">LEAVING A GROUP WILL RESULT IN GIVING UP ANY POWERS YOU MAY HAVE AS USER IN THAT GROUP</div>
                         </div>
 
                         <div class="settings_cell">
-                            <div class="gray_button" ng-click="doLeaveGroup(group)" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_LEAVE_GROUP">Leave group</div>
+                            <div class="gray_button" ng-click="$ctrl.doLeaveGroup(group)" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_LEAVE_GROUP">Leave group</div>
                         </div>
                     </div>
 
 
-                    <div class="line lightest_line" ng-if="form.group.id"></div>
-                    <div class="settings_section" ng-if="form.group.id && form.group.canDelete()">
+                    <div class="line lightest_line" ng-if="$ctrl.isVisible('delete')"></div>
+
+                    <div class="settings_section" ng-if="$ctrl.isVisible('delete')">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_DELETE_GROUP">Delete group</div>
                             <div class="setting_description" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_DELETE_GROUP_EXP">DELETING A GROUP CAN NOT BE UNDONE. BE SURE TO BE REALLY SURE ABOUT THIS.</div>
                         </div>
                         <div class="settings_cell">
-                            <div class="blue_button yes" ng-click="doDeleteGroup(group)" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_DELETE_GROUP">Delete group</div>
+                            <div class="blue_button yes" ng-click="$ctrl.doDeleteGroup(group)" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_DELETE_GROUP">Delete group</div>
                         </div>
                     </div>
 
@@ -124,19 +145,19 @@
             </div>
 
             <!-- ADD TOPICS -->
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="app.tabSelected === 'topics'">
-                <div class="lightbox_section" ng-if="group.id">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="$ctrl.app.tabSelected === 'topics'">
+                <div class="lightbox_section" ng-if="$ctrl.group.id">
                     <div class="settings_section">
                         <div class="settings_cell">
                             <div class="lbl_input_no_margin" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_NEW_TOPIC">Create a new topic</div>
-                            <input class="left_input" translate translate-attr-placeholder="MODALS.GROUP_CREATE_SETTINGS_NEW_TOPIC_TITLE" ng-model="form.newMemberTopicTitle" />
+                            <input class="left_input" translate translate-attr-placeholder="MODALS.GROUP_CREATE_SETTINGS_NEW_TOPIC_TITLE" ng-model="$ctrl.form.newMemberTopicTitle" />
                         </div>
                         <div class="settings_cell with_dropdown">
                             <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_NEW_TOPIC_GROUP_ROLES">Group roles</div>
                             <div cos-dropdown class="classic_dropdown groups_settings_dropdown">
                                 <div class="dropdown_selection">
                                     <div class="dropdown_text">
-                                        {{'TXT_TOPIC_LEVELS_' + form.newMemberTopicLevel | uppercase | translate}}
+                                        {{'TXT_TOPIC_LEVELS_' + $ctrl.form.newMemberTopicLevel | uppercase | translate}}
                                     </div>
 
                                     <div class="arrow_holder">
@@ -148,8 +169,8 @@
                                     </div>
                                 </div>
                                 <div class="dropdown">
-                                    <div class="dropdown_item" ng-repeat="level in GroupMemberTopic.LEVELS">
-                                        <div class="item_name" ng-click="form.newMemberTopicLevel=level">
+                                    <div class="dropdown_item" ng-repeat="level in $ctrl.GroupMemberTopic.LEVELS">
+                                        <div class="item_name" ng-click="$ctrl.form.newMemberTopicLevel=level">
                                             {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
                                         </div>
                                     </div>
@@ -157,31 +178,31 @@
                             </div>
                         </div>
                         <div class="settings_cell">
-                            <div class="blue_button create_topic_btn" cos-disabled="!form.newMemberTopicTitle" ng-click="addNewGroupMemberTopic(form.newMemberTopicTitle, form.newMemberTopicLevel)" translate="MODALS.GROUP_CREATE_SETTINGS_ADD_CREATE_TOPIC">Create topic</div>
+                            <div class="blue_button create_topic_btn" cos-disabled="!$ctrl.form.newMemberTopicTitle" ng-click="$ctrl.addNewGroupMemberTopic()" translate="MODALS.GROUP_CREATE_SETTINGS_ADD_CREATE_TOPIC">Create topic</div>
                         </div>
                     </div>
                 </div>
-                <div class="lightbox_section" ng-if="form.group.canUpdate()">
+                <div class="lightbox_section" ng-if="$ctrl.canUpdate()">
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_ADD_TOPICS">Add topics searching by title</div>
-                    <div cos-dropdown ng-class="{search_with_dropdown : searchResults.topics.length, dropdown_active : searchResults.topics.length}">
-                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="searchResults.topics" term="searchStringTopic" search="search(term, 'topic')"
-                                    select="addGroupMemberTopic(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_TOPIC' | translate}}">
+                    <div cos-dropdown ng-class="{search_with_dropdown : $ctrl.searchResults.topics.length, dropdown_active : $ctrl.searchResults.topics.length}">
+                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="$ctrl.searchResults.topics" term="$ctrl.searchStringTopic" search="$ctrl.search(term, 'topic')"
+                                    select="$ctrl.addGroupMemberTopic(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_TOPIC' | translate}}">
                             <div class="search_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-icon-search-gray-2x"></div>
                                 </div>
                             </div>
-                            <div class="search_text" ng-click="addGroupMemberTopic(item)">
+                            <div class="search_text" ng-click="$ctrl.addGroupMemberTopic(item)">
                                 <div class="table_cell blue_link" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter to add</div>
                             </div>
-                            <div class="search_area_wrap" ng-class="{hidden: !searchResults.topics.length}">
+                            <div class="search_area_wrap" ng-class="{hidden: !$ctrl.searchResults.topics.length}">
                                 <div class="search_dropdown_area">
-                                    <div class="search_dropdown_item" typeahead-item="topic" ng-repeat="topic in searchResults.topics">
+                                    <div class="search_dropdown_item" typeahead-item="topic" ng-repeat="topic in $ctrl.searchResults.topics">
                                         <div class="table_cell search_item_text">
                                             <b>{{topic.title}}</b>
                                         </div>
                                         <div class="table_cell blue_link">
-                                            <span class="submit_link" ng-click="addGroupMemberTopic(topic)" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
+                                            <span class="submit_link" ng-click="$ctrl.addGroupMemberTopic(topic)" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
                                         </div>
                                     </div>
                                 </div>
@@ -190,36 +211,36 @@
                         </typeahead>
                     </div>
                 </div>
-                <div class="lightbox_section double_row_list small_header" ng-if="memberTopics.length">
+                <div class="lightbox_section double_row_list small_header" ng-if="$ctrl.memberTopics.length">
                     <div class="category_title">
                         <div class="table_cell">
                             Order by:
-                            <div class="black_link" ng-click="doOrderTopics('title')">
+                            <div class="black_link" ng-click="$ctrl.doOrderTopics('title')">
                                 <span translate="MODALS.GROUP_CREATE_SETTINGS_TH_TITLE">Title A-Z</span>
-                                <div class="sprite sprite-icon-list-ordering2x" ng-if="topicList.searchOrderBy.property === 'title' || topicList.searchOrderBy.property === '-title'"
-                                        ng-class="{desc : topicList.searchOrderBy.property === '-title'}"></div>
+                                <div class="sprite sprite-icon-list-ordering2x" ng-if="$ctrl.topicList.searchOrderBy.property === 'title' || $ctrl.topicList.searchOrderBy.property === '-title'"
+                                        ng-class="{desc : $ctrl.topicList.searchOrderBy.property === '-title'}"></div>
                             </div>
-                            <div class="black_link" ng-click="doOrderTopics('members.users.count')">
+                            <div class="black_link" ng-click="$ctrl.doOrderTopics('members.users.count')">
                                 <span translate="MODALS.GROUP_CREATE_SETTINGS_TH_USERS">Users</span>
                                 <div class="sprite sprite-icon-list-ordering2x"
-                                        ng-if="topicList.searchOrderBy.property === 'members.users.count' || topicList.searchOrderBy.property === '-members.users.count'"
-                                        ng-class="{desc : topicList.searchOrderBy.property === '-members.users.count'}"></div>
+                                        ng-if="$ctrl.topicList.searchOrderBy.property === 'members.users.count' || $ctrl.topicList.searchOrderBy.property === '-members.users.count'"
+                                        ng-class="{desc : $ctrl.topicList.searchOrderBy.property === '-members.users.count'}"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="double_row_item" ng-repeat="topic in memberTopics | orderBy: topicList.searchOrderBy.property">
+                    <div class="double_row_item" ng-repeat="topic in $ctrl.memberTopics | orderBy: $ctrl.topicList.searchOrderBy.property">
                         <div class="blue_link">
                             {{topic.title}}
                         </div>
                         <div class="double_row_footer">
-                            <div class="left" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_TOPIC_USERS"  translate-values="{count: topic.members.users.countTotal}">Topic users: 99</div>
+                            <div class="left" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_TOPIC_USERS"  translate-values="{count: $ctrl.topic.members.users.countTotal}">Topic users: 99</div>
                             <div class="right">
                                 <span class="dropdown_description" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_RIGHTS">Group right over topic:</span>
 
                                 <div class="btn_wrap recycle_bin white_bg">
                                     <div class="btn">
-                                        <div class="table_cell" ng-click="removeGroupMemberTopic(topic)">
+                                        <div class="table_cell" ng-click="$ctrl.removeGroupMemberTopic(topic)">
                                             <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                             <div class="sprite mobile_fix sprite-voted-check2x"></div>
                                         </div>
@@ -241,8 +262,8 @@
                                         </div>
                                     </div>
                                     <div class="dropdown">
-                                        <div class="dropdown_item" ng-repeat="level in GroupMemberTopic.LEVELS">
-                                            <div class="item_name" ng-click="updateGroupMemberTopicLevel(topic, level)">
+                                        <div class="dropdown_item" ng-repeat="level in $ctrl.GroupMemberTopic.LEVELS">
+                                            <div class="item_name" ng-click="$ctrl.updateGroupMemberTopicLevel(topic, level)">
                                                 {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
                                             </div>
                                         </div>
@@ -260,34 +281,34 @@
             </div>
 
             <!-- INVITE USERS -->
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="app.tabSelected === 'users'">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="$ctrl.app.tabSelected === 'users'">
 
-                <div class="lightbox_section" ng-if="form.group.canUpdate()">
+                <div class="lightbox_section" ng-if="$ctrl.canUpdate()">
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_INVITE_LBL_OPTIONAL_MESSAGE">Add an optional invitation message</div>
                     <textarea id="invite_body" translate translate-attr-placeholder="MODALS.GROUP_CREATE_SETTINGS_INVITE_PLACHOLDER_OPTIONAL_MESSAGE" class="gray_borders"
-                                placeholder="Edit your reply here..." ng-model="form.inviteMessage" maxlength="{{::inviteMessageMaxLength}}"></textarea>
+                                placeholder="Edit your reply here..." ng-model="$ctrl.form.inviteMessage" maxlength="{{::$ctrl.inviteMessageMaxLength}}"></textarea>
 
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_INVITE_USERS">Invite users via their name or e-mail address</div>
 
                     <div class="searchbox_with_icon_and_text only_text">
-                        <div cos-dropdown ng-class="{search_with_dropdown : searchResults.users.length, dropdown_active : searchResults.users.length}">
-                            <typeahead id="userSearch" class="auto-complete" items="searchResults.users" term="searchStringUser" search="search(term, 'user')"
-                                        select="addGroupMemberUser(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_BY_NAME_EMAIL' | translate}}">
+                        <div cos-dropdown ng-class="{search_with_dropdown : $ctrl.searchResults.users.length, dropdown_active : $ctrl.searchResults.users.length}">
+                            <typeahead id="userSearch" class="auto-complete" items="$ctrl.searchResults.users" term="$ctrl.searchStringUser" search="$ctrl.search(term, 'user')"
+                                        select="$ctrl.addGroupMemberUser(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_BY_NAME_EMAIL' | translate}}">
                                 <div class="search_area_wrap">
-                                    <div class="search_dropdown_area" ng-class="{hidden: !searchResults.users.length}">
-                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in searchResults.users">
+                                    <div class="search_dropdown_area" ng-class="{hidden: !$ctrl.searchResults.users.length}">
+                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in $ctrl.searchResults.users">
                                             <div class="table_cell search_item_text">
                                                 <b>{{user.name}}</b> {{user.email}}
                                             </div>
                                             <div class="table_cell blue_link">
-                                                <span class="submit_link" ng-click="addGroupMemberUser(user)" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
+                                                <span class="submit_link" ng-click="$ctrl.addGroupMemberUser(user)" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="search_text">
-                                    <div class="table_cell blue_link"  ng-click="addGroupMemberUser()" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter to add</div>
+                                    <div class="table_cell blue_link"  ng-click="$ctrl.addGroupMemberUser()" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter to add</div>
                                 </div>
 
                             </typeahead>
@@ -297,7 +318,7 @@
                 </div>
 
                 <!-- INVALID INPUTS -->
-                <div class="lightbox_section double_row_list user_list" ng-if="invalid.length">
+                <div class="lightbox_section double_row_list user_list" ng-if="$ctrl.invalid.length">
                     <div class="category_title">
                         <div class="input_text_margin_bottom  error_label">
                             <div class="sprite sprite-icon-inputfield-error2x"></div>
@@ -305,20 +326,20 @@
                         </div>
                     </div>
                     <table>
-                        <tr ng-repeat="(key, email) in invalid">
+                        <tr ng-repeat="(key, email) in $ctrl.invalid">
                             <td>
-                                <input type="text" class="error_input" ng-model="email" ng-keypress="($event.which === 13)? addCorrectedEmail(email, key) : 0"/>
+                                <input type="text" class="error_input" ng-model="email" ng-keypress="($event.which === 13)? $ctrl.addCorrectedEmail(email, key) : 0"/>
 
                                 <div class="mobile_extra_info">
                                     <div class="left">
-                                        <div class="light_gray_button" ng-click="addCorrectedEmail(email, key)" translate="MODALS.TOPIC_SETTINGS_BTN_ADD">
+                                        <div class="light_gray_button" ng-click="$ctrl.addCorrectedEmail(email, key)" translate="MODALS.TOPIC_SETTINGS_BTN_ADD">
                                             Add
                                         </div>
                                     </div>
 
                                     <div class="right">
                                         <div class="btn_wrap recycle_bin white_bg">
-                                            <div class="btn" ng-click="removeInvalidEmail(key)">
+                                            <div class="btn" ng-click="$ctrl.removeInvalidEmail(key)">
                                                 <div class="table_cell">
                                                     <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
                                                 </div>
@@ -329,13 +350,13 @@
                             </td>
 
                             <td>
-                                <div class="light_gray_button" ng-click="addCorrectedEmail(email, key)" translate="MODALS.TOPIC_SETTINGS_BTN_ADD">
+                                <div class="light_gray_button" ng-click="$ctrl.addCorrectedEmail(email, key)" translate="MODALS.TOPIC_SETTINGS_BTN_ADD">
                                     Add
                                 </div>
                             </td>
                             <td>
                                 <div class="btn_wrap recycle_bin white_bg">
-                                    <div class="btn" ng-click="removeInvalidEmail(key)">
+                                    <div class="btn" ng-click="$ctrl.removeInvalidEmail(key)">
                                         <div class="table_cell">
                                             <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                             <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -350,7 +371,7 @@
                     </table>
                 </div>
 
-                <div class="lightbox_section double_row_list user_list" ng-if="members.length">
+                <div class="lightbox_section double_row_list user_list" ng-if="$ctrl.members.length">
                     <div>
                         <table>
                             <tr>
@@ -361,7 +382,7 @@
 
                                             <div class="dropdown_selection">
                                                 <div class="dropdown_text">
-                                                    {{'TXT_TOPIC_LEVELS_' + groupLevel | uppercase | translate}}
+                                                    {{'TXT_TOPIC_LEVELS_' + $ctrl.groupLevel | uppercase | translate}}
                                                 </div>
 
                                                 <div class="arrow_holder">
@@ -374,8 +395,8 @@
                                             </div>
 
                                             <div class="dropdown">
-                                                <div  class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                    <div class="item_name" ng-click="updateGroupLevel(level)">
+                                                <div  class="dropdown_item" ng-repeat="level in $ctrl.GroupMemberUser.LEVELS">
+                                                    <div class="item_name" ng-click="$ctrl.updateGroupLevel(level)">
                                                         {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
                                                     </div>
                                                 </div>
@@ -386,7 +407,7 @@
 
                                     <div class="right">
                                         <div class="btn_wrap recycle_bin white_bg">
-                                            <div class="btn" ng-click="removeAllMembers()">
+                                            <div class="btn" ng-click="$ctrl.removeAllMembers()">
                                                 <div class="table_cell">
                                                     <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
                                                 </div>
@@ -399,7 +420,7 @@
 
                                         <div class="dropdown_selection">
                                             <div class="dropdown_text">
-                                                {{'TXT_TOPIC_LEVELS_' + groupLevel | uppercase | translate}}
+                                                {{'TXT_TOPIC_LEVELS_' + $ctrl.groupLevel | uppercase | translate}}
                                             </div>
 
                                             <div class="arrow_holder">
@@ -412,8 +433,8 @@
                                         </div>
 
                                         <div class="dropdown">
-                                            <div  class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                <div ng-if="level !== GroupMemberUser.LEVELS.none" class="item_name" ng-click="updateGroupLevel(level)">
+                                            <div  class="dropdown_item" ng-repeat="level in $ctrl.GroupMemberUser.LEVELS">
+                                                <div ng-if="level !== $ctrl.GroupMemberUser.LEVELS.none" class="item_name" ng-click="$ctrl.updateGroupLevel(level)">
                                                     {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
                                                 </div>
                                             </div>
@@ -422,7 +443,7 @@
                                 </td>
                                 <td>
                                     <div class="btn_wrap recycle_bin white_bg">
-                                        <div class="btn" ng-click="removeAllMembers()">
+                                        <div class="btn" ng-click="$ctrl.removeAllMembers()">
                                             <div class="table_cell">
                                                 <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                                 <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -432,14 +453,14 @@
                                 </td>
                             </tr>
                         </table>
-                        <div class="category_title" ng-repeat-start="title in memberGroups" ng-if="itemsExist(title)">
+                        <div class="category_title" ng-repeat-start="title in $ctrl.memberGroups" ng-if="$ctrl.itemsExist(title)">
                             <div class="table_cell">
                                 <span>{{"MODALS.TOPIC_SETTINGS_RESULT_GROUP_" + title | uppercase | translate}}</span>
                             </div>
                         </div>
 
-                        <table  ng-repeat-end ng-if="itemsExist(title)">
-                                <tr ng-repeat="(memberKey, member) in members" ng-if="isOnPage($index, membersPage) && isInGroup(member, title)">
+                        <table  ng-repeat-end ng-if="$ctrl.itemsExist(title)">
+                                <tr ng-repeat="(memberKey, member) in $ctrl.members" ng-if="$ctrl.isOnPage($index, $ctrl.membersPage) && $ctrl.isInGroup(member, title)">
                                 <td>
                                     <div class="profile_image_wrapper dark">
                                         <!--div class="profile_moon sprite"></div-->
@@ -453,7 +474,7 @@
                                     </div>
                                     <div class="name_wrap">
                                         <div class="table_cell">
-                                            <div class="blue_link" ng-click="doRemoveMemberUser(member)">{{member.name}}</div>
+                                            <div class="blue_link" ng-click="$ctrl.doRemoveMemberUser(member)">{{member.name}}</div>
                                             <div class="via">{{member.company}}</div>
                                         </div>
                                     </div>
@@ -477,8 +498,8 @@
                                                 </div>
 
                                                 <div class="dropdown">
-                                                    <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                        <div class="item_name" ng-click="updateGroupMemberUserLevel(member, level)">
+                                                    <div class="dropdown_item" ng-repeat="level in $ctrl.GroupMemberUser.LEVELS">
+                                                        <div class="item_name" ng-click="$ctrl.updateGroupMemberUserLevel(member, level)">
                                                             {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
                                                         </div>
                                                     </div>
@@ -517,8 +538,8 @@
                                         </div>
 
                                         <div class="dropdown">
-                                            <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                                <div class="item_name" ng-click="updateGroupMemberUserLevel(member, level)">
+                                            <div class="dropdown_item" ng-repeat="level in $ctrl.GroupMemberUser.LEVELS">
+                                                <div class="item_name" ng-click="$ctrl.updateGroupMemberUserLevel(member, level)">
                                                     {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
                                                 </div>
                                             </div>
@@ -527,7 +548,7 @@
                                 </td>
                                 <td>
                                     <div class="btn_wrap recycle_bin white_bg">
-                                        <div class="btn" ng-click="doRemoveMemberUser(member)">
+                                        <div class="btn" ng-click="$ctrl.doRemoveMemberUser(member)">
                                             <div class="table_cell">
                                                 <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                                 <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -538,7 +559,7 @@
                             </tr>
 
                         </table>
-                        <div class="pagination" cos-pagination select="loadPage" total-pages="totalPages(members)" page="membersPage"></div>
+                        <div class="pagination" cos-pagination select="$ctrl.loadPage" total-pages="$ctrl.totalPages($ctrl.members)" page="$ctrl.membersPage"></div>
                     </div>
 
 
@@ -547,19 +568,19 @@
             </div>
 
             <!-- SHARE -->
-            <div class="lightbox_content invite_url" ng-if="app.tabSelected === 'share' && group.canUpdate() && form.join.token">
+            <div class="lightbox_content invite_url" ng-if="$ctrl.app.tabSelected === 'share' && $ctrl.group.canUpdate() && $ctrl.form.join.token">
 
-                <div class="lightbox_section" ng-if="group.canUpdate()">
+                <div class="lightbox_section" ng-if="$ctrl.group.canUpdate()">
                     <h3 translate="MODALS.TOPIC_SETTINGS_HEADING_LINK_SHARING">Link sharing</h3>
                     <div class="share_link">
                         <div class="table_row">
                             <div class="searchbox_with_icon_and_text only_text">
-                                <input id="url_invite_group_input" ng-model="form.urlJoin" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_CREATE_NEW_LINK' | translate}}">
-                                <div class="regenerate_link not_mobile" ng-click="generateTokenJoin()">
+                                <input id="url_invite_group_input" ng-model="$ctrl.form.joinUrl" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_CREATE_NEW_LINK' | translate}}">
+                                <div class="regenerate_link not_mobile" ng-click="$ctrl.generateTokenJoin()">
                                     <div class="sprite sprite-icon-refresh"></div>
                                 </div>
                             </div>
-                            <div class="blue_button not_mobile" ng-click="copyInviteLink()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_COPY_LINK">Copy
+                            <div class="blue_button not_mobile" ng-click="$ctrl.copyInviteLink()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_COPY_LINK">Copy
                                 link
                             </div>
                         </div>
@@ -568,7 +589,7 @@
                             <div cos-dropdown class="classic_dropdown">
                                 <div class="dropdown_selection">
                                     <div class="dropdown_text">
-                                        {{('TXT_GROUP_LEVELS_' + form.join.level | uppercase) | translate}}
+                                        {{('TXT_GROUP_LEVELS_' + $ctrl.form.join.level | uppercase) | translate}}
                                     </div>
 
                                     <div class="arrow_holder">
@@ -581,8 +602,8 @@
                                 </div>
 
                                 <div class="dropdown">
-                                    <div class="dropdown_item" ng-repeat="level in GroupMemberUser.LEVELS">
-                                        <div class="item_name" ng-click="doUpdateJoinToken(level)">
+                                    <div class="dropdown_item" ng-repeat="level in $ctrl.GroupMemberUser.LEVELS">
+                                        <div class="item_name" ng-click="$ctrl.doUpdateJoinToken(level)">
                                             {{('TXT_GROUP_LEVELS_' + level | uppercase) | translate}}
                                         </div>
                                     </div>
@@ -590,25 +611,25 @@
                             </div>
                         </div>
                         <div class="table_row mobile_only">
-                            <div class="blue_button" ng-click="copyInviteLink()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_COPY_LINK">Copy link</div>
+                            <div class="blue_button" ng-click="$ctrl.copyInviteLink()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_COPY_LINK">Copy link</div>
                         </div>
                         <div class="table_row mobile_only">
-                            <div class="white_button" ng-click="generateTokenJoin()" translate="MODALS.GROUP_CREATE_SETTINGS_LNK_CREATE_NEW_LINK">Create a new link</div>
+                            <div class="white_button" ng-click="$ctrl.generateTokenJoin()" translate="MODALS.GROUP_CREATE_SETTINGS_LNK_CREATE_NEW_LINK">Create a new link</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="lightbox_section social_sharing" ng-if="group.canUpdate()">
+                <div class="lightbox_section social_sharing" ng-if="$ctrl.group.canUpdate()">
                     <h3 translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_SOCIAL_SHARING">Social sharing</h3>
-                    <a href="#" socialshare socialshare-provider="facebook" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-facebook-v2"></div></a>
-                    <a href="#" socialshare socialshare-provider="linkedin" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-linkedin-v2"></div></a>
-                    <a href="#" socialshare socialshare-provider="twitter" socialshare-text="{{topic.title}}" socialshare-url="{{form.urlJoin}}"><div class="sprite sprite-icon-social-twitter-v2"></div></a>
+                    <a href="#" socialshare socialshare-provider="facebook" socialshare-text="{{$ctrl.group.name}}" socialshare-url="{{$ctrl.form.joinUrl}}"><div class="sprite sprite-icon-social-facebook-v2"></div></a>
+                    <a href="#" socialshare socialshare-provider="linkedin" socialshare-text="{{$ctrl.group.name}}" socialshare-url="{{$ctrl.form.joinUrl}}"><div class="sprite sprite-icon-social-linkedin-v2"></div></a>
+                    <a href="#" socialshare socialshare-provider="twitter" socialshare-text="{{$ctrl.group.name}}" socialshare-url="{{$ctrl.form.joinUrl}}"><div class="sprite sprite-icon-social-twitter-v2"></div></a>
                 </div>
 
-                <div class="lightbox_section" ng-if="group.canUpdate()">
+                <div class="lightbox_section" ng-if="$ctrl.group.canUpdate()">
                     <h3 translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_QR_SHARING">QR sharing</h3>
                     <div class="qr_code">
-                        <qrcode data="{{form.urlJoin}}" size="120" version="4" error-correction-level="L" download class="qr_img"></qrcode>
+                        <qrcode data="{{$ctrl.form.joinUrl}}" size="120" version="4" error-correction-level="L" download class="qr_img"></qrcode>
                     </div>
                     <!--a href="#fixme" class="table_cell" translate="MODALS.TOPIC_SETTINGS_LINK_QR_CODE_PDF">Download QR code PDF</a-->
                 </div>
@@ -619,14 +640,14 @@
 
                 <div class="line lightest_line"></div>
                 <div class="blue_button_wrap">
-                    <div class="blue_button" ng-if="!members.length && form.group.canUpdate()" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP">Save group</div>
-                    <div class="blue_button" ng-if="members.length && form.group.canUpdate()" ng-click="doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP_AND_INVITE">Save group and send invite</div>
+                    <div class="blue_button" ng-if="!$ctrl.members.length && $ctrl.canUpdate()" ng-click="$ctrl.doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP">Save group</div>
+                    <div class="blue_button" ng-if="$ctrl.members.length && $ctrl.canUpdate()" ng-click="$ctrl.doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP_AND_INVITE">Save group and send invite</div>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog()"></div>
+    <div id="close_lightbox" class="ngdialog-close"></div>
 
 </div>

@@ -4,9 +4,9 @@ import * as $ from 'jquery';
 
 let myAccount = {
     selector: 'myAccount',
-    templateUrl: '../../../views/modals/my_account.html',
+    templateUrl: '/views/account.html',
     bindings: {},
-    controller: ['$log', '$stateParams', '$document', '$window', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload','AppService', class MyAccountController {
+    controller: ['$log', '$stateParams', '$document', '$window', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', 'sTopic', 'AppService', class MyAccountController {
         public form = {
             name: null,
             email: null,
@@ -16,21 +16,86 @@ let myAccount = {
             imageUrl: null,
             passwordConfirm: null,
             preferences: {
-                showInSearch: false
+                showInSearch: false,
+                notifications: {
+                    topics: {},
+                    groups: {}
+                }
             }
         };
+        public settings;
         public errors;
-        public sapp;
+        public app;
         public imageFile;
+        private ITEMS_COUNT_PER_PAGE = 10;
 
-        constructor (private $log, private $stateParams, private $document, private $window, private ngDialog, private sNotification, private sAuth, private sUser, private sUpload, AppService) {
+        constructor (private $log, private $stateParams, private $document, private $window, private ngDialog, private sNotification, private sAuth, private sUser, private sUpload, private sTopic, AppService) {
             $log.debug('MyAccountFormCtrl');
-            this.sapp = AppService;
-            this.sapp.tabSelected = 'profile';
+            this.app = AppService;
+            this.app.tabSelected = this.app.tabSelected || 'profile';
             angular.extend(this.form, this.sAuth.user);
-            angular.bind(this, this.switchImage);
+            this.loadNotificationSettingsList(0);
         }
 
+        public notifications = {
+            search: '',
+            topics: {
+                rows: [],
+
+            }
+        };
+
+        loadNotificationSettingsList (offset?, limit?) {
+            const self = this;
+            if (!offset) {
+                offset = 0;
+            }
+            if (!limit) {
+                limit = this.ITEMS_COUNT_PER_PAGE;
+            }
+            console.log(this.notifications.search)
+            this.sTopic.notificationSettingsList(offset, limit, this.notifications.search)
+                .then((items) => {
+                    self.notifications.topics = items;
+                    self.notifications.topics['totalPages'] = Math.ceil(self.notifications.topics['count'] / limit);
+                    self.notifications.topics['page'] = Math.ceil((offset + limit) / limit);
+                });
+        };
+
+        loadNotificationSettingsPage (page?) {
+            if (page < 1) page = 1;
+            var offset = (page - 1) * this.ITEMS_COUNT_PER_PAGE;
+            this.loadNotificationSettingsList(offset, this.ITEMS_COUNT_PER_PAGE);
+        };
+
+        removeTopicNotifications (topic) {
+            const self = this;
+            if (!topic.allowNotifications) {
+                return this
+                    .app
+                    .removeTopicNotifications(topic.topicId, topic.allowNotifications)
+                    .then(self.loadNotificationSettingsList, () => {
+                        topic.allowNotifications = true;
+                    });
+            }
+
+            self.sTopic.updateTopicNotificationSettings(topic.topicId, {
+                preferences: {
+                    Topic: true,
+                    TopicComment: true,
+                    CommentVote: true,
+                    TopicReport: true,
+                    TopicVoteList: true,
+                    TopicEvent: true
+                },
+                allowNotifications: true
+            })
+            .then((data) => {
+                self.settings = data;
+            }, (err) => {
+                self.sNotification.addError(err);
+            });
+        };
 
         doUpdateProfile () {
             this.errors = null;
@@ -60,7 +125,7 @@ let myAccount = {
 
             if (this.imageFile) {
                 this.sUpload
-                    .uploadUserImage(this.imageFile)
+                    .uploadUserImage(this.imageFile[0])
                     .then((response) => {
                         this.form.imageUrl = response.data.link;
                         this.sAuth.user.imageUrl = response.data.link;
@@ -75,22 +140,20 @@ let myAccount = {
         };
 
         uploadImage () {
-            console.log(this.$document[0].getElementById('profileImage'))
-            $(this.$document[0].getElementById('profileImage')).find('input').click();
-        };
-
-        switchImage (files) {
             const self = this;
-            self.imageFile = files[0];
-            const reader = new FileReader();
-            console.log(self.form);
-            reader.onload = (() => {
-                return (e) => {
-                    console.log(self.form);
-                    self['imageItem'] = e.target.result;
-                };
-            })();
-            reader.readAsDataURL(files[0]);
+            const input = $(this.$document[0].getElementById('profileImage')).find('input');
+            input.click();
+
+            input.on('change', (e) => {
+                const files = e.target['files'];
+                const reader = new FileReader();
+                reader.onload = (() => {
+                    return (e) => {
+                        self.form.imageUrl = e.target.result;
+                    };
+                })();
+                reader.readAsDataURL(files[0]);
+            });
         };
 
         deleteProfileImage () {

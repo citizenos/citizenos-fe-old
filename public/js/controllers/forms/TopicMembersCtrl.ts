@@ -1,6 +1,6 @@
 'use strict';
 import * as angular from 'angular';
-import * as _ from 'lodash';
+import {orderBy, sortedUniqBy} from 'lodash';
 
 angular
     .module('citizenos')
@@ -153,12 +153,12 @@ angular
                     // Need to show only 1 line per User with maximum level
                     // NOTE: Objects don't actually guarantee order if keys parsed to number, it was better if TopicMemberUser.LEVELS was a Map
                     var levelOrder = Object.keys(TopicMemberUser.LEVELS);
-                    var inviteListOrderedByLevel = _.orderBy(invites, function (invite) {
+                    var inviteListOrderedByLevel = orderBy(invites, function (invite) {
                         return levelOrder.indexOf(invite.level);
                     }, ['desc']);
                     $scope.topic.members.invited._rows = invites; // Store the original result from server to implement DELETE ALL, need to know the ID-s of the invites to delete
 
-                    $scope.topic.members.invited.rows = _.sortedUniqBy(inviteListOrderedByLevel, 'user.id');
+                    $scope.topic.members.invited.rows = sortedUniqBy(inviteListOrderedByLevel, 'user.id');
                     $scope.topic.members.invited.count = invites.length;
                     if (invites.length) {
                         $scope.topic.members.invited.count = invites[0].countTotal;

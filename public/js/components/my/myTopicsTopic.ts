@@ -1,10 +1,10 @@
 import * as angular from 'angular';
-import * as _ from 'lodash';
+import {orderBy, sortedUniqBy} from 'lodash';
 
 let myTopicsTopic = {
     selector: 'myTopicsTopic',
     templateUrl: '/views/components/my_topics_topicId.html',
-    controller: ['$log', '$rootScope', '$state', '$stateParams', '$anchorScroll', '$q', 'sAuth', 'Topic', 'TopicMemberUser', 'TopicMemberGroup', 'TopicInviteUser', 'AppService', class MyTopicsTopicController {
+    controller: ['$log', '$rootScope', '$state', '$stateParams', '$anchorScroll', '$q', 'sAuth', 'Topic', 'TopicMemberUser', 'TopicMemberGroup', 'TopicInviteUser', 'AppService', 'ngDialog', class MyTopicsTopicController {
         public app;
         public topic;
         private $state;
@@ -12,10 +12,11 @@ let myTopicsTopic = {
         private $stateParams;
         private $q;
         private Topic;
-        private TopicMemberUser;
-        private TopicMemberGroup;
+        public TopicMemberUser;
+        public TopicMemberGroup;
         private TopicInviteUser;
         private sAuth;
+        private ngDialog;
         private ITEMS_COUNT_PER_PAGE = 10;
         public userList = {
             isVisible: false,
@@ -38,7 +39,7 @@ let myTopicsTopic = {
         public generalInfo = {
             isVisible: true
         };
-        constructor ($log, $rootScope, $state, $stateParams, $anchorScroll, $q, sAuth, Topic, TopicMemberUser, TopicMemberGroup, TopicInviteUser, AppService) {
+        constructor ($log, $rootScope, $state, $stateParams, $anchorScroll, $q, sAuth, Topic, TopicMemberUser, TopicMemberGroup, TopicInviteUser, AppService, ngDialog) {
             $log.debug('MyTopicsTopicController');
             console.log($rootScope);
             this.$state = $state;
@@ -51,6 +52,7 @@ let myTopicsTopic = {
             this.TopicInviteUser = TopicInviteUser;
             this.sAuth = sAuth;
             this.app = AppService;
+            this.ngDialog = ngDialog;
             const self = this;
             this.loadTopic()
                 .then(() => {
@@ -102,6 +104,7 @@ let myTopicsTopic = {
                 .then((topic) => {
                     self.$anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
                     self.topic = topic;
+                    self.app.topic = topic;
                 });
         }
 
@@ -256,12 +259,12 @@ let myTopicsTopic = {
                     // Need to show only 1 line per User with maximum level
                     // NOTE: Objects don't actually guarantee order if keys parsed to number, it was better if TopicMemberUser.LEVELS was a Map
                     let levelOrder = Object.keys(self.TopicMemberUser.LEVELS);
-                    const inviteListOrderedByLevel = _.orderBy(invites, function (invite) {
+                    const inviteListOrderedByLevel = orderBy(invites, function (invite) {
                         return levelOrder.indexOf(invite.level);
                     }, ['desc']);
                     self.topic.invites.users._rows = invites; // Store the original result from server to implement DELETE ALL, need to know the ID-s of the invites to delete
 
-                    self.topic.invites.users.rows = _.sortedUniqBy(inviteListOrderedByLevel, 'user.id');
+                    self.topic.invites.users.rows = sortedUniqBy(inviteListOrderedByLevel, 'user.id');
                     self.topic.invites.users.count = invites.length;
                     if (invites.length) {
                         self.topic.invites.users.count = invites[0].countTotal;
@@ -403,6 +406,40 @@ let myTopicsTopic = {
                     self.app.scrollToAnchor(elemId)
                 }, 200);
             }
+        };
+
+        goToTopicView () {
+            const status = this.topic.status;
+            const params = {topicId: this.topic.id};
+            if (status === this.Topic.STATUSES.inProgress) {
+                this.$state.go('topics/view', params);
+            } else if (status === this.Topic.STATUSES.voting) {
+                params['voteId'] = this.topic.voteId;
+                this.$state.go('topics/view/votes/view', params);
+            } else {
+                this.$state.go('topics/view/followUp', params);
+            }
+        };
+
+        doLeaveTopic () {
+            const self = this;
+            this.ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_member_user_leave_confirm.html',
+                    data: {
+                        topic: this.topic
+                    }
+                })
+                .then(() => {
+                    var topicMemberUser = new self.TopicMemberUser({id: self.app.user.id});
+                    topicMemberUser
+                        .$delete({topicId: self.topic.id})
+                        .then(function () {
+                            self.$state.go('my/topics', null, {reload: true});
+                        });
+                }, (err) => {
+                    console.log(err);
+                });
         };
     }]
 };

@@ -1,103 +1,124 @@
 'use strict';
 import * as angular from 'angular';
 
-angular
-    .module('citizenos')
-    .controller('SearchCtrl', ['$scope', '$state', '$log', 'sAuth', 'sSearch', function ($scope, $state, $log, sAuth, sSearch) {
-        $log.debug('sSearch');
-
-        $scope.form = {
+let search = {
+    selector: 'search',
+    templateUrl: '/views/default/search.html',
+    bindings: {},
+    controller: ['$state', '$log', 'sAuth', 'sSearch', 'AppService', class SearchController {
+        public app;
+        public form = {
             searchInput: null
         };
+        public searchResults = {
+            combined: []
+        };
+        public noResults = true;
+        public viewMoreInProgress = false;
+        public moreStr = null;
+        private $state;
+        private $log;
+        private sAuth;
+        private sSearch;
 
-        $scope.searchResults = {combined: []};
-        $scope.noResults = true;
+        constructor ($state, $log, sAuth, sSearch, AppService) {
+            this.$state = $state;
+            this.$log = $log;
+            this.sAuth = sAuth;
+            this.sSearch = sSearch;
+            $log.debug('sSearch');
+            this.app = AppService;
+            /*
+                this.$watch(
+                    function () {
+                        return this.form.searchInput
+                    }
+                    , function (newValue, oldValue) {
+                        if (newValue && newValue !== oldValue) {
+                            this.doSearch(newValue);
+                        }
+                    }
+                ); */
+        };
 
-        $scope.viewMoreInProgress = false;
-        $scope.moreStr = null;
+        combineResults () {
+            const self = this;
+            this.searchResults.combined = [];
 
-        $scope.combineResults = function () {
-            $scope.searchResults.combined = [];
-
-            var contexts = Object.keys($scope.searchResults);
-            contexts.forEach(function (context) {
-                var models = Object.keys($scope.searchResults[context]);
-                models.forEach(function (model) {
-                    if ($scope.searchResults[context][model].count > 0) {
-                        $scope.noResults = false;
-                        $scope.searchResults[context][model].rows.forEach(function (item, key) {
+            const contexts = Object.keys(this.searchResults);
+            contexts.forEach((context) => {
+                const models = Object.keys(self.searchResults[context]);
+                models.forEach((model) => {
+                    if (self.searchResults[context][model].count > 0) {
+                        self.noResults = false;
+                        self.searchResults[context][model].rows.forEach((item, key) => {
                             if (item.id === 'viewMore') {
-                                $scope.searchResults[context][model].rows.splice(key, 1);
+                                self.searchResults[context][model].rows.splice(key, 1);
                             }
                         });
 
-                        var currentResults = $scope.searchResults[context][model].rows;
-                        if ($scope.searchResults[context][model].count > $scope.searchResults[context][model].rows.length) {
+                        const currentResults = self.searchResults[context][model].rows;
+                        if (self.searchResults[context][model].count > self.searchResults[context][model].rows.length) {
                             currentResults.push({
                                 id: 'viewMore',
                                 model: model,
                                 context: context
                             });
                         }
-                        $scope.searchResults.combined = $scope.searchResults.combined.concat(currentResults);
+                        self.searchResults.combined = self.searchResults.combined.concat(currentResults);
                     }
                 });
             });
-            $log.debug('combineResults', $scope.searchResults);
+            self.$log.debug('combineResults', this.searchResults);
         };
 
-        $scope.enterAction = function () {
-            $scope.doSearch($scope.form.searchInput, true);
+        enterAction () {
+            this.doSearch(this.form.searchInput, true);
         };
 
-        $scope.doSearch = function (str, noLimit) {
-            if ($scope.viewMoreInProgress) {
-                $scope.form.searchInput = $scope.moreStr;
-                return;
+        doSearch (str, noLimit) {
+            const self = this;
+            if (this.viewMoreInProgress) {
+                return this.form.searchInput = this.moreStr;
             }
 
-            $scope.noResults = true;
+            this.noResults = true;
 
             if (!str || str.length < 3 && !noLimit) {
-                $scope.app.showSearchResults = false;
-                return;
+                return this.app.showSearchResults = false;
             }
             var include = ['public.topic'];
 
-            if (sAuth.user.loggedIn) {
+            if (this.sAuth.user.loggedIn) {
                 include = ['my.topic', 'my.group', 'public.topic'];
             }
 
-            sSearch
+            this.sSearch
                 .search(
                     str,
                     {
                         include: include,
                         limit: 5
                     }
-                )
-                .then(
-                    function (result) {
-                        $scope.searchResults = result.data.data.results;
-                        $scope.searchResults.combined = [];
-                        $scope.app.showSearchResults = true;
-                        $scope.app.showNav = false;
-                        $scope.app.showSearchFiltersMobile = false;
-                        $scope.combineResults();
-                    }
-                    , function (err) {
-                        $log.error('SearchCtrl', 'Failed to retrieve search results', err);
-                    }
-                );
+                ).then((result) => {
+                    self.searchResults = result.data.data.results;
+                    self.searchResults.combined = [];
+                    self.app.showSearchResults = true;
+                    self.app.showNav = false;
+                    self.app.showSearchFiltersMobile = false;
+                    self.combineResults();
+                }, (err) => {
+                    self.$log.error('SearchCtrl', 'Failed to retrieve search results', err);
+                });
         };
 
-        $scope.goToView = function (item) {
+        goToView (item) {
             if (item) {
-                var model = 'topic';
+                this.app.showSearchResults = false;
+                let model = 'topic';
                 if (item.id === 'viewMore') {
                     model = 'viewMore';
-                    $scope.viewMoreResults(item.context, item.model);
-                    return;
+                    return this.viewMoreResults(item.context, item.model);
                 }
 
                 if (item.hasOwnProperty('name')) {
@@ -105,8 +126,8 @@ angular
                 }
 
                 if (model == 'topic') {
-                    if (sAuth.user.loggedIn) {
-                        $state.go(
+                    if (this.sAuth.user.loggedIn) {
+                        return this.$state.go(
                             'my/topics/topicId',
                             {
                                 topicId: item.id,
@@ -116,19 +137,18 @@ angular
                                 reload: true
                             }
                         );
-                    } else {
-                        $state.go(
-                            'topics/view',
-                            {
-                                topicId: item.id
-                            },
-                            {
-                                reload: true
-                            }
-                        );
                     }
+                    this.$state.go(
+                        'topics/view',
+                        {
+                            topicId: item.id
+                        },
+                        {
+                            reload: true
+                        }
+                    );
                 } else if (model === 'group') {
-                    $state.go(
+                    this.$state.go(
                         'my/groups/groupId',
                         {
                             groupId: item.id,
@@ -142,70 +162,62 @@ angular
             }
         };
 
-        $scope.viewMoreResults = function (context, model) {
+        viewMoreResults (context, model) {
+            const self = this;
 
-            if ($scope.viewMoreInProgress) {
+            if (this.viewMoreInProgress) {
                 return;
             } else {
-                $scope.viewMoreInProgress = true;
-                $scope.moreStr = $scope.form.searchInput;
+                this.viewMoreInProgress = true;
+                this.moreStr = this.form.searchInput;
             }
 
-            if (context && model && $scope.searchResults[context][model].count > $scope.searchResults[context][model].rows.length - 1) { // -1 because the "viewMore" is added as an item that is not in the actual search result
-                var include = context + '.' + model;
+            if (context && model && this.searchResults[context][model].count > this.searchResults[context][model].rows.length - 1) { // -1 because the "viewMore" is added as an item that is not in the actual search result
+                let include = context + '.' + model;
                 if (model === 'topics') {
                     include = context + '.topic';
                 } else if (model === 'groups') {
                     include = context + '.group';
                 }
 
-                var page = Math.floor($scope.searchResults[context][model].rows.length / 5) + 1;
+                const page = Math.floor(this.searchResults[context][model].rows.length / 5) + 1;
 
-                sSearch
+                this.sSearch
                     .search(
-                        $scope.moreStr,
+                        this.moreStr,
                         {
                             include: include,
                             limit: 5,
                             page: page
                         }
                     )
-                    .then(
-                        function (result) {
-                            var moreResults = result.data.data.results;
+                    .then((result) => {
+                            const moreResults = result.data.data.results;
 
-                            $scope.searchResults[context][model].count = moreResults[context][model].count;
-                            moreResults[context][model].rows.forEach(function (row) {
-                                $scope.searchResults[context][model].rows.push(row);
+                            self.searchResults[context][model].count = moreResults[context][model].count;
+                            moreResults[context][model].rows.forEach((row) => {
+                                self.searchResults[context][model].rows.push(row);
                             });
 
-                            $scope.combineResults();
+                            self.combineResults();
 
-                            $scope.viewMoreInProgress = false;
-                        },
-                        function (err) {
-                            $log.error('SearchCtrl', 'Failed to retrieve search results', err);
-                            $scope.viewMoreInProgress = false;
+                            self.viewMoreInProgress = false;
+                        },(err) => {
+                            self.$log.error('SearchCtrl', 'Failed to retrieve search results', err);
+                            self.viewMoreInProgress = false;
                         }
                     );
             }
         };
 
-        $scope.closeSearchArea = function () {
-            $scope.app.showSearchResults = false;
-            $scope.form.searchInput = null;
-            $scope.searchResults.combined = [];
-            $scope.app.showSearch = false;
+        closeSearchArea () {
+            this.app.showSearchResults = false;
+            this.form.searchInput = null;
+            this.searchResults.combined = [];
+            this.app.showSearch = false;
         };
-
-        $scope.$watch(
-            function () {
-                return $scope.form.searchInput
-            }
-            , function (newValue, oldValue) {
-                if (newValue && newValue !== oldValue) {
-                    $scope.doSearch(newValue);
-                }
-            }
-        );
-    }]);
+    }]
+};
+angular
+    .module('citizenos')
+    .component(search.selector, search);

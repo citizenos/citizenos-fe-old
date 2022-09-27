@@ -1,6 +1,6 @@
 'use strict';
 import * as angular from 'angular';
-import * as _ from 'lodash';
+import {map} from 'lodash';
 
 angular
     .module('citizenos')
@@ -26,7 +26,7 @@ angular
         $scope.isLoadingIdCard = false;
 
         // TODO: Multiple choice support some day... - https://trello.com/c/WzECsxck/280-bug-vote-sign-no-multiple-choice-support
-        $scope.optionsSelected = _.map(options, function (option) {
+        $scope.optionsSelected = map(options, function (option) {
             return { value: option.value, optionId: option.id };
         });
 

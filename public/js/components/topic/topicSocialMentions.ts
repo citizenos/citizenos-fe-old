@@ -4,7 +4,7 @@ import * as angular from 'angular';
 
 let topicSocialMentions = {
     selector: 'topicSocialMentions',
-    templateUrl: '../../views/topics_topicId_mentions.html',
+    templateUrl: '/views/topics_topicId_mentions.html',
     bindings: {
         topicId: '=',
         hashtag: '=',

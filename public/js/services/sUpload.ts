@@ -34,6 +34,13 @@ angular
         return upload(path, file, false);
     };
 
+    sUpload.uploadGroupImage = function (file, groupId) {
+        var path = sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/upload');
+        path = path.replace(':groupId', groupId);
+
+        return upload(path, file, false);
+    };;
+
     sUpload.topicAttachment = function (topicId, attachment) {
         var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/attachments/upload');
         path = path.replace(':topicId', topicId);

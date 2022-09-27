@@ -2,7 +2,7 @@ import * as angular from 'angular';
 
 let navMobile = {
     selector: 'navMobile',
-    templateUrl: '../../views/default/nav_mobile.html',
+    templateUrl: '/views/default/nav_mobile.html',
     bindings: {},
     controller: ['AppService', class NavController {
         public sapp;

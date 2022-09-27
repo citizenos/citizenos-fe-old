@@ -1,0 +1,97 @@
+<div id="groups_root">
+    <!-- TOPICS AREA -->
+
+    <div class="groups_header">
+        <div id="title"><h2>Public groups</h2></div>
+
+        <div id="create_group" class="blue_button_wrap">
+            <button ng-click="$ctrl.createGroup()" class="blue_button">Create public group</button>
+        </div>
+        <div id="filter">
+            <div cos-dropdown class="bar_select">
+                <div class="select_text">
+                    {{'VIEWS.PUBLIC_GROUP.DROPDOWN_GROUP_ACTIONS' | translate}}
+                    <div class="icon_holder">
+                        <div class="table_cell">
+                            <div class="icon_arrow_down_black"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dropdown big_drop">
+                    <div class="line lightest_line"></div>
+
+                    <div class="dropdown_item" ng-click="$ctrl.sortGroups()">
+                        <div class="icon arrow_th_sort_down"></div>
+                        <div class="item_name" translate="VIEWS.PUBLIC_GROUP.ORDER_TITLE_ASC">
+                            ORDER
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+                    <div class="dropdown_item" ng-click="$ctrl.sortGroups()">
+                        <div class="icon arrow_th_sort_up"></div>
+                        <div class="item_name" translate="VIEWS.PUBLIC_GROUP.ORDER_TITLE_DESC">
+                            Leave
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="groups_wrap">
+        <div class="group_wrap" ng-repeat="group in $ctrl.groupList">
+            <a ui-sref="public/groups/view({groupId:group.id})" ui-sref-opts="{reload: true}">
+                <div class="group_shown_content">
+                    <div class="group_header">
+                        <div class="group_icon">
+                            <div class="group_circle">
+                                <div class="group_icon"ng-if="group.imageUrl"><img ng-src="{{group.imageUrl}}" /></div>
+
+                                <cos-initials  ng-if="!group.imageUrl && group.name" class="table_cell" ng-model="group.name" initial-limit="1"></cos-initials>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group_name">
+                        <span ng-bind="group.name"></span>
+                    </div>
+                    <div class="group_details">
+                        <span ng-bind="group.description"></span>
+                    </div>
+                </div>
+
+                <div class="join_button">
+                    <div class="blue_button_wrap">
+                        <button class="blue_button" ng-if="!group.userLevel" ng-click="$ctrl.joinGroup(group);$event.stopPropagation();" translate="VIEWS.PUBLIC_GROUPS.BTN_JOIN_GROUP">Join group</button>
+                        <button class="blue_button" ng-if="group.userLevel" ng-click="$ctrl.leaveGroup(group);$event.stopPropagation();" translate="VIEWS.PUBLIC_GROUPS.BTN_LEAVE_GROUP">Leave group</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div ng-if="!$ctrl.groupList.length" class="table">
+            <div class="no_results v_align_cell">
+                <div class="no_results_icon_wrap">
+                    <div class="sprite sprite-icon-no-results2x"></div>
+                </div>
+                <div class="title_area">
+                    <h3 translate="VIEWS.HOME.HEADING_NO_RESUTS">We’re sorry, but we couldn’t find any results :(</h3>
+                    <p translate="VIEWS.HOME.HEADING_GET_STARTED">Maybe you can get the first discussion initiated by</p>
+                </div>
+
+                <div class="button_area">
+
+                    <div class="big_button" ui-sref="groups/create">
+                        <div class="button_cell">
+                            <div class="topic_text" translate="VIEWS.HOME.BTN_CREATING_A_NEW_TOPIC">Creating a new topic</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ui-view></div>
+
+</div>

@@ -37,7 +37,10 @@ module.exports = {
                       loader: "sass-loader",
                       options: {
                         sourceMap: true,
-                      },
+                        sassOptions: {
+                            outputStyle: "compressed",
+                        },
+                      }
                     },
                 ],
             }
@@ -47,7 +50,7 @@ module.exports = {
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
-          filename: "[name].css",
+          filename: "../styles/[name].css",
           chunkFilename: "[id].css",
         }),
         new webpack.ContextReplacementPlugin(
@@ -56,6 +59,9 @@ module.exports = {
             /(.+)?angular(\\|\/)core(.+)?/,
             path.join(__dirname, 'src'), // location of your src
             {} // a map of your routes
-        )
+        ),
+        new webpack.ProvidePlugin({
+            qrcode: 'qrcode-generator',
+        })
     ],
 }

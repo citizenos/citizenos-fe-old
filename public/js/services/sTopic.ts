@@ -55,10 +55,36 @@ angular
             return $http
                 .get(path)
                 .then(defaultSuccess, defaultError);
-        }
+        };
 
         sTopic.invites = function (topic) {
             var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/invites/users', {topicId: topic.id});
             return $http.get(path).then(defaultSuccess, defaultError);
-        }
+        };
+
+
+        sTopic.getTopicNotificationSettings = function (topicId) {
+            console.log(topicId);
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/notificationsettings', {topicId: topicId});
+
+            return $http.get(path).then(defaultSuccess, defaultError);
+        };
+
+        sTopic.updateTopicNotificationSettings = function (topicId, preferences) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/notificationsettings', {topicId: topicId});
+
+            return $http.put(path, preferences).then(defaultSuccess, defaultError);
+        };
+
+        sTopic.deleteTopicNotificationSettings = function (topicId) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/notificationsettings', {topicId: topicId});
+
+            return $http.delete(path).then(defaultSuccess, defaultError);
+        };
+
+        sTopic.notificationSettingsList = function (offset, limit, search) {
+            var path = sLocation.getAbsoluteUrlApi('/api/users/self/notificationsettings/topics');
+
+            return $http.get(path, {params: {offset: offset, limit: limit, search: search}}).then(defaultSuccess, defaultError);
+        };
     }]);

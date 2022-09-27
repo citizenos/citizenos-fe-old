@@ -1,6 +1,6 @@
 'use strict';
 import * as angular from 'angular';
-import * as _ from 'lodash';
+import {filter, find, isArray} from 'lodash';
 
 angular
     .module('citizenos')
@@ -50,11 +50,11 @@ angular
 
             option.optionId = option.id;
 
-            var selected = _.filter($scope.topic.vote.options.rows, function (option) {
+            var selected = filter($scope.topic.vote.options.rows, function (option) {
                 return !!option.selected;
             });
 
-            var isSelected = _.find(selected, function (item) {
+            var isSelected = find(selected, function (item) {
                 if (item.id === option.id) return item;
             });
 
@@ -64,8 +64,8 @@ angular
         };
 
         $scope.$parent.$parent.canSubmit = function () {
-            if (!$scope.topic.vote.options || !_.isArray($scope.topic.vote.options.rows)) return false;
-            var options = _.filter($scope.topic.vote.options.rows, function (option) {
+            if (!$scope.topic.vote.options || !isArray($scope.topic.vote.options.rows)) return false;
+            var options = filter($scope.topic.vote.options.rows, function (option) {
                 return !!option.selected;
             });
 
@@ -83,7 +83,7 @@ angular
             var options = [];
             if (!$scope.topic.canVote()) return;
             if (!option) {
-                options = _.filter($scope.topic.vote.options.rows, function (option) {
+                options = filter($scope.topic.vote.options.rows, function (option) {
                     return !!option.selected;
                 });
             } else {

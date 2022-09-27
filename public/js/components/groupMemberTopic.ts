@@ -4,10 +4,13 @@ let groupMemberTopic = {
     selector: 'groupMemberTopic',
     template:  `
         <div class="pretend_td">
-            <div class="blue_link" ui-sref="my/topics/topicId({topicId: $ctrl.memberTopic.id})" ng-bind="$ctrl.memberTopic.title">$ctrl.memberTopic.title</div>
+            <div class="blue_link" ui-sref="topics/view({topicId: $ctrl.memberTopic.id})" ng-bind="$ctrl.memberTopic.title">$ctrl.memberTopic.title</div>
         </div>
-        <div class="pretend_td" ng-if="$ctrl.memberTopic.canUpdate()">
-            <div cos-dropdown class="classic_dropdown">
+        <div class="pretend_td" ng-if="$ctrl.isVisibleField('lastActivity')">
+            <span ng-bind="$ctrl.memberTopic.lastActivity | amDateFormat:'L LT'"></span>
+        </div>
+        <div class="pretend_td" ng-if="$ctrl.isVisibleField('level')">
+            <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.memberTopic.canUpdate()">
                 <div class="dropdown_selection">
                     <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + $ctrl.memberTopic.permission.levelGroup | uppercase | translate}}</div>
 
@@ -25,11 +28,16 @@ let groupMemberTopic = {
                     </div>
                 </div>
             </div>
+            <span ng-if="!$ctrl.memberTopic.canUpdate()">{{'TXT_TOPIC_LEVELS_' + $ctrl.memberTopic.permission.levelGroup | uppercase | translate}}</span>
         </div>
-        <div class="pretend_td">
+        <div class="pretend_td" ng-if="$ctrl.isVisibleField('userscount')">
             <span class="pretend_table_mobile_text" translate="VIEWS.MY_GROUPS_GROUPID.LBL_USERS_COUNT" translate-values="{count: $ctrl.memberTopic.members.users.count}">Users: 0</span>
+            <span ng-bind="$ctrl.memberTopic.members.users.count"></span>
         </div>
-        <div class="pretend_td recycle_bin_wrap" ng-if="$ctrl.memberTopic.canDelete()">
+        <div class="pretend_td" ng-if="$ctrl.isVisibleField('status')">
+            <span> {{'TXT_TOPIC_STATUS_'+$ctrl.memberTopic.status | uppercase | translate}} </span>
+        </div>
+        <div class="pretend_td recycle_bin_wrap" ng-if="$ctrl.memberTopic.canDelete() && $ctrl.isVisibleField('delete')">
             <div class="btn_wrap recycle_bin">
                 <div class="btn" ng-click="$ctrl.doDeleteMemberTopic()">
                     <div class="table_cell">
@@ -42,6 +50,7 @@ let groupMemberTopic = {
     `,
     bindings: {
         memberTopic: '=',
+        fields: '=?',
         canUpdate: '=?',
         group: '='
     },
@@ -49,6 +58,7 @@ let groupMemberTopic = {
         private memberTopic;
         private canUpdate;
         private group;
+        public fields
 
         private ngDialog;
         private GroupMemberTopic;
@@ -62,6 +72,9 @@ let groupMemberTopic = {
             this.$state = $state;
         }
 
+        isVisibleField (field) {
+            return this.fields?.indexOf(field) > -1
+        }
         doUpdateMemberTopic (level) {
             const memberTopic = this.memberTopic;
             const group = this.group;

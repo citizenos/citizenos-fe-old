@@ -1,6 +1,5 @@
 'use strict';
 import * as angular from 'angular';
-import * as _ from 'lodash';
 
 angular
     .module('citizenos')
@@ -25,11 +24,11 @@ angular
             $scope.filters = {
                 categories: {
                     value: resolveCategory(),
-                    options: [$scope.FILTERS_ALL].concat(_.values(sTopic.CATEGORIES))
+                    options: [$scope.FILTERS_ALL].concat(Object.values(sTopic.CATEGORIES))
                 },
                 statuses: {
                     value: $scope.FILTERS_ALL,
-                    options: [$scope.FILTERS_ALL].concat(_.values(sTopic.STATUSES).concat('moderated'))
+                    options: [$scope.FILTERS_ALL].concat(Object.values(sTopic.STATUSES).concat('moderated'))
                 },
                 limit: 30,
                 offset: 0,

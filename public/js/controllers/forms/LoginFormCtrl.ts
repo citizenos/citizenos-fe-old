@@ -1,10 +1,10 @@
 'use strict';
 import * as angular from 'angular';
-import * as _ from 'lodash';
+import {values} from 'lodash';
 
 let loginFormComponent =  {
     selector: 'loginForm',
-    templateUrl: '../../../views/modals/login.html',
+    templateUrl: '/views/modals/login.html',
     bindings: {
         ngDialogData: '='
     },
@@ -177,7 +177,7 @@ let loginFormComponent =  {
          * @param {string} partnerId String representing the partner. For ex "facebook", "google".
          */
         doLoginPartnerPopup (partnerId) {
-            if (_.values(this.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
+            if (values(this.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
                 throw new Error(`LoginFormCtrl.doLoginPartner() Invalid parameter for partnerId ${partnerId}`);
             }
 
@@ -223,7 +223,7 @@ let loginFormComponent =  {
         // No-popup partner login version. Used for /partners/{partnerId}/login pages where the popup version would add too much extra complexity with the redirect urls.
         // Popup version was initially needed only for the widget logins. Maybe worth making an exception for the widgets and revert everything else to normal.
         doLoginPartnerNoPopup (partnerId) {
-            if (_.values(this.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
+            if (values(this.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
                 throw new Error(`LoginFormCtrl.doLoginPartner() Invalid parameter for partnerId ${partnerId}`);
             }
 
