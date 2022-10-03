@@ -517,7 +517,7 @@
     "TOPIC_NOTIFICATION_SETTINGS_TITLE_DESCRIPTION": "Seaded rakenduvad ainult teemale {{topicTitle}}",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_GENERAL": "Üldine",
     "TOPIC_NOTIFICATION_SETTINGS_TAB_CHANNELS": "Teavituste kanalid",
-    "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Teema teavitused",
+    "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS": "Toggle notifications for this topic",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_NOTIFY_ME_ABOUT": "Teavitused:",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_ALL_ACTIONS": "Kõik selle teema tegevused",
     "TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_UPDATES": "Teema uuendused (sisu, olek, kategooriad, teavitused jne)",
