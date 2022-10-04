@@ -162,9 +162,39 @@
         .content {
             background: vars.$white;
             width: 100%;
-            padding: 0 20px;
+            padding: 0 20px 20px 20px;
             box-sizing: border-box;
             position: relative;
+
+            @include mixins_n_extends.mobile {
+                .default_table {
+                    .pretend_tr {
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                    }
+
+                    .pretend_tr:nth-child(odd) {
+                        background-color: vars.$light_gray;
+                    }
+
+                    .pretend_td {
+                        display: inline-block;
+                        text-align: left;
+                        padding: 10px 20px 16px 16px;
+
+                        &:first-child {
+                            width: 100%;
+                            padding: 16px 0 0 16px;
+                        }
+
+                        .mobile_label {
+                            line-height: 24px;
+                            color: #6A6A6A;
+                        }
+                    }
+                }
+            }
         }
     }
     .header_row_wrap {
@@ -172,8 +202,9 @@
         display: table-row;
 
         @include mixins_n_extends.mobile {
-            width: 200%;
             overflow: hidden;
+            display: block;
+            text-align: center;
         }
 
         .header_row {
@@ -182,8 +213,7 @@
             overflow: hidden;
 
             @include mixins_n_extends.mobile {
-                float: left;
-                padding: 0 0 0 10px;
+                padding: 0px 10px 15px 10px;
             }
 
             .tab_button {
@@ -195,6 +225,10 @@
                 padding-right: 10px;
                 box-sizing: border-box;
                 cursor: pointer;
+
+                @include mixins_n_extends.mobile {
+                    width: 50%;
+                }
 
                 .tab_buttom_wrap {
                     position: relative;

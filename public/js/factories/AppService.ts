@@ -173,7 +173,7 @@ angular
             selectTab: function (tab) {
                 self.tabSelected = tab;
                 var params = angular.extend({}, $stateParams);
-                params.tab = tab;
+                params['tab'] = tab;
                 $state.transitionTo($state.current.name, params, {location: true, notify: false, reload: false});
             },
             doWidgetLogout: function () {

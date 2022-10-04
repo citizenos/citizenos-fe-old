@@ -116,6 +116,13 @@
         font-size: 13px;
         box-sizing: border-box;
         padding: 6px 10px;
+        border: solid 1px vars.$lightest_gray;
+        border-radius: 4px;
+    }
+
+    input[type=radio] {
+        width: 20px;
+        height: 20px;
     }
 
     button {
@@ -2259,6 +2266,57 @@
                     input, .classic_dropdown {
                         float: right;
                         width: 180px;
+                    }
+
+                    input[type=radio] {
+                        position: relative;
+                        display: block;
+                        top: 0;
+                        left: 0;
+                        height: 20px;
+                        width: 20px;
+                        background-color: vars.$white;
+                        border: solid 1px vars.$lightest_gray;
+                        border-radius: 50%;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            display: none;
+                            top: 5px;
+                            left: 5px;
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                            background: vars.$aqua_marine_border;
+                        }
+                    }
+
+                    .radio_input_wrap {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-top: 10px;
+                        margin-right: 64px;
+
+                        input {
+                            display: inline-block;
+                            width: 20px;
+                            height: 20px;
+                            margin: 0 8px 0 0;
+                            padding: 0;
+                            float: none;
+                            vertical-align: middle;
+
+                            &:checked {
+                                border: 6px solid vars.$deep_sky_blue;
+                            }
+                        }
+
+                        label {
+                            display: inline-block;
+                            vertical-align: middle;
+                            text-transform: capitalize;
+                        }
                     }
 
                     .checkcontainer {

@@ -25,9 +25,8 @@ let publicGroups = {
             this.GroupMemberUser = GroupMemberUser
             this.ngDialog = ngDialog;
             this.app = AppService;
+            PublicGroupService.reload();
             this.groupList = PublicGroupService.groups;
-            console.log(PublicGroupService)
-            console.log(this.groupList)
         }
 
         createGroup () {
@@ -41,11 +40,16 @@ let publicGroups = {
             })
         }
 
-        sortGroups () {
-            if (this.PublicGroupService.ordering === 'ASC') {
-                this.PublicGroupService.ordering = 'DESC';
-            }
+        sortGroups (order?) {
+            if (!order) order = 'ASC';
+            this.PublicGroupService.order = order;
             this.PublicGroupService.doOrder();
+            this.groupList = this.PublicGroupService.groups;
+        };
+
+        goToGroupView (group) {
+            console.log(group);
+            this.$state.go('public/groups/view',{groupId:group.id});
         };
 
         joinGroup (group) {
@@ -56,7 +60,7 @@ let publicGroups = {
             .then(() => {
                 this.$state.go('groupJoin', {token: group.join.token});
             });
-        }
+        };
 
         leaveGroup (group) {
             const GroupMemberUser = this.GroupMemberUser;
@@ -74,7 +78,7 @@ let publicGroups = {
                     groupMemberUser
                         .$delete({groupId: group.id})
                         .then(() => {
-                            group.getMemberUsers();
+                            this.$state.reload(true);
                         });
                 });
         };

@@ -166,9 +166,6 @@ import * as angular from 'angular';
                                         }
                                         if (sAuth.user.loggedIn) {
                                             if (!sAuth.user.termsVersion || sAuth.user.termsVersion !== cosConfig.legal.version) {
-                                                console.log(sAuth.user);
-
-                                                console.log(sLocation.getAbsoluteUrl($window.location.pathname) + $window.location.search)
                                                 return $state.go(
                                                     'account/tos',
                                                     {
@@ -238,12 +235,14 @@ import * as angular from 'angular';
                     template: '<public-group><public-group>'
                 })
                 .state('public/groups/view/settings', {
-                    url: '/settings?tab',
+                    url: '/settings',
                     parent: 'public/groups/view',
-                    reloadOnSearch: false,
                     controller: ['$state', 'ngDialog', function ($state, ngDialog) {
                         var createDialog = function () {
-                            ngDialog.closeAll();
+                            var dialogs = ngDialog.getOpenDialogs();
+                            dialogs.forEach(function (id) {
+                                ngDialog.close(id, '$closeButton');
+                            })
                             var dialog = ngDialog.open({
                                 template: '<group-settings></group-settings>',
                                 plain: true,
@@ -409,10 +408,9 @@ import * as angular from 'angular';
                     },
                     controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rUserConnections', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rUserConnections, rHiddenParams) {
                         if (sAuthResolve) {
-                            console.log()
                             return $state.go('home');
                         }
-                        console.log(rUserConnections);
+
                         var dialogData = {
                             userConnections: rUserConnections,
                             email: null
@@ -429,7 +427,6 @@ import * as angular from 'angular';
                         });
 
                         dialog.closePromise.then(function (data) {
-                            console.log('close promise', data.value);
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
                                 return $state.go('home');
                             }
@@ -836,7 +833,6 @@ import * as angular from 'angular';
                     resolve: {
                         rTopic: ['$stateParams', 'Topic', 'sAuthResolve', 'AppService', function ($stateParams, Topic, sAuthResolve, AppService) {
                             // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
-                            console.log('RESOLVE RTOPIC')
                             return new Topic({id: $stateParams.topicId})
                                 .$get()
                                 .then(function (topic) {

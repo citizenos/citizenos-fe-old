@@ -66,7 +66,6 @@ let publicGroup = {
                 PublicGroup
                 .get($stateParams.groupId)
                 .then((group) => {
-                    console.log(group);
                     this.group = group;
                     this.loadMemberTopicsList();
                     this.loadMemberUsersList();
@@ -84,13 +83,14 @@ let publicGroup = {
             const self = this;
             const params = {
                 limit: limit || this.ITEMS_COUNT_PER_PAGE,
-                offset: offset,
-                order: order || ''
+                offset: offset || 0
             };
             if (this.topicList.searchFilter) {
                 params['search'] = this.topicList.searchFilter.trim();
             }
-
+            if (order) {
+                params['order'] = order;
+            }
             const statuses = ['inProgress', 'voting', 'followUp', 'closed'];
 
             if (statuses.indexOf(order) > -1) {
@@ -100,7 +100,6 @@ let publicGroup = {
             return this.sGroup
                 .publicTopicsList(this.group.id, params)
                 .then((res) => {
-                    console.log(res);
                     const data = res.data.data;
                     self.topics.rows = data.rows;
                     self.topics.count = data.rows.length;
@@ -173,21 +172,20 @@ let publicGroup = {
                     groupMemberUser
                         .$delete({groupId: group.id})
                         .then(() => {
-                            group.getMemberUsers();
+                            $state.reload(true);
                         });
                 });
         };
 
         deleteGroup () {
-            const self = this;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_delete_confirm.html'
                 })
                 .then(() => {
-                    self.Group.delete(self.group)
+                    this.Group.delete(this.group)
                         .then(() => {
-                            self.$state.go('public/groups', null, {reload: true});
+                            this.$state.reload('public/groups', null, {reload: true});
                         });
                 }, angular.noop);
         };
@@ -208,8 +206,21 @@ let publicGroup = {
                 closeByEscape: false
             })
             .then(() => {
-                this.$state.go('groupJoin', {token: this.group.join.token});
+                this.Group
+                    .join(this.group.join.token)
+                    .then((res) => {
+                        if (res.id) {
+                            this.$state.reload(true);
+                        }
+                    }, (res) => {
+                        this.$log.error('Failed to join Topic', res);
+                    }
+                );
             });
+        }
+
+        canUpdate () {
+            return this.group?.userLevel === this.GroupMemberUser.LEVELS.admin;
         }
     }]
 }

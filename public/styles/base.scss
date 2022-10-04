@@ -563,6 +563,7 @@ table, .pretend_table {
 }
 
 .default_table {
+    display: table;
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
@@ -600,6 +601,10 @@ table, .pretend_table {
             bottom: 14px;
             position: relative;
         }
+    }
+
+    .pretend_table_mobile_text {
+        display: none;
     }
 }
 .btn_wrap.white_bg {
@@ -810,6 +815,30 @@ table, .pretend_table {
 
     .table_cell:last-child {
         padding-left: 5px;
+    }
+}
+
+input.default_radio {
+    position: relative;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: vars.$white;
+    border: solid 1px vars.$lightest_gray;
+    border-radius: 50%;
+
+    &:after {
+        content: "";
+        position: absolute;
+        display: none;
+        top: 5px;
+        left: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: vars.$aqua_marine_border;
     }
 }
 
@@ -1651,9 +1680,33 @@ a:link, a:visited {
 
 .pink_button {
     @extend .gray_button;
+    color: vars.$pinky_red;
+    border: 1px solid vars.$pinky_red !important;
     background-color: vars.$new_pink;
+    display: inline-block;
+    margin-left: 10px;
+
+    .icon {
+        vertical-align: initial;
+    }
 }
 
+.pink_button_big {
+    background-color: vars.$new_pink;
+    border: 1px solid vars.$red;
+    border-radius: 4px;
+    color: vars.$red;
+    padding: 10px 57px 10px 57px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+
+    &:hover {
+        background-color: vars.$old_pink;
+        color: vars.$pinky_red;
+        border: 1px solid vars.$pinky_red;
+    }
+}
 .edit_deadline_button {
     padding: 6px 5px 5px 5px;
 }

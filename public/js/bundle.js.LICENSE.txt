@@ -1,4 +1,15 @@
 /*!
+ * Sizzle CSS Selector Engine v2.3.6
+ * https://sizzlejs.com/
+ *
+ * Copyright JS Foundation and other contributors
+ * Released under the MIT license
+ * https://js.foundation/
+ *
+ * Date: 2021-02-16
+ */
+
+/*!
  * angular-translate - v2.19.0 - 2021-09-02
  * 
  * Copyright (c) 2021 The angular-translate team, Pascal Precht; Licensed MIT
@@ -10,6 +21,20 @@
  * MIT license
  */
 
+/*!
+ * jQuery JavaScript Library v3.6.1
+ * https://jquery.com/
+ *
+ * Includes Sizzle.js
+ * https://sizzlejs.com/
+ *
+ * Copyright OpenJS Foundation and other contributors
+ * Released under the MIT license
+ * https://jquery.org/license
+ *
+ * Date: 2022-08-26T17:52Z
+ */
+
 /*! 
  * angular-loading-bar v0.9.0
  * https://chieffancypants.github.io/angular-loading-bar
@@ -18,16 +43,8 @@
  */
 
 /**
-     * @license
-     * Copyright Google LLC All Rights Reserved.
-     *
-     * Use of this source code is governed by an MIT-style license that can be
-     * found in the LICENSE file at https://angular.io/license
-     */
-
-/**
  * @license
- * Copyright Google LLC All Rights Reserved.
+ * Copyright Google Inc. All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -43,14 +60,8 @@
  */
 
 /**
- * @license Angular v14.1.0
- * (c) 2010-2022 Google LLC. https://angular.io/
- * License: MIT
- */
-
-/**
- * @license Angular v14.1.1
- * (c) 2010-2022 Google LLC. https://angular.io/
+ * @license Angular v5.2.11
+ * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
 
@@ -59,6 +70,14 @@
  * (c) 2010-2020 Google LLC. http://angularjs.org
  * License: MIT
  */
+
+/**
+* @license
+* Copyright Google Inc. All Rights Reserved.
+*
+* Use of this source code is governed by an MIT-style license that can be
+* found in the LICENSE file at https://angular.io/license
+*/
 
 //! Copyright (c) JS Foundation and other contributors
 
@@ -72,4 +91,4 @@
 
 //! moment.js locale configuration
 
-//! version : 0.5.34
+//! version : 0.5.37

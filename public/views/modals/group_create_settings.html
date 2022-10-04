@@ -40,21 +40,6 @@
             <div class="lightbox_content settings_section_wrap" ng-if="$ctrl.app.tabSelected === 'settings'">
 
                 <div class="lightbox_section">
-
-                    <div class="settings_section" ng-if="$ctrl.isVisible('visibility')">
-                        <div class="settings_cell">
-                            <div class="setting_title" translate="MODALS.TOPIC_SETTINGS_LBL_MAKE_PRIVATE">Make your topic private</div>
-                            <div class="setting_description" translate="MODALS.TOPIC_SETTINGS_LBL_MAKE_PRIVATE_EXT">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
-                        </div>
-
-                        <div class="settings_cell">
-                            <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
-                                 value="$ctrl.Group.VISIBILITY.private" off-value="$ctrl.Group.VISIBILITY.public" model="$ctrl.group.visibility"></cos-toggle>
-                        </div>
-                    </div>
-
-                    <div class="line lightest_line" ng-if="$ctrl.isVisible('visibility')"></div>
-                    {{$ctrl.canUpdate()}}
                     <div class="settings_section full_width" ng-if="$ctrl.isVisible('name')">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_NAME">Group name</div>
@@ -96,8 +81,8 @@
                             </div>
                             <div class="button_holder">
                                 <cos-file-upload id="group_image_upload" class="image_item" image-item="$ctrl.imageFile" cos-file-upload></cos-file-upload>
-                                <div class="gray_button" ng-click="$ctrl.uploadImage()">Upload image</div>
-                                <div class="pink_button red_text" ng-if="$ctrl.group.imageUrl || $ctrl.group.tmpImageUrl" ng-click="$ctrl.deleteGroupImage()">Remove image</div>
+                                <div class="gray_button" ng-click="$ctrl.uploadImage()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_UPLOAD_IMAGE">Upload image</div>
+                                <div class="pink_button red_text" ng-if="$ctrl.group.imageUrl || $ctrl.group.tmpImageUrl" ng-click="$ctrl.deleteGroupImage()"><span>{{$ctrl.imageFile[0].name || ('MODALS.GROUP_CREATE_SETTINGS_BTN_REMOVE_IMAGE' | translate)}}</span> <span class="icon icon_delete"></span></div>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -114,6 +99,27 @@
                     </div>
 
                     <div class="line lightest_line" ng-if="$ctrl.isVisible('image')"></div>
+
+                    <div class="settings_section" ng-if="$ctrl.isVisible('visibility')">
+                        <div class="settings_cell">
+                            <div class="setting_title" translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_GROUP_VISIBILITY">Group visibility</div>
+                            <div class="setting_description" translate="MODALS.GROUP_CREATE_SETTINGS_DESC_GROUP_VISIBILITY">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
+                            <div class="radio_input_wrap">
+                                <label class="checkcontainer">
+                                    <input type="radio" class="vote_option_radio" ng-click="$ctrl.group.visibility = $ctrl.Group.VISIBILITY.private" ng-checked="$ctrl.group.visibility === $ctrl.Group.VISIBILITY.private">
+                                    <span class="option_radio" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_PRIVATE">Private</span>
+                                </label>
+                            </div>
+                            <div class="radio_input_wrap">
+                                <label class="checkcontainer">
+                                    <input type="radio" class="vote_option_radio" ng-click="$ctrl.group.visibility = $ctrl.Group.VISIBILITY.public" ng-checked="$ctrl.group.visibility === $ctrl.Group.VISIBILITY.public">
+                                    <span class="option_radio" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_PUBLIC">Public</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="line lightest_line" ng-if="$ctrl.isVisible('visibility')"></div>
 
                     <div class="settings_section" ng-if="$ctrl.isVisible('image')">
                         <div class="settings_cell">
@@ -568,9 +574,9 @@
             </div>
 
             <!-- SHARE -->
-            <div class="lightbox_content invite_url" ng-if="$ctrl.app.tabSelected === 'share' && $ctrl.group.canUpdate() && $ctrl.form.join.token">
+            <div class="lightbox_content invite_url" ng-if="$ctrl.app.tabSelected === 'share' && $ctrl.canUpdate()">
 
-                <div class="lightbox_section" ng-if="$ctrl.group.canUpdate()">
+                <div class="lightbox_section" ng-if="$ctrl.canUpdate()">
                     <h3 translate="MODALS.TOPIC_SETTINGS_HEADING_LINK_SHARING">Link sharing</h3>
                     <div class="share_link">
                         <div class="table_row">
@@ -619,14 +625,14 @@
                     </div>
                 </div>
 
-                <div class="lightbox_section social_sharing" ng-if="$ctrl.group.canUpdate()">
+                <div class="lightbox_section social_sharing" ng-if="$ctrl.canUpdate()">
                     <h3 translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_SOCIAL_SHARING">Social sharing</h3>
                     <a href="#" socialshare socialshare-provider="facebook" socialshare-text="{{$ctrl.group.name}}" socialshare-url="{{$ctrl.form.joinUrl}}"><div class="sprite sprite-icon-social-facebook-v2"></div></a>
                     <a href="#" socialshare socialshare-provider="linkedin" socialshare-text="{{$ctrl.group.name}}" socialshare-url="{{$ctrl.form.joinUrl}}"><div class="sprite sprite-icon-social-linkedin-v2"></div></a>
                     <a href="#" socialshare socialshare-provider="twitter" socialshare-text="{{$ctrl.group.name}}" socialshare-url="{{$ctrl.form.joinUrl}}"><div class="sprite sprite-icon-social-twitter-v2"></div></a>
                 </div>
 
-                <div class="lightbox_section" ng-if="$ctrl.group.canUpdate()">
+                <div class="lightbox_section" ng-if="$ctrl.canUpdate()">
                     <h3 translate="MODALS.GROUP_CREATE_SETTINGS_HEADING_QR_SHARING">QR sharing</h3>
                     <div class="qr_code">
                         <qrcode data="{{$ctrl.form.joinUrl}}" size="120" version="4" error-correction-level="L" download class="qr_img"></qrcode>

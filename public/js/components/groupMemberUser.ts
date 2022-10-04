@@ -23,6 +23,7 @@ let myMemberUser = {
             </div>
         </div>
         <div class="pretend_td">
+            <div class="pretend_table_mobile_text mobile_label" translate="VIEWS.PUBLIC_GROUP.LNK_ROLE">Level</div>
             <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.group.canUpdate()">
                 <div class="dropdown_selection">
                     <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + $ctrl.member.level | uppercase | translate}}</div>
@@ -80,6 +81,7 @@ let myMemberUser = {
             this.TopicMemberUser = TopicMemberUser;
             this.sAuth = sAuth;
             this.$state = $state;
+            console.log(this.member)
         }
 
         doUpdateMemberUser (level) {

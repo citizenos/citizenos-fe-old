@@ -9,12 +9,11 @@ let groupSettings = {
     templateUrl: '/views/modals/group_create_settings.html',
     bindings: {
     },
-    controller: ['$state', '$stateParams', '$document', '$timeout', '$log', 'ngDialog', 'sAuth', 'sSearch', 'sUpload', 'sLocation', 'sNotification', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', 'AppService', class GroupSettingsController {
+    controller: ['$state', '$stateParams', '$document','$log', 'ngDialog', 'sAuth', 'sSearch', 'sUpload', 'sLocation', 'sNotification', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', 'AppService', class GroupSettingsController {
         public app;
         private $state;
         private $stateParams;
         private $document;
-        private $timeout;
         private $log;
         private sAuth;
         private sLocation;
@@ -95,12 +94,11 @@ let groupSettings = {
                 name: 'SHARE'
             }
         ];
-        constructor ($state, $stateParams, $document, $timeout, $log, ngDialog, sAuth, sSearch, sUpload, sLocation, sNotification, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser, GroupJoin, AppService) {
+        constructor ($state, $stateParams, $document, $log, ngDialog, sAuth, sSearch, sUpload, sLocation, sNotification, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser, GroupJoin, AppService) {
             $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
             this.$state = $state;
             this.$stateParams = $stateParams;
             this.$document = $document;
-            this.$timeout = $timeout;
             this.$log = $log;
             this.Group = Group;
             this.GroupMemberUser = GroupMemberUser;
@@ -505,7 +503,7 @@ let groupSettings = {
         };
 
         public canUpdate () {
-            return this.group?.permission && this.group?.permission.level === this.GroupMemberUser.LEVELS.admin;
+            return this.group?.userLevel && this.group?.userLevel === this.GroupMemberUser.LEVELS.admin;
         };
 
         public canDelete () {

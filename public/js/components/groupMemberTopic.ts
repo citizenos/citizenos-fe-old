@@ -7,9 +7,11 @@ let groupMemberTopic = {
             <div class="blue_link" ui-sref="topics/view({topicId: $ctrl.memberTopic.id})" ng-bind="$ctrl.memberTopic.title">$ctrl.memberTopic.title</div>
         </div>
         <div class="pretend_td" ng-if="$ctrl.isVisibleField('lastActivity')">
+            <div class="pretend_table_mobile_text mobile_label" translate="">Last activity</div>
             <span ng-bind="$ctrl.memberTopic.lastActivity | amDateFormat:'L LT'"></span>
         </div>
         <div class="pretend_td" ng-if="$ctrl.isVisibleField('level')">
+            <div class="pretend_table_mobile_text mobile_label" translate="VIEWS.PUBLIC_GROUP.LNK_RIGHTS">Level</div>
             <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.memberTopic.canUpdate()">
                 <div class="dropdown_selection">
                     <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + $ctrl.memberTopic.permission.levelGroup | uppercase | translate}}</div>
@@ -31,10 +33,11 @@ let groupMemberTopic = {
             <span ng-if="!$ctrl.memberTopic.canUpdate()">{{'TXT_TOPIC_LEVELS_' + $ctrl.memberTopic.permission.levelGroup | uppercase | translate}}</span>
         </div>
         <div class="pretend_td" ng-if="$ctrl.isVisibleField('userscount')">
-            <span class="pretend_table_mobile_text" translate="VIEWS.MY_GROUPS_GROUPID.LBL_USERS_COUNT" translate-values="{count: $ctrl.memberTopic.members.users.count}">Users: 0</span>
+            <span class="pretend_table_mobile_text mobile_label" translate="VIEWS.MY_GROUPS_GROUPID.LBL_USERS_COUNT" translate-values="{count: $ctrl.memberTopic.members.users.count}">Users: 0</span>
             <span ng-bind="$ctrl.memberTopic.members.users.count"></span>
         </div>
         <div class="pretend_td" ng-if="$ctrl.isVisibleField('status')">
+            <div class="pretend_table_mobile_text mobile_label" translate="VIEWS.PUBLIC_GROUP.LNK_STATUS">Status</div>
             <span> {{'TXT_TOPIC_STATUS_'+$ctrl.memberTopic.status | uppercase | translate}} </span>
         </div>
         <div class="pretend_td recycle_bin_wrap" ng-if="$ctrl.memberTopic.canDelete() && $ctrl.isVisibleField('delete')">

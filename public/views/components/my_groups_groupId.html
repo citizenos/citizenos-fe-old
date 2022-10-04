@@ -218,7 +218,7 @@
 
                 </div>
             </div>
-            <div class="minimize_container" ng-if="$ctrl.group.membertopics.count" ng-click="$ctrl.doToggleMemberTopicList(group);">
+            <div class="minimize_container" ng-if="$ctrl.group.members.topics.count" ng-click="$ctrl.doToggleMemberTopicList(group);">
                 <div ng-class="!$ctrl.topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -258,7 +258,7 @@
                         </div>
                     </div>
                 </div>
-                <group-member-topic ng-if="$ctrl.group.membertopics.count" class="pretend_tr" ng-repeat="topic in $ctrl.group.membertopics.topics" member-topic="topic" group="$ctrl.group"></group-member-topic>
+                <group-member-topic ng-if="$ctrl.group.members.topics.count" class="pretend_tr" ng-repeat="topic in $ctrl.group.members.topics.rows"  fields="['level', 'userscount', 'delete']"  member-topic="topic" group="$ctrl.group"></group-member-topic>
 
 
                 <div class="pretend_tr">
@@ -285,7 +285,7 @@
                 </span>
             </div>
             <div class="minimize_container">
-                <div ng-class="!userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
+                <div ng-class="!$ctrl.userList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
         <div class="container_header second_header" ng-if="$ctrl.userList.isSearchVisible">
@@ -322,11 +322,11 @@
                     </div>
                 </div>
                 <!-- GroupMemberUsers -->
-                <group-member-user class="pretend_tr" ng-repeat="user in $ctrl.group.memberusers.users | filter: $ctrl.userList.searchFilter | orderBy : $ctrl.userList.searchOrderBy.property" member="user" group="$ctrl.group"></group-member-user>
+                <my-member-user class="pretend_tr" ng-repeat="user in $ctrl.group.members.users.rows | filter: $ctrl.userList.searchFilter | orderBy : $ctrl.userList.searchOrderBy.property" member="user" group="$ctrl.group"></my-member-user>
 
                 <div class="pretend_tr">
                     <div class="pagination_wrapper">
-                        <cos-pagination class="pagination" select="$ctrl.loadMemberUsersPage" total-pages="$ctrl.group.memberusers.totalPages" page="$ctrl.group.memberusers.page"></cos-pagination>
+                        <cos-pagination class="pagination" select="$ctrl.loadMemberUsersPage" total-pages="$ctrl.group.members.users.totalPages" page="$ctrl.group.memberusers.page"></cos-pagination>
                     </div>
                 </div>
                 <!-- GroupInviteUsers -->
