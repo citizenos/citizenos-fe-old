@@ -289,7 +289,7 @@
     "TOPIC_SETTINGS_LBL_MAKE_PRIVATE": "Tee aiheestasi yksityinen",
     "TOPIC_SETTINGS_LBL_MAKE_PRIVATE_EXT": "Vain kutsumasi henkilöt voivat liittyä aiheeseen",
     "TOPIC_SETTINGS_LBL_HASHTAG": "Aihetunniste (#)",
-    "TOPIC_SETTINGS_LBL_HASHTAG_EXT": "Kun käytät tätä aihetunnistetta sosiaalisessa mediassa, niin maininnat näytetään aiheesi alla",
+    "TOPIC_SETTINGS_LBL_HASHTAG_EXT": "Kun käytät tätä aihetunnistetta sosiaalisessa mediassa, maininnat näytetään aiheesi alla",
     "TOPIC_SETTINGS_PLACEHOLDER_HASHTAG": "@:MODALS.TOPIC_SETTINGS_LBL_HASHTAG",
     "TOPIC_SETTINGS_LBL_DEADLINE": "Määräaika",
     "TOPIC_SETTINGS_LBL_DEADLINE_EXT": "Kun määräaika umpeutuu, äänestys suljetaan",
