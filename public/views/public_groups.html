@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div id="create_group" class="blue_button_wrap">
+            <div ng-if="$ctrl.app.user.loggedIn" id="create_group" class="blue_button_wrap">
                 <button ng-click="$ctrl.createGroup()" class="blue_button" translate="VIEWS.PUBLIC_GROUPS.BTN_CREATE_PUBLIC_GROUP">Create public group</button>
             </div>
         </div>
@@ -79,7 +79,7 @@
                     <p translate="VIEWS.PUBLIC_GROUPS.HEADING_GET_STARTED">Maybe you can get the first discussion initiated by</p>
                 </div>
 
-                <div class="button_area">
+                <div class="button_area" ng-if="$ctrl.app.user.loggedIn">
 
                     <div class="big_button" ui-sref="groups/create">
                         <div class="button_cell">

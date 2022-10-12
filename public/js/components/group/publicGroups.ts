@@ -17,13 +17,16 @@ let publicGroups = {
         }
 
         createGroup () {
+            if (!this.app.user.loggedIn) {
+                this.$state.go('account/login');
+            }
             const dialog = this.ngDialog.open({
                 template: '<group-create visibility="public"></group-create>',
                 plain: true
             });
 
             dialog.closePromise.then( () => {
-                return this.$state.go('^');
+                return this.$state.reload(true);
             })
         }
 

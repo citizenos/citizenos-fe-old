@@ -7,7 +7,7 @@ module.exports = {
     entry: "./public/js/main.ts",
     watch: true,
     bail: false,
-    devtool: "source-map",
+    devtool: false,
     output: {
         path: path.resolve(__dirname, 'public', 'js'),
         compareBeforeEmit: true,
