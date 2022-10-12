@@ -1,4 +1,4 @@
-<div ng-if="wWidth > 1024">
+<div ng-if="$ctrl.app.wWidth > 1024">
     <div class="logo_area">
         <!-- Only show this if the user is logged in -->
         <div class="logo sprite sprite-x5-cos-logo-small2x" ng-click="$ctrl.app.showSearchResults = false" ng-if="$ctrl.app.user.loggedIn" ui-sref="home">
