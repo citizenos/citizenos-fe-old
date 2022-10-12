@@ -2,11 +2,8 @@
 @use 'mixins_n_extends';
 
 #back_link {
-    padding: 20px;
-    position: relative;
-    width: 100%;
+    padding: 20px 20px 0px 20px;
     background: vars.$light_gray;
-    margin-bottom: -10px;
     text-align: left;
 
     a {
@@ -16,11 +13,10 @@
     }
 }
 #group_root {
-    @extend %default_setup;
-    padding: 0 20px 10px 20px;
+    padding: 10px 20px 10px 20px;
     background: vars.$light_gray;
-    position: absolute;
-    top: 50px;
+    text-align: left;
+    height: 100%;
 
     .no_results {
         text-align: center;
@@ -58,70 +54,78 @@
         margin-top: 10px;
         box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
         width: 100%;
+        position: relative;
 
         .group_shown_content {
             padding: 30px 20px 16px;
             position: relative;
-            @media (max-width: 768px) {
-                padding-bottom: 69px;
-            }
 
             .group_header {
-                display: table;
                 width: 100%;
                 box-sizing: border-box;
-                margin-bottom: 20px;
+                width: 100%;
+                margin-bottom: 0px;
+                position: relative;
 
-                .group_info {
-                    display: inline-block;
-                    position: absolute;
-
-                    .group_name {
-                        color: vars.$black;
-                        font-style: normal;
-                        font-weight: 700;
-                        font-size: 26px;
-                        line-height: 32px;
-                        margin-bottom: 16px;
-                    }
-                    .group_details {
-                        font-size: 14px;
-                        line-height: 24px;
-                        color: vars.$medium_black;
-                    }
+                @include mixins_n_extends.mobile {
+                    padding-bottom: 40px;
                 }
 
-                .group_actions_wrap {
-                    display: inline-block;
-                    right: 20px;
-                    position: absolute;
+                .group_name {
+                    color: vars.$black;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 26px;
+                    line-height: 32px;
+                    margin-bottom: 16px;
+                    display: inline;
+                    position: relative;
+                }
+                .group_details {
+                    font-size: 14px;
+                    line-height: 24px;
+                    color: vars.$medium_black;
+                    padding: 20px 20px 20px 0;
+                }
 
-                    .group_members {
+                .group_members {
+                    display: inline;
+                    background: vars.$light_gray;
+                    border-radius: 4px;
+                    padding: 10px 16px;
+                    width: max-content;
+                    float: right;
+
+                    .icon {
                         display: inline-block;
-                        background: vars.$light_gray;
-                        border-radius: 4px;
-                        padding: 10px 16px;
-
-                        .icon {
-                            display: inline-block;
-                            vertical-align: middle;
-                        }
-
-                        .count {
-                            margin-left: 8px;
-                            display: inline-block;
-                            vertical-align: middle;
-                        }
+                        vertical-align: middle;
                     }
-                    .group_actions {
-                        margin-left: 15px;
+
+                    .count {
+                        margin-left: 8px;
                         display: inline-block;
                         vertical-align: middle;
                     }
                 }
+                .group_actions {
+                    margin-left: 15px;
+                    display: inline;
+                    vertical-align: middle;
+                    float: right;
+
+                    .bar_select{
+                        .select_text {
+                            padding: 13px;
+                        }
+                    }
+
+                    &.mobile {
+                        display: none;
+                    }
+                }
 
                 .group_icon {
-                    display: inline-block;
+                    display: block;
 
                     .group_circle {
                         margin-top: 0;
@@ -156,6 +160,29 @@
                     padding-left: 20px;
                     padding-right: 20px;
                 }
+
+                @include mixins_n_extends.mobile {
+                    .group_actions {
+                        position: absolute;
+                        float: none;
+                        bottom: 0;
+                        width: 100%;
+                        margin-left: 0;
+                        display: block;
+
+                        &.mobile {
+                            display: block;
+                        }
+                        .bar_select {
+                            width: 100%;
+                            .icon_holder {
+                                position: absolute;
+                                right: 15px;
+                                top: 20px;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -166,12 +193,60 @@
             box-sizing: border-box;
             position: relative;
 
+            .pretend_th {
+                &:first-child {
+                    width: 70%;
+                    text-align: left;
+                }
+                text-align: right;
+                width: auto;
+            }
+
+            .pagination_wrapper {
+                display: block;
+                width: max-content;
+                position: absolute;
+                right: 20px;
+            }
+
+            @include mixins_n_extends.tablet {
+                .pretend_th:first-child {
+                    width: auto;
+                    min-width: 50%;
+                }
+            }
             @include mixins_n_extends.mobile {
+                .bar_select {
+                    background-color: vars.$white;
+                    padding: 0px;
+                    border: solid 1px vars.$lightest_gray;
+                    color: vars.$dark_gray;
+                    width: 100%;
+                    margin-bottom: 16px;
+
+                    .select_text {
+                        padding: 10px;
+                    }
+
+                    .icon_holder {
+                        float: right;
+                        margin-right: 5px;
+                        margin-top: 8px;
+                    }
+                }
+
                 .default_table {
                     .pretend_tr {
                         display: block;
                         width: 100%;
                         height: auto;
+                        padding: 5px;
+
+                        .pagination_wrapper {
+                            width: 100%;
+                            text-align: center;
+                            position: relative;
+                        }
                     }
 
                     .pretend_tr:nth-child(odd) {
@@ -181,16 +256,23 @@
                     .pretend_td {
                         display: inline-block;
                         text-align: left;
-                        padding: 10px 20px 16px 16px;
+                        padding: 10px 0 0 0;
 
                         &:first-child {
                             width: 100%;
                             padding: 16px 0 0 16px;
                         }
+                        &:nth-child(2) {
+                            width: 40%;
+                        }
 
                         .mobile_label {
                             line-height: 24px;
                             color: #6A6A6A;
+                            text-transform: capitalize;
+                        }
+                        .pretend_table_mobile_text  {
+                            display: block;
                         }
                     }
                 }

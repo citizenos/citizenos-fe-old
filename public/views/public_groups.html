@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div id="create_group" class="blue_button_wrap">
-                <button ng-click="$ctrl.createGroup()" class="blue_button">Create public group</button>
+                <button ng-click="$ctrl.createGroup()" class="blue_button" translate="VIEWS.PUBLIC_GROUPS.BTN_CREATE_PUBLIC_GROUP">Create public group</button>
             </div>
         </div>
     </div>
@@ -61,7 +61,6 @@
                         <span ng-bind="group.description"></span>
                     </div>
                 </div>
-
                 <div class="join_button">
                     <div class="blue_button_wrap">
                         <button class="blue_button" ng-if="!group.userLevel" ng-click="$ctrl.joinGroup(group);$event.stopPropagation();" translate="VIEWS.PUBLIC_GROUPS.BTN_JOIN_GROUP">Join group</button>
@@ -73,18 +72,18 @@
         <div ng-if="!$ctrl.groupList.length" class="table">
             <div class="no_results v_align_cell">
                 <div class="no_results_icon_wrap">
-                    <div class="sprite sprite-icon-no-results2x"></div>
+                    <div class="sprite sprite-icon-no-results2x no_results_img"></div>
                 </div>
                 <div class="title_area">
-                    <h3 translate="VIEWS.HOME.HEADING_NO_RESUTS">We’re sorry, but we couldn’t find any results :(</h3>
-                    <p translate="VIEWS.HOME.HEADING_GET_STARTED">Maybe you can get the first discussion initiated by</p>
+                    <h3 translate="VIEWS.PUBLIC_GROUPS.HEADING_NO_RESUTS">We’re sorry, but we couldn’t find any results :(</h3>
+                    <p translate="VIEWS.PUBLIC_GROUPS.HEADING_GET_STARTED">Maybe you can get the first discussion initiated by</p>
                 </div>
 
                 <div class="button_area">
 
                     <div class="big_button" ui-sref="groups/create">
                         <div class="button_cell">
-                            <div class="topic_text" translate="VIEWS.HOME.BTN_CREATING_A_NEW_TOPIC">Creating a new topic</div>
+                            <div class="topic_text" translate="VIEWS.PUBLIC_GROUPS.BTN_CREATE_PUBLIC_GROUP" ng-click="$ctrl.createGroup()">Creating a new topic</div>
                         </div>
                     </div>
 

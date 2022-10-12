@@ -7,27 +7,12 @@ import * as $ from 'jquery';
 let groupCreate = {
     selector: 'groupCreate',
     templateUrl: '/views/modals/group_create_settings.html',
-    bindings: {},
-    controller: ['$state', '$stateParams', '$document', '$timeout', '$log', 'ngDialog', 'sAuth', 'sSearch', 'sUpload', 'sLocation', 'sNotification', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', 'GroupService', 'AppService', class GroupCreateController {
+    bindings: {
+        visibility: '@?'
+    },
+    controller: class GroupCreateController {
         public app;
-        private $state;
-        private $stateParams;
-        private $document;
-        private $timeout;
-        private $log;
-        private sAuth;
-        private sLocation;
-        private sSearch;
-        private sUpload;
-        private sNotification;
-        private ngDialog;
-        public Group;
-        private GroupService;
-        public GroupMemberUser;
-        public GroupMemberTopic;
-        public GroupInviteUser;
-        private GroupJoin;
-
+        private visibility = null;
         public levels = {
             none: 0,
             read: 1,
@@ -94,28 +79,14 @@ let groupCreate = {
                 name: 'SHARE'
             }
         ];
-        constructor ($state, $stateParams, $document, $timeout, $log, ngDialog, sAuth, sSearch, sUpload, sLocation, sNotification, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser, GroupJoin, GroupService, AppService) {
+        constructor (private $state, $scope, $stateParams, private $document, private $timeout, private $log, private ngDialog, private sAuth, private sSearch, private sUpload, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupMemberTopic, private GroupInviteUser, private GroupJoin, private GroupService, AppService) {
             $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
-            this.$state = $state;
-            this.$stateParams = $stateParams;
-            this.$document = $document;
-            this.$timeout = $timeout;
-            this.$log = $log;
-            this.Group = Group;
-            this.GroupService = GroupService;
-            this.GroupMemberUser = GroupMemberUser;
-            this.GroupMemberTopic = GroupMemberTopic;
-            this.GroupInviteUser = GroupInviteUser;
             this.app = AppService;
-            this.sAuth = sAuth;
-            this.sLocation = sLocation;
-            this.sSearch = sSearch;
-            this.sUpload = sUpload;
-            this.sNotification = sNotification;
             this.app.tabSelected = $stateParams.tab || 'settings';
-            this.ngDialog = ngDialog;
-            this.GroupJoin = GroupJoin;
             this.init();
+            $scope.$watch(() => this.visibility, (newValue) => {
+                if (newValue) this.group.visibility = newValue;
+            });
         }
 
 
@@ -124,7 +95,7 @@ let groupCreate = {
             this.group = {
                 name: null,
                 description: null,
-                visibility: this.Group.VISIBILITY.private,
+                visibility: this.visibility || this.Group.VISIBILITY.private,
                 permission: {
                     level: this.GroupMemberUser.LEVELS.admin
                 }
@@ -391,48 +362,47 @@ let groupCreate = {
         };
 
         doSaveGroup () {
-            const self = this;
             this.errors = null;
 
             this.Group.save(this.group)
                 .then((data) => {
+                    angular.extend(this.group, data);
                     if (this.imageFile) {
                         this.sUpload
                             .uploadGroupImage(this.imageFile[0], this.group.id)
                             .then((response) => {
-                                self.group.imageUrl = response.data.link;
+                                this.group.imageUrl = response.data.link;
                             }, (err) => {
-                                self.errors = err;
+                                this.errors = err;
                             });
 
                     }
                     const savePromises = [];
-                    angular.extend(self.group, data);
                     // Users
                     const groupMemberUsersToInvite = [];
-                    self.members.forEach((member) => {
+                    this.members.forEach((member) => {
                         groupMemberUsersToInvite.push({
                             userId: member.userId,
                             level: member.level,
-                            inviteMessage: self.form.inviteMessage
+                            inviteMessage: this.form.inviteMessage
                         })
                     });
 
                     if (groupMemberUsersToInvite.length) {
                         savePromises.push(
-                            self.GroupInviteUser.save({groupId: self.group.id}, groupMemberUsersToInvite)
+                            this.GroupInviteUser.save({groupId: this.group.id}, groupMemberUsersToInvite)
                         );
                     }
 
                     // Topics
                     // TODO: Once there is POST /groups/:groupId/members/topics use that
-                    self.memberTopics.forEach((topic) => {
+                    this.memberTopics.forEach((topic) => {
                         const member = {
-                            groupId: self.group.id,
+                            groupId: this.group.id,
                             id: topic.id,
                             level: topic.permission.level
                         };
-                        const groupMemberTopic = new self.GroupMemberTopic(member);
+                        const groupMemberTopic = new this.GroupMemberTopic(member);
                         savePromises.push(
                             groupMemberTopic.$save()
                         )
@@ -441,19 +411,17 @@ let groupCreate = {
                     return Promise.all(savePromises)
                 })
                 .then(() =>  {
-                    console.log('sAVED')
-                    self.$timeout(() => { // Avoid $digest already in progress
-                        self.GroupService.reload();
-                        const dialogs = self.ngDialog.getOpenDialogs();
-                        self.ngDialog.close(dialogs[0], '$closeButton');
-                        self.$state.go('public/groups/view', {
-                            groupId: self.group.id
-                        }, {reload: true});
-                    });
+                    this.GroupService.reload();
+                    const dialogs = this.ngDialog.getOpenDialogs();
+                    this.ngDialog.close(dialogs[0], '$closeButton');
+                    console.log(this.$state.$current)
+                    this.$state.go('my/groups/view', {
+                        groupId: this.group.id
+                    }, {reload: true});
                 },(errorResponse) => {
                     if (errorResponse.data && errorResponse.data.errors) {
-                        self.errors = errorResponse.data.errors;
-                        self.app.tabSelected = 'settings';
+                        this.errors = errorResponse.data.errors;
+                        this.app.tabSelected = 'settings';
                     }
                 });
         };
@@ -518,7 +486,7 @@ let groupCreate = {
             return this.canUpdate();
         };
 
-    }]
+    }
 }
 angular
     .module('citizenos')

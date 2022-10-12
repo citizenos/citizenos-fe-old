@@ -80,7 +80,7 @@
                                 Group image
                             </div>
                             <div class="button_holder">
-                                <cos-file-upload id="group_image_upload" class="image_item" image-item="$ctrl.imageFile" cos-file-upload></cos-file-upload>
+                                <cos-file-upload id="group_image_upload" class="image_item" file-item="$ctrl.imageFile"></cos-file-upload>
                                 <div class="gray_button" ng-click="$ctrl.uploadImage()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_UPLOAD_IMAGE">Upload image</div>
                                 <div class="pink_button red_text" ng-if="$ctrl.group.imageUrl || $ctrl.group.tmpImageUrl" ng-click="$ctrl.deleteGroupImage()"><span>{{$ctrl.imageFile[0].name || ('MODALS.GROUP_CREATE_SETTINGS_BTN_REMOVE_IMAGE' | translate)}}</span> <span class="icon icon_delete"></span></div>
                             </div>

@@ -1,4 +1,4 @@
-<div>
+<div ng-if="wWidth > 1024">
     <div class="logo_area">
         <!-- Only show this if the user is logged in -->
         <div class="logo sprite sprite-x5-cos-logo-small2x" ng-click="$ctrl.app.showSearchResults = false" ng-if="$ctrl.app.user.loggedIn" ui-sref="home">
@@ -15,6 +15,31 @@
 
     <!-- Only show this if the user is NOT logged in -->
     <div class="blue_button" ng-click="$ctrl.app.doShowLogin()" ng-if="!$ctrl.app.user.loggedIn" translate="DEFAULT.NAV.LNK_LOG_IN_REGISTER">Log in / Register</div>
+
+
+    <!-- Nav section -->
+    <div class="section" ng-if="!$ctrl.app.user.loggedIn">
+        <div class="line dark_line"></div>
+        <div class="line light_line"></div>
+
+        <a ui-sref="home" ui-sref-active="active" class="section_item">
+            <div class="section_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-menu-icon-topics2x"></div>
+                </div>
+            </div>
+            <span translate="DEFAULT.NAV.LNK_PUBLIC_TOPICS">Public topics</span>
+        </a>
+
+        <a ui-sref="public/groups" ui-sref-active="active" class="section_item">
+            <div class="section_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-menu-icon-groups2x"></div>
+                </div>
+            </div>
+            <span translate="DEFAULT.NAV.LNK_PUBLIC_GROUPS">Public groups</span>
+        </a>
+    </div>
 
     <!-- Only show this if the user is logged in -->
     <div ng-if="$ctrl.app.user.loggedIn">
@@ -142,7 +167,7 @@
     <!-- Nav section -->
     <div class="section">
 
-        <a ng-if="app.config.links.about" class="section_item" ng-href="{{$ctrl.app.config.links.about}}">
+        <a ng-if="$ctrl.app.config.links.about" class="section_item" ng-href="{{$ctrl.app.config.links.about}}">
             <div class="section_icon">
                 <div class="table_cell">
                     <div class="sprite sprite-menu-icon-about2x"></div>
@@ -171,7 +196,7 @@
 
 
     <!-- Only show this if the user is logged in -->
-    <div ng-if="app.user.loggedIn">
+    <div ng-if="$ctrl.app.user.loggedIn">
 
         <div class="line dark_line"></div>
         <div class="line light_line"></div>

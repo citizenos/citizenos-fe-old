@@ -6,7 +6,7 @@ let myAccount = {
     selector: 'myAccount',
     templateUrl: '/views/account.html',
     bindings: {},
-    controller: ['$log', '$stateParams', '$document', '$window', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', 'sTopic', 'AppService', class MyAccountController {
+    controller: class MyAccountController {
         public form = {
             name: null,
             email: null,
@@ -32,8 +32,9 @@ let myAccount = {
         constructor (private $log, private $stateParams, private $document, private $window, private ngDialog, private sNotification, private sAuth, private sUser, private sUpload, private sTopic, AppService) {
             $log.debug('MyAccountFormCtrl');
             this.app = AppService;
-            this.app.tabSelected = this.app.tabSelected || 'profile';
+            this.app.tabSelected = $stateParams.tab || 'profile';
             angular.extend(this.form, this.sAuth.user);
+            this.loadNotificationSettingsPage = angular.bind(this, this.loadNotificationSettingsPage);
             this.loadNotificationSettingsList(0);
         }
 
@@ -69,17 +70,18 @@ let myAccount = {
         };
 
         removeTopicNotifications (topic) {
-            const self = this;
             if (!topic.allowNotifications) {
                 return this
                     .app
                     .removeTopicNotifications(topic.topicId, topic.allowNotifications)
-                    .then(self.loadNotificationSettingsList, () => {
+                    .then(() => {
+                        this.loadNotificationSettingsList();
+                    },() => {
                         topic.allowNotifications = true;
                     });
             }
 
-            self.sTopic.updateTopicNotificationSettings(topic.topicId, {
+            this.sTopic.updateTopicNotificationSettings(topic.topicId, {
                 preferences: {
                     Topic: true,
                     TopicComment: true,
@@ -91,9 +93,9 @@ let myAccount = {
                 allowNotifications: true
             })
             .then((data) => {
-                self.settings = data;
+                this.settings = data;
             }, (err) => {
-                self.sNotification.addError(err);
+                this.sNotification.addError(err);
             });
         };
 
@@ -191,7 +193,7 @@ let myAccount = {
                 }
             );
         };
-    }]
+    }
 }
 angular
     .module('citizenos')

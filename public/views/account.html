@@ -50,7 +50,7 @@
                             <div class="account_picture">
                                 <!-- NB Remember to use image that has 2x size, meaning 160x160px for this <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">-->
                                 <img ng-if="$ctrl.form.imageUrl" ng-src="{{$ctrl.form.imageUrl}}">
-                                <cos-file-upload id="profileImage" image-item="$ctrl.imageFile" cos-file-upload>
+                                <cos-file-upload id="profileImage" file-item="$ctrl.imageFile" cos-file-upload>
                                 <div class="profile_image_filler" ng-if="!$ctrl.form.imageUrl">
                                     <div class="table_cell" cos-initials="$ctrl.form.name">
                                         ML
@@ -120,8 +120,8 @@
                     </div>
 
                     <div class="settings_cell setting_toggle">
-                        <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
-                                ng-model="$ctrl.form.preferences.showInSearch"></div>
+                        <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                ng-model="$ctrl.form.preferences.showInSearch"></cos-toggle>
                     </div>
                 </div>
             </div>
@@ -139,11 +139,11 @@
                         </div>
                     </div>
                     <table class="notification_settings_table">
-                        <tr class="notification_setting_row"><th translate="MODALS.MY_ACCOUNT_TABLE_HEADER_TOPIC">Topics</th><th translate="MODALS.MY_ACCOUNT_TABLE_HEADER_NOTIFICATIONS">Notifications</th></tr>
+                        <tr class="notification_setting_row"><th translate="MODALS.MY_ACCOUNT_TABLE_HEADER_TOPIC">Topics</th><th translate="MODALS.MY_ACCOUNT_TABLE_HEADER_NOTIFICATIONS">Notifications</th><th></th></tr>
                         <tr class="notification_setting_row" ng-repeat="(key, topic) in $ctrl.notifications.topics.rows">
                             <td><a class="blue_link" ui-sref="topics.view({topicId: topic.topicId})">{{topic.title}}</a></td>
                             <td>
-                                <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="topic.allowNotifications" ng-click="$ctrl.removeTopicNotifications(topic)"></div>
+                                <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" model="topic.allowNotifications" ng-click="$ctrl.removeTopicNotifications(topic)"></cos-toggle>
                             </td>
                             <td>
                                 <a class="blue_link" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SET_TOPIC_NOTIFICATIONS" ng-click="$ctrl.app.doShowTopicNotificationSettings(topic.topicId)">Set topic notifications</a>
@@ -280,7 +280,7 @@
         </div>
         <div class="footer pagination_footer" ng-if="$ctrl.app.tabSelected === 'notifications'">
             <div class="line lightest_line"></div>
-            <div class="pagination" cos-pagination select="$ctrl.loadNotificationSettingsPage" total-pages="$ctrl.notifications.topics.totalPages" page="$ctrl.notifications.topics.page"></div>
+            <cos-pagination class="pagination" select="$ctrl.loadNotificationSettingsPage" total-pages="$ctrl.notifications.topics.totalPages" page="$ctrl.notifications.topics.page"></cos-pagination>
         </div>
 
         <div class="footer" ng-if="$ctrl.app.tabSelected !== 'notifications'">

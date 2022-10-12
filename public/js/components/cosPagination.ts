@@ -12,14 +12,14 @@ let cosPagination = {
             </div>
         </div> `,
     bindings: {
-        totalPages: '=?',
-        page: '=?',
+        totalPages: '=',
+        page: '=',
         select: '='
     },
     controller: class CosPaginatioController {
-        private totalPages;
-        private page;
-        private select;
+        public totalPages;
+        public page;
+        public select;
 
         constructor () {}
         pages () {
@@ -55,12 +55,9 @@ let cosPagination = {
         };
 
         loadPrevious () {
-            console.log(this.page);
             if (this.page === 1) {
                 return;
             }
-
-            this.select(this.page - 1);
         };
     }
 }

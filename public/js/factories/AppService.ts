@@ -2,7 +2,7 @@ import * as angular from 'angular';
 
 angular
     .module('citizenos')
-    .factory("AppService", ['$rootScope', '$log', '$state', '$stateParams', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'sTopic', 'TopicInviteUser', function ($rootScope, $log, $state, $stateParams, $window, $location, $timeout, $interval, $cookies, $anchorScroll, $translate, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity, sTopic, TopicInviteUser) {
+    .factory("AppService", ['$rootScope', '$log', '$state', '$stateParams', '$transitions', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'sTopic', 'TopicInviteUser', function ($rootScope, $log, $state, $stateParams, $transitions, $window, $location, $timeout, $interval, $cookies, $anchorScroll, $translate, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity, sTopic, TopicInviteUser) {
         var self = {
             config: cosConfig,
             showSearch: false,
@@ -45,7 +45,6 @@ angular
             },
             helpBubbleAnimate: function () {
                 var bubble = angular.element( document.querySelector( '#help_bubble' ) );
-                console.log(bubble);
                 bubble.addClass('animate');
                 $timeout(function () {
                     bubble.removeClass('animate');
@@ -192,7 +191,6 @@ angular
             },
             scrollToAnchor: function (anchor) {
                 // TODO: Probably not the most elegant way but works for now. Probably should be a directive, which calculates the yOffset (https://docs.angularjs.org/api/ng/service/$anchorScroll#yOffset)
-                console.log(anchor)
                 return $timeout(function () {
                     if ($rootScope.wWidth <= 1024) {
                         $anchorScroll.yOffset = 68;
@@ -213,12 +211,22 @@ angular
                 return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
             },
             doShowTopicNotificationSettings: function (topicId) {
+                const state = $state.$current.name;
                 if (!sAuth.user.loggedIn) {
                     return;
                 }
+                console.log(state);
                 var dialog = ngDialog.open({
                     template: '<set-topic-notifications topic-id="'+topicId+'"></set-topic-notifications>',
                     plain: true
+                });
+
+                dialog.closePromise.then(function (data) {
+                    if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                        $timeout(function () {
+                            $state.go('^');
+                        });
+                    }
                 });
 
             },
@@ -316,7 +324,86 @@ angular
             }, 0);
         });
 
-        $rootScope.$on('$stateChangeSuccess', function () {
+
+
+        $rootScope.displaySearch = function () {
+            var allowedState = ['home', 'my/groups', 'my/topics', 'public/groups', 'public/groups/view', 'my/groups/groupId', 'my/topics/topicId'];
+            if (allowedState.indexOf($state.current.name) > -1) {
+                return true;
+            }
+
+            return false;
+        };
+
+        var getUnreadActivities = function () {
+            sActivity
+                .getUnreadActivities()
+                .then(function (count) {
+                    self.unreadActivitiesCount = count;
+                });
+        };
+
+        // Update new activities count
+        var newActivitiesWatcher = null;
+        var authStatusWatcher = null;
+        $rootScope.$watch(
+            function () {
+                return self.user.loggedIn;
+            },
+            function (loggedIn) {
+                if (loggedIn) {
+                    getUnreadActivities();
+                    newActivitiesWatcher = $interval(function () {
+                        getUnreadActivities();
+                    }, 30000);
+                    authStatusWatcher = $interval(function () {
+                        sAuth.status();
+                    }, 10000);
+                } else if (newActivitiesWatcher) {
+                    $interval.cancel(newActivitiesWatcher);
+                    $interval.cancel(authStatusWatcher);
+                    newActivitiesWatcher = undefined;
+                    authStatusWatcher = undefined;
+                    self.unreadActivitiesCount = 0;
+                }
+            });
+
+        $state.defaultErrorHandler(function (err) {console.log('STATE ERROR:', err)});
+        $transitions.onError({}, function (transition) {
+            var error = transition.error();
+            var params = transition.params();
+            var toState = transition.to();
+            var errorCheck = function () {
+                console.log(error && error.detail.status && error.detail.data && error.detail.config);
+                if (error && error.detail.status && error.detail.data && error.detail.config) { // $http failure in "resolve"
+                    var stateError = 'error/' + error.detail.status;
+                    $state.go(stateError, {language: params.language || self.user.language}, {location: false});
+                }
+            }
+            if (self.user.loggedIn && toState.name.indexOf('topics/view') > -1) {
+                return TopicInviteUser
+                    .query({
+                        topicId: params.topicId
+                    }).$promise
+                    .then(function (invites) {
+                        if (invites.length) {
+                            return invites[0].$accept()
+                                .then(function () {
+                                        return $state.go(
+                                            'topics/view',
+                                            params
+                                        )
+                                    }
+                                );
+                        } else {
+                            errorCheck();
+                        }
+                    }, errorCheck);
+            }
+            errorCheck();
+        });
+
+        $transitions.onSuccess({}, function () {
             $timeout(function () {
                 $log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady', $state.$current.name);
 
@@ -352,80 +439,6 @@ angular
                 $anchorScroll();
             });
         });
-
-        $rootScope.displaySearch = function () {
-            var allowedState = ['home', 'my/groups', 'my/topics', 'public/groups', 'public/groups/view', 'my/groups/groupId', 'my/topics/topicId'];
-            if (allowedState.indexOf($state.current.name) > -1) {
-                return true;
-            }
-
-            return false;
-        };
-
-        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-            $log.debug('$stateChangeError', 'event', event, 'toState', toState, 'toParams', toParams, 'fromState', fromState, 'fromParams', fromParams, 'error', error);
-            var errorCheck = function () {
-                if (error && error.status && error.data && error.config) { // $http failure in "resolve"
-                    var stateError = 'error/' + error.status;
-                    $log.debug('$stateChangeError', '"resolve" failed in route definition.');
-                    $state.go(stateError, {language: fromParams.language || self.user.language}, {location: false});
-                }
-            }
-            if (self.user.loggedIn && toState.name.indexOf('topics.view') > -1) {
-                return TopicInviteUser
-                    .query({
-                        topicId: toParams.topicId
-                    }).$promise
-                    .then(function (invites) {
-                        if (invites.length) {
-                            return invites[0].$accept()
-                                .then(function () {
-                                        return $state.go(
-                                            'topics/view',
-                                            toParams
-                                        )
-                                    }
-                                );
-                        } else {
-                            errorCheck();
-                        }
-                    }, errorCheck);
-            }
-
-            errorCheck();
-        });
-        var getUnreadActivities = function () {
-            sActivity
-                .getUnreadActivities()
-                .then(function (count) {
-                    self.unreadActivitiesCount = count;
-                });
-        };
-
-        // Update new activities count
-        var newActivitiesWatcher = null;
-        var authStatusWatcher = null;
-        $rootScope.$watch(
-            function () {
-                return self.user.loggedIn;
-            },
-            function (loggedIn) {
-                if (loggedIn) {
-                    getUnreadActivities();
-                    newActivitiesWatcher = $interval(function () {
-                        getUnreadActivities();
-                    }, 30000);
-                    authStatusWatcher = $interval(function () {
-                        sAuth.status();
-                    }, 10000);
-                } else if (newActivitiesWatcher) {
-                    $interval.cancel(newActivitiesWatcher);
-                    $interval.cancel(authStatusWatcher);
-                    newActivitiesWatcher = undefined;
-                    authStatusWatcher = undefined;
-                    self.unreadActivitiesCount = 0;
-                }
-            });
 
         $rootScope.$watch(
             function () {

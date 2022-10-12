@@ -125,4 +125,14 @@ angular
         });
     };
 
+    sAttachment.save = function (topicId, data) {
+        var path = sLocation
+            .getAbsoluteUrlApi('/api/users/self/topics/:topicId/attachments')
+            .replace(':topicId', topicId);
+        return $http.post(path, data).then(function (res) {
+            return res.data.data;
+        }, function (response) {
+            return $q.reject(response);
+        });
+    };
 }]);

@@ -51,7 +51,7 @@
                             <div class="setting_title" translate="MODALS.TOPIC_NOTIFICATION_SETTINGS_LBL_TOPIC_NOTIFICATIONS">Topic notifications</div>
                         </div>
                         <div class="settings_cell toggle_cell_wrap" ng-class="{'toggle_cell_off': !$ctrl.settings.allowNotifications, 'toggle_cell_on': $ctrl.settings.allowNotifications}">
-                            <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="$ctrl.settings.allowNotifications" ng-click="$ctrl.toggleAllNotifications()"></div>
+                            <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" model="$ctrl.settings.allowNotifications" ng-click="$ctrl.toggleAllNotifications()"></cos-toggle>
                         </div>
                     </div>
                     <div class="line lightest_line"></div>

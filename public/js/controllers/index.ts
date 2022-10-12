@@ -1,4 +1,3 @@
-import './ActivitiesCtrl';
 import './ActivitiesWidgetCtrl';
 import './forms/AddEidCtrl';
 import './forms/AddEmailCtrl';
@@ -24,10 +23,6 @@ import './forms/TopicReportResolveFormCtrl';
 import './forms/TopicReportReviewFormCtrl';
 import './forms/TopicNotificationsCtrl';
 import './forms/UserConsentFormCtrl';
-import './HomeCtrl';
-import './PartnerCtrl';
-import './SearchCtrl';
-import './TopicAttachmentsCtrl';
 import './TopicCommentVoteCtrl';
 import './TopicCtrl';
 import './TopicFollowUpCtrl';

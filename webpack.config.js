@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'public', 'js'),
         compareBeforeEmit: true,
-        filename: "bundle.js"
+        filename: "citizenos-fe.bundle.js"
     },
     optimization: {
         minimize: false
@@ -31,6 +31,7 @@ module.exports = {
                       loader: "css-loader",
                       options: {
                         sourceMap: true,
+                        url: false,
                       },
                     },
                     {
@@ -50,7 +51,7 @@ module.exports = {
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
-          filename: "../styles/[name].css",
+          filename: "../styles/citizenos-fe.bundle.css",
           chunkFilename: "[id].css",
         }),
         new webpack.ContextReplacementPlugin(
@@ -61,7 +62,7 @@ module.exports = {
             {} // a map of your routes
         ),
         new webpack.ProvidePlugin({
-            qrcode: 'qrcode-generator',
+            qrcode: 'qrcode-generator'
         })
     ],
 }

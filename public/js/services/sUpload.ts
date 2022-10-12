@@ -24,7 +24,10 @@ angular
             data: formData,
             headers: {'Content-Type': undefined}
         }).then(function (result) {
+            console.log('result', result)
             return result.data;
+        }, function (err) {
+            console.log('ERROR',err);
         });
     };
 

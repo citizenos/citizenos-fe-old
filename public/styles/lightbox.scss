@@ -2513,7 +2513,6 @@
                     position: relative;
 
                     .settings_cell {
-
                         &:first-child {
                             width: 70%;
 
@@ -2549,21 +2548,48 @@
                                     padding-right: 90px;
                                     text-align: center;
                                 }
+
                                 .gray_button {
                                     float: none;
                                     width: 100%;
                                 }
+
                                 .blue_link {
                                     float: none;
                                     margin: 15px 0 0;
                                 }
+
+                                .pink_button {
+                                    float: none;
+                                    width: 100%;
+                                    margin-left: 0;
+                                    margin-top: 10px;
+                                }
                             }
                         }
 
-                        img {
+                        &.profile_image_wrapper {
                             width: 80px;
                             height: 80px;
+                            margin-right: 0px;
                             float: right;
+
+                            .account_picture {
+                                width: 80px;
+                                height: 80px;
+
+                                @include mixins_n_extends.mobile {
+                                    width: 70px;
+                                    height: 70px;
+                                    float: right;
+                                }
+
+                                img {
+                                    width: 80px;
+                                    height: 80px;
+                                    float: right;
+                                }
+                            }
                         }
 
                         &:last-child {

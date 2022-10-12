@@ -27,7 +27,8 @@
       ],
       "script-src-elem": [
         "self",
-        "https://apis.google.com"
+        "https://apis.google.com",
+        "https://js.live.net"
       ],
       "font-src": [
         "self",

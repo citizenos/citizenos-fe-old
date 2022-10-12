@@ -5,6 +5,38 @@
     @extend %default_setup;
     padding: 0 20px 10px 20px;
 
+    .no_results {
+        text-align: center;
+
+        .title_area {
+            h3 {
+                font-weight: 700;
+                font-size: 26px;
+                line-height: 36px;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 24px;
+            }
+        }
+
+        .big_button{
+            .button_cell{
+                .topic_text{
+                    padding: 10px 24px;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+        .no_results_img {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
     .groups_header {
         padding: 0 10px 10px 10px;
         background: vars.$light_gray;
@@ -128,6 +160,7 @@
                 padding: 30px 20px 16px;
                 position: relative;
                 height: 225px;
+                overflow: hidden;
 
                 .group_header {
                     display: table;
@@ -196,7 +229,18 @@
                     width: 100%;
                     border: none;
                 }
+
+                &::before {
+                    content: '\00a0';
+                    position: relative;
+                    display: block;
+                    bottom: 2em;
+                    height: 2em;
+                    background: linear-gradient(to bottom, rgba(vars.$white, 0.3), vars.$white);
+                    margin-bottom: -2em;
+                }
             }
+
         }
     }
 }

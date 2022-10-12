@@ -5,6 +5,8 @@ declare global {
     CITIZENOS: any,
     __config: any,
     hwcrypto: any,
+    Dropbox: any,
+    OneDrive: any,
     prerenderReady: boolean
   }
 }

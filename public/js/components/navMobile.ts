@@ -5,10 +5,10 @@ let navMobile = {
     templateUrl: '/views/default/nav_mobile.html',
     bindings: {},
     controller: ['AppService', class NavController {
-        public sapp;
+        public app;
 
         constructor (AppService) {
-            this.sapp = AppService;
+            this.app = AppService;
         }
     }]
 }

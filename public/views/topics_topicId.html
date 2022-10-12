@@ -167,7 +167,7 @@
 
                         <div class="topic_info print_never" ng-if="!app.editMode">
                             <div class="container_visibility" >
-                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+$ctrl.topic.visibility | uppercase) | translate}}</span>">
+                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+topic.visibility | uppercase) | translate}}</span>">
                                     <div class="table_cell">
                                         <div class="sprite" ng-class="{'sprite-icon-public-topic': !topic.isPrivate(), 'sprite-icon-private-topic': topic.isPrivate()}"></div>
                                     </div>
@@ -336,7 +336,7 @@
                         <div ng-if="topic.visibility === VISIBILITY.public && !topic.report" class="blue_link" ui-sref="topics/view/report" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_REPORT">Report
                             topic
                         </div>
-                        <div class="blue_link" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SET_TOPIC_NOTIFICATIONS" ng-click="$ctrl.app.doShowTopicNotificationSettings(topic.id)">Set topic notifications</div>
+                        <div class="blue_link" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SET_TOPIC_NOTIFICATIONS" ng-click="app.doShowTopicNotificationSettings(topic.id)">Set topic notifications</div>
                     </div>
                 </div>
                 <div class="options_wrap" ng-if="wWidth > 767">

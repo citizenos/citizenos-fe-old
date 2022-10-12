@@ -18,7 +18,7 @@
             <div class="content_top">
                 <div class="container_title" ui-sref="topics/view({topicId: $ctrl.topic.id})" ng-bind="$ctrl.topic.title">Topic title</div>
                 <div class="container_visibility" >
-                    <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+$ctrl.topic.visibility | uppercase) | translate}}</span>">
+                    <div ng-if="$ctrl.topic" class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{'TOOLTIP_TOPIC_VISIBILITY_'+$ctrl.topic.visibility | uppercase | translate}}</span>">
                         <div class="table_cell">
                             <div class="sprite" ng-class="{'sprite-icon-public-topic': !$ctrl.topic.isPrivate(), 'sprite-icon-private-topic': $ctrl.topic.isPrivate()}"></div>
                         </div>
@@ -60,7 +60,7 @@
 
                     <div class="content_item">
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_YOUR_RIGHTS">Your rights</div>
-                        <div class="item_content">
+                        <div class="item_content" ng-if="$ctrl.topic">
                             <div class="item_text">{{'TXT_TOPIC_LEVELS_' + $ctrl.topic.permission.level | uppercase | translate}}</div>
                         </div>
                         <div class="clearer"></div>
@@ -104,7 +104,7 @@
 
                     <div class="content_item">
                         <div class="item_description" translate="VIEWS.MY_TOPICS_TOPICID.LBL_STATUS">Status</div>
-                        <div class="item_content">
+                        <div class="item_content" ng-if="$ctrl.topic">
                             <div class="item_text">{{'TXT_TOPIC_STATUS_' + $ctrl.topic.status | uppercase | translate}}</div>
                         </div>
                         <div class="clearer"></div>

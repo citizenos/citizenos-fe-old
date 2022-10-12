@@ -11,13 +11,14 @@ import * as angular from 'angular';
     module
         .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', '$transitionsProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', '$logProvider', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, $transitionsProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig, $logProvider) {
             var langReg = Object.keys(cosConfig.language.list).join('|');
+            console.log($transitionsProvider);
             $logProvider.debugEnabled(true);
+
             $locationProvider.html5Mode({
                 enabled: true,
                 rewriteLinks: true,
                 requireBase: true
             });
-
             // Send cookies with API request
             $httpProvider.defaults.withCredentials = true;
 
@@ -135,7 +136,6 @@ import * as angular from 'angular';
                             if (sAuth.user.loggedIn) {
                                 return $q.resolve(true);
                             }
-
                             // If new window is opened while login-flow is in-progress without adding new e-mail we logout the current user to prevent taking over accounts
                             if ($cookies.getObject('addEmailInProgress')) {
                                 $cookies.remove('addEmailInProgress');
@@ -188,7 +188,7 @@ import * as angular from 'angular';
                                 );
                         }]
                     },
-                    controller: ['$rootScope', 'AppService', function ($rootScope, AppService) {
+                    controller: ['$rootScope', '$log', '$state', 'AppService', 'TopicInviteUser', function ($rootScope, $log, $state, AppService, TopicInviteUser) {
                         $rootScope.app = AppService;
                     }]
                 })
@@ -222,7 +222,7 @@ import * as angular from 'angular';
                 .state('home', {
                     url: '/?topicStatus',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('public/groups', {
                     url: '/groups?groupStatus',
@@ -266,58 +266,58 @@ import * as angular from 'angular';
                 .state('category', {
                     url: '/topics/categories/:category?topicStatus',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('citizenos', {
                     url: '/citizenos',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('opinionfestival', {
                     url: '/opinionfestival',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('hacktivistcommunity', {
                     url: '/hacktivistcommunity?topicStatus',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('pyln', {
                     url: '/pyln?topicStatus',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('thirtyfourislandproject', {
                     url: '/thirtyfourislandproject?topicStatus',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('eestijazziarengusuunad', {
                     url: '/eestijazziarengusuunad?topicStatus',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('thetwelvemovie', {
                     url: '/thetwelvemovie?topicStatus',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('eurochangemakers', {
                     url: '/eurochangemakers?topicStatus',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('biotoopia', {
                     url: '/biotoopia?topicStatus',
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('account', {
                     url: '/account',
                     abstract: true,
                     parent: 'main',
-                    templateUrl: '/views/home.html'
+                    template: '<home></home>'
                 })
                 .state('account/settings', {
                     url: '/myaccount?tab',
@@ -531,16 +531,26 @@ import * as angular from 'angular';
                     controller: ['$scope', '$state', '$transitions', '$stateParams', '$timeout', 'ngDialog', function ($scope, $state, $transitions, $stateParams, $timeout, ngDialog) {
                         var data = angular.extend({}, $stateParams);
                         var createDialog = function () {
+                            ngDialog.closeAll();
                             var dialog = ngDialog.open({
-                                template: '/views/modals/topic_settings.html',
-                                data: data,
-                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                                template: '<topic-settings></topic-settings>',
+                                plain: true,
+                                preCloseCallback: function (value) {
+                                    if (value === '$closeButton') {
+                                        return true;
+                                    }
+                                    return false;
+                                }
+                            });
+                            dialog.closePromise.then(function (data) {
+                                if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+                                    $timeout(function () {
+                                        $state.go('^');
+                                    });
+                                }
                             });
                         };
                         createDialog();
-                        $transitions.onSuccess({}, function(transition) {
-                            if (transition.from().name === transition.to().name) createDialog();
-                        });
                     }]
                 })
                 .state('topics/view/invite', {
@@ -606,10 +616,8 @@ import * as angular from 'angular';
                     parent: 'topics/view',
                     reloadOnSearch: false,
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
                             template: '<topic-attachment-modal></topic-attachment-modal>',
-                            data: data,
                             plain: true
                         });
                         dialog.closePromise.then(function (data) {
@@ -1027,7 +1035,7 @@ import * as angular from 'angular';
                 .state('topicsTopicIdInvitesUsers', { // Cannot use dot notation (topics.topicId.invites.users) as that would make the page child of "topics" and we don't want that.
                     url: '/topics/:topicId/invites/users/:inviteId',
                     parent: 'main',
-                    templateUrl: '/views/home.html',
+                    template: '<home></home>',
                     resolve: {
                         rTopicInviteUser: ['$stateParams', '$q', '$log', 'TopicInviteUser', 'sNotification', function ($stateParams, $q, $log, TopicInviteUser, sNotification) {
                             var params = {
@@ -1136,7 +1144,7 @@ import * as angular from 'angular';
                 .state('groupsGroupIdInvitesUsers', { // Cannot use dot notation (groups.groupId.invites.users) as that would make the page child of "groups" and we don't want that.
                     url: '/groups/:groupId/invites/users/:inviteId',
                     parent: 'main',
-                    templateUrl: '/views/home.html',
+                    template: '<home></home>',
                     resolve: {
                         rGroupInviteUser: ['$stateParams', '$q', '$log', 'GroupInviteUser', 'sNotification', function ($stateParams, $q, $log, GroupInviteUser, sNotification) {
                             var params = {
@@ -1255,7 +1263,9 @@ import * as angular from 'angular';
                                 });
                         }]
                     },
-                    controller: 'PartnerCtrl',
+                    controller: ['$scope', 'rPartner', function ($scope, rPartner) {
+                        $scope.partner = rPartner;
+                    }],
                     templateUrl: '/views/layouts/partner.html'
                 })
                 .state('partners/login', {

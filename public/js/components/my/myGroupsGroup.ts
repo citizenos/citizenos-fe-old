@@ -54,7 +54,10 @@ let myGroupsGroup = {
             this.ngDialog = ngDialog;
             this.app = AppService;
             this.group = GroupService.groups.find((item) => { if (item.id === $stateParams.groupId)return item});
-            if (sAuth.user.loggedIn) {
+            if (!this.group) {
+                return $state.go('my/groups', {}, {reload:true});
+            }
+            if (sAuth.user.loggedIn && this.group?.id) {
                 this.loadMemberTopicsList();
                 this.loadMemberUsersList();
             }
@@ -508,16 +511,15 @@ let myGroupsGroup = {
         };
 
         doDeleteGroup () {
-            const self = this;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_delete_confirm.html'
                 })
                 .then(() => {
-                    self.group
-                        .$delete()
+                    this.Group
+                        .delete(this.group)
                         .then(() => {
-                            self.$state.go('my/groups', null, {reload: true});
+                            this.$state.go('my/groups', null, {reload: true});
                         });
                 }, angular.noop);
         };

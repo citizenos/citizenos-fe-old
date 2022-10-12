@@ -17,6 +17,7 @@ angular
                     params: {topicId: '@topicId', attachmentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     headers: {
                         'content-type': function (data) {
+                            console.log(data);
                             if (data.data.file) {
                                 return undefined;
                             }
@@ -51,9 +52,9 @@ angular
                     params: {topicId: '@topicId', attachmentId: '@id', prefix: sAuth.getUrlPrefix, userId: sAuth.getUrlUserId},
                     transformRequest: function (data) {
                         var requestObject = {};
-                        data.toJSON().forEach(function (value, key) { // Remove all object properties as we have none we care about in the server side
-                            if (!isObject(value)) {
-                                requestObject[key] = value;
+                        Object.keys(data).forEach(function (key) { // Remove all object properties as we have none we care about in the server side
+                            if (!isObject(data[key])) {
+                                requestObject[key] = data[key];
                             }
                         });
                         return angular.toJson(requestObject);

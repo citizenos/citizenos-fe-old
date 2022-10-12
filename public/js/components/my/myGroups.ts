@@ -3,18 +3,10 @@ import * as angular from 'angular';
 let my = {
     selector: 'myGroups',
     templateUrl: '/views/components/my.html',
-    controller: ['$log', '$state', '$stateParams', '$location', 'sAuth', 'Topic', 'Group', 'GroupMemberTopic', 'GroupService', 'AppService', class MyGroupsController {
+    controller: class MyGroupsController {
         public options;
         public itemsList = [];
         public app;
-        private sAuth;
-        private Topic;
-        private Group;
-        private GroupService;
-        private GroupMemberTopic;
-        private $state;
-        private $stateParams;
-        private $location;
         private groupMemberTopicsVisible = []; // goupId-s of which GroupMemberTopic list is expanded
 
         public groupFilters = [
@@ -70,73 +62,27 @@ let my = {
             }
         ];
 
-        constructor ($log, $state, $stateParams, $location, sAuth, Topic, Group, GroupMemberTopic, GroupService, AppService) {
+        constructor ($log, $state, $scope, $stateParams, private GroupMemberTopic, private GroupService, AppService) {
             $log.debug('MyController');
-            this.Topic = Topic;
-            this.Group = Group;
-            this.sAuth = sAuth;
-            this.GroupService = GroupService;
-            this.GroupMemberTopic = GroupMemberTopic;
-            this.$state = $state;
-            this.$stateParams = $stateParams;
-            this.$location = $location;
             this.app = AppService;
             $log.debug('MyCtrl', $state);
             this.loadItems();
-            console.log('MyCtrl', this.itemsList);
+            if ($state.$current.name === 'my/groups') {
+                $scope.$watch(() => GroupService.isLoading, (newVal, oldVal) => {
+                    if (newVal === false) {
+                        const params = angular.extend({}, $stateParams);
+                        params.groupId = GroupService.groups[0].id;
+                        $state.transitionTo('my/groups/groupId', params, {reload: false});
+                    }
+                });
+            }
         };
 
         loadItems () {
-            const self = this;
-            console.log(this.GroupService);
             this.itemsList = this.GroupService.groups;
-          /*  return this.Group.query().then((items) => {
-                console.log(items);
-                self.itemsList = items;
-                const params = angular.extend({}, this.$stateParams);
-                if (self.$state.$current.name !== 'my/groups/create') {
-                    params.groupId = items[0].id;
-                    self.$state.transitionTo('my/groups/groupId', params);
-                }
-            });*/
         }
-/*
-        var filterParam = $stateParams.filter || filters[0].id;
-        $scope.filters = {
-            items: filters,
-            selected: _.find(filters, {id: filterParam}) || _.chain(filters).map('children').flatten().find({id: filterParam}).value() || filters[0]
-        };
 
-        private groupFilters = {
-            items: groupFilters,
-            selected: _.find(groupFilters, {id: filterParam}) || _.chain(groupFilters).map('children').flatten().find({id: filterParam}).value() || groupFilters[0]
-        }*/
-
-     /*   $scope.$watch('itemList.length',
-            function (newList) {
-                if (!newList) return;
-                // Navigate to first item in the list on big screens.
-                if ($rootScope.wWidth > 750) {
-
-                    $timeout(function () {
-                        if ($state.is('my/groups') || $state.is('my/topics')) {
-                            var item = $scope.itemList[0];
-                            console.log(item);
-                            if ($scope.isGroup(item)) {
-                                $state.go('my/groups/groupId', {
-                                    groupId: item.id,
-                                    filter: 'grouped'
-                                });
-                            } else {
-                                $state.go('my/topics/topicId', {topicId: item.id});
-                            }
-                        }
-                    });
-                }
-            }, true
-        );*/
         doToggleGroupTopicList (group) {
-            const self = this;
             const indexGroupIdVisible = this.groupMemberTopicsVisible.indexOf(group.id);
 
             if (indexGroupIdVisible < 0) { // not visible
@@ -145,14 +91,14 @@ let my = {
                     .then((topics) => {
                         group.members.topics.rows = topics;
                         group.members.topics.count = topics.length;
-                        self.groupMemberTopicsVisible.push(group.id);
+                        this.groupMemberTopicsVisible.push(group.id);
                     });
             } else { // already visible, we hide
                 this.groupMemberTopicsVisible.splice(indexGroupIdVisible, 1);
             }
         };
 
-    }]
+    }
 };
 
 angular

@@ -26,6 +26,7 @@ let groupInviteUser = {
         </div>
     </div>
     <div class="pretend_td">
+        {{$ctrl.invite.level}}
         <span class="user_level_text">{{'TXT_TOPIC_LEVELS_' + $ctrl.invite.level | uppercase | translate}}</span>
     </div>
     <div class="pretend_td recycle_bin_wrap">

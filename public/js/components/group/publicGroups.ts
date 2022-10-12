@@ -5,25 +5,12 @@ let publicGroups = {
     selector: 'publicGroups',
     templateUrl: '/views/public_groups.html',
     bindings: {},
-    controller: ['$state', '$log', 'sAuth', 'Group', 'GroupMemberUser', 'PublicGroupService', 'ngDialog', 'AppService', class PublicGroupsController {
-        private $state;
-        private $log;
-        private sAuth;
-        public Group;
-        private GroupMemberUser;
-        private PublicGroupService;
-        private ngDialog;
+    controller: class PublicGroupsController {
         public app;
         public groupList = [];
         public order = 'ASC';
 
-        constructor ($state, $log, sAuth, Group, GroupMemberUser, PublicGroupService, ngDialog, AppService) {
-            this.$state = $state;
-            this.sAuth = sAuth;
-            this.Group = Group;
-            this.PublicGroupService = PublicGroupService;
-            this.GroupMemberUser = GroupMemberUser
-            this.ngDialog = ngDialog;
+        constructor (private $state, private $log, private sAuth, public Group, private GroupMemberUser, private PublicGroupService, private ngDialog, AppService) {
             this.app = AppService;
             PublicGroupService.reload();
             this.groupList = PublicGroupService.groups;
@@ -31,7 +18,7 @@ let publicGroups = {
 
         createGroup () {
             const dialog = this.ngDialog.open({
-                template: '<group-create></group-create>',
+                template: '<group-create visibility="public"></group-create>',
                 plain: true
             });
 
@@ -82,7 +69,7 @@ let publicGroups = {
                         });
                 });
         };
-    }]
+    }
 }
 
 angular

@@ -160,7 +160,14 @@
                         th {
                             padding: 0 20px;
                             font-weight: normal;
+                            width: auto;
+                            text-align: right;
+                            &:first-child {
+                                text-align: left;
+                                width: 50%;
+                            }
                         }
+
                         td {
                             padding: 0 20px;
                             vertical-align: middle;
