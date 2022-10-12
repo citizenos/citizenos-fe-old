@@ -5,7 +5,7 @@ let search = {
     selector: 'search',
     templateUrl: '/views/default/search.html',
     bindings: {},
-    controller: class SearchController {
+    controller: ['$state', '$log', 'sAuth', 'sSearch', 'AppService', class SearchController {
         public app;
         public form = {
             searchInput: null
@@ -212,7 +212,7 @@ let search = {
             this.searchResults.combined = [];
             this.app.showSearch = false;
         };
-    }
+    }]
 };
 angular
     .module('citizenos')

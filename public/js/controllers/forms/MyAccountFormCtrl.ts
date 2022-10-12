@@ -6,7 +6,7 @@ let myAccount = {
     selector: 'myAccount',
     templateUrl: '/views/account.html',
     bindings: {},
-    controller: class MyAccountController {
+    controller: ['$log', '$stateParams', '$document', '$window', 'ngDialog', 'sNotification', 'sAuth', 'sUser', 'sUpload', 'sTopic', 'AppService', class MyAccountController {
         public form = {
             name: null,
             email: null,
@@ -29,7 +29,7 @@ let myAccount = {
         public imageFile;
         private ITEMS_COUNT_PER_PAGE = 10;
 
-        constructor (private $log, private $stateParams, private $document, private $window, private ngDialog, private sNotification, private sAuth, private sUser, private sUpload, private sTopic, AppService) {
+        constructor ($log, private $stateParams, private $document, private $window, private ngDialog, private sNotification, private sAuth, private sUser, private sUpload, private sTopic, AppService) {
             $log.debug('MyAccountFormCtrl');
             this.app = AppService;
             this.app.tabSelected = $stateParams.tab || 'profile';
@@ -193,7 +193,7 @@ let myAccount = {
                 }
             );
         };
-    }
+    }]
 }
 angular
     .module('citizenos')

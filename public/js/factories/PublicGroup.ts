@@ -17,4 +17,4 @@ export class PublicGroup extends Group {
 
 angular
   .module("citizenos")
-  .service("PublicGroup", PublicGroup);
+  .service("PublicGroup", ['$http', 'GroupMemberUser', 'sAuth', 'sLocation', PublicGroup]);

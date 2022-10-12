@@ -7,6 +7,7 @@ module.exports = {
     entry: "./public/js/main.ts",
     watch: true,
     bail: false,
+    devtool: "source-map",
     output: {
         path: path.resolve(__dirname, 'public', 'js'),
         compareBeforeEmit: true,
@@ -20,6 +21,11 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                enforce: "pre",
+                use: ["source-map-loader"],
+            },
             { test: /\.tsx?$/, loader: "ts-loader" },
             {
                 test: /\.s[ac]ss$/i,

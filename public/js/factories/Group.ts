@@ -101,4 +101,4 @@ export class Group {
 
 angular
   .module("citizenos")
-  .service("Group", Group);
+  .service("Group", ['$http', 'GroupMemberUser', 'sAuth', 'sLocation', Group]);

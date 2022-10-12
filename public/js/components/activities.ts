@@ -6,7 +6,7 @@ let activityFeed = {
     selector: 'activityFeed',
     templateUrl: '/views/modals/activity_modal.html',
     bindings: {},
-    controller: class ActivityController {
+    controller: ['$translate', 'sActivity', 'ngDialog', 'AppService', class ActivityController {
         public activitiesOffset = 0;
         public activitiesLimit = 25;
         public activities = [];
@@ -17,16 +17,8 @@ let activityFeed = {
         public app;
         public showLoadMoreActivities;
 
-        private sActivity;
-        private $translate;
-        private ngDialog;
-
-        constructor ($translate, sActivity, ngDialog, AppService) {
+        constructor (private $translate, private sActivity, private ngDialog, AppService) {
             this.app = AppService;
-            this.$translate = $translate;
-            this.sActivity = sActivity;
-            this.ngDialog = ngDialog;
-
             this.loadActivities(null, null);
         }
 
@@ -121,8 +113,9 @@ let activityFeed = {
             const dialog = $(e.target).closest('.ngdialog');
             this.ngDialog.close(dialog.attr('id'), '$closeButton');
         }
-    }
-}
+    }]
+};
+
 angular
     .module('citizenos')
     .component(activityFeed.selector, activityFeed);

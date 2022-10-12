@@ -73,4 +73,4 @@ export class PublicGroupService {
 
 angular
   .module("citizenos")
-  .service("PublicGroupService", PublicGroupService);
+  .service("PublicGroupService", ['PublicGroup', PublicGroupService]);

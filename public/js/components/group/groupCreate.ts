@@ -10,7 +10,7 @@ let groupCreate = {
     bindings: {
         visibility: '@?'
     },
-    controller: class GroupCreateController {
+    controller: ['$state', '$scope', '$stateParams', '$document', '$log', 'ngDialog', 'sAuth', 'sSearch', 'sUpload', 'sLocation', 'sNotification', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', 'GroupService', 'AppService', class GroupCreateController {
         public app;
         private visibility = null;
         public levels = {
@@ -79,7 +79,7 @@ let groupCreate = {
                 name: 'SHARE'
             }
         ];
-        constructor (private $state, $scope, $stateParams, private $document, private $timeout, private $log, private ngDialog, private sAuth, private sSearch, private sUpload, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupMemberTopic, private GroupInviteUser, private GroupJoin, private GroupService, AppService) {
+        constructor (private $state, $scope, $stateParams, private $document, private $log, private ngDialog, private sAuth, private sSearch, private sUpload, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupMemberTopic, private GroupInviteUser, private GroupJoin, private GroupService, AppService) {
             $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
             this.app = AppService;
             this.app.tabSelected = $stateParams.tab || 'settings';
@@ -486,7 +486,7 @@ let groupCreate = {
             return this.canUpdate();
         };
 
-    }
+    }]
 }
 angular
     .module('citizenos')

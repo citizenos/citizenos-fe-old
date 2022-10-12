@@ -5,12 +5,12 @@ let publicGroups = {
     selector: 'publicGroups',
     templateUrl: '/views/public_groups.html',
     bindings: {},
-    controller: class PublicGroupsController {
+    controller: ['$state', 'sAuth', 'Group', 'GroupMemberUser', 'PublicGroupService', 'ngDialog', 'AppService', class PublicGroupsController {
         public app;
         public groupList = [];
         public order = 'ASC';
 
-        constructor (private $state, private $log, private sAuth, public Group, private GroupMemberUser, private PublicGroupService, private ngDialog, AppService) {
+        constructor (private $state, private sAuth, public Group, private GroupMemberUser, private PublicGroupService, private ngDialog, AppService) {
             this.app = AppService;
             PublicGroupService.reload();
             this.groupList = PublicGroupService.groups;
@@ -69,8 +69,8 @@ let publicGroups = {
                         });
                 });
         };
-    }
-}
+    }]
+};
 
 angular
     .module('citizenos')

@@ -5,7 +5,7 @@ import * as $ from 'jquery';
 let topicAttachmentModal = {
     selector: 'topicAttachmentModal',
     templateUrl: '/views/modals/topic_attachments.html',
-    controller: class TopicAttachmentsController {
+    controller: ['$log', '$document', '$translate', 'sNotification', 'sUpload', 'sAttachment', 'TopicAttachment', 'ngDialog', 'AppService', class TopicAttachmentsController {
         public form = {
             files: [],
             uploadfiles: []
@@ -14,8 +14,8 @@ let topicAttachmentModal = {
         public topic;
         private app;
 
-        constructor (private $state, private $stateParams, $log, private $document, private $translate, private sNotification, private sUpload, private sAttachment, private TopicAttachment, private ngDialog, AppService) {
-            $log.debug('TopicAttachmentsCtrl', $state, $stateParams);
+        constructor ($log, private $document, private $translate, private sNotification, private sUpload, private sAttachment, private TopicAttachment, private ngDialog, AppService) {
+            $log.debug('TopicAttachmentsCtrl');
             this.app = AppService;
             this.topic = AppService.topic;
             this.init();
@@ -151,7 +151,7 @@ let topicAttachmentModal = {
                     }
                 }, angular.noop);
         };
-    }
+    }]
 }
 
 angular

@@ -6,7 +6,7 @@ let home = {
     selector: 'home',
     templateUrl: '/views/home.html',
     bindings: {},
-    controller: class HomeController {
+    controller: ['$log', '$location', '$window','$state', '$stateParams', 'sTopic', 'AppService', class HomeController {
         private FILTERS_ALL = 'all';
 
         private topicList = [];
@@ -157,7 +157,7 @@ let home = {
             this.$window.location.href = url;
         }
 
-    }
+    }]
 };
 
 angular

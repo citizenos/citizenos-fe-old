@@ -3,7 +3,7 @@ import * as angular from 'angular';
 let my = {
     selector: 'myGroups',
     templateUrl: '/views/components/my.html',
-    controller: class MyGroupsController {
+    controller: ['$log', '$state', '$scope', '$stateParams', 'GroupMemberTopic', 'GroupService', 'AppService', class MyGroupsController {
         public options;
         public itemsList = [];
         public app;
@@ -98,7 +98,7 @@ let my = {
             }
         };
 
-    }
+    }]
 };
 
 angular
