@@ -6,20 +6,14 @@ let activityFeed = {
     selector: 'activityFeed',
     templateUrl: '/views/modals/activity_modal.html',
     bindings: {},
-    controller: ['$translate', 'sActivity', 'ngDialog', 'AppService', class ActivityController {
-        public activitiesOffset = 0;
-        public activitiesLimit = 25;
-        public activities = [];
-        public filter = 'all';
-        public activityfilters = ['all', 'userTopics', 'userGroups', 'user', 'self'];
-        private lastViewTime;
+    controller: ['$translate', 'sActivity', 'ActivityService', 'ngDialog', 'AppService', class ActivityController {
         public filer;
         public app;
-        public showLoadMoreActivities;
 
-        constructor (private $translate, private sActivity, private ngDialog, AppService) {
+        constructor (private $translate, private sActivity, private ActivityService, private ngDialog, AppService) {
             this.app = AppService;
-            this.loadActivities(null, null);
+            this.app.unreadActivitiesCount = 0;
+            ActivityService.reload();
         }
 
         keyCounter (objIn) {
@@ -33,58 +27,6 @@ let activityFeed = {
             });
 
             return returnArray;
-        };
-
-        loadActivities (offset, limit) {
-            const self = this;
-            this.activitiesOffset = offset || this.activitiesOffset;
-            if (offset === 0) {
-                this.activitiesOffset = 0;
-            }
-
-            this.activitiesLimit = limit || this.activitiesLimit;
-            if (this.activities.length && !offset && !limit) {
-                this.activitiesOffset += this.activitiesLimit;
-            }
-
-            let filterValue = this.filter;
-            if (filterValue === 'all') {
-                filterValue = null;
-            }
-
-            this.sActivity
-                .getActivities(this.activitiesOffset, this.activitiesLimit, filterValue)
-                .then((activities) => {
-                    self.showLoadMoreActivities = activities.length > 0;
-                    self.app.unreadActivitiesCount = 0;
-                    activities.forEach((activityGroups, groupKey) => {
-                        Object.keys(activityGroups.values).forEach((key) => {
-                            var activity = activityGroups.values[key];
-
-                            if (activity.data.type === 'View' && activity.data.object && activity.data.object['@type'] === 'Activity') {
-                                if (!self.lastViewTime || activity.updatedAt > self.lastViewTime) {
-                                    self.lastViewTime = activity.updatedAt;
-                                }
-                                activities.splice(groupKey, 1);
-                            } else if (!self.lastViewTime || activity.updatedAt > self.lastViewTime) {
-                                activity.isNew = '-new';
-                            }
-                        });
-                    });
-
-                    self.activities = self.activities.concat(activities);
-
-                    if (self.activities.length <= 10 && self.showLoadMoreActivities) {
-                        self.loadActivities(null, null);
-                    }
-
-                });
-        };
-
-        filterActivities (filter) {
-            this.filter = filter;
-            this.activities = [];
-            this.loadActivities(0, null);
         };
 
         showActivityDescription (activity) {

@@ -148,8 +148,7 @@
             box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
             width: 284px;
             height: 336px;
-            display: block;
-            float: left;
+            display: inline-block;
             margin-right: 16px;
             @include mixins_n_extends.mobile {
                 float:none;
@@ -247,5 +246,8 @@
             }
 
         }
+    }
+    .blue_button_wrap {
+        position: relative;
     }
 }

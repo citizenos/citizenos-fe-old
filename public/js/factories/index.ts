@@ -1,3 +1,4 @@
+import './ActivityService';
 import './AppService';
 import './cosHttpApiErrorInterceptor';
 import './cosHttpApiUnauthorizedInterceptor';

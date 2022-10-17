@@ -17,7 +17,7 @@ export class TopicInviteUserService {
     constructor(private TopicInviteUser) {
         this.loadUsers();
     }
-    getTopicMemberUser (id) {
+    getTopicInviteUser (id) {
         for (var i = 0; i < this.users.length; i++) {
           const obj = this.users[i];
           if (obj.id == id) {
@@ -27,10 +27,12 @@ export class TopicInviteUserService {
       }
     doSearch () {
         this.page = 1;
+        this.offset = 0;
         this.users = [];
         this.loadUsers();
     }
     doOrder(orderBy, order?) {
+        this.offset = 0;
         this.page = 1;
         this.orderBy = orderBy;
         if (!order && this.order === 'ASC') {
@@ -42,6 +44,8 @@ export class TopicInviteUserService {
         this.loadUsers();
     }
     reload () {
+        this.page = 1;
+        this.offset = 0;
         this.users = [];
         this.loadUsers();
     }

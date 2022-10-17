@@ -8,8 +8,8 @@ angular
         function ($window, $document) {
             return {
                 scope: {
-                    onScroll: '=?',
-                    onScrollWindow: '=?'
+                    onScroll: '&',
+                    onScrollWindow: '&'
                 },
                 link: function (scope, elem, attrs) {
                     if (scope.onScroll) {

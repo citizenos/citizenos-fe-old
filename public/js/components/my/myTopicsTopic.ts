@@ -30,8 +30,9 @@ let myTopicsTopic = {
             TopicMemberUserService.topicId = $stateParams.topicId;
             TopicMemberUserService.reload();
             TopicMemberGroupService.topicId = $stateParams.topicId;
-            TopicActivitiesService.topicId = $stateParams.topicId;
             TopicMemberGroupService.reload();
+            TopicActivitiesService.topicId = $stateParams.topicId;
+            TopicActivitiesService.reload();
             if ($stateParams.openTabs) {
                 this.userList.isVisible = false;
                 this.groupList.isVisible = false;
@@ -49,7 +50,7 @@ let myTopicsTopic = {
                             break;
                         case 'activity_feed':
                             this.app.activityFeed = true;
-                            TopicActivitiesService.reload();
+                            break;
                         case 'vote_results':
                             this.voteResults.isVisible = true;
                             break;
@@ -103,9 +104,7 @@ let myTopicsTopic = {
         };
 
         doToggleActivities () {
-            if (!this.app.activityFeed) {
-                this.TopicActivitiesService.reload();
-            }
+            this.TopicActivitiesService.reload();
             this.app.activityFeed = !this.app.activityFeed;
         };
 

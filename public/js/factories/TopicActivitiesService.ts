@@ -11,7 +11,7 @@ export class TopicActivitiesService {
     constructor(private sActivity) {
         this.loadActivities();
     }
-    getTopicMemberUser (id) {
+    getTopicActivity (id) {
         for (var i = 0; i < this.activities.length; i++) {
           const obj = this.activities[i];
           if (obj.id == id) {
@@ -21,6 +21,7 @@ export class TopicActivitiesService {
     }
 
     reload () {
+        this.offset = 0;
         this.activities = [];
         this.loadActivities();
     }
@@ -47,7 +48,6 @@ export class TopicActivitiesService {
                 });
 
                 this.activities = this.activities.concat(activities);
-                console.log(this.activities);
                 this.isLoading = false;
             });
         }

@@ -91,6 +91,10 @@
             </div>
         </div>
     </div>
+
+    <div id="blue_button_wrap" ng-click="$ctrl.PublicGroupService.loadMore()" ng-if="$ctrl.PublicGroupService.countTotal > $ctrl.PublicGroupService.groups.length">
+        <div class="blue_button" ng-class="{disabled: $ctrl.isTopicListLoading}" translate="VIEWS.PUBLIC_GROUPS.BTN_LOAD_MORE_GROUPS">Load more groups</div>
+    </div>
 </div>
 
 <div ui-view></div>

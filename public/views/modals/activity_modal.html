@@ -12,7 +12,7 @@
                     <div cos-dropdown class="classic_dropdown">
 
                         <div class="dropdown_selection">
-                            <div class="dropdown_text medium" translate="ACTIVITY_FEED.FILTER_{{$ctrl.filter.toUpperCase()}}">
+                            <div class="dropdown_text medium" translate="ACTIVITY_FEED.FILTER_{{$ctrl.ActivityService.filter.toUpperCase()}}">
                                 Show all activity ordered by time
                             </div>
 
@@ -28,7 +28,7 @@
                         <div class="dropdown">
 
                             <!-- NO CATEGORY -->
-                            <div class="dropdown_item" ng-repeat="(key, filter) in $ctrl.activityfilters" ng-click="$ctrl.filterActivities(filter)">
+                            <div class="dropdown_item" ng-repeat="(key, filter) in $ctrl.ActivityService.activityfilters" ng-click="$ctrl.ActivityService.filterActivities(filter)">
                                 <div class="item_name medium" translate="ACTIVITY_FEED.FILTER_{{filter.toUpperCase()}}">
                                     Show all activity ordered by time
                                 </div>
@@ -54,11 +54,11 @@
 
 
             <!-- CONFIRM CONTENT -->
-            <div class="lightbox_content" cos-scroll on-scroll="$ctrl.loadActivities">
+            <div class="lightbox_content" cos-scroll on-scroll="$ctrl.ActivityService.loadMore()">
                 <div class="lightbox_section">
                     <div class="activity_wrap modal">
                         <div class="activity_area">
-                            <activity item="group" ng-repeat="(key, group) in $ctrl.activities""></activity>
+                            <activity item="group" ng-repeat="(key, group) in $ctrl.ActivityService.activities""></activity>
                         </div>
                     </div>
                 </div>

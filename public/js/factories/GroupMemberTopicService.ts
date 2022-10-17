@@ -17,7 +17,7 @@ export class GroupMemberTopicService {
     constructor(private GroupMemberTopic) {
         this.loadTopics();
     }
-    getTopicMemberUser (id) {
+    getGroupMemberTopic (id) {
         for (var i = 0; i < this.topics.length; i++) {
           const obj = this.topics[i];
           if (obj.id == id) {
@@ -26,11 +26,13 @@ export class GroupMemberTopicService {
         }
     }
     doSearch () {
+        this.offset = 0;
         this.page = 1;
         this.topics = [];
         this.loadTopics();
     }
     doOrder(orderBy, order?) {
+        this.offset = 0;
         this.page = 1;
         this.orderBy = orderBy;
         if (!order && this.order === 'ASC') {
@@ -42,6 +44,8 @@ export class GroupMemberTopicService {
         this.loadTopics();
     }
     reload () {
+        this.offset = 0;
+        this.page = 1;
         this.topics = [];
         this.loadTopics();
     }
