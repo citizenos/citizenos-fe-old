@@ -4,71 +4,66 @@ let topicVoteCast = {
     selector: 'topicVoteCast',
     templateUrl: '/views/components/topic_vote_cast.html',
     bindings: {
-        visibility: '=',
-        topicId: '=',
-        vote: '=',
-        status: '='
+        vote: '='
     },
-    controller: ['$log', '$state', '$stateParams', 'Topic', 'Vote', 'TopicVote', 'VoteDelegation', 'sNotification', 'AppService', 'ngDialog', class TopicVoteCastController {
+    controller: ['$log', 'Topic', 'Vote', 'TopicVote', 'VoteDelegation', 'sNotification', 'AppService', 'ngDialog', 'sTopic', class TopicVoteCastController {
         public STATUSES;
         public VISIBILITY;
         public VOTE_TYPES;
-        public VOTE_AUTH_TYPES
-        public visibility;
+        public VOTE_AUTH_TYPES;
         private vote;
-        private status;
-        private topicId;
+        private topic;
         public app;
         public userHasVoted;
         public multipleWinners = false;
         public showInfoWinners = false;
-        private sNotification;
-        private ngDialog;
-        private $state;
-        private $stateParams;
-        private Topic;
-        private VoteDelegation;
-        private TopicVote;
 
-        constructor ($log, $state, $stateParams, Topic, Vote, TopicVote, VoteDelegation, sNotification, AppService, ngDialog) {
+        constructor ($log, Topic, Vote, private TopicVote, private VoteDelegation, private sNotification, AppService, private ngDialog, private sTopic) {
             $log.debug('TopicVoteCastController');
-            this.Topic = Topic;
-            this.TopicVote = TopicVote;
-            this.VoteDelegation = VoteDelegation
-            this.ngDialog = ngDialog;
-            this.sNotification = sNotification;
             this.app = AppService;
-            this.$state = $state;
-            this.$stateParams = $stateParams;
+            this.topic = this.app.topic;
             this.STATUSES = Topic.STATUSES;
             this.VISIBILITY = Topic.VISIBILITY;
             this.VOTE_TYPES = Vote.VOTE_TYPES;
             this.VOTE_AUTH_TYPES = Vote.VOTE_AUTH_TYPES;
-           // this.init();
+            this.init();
         };
 
         init () {
-            this.vote.options.rows.forEach(option => {
-                console.log(option)
-                let winnerCount = 0;
-                if (option.selected) {
-                    this.userHasVoted = true;
-                }
-                if (option.winner) {
-                    winnerCount++;
-                    if (winnerCount > 1) {
-                        this.showInfoWinners = true;
-                        this.multipleWinners = true;
+            new this.TopicVote({id: this.topic.voteId, topicId: this.topic.id})
+            .$get()
+            .then((topicVote) => {
+                this.vote = topicVote;
+                this.vote.options.rows.forEach(option => {
+                    console.log(option)
+                    let winnerCount = 0;
+                    if (option.selected) {
+                        this.userHasVoted = true;
                     }
-                }
-            });
+                    if (option.winner) {
+                        winnerCount++;
+                        if (winnerCount > 1) {
+                            this.showInfoWinners = true;
+                            this.multipleWinners = true;
+                        }
+                    }
+                });
+            })
         }
+
+        isRadio (vote, option) {
+            if (option.value === 'Neutral' || option.value === 'Veto') return true;
+            if (vote.type ==='regular' || vote.maxChoices === 1) return true;
+
+            return false;
+        };
+
         hasVoteEndedExpired () {
-            return [this.STATUSES.followUp, this.STATUSES.closed].indexOf(this.status) < 0 && this.vote && this.vote.endsAt && new Date() > new Date(this.vote.endsAt);
+            return [this.STATUSES.followUp, this.STATUSES.closed].indexOf(this.topic.status) < 0 && this.vote && this.vote.endsAt && new Date() > new Date(this.vote.endsAt);
         };
 
         hasVoteEnded () {
-            if ([this.STATUSES.followUp, this.STATUSES.closed].indexOf(this.status) > -1) {
+            if ([this.STATUSES.followUp, this.STATUSES.closed].indexOf(this.topic.status) > -1) {
                 return true;
             }
 
@@ -86,32 +81,8 @@ let topicVoteCast = {
         };
 
         sendToFollowUp (stateSuccess) {
-            const self = this;
-            this.ngDialog
-                .openConfirm({
-                    template: '/views/modals/topic_send_to_followUp_confirm.html'
-                })
-                .then(() => {
-                    return new this.Topic({
-                        id: this.topicId,
-                        status: this.STATUSES.followUp
-                    }).$patch()
-                    .then(() => {
-                        this.app.topics_settings = false;
-                        const stateNext = stateSuccess || 'topics/view/followUp';
-                        const stateParams = angular.extend({}, self.$stateParams, {
-                            editMode: null,
-                            commentId: null
-                        });
-                        self.$state.go(
-                            stateNext,
-                            stateParams,
-                            {
-                                reload: true
-                            }
-                        );
-                    });
-                }, angular.noop);
+            this.app.topicsSettings = false;
+            this.sTopic.changeState(this.app.topic, 'followUp', stateSuccess);
         };
 
         canSubmit () {
@@ -131,7 +102,6 @@ let topicVoteCast = {
         };
 
         doRevokeDelegation () {
-            const self = this;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_vote_revoke_delegation_confirm.html',
@@ -140,12 +110,12 @@ let topicVoteCast = {
                     }
                 })
                 .then(() => {
-                    self.VoteDelegation
-                        .delete({topicId: self.topicId, voteId: self.vote.id})
+                    this.VoteDelegation
+                        .delete({topicId: this.topic.id, voteId: this.vote.id})
                         .$promise
                         .then(() => {
-                            self.vote.topicId = self.topicId;
-                            self.vote.$get();
+                            this.vote.topicId = this.topic.id;
+                            this.vote.$get();
                         });
                 }, angular.noop);
         };
@@ -154,22 +124,21 @@ let topicVoteCast = {
          /*   if (!this.vote.canVote()) {
                 return false;
             }*/
-            const self = this;
-            this.vote.options.rows.forEach(function(opt) {
-                if (option.value === 'Neutral' || option.value === 'Veto' || self.vote.maxChoices ===1) {
+            this.vote.options.rows.forEach((opt) => {
+                if (option.value === 'Neutral' || option.value === 'Veto' || this.vote.maxChoices ===1) {
                     opt.selected = false;
-                } else if (opt.value === 'Neutral' || opt.value === 'Veto' || self.vote.maxChoices ===1) {
+                } else if (opt.value === 'Neutral' || opt.value === 'Veto' || this.vote.maxChoices ===1) {
                     opt.selected = false;
                 }
             });
 
             option.optionId = option.id;
 
-            var selected = this.vote.options.rows.filter((option) => {
+            const selected = this.vote.options.rows.filter((option) => {
                 return !!option.selected;
             });
 
-            var isSelected = selected.find((item) => {
+            const isSelected = selected.find((item) => {
                 if (item.id === option.id) return item;
             });
 
@@ -179,8 +148,6 @@ let topicVoteCast = {
         };
 
         doVote (option) {
-            const self = this;
-            console.log(self);
             let options = [];
             //if (!$scope.topic.canVote()) return;
             if (!option) {
@@ -190,7 +157,7 @@ let topicVoteCast = {
             } else {
                 options = [option];
             }
-            if (options.length > self.vote.maxChoices || options.length < self.vote.minChoices && options[0].value !== 'Neutral' && options[0].value !== 'Veto') {
+            if (options.length > this.vote.maxChoices || options.length < this.vote.minChoices && options[0].value !== 'Neutral' && options[0].value !== 'Veto') {
                 this.sNotification.addError('MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS');
                 return;
             }
@@ -205,12 +172,12 @@ let topicVoteCast = {
                         },
                         preCloseCallback: (data) => {
                             if (data) {
-                                self.vote.topicId = self.topicId;
+                                this.vote.topicId = this.topic.id;
 
-                                self.vote
+                                this.vote
                                     .$get()
                                     .then(() => {
-                                        self.vote.options.rows.forEach((option) => {
+                                        this.vote.options.rows.forEach((option) => {
                                             data.options.forEach((dOption) => {
                                                 option.optionId = option.id;
                                                 if (option.id === dOption.optionId) {
@@ -218,8 +185,8 @@ let topicVoteCast = {
                                                 }
                                             });
                                         });
-                                        self.vote.downloads = {bdocVote: data.bdocUri};
-                                        self.userHasVoted = true;
+                                        this.vote.downloads = {bdocVote: data.bdocUri};
+                                        this.userHasVoted = true;
                                     });
                                 return true;
                             }
@@ -228,39 +195,66 @@ let topicVoteCast = {
 
                 signDialog.closePromise.then((data) => {
                     if(data.value) {
-                        self.sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
+                        this.sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
                     }
                 });
 
                 return;
             } else {
-                const userVote = new self.TopicVote({id: self.vote.id, topicId: self.topicId});
+                const userVote = new this.TopicVote({id: this.vote.id, topicId: this.topic.id});
                 userVote.options = options
                 userVote
                     .$save()
                     .then((data) => {
-                        self.vote.topicId = self.topicId;
-                        self.sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
-                        self.getVote();
+                        this.vote.topicId = this.topic.id;
+                        this.sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
+                        this.getVote();
                     });
             }
         }
 
         getVote () {
-            const self = this;
-            self.vote
+            this.vote
                 .$get()
                 .then(() => {
-                    if (self.vote && self.vote.options) {
-                        var options = self.vote.options.rows;
+                    if (this.vote && this.vote.options) {
+                        const options = this.vote.options.rows;
                         for (var i in options) {
                             options[i].optionId = options[i].id;
                             if (options[i].selected) {
-                                self.userHasVoted = true;
+                                this.userHasVoted = true;
                             }
                         }
                     }
             });
+        };
+
+        doDelegate () {
+            if (!this.vote.delegation) {
+                this.ngDialog
+                    .open({
+                        template: '/views/modals/topic_vote_delegate.html',
+                        controller: 'TopicVoteDelegateCtrl',
+                        preCloseCallback: (data) => {
+                            if (data && data.delegateUser && data.delegateUser.id) {
+                                const delegation = new this.VoteDelegation({topicId: this.topic.id, voteId: this.vote.id});
+                                delegation.userId = data.delegateUser.id;
+                                delegation
+                                    .$save()
+                                    .then((data) => {
+                                        this.vote.topicId = this.topic.id;
+                                        this.vote.$get();
+                                    });
+                            }
+                            return true;
+                        }
+                    })
+            }
+        };
+
+        getVoteValuePercentage (value) {
+            if (!this.vote.getVoteCountTotal() || value < 1 || !value) return 0;
+            return value / this.vote.getVoteCountTotal() * 100;
         };
     }]
 };

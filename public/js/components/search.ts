@@ -38,34 +38,34 @@ let search = {
         };
 
         combineResults () {
-            const self = this;
+
             this.searchResults.combined = [];
 
             const contexts = Object.keys(this.searchResults);
             contexts.forEach((context) => {
-                const models = Object.keys(self.searchResults[context]);
+                const models = Object.keys(this.searchResults[context]);
                 models.forEach((model) => {
-                    if (self.searchResults[context][model].count > 0) {
-                        self.noResults = false;
-                        self.searchResults[context][model].rows.forEach((item, key) => {
+                    if (this.searchResults[context][model].count > 0) {
+                        this.noResults = false;
+                        this.searchResults[context][model].rows.forEach((item, key) => {
                             if (item.id === 'viewMore') {
-                                self.searchResults[context][model].rows.splice(key, 1);
+                                this.searchResults[context][model].rows.splice(key, 1);
                             }
                         });
 
-                        const currentResults = self.searchResults[context][model].rows;
-                        if (self.searchResults[context][model].count > self.searchResults[context][model].rows.length) {
+                        const currentResults = this.searchResults[context][model].rows;
+                        if (this.searchResults[context][model].count > this.searchResults[context][model].rows.length) {
                             currentResults.push({
                                 id: 'viewMore',
                                 model: model,
                                 context: context
                             });
                         }
-                        self.searchResults.combined = self.searchResults.combined.concat(currentResults);
+                        this.searchResults.combined = this.searchResults.combined.concat(currentResults);
                     }
                 });
             });
-            self.$log.debug('combineResults', this.searchResults);
+            this.$log.debug('combineResults', this.searchResults);
         };
 
         enterAction () {
@@ -73,7 +73,6 @@ let search = {
         };
 
         doSearch (str, noLimit) {
-            const self = this;
             if (this.viewMoreInProgress) {
                 return this.form.searchInput = this.moreStr;
             }
@@ -83,10 +82,10 @@ let search = {
             if (!str || str.length < 3 && !noLimit) {
                 return this.app.showSearchResults = false;
             }
-            var include = ['public.topic'];
+            var include = ['public.topic', 'public.group'];
 
             if (this.sAuth.user.loggedIn) {
-                include = ['my.topic', 'my.group', 'public.topic'];
+                include = ['my.topic', 'my.group', 'public.topic', 'public.group'];
             }
 
             this.sSearch
@@ -97,14 +96,15 @@ let search = {
                         limit: 5
                     }
                 ).then((result) => {
-                    self.searchResults = result.data.data.results;
-                    self.searchResults.combined = [];
-                    self.app.showSearchResults = true;
-                    self.app.showNav = false;
-                    self.app.showSearchFiltersMobile = false;
-                    self.combineResults();
+                    this.searchResults = result.data.data.results;
+                    console.log(this.searchResults)
+                    this.searchResults.combined = [];
+                    this.app.showSearchResults = true;
+                    this.app.showNav = false;
+                    this.app.showSearchFiltersMobile = false;
+                    this.combineResults();
                 }, (err) => {
-                    self.$log.error('SearchCtrl', 'Failed to retrieve search results', err);
+                    this.$log.error('SearchCtrl', 'Failed to retrieve search results', err);
                 });
         };
 
@@ -144,11 +144,22 @@ let search = {
                         }
                     );
                 } else if (model === 'group') {
+                    if (this.sAuth.user.loggedIn) {
+                        this.$state.go(
+                            'my/groups/groupId',
+                            {
+                                groupId: item.id,
+                                filter: 'grouped'
+                            },
+                            {
+                                reload: true
+                            }
+                        );
+                    }
                     this.$state.go(
-                        'my/groups/groupId',
+                        'public/groups/view',
                         {
-                            groupId: item.id,
-                            filter: 'grouped'
+                            groupId: item.id
                         },
                         {
                             reload: true
@@ -159,8 +170,6 @@ let search = {
         };
 
         viewMoreResults (context, model) {
-            const self = this;
-
             if (this.viewMoreInProgress) {
                 return;
             } else {
@@ -190,17 +199,17 @@ let search = {
                     .then((result) => {
                             const moreResults = result.data.data.results;
 
-                            self.searchResults[context][model].count = moreResults[context][model].count;
+                            this.searchResults[context][model].count = moreResults[context][model].count;
                             moreResults[context][model].rows.forEach((row) => {
-                                self.searchResults[context][model].rows.push(row);
+                                this.searchResults[context][model].rows.push(row);
                             });
 
-                            self.combineResults();
+                            this.combineResults();
 
-                            self.viewMoreInProgress = false;
+                            this.viewMoreInProgress = false;
                         },(err) => {
-                            self.$log.error('SearchCtrl', 'Failed to retrieve search results', err);
-                            self.viewMoreInProgress = false;
+                            this.$log.error('SearchCtrl', 'Failed to retrieve search results', err);
+                            this.viewMoreInProgress = false;
                         }
                     );
             }

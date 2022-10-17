@@ -2266,6 +2266,12 @@
                     input, .classic_dropdown {
                         float: right;
                         width: 180px;
+
+                        &.reminder_dropdown {
+                            float: left;
+                            margin-top: 10px;
+                            width: 100%;
+                        }
                     }
 
                     input[type=radio] {

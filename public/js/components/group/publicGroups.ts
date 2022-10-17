@@ -7,13 +7,11 @@ let publicGroups = {
     bindings: {},
     controller: ['$state', 'sAuth', 'Group', 'GroupMemberUser', 'PublicGroupService', 'ngDialog', 'AppService', class PublicGroupsController {
         public app;
-        public groupList = [];
         public order = 'ASC';
 
-        constructor (private $state, private sAuth, public Group, private GroupMemberUser, private PublicGroupService, private ngDialog, AppService) {
+        constructor (private $state, private sAuth, public Group, private GroupMemberUser, public PublicGroupService, private ngDialog, AppService) {
             this.app = AppService;
             PublicGroupService.reload();
-            this.groupList = PublicGroupService.groups;
         }
 
         createGroup () {
@@ -34,7 +32,6 @@ let publicGroups = {
             if (!order) order = 'ASC';
             this.PublicGroupService.order = order;
             this.PublicGroupService.doOrder();
-            this.groupList = this.PublicGroupService.groups;
         };
 
         goToGroupView (group) {

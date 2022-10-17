@@ -8,11 +8,6 @@ let my = {
         public options;
         public itemsList = [];
         public app;
-        private sAuth;
-        private Topic;
-        private $state;
-        private $stateParams;
-        private $location;
         public filters;
         public topicFilters = [
             {
@@ -74,13 +69,8 @@ let my = {
             }
         ];
 
-        constructor ($log, $state, $stateParams, $location, sAuth, Topic, AppService) {
+        constructor ($log, private $state, private $stateParams, private $location, private sAuth, private Topic, AppService) {
             $log.debug('MyController');
-            this.Topic = Topic;
-            this.sAuth = sAuth;
-            this.$state = $state;
-            this.$stateParams = $stateParams;
-            this.$location = $location;
             this.app = AppService;
             $log.debug('MyCtrl', $state);
             const filterParam = $stateParams.filter || this.topicFilters[0].id;
@@ -92,7 +82,6 @@ let my = {
         };
 
         loadItems () {
-            const self = this;
             let filterParam = this.$stateParams.filter || 'all';
             const urlParams = {
                 prefix: null,
@@ -142,11 +131,12 @@ let my = {
             this.Topic.query(urlParams)
                 .$promise
                 .then((items) => {
-                    self.itemsList = items;
-                    console.log(items);
+                    this.itemsList = items;
                     const params = angular.extend({}, this.$stateParams);
-                    params.topicId = items[0].id;
-                    self.$state.transitionTo('my/topics/topicId', params);
+                    if (items.length) {
+                        params.topicId = items[0].id;
+                        this.$state.transitionTo('my/topics/topicId', params), {reload: true};
+                    }
                 });
         }
 

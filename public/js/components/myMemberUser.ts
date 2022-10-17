@@ -29,12 +29,10 @@ let myMemberUser = {
             this.TopicMemberUser = TopicMemberUser;
             this.sAuth = sAuth;
             this.$state = $state;
-            console.log(this.member)
         }
 
         doUpdateMemberUser (level) {
             const member = new this.GroupMemberUser(this.member);
-            console.log(member)
             if (member.level !== level) {
                 const oldLevel = member.level;
                 member.level = level;

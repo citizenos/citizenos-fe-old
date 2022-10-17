@@ -7,16 +7,12 @@ let topicVoteCreate = {
     bindings: {
         topicId: '='
     },
-    controller: ['$log', '$state', 'Topic', 'Vote', 'sNotification', 'AppService', class TopicVoteCreateController {
+    controller: ['$log', '$state', '$translate', 'Vote', 'sNotification', 'AppService', class TopicVoteCreateController {
         public VOTE_TYPES;
         public VOTE_AUTH_TYPES
         private topicId;
-        private $log;
         public app;
         public userHasVoted;
-        private sNotification;
-        private $state;
-        private Vote;
 
         public datePickerMin = new Date();
         public HCount = 24;
@@ -60,6 +56,8 @@ let topicVoteCreate = {
             optionsMin: 2
         };
 
+        public reminderOptions = [{value: 1, unit: 'days'}, {value: 2, unit: 'days'}, {value: 3, unit: 'days'}, {value: 1, unit: 'weeks'}, {value: 2, unit: 'weeks'}, {value: 1, unit: 'month'}];
+
         public voteForm = {
             options: [],
             maxChoices: 1,
@@ -75,6 +73,8 @@ let topicVoteCreate = {
             },
             timeFormat: null,
             deadline: null,
+            reminder: false,
+            reminderTime: null,
             voteType: null,
             authType: null,
             numberOfDaysLeft: 0,
@@ -82,13 +82,9 @@ let topicVoteCreate = {
             autoClose: null
         };
 
-        constructor ($log, $state, Topic, Vote, sNotification, AppService) {
+        constructor (private $log, private $state, private $translate, private Vote, private sNotification, AppService) {
             $log.debug('TopicVoteCastController');
-            this.$log = $log;
-            this.Vote = Vote;
-            this.sNotification = sNotification;
             this.app = AppService;
-            this.$state = $state;
             this.VOTE_TYPES = Vote.VOTE_TYPES;
             this.VOTE_AUTH_TYPES = Vote.VOTE_AUTH_TYPES;
            // this.init();
@@ -123,6 +119,61 @@ let topicVoteCreate = {
 
         getTimeZoneName  (value) {
             return (this.timezones.find((item) => {return item.value === value})).name;
+        };
+
+        isVisibleReminderOption (time) {
+            let timeItem = new Date(this.voteForm.deadline);
+            switch (time.unit) {
+                case 'weeks':
+                    timeItem.setDate(timeItem.getDate() + 1 - (time.value * 7));
+                    break;
+                case 'month':
+                    timeItem.setMonth(timeItem.getMonth() - time.value);
+                    break
+                default:
+                    timeItem.setDate(timeItem.getDate() + 1 - time.value);
+            }
+            if (timeItem > new Date()) return true;
+
+            return false;
+        };
+
+        setVoteReminder (time) {
+            let reminderTime = new Date(this.voteForm.deadline);
+            switch (time.unit) {
+                case 'weeks':
+                    reminderTime.setDate(reminderTime.getDate() - (time.value * 7));
+                    break;
+                case 'month':
+                    reminderTime.setMonth(reminderTime.getMonth() - time.value);
+                    break
+                default:
+                    reminderTime.setDate(reminderTime.getDate() - time.value);
+            }
+            this.voteForm.reminderTime = reminderTime;
+        };
+
+        selectedReminderOption () {
+            let voteDeadline = new Date(this.voteForm.deadline);
+            let reminder = new Date(this.voteForm.reminderTime);
+            let diffTime = voteDeadline.getTime() - reminder.getTime();
+            const days = Math.ceil(diffTime / (1000 * 3600 * 24));
+            const weeks = Math.ceil(diffTime / (1000 * 3600 * 24 * 7));
+            const months = (voteDeadline.getMonth() - reminder.getMonth() +
+                12 * (voteDeadline.getFullYear() - reminder.getFullYear()));
+
+            let item = this.reminderOptions.find((item) => {
+                if ( item.value === days && item.unit === 'days') return item;
+                else if ( item.value === weeks && item.unit === 'weeks') return item;
+                else if ( item.value === months && item.unit === 'month') return item;
+            });
+
+            if (!item) {
+                item = this.reminderOptions[0];
+                this.setVoteReminder(item);
+            }
+
+            return this.$translate.instant('OPTION_' + item.value + '_'+ item.unit.toUpperCase());
         };
 
         setVoteType (voteType) {
@@ -205,20 +256,17 @@ let topicVoteCreate = {
         daysToVoteEnd () {
             if (this.voteForm.deadline) {
 
-                console.log(this.voteForm.deadline)
-                if (this.voteForm.deadline === true) {
+                if (this.voteForm.deadline.toDateString() === new Date().toDateString()) {
                     this.voteForm.deadline = new Date()//moment(new Date()).startOf('day').add(1, 'day');
                     this.voteForm.deadline = this.voteForm.deadline.setDate(this.voteForm.deadline.getDate() + 1);
                     this.voteForm.endsAt.date = this.voteForm.deadline;
-                    console.log(this.voteForm.deadline)
                 }
-                this.voteForm.numberOfDaysLeft = Math.floor((new Date(this.voteForm.deadline).getTime() - new Date().getTime()) / (1000 * 3600 * 24));
+                this.voteForm.numberOfDaysLeft = Math.ceil((new Date(this.voteForm.deadline).getTime() - new Date().getTime()) / (1000 * 3600 * 24));
             }
             return this.voteForm.numberOfDaysLeft;
         };
 
         createVote () {
-            const self = this;
             this.sNotification.removeAll();
 
             const vote = new this.Vote({topicId: this.topicId});
@@ -236,6 +284,11 @@ let topicVoteCreate = {
                 }
             }
 
+            if (!this.voteForm.reminder) {
+                this.voteForm.reminderTime = null;
+            }
+
+            vote.reminderTime = this.voteForm.reminderTime;
             let autoClose = [];
             for (let i in this.voteForm.autoClose) {
                 const option = this.voteForm.autoClose[i];
@@ -262,14 +315,14 @@ let topicVoteCreate = {
 
             vote
                 .$save((vote, putResponseHeaders) => {
-                    self.voteForm.errors = null;
-                    self.$state.go('topics/view/votes/view', {
-                            topicId: self.topicId,
+                    this.voteForm.errors = null;
+                    this.$state.go('topics/view/votes/view', {
+                            topicId: this.topicId,
                             voteId: vote.id
                         }, {reload: true});
                     },(res) => {
-                        self.$log.debug('createVote() ERR', res, res.data.errors,  self.voteForm.options);
-                        self.voteForm.errors = res.data.errors;
+                        this.$log.debug('createVote() ERR', res, res.data.errors,  this.voteForm.options);
+                        this.voteForm.errors = res.data.errors;
                     }
                 );
         };

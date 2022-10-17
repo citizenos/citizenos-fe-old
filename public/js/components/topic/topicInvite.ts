@@ -13,18 +13,6 @@ let topicInvite = {
         public inviteMessageMaxLength = 1000;
         public app;
         public topic;
-        private sAuth;
-        public TopicMemberUser;
-        public TopicMemberGroup;
-        private TopicInviteUser;
-        private TopicJoin;
-        private sSearch;
-        private sLocation;
-        private sNotification;
-        private $log;
-        private $state;
-        private $timeout
-        private ngDialog;
         public topicList = {
             searchFilter: '',
             searchOrderBy: {
@@ -53,22 +41,10 @@ let topicInvite = {
         private maxUsers = 50;
         private itemsPerPage = 10;
 
-        constructor ($state, $stateParams, $log, $timeout, ngDialog, sSearch, sLocation, sNotification, sAuth, Topic, TopicInviteUser, TopicMemberUser, TopicMemberGroup, TopicJoin, AppService) {
+        constructor (private $state, private $stateParams, private $log, private $timeout, private ngDialog, private sSearch, private sLocation, private sNotification, private sAuth, private Topic, private TopicInviteUser, private TopicMemberUser, private TopicMemberGroup, private TopicJoin, AppService) {
             $log.debug('TopicInviteCtrl', $state, $stateParams);
-            this.$log = $log;
-            this.$state = $state;
-            this.$timeout = $timeout;
-            this.ngDialog = ngDialog;
             this.app = AppService;
-            this.sAuth = sAuth;
             this.app.tabSelected = $stateParams.tab || 'invite';
-            this.TopicMemberUser = TopicMemberUser;
-            this.TopicMemberGroup = TopicMemberGroup;
-            this.TopicInviteUser = TopicInviteUser;
-            this.TopicJoin = TopicJoin;
-            this.sSearch = sSearch;
-            this.sLocation = sLocation;
-            console.log(AppService)
 
             this.sNotification = sNotification;
             this.init();
@@ -84,7 +60,6 @@ let topicInvite = {
         };
 
         search (str) {
-            console.log('search', str);
             const self = this;
             this.searchString = str; // TODO: Hackish - Typeahead has term="searchString" but somehow the 2 way binding does not work there, investigate when time
             if (str && str.length >= 2) {

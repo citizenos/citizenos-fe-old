@@ -1,12 +1,32 @@
 import * as angular from 'angular';
 angular
     .module('citizenos')
-    .factory('GroupMemberUser', ['$log', '$resource', 'sLocation', function ($log, $resource, sLocation) {
+    .factory('GroupMemberUser', ['$log', '$resource', 'sLocation', 'sAuth', function ($log, $resource, sLocation, sAuth) {
         $log.debug('citizenos.factory.GroupMemberUser');
+        var getUrlPrefix = function () {
+            var prefix = sAuth.getUrlPrefix();
+            if (!prefix) {
+                prefix = '@prefix';
+            }
+            return prefix;
+        };
+
+        var getUrlUser = function () {
+            var userId = sAuth.getUrlUserId();
+            if (!userId) {
+                userId = '@userId';
+            }
+            return userId;
+        };
 
         var GroupMemberUser = $resource(
-            sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members/users/:userId'),
-            {groupId: '@groupId', userId: '@id'},
+            sLocation.getAbsoluteUrlApi('/api/:prefix/:user/groups/:groupId/members/users/:userId'),
+            {
+                groupId: '@groupId',
+                userId: '@id',
+                user: getUrlUser,
+                prefix: getUrlPrefix
+            },
             {
                 query: {
                     isArray: true,

@@ -5,6 +5,7 @@ angular
     .factory("AppService", ['$rootScope', '$log', '$state', '$stateParams', '$transitions', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'sTopic', 'TopicInviteUser', function ($rootScope, $log, $state, $stateParams, $transitions, $window, $location, $timeout, $interval, $cookies, $anchorScroll, $translate, sTranslate, amMoment, sLocation, cosConfig, ngDialog, sAuth, sUser, sHotkeys, sNotification, sActivity, sTopic, TopicInviteUser) {
         var self = {
             config: cosConfig,
+            editMode: false,
             showSearch: false,
             showSearchResults: false,
             showNav: false,
@@ -17,6 +18,7 @@ angular
             tabSelect: null,
             user: sAuth.user,
             topic: null,
+            topicsSettings: false,
             group: null,
             notifications: sNotification,
             helptooltip: false,
@@ -243,6 +245,32 @@ angular
                         return reject();
                     });
                 });
+            },
+            doToggleEditMode: function () {
+                self.editMode = !self.editMode;
+                self.topicsSettings = false;
+                if (self.editMode === true) {
+                    $state.go(
+                        'topics/view',
+                        {
+                            topicId: self.topic.id,
+                            editMode: self.editMode,
+                            commentId: null
+                        }
+                    );
+                } else {
+                    $state.go(
+                        'topics/view',
+                        {
+                            topicId: self.topic.id,
+                            editMode: null,
+                            commentId: null
+                        },
+                        {
+                            reload: true
+                        }
+                    );
+                }
             }
         };
 
@@ -368,14 +396,12 @@ angular
                 }
             });
 
-        $state.defaultErrorHandler(function (err) {console.log('STATE ERROR:', err)});
         $transitions.onError({}, function (transition) {
             var error = transition.error();
             var params = transition.params();
             var toState = transition.to();
             var errorCheck = function () {
-                console.log(error && error.detail.status && error.detail.data && error.detail.config);
-                if (error && error.detail.status && error.detail.data && error.detail.config) { // $http failure in "resolve"
+                if (error && error.detail?.status && error.detail?.data && error.detail?.config) { // $http failure in "resolve"
                     var stateError = 'error/' + error.detail.status;
                     $state.go(stateError, {language: params.language || self.user.language}, {location: false});
                 }

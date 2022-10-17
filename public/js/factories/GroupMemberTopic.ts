@@ -1,18 +1,36 @@
 import * as angular from 'angular';
 angular
     .module('citizenos')
-    .factory('GroupMemberTopic', ['$log', '$resource', 'sLocation', 'Topic', function ($log, $resource, sLocation, Topic) {
+    .factory('GroupMemberTopic', ['$log', '$resource', 'sAuth', 'sLocation', 'Topic', function ($log, $resource, sAuth, sLocation, Topic) {
         $log.debug('citizenos.factory.GroupMemberTopic');
 
+        var getUrlPrefix = function () {
+            var prefix = sAuth.getUrlPrefix();
+            if (!prefix) {
+                prefix = '@prefix';
+            }
+            return prefix;
+        };
+
+        var getUrlUser = function () {
+            var userId = sAuth.getUrlUserId();
+            if (!userId) {
+                userId = '@userId';
+            }
+            return userId;
+        };
+
         var GroupMemberTopic = $resource(
-            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups/:groupId'), // Actually Groups are added to Topic
+            sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId/members/groups/:groupId'), // Actually Groups are added to Topic
             {
                 topicId: '@id',
-                groupId: '@groupId'
+                groupId: '@groupId',
+                prefix: getUrlPrefix,
+                userId: getUrlUser
             },
             {
                 query: {
-                    url: sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members/topics'),
+                    url: sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups/:groupId/members/topics'),
                     isArray: true,
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....

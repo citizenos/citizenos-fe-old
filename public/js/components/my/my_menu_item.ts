@@ -6,15 +6,11 @@ let myMenuItem = {
     bindings: {
         item: '='
     },
-    controller: ['$log', '$state', 'Topic', class MyMenuItemController {
+    controller: ['$log', '$state', 'Topic', 'Group', class MyMenuItemController {
         public options;
         public item;
-        private Topic;
-        private $state;
 
-        constructor ($log, $state, Topic) {
-            this.Topic = Topic;
-            this.$state = $state;
+        constructor ($log, private $state, private Topic, private Group) {
             $log.debug('MyItemsMenuController');
         };
 
@@ -51,6 +47,9 @@ let myMenuItem = {
             return false;
         };
 
+        isPrivate() {
+            return this.item.visibility === (this.Topic.VISIBILITY.private || this.Group.VISIBILITY.private);
+        }
     }]
 };
 
