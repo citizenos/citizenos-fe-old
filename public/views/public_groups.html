@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="groups_wrap">
-        <div class="group_wrap" ng-repeat="group in $ctrl.groupList">
+        <div class="group_wrap" ng-repeat="group in $ctrl.PublicGroupService.groups">
             <div>
                 <div class="group_shown_content" ng-click="$ctrl.goToGroupView(group)">
                     <div class="group_header">
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-        <div ng-if="!$ctrl.groupList.length" class="table">
+        <div ng-if="!$ctrl.PublicGroupService.groups.length" class="table">
             <div class="no_results v_align_cell">
                 <div class="no_results_icon_wrap">
                     <div class="sprite sprite-icon-no-results2x no_results_img"></div>

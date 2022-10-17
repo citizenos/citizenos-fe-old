@@ -7,7 +7,7 @@
         </div>
         <div class="vote_casting_header_section">
             <div class="table_cell">
-                <span class="bold">{{$ctrl.vote.votersCount || 0}}</span><span ng-if="$ctrl.visibility === $ctrl.VISIBILITY.private">/{{topic.members.users.count}}</span> <span
+                <span class="bold">{{$ctrl.vote.votersCount || 0}}</span><span ng-if="$ctrl.topic.visibility === $ctrl.VISIBILITY.private">/{{topic.members.users.count}}</span> <span
                 translate="VIEWS.TOPICS_TOPICID.VOTE_VOTES_COUNTED"> votes counted</span>
             </div>
         </div>

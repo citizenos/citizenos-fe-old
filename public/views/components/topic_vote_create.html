@@ -344,6 +344,40 @@
                 </div>
             </div>
         </div>
+        <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes section_padding" ng-if="$ctrl.voteForm.deadline && $ctrl.isVisibleReminderOption($ctrl.reminderOptions[0])">
+            <div class="left_row">
+                <div class="gray_toggle_box">
+                    <div class="table_cell">
+                        <div class="toggle_box_title" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_VOTE_REMINDER">Automatic reminder for users</div>
+                        <div class="toggle_box_description" translate="VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_VOTE_REMINDER_EXPLANATION">You can set an automatic reminder email for users a few days before the end of the vote</div>
+                        <div class="table_cell" ng-if="$ctrl.voteForm.reminder">
+                            <div cos-dropdown class="classic_dropdown">
+                                <div class="dropdown_selection">
+                                    <div class="dropdown_text">{{$ctrl.selectedReminderOption()}}</div>
+
+                                    <div class="arrow_holder">
+                                        <div class="table_cell">
+                                            <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                            <div class="v_line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <div class="dropdown_item" ng-if="$ctrl.isVisibleReminderOption(option)" ng-repeat="(key, option) in $ctrl.reminderOptions">
+                                        <div class="item_name" ng-click="$ctrl.setVoteReminder(option)">{{'OPTION_' + option.value + '_'+ option.unit.toUpperCase() | translate}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table_cell">
+                        <cos-toggle model="$ctrl.voteForm.reminder" cos-toggle-text-on="'TOGGLE_ON' | translate"
+                             cos-toggle-text-off="'TOGGLE_OFF' | translate"></cos-toggle>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="double_cell_layout ten_px_margin_between margin_betwen_boxes section_padding">
             <div class="left_row">
                 <div class="gray_toggle_box">

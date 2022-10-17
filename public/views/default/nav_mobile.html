@@ -11,7 +11,7 @@
     <div class="header_button_text" translate="DEFAULT.NAV_MOBILE.BTN_SEARCH">Search</div>
 </div>
 
-<div ng-if="wWidth <= 750">
+<div ng-if="$ctrl.app.wWidth <= 750">
     <div class="header_button overview" ui-sref="my/topics" ng-if="'my/topics/topicId' | isState">
         <div class="header_button_icon">
             <div class="sprite sprite-icon-back2x">
@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<div ng-if="wWidth <= 1024">
+<div ng-if="$ctrl.app.wWidth <= 1024">
     <div class="header_button edit" ng-if="$ctrl.app.topic.canEdit()" ng-click="$ctrl.app.doToggleEditMode()" ng-class="$ctrl.app.editMode ? 'active': ''" ng-if="('topics.**' | includedByState) && $ctrl.app.user.loggedIn">
         <div class="header_button_icon">
             <div class="sprite sprite-icon-mobile-edit2x">
@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<div class="header_button settings" ng-click="$ctrl.app.topics_settings = !$ctrl.app.topics_settings" ng-class="$ctrl.app.topics_settings ? 'active': ''" ng-if="('topics.**' | includedByState) && $ctrl.app.user.loggedIn">
+<div class="header_button settings" ng-click="$ctrl.app.topicsSettings = !$ctrl.app.topicsSettings" ng-class="$ctrl.app.topicsSettings ? 'active': ''" ng-if="('topics.**' | includedByState) && $ctrl.app.user.loggedIn">
     <div class="header_button_icon">
         <div class="sprite sprite-icon-mobile-settings2x">
         </div>

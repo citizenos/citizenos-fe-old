@@ -2,7 +2,7 @@ import * as angular from 'angular';
 
 angular
     .module('citizenos')
-    .service('sTopic', ['$http', '$log', '$q', 'sLocation', 'Topic', function ($http, $log, $q, sLocation, Topic) {
+    .service('sTopic', ['$http', '$state', '$stateParams', '$log', '$q', 'sLocation', 'Topic', 'ngDialog', function ($http, $state, $stateParams, $log, $q, sLocation, Topic, ngDialog) {
         // TODO: Remove and make all use Topic?
 
         var sTopic = this;
@@ -87,4 +87,49 @@ angular
 
             return $http.get(path, {params: {offset: offset, limit: limit, search: search}}).then(defaultSuccess, defaultError);
         };
+
+        sTopic.changeState = function (topic, state, stateSuccess) {
+            var templates = {
+                followUp: '/views/modals/topic_send_to_followUp_confirm.html',
+                vote: '/views/modals/topic_close_confirm.html',
+                closed: '/views/modals/topic_close_confirm.html'
+            };
+            var nextStates = {
+                followUp: 'topics/view/followUp',
+                vote: 'topics/view/votes/view',
+                closed: 'topics/view'
+            };
+
+            ngDialog
+                .openConfirm({
+                    template: templates[state]
+                })
+                .then(() => {
+                    if (state === 'vote' && !topic.voteId && !topic.vote) {
+                        return $state.go('topics/view/votes/create', {
+                            topicId: topic.id,
+                            commentId: null
+                        }, {reload: true});
+                    }
+                    return new Topic({
+                        id: topic.id,
+                        status: Topic.STATUSES[state]
+                    }).$patch()
+                })
+                .then((topicPatched) => {
+                    topic.status = topicPatched.status;
+                    const stateNext = stateSuccess || nextStates[state];
+                    const stateParams = angular.extend({}, $stateParams, {
+                        editMode: null,
+                        commentId: null
+                    });
+                    $state.go(
+                        stateNext,
+                        stateParams,
+                        {
+                            reload: true
+                        }
+                    );
+                }, angular.noop);
+        }
     }]);

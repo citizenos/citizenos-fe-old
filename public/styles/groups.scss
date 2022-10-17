@@ -173,9 +173,14 @@
                         height: 64px;
                         .group_circle {
                             margin-top: 0;
+                            width: 80px;
+                            height: 80px;
                             .group_icon {
                                 width: 64px;
                             }
+                        }
+                        img {
+                            width: 80px;
                         }
                     }
 

@@ -2,12 +2,12 @@
 
     <div class="tabs_wrap">
         <div class="tabs_visible_area">
-            <div ng-if="$ctrl.trainPosition != 0 && $ctrl.tabsTrainWidth > $ctrl.tabsVisibleAreaWidth && wWidth > 1024" class="arrow_btn" ng-click="moveLeft()">
+            <div ng-if="$ctrl.trainPosition != 0 && $ctrl.tabsTrainWidth > $ctrl.tabsVisibleAreaWidth && $ctrl.app.wWidth > 1024" class="arrow_btn" ng-click="moveLeft()">
                 <div class="table_cell">
                     <div class="sprite sprite-icon-arrow-topic-tab2x"></div>
                 </div>
             </div>
-            <div ng-if="$ctrl.trainPosition >= -$ctrl.tabsTrainWidth+$ctrl.tabsVisibleAreaWidth && wWidth > 1024" class="arrow_btn right" ng-click="moveRight()">
+            <div ng-if="$ctrl.trainPosition >= -$ctrl.tabsTrainWidth+$ctrl.tabsVisibleAreaWidth && $ctrl.app.wWidth > 1024" class="arrow_btn right" ng-click="moveRight()">
                 <div class="table_cell">
                     <div class="sprite sprite-icon-arrow-right-topic-tab2x"></div>
                 </div>

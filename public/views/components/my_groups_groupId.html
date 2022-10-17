@@ -54,7 +54,7 @@
                         <div class="item_description" translate="VIEWS.MY_GROUPS_GROUPID.LBL_TOPICS">Topics</div>
                         <div class="item_content">
                             <div class="item_text">
-                                <span ng-bind="$ctrl.group.members.topics.count">0</span>
+                                <span ng-bind="$ctrl.GroupMemberTopicService.countTotal">0</span>
                                 <span class="separator">|</span>
                                 <span class="item_link blue_link" ng-click="$ctrl.doShowMemberTopicList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                                 <span ng-if="$ctrl.canUpdate()">
@@ -70,7 +70,7 @@
                         <div class="item_description" translate="VIEWS.MY_GROUPS_GROUPID.LBL_USERS">Users</div>
                         <div class="item_content">
                             <div class="item_text">
-                                <span ng-bind="$ctrl.group.members.users.count">0</span>
+                                <span ng-bind="$ctrl.GroupMemberUserService.countTotal">0</span>
                                 <span class="separator">|</span>
                                 <span class="item_link blue_link" ng-click="$ctrl.doShowMemberUserList()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                                 <span ng-if="$ctrl.canUpdate()">
@@ -101,7 +101,7 @@
                             <div class="item_text">
                                 <span ng-bind="$ctrl.group.members.topics.latest.title">latest title</span>
                                 <span class="separator">|</span>
-                                <span class="item_link blue_link bold" ui-sref="topics/view({topicId: $ctrl.group.members.topics.latest.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
+                                <span class="item_link blue_link bold" ui-sref="topics/view({topicId: $ctrl.GroupMemberTopicService.topics.latest.id})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                             </div>
                         </div>
                         <div class="clearer"></div>
@@ -188,9 +188,9 @@
     <div class="info_container group_list" id="topic_list">
         <div class="container_header">
             <div class="header_text">
-                <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_TOPIC_LIST" translate-values="{count: $ctrl.group.members.topics.count}">Topic list ({{$ctrl.group.members.topics.count}})</span>
+                <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_TOPIC_LIST" translate-values="{count: $ctrl.GroupMemberTopicService.countTotal}">Topic list ({{$ctrl.GroupMemberTopicService.countTotal}})</span>
                 <span ng-if="group.members.topics.count">|</span>
-                <div class="blue_link" ng-if="$ctrl.group.members.topics.count" ng-click="$ctrl.topicList.isSearchVisible = !$ctrl.topicList.isSearchVisible; $ctrl.doShowMemberTopicList(group); $event.stopPropagation();"
+                <div class="blue_link" ng-if="$ctrl.GroupMemberTopicService.countTotal" ng-click="$ctrl.topicList.isSearchVisible = !$ctrl.topicList.isSearchVisible; $ctrl.doShowMemberTopicList(group); $event.stopPropagation();"
                      translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter
                 </div>
                 <span ng-if="$ctrl.canUpdate()">|
@@ -218,17 +218,17 @@
 
                 </div>
             </div>
-            <div class="minimize_container" ng-if="$ctrl.group.members.topics.count" ng-click="$ctrl.doToggleMemberTopicList(group);">
+            <div class="minimize_container" ng-if="$ctrl.GroupMemberTopicService.countTotal" ng-click="$ctrl.doToggleMemberTopicList(group);">
                 <div ng-class="!$ctrl.topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
         <div class="container_header second_header" ng-if="$ctrl.topicList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-change="$ctrl.loadMemberTopicsList()" ng-model-options="{debounce:250}"
-                       ng-model="$ctrl.topicList.searchFilter" focus-if>
+                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-change="$ctrl.GroupMemberTopicService.doSearch()" ng-model-options="{debounce:250}"
+                       ng-model="$ctrl.GroupMemberTopicService.search" focus-if>
             </div>
             <div class="table_cell">
-                <div class="blue_link" ng-click="$ctrl.topicList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
+                <div class="blue_link" ng-click="$ctrl.GroupMemberTopicService.search = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
             </div>
         </div>
         <div class="container_content" ng-if="$ctrl.topicList.isVisible">
@@ -237,7 +237,7 @@
                     <div class="mobile_text pretend_th" ng-if="$ctrl.app.wWidth <= 560">
                         <div class="th_text" translate="VIEWS.MY_GROUPS_GROUPID.LBL_ORDER_BY">Order by:</div>
                     </div>
-                    <div class="pretend_th" ng-click="$ctrl.topicList.searchOrderBy.property = 'title'">
+                    <div class="pretend_th" ng-click="$ctrl.GroupMemberTopicService.doOrder('title')">
                         <div class="th_text">
                             <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_TITLE">Title</span>
                         </div>
@@ -258,12 +258,12 @@
                         </div>
                     </div>
                 </div>
-                <group-member-topic ng-if="$ctrl.group.members.topics.count" class="pretend_tr" ng-repeat="topic in $ctrl.group.members.topics.rows"  fields="['level', 'userscount', 'delete']"  member-topic="topic" group="$ctrl.group"></group-member-topic>
+                <group-member-topic ng-if="$ctrl.GroupMemberTopicService.countTotal" class="pretend_tr" ng-repeat="topic in $ctrl.GroupMemberTopicService.topics"  fields="['level', 'userscount', 'delete']"  member-topic="topic" group="$ctrl.group"></group-member-topic>
 
 
                 <div class="pretend_tr">
                     <div class="pagination_wrapper">
-                        <cos-pagination class="pagination" select="$ctrl.loadMemberTopicsPage" total-pages="$ctrl.group.membertopics.totalPages" page="$ctrl.group.membertopics.page"></cos-pagination>
+                        <cos-pagination class="pagination" select="$ctrl.GroupMemberTopicService.loadPage" total-pages="$ctrl.GroupMemberTopicService.totalPages" page="$ctrl.GroupMemberTopicService.page"></cos-pagination>
                     </div>
                 </div>
 
@@ -275,7 +275,7 @@
     <div class="info_container group_list user_list" id="user_list">
         <div class="container_header" ng-click="$ctrl.doToggleMemberUserList(); $event.stopPropagation();">
             <div class="header_text">
-                <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_USERS_LIST" translate-values="{count: ($ctrl.group.members.users.count || 0)}">User list (0)</span>
+                <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_USERS_LIST" translate-values="{count: ($ctrl.GroupMemberUserService.countTotal || 0)}">User list (0)</span>
                 |
                 <div class="blue_link" ng-click="$ctrl.userList.isSearchVisible = !$ctrl.userList.isSearchVisible; $ctrl.doShowMemberUserList(); $event.stopPropagation();"
                      translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter
@@ -290,11 +290,11 @@
         </div>
         <div class="container_header second_header" ng-if="$ctrl.userList.isSearchVisible">
             <div class="table_cell">
-                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="$ctrl.loadMemberUsersList()" ng-model-options="{debounce:250}"
-                       ng-model="$ctrl.userList.searchFilter" focus-if>
+                <input placeholder="{{'VIEWS.MY_GROUPS_GROUPID.PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="$ctrl.GroupMemberUserService.doSearch()" ng-model-options="{debounce:250}"
+                       ng-model="$ctrl.GroupMemberUserService.search" focus-if>
             </div>
             <div class="table_cell">
-                <div class="blue_link" ng-click="$ctrl.userList.searchFilter = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
+                <div class="blue_link" ng-click="$ctrl.GroupMemberUserService.search = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
             </div>
         </div>
         <div class="container_content" ng-if="$ctrl.userList.isVisible">
@@ -303,16 +303,16 @@
                     <div class="mobile_text pretend_th" ng-if="$ctrl.app.wWidth <= 560">
                         <div class="th_text" translate="VIEWS.MY_GROUPS_GROUPID.LBL_ORDER_BY">Order by:</div>
                     </div>
-                    <div class="pretend_th" ng-click="$ctrl.userList.searchOrderBy.property = 'name'">
+                    <div class="pretend_th" ng-click="$ctrl.GroupMemberUserService.doOrder('name')">
                         <div class="th_text">
                             <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_PROFILE">Profile</span>
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="$ctrl.userList.searchOrderBy.property === 'name'"></div>
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="$ctrl.GroupMemberUserService.orderBy === 'name'"></div>
                         </div>
                     </div>
-                    <div class="pretend_th" ng-click="$ctrl.userList.searchOrderBy.property = 'level'">
+                    <div class="pretend_th" ng-click="$ctrl.GroupMemberUserService.doOrder('level')">
                         <div class="th_text">
                             <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_ROLES">Roles</span>
-                            <div class="sprite sprite-icon-list-ordering2x" ng-if="$ctrl.userList.searchOrderBy.property === 'level'"></div>
+                            <div class="sprite sprite-icon-list-ordering2x" ng-if="$ctrl.GroupMemberUserService.orderBy === 'level'"></div>
                         </div>
                     </div>
                     <div class="pretend_th" ng-if="$ctrl.canUpdate()">
@@ -322,19 +322,19 @@
                     </div>
                 </div>
                 <!-- GroupMemberUsers -->
-                <my-member-user class="pretend_tr" ng-repeat="user in $ctrl.group.members.users.rows | filter: $ctrl.userList.searchFilter | orderBy : $ctrl.userList.searchOrderBy.property" member="user" group="$ctrl.group"></my-member-user>
+                <my-member-user class="pretend_tr" ng-repeat="user in $ctrl.GroupMemberUserService.users | filter: $ctrl.GroupMemberUserService.search| orderBy : $ctrl.GroupMemberUserService.orderBy" member="user" group="$ctrl.group"></my-member-user>
 
                 <div class="pretend_tr">
                     <div class="pagination_wrapper">
-                        <cos-pagination class="pagination" select="$ctrl.loadMemberUsersPage" total-pages="$ctrl.group.members.users.totalPages" page="$ctrl.group.memberusers.page"></cos-pagination>
+                        <cos-pagination class="pagination" select="$ctrl.GroupMemberUserService.loadPage" total-pages="$ctrl.GroupMemberUserService.totalPages" page="$ctrl.GroupMemberUserService.page"></cos-pagination>
                     </div>
                 </div>
                 <!-- GroupInviteUsers -->
-                <group-invite-user class="pretend_tr" ng-repeat="invite in $ctrl.group.invites.users.rows | filter: $ctrl.userList.searchFilter | orderBy : $ctrl.userList.searchOrderBy.property" invite="invite" can-update="$ctrl.canUpdate()"></group-invite-user>
+                <group-invite-user class="pretend_tr" ng-repeat="invite in $ctrl.GroupInviteUserService.users | filter: $ctrl.GroupInviteUserService.search | orderBy : $ctrl.GroupInviteUserService.orderBy" invite="invite" can-update="$ctrl.canUpdate()"></group-invite-user>
 
                 <div class="pretend_tr">
                     <div class="pagination_wrapper">
-                        <cos-pagination class="pagination" select="$ctrl.loadUsersInvitedPage" total-pages="$ctrl.group.invites.users.totalPages" page="$ctrl.group.invites.users.page"></cos-pagination>
+                        <cos-pagination class="pagination" select="$ctrl.GroupInviteUserService.loadPage" total-pages="$ctrl.GroupInviteUserService.totalPages" page="$ctrl.GroupInviteUserService.page"></cos-pagination>
                     </div>
                 </div>
             </div>

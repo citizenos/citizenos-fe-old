@@ -510,7 +510,7 @@ import * as angular from 'angular';
                 .state('topics/view', {
                     url: '/:topicId?editMode&commentId&argumentsPage&notificationSettings',
                     parent: 'topics',
-                    templateUrl: '/views/topics_topicId.html',
+                    template: '<topic></topic>',
                     resolve: {
                         rTopic: ['$state', '$stateParams', 'Topic', 'sAuthResolve','AppService', function ($state, $stateParams, Topic, sAuthResolve, AppService) {
                             // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
@@ -521,14 +521,13 @@ import * as angular from 'angular';
                                     return topic;
                                 });
                         }]
-                    },
-                    controller: 'TopicCtrl'
+                    }
                 })
                 .state('topics/view/settings', {
                     url: '/settings?tab',
                     parent: 'topics/view',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$transitions', '$stateParams', '$timeout', 'ngDialog', function ($scope, $state, $transitions, $stateParams, $timeout, ngDialog) {
+                    controller: ['$state', 'AppService', '$stateParams', 'Topic', 'ngDialog', function ($state, AppService, $stateParams, Topic, ngDialog) {
                         var data = angular.extend({}, $stateParams);
                         var createDialog = function () {
                             ngDialog.closeAll();
@@ -543,11 +542,12 @@ import * as angular from 'angular';
                                 }
                             });
                             dialog.closePromise.then(function (data) {
-                                if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                    $timeout(function () {
-                                        $state.go('^');
+                                return new Topic({id: $stateParams.topicId})
+                                    .$get()
+                                    .then(function (topic) {
+                                        AppService.topic = topic;
+                                        return topic;
                                     });
-                                }
                             });
                         };
                         createDialog();
@@ -585,20 +585,18 @@ import * as angular from 'angular';
                     url: '/participants?tab',
                     parent: 'topics/view',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
+                    controller: ['$state', 'ngDialog', function ($state, ngDialog) {
                         var createDialog = function () {
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
-                                template: '/views/modals/topic_members.html',
-                                data: data,
+                                template: '<topic-members></topic-members>',
+                                plain:true,
                                 preCloseCallback: function (value) {
                                     if (value === '$closeButton') {
                                         return true;
                                     }
                                     return false;
-                                },
-                                scope: $scope // Pass on $scope so that I can access AppCtrl
+                                }
                             });
 
                             dialog.closePromise.then(function (data) {
@@ -782,48 +780,17 @@ import * as angular from 'angular';
                 .state('topics/view/votes/create', {
                     parent: 'topics/view/votes',
                     url: '/create',
-                    template: '<topic-vote-create></topic-vote-create>',
-                   /* controller: 'TopicVoteCreateCtrl',
-                    resolve: {
-                        rVote: ['rTopic', '$state', '$stateParams', '$q', '$timeout', function (rTopic, $state, $stateParams, $q, $timeout) {
-                            if (rTopic.voteId) {
-                                $timeout(function () {
-                                    $state.go('topics/view/votes/view', {
-                                        language: $stateParams.language,
-                                        topicId: rTopic.id,
-                                        voteId: rTopic.voteId
-                                    }); //if vote is allready created redirect to voting
-                                }, 0);
-                                return $q.reject();
-                            } else {
-                                return $q.resolve();
-                            }
-                        }]
-                    }*/
+                    template: '<topic-vote-create></topic-vote-create>'
                 })
                 .state('topics/view/votes/view', {
                     parent: 'topics/view/votes',
                     url: '/:voteId',
-                    template: '<div ui-view></div>',
-                    controller: 'TopicVoteCtrl'
+                    template: '<div ui-view></div>'
                 })
                 .state('topics/view/followUp', {
                     parent: 'topics/view',
                     url: '/followUp',
-                    template: '<div ui-view></div>',
-                    resolve: {
-                        status: ['rTopic', '$q', '$state', '$stateParams', 'Topic', function (rTopic, $q, $state, $stateParams, Topic) {
-                            if ([Topic.STATUSES.closed, Topic.STATUSES.followUp].indexOf(rTopic.status) > -1) {
-                                return $q.resolve();
-                            } else {
-                                $state.go('topics/view', {
-                                    language: $stateParams.language,
-                                    topicId: rTopic.id
-                                }); //if topic editing or voting is still in progress
-                            }
-                        }]
-                    },
-                    controller: 'TopicFollowUpCtrl'
+                    template: '<div ui-view></div>'
                 })
                 .state('my', {
                     url: '/my?filter&openTabs',

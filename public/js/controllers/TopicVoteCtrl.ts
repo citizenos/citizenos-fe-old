@@ -2,70 +2,72 @@
 import * as angular from 'angular';
 import {filter, find, isArray} from 'lodash';
 
-angular
-    .module('citizenos')
-    .controller('TopicVoteCtrl', ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDelegation', 'ngDialog', 'sNotification', function ($scope, $log, TopicVote, Vote, VoteDelegation, ngDialog, sNotification) {
-        $log.debug('TopicVoteCtrl');
+let topicVote = {
+    selector: 'topicVote',
+    template: '<div ui-view></div>',
+    bindings: {},
+    controller: ['$scope', '$log', 'TopicVote', 'Vote', 'VoteDelegation', 'ngDialog', 'sNotification', 'AppService', class TopicVoteController {
+        public app;
+        public topic;
+        public userHasVoted;
+        public voteTypes = [];
+        public voteAuthTypes = [];
 
-        $scope.topic.vote.topicId = $scope.topic.id;
-        $scope.$parent.$parent.userHasVoted = false;
-        $scope.$parent.$parent.showVoteArea = true;
-        $scope.$parent.$parent.voteTypes = Vote.VOTE_TYPES;
-        $scope.$parent.$parent.voteAuthTypes = Vote.VOTE_AUTH_TYPES;
+        constructor (private $scope, private $log, private TopicVote, private Vote, private VoteDelegation, private ngDialog, private sNotification, private  AppService) {
+            $log.debug('TopicVoteCtrl');
+            this.app = AppService;
+            this.topic = AppService.topic;
+            this.topic.vote.topicId = this.topic.id;
+            this.voteTypes = Vote.VOTE_TYPES;
+            this.voteAuthTypes = Vote.VOTE_AUTH_TYPES;
+            this.getVote();
+        }
 
-        var getVote = function () {
-            $scope.topic.vote.$get().then(function () {
-                if ($scope.topic.vote && $scope.topic.vote.options) {
-                    var options = $scope.topic.vote.options.rows;
+        getVote () {
+            this.topic.vote.$get().then(() => {
+                if (this.topic.vote && this.topic.vote.options) {
+                    const  options = this.topic.vote.options.rows;
                     for (var i in options) {
                         options[i].optionId = options[i].id;
                         if (options[i].selected) {
-                            $scope.$parent.$parent.userHasVoted = true;
+                            this.userHasVoted = true;
                         }
                     }
                 }
             });
         };
 
-        getVote();
-
-        $scope.$parent.$parent.isRadio = function (vote, option) {
-            if (option.value === 'Neutral' || option.value === 'Veto') return true;
-            if (vote.type ==='regular' || vote.maxChoices === 1) return true;
-
-            return false;
-        };
-
-        $scope.$parent.$parent.selectOption = function (option) {
-            if (!$scope.topic.canVote()) {
+        selectOption (option) {
+            if (!this.topic.canVote()) {
                 return false;
             }
-            $scope.topic.vote.options.rows.forEach(function(opt) {
-                if (option.value === 'Neutral' || option.value === 'Veto' || $scope.topic.vote.maxChoices ===1) {
+
+            this.topic.vote.options.rows.forEach((opt) => {
+                if (option.value === 'Neutral' || option.value === 'Veto' || this.topic.vote.maxChoices ===1) {
                     opt.selected = false;
-                } else if (opt.value === 'Neutral' || opt.value === 'Veto' || $scope.topic.vote.maxChoices ===1) {
+                } else if (opt.value === 'Neutral' || opt.value === 'Veto' || this.topic.vote.maxChoices ===1) {
                     opt.selected = false;
                 }
             });
 
             option.optionId = option.id;
 
-            var selected = filter($scope.topic.vote.options.rows, function (option) {
+            const selected = filter(this.topic.vote.options.rows, function (option) {
                 return !!option.selected;
             });
 
-            var isSelected = find(selected, function (item) {
+            const isSelected = find(selected, function (item) {
                 if (item.id === option.id) return item;
             });
 
-            if (selected.length >= $scope.topic.vote.maxChoices && !isSelected) return;
-            option.selected=!option.selected;
+            if (selected.length >= this.topic.vote.maxChoices && !isSelected) return;
 
+            option.selected = !option.selected;
         };
 
-        $scope.$parent.$parent.canSubmit = function () {
-            if (!$scope.topic.vote.options || !isArray($scope.topic.vote.options.rows)) return false;
-            var options = filter($scope.topic.vote.options.rows, function (option) {
+        canSubmit () {
+            if (!this.topic.vote.options || !isArray(this.topic.vote.options.rows)) return false;
+            const options = filter(this.topic.vote.options.rows, function (option) {
                 return !!option.selected;
             });
 
@@ -73,96 +75,97 @@ angular
                 return true;
             }
 
-            if (options.length > $scope.topic.vote.maxChoices || options.length < $scope.topic.vote.minChoices)
+            if (options.length > this.topic.vote.maxChoices || options.length < this.topic.vote.minChoices) {
                 return false;
+            }
 
             return true;
         };
 
-        $scope.$parent.$parent.doVote = function (option) {
-            var options = [];
-            if (!$scope.topic.canVote()) return;
+        doVote (option) {
+            let options = [];
+            if (!this.topic.canVote()) return;
+
             if (!option) {
-                options = filter($scope.topic.vote.options.rows, function (option) {
+                options = filter(this.topic.vote.options.rows, function (option) {
                     return !!option.selected;
                 });
             } else {
                 options = [option];
             }
-            if (options.length > $scope.topic.vote.maxChoices || options.length < $scope.topic.vote.minChoices && options[0].value !== 'Neutral' && options[0].value !== 'Veto') {
-                sNotification.addError('MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS');
-                return;
+            if (options.length > this.topic.vote.maxChoices || options.length < this.topic.vote.minChoices && options[0].value !== 'Neutral' && options[0].value !== 'Veto') {
+                return this.sNotification.addError('MSG_ERROR_SELECTED_OPTIONS_COUNT_DOES_NOT_MATCH_VOTE_SETTINGS');
             }
 
-            if ($scope.topic.vote.authType === $scope.voteAuthTypes.hard) {
-                var signDialog = ngDialog
+            if (this.topic.vote.authType === this.voteAuthTypes['hard']) {
+                const signDialog = this.ngDialog
                     .open({
                         template: '/views/modals/topic_vote_sign.html',
                         controller: 'TopicVoteSignCtrl',
                         data: {
-                            topic: $scope.topic,
+                            topic: this.topic,
                             options: options
                         },
-                        preCloseCallback: function (data) {
+                        preCloseCallback: (data) => {
                             if (data) {
-                                $scope.topic.vote.topicId = $scope.topic.id;
+                                this.topic.vote.topicId = this.topic.id;
 
-                                $scope.topic.vote.$get()
-                                    .then(function () {
-                                        $scope.topic.vote.options.rows.forEach(function (option) {
-                                            data.options.forEach(function (dOption) {
+                                this.topic.vote.$get()
+                                    .then(() => {
+                                        this.topic.vote.options.rows.forEach((option) => {
+                                            data.options.forEach((dOption) => {
                                                 option.optionId = option.id;
                                                 if (option.id === dOption.optionId) {
                                                     option.selected = true;
                                                 }
                                             });
                                         });
-                                        $scope.topic.vote.downloads = {bdocVote: data.bdocUri};
-                                        $scope.$parent.$parent.userHasVoted = true;
+                                        this.topic.vote.downloads = {bdocVote: data.bdocUri};
+                                        this.userHasVoted = true;
                                     });
                                 return true;
                             }
                         }
                     });
 
-                signDialog.closePromise.then(function (data) {
+                signDialog.closePromise.then((data) => {
                     if(data.value) {
-                        sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
+                        this.sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
                     }
                 });
 
                 return;
             } else {
-                var userVote = new TopicVote({id: $scope.topic.vote.id, topicId: $scope.topic.id});
+                const userVote = new this.TopicVote({id: this.topic.vote.id, topicId: this.topic.id});
                 userVote.options = options
                 userVote
                     .$save()
-                    .then(function (data) {
-                        $scope.topic.vote.topicId = $scope.topic.id;
-                        sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
-                        getVote();
+                    .then(() => {
+                        this.topic.vote.topicId = this.topic.id;
+                        this.sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
+                        this.getVote();
                     });
             }
         };
 
-        $scope.$parent.$parent.doDelegate = function () {
-            if (!$scope.topic.vote.delegation) {
-                ngDialog
+        doDelegate () {
+            if (!this.topic.vote.delegation) {
+                this.ngDialog
                     .open({
                         template: '/views/modals/topic_vote_delegate.html',
                         controller: 'TopicVoteDelegateCtrl',
                         data: {
-                            topic: $scope.topic
+                            topic: this.topic
                         },
-                        preCloseCallback: function (data) {
+                        preCloseCallback: (data) => {
                             if (data && data.delegateUser && data.delegateUser.id) {
-                                var delegation = new VoteDelegation({topicId: $scope.topic.id, voteId: $scope.topic.vote.id});
+                                const delegation = new this.VoteDelegation({topicId: this.topic.id, voteId: this.topic.vote.id});
                                 delegation.userId = data.delegateUser.id;
                                 delegation
                                     .$save()
-                                    .then(function (data) {
-                                        $scope.topic.vote.topicId = $scope.topic.id;
-                                        $scope.topic.vote.$get();
+                                    .then((data) => {
+                                        this.topic.vote.topicId = this.topic.id;
+                                        this.topic.vote.$get();
                                     });
                             }
                             return true;
@@ -171,30 +174,33 @@ angular
             }
         };
 
-        $scope.$parent.$parent.doRevokeDelegation = function () {
-            $log.debug('doDeleteTopic');
+        doRevokeDelegation () {
+            this.$log.debug('doDeleteTopic');
 
-            ngDialog
+            this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_vote_revoke_delegation_confirm.html',
                     data: {
-                        user: $scope.topic.vote.delegation
+                        user: this.topic.vote.delegation
                     }
-                })
-                .then(function () {
-                    VoteDelegation
-                        .delete({topicId: $scope.topic.id, voteId: $scope.topic.vote.id})
+                }).then(() => {
+                    this.VoteDelegation
+                        .delete({topicId: this.topic.id, voteId: this.topic.vote.id})
                         .$promise
-                        .then(function () {
-                            $scope.topic.vote.topicId = $scope.topic.id;
-                            $scope.topic.vote.$get();
+                        .then(() => {
+                            this.topic.vote.topicId = this.topic.id;
+                            this.topic.vote.$get();
                         });
                 }, angular.noop);
         };
 
-        $scope.$parent.$parent.getVoteValuePercentage = function (value) {
-            if (!$scope.topic.vote.getVoteCountTotal() || value < 1 || !value) return 0;
-            return value / $scope.topic.vote.getVoteCountTotal() * 100;
+        getVoteValuePercentage (value) {
+            if (!this.topic.vote.getVoteCountTotal() || value < 1 || !value) return 0;
+            return value / this.topic.vote.getVoteCountTotal() * 100;
         };
+    }]
+};
 
-    }]);
+angular
+    .module('citizenos')
+    .component(topicVote.selector, topicVote);

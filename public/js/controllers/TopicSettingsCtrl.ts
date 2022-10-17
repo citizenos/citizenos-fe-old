@@ -5,7 +5,7 @@ let topicSettings = {
     selector: 'topicSettings',
     templateUrl: '/views/modals/topic_settings.html',
     bindings: {},
-    controller: ['$state', '$stateParams', '$log', '$timeout', '$anchorScroll', 'Topic', 'TopicVote', 'TopicMemberUser', 'ngDialog', 'AppService',  class TopicSettingsController {
+    controller: ['$state', '$stateParams', '$log', '$timeout', '$translate', '$anchorScroll', 'Topic', 'TopicVote', 'TopicMemberUser', 'ngDialog', 'AppService',  class TopicSettingsController {
         public levels = {
             none: 0,
             read: 1,
@@ -24,6 +24,7 @@ let topicSettings = {
                 property: 'title'
             }
         };
+        public reminderOptions = [{value: 1, unit: 'days'}, {value: 2, unit: 'days'}, {value: 3, unit: 'days'}, {value: 1, unit: 'weeks'}, {value: 2, unit: 'weeks'}, {value: 1, unit: 'month'}];
         public searchString = null;
         public searchResults = {};
         public errors = null;
@@ -32,22 +33,9 @@ let topicSettings = {
         public topic;
         public topicId;
 
-        private $state;
-        private $timeout;
-        private Topic;
-        private TopicVote;
-        private TopicMemberUser;
-        private ngDialog;
-
-        constructor ($state, $stateParams, $log, $timeout, $anchorScroll, Topic, TopicVote, TopicMemberUser, ngDialog, AppService) {
+        constructor (private $state, $stateParams, $log, private $timeout, private $translate, $anchorScroll, private Topic, private TopicVote, private TopicMemberUser, private ngDialog, AppService) {
           //  super();
             $log.debug('TopicSettingsCtrl', $state, $stateParams);
-            this.$state = $state;
-            this.$timeout = $timeout;
-            this.Topic = Topic;
-            this.TopicVote = TopicVote;
-            this.TopicMemberUser = TopicMemberUser;
-            this.ngDialog = ngDialog;
             this.app = AppService;
             this.app.tabSelected = $stateParams.tab || 'settings';
 
@@ -87,9 +75,12 @@ let topicSettings = {
                     id: this.topic.voteId
                 })
                 .$get()
-                .then(function (topicVote) {
+                .then((topicVote) => {
                     this.topic.vote = topicVote;
                     this.form.topic.vote = angular.copy(topicVote);
+                    if (topicVote.reminderTime && !topicVote.reminderSent) {
+                        this.form.topic.vote.reminder = true;
+                    }
                 });
             }
 
@@ -129,8 +120,18 @@ let topicSettings = {
 
         doEditVoteDeadline () {
             this.form.topic.vote.topicId = this.topic.id;
-
-            return this.form.topic.vote.$update();
+            if (!this.form.topic.vote.reminder && !this.form.topic.vote.reminderSent) {
+                this.form.topic.vote.reminderTime = null;
+            }
+            return this.form.topic.vote
+                .$update()
+                .then((voteValue) => {
+                    if (voteValue.reminderTime && !voteValue.reminderSent) {
+                        this.form.topic.vote.reminder = true;
+                    } else {
+                        this.form.topic.vote.reminder = false;
+                    }
+                });
         };
 
         addTopicCategory (category) {
@@ -153,10 +154,6 @@ let topicSettings = {
         doSaveTopic () {
             const self = this;
             this.errors = null;
-            this.form.topic.visibility = 'public';
-            if (this.form.topic.visibility === true || this.form.topic.visibility === 'private') {
-                this.form.topic.visibility = 'private';
-            }
 
             if (this.form.topic.endsAt && this.topic.endsAt === this.form.topic.endsAt) { //Remove endsAt field so that topics with endsAt value set could be updated if endsAt is not changed
                 delete this.form.topic.endsAt;
@@ -210,6 +207,57 @@ let topicSettings = {
                             self.$state.go('my/topics', null, {reload: true});
                         });
                 }, angular.noop);
+        };
+
+        isVisibleReminderOption (time) {
+            let timeItem = new Date(this.topic.vote.endsAt);
+            switch (time.unit) {
+                case 'weeks':
+                    timeItem.setDate(timeItem.getDate() - (time.value * 7));
+                    break;
+                case 'month':
+                    timeItem.setMonth(timeItem.getMonth() - time.value);
+                    break
+                default:
+                    timeItem.setDate(timeItem.getDate() - time.value);
+            }
+            if (timeItem > new Date()) return true;
+
+            return false;
+        };
+
+        selectedReminderOption () {
+            let voteDeadline = new Date(this.topic.vote.endsAt);
+            let reminder = new Date(this.form.topic.vote.reminderTime);
+            let diffTime = voteDeadline.getTime() - reminder.getTime();
+            const days = Math.ceil(diffTime / (1000 * 3600 * 24));
+            const weeks = Math.ceil(diffTime / (1000 * 3600 * 24 * 7));
+            const months = (voteDeadline.getMonth() - reminder.getMonth() +
+                12 * (voteDeadline.getFullYear() - reminder.getFullYear()));
+            const item = this.reminderOptions.find((item) => {
+                if ( item.value === days && item.unit === 'days') return item;
+                else if ( item.value === weeks && item.unit === 'weeks') return item;
+                else if ( item.value === months && item.unit === 'month') return item;
+            });
+            if (item) {
+                return this.$translate.instant('OPTION_' + item.value + '_'+ item.unit.toUpperCase());
+            }
+        };
+
+        setVoteReminder (time) {
+            let reminderTime = new Date(this.topic.vote.endsAt);
+            switch (time.unit) {
+                case 'weeks':
+                    reminderTime.setDate(reminderTime.getDate() - (time.value * 7));
+                    break;
+                case 'month':
+                    reminderTime.setMonth(reminderTime.getMonth() - time.value);
+                    break
+                default:
+                    reminderTime.setDate(reminderTime.getDate() - time.value);
+            }
+            this.form.topic.vote.reminderTime = reminderTime;
+            this.doEditVoteDeadline();
         };
     }]
 }

@@ -1,5 +1,5 @@
 <!-- MOBILE HEADER NAV -->
-<div id="mobile_header" ng-if="wWidth <= 1024">
+<div id="mobile_header" ng-if="app.wWidth <= 1024">
     <nav-mobile></nav-mobile>
 </div>
 
@@ -8,7 +8,7 @@
 </nav>
 
 <!-- CONTENT -->
-<div id="content_root" ng-class="$ctrl.app.showNav ? 'navOpen' : ''">
+<div id="content_root" ng-class="app.showNav ? 'navOpen' : ''">
     <!-- CONTENT WRAP -->
     <div id="content_wrap">
         <div id="close_mobile_menu" ng-if="app.showNav" ng-swipe-right="app.showNav = false" ng-click="app.showNav = false"></div>

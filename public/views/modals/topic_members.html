@@ -1,5 +1,5 @@
 <!-- LIGHTBOX SKELETON -->
-<div id="root_lightbox" class="full_screen" ng-controller="TopicMembersCtrl">
+<div id="root_lightbox" class="full_screen">
 
     <div id="lightbox" class="wide_lightbox with_title_description with_header_menu member_lightbox">
         <div id="lightbox_wrap">
@@ -8,12 +8,12 @@
 
                 <div id="lightbox_header_text">
                     <div class="title" translate="MODALS.TOPIC_MEMBERS_HEADING"></div>
-                    <div class="title_description">{{form.topic.title}}</div>
+                    <div class="title_description">{{$ctrl.topic.title}}</div>
                 </div>
 
                 <div id="lightbox_close" ng-click="closeThisDialog('$closeButton')">
-                    <div class="table_cell">
-                        <div class="sprite sprite-btn-popup-close2x">
+                    <div class="table_cell ngdialog-close">
+                        <div class="sprite sprite-btn-popup-close2x ngdialog-close">
                         </div>
                     </div>
                 </div>
@@ -22,19 +22,19 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="topicSettingsSlider">
-                        <div class="tab_button" ng-click="app.selectTab('participants')" ng-class="app.tabSelected === 'participants' ? 'active' : ''">
+                        <div class="tab_button" ng-click="$ctrl.app.selectTab('participants')" ng-class="$ctrl.app.tabSelected === 'participants' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_MEMBERS_TAB_PARTICIPANTS">PARTICIPANTS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="app.selectTab('groups')" ng-class="app.tabSelected === 'groups' ? 'active' : ''">
+                        <div class="tab_button" ng-click="$ctrl.app.selectTab('groups')" ng-class="$ctrl.app.tabSelected === 'groups' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_MEMBERS_TAB_GROUPS">GROUPS</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="app.selectTab('invited')" ng-class="app.tabSelected === 'invited' ? 'active' : ''">
+                        <div class="tab_button" ng-click="$ctrl.app.selectTab('invited')" ng-class="$ctrl.app.tabSelected === 'invited' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_MEMBERS_TAB_INVITED">INVITED</div>
                                 <div class="blue_bottom_line"></div>
@@ -47,29 +47,29 @@
 
             <div class="line lightest_line"></div>
             <!-- PARTICIPANTS USERS -->
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="app.tabSelected === 'participants'">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="$ctrl.app.tabSelected === 'participants'">
                 <div class="lightbox_section">
                     <table>
                         <tr>
                             <td>
-                                <input placeholder="{{'MODALS.TOPIC_MEMBERS_PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="loadMemberUserList();" ng-model-options="{debounce:250}" ng-model="userList.searchFilter">
+                                <input placeholder="{{'MODALS.TOPIC_MEMBERS_PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="$ctrl.TopicMemberUserService.doSearch();" ng-model-options="{debounce:250}" ng-model="$ctrl.TopicMemberUserService.search">
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div class="lightbox_section participants_list" ng-if="topic.members.users.count">
+                <div class="lightbox_section participants_list" ng-if="$ctrl.TopicMemberUserService.countTotal">
                     <table>
                         <tr>
-                            <th ng-click="sortParticipants('name')">
+                            <th ng-click="$ctrl.TopicMemberUserService.doOrder('name')">
                                 <div class="th_text">
                                     <span translate="MODALS.TOPIC_MEMBERS_LNK_PROFILE">Profile</span>
-                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': userList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': userList.searchOrderBy.sortOrder === 'DESC' }" ng-if="userList.searchOrderBy.property === 'name'"></div>
+                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': $ctrl.TopicMemberUserService.order === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': $ctrl.TopicMemberUserService.order === 'DESC' }" ng-if="$ctrl.TopicMemberUserService.orderBy === 'name'"></div>
                                 </div>
                             </th>
-                            <th ng-click="sortParticipants('level')">
+                            <th ng-click="$ctrl.TopicMemberUserService.doOrder('level')">
                                 <div class="th_text">
                                     <span translate="MODALS.TOPIC_MEMBERS_LNK_ROLES">Roles</span>
-                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': userList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': userList.searchOrderBy.sortOrder === 'DESC' }" ng-if="userList.searchOrderBy.property === 'level'"></div>
+                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': $ctrl.TopicMemberUserService.order === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': $ctrl.TopicMemberUserService.order === 'DESC' }" ng-if="$ctrl.TopicMemberUserService.orderBy === 'level'"></div>
                                 </div>
                             </th>
                             <th class="not_sortable">
@@ -77,7 +77,7 @@
                                 </div>
                             </th>
                         </tr>
-                        <tr ng-class="{'with_padding': $first}" ng-repeat="user in topic.members.users.rows">
+                        <tr ng-class="{'with_padding': $first}" ng-repeat="user in $ctrl.TopicMemberUserService.users">
                             <td>
                                 <div class="profile_image_wrapper dark">
                                     <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
@@ -105,7 +105,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div cos-dropdown class="classic_dropdown" ng-if="topic.canUpdate()">
+                                <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.topic.canUpdate()">
                                     <div class="dropdown_selection">
                                         <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + user.level | uppercase | translate}}</div>
 
@@ -118,16 +118,16 @@
                                         </div>
                                     </div>
                                     <div class="dropdown">
-                                        <div class="dropdown_item" ng-repeat="(key, level) in TopicMemberUser.LEVELS">
-                                            <div class="item_name" ng-click="doUpdateMemberUser(user, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
+                                        <div class="dropdown_item" ng-repeat="(key, level) in $ctrl.TopicMemberUser.LEVELS">
+                                            <div class="item_name" ng-click="$ctrl.doUpdateMemberUser(user, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
                                         </div>
                                     </div>
                                 </div>
-                                <span ng-if="!topic.canUpdate()" class="user_level_text">{{'TXT_TOPIC_LEVELS_' + user.level | uppercase | translate}}</span>
+                                <span ng-if="!$ctrl.topic.canUpdate()" class="user_level_text">{{'TXT_TOPIC_LEVELS_' + user.level | uppercase | translate}}</span>
                             </td>
-                            <td class="recycle_bin_wrap" ng-if="topic.canUpdate()">
+                            <td class="recycle_bin_wrap" ng-if="$ctrl.topic.canUpdate()">
                                 <div class="btn_wrap recycle_bin" ng-if="user.levelUser">
-                                    <div class="btn" ng-click="doDeleteMemberUser(user)">
+                                    <div class="btn" ng-click="$ctrl.doDeleteMemberUser(user)">
                                         <div class="table_cell">
                                             <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                             <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -139,7 +139,7 @@
                     </table>
                     <div class="pagination_row">
                         <div class="pagination_wrapper">
-                            <div class="pagination" cos-pagination select="loadMemberUsersPage" total-pages="topic.members.users.totalPages" page="topic.members.users.page"></div>
+                            <div class="pagination" cos-pagination select="$ctrl.TopicMemberUserService.loadPage" total-pages="$ctrl.TopicMemberUserService.totalPages" page="$ctrl.TopicMemberUserService.page"></div>
                         </div>
                     </div>
                 </div>
@@ -147,29 +147,29 @@
             </div>
 
             <!-- GROUPS -->
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="app.tabSelected === 'groups'">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="$ctrl.app.tabSelected === 'groups'">
                 <div class="lightbox_section">
                     <table>
                         <tr>
                             <td>
-                                <input placeholder="{{'MODALS.TOPIC_MEMBERS_PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-change="loadMemberGroupList()" ng-model-options="{debounce:250}" ng-model="groupList.searchFilter">
+                                <input placeholder="{{'MODALS.TOPIC_MEMBERS_PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-change="$ctrl.TopicMemberGroupService.doSearch()" ng-model-options="{debounce:250}" ng-model="$ctrl.TopicMemberGroupService.search">
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div class="lightbox_section participants_list" ng-if="topic.members.groups.count">
+                <div class="lightbox_section participants_list" ng-if="$ctrl.TopicMemberGroupService.countTotal">
                     <table>
                         <tr>
-                            <th ng-click="sortGroups('name')">
+                            <th ng-click="$ctrl.TopicMemberGroupService.doOrder('name')">
                                 <div class="th_text">
                                     <span translate="MODALS.TOPIC_MEMBERS_LNK_NAME">Name</span>
-                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': groupList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': groupList.searchOrderBy.sortOrder === 'DESC' }" ng-if="groupList.searchOrderBy.property === 'name'"></div>
+                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': $ctrl.TopicMemberGroupService.order === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': $ctrl.TopicMemberGroupService.order === 'DESC' }" ng-if="$ctrl.TopicMemberGroupService.ordeBy === 'name'"></div>
                                 </div>
                             </th>
-                            <th ng-click="sortGroups('level')">
+                            <th ng-click="$ctrl.TopicMemberGroupService.doOrder('level')">
                                 <div class="th_text">
                                     <span translate="MODALS.TOPIC_MEMBERS_LNK_ROLES">Roles</span>
-                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': groupList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': groupList.searchOrderBy.sortOrder === 'DESC' }" ng-if="groupList.searchOrderBy.property === 'level'"></div>
+                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': $ctrl.TopicMemberGroupService.order === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': $ctrl.TopicMemberGroupService.order === 'DESC' }" ng-if="$ctrl.TopicMemberGroupService.orderBy === 'level'"></div>
                                 </div>
                             </th>
                             <th class="not_sortable">
@@ -177,7 +177,7 @@
                                 </div>
                             </th>
                         </tr>
-                        <tr ng-class="{'with_padding': $first}" ng-repeat="group in topic.members.groups.rows">
+                        <tr ng-class="{'with_padding': $first}" ng-repeat="group in $ctrl.TopicMemberGroupService.groups">
                             <td>
                                 <div class="blue_link" ng-if="group.permission.level" ui-sref="my/groups/groupId({groupId: group.id, filter: 'grouped'})" ui-sref-opts="{reload: true}" ng-bind="group.name">Group name</div>
                                 <div ng-if="!group.permission.level"><i class="disabled" translate="MODALS.TOPIC_MEMBERS_LBL_INACCESSIBLE_GROUP">Inaccessible Group</i></div>
@@ -196,15 +196,15 @@
                                         </div>
                                     </div>
                                     <div class="dropdown">
-                                        <div class="dropdown_item" ng-repeat="(key, level) in TopicMemberGroup.LEVELS">
-                                            <div class="item_name" ng-click="doUpdateMemberGroup(group, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
+                                        <div class="dropdown_item" ng-repeat="(key, level) in $ctrl.TopicMemberGroup.LEVELS">
+                                            <div class="item_name" ng-click="$ctrl.doUpdateMemberGroup(group, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
                                         </div>
                                     </div>
                                 </div>
                             </td>
                             <td class="recycle_bin_wrap">
-                                <div class="btn_wrap recycle_bin" ng-if="topic.canUpdate()">
-                                    <div class="btn" ng-click="doDeleteMemberGroup(group)">
+                                <div class="btn_wrap recycle_bin" ng-if="$ctrl.topic.canUpdate()">
+                                    <div class="btn" ng-click="$ctrl.doDeleteMemberGroup(group)">
                                         <div class="table_cell">
                                             <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                             <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -216,37 +216,37 @@
                     </table>
                     <div class="pagination_row">
                         <div class="pagination_wrapper">
-                            <div class="pagination" cos-pagination select="loadMemberGroupPage" total-pages="topic.members.groups.totalPages" page="topic.members.groups.page"></div>
+                            <div class="pagination" cos-pagination select="$ctrl.TopicMemberGroupService.loadPage" total-pages="$ctrl.TopicMemberGroupService.totalPages" page="$ctrl.TopicMemberGroupService.page"></div>
                         </div>
                     </div>
                 </div>
 
             </div>
 
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="app.tabSelected === 'invited'">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="$ctrl.app.tabSelected === 'invited'">
                 <div class="lightbox_section">
                     <table>
                         <tr>
                             <td>
-                                <input placeholder="{{'MODALS.TOPIC_MEMBERS_PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="loadInviteUserList();" ng-model-options="{debounce:250}" ng-model="inviteList.searchFilter">
+                                <input placeholder="{{'MODALS.TOPIC_MEMBERS_PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="$ctrl.TopicInviteUserService.doSearch();" ng-model-options="{debounce:250}" ng-model="$ctrl.TopicInviteUserService.search">
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div class="lightbox_section participants_list" ng-if="topic.members.invited.count">
+                <div class="lightbox_section participants_list" ng-if="$ctrl.TopicInviteUserService.countTotal">
                     <!-- TopicInviteUsers -->
                     <table>
                         <tr>
-                            <th ng-click="sortInvites('name')">
+                            <th ng-click="$ctrl.TopicInviteUserService.doOrder('name')">
                                 <div class="th_text">
                                     <span translate="MODALS.TOPIC_MEMBERS_LNK_PROFILE">Profile</span>
-                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': inviteList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': inviteList.searchOrderBy.sortOrder === 'DESC' }" ng-if="inviteList.searchOrderBy.property === 'name'"></div>
+                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': $ctrl.TopicInviteUserService.order === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': $ctrl.TopicInviteUserService.order === 'DESC' }" ng-if="$ctrl.TopicInviteUserService.orderBy === 'name'"></div>
                                 </div>
                             </th>
-                            <th ng-click="sortInvites('level')">
+                            <th ng-click="$ctrl.TopicInviteUserService.doOrder('level')">
                                 <div class="th_text">
                                     <span translate="MODALS.TOPIC_MEMBERS_LNK_ROLES">Roles</span>
-                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': inviteList.searchOrderBy.sortOrder === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': inviteList.searchOrderBy.sortOrder === 'DESC' }" ng-if="inviteList.searchOrderBy.property === 'level'"></div>
+                                    <div ng-class="{'sprite sprite-icon-list-ordering2x': $ctrl.TopicInviteUserService.order === 'ASC', 'sprite sprite-icon-list-ordering-down-black2x': $ctrl.TopicInviteUserService.order === 'DESC' }" ng-if="$ctrl.TopicInviteUserService.orderBy === 'level'"></div>
                                 </div>
                             </th>
                             <th class=" not_sortable">
@@ -254,7 +254,7 @@
                                 </div>
                             </div>
                         </tr>
-                        <tr ng-class="{'with_padding': $first}" ng-repeat="invite in topic.members.invited.rows">
+                        <tr ng-class="{'with_padding': $first}" ng-repeat="invite in $ctrl.TopicInviteUserService.users">
                             <td>
                                 <div class="profile_image_wrapper dark">
                                     <!--div class="profile_moon sprite sprite-icon-certified-fb2x"></div-->
@@ -283,8 +283,8 @@
                                         <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + invite.level | uppercase | translate}}</div>
 
                                         <div class="dropdown">
-                                            <div class="dropdown_item" ng-repeat="(key, level) in TopicMemberUser.LEVELS">
-                                                <div class="item_name" ng-click="doUpdateInvite(invite, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
+                                            <div class="dropdown_item" ng-repeat="(key, level) in $ctrl.TopicMemberUser.LEVELS">
+                                                <div class="item_name" ng-click="$ctrl.doUpdateInvite(invite, level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
                                             </div>
                                         </div>
 
@@ -299,8 +299,8 @@
                                 </div>
                             </td>
                             <td class="recycle_bin_wrap">
-                                <div class="btn_wrap recycle_bin" ng-if="topic.canUpdate()">
-                                    <div class="btn" ng-click="doDeleteInviteUser(invite)">
+                                <div class="btn_wrap recycle_bin" ng-if="$ctrl.topic.canUpdate()">
+                                    <div class="btn" ng-click="$ctrl.doDeleteInviteUser(invite)">
                                         <div class="table_cell">
                                             <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
                                             <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
@@ -312,7 +312,7 @@
                     </table>
                     <div class="pagination_row">
                         <div class="pagination_wrapper">
-                            <div class="pagination" cos-pagination select="loadUsersInvitedPage" total-pages="topic.members.invited.totalPages" page="topic.members.invited.page"></div>
+                            <div class="pagination" cos-pagination select="$ctrl.TopicInviteUserService.loadPage" total-pages="$ctrl.TopicInviteUserService.totalPages" page="$ctrl.TopicInviteUserService.page"></div>
                         </div>
                     </div>
                 </div>

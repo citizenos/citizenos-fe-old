@@ -30,7 +30,7 @@
         <div class="container_visibility" >
             <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+$ctrl.item.visibility | uppercase) | translate}}</span>">
                 <div class="table_cell">
-                    <div class="sprite" ng-class="{'sprite-icon-public-topic': !$ctrl.item.isPrivate(), 'sprite-icon-private-topic': $ctrl.item.isPrivate()}"></div>
+                    <div class="sprite" ng-class="{'sprite-icon-public-topic': !$ctrl.isPrivate(), 'sprite-icon-private-topic': $ctrl.isPrivate()}"></div>
                 </div>
             </div>
         </div>
