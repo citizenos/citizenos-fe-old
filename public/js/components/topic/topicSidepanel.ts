@@ -33,12 +33,10 @@ let topicSidepanel = {
             return this.sTopic.changeState(this.topic, 'closed');
         };
 
-
         downloadAttachment (attachment) {
             this.app.topicsSettings = false;
             return this.sUpload.download(this.topic.id, attachment.id, this.app.user.id);
         };
-
 
         duplicateTopic () {
             this.ngDialog
@@ -52,6 +50,14 @@ let topicSidepanel = {
                             this.$state.go('topics/view', {topicId: duplicate.id}, {reload:true});
                         });
                 }, angular.noop);
+        };
+
+        openFeedback () {
+            const dialog = this.ngDialog
+                .open({
+                    template: '<feedback></feedback>',
+                    plain: true
+                });
         };
     }]
 };

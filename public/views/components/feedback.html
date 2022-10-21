@@ -1,0 +1,63 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.GIVE_FEEDBACK_HEADING">Share your feedback</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div class="table_cell ngdialog-close">
+                        <div class="sprite sprite-btn-popup-close2x ngdialog-close"></div>
+                    </div>
+                </div>
+
+                <div class="line lightest_line"></div>
+
+            </div>
+
+
+            <div class="lightbox_content">
+
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+
+                <div class="lightbox_section" ng-if="!$ctrl.isSubmitted">
+
+                    <div class="feedback_info_text" translate="MODALS.GIVE_FEEDBACK_DESC">This text area would comprise of 3 questions which can be edited by the lead from Citizen OS and these details will be discussed privately. But I still wanted to add text here so that this area becomes bigger and a better reference for the future.</div>
+
+                    <p>
+                        <textarea class="feedback_info_textarea" ng-model="$ctrl.message" translatetranslate-attr-placeholder="MODALS.GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA" placeholder="Write here..."></textarea>
+                    </p>
+                </div>
+                <div class="lightbox_section" ng-if="$ctrl.isSubmitted">
+                    <div class="feedback_icon_wrap">
+                        <div class="feedback_icon_circle">
+                            <div class="icon_checkmark_white"></div>
+                        </div>
+                    </div>
+                    <div class="feedback_submitted_title" translate="MODALS.GIVE_FEEDBACK_TITLE_THANK_YOU">Thanks for your feedback!</div>
+                    <div class="feedback_info_text" translate="MODALS.GIVE_FEEDBACK_TEXT_THANK_YOU">This text area would comprise of 3 questions which can be edited by the lead from Citizen OS and these details will be discussed privately. But I still wanted to add text here so that this area becomes bigger and a better reference for the future.</div>
+                </div>
+            </div>
+            <div class="lightbox_footer">
+                <div class="line lightest_line"></div>
+
+                <div class="lightbox_section">
+                    <div class="footer_button_wrap right">
+                        <div ng-if="!$ctrl.isSubmitted" class="blue_link ngdialog-close" translate="MODALS.GIVE_FEEDBACK_BTN_CANCEL">Cancel</div>
+                        <div ng-if="!$ctrl.isSubmitted"class="blue_button" ng-click="$ctrl.submitFeedback()" class="blue_button"
+                        translate="MODALS.GIVE_FEEDBACK_BTN_SUBMIT">Submit feedback</div>
+                        <div ng-if="$ctrl.isSubmitted" class="blue_button ngdialog-close" translate="MODALS.GIVE_FEEDBACK_BTN_CLOSE">Cancel</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog();"></div>
+
+</div>

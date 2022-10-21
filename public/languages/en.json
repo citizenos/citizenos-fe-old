@@ -554,7 +554,15 @@
     "GROUP_JOIN_CONFIRM_TXT_POINT2": "You, similar to other members, will have only reading rights.",
     "GROUP_JOIN_CONFIRM_TXT_POINT3": "The group activity is displayed under the \"My activity\" feed",
     "GROUP_JOIN_CONFIRM_BTN_NO": "@:LNK_CANCEL",
-    "GROUP_JOIN_CONFIRM_BTN_YES": "Yes, join group"
+    "GROUP_JOIN_CONFIRM_BTN_YES": "Yes, join group",
+    "GIVE_FEEDBACK_HEADING": "Share your feedback",
+    "GIVE_FEEDBACK_DESC": "This text area would comprise of 3 questions which can be edited by the lead from Citizen OS and these details will be discussed privately. But I still wanted to add text here so that this area becomes bigger and a better reference for the future.",
+    "GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA": "Write here...",
+    "GIVE_FEEDBACK_BTN_CANCEL": "@:LNK_CANCEL",
+    "GIVE_FEEDBACK_BTN_SUBMIT": "Submit",
+    "GIVE_FEEDBACK_TITLE_THANK_YOU": "Thanks for your feedback!",
+    "GIVE_FEEDBACK_TEXT_THANK_YOU": "We appreciate that you took time to share your feedback. Thanks to the help from our community we continue to improve Citizen OS all the time!",
+    "GIVE_FEEDBACK_BTN_CLOSE": "@:BTN_CLOSE"
   },
   "TXT_TOPIC_CATEGORY_ALL": "every category",
   "TXT_TOPIC_CATEGORY_CITIZENOS": "Citizen OS",
@@ -1017,7 +1025,8 @@
       "HEADER_FILES": "ATTACHMENTS",
       "LNK_ADD_MANAGE_FILES": "Add/manage attachments",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!",
-      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\""
+      "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\"",
+      "BTN_FEEDBACK_OPEN": "We appriciate your feedback"
     },
     "PUBLIC_GROUPS": {
       "BTN_JOIN_GROUP": "@:VIEWS.PUBLIC_GROUP.BTN_JOIN_GROUP",

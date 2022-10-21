@@ -1819,6 +1819,46 @@
                 font-size: 14px;
                 overflow: hidden;
 
+                .feedback_icon_wrap {
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-bottom: 32px;
+                    width: 74px;
+                    height: 74px;
+
+                    .feedback_icon_circle {
+                        width: 74px;
+                        height: 74px;
+                        background-color: vars.$deep_sky_blue;
+                        border-radius: 74px;
+
+                        .icon_checkmark_white {
+                            position: relative;
+                            margin-left: auto;
+                            margin-right: auto;
+                            top: 18px;
+                        }
+                    }
+                }
+
+                .feedback_submitted_title {
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 24px;
+                    text-align: center;
+                    margin-bottom: 16px;
+                }
+
+                .feedback_info_text {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 24px;
+                }
+
+                .feedback_info_textarea {
+                    min-height: 160px;
+                }
+
                 @include mixins_n_extends.mobile {
                     border-radius: 0
                 }

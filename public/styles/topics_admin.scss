@@ -776,6 +776,43 @@
                         }
                     }
                 }
+
+                .feedback_btn_wrap {
+                    width: 100%;
+
+                    div {
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 32px;
+
+                        &.icon_left {
+                            float: left;
+                            margin-left: 6px;
+                            margin-top: 3px;
+                        }
+
+                        &.icon_right {
+                            float: right;
+                            margin-right: 14px;
+                            margin-top: 9px;
+                        }
+
+                        &.btn_text {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                    }
+
+                    .feedback_btn {
+                        height: 56px;
+                        background-color: vars.$deep_sky_blue;
+                        border: none;
+                        color: vars.$white;
+                        width: 100%;
+                    }
+                }
             }
 
         }

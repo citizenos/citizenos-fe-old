@@ -17,6 +17,7 @@ import './comment_edit';
 import './comment_reply';
 import './reply_edit'
 import './search';
+import './feedback';
 import './topic/topicAttachmentModal';
 import './topic/topic_timeline';
 import './topic/topic_tabs';
