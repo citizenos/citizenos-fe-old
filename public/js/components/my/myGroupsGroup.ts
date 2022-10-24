@@ -4,7 +4,7 @@ import {orderBy, sortedUniqBy} from 'lodash';
 let myGroupsGroup = {
     selector: 'myGroupsGroup',
     templateUrl: '/views/components/my_groups_groupId.html',
-    controller: ['$state', '$stateParams', '$log', '$q', 'ngDialog', 'sAuth', 'Group', 'GroupService', 'GroupMemberUser', 'GroupMemberUserService', 'GroupMemberTopic', 'GroupMemberTopicService', 'GroupInviteUser', 'GroupInviteUserService', 'AppService', class MyGroupsGroupController {
+    controller: ['$scope', '$state', '$stateParams', '$log', '$q', 'ngDialog', 'sAuth', 'Group', 'GroupService', 'GroupMemberUser', 'GroupMemberUserService', 'GroupMemberTopic', 'GroupMemberTopicService', 'GroupInviteUser', 'GroupInviteUserService', 'AppService', class MyGroupsGroupController {
         public app;
         public group;
 
@@ -19,20 +19,25 @@ let myGroupsGroup = {
         public generalInfo = {
             isVisible: true
         };
-        constructor (private $state, private $stateParams, private $log, private  $q, private  ngDialog, private sAuth, private Group, GroupService, private GroupMemberUser, private GroupMemberUserService, private GroupMemberTopic, private GroupMemberTopicService, private GroupInviteUser, public GroupInviteUserService, AppService) {
-            $log.debug('MyTopicsTopicController');
+        constructor ($scope, private $state, private $stateParams, private $log, private  $q, private  ngDialog, private sAuth, private Group, private GroupService, private GroupMemberUser, private GroupMemberUserService, private GroupMemberTopic, private GroupMemberTopicService, private GroupInviteUser, public GroupInviteUserService, AppService) {
+            $log.debug('MyGroupsGroupController');
             this.app = AppService;
-            this.group = GroupService.groups.find((item) => { if (item.id === $stateParams.groupId)return item});
             GroupMemberTopicService.groupId = $stateParams.groupId;
             GroupMemberTopicService.reload();
             GroupMemberUserService.groupId = $stateParams.groupId;
             GroupMemberUserService.reload();
             GroupInviteUserService.groupId = $stateParams.groupId;
             GroupInviteUserService.reload();
-            if (!this.group) {
-                return $state.go('my/groups', {}, {reload:true});
-            }
-            const self = this;
+            $scope.$watch(() => GroupService.isLoading, (newVal, oldVal) => {
+                if (newVal === false) {
+                    this.group = GroupService.groups.find((item) => { if (item.id === $stateParams.groupId)return item});
+
+                    if (!this.group) {
+                        return $state.go('my/groups', {}, {reload:true});
+                    }
+                }
+            });
+
             if ($stateParams.openTabs) {
                 const params = angular.extend({}, $stateParams);
                 this.userList.isVisible = false;
@@ -43,10 +48,10 @@ let myGroupsGroup = {
                 params.openTabs.forEach((tab) => {
                     switch (tab) {
                         case 'user_list':
-                            self.doShowMemberUserList();
+                            this.doShowMemberUserList();
                             break;
                         case 'topic_list':
-                            self.doShowMemberTopicList();
+                            this.doShowMemberTopicList();
                             break;
                     }
                 });
@@ -174,7 +179,6 @@ let myGroupsGroup = {
         };
 
         doDeleteMemberUser (groupMemberUser) {
-            const self = this;
             if (groupMemberUser.id === this.sAuth.user.id) { // IF User tries to delete himself, show "Leave" dialog instead
                 this.doLeaveGroup();
             } else {
@@ -187,7 +191,7 @@ let myGroupsGroup = {
                     })
                     .then(() => {
                         groupMemberUser
-                            .$delete({groupId: self.group.id})
+                            .$delete({groupId: this.group.id})
                             .then(() => {
                                 this.GroupMemberUserService.reload();
                             });
@@ -225,20 +229,19 @@ let myGroupsGroup = {
         };
 
         doLeaveGroup () {
-            const self = this;
-            self.ngDialog
+            this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_member_user_leave_confirm.html',
                     data: {
-                        group: self.group
+                        group: this.group
                     }
                 })
                 .then(() => {
-                    const groupMemberUser = new self.GroupMemberUser({id: self.sAuth.user.id});
+                    const groupMemberUser = new this.GroupMemberUser({id: this.sAuth.user.id});
                     groupMemberUser
-                        .$delete({groupId: self.group.id})
+                        .$delete({groupId: this.group.id})
                         .then(() => {
-                            self.$state.go('my/groups', null, {reload: true});
+                            this.$state.go('my/groups', null, {reload: true});
                         });
                 });
         };
@@ -252,25 +255,25 @@ let myGroupsGroup = {
                     this.Group
                         .delete(this.group)
                         .then(() => {
+                            this.GroupService.reload();
                             this.$state.go('my/groups', null, {reload: true});
                         });
                 }, angular.noop);
         };
 
         private checkIfInView (elemId) {
-            const self = this;
             const elem = document.getElementById(elemId);
             const bounding = elem.getBoundingClientRect();
 
             if ((bounding.top + 100) > (window.scrollY + window.innerHeight)) {
                 setTimeout(() => {
-                    self.app.scrollToAnchor(elemId)
+                    this.app.scrollToAnchor(elemId)
                 }, 200);
             }
         };
 
         public canUpdate () {
-            return this.group.permission && this.group.permission.level === this.GroupMemberUser.LEVELS.admin;
+            return this.group?.permission && this.group.permission.level === this.GroupMemberUser.LEVELS.admin;
         };
 
         public canDelete () {

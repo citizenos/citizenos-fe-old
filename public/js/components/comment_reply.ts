@@ -9,10 +9,7 @@ let commentReply = {
         topicId: '='
     },
     controller: ['$log', '$state', 'AppService', 'TopicComment', class CommentEditController {
-        private $log;
-        private $state;
         private topicId;
-        private TopicComment;
 
         public app;
         public comment;
@@ -26,11 +23,8 @@ let commentReply = {
             text: null,
             errors: null
         }
-        constructor ($log, $state, AppService, TopicComment) {
+        constructor ($log, private $state, AppService, private TopicComment) {
             $log.debug('CommentEditController');
-            this.$log = $log;
-            this.$state = $state;
-            this.TopicComment = TopicComment;
             this.app = AppService;
             this.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
             this.COMMENT_TYPES_MAXLENGTH = TopicComment.COMMENT_TYPES_MAXLENGTH;
@@ -43,7 +37,6 @@ let commentReply = {
         };
 
         saveComment () {
-            const self = this;
             const comment = new this.TopicComment();
             comment.parentId = this.comment.id;
             comment.parentVersion = (this.comment.edits.length-1);
@@ -56,13 +49,13 @@ let commentReply = {
             comment
                 .$save({topicId: this.topicId})
                 .then((comment) => {
-                        return self.$state.go(
-                            self.$state.current.name,
-                            {commentId: self.getCommentIdWithVersion(comment.id, comment.edits.length - 1)}
+                        return this.$state.go(
+                            this.$state.current.name,
+                            {commentId: this.getCommentIdWithVersion(comment.id, comment.edits.length - 1)}
                         );
                     },
                     function (res) {
-                        self.form.errors = res.data.errors;
+                        this.form.errors = res.data.errors;
                     }
                 );
         };

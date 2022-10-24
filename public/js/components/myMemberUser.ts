@@ -17,18 +17,7 @@ let myMemberUser = {
         private topic;
         public fields;
 
-        private ngDialog;
-        private GroupMemberUser;
-        private TopicMemberUser;
-        private sAuth;
-        private $state;
-
-        constructor (ngDialog, GroupMemberUser, TopicMemberUser, sAuth, $state) {
-            this.ngDialog = ngDialog;
-            this.GroupMemberUser = GroupMemberUser;
-            this.TopicMemberUser = TopicMemberUser;
-            this.sAuth = sAuth;
-            this.$state = $state;
+        constructor (private ngDialog, private GroupMemberUser, private TopicMemberUser, private sAuth, private $state) {
         }
 
         doUpdateMemberUser (level) {
@@ -91,42 +80,37 @@ let myMemberUser = {
         };
 
         doLeaveGroup () {
-            const GroupMemberUser = this.GroupMemberUser;
-            const sAuth = this.sAuth;
-            const group = this.group;
-            const $state = this.$state;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_member_user_leave_confirm.html',
                     data: {
-                        group: group
+                        group: this.group
                     }
                 })
                 .then(() => {
-                    const groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
+                    const groupMemberUser = new this.GroupMemberUser({id: this.sAuth.user.id});
                     groupMemberUser
-                        .$delete({groupId: group.id})
+                        .$delete({groupId: this.group.id})
                         .then(() => {
-                            group.getMemberUsers();
+                            this.group.getMemberUsers();
                         });
                 });
         };
 
         doLeaveTopic () {
-            const self = this;
-            self.ngDialog
+            this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_member_user_leave_confirm.html',
                     data: {
-                        topic: self.topic
+                        topic: this.topic
                     }
                 })
                 .then(() => {
-                    const topicMemberUser = new self.TopicMemberUser({id: self.sAuth.user.id});
+                    const topicMemberUser = new this.TopicMemberUser({id: this.sAuth.user.id});
                     topicMemberUser
-                        .$delete({topicId: self.topic.id})
+                        .$delete({topicId: this.topic.id})
                         .then(() => {
-                            self.$state.go('my.topics', null, {reload: true});
+                            this.$state.go('my.topics', null, {reload: true});
                         });
                 });
         };

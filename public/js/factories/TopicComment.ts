@@ -74,15 +74,6 @@ angular
                         prefix: sAuth.getUrlPrefix,
                         userId: sAuth.getUrlUserId
                     },
-                    transformRequest: function (data) {
-                        var requestObject = {};
-                        data.toJSON().forEach(function (value, key) { // Remove all object properties as we have none we care about in the server side
-                            if (!isObject(value)) {
-                                requestObject[key] = value;
-                            }
-                        });
-                        return angular.toJson(requestObject);
-                    },
                     transformResponse: function (data, headersGetter, status) {
                         if (status > 0 && status < 400) { // TODO: think this error handling through....
                             return angular.fromJson(data).data;

@@ -114,7 +114,6 @@ let groupCreate = {
         };
 
         search (str, type) {
-            const self = this;
             if (str && str.length >= 2) {
                 let include = null;
                 if (type === 'topic') {
@@ -125,25 +124,25 @@ let groupCreate = {
                             'my.topic.level': 'admin'
                         })
                         .then((response) => {
-                            self.searchResults = angular.merge({}, {users: [], topics: []});
+                            this.searchResults = angular.merge({}, {users: [], topics: []});
                             response.data.data.results.my.topics.rows.forEach((topic) => {
-                                self.searchResults.topics.push(topic);
+                                this.searchResults.topics.push(topic);
                             });
                         });
                 } else if (type === 'user') {
-                    self.searchStringUser = str;
-                    self.sSearch
+                    this.searchStringUser = str;
+                    this.sSearch
                         .searchUsers(str)
                         .then((response) => {
-                            self.searchResults = angular.merge({}, {users: [], topics: []});
+                            this.searchResults = angular.merge({}, {users: [], topics: []});
                             response.data.data.results.public.users.rows.forEach((user) => {
-                                self.searchResults.users.push(user);
+                                this.searchResults.users.push(user);
                             });
                         });
                 }
 
             } else {
-                self.searchResults = angular.merge({}, {users: [], topics: []});
+                this.searchResults = angular.merge({}, {users: [], topics: []});
             }
         };
 
@@ -254,7 +253,6 @@ let groupCreate = {
         };
 
         addGroupMemberUser (member?) {
-            const self = this;
             if (member) {
                 if (find(this.members['users'], {userId: member.id})) {
                     // Ignore duplicates
@@ -287,29 +285,29 @@ let groupCreate = {
                 if (filtered.length) {
                     sortedUniq(filtered.sort()).forEach((email) => {
                         email = email.trim();
-                        if (self.members.length >= self.maxUsers) {
-                            return self.sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
+                        if (this.members.length >= this.maxUsers) {
+                            return this.sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
                         }
-                        if (!find(self.members, ['userId', email])) {
-                            self.members.push({
+                        if (!find(this.members, ['userId', email])) {
+                            this.members.push({
                                 userId: email,
                                 name: email,
-                                level: self.groupLevel
+                                level: this.groupLevel
                             });
-                            self.orderMembers();
+                            this.orderMembers();
                         }
                     });
                 }
 
                 if (invalid && invalid.length) {
                     invalid.forEach((item) => {
-                        if (self.invalid.indexOf(item) === -1) {
-                            self.invalid.push(item);
+                        if (this.invalid.indexOf(item) === -1) {
+                            this.invalid.push(item);
                         }
                     });
                 }
 
-                self.searchStringUser = null;
+                this.searchStringUser = null;
             }
         };
 
@@ -341,7 +339,6 @@ let groupCreate = {
         };
 
         uploadImage () {
-            const self = this;
             const input = $(this.$document[0].getElementById('group_image_upload')).find('input');
             input.click();
 
@@ -350,7 +347,7 @@ let groupCreate = {
                 const reader = new FileReader();
                 reader.onload = (() => {
                     return (e) => {
-                        self.group.tmpImageUrl = e.target.result;
+                        this.group.tmpImageUrl = e.target.result;
                     };
                 })();
                 reader.readAsDataURL(files[0]);
@@ -412,10 +409,7 @@ let groupCreate = {
                 })
                 .then(() =>  {
                     this.GroupService.reload();
-                    const dialogs = this.ngDialog.getOpenDialogs();
-                    this.ngDialog.close(dialogs[0], '$closeButton');
-                    console.log(this.$state.$current)
-                    this.$state.go('my/groups/view', {
+                    this.$state.go('my/groups/groupId', {
                         groupId: this.group.id
                     }, {reload: true});
                 },(errorResponse) => {
@@ -427,30 +421,28 @@ let groupCreate = {
         };
 
         generateTokenJoin () {
-            const self = this;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
                 })
                 .then(() => {
-                    const groupJoin = new self.GroupJoin({
-                        groupId: self.group.id,
-                        userId: self.sAuth.user.id,
-                        level: self.form.join.level
+                    const groupJoin = new this.GroupJoin({
+                        groupId: this.group.id,
+                        userId: this.sAuth.user.id,
+                        level: this.form.join.level
                     });
 
                     groupJoin.$save()
                         .then((res) => {
-                            self.group.join = res;
-                            self.form.join.token = res.token;
-                            self.form.join.level = res.level;
-                            self.generateJoinUrl();
+                            this.group.join = res;
+                            this.form.join.token = res.token;
+                            this.form.join.level = res.level;
+                            this.generateJoinUrl();
                         });
                 }, angular.noop);
         };
 
         doUpdateJoinToken (level) {
-            const self = this;
             const groupJoin = new this.GroupJoin({
                 groupId: this.group.id,
                 userId: this.sAuth.user.id,
@@ -460,7 +452,7 @@ let groupCreate = {
 
             groupJoin.$update()
                 .then(function (res) {
-                    self.form.join.level = level;
+                    this.form.join.level = level;
                 });
         };
 

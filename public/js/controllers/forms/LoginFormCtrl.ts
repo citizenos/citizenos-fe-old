@@ -9,17 +9,6 @@ let loginFormComponent =  {
         ngDialogData: '='
     },
     controller: ['$log', '$state', '$stateParams', '$window', '$document', '$interval', 'cosConfig', 'ngDialog', 'sAuth', 'sLocation', 'sUser', 'sNotification', 'AppService', class LoginFormController {
-        private $log;
-        private $state;
-        private $stateParams;
-        private $window;
-        private $document;
-        private $interval;
-        private ngDialog;
-        private sAuth;
-        private sLocation;
-        private sUser;
-        private sNotification;
         public app;
 
         public LOGIN_PARTNERS = {
@@ -33,20 +22,9 @@ let loginFormComponent =  {
         private form;
         private errors;
 
-        constructor ($log, $state, $stateParams, $window, $document, $interval, cosConfig, ngDialog, sAuth, sLocation, sUser, sNotification, AppService) {
+        constructor (private $log, private $state, private $stateParams, private $window, private $document, private $interval, private cosConfig, private ngDialog, private sAuth, private sLocation, private sUser, private sNotification, AppService) {
             console.log('LoginController')
             this.app = AppService;
-            this.$log = $log;
-            this.$state = $state;
-            this.$stateParams = $stateParams;
-            this.$window = $window;
-            this.$document = $document;
-            this.$interval = $interval;
-            this.ngDialog = ngDialog;
-            this.sAuth = sAuth;
-            this.sLocation = sLocation;
-            this.sUser = sUser;
-            this.sNotification = sNotification;
 
             this.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
             this.isFormEmailProvided = this.ngDialogData && this.ngDialogData.email;

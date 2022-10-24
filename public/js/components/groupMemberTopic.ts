@@ -9,22 +9,13 @@ let groupMemberTopic = {
         canUpdate: '=?',
         group: '='
     },
-    controller: ['ngDialog', 'GroupMemberTopic', 'sAuth', '$state', class GroupMemberTopicController {
+    controller: ['ngDialog', 'GroupMemberTopic', class GroupMemberTopicController {
         private memberTopic;
         private canUpdate;
         private group;
         public fields
 
-        private ngDialog;
-        private GroupMemberTopic;
-        private sAuth;
-        private $state;
-
-        constructor (ngDialog, GroupMemberTopic, sAuth, $state) {
-            this.ngDialog = ngDialog;
-            this.GroupMemberTopic = GroupMemberTopic;
-            this.sAuth = sAuth;
-            this.$state = $state;
+        constructor (private ngDialog, private GroupMemberTopic) {
         }
 
         isVisibleField (field) {

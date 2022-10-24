@@ -320,7 +320,7 @@
                 </div>
                 <div class="pretend_tr">
                     <div class="pagination_wrapper">
-                        <div class="pagination" cos-pagination select="$ctrl.TopicMemberGroupService.loadPage" total-pages="$ctrl.TopicMemberGroupService.totalPages" page="$ctrl.TopicMemberGroupService.page"></div>
+                        <cos-pagination class="pagination" select="$ctrl.TopicMemberGroupService.loadPage(page)" total-pages="$ctrl.TopicMemberGroupService.totalPages" page="$ctrl.TopicMemberGroupService.page"></cos-pagination>
                     </div>
                 </div>
             </div>
@@ -373,11 +373,11 @@
                     </div>
                 </div>
                 <!-- TopicMemberUsers -->
-                <my-member-user class="pretend_tr" ng-repeat="user in $ctrl.TopicMemberUserService.users" member="user" topic="$ctrl.topic"></my-member-user>
+                <my-member-user class="pretend_tr" ng-repeat="user in $ctrl.TopicMemberUserService.users" member="user" topic="$ctrl.topic" fields="['level', 'remove']"></my-member-user>
 
                 <div class="pretend_tr">
                     <div class="pagination_wrapper">
-                        <div class="pagination" cos-pagination select="$ctrl.TopicMemberUserService.loadPage" total-pages="$ctrl.TopicMemberUserService.totalPages" page="$ctrl.TopicMemberUserService.page"></div>
+                        <cos-pagination class="pagination" select="$ctrl.TopicMemberUserService.loadPage(page)" total-pages="$ctrl.TopicMemberUserService.totalPages" page="$ctrl.TopicMemberUserService.page"></cos-pagination>
                     </div>
                 </div>
                 <!-- TopicInviteUsers -->
@@ -437,7 +437,7 @@
                 </div>
                 <div class="pretend_tr">
                     <div class="pagination_wrapper">
-                        <div class="pagination" cos-pagination select="$ctrl.TopicInviteUserService.loadPage" total-pages="$ctrl.TopicInviteUserService.totalPages" page="$ctrl.TopicInviteUserService.page"></div>
+                        <cos-pagination class="pagination" select="$ctrl.TopicInviteUserService.loadPage(page)" total-pages="$ctrl.TopicInviteUserService.totalPages" page="$ctrl.TopicInviteUserService.page"></cos-pagination>
                     </div>
                 </div>
             </div>

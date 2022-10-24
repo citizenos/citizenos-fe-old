@@ -8,12 +8,6 @@ let setTopicNotifications = {
         topicId: '@'
     },
     controller: ['$state', '$stateParams', 'sTopic', 'sNotification', 'Topic', 'ngDialog', class SetTopicNotificationsController {
-        private $state;
-        private $stateParams;
-        private sTopic;
-        private sNotification;
-        private ngDialog;
-        private Topic
         public topicId;
         public topic;
         private supportedTabs = ['general'];
@@ -32,13 +26,7 @@ let setTopicNotifications = {
             allowNotifications: false
         };
 
-        constructor ($state, $stateParams, sTopic, sNotification, Topic, ngDialog) {
-            this.$state = $state;
-            this.$stateParams = $stateParams;
-            this.sTopic = sTopic;
-            this.sNotification = sNotification;
-            this.Topic = Topic;
-            this.ngDialog = ngDialog;
+        constructor (private $state, $stateParams, private sTopic, private sNotification, private Topic, private ngDialog) {
             if (this.supportedTabs.indexOf($stateParams.tab) > -1 ) {
                 this.tabSelected = $stateParams.tab;
             }
@@ -46,29 +34,27 @@ let setTopicNotifications = {
         }
 
         init () {
-            const self = this;
             new this.Topic({id: this.topicId})
                 .$get()
                 .then((topic) => {
-                    self.topic = topic;
-                    self.sTopic
+                    this.topic = topic;
+                    this.sTopic
                     .getTopicNotificationSettings(this.topicId).then((settings) => {
-                        self.settings = angular.merge(self.settings, settings);
+                        this.settings = angular.merge(this.settings, settings);
                     });
                 });
         }
         toggleAllNotifications () {
             let toggle = true;
-            const self = this;
             if (Object.values(this.settings.preferences).indexOf(false) === -1) {
                 toggle = false;
             }
             Object.keys(this.settings.preferences).forEach((key) => {
                 if (toggle) {
-                    return self.settings.preferences[key] = true;
+                    return this.settings.preferences[key] = true;
                 }
 
-                self.settings.preferences[key] = false;
+                this.settings.preferences[key] = false;
             });
             if (toggle) {
                 this.settings.allowNotifications = true;
@@ -87,18 +73,17 @@ let setTopicNotifications = {
         };
 
         doSaveSettings () {
-            const self = this;
             if (!this.settings.allowNotifications) {
-                this.sTopic.deleteTopicNotificationSettings(self.topicId);
+                this.sTopic.deleteTopicNotificationSettings(this.topicId);
             } else {
-                this.sTopic.updateTopicNotificationSettings(self.topicId, this.settings)
+                this.sTopic.updateTopicNotificationSettings(this.topicId, this.settings)
                     .then((data) => {
-                        self.settings = data;
-                        if (self.$state.current.name === 'account.settings') {
-                            self.$state.reload(true);
+                        this.settings = data;
+                        if (this.$state.current.name === 'account.settings') {
+                            this.$state.reload(true);
                         }
                     }, (err) => {
-                        self.sNotification.addError(err);
+                        this.sNotification.addError(err);
                     });
             }
             this.ngDialog.closeAll();

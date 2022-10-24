@@ -11,21 +11,6 @@ let groupSettings = {
     },
     controller: ['$state', '$stateParams', '$document','$log', 'ngDialog', 'sAuth', 'sSearch', 'sUpload', 'sLocation', 'sNotification', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', 'AppService', class GroupSettingsController {
         public app;
-        private $state;
-        private $stateParams;
-        private $document;
-        private $log;
-        private sAuth;
-        private sLocation;
-        private sSearch;
-        private sUpload;
-        private sNotification;
-        private ngDialog;
-        public Group;
-        public GroupMemberUser;
-        public GroupMemberTopic;
-        public GroupInviteUser;
-        private GroupJoin;
 
         public levels = {
             none: 0,
@@ -94,25 +79,10 @@ let groupSettings = {
                 name: 'SHARE'
             }
         ];
-        constructor ($state, $stateParams, $document, $log, ngDialog, sAuth, sSearch, sUpload, sLocation, sNotification, Group, GroupMemberUser, GroupMemberTopic, GroupInviteUser, GroupJoin, AppService) {
+        constructor (private $state, private $stateParams, private $document, private $log, private ngDialog, private sAuth, private sSearch, private sUpload, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupMemberTopic, private GroupInviteUser, private GroupJoin, AppService) {
             $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
-            this.$state = $state;
-            this.$stateParams = $stateParams;
-            this.$document = $document;
-            this.$log = $log;
-            this.Group = Group;
-            this.GroupMemberUser = GroupMemberUser;
-            this.GroupMemberTopic = GroupMemberTopic;
-            this.GroupInviteUser = GroupInviteUser;
             this.app = AppService;
-            this.sAuth = sAuth;
-            this.sLocation = sLocation;
-            this.sSearch = sSearch;
-            this.sUpload = sUpload;
-            this.sNotification = sNotification;
             this.app.tabSelected = $stateParams.tab || 'settings';
-            this.ngDialog = ngDialog;
-            this.GroupJoin = GroupJoin;
             this.app.selectedTab = $stateParams.tab || this.tabs[0].id;
             this.init();
         }
@@ -142,7 +112,6 @@ let groupSettings = {
         }
 
         search (str, type) {
-            const self = this;
             if (str && str.length >= 2) {
                 let include = null;
                 if (type === 'topic') {
@@ -153,25 +122,25 @@ let groupSettings = {
                             'my.topic.level': 'admin'
                         })
                         .then((response) => {
-                            self.searchResults = angular.merge({}, {users: [], topics: []});
+                            this.searchResults = angular.merge({}, {users: [], topics: []});
                             response.data.data.results.my.topics.rows.forEach((topic) => {
-                                self.searchResults.topics.push(topic);
+                                this.searchResults.topics.push(topic);
                             });
                         });
                 } else if (type === 'user') {
-                    self.searchStringUser = str;
-                    self.sSearch
+                    this.searchStringUser = str;
+                    this.sSearch
                         .searchUsers(str)
                         .then((response) => {
-                            self.searchResults = angular.merge({}, {users: [], topics: []});
+                            this.searchResults = angular.merge({}, {users: [], topics: []});
                             response.data.data.results.public.users.rows.forEach((user) => {
-                                self.searchResults.users.push(user);
+                                this.searchResults.users.push(user);
                             });
                         });
                 }
 
             } else {
-                self.searchResults = angular.merge({}, {users: [], topics: []});
+                this.searchResults = angular.merge({}, {users: [], topics: []});
             }
         };
 
@@ -282,7 +251,6 @@ let groupSettings = {
         };
 
         addGroupMemberUser (member?) {
-            const self = this;
             if (member) {
                 if (find(this.members['users'], {userId: member.id})) {
                     // Ignore duplicates
@@ -315,29 +283,29 @@ let groupSettings = {
                 if (filtered.length) {
                     sortedUniq(filtered.sort()).forEach((email) => {
                         email = email.trim();
-                        if (self.members.length >= self.maxUsers) {
-                            return self.sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
+                        if (this.members.length >= this.maxUsers) {
+                            return this.sNotification.addError('MSG_ERROR_INVITE_MEMBER_COUNT_OVER_LIMIT');
                         }
-                        if (!find(self.members, ['userId', email])) {
-                            self.members.push({
+                        if (!find(this.members, ['userId', email])) {
+                            this.members.push({
                                 userId: email,
                                 name: email,
-                                level: self.groupLevel
+                                level: this.groupLevel
                             });
-                            self.orderMembers();
+                            this.orderMembers();
                         }
                     });
                 }
 
                 if (invalid && invalid.length) {
                     invalid.forEach((item) => {
-                        if (self.invalid.indexOf(item) === -1) {
-                            self.invalid.push(item);
+                        if (this.invalid.indexOf(item) === -1) {
+                            this.invalid.push(item);
                         }
                     });
                 }
 
-                self.searchStringUser = null;
+                this.searchStringUser = null;
             }
         };
 
@@ -369,7 +337,6 @@ let groupSettings = {
         };
 
         uploadImage () {
-            const self = this;
             const input = $(this.$document[0].getElementById('group_image_upload')).find('input');
             input.click();
 
@@ -378,7 +345,7 @@ let groupSettings = {
                 const reader = new FileReader();
                 reader.onload = (() => {
                     return (e) => {
-                        self.group.tmpImageUrl = e.target.result;
+                        this.group.tmpImageUrl = e.target.result;
                     };
                 })();
                 reader.readAsDataURL(files[0]);
@@ -390,7 +357,6 @@ let groupSettings = {
         };
 
         doSaveGroup () {
-            const self = this;
             this.errors = null;
 
             this.Group.update(this.group)
@@ -399,39 +365,39 @@ let groupSettings = {
                         this.sUpload
                             .uploadGroupImage(this.imageFile[0], this.group.id)
                             .then((response) => {
-                                self.group.imageUrl = response.data.link;
+                                this.group.imageUrl = response.data.link;
                             }, (err) => {
-                                self.errors = err;
+                                this.errors = err;
                             });
 
                     }
                     const savePromises = [];
-                    angular.extend(self.group, data);
+                    angular.extend(this.group, data);
                     // Users
                     const groupMemberUsersToInvite = [];
-                    self.members.forEach((member) => {
+                    this.members.forEach((member) => {
                         groupMemberUsersToInvite.push({
                             userId: member.userId,
                             level: member.level,
-                            inviteMessage: self.form.inviteMessage
+                            inviteMessage: this.form.inviteMessage
                         })
                     });
 
                     if (groupMemberUsersToInvite.length) {
                         savePromises.push(
-                            self.GroupInviteUser.save({groupId: self.group.id}, groupMemberUsersToInvite)
+                            this.GroupInviteUser.save({groupId: this.group.id}, groupMemberUsersToInvite)
                         );
                     }
 
                     // Topics
                     // TODO: Once there is POST /groups/:groupId/members/topics use that
-                    self.memberTopics.forEach((topic) => {
+                    this.memberTopics.forEach((topic) => {
                         const member = {
-                            groupId: self.group.id,
+                            groupId: this.group.id,
                             id: topic.id,
                             level: topic.permission.level
                         };
-                        const groupMemberTopic = new self.GroupMemberTopic(member);
+                        const groupMemberTopic = new this.GroupMemberTopic(member);
                         savePromises.push(
                             groupMemberTopic.$save()
                         )
@@ -440,41 +406,39 @@ let groupSettings = {
                     return Promise.all(savePromises)
                 })
                 .then(() =>  {
-                    const dialogs = self.ngDialog.getOpenDialogs();
-                    self.ngDialog.close(dialogs[0], '$closeButton');
+                    const dialogs = this.ngDialog.getOpenDialogs();
+                    this.ngDialog.close(dialogs[0], '$closeButton');
                 }),((errorResponse) => {
                     if (errorResponse.data && errorResponse.data.errors) {
-                        self.errors = errorResponse.data.errors;
-                        self.app.tabSelected = 'settings';
+                        this.errors = errorResponse.data.errors;
+                        this.app.tabSelected = 'settings';
                     }
                 });
         };
 
         generateTokenJoin () {
-            const self = this;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
                 })
                 .then(() => {
-                    const groupJoin = new self.GroupJoin({
-                        groupId: self.group.id,
-                        userId: self.sAuth.user.id,
-                        level: self.form.join.level
+                    const groupJoin = new this.GroupJoin({
+                        groupId: this.group.id,
+                        userId: this.sAuth.user.id,
+                        level: this.form.join.level
                     });
 
                     groupJoin.$save()
                         .then((res) => {
-                            self.group.join = res;
-                            self.form.join.token = res.token;
-                            self.form.join.level = res.level;
-                            self.generateJoinUrl();
+                            this.group.join = res;
+                            this.form.join.token = res.token;
+                            this.form.join.level = res.level;
+                            this.generateJoinUrl();
                         });
                 }, angular.noop);
         };
 
         doUpdateJoinToken (level) {
-            const self = this;
             const groupJoin = new this.GroupJoin({
                 groupId: this.group.id,
                 userId: this.sAuth.user.id,
@@ -484,7 +448,7 @@ let groupSettings = {
 
             groupJoin.$update()
                 .then(function (res) {
-                    self.form.join.level = level;
+                    this.form.join.level = level;
                 });
         };
 

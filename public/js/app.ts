@@ -541,13 +541,9 @@ import * as angular from 'angular';
                                     return false;
                                 }
                             });
-                            dialog.closePromise.then(function (data) {
-                                return new Topic({id: $stateParams.topicId})
-                                    .$get()
-                                    .then(function (topic) {
-                                        AppService.topic = topic;
-                                        return topic;
-                                    });
+
+                            dialog.closePromise.then(function () {
+                                $state.go('^', null, {reload: true});
                             });
                         };
                         createDialog();
@@ -562,19 +558,11 @@ import * as angular from 'angular';
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
                                 template: '<topic-invite></topic-invite>',
-                                plain: true,
-                                preCloseCallback: function (value) {
-                                    if (value === '$closeButton') {
-                                        return true;
-                                    }
-                                    return false;
-                                }
+                                plain: true
                             });
 
-                            dialog.closePromise.then(function (data) {
-                                if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                    $state.go('^');
-                                }
+                            dialog.closePromise.then(function () {
+                                $state.go('^');
                             });
                         }
 
@@ -822,7 +810,7 @@ import * as angular from 'angular';
                     url: '/settings?tab',
                     parent: 'my/topics/topicId',
                     reloadOnSearch: false,
-                    controller: ['$state', '$stateParams', '$timeout', 'ngDialog', function ($state, $stateParams, $timeout, ngDialog) {
+                    controller: ['$state', 'ngDialog', function ($state, ngDialog) {
                         var createDialog = function () {
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
@@ -836,12 +824,8 @@ import * as angular from 'angular';
                                 }
                             });
 
-                            dialog.closePromise.then(function (data) {
-                                if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                    $timeout(function () {
-                                        $state.go('^');
-                                    });
-                                }
+                            dialog.closePromise.then(function () {
+                                $state.go('^', null, {reload: true});
                             });
                         }
 
@@ -857,19 +841,11 @@ import * as angular from 'angular';
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
                                 template: '<topic-invite></topic-invite>',
-                                plain: true,
-                                preCloseCallback: function (value) {
-                                    if (value === '$closeButton') {
-                                        return true;
-                                    }
-                                    return false;
-                                }
+                                plain: true
                             });
 
                             dialog.closePromise.then(function (data) {
-                                if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                    $state.go('^');
-                                }
+                                $state.go('^');
                             });
                         }
 
@@ -891,10 +867,6 @@ import * as angular from 'angular';
                                 template: '<group-create></group-create>',
                                 plain: true
                             });
-                            dialog.closePromise
-                                .then(function () {
-                                    $state.go('^');
-                                });
                         }
 
                         createDialog();
@@ -917,7 +889,7 @@ import * as angular from 'angular';
                     url: '/settings?tab',
                     parent: 'my/groups/groupId',
                     reloadOnSearch: false,
-                    controller: ['$state', '$stateParams', 'ngDialog', function ($state, $stateParams, ngDialog) {
+                    controller: ['$state', 'GroupService', 'ngDialog', function ($state, GroupService, ngDialog) {
                         var createDialog = function () {
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
@@ -932,7 +904,8 @@ import * as angular from 'angular';
                             });
                             dialog.closePromise
                                 .then(function () {
-                                    $state.go('^');
+                                    GroupService.reload();
+                                    $state.go('^', {reload: true});
                                 });
                         }
 

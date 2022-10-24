@@ -8,21 +8,8 @@ let topicComments = {
     bindings: {
         topicId: '='
     },
-    controller: ['$state', '$stateParams', '$timeout', '$log', '$translate', '$q', '$document', 'ngDialog', 'sLocation', 'sNotification', 'TopicComment', 'AppService', class TopicCommentsController {
-        private $log;
-        private $state;
-        private $stateParams;
-        private $timeout;
-        private $translate;
-        private $q;
-        private $document;
-        private ngDialog;
-        private sLocation;
-        private sNotification;
-        private TopicComment;
-
+    controller: ['$scope', '$state', '$stateParams', '$timeout', '$log', '$translate', '$document', 'ngDialog', 'sLocation', 'sNotification', 'TopicComment', 'TopicCommentService', 'AppService', class TopicCommentsController {
         private COMMENT_VERSION_SEPARATOR = '_v';
-        private COMMENT_COUNT_PER_PAGE = 10;
         public COMMENT_TYPES;
         public topic;
         public topicId;
@@ -30,32 +17,11 @@ let topicComments = {
         public focusArgumentSubject = false;
 
         public topicComments = {
-            rows: [],
-            count: {
-                pro: 0,
-                con: 0,
-                poi: 0,
-                total: 0,
-                reply: 0
-            },
-            page: 1,
-            totalPages: 0,
             orderBy: null,
             orderByTranslation: null,
             orderByOptions: null
         };
-        constructor ($state, $stateParams, $timeout, $log, $translate, $q, $document, ngDialog, sLocation, sNotification, TopicComment, AppService) {
-            this.$state = $state;
-            this.$stateParams = $stateParams;
-            this.$timeout = $timeout;
-            this.$log = $log;
-            this.$translate = $translate;
-            this.$q = $q;
-            this.$document = $document;
-            this.ngDialog = ngDialog;
-            this.sLocation = sLocation;
-            this.sNotification = sNotification;
-            this.TopicComment = TopicComment;
+        constructor ($scope, private $state, private $stateParams, private $timeout, private $log, private $translate, private $document, private ngDialog, private sLocation, private sNotification, private TopicComment, public TopicCommentService, AppService) {
             this.app = AppService;
             this.topicComments = angular.extend(this.topicComments, {
                 orderBy: TopicComment.COMMENT_ORDER_BY.date,
@@ -70,9 +36,20 @@ let topicComments = {
                     translation: translation
                 };
             });
-
+            TopicCommentService.topicId = $stateParams.topicId;
+            TopicCommentService.loadPage(parseInt($stateParams.argumentsPage) || 1);
             this.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
-            this.init();
+            const commentIdInParams = this._parseCommentIdAndVersion($stateParams.commentId).commentId;
+            if (commentIdInParams) {
+                this.TopicCommentService.page=1;
+                $scope.$watch(() => TopicCommentService.isLoading, (newVal, oldVal) => {
+                    if (newVal === false && commentIdInParams && JSON.stringify(TopicCommentService.comments).indexOf(commentIdInParams) === -1) {
+                        this.TopicCommentService.loadPage(this.TopicCommentService.page+1);
+                    } else {
+                        this.goToComment(this.$stateParams.commentId, null);
+                    }
+                });
+            }
         }
 
         private _parseCommentIdAndVersion (commentIdWithVersion) {
@@ -103,128 +80,22 @@ let topicComments = {
             }
         };
 
+        loadPage (page) {
+            this.TopicCommentService.loadPage(page);
+            const params = Object.assign({}, this.$stateParams);
+            if (this.$stateParams.commentId) {
+                delete params.commentId;
+            }
+            params.argumentsPage = page;
+            this.$state.transitionTo(this.$state.current.name, params, {
+                notify: false,
+                reload: false,
+                location: location
+            });
+        }
 
         getCommentIdWithVersion (commentId, version) {
             return commentId + this.COMMENT_VERSION_SEPARATOR + version;
-        };
-
-
-
-        loadTopicComments (offset?, limit?) {
-            const self = this;
-            if (!limit) {
-                limit = self.COMMENT_COUNT_PER_PAGE;
-            }
-            if (!offset) {
-                offset = 0;
-            }
-            if (!self.topicId) {
-                self.topicId = self.$stateParams.topicId;
-            }
-
-            self.TopicComment
-                .query({
-                    topicId: self.topicId,
-                    orderBy: self.topicComments.orderBy,
-                    offset: offset,
-                    limit: limit
-                })
-                .$promise
-                .then((comments) => {
-                    if (!comments || !comments.length) {
-                        return comments;
-                    }
-
-                    // Direct referencing a comment, we have no idea on what page it may be. Let's try to find out if it's on the current page.
-                    const commentIdInParams = self._parseCommentIdAndVersion(self.$stateParams.commentId).commentId;
-
-                    if (commentIdInParams && JSON.stringify(comments).indexOf(commentIdInParams) === -1) { // Comment ID is specified in the params, its not in the result set... on another page?
-                        self.topicComments.page += 1;
-                        self.loadPage(self.topicComments.page, true);
-                        return self.$q.reject();
-                    } else {
-                        return comments;
-                    }
-                })
-                .then((comments) => {
-                    // NOTE: TopicComment.query internally transforms the API response argument (comment) tree to 2 levels - bring all replies and their replies to same level.
-                    // Now we got only 2 levels in the tree - arguments and replies.
-                    if (comments && comments.length) {
-                        self.topicComments.count = comments[0].count;
-                        self.topicComments.totalPages = Math.ceil((self.topicComments.count.total - self.topicComments.count.reply)  / limit);
-                        self.topicComments.page = Math.ceil((offset + limit) / limit);
-
-                        self.$stateParams.argumentsPage = self.topicComments.page;
-                        const location = (self.$stateParams.argumentsPage === 1) ? 'replace' : true; // Replace location only on the first load, so that back navigation would work. When direct linking or navigating pages, dont replace.
-
-                        self.$state.transitionTo(self.$state.current.name, self.$stateParams, {
-                            notify: false,
-                            reload: false,
-                            location: location
-                        });
-
-                        if (self.topic) { // For the arguments count on the /topics/:topicId, not beautiful. Will do until /topics/:topicId API returns comments count.
-                            self.topic.comments = self.topicComments;
-                        }
-
-                        self.topicComments.rows = comments;
-
-                        const parsedResult = self._parseCommentIdAndVersion(self.$stateParams.commentId);
-                        if (parsedResult.commentId) {
-                            self.$timeout(() => {
-                                self.goToComment(parsedResult.commentIdWithVersion, null);
-                            });
-                        }
-                    } else {
-                        if (self.$stateParams.commentId) { // Comment ID was provided in params, but we could not find a matching comment on any of the pages, so the best we can do is to go and load first page
-                            return self.$state.go(
-                                self.$state.current.name,
-                                {
-                                    argumentsPage: 1,
-                                    commentId: null
-                                },
-                                {
-                                    location: 'replace'
-                                }
-                            );
-                        } else {
-                            self.topicComments.rows = [];
-                            self.topicComments.count = {
-                                pro: 0,
-                                con: 0,
-                                poi: 0,
-                                total: 0,
-                                reply: 0
-                            };
-                        }
-                    }
-                });
-        };
-
-        loadPage (page, dontResetCommentIdParam) {
-            const offset = (page - 1) * this.COMMENT_COUNT_PER_PAGE;
-            if (!dontResetCommentIdParam) {
-                this.$stateParams.commentId = null;
-            }
-            this.loadTopicComments(offset, this.COMMENT_COUNT_PER_PAGE);
-        };
-
-        init () {
-            if (this.$stateParams.commentId) {
-                const commentIdInParams = this._parseCommentIdAndVersion(this.$stateParams.commentId).commentId;
-                if (commentIdInParams) {
-                    this.$stateParams.argumentsPage = 1; // Override the set page number as comment may be on any page by now
-                }
-            }
-
-            this.loadPage(this.$stateParams.argumentsPage, true);
-        };
-
-        orderComment (order) {
-            this.topicComments.orderBy = order;
-            this.topicComments.orderByTranslation = this.$translate.instant('VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ORDER_BY_' + order.toUpperCase());
-            this.$stateParams.commentId = null; // Reset commentId, does not make sense in ordering scenario
-            this.loadTopicComments();
         };
 
         doCommentVote (comment, value) {
@@ -245,7 +116,6 @@ let topicComments = {
         };
 
         doShowVotersList (comment) {
-            const self = this;
             const topicComment = new this.TopicComment({
                 id: comment.id,
                 topicId: this.topicId
@@ -253,12 +123,12 @@ let topicComments = {
             topicComment
                 .$votes()
                 .then((commentVotes) => {
-                    self.ngDialog
+                    this.ngDialog
                         .open({
                             template: '/views/modals/topic_comment_reactions.html',
                             data: {
                                 commentVotes: commentVotes,
-                                topic: self.topic
+                                topic: this.topic
                             }
                         });
                 });
@@ -275,33 +145,6 @@ let topicComments = {
                         }
                     }
                 });
-        };
-
-        updateComment (comment) {
-            const self = this;
-            if (comment.editType !== comment.type || comment.subject !== comment.editSubject || comment.text !== comment.editText) {
-                comment.subject = comment.editSubject;
-                comment.text = comment.editText;
-                comment.type = comment.editType;
-                comment.topicId = this.topicId;
-
-                comment
-                    .$update()
-                    .then((commentUpdated) => {
-                        delete comment.errors;
-                        return self.$state.go(
-                            self.$state.current.name,
-                            {
-                                commentId: self.getCommentIdWithVersion(commentUpdated.id, commentUpdated.edits.length)
-                            }
-                        );
-                    }, (err) => {
-                        self.$log.error('Failed to update comment', comment, err);
-                        comment.errors = err.data.errors;
-                    });
-            } else {
-                this.commentEditMode(comment);
-            }
         };
 
         commentEditMode (comment) {
@@ -326,10 +169,9 @@ let topicComments = {
         };
 
         doShowDeleteComment (comment) {
-            const self = this;
-            self.$log.debug('TopicCommentCtrl.doShowDeleteComment()', comment);
+            this.$log.debug('TopicCommentCtrl.doShowDeleteComment()', comment);
 
-            self.ngDialog
+            this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_delete_comment.html',
                     data: {
@@ -337,14 +179,14 @@ let topicComments = {
                     }
                 })
                 .then(() => {
-                    comment.topicId = self.topicId;
+                    comment.topicId = this.topicId;
                     comment
                         .$delete()
                         .then(() => {
-                            return self.$state.go(
-                                self.$state.current.name,
+                            return this.$state.go(
+                                this.$state.current.name,
                                 {
-                                    commentId: self.getCommentIdWithVersion(comment.id, comment.edits.length - 1)
+                                    commentId: this.getCommentIdWithVersion(comment.id, comment.edits.length - 1)
                                 },
                                 {
                                     reload: true
@@ -355,10 +197,9 @@ let topicComments = {
         };
 
         doShowDeleteReply (comment) {
-            const self = this;
-            self.$log.debug('TopicCommentCtrl.doShowDeleteReply()', comment);
+            this.$log.debug('TopicCommentCtrl.doShowDeleteReply()', comment);
 
-            self.ngDialog
+            this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_delete_reply.html',
                     data: {
@@ -366,13 +207,13 @@ let topicComments = {
                     }
                 })
                 .then(() => {
-                    comment.topicId = self.topicId;
+                    comment.topicId = this.topicId;
                     comment.$delete()
                         .then(() => {
-                            return self.$state.go(
-                                self.$state.current.name,
+                            return this.$state.go(
+                                this.$state.current.name,
                                 {
-                                    commentId: self.getCommentIdWithVersion(comment.id, comment.edits.length - 1)
+                                    commentId: this.getCommentIdWithVersion(comment.id, comment.edits.length - 1)
                                 },
                                 {
                                     reload: true
@@ -389,30 +230,29 @@ let topicComments = {
          * @param {Object} [$event] Event handler
          */
         goToComment (commentIdWithVersion, $event) {
-            const self = this;
             if ($event) {
                 $event.preventDefault();
 
-                self.$state // Update the URL in browser for history and copy
-                    .go(self.$state.current.name, {commentId: commentIdWithVersion}, {
+                this.$state // Update the URL in browser for history and copy
+                    .go(this.$state.current.name, {commentId: commentIdWithVersion}, {
                         notify: false,
                         inherit: true
                     });
             }
 
-            if (!commentIdWithVersion || commentIdWithVersion.indexOf(self.COMMENT_VERSION_SEPARATOR) < 0) {
-                self.$log.error('Invalid input for this.goToComment. Expecting UUIDv4 comment ID with version. For example: "604670eb-27b4-48d0-b19b-b6cf6bde33b2_v0"', commentIdWithVersion);
+            if (!commentIdWithVersion || commentIdWithVersion.indexOf(this.COMMENT_VERSION_SEPARATOR) < 0) {
+                this.$log.error('Invalid input for this.goToComment. Expecting UUIDv4 comment ID with version. For example: "604670eb-27b4-48d0-b19b-b6cf6bde33b2_v0"', commentIdWithVersion);
                 return;
             }
 
-            const commentElement = angular.element(self.$document[0].getElementById(commentIdWithVersion));
+            const commentElement = angular.element(this.$document[0].getElementById(commentIdWithVersion));
 
             // The referenced comment was found on the page displayed
             if (commentElement.length) {
-                self.app.scrollToAnchor(commentIdWithVersion)
+                this.app.scrollToAnchor(commentIdWithVersion)
                     .then(() => {
                         commentElement.addClass('highlight');
-                        self.$timeout(() => {
+                        this.$timeout(() => {
                             commentElement.removeClass('highlight');
                         }, 500);
                     });
@@ -424,53 +264,53 @@ let topicComments = {
                 // 3. the commentId + version is on another page
                 // 4. the comment/reply does not exist
 
-                const commentParameterValues = self._parseCommentIdAndVersion(commentIdWithVersion);
+                const commentParameterValues = this._parseCommentIdAndVersion(commentIdWithVersion);
                 const commentId = commentParameterValues.commentId;
                 const commentVersion = commentParameterValues.commentVersion || 0;
 
                 if (!commentId) {
-                    return self.$log.error('this.goToComment', 'No commentId and/or version provided, nothing to do here', commentIdWithVersion);
+                    return this.$log.error('this.goToComment', 'No commentId and/or version provided, nothing to do here', commentIdWithVersion);
                 }
 
-                for (let i = 0; i < this.topicComments.rows.length; i++) {
+                for (let i = 0; i < this.TopicCommentService.comments.length; i++) {
                     // 1. the commentId + version refers to another version of the comment and the comments are not expanded.
-                    if (self.topicComments.rows[i].id === commentId) {
-                        self.topicComments.rows[i].showEdits = true;
-                        self.$timeout(() => { // TODO:  After "showEdits" is set, angular will render the edits and that takes time. Any better way to detect of it to be done?
-                            self.app.scrollToAnchor(commentIdWithVersion)
+                    if (this.TopicCommentService.comments[i].id === commentId) {
+                        this.TopicCommentService.comments[i].showEdits = true;
+                        this.$timeout(() => { // TODO:  After "showEdits" is set, angular will render the edits and that takes time. Any better way to detect of it to be done?
+                            this.app.scrollToAnchor(commentIdWithVersion)
                                 .then(() => {
-                                    const commentElement = angular.element(self.$document[0].getElementById(commentIdWithVersion));
+                                    const commentElement = angular.element(this.$document[0].getElementById(commentIdWithVersion));
                                     commentElement.addClass('highlight');
-                                    return self.$timeout(() => {
+                                    return this.$timeout(() => {
                                         commentElement.removeClass('highlight');
                                     }, 500);
                                 });
                         }, 100);
                         break;
                     } else { // 2. the commentId + version refers to a comment reply, but replies have not been expanded.
-                        for (let j = 0; j < self.topicComments.rows[i].replies.rows.length; j++) {
-                            if (self.topicComments.rows[i].replies.rows[j].id === commentId) {
-                                self.topicComments.rows[i].showReplies = true;
+                        for (let j = 0; j < this.TopicCommentService.comments[i].replies.rows.length; j++) {
+                            if (this.TopicCommentService.comments[i].replies.rows[j].id === commentId) {
+                                this.TopicCommentService.comments[i].showReplies = true;
 
                                 // Expand edits only if an actual edit is referenced.
-                                const replyEdits = self.topicComments.rows[i].replies.rows[j].edits;
+                                const replyEdits = this.TopicCommentService.comments[i].replies.rows[j].edits;
                                 if (replyEdits.length && commentVersion !== replyEdits.length -1) {
-                                    self.topicComments.rows[i].replies.rows[j].showEdits = true; // In case the reply has edits and that is referenced.
+                                    this.TopicCommentService.comments[i].replies.rows[j].showEdits = true; // In case the reply has edits and that is referenced.
                                 }
-                                self.$timeout(() => { // TODO:  After "showEdits" is set, angular will render the edits and that takes time. Any better way to detect of it to be done?
+                                this.$timeout(() => { // TODO:  After "showEdits" is set, angular will render the edits and that takes time. Any better way to detect of it to be done?
                                     this.app.scrollToAnchor(commentIdWithVersion)
                                         .then(() => {
-                                            const commentElement = angular.element(self.$document[0].getElementById(commentIdWithVersion));
+                                            const commentElement = angular.element(this.$document[0].getElementById(commentIdWithVersion));
                                             commentElement.addClass('highlight');
-                                            self.$state.commentId = commentIdWithVersion;
-                                            self.$timeout(() => {
+                                            this.$state.commentId = commentIdWithVersion;
+                                            this.$timeout(() => {
                                                 commentElement.removeClass('highlight');
                                             }, 500);
                                         });
                                 }, 100);
 
                                 // Break the outer loop when the inner reply loop finishes as there is no more work to do.
-                                i = this.topicComments.rows.length;
+                                i = this.TopicCommentService.comments.length;
 
                                 break;
                             }
@@ -528,7 +368,6 @@ let topicComments = {
                 this.app.doShowLogin();
             }
         };
-
     }]
 }
 

@@ -154,7 +154,7 @@
                                     <div class="info_section_content">
                                         <span class="blue_link" ng-click="$ctrl.app.activeCommentSection = 'arguments'; $ctrl.app.scrollToAnchor('arguments')"
                                               translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT"
-                                              translate-values="{count: $ctrl.topic.comments.count.total || 0}">0 arguments</span>
+                                              translate-values="{count: $ctrl.TopicCommentService.count.total || 0}">0 arguments</span>
                                         <span class="info_section_separator"> | </span>
                                         <span class="blue_link" ng-click="$ctrl.app.activeCommentSection = 'socialMentions'; $ctrl.app.scrollToAnchor('socialMentions')"
                                               translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT"
@@ -163,7 +163,7 @@
                                         <span class="blue_link" ng-if="!$ctrl.topic.hashtag && $ctrl.topic.canEdit()"
                                               ui-sref="topics/view/settings({topicId: $ctrl.topic.id, tab: 'settings'})"
                                               translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG"> add hashtag</span>
-                                        <span ng-if="$ctrl.topic.hashtag" class="black_text"> #{{topic.hashtag}}</span>
+                                        <span ng-if="$ctrl.topic.hashtag" class="black_text" ng-bind="('#'+$ctrl.topic.hashtag)"> </span>
                                     </div>
                                 </div>
                                 <div class="info_section" ng-if="$ctrl.app.wWidth < 767">

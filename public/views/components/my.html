@@ -8,7 +8,7 @@
             <!-- LEFT SIDE -->
             <div class="topics_left" ng-class="{hidden: ($ctrl.app.wWidth <= 750 && (('my/groups/groupId' | isState) || ('my/topics/topicId' | isState)))}">
 
-                <div cos-dropdown class="classic_dropdown">
+                <div ng-if="$ctrl.filters" cos-dropdown class="classic_dropdown">
 
                     <div class="dropdown_selection">
                         <div class="dropdown_text" translate="{{$ctrl.filters.selected.name}}">
@@ -51,7 +51,8 @@
                 </div>
 
                 <!-- Topics -->
-                <my-menu-item  item="item" ng-repeat="item in $ctrl.itemsList"></my-menu-item>
+                <my-menu-item  item="group" ng-repeat="group in $ctrl.GroupService.groups"></my-menu-item>
+                <my-menu-item  item="topic" ng-repeat="topic in $ctrl.TopicService.topics"></my-menu-item>
                 <!--div ng-if="!isGroup(item)" class="small_topic" ui-sref="my/topics/topicId({topicId: item.id})" ng-class="isActiveTopic(item) ? 'active': ''">
                     <div class="container_pin" ng-class="item.pinned ? 'pinned' : ''" ng-click="item.togglePin();">
                         <div class="ff_table_fix" translate translate-attr-title="TOOLTIP_PIN_TOPIC">
@@ -107,7 +108,7 @@
                 </!--div>-->
 
                  <!-- No results -->
-                <div class="no_results table" ng-if="!$ctrl.itemsList.length">
+                <div class="no_results table" ng-if="!$ctrl.TopicService.topics.length && !$ctrl.GroupService.groups.length">
                     <!-- No Groups view -->
                     <div class="v_align_cell">
                         <div class="no_results_icon_wrap">

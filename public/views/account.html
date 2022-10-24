@@ -280,7 +280,7 @@
         </div>
         <div class="footer pagination_footer" ng-if="$ctrl.app.tabSelected === 'notifications'">
             <div class="line lightest_line"></div>
-            <cos-pagination class="pagination" select="$ctrl.loadNotificationSettingsPage" total-pages="$ctrl.notifications.topics.totalPages" page="$ctrl.notifications.topics.page"></cos-pagination>
+            <cos-pagination class="pagination" select="$ctrl.loadNotificationSettingsPage(page)" total-pages="$ctrl.notifications.topics.totalPages" page="$ctrl.notifications.topics.page"></cos-pagination>
         </div>
 
         <div class="footer" ng-if="$ctrl.app.tabSelected !== 'notifications'">

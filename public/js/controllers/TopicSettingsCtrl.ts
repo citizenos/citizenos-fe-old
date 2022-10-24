@@ -33,30 +33,31 @@ let topicSettings = {
         public topic;
         public topicId;
 
-        constructor (private $state, $stateParams, $log, private $timeout, private $translate, $anchorScroll, private Topic, private TopicVote, private TopicMemberUser, private ngDialog, AppService) {
+        constructor (private $state, private $stateParams, $log, private $timeout, private $translate, private $anchorScroll, private Topic, private TopicVote, private TopicMemberUser, private ngDialog, AppService) {
           //  super();
             $log.debug('TopicSettingsCtrl', $state, $stateParams);
             this.app = AppService;
             this.app.tabSelected = $stateParams.tab || 'settings';
+            this.loadTopic();
+        }
 
+        loadTopic () {
             const urlParams = {
-                topicId: $stateParams.topicId,
+                topicId: this.$stateParams.topicId,
                 include: 'vote',
                 prefix: null,
                 userId: null
             };
-            if (AppService.user.loggedIn) {
+            if (this.app.user.loggedIn) {
                 urlParams.prefix = 'users';
                 urlParams.userId = 'self';
             }
-            const self = this;
-            Topic.get(urlParams).$promise
+            this.Topic.get(urlParams).$promise
                 .then((topic) => {
-                    $anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll areas
-                    console.log(topic);
-                    console.log(self);
-                    self.topic = topic;
-                    self.init();
+                    this.$anchorScroll('content_root'); // TODO: Remove when the 2 columns become separate scroll area
+                    this.app.topic = topic;
+                    this.topic = topic;
+                    this.init();
                 });
         }
 
@@ -152,7 +153,6 @@ let topicSettings = {
         };
 
         doSaveTopic () {
-            const self = this;
             this.errors = null;
 
             if (this.form.topic.endsAt && this.topic.endsAt === this.form.topic.endsAt) { //Remove endsAt field so that topics with endsAt value set could be updated if endsAt is not changed
@@ -161,22 +161,18 @@ let topicSettings = {
             this.form.topic
                 .$update()
                 .then(() => {
-                    self.$timeout(() => { // Avoid $digest already in progress
-                        const dialogs = self.ngDialog.getOpenDialogs();
-                        self.ngDialog.close(dialogs[0], '$closeButton');
-                        self.$state.go(self.$state.current.parent, {topicId: self.topic.id}, {reload: true});
-                    });
-                },
-                (errorResponse) => {
+                    this.loadTopic();
+                    const dialogs = this.ngDialog.getOpenDialogs();
+                    this.ngDialog.close(dialogs[0], '$closeButton');
+                },(errorResponse) => {
                     if (errorResponse.data && errorResponse.data.errors) {
-                        self.errors = errorResponse.data.errors;
+                        this.errors = errorResponse.data.errors;
                     }
                 }
             );
         };
 
         doLeaveTopic () {
-            const self = this;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_member_user_leave_confirm.html',
@@ -185,26 +181,25 @@ let topicSettings = {
                     }
                 })
                 .then(() => {
-                    const topicMemberUser = new self.TopicMemberUser({id: self.app.user.id});
+                    const topicMemberUser = new this.TopicMemberUser({id: this.app.user.id});
                     topicMemberUser
-                        .$delete({topicId: self.topic.id})
+                        .$delete({topicId: this.topic.id})
                         .then(() => {
-                            self.$state.go('my/topics', null, {reload: true});
+                            this.$state.go('my/topics', null, {reload: true});
                         });
                 });
         };
 
         doDeleteTopic () {
-            const self = this;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_delete_confirm.html'
                 })
                 .then(() => {
-                    self.topic
+                    this.topic
                         .$delete()
                         .then(() => {
-                            self.$state.go('my/topics', null, {reload: true});
+                            this.$state.go('my/topics', null, {reload: true});
                         });
                 }, angular.noop);
         };

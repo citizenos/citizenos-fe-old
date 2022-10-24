@@ -7,14 +7,14 @@ let cosPagination = {
         <div class="pagination" ng-if="$ctrl.totalPages > 1">
             <div class="pagination_items_wrap">
                 <div class="page_button button_prev table_cell" ng-click="$ctrl.loadPrevious()" >«</div>
-                <div class="page_button table_cell" ng-repeat="x in $ctrl.pages()" ng-click="$ctrl.select(x)" ng-class="{'active': x === $ctrl.page }">{{x}}</div>
+                <div class="page_button table_cell" ng-repeat="x in $ctrl.pages()" ng-click="$ctrl.select({page: x})" ng-class="{'active': x === $ctrl.page }">{{x}}</div>
                 <div class="page_button button_next table_cell" ng-click="$ctrl.loadNext()">»</div>
             </div>
         </div> `,
     bindings: {
         totalPages: '=',
         page: '=',
-        select: '='
+        select: '&'
     },
     controller: class CosPaginatioController {
         public totalPages;
@@ -50,14 +50,15 @@ let cosPagination = {
             if (this.page === this.totalPages) {
                 return;
             }
-
-            this.select(this.page + 1);
+            this.select({page: this.page + 1});
         };
 
         loadPrevious () {
             if (this.page === 1) {
                 return;
             }
+
+            this.select({page: this.page - 1});
         };
     }
 }

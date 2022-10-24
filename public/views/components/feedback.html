@@ -30,7 +30,7 @@
                     <div class="feedback_info_text" translate="MODALS.GIVE_FEEDBACK_DESC">This text area would comprise of 3 questions which can be edited by the lead from Citizen OS and these details will be discussed privately. But I still wanted to add text here so that this area becomes bigger and a better reference for the future.</div>
 
                     <p>
-                        <textarea class="feedback_info_textarea" ng-model="$ctrl.message" translatetranslate-attr-placeholder="MODALS.GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA" placeholder="Write here..."></textarea>
+                        <textarea class="feedback_info_textarea" ng-class="{error_input: $ctrl.error}" ng-model="$ctrl.message" translatetranslate-attr-placeholder="MODALS.GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA" placeholder="Write here..."></textarea>
                     </p>
                 </div>
                 <div class="lightbox_section" ng-if="$ctrl.isSubmitted">

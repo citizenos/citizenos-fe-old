@@ -23,16 +23,14 @@ let topicAttachmentModal = {
         }
 
         init () {
-            const self = this;
-            self.TopicAttachment
-                .query({topicId: self.topic.id}).$promise
+            this.TopicAttachment
+                .query({topicId: this.topic.id}).$promise
                 .then((attachments) => {
-                    self.form.files = attachments;
+                    this.form.files = attachments;
                 });
         };
 
         uploadFile () {
-            const self = this;
             const input = $(this.$document[0].getElementById('addFile')).find('input');
             input.click();
 
@@ -70,24 +68,21 @@ let topicAttachmentModal = {
         }
 
         dropboxSelect () {
-            const self = this;
             this.sAttachment
                 .dropboxSelect()
-                .then(self.handleAttachment);
+                .then(this.handleAttachment);
         };
 
         oneDriveSelect () {
-            const self = this;
             this.sAttachment
                 .oneDriveSelect()
-                .then(self.handleAttachment);
+                .then(this.handleAttachment);
         };
 
         googleDriveSelect () {
-            const self = this;
             this.sAttachment
                 .googleDriveSelect()
-                .then(self.handleAttachment);
+                .then(this.handleAttachment);
         };
 
         appendAttachment (attachment) {
@@ -95,27 +90,26 @@ let topicAttachmentModal = {
         };
 
         doSaveAttachment (attachment) {
-            const self = this;
             if (attachment.file) {
-                return self.sUpload.topicAttachment(self.topic.id, attachment)
+                return this.sUpload.topicAttachment(this.topic.id, attachment)
                 .then((result) => {
-                    var topicAttachment = new self.TopicAttachment(result.data);
-                    self.form.files.push(topicAttachment);
+                    var topicAttachment = new this.TopicAttachment(result.data);
+                    this.form.files.push(topicAttachment);
                 }).catch((err) => {
                     if (err.data.errors) {
                         var keys = Object.keys(err.data.errors);
                         keys.forEach(function (key) {
-                            self.sNotification.addError(err.data.errors[key]);
+                            this.sNotification.addError(err.data.errors[key]);
                         });
                     } else if (err.data.status && err.data.status.message) {
-                        self.sNotification.addError(err.data.status.message);
+                        this.sNotification.addError(err.data.status.message);
                     } else {
-                        self.sNotification.addError(err.message);
+                        this.sNotification.addError(err.message);
                     }
                 });
             }
-            attachment.topicId = self.topic.id;
-            const topicAttachment = new self.TopicAttachment(attachment);
+            attachment.topicId = this.topic.id;
+            const topicAttachment = new this.TopicAttachment(attachment);
             if (topicAttachment.id) {
                 topicAttachment.$update();
             } else {
@@ -123,7 +117,7 @@ let topicAttachmentModal = {
                 topicAttachment.$update();
             }
 
-            self.form.files.push(topicAttachment);
+            this.form.files.push(topicAttachment);
         };
 
         editAttachment (attachment) {
@@ -136,17 +130,16 @@ let topicAttachmentModal = {
         };
 
         deleteAttachment (key, attachment) {
-            const self = this;
-            self.ngDialog
+            this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_attachment_delete_confirm.html'
                 })
                 .then(() => {
-                    self.form.files.splice(key, 1);
+                    this.form.files.splice(key, 1);
                     if (attachment.id) {
-                        self.TopicAttachment.delete({
+                        this.TopicAttachment.delete({
                             attachmentId: attachment.id,
-                            topicId: self.topic.id
+                            topicId: this.topic.id
                         });
                     }
                 }, angular.noop);

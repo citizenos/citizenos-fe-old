@@ -18,10 +18,6 @@ let search = {
         public moreStr = null;
 
         constructor (private $state, private $log, private sAuth, private sSearch, AppService) {
-            this.$state = $state;
-            this.$log = $log;
-            this.sAuth = sAuth;
-            this.sSearch = sSearch;
             $log.debug('sSearch');
             this.app = AppService;
             /*
@@ -97,7 +93,6 @@ let search = {
                     }
                 ).then((result) => {
                     this.searchResults = result.data.data.results;
-                    console.log(this.searchResults)
                     this.searchResults.combined = [];
                     this.app.showSearchResults = true;
                     this.app.showNav = false;
@@ -145,7 +140,7 @@ let search = {
                     );
                 } else if (model === 'group') {
                     if (this.sAuth.user.loggedIn) {
-                        this.$state.go(
+                        return this.$state.go(
                             'my/groups/groupId',
                             {
                                 groupId: item.id,

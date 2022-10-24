@@ -8,10 +8,7 @@ let postArgument = {
         topicId: '='
     },
     controller: ['$state', 'AppService', 'TopicComment', class PostArgumentController {
-        private $state;
         private topicId;
-        private TopicComment;
-
         public app;
         public comment;
         public COMMENT_TYPES;
@@ -24,9 +21,7 @@ let postArgument = {
             text: null,
             errors: null
         }
-        constructor ($state, AppService, TopicComment) {
-            this.$state = $state;
-            this.TopicComment = TopicComment;
+        constructor (private $state, AppService, private TopicComment) {
             this.app = AppService;
             this.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
             delete this.COMMENT_TYPES[TopicComment.COMMENT_TYPES.reply];
@@ -35,7 +30,6 @@ let postArgument = {
         }
 
         saveComment () {
-            const self = this;
             const comment = new this.TopicComment();
             comment.parentId = comment.id;
             comment.parentVersion = 0;
@@ -48,13 +42,13 @@ let postArgument = {
             comment
                 .$save({topicId: this.topicId})
                 .then((comment) => {
-                        return self.$state.go(
-                            self.$state.current.name,
-                            {commentId: self.getCommentIdWithVersion(comment.id, comment.edits.length - 1)}
+                        return this.$state.go(
+                            this.$state.current.name,
+                            {commentId: this.getCommentIdWithVersion(comment.id, comment.edits.length - 1)}
                         );
                     },
                     function (res) {
-                        self.form.errors = res.data.errors;
+                        this.form.errors = res.data.errors;
                     }
                 );
         };

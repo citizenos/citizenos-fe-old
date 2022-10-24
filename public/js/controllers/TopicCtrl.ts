@@ -6,7 +6,7 @@ let topic = {
     selector: 'topic',
     templateUrl: '/views/topics_topicId.html',
     bindings: {},
-    controller: ['$scope', '$state', '$stateParams', '$timeout', '$log', '$sce', 'ngDialog', 'sAuth', 'sUpload', 'sTopic', 'Topic', 'TopicMemberUser', 'TopicAttachment', 'AppService', class TopicController {
+    controller: ['$scope', '$state', '$stateParams', '$timeout', '$log', '$sce', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberUser', 'TopicAttachment', 'TopicCommentService', 'AppService', class TopicController {
         public topic;
         public app;
         public isTopicReported = false;
@@ -27,8 +27,9 @@ let topic = {
         public STATUSES = [];
         public VISIBILITY = [];
 
-        constructor (private $scope, private $state, private $stateParams, $timeout, private $log, private $sce, private ngDialog, private sAuth, private sUpload, private sTopic, private Topic, private TopicMemberUser, private TopicAttachment, AppService) {
-            $log.debug('TopicCtrl');
+        constructor (private $scope, private $state, private $stateParams, $timeout, private $log, private $sce, private ngDialog, private sAuth, private sUpload, private Topic, private TopicMemberUser, private TopicAttachment, private TopicCommentService, AppService) {
+            $log.debug('TopicController');
+            console.log('TopicController', AppService.topic);
             this.app = AppService;
             this.topic = AppService.topic;
             if ($state.$current.name === 'topics/view' && this.topic.status === Topic.STATUSES.voting) {
@@ -87,7 +88,7 @@ let topic = {
                     this.topic
                         .$delete()
                         .then(() => {
-                            this.$state.go('my.topics', null, {reload: true});
+                            this.$state.go('my/topics', null, {reload: true});
                         });
                 }, angular.noop);
         };
@@ -104,7 +105,7 @@ let topic = {
                     topicMemberUser
                         .$delete({topicId: this.topic.id})
                         .then(() => {
-                            this.$state.go('my.topics', null, {reload: true});
+                            this.$state.go('my/topics', null, {reload: true});
                         });
                 });
         };

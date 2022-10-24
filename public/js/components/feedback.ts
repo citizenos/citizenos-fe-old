@@ -6,6 +6,7 @@ let feedback = {
     bindings: {},
     controller: ['$http', 'sLocation', 'sNotification', class FeedbackController {
         private message;
+        private error = false;
         private isSubmitted = false;
         constructor (private $http, private sLocation, private sNotification) {
 
@@ -13,10 +14,14 @@ let feedback = {
 
         submitFeedback () {
             const path = this.sLocation.getAbsoluteUrlApi('/api/internal/feedback');
+            if (!this.message) {
+                return this.error = true;
+            }
             return this.$http.post(path, {message:this.message}).then(() => {
                 this.isSubmitted = true;
             }, (err) => {
-                this.sNotification.error(err);
+                console.log(err);
+                this.sNotification.addError(err.message);
             });
         }
     }]

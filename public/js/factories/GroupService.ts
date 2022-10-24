@@ -1,18 +1,15 @@
 import * as angular from 'angular';
 
 export class GroupService {
-    private Group;
     private page = 1;
     private hasMore = true;
     private isLoading = false;
-    private isSaving = false;
     private groups = [];
     private search = null;
     private orderBy = 'name';
     private order = 'ASC';
 
-    constructor(Group) {
-        this.Group = Group;
+    constructor(private Group) {
         this.loadGroups();
     }
     getGroup (id) {

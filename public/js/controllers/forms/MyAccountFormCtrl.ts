@@ -47,7 +47,6 @@ let myAccount = {
         };
 
         loadNotificationSettingsList (offset?, limit?) {
-            const self = this;
             if (!offset) {
                 offset = 0;
             }
@@ -57,9 +56,9 @@ let myAccount = {
             console.log(this.notifications.search)
             this.sTopic.notificationSettingsList(offset, limit, this.notifications.search)
                 .then((items) => {
-                    self.notifications.topics = items;
-                    self.notifications.topics['totalPages'] = Math.ceil(self.notifications.topics['count'] / limit);
-                    self.notifications.topics['page'] = Math.ceil((offset + limit) / limit);
+                    this.notifications.topics = items;
+                    this.notifications.topics['totalPages'] = Math.ceil(this.notifications.topics['count'] / limit);
+                    this.notifications.topics['page'] = Math.ceil((offset + limit) / limit);
                 });
         };
 
@@ -142,7 +141,6 @@ let myAccount = {
         };
 
         uploadImage () {
-            const self = this;
             const input = $(this.$document[0].getElementById('profileImage')).find('input');
             input.click();
 
@@ -151,7 +149,7 @@ let myAccount = {
                 const reader = new FileReader();
                 reader.onload = (() => {
                     return (e) => {
-                        self.form.imageUrl = e.target.result;
+                        this.form.imageUrl = e.target.result;
                     };
                 })();
                 reader.readAsDataURL(files[0]);

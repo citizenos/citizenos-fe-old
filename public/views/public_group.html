@@ -155,7 +155,7 @@
 
                     <div class="pretend_tr" ng-if="$ctrl.GroupMemberTopicService.totalPages > 1">
                         <div class="pagination_wrapper">
-                            <cos-pagination class="pagination" select="$ctrl.GroupMemberTopicService.loadPate" total-pages="$ctrl.GroupMemberTopicService.totalPages" page="$ctrl.GroupMemberTopicService.page"></cos-pagination>
+                            <cos-pagination class="pagination" select="$ctrl.GroupMemberTopicService.loadPage(page)" total-pages="$ctrl.GroupMemberTopicService.totalPages" page="$ctrl.GroupMemberTopicService.page"></cos-pagination>
                         </div>
                     </div>
 
@@ -218,7 +218,7 @@
 
                     <div class="pretend_tr" ng-if="$ctrl.GroupMemberUserService.totalPages > 1">
                         <div class="pagination_wrapper">
-                            <cos-pagination class="pagination" select="$ctrl.GroupMemberUserService.loadPage" total-pages="$ctrl.GroupMemberUserService.totalPages" page="$ctrl.GroupMemberUserService.page"></cos-pagination>
+                            <cos-pagination class="pagination" select="$ctrl.GroupMemberUserService.loadPage(page)" total-pages="$ctrl.GroupMemberUserService.totalPages" page="$ctrl.GroupMemberUserService.page"></cos-pagination>
                         </div>
                     </div>
                 </div>

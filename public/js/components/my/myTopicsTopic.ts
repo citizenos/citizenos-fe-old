@@ -212,6 +212,20 @@ let myTopicsTopic = {
                 });
         };
 
+        doDeleteTopic () {
+            this.ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_delete_confirm.html'
+                })
+                .then(() => {
+                    this.topic
+                        .$delete()
+                        .then(() => {
+                            this.$state.go('my/topics', null, {reload: true});
+                        });
+                }, angular.noop);
+        };
+
         doToggleVoteResults () {
             this.voteResults.isVisible = !this.voteResults.isVisible;
             if (this.voteResults.isVisible) {
