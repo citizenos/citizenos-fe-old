@@ -6,12 +6,10 @@ import * as $ from 'jquery';
 
 let groupSettings = {
     selector: 'groupSettings',
-    templateUrl: '/views/modals/group_create_settings.html',
+    templateUrl: '/views/components/group/group_create_settings.html',
     bindings: {
     },
-    controller: ['$state', '$stateParams', '$document','$log', 'ngDialog', 'sAuth', 'sSearch', 'sUpload', 'sLocation', 'sNotification', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', 'AppService', class GroupSettingsController {
-        public app;
-
+    controller: ['$state', '$stateParams', '$document','$log', 'ngDialog', 'sAuth', 'sSearch', 'sUpload', 'sLocation', 'sNotification', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupInviteUserService', 'GroupJoin', 'AppService', class GroupSettingsController {
         public levels = {
             none: 0,
             read: 1,
@@ -79,9 +77,8 @@ let groupSettings = {
                 name: 'SHARE'
             }
         ];
-        constructor (private $state, private $stateParams, private $document, private $log, private ngDialog, private sAuth, private sSearch, private sUpload, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupMemberTopic, private GroupInviteUser, private GroupJoin, AppService) {
+        constructor (private $state, private $stateParams, private $document, private $log, private ngDialog, private sAuth, private sSearch, private sUpload, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupMemberTopic, private GroupInviteUser, private GroupInviteUserService, private GroupJoin, private app) {
             $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
-            this.app = AppService;
             this.app.tabSelected = $stateParams.tab || 'settings';
             this.app.selectedTab = $stateParams.tab || this.tabs[0].id;
             this.init();
@@ -394,18 +391,18 @@ let groupSettings = {
                     this.memberTopics.forEach((topic) => {
                         const member = {
                             groupId: this.group.id,
-                            id: topic.id,
+                            topicId: topic.id,
                             level: topic.permission.level
                         };
-                        const groupMemberTopic = new this.GroupMemberTopic(member);
                         savePromises.push(
-                            groupMemberTopic.$save()
+                            this.GroupMemberTopic.save({groupId: this.group.id, topicId: topic.id}, member)
                         )
                     });
 
                     return Promise.all(savePromises)
                 })
                 .then(() =>  {
+                    this.GroupInviteUserService.reload();
                     const dialogs = this.ngDialog.getOpenDialogs();
                     this.ngDialog.close(dialogs[0], '$closeButton');
                 }),((errorResponse) => {
@@ -422,32 +419,30 @@ let groupSettings = {
                     template: '/views/modals/group_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
                 })
                 .then(() => {
-                    const groupJoin = new this.GroupJoin({
+                    this.GroupJoin.save({
                         groupId: this.group.id,
                         userId: this.sAuth.user.id,
                         level: this.form.join.level
+                    })
+                    .then((res) => {
+                        this.group.join = res;
+                        this.form.join.token = res.token;
+                        this.form.join.level = res.level;
+                        this.generateJoinUrl();
                     });
-
-                    groupJoin.$save()
-                        .then((res) => {
-                            this.group.join = res;
-                            this.form.join.token = res.token;
-                            this.form.join.level = res.level;
-                            this.generateJoinUrl();
-                        });
                 }, angular.noop);
         };
 
         doUpdateJoinToken (level) {
-            const groupJoin = new this.GroupJoin({
+            const groupJoin = {
                 groupId: this.group.id,
                 userId: this.sAuth.user.id,
                 level: level,
                 token: this.form.join.token
-            });
+            };
 
-            groupJoin.$update()
-                .then(function (res) {
+            this.GroupJoin.update(groupJoin)
+                .then((res) => {
                     this.form.join.level = level;
                 });
         };
@@ -461,37 +456,24 @@ let groupSettings = {
         };
 
         generateJoinUrl () {
-            if (this.form.join.token && this.canUpdate()) {
+            if (this.form.join.token && this.Group.canUpdate(this.group)) {
                 this.form.joinUrl = this.sLocation.getAbsoluteUrl('/groups/join/' + this.form.join.token);
             }
         };
 
-        public canUpdate () {
-            return this.group?.userLevel && this.group?.userLevel === this.GroupMemberUser.LEVELS.admin;
-        };
-
-        public canDelete () {
-            return this.canUpdate();
-        };
-
         doLeaveGroup () {
-            const GroupMemberUser = this.GroupMemberUser;
-            const sAuth = this.sAuth;
-            const group = this.group;
-            const $state = this.$state;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_member_user_leave_confirm.html',
                     data: {
-                        group: group
+                        group: this.group
                     }
                 })
                 .then(() => {
-                    const groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
-                    groupMemberUser
-                        .$delete({groupId: group.id})
+                    this.GroupMemberUser
+                        .delete({groupId: this.group.id, userId: this.sAuth.user.id})
                         .then(() => {
-                            group.getMemberUsers();
+                            this.group.getMemberUsers();
                         });
                 });
         };

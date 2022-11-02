@@ -11,11 +11,8 @@ let activity = {
     controller: ['$translate', 'sActivity', 'ngDialog', 'AppService', class ActivityController {
         public activityfilters = ['all', 'userTopics', 'userGroups', 'user', 'self'];
         private activity;
-        public app;
 
-        constructor (private $translate, private sActivity, private ngDialog, AppService) {
-            this.app = AppService;
-        }
+        constructor (private $translate, private sActivity, private ngDialog, private app) {}
 
         keyCounter (objIn) {
             if (typeof objIn === 'object') {

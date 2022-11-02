@@ -1,20 +1,20 @@
-<div ng-controller="HelpFormCtrl">
-    <div id="help_tooltip" ng-if="app.helptooltip" ng-class="{help_visible: app.showHelp}">
+<div>
+    <div id="help_tooltip" ng-if="$ctrl.app.helptooltip" ng-class="{help_visible: $ctrl.app.showHelp}">
         <div class="tip_heading" translate="HELP_CENTER_TOOLTIP_HEADING">FOR YOUR INFORMATION</div>
         <div class="tip_desription" translate="HELP_CENTER_TOOLTIP_DESCRIPTION">Whenever you find yourself stuck or confused, just open up the Help Center to find the answers to your questions. The Help Center is always accessible via the bubble in the bottom right corner.</div>
         <div class="help_bubble_icon" ><div class="help_icon"></div></div>
-        <div class="tip_button_wrap"><button class="blue_white_button tip_button" translate="HELP_CENTER_TOOLTIP_BTN_OK" ng-click="closeTootlip()">OK</button></div>
-        <div class="tip-arrow"  ng-class="{help_visible: app.showHelp}"></div>
+        <div class="tip_button_wrap"><button class="blue_white_button tip_button" translate="HELP_CENTER_TOOLTIP_BTN_OK" ng-click="$ctrl.closeTootlip()">OK</button></div>
+        <div class="tip-arrow"  ng-class="{help_visible: $ctrl.app.showHelp}"></div>
     </div>
-    <div id="dark_overlay" ng-if="(app.showHelp || app.helptooltip) && app.config.newHelp" ng-click="app.toggleHelp()"></div>
+    <div id="dark_overlay" ng-if="($ctrl.app.showHelp || $ctrl.app.helptooltip) && $ctrl.app.config.newHelp" ng-click="$ctrl.app.toggleHelp()"></div>
 
-    <div class="help_widget" ng-if="app.showHelp && app.config.newHelp">
+    <div class="help_widget" ng-if="$ctrl.app.showHelp && $ctrl.app.config.newHelp">
         <div class="help_top">
-            <div class="help_back_link" ng-click="helpback()"><div class="sprite sprite-icon-help-back"></div></div>
+            <div class="help_back_link" ng-click="$ctrl.helpback()"><div class="sprite sprite-icon-help-back"></div></div>
             <div class="help_title_text_wrapper">
                 <div class="help_title_text" translate="HELP_WIDGET.HEADER_TITLE">Help centre</div>
             </div>
-            <div id="help_close" ng-click="app.toggleHelp()">
+            <div id="help_close" ng-click="$ctrl.app.toggleHelp()">
                 <div class="table_cell">
                     <div class="sprite sprite sprite-btn-popup-close2x">
                     </div>
@@ -22,14 +22,14 @@
             </div>
         </div>
         <div class="help_content">
-            <iframe id="help_frame" name="help_frame" ng-if="app.showHelp" frameborder="0"  ng-src="https://citizenos.com/help?app=true" width="100%"></iframe>
+            <iframe id="help_frame" name="help_frame" ng-if="$ctrl.app.showHelp" frameborder="0"  ng-src="https://citizenos.com/help?app=true" width="100%"></iframe>
         </div>
     </div>
 
-    <div ng-show="!app.config.helplink || app.config.newHelp" id="help_bubble" ng-click="app.toggleHelp();"></div>
-    <a ng-if="app.config.helplink && !app.config.newHelp" id="help_bubble" ng-href={{app.config.helplink}} target="_blank"></a>
-    <div class="help_widget_old" ng-if="app.showHelp && !app.config.newHelp">
-        <div id="help_close" ng-click="closeHelp()">
+    <div ng-show="!$ctrl.app.config.helplink || $ctrl.app.config.newHelp" id="help_bubble" ng-click="$ctrl.app.toggleHelp();"></div>
+    <a ng-if="$ctrl.app.config.helplink && !$ctrl.app.config.newHelp" id="help_bubble" ng-href={{$ctrl.app.config.helplink}} target="_blank"></a>
+    <div class="help_widget_old" ng-if="$ctrl.app.showHelp && !$ctrl.app.config.newHelp">
+        <div id="help_close" ng-click="$ctrl.closeHelp()">
             <div class="table_cell">
                 <div class="sprite sprite sprite-icon-closemenu2x">
                 </div>
@@ -41,23 +41,23 @@
             </div>
             <div class="help_description">
                 <span translate="HELP_WIDGET.DESCRIPTION">If you have questions or comments, we’re eager to hear them and help you!</span>
-                <a ng-href="{{app.config.links.faq[app.language] || app.config.links.faq[app.config.language.default]}}" target="_blank"><span class="sprite sprite-bullet-arrow2x"></span><span translate="HELP_WIDGET.LINK_FAQ">Frequently asked questions</span></a>
+                <a ng-href="{{$ctrl.app.config.links.faq[$ctrl.app.language] || $ctrl.app.config.links.faq[$ctrl.app.config.language.default]}}" target="_blank"><span class="sprite sprite-bullet-arrow2x"></span><span translate="HELP_WIDGET.LINK_FAQ">Frequently asked questions</span></a>
                 <!--a><span class="sprite sprite-bullet-arrow2x"></span><span translate="HELP_WIDGET.LINK_HELP_PAGE">Help page</span></a-->
             </div>
         </div>
         <div class="help_bottom">
             <div class="help_bottom_title" translate="HELP_WIDGET.SEND_US_MESSAGE">Send us a message</div>
             <form name="helpForm" novalidate>
-                <input id="email" type="email" name="email" placeholder="{{'HELP_WIDGET.PLACEHOLDER_WRITE_YOUR_EMAIL' | translate}}" ng-model="form.email" ng-class="{'error_input': errors.email}" maxlength="254" required/>
+                <input id="email" type="email" name="email" placeholder="{{'HELP_WIDGET.PLACEHOLDER_WRITE_YOUR_EMAIL' | translate}}" ng-model="$ctrl.email" ng-class="{'error_input': errors.email}" maxlength="254" required/>
                 <label for="email" class="error_label" ng-if="helpForm.email.$error.email">
                     <div class="table_cell">
                         <div class="sprite sprite-icon-inputfield-error2x"></div>
                         <span translate="HELP_WIDGET.ERROR_INVALID_EMAIL"></span>
                     </div>
                 </label>
-                <textarea placeholder="{{'HELP_WIDGET.PLACEHOLDER_WRITE_YOUR_MESSAGE' | translate}}" ng-model="form.description" name="description" maxlength="2048" required></textarea>
+                <textarea placeholder="{{'HELP_WIDGET.PLACEHOLDER_WRITE_YOUR_MESSAGE' | translate}}" ng-model="$ctrl.description" name="description" maxlength="2048" required></textarea>
                 <div class="blue_button_wrap">
-                    <button type="submit" ng-click="sendHelp()" cos-disabled="helpForm.$invalid || isLoading" class="blue_button" translate="HELP_WIDGET.BTN_SEND">Send</button>
+                    <button type="submit" ng-click="$ctrl.sendHelp()" cos-disabled="helpForm.$invalid || $ctrl.isLoading" class="blue_button" translate="HELP_WIDGET.BTN_SEND">Send</button>
                 </div>
             </form>
         </div>

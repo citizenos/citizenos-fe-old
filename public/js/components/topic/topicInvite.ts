@@ -5,13 +5,12 @@ import * as validator from 'validator';
 
 let topicInvite = {
     selector: 'topicInvite',
-    templateUrl: '/views/modals/topic_invite.html',
+    templateUrl: '/views/components/topic/topic_invite.html',
     bindings: {},
-    controller: ['$stateParams', '$log', '$timeout', 'ngDialog', 'sSearch', 'sLocation', 'sNotification', 'sAuth', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicJoin', 'AppService', class TopicInviteController {
+    controller: ['$stateParams', '$log', '$timeout', 'ngDialog', 'sSearch', 'sLocation', 'sNotification', 'sAuth', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicJoin', 'Topic', 'AppService', class TopicInviteController {
         private EMAIL_SEPARATOR_REGEXP = /[;,\s]/ig;
         public memberGroups = ['groups', 'users'];
         public inviteMessageMaxLength = 1000;
-        public app;
         public topic;
         public topicList = {
             searchFilter: '',
@@ -41,9 +40,8 @@ let topicInvite = {
         private maxUsers = 50;
         private itemsPerPage = 10;
 
-        constructor ($stateParams, private $log, private $timeout, private ngDialog, private sSearch, private sLocation, private sNotification, private sAuth, private TopicInviteUser, private TopicMemberUser, private TopicMemberGroup, private TopicJoin, AppService) {
+        constructor ($stateParams, private $log, private $timeout, private ngDialog, private sSearch, private sLocation, private sNotification, private sAuth, private TopicInviteUser, private TopicMemberUser, private TopicMemberGroup, private TopicJoin, private Topic, private app) {
             $log.debug('TopicInviteController', $stateParams);
-            this.app = AppService;
             this.app.tabSelected = $stateParams.tab || 'invite';
 
             this.sNotification = sNotification;
@@ -312,8 +310,8 @@ let topicInvite = {
                         topicId: this.topic.id,
                         level: member.level
                     };
-                    const topicMemberGroup = new this.TopicMemberGroup(member);
-                    savePromises.push(topicMemberGroup.$save());
+
+                    savePromises.push(this.TopicMemberGroup.save(member));
                 } else {
                     topicMemberUsersToSave.push({
                         userId: member.userId,
@@ -343,14 +341,12 @@ let topicInvite = {
                     template: '/views/modals/topic_join_link_generate_confirm.html',
                 })
                 .then(() => {
-                    const topicJoin = new this.TopicJoin({
-                        topicId: this.topic.id,
-                        userId: this.sAuth.user.id,
-                        level: this.form.join.level
-                    });
-
-                    topicJoin
-                        .$save()
+                    this.TopicJoin
+                        .save({
+                            topicId: this.topic.id,
+                            userId: this.sAuth.user.id,
+                            level: this.form.join.level
+                        })
                         .then((res) => {
                             this.topic.join = res;
                             this.form.join.token = res.token;
@@ -361,15 +357,15 @@ let topicInvite = {
         }
 
         doUpdateJoinToken (level) {
-            const topicJoin = new this.TopicJoin({
+            const topicJoin = {
                 topicId: this.topic.id,
                 userId: this.sAuth.user.id,
                 level: level,
                 token: this.form.join.token
-            });
+            };
 
-            topicJoin
-                .$update()
+            this.TopicJoin
+                .update(topicJoin)
                 .then(() => {
                     this.form.join.level = level;
                 });
@@ -384,14 +380,9 @@ let topicInvite = {
         }
 
         generateJoinUrl () {
-            if (this.topic.join.token && this.topic.canUpdate()) {
+            if (this.topic.join.token && this.Topic.canUpdate(this.topic)) {
                 this.form.joinUrl = this.sLocation.getAbsoluteUrl('/topics/join/' + this.topic.join.token);
             }
-        }
-
-        closeThisDialog() {
-            console.log('CLOSE');
-            this.ngDialog.closeAll();
         }
     }]
 }

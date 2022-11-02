@@ -4,26 +4,21 @@ import * as angular from 'angular';
 
 let topicSocialMentions = {
     selector: 'topicSocialMentions',
-    templateUrl: '/views/topics_topicId_mentions.html',
-    bindings: {
-        topicId: '=',
-        hashtag: '=',
-        canEdit: '='
-    },
-    controller: ['Mention',class TopicSocialMentionsController {
+    templateUrl: '/views/components/topic/topics_topicId_mentions.html',
+    bindings: {},
+    controller: ['Topic','Mention', 'AppService', class TopicSocialMentionsController {
         public topicSocialMentions = [];
-        private Mention;
         public topicId;
         public hashtag;
-        public canEdit;
 
-        constructor (Mention) {
+        constructor (private Topic, private Mention, private app) {
+            this.topicId = app.topic.id;
+            this.hashtag = app.topic.hashtag;
             this.Mention = Mention;
             this.loadTopicSocialMentions();
         }
 
         loadTopicSocialMentions () {
-            console.log(this.hashtag);
             if (this.hashtag) {
                 this.topicSocialMentions = this.Mention.query({topicId: this.topicId});
             }

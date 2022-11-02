@@ -389,6 +389,7 @@
             background: vars.$category_varia;
             color: vars.$black;
             transition: transform .1s;
+            cursor: pointer;
 
             .topic_wrap {
                 padding: 19px 20px 0 20px;

@@ -63,17 +63,19 @@ export class GroupMemberTopicService {
             let params = {
                 groupId: this.groupId,
                 offset: this.offset,
-                search: this.search,
                 order: this.orderBy,
                 sortOrder: this.order,
                 limit: this.limit
             }
-            this.GroupMemberTopic.query(params).$promise.then((topics) => {
-                if (topics.length) {
-                    this.countTotal = topics[0].countTotal || 0;
-                    this.totalPages = Math.ceil(topics[0].countTotal / this.limit);
+            if (this.search) {
+                params['search'] = this.search
+            }
+            this.GroupMemberTopic.query(params).then((res) => {
+                if (res.countTotal) {
+                    this.countTotal = res.countTotal || 0;
+                    this.totalPages = Math.ceil(res.countTotal / this.limit);
                 }
-                for (let topic of topics) {
+                for (let topic of res.rows) {
                     this.topics.push(topic);
                 }
                 this.isLoading = false;

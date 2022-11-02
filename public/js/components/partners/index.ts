@@ -1,0 +1,2 @@
+import './partnerLogin';
+import './userConsentForm';

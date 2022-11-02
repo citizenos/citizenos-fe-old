@@ -1,0 +1,79 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing delete_topic wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_HEADING_2">Are you sure you want to mark the issue resolved?</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="line lightest_line"></div>
+
+            </div>
+
+
+            <div class="lightbox_content">
+
+                <div class="second_header">
+
+                    <div class="sprite sprite-icon-delete-topic2x"></div>
+                    <div class="delete_title" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_HEADING">This topic has been reported.</div>
+                    <div class="delete_title" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_HEADING_2">Are you sure you want to mark the issue resolved?</div>
+
+                    <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+
+                <div id="delete_info_wrap">
+                    <h3>Reason</h3>
+                    <div class="text-block">
+                        <h4>{{$ctrl.topic.report.moderatedReasonType || $ctrl.topic.report.type}}</h4>
+                        {{$ctrl.topic.report.moderatedReasonText || $ctrl.topic.report.text}}
+                    </div>
+
+                    <h3>Current status</h3>
+                    <div class="text-block">
+                        <h4 translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_TXT_STATUS_WAITING_FOR_UPDATE_AND_REVIEW">Waiting for update & review request.</h4>
+                        <span translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_TXT_FIND_MORE_DETAILS">You can find more details about Citizen OS moderation process <a href="#">here</a>.</span>
+                    </div>
+
+                    <div class="delete_info_button_wrap">
+
+                        <div class="table_cell">
+                            <div class="gray_button no" cos-disabled="$ctrl.isLoading" ng-click="$ctrl.app.closeThisDialog($event)" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_BTN_NO">NO, TAKE ME BACK</div>
+                        </div>
+
+                        <div class="table_cell">
+                            <div class="blue_button yes" cos-disabled="$ctrl.isLoading" ng-click="$ctrl.doResolve()" translate="MODALS.TOPIC_REPORT_REPORTID_RESOLVE_BTN_YES">YES, MARK AS RESOLVED</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)"></div>
+
+</div>

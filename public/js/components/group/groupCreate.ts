@@ -6,12 +6,11 @@ import * as $ from 'jquery';
 
 let groupCreate = {
     selector: 'groupCreate',
-    templateUrl: '/views/modals/group_create_settings.html',
+    templateUrl: '/views/components/group/group_create_settings.html',
     bindings: {
         visibility: '@?'
     },
     controller: ['$state', '$scope', '$stateParams', '$document', '$log', 'ngDialog', 'sAuth', 'sSearch', 'sUpload', 'sLocation', 'sNotification', 'Group', 'GroupMemberUser', 'GroupMemberTopic', 'GroupInviteUser', 'GroupJoin', 'GroupService', 'AppService', class GroupCreateController {
-        public app;
         private visibility = null;
         public levels = {
             none: 0,
@@ -79,9 +78,8 @@ let groupCreate = {
                 name: 'SHARE'
             }
         ];
-        constructor (private $state, $scope, $stateParams, private $document, private $log, private ngDialog, private sAuth, private sSearch, private sUpload, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupMemberTopic, private GroupInviteUser, private GroupJoin, private GroupService, AppService) {
+        constructor (private $state, $scope, $stateParams, private $document, private $log, private ngDialog, private sAuth, private sSearch, private sUpload, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupMemberTopic, private GroupInviteUser, private GroupJoin, private GroupService, private app) {
             $log.debug('GroupCreateSettingsCtrl', $state, $stateParams);
-            this.app = AppService;
             this.app.tabSelected = $stateParams.tab || 'settings';
             this.init();
             $scope.$watch(() => this.visibility, (newValue) => {
@@ -399,9 +397,9 @@ let groupCreate = {
                             id: topic.id,
                             level: topic.permission.level
                         };
-                        const groupMemberTopic = new this.GroupMemberTopic(member);
+
                         savePromises.push(
-                            groupMemberTopic.$save()
+                            this.GroupMemberTopic.save({groupId: this.group.id}, member)
                         )
                     });
 
@@ -426,32 +424,30 @@ let groupCreate = {
                     template: '/views/modals/group_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
                 })
                 .then(() => {
-                    const groupJoin = new this.GroupJoin({
+                    this.GroupJoin.save({
                         groupId: this.group.id,
                         userId: this.sAuth.user.id,
                         level: this.form.join.level
+                    })
+                    .then((res) => {
+                        this.group.join = res;
+                        this.form.join.token = res.token;
+                        this.form.join.level = res.level;
+                        this.generateJoinUrl();
                     });
-
-                    groupJoin.$save()
-                        .then((res) => {
-                            this.group.join = res;
-                            this.form.join.token = res.token;
-                            this.form.join.level = res.level;
-                            this.generateJoinUrl();
-                        });
                 }, angular.noop);
         };
 
         doUpdateJoinToken (level) {
-            const groupJoin = new this.GroupJoin({
+            const groupJoin = {
                 groupId: this.group.id,
                 userId: this.sAuth.user.id,
                 level: level,
                 token: this.form.join.token
-            });
+            };
 
-            groupJoin.$update()
-                .then(function (res) {
+            this.GroupJoin.update(groupJoin)
+                .then((res) => {
                     this.form.join.level = level;
                 });
         };
@@ -465,7 +461,7 @@ let groupCreate = {
         };
 
         generateJoinUrl () {
-            if (this.form.join.token && this.group.canUpdate()) {
+            if (this.form.join.token && this.Group.canUpdate(this.group)) {
                 this.form.joinUrl = this.sLocation.getAbsoluteUrl('/groups/join/' + this.form.join.token);
             }
         };

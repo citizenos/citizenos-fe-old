@@ -3,14 +3,12 @@ import * as angular from 'angular';
 
 let publicGroups = {
     selector: 'publicGroups',
-    templateUrl: '/views/public_groups.html',
+    templateUrl: '/views/components/group/public_groups.html',
     bindings: {},
     controller: ['$state', 'sAuth', 'Group', 'GroupMemberUser', 'PublicGroupService', 'ngDialog', 'AppService', class PublicGroupsController {
-        public app;
         public order = 'ASC';
 
-        constructor (private $state, private sAuth, public Group, private GroupMemberUser, public PublicGroupService, private ngDialog, AppService) {
-            this.app = AppService;
+        constructor (private $state, private sAuth, public Group, private GroupMemberUser, public PublicGroupService, private ngDialog, private app) {
             PublicGroupService.reload();
         }
 
@@ -35,7 +33,6 @@ let publicGroups = {
         };
 
         goToGroupView (group) {
-            console.log(group);
             this.$state.go('public/groups/view',{groupId:group.id});
         };
 
@@ -50,9 +47,6 @@ let publicGroups = {
         };
 
         leaveGroup (group) {
-            const GroupMemberUser = this.GroupMemberUser;
-            const sAuth = this.sAuth;
-            const $state = this.$state;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_member_user_leave_confirm.html',
@@ -61,9 +55,8 @@ let publicGroups = {
                     }
                 })
                 .then(() => {
-                    const groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
-                    groupMemberUser
-                        .$delete({groupId: group.id})
+                    this.GroupMemberUser
+                        .delete({groupId: group.id, userId: this.sAuth.user.id})
                         .then(() => {
                             this.$state.reload(true);
                         });

@@ -1,0 +1,104 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+    <div id="lightbox" class="delete_comment">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_ARGUMENT_MODERATE_HEADING">Moderate comment</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <!-- CONFIRM CONTENT -->
+            <div class="lightbox_content">
+
+                <div class="lightbox_section">
+                    <b translate="MODALS.TOPIC_ARGUMENT_MODERATE_TXT_USER_WROTE">User wrote:</b>
+                    <p ng-if="comment.subject"><i>{{$ctrl.comment.subject}}</i></p>
+                    <p><i>{{$ctrl.comment.text}}</i></p>
+
+                    <b translate="MODALS.TOPIC_ARGUMENT_MODERATE_LABEL_REASON">Reason for moderating</b> <span class="required_text"
+                                                                                                          translate="MODALS.TOPIC_ARGUMENT_REPORT_LABEL_REASON_REQUIRED">(required)</span>
+
+                    <div cos-dropdown class="classic_dropdown" ng-class="{'error_input': $ctrl.errors.type}">
+
+                        <div class="dropdown_selection">
+                            <div class="dropdown_text">
+                                {{('TXT_MODERATION_TYPES_' + $ctrl.form.type | uppercase) | translate}}
+                            </div>
+
+                            <div class="arrow_holder">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <div class="dropdown_item" ng-repeat="type in $ctrl.reportTypes">
+                                <div class="item_name" ng-click="$ctrl.form.type = type">
+                                    {{('TXT_MODERATION_TYPES_' + type | uppercase) | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="error_label" ng-if="$ctrl.errors.type">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            <span translate="{{$ctrl.errors.type}}"></span>
+                        </div>
+                    </div>
+
+                    <textarea class="gray_borders" ng-model="$ctrl.form.text" ng-class="{'error_input': $ctrl.errors.text}" translate
+                              translate-attr-placeholder="MODALS.TOPIC_ARGUMENT_MODERATE_PLACEHOLDER_REPORT_TEXT" placeholder="Explain why you find this comment inappropriate..." maxlength="2048"></textarea>
+                    <div class="error_label" ng-if="$ctrl.errors.text">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            <span translate="{{$ctrl.errors.text}}"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="line lightest_line"></div>
+
+                <div class="lightbox_section confirm_area">
+                    <span translate="MODALS.TOPIC_ARGUMENT_MODERATE_TXT_ARE_YOU_SURE">Are you sure you want to report this comment? You cannot undo this action.</span>
+
+                    <div class="yes_no_buttons">
+                        <div class="table_cell">
+                            <div class="blue_button no" ng-click="$ctrl.app.closeThisDialog($event)" translate="MODALS.TOPIC_ARGUMENT_MODERATE_BTN_NO">NO, I CHANGED MY MIND</div>
+                        </div>
+                        <div class="table_cell">
+                            <div class="blue_button yes" ng-click="$ctrl.doModerate()" translate="MODALS.TOPIC_ARGUMENT_MODERATE_BTN_YES">YES, REPORT THIS COMMENT</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)">
+    </div>
+
+</div>

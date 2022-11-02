@@ -1,0 +1,59 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_VOTE_SIGN_HEADING">Choose a signing method</div>
+                    <div class="title_description">{{ngDialogData.topic.title}}</div>
+                </div>
+
+                <div id="lightbox_close" class="ngDialog-close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell ngDialog-close">
+                        <div class="sprite sprite-btn-popup-close2x ngDialog-close">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lightbox_content">
+                <div id="login_lightbox">
+                    <div class="line lightest_line"></div>
+                    <div class="lightbox_section">
+
+                        <div id="id_card" ng-click="$ctrl.doSignEsteId()" class="social_button">
+                            <div class="social_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-login-icon-id2x"></div>
+                                </div>
+                            </div>
+                            <div class="social_text">
+                                <div class="table_cell" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_ESTEID">Sign with ID-Card / Mobiil-ID</div>
+                            </div>
+                        </div>
+
+                        <div id="smart_id" ng-click="$ctrl.doSignSmartId()" class="social_button">
+                            <div class="social_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-login-icon-smartid2x"></div>
+                                </div>
+                            </div>
+                            <div class="social_text">
+                                <div class="table_cell" translate="MODALS.TOPIC_VOTE_SIGN_BTN_SIGN_SMARTID">Sign with Smart-ID</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" class="ngDialog-close" ng-click="$ctrl.app.closeThisDialog($event)">
+    </div>
+
+</div>

@@ -182,9 +182,9 @@
 
 
     <!-- TOPICS AREA -->
-    <div id="topics_area" ng-class="{no_tutorial_topic: $ctrl.filters.categories.value !== $ctrl.FILTERS_ALL || $ctrl.filters.statuses.value !== FILTERS_ALL, no_results: !$ctrl.topicList.length}">
+    <div id="topics_area" ng-class="{no_tutorial_topic: $ctrl.filters.categories.value !== $ctrl.FILTERS_ALL || $ctrl.filters.statuses.value !== FILTERS_ALL, no_results: !$ctrl.PublicTopicService.topics.length}">
 
-        <div ng-if="!$ctrl.isTopicListLoading && !$ctrl.topicList.length" class="table">
+        <div ng-if="!$ctrl.PublicTopicService.isLoading && !$ctrl.PublicTopicService.topics.length" class="table">
             <div class="no_results v_align_cell">
                 <div class="no_results_icon_wrap">
                     <div class="sprite sprite-icon-no-results2x"></div>
@@ -357,7 +357,7 @@
             </div>
         </a>
 
-        <a ui-sref="topics/view({topicId: topic.id})" class="topic" ng-repeat="topic in $ctrl.topicList" ng-class="topic.categories.indexOf($ctrl.filters.categories.value) > -1 ? $ctrl.filters.categories.value : $ctrl.filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
+        <a ng-click="$ctrl.goToView(topic)" class="topic" ng-repeat="topic in $ctrl.PublicTopicService.topics" ng-class="topic.categories.indexOf($ctrl.filters.categories.value) > -1 ? $ctrl.filters.categories.value : $ctrl.filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
                     <div class="date" ng-bind="topic.lastActivity | amDateFormat : 'L'">12/12/2015</div>
@@ -383,7 +383,7 @@
         <div class="clearer"></div>
     </div>
 
-    <div id="blue_button_wrap" ng-click="$ctrl.loadTopicList()" ng-if="$ctrl.topicCountTotal > $ctrl.topicList.length">
+    <div id="blue_button_wrap" ng-click="$ctrl.PublicTopicService.loadMore()" ng-if="$ctrl.PublicTopicService.countTotal > $ctrl.PublicTopicService.topics.length">
         <div class="blue_button" ng-class="{disabled: $ctrl.isTopicListLoading}" translate="VIEWS.HOME.BTN_LOAD_MORE_TOPICS">Load more topics</div>
     </div>
 

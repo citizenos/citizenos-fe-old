@@ -68,13 +68,11 @@ export class TopicMemberGroupService {
                 sortOrder: this.order,
                 limit: this.limit
             }
-            this.TopicMemberGroup.query(params).$promise.then((groups) => {
-                if (groups.length) {
-                    this.countTotal = groups[0].countTotal || 0;
-                    this.totalPages = Math.ceil(groups[0].countTotal / this.limit);
-                }
-                for (let group of groups) {
-                    this.groups.push(group);
+            this.TopicMemberGroup.query(params).then((data) => {
+                if (data.rows.length) {
+                    this.countTotal = data.countTotal || 0;
+                    this.totalPages = Math.ceil(data.countTotal / this.limit);
+                    this.groups = data.rows;
                 }
                 this.isLoading = false;
             });

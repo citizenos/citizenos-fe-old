@@ -1,0 +1,76 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+    <div id="lightbox" class="delete_comment">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_REPORT_REPORTID_REVIEW_HEADING">Review topic</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="confirm_description_wrap">
+                    <div class="confirm_description">
+                        <div class="confirm_description_under_text">
+                            <i>
+                                {{$ctrl.topic.title | cosEllipsis}}
+                            </i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <!-- CONFIRM CONTENT -->
+            <div class="lightbox_content">
+
+
+                <div class="lightbox_section">
+                    <textarea class="gray_borders" ng-model="$ctrl.text" ng-class="{'error_input': $ctrl.errors.text}" translate
+                              translate-attr-placeholder="MODALS.TOPIC_REPORT_REPORTID_REVIEW_PLACEHOLDER_REPORT_TEXT" placeholder="Explain why you think this topic meets the community standards..." maxlength="2048"></textarea>
+                    <div class="error_label" ng-if="$ctrl.errors.text">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-inputfield-error2x"></div>
+                            <span translate="{{$ctrl.errors.text}}"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="line lightest_line"></div>
+
+                <div class="lightbox_section confirm_area">
+                    <span translate="MODALS.TOPIC_REPORT_REPORTID_REVIEW_TXT_ARE_YOU_SURE">Are you sure you want to send this topic for a review?</span>
+
+                    <div class="yes_no_buttons">
+                        <div class="table_cell">
+                            <div class="gray_button no" cos-disabled="$ctrl.isLoading" ng-click="$ctrl.app.closeThisDialog($event)" translate="MODALS.TOPIC_REPORT_REPORTID_REVIEW_BTN_NO">NO, I CHANGED MY MIND</div>
+                        </div>
+                        <div class="table_cell">
+                            <div class="blue_button" cos-disabled="$ctrl.isLoading" ng-click="$ctrl.doReview()" translate="MODALS.TOPIC_REPORT_REPORTID_REVIEW_BTN_YES">YES, REVIEW THIS TOPIC</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)">
+    </div>
+
+</div>

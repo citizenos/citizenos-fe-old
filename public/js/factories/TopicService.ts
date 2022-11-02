@@ -2,12 +2,16 @@ import * as angular from 'angular';
 
 export class TopicService {
     private page = 1;
+    private countTotal = 0;
+    private totalPages = 0;
     private hasMore = true;
     private isLoading = false;
     private topics = [];
     private search = null;
-    private orderBy = 'name';
+    private orderBy = 'title';
     private order = 'ASC';
+    private limit = 10;
+    private offset = 0;
 
     private filters = {
         prefix: null,
@@ -31,19 +35,31 @@ export class TopicService {
           }
         }
       }
-    doSearch () {
+    doSearch (str) {
         this.hasMore = true;
         this.page = 1;
         this.topics = [];
+        this.offset = 0;
+        this.search = str;
         this.loadTopics();
     }
-    doOrder() {
+    doOrder(orderBy, order?) {
         this.hasMore = true;
         this.page = 1;
+        this.offset = 0;
         this.topics = [];
+        this.orderBy = orderBy;
+        if (!order && this.order === 'ASC') {
+            this.order = 'DESC';
+        } else {
+            this.order = 'ASC';
+        }
         this.loadTopics();
     }
     reload () {
+        this.search = null;
+        this.offset = 0;
+        this.page = 1;
         this.topics = [];
         this.loadTopics();
     }
@@ -99,24 +115,30 @@ export class TopicService {
         this.reload();
     }
     loadTopics () {
+        this.countTotal = 0;
+        this.totalPages = 0;
         if (this.hasMore && !this.isLoading) {
             this.isLoading = true;
 
             let params = {
               page: this.page,
               orderBy: this.orderBy,
-              order: this.order,
-              str: this.search
+              order: this.order
             };
             if (this.sAuth.user.loggedIn) {
                 Object.assign(this.filters, {prefix: 'users', userId: 'self'});
+            }
+            if (this.search) {
+              params['str'] = this.search;
             }
             Object.assign(params, this.filters);
 
             this.Topic
                 .query(params)
-                .$promise.then((topics) => {
-                    this.topics = topics;
+                .then((data) => {
+                    this.countTotal = data.count;
+                    this.totalPages = Math.ceil(data.count / this.limit);
+                    this.topics = data.rows;
                     this.isLoading = false;
                 });
         }

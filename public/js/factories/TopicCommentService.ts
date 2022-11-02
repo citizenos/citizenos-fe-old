@@ -68,16 +68,16 @@ export class TopicCommentService {
                 sortOrder: this.order,
                 limit: this.limit
             }
-            this.TopicComment.query(params).$promise.then((comments) => {
-                if (comments.length) {
-                    this.count = comments[0].count;
-                    this.countTotal = comments[0].count.total || 0;
-                    this.totalPages = Math.ceil(comments[0].count.total / this.limit);
-                    if (comments.length < this.limit) {
+            this.TopicComment.query(params).then((data) => {
+                if (data.rows.length) {
+                    this.count = data.count;
+                    this.countTotal = data.countTotal || 0;
+                    this.totalPages = Math.ceil(this.countTotal / this.limit);
+                    if (data.rows.length < this.limit) {
                         this.hasMore = false;
                     }
                 }
-                this.comments = comments;
+                this.comments = data.rows;
 
                 this.isLoading = false;
             });

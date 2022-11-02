@@ -1,75 +1,82 @@
 import * as angular from 'angular';
+export class GroupMemberUser {
+    private LEVELS = {
+        read: 'read',
+        admin: 'admin'
+    };
+
+    constructor (private $http, private sLocation, private sAuth) {}
+
+    getUrlPrefix () {
+        var prefix = this.sAuth.getUrlPrefix();
+        if (!prefix) {
+            return '';
+        }
+
+        return `/${prefix}`;
+    };
+
+    getUrlUser () {
+        var userId = this.sAuth.getUrlUserId();
+        if (!userId) {
+            return '';
+        }
+
+        return `/${userId}`;
+    };
+
+    get(params) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:user/groups/:groupId/members/users/:userId', params)
+            .replace('/:prefix', this.getUrlPrefix())
+            .replace('/:userId', this.getUrlUser());
+
+        return this.$http.get(path)
+            .then((res) => {
+                return res.data.data;
+            });
+    }
+
+    save(params, data:any) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members/users', params);
+
+        return this.$http.post(path, data)
+        .then((res) => {
+            return res.data.data
+        });
+    }
+
+    update(params, data:any) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:user/groups/:groupId/members/users/:userId', params);
+
+        return this.$http.put(path, data)
+        .then((res) => {
+            return res.data.data
+        });
+    }
+
+    query (params) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups/:groupId/members/users', params, params)
+            .replace('/:prefix', this.getUrlPrefix())
+            .replace('/:userId', this.getUrlUser());
+
+        return this.$http.get(path, params)
+            .then((res) => {
+                return res.data.data;
+            });
+    }
+
+    delete (params) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:user/groups/:groupId/members/users/:userId', params)
+            .replace('/:prefix', this.getUrlPrefix())
+            .replace('/:userId', this.getUrlUser());
+
+        return this.$http.delete(path)
+            .then((res) => {
+                const data = res.data;
+                return data;
+            });
+    }
+}
 angular
     .module('citizenos')
-    .factory('GroupMemberUser', ['$log', '$resource', 'sLocation', 'sAuth', function ($log, $resource, sLocation, sAuth) {
-        $log.debug('citizenos.factory.GroupMemberUser');
-        var getUrlPrefix = function () {
-            var prefix = sAuth.getUrlPrefix();
-            if (!prefix) {
-                prefix = '@prefix';
-            }
-            return prefix;
-        };
-
-        var getUrlUser = function () {
-            var userId = sAuth.getUrlUserId();
-            if (!userId) {
-                userId = '@userId';
-            }
-            return userId;
-        };
-
-        var GroupMemberUser = $resource(
-            sLocation.getAbsoluteUrlApi('/api/:prefix/:user/groups/:groupId/members/users/:userId'),
-            {
-                groupId: '@groupId',
-                userId: '@id',
-                user: getUrlUser,
-                prefix: getUrlPrefix
-            },
-            {
-                query: {
-                    isArray: true,
-                    transformResponse: function (data, headersGetter, status) {
-                        if (status > 0 && status < 400) { // TODO: think this error handling through....
-                            var result = angular.fromJson(data).data;
-                            result.rows.forEach(function (item) {
-                                item.countTotal = result.countTotal;
-                            });
-
-                            return result.rows;
-                        } else {
-                            return angular.fromJson(data);
-                        }
-                    }
-                },
-                update: {
-                    method: 'PUT',
-                    transformRequest: function (data) {
-                        return angular.toJson({level: data.level});
-                    },
-                    transformResponse: function (data, headersGetter, status) {
-                        if (status > 0 && status < 400) { // TODO: think this error handling through....
-                            return angular.fromJson(data).data;
-                        } else {
-                            return angular.fromJson(data);
-                        }
-                    }
-                },
-                save: {
-                    method: 'POST',
-                    url: sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members/users'),
-                    transformResponse: function (data) {
-                        return angular.fromJson(data).data;
-                    }
-                }
-            }
-        );
-
-        GroupMemberUser.LEVELS = {
-            read: 'read',
-            admin: 'admin'
-        };
-
-        return GroupMemberUser;
-    }]);
+    .service('GroupMemberUser', ['$http', 'sLocation', 'sAuth', GroupMemberUser]);

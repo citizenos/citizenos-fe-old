@@ -1,0 +1,19 @@
+<p>
+    <span class="bold" translate="VIEWS.PARTNERS_CONSENT.HEADING" translate-values="{website: $ctrl.partner.website}">Meie partner soovib juurdepääsu Sinu CitizenOS andmetele allolevate õigustega:</span>
+</p>
+
+<ul id="terms">
+    <li><span translate="VIEWS.PARTNERS_CONSENT.TXT_VIEW_PROFILE">Sinu profiili vaatamine ja muutmine - nimi, organisatsioon, e-post, pilt.</span></li>
+    <li><span translate="VIEWS.PARTNERS_CONSENT.TXT_VIEW_TOPICS" translate-values="{website: $ctrl.partner.website}">Sinu avalike, partneri veebilehe kaudu loodud teemade vaatamine ja muutmine.</span></li>
+    <li><span translate="VIEWS.PARTNERS_CONSENT.TXT_VIEW_VOTES" translate-values="{website: $ctrl.partner.website}">Sinu avalike, partneri veebilehe kaudu loodud häälte vaatamine ja muutmine.</span></li>
+    <li><span translate="VIEWS.PARTNERS_CONSENT.TXT_VIEW_GROUPS" translate-values="{website: $ctrl.partner.website}">Sinu gruppide vaatamine ja muutmine.</span></li>
+</ul>
+
+<div id="small_text" translate="VIEWS.PARTNERS_CONSENT.TXT_POLICY" translate-values="{website: $ctrl.partner.website, linkPrivacyPolicy: $ctrl.partner.linkPrivacyPolicy}">Meie partner kasutab Sinu infot vastavalt oma kasutustingimustele ja privaatsuspoliitikale.</div>
+
+<form name="userConsentForm">
+    <button type="submit" ng-click="$ctrl.doAccept()" ng-disabled="loginForm.$invalid" translate="VIEWS.PARTNERS_CONSENT._AGREE">Nõustun</button>
+    <div class="link_section">
+        <a class="lightbox_link" ng-click="$ctrl.doCancel()" href="" translate="VIEWS.PARTNERS_CONSENT.DISAGREE">Katkesta</a>
+    </div>
+</form>

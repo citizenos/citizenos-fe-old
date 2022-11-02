@@ -3,14 +3,12 @@ import * as angular from 'angular';
 
 let publicGroup = {
     selector: 'publicGroup',
-    templateUrl: '/views/public_group.html',
+    templateUrl: '/views/components/group/public_group.html',
     bindings: {},
     controller: ['$state', '$stateParams', '$log', 'sAuth', 'Group', 'PublicGroup', 'GroupMemberUser', 'GroupMemberUserService', 'GroupMemberTopicService', 'ngDialog', 'AppService', class PublicGroupController {
-        public app;
         public group;
 
-        constructor (private $state, $stateParams, private $log, private sAuth, private Group, private PublicGroup, private GroupMemberUser, public GroupMemberUserService, public GroupMemberTopicService, private ngDialog, AppService) {
-            this.app = AppService;
+        constructor (private $state, $stateParams, private $log, private sAuth, private Group, private PublicGroup, private GroupMemberUser, public GroupMemberUserService, public GroupMemberTopicService, private ngDialog, private app) {
             if ($stateParams.groupId) {
                 PublicGroup
                 .get($stateParams.groupId)
@@ -34,23 +32,18 @@ let publicGroup = {
         }
 
         leaveGroup () {
-            const GroupMemberUser = this.GroupMemberUser;
-            const sAuth = this.sAuth;
-            const group = this.group;
-            const $state = this.$state;
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_member_user_leave_confirm.html',
                     data: {
-                        group: group
+                        group: this.group
                     }
                 })
                 .then(() => {
-                    const groupMemberUser = new GroupMemberUser({id: sAuth.user.id});
-                    groupMemberUser
-                        .$delete({groupId: group.id})
+                    this.GroupMemberUser
+                        .delete({groupId: this.group.id, id: this.sAuth.user.id})
                         .then(() => {
-                            $state.reload(true);
+                            this.$state.reload(true);
                         });
                 });
         };

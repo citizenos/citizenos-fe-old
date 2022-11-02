@@ -36,7 +36,6 @@ let cosToggle = {
 
 
         cosToggle () {
-            console.log(this.value, this.model);
             if(this.value){
                 if(this.model === this.value && this.offValue){
                     this.model = this.offValue;

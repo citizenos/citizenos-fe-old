@@ -1,11 +1,9 @@
 import * as angular from 'angular';
-import {orderBy, sortedUniqBy} from 'lodash';
 
 let myGroupsGroup = {
     selector: 'myGroupsGroup',
-    templateUrl: '/views/components/my_groups_groupId.html',
+    templateUrl: '/views/components/my/my_groups_groupId.html',
     controller: ['$scope', '$state', '$stateParams', '$log', '$q', 'ngDialog', 'sAuth', 'Group', 'GroupService', 'GroupMemberUser', 'GroupMemberUserService', 'GroupMemberTopic', 'GroupMemberTopicService', 'GroupInviteUser', 'GroupInviteUserService', 'AppService', class MyGroupsGroupController {
-        public app;
         public group;
 
         public userList = {
@@ -19,9 +17,8 @@ let myGroupsGroup = {
         public generalInfo = {
             isVisible: true
         };
-        constructor ($scope, private $state, private $stateParams, private $log, private  $q, private  ngDialog, private sAuth, private Group, private GroupService, private GroupMemberUser, private GroupMemberUserService, private GroupMemberTopic, private GroupMemberTopicService, private GroupInviteUser, public GroupInviteUserService, AppService) {
+        constructor ($scope, private $state, private $stateParams, private $log, private  $q, private  ngDialog, private sAuth, private Group, private GroupService, private GroupMemberUser, private GroupMemberUserService, private GroupMemberTopic, private GroupMemberTopicService, private GroupInviteUser, public GroupInviteUserService, private app) {
             $log.debug('MyGroupsGroupController');
-            this.app = AppService;
             GroupMemberTopicService.groupId = $stateParams.groupId;
             GroupMemberTopicService.reload();
             GroupMemberUserService.groupId = $stateParams.groupId;
@@ -59,9 +56,8 @@ let myGroupsGroup = {
         };
 
         doShowMemberTopicList () {
-            if (this.GroupMemberTopicService.countTotal) {
-                this.topicList.isVisible = true;
-            }
+            this.GroupMemberTopicService.reload();
+            this.topicList.isVisible = true;
         };
 
         doToggleMemberTopicList () {
@@ -84,8 +80,8 @@ let myGroupsGroup = {
             if (groupMemberTopic.permission.levelGroup !== level) {
                 const oldLevel = groupMemberTopic.permission.levelGroup;
                 groupMemberTopic.permission.levelGroup = level;
-                groupMemberTopic
-                    .$update({groupId: this.group.id})
+                this.GroupMemberTopic
+                    .update({groupId: this.group.id, topicId: groupMemberTopic.topicId}, groupMemberTopic)
                     .then(
                         angular.noop,
                         () => {
@@ -103,8 +99,7 @@ let myGroupsGroup = {
                     }
                 })
                 .then(() => {
-                    groupMemberTopic
-                        .$delete({groupId: this.group.id})
+                    this.GroupMemberTopic.delete(groupMemberTopic)
                         .then(() => {
                             this.GroupMemberTopicService.reload();
                         });
@@ -168,8 +163,8 @@ let myGroupsGroup = {
             if (groupMemberUser.level !== level) {
                 const oldLevel = groupMemberUser.level;
                 groupMemberUser.level = level;
-                groupMemberUser
-                    .$update({groupId: this.group.id})
+                this.GroupMemberUser
+                    .update({groupId: this.group.id, userId: groupMemberUser.userId}, groupMemberUser)
                     .then(
                         angular.noop,
                         () => {
@@ -190,8 +185,8 @@ let myGroupsGroup = {
                         }
                     })
                     .then(() => {
-                        groupMemberUser
-                            .$delete({groupId: this.group.id})
+                        this.GroupMemberUser
+                            .delete({groupId: this.group.id, userId: groupMemberUser.userId})
                             .then(() => {
                                 this.GroupMemberUserService.reload();
                             });
@@ -213,16 +208,17 @@ let myGroupsGroup = {
                     if (isAll) {
                         this.GroupInviteUserService.users.forEach((invite) => {
                             if (invite.user.id === groupInviteUser.user.id) {
-                                promisesToResolve.push(invite.$delete({groupId: this.group.id}));
+                                promisesToResolve.push(this.GroupInviteUser.delete(invite));
                             }
                         });
                     } else { // Delete single
-                        promisesToResolve.push(groupInviteUser.$delete({groupId: this.group.id}));
+                        promisesToResolve.push(this.GroupInviteUser.delete(groupInviteUser));
                     }
 
                     this.$q
                         .all(promisesToResolve)
                         .then(() => {
+                            console.log('RELOAD', this.GroupInviteUserService);
                             this.GroupInviteUserService.reload();
                         });
                 }, angular.noop);
@@ -237,9 +233,8 @@ let myGroupsGroup = {
                     }
                 })
                 .then(() => {
-                    const groupMemberUser = new this.GroupMemberUser({id: this.sAuth.user.id});
-                    groupMemberUser
-                        .$delete({groupId: this.group.id})
+                    this.GroupMemberUser
+                        .delete({groupId: this.group.id, userId: this.sAuth.user.id})
                         .then(() => {
                             this.$state.go('my/groups', null, {reload: true});
                         });
@@ -270,18 +265,6 @@ let myGroupsGroup = {
                     this.app.scrollToAnchor(elemId)
                 }, 200);
             }
-        };
-
-        public canUpdate () {
-            return this.group?.permission && this.group.permission.level === this.GroupMemberUser.LEVELS.admin;
-        };
-
-        public canDelete () {
-            return this.canUpdate();
-        };
-
-        public isPrivate  () {
-            return this.group.visibility === this.Group.VISIBILITY.private;
         };
     }]
 };

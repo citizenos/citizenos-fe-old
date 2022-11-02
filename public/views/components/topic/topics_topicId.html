@@ -1,0 +1,239 @@
+<div id="topics_admin_root">
+
+    <topic-timeline status="$ctrl.topic.status" vote-ends-at="$ctrl.topic.vote.endsAt"></topic-timeline>
+
+    <div class="content_wrap">
+
+        <topic-tabs topic-id="$ctrl.topic.id" vote-id="$ctrl.topic.voteId || $ctrl.topic.vote.id" status="$ctrl.topic.status"></topic-tabs>
+
+        <div class="content">
+            <div class="main_panel">
+                <div class="info_bar_wrap" ng-if="$ctrl.app.editMode && $ctrl.showInfoEdit && $ctrl.Topic.canEditDescription($ctrl.topic)">
+                    <div class="info_bar bar_blue info_bar_show">
+                        <div class="info_icon">
+                            <div class="sprite sprite-icon-notification-info2x"></div>
+                        </div>
+
+                        <div class="info_bar_text">
+                            <div class="info_row">
+                                <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_EDIT">You are now in edit mode. You can add text or make changes to it</span>
+                            </div>
+                        </div>
+
+                        <div class="info_icon" ng-click="$ctrl.hideInfoEdit()">
+                            <div class="sprite sprite-icon-closemenu2x"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info_bar_wrap" ng-if="$ctrl.Topic.canEdit($ctrl.topic) && ($ctrl.topic.status === $ctrl.STATUSES.voting) && !('topics.view.votes' | includedByState)">
+                    <div class="info_bar bar_green info_bar_show">
+                        <div class="info_icon">
+                            <div class="sprite sprite-icon-notification-check2x"></div>
+                        </div>
+
+                        <div class="info_bar_text">
+                            <div class="info_row">
+                                <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_VOTE">This topic is being voted on, editing is no longer possible!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Show this in 2 cases - topic has been moderated OR topic has been reported && User is a moderator -->
+                <!-- topic.report.type is returned for Moderators only -->
+                <!-- topic.report.moderatedReasonType is returned in case Topic has been moderated -->
+                <div class="info_bar_wrap" ng-if="$ctrl.topic.report.moderatedReasonType || ($ctrl.topic.report.type && !$ctrl.topic.report.moderatedReasonType)">
+                    <div class="info_bar bar_red info_bar_show">
+                        <div class="info_icon">
+                            <div class="sprite sprite-icon-notification-info2x"></div>
+                        </div>
+
+                        <div class="info_bar_text">
+                            <div class="info_row">
+                                <span translate="VIEWS.TOPICS_TOPICID.TAB_INFO_TXT_REPORTED">This topic has been reported.</span>&nbsp;<a ng-click="$ctrl.doShowReportOverlay()" href=""
+                                                                                                                                          translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_VIEW_REPORT_DETAILS">View
+                                details</a>
+                                <span ng-if="$ctrl.topic.report.type && !$ctrl.topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics/view/reportsModerate({topicId: $ctrl.topic.id, reportId: $ctrl.topic.report.id})"
+                                                                                                              ui-sref-opts="{reload:false}" translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_MODERATE">Moderate</a></span>
+                                <span ng-if="$ctrl.topic.report.type">&nbsp;<a ui-sref="topics/view/reportsResolve({topicId: $ctrl.topic.id, reportId: $ctrl.topic.report.id})" ui-sref-opts="{reload:false}"
+                                                                         translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_RESOLVE">Mark as resolved</a></span>
+                                <span ng-if="$ctrl.Topic.canEdit($ctrl.topic) && $ctrl.topic.report.moderatedReasonType">&nbsp;<a ui-sref="topics/view/reportsReview({topicId: $ctrl.topic.id, reportId: $ctrl.topic.report.id})"
+                                                                                                           ui-sref-opts="{reload:false}"
+                                                                                                           translate="VIEWS.TOPICS_TOPICID.TAB_INFO_LNK_SUBMIT_FOR_REVIEW">Submit for review</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main_content_wrap" ng-click="$ctrl.app.topicsSettings = false">
+
+                    <!-- Create a milestone -->
+                    <topic-milestones ng-if="('topics/view/followUp' | isState) && $ctrl.Topic.canEdit($ctrl.topic)"></topic-milestones>
+
+                    <!-- Cast your vote container-->
+                    <topic-vote-cast ng-if="('topics/view/votes/view' | isState) && $ctrl.topic.vote.id" vote="$ctrl.topic.vote"></topic-vote-cast>
+
+                    <topic-vote-create ng-if="$ctrl.showVoteCreateForm" topic-id="$ctrl.topic.id"></topic-vote-create>
+
+
+                    <div class="iframe_content_wrap" ng-if="!('topics/view/followUp' | isState)">
+
+                        <div class="topic_info print_never" ng-if="!$ctrl.app.editMode">
+                            <div class="container_visibility" >
+                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{('TOOLTIP_TOPIC_VISIBILITY_'+$ctrl.topic.visibility | uppercase) | translate}}</span>">
+                                    <div class="table_cell">
+                                        <div class="sprite" ng-class="{'sprite-icon-public-topic': !$ctrl.Topic.isPrivate($ctrl.topic), 'sprite-icon-private-topic': $ctrl.Topic.isPrivate($ctrl.topic)}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container_report" ng-if="$ctrl.topic.visibility === $ctrl.VISIBILITY.public && !$ctrl.topic.report" ui-sref="topics/view/report">
+                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{'TOOLTIP_REPORT_TOPIC' | translate}}</span>">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-exclamation2x-white"></div>
+                                        <div class="red_bg"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container_pin" ng-class="$ctrl.topic.pinned ? 'pinned' : ''" ng-click="$ctrl.togglePin()">
+                                <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{'TOOLTIP_PIN_TOPIC' | translate}}</span>">
+                                    <div class="table_cell">
+                                        <div class="sprite sprite-icon-favourite2x-white"></div>
+                                        <div class="yellow_bg"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="more_info_button" ng-click="$ctrl.app.more_info_button = !$ctrl.app.more_info_button">
+
+                                <div class="table_cell">
+                                    <div class="more_info_button_text_wrap">
+                                        <div class="arrow_down_wrap">
+                                            <div class="arrow_down_blue sprite sprite-dropdown-arrowdown-blue2x"></div>
+                                        </div>
+                                        <span translate="VIEWS.TOPICS_TOPICID.LNK_TOPIC_DETAILS">Topic details</span>
+                                    </div>
+                                    <div class="more_info_attachment_wrap">
+                                        <div class="more_info_attachment_icon sprite sprite-icon-attachment"></div>
+                                        <span class="more_info_attachment_count">{{$ctrl.topicAttachments.length}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info_sections_wrap" ng-if="$ctrl.app.wWidth > 767 || $ctrl.app.more_info_button">
+                                <div class="info_section">
+                                    <div class="info_section_title">
+                                        <span translate="VIEWS.TOPICS_TOPICID.LBL_CATEGORIES">Categories:</span>
+                                    </div>
+                                    <div class="info_section_content">
+                                        <span ng-repeat="category in $ctrl.topic.categories">
+                                            <span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}">Poliitika</span>
+                                            <span ng-if="!$last" class="info_section_separator"> | </span>
+                                        </span>
+                                        <span ng-if="!$ctrl.topic.categories.length" translate="VIEWS.TOPICS_TOPICID.LBL_NO_CATEGORIES">none
+                                            <span ng-if="$ctrl.Topic.canEdit($ctrl.topic)" class="blue_link" ui-sref="topics/view/settings({topicId: $ctrl.topic.id, tab: 'categories'})"
+                                                  translate="VIEWS.TOPICS_TOPICID.LNK_ADD_CATEGORIES">add categories</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="info_section">
+                                    <div class="info_section_title">
+                                        <span translate="VIEWS.TOPICS_TOPICID.LBL_AUTHORS">Authors:</span>
+                                    </div>
+                                    <div class="info_section_content"><span ng-repeat="author in $ctrl.topic.authors" ng-if="$ctrl.author.email" class="blue_link"
+                                                                            tooltips tooltip-class="tooltip_author"
+                                                                            tooltip-template="<span class='creator_data_tooltip_row'>{{author.email}}</span><span class='creator_data_tooltip_row'>{{author.phoneNumber}}</span>"
+                                                                            tooltip-smart="true">{{author.name}}<span ng-if="!$last" class="info_section_separator"> | </span></span><span ng-repeat="author in $ctrl.topic.authors" ng-if="!author.email">{{author.name}}<span ng-if="!$last" class="info_section_separator"> | </span></span>
+                                    </div>
+                                </div>
+                                <div class="info_section">
+                                    <div class="info_section_title">
+                                        <span translate="VIEWS.TOPICS_TOPICID.LBL_ACTIVITY">Activity:</span>
+                                    </div>
+                                    <div class="info_section_content">
+                                        <span class="blue_link" ng-click="$ctrl.app.activeCommentSection = 'arguments'; $ctrl.app.scrollToAnchor('arguments')"
+                                              translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENTS_COUNT"
+                                              translate-values="{count: $ctrl.TopicCommentService.count.total || 0}">0 arguments</span>
+                                        <span class="info_section_separator"> | </span>
+                                        <span class="blue_link" ng-click="$ctrl.app.activeCommentSection = 'socialMentions'; $ctrl.app.scrollToAnchor('socialMentions')"
+                                              translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT"
+                                              translate-values="{mentionsCount: ($ctrl.topicSocialMentions.length ||0)}">0 social mentions</span>
+                                        <span ng-if="!$ctrl.topic.hashtag && $ctrl.Topic.canEdit($ctrl.topic)" class="info_section_separator"> | </span>
+                                        <span class="blue_link" ng-if="!$ctrl.topic.hashtag && $ctrl.Topic.canEdit($ctrl.topic)"
+                                              ui-sref="topics/view/settings({topicId: $ctrl.topic.id, tab: 'settings'})"
+                                              translate="VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG"> add hashtag</span>
+                                        <span ng-if="$ctrl.topic.hashtag" class="black_text" ng-bind="('#'+$ctrl.topic.hashtag)"> </span>
+                                    </div>
+                                </div>
+                                <div class="info_section" ng-if="$ctrl.app.wWidth < 767">
+                                    <div class="info_section_title">
+                                        <span translate="VIEWS.TOPICS_TOPICID.LBL_ATTACHMENTS">Attachments:</span>
+                                    </div>
+                                    <div class="info_section_content">
+                                        <div class="blue_link" ng-repeat="attachment in $ctrl.topicAttachments">
+                                            <a ng-if="attachment.source === $ctrl.ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment"
+                                               ng-click="$event.preventDefault(); $ctrl.downloadAttachment(attachment);" href="{{attachment.link}}">{{attachment.name}}<span
+                                                class="btn blue_button file_type">.{{attachment.type}}</span></a>
+                                            <a ng-if="attachment.source !== $ctrl.ATTACHMENT_SOURCES.upload" class="blue_link info_section_attachment" target="_blank" href="{{attachment.link}}">{{attachment.name}} <span
+                                                class="btn blue_button file_type">{{attachment.type}}</span></a>
+                                        </div>
+                                        <div ui-sref="topics/view/files" ng-if="$ctrl.Topic.canEdit($ctrl.topic)" class="blue_link info_section_add_attachments"
+                                             translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="line lightest_line"></div>
+                        </div>
+
+
+                        <div id="topic_content_area" class="topic_content">
+                            <cos-etherpad ng-if="!$ctrl.hideTopicContent && $ctrl.Topic.canEdit($ctrl.topic) && $ctrl.app.editMode" ng-class="{hidden: !$ctrl.topic.padUrl || ('topics/view/followUp' | isState)}" url="$ctrl.topic.padUrl" elemwidth="100%" elemheight="600"></cos-etherpad>
+                            <!--ng-bind-html ng-if="!hideTopicContent && !app.editMode" ng-bind-html="topic.description"></ng-bind-html -->
+                            <div ng-if="!$ctrl.hideTopicContent && !$ctrl.app.editMode" cos-topic-compiler="$ctrl.topic.description"></div>
+                            <h1 ng-if="$ctrl.hideTopicContent"><i>Topic content has been hidden due to violation of community guidelines</i></h1>
+                        </div>
+
+                    </div>
+
+                    <div class="comments_section print_never">
+                        <div class="tabs_wrap">
+                            <div ng-click="$ctrl.app.activeCommentSection = 'arguments'" class="tab"
+                                 ng-class="$ctrl.app.activeCommentSection == 'arguments' || $ctrl.app.activeCommentSection == undefined ? 'active':''">
+                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.LBL_TAB_ARGUMENTS">Arguments</div>
+                            </div>
+                            <div ng-click="$ctrl.app.activeCommentSection = 'socialMentions'" class="tab" ng-class="$ctrl.app.activeCommentSection == 'socialMentions' ? 'active':''">
+                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.LBL_TAB_MENTIONS">Social mentions</div>
+                            </div>
+                        </div>
+                        <div class="clearer"></div>
+                        <div class="comments_content">
+                            <topic-comments ng-if="$ctrl.app.activeCommentSection == 'arguments' || $ctrl.app.activeCommentSection == undefined" ></topic-comments>
+                            <topic-social-mentions ng-if="$ctrl.app.activeCommentSection == 'socialMentions'"></topic-social-mentions>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <topic-sidepanel class="side_panel print_never" ng-if="$ctrl.app.wWidth > 1024 || $ctrl.app.topicsSettings"></topic-sidepanel>
+        </div>
+
+    </div>
+
+    <div class="side_panel_background">
+    </div>
+
+    <div ui-view></div>
+
+    <div class="print_footer" ng-if="$ctrl.topic">
+        <div class="qr_code" ng-if="$ctrl.app.currentUrlAbs">
+            <qrcode data="{{$ctrl.app.currentUrlAbs}}" size="210" version="12" error-correction-level="L" download class="qr_img"></qrcode>
+        </div>
+        <span translate="VIEWS.TOPICS_TOPICID.TXT_QR_CODE_FOOTER_SCAN_CODE" translate-values="{topicTitle: $ctrl.topic.title}">Jump right into the topic <b>{{topicTitle}}</b> by scanning this QR code!</span>
+        <a ng-href="$ctrl.app.currentUrlAbs">{{$ctrl.app.currentUrlAbs}}</a>
+    </div>
+</div>

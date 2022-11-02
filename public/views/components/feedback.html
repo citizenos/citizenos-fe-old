@@ -8,7 +8,7 @@
                     <div class="title" translate="MODALS.GIVE_FEEDBACK_HEADING">Share your feedback</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="closeThisDialog()">
+                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
                     <div class="table_cell ngdialog-close">
                         <div class="sprite sprite-btn-popup-close2x ngdialog-close"></div>
                     </div>
@@ -48,16 +48,16 @@
 
                 <div class="lightbox_section">
                     <div class="footer_button_wrap right">
-                        <div ng-if="!$ctrl.isSubmitted" class="blue_link ngdialog-close" translate="MODALS.GIVE_FEEDBACK_BTN_CANCEL">Cancel</div>
+                        <div ng-if="!$ctrl.isSubmitted" class="blue_link ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event);" translate="MODALS.GIVE_FEEDBACK_BTN_CANCEL">Cancel</div>
                         <div ng-if="!$ctrl.isSubmitted"class="blue_button" ng-click="$ctrl.submitFeedback()" class="blue_button"
                         translate="MODALS.GIVE_FEEDBACK_BTN_SUBMIT">Submit feedback</div>
-                        <div ng-if="$ctrl.isSubmitted" class="blue_button ngdialog-close" translate="MODALS.GIVE_FEEDBACK_BTN_CLOSE">Cancel</div>
+                        <div ng-if="$ctrl.isSubmitted" class="blue_button ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event);" translate="MODALS.GIVE_FEEDBACK_BTN_CLOSE">Cancel</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="close_lightbox" class="ngdialog-close" ng-click="closeThisDialog();"></div>
+    <div id="close_lightbox" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event);"></div>
 
 </div>

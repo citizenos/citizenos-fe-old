@@ -11,7 +11,6 @@ import * as angular from 'angular';
     module
         .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', '$httpProvider', '$resourceProvider', '$transitionsProvider', 'ngDialogProvider', 'cfpLoadingBarProvider', 'cosConfig', '$logProvider', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider, $httpProvider, $resourceProvider, $transitionsProvider, ngDialogProvider, cfpLoadingBarProvider, cosConfig, $logProvider) {
             var langReg = Object.keys(cosConfig.language.list).join('|');
-            console.log($transitionsProvider);
             $logProvider.debugEnabled(true);
 
             $locationProvider.html5Mode({
@@ -154,7 +153,7 @@ import * as angular from 'angular';
                                         if (!sAuth.user.email) {
                                             sAuth.user.loggedIn = false;
                                             var dialog = ngDialog.open({
-                                                template: '/views/modals/add_email.html'
+                                                template: '<add-email></add-email>'
                                             });
 
                                             dialog.closePromise.then(function () {
@@ -329,42 +328,24 @@ import * as angular from 'angular';
                     parent: 'account',
                     controller: ['$scope', 'ngDialog', function ($scope, ngDialog) {
                         ngDialog.open({
-                            template: '/views/modals/privacy_policy.html',
+                            template: '<privacy-policy></privacy-policy>',
                             closeByEscape: false,
                             closeByNavigation: false,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                            plain: true
                         });
                     }]
                 })
                 .state('account/signup', {
                     parent: 'account',
-                    url: '/signup?name&redirectSuccess',  // NOTE: Also supports email via "params" conf and rHiddenParams
-                    resolve: {
-                        rHiddenParams: ['$stateParams', function ($stateParams) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
-                            return {
-                                email: $stateParams.email,
-                                name: $stateParams.name
-                            };
-                        }]
-                    },
-                    params: {
-                        email: null
-                    },
-                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rHiddenParams) {
+                    url: '/signup?name&redirectSuccess&email',  // NOTE: Also supports email via "params" conf and rHiddenParams
+                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve) {
                         if (sAuthResolve) {
                             return $state.go('home');
                         }
 
-                        var dialogData = angular.extend({}, $stateParams);
-
-                        if (rHiddenParams) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
-                            dialogData.email = rHiddenParams.email;
-                            dialogData.name = rHiddenParams.name;
-                        }
                         var dialog = ngDialog.open({
-                            template: '/views/modals/sign_up.html',
-                            data: dialogData,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                            template: '<sign-up-form></sign-up-form>',
+                            plain:true
                         });
 
                         dialog.closePromise.then(function (data) {
@@ -376,15 +357,8 @@ import * as angular from 'angular';
                 })
                 .state('account/login', {
                     parent: 'account',
-                    url: '/login?userId&redirectSuccess', // NOTE: Also supports email via "params" conf and rHiddenParams
+                    url: '/login?userId&redirectSuccess&email', // NOTE: Also supports email via "params" conf and rHiddenParams
                     resolve: {
-                        rHiddenParams: ['$stateParams', function ($stateParams) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
-                            if ($stateParams.email) {
-                                return {
-                                    email: $stateParams.email
-                                }
-                            }
-                        }],
                         rUserConnections: ['$state', '$stateParams', '$log', 'sUser', function ($state, $stateParams, $log, sUser) {
                             if ($stateParams.userId) {
                                 return sUser
@@ -403,27 +377,18 @@ import * as angular from 'angular';
                             }
                         }]
                     },
-                    params: {
-                        email: null // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
-                    },
-                    controller: ['$scope', '$state', '$stateParams', '$log', 'ngDialog', 'sAuthResolve', 'rUserConnections', 'rHiddenParams', function ($scope, $state, $stateParams, $log, ngDialog, sAuthResolve, rUserConnections, rHiddenParams) {
-                        if (sAuthResolve) {
-                            return $state.go('home');
-                        }
+                    reloadOnSearch: false,
+                    controller: ['$scope', '$state', '$stateParams', '$log', '$transition$', 'ngDialog', 'sAuthResolve', 'rUserConnections', function ($scope, $state, $stateParams, $log, $transition$, ngDialog, sAuthResolve, rUserConnections) {
 
                         var dialogData = {
                             userConnections: rUserConnections,
                             email: null
                         };
 
-                        if (rHiddenParams && rHiddenParams.email) { // HACK: Hide e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
-                            dialogData.email = rHiddenParams.email;
-                        }
-
+                        let template = '<login-form></login-form>'
                         var dialog = ngDialog.open({
-                            template: '<login-form></login-form>',
-                            plain: true,
-                            data: dialogData
+                            template: template,
+                            plain: true
                         });
 
                         dialog.closePromise.then(function (data) {
@@ -436,24 +401,20 @@ import * as angular from 'angular';
                 .state('account/passwordForgot', {
                     url: '/password/forgot',
                     parent: 'account',
-                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
+                    controller: ['ngDialog', function (ngDialog) {
                         ngDialog.open({
-                            template: '/views/modals/password_forgot.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                            template: '<password-forgot></password-forgot>',
+                            plain: true
                         });
                     }]
                 })
                 .state('account/passwordReset', {
                     url: '/password/reset/:passwordResetCode?email',
                     parent: 'account',
-                    controller: ['$scope', '$stateParams', '$log', 'ngDialog', function ($scope, $stateParams, $log, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
+                    controller: ['ngDialog', function (ngDialog) {
                         ngDialog.open({
-                            template: '/views/modals/password_reset.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                            template: '<password-reset></password-reset>',
+                            plain: true
                         });
                     }]
                 })
@@ -471,14 +432,14 @@ import * as angular from 'angular';
                             return $state.go('account/login', null, {location: false});
                         }
 
-                        var topic = new Topic();
+                        var topic = {};
 
                         if ($stateParams.title) {
-                            topic.description = '<html><head></head><body><h1>' + $stateParams.title + '</h1></body></html>';
+                            topic['description'] = '<html><head></head><body><h1>' + $stateParams.title + '</h1></body></html>';
                         }
 
-                        topic
-                            .$save()
+                        Topic
+                            .save(topic)
                             .then(function (topic) {
                                 if ($stateParams.groupId) {
                                     var level = $stateParams.groupLevel || GroupMemberTopic.LEVELS.read;
@@ -487,9 +448,8 @@ import * as angular from 'angular';
                                         id: topic.id,
                                         level: level
                                     };
-                                    var groupMemberTopic = new GroupMemberTopic(member);
-                                    groupMemberTopic
-                                        .$save()
+                                    GroupMemberTopic
+                                        .save(member)
                                         .then(function () {
                                             $state.go('topics/view', {
                                                 language: $stateParams.language,
@@ -514,8 +474,8 @@ import * as angular from 'angular';
                     resolve: {
                         rTopic: ['$state', '$stateParams', 'Topic', 'sAuthResolve','AppService', function ($state, $stateParams, Topic, sAuthResolve, AppService) {
                             // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
-                            return new Topic({id: $stateParams.topicId})
-                                .$get()
+                            return Topic
+                                .get($stateParams.topicId)
                                 .then(function (topic) {
                                     AppService.topic = topic;
                                     return topic;
@@ -617,7 +577,7 @@ import * as angular from 'angular';
                     url: '/report',
                     parent: 'topics/view',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
+                    controller: ['$scope', '$state', 'ngDialog', function ($scope, $state, ngDialog) {
                         if (!$scope.app.user.loggedIn) {
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
@@ -626,11 +586,9 @@ import * as angular from 'angular';
                                 });
                             return;
                         }
-                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
-                            template: '/views/modals/topic_report.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                            template: '<topic-report-form></topic-report-form>',
+                            plain: true
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
@@ -652,11 +610,9 @@ import * as angular from 'angular';
                                 });
                             return;
                         }
-                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
-                            template: '/views/modals/topic_reports_reportId_moderate.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                            template: '<topic-report-moderate></topic-report-moderate>',
+                            plain:true
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
@@ -704,11 +660,9 @@ import * as angular from 'angular';
                                 });
                             return;
                         }
-                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
-                            template: '/views/modals/topic_reports_reportId_resolve.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                            template: '<topic-report-resolve></topic-report-resolve>',
+                            plain:true
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
@@ -742,15 +696,8 @@ import * as angular from 'angular';
                     },
                     controller: ['$scope', '$state', '$stateParams', 'ngDialog', 'rTopicComment', 'rTopic', function ($scope, $state, $stateParams, ngDialog, rTopicComment, rTopic) {
                         var dialog = ngDialog.open({
-                            template: '/views/modals/topic_comment_moderate.html',
-                            data: {
-                                comment: rTopicComment.comment,
-                                topic: rTopic,
-                                report: {
-                                    id: $stateParams.reportId
-                                },
-                                token: $stateParams.token
-                            }
+                            template: '<topic-comment-moderate></topic-comment-moderate>',
+                            plain: true
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
@@ -796,8 +743,8 @@ import * as angular from 'angular';
                     resolve: {
                         rTopic: ['$stateParams', 'Topic', 'sAuthResolve', 'AppService', function ($stateParams, Topic, sAuthResolve, AppService) {
                             // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
-                            return new Topic({id: $stateParams.topicId})
-                                .$get()
+                            return Topic
+                                .get($stateParams.topicId)
                                 .then(function (topic) {
                                     AppService.topic = topic;
                                     return topic;
@@ -822,10 +769,6 @@ import * as angular from 'angular';
                                     }
                                     return false;
                                 }
-                            });
-
-                            dialog.closePromise.then(function () {
-                                $state.go('^', null, {reload: true});
                             });
                         }
 
@@ -983,8 +926,8 @@ import * as angular from 'angular';
                                 topicId: $stateParams.topicId
                             };
 
-                            return new TopicInviteUser(params)
-                                .$get()
+                            return TopicInviteUser
+                                .get(params)
                                 .then(
                                     function (topicInvite) {
                                         topicInvite.id = params.id;
@@ -1009,8 +952,8 @@ import * as angular from 'angular';
                         }
 
                         var doAccept = function () {
-                            return rTopicInviteUser
-                                .$accept()
+                            return TopicInviteUser
+                                .accept(rTopicInviteUser)
                                 .then(
                                     function () {
                                         return $state.go(
@@ -1088,15 +1031,15 @@ import * as angular from 'angular';
                     resolve: {
                         rGroupInviteUser: ['$stateParams', '$q', '$log', 'GroupInviteUser', 'sNotification', function ($stateParams, $q, $log, GroupInviteUser, sNotification) {
                             var params = {
-                                id: $stateParams.inviteId,
+                                inviteId: $stateParams.inviteId,
                                 groupId: $stateParams.groupId
                             };
 
-                            return new GroupInviteUser(params)
-                                .$get()
+                            return GroupInviteUser
+                                .get(params)
                                 .then(
                                     function (groupInvite) {
-                                        groupInvite.id = params.id;
+                                        groupInvite.id = params.inviteId;
 
                                         return groupInvite;
                                     },
@@ -1113,13 +1056,9 @@ import * as angular from 'angular';
                         }]
                     },
                     controller: ['$scope', '$state', '$stateParams', '$log', '$timeout', 'sAuth', 'sNotification', 'ngDialog', 'GroupInviteUser', 'rGroupInviteUser', function ($scope, $state, $stateParams, $log, $timeout, sAuth, sNotification, ngDialog, GroupInviteUser, rGroupInviteUser) {
-                        if (!(rGroupInviteUser instanceof GroupInviteUser)) { // Some kind of error happened, the instance was not built
-                            return; // ERROR: Expecting cosHttpApiErrorInterceptor to tell the user what went wrong
-                        }
-
                         var doAccept = function () {
-                            return rGroupInviteUser
-                                .$accept()
+                            return GroupInviteUser
+                                .accept($stateParams)
                                 .then(
                                     function () {
                                         return $state.go(
@@ -1195,10 +1134,11 @@ import * as angular from 'angular';
                     abstract: true,
                     parent: 'index',
                     resolve: {
-                        rPartner: ['$stateParams', 'sPartner', function ($stateParams, sPartner) {
+                        rPartner: ['$stateParams', 'sPartner', 'AppService', function ($stateParams, sPartner, AppService) {
                             return sPartner
                                 .info($stateParams.partnerId)
                                 .then(function (partnerInfo) {
+                                    AppService.partner = AppService;
                                     return partnerInfo;
                                 });
                         }]
@@ -1211,12 +1151,13 @@ import * as angular from 'angular';
                 .state('partners/login', {
                     url: '/login',
                     parent: 'partners',
+                    template: '<partner-login></partner-login>',
                     templateUrl: '/views/partners_login.html'
                 })
                 .state('partners/consent', {
                     url: '/consent',
                     parent: 'partners',
-                    templateUrl: '/views/partners_consent.html'
+                    template: '<user-consent-form></user-consent-form>'
                 })
                 .state('widgets', {
                     url: '/widgets?widgetId&widgetTitle&style',
@@ -1325,37 +1266,17 @@ import * as angular from 'angular';
                 .state('widgets/activities', {
                     url: '/activities',
                     parent: 'widgets',
-                    templateUrl: '/views/widgets/activities.html',
-                    resolve: {
-                        /* @ngInject */
-                        ActivitiesResolve: ['sActivity', function (sActivity) {
-                            return sActivity.getActivitiesUnauth(0, 100);
-                        }]
-                    },
-                    controller: 'ActivitiesWidgetCtrl'
+                    template: '<activities-widget></activities-widget>'
                 })
                 .state('widgets/topicActivities', {
                     url: '/topics/:topicId/activities',
                     parent: 'widgets',
-                    templateUrl: '/views/widgets/activities.html',
-                    resolve: {
-                        ActivitiesResolve: ['$stateParams', 'sActivity', function ($stateParams, sActivity) {
-                            return sActivity.getTopicActivitiesUnauth($stateParams.topicId);
-                        }]
-                    },
-                    controller: 'ActivitiesWidgetCtrl'
+                    template: '<activities-widget></activities-widget>'
                 })
                 .state('widgets/partnerActivities', {
                     url: '/partners/:partnerId/activities?filter',
                     parent: 'widgets',
-                    templateUrl: '/views/widgets/activities.html',
-                    resolve: {
-                        ActivitiesResolve: ['$stateParams', 'sActivity', function ($stateParams, sActivity) {
-                            var filters = $stateParams.filter;
-                            return sActivity.getActivitiesUnauth(0, 50, null, filters, $stateParams.partnerId);
-                        }]
-                    },
-                    controller: 'ActivitiesWidgetCtrl'
+                    template: '<activities-widget></activities-widget>'
                 })
                 .state('widgets/partnerTopicActivities', {
                     url: '/activities',

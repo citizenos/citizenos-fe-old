@@ -11,7 +11,7 @@
                     <div class="sprite sprite-icon-warn-topic2x"></div>
                     <div class="warn_title" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_HEADING">Are you sure you want to continue?</div>
                     <div class="warn_description" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_HEADING_DESCRIPTION">This will create and open a new private topic with "inProgress" status</div>
-                    <div id="lightbox_close" ng-click="closeThisDialog()">
+                    <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
                         <div class="table_cell">
                             <div class="sprite sprite-btn-popup-close2x">
                             </div>
@@ -79,7 +79,7 @@
                     <div class="delete_info_button_wrap">
 
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_BTN_NO">Cancel</div>
+                            <div class="blue_button no" ng-click="$ctrl.app.closeThisDialog($event)" translate="MODALS.DUPLICATE_TOPIC_CONFIRM_BTN_NO">Cancel</div>
                         </div>
 
                         <div class="table_cell">
@@ -95,6 +95,6 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
+    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)"></div>
 
 </div>

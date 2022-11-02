@@ -4,16 +4,15 @@ import * as angular from 'angular';
 
 let topicComments = {
     selector: 'topicComments',
-    templateUrl: '/views/topics_topicId_comments.html',
+    templateUrl: '/views/components/topic/topics_topicId_comments.html',
     bindings: {
-        topicId: '='
+        comment: '='
     },
     controller: ['$scope', '$state', '$stateParams', '$timeout', '$log', '$translate', '$document', 'ngDialog', 'sLocation', 'sNotification', 'TopicComment', 'TopicCommentService', 'AppService', class TopicCommentsController {
         private COMMENT_VERSION_SEPARATOR = '_v';
         public COMMENT_TYPES;
         public topic;
         public topicId;
-        public app;
         public focusArgumentSubject = false;
 
         public topicComments = {
@@ -21,8 +20,8 @@ let topicComments = {
             orderByTranslation: null,
             orderByOptions: null
         };
-        constructor ($scope, private $state, private $stateParams, private $timeout, private $log, private $translate, private $document, private ngDialog, private sLocation, private sNotification, private TopicComment, public TopicCommentService, AppService) {
-            this.app = AppService;
+        constructor ($scope, private $state, private $stateParams, private $timeout, private $log, private $translate, private $document, private ngDialog, private sLocation, private sNotification, private TopicComment, public TopicCommentService, private app) {
+            this.topicId = $stateParams.topicId;
             this.topicComments = angular.extend(this.topicComments, {
                 orderBy: TopicComment.COMMENT_ORDER_BY.date,
                 orderByTranslation: $translate.instant('VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ORDER_BY_DATE'),
@@ -103,41 +102,31 @@ let topicComments = {
                 return;
             }
 
-            const topicComment = new this.TopicComment({
-                id: comment.id,
-                topicId: this.topicId
-            });
-            topicComment.value = value;
-            topicComment
-                .$vote()
+            const topicComment = {
+                commentId: comment.id,
+                topicId: this.topicId,
+                value: value
+            };
+
+            this.TopicComment
+                .vote(topicComment)
                 .then((voteResult) => {
                     comment.votes = voteResult;
                 });
         };
 
         doShowVotersList (comment) {
-            const topicComment = new this.TopicComment({
-                id: comment.id,
-                topicId: this.topicId
-            });
-            topicComment
-                .$votes()
-                .then((commentVotes) => {
-                    this.ngDialog
-                        .open({
-                            template: '/views/modals/topic_comment_reactions.html',
-                            data: {
-                                commentVotes: commentVotes,
-                                topic: this.topic
-                            }
-                        });
+            this.ngDialog
+                .open({
+                    template: `<topic-comment-reactions topic-id="${this.topicId}" comment-id="${comment.id}"></topic-comment-reactions>`,
+                    plain:true
                 });
         };
 
         doCommentReport (comment) {
             this.ngDialog
                 .open({
-                    template: '/views/modals/topic_comment_report.html',
+                    template: '<topic-comment-report></topic-comment-report>',
                     data: {
                         comment: comment,
                         topic: {
@@ -180,8 +169,8 @@ let topicComments = {
                 })
                 .then(() => {
                     comment.topicId = this.topicId;
-                    comment
-                        .$delete()
+                    this.TopicComment
+                        .delete(comment)
                         .then(() => {
                             return this.$state.go(
                                 this.$state.current.name,
@@ -208,7 +197,7 @@ let topicComments = {
                 })
                 .then(() => {
                     comment.topicId = this.topicId;
-                    comment.$delete()
+                    this.TopicComment.delete(comment)
                         .then(() => {
                             return this.$state.go(
                                 this.$state.current.name,

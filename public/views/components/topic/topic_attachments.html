@@ -1,0 +1,160 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+    <div id="lightbox" class="wide_lightbox with_title_description with_header_menu">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_ATTACHMENTS_TITLE">Add/edit files for</div>
+                    <div class="title_description">{{$ctrl.topic.title}}</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell ngdialog-close">
+                        <div class="sprite sprite-btn-popup-close2x ngdialog-close">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+
+            <div class="line lightest_line"></div>
+
+            <!-- INVITE USERS -->
+            <div class="lightbox_content padding_bottom_zero">
+
+                <div class="table file_upload_table">
+                    <div class="table_row">
+                        <div class="file_add_cell" ng-if="$ctrl.app.config.attachments.upload">
+                            <cos-file-upload id="addFile" file-item="$ctrl.form.uploadfiles", multiple="true"></cos-file-upload>
+                            <div class="file_add_btn_wrap" ng-click="$ctrl.uploadFile()">
+                                <div class="file_add_btn">
+                                    <div class="sprite sprite-topic-file-upload2x"></div>
+                                </div>
+                                <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_COMPUTER">Computer</div>
+                            </div>
+                        </div>
+                        <div class="line_files_sepparator" ng-if="$ctrl.app.config.attachments.upload"></div>
+                        <div class="file_add_cell" ng-if="$ctrl.app.config.attachments.dropbox">
+                            <div class="file_add_btn_wrap" ng-click="$ctrl.dropboxSelect()">
+                                <div class="file_add_btn">
+                                    <div class="sprite sprite-topic-file-dropbox2x"></div>
+                                </div>
+                                <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_DROPBOX">Dropbox</div>
+                            </div>
+                        </div>
+                        <div class="line_files_sepparator" ng-if="$ctrl.app.config.attachments.dropbox"></div>
+                        <div class="file_add_cell" ng-if="$ctrl.app.config.attachments.googleDrive">
+                            <div class="file_add_btn_wrap" ng-click="$ctrl.googleDriveSelect()">
+                                <div class="file_add_btn">
+                                    <div class="sprite sprite-topic-file-googledrive2x"></div>
+                                </div>
+                                <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_GOOGLE_DRIVE">Google Drive</div>
+                            </div>
+                        </div>
+                        <div class="line_files_sepparator" ng-if="$ctrl.app.config.attachments.googleDrive"></div>
+                        <div class="file_add_cell" ng-if="$ctrl.app.config.attachments.oneDrive">
+                            <div class="file_add_btn_wrap" ng-click="$ctrl.oneDriveSelect();">
+                                <div class="file_add_btn">
+                                    <div class="sprite sprite-topic-file-onedrive2x"></div>
+                                </div>
+                                <div class="file_add_btn_description" translate="MODALS.TOPIC_ATTACHMENTS_LBL_ONEDRIVE">OneDrive</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="lightbox_section double_row_list user_list" ng-if="$ctrl.form.files.length">
+
+                    <div>
+
+                        <div class="category_title">
+                            <div class="table_cell" translate="MODALS.TOPIC_ATTACHMENTS_TITLE_FILES">
+                                Files
+                            </div>
+                        </div>
+
+                        <table>
+
+                            <tr ng-repeat="(key,file) in $ctrl.form.files">
+                                <td>
+                                    <div class="name_wrap file_name">
+                                        <div class="table_cell">
+                                            <div ng-if="!file.editMode" class="blue_link">{{file.name}}</div>
+                                            <input ng-if="file.editMode" type="text" ng-model="file.name" focus-if ng-keyup="$event.keyCode === 13 && $ctrl.editAttachment(file)"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="mobile_extra_info">
+                                        <div class="left">
+                                            <div class="name_wrap">
+                                                <div class="table_cell">
+                                                    <div ng-if="!file.editMode" class="blue_link">{{file.name}}</div>
+                                                    <input ng-if="file.editMode" type="text" ng-model="file.name"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="btn_wrap recycle_bin white_bg">
+                                                <div class="btn" ng-click="$ctrl.deleteAttachment(key, file)">
+                                                    <div class="table_cell">
+                                                        <div class="sprite sprite-mytopics-icon-deletetopic2x"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="btn_wrap edit_btn" ng-click="$ctrl.editAttachment(file)">
+                                                <div class="btn">
+                                                    <div class="table_cell">
+                                                        <div class="sprite sprite-icon-edit2x"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="file_buttons">
+                                    <div class="btn_wrap edit_btn" ng-click="$ctrl.editAttachment(file)">
+                                        <div class="btn">
+                                            <div class="table_cell">
+                                                <div class="sprite desktop_fix" ng-class="file.editMode ? 'sprite-icon-confirm2x' : 'sprite-icon-edit2x'"></div>
+                                                <div class="sprite mobile_fix" ng-class="file.editMode ? 'sprite-icon-confirm2x' : 'sprite-icon-edit2x'"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn_wrap recycle_bin white_bg">
+                                        <div class="btn" ng-click="$ctrl.deleteAttachment(key, file)">
+                                            <div class="table_cell">
+                                                <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                                <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+             <!-- MOBILE SAVE BUTTON -->
+            <div ng-if="$ctrl.app.wWidth <= 560 && $ctrl.Topic().canEdit($ctrl.topic)" class="blue_button_wrap mobile">
+                <div class="blue_button" cos-disabled="$ctrl.saveInProgress" ng-click="$ctrl.doSaveFiles()" translate="MODALS.TOPIC_ATTACHMENTS_SAVE_ATTACHMENTS">Save attachments</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event)">
+    </div>
+
+</div>

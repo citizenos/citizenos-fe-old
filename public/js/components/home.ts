@@ -6,7 +6,7 @@ let home = {
     selector: 'home',
     templateUrl: '/views/home.html',
     bindings: {},
-    controller: ['$log', '$location', '$window','$state', '$stateParams', 'sTopic', 'AppService', class HomeController {
+    controller: ['$log', '$location', '$window','$state', '$stateParams', 'PublicTopicService', 'Topic', 'AppService', class HomeController {
         private FILTERS_ALL = 'all';
 
         private topicList = [];
@@ -22,35 +22,48 @@ let home = {
                 value: null,
                 options: []
             },
-            limit: 30,
-            offset: 0,
             tabSelected: 'categories' // Mobile view has tabs where the filters are selected, indicates which filter tab is visible
         };
-        private app;
 
-        constructor (private $log, private $location, private $window, private $state, private $stateParams, private sTopic, private AppService) {
+        constructor (private $log, private $location, private $window, private $state, private $stateParams, private PublicTopicService, private Topic, private app) {
             $log.info('HomeCtrl', $state, $stateParams);
             this.init();
-            this.loadTopicList();
-            this.app = AppService;
+            this.PublicTopicService.reload();
+            if (this.$stateParams.category && !this.Topic.CATEGORIES[this.$stateParams.category]) {
+                return this.$state.go('error/404');
+            }
+            if (this.isTopicListLoading === true) {
+                return this.$log.warn('HomeCtrl.loadTopicList()', 'Topic list already loading, will skip this request.');
+            }
+
+            if (this.topicCountTotal && this.topicList.length >= this.topicCountTotal) {
+                return this.$log.warn('HomeCtrl.loadTopicList()', 'Maximum count of topics already loaded! Skipping API call.');
+            }
         };
 
         resolveCategory () {
             let category;
             if (this.$state.current.name === 'category') {
                 category = this.$stateParams.category;
-            } else if (this.sTopic.CATEGORIES[this.$state.current.name]) {
+            } else if (this.Topic.CATEGORIES[this.$state.current.name]) {
                 category = this.$state.current.name; //Check if special page for category
             }
 
-            return this.sTopic.CATEGORIES[category] ? category : this.FILTERS_ALL;
+            return this.Topic.CATEGORIES[category] ? category : this.FILTERS_ALL;
         };
 
         init () {
             this.filters.categories.value = this.resolveCategory();
             this.filters.statuses.value = this.FILTERS_ALL;
-            this.filters.categories.options = [this.FILTERS_ALL].concat(Object.values(this.sTopic.CATEGORIES));
-            this.filters.statuses.options = [this.FILTERS_ALL].concat(Object.values(this.sTopic.STATUSES)).concat('moderated');
+            this.filters.categories.options = [this.FILTERS_ALL].concat(Object.values(this.Topic.CATEGORIES));
+            this.filters.statuses.options = [this.FILTERS_ALL].concat(Object.values(this.Topic.STATUSES)).concat('moderated');
+
+            let status = this.resolveStatus();
+            let showModerated = false;
+            if (status === 'moderated' ) {
+                status = null;
+                showModerated = true;
+            }
         };
 
         doSetStatus (status) {
@@ -109,51 +122,22 @@ let home = {
             return status;
         };
 
-        loadTopicList () {
-            this.$log.debug('HomeCtrl.loadTopicList()');
-            if (this.$stateParams.category && !this.sTopic.CATEGORIES[this.$stateParams.category]) {
-                return this.$state.go('error/404');
+        goToView(topic) {
+            const params = {
+                language: this.$stateParams.language,
+                topicId: topic.id
             }
-            if (this.isTopicListLoading === true) {
-                return this.$log.warn('HomeCtrl.loadTopicList()', 'Topic list already loading, will skip this request.');
+            let view = 'topics/view';
+            if (topic.status === this.Topic.STATUSES.voting) {
+                view += '/votes/view'
+                params['voteId'] = topic.voteId;
+            } else if ([this.Topic.STATUSES.followUp, this.Topic.STATUSES.close].indexOf(topic.status) > -1) {
+                view += '/followUp';
             }
 
-            if (this.topicCountTotal && this.topicList.length >= this.topicCountTotal) {
-                return this.$log.warn('HomeCtrl.loadTopicList()', 'Maximum count of topics already loaded! Skipping API call.');
-            }
-
-            this.isTopicListLoading = true;
-
-            let status = this.resolveStatus();
-            console.log(status);
-            let showModerated = false;
-            if (status === 'moderated' ) {
-                status = null;
-                showModerated = true;
-            }
-            this.sTopic
-                .listUnauth(
-                    this.filters.statuses.value !== this.FILTERS_ALL ? status : null,
-                    this.filters.categories.value !== this.FILTERS_ALL ? this.resolveCategory() : null,
-                    showModerated,
-                    this.filters.offset,
-                    this.filters.limit
-                ).then((res) => {
-                    this.topicList = this.topicList.concat(res.data.data.rows);
-                    this.topicCountTotal = res.data.data.countTotal;
-
-                    this.filters.offset += this.filters.limit;
-
-                    this.isTopicListLoading = false;
-                },(err) => {
-                    this.$log.warn('HomeCtrl.loadTopicList()', 'List fetch failed or was cancelled', err);
-                    this.isTopicListLoading = false;
-                }
-            );
-        };
-
+            this.$state.go(view, params);
+        }
         goToPage (url) {
-            console.log(url);
             this.$window.location.href = url;
         }
 

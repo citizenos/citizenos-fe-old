@@ -153,6 +153,29 @@
         }
     }
 
+
+    .policy_links {
+        margin-top: 20px;
+        color: vars.$dark_blue;
+
+        .policy_link_wrap {
+            padding-bottom: 10px;
+
+            .policy_link {
+                padding: 2px 0 0 0;
+                color: vars.$dark_blue;
+            }
+        }
+    }
+
+    .section_icon {
+        width: 21px;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 7px;
+    }
+
     table {
         tr {
             input.checkbox{
@@ -961,29 +984,6 @@
 
                 .lightbox_section {
                     padding: 0 20px;
-                }
-
-                .policy_links {
-                    margin-top: 20px;
-                    color: vars.$dark_blue;
-
-                    .policy_link_wrap {
-                        padding-bottom: 10px;
-
-                        .policy_link {
-                            padding: 2px 0 0 0;
-                            color: vars.$dark_blue;
-                        }
-                    }
-                }
-
-                .section_icon {
-                    width: 21px;
-                    overflow: hidden;
-                    height: 28px;
-                    display: table;
-                    float: left;
-                    margin-right: 7px;
                 }
             }
 

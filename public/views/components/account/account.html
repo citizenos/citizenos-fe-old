@@ -1,0 +1,307 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_account">
+    <form name="myAccountForm">
+    <div class="content_wrap">
+        <div class="header">
+            <div class="heading_wrap">
+                <div class="title">
+                    <h1 translate="MODALS.MY_ACCOUNT_HEADING">My account</h1>
+                </div>
+            </div>
+            <div class="header_row_wrap">
+                <div class="header_row" slide-controller identifier="topicSettingsSlider">
+                    <div class="tab_button" ng-click="$ctrl.app.selectTab('profile')" ng-class="$ctrl.app.tabSelected === 'profile' ? 'active' : ''">
+                        <div class="tab_buttom_wrap">
+                            <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_PROFILE">PROFILE</div>
+                            <div class="blue_bottom_line"></div>
+                        </div>
+                    </div>
+
+                    <div class="tab_button" ng-click="$ctrl.app.selectTab('preferences')" ng-class="$ctrl.app.tabSelected === 'preferences' ? 'active' : ''">
+                        <div class="tab_buttom_wrap">
+                            <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_PREFERENCES">PREFERENCES</div>
+                            <div class="blue_bottom_line"></div>
+                        </div>
+                    </div>
+
+                    <div class="tab_button" ng-click="$ctrl.app.selectTab('notifications')" ng-class="$ctrl.app.tabSelected === 'notifications' ? 'active' : ''">
+                        <div class="tab_buttom_wrap">
+                            <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_NOTIFICATIONS">NOTIFICATIONS</div>
+                            <div class="blue_bottom_line"></div>
+                        </div>
+                    </div>
+
+                    <div class="tab_button" ng-click="$ctrl.app.selectTab('account')" ng-class="$ctrl.app.tabSelected === 'account' ? 'active' : ''">
+                        <div class="tab_buttom_wrap">
+                            <div class="tab_button_text" translate="MODALS.MY_ACCOUNT_TAB_ACCOUNT">ACCOUNT</div>
+                            <div class="blue_bottom_line"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="content" ng-if="$ctrl.app.tabSelected === 'profile'">
+                <div class="content_section">
+                    <div id="image_edit_section">
+                        <div class="profile_image_wrapper dark big">
+                            <!--div class="profile_moon sprite sprite-icon-certified-google-2-x2x"></div-->
+                            <div class="account_picture">
+                                <!-- NB Remember to use image that has 2x size, meaning 160x160px for this <img ng-if="app.user.imageUrl" ng-src="{{app.user.imageUrl}}" src="">-->
+                                <img ng-if="$ctrl.form.imageUrl" ng-src="{{$ctrl.form.imageUrl}}">
+                                <cos-file-upload id="profileImage" file-item="$ctrl.imageFile" cos-file-upload>
+                                <div class="profile_image_filler" ng-if="!$ctrl.form.imageUrl">
+                                    <div class="table_cell" cos-initials="$ctrl.form.name">
+                                        ML
+                                    </div>
+                                    <div class="profile_circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="edit_image_properties">
+                            <div class="blue_link" ng-click="$ctrl.uploadImage()" translate="MODALS.MY_ACCOUNT_UPLOAD_AVATAR">Upload new</div> |
+                            <div class="blue_link" ng-click="$ctrl.deleteProfileImage()" translate="MODALS.MY_ACCOUNT_DELETE_AVATAR">Delete</div>
+                            <br>
+                            <span translate="MODALS.MY_ACCOUNT_AVATAR_RESTRICTIONS">Max 500kb jpg, gif or png</span>
+                        </div>
+                    </div>
+
+                    <div id="profile_edit_section">
+                        <div class="input_wrap">
+                            <span translate="MODALS.MY_ACCOUNT_PLACEHOLDER_NAME">Name</span>
+                            <input id="name" ng-model="$ctrl.form.name" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_NAME' | translate}}" focus-if="{{$ctrl.app.wWidth > 1024}}" ng-class="{'error_input': $ctrl.errors.name}" maxlength="255" required>
+                            <label for="name" class="error_label" ng-if="$ctrl.errors.name">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{$ctrl.errors.name}}"></span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="input_wrap">
+                            <span translate="MODALS.MY_ACCOUNT_PLACEHOLDER_COMPANY">Company</span>
+                            <input id="company" ng-model="$ctrl.form.company" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_COMPANY' | translate}}" ng-class="{'error_input': $ctrl.errors.company}" maxlength="255">
+                            <label for="company" class="error_label" ng-if="$ctrl.errors.company">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{$ctrl.errors.company}}"></span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="input_wrap">
+                            <span translate="MODALS.MY_ACCOUNT_PLACEHOLDER_EMAIL">Email</span>
+                            <input id="email" ng-model="$ctrl.form.email" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_EMAIL' | translate}}" ng-class="{'error_input': $ctrl.errors.email}"  maxlength="254" required>
+                            <label for="email" class="error_label" ng-if="$ctrl.errors.email">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{$ctrl.errors.email}}"></span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="input_wrap" ng-if="$ctrl.form.email !== $ctrl.app.user.email">
+                            <span translate="MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD">Password</span>
+                            <input id="password" ng-model="$ctrl.form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': $ctrl.errors.password}" maxlength="64">
+                            <label for="password" class="error_label" ng-if="$ctrl.errors.password">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{$ctrl.errors.password}}"></span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="content" ng-if="$ctrl.app.tabSelected === 'preferences'">
+            <div class="content_section">
+                <div class="settings_section">
+                    <div class="settings_cell">
+                        <div class="setting_title" translate="MODALS.MY_ACCOUNT_LBL_SHOW_IN_SEARCH">Make your topic private</div>
+                        <div class="setting_description" translate="MODALS.MY_ACCOUNT_LBL_SHOW_IN_SEARCH_DESCRIPTION">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
+                    </div>
+
+                    <div class="settings_cell setting_toggle">
+                        <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                ng-model="$ctrl.form.preferences.showInSearch"></cos-toggle>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--div class="content_description" ng-if="tabSelected === 'notifications'">Make your topic private</div-->
+        <div class="content" ng-if="$ctrl.app.tabSelected === 'notifications'">
+            <div class="content_section">
+                <div class="settings_section">
+                    <div class="settings_cell">
+                        <div class="setting_title" translate="MODALS.MY_ACCOUNT_LBL_NOTIFICATION_TOPICS">Topics with notifications</div>
+                    </div>
+                    <div class="searchbox_with_icon_and_text only_text">
+                        <div class="input_wrap">
+                            <input class="topic_search_input" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_SEARCH' | translate}}" ng-change="$ctrl.TopicNotificationService.search()" ng-model-options="{debounce:250}" ng-model="$ctrl.notifications.search">
+                        </div>
+                    </div>
+                    <table class="notification_settings_table">
+                        <tr class="notification_setting_row"><th translate="MODALS.MY_ACCOUNT_TABLE_HEADER_TOPIC">Topics</th><th translate="MODALS.MY_ACCOUNT_TABLE_HEADER_NOTIFICATIONS">Notifications</th><th></th></tr>
+                        <tr class="notification_setting_row" ng-repeat="(key, topic) in $ctrl.TopicNotificationService.topics">
+                            <td><a class="blue_link" ui-sref="topics.view({topicId: topic.topicId})">{{topic.title}}</a></td>
+                            <td>
+                                <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" model="topic.allowNotifications" ng-click="$ctrl.removeTopicNotifications(topic)"></cos-toggle>
+                            </td>
+                            <td>
+                                <a class="blue_link" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SET_TOPIC_NOTIFICATIONS" ng-click="$ctrl.app.doShowTopicNotificationSettings(topic.topicId)">Set topic notifications</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--div class="settings_section">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <div class="title_item">Push</div>
+                            </th>
+                            <th>
+                                <div class="title_item">E-mail</div>
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td class="setting_title">Topics</td>
+                            <td><div class="title_item" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="form.preferences.notifications.topic.push"></div></td>
+                            <td><div class="title_item" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="form.preferences.notifications.topic.email"></div></td>
+                            <td><input class="option_checkbox" type="checkbox"></td>
+                            <td><input class="option_checkbox" type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td class="setting_title">Groups</td>
+                            <td><div class="title_item" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="form.preferences.notifications.groups.push"></div></td>
+                            <td><div class="title_item" cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate" ng-model="form.preferences.notifications.groups.email"></div></td>
+                            <td><input class="option_checkbox" type="checkbox"></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <div class="settings_cell">
+                        <div class="table_setting_title">
+                            <span>All actions</span>
+                        </div>
+
+                        <div class="table_setting_title">
+                            <span>All actions</span>
+                        </div>
+                        <div class="table_setting_title">
+                            <span>All actions</span>
+                        </div>
+                        <div class="table_setting_title">
+                            <span>All actions</span>
+                        </div>
+                        <div class="table_setting_title">
+                            <span>All actions</span>
+                        </div>
+                    </div>
+                    <div class="settings_cell">
+                        <div class="setting_title" >Activity feed</div>
+                        <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                ng-model="form.preferences.showInSearch"></div>
+                    </div>
+                    <div class="profile_line v_line lightest_line"></div>
+                    <div class="settings_cell">
+                        <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                ng-model="form.preferences.showInSearch"></div>
+                        <div class="setting_title" translate="MODALS.MY_ACCOUNT_LBL_SHOW_IN_SEARCH">Make your topic private</div>
+                        <div class="table_setting_cell">
+                            <label class="checkcontainer">
+                                <input type="radio" class="vote_option_radio" ng-click="selectOption(option)">
+                                <span class="option_radio"></span>
+                            </label>
+                        </div>
+                        <div class="table_setting_cell">
+                            <input class="option_checkbox" type="checkbox">
+                        </div>
+                        <div class="table_setting_cell">
+                            <input class="option_checkbox" type="checkbox">
+                        </div>
+                        <div class="table_setting_cell">
+                            <input class="option_checkbox" type="checkbox">
+                        </div>
+                        <div class="table_setting_cell">
+                            <input class="option_checkbox" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="profile_line v_line lightest_line"></div>
+                    <div class="settings_cell">
+                        <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                ng-model="form.preferences.showInSearch"></div>
+                        <div class="setting_title" translate="MODALS.MY_ACCOUNT_LBL_SHOW_IN_SEARCH">Make your topic private</div>
+                    </div>
+                    <div class="profile_line v_line lightest_line"></div>
+                    <div class="settings_cell">
+                        <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                ng-model="form.preferences.showInSearch"></div>
+                        <div class="setting_title" translate="MODALS.MY_ACCOUNT_LBL_SHOW_IN_SEARCH">Make your topic private</div>
+                    </div>
+                    <div class="profile_line v_line lightest_line"></div>
+                    <div class="settings_cell">
+                        <div cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                ng-model="form.preferences.showInSearch"></div>
+                        <div class="setting_title" translate="MODALS.MY_ACCOUNT_LBL_SHOW_IN_SEARCH">Make your topic private</div>
+                    </div>
+                </div-->
+            </div>
+        </div>
+        <div class="content" ng-if="$ctrl.app.tabSelected === 'account'">
+            <div class="content_section">
+                <div class="settings_section">
+                    <div class="input_wrap">
+                        <span translate="MODALS.MY_ACCOUNT_PLACEHOLDER_NEW_PASSWORD">New Password</span>
+                        <input id="newPassword" ng-model="$ctrl.form.newPassword" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': $ctrl.errors.newPassword}" maxlength="64">
+                    </div>
+                    <div class="input_wrap">
+                        <span translate="MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD_CONFIRM">Confirm Password</span>
+                        <input id="password_confirm" ng-model="$ctrl.form.passwordConfirm" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD_CONFIRM' | translate}}" ng-class="{'error_input': $ctrl.errors.newPassword}" maxlength="64">
+                        <label for="newPassword" class="error_label" ng-if="$ctrl.errors.newPassword">
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <span translate="{{$ctrl.errors.newPassword}}"></span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="input_wrap">
+                        <span translate="MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD">Password</span>
+                        <input id="password" ng-model="$ctrl.form.password" type="password" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': $ctrl.errors.password}" maxlength="64">
+                        <label for="password" class="error_label" ng-if="$ctrl.errors.password">
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <span translate="{{$ctrl.errors.password}}"></span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer pagination_footer" ng-if="$ctrl.app.tabSelected === 'notifications'">
+            <div class="line lightest_line"></div>
+            <cos-pagination class="pagination" select="$ctrl.TopicNotificationService.loadPage(page)" total-pages="$ctrl.TopicNotificationService.totalPages" page="$ctrl.TopicNotificationService.page"></cos-pagination>
+        </div>
+
+        <div class="footer" ng-if="$ctrl.app.tabSelected !== 'notifications'">
+
+            <div class="line lightest_line"></div>
+            <span class="delete_account" ng-click="$ctrl.doDeleteAccount()">
+                <span class="sprite sprite-mytopics-icon-deletetopic2x"></span>
+                <span class="item_text remove blue_link ng-scope" translate="MODALS.MY_ACCOUNT_LNK_DELETE">Delete account</span>
+            </span>
+            <div class="blue_button_wrap">
+                <div class="blue_button" ng-click="$ctrl.doUpdateProfile()" ng-disabled="myAccountForm.$invalid" class="blue_button"
+                    translate="MODALS.MY_ACCOUNT_BTN_SAVE">Save changes
+                </div>
+            </div>
+        </div>
+
+        </form>
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)">
+    </div>
+
+</div>

@@ -1,28 +1,25 @@
 import * as angular from 'angular';
+export class VoteDelegation {
+     constructor(private $http, private sAuth, private sLocation) {}
+
+    save(data: any) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/votes/:voteId/delegations', data)
+
+        return this.$http.post(path, data)
+            .then((res) => {
+                return res.data.data
+            });
+    }
+
+    delete(data: any) {
+        const path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/votes/:voteId/delegations', data);
+
+        return this.$http.delete(path).then((res) => {
+            return res.data;
+        });
+    }
+}
+
 angular
     .module('citizenos')
-    .factory('VoteDelegation', ['$log', '$resource', 'sLocation', function ($log, $resource, sLocation) {
-        $log.debug('citizenos.factory.VoteDelegation');
-
-        var VoteDelegation = $resource(
-            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/votes/:voteId/delegations'),
-            {topicId: '@topicId', voteId: '@voteId'},
-            {
-                save: {
-                    method: 'POST',
-                    transformResponse: function (data, headersGetter, status) {
-                        if (status > 0 && status < 400) {
-                            return angular.fromJson(data).data;
-                        } else {
-                            return angular.fromJson(data);
-                        }
-                    }
-                },
-                delete: {
-                    method: 'DELETE'
-                }
-            }
-        );
-
-        return VoteDelegation;
-    }]);
+    .service('VoteDelegation', ['$http', 'sAuth', 'sLocation', VoteDelegation]);

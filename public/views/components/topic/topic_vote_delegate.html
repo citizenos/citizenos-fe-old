@@ -1,0 +1,135 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+    <div id="lightbox" class="wide_lightbox with_title_description with_header_menu">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_VOTE_DELEGATE_HEADING">Delegate your vote for topic</div>
+                    <div class="title_description">{{$ctrl.topic.title}}</div>
+                </div>
+
+                <div id="lightbox_close" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell ngdialog-close">
+                        <div class="ngdialog-close sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div class="header_row_wrap">
+                    <div class="header_row" slide-controller identifier="topicSettingsSlider">
+                        <div class="tab_button active">
+                            <div class="tab_buttom_wrap">
+                                <div class="tab_button_text" translate="MODALS.TOPIC_VOTE_DELEGATE_TAB">Delegate</div>
+                                <div class="blue_bottom_line"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="line lightest_line"></div>
+
+            <div class="lightbox_content">
+
+                <div class="lightbox_section">
+
+                    <div class="input_text_margin_bottom" translate="MODALS.TOPIC_VOTE_DELEGATE_LBL_SEARCH_MEMBERS">You can delegate your vote only to other members of this topic. Search topic members by their name or e-mail address</div>
+
+                    <div class="searchbox_with_icon_and_text only_text">
+                        <div cos-dropdown ng-class="{search_with_dropdown : $ctrl.searchResults.users.length, dropdown_active : $ctrl.searchResults.users.length}">
+                            <typeahead id="userSearch" class="auto-complete" items="$ctrl.searchResults.users" term="$ctrl.searchStringUser" search="$ctrl.search(term, 'user')"
+                                       select="$ctrl.addUser(item)" placeholder="{{'MODALS.TOPIC_VOTE_DELEGATE_PLACEHOLDER_SEARCH_BY_NAME' | translate}}">
+                                <div class="search_area_wrap">
+                                    <div class="search_dropdown_area" ng-class="{hidden: !$ctrl.searchResults.users.length}">
+                                        <div class="search_dropdown_item" typeahead-item="user" ng-repeat="user in $ctrl.searchResults.users">
+                                            <div class="table_cell search_item_text">
+                                                <b>{{user.name}}</b> {{user.company}}
+                                            </div>
+                                            <div class="table_cell blue_link">
+                                                <span class="submit_link" ng-click="$ctrl.addUser(user)" translate="MODALS.TOPIC_VOTE_DELEGATE_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </typeahead>
+                        </div>
+                        <div class="search_text">
+                            <div class="table_cell blue_link" translate="MODALS.TOPIC_VOTE_DELEGATE_TXT_PRESS_ENTER_TO_ADD">Press enter to add</div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="lightbox_section double_row_list user_list">
+
+                    <div ng-if="$ctrl.delegateUser">
+
+                        <div class="category_title">
+                            <div class="table_cell" translate="MODALS.TOPIC_VOTE_DELEGATE_TH_USERS">Users</div>
+                        </div>
+
+                        <table>
+
+                            <tr>
+                                <td>
+                                    <div class="profile_image_wrapper dark">
+                                        <!--div class="profile_moon sprite"></div-->
+                                        <div class="account_picture">
+                                            <img ng-if="$ctrl.delegateUser.imageUrl" src="{{$ctrl.delegateUser.imageUrl}}">
+                                            <div class="profile_image_filler">
+                                                <cos-initials class="table_cell" ng-model="$ctrl.delegateUser.name"></cos-initials>
+                                                <div class="profile_circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="name_wrap">
+                                        <div class="table_cell">
+                                            <div class="blue_link" ng-click="$ctrl.doRemoveDelegateUser(delegateUser)">{{$ctrl.delegateUser.name}}</div>
+                                            <div class="via">{{$ctrl.delegateUser.company}}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn_wrap recycle_bin white_bg">
+                                        <div class="btn" ng-click="$ctrl.doRemoveDelegateUser()">
+                                            <div class="table_cell">
+                                                <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                                <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="lightbox_footer">
+
+                <div class="line lightest_line"></div>
+                <div class="blue_button_wrap">
+                    <div class="blue_button ngdialog-close" ng-if="!$ctrl.members.users.length && !$ctrl.members.emails.length" ng-click="$ctrl.doSaveDelegate()" translate="MODALS.TOPIC_VOTE_DELEGATE_BTN_DELEGATE">Delegate vote</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event)">
+
+    </div>
+
+</div>

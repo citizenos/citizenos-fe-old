@@ -63,19 +63,17 @@ export class GroupMemberUserService {
             let params = {
                 groupId: this.groupId,
                 offset: this.offset,
-                search: this.search,
                 order: this.orderBy,
                 sortOrder: this.order,
                 limit: this.limit
             }
-            this.GroupMemberUser.query(params).$promise.then((users) => {
-                if (users.length) {
-                    this.countTotal = users[0].countTotal || 0;
-                    this.totalPages = Math.ceil(users[0].countTotal / this.limit);
-                }
-                for (let user of users) {
-                    this.users.push(user);
-                }
+            if (this.search) {
+                params['search'] = this.search
+            }
+            this.GroupMemberUser.query(params).then((data) => {
+                this.countTotal = data.countTotal || 0;
+                this.totalPages = Math.ceil(data.countTotal / this.limit);
+                this.users = data.rows;
 
                 this.isLoading = false;
             });

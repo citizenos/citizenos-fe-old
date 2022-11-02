@@ -1,50 +1,77 @@
 import * as angular from 'angular';
+export class TopicMemberUser {
+    getUrlPrefix () {
+        const prefix = this.sAuth.getUrlPrefix();
+        if (!prefix) {
+            return '';
+        }
+
+        return `/${prefix}`;
+    };
+
+    getUrlUser () {
+        const userId = this.sAuth.getUrlUserId();
+        if (!userId) {
+            return '';
+        }
+
+        return `/${userId}`;
+    };
+
+    constructor(private $http, private sAuth, private sLocation) {}
+
+    query(params: { string: string }) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users', params)
+            .replace('/:prefix', this.getUrlPrefix())
+            .replace('/:userId', this.getUrlUser());
+
+        return this.$http.get(path, params).then((res) => {
+            return res.data.data;
+        });
+    }
+
+    get(params?: any) {
+        if (!params.userId) params.userId = params.id;
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users/:userId', params)
+            .replace('/:prefix', this.getUrlPrefix())
+            .replace('/:userId', this.getUrlUser());
+
+        return this.$http.get(path, params)
+            .then((res) => {
+                return res.data.data
+            });
+    }
+
+    save(data: any) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users', data)
+            .replace('/:prefix', this.getUrlPrefix())
+            .replace('/:userId', this.getUrlUser());
+
+        return this.$http.post(path, data)
+        .then((res) => {
+            return res.data.data
+        });
+    }
+
+    update(data: any) {
+        if (!data.userId) data.userId = data.id;
+        const path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users/:userId', data);
+        return this.$http.put(path, data)
+            .then((res) => {
+                return res.data.data
+            });
+    }
+
+    delete(data: any) {
+        if (!data.userId) data.userId = data.id;
+        const path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users/:userId', data);
+
+        return this.$http.delete(path).then((res) => {
+            return res.data;
+        });
+    }
+};
+
 angular
     .module('citizenos')
-    .factory('TopicMemberUser', ['$log', '$resource', 'sLocation', function ($log, $resource, sLocation) {
-        $log.debug('citizenos.factory.TopicMemberUser');
-
-        var TopicMemberUser = $resource(
-            sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users/:userId'), // Actually Groups are added to Topic
-            {topicId: '@topicId', userId: '@id'},
-            {
-                query: {
-                    isArray: true,
-                    transformResponse: function (data, headersGetter, status) {
-                        if (status > 0 && status < 400) { // TODO: think this error handling through....
-                            var result = angular.fromJson(data).data;
-                            result.rows.forEach(function (item) {
-                                item.countTotal = result.countTotal;
-                            });
-
-                            return result.rows;
-                        } else {
-                            return angular.fromJson(data);
-                        }
-                    }
-                },
-                update: {
-                    method: 'PUT',
-                    transformRequest: function (data) {
-                        return angular.toJson({level: data.level});
-                    },
-                    transformResponse: function (data, headersGetter, status) {
-                        if (status > 0 && status < 400) { // TODO: think this error handling through....
-                            return angular.fromJson(data).data;
-                        } else {
-                            return angular.fromJson(data);
-                        }
-                    }
-                }
-            }
-        );
-
-        // FIXME: Should be inherited from Topic?
-        TopicMemberUser.LEVELS = {
-            read: 'read',
-            edit: 'edit',
-            admin: 'admin'
-        };
-
-        return TopicMemberUser;
-    }]);
+    .service('TopicMemberUser', ['$http', 'sAuth', 'sLocation', TopicMemberUser]);

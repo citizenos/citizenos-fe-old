@@ -3,10 +3,9 @@ import * as angular from 'angular';
 
 let topicMilestones = {
     selector: 'topicMilestones',
-    templateUrl: '/views/components/topic_milestones.html',
+    templateUrl: '/views/components/topic/topic_milestones.html',
     bindings: {},
     controller:['AppService', '$log', '$state', '$stateParams', 'TopicEvent', 'Topic', 'ngDialog', class TopicMilestoneController {
-        public app;
         public topic;
         public eventForm = {
             subject: null,
@@ -18,10 +17,9 @@ let topicMilestones = {
         public maxLengthSubject = 128;
         public maxLengthText = 2048;
 
-        constructor (AppService, $log, $state, $stateParams, private TopicEvent, Topic,  private ngDialog) {
+        constructor (private app, $log, $state, $stateParams, private TopicEvent, private Topic,  private ngDialog) {
             $log.debug('TopicFollowUpCtrl');
-            this.app = AppService;
-            this.topic = AppService.topic;
+            this.topic = app.topic;
             if ([Topic.STATUSES.closed, Topic.STATUSES.followUp].indexOf(this.topic.status) > -1) {
                 this.init();
                 return;
@@ -38,10 +36,8 @@ let topicMilestones = {
         };
 
         submitEvent () {
-            const topicEvent = new this.TopicEvent({topicId: this.topic.id, subject: this.eventForm.subject, text: this.eventForm.text});
-
-            topicEvent
-                .$save()
+            this.TopicEvent
+                .save({topicId: this.topic.id, subject: this.eventForm.subject, text: this.eventForm.text})
                 .then(() => {
                     this.init();
                 },(res) => {
@@ -59,9 +55,9 @@ let topicMilestones = {
                 })
                 .then(() => {
                     event.topicId = this.topic.id;
-                    event
-                        .$delete()
-                        .then(function () {
+                    this.TopicEvent
+                        .delete(event)
+                        .then(() => {
                             this.init();
                         });
                 }, angular.noop);

@@ -55,7 +55,6 @@ export class AppModule {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
     .then(module => {
-        console.log('ANGULAR DUALBOOT');
         const upgrade = module.injector.get(UpgradeModule) as UpgradeModule;
         upgrade.bootstrap(document.body.parentElement, ['citizenos']);
     })

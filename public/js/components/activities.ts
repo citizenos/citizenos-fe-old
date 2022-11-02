@@ -4,15 +4,13 @@ import * as $ from 'jquery';
 
 let activityFeed = {
     selector: 'activityFeed',
-    templateUrl: '/views/modals/activity_modal.html',
+    templateUrl: '/views/components/activity_feed.html',
     bindings: {},
     controller: ['$translate', 'sActivity', 'ActivityService', 'ngDialog', 'AppService', class ActivityController {
         public filer;
-        public app;
 
-        constructor (private $translate, private sActivity, private ActivityService, private ngDialog, AppService) {
-            this.app = AppService;
-            this.app.unreadActivitiesCount = 0;
+        constructor (private $translate, private sActivity, private ActivityService, private ngDialog, private app) {
+            app.unreadActivitiesCount = 0;
             ActivityService.reload();
         }
 
@@ -50,11 +48,6 @@ let activityFeed = {
 
             return this.$translate.instant(key.split(':')[0], values);
         };
-
-        closeThisDialog (e) {
-            const dialog = $(e.target).closest('.ngdialog');
-            this.ngDialog.close(dialog.attr('id'), '$closeButton');
-        }
     }]
 };
 

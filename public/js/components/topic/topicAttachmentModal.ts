@@ -4,27 +4,25 @@ import * as $ from 'jquery';
 
 let topicAttachmentModal = {
     selector: 'topicAttachmentModal',
-    templateUrl: '/views/modals/topic_attachments.html',
-    controller: ['$log', '$document', '$translate', 'sNotification', 'sUpload', 'sAttachment', 'TopicAttachment', 'ngDialog', 'AppService', class TopicAttachmentsController {
+    templateUrl: '/views/components/topic/topic_attachments.html',
+    controller: ['$log', '$document', '$translate', 'sNotification', 'sUpload', 'Topic', 'TopicAttachment', 'ngDialog', 'AppService', class TopicAttachmentsController {
         public form = {
             files: [],
             uploadfiles: []
         };
         private saveInProgress = false;
         public topic;
-        private app;
 
-        constructor ($log, private $document, private $translate, private sNotification, private sUpload, private sAttachment, private TopicAttachment, private ngDialog, AppService) {
+        constructor ($log, private $document, private $translate, private sNotification, private sUpload, private Topic, private TopicAttachment, private ngDialog, private app) {
             $log.debug('TopicAttachmentsCtrl');
-            this.app = AppService;
-            this.topic = AppService.topic;
+            this.topic = app.topic;
             this.init();
             this.handleAttachment = angular.bind(this, this.handleAttachment);
         }
 
         init () {
             this.TopicAttachment
-                .query({topicId: this.topic.id}).$promise
+                .query({topicId: this.topic.id})
                 .then((attachments) => {
                     this.form.files = attachments;
                 });
@@ -68,19 +66,19 @@ let topicAttachmentModal = {
         }
 
         dropboxSelect () {
-            this.sAttachment
+            this.TopicAttachment
                 .dropboxSelect()
                 .then(this.handleAttachment);
         };
 
         oneDriveSelect () {
-            this.sAttachment
+            this.TopicAttachment
                 .oneDriveSelect()
                 .then(this.handleAttachment);
         };
 
         googleDriveSelect () {
-            this.sAttachment
+            this.TopicAttachment
                 .googleDriveSelect()
                 .then(this.handleAttachment);
         };
@@ -93,8 +91,7 @@ let topicAttachmentModal = {
             if (attachment.file) {
                 return this.sUpload.topicAttachment(this.topic.id, attachment)
                 .then((result) => {
-                    var topicAttachment = new this.TopicAttachment(result.data);
-                    this.form.files.push(topicAttachment);
+                    this.form.files.push(result.data);
                 }).catch((err) => {
                     if (err.data.errors) {
                         var keys = Object.keys(err.data.errors);
@@ -109,23 +106,20 @@ let topicAttachmentModal = {
                 });
             }
             attachment.topicId = this.topic.id;
-            const topicAttachment = new this.TopicAttachment(attachment);
-            if (topicAttachment.id) {
-                topicAttachment.$update();
+            if (attachment.id) {
+                this.TopicAttachment.update(attachment);
             } else {
-
-                topicAttachment.$update();
+                this.TopicAttachment.update(attachment);
             }
 
-            this.form.files.push(topicAttachment);
+            this.form.files.push(attachment);
         };
 
         editAttachment (attachment) {
             attachment.editMode = !attachment.editMode;
             attachment.topicId = this.topic.id;
-            const topicAttachment = new this.TopicAttachment(attachment);
             if (!attachment.editMode && attachment.id) {
-                topicAttachment.$update();
+                this.TopicAttachment.update(attachment);
             }
         };
 

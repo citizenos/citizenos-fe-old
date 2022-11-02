@@ -1,0 +1,63 @@
+<div>
+    <p translate="VIEWS.PARTNERS_LOGIN.HEADING" translate-values="{website: $ctrl.partner.website}">We work together with CitizenOS to offer you a great experience. If you want to use the platform to its fullest, <span class="bold">please login or register.</span></p>
+
+    <div class="social_buttons_wrap">
+
+        <div ng-if="$ctrl.app.config.features.authentication.facebook" id="facebook" ng-click="$ctrl.doLoginPartnerNoPopup($ctrl.LOGIN_PARTNERS.facebook)" class="social_button">
+            <div class="social_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-login-icon-facebook2x"></div>
+                </div>
+            </div>
+            <div class="social_text">
+                <div class="table_cell" translate="VIEWS.PARTNERS_LOGIN.BTN_LOGIN_FACEBOOK">Login with Facebook account</div>
+            </div>
+        </div>
+
+        <div ng-if="$ctrl.app.config.features.authentication.google" id="google" ng-click="$ctrl.doLoginPartnerNoPopup($ctrl.LOGIN_PARTNERS.google)" class="social_button">
+            <div class="social_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-login-icon-google2x"></div>
+                </div>
+            </div>
+            <div class="social_text">
+                <div class="table_cell" translate="VIEWS.PARTNERS_LOGIN.BTN_LOGIN_GOOGLE">Login with Google account</div>
+            </div>
+        </div>
+
+        <div ng-if="$ctrl.app.config.features.authentication.mobiilId || $ctrl.app.config.features.authentication.idCard" id="id_card" ng-click="$ctrl.doLoginEsteId()" class="social_button">
+            <div class="social_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-login-icon-id2x"></div>
+                </div>
+            </div>
+            <div class="social_text">
+                <div class="table_cell" translate="VIEWS.PARTNERS_LOGIN.ID">Login with ID-Card / Mobiil-ID</div>
+            </div>
+        </div>
+
+    </div>
+
+    <form class="login_form" name="loginForm" ng-if="$ctrl.app.config.features.authentication.citizenos">
+        <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+        <input id="email" ng-model="$ctrl.form.email" type="email" placeholder="{{'VIEWS.PARTNERS_LOGIN.PLACEHOLDER_EMAIL' | translate}}" focus-if="{{$ctrl.app.wWidth > 1024}}" ng-class="{'error_input': $ctrl.errors.email}" required>
+        <label for="email" class="error_label" ng-if="$ctrl.errors.email">
+            <div class="table_cell">
+                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                <span translate="{{$ctrl.errors.email}}"></span>
+            </div>
+        </label>
+        <input id="password" ng-model="$ctrl.form.password" type="password" placeholder="{{'VIEWS.PARTNERS_LOGIN.PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': $ctrl.errors.password}" required>
+        <label for="password" class="error_label" ng-if="$ctrl.errors.password">
+            <div class="table_cell">
+                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                <span translate="{{$ctrl.errors.password}}"></span>
+            </div>
+        </label>
+        <button type="submit" ng-click="$ctrl.doLogin()" cos-disabled="loginForm.$invalid" translate="VIEWS.PARTNERS_LOGIN.LOGIN_REGISTER">Log in / Register</button>
+        <div class="link_section">
+            <a class="lightbox_link" ng-click="$ctrl.doResetPassword()" href="" translate="VIEWS.PARTNERS_LOGIN.FORGOT_PASSWORD">Forgot password?</a>
+        </div>
+    </form>
+
+</div>

@@ -62,17 +62,19 @@ export class GroupInviteUserService {
             let params = {
                 groupId: this.groupId,
                 offset: this.offset,
-                search: this.search,
                 order: this.orderBy,
                 sortOrder: this.order,
                 limit: this.limit
             }
-            this.GroupInviteUser.query(params).$promise.then((users) => {
-                if (users.length) {
-                    this.countTotal = users[0].countTotal || 0;
-                    this.totalPages = Math.ceil(users[0].countTotal / this.limit);
+            if (this.search) {
+                params['search'] = this.search;
+            }
+            this.GroupInviteUser.query(params).then((data) => {
+                if (data.countTotal) {
+                    this.countTotal = data.countTotal || 0;
+                    this.totalPages = Math.ceil(data.countTotal / this.limit);
                 }
-                for (let user of users) {
+                for (let user of data.rows) {
                     this.users.push(user);
                 }
 

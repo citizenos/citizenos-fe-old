@@ -1,11 +1,9 @@
 import * as angular from 'angular';
-import {orderBy, sortedUniqBy} from 'lodash';
 
 let myTopicsTopic = {
     selector: 'myTopicsTopic',
-    templateUrl: '/views/components/my_topics_topicId.html',
-    controller: ['$log', '$state', '$stateParams', '$anchorScroll', '$q', 'sAuth', 'Topic', 'TopicMemberUser', 'TopicMemberUserService' , 'TopicMemberGroup', 'TopicMemberGroupService', 'TopicInviteUser', 'TopicInviteUserService', 'TopicActivitiesService', 'AppService', 'ngDialog', class MyTopicsTopicController {
-        public app;
+    templateUrl: '/views/components/my/my_topics_topicId.html',
+    controller: ['$log', '$state', '$stateParams', '$anchorScroll', '$q', 'sAuth', 'Topic', 'TopicVote', 'TopicMemberUser', 'TopicMemberUserService' , 'TopicMemberGroup', 'TopicMemberGroupService', 'TopicInviteUser', 'TopicInviteUserService', 'TopicActivitiesService', 'AppService', 'ngDialog', class MyTopicsTopicController {
         public topic;
         public userList = {
             isVisible: false,
@@ -23,9 +21,8 @@ let myTopicsTopic = {
         public generalInfo = {
             isVisible: true
         };
-        constructor ($log, private $state, private $stateParams, private $anchorScroll, private $q, private sAuth, private Topic, private TopicMemberUser, private TopicMemberUserService, private TopicMemberGroup, private TopicMemberGroupService, private TopicInviteUser, private TopicInviteUserService, private TopicActivitiesService, AppService, private ngDialog) {
+        constructor ($log, private $state, private $stateParams, private $anchorScroll, private $q, private sAuth, private Topic, private TopicVote, private TopicMemberUser, private TopicMemberUserService, private TopicMemberGroup, private TopicMemberGroupService, private TopicInviteUser, private TopicInviteUserService, private TopicActivitiesService, private app, private ngDialog) {
             $log.debug('MyTopicsTopicController');
-            this.app = AppService;
             this.topic = this.app.topic;
             TopicMemberUserService.topicId = $stateParams.topicId;
             TopicMemberUserService.reload();
@@ -109,11 +106,12 @@ let myTopicsTopic = {
         };
 
         doSaveVoteEndsAt () {
-            return this.topic.vote
-                .$update({topicId: this.topic.id})
-                .then((vote) => {
+            this.topic.vote.topicId = this.topic.id;
+            return this.TopicVote
+                .update(this.topic.vote)
+                .then(() => {
                     // TODO: Reload from server until GET /:voteId and PUT /:voteId return the same output
-                    return vote.$get({topicId: this.topic.id});
+                    return this.TopicVote.get({topicId: this.topic.id}).then((vote) => this.topic.vote = vote)
                 });
         };
 
@@ -201,9 +199,8 @@ let myTopicsTopic = {
                     }
                 })
                 .then(() => {
-                    const topicMemberUser = new this.TopicMemberUser({id: this.app.user.id});
-                    topicMemberUser
-                        .$delete({topicId: this.topic.id})
+                    this.TopicMemberUser
+                        .delete({id: this.app.user.id, topicId: this.topic.id})
                         .then(() => {
                             this.$state.go('my/topics', null, {reload: true});
                         });
@@ -218,8 +215,8 @@ let myTopicsTopic = {
                     template: '/views/modals/topic_delete_confirm.html'
                 })
                 .then(() => {
-                    this.topic
-                        .$delete()
+                    this.Topic
+                        .delete(this.topic)
                         .then(() => {
                             this.$state.go('my/topics', null, {reload: true});
                         });

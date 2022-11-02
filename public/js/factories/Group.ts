@@ -1,10 +1,6 @@
 import * as angular from 'angular';
 
 export class Group {
-    public apiRoot: string;
-    public apiUnauthRoot: string;
-    public $http;
-
     public VISIBILITY = {
         public: 'public',
         private: 'private'
@@ -28,47 +24,51 @@ export class Group {
     };
 
     public visibility = 'private';
-    public GroupMemberUser;
 
-    constructor($http, GroupMemberUser, sAuth, sLocation) {
-        this.$http = $http;
-        this.GroupMemberUser = GroupMemberUser;
-        var getUrlPrefix = function () {
-            var prefix = sAuth.getUrlPrefix();
-            if (!prefix) {
-                return '';
-            }
+    getUrlPrefix () {
+        var prefix = this.sAuth.getUrlPrefix();
+        if (!prefix) {
+            return '';
+        }
 
-            return `/${prefix}`;
-        };
+        return `/${prefix}`;
+    };
 
-        var getUrlUser = function () {
-            var userId = sAuth.getUrlUserId();
-            if (!userId) {
-                return '';
-            }
+    getUrlUser () {
+        var userId = this.sAuth.getUrlUserId();
+        if (!userId) {
+            return '';
+        }
 
-            return `/${userId}`;
-        };
-        this.apiUnauthRoot = sLocation.getAbsoluteUrlApi('/api/groups');
-        this.apiRoot = sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups')
-            .replace('/:prefix', getUrlPrefix())
-            .replace('/:userId', getUrlUser());
+        return `/${userId}`;
+    };
+
+    constructor(private $http, private sAuth, private sLocation, private GroupMemberUser) {
     }
 
     query(params: { string: string }) {
-        return this.$http.get(this.apiRoot, { params });
+        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups', params)
+            .replace('/:prefix', this.getUrlPrefix())
+            .replace('/:userId', this.getUrlUser());
+
+        return this.$http.get(path, params).then((res) => {
+            return res.data.data;
+        });
     }
 
     get(id, params?: { string: string }) {
-        return this.$http.get(this.apiRoot + '/' + id, { params })
+        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups/:groupId', {groupId: id})
+            .replace('/:prefix', this.getUrlPrefix())
+            .replace('/:userId', this.getUrlUser());
+
+        return this.$http.get(path, params)
             .then((res) => {
                 return res.data.data
             });
     }
 
     save(data: any) {
-        return this.$http.post(this.apiRoot, data)
+        return this.$http.post('/api/users/self/groups', data)
         .then((res) => {
             return res.data.data
         });
@@ -80,25 +80,43 @@ export class Group {
         allowedFields.forEach((key)=> {
             sendData[key] = data[key] || null;
         });
-
-        return this.$http.put(this.apiRoot + '/' + data.id, sendData)
+        const path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId', {groupId: data.id || data.groupId});
+        return this.$http.put(path, sendData)
             .then((res) => {
                 return res.data.data
             });
     }
 
     delete(data: any) {
-        return this.$http.delete(this.apiRoot + '/' + data.id);
+        const path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId', {groupId: data.id || data.groupId});
+
+        return this.$http.delete(path).then((res) => {
+            return res.data;
+        });
     }
 
     join (token: string) {
-        return this.$http.post(this.apiUnauthRoot + '/join/' + token)
+        const path = this.sLocation.getAbsoluteUrlApi('/api/groups/join/:token', {token});
+
+        return this.$http.post(path)
             .then((res) => {
                 return res.data.data
             });
     }
+
+    canUpdate (group) {
+        return group.permission && group.permission.level === this.GroupMemberUser.LEVELS.admin;
+    };
+
+    canDelete (group) {
+        return this.canUpdate(group);
+    };
+
+    isPrivate (group) {
+        return group.visibility === this.VISIBILITY.private;
+    };
 }
 
 angular
   .module("citizenos")
-  .service("Group", ['$http', 'GroupMemberUser', 'sAuth', 'sLocation', Group]);
+  .service("Group", ['$http', 'sAuth', 'sLocation', 'GroupMemberUser', Group]);

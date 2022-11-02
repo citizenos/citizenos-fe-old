@@ -1,17 +1,12 @@
 import * as angular from 'angular';
-import {find, chain} from 'lodash';
 
 let my = {
     selector: 'myGroups',
-    templateUrl: '/views/components/my.html',
-    controller: ['$log', '$state', '$scope', '$stateParams', 'GroupMemberTopic', 'GroupService', 'AppService', class MyGroupsController {
+    templateUrl: '/views/components/my/my.html',
+    controller: ['$log', '$state', '$scope', '$stateParams','GroupService', 'AppService', class MyGroupsController {
         public options;
-        public app;
-        private groupMemberTopicsVisible = []; // goupId-s of which GroupMemberTopic list is expanded
 
-        constructor ($log, $state, $scope, $stateParams, private GroupMemberTopic, private GroupService, AppService) {
-            $log.debug('MyGroupsController');
-            this.app = AppService;
+        constructor ($log, $state, $scope, $stateParams, private GroupService, private app) {
             $log.debug('MyGroupsController', $state);
             GroupService.reload();
             if ($state.$current.name === 'my/groups') {
@@ -24,22 +19,6 @@ let my = {
                         }
                     }
                 });
-            }
-        };
-
-        doToggleGroupTopicList (group) {
-            const indexGroupIdVisible = this.groupMemberTopicsVisible.indexOf(group.id);
-
-            if (indexGroupIdVisible < 0) { // not visible
-                this.GroupMemberTopic
-                    .query({groupId: group.id}).$promise
-                    .then((topics) => {
-                        group.members.topics.rows = topics;
-                        group.members.topics.count = topics.length;
-                        this.groupMemberTopicsVisible.push(group.id);
-                    });
-            } else { // already visible, we hide
-                this.groupMemberTopicsVisible.splice(indexGroupIdVisible, 1);
             }
         };
 

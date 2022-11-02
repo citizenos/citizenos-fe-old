@@ -3,11 +3,10 @@ import {find, chain} from 'lodash';
 
 let my = {
     selector: 'myTopics',
-    templateUrl: '/views/components/my.html',
+    templateUrl: '/views/components/my/my.html',
     controller: ['$scope', '$log', '$state', '$stateParams', '$location', 'sAuth', 'Topic', 'TopicService', 'AppService', class MyTopicsController {
         public options;
         public topicList = [];
-        public app;
         public filters;
         public topicFilters = [
             {
@@ -69,9 +68,8 @@ let my = {
             }
         ];
 
-        constructor ($scope, $log, private $state, private $stateParams, private $location, private sAuth, private Topic, private TopicService, AppService) {
+        constructor ($scope, $log, private $state, private $stateParams, private $location, private sAuth, private Topic, private TopicService, private app) {
             $log.debug('MyController');
-            this.app = AppService;
             $log.debug('MyCtrl', $state);
             let filterParam = $stateParams.filter || this.topicFilters[0].id;
             this.filters = {
