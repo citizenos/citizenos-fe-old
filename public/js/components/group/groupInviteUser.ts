@@ -44,7 +44,7 @@ let groupInviteUser = {
         invite: '=',
         canUpdate: '=?'
     },
-    controller: ['ngDialog', 'GroupInviteUser', class GroupInviteUserController {
+    controller: ['ngDialog', 'GroupInviteUser', 'GroupInviteUserService', class GroupInviteUserController {
         private group;
         private invite;
         private canUpdate;

@@ -13,9 +13,9 @@ let topicMembers = {
             TopicMemberUserService.topicId = this.topic.id;
             TopicMemberUserService.reload();
             TopicMemberGroupService.topicId = this.topic.id;
-            TopicMemberUserService.reload();
+            TopicMemberGroupService.reload();
             TopicInviteUserService.topicId = this.topic.id;
-            TopicMemberUserService.reload();
+            TopicInviteUserService.reload();
         }
 
         doUpdateMemberUser (topicMemberUser, level) {

@@ -83,7 +83,6 @@ export class ActivityService {
     }
 
     loadMore () {
-        console.log('Load More')
         if (!this.isLoading) {
             this.page += 1;
             this.loadPage(this.page);

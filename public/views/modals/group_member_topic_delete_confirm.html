@@ -34,7 +34,7 @@
                     <span translate="MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to remove this topic?</span>
                     <div class="yes_no_buttons">
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="$ctrl.app.closeThisDialog($event)" translate="MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_NO">NO</div>
+                            <div class="blue_button no" ng-click="closeThisDialog($event)" translate="MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_NO">NO</div>
                         </div>
                         <div class="table_cell">
                             <div class="blue_button yes" ng-click="confirm()" translate="MODALS.GROUP_MEMBER_TOPIC_DELETE_CONFIRM_BTN_YES">YES</div>
@@ -46,6 +46,6 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)"></div>
+    <div id="close_lightbox" ng-click="closeThisDialog($event)"></div>
 
 </div>

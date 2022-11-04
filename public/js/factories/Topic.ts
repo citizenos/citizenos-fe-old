@@ -203,9 +203,9 @@ export class Topic {
             .replace('/:userId', this.getUrlUser());
 
             return this.$http.patch(path, sendData)
-            .then((res) => {
-                return res.data.data
-            });
+                .then((res) => {
+                    return res.data.data
+                });
     }
 
     delete(data: any) {
@@ -230,7 +230,7 @@ export class Topic {
         return this.$http
             .get(path)
             .then((res) => {
-                res.data.data;
+                return res.data.data;
             });
     };
 
@@ -291,22 +291,19 @@ export class Topic {
                     status: this.STATUSES[state]
                 });
             })
-            .then((topicPatched) => {
-                if (topicPatched) {
-                    topic.status = topicPatched.status;
-                    const stateNext = stateSuccess || nextStates[state];
-                    const stateParams = angular.extend({}, this.$stateParams, {
-                        editMode: null,
-                        commentId: null
-                    });
-                    this.$state.go(
-                        stateNext,
-                        stateParams,
-                        {
-                            reload: true
-                        }
-                    );
-                }
+            .then(() => {
+                const stateNext = stateSuccess || nextStates[state];
+                const stateParams = angular.extend({}, this.$stateParams, {
+                    editMode: null,
+                    commentId: null
+                });
+                this.$state.go(
+                    stateNext,
+                    stateParams,
+                    {
+                        reload: true
+                    }
+                );
             }, angular.noop);
     }
 

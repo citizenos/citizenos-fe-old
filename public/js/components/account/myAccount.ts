@@ -32,7 +32,7 @@ let myAccount = {
             $log.debug('MyAccountController');
             app.tabSelected = $stateParams.tab || 'profile';
             angular.extend(this.form, this.sAuth.user);
-            this.TopicNotificationService.reload();
+            TopicNotificationService.reload();
         }
 
         removeTopicNotifications (topic) {
@@ -74,6 +74,7 @@ let myAccount = {
                 var emailChanged = this.sAuth.user.email !== this.form.email;
                 angular.extend(this.sAuth.user, res.data.data);
                 this.ngDialog.closeAll(); // Close all dialogs, including the one open now...
+                angular.extend(this.form, this.sAuth.user);
                 if (emailChanged) {
                     this.sNotification.addInfo('MSG_INFO_CHECK_EMAIL_TO_VERIFY_YOUR_NEW_EMAIL_ADDRESS');
                 }
@@ -82,7 +83,6 @@ let myAccount = {
             const error = (res) => {
                 this.errors = res.data.errors;
             };
-
             if (this.form.newPassword) {
                 if (this.form.newPassword !== this.form.passwordConfirm) {
                     this.errors = {

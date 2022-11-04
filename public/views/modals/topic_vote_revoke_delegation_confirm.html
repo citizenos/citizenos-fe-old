@@ -9,7 +9,7 @@
                     <div class="title" translate="MODALS.TOPIC_VOTE_REVOKE_DELEGATION_CONFIRM_HEADING">Revoke delegation</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                <div id="lightbox_close" ng-click="closeThisDialog($event)">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
                         </div>
@@ -51,7 +51,7 @@
                     <span translate="MODALS.TOPIC_VOTE_REVOKE_DELEGATION_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to delete this delegation?</span>
                     <div class="yes_no_buttons">
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="$ctrl.app.closeThisDialog($event)" translate="MODALS.TOPIC_VOTE_REVOKE_DELEGATION_CONFIRM_NO">NO</div>
+                            <div class="blue_button no" ng-click="closeThisDialog($event)" translate="MODALS.TOPIC_VOTE_REVOKE_DELEGATION_CONFIRM_NO">NO</div>
                         </div>
                         <div class="table_cell">
                             <div class="blue_button yes" ng-click="confirm()" translate="MODALS.TOPIC_VOTE_REVOKE_DELEGATION_CONFIRM_YES">YES</div>
@@ -63,6 +63,6 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)"></div>
+    <div id="close_lightbox" ng-click="closeThisDialog($event)"></div>
 
 </div>

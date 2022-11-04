@@ -16,7 +16,7 @@ let cosToggle = {
     </div>
     `,
     bindings: {
-        model: '=?',
+        model: '=',
         value: '=?',
         offValue: '=?',
         cosToggleTextOn: '=?',
@@ -31,8 +31,7 @@ let cosToggle = {
         private cosToggleTextOff;
         private cosToggleDatepickerToggle;
 
-        constructor () {
-        }
+        constructor () {}
 
 
         cosToggle () {

@@ -16,7 +16,7 @@
                  translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG">Add hashtag
             </div>
         </div>
-        <div class="social_mentions_message_info" ng-if="$ctrl.hashtag && !topicSocialMentions.length">
+        <div class="social_mentions_message_info" ng-if="$ctrl.hashtag && !$ctrl.topicSocialMentions.length">
             <span translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_NO_MENTIONS_FOUND">Sorry, no social mentions found on Twitter for the hashtag</span> <span
             ng-class="{blue_link: $ctrl.Topic.canEdit($ctrl.app.topic)}" ui-sref="topics/view/settings({topicId: $ctrl.topicId, tab: 'settings'})"/>#{{$ctrl.hashtag}}</span>
             <div ng-if="$ctrl.Topic.canEdit($ctrl.app.topic)" class="blue_button" ui-sref="topics/view/settings({topicId: $ctrl.topicId, tab: 'settings'})"

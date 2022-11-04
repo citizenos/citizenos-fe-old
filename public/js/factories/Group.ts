@@ -68,10 +68,12 @@ export class Group {
     }
 
     save(data: any) {
-        return this.$http.post('/api/users/self/groups', data)
-        .then((res) => {
-            return res.data.data
-        });
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups');
+
+        return this.$http.post(path, data)
+            .then((res) => {
+                return res.data.data
+            });
     }
 
     update(data: any) {
@@ -105,7 +107,7 @@ export class Group {
     }
 
     canUpdate (group) {
-        return group.permission && group.permission.level === this.GroupMemberUser.LEVELS.admin;
+        return group && ((group.permission && group.permission.level === this.GroupMemberUser.LEVELS.admin) || (group.userLevel && group.userLevel === this.GroupMemberUser.LEVELS.admin));
     };
 
     canDelete (group) {
@@ -113,7 +115,7 @@ export class Group {
     };
 
     isPrivate (group) {
-        return group.visibility === this.VISIBILITY.private;
+        return group && group.visibility === this.VISIBILITY.private;
     };
 }
 

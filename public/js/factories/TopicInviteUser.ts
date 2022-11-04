@@ -43,8 +43,8 @@ export class TopicInviteUser {
             });
     }
 
-    save(data: any) {
-        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/invites/users', data)
+    save(topicId, data: any) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/invites/users', {topicId})
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 

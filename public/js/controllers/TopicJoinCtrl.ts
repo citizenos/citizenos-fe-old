@@ -41,4 +41,4 @@ export class TopicJoinController {
 
 angular
     .module('citizenos')
-    .controller('TopicJoinCtrl', ['$state', '$stateParams', '$log', 'Topic', TopicJoinController]);
+    .controller('TopicJoinController', ['$state', '$stateParams', '$log', 'Topic', TopicJoinController]);

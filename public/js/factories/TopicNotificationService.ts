@@ -12,7 +12,6 @@ export class TopicNotificationService {
     private order = 'ASC';
     private limit = 10;
     private offset = 0;
-    private topicId = null;
 
     constructor(private TopicNotification) {
         this.loadTopics();
@@ -54,15 +53,16 @@ export class TopicNotificationService {
         this.countTotal = 0;
         this.totalPages = 0;
         this.topics = [];
-        if (!this.isLoading && this.topicId) {
+        if (!this.isLoading) {
             this.isLoading = true;
             let params = {
-                topicId: this.topicId,
                 offset: this.offset,
-                search: this.search,
                 order: this.orderBy,
                 sortOrder: this.order,
                 limit: this.limit
+            }
+            if (this.search) {
+                params['search'] = this.search;
             }
             this.TopicNotification.query(params).then((data) => {
                 if (data.rows.length) {

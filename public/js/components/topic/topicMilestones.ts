@@ -31,7 +31,15 @@ let topicMilestones = {
         };
 
         init () {
-            this.topicEvents = this.TopicEvent.query({topicId: this.topic.id});
+            this.eventForm = {
+                subject: null,
+                text: null,
+                errors: null
+            };
+            this.TopicEvent.query({topicId: this.topic.id})
+                .then((events) => {
+                    this.topicEvents = events.rows;
+                })
 
         };
 

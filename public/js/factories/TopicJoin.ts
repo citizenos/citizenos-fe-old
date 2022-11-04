@@ -22,11 +22,11 @@ export class TopicJoin {
     constructor(private $http, private sAuth, private sLocation) {}
 
     save(data: any) {
-        let path = this.sLocation.getAbsoluteUrlApi('/api/users/:userId/topics/:topicId/join/:token', data)
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/:userId/topics/:topicId/join', data)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 
-        return this.$http.post(path, data)
+        return this.$http.put(path, data)
         .then((res) => {
             return res.data.data
         });

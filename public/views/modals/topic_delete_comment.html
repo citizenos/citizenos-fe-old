@@ -9,7 +9,7 @@
                     <div class="title" translate="MODALS.TOPIC_DELETE_ARGUMENT_TITLE">Delete comment</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                <div id="lightbox_close" ng-click="closeThisDialog($event)">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
                         </div>
@@ -41,7 +41,7 @@
 
                         <div class="yes_no_buttons">
                             <div class="table_cell">
-                                <div class="blue_button no" ng-click="$ctrl.app.closeThisDialog($event)" translate="MODALS.TOPIC_DELETE_ARGUMENT_BTN_NO">NO, I CHANGED MY MIND</div>
+                                <div class="blue_button no" ng-click="closeThisDialog($event)" translate="MODALS.TOPIC_DELETE_ARGUMENT_BTN_NO">NO, I CHANGED MY MIND</div>
                             </div>
                             <div class="table_cell">
                                 <div class="blue_button yes" ng-click="confirm()" translate="MODALS.TOPIC_DELETE_ARGUMENT_BTN_YES">YES, DELETE THIS COMMENT</div>
@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)">
+    <div id="close_lightbox" ng-click="closeThisDialog($event)">
     </div>
 
 </div>

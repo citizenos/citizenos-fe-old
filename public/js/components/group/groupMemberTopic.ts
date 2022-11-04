@@ -6,16 +6,15 @@ let groupMemberTopic = {
     bindings: {
         memberTopic: '=',
         fields: '=?',
-        canUpdate: '=?',
         group: '='
     },
-    controller: ['ngDialog', 'GroupMemberTopic', class GroupMemberTopicController {
+    controller: ['ngDialog', 'GroupMemberTopic', 'Topic', class GroupMemberTopicController {
         private memberTopic;
         private canUpdate;
         private group;
         public fields
 
-        constructor (private ngDialog, private GroupMemberTopic) {
+        constructor (private ngDialog, private GroupMemberTopic, private Topic) {
         }
 
         isVisibleField (field) {
@@ -28,8 +27,9 @@ let groupMemberTopic = {
             if (memberTopic.permission.levelGroup !== level) {
                 const oldLevel = memberTopic.permission.levelGroup;
                 memberTopic.permission.levelGroup = level;
+                memberTopic.level = level;
                 this.GroupMemberTopic
-                    .update({groupId: group.id}, memberTopic)
+                    .update({groupId: group.id, topicId: memberTopic.id}, memberTopic)
                     .then(angular.noop,
                     () => {
                         memberTopic.permission.levelGroup = oldLevel;

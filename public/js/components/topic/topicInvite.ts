@@ -7,7 +7,7 @@ let topicInvite = {
     selector: 'topicInvite',
     templateUrl: '/views/components/topic/topic_invite.html',
     bindings: {},
-    controller: ['$stateParams', '$log', '$timeout', 'ngDialog', 'sSearch', 'sLocation', 'sNotification', 'sAuth', 'TopicInviteUser', 'TopicMemberUser', 'TopicMemberGroup', 'TopicJoin', 'Topic', 'AppService', class TopicInviteController {
+    controller: ['$stateParams', '$log', '$timeout', 'ngDialog', 'sSearch', 'sLocation', 'sNotification', 'sAuth', 'TopicInviteUser', 'TopicInviteUserService', 'TopicMemberUser', 'TopicMemberGroup', 'TopicJoin', 'Topic', 'AppService', class TopicInviteController {
         private EMAIL_SEPARATOR_REGEXP = /[;,\s]/ig;
         public memberGroups = ['groups', 'users'];
         public inviteMessageMaxLength = 1000;
@@ -40,21 +40,24 @@ let topicInvite = {
         private maxUsers = 50;
         private itemsPerPage = 10;
 
-        constructor ($stateParams, private $log, private $timeout, private ngDialog, private sSearch, private sLocation, private sNotification, private sAuth, private TopicInviteUser, private TopicMemberUser, private TopicMemberGroup, private TopicJoin, private Topic, private app) {
+        constructor ($stateParams, private $log, private $timeout, private ngDialog, private sSearch, private sLocation, private sNotification, private sAuth, private TopicInviteUser, private TopicInviteUserService, private TopicMemberUser, private TopicMemberGroup, private TopicJoin, private Topic, private app) {
             $log.debug('TopicInviteController', $stateParams);
             this.app.tabSelected = $stateParams.tab || 'invite';
 
             this.sNotification = sNotification;
             this.init();
         }
+
         init () {
             this.topic = this.app.topic;
             this.form.topic = angular.copy(this.topic);
             this.form.description = angular.element(this.topic.description).text().replace(this.topic.title, '');
-
             this.form.join = this.form.topic.join;
+            if (!this.form.join.level) {
+                this.form.join.level = this.Topic.LEVELS.read;
+            }
             this.generateJoinUrl();
-            this.groupLevel = this.TopicMemberGroup.LEVELS.read;
+            this.groupLevel = this.Topic.LEVELS.read;
         };
 
         search (str) {
@@ -306,7 +309,7 @@ let topicInvite = {
             this.members.forEach((member) => {
                 if (member.groupId) {
                     member = {
-                        id: member.id,
+                        groupId: member.groupId,
                         topicId: this.topic.id,
                         level: member.level
                     };
@@ -323,12 +326,13 @@ let topicInvite = {
 
             if (topicMemberUsersToSave.length) {
                 savePromises.push(
-                    this.TopicInviteUser.save({topicId: this.topic.id}, topicMemberUsersToSave)
+                    this.TopicInviteUser.save(this.topic.id, topicMemberUsersToSave)
                 );
             }
 
             Promise.all(savePromises).then((data) => {
                 this.$timeout(() => { // Avoid $digest already in progress
+                    this.TopicInviteUserService.reload()
                     const dialogs = this.ngDialog.getOpenDialogs();
                     this.ngDialog.close(dialogs[0], '$closeButton');
                 });

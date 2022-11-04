@@ -49,9 +49,9 @@ export class TopicEvent {
             .replace('/:userId', this.getUrlUser());
 
         return this.$http.post(path, data)
-        .then((res) => {
-            return res.data.data
-        });
+            .then((res) => {
+                return res.data.data
+            });
     }
 
     update(data: any) {

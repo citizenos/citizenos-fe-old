@@ -10,7 +10,7 @@
                     <div class="title" translate="MODALS.TOPIC_SEND_TO_VOTE_CONFIRM_HEADING">Send topic to vote</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                <div id="lightbox_close" ng-click="closeThisDialog($event)">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
                         </div>
@@ -29,7 +29,7 @@
                     <div class="sprite sprite-icon-warn-topic2x"></div>
                     <div class="warn_title" translate="MODALS.TOPIC_SEND_TO_VOTE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to continue?</div>
 
-                    <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div id="lightbox_close" ng-click="closeThisDialog($event)">
                         <div class="table_cell">
                             <div class="sprite sprite-btn-popup-close2x">
                             </div>
@@ -54,7 +54,7 @@
                     <div class="delete_info_button_wrap">
 
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="$ctrl.app.closeThisDialog($event)" translate="MODALS.TOPIC_SEND_TO_VOTE_CONFIRM_BTN_NO">NO, DON'T CHANGE STATUS</div>
+                            <div class="blue_button no" ng-click="closeThisDialog($event)" translate="MODALS.TOPIC_SEND_TO_VOTE_CONFIRM_BTN_NO">NO, DON'T CHANGE STATUS</div>
                         </div>
 
                         <div class="table_cell">
@@ -70,6 +70,6 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)"></div>
+    <div id="close_lightbox" ng-click="closeThisDialog($event)"></div>
 
 </div>

@@ -6,14 +6,13 @@ let topic = {
     selector: 'topic',
     templateUrl: '/views/components/topic/topics_topicId.html',
     bindings: {},
-    controller: ['$scope', '$state', '$stateParams', '$timeout', '$log', '$sce', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberUser', 'TopicAttachment', 'TopicCommentService', 'AppService', class TopicController {
+    controller: ['$scope', '$state', '$stateParams', '$timeout', '$log', '$sce', 'ngDialog', 'sAuth', 'sUpload', 'Topic', 'TopicMemberUser', 'TopicAttachment', 'TopicAttachmentService', 'TopicCommentService', 'AppService', class TopicController {
         public topic;
         public isTopicReported = false;
         public hideTopicContent = false;
         public showVoteCreateForm = false;
         public ATTACHMENT_SOURCES = [];
 
-        public topicAttachments = [];
         public inlinecomments = [];
 
         public hashtagForm = {
@@ -26,9 +25,11 @@ let topic = {
         public STATUSES = [];
         public VISIBILITY = [];
 
-        constructor (private $scope, private $state, private $stateParams, $timeout, private $log, private $sce, private ngDialog, private sAuth, private sUpload, private Topic, private TopicMemberUser, private TopicAttachment, private TopicCommentService, private app) {
+        constructor (private $scope, private $state, private $stateParams, $timeout, private $log, private $sce, private ngDialog, private sAuth, private sUpload, private Topic, private TopicMemberUser, private TopicAttachment, private TopicAttachmentService, private TopicCommentService, private app) {
             $log.debug('TopicController');
             this.topic = app.topic;
+            TopicAttachmentService.topicId = app.topic.id;
+            TopicAttachmentService.reload();
             if ($state.$current.name === 'topics/view' && this.topic.status === Topic.STATUSES.voting) {
                 $timeout(() => {
                     let stateParams = Object.assign({}, $stateParams)
@@ -44,7 +45,6 @@ let topic = {
             this.STATUSES = Topic.STATUSES;
             this.VISIBILITY = Topic.VISIBILITY;
             this.showInfoEdit = this.app.editMode;
-            this.loadTopicAttachments();
             this.init()
         }
 
@@ -70,13 +70,6 @@ let topic = {
             this.showInfoEdit = false
         };
 
-        loadTopicAttachments () {
-            this.TopicAttachment.query({topicId: this.topic.id})
-                .then((attachments) => {
-                    console.log(attachments);
-                    this.topicAttachments = attachments;
-                })
-        };
 
         doDeleteTopic () {
             this.$log.debug('doDeleteTopic');
@@ -115,9 +108,8 @@ let topic = {
                 this.topic.status = status;
                 this.Topic.update(this.topic)
                     .then((topic) => {
-                        console.log('UPDATE', topic);
-                    this.Topic.get(this.$stateParams.topicId)
-                        .then((topic) => this.topic = topic);
+                        this.Topic.get(this.$stateParams.topicId)
+                            .then((topic) => this.topic = topic);
                     });
             }
         };
@@ -149,8 +141,7 @@ let topic = {
             if (docImageSrc) {
                 this.app.metainfo.image = docImageSrc;
             }
-
-            if (this.app.user.loggedIn && this.$state.current.name.indexOf('topics/view/votes/view') === 0) {
+            if (this.app.user.loggedIn && this.$state.current.name.indexOf('topics/view/votes/view') === -1) {
                 this.Topic
                     .getInlineComments(this.topic.id)
                     .then((inlinecomments) => {
@@ -159,7 +150,7 @@ let topic = {
                 // Little hack, while ep_comments exports deleted comments in html too
                 this.topic.description = this.topic.description.replace(/data-comment="comment-deleted"/gi, '');
 
-                this.topic.description = this.topic.description.replace(/data\-comment/gi, 'cos-inline-comment="getCommentData" data-comment');
+                this.topic.description = this.topic.description.replace(/data\-comment/gi, 'cos-inline-comment="$ctrl.getCommentData(commentId)" data-comment');
 
             }
         };
@@ -212,7 +203,7 @@ let topic = {
                 return this.$state.$current.name
             }, (newVal, oldVal) => {
                 if (oldVal === 'topics/view/files') {
-                    this.loadTopicAttachments();
+                    this.TopicAttachmentService.reload();
                 }
             });
         }

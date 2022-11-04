@@ -10,7 +10,7 @@
                     <div class="title" translate="MODALS.TOPIC_CLOSE_CONFIRM_HEADING_CLOSE_TOPIC">Close topic</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                <div id="lightbox_close" ng-click="closeThisDialog($event)">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x"></div>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="warn_title" translate="MODALS.TOPIC_CLOSE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to continue?</div>
                     <div class="delete_description" translate="MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO">Please keep in mind you cannot undo this action.</div>
 
-                    <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div id="lightbox_close" ng-click="closeThisDialog($event)">
                         <div class="table_cell">
                             <div class="sprite sprite-btn-popup-close2x"></div>
                         </div>
@@ -58,7 +58,7 @@
                     <div class="delete_info_button_wrap">
 
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="$ctrl.app.closeThisDialog($event)" translate="MODALS.TOPIC_CLOSE_CONFIRM_BTN_NO">NO, DON'T CLOSE THE TOPIC</div>
+                            <div class="blue_button no" ng-click="closeThisDialog($event)" translate="MODALS.TOPIC_CLOSE_CONFIRM_BTN_NO">NO, DON'T CLOSE THE TOPIC</div>
                         </div>
 
                         <div class="table_cell">
@@ -74,6 +74,6 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)"></div>
+    <div id="close_lightbox" ng-click="closeThisDialog($event)"></div>
 
 </div>

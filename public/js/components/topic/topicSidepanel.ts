@@ -5,12 +5,12 @@ let topicSidepanel = {
     selector: 'topicSidepanel',
     templateUrl: '/views/components/topic/topic_sidepanel.html',
     bindings: {},
-    controller:['AppService', '$log', 'Topic', 'sUpload', 'TopicAttachment', '$state', 'ngDialog', class TopicSidepanelController {
+    controller:['AppService', '$log', 'Topic', 'sUpload', 'TopicAttachment', 'TopicAttachmentService', '$state', 'ngDialog', class TopicSidepanelController {
         public topic;
         public STATUSES = [];
         public ATTACHMENT_SOURCES = [];
 
-        constructor (private app, $log, private Topic, private sUpload, TopicAttachment, private $state, private ngDialog) {
+        constructor (private app, $log, private Topic, private sUpload, TopicAttachment, private TopicAttachmentService, private $state, private ngDialog) {
             $log.debug('TopicSidepanelController');
             this.topic = app.topic;
             this.STATUSES = Topic.STATUSES;

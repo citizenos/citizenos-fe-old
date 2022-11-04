@@ -203,7 +203,7 @@
                         <div class="alert_argument" ng-if="comment.showDeleteReason" ng-click="comment.showDeleteReason = !comment.showDeleteReason">
                             <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_FOUND_INAPPRIOPRIATE_BY" translate-values="{usersFullName: comment.deletedBy.name}">This comment was found inappriopriate by <b>{{::comment.deletedBy.name}}</b></span><span
                             ng-if="comment.deletedReasonType || comment.deleteReasonText">:</span>
-                            <b ng-if="comment.deletedReasonType">{{('TXT_REPORT_TYPES_' + ::comment.deletedReasonType | uppercase) | translate}}</b><br>
+                            <b ng-if="comment.deletedReasonType">{{('TXT_REPORT_TYPES_' + comment.deletedReasonType | uppercase) | translate}}</b><br>
                             <b ng-if="comment.deletedReasonText" class="italic">{{::comment.deletedReasonText}}</b>
                             <br>
                             <br>

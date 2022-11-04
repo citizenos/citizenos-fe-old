@@ -6,12 +6,8 @@ let home = {
     selector: 'home',
     templateUrl: '/views/home.html',
     bindings: {},
-    controller: ['$log', '$location', '$window','$state', '$stateParams', 'PublicTopicService', 'Topic', 'AppService', class HomeController {
+    controller: ['$scope', '$log', '$location', '$window','$state', '$stateParams', 'PublicTopicService', 'Topic', 'AppService', class HomeController {
         private FILTERS_ALL = 'all';
-
-        private topicList = [];
-        private topicCountTotal = null;
-        private isTopicListLoading = null; // Bool, but for initial load using null.
 
         private filters = {
             categories: {
@@ -25,20 +21,33 @@ let home = {
             tabSelected: 'categories' // Mobile view has tabs where the filters are selected, indicates which filter tab is visible
         };
 
-        constructor (private $log, private $location, private $window, private $state, private $stateParams, private PublicTopicService, private Topic, private app) {
+        constructor ($scope, private $log, private $location, private $window, private $state, private $stateParams, private PublicTopicService, private Topic, private app) {
             $log.info('HomeCtrl', $state, $stateParams);
             this.init();
-            this.PublicTopicService.reload();
             if (this.$stateParams.category && !this.Topic.CATEGORIES[this.$stateParams.category]) {
                 return this.$state.go('error/404');
             }
-            if (this.isTopicListLoading === true) {
-                return this.$log.warn('HomeCtrl.loadTopicList()', 'Topic list already loading, will skip this request.');
+            if ($stateParams.category) {
+                PublicTopicService.categories = $stateParams.category;
+            } else {
+                PublicTopicService.categories = null;
             }
-
-            if (this.topicCountTotal && this.topicList.length >= this.topicCountTotal) {
-                return this.$log.warn('HomeCtrl.loadTopicList()', 'Maximum count of topics already loaded! Skipping API call.');
-            }
+            $scope.$watch(() => PublicTopicService.isLoading, (newValue) => {
+                if (newValue === false && PublicTopicService.statuses !== $stateParams.topicStatus) {
+                    let status = $stateParams.topicStatus;
+                    if (status === this.FILTERS_ALL) {
+                        status = null;
+                    }
+                    if (status === 'moderated') {
+                        this.PublicTopicService.statuses = null;
+                        this.PublicTopicService.showModerated = true;
+                    } else {
+                        this.PublicTopicService.statuses = status;
+                        this.PublicTopicService.showModerated = false;
+                    }
+                    PublicTopicService.reload();
+                }
+            });
         };
 
         resolveCategory () {
@@ -48,6 +57,7 @@ let home = {
             } else if (this.Topic.CATEGORIES[this.$state.current.name]) {
                 category = this.$state.current.name; //Check if special page for category
             }
+            this.PublicTopicService.categories = this.Topic.CATEGORIES[category] ? category : null;
 
             return this.Topic.CATEGORIES[category] ? category : this.FILTERS_ALL;
         };
@@ -72,17 +82,27 @@ let home = {
             if (status === this.FILTERS_ALL) {
                 status = null;
             }
-
+            if (status === 'moderated') {
+                this.PublicTopicService.statuses = null;
+                this.PublicTopicService.showModerated = true;
+            } else {
+                this.PublicTopicService.statuses = status;
+                this.PublicTopicService.showModerated = false;
+            }
+            this.PublicTopicService.reload();
             this.$stateParams.topicStatus = status;
             this.$state.go(this.$state.current.name, this.$stateParams);
         };
 
         doSetCategory (category) {
             if (category === this.FILTERS_ALL) {
-                category = null;
+                this.PublicTopicService.categories = category = null;
+                this.PublicTopicService.reload();
                 this.$stateParams.category = category;
                 this.$state.go('home', this.$stateParams);
             } else {
+                this.PublicTopicService.categories = category;
+                this.PublicTopicService.reload();
                 this.$stateParams.category = category;
                 this.$state.go('category', this.$stateParams);
             }
@@ -102,7 +122,7 @@ let home = {
         isTutorialVisible () {
             return this.filters.categories.value === this.FILTERS_ALL
                 && this.filters.statuses.value === this.FILTERS_ALL
-                && this.topicList.length; // Render tutorial only when there are topics, this avoids Android and alignment issues.
+                && this.PublicTopicService.topics.length; // Render tutorial only when there are topics, this avoids Android and alignment issues.
         };
 
         resolveStatus () {

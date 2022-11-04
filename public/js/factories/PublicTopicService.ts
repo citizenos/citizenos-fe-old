@@ -62,11 +62,12 @@ export class PublicTopicService {
                 page: this.page,
                 orderBy: this.orderBy,
                 order: this.order,
-                str: this.search,
                 offset: this.offset,
                 limit: this.limit
             };
-
+            if (this.search) {
+                params['str'] = this.search;
+            }
             this.Topic.queryPublic(params).then((data) => {
                 if (data.countTotal) {
                     this.countTotal = data.countTotal;

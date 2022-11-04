@@ -8,7 +8,7 @@ let commentEdit = {
         comment: '=',
         topicId: '='
     },
-    controller: ['$log', '$state', 'AppService', 'TopicComment', class CommentEditController {
+    controller: ['$log', '$state', 'AppService', 'TopicComment', 'TopicCommentService', class CommentEditController {
         private topicId;
         public comment;
         public COMMENT_TYPES;
@@ -16,7 +16,7 @@ let commentEdit = {
         public COMMENT_SUBJECT_MAXLENGTH;
         private COMMENT_VERSION_SEPARATOR = '_v';
 
-        constructor (private $log, private $state, private app, private TopicComment) {
+        constructor (private $log, private $state, private app, private TopicComment, private TopicCommentService) {
             $log.debug('CommentEditController');
             this.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
             this.COMMENT_TYPES_MAXLENGTH = TopicComment.COMMENT_TYPES_MAXLENGTH;
@@ -34,10 +34,11 @@ let commentEdit = {
                     .update(this.comment)
                     .then((commentUpdated) => {
                         delete this.comment.errors;
+                        this.TopicCommentService.reload();
                         return this.$state.go(
                             this.$state.current.name,
                             {
-                                commentId: this.getCommentIdWithVersion(commentUpdated.id, commentUpdated.edits.length)
+                                commentId: this.getCommentIdWithVersion(this.comment.id, this.comment.edits.length)
                             }
                         );
                     }, (err) => {

@@ -255,7 +255,7 @@ import * as angular from 'angular';
                             dialog
                                 .closePromise
                                 .then(function () {
-                                    $state.go('^', {}, {reload: true});
+                                    $state.go('^', {}, {reload: true}, {supercede: false});
                                 });
                         }
 
@@ -350,7 +350,7 @@ import * as angular from 'angular';
 
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                return $state.go('home');
+                                return $state.go('home', {}, {supercede: false});
                             }
                         });
                     }]
@@ -393,7 +393,7 @@ import * as angular from 'angular';
 
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                return $state.go('home');
+                                return $state.go('home', {}, {supercede: false});
                             }
                         });
                     }]
@@ -445,11 +445,11 @@ import * as angular from 'angular';
                                     var level = $stateParams.groupLevel || GroupMemberTopic.LEVELS.read;
                                     var member = {
                                         groupId: $stateParams.groupId,
-                                        id: topic.id,
+                                        topicId: topic.id,
                                         level: level
                                     };
                                     GroupMemberTopic
-                                        .save(member)
+                                        .save(member, member)
                                         .then(function () {
                                             $state.go('topics/view', {
                                                 language: $stateParams.language,
@@ -503,7 +503,7 @@ import * as angular from 'angular';
                             });
 
                             dialog.closePromise.then(function () {
-                                $state.go('^', null, {reload: true});
+                                $state.go('^', null, {reload: true, supercede: false});
                             });
                         };
                         createDialog();
@@ -522,7 +522,7 @@ import * as angular from 'angular';
                             });
 
                             dialog.closePromise.then(function () {
-                                $state.go('^');
+                                $state.go('^', {}, {supercede: false});
                             });
                         }
 
@@ -549,7 +549,7 @@ import * as angular from 'angular';
 
                             dialog.closePromise.then(function (data) {
                                 if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                    $state.go('^');
+                                    $state.go('^', {}, {supercede: false});
                                 }
                             });
                         }
@@ -568,7 +568,7 @@ import * as angular from 'angular';
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
+                                $state.go('^', {}, {supercede: false});
                             }
                         });
                     }]
@@ -582,7 +582,7 @@ import * as angular from 'angular';
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
-                                    $state.go('^');
+                                    $state.go('^', {}, {supercede: false});
                                 });
                             return;
                         }
@@ -592,7 +592,7 @@ import * as angular from 'angular';
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
+                                $state.go('^', {}, {supercede: false});
                             }
                         });
                     }]
@@ -606,7 +606,7 @@ import * as angular from 'angular';
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
-                                    $state.go('^');
+                                    $state.go('^', {}, {supercede: false});
                                 });
                             return;
                         }
@@ -616,7 +616,7 @@ import * as angular from 'angular';
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
+                                $state.go('^', {}, {supercede: false});
                             }
                         });
                     }]
@@ -630,7 +630,7 @@ import * as angular from 'angular';
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
-                                    $state.go('^');
+                                    $state.go('^', {}, {supercede: false});
                                 });
                             return;
                         }
@@ -642,7 +642,7 @@ import * as angular from 'angular';
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
+                                $state.go('^', {}, {supercede: false});
                             }
                         });
                     }]
@@ -656,7 +656,7 @@ import * as angular from 'angular';
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
-                                    $state.go('^');
+                                    $state.go('^', {}, {supercede: false});
                                 });
                             return;
                         }
@@ -666,7 +666,7 @@ import * as angular from 'angular';
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
+                                $state.go('^', {}, {supercede: false});
                             }
                         });
                     }]
@@ -701,7 +701,7 @@ import * as angular from 'angular';
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^');
+                                $state.go('^', {}, {supercede: false});
                             }
                         });
                     }]
@@ -788,7 +788,7 @@ import * as angular from 'angular';
                             });
 
                             dialog.closePromise.then(function (data) {
-                                $state.go('^');
+                                $state.go('^', {}, {supercede: false});
                             });
                         }
 
@@ -848,7 +848,7 @@ import * as angular from 'angular';
                             dialog.closePromise
                                 .then(function () {
                                     GroupService.reload();
-                                    $state.go('^', {reload: true});
+                                    $state.go('^', {}, {supercede: false, reload: true});
                                 });
                         }
 
@@ -913,7 +913,7 @@ import * as angular from 'angular';
                 .state('topicJoin', { // Join a Topic via shared url
                     url: '/topics/join/:token',
                     parent: 'main',
-                    controller: 'TopicJoinCtrl'
+                    controller: 'TopicJoinController'
                 })
                 .state('topicsTopicIdInvitesUsers', { // Cannot use dot notation (topics.topicId.invites.users) as that would make the page child of "topics" and we don't want that.
                     url: '/topics/:topicId/invites/users/:inviteId',
@@ -947,7 +947,7 @@ import * as angular from 'angular';
                         }]
                     },
                     controller: ['$scope', '$state', '$stateParams', '$log', '$timeout', 'sAuth', 'sNotification', 'ngDialog', 'TopicInviteUser', 'rTopicInviteUser', function ($scope, $state, $stateParams, $log, $timeout, sAuth, sNotification, ngDialog, TopicInviteUser, rTopicInviteUser) {
-                        if (!(rTopicInviteUser instanceof TopicInviteUser)) { // Some kind of error happened, the instance was not built
+                        if (!rTopicInviteUser.id) { // Some kind of error happened, the instance was not built
                             return; // ERROR: Expecting cosHttpApiErrorInterceptor to tell the user what went wrong
                         }
 
@@ -1019,7 +1019,7 @@ import * as angular from 'angular';
 
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                return $state.go('home');
+                                return $state.go('home', {}, {supercede: false});
                             }
                         });
                     }]
@@ -1124,7 +1124,7 @@ import * as angular from 'angular';
 
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                return $state.go('home');
+                                return $state.go('home', {}, {supercede: false});
                             }
                         });
                     }]

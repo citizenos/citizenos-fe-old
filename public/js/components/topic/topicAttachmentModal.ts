@@ -23,8 +23,8 @@ let topicAttachmentModal = {
         init () {
             this.TopicAttachment
                 .query({topicId: this.topic.id})
-                .then((attachments) => {
-                    this.form.files = attachments;
+                .then((data) => {
+                    this.form.files = data.rows;
                 });
         };
 
@@ -109,7 +109,7 @@ let topicAttachmentModal = {
             if (attachment.id) {
                 this.TopicAttachment.update(attachment);
             } else {
-                this.TopicAttachment.update(attachment);
+                this.TopicAttachment.save(attachment);
             }
 
             this.form.files.push(attachment);

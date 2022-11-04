@@ -1,65 +1,67 @@
 'use strict';
 import * as angular from 'angular';
 
-angular
-    .module('citizenos')
-    .service('sUpload', ['$http', '$window', 'cosConfig', 'sLocation', function ($http, $window, cosConfig, sLocation) {
+export class Upload {
+    private ALLOWED_FILE_TYPES;
+    constructor (private $http, private $window, cosConfig, private sLocation) {
+        this.ALLOWED_FILE_TYPES = cosConfig.attachments.upload.allowedFileTypes
+    }
 
-    var sUpload = this;
-
-    sUpload.ALLOWED_FILE_TYPES = cosConfig.attachments.upload.allowedFileTypes;
-
-    var upload = function (path, file, data) {
-        var formData = new FormData();
+    upload (path, file, data) {
+        const formData = new FormData();
         formData.append('file', file);
         if (data) {
-            angular.forEach(data, function (value, key) {
+            angular.forEach(data, (value, key) => {
                 formData.append(key, value);
             });
         }
 
-        return $http({
+        return this.$http({
             url: path,
             method: 'POST',
             data: formData,
             headers: {'Content-Type': undefined}
-        }).then(function (result) {
+        }).then((result) => {
             console.log('result', result)
             return result.data;
-        }, function (err) {
+        }, (err) => {
             console.log('ERROR',err);
         });
     };
 
-    sUpload.uploadUserImage = function (file) {
-        var path = sLocation.getAbsoluteUrlApi('/api/users/self/upload');
+    uploadUserImage (file) {
+        const path = this.sLocation.getAbsoluteUrlApi('/api/users/self/upload');
 
-        return upload(path, file, false);
+        return this.upload(path, file, false);
     };
 
-    sUpload.uploadGroupImage = function (file, groupId) {
-        var path = sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/upload');
-        path = path.replace(':groupId', groupId);
+    uploadGroupImage (file, groupId) {
+        const path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/upload')
+            .replace(':groupId', groupId);
 
-        return upload(path, file, false);
+        return this.upload(path, file, false);
     };;
 
-    sUpload.topicAttachment = function (topicId, attachment) {
-        var path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/attachments/upload');
-        path = path.replace(':topicId', topicId);
+    topicAttachment (topicId, attachment) {
+        const path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/attachments/upload')
+            .replace(':topicId', topicId);
 
-        return upload(path, attachment.file, attachment);
+        return this.upload(path, attachment.file, attachment);
     }
-    sUpload.download = function (topicId, attachmentId, userId) {
-        var path = sLocation.getAbsoluteUrlApi('/api/topics/:topicId/attachments/:attachmentId');
+
+    download (topicId, attachmentId, userId) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/topics/:topicId/attachments/:attachmentId');
 
         if (userId) {
-            path = sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/attachments/:attachmentId')
+            path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/attachments/:attachmentId');
         }
-        path = path.replace(':topicId', topicId)
-            .replace(':attachmentId', attachmentId);
 
-        $window.location.href = path + '?download=true';
+        path = path.replace(':topicId', topicId).replace(':attachmentId', attachmentId);
+
+        this.$window.location.href = path + '?download=true';
     };
+};
 
-}]);
+angular
+    .module('citizenos')
+    .service('sUpload', ['$http', '$window', 'cosConfig', 'sLocation', Upload]);

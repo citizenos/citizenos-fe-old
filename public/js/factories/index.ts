@@ -17,6 +17,7 @@ import './PublicTopicService';
 import './Mention';
 import './TopicActivitiesService';
 import './TopicAttachment';
+import './TopicAttachmentService';
 import './TopicComment';
 import './TopicCommentService';
 import './TopicEvent';

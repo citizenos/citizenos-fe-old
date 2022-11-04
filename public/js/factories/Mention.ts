@@ -1,7 +1,7 @@
 import * as angular from 'angular';
 
 export class Mention {
-    constructor (private $http, private sLocation, private sAuth) {}
+    constructor (private $http, private sAuth, private sLocation) {}
 
     getUrlPrefix () {
         const prefix = this.sAuth.getUrlPrefix();

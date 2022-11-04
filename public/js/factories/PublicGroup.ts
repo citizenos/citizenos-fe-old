@@ -66,10 +66,12 @@ export class PublicGroup {
     }
 
     save(data: any) {
-        return this.$http.post('/api/users/self/groups', data)
-        .then((res) => {
-            return res.data.data
-        });
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups');
+
+        return this.$http.post(path, data)
+            .then((res) => {
+                return res.data.data
+            });
     }
 
     update(data: any) {

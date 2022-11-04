@@ -79,10 +79,6 @@ let publicGroup = {
                 );
             });
         }
-
-        canUpdate () {
-            return this.group?.userLevel === this.GroupMemberUser.LEVELS.admin;
-        }
     }]
 }
 

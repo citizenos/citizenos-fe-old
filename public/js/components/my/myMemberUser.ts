@@ -43,34 +43,34 @@ let myMemberUser = {
             if (this.group) {
                 const group = this.group
                 if (member.id === this.sAuth.user.id) { // IF User tries to delete himself, show "Leave" dialog instead
-                    this.doLeaveGroup();
-                } else {
-                    this.ngDialog
-                        .openConfirm({
-                            template: '/views/modals/group_member_user_delete_confirm.html',
-                            data: {
-                                user: member
-                            }
-                        })
-                        .then(() => {
-                            this.GroupMemberUser
-                                .delete({groupId: group.id, userId: member.userId})
-                                .then(() => {
-                                    group.getMemberUsers();
-                                });
-                        }, angular.noop);
+                    return this.doLeaveGroup();
                 }
+                this.ngDialog
+                    .openConfirm({
+                        template: '/views/modals/group_member_user_delete_confirm.html',
+                        data: {
+                            user: member
+                        }
+                    })
+                    .then(() => {
+                        this.GroupMemberUser
+                            .delete({groupId: group.id, userId: member.userId})
+                            .then(() => {
+                                group.getMemberUsers();
+                            });
+                    }, angular.noop);
+
             } else {
                 const topic = this.topic;
                 if (member.id = this.sAuth.user.id) {
-                    this.doLeaveTopic();
+                    return this.doLeaveTopic();
                 }
                 this.ngDialog
-                .openConfirm({
-                    template: '/views/modals/topic_member_user_delete_confirm.html',
-                    data: {
-                        user: member
-                    }
+                    .openConfirm({
+                        template: '/views/modals/topic_member_user_delete_confirm.html',
+                        data: {
+                            user: member
+                        }
                 })
                 .then(() => {
                     member.topicId = topic.id;

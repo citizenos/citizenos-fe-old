@@ -695,6 +695,7 @@
     },
     "MY": {
       "LBL_GROUPS_COUNT": "Groups: {{count}}",
+      "LBL_TOPICS_COUNT": "Topics: {{count}}",
       "HEADING_NOT_IN_GROUP": "You are not yet part of a group.",
       "HEADING_AT_LEAST_WE_HELP": "At least you still have us to help you by",
       "TXT_CREATING_A NEW_GROUP": "Creating a new group",

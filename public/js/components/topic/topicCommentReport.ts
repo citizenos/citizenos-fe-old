@@ -7,7 +7,7 @@ let topicCommentReport = {
     bindings: {
         commentId: '@'
     },
-    controller: ['$log', 'ngDialog', 'TopicComment', 'AppService', 'TopicCommentService', class TopicCommentReportController {
+    controller: ['$scope', '$log', 'ngDialog', 'TopicComment', 'AppService', 'TopicCommentService', class TopicCommentReportController {
         private comment;
         private commentId;
         private reportTypes;
@@ -20,15 +20,18 @@ let topicCommentReport = {
         };
         private errors;
 
-        constructor (private $log, private ngDialog, private TopicComment, private app, TopicCommentService) {
-            const comment = TopicCommentService.comments.find((comment) => {return comment.id === this.commentId});
+        constructor ($scope, private $log, private ngDialog, private TopicComment, private app, TopicCommentService) {
             this.reportTypes = TopicComment.COMMENT_REPORT_TYPES;
-            this.comment = comment;
-            this.form.id = comment.id
-            this.form.topicId = app.topic.id;
+            $scope.$watch(() => this.commentId, (newVal) => {
+                const comment = TopicCommentService.comments.find((comment) => {return comment.id === this.commentId});
+                this.comment = comment;
+                this.form.id = comment.id
+                this.form.topicId = app.topic.id;
+            });
         }
 
         doReport () {
+            this.form['commentId'] = this.commentId;
             this.TopicComment.report(this.form)
                 .then(() => {
                     this.ngDialog.closeAll();

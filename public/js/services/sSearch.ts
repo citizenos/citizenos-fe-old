@@ -1,13 +1,10 @@
 import * as angular from 'angular';
 
-angular
-    .module('citizenos')
-    .service('sSearch', ['$http', '$log', '$q', 'sLocation', function ($http, $log, $q, sLocation) {
-        var sSearch = this;
+export class Search {
+    private searchPendingDefer;
+    constructor (private $http, private $log, private $q, private sLocation) {}
 
-        var searchPendingDefer;
-
-        /**
+    /**
          * Search users
          *
          * NOTE: Each new requests cancels previous pending requests.
@@ -16,43 +13,46 @@ angular
          *
          * @returns {HttpPromise} Angular $http promise
          */
-        sSearch.searchUsers = function (str) {
-            $log.debug('sSearch.search()', str);
-            var path = sLocation.getAbsoluteUrlApi('/api/users/self/search/users');
+     searchUsers (str) {
+        this.$log.debug('sSearch.search()', str);
+        const path = this.sLocation.getAbsoluteUrlApi('/api/users/self/search/users');
 
 
-            // Cancel all pending requests, there is no need to many in parallel as used in TypeAhead.
-            if (searchPendingDefer) {
-                searchPendingDefer.resolve('cancelled');
-            }
+        // Cancel all pending requests, there is no need to many in parallel as used in TypeAhead.
+        if (this.searchPendingDefer) {
+            this.searchPendingDefer.resolve('cancelled');
+        }
 
-            searchPendingDefer = $q.defer();
+        this.searchPendingDefer = this.$q.defer();
 
-            return $http.get(path, {timeout: searchPendingDefer.promise, params: angular.extend({str: str})});
-        };
+        return this.$http.get(path, {timeout: this.searchPendingDefer.promise, params: angular.extend({str: str})});
+    };
 
-                /**
-         * Search
-         *
-         * NOTE: Each new requests cancels previous pending requests.
-         *
-         * @param {string} str Search string
-         * @param {object} params Request parameters {limit, page, include, "my.topic.level"}
-         *
-         * @returns {HttpPromise} Angular $http promise
-         */
-        sSearch.search = function (str, params) {
-            $log.debug('sSearch.search()', str);
-            var path = sLocation.getAbsoluteUrlApi('/api/search');
+            /**
+     * Search
+     *
+     * NOTE: Each new requests cancels previous pending requests.
+     *
+     * @param {string} str Search string
+     * @param {object} params Request parameters {limit, page, include, "my.topic.level"}
+     *
+     * @returns {HttpPromise} Angular $http promise
+     */
+    search (str, params) {
+        this.$log.debug('sSearch.search()', str);
+        const path = this.sLocation.getAbsoluteUrlApi('/api/search');
 
 
-            // Cancel all pending requests, there is no need to many in parallel as used in TypeAhead.
-            if (searchPendingDefer) {
-                searchPendingDefer.resolve('cancelled');
-            }
+        // Cancel all pending requests, there is no need to many in parallel as used in TypeAhead.
+        if (this.searchPendingDefer) {
+            this.searchPendingDefer.resolve('cancelled');
+        }
 
-            searchPendingDefer = $q.defer();
+        this.searchPendingDefer = this.$q.defer();
 
-            return $http.get(path, {timeout: searchPendingDefer.promise, params: angular.extend({str: str}, params)});
-        };
-    }]);
+        return this.$http.get(path, {timeout: this.searchPendingDefer.promise, params: angular.extend({str: str}, params)});
+    };
+}
+angular
+    .module('citizenos')
+    .service('sSearch', ['$http', '$log', '$q', 'sLocation', Search]);

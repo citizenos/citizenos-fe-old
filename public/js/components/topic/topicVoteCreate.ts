@@ -4,9 +4,7 @@ import { runInThisContext } from 'vm';
 let topicVoteCreate = {
     selector: 'topicVoteCreate',
     templateUrl: '/views/components/topic/topic_vote_create.html',
-    bindings: {
-        topicId: '='
-    },
+    bindings: {},
     controller: ['$log', '$state', '$translate', 'TopicVote', 'sNotification', 'AppService', class TopicVoteCreateController {
         public VOTE_TYPES;
         public VOTE_AUTH_TYPES
@@ -83,6 +81,7 @@ let topicVoteCreate = {
 
         constructor (private $log, private $state, private $translate, private TopicVote, private sNotification, private app) {
             $log.debug('TopicVoteCastController');
+            this.topicId = app.topic.id;
             this.VOTE_TYPES = TopicVote.VOTE_TYPES;
             this.VOTE_AUTH_TYPES = TopicVote.VOTE_AUTH_TYPES;
            // this.init();
@@ -309,7 +308,8 @@ let topicVoteCreate = {
                 return !!option.value
             });
 
-            this.TopicVote.save((vote) => {
+            this.TopicVote.save(vote)
+                .then((vote) => {
                     this.voteForm.errors = null;
                     this.$state.go('topics/view/votes/view', {
                             topicId: this.topicId,
@@ -318,8 +318,7 @@ let topicVoteCreate = {
                     },(res) => {
                         this.$log.debug('createVote() ERR', res, res.data.errors,  this.voteForm.options);
                         this.voteForm.errors = res.data.errors;
-                    }
-                );
+                });
         };
 
         getDeadline() {

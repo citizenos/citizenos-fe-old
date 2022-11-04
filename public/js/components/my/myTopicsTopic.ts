@@ -26,6 +26,8 @@ let myTopicsTopic = {
             this.topic = this.app.topic;
             TopicMemberUserService.topicId = $stateParams.topicId;
             TopicMemberUserService.reload();
+            TopicInviteUserService.topicId = $stateParams.topicId;
+            TopicInviteUserService.reload();
             TopicMemberGroupService.topicId = $stateParams.topicId;
             TopicMemberGroupService.reload();
             TopicActivitiesService.topicId = $stateParams.topicId;
@@ -228,6 +230,35 @@ let myTopicsTopic = {
             if (this.voteResults.isVisible) {
                 this.checkIfInView('vote_results');
             }
+        };
+
+        doDeleteInviteUser (topicInviteUser) {
+            this.ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_invite_user_delete_confirm.html',
+                    data: {
+                        user: topicInviteUser.user
+                    }
+                })
+                .then((isAll) => {
+                    const promisesToResolve = [];
+                    // Delete all
+                    if (isAll) {
+                        this.TopicInviteUserService.users.forEach((invite) => {
+                            if (invite.user.id === topicInviteUser.user.id) {
+                                promisesToResolve.push(this.TopicInviteUser.delete(invite));
+                            }
+                        });
+                    } else { // Delete single
+                        promisesToResolve.push(this.TopicInviteUser.delete(topicInviteUser));
+                    }
+
+                    this.$q
+                        .all(promisesToResolve)
+                        .then(() => {
+                            this.TopicInviteUserService.reload();
+                        });
+                }, angular.noop);
         };
     }]
 };

@@ -8,7 +8,7 @@
                     <div class="title" translate="{{ngDialogData.heading}}">Invitation expired DEFAULT</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                <div id="lightbox_close" ng-click="closeThisDialog($event)">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
                         </div>
@@ -31,12 +31,12 @@
 
             <div id="lightbox_footer">
                 <div class="table_cell">
-                    <div class="blue_button" ng-click="$ctrl.app.closeThisDialog($event)" translate="BTN_CLOSE">Close</div>
+                    <div class="blue_button" ng-click="closeThisDialog($event)" translate="BTN_CLOSE">Close</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)"></div>
+    <div id="close_lightbox" ng-click="closeThisDialog($event)"></div>
 
 </div>

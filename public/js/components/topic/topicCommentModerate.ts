@@ -19,6 +19,7 @@ let topicCommentModerate = {
         constructor (private $state, private $stateParams, private $http, private sLocation, private TopicComment, private app) {
             this.topic = app.topic;
             this.reportId = $stateParams.reportId;
+            this.token = $stateParams.token;
             this.reportTypes = TopicComment.COMMENT_REPORT_TYPES;
             const path = sLocation.getAbsoluteUrlApi(
                 '/api/topics/:topicId/comments/:reportedCommentId/reports/:reportId',
@@ -34,7 +35,7 @@ let topicCommentModerate = {
             $http
                 .get(path, config)
                 .then((res) => {
-                    return this.comment = res.data.data;
+                    return this.comment = res.data.data.comment;
                 });
         }
 
@@ -47,7 +48,6 @@ let topicCommentModerate = {
                     reportId: this.reportId
                 }
             );
-
             const config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.token

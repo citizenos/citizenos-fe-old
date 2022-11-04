@@ -126,13 +126,8 @@ let topicComments = {
         doCommentReport (comment) {
             this.ngDialog
                 .open({
-                    template: '<topic-comment-report></topic-comment-report>',
-                    data: {
-                        comment: comment,
-                        topic: {
-                            id: this.topicId
-                        }
-                    }
+                    template: '<topic-comment-report comment-id="'+comment.id+'"></topic-comment-report>',
+                    plain: true
                 });
         };
 

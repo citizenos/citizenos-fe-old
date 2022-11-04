@@ -160,6 +160,7 @@ let topicSettings = {
                     this.loadTopic();
                     const dialogs = this.ngDialog.getOpenDialogs();
                     this.ngDialog.close(dialogs[0], '$closeButton');
+                    this.$state.go('^', null, {reload: true});
                 },(errorResponse) => {
                     if (errorResponse.data && errorResponse.data.errors) {
                         this.errors = errorResponse.data.errors;

@@ -7,7 +7,7 @@ let setTopicNotifications = {
     bindings: {
         topicId: '@'
     },
-    controller: ['$state', '$stateParams', 'TopicNotification', 'sNotification', 'Topic', 'ngDialog', class SetTopicNotificationsController {
+    controller: ['$scope', '$state', '$stateParams', 'TopicNotification', 'sNotification', 'Topic', 'ngDialog', class SetTopicNotificationsController {
         public topicId;
         public topic;
         private supportedTabs = ['general'];
@@ -26,21 +26,23 @@ let setTopicNotifications = {
             allowNotifications: false
         };
 
-        constructor (private $state, $stateParams, private TopicNotification, private sNotification, private Topic, private ngDialog) {
+        constructor ($scope, private $state, $stateParams, private TopicNotification, private sNotification, private Topic, private ngDialog) {
             if (this.supportedTabs.indexOf($stateParams.tab) > -1 ) {
                 this.tabSelected = $stateParams.tab;
             }
-            if (this.topicId) {
-                Topic
-                    .get(this.topicId)
-                    .then((topic) => {
-                        this.topic = topic;
-                        TopicNotification
-                            .get(this.topic).then((settings) => {
-                                this.settings = angular.merge(this.settings, settings);
-                            });
-                    });
-            }
+            $scope.$watch(() => this.topicId, (newValue) => {
+                if (newValue) {
+                    Topic
+                        .get(this.topicId)
+                        .then((topic) => {
+                            this.topic = topic;
+                            TopicNotification
+                                .get(this.topic).then((settings) => {
+                                    this.settings = angular.merge(this.settings, settings);
+                                });
+                        });
+                }
+            });
         }
 
         toggleAllNotifications () {

@@ -20,7 +20,10 @@ let topicSocialMentions = {
 
         loadTopicSocialMentions () {
             if (this.hashtag) {
-                this.topicSocialMentions = this.Mention.query({topicId: this.topicId});
+                this.Mention.query({topicId: this.topicId})
+                .then((data) => {
+                    this.topicSocialMentions = data.rows;
+                })
             }
         };
     }]

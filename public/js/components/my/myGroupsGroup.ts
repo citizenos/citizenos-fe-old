@@ -218,7 +218,6 @@ let myGroupsGroup = {
                     this.$q
                         .all(promisesToResolve)
                         .then(() => {
-                            console.log('RELOAD', this.GroupInviteUserService);
                             this.GroupInviteUserService.reload();
                         });
                 }, angular.noop);

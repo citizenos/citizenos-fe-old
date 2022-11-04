@@ -14,9 +14,7 @@ export class TopicVoteService {
     private countryCode;
     private voteSignResult;
 
-    constructor(private $window, private TopicVote, private hwcrypto, private $q, private $log, private $timeout, private sAuth, private sNotification) {
-        console.log(hwcrypto);
-    }
+    constructor(private $window, private TopicVote, private hwcrypto, private $q, private $log, private $timeout, private sAuth, private sNotification) {}
 
     doSignWithCard () {
         this.isLoadingIdCard = true;

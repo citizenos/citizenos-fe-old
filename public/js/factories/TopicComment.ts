@@ -109,7 +109,7 @@ export class TopicComment {
 
         return this.$http.put(path, data)
             .then((res) => {
-                return res.data.data
+                return res.data
             });
     }
 
@@ -136,6 +136,7 @@ export class TopicComment {
     };
 
     votes (data) {
+        if (!data.commentId) data.commentId = data.id;
         let path = this.sLocation.getAbsoluteUrlApi('/api/users/:userId/topics/:topicId/comments/:commentId/votes', data)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
@@ -146,6 +147,7 @@ export class TopicComment {
     };
 
     report (data) {
+        if (!data.commentId) data.commentId = data.id;
         let path = this.sLocation.getAbsoluteUrlApi('/api/topics/:topicId/comments/:commentId/reports', data)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
