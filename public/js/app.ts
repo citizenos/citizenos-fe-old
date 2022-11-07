@@ -810,6 +810,10 @@ import * as angular from 'angular';
                                 template: '<group-create></group-create>',
                                 plain: true
                             });
+
+                            dialog.closePromise.then(function () {
+                                $state.go('^', {}, {supercede: false});
+                            });
                         }
 
                         createDialog();
@@ -821,7 +825,7 @@ import * as angular from 'angular';
                     resolve: {
                         rGroup: ['$stateParams', 'sAuthResolve', 'GroupService', 'AppService', function ($stateParams, sAuthResolve, GroupService, AppService) {
                             // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
-                            if (!GroupService.groups) {
+                            if (!GroupService.groups.countTotal && !GroupService.isLoading) {
                                 return GroupService.reload();
                             }
                         }]

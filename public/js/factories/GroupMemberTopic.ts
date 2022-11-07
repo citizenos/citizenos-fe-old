@@ -43,9 +43,9 @@ export class GroupMemberTopic {
             .replace('/:userId', this.getUrlUser());
 
         return this.$http.post(path, data)
-        .then((res) => {
-            return res.data.data
-        });
+            .then((res) => {
+                return res.data.data
+            });
     }
 
     update(params, data:any) {

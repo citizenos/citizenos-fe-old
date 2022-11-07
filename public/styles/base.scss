@@ -1148,6 +1148,8 @@ input.default_radio {
             }
 
             .dropdown_item {
+                width: max-content;
+
                 .item_names_wrap {
                     .item_name {
                         font-weight: 400;
@@ -1237,7 +1239,12 @@ input.default_radio {
         margin-top: 13px;
         box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
 
+        &.group_filter_dropdown {
+            width: max-content;
+        }
+
         .dropdown_item {
+            width: max-content;
             padding: 10px 15px;
             font-size: 13px;
             font-weight: normal;

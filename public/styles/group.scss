@@ -196,9 +196,18 @@
 
             .pretend_th {
                 &:first-child {
-                    width: 70%;
+                    width: 55%;
                     text-align: left;
+
+                    @include mixins_n_extends.tablet {
+                        width: auto;
+                        min-width: 50%;
+                    }
                 }
+                &.member_level {
+                    width: 120px;
+                }
+
                 text-align: right;
                 width: auto;
             }

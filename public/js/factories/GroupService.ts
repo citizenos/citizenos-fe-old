@@ -50,6 +50,7 @@ export class GroupService {
         this.search = null;
         this.offset = 0;
         this.page = 1;
+        this.hasMore = true;
         this.groups = [];
         this.loadGroups();
     }

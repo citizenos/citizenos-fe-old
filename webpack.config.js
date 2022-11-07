@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     entry: "./public/js/main.ts",
     watch: true,
-    bail: false,
+    bail: true,
     devtool: false,
     output: {
         path: path.resolve(__dirname, 'public', 'js'),
@@ -14,7 +14,7 @@ module.exports = {
         filename: "citizenos-fe.bundle.js"
     },
     optimization: {
-        minimize: true
+        minimize: false
     },
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]

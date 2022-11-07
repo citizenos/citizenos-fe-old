@@ -60,7 +60,7 @@
                     <div class="settings_section full_width" ng-if="$ctrl.isVisible('description')">
                         <div class="settings_cell">
                             <div class="setting_title" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION">Group name</div>
-                            <div class="setting_description" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION_EXP">USE A NAME THAT IS CLEAR AND UNDERSTANDABLE</div>
+                            <div class="setting_description" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION_EXP" translate-values="{max: 500}">USE A NAME THAT IS CLEAR AND UNDERSTANDABLE</div>
                             <textarea id="groupDescription" cos-disabled="!$ctrl.Group.canUpdate($ctrl.group)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_GROUP_DESCRIPTION' | translate}}" ng-model="$ctrl.group.description" ng-class="{'error_input': $ctrl.errors.description}"></textarea>
                             <label for="groupDescription" class="error_label" ng-if="$ctrl.errors.description">
                                 <div class="table_cell">

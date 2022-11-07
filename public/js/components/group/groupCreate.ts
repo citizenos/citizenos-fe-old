@@ -22,7 +22,7 @@ let groupCreate = {
         public form = {
             inviteMessage: null,
             join: {
-                level: null,
+                level: 'read',
                 token: null
             },
             joinUrl: null,
@@ -55,7 +55,7 @@ let groupCreate = {
             topics: [],
             users: []
         };
-        public groupLevel;
+        public groupLevel = 'read';
         public group;
         public imageFile;
         public errors = null;
@@ -99,7 +99,6 @@ let groupCreate = {
                 }
             };
 
-            this.form.join = this.group.join;
             if (this.form.join) {
                 this.generateJoinUrl();
             }

@@ -360,7 +360,7 @@
     "GROUP_CREATE_SETTINGS_LBL_GROUP_NAME_EXP": "Use a name that is clear and understandable",
     "GROUP_CREATE_SETTINGS_PLACEHOLDER_GROUP_NAME": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_NAME",
     "GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION": "Group description",
-    "GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION_EXP": "Add a group description ({max}} characters)",
+    "GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION_EXP": "Add a group description ({{max}} characters)",
     "GROUP_CREATE_SETTINGS_PLACEHOLDER_GROUP_DESCRIPTION": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_DESCRIPTION",
     "GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP": "Leave group",
     "GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP_EXP": "Leaving a group will result in giving up any rights you may have as user in that group",
