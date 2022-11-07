@@ -15,6 +15,7 @@
     "dev": "npm install && concurrently --kill-others \"npm start\" \"./node_modules/gulp/bin/gulp.js\"",
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --expose-gc --async-only --check-leaks --trace-deprecation --reporter spec --no-exit --recursive --ui tdd test/",
     "prepare": "husky install",
+    "build-dev": "webpack --bail --progress --profile --watch",
     "build": "webpack --bail --progress --profile"
   },
   "dependencies": {
