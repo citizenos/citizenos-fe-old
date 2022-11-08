@@ -951,6 +951,7 @@ import * as angular from 'angular';
                         }]
                     },
                     controller: ['$scope', '$state', '$stateParams', '$log', '$timeout', 'sAuth', 'sNotification', 'ngDialog', 'TopicInviteUser', 'rTopicInviteUser', function ($scope, $state, $stateParams, $log, $timeout, sAuth, sNotification, ngDialog, TopicInviteUser, rTopicInviteUser) {
+                        console.log('rTopicInviteUser', rTopicInviteUser);
                         if (!rTopicInviteUser.id) { // Some kind of error happened, the instance was not built
                             return; // ERROR: Expecting cosHttpApiErrorInterceptor to tell the user what went wrong
                         }

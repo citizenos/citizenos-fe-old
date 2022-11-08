@@ -7,8 +7,8 @@ export class GroupInviteUser {
 
         return this.$http.get(path)
             .then((res) => {
-                const data = res.data;
-                data.user.isRegistered = res.status.code !== 20002;
+                const data = res.data.data;
+                data.user.isRegistered = res.data.status.code !== 20002;
                 return data;
             });
     }

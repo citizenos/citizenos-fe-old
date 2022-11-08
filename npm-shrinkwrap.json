@@ -3246,11 +3246,6 @@
       "integrity": "sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==",
       "dev": true
     },
-    "hwcrypto-js": {
-      "version": "0.0.13",
-      "resolved": "https://registry.npmjs.org/hwcrypto-js/-/hwcrypto-js-0.0.13.tgz",
-      "integrity": "sha512-EvEjnTzvPtlqcagI2iypL/8xUVx5EVScvLjzH87PLCiuNzgsVlbF7eDpUAufNp+4SWxoY+wsQfP8NlnYOa6vbA=="
-    },
     "iconv-lite": {
       "version": "0.4.24",
       "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz",

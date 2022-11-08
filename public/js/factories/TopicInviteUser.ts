@@ -39,7 +39,9 @@ export class TopicInviteUser {
 
         return this.$http.get(path, params)
             .then((res) => {
-                return res.data.data
+                const data = res.data.data;
+                data.user.isRegistered = res.data.status.code !== 20002;
+                return data;
             });
     }
 

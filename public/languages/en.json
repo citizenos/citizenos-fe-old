@@ -464,7 +464,7 @@
     "TOPIC_INVITE_VIEW_LBL_INVITATION_SENT_TO": "Invitation sent to:",
     "TOPIC_INVITE_VIEW_LBL_TOPIC_LEVEL": "Topic rights:",
     "TOPIC_INVITE_VIEW_TXT_COMPLETE_ACCOUNT": "<b>Heads up!</b> You must complete creating your account with {{email}} to access this topic",
-    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "Topics and groups can only be accessed using a Citizen OS account which is registered with the same email address the invitation was sent to.",
+    "TOPIC_INVITE_VIEW_BTN_LOGIN_AS": "To access this topic, please log in using {{email}}",
     "TOPIC_INVITE_VIEW_BTN_GO_TO_LOGIN": "@:MODALS.LOGIN_BTN_LOGIN",
     "TOPIC_INVITE_VIEW_BTN_COMPLETE_ACCOUNT": "Create account",
     "TOPIC_INVITE_VIEW_BTN_ACCEPT": "@:MODALS.PRIVACY_POLICY_BTN_ACCEPT",
