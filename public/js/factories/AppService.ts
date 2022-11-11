@@ -185,6 +185,7 @@ export class AppService {
 
     doShowLanguageSelect () {
         this.$log.debug('AppCtrl.doShowLanguageSelect()');
+        this.languagesArray = [];
         angular.forEach(this.config.language.list, (val, key) => {
             this.languagesArray.push({
                 key: key,
@@ -193,8 +194,7 @@ export class AppService {
         });
 
         this.ngDialog.open({
-            template: '/views/modals/languages.html',
-            scope: self
+            template: '/views/modals/languages.html'
         });
     };
 
