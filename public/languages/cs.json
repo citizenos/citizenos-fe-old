@@ -556,7 +556,7 @@
     "GROUP_JOIN_CONFIRM_TXT_POINT2": "You, similar to other members, will have only reading rights.",
     "GROUP_JOIN_CONFIRM_TXT_POINT3": "The group activity is displayed under the \"My activity\" feed",
     "GROUP_JOIN_CONFIRM_BTN_NO": "@:LNK_CANCEL",
-    "GROUP_JOIN_CONFIRM_BTN_YES": "Yes, join group",
+    "GROUP_JOIN_CONFIRM_BTN_YES": "Ano, připojit se ke skupině",
     "GIVE_FEEDBACK_HEADING": "Share your feedback",
     "GIVE_FEEDBACK_DESC": "This text area would comprise of 3 questions which can be edited by the lead from Citizen OS and these details will be discussed privately. But I still wanted to add text here so that this area becomes bigger and a better reference for the future.",
     "GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA": "Write here...",
