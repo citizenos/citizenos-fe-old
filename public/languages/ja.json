@@ -1029,7 +1029,7 @@
       "LNK_ADD_MANAGE_FILES": "添付ファイルを追加/管理",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "このQRコードを使用してトピック <b>{{topicTitle}}</b> に飛ぶ。",
       "INLINE_COMMENT_SUGGEST_CHANGE": "Suggested change from \"{{changeFrom}}\" to \"{{changeTo}}\"",
-      "BTN_FEEDBACK_OPEN": "We appriciate your feedback"
+      "BTN_FEEDBACK_OPEN": "We appreciate your feedback"
     },
     "PUBLIC_GROUPS": {
       "BTN_JOIN_GROUP": "@:VIEWS.PUBLIC_GROUP.BTN_JOIN_GROUP",

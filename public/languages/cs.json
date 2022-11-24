@@ -1029,7 +1029,7 @@
       "LNK_ADD_MANAGE_FILES": "Přidat/spravovat přílohy",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Přejděte přímo na téma <b>{{topicTitle}}</b> přes naskenování tohoto QR kódu!",
       "INLINE_COMMENT_SUGGEST_CHANGE": "Navrhovaná změna z \"{{changeFrom}}\" na \"{{changeTo}}\"",
-      "BTN_FEEDBACK_OPEN": "We appriciate your feedback"
+      "BTN_FEEDBACK_OPEN": "We appreciate your feedback"
     },
     "PUBLIC_GROUPS": {
       "BTN_JOIN_GROUP": "@:VIEWS.PUBLIC_GROUP.BTN_JOIN_GROUP",
