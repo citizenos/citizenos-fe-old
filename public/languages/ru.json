@@ -1029,7 +1029,7 @@
       "LNK_ADD_MANAGE_FILES": "Добавить/редактировать файлы",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Перейти к теме <b>{{topicTitle}}</b>, отсканируя этот QR-код",
       "INLINE_COMMENT_SUGGEST_CHANGE": "Предложенное изменение: \"{{changeTo}}\" вместо \"{{changeFrom}}\"",
-      "BTN_FEEDBACK_OPEN": "We appriciate your feedback"
+      "BTN_FEEDBACK_OPEN": "We appreciate your feedback"
     },
     "PUBLIC_GROUPS": {
       "BTN_JOIN_GROUP": "@:VIEWS.PUBLIC_GROUP.BTN_JOIN_GROUP",
@@ -1081,7 +1081,7 @@
     "ACTIVITY_USER_DELETE_TOPIC": "Пользователь <em>{{userName}}</em> удалил тему <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_ADD_USER_TOPIC": "Пользователь <em>{{userName}}</em>пригласил пользователя <em>{{userName2}}</em> принять участие в теме <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_ADD_USER_TOPIC_ACTIVITYGROUP": "Пользователь <em>{{userName}}</em> и еще <em>{{groupCount}}</em> других пригласили пользователей принять участие в теме <em>{{topicTitle}}</em>",
-    "ACTIVITY_USER_ADD_USER_TOPIC_USERACTIVITYGROUP": "Пользователь <em>{{userName}}</em>пригласил <em>{{groupCount}}</em> пользователей принять участие в теме <em>{{topicTitle}}</em>",
+    "ACTIVITY_USER_ADD_USER_TOPIC_USERACTIVITYGROUP": "Пользователь <em>{{userName}}</em> пригласил <em>{{groupCount}}</em> пользователей принять участие в теме <em>{{topicTitle}}</em>",
     "ACTIVITY_USER_INVITE_TOPIC_USER": "@:ACTIVITY_FEED.ACTIVITY_USER_ADD_USER_TOPIC",
     "ACTIVITY_USER_INVITE_TOPIC_USER_ACTIVITYGROUP": "@:ACTIVITY_FEED.ACTIVITY_USER_ADD_USER_TOPIC_ACTIVITYGROUP",
     "ACTIVITY_USER_INVITE_TOPIC_USER_USERACTIVITYGROUP": "@:ACTIVITY_FEED.ACTIVITY_USER_ADD_USER_TOPIC_USERACTIVITYGROUP",
