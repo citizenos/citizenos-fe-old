@@ -1037,7 +1037,7 @@
       "ORDER_TITLE_ASC": "Order groups A-Z",
       "ORDER_TITLE_DESC": "Order groups Z-A",
       "HEADING_NO_RESUTS": "@:VIEWS.MY.NO_RESULTS_FOUND_TITLE",
-      "HEADING_GET_STARTED": "There are no pubic groups yet",
+      "HEADING_GET_STARTED": "There are no public groups yet",
       "BTN_CREATE_PUBLIC_GROUP": "Create public group",
       "BTN_LOAD_MORE_GROUPS": "Load more groups"
     },
