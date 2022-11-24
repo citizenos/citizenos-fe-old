@@ -1029,7 +1029,7 @@
       "LNK_ADD_MANAGE_FILES": "Додати/редагувати файли",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Перейдіть прямо в тему <b>{{topicTitle}}</b>, просканувавши цей QR-код!",
       "INLINE_COMMENT_SUGGEST_CHANGE": "Запропонована зміна з \"{{changeFrom}}\" на \"{{changeTo}}\"",
-      "BTN_FEEDBACK_OPEN": "We appriciate your feedback"
+      "BTN_FEEDBACK_OPEN": "We appreciate your feedback"
     },
     "PUBLIC_GROUPS": {
       "BTN_JOIN_GROUP": "@:VIEWS.PUBLIC_GROUP.BTN_JOIN_GROUP",
