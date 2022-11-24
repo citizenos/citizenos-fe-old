@@ -1029,7 +1029,7 @@
       "LNK_ADD_MANAGE_FILES": "添加/管理附件",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "扫描此 QR 代码以跳转到主题 <b>{{topicTitle}}</b>！",
       "INLINE_COMMENT_SUGGEST_CHANGE": "建议将 “{{changeFrom}}” 更改为 “{{changeTo}}”",
-      "BTN_FEEDBACK_OPEN": "我们感谢您的反馈"
+      "BTN_FEEDBACK_OPEN": "We appreciate your feedback"
     },
     "PUBLIC_GROUPS": {
       "BTN_JOIN_GROUP": "@:VIEWS.PUBLIC_GROUP.BTN_JOIN_GROUP",
