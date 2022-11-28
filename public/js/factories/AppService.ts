@@ -25,14 +25,14 @@ export class AppService {
     private tabSelected;
     private dialog;
     private metainfo = {
-        title: null,
-        description: null,
-        keywords: null,
-        icon: null,
-        iconHires: null,
-        author: null,
-        image: null,
-        url: null,
+        title: '',
+        description: '',
+        keywords: '',
+        icon: '',
+        iconHires: '',
+        author: '',
+        image: '',
+        url: '',
         siteName: 'CitizenOS.com',
         hreflang: {}
     };
@@ -71,7 +71,7 @@ export class AppService {
 
         if (this.config.features.analytics) {
             var script = document.createElement('script');
-            Object.keys(this.config.features.analytics).forEach(function (key) {
+            Object.keys(this.config.features.analytics).forEach((key) => {
                 script.setAttribute(key, this.config.features.analytics[key])
             });
             document.head.appendChild(script);
