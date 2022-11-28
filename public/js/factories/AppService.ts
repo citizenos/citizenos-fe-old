@@ -146,7 +146,7 @@ export class AppService {
     doShowLogin () {
         this.$log.debug('AppCtrl.doShowLogin()');
 
-        return this.ngDialog
+        const dialog = this.ngDialog
             .open({
                 template: '<login-form></login-form>',
                 plain: true
@@ -154,7 +154,7 @@ export class AppService {
     };
 
     doShowMyAccount () {
-        this.$log.debug('AppCtrl.doShowMyAccount()');
+        this.$log.debug('AppService.doShowMyAccount()');
 
         this.ngDialog.open({
             template: '<my-account></my-account>',
@@ -163,7 +163,7 @@ export class AppService {
     };
 
     doShowActivityModal () {
-        this.$log.debug('AppCtrl.doShowActivityModal()');
+        this.$log.debug('AppService.doShowActivityModal()');
         const openDias = this.ngDialog.getOpenDialogs();
 
         if (openDias.length) {
@@ -184,7 +184,7 @@ export class AppService {
     };
 
     doShowLanguageSelect () {
-        this.$log.debug('AppCtrl.doShowLanguageSelect()');
+        this.$log.debug('AppService.doShowLanguageSelect()');
         this.languagesArray = [];
         angular.forEach(this.config.language.list, (val, key) => {
             this.languagesArray.push({
@@ -199,7 +199,7 @@ export class AppService {
     };
 
     doSwitchLanguage (language) {
-        this.$log.debug('AppCtrl.doSwitchLanguage()', language);
+        this.$log.debug('AppService.doSwitchLanguage()', language);
         if (language === this.language) {
             return;
         }
@@ -228,7 +228,7 @@ export class AppService {
                 this.ngDialog.closeAll();
                 this.sNotification.removeAll();
             },(err) => {
-                this.$log.error('AppCtrl.doLogout()', 'Logout failed', err);
+                this.$log.error('AppService.doLogout()', 'Logout failed', err);
                 this.sNotification.addError('MSG_ERROR_LOGOUT_FAILED');
             });
     };
@@ -247,7 +247,7 @@ export class AppService {
                 this.$state.reload();
                 this.sNotification.removeAll();
             }, (err) => {
-                this.$log.error('AppCtrl.doLogout()', 'Logout failed', err);
+                this.$log.error('AppService.doLogout()', 'Logout failed', err);
                 this.sNotification.addError('MSG_ERROR_LOGOUT_FAILED');
             });
     };
@@ -347,7 +347,7 @@ export class AppService {
     transitionSuccessHandler () {
         this.$transitions.onSuccess({}, () => {
             this.$timeout(() => {
-                this.$log.debug('AppCtrl.$stateChangeSuccess', 'prerenderReady', this.$state.$current.name);
+                this.$log.debug('AppService.$stateChangeSuccess', 'prerenderReady', this.$state.$current.name);
 
                 const metaDataViews = ['topics/view', 'my/topics/topicId'];
                 let isView = false;
@@ -469,7 +469,7 @@ export class AppService {
 
     translateChangeEndWatcher () {
         this.$rootScope.$on('$translateChangeEnd', () => {
-            this.$log.debug('AppCtrl.$translateChangeSuccess', this.sTranslate.currentLanguage);
+            this.$log.debug('AppService.$translateChangeSuccess', this.sTranslate.currentLanguage);
             this.language = this.sTranslate.currentLanguage;
             this.$timeout(() => {
                 let locale = this.language;

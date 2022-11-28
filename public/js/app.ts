@@ -148,7 +148,6 @@ import * as angular from 'angular';
                                 .status()
                                 .then(
                                     function () {
-
                                         $log.debug('Resolve user', sAuth.user, 'LOGGED IN');
                                         if (!sAuth.user.email) {
                                             sAuth.user.loggedIn = false;
@@ -427,9 +426,9 @@ import * as angular from 'angular';
                 .state('topics/create', {
                     url: '/create?title&groupId&groupLevel',
                     parent: 'topics',
-                    controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', 'GroupMemberTopic', function ($scope, $state, $stateParams, sAuth, Topic, GroupMemberTopic) {
+                    controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', 'GroupMemberTopic', 'AppService', function ($scope, $state, $stateParams, sAuth, Topic, GroupMemberTopic, app) {
                         if (!sAuth.user.loggedIn) {
-                            return $state.go('account/login', null, {location: false});
+                            return app.doShowLogin()
                         }
 
                         var topic = {};
@@ -1156,8 +1155,7 @@ import * as angular from 'angular';
                 .state('partners/login', {
                     url: '/login',
                     parent: 'partners',
-                    template: '<partner-login></partner-login>',
-                    templateUrl: '/views/partners_login.html'
+                    template: '<partner-login></partner-login>'
                 })
                 .state('partners/consent', {
                     url: '/consent',

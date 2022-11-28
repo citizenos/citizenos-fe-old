@@ -1,6 +1,5 @@
 'use strict';
 import * as angular from 'angular';
-import {values} from 'lodash';
 
 let loginFormComponent =  {
     selector: 'loginForm',
@@ -36,12 +35,12 @@ let loginFormComponent =  {
 
                 if (userConnections.rows.length) {
                     // Check out from the UserConnection.connectionId map which authentication methods apply
-                    userConnections.rows.forEach(function (val) {
+                    userConnections.rows.forEach((val) => {
                         userAuthMethods = userAuthMethods.concat(sUser.USER_CONNECTION_IDS_TO_AUTH_METHOD_MAP[val.connectionId]);
                     });
 
                     // Reduce to unique values
-                    userAuthMethods = userAuthMethods.filter(function (val, i, res) {
+                    userAuthMethods = userAuthMethods.filter((val, i, res) => {
                         return res.indexOf(val) === i;
                     });
                 } else {
@@ -50,7 +49,7 @@ let loginFormComponent =  {
                 }
 
                 // Initially the authMethods that are configured are all available, modify the list so that only those User has available are enabled
-                Object.keys(this.authMethodsAvailable).forEach(function (val) {
+                Object.keys(this.authMethodsAvailable).forEach((val) => {
                     this.authMethodsAvailable[val] = userAuthMethods.indexOf(val) > -1;
                 });
             }
@@ -66,7 +65,7 @@ let loginFormComponent =  {
 
         popupCenter (url, title, w, h) {
             const userAgent = navigator.userAgent,
-                mobile = function () {
+                mobile = () => {
                     return /\b(iPhone|iP[ao]d)/.test(userAgent) ||
                         /\b(iP[ao]d)/.test(userAgent) ||
                         /Android/i.test(userAgent) ||
@@ -80,8 +79,8 @@ let loginFormComponent =  {
                 targetHeight = mobile() ? null : h,
                 V = screenX < 0 ? window.screen.width + screenX : screenX,
                 left = Number(V) + Number(outerWidth - targetWidth) / 2;
-                var right = screenY + (outerHeight - targetHeight) / 2.5;
-                var features = [];
+                const right = screenY + (outerHeight - targetHeight) / 2.5;
+                const features = [];
             if (targetWidth !== null) {
                 features.push('width=' + targetWidth);
             }
@@ -92,7 +91,7 @@ let loginFormComponent =  {
             features.push('top=' + right);
             features.push('scrollbars=1');
 
-            var newWindow = window.open(url, title, features.join(','));
+            const newWindow = window.open(url, title, features.join(','));
 
             if (window.focus) {
                 newWindow.focus();
@@ -117,7 +116,7 @@ let loginFormComponent =  {
                 }
             };
 
-            var error = function (response) {
+            const error = (response) => {
                 const status = response.data.status;
                 console.log('ERROR', status);
 
@@ -204,13 +203,13 @@ let loginFormComponent =  {
             const loginWindow = this.popupCenter(url, 'CitizenOS Partner Login', 470, 500);
 
             if (this.$document[0].documentMode || this.$window.navigator.userAgent.indexOf('Edge') > -1) {
-                const popupCheck = this.$interval(function () {
+                const popupCheck = this.$interval(() => {
                     if (loginWindow.closed) {
                         this.$interval.cancel(popupCheck);
                         this.$window.focus();
                         this.sAuth
                             .status()
-                            .then(function (user) {
+                            .then((user) => {
                                 if (user) {
                                     this.$window.location.href = redirectSuccess;
                                 }
@@ -234,11 +233,11 @@ let loginFormComponent =  {
                 throw new Error(`LoginFormCtrl.doLoginPartner() Invalid parameter for partnerId ${partnerId}`);
             }
 
-            var url = this.sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', {partnerId: partnerId});
+            let url = this.sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', {partnerId: partnerId});
             if (this.$stateParams.redirectSuccess) {
                 url += '?redirectSuccess=' + encodeURIComponent(this.$stateParams.redirectSuccess);
             } else {
-                var redirectSuccess = this.sLocation.currentUrl();
+                const redirectSuccess = this.sLocation.currentUrl();
                 url += '?redirectSuccess=' + redirectSuccess + '?'; // HACK: + '?' avoids digest loop on Angular side for Google callbacks.
             }
 

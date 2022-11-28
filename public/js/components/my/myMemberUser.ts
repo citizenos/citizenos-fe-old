@@ -23,7 +23,7 @@ let myMemberUser = {
                 const oldLevel = this.member.level;
                 this.member.level = level;
                 this.GroupMemberUser
-                    .update({groupId: this.group.id, userId: this.member.userId}, this.member)
+                    .update({groupId: this.group.id, userId: this.member.userId || this.member.id}, this.member)
                     .then(
                         angular.noop,
                         () => {
@@ -38,6 +38,7 @@ let myMemberUser = {
             }
             return this.Topic.canUpdate(this.topic);
         }
+
         doDeleteMemberUser () {
             const member = this.member
             if (this.group) {

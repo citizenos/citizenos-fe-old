@@ -1,21 +1,21 @@
 'use strict';
 
-var config = require('config');
-var express = require('express');
-var app = express();
-var https = require('https');
-var path = require('path');
-var http = require('http');
-var fs = require('fs');
-var _ = require('lodash');
+const config = require('config');
+const express = require('express');
+const app = express();
+const https = require('https');
+const path = require('path');
+const http = require('http');
+const fs = require('fs');
+const _ = require('lodash');
 const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 
 
-var prerender = require('prerender-node');
+const prerender = require('prerender-node');
 
-var configFe = config.util.loadFileConfigs('./public/config');
+const configFe = config.util.loadFileConfigs('./public/config');
 
-var pathSettings = path.resolve('./public/settings.js');
+const pathSettings = path.resolve('./public/settings.js');
 try {
     var settingsFileTxt = '(function (window) { window.__config = window.__config || {};';
     _(configFe).forEach(function (value, key) {
@@ -28,8 +28,8 @@ try {
     process.exit(1);
 }
 //TODO: list whitelisted urls to github with description
-var cspConfig = config.csp;
-var cspOptions = _.cloneDeep(cspConfig);
+const cspConfig = config.csp;
+const cspOptions = _.cloneDeep(cspConfig);
 if (cspConfig) {
     if (cspConfig.directives) {
         if (typeof cspConfig.directives === 'string') {
@@ -96,9 +96,9 @@ app.get('/*', browserDetect, function (req, res) {
     res.set('Permissions-Policy', 'interest-cohort=()'); // Opt-out of Google FLoC
 });
 
-var host = process.env.HOST || null;
+const host = process.env.HOST || null;
 
-var portHttp = process.env.PORT || 3000;
+const portHttp = process.env.PORT || 3000;
 http.createServer(app).listen(portHttp, host, function (err, res) {
     if (err) {
         console.log('Failed to start HTTP server on port' + portHttp, err);
@@ -109,8 +109,8 @@ http.createServer(app).listen(portHttp, host, function (err, res) {
 
 
 if (app.get('env') === 'development') {
-    var portHttps = process.env.PORT_SSL || 3001;
-    var options = {
+    const portHttps = process.env.PORT_SSL || 3001;
+    const options = {
         key: fs.readFileSync('./config/certs/dev.citizenos.com.key'),
         cert: fs.readFileSync('./config/certs/dev.citizenos.com.crt')
     };

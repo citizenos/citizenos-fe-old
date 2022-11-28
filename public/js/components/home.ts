@@ -22,7 +22,6 @@ let home = {
         };
 
         constructor ($scope, private $log, private $location, private $window, private $state, private $stateParams, private PublicTopicService, private Topic, private app) {
-            $log.info('HomeCtrl', $state, $stateParams);
             this.init();
             if (this.$stateParams.category && !this.Topic.CATEGORIES[this.$stateParams.category]) {
                 return this.$state.go('error/404');
@@ -161,6 +160,13 @@ let home = {
             this.$window.location.href = url;
         }
 
+        createNewTopic() {
+            if (!this.app.user.loggedIn) {
+                return this.app.doShowLogin();
+            }
+
+            this.$state.go('topics/create');
+        }
     }]
 };
 
