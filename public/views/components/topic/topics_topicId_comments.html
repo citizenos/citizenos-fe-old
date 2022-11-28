@@ -1,0 +1,542 @@
+<div class="arguments_container">
+    <div class="arguments_wrap">
+        <div class="arguments_header">
+            <div class="number_of_arguments" translate="VIEWS.TOPICS_TOPICID.TAB_ARGUMENTS_HEADING" translate-values="{count: ($ctrl.TopicCommentService.count.total)}">0 arguments</div>
+            <div class="arguments_data">
+                <div class="data_left">
+                    <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_PRO" translate-values="{countPro:$ctrl.TopicCommentService.count.pro}">pro: 0</span>
+                    <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_CON" translate-values="{countCon:$ctrl.TopicCommentService.count.con}">con: 0</span>
+                    <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_POI" translate-values="{countPoi:$ctrl.TopicCommentService.count.poi}">poi: 0</span>
+                    <span class="data_item" translate="VIEWS.TOPICS_TOPICID.LBL_ARGUMENTS_COUNT_REPLY" translate-values="{countReplies:$ctrl.TopicCommentService.count.reply}">replies: 0</span>
+                </div>
+                <div class="data_right print_never">
+                    <div cos-dropdown class="classic_dropdown borderless_dropdown">
+                        <div class="dropdown_selection">
+                            <div class="dropdown_text data_item">
+                                {{$ctrl.topicComments.orderByTranslation}}
+                            </div>
+
+                            <div class="arrow_holder">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <!-- NO CATEGORY -->
+                            <div class="dropdown_item" ng-repeat="(key, orderOption) in $ctrl.topicComments.orderByOptions">
+                                <div class="item_name" ng-click="$ctrl.TopicCommentService.doOrder(key)">
+                                    {{::orderOption.translation}}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="blue_button" ng-click="$ctrl.doAddComment()" translate="VIEWS.TOPICS_TOPICID.BTN_ADD_ARGUMENT">Add argument</div>
+
+                </div>
+            </div>
+            <div class="clearer"></div>
+
+            <div class="line lightest_line"></div>
+        </div>
+
+        <div class="arguments_content" id="arguments" ng-if="($ctrl.TopicCommentService.count.pro + $ctrl.TopicCommentService.count.con + $ctrl.TopicCommentService.count.poi)">
+            <!-- FIRST COMMENT -->
+            <div class="argument_wrap is_{{::comment.type}}" ng-repeat="comment in $ctrl.TopicCommentService.comments">
+                <div class="single_argument">
+                    <div id="{{::comment.id + '_v' + (comment.edits.length-1)}}" class="argument" ng-class="{post_argument_wrap: comment.showEdit}">
+                        <!-- COMMENT HEADER -->
+                        <div class="argument_header">
+                            <div class="argumentator">
+                                <div class="table_cell">
+                                    <div ng-if="::!comment.creator.email" class="classic_dropdown borderless_dropdown">
+
+                                        <div class="dropdown_selection">
+                                            <div class="dropdown_text data_item bold">
+                                                {{::comment.creator.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div cos-dropdown ng-if="::comment.creator.email" class="classic_dropdown borderless_dropdown">
+
+                                        <div class="dropdown_selection">
+                                            <div class="dropdown_text data_item bold">
+                                                {{::comment.creator.name}}
+                                            </div>
+
+                                            <div class="arrow_holder">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="dropdown comment_creator_dropdown">
+                                            <!-- NO CATEGORY -->
+                                            <div class="dropdown_item">
+                                                <div class="item_name">
+                                                    <a ng-href="mailto:{::{comment.creator.email}}">{{::comment.creator.email}}</a>
+                                                </div>
+                                                <div class="item_name" ng-if="!!comment.creator.phoneNumber">{{::comment.creator.phoneNumber}}</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line_wrap">
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                            <div class="argument_header_widget">
+                                <div class="table_cell" ng-attr-title="{{::comment.createdAt | amDateFormat : 'L LT'}}">
+                                    {{::comment.createdAt | amTimeAgo}}
+                                </div>
+                            </div>
+                            <div ng-if="::$ctrl.TopicComment.isEdited(comment)" class="line_wrap">
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                            <div ng-if="::$ctrl.TopicComment.isEdited(comment)" class="argument_header_widget underline_link" ng-click="comment.showEdits = !comment.showEdits">
+                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS">
+                                    View previous versions
+                                </div>
+                            </div>
+                            <div class="line_wrap">
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                            <div class="table_cell">
+                                <div cos-dropdown class="classic_dropdown borderless_dropdown">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text data_item" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_SELECT_ACTIONS">
+                                            Actions
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <!-- NO CATEGORY -->
+                                        <div class="dropdown_item">
+                                            <div ng-if="::$ctrl.TopicComment.canEdit(comment)" class="item_name" ng-click="$ctrl.commentEditMode(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_EDIT">Edit</div>
+                                            <div ng-if="::$ctrl.TopicComment.canDelete(comment)" class="item_name" ng-click="$ctrl.doShowDeleteComment(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">Delete
+                                            </div>
+                                            <div class="item_name" ng-click="$ctrl.copyCommentLink(comment.id, (comment.edits.length-1), $event)"><span translate="LNK_DIRECT_LINK">link</span><input
+                                                class="comment_link_input" id="comment_link_input_{{comment.id + '_v'+(comment.edits.length-1)}}" value=""/></div>
+                                            <div class="item_name" ng-if="$ctrl.app.user.loggedIn" ng-click="$ctrl.doCommentReport(comment)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_REPORT">Report</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+                        <!-- END COMMENT HEADER -->
+                        <!-- EDIT COMMENT -->
+                        <comment-edit ng-if="comment.showEdit" comment="comment" topic-id="$ctrl.topicId"></comment-edit>
+                        <!-- END EDIT COMMENT -->
+                        <!-- COMMENT CONTENT -->
+                        <div class="argument_title">
+                            <span ng-if="::$ctrl.TopicComment.isVisible(comment) && !comment.showDeletedComment">{{::comment.subject}}</span>
+                        </div>
+
+                        <div class="argument_text_wrap" check-height ng-class="{overheight: offsetHeight > maxTextHeight, read_more: readMore}">
+                            <div ng-if="::$ctrl.TopicComment.isVisible(comment) && !comment.showDeletedComment" class="argument_text" ng-bind-html="::comment.text | markdown">Comment text</div>
+                            <div ng-if="!$ctrl.TopicComment.isVisible(comment) && !comment.showDeletedComment && comment.deletedBy.id === comment.creator.id" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY"
+                                 translate-values="{usersFullName: comment.deletedBy.name}">This comment has been deleted by {{::comment.deletedBy.name}}
+                            </div>
+                            <div ng-if="!$ctrl.TopicComment.isVisible(comment) && !comment.showDeletedComment && comment.deletedBy.id !== comment.creator.id" class="argument_text italic"
+                                 translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY_MODERATOR" translate-values="{usersFullName: comment.deletedBy.name}">This comment has been deleted by
+                                {{::comment.deletedBy.name}} (moderator)
+                            </div>
+                            <div class="argument_overlay"></div>
+                            <div class="blue_link read_more_link" ng-click="$parent.readMore = !$parent.readMore"
+                                 translate="{{($parent.readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_READ_MORE'}}">Read more
+                            </div>
+                        </div>
+                        <!-- END COMMENT CONTENT -->
+                        <!-- COMMENT DELETED -->
+                        <div class="argument_footer delete_reasons" ng-if="::comment.deletedAt">
+                            <div class="link_wrap">
+                                <div class="table_cell">
+                                    <div class="blue_link active_red" ng-click="comment.showDeleteReason = !comment.showDeleteReason" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_WHY">
+                                        Why?
+                                    </div>
+                                    <div class="active_red_triangle_wrap" ng-if="::comment.showDeleteReason">
+                                        <div class="active_red_triangle">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line_wrap">
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                            <div class="link_wrap">
+                                <div class="table_cell">
+                                    <div class="blue_link active_red" ng-click="comment.showDeletedComment = !comment.showDeletedComment"
+                                         translate="VIEWS.TOPICS_TOPICID.ARGUMENT_VIEW_ARGUMENT_ANYWAY">
+                                        View comment anyway
+                                    </div>
+                                    <div class="active_red_triangle_wrap" ng-if="::$ctrl.TopicComment.isVisible(comment) && !comment.showDeleteReason">
+                                        <div class="active_red_triangle">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+
+                        <div class="alert_argument" ng-if="comment.showDeleteReason" ng-click="comment.showDeleteReason = !comment.showDeleteReason">
+                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_FOUND_INAPPRIOPRIATE_BY" translate-values="{usersFullName: comment.deletedBy.name}">This comment was found inappriopriate by <b>{{::comment.deletedBy.name}}</b></span><span
+                            ng-if="comment.deletedReasonType || comment.deleteReasonText">:</span>
+                            <b ng-if="comment.deletedReasonType">{{('TXT_REPORT_TYPES_' + comment.deletedReasonType | uppercase) | translate}}</b><br>
+                            <b ng-if="comment.deletedReasonText" class="italic">{{::comment.deletedReasonText}}</b>
+                            <br>
+                            <br>
+                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT" translate-values="{codeOfConduct: $ctrl.app.config.moderation.codeOfConduct}">Read our <a
+                                class="underlined_link" href="">code of conduct</a> for more information</span>
+                        </div>
+                        <div class="alert_argument" ng-if="comment.deletedAt && $ctrl.TopicComment.isVisible(comment)">
+                            <span class="replys_reply italic"><b>{{::comment.subject}}</b></span><br>
+                            <span class="italic" ng-click="comment.showDeletedComment = !comment.showDeletedComment" ng-bind-html="::comment.text | markdown">Comment text</span>
+                        </div>
+                        <!-- END COMMENT DELETED-->
+                        <!-- COMMENT EDITS -->
+                        <div id="{{comment.id + '_v' + version}}" class="argument" ng-class="'is_' + edit.type" ng-if="comment.showEdits && $ctrl.TopicComment.isEdited(comment) && !$last"
+                             ng-repeat="(version, edit) in comment.edits">
+                            <div class="argument_header">
+                                <div class="argument_header_widget">
+                                    <div class="table_cell" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
+                                        {{edit.createdAt | amTimeAgo}}
+                                    </div>
+                                </div>
+                                <div class="line_wrap">
+                                    <div class="table_cell">
+                                        <div class="v_line"></div>
+                                    </div>
+                                </div>
+                                <div class="argument_header_widget">
+                                    <div class="table_cell">
+                                        <a href="#" ng-click="$ctrl.copyCommentLink(comment.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input"
+                                                                                                                                                                id="comment_link_input_{{comment.id + '_v'+version}}"
+                                                                                                                                                                value=""/></a>
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+                            <div class="argument_title" ng-if="::edit.subject">
+                                {{::edit.subject}}
+                            </div>
+                            <div class="argument_text_wrap">
+                                <div class="argument_text italic" ng-bind-html="edit.text"></div>
+                            </div>
+                        </div>
+                        <!-- END COMMENT EDITS -->
+                        <!-- COMMENT FOOTER -->
+                        <div class="argument_footer">
+                            <div ng-if="!comment.deletedAt">
+                                <div class="link_wrap">
+                                    <div class="table_cell">
+                                        <div class="blue_link black_text" ng-click="comment.showReply=!comment.showReply" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_REPLY">
+                                            Reply
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line_wrap" ng-if="$ctrl.app.user.loggedIn">
+                                    <div class="table_cell">
+                                        <div class="v_line"></div>
+                                    </div>
+                                </div>
+                                <div class="thumbs_up" ng-class="{'active': comment.votes.up.selected}" ng-if="$ctrl.app.user.loggedIn">
+                                    <div class="table_cell" ng-click="$ctrl.doCommentVote(comment, 1)">
+                                        <div class="sprite sprite-icon-thumb-up-gray">
+                                        </div>
+                                    </div>
+                                    <div class="table_cell comment_vote_count" ng-click="$ctrl.doShowVotersList(comment)">
+                                        {{comment.votes.up.count}}
+                                    </div>
+                                </div>
+                                <div class="thumbs_down" ng-class="{'active': comment.votes.down.selected}" ng-if="$ctrl.app.user.loggedIn">
+                                    <div class="table_cell" ng-click="$ctrl.doCommentVote(comment, -1)">
+                                        <div class="sprite sprite-icon-thumb-down-gray">
+                                        </div>
+                                    </div>
+                                    <div class="table_cell comment_vote_count" ng-click="$ctrl.doShowVotersList(comment)">
+                                        {{comment.votes.down.count}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="comment.replies.rows.length" class="line_wrap">
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                            <div class="link_wrap" ng-if="comment.replies.rows.length" ng-click="comment.showReplies = !comment.showReplies">
+                                <div class="table_cell">
+                                    <div ng-if="!comment.showReplies" class="blue_link bold" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_SHOW_REPLIES"
+                                         translate-values="{count: comment.replies.rows.length}">
+                                        Show Replies
+                                    </div>
+                                    <div ng-if="comment.showReplies" class="blue_link bold" translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_HIDE_REPLIES">
+                                        Hide Replies
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+                        <!-- END COMMENT FOOTER -->
+                    </div>
+
+                    <!-- REPLY TO COMMENT  -->
+                    <comment-reply ng-if="comment.showReply" comment="comment" topic-id="$ctrl.topicId"></comment-reply>
+                    <!-- END REPLY TO COMMENT -->
+                </div>
+
+                <!-- COMMENT REPLY -->
+                <div class="single_argument is_reply" ng-if="comment.showReplies" ng-repeat="reply in comment.replies.rows" ng-click="">
+                    <div id="{{reply.id + '_v' + (reply.edits.length-1)}}" class="argument" ng-class="{post_argument_wrap: reply.showEdit}">
+                        <!-- REPLY HEADER -->
+                        <div class="argument_header">
+                            <div class="reply_icon sprite sprite-icon-arrow-reply2x">
+                            </div>
+                            <div class="argumentator">
+                                <div class="table_cell">
+                                    <div cos-dropdown class="classic_dropdown borderless_dropdown">
+
+                                        <div class="dropdown_selection">
+                                            <div class="dropdown_text data_item bold">
+                                                {{reply.creator.name}}
+                                            </div>
+
+                                            <div class="arrow_holder" ng-if="reply.creator.email">
+                                                <div class="table_cell">
+                                                    <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="dropdown comment_creator_dropdown" ng-if="comment.creator.email">
+                                            <!-- NO CATEGORY -->
+                                            <div class="dropdown_item">
+                                                <div class="item_name">
+                                                    <a ng-href="mailto:{{comment.creator.email}}">{{reply.creator.email}}</a>
+                                                </div>
+                                                <div class="item_name" ng-if="!!(reply.creator.phoneNumber)">{{reply.creator.phoneNumber}}</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line_wrap">
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                            <div class="argument_header_widget">
+                                <div class="table_cell" ng-attr-title="{{::reply.createdAt | amDateFormat : 'L LT'}}">
+                                    {{::reply.createdAt | amTimeAgo}}
+                                </div>
+                            </div>
+                            <div ng-if="$ctrl.TopicComment.isEdited(reply)" class="line_wrap">
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                            <div ng-if="$ctrl.TopicComment.isEdited(reply)" class="argument_header_widget underline_link" ng-click="reply.showEdits = !reply.showEdits">
+                                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_VIEW_PREVIOUS_VERSIONS">
+                                    View previous versions
+                                </div>
+                            </div>
+                            <div class="line_wrap">
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                            <div class="table_cell">
+                                <div cos-dropdown class="classic_dropdown borderless_dropdown">
+
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text data_item" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_SELECT_ACTIONS">
+                                            Actions
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <!-- NO CATEGORY -->
+                                        <div class="dropdown_item">
+                                            <div ng-if="::$ctrl.TopicComment.canEdit(reply)" class="item_name" ng-click="$ctrl.commentEditMode(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_EDIT">Edit</div>
+                                            <div ng-if="::$ctrl.TopicComment.canDelete(reply)" class="item_name" ng-click="$ctrl.doShowDeleteComment(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_DELETE">Delete</div>
+                                            <div class="item_name" ng-click="$ctrl.copyCommentLink(reply.id, (reply.edits.length-1), $event)"><span translate="LNK_DIRECT_LINK">link</span><input
+                                                class="comment_link_input" id="comment_link_input_{{reply.id + '_v'+(reply.edits.length-1)}}" value=""/></div>
+                                            <div class="item_name" ng-if="$ctrl.app.user.loggedIn" ng-click="$ctrl.doCommentReport(reply)" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_LNK_REPORT">Report</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+                        <!-- END REPLY HEADER -->
+                        <!-- REPLY EDIT-->
+                        <reply-edit reply="reply" topic-id="$ctrl.topicId" ng-if="reply.showEdit"></reply-edit>
+                        <!--END REPLY EDIT-->
+                        <!-- REPLY EDITS -->
+                        <div id="{{reply.id + '_v' + version}}" class="argument" ng-if="reply.showEdits && $ctrl.TopicComment.isEdited(reply) && !$last" ng-repeat="(version, edit) in reply.edits">
+                            {{reply.showEdits}}
+                            <div class="argument_header" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
+                                <div class="argument_header_widget">
+                                    <div class="table_cell" ng-attr-title="{{edit.createdAt | amDateFormat : 'L LT'}}">
+                                        {{edit.createdAt | amTimeAgo}}
+                                    </div>
+                                </div>
+                                <div class="line_wrap">
+                                    <div class="table_cell">
+                                        <div class="v_line"></div>
+                                    </div>
+                                </div>
+                                <div class="argument_header_widget">
+                                    <div class="table_cell">
+                                        <a href="#" ng-click="$ctrl.copyCommentLink(reply.id, version, $event)"><span translate="LNK_DIRECT_LINK">link</span><input class="comment_link_input"
+                                                                                                                                                              id="comment_link_input_{{reply.id + '_v'+version}}"
+                                                                                                                                                              value=""/></a>
+                                    </div>
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+                            <div class="argument_text_wrap">
+                                <div class="argument_text italic" ng-bind-html="edit.text | markdown"></div>
+                            </div>
+                        </div>
+                        <!-- END REPLY EDITS -->
+                        <div class="argument_text_wrap" ng-class="{overheight:offsetHeight > maxTextHeight, read_more: readMore}" check-height>
+                            <a ng-if="!reply.deletedAt && $ctrl.TopicComment.isVisible(reply)" href="#" class="replys_reply"
+                               ui-sref="topics/view({topicId: topic.id, commentId: getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
+                               ng-click="$ctrl.goToParentComment(comment, reply.parent, $event)">@{{$ctrl.getParentAuthor(comment, reply.parent.id)}}</a>
+                            <div ng-if="!reply.deletedAt && $ctrl.TopicComment.isVisible(reply)" class="argument_text" ng-bind-html="reply.text | markdown"></div>
+
+                            <div ng-if="!$ctrl.TopicComment.isVisible(reply)" class="argument_text italic" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_HAS_BEEN_DELETED_BY"
+                            translate-values="{usersFullName: comment.deletedBy.name}">This comment has been deleted by {{reply.deletedBy.name}}</div>
+                            <div class="argument_overlay">
+                            </div>
+                            <div class="blue_link read_more_link " ng-click="$parent.readMore = !$parent.readMore"
+                                 translate="{{($parent.readMore) ? 'VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_REPLY_CLOSE' : 'VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_REPLY_READ_MORE'}}">
+                                Read more
+                            </div>
+                        </div>
+                        <!-- REPLY DELETED -->
+                        <div class="argument_footer delete_reasons" ng-if="reply.deletedAt">
+                            <div class="link_wrap">
+                                <div class="table_cell">
+                                    <div class="blue_link active_red" ng-click="reply.showDeleteReason = !reply.showDeleteReason" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_WHY">
+                                        Why?
+                                    </div>
+                                    <div class="active_red_triangle_wrap" ng-if="reply.showDeleteReason">
+                                        <div class="active_red_triangle">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line_wrap">
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                            <div class="link_wrap">
+                                <div class="table_cell">
+                                    <div class="blue_link active_red" ng-click="reply.showDeletedComment = !reply.showDeletedComment" translate="VIEWS.TOPICS_TOPICID.ARGUMENT_VIEW_REPLY_ANYWAY">
+                                        View comment anyway
+                                    </div>
+                                    <div class="active_red_triangle_wrap" ng-if="$ctrl.TopicComment.isVisible(reply) && !reply.showDeleteReason">
+                                        <div class="active_red_triangle">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+
+                        <div class="alert_argument" ng-if="reply.showDeleteReason" ng-click="reply.showDeleteReason = !reply.showDeleteReason">
+                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_REPLY_FOUND_INAPPRIOPRIATE_BY" translate-values="{usersFullName: reply.deletedBy.name}">This comment was found inappriopriate by <b>{{reply.deletedBy.name}}</b></span><span
+                            ng-if="reply.deletedReasonType || reply.deletedReasonText">:</span>
+                            <b ng-if="reply.deletedReasonType">::{{('TXT_REPORT_TYPES_' + ::reply.deletedReasonType | uppercase) | translate}}</b><br>
+                            <b class="italic" ng-if="reply.deletedReasonText">{{::reply.deletedReasonText}}</b><br>
+                            <br>
+                            <br>
+                            <span translate="VIEWS.TOPICS_TOPICID.ARGUMENT_READ_CODE_OF_CONDUCT">Read our <a class="underlined_link" href="">code of conduct</a> for more information</span>
+                        </div>
+                        <div class="alert_argument" ng-if="reply.deletedAt && $ctrl.TopicComment.isVisible(reply)">
+                            <span class="replys_reply" ui-sref="topics/view({topicId: topic.id, commentId: $ctrl.getCommentIdWithVersion(reply.parent.id, reply.parent.version)})"
+                                  ng-click="goToParentComment(comment, reply.parent, $event)">@{{$ctrl.getParentAuthor(comment, reply.parent.id)}}</span>
+                            <span class="italic" ng-click="reply.showDeletedComment = !reply.showDeletedComment">{{reply.text}}</span>
+                        </div>
+                        <!-- END REPLY DELETED -->
+                        <!-- REPLY FOOTER -->
+                        <div class="argument_footer reply_footer" ng-if="!reply.deletedAt">
+                            <div class="link_wrap">
+                                <div class="table_cell">
+                                    <div class="blue_link black_text" ng-click="reply.showReply = !reply.showReply"
+                                         translate="VIEWS.TOPICS_TOPICID.LNK_ARGUMENT_REPLY_REPLY">Reply
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line_wrap" ng-if="$ctrl.app.user.loggedIn">
+                                <div class="table_cell">
+                                    <div class="v_line"></div>
+                                </div>
+                            </div>
+                            <div class="thumbs_up" ng-class="{'active': reply.votes.up.selected}" ng-if="$ctrl.app.user.loggedIn">
+                                <div class="table_cell" ng-click="$ctrl.doCommentVote(reply, 1)">
+                                    <div class="sprite sprite-icon-thumb-up-gray">
+                                    </div>
+                                </div>
+                                <div class="table_cell comment_vote_count" ng-click="$ctrl.doShowVotersList(reply)">
+                                    {{reply.votes.up.count}}
+                                </div>
+                            </div>
+                            <div class="thumbs_down" ng-class="{'active': reply.votes.down.selected}" ng-if="$ctrl.app.user.loggedIn">
+                                <div class="table_cell" ng-click="$ctrl.doCommentVote(reply, -1)">
+                                    <div class="sprite sprite-icon-thumb-down-gray">
+                                    </div>
+                                </div>
+                                <div class="table_cell comment_vote_count" ng-click="$ctrl.doShowVotersList(reply)">
+                                    {{reply.votes.down.count}}
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </div>
+                        <!-- REPLY FOOTER -->
+                    </div>
+                    <!-- REPLY TO REPLY -->
+                    <comment-reply ng-if="reply.showReply" comment="reply" topic-id="$ctrl.topicId"></comment-reply>
+                </div>
+            </div>
+            <cos-pagination class="pagination" select="$ctrl.loadPage(page)" total-pages="$ctrl.TopicCommentService.totalPages" page="$ctrl.TopicCommentService.page"></cos-pagination>
+
+        </div>
+
+        <post-argument topic-id="$ctrl.topicId"></post-argument>
+
+    </div>
+
+</div>

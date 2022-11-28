@@ -1,0 +1,59 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="privacy_policy_lightbox confirm_lightbox">
+        <div id="lightbox_wrap">
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.PRIVACY_POLICY_HEADING">Terms of Use & Privacy Policy</div>
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+            <div class="lightbox_content">
+                <div class="content_text" translate="MODALS.PRIVACY_POLICY_DESCRIPTION">We changed our Terms of Use and Privacy Policy conditions. PLease read them through and accept or reject them. If you reject them, you will be logged out and returned to the homepage.</div>
+                <div class="policy_links">
+                    <div class="policy_link_wrap">
+                        <a class="policy_link" target="_blank" ng-href="{{$ctrl.app.config.legal.termsOfUse}}">
+                            <div class="section_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-bullet-arrow-blue2x"></div>
+                                </div>
+                            </div>
+                            <span translate="MODALS.PRIVACY_POLICY_LNK_TERMS_OF_USE">Terms of Use</span>
+                        </a>
+                    </div>
+                    <div class="policy_link_wrap">
+                        <a class="policy_link" target="_blank" ng-href="{{$ctrl.app.config.legal.privacyPolicy}}">
+                            <div class="section_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-bullet-arrow-blue2x"></div>
+                                </div>
+                            </div>
+                            <span translate="MODALS.PRIVACY_POLICY_LNK_PRIVACY_POLICY">Privacy Policy</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="lightbox_footer">
+                <div class="line lightest_line"></div>
+
+                <div class="lightbox_section">
+                    <div class="footer_button_wrap left">
+                        <div class="blue_button yes" ng-click="$ctrl.reject()" ng-disabled="myAccountForm.$invalid" class="red_button"
+                        translate="MODALS.PRIVACY_POLICY_BTN_REJECT" >Reject
+                        </div>
+                    </div>
+                    <div class="footer_button_wrap right">
+                        <div class="blue_button" ng-click="$ctrl.accept()" ng-disabled="myAccountForm.$invalid" class="blue_button"
+                        translate="MODALS.PRIVACY_POLICY_BTN_ACCEPT">Accept
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

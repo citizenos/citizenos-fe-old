@@ -1,0 +1,78 @@
+<div id="search_area_wrap">
+    <div class="logo_area" ng-click="!$ctrl.app.showSearchResults" ui-sref="home">
+        <div class="logo sprite sprite-x5-cos-logo-small2x">
+        </div>
+    </div>
+    <div id="donate_wrap" ng-if="!$ctrl.app.showSearchResults && !$parent.isVisible()">
+        <div class="donate_item" id="donate_icon"></div>
+        <div class="donate_item" id="donate_text" translate="DONATE_TXT">Help us keep the platform free</div>
+        <a class="donate_item" id="donate_button" target="_blank" href="{{$ctrl.app.config.links.donate[$ctrl.app.language] || $ctrl.app.config.links.donate[$ctrl.app.config.language.default]}}" translate="DONATE_BTN">Donate</a>
+    </div>
+    <typeahead class="auto-complete" items="$ctrl.searchResults.combined" term="$ctrl.form.searchInput" search="$ctrl.doSearch(term)" select-limit="3" enter-action="$ctrl.enterAction(item)"
+               select="$ctrl.goToView(item)" placeholder="{{'LAYOUTS.MAIN.PLACEHOLDER_SEARCH_TOPICS_USERS_GROUPS' | translate}}">
+
+        <div id="search_results_area">
+            <div id="m_search_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-search-b-2x"></div>
+                </div>
+            </div>
+            <div id="m_search_close" ng-click="$ctrl.app.showSearch = !$ctrl.app.showSearch; $ctrl.app.showSearchResults = false">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-closemenu-b-2x"></div>
+                </div>
+            </div>
+
+            <div id="search_icon">
+                <div class="table_cell">
+                    <div class="sprite sprite-x3-icon-topbar-earch2x"></div>
+                </div>
+            </div>
+
+            <div id="close_search_icon" ng-click="$ctrl.closeSearchArea()" ng-class="{hidden: !$ctrl.app.showSearchResults}">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-closemenu-b-2x"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="search_results_list" ng-if="$ctrl.app.showSearchResults && $parent.isVisible()">
+            <div ng-repeat="(context, results) in $ctrl.searchResults" ng-class="{last: $last}">
+                <div ng-repeat="(model, items) in results">
+                    <div class="search_cat" ng-if="!$ctrl.noResults && items.count">
+                        <div class="cat_wrap"><span translate="DEFAULT.SEARCH.HEADING_RESULTS_IN">Context search results</span> <b
+                            translate="{{'LBL_CONTEXT_' + context + '_' + model | uppercase}}"></b></div>
+                    </div>
+
+                    <div class="results_area" ng-if="!$ctrl.noResults && items.count">
+                        <div class="result_group">
+
+                            <div class="result_links" typeahead-item="row" typeahead-item-no-close="row.id === 'viewMore'" ng-repeat="(key, row) in items.rows">
+                                <div ng-if="row.id !== 'viewMore'" class="links_wrap">
+                                    <span>
+                                        <a ng-if="model ==='groups'" ng-click="$ctrl.goToView(row)" class="blue_link result_link"> {{row.name}}</a>
+                                        <a ng-if="model ==='topics'" ng-click="$ctrl.goToView(row)" class="blue_link result_link">{{row.title}}</a>
+                                    </span>
+                                </div>
+                                <div ng-if="row.id ==='viewMore'" class="more_results" translate="DEFAULT.SEARCH.LNK_VIEW_MORE_RESULTS">View more results
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="results_area" ng-if="$ctrl.noResults">
+                <div class="result_group">
+
+                    <div class="no_results">
+                        <b class="search_msgb" translate="DEFAULT.SEARCH.TXT_OOPS_NO_RESULTS">Oops, we couldn’t find any results matching your search :(</b>
+                        <br>
+                        <div class="search_msg" translate="DEFAULT.SEARCH.TXT_MAYBE_TYPO">Maybe you have a typo in your search?<br>We did find some things scattered throughout the CitizenOS platform,
+                            so feel free to check them out. We promise it will be worth your while!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </typeahead>
+</div>

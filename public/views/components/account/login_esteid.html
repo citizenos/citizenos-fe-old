@@ -1,0 +1,103 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.LOGIN_ESTEID_HEADING">Choose a log in method</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <div class="lightbox_content">
+
+                <form name="loginMobiilIdForm" novalidate>
+
+                    <div class="v_line lightest_line" ng-if="$ctrl.authMethodsAvailable.mobiilId && $ctrl.authMethodsAvailable.idCard"></div>
+
+                    <div ng-if="$ctrl.authMethodsAvailable.mobiilId" class="sign_in_section" ng-class="{'single_section': !$ctrl.authMethodsAvailable.idCard}">
+                        <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
+                        <div ng-if="$ctrl.isLoading && !$ctrl.challengeID" class="loader_wrap">
+                            <div class="loader"></div>
+                        </div>
+                        <div ng-if="!$ctrl.challengeID && !$ctrl.isLoading">
+                            <!-- Do not focus on mobile devices, otherwise scrolls past social login options and shows keyboard -->
+                            <input id="phone" name="phoneNumber" type="tel" ng-model="$ctrl.phoneNumber" placeholder="{{'MODALS.LOGIN_ESTEID_PLACEHOLDER_PHONE' | translate}}"
+                                   focus-if="{{$ctrl.app.wWidth > 1024}}"
+                                   ng-class="{'error_input': loginMobiilIdForm.phoneNumber.$error.pattern && loginMobiilIdForm.phoneNumber.$touched}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
+                            <label for="phone" class="error_label" ng-if="loginMobiilIdForm.phoneNumber.$error.pattern && loginMobiilIdForm.phoneNumber.$touched">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="MODALS.LOGIN_ESTEID_ERROR_PHONE">Invalid phone number</span>
+                                </div>
+                            </label>
+                            <input id="pid" name="pid" type="text" inputmode="numeric" ng-model="$ctrl.pid" placeholder="{{'MODALS.LOGIN_ESTEID_PLACEHOLDER_PID' | translate}}"
+                                   ng-class="{'error_input': loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched}" ng-pattern="/^[0-9]{11}$/" required>
+                            <label for="pid" class="error_label" ng-if="loginMobiilIdForm.pid.$error.pattern && loginMobiilIdForm.pid.$touched">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="MODALS.LOGIN_ESTEID_ERROR_PID">Invalid personal identification code</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div ng-if="$ctrl.challengeID">
+                            <div class="code" translate="MODALS.LOGIN_ESTEID_TXT_CONTROL_CODE" translate-values="{code: $ctrl.challengeID}">Control code: 1234</div>
+                            <div class="code_text" translate="MODALS.LOGIN_ESTEID_TXT_CHECK_CONTROL_CODE">Make sure control code matches with one in the phone screen and enter Mobile-ID PIN2.</div>
+                            <div class="loader_wrap">
+                                <div class="loader"></div>
+                            </div>
+                        </div>
+                        <button type="submit" ng-click="$ctrl.authMobiilId()" ng-if="$ctrl.app.wWidth <= 550" cos-disabled="loginMobiilIdForm.$invalid || $ctrl.isLoading || $ctrl.isLoadingIdCard"
+                                class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_AUTHENTICATE_MID">Log in with Mobiil-ID
+                        </button>
+                    </div>
+
+                    <div class="line_wrap">
+                        <div class="line lightest_line"></div>
+                    </div>
+
+                    <div ng-if="$ctrl.authMethodsAvailable.idCard" class="sign_in_section" ng-class="{'single_section': !$ctrl.authMethodsAvailable.mobiilId}">
+                        <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
+                        <div ng-if="!$ctrl.isLoadingIdCard" class="sprite_big sprite sprite-img-idkaart2x"></div>
+                        <div ng-if="$ctrl.isLoadingIdCard" class="loader_wrap id_card_loader">
+                            <div class="loader"></div>
+                        </div>
+                        <button ng-click="authIdCard()" ng-if="!$ctrl.isLoadingIdCard && $ctrl.app.wWidth <= 550" cos-disabled="$ctrl.isLoading || $ctrl.isLoadingIdCard" class="blue_button"
+                                translate="MODALS.LOGIN_ESTEID_BTN_AUTHENTICATE_ID">Log in with ID-Card
+                        </button>
+                    </div>
+
+                    <div class="clearer"></div>
+                    <div ng-if="$ctrl.authMethodsAvailable.mobiilId && $ctrl.app.wWidth > 550" class="sign_in_section" ng-class="{'single_section': !$ctrl.authMethodsAvailable.idCard}">
+                        <button ng-click="$ctrl.authMobiilId()" cos-disabled="loginMobiilIdForm.$invalid || $ctrl.isLoading || $ctrl.isLoadingIdCard" class="blue_button"
+                                ng-class="{margin_mobile_id: !app.config.features.authentication.idCard}"
+                                translate="MODALS.LOGIN_ESTEID_BTN_AUTHENTICATE_MID">Log in with Mobiil-ID
+                        </button>
+                    </div>
+
+                    <div ng-if="$ctrl.authMethodsAvailable.idCard && $ctrl.app.wWidth > 550" class="sign_in_section" ng-class="{'single_section': !$ctrl.authMethodsAvailable.mobiilId}">
+                        <button ng-click="$ctrl.authIdCard()" cos-disabled="$ctrl.isLoading || $ctrl.isLoadingIdCard" class="blue_button" translate="MODALS.LOGIN_ESTEID_BTN_AUTHENTICATE_ID">Log in with
+                            ID-Card
+                        </button>
+                    </div>
+
+                    <div class="clearer"></div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)"></div>
+
+</div>

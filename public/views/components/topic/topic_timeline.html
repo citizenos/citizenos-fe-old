@@ -1,0 +1,79 @@
+<div class="timeline print_never">
+
+    <div class="milestones_wrap">
+
+        <div class="milestones_section">
+            <div class="table_cell milestones_checkmark">
+                <div class="sprite sprite-check-timeline-gray2x">
+                </div>
+            </div>
+            <div class="table_cell">
+                <div class="bold" translate="VIEWS.TOPICS_TOPICID.BAR_MILESTONES" translate-values="{count: ($ctrl.status==$ctrl.STATUSES.voting ? 1 :  $ctrl.status==$ctrl.STATUSES.followUp ? 2: 0)}"> 0
+                    MILESTONES
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="table_cell">
+        <div class="background_line timeline_gray_background">
+        </div>
+
+        <div ng-if="$ctrl.isValidStatus(2)" class="progress_line bar_blue follow_up_line"
+             ng-class="{in_follow_up_line: $ctrl.STATUSES.followUp === $ctrl.status}">
+        </div>
+
+        <div ng-if="$ctrl.isValidStatus(3)" class="progress_line voting_line bar_green"
+             ng-class="{in_voting_line: $ctrl.STATUSES.voting === $ctrl.status}">
+        </div>
+
+        <div ng-if="$ctrl.isValidStatus(4)" class="progress_line pin_yellow_background progress_status_line"
+             ng-class="{in_progress_line: $ctrl.STATUSES.inProgress === $ctrl.status}">
+        </div>
+
+        <div class="days_left_wrap"
+             ng-class="{'pin_yellow_background days_left_in_progress': $ctrl.status === $ctrl.STATUSES.inProgress,
+                'bar_green days_left_voting': $ctrl.status === $ctrl.STATUSES.voting,
+                'bar_blue days_left_follow_up': $ctrl.status === $ctrl.STATUSES.followUp,
+                'timeline_gray_background days_left_closed': $ctrl.status === $ctrl.STATUSES.closed,
+             }">
+            <div class="table_cell">
+                {{'TXT_TOPIC_STATUS_' + $ctrl.status | uppercase | translate}}
+            </div>
+        </div>
+
+        <div class="checkmark">
+            <div class="table_cell">
+                <div class="sprite sprite-check-timeline-yellow-start2x">
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="$ctrl.isValidStatus(3)" class="checkmark checkmark_in_progress">
+            <div class="table_cell">
+                <div class="sprite sprite-check-timeline-yellow2x">
+                </div>
+            </div>
+            <div class="tooltip">
+                <span translate="VIEWS.TOPICS_TOPICID.BAR_TOOLTIP_PHASE">Phase:</span> <span class="bold" translate="VIEWS.TOPICS_TOPICID.BAR_TOOLTIP_IN_PROGRESS">In progress</span>
+            </div>
+        </div>
+
+        <div ng-if="$ctrl.isValidStatus(2)" class="checkmark checkmark_voting">
+            <div class="table_cell">
+                <div class="sprite sprite-check-timeline-green2x">
+                </div>
+            </div>
+            <div class="tooltip">
+                <span translate="VIEWS.TOPICS_TOPICID.BAR_TOOLTIP_PHASE">Phase:</span> <span class="bold" translate="VIEWS.TOPICS_TOPICID.BAR_TOOLTIP_VOTING">Voting</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="additional_info signing_deadline" ng-if="$ctrl.voteEndsAt">
+        <span translate="VIEWS.TOPICS_TOPICID.BAR_SIGNING_DEADLINE">Signing deadline</span> <span class="bold">{{$ctrl.voteEndsAt | amDateFormat:'L LT Z'}}</span>
+    </div>
+
+</div>

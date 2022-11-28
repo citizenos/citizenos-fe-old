@@ -1,0 +1,79 @@
+<div class="full_height">
+    <div id="topics_root">
+
+        <div class="v_line separator absolute_separator" ng-class="{hidden: ($ctrl.app.wWidth < 750)}"></div>
+
+        <div id="topics_wrap">
+
+            <!-- LEFT SIDE -->
+            <div class="topics_left" ng-class="{hidden: ($ctrl.app.wWidth <= 750 && (('my/groups/groupId' | isState) || ('my/topics/topicId' | isState)))}">
+
+                <div ng-if="$ctrl.filters" cos-dropdown class="classic_dropdown">
+
+                    <div class="dropdown_selection">
+                        <div class="dropdown_text" translate="{{$ctrl.filters.selected.name}}">
+                            Selected filter
+                        </div>
+
+                        <div class="arrow_holder">
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                <div class="v_line"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+
+                        <div class="dropdown_item" ng-repeat="item in $ctrl.filters.items">
+                            <div ng-if="item.children">
+                                <div class="item_category" translate="{{item.name}}">
+                                    Item category
+                                </div>
+                                <div class="item_names_wrap">
+                                    <div ng-repeat="child in item.children" class="item_name" ng-click="$ctrl.onSelect(child.id)" ng-class="child === $ctrl.filters.selected ? 'bold' : ''">
+                                        <span translate="{{child.name}}">Child name</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-if="!item.children">
+                                <div class="item_name" ng-click="$ctrl.onSelect(item.id)" ng-class="item === $ctrl.filters.selected ? 'bold' : ''" translate="{{item.name}}">
+                                    Item name
+                                </div>
+                            </div>
+
+                            <div class="clearer"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Topics -->
+                <my-menu-item  item="group" ng-repeat="group in $ctrl.GroupService.groups"></my-menu-item>
+                <my-menu-item  item="topic" ng-repeat="topic in $ctrl.TopicService.topics"></my-menu-item>
+
+                 <!-- No results -->
+                <div class="no_results table" ng-if="!$ctrl.TopicService.topics.length && !$ctrl.GroupService.groups.length">
+                    <!-- No Groups view -->
+                    <div class="v_align_cell">
+                        <div class="no_results_icon_wrap">
+                            <div class="sprite sprite-icon-no-results2x"></div>
+                        </div>
+                        <div class="title_area">
+                            <h3 translate="VIEWS.MY.NO_RESULTS_FOUND_TITLE">No results found</h3>
+                            <p translate="VIEWS.MY.NO_RESULTS_FOUND_DESCRIPTION">We can’t display results for what you’re searching. Maybe try another search?</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div ui-view></div>
+
+            <div class="clearer"></div>
+        </div>
+    </div>
+</div>

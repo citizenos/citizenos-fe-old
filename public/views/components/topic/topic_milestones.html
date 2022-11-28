@@ -1,0 +1,85 @@
+<div class="voting_platform_wrap create_a_milestone_wrap print_never">
+
+    <div class="vote_casting_header">
+        <div class="vote_casting_header_section">
+            <div class="table_cell bold" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_CREATE_A_MILESTONE">
+                Create a milestone
+            </div>
+        </div>
+        <div class="clearer"></div>
+    </div>
+
+    <div class="line lightest_line"></div>
+
+    <div class="create_a_milestone_content">
+        <div class="voting_platform_section">
+
+            <input id="create_milestone_title" ng-model="$ctrl.eventForm.subject" ng-class="{'error_input': $ctrl.eventForm.errors.subject}" translate
+                   translate-attr-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_SUBJECT" class="gray_borders" maxlength="{{$ctrl.maxLengthSubject}}" required>
+            <label for="create_milestone_title" class="error_label" ng-if="$ctrl.eventForm.errors.subject">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                    <span translate="{{$ctrl.eventForm.errors.subject}}">Subject error</span>
+                </div>
+            </label>
+
+            <textarea id="create_milestone_textarea" class="gray_borders" ng-class="{'error_input': $ctrl.eventForm.errors.text}" ng-model="$ctrl.eventForm.text" translate
+                      translate-attr-placeholder="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_PLACEHOLDER_TEXT" maxlength="{{$ctrl.maxLengthText}}" required></textarea>
+
+            <label for="create_milestone_textarea" class="error_label" ng-if="$ctrl.eventForm.errors.text">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                    <span translate="{{$ctrl.eventForm.errors.text}}">Text error</span>
+                </div>
+            </label>
+
+            <div class="blue_button">
+                <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_ADD_MILESTONE" ng-click="$ctrl.submitEvent()">
+                    ADD MILESTONE
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="milestones_in_descriptions_wrap" ng-if="('topics/view/followUp' | isState)">
+    <div class="milestone_description" ng-repeat="(key, event) in $ctrl.topicEvents">
+        <div class="milestone_description_header">
+            <div class="table_cell">
+                <div class="sprite sprite-check-timeline-blue2x"></div>
+            </div>
+            <div class="table_cell">
+                <div class="milestone_number" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONES_MILESTONE" translate-values="{number: $ctrl.topicEvents.length - $index}">2ND MILESTONE</div>
+            </div>
+            <div class="table_cell">
+                <div class="v_line"></div>
+            </div>
+            <div class="table_cell">
+                <div class="milestone_date">
+                    {{event.createdAt | amDateFormat: 'LLL'}}
+                </div>
+            </div>
+            <div class="table_cell" ng-if="$ctrl.Topic.canEdit($ctrl.topic)">
+                <div class="v_line"></div>
+            </div>
+            <div class="table_cell print_never" ng-if="$ctrl.Topic.canEdit($ctrl.topic)">
+                <div class="milestone_action">
+                    <span class="red_text blue_link" translate="VIEWS.TOPICS_TOPICID.ADD_MILESTONE_DELETE" ng-click="$ctrl.deleteEvent(event)">delete</span>
+                </div>
+            </div>
+        </div>
+        <div class="milestone_description_content">
+            <div class="milestone_description_title" ng-bind-html="event.subject">
+                This is what we will do in our second step of our 5-year plan
+            </div>
+            <div class="milestone_description_text" ng-bind-html="event.text | linky">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting, remaining essentially unchanged.
+            </div>
+        </div>
+    </div>
+</div>

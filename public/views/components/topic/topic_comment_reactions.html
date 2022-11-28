@@ -1,0 +1,74 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+
+    <div id="lightbox" class="wide_lightbox">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_COMMENT_REACTIONS_HEADING">Argument reactions</div>
+                </div>
+
+                <div id="lightbox_close" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell ngdialog-close">
+                        <div class="ngdialog-close sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+            </div>
+
+
+            <div class="line lightest_line"></div>
+            <!-- INVITE USERS -->
+            <div class="lightbox_content padding_bottom_zero">
+
+                <div class="lightbox_section user_list" ng-if="$ctrl.voteItems.count">
+
+                    <table >
+                        <tr ng-repeat="(memberKey, member) in $ctrl.voteItems.rows" ng-if="$ctrl.isOnPage(memberKey, $ctrl.page)">
+                            <td>
+                                <div class="profile_image_wrapper dark">
+                                    <!--div class="profile_moon sprite"></div-->
+                                    <div class="account_picture">
+                                        <img ng-if="member.imageUrl" src="{{member.imageUrl}}">
+                                        <div class="profile_image_filler">
+                                            <cos-initials class="table_cell" ng-model="member.name"></cos-initials>
+                                            <div class="profile_circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name_wrap">
+                                    <div class="reaction_name">
+                                        <div class="blue_link">{{member.name}}</div>
+                                        <div class="via">{{member.company}}</div>
+                                    </div>
+                                    <div class="reaction_wrap">
+                                        <div class="reaction sprite" ng-class="member.vote === 'up' ? 'sprite-icon-thumb-up-outline' : 'sprite-icon-thumb-down-outline'"></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td></td></tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="lightbox_footer" ng-if="$ctrl.totalPages > 1">
+                <div class="line lightest_line"></div>
+                <div class="row">
+                    <div class="table_cell">
+                        <cos-pagination class="pagination" select="$ctrl.loadPage(page)" total-pages="$ctrl.totalPages" page="$ctrl.page"></cos-pagination>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+            </div>
+
+            <div id="close_lightbox" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event)">
+            </div>
+
+</div>

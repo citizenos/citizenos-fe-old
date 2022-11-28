@@ -1,0 +1,71 @@
+<div id="socialMentions" class="social_mentions_container">
+
+    <div class="social_mentions_header">
+        <div class="social_mentions_description" translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_HEADING">Social mentions</div>
+        <div class="social_mentions_hashtag" ng-if="$ctrl.hashtag" ui-sref="topics/view/settings({topicId: $ctrl.topicId, tab: 'settings'})">
+            #{{$ctrl.hashtag}}
+        </div>
+        <div class="clearer"></div>
+        <div class="line lightest_line"></div>
+    </div>
+
+    <div class="social_mentions_wrap">
+        <div class="social_mentions_message_info" ng-if="!$ctrl.hashtag">
+            <span translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED">Sorry, we cannot show you the social mentions as there is no hashtag defined for this Topic. Users with editor permissions can add the hashtag to fetch social mentions.</span>
+            <div ng-if="$ctrl.Topic.canEdit($ctrl.app.topic)" class="blue_button" ui-sref="topics/view/settings({topicId: $ctrl.topicId, tab: 'settings'})"
+                 translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG">Add hashtag
+            </div>
+        </div>
+        <div class="social_mentions_message_info" ng-if="$ctrl.hashtag && !$ctrl.topicSocialMentions.length">
+            <span translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_NO_MENTIONS_FOUND">Sorry, no social mentions found on Twitter for the hashtag</span> <span
+            ng-class="{blue_link: $ctrl.Topic.canEdit($ctrl.app.topic)}" ui-sref="topics/view/settings({topicId: $ctrl.topicId, tab: 'settings'})"/>#{{$ctrl.hashtag}}</span>
+            <div ng-if="$ctrl.Topic.canEdit($ctrl.app.topic)" class="blue_button" ui-sref="topics/view/settings({topicId: $ctrl.topicId, tab: 'settings'})"
+                 translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_BTN_CHANGE_HASHTAG">Change hashtag
+            </div>
+        </div>
+        <div class="social_mention" ng-repeat="mention in $ctrl.topicSocialMentions">
+            <div class="social_mention_header">
+                <div class="social_mention_header_section">
+                    <div class="table_cell">
+                        <a ng-href="{{mention.creator.profileUrl}}"><img alt="{{mention.creator.name}}" ng-src="{{mention.creator.profilePictureUrl}}"></a>
+                    </div>
+                </div>
+                <div class="social_mention_header_section social_mention_opacity">
+                    <div class="table_cell">
+                        {{mention.creator.name}}
+                    </div>
+                </div>
+                <div class="social_mention_header_section">
+                    <div class="table_cell">
+                        <div class="v_line"></div>
+                    </div>
+                </div>
+                <div class="social_mention_header_section social_mention_opacity">
+                    <div class="table_cell">
+                        {{mention.createdAt | amDateFormat : 'L LT'}}
+                    </div>
+                </div>
+                <div class="clearer mobile_clearer"></div>
+                <div class="social_channel">
+                    <div class="social_mention_header_section social_mention_icon">
+                        <div class="table_cell">
+                            <div class="sprite sprite-icon-social-twitter2x">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social_mention_header_section social_mention_opacity">
+                        <div class="table_cell">
+                            <span translate="VIEWS.TOPICS_TOPICID.TAB_SOCIAL_MENTIONS_POSTED_VIA">Posted via</span><span
+                            class="social_mention_channel">{{mention.sourceId}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearer"></div>
+            </div>
+            <div class="social_mention_text" ng-bind-html="mention.text | linky | wrapWithSpan: '#' + $ctrl.hashtag :'blue_link'">
+            </div>
+        </div>
+
+    </div>
+
+</div>

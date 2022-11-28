@@ -1,0 +1,96 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="id_signing wide_lightbox with_title_description">
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_HEADING">Choose a signing method</div>
+                    <div class="title_description">{{$ctrl.topic.title}}</div>
+                </div>
+
+                <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell">
+                        <div class="sprite sprite-btn-popup-close2x">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div class="voting_tag_padding">
+                    <span translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_TXT_VOTING_FOR">YOU’RE VOTING:</span>
+                    <div class="voting_tag" ng-repeat="option in $ctrl.TopicVoteService.options">
+                        <div class="table_cell" >
+                            <span class="bold" translate="{{'VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase}}" translate-default="{{option.value | linky}}"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <div class="lightbox_content">
+
+                <div class="v_line lightest_line"></div>
+
+                <div class="sign_in_section">
+                    <form name="formMobileSign" novalidate>
+                        <div class="sprite_big sprite sprite-mobiil-i-d2x"></div>
+                        <input ng-if="!$ctrl.TopicVoteService.isLoading" id="phone" name="phoneNumber" ng-class="{error_input: formMobileSign.phoneNumber.$error.pattern && formMobileSign.phoneNumber.$touched}" ng-model="$ctrl.TopicVoteService.phoneNumber" placeholder="{{'MODALS.TOPIC_VOTE_SIGN_ESTEID_PLACEHOLDER_PHONE' | translate}}" focus-if="{{$ctrl.app.wWidth > 1024}}" ng-pattern="/^\+?[0-9\s-]{7,}$/" required>
+                        <label ng-if="formMobileSign.phoneNumber.$error.pattern && formMobileSign.phoneNumber.$touched" for="phone" class="error_label" >
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <span translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_ERROR_PHONE">Invalid phone number</span>
+                            </div>
+                        </label>
+                        <input ng-if="!$ctrl.isLoading" ng-model="$ctrl.TopicVoteService.pid" name="pid" type="text" inputmode="numeric" ng-class="{error_input: formMobileSign.pid.$error.pattern && formMobileSign.pid.$touched}" placeholder="{{'MODALS.TOPIC_VOTE_SIGN_ESTEID_PLACEHOLDER_PID' | translate}}" ng-pattern="/^[0-9]{11}$/" required>
+                        <label ng-if="formMobileSign.pid.$error.pattern && formMobileSign.pid.$touched" for="phone" class="error_label" >
+                            <div class="table_cell">
+                                <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                <span translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_ERROR_PID">Invalid PID number</span>
+                            </div>
+                        </label>
+                        <div ng-if="$ctrl.TopicVoteService.isLoading && $ctrl.TopicVoteService.challengeID" class="code" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_TXT_CONTROL_CODE" translate-values="{code: $ctrl.TopicVoteService.challengeID}">Kontrollkood: 1234</div>
+                        <div ng-if="$ctrl.TopicVoteService.isLoading && $ctrl.TopicVoteService.challengeID" class="code_text" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_TXT_CHECK_CONTROL_CODE">Please enter the PIN in your mobile phone...</div>
+                        <div ng-if="$ctrl.TopicVoteService.isLoading"  class="loader_wrap">
+                            <div class="loader"></div>
+                        </div>
+                        <button ng-if="$ctrl.app.wWidth <= 550" class="blue_button" ng-click="$ctrl.TopicVoteService.doSignWithMobile()" cos-disabled="formMobileSign.$invalid || $ctrl.isLoading || $ctrl.isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_BTN_SIGN_MID">Sign with Mobiil-ID</button>
+                    </form>
+                </div>
+
+                <div class="v_line lightest_line"></div>
+
+                <div class="line_wrap">
+                    <div class="line lightest_line"></div>
+                </div>
+
+                <div class="sign_in_section">
+                    <div class="sprite_big sprite sprite-i-d-kaart2x"></div>
+                    <div class="sprite_big sprite sprite-img-idkaart2x"></div>
+                    <button ng-if="$ctrl.app.wWidth <= 550" class="blue_button a" cos-disabled="$ctrl.TopicVoteService.isLoadingIdCard" ng-click="$ctrl.TopicVoteService.doSignWithCard()" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_BTN_SIGN_CARD">Sign with ID-Card</button>
+                </div>
+
+                <div class="clearer"></div>
+
+                <div ng-if="$ctrl.app.wWidth > 550" class="sign_in_section">
+                    <button class="blue_button" ng-click="$ctrl.TopicVoteService.doSignWithMobile()" cos-disabled="formMobileSign.$invalid || $ctrl.isLoading || isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_BTN_SIGN_MID">Sign with Mobiil-ID</button>
+                </div>
+
+                <div ng-if="$ctrl.app.wWidth > 550" class="sign_in_section">
+                    <button class="blue_button" cos-disabled="$ctrl.TopicVoteService.isLoadingIdCard || $ctrl.TopicVoteService.isLoading" ng-click="$ctrl.TopicVoteService.doSignWithCard()" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_BTN_SIGN_CARD">Sign with ID-Card</button>
+                </div>
+
+                <div class="clearer"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)"></div>
+
+</div>

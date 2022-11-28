@@ -1,0 +1,39 @@
+<div class="tabs_wrap_wrap print_never">
+
+    <div class="tabs_wrap">
+        <div class="tabs_visible_area">
+            <div ng-if="$ctrl.trainPosition != 0 && $ctrl.tabsTrainWidth > $ctrl.tabsVisibleAreaWidth && $ctrl.app.wWidth > 1024" class="arrow_btn" ng-click="moveLeft()">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-arrow-topic-tab2x"></div>
+                </div>
+            </div>
+            <div ng-if="$ctrl.trainPosition >= -$ctrl.tabsTrainWidth+$ctrl.tabsVisibleAreaWidth && $ctrl.app.wWidth > 1024" class="arrow_btn right" ng-click="moveRight()">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-arrow-right-topic-tab2x"></div>
+                </div>
+            </div>
+            <div class="tabs_rails">
+                <div class="tabs_train" slide-controller identifier="tabsTrain" dimensions>
+                    <div class="tab" ui-sref="topics/view({topicId: $ctrl.topicId, commentId: null})" ui-sref-opts="{reload: true}" ng-class="{selected: ('topics/view' | isState)}"
+                         dimensions>
+                        <div ng-if="!app.editMode" class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VIEW">View</div>
+                        <div ng-if="app.editMode" class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_EDIT">EDIT</div>
+                    </div>
+                    <div ng-if="$ctrl.voteId" class="tab" ui-sref="topics/view/votes/view({topicId: $ctrl.topicId, voteId:$ctrl.voteId, commentId: null})"
+                         ui-sref-opts="{reload: true}" ng-class="{selected: ('topics/view/votes/view' | isState)}" dimensions>
+                        <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_VOTE">Vote</div>
+                    </div>
+                    <div ng-if="[$ctrl.STATUSES.closed, $ctrl.STATUSES.followUp].indexOf($ctrl.status) > -1" class="tab" ui-sref="topics/view/followUp({topicId: $ctrl.topicId, commentId: null})"
+                         ui-sref-opts="{reload: true}" ng-class="{selected: ('topics/view/followUp' | isState)}" dimensions>
+                        <div class="table_cell" translate="VIEWS.TOPICS_TOPICID.TAB_FOLLOW_UP">Follow up</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fake_cell"></div>
+
+    <div class="line lightest_line"></div>
+
+
+</div>

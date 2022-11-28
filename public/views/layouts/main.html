@@ -1,11 +1,10 @@
 <!-- MOBILE HEADER NAV -->
-<div id="mobile_header" ng-if="wWidth <= 1024">
-    <div ng-include="'views/default/nav_mobile.html'"></div>
+<div id="mobile_header" ng-if="app.wWidth <= 1024">
+    <nav-mobile></nav-mobile>
 </div>
 
 <!-- NAV -->
 <nav ng-class="app.showNav ? 'nav_is_open' : ''" ng-click="app.showSearchResults = false" ng-swipe-right="app.showNav = false">
-    <div ng-include="'views/default/nav.html'"></div>
 </nav>
 
 <!-- CONTENT -->
@@ -16,8 +15,8 @@
 
         <div id="content" ng-class="!displaySearch() ? 'content_no_padding' : ''">
             <!-- SEARCH AREA -->
-            <div id="search_area" ng-if="wWidth > 1024 && displaySearch()">
-                <div ng-include="'views/default/search.html'"></div>
+            <div id="search_area" ng-if="app.wWidth > 1024 && displaySearch()">
+                <search></search>
             </div>
             <div id="content_cell">
                 <!-- CLOSE SEARCH AREA -->

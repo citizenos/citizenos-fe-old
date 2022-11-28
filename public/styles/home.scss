@@ -126,6 +126,8 @@
             .bar_select {
                 padding: 13px;
                 cursor: pointer;
+                background: none;
+                border: none;
 
                 .select_text {
                     z-index: 2;
@@ -145,6 +147,11 @@
                 padding: 10px;
                 cursor: pointer;
                 border-radius: 4px;
+                .bar_select {
+                    background:none;
+                    border:none;
+                    padding: 0;
+                }
 
                 &:hover {
                     background: vars.$white;
@@ -382,6 +389,7 @@
             background: vars.$category_varia;
             color: vars.$black;
             transition: transform .1s;
+            cursor: pointer;
 
             .topic_wrap {
                 padding: 19px 20px 0 20px;

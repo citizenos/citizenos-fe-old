@@ -9,7 +9,7 @@
                     <div class="title" translate="MODALS.TOPIC_MEMBER_GROUP_DELETE_CONFIRM_HEADING">Remove group</div>
                 </div>
 
-                <div id="lightbox_close" ng-click="closeThisDialog()">
+                <div id="lightbox_close" ng-click="closeThisDialog($event)">
                     <div class="table_cell">
                         <div class="sprite sprite-btn-popup-close2x">
                         </div>
@@ -23,9 +23,7 @@
                     <div class="table">
                         <div class="profile_image_cell">
                             <div class="group_circle big" ng-if="!group.imageUrl">
-                                <div class="table_cell" cos-initials="ngDialogData.group.name | limitTo: 1">
-                                    G
-                                </div>
+                                <cos-initials class="table_cell" ng-model="ngDialogData.group.name" initial-limit="1"></cos-initials>
                             </div>
                             <img ng-if="group.imageUrl" ng-src="group.imageUrl">{{group.name}}
                         </div>
@@ -47,7 +45,7 @@
                     <span translate="MODALS.TOPIC_MEMBER_GROUP_DELETE_CONFIRM_TXT_ARE_YOU_SURE">Are you sure you want to remove this group?</span>
                     <div class="yes_no_buttons">
                         <div class="table_cell">
-                            <div class="blue_button no" ng-click="closeThisDialog()" translate="MODALS.TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_NO">NO</div>
+                            <div class="blue_button no" ng-click="closeThisDialog($event)" translate="MODALS.TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_NO">NO</div>
                         </div>
                         <div class="table_cell">
                             <div class="blue_button yes" ng-click="confirm()" translate="MODALS.TOPIC_MEMBER_GROUP_DELETE_CONFIRM_BTN_YES">YES, REMOVE</div>
@@ -59,6 +57,6 @@
         </div>
     </div>
 
-    <div id="close_lightbox" ng-click="closeThisDialog()"></div>
+    <div id="close_lightbox" ng-click="closeThisDialog($event)"></div>
 
 </div>

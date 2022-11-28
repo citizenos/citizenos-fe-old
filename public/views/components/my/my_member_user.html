@@ -1,0 +1,59 @@
+<div class="pretend_td">
+    <div class="profile_image_wrapper dark">
+        <div class="account_picture">
+            <img ng-if="$ctrl.member.imageUrl" ng-src="{{$ctrl.member.imageUrl}}">
+            <div ng-if="!$ctrl.member.imageUrl" class="profile_image_filler">
+                <cos-initials class="table_cell" ng-model="$ctrl.member.name"></cos-initials>
+                <div class="profile_circle"></div>
+            </div>
+        </div>
+    </div>
+    <div class="name_wrap">
+        <div class="table_cell">
+            <div ng-bind="$ctrl.member.name">John Smith</div>
+            <div class="via">
+                {{$ctrl.member.email}} {{$ctrl.member.phoneNumber}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pretend_td" ng-if="$ctrl.isVisibleField('lastActivity')">
+    <div class="pretend_table_mobile_text mobile_label" translate="VIEWS.PUBLIC_GROUP.LNK_LAST_ACTIVITY">Latest activity</div>
+    <div ng-bind="$ctrl.member.latestActivity | amDateFormat : 'L LT'">12.02.2015 21:40</div>
+</div>
+<div class="pretend_td" ng-if="$ctrl.isVisibleField('level')">
+    <div class="pretend_table_mobile_text mobile_label" translate="VIEWS.PUBLIC_GROUP.LNK_ROLE">Level</div>
+    <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.canUpdate()">
+        <div class="dropdown_selection">
+            <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + $ctrl.member.level | uppercase | translate}}</div>
+
+            <div class="arrow_holder">
+                <div class="table_cell">
+                    <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                    <div class="v_line"></div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown" ng-if="$ctrl.canUpdate()">
+            <div class="dropdown_item" ng-repeat="(key, level) in $ctrl.GroupMemberUser.LEVELS">
+                <div class="item_name" ng-click="$ctrl.doUpdateMemberUser(level)">{{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}</div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!$ctrl.canUpdate() ">
+        <span class="user_level_text">{{'TXT_TOPIC_LEVELS_' + $ctrl.member.level | uppercase | translate}}</span>
+    </div>
+</div>
+<div class="pretend_td recycle_bin_wrap" ng-if="$ctrl.canUpdate() && $ctrl.isVisibleField('remove')">
+    <div class="pretend_table_mobile_text mobile_label" translate="VIEWS.PUBLIC_GROUP.LBL_REMOVE">Level</div>
+    <div class="btn_wrap recycle_bin">
+        <div class="btn" ng-click="$ctrl.doDeleteMemberUser($ctrl.member)">
+            <div class="table_cell">
+                <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                <div class="sprite mobile_fix sprite-mytopics-icon-deletetopic2x"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox">
+    <div id="lightbox" class="wide_lightbox with_title_description">
+        <div id="lightbox_wrap">
+            <form name="signUpForm">
+                <div id="lightbox_header">
+
+                    <div ng-if="!isInviteFlowSignUp" id="lightbox_header_text">
+                        <div class="title" translate="MODALS.SIGN_UP_HEADING">Register</div>
+                        <div class="title_description_register" translate="MODALS.SIGN_UP_HEADING_DESCRIPTION">Register a free account now to get access to Citizen OS: the platform for asynchronous meetings & citizen participation.</div>
+                    </div>
+
+                    <div ng-if="isInviteFlowSignUp" id="lightbox_header_text">
+                        <div class="title" translate="MODALS.SIGN_UP_INVITE_FLOW_HEADING">Complete your account</div>
+                        <div class="title_description_register" translate="MODALS.SIGN_UP_INVITE_FLOW_HEADING_DESCRIPTION">Complete a free account now to get access to Citizen OS: the platform for asynchronous meetings & citizen participation.</div>
+                    </div>
+
+                    <div id="lightbox_close" ng-click="$ctrl.app.closeThisDialog($event)">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line lightest_line"></div>
+                </div>
+
+                <div class="lightbox_content">
+                    <div id="sign_up_lightbox">
+                        <div class="lightbox_section">
+                            <input id="name" ng-model="$ctrl.form.name" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_NAME' | translate}}" focus-if="{{$ctrl.app.wWidth > 1024}}" ng-class="{'error_input': $ctrl.errors.name}"
+                                    maxlength="255" required>
+                            <label for="name" class="error_label" ng-if="$ctrl.errors.name">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{$ctrl.errors.name}}"></span>
+                                </div>
+                            </label>
+                            <input id="email" ng-model="$ctrl.form.email" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_EMAIL' | translate}}" ng-class="{'error_input': $ctrl.errors.email}" maxlength="254" required>
+                            <label for="email" class="error_label" ng-if="$ctrl.errors.email">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{$ctrl.errors.email}}"></span>
+                                </div>
+                            </label>
+                            <input id="company" ng-model="$ctrl.form.company" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_COMPANY' | translate}}" ng-class="{'error_input': $ctrl.errors.company}" maxlength="255">
+                            <label for="company" class="error_label" ng-if="$ctrl.errors.company">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{$ctrl.errors.company}}"></span>
+                                </div>
+                            </label>
+                            <input id="password" ng-model="$ctrl.form.password" type="password" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_PASSWORD' | translate}}" ng-class="{'error_input': $ctrl.errors.password}" maxlength="64" required>
+                            <input id="password_confirm" ng-model="$ctrl.form.passwordConfirm" type="password" placeholder="{{'MODALS.SIGN_UP_PLACEHOLDER_PASSWORD_CONFIRM' | translate}}" ng-class="{'error_input': $ctrl.errors.password}" maxlength="64" required>
+                            <label for="password_confirm" class="error_label" ng-if="$ctrl.errors.password">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{$ctrl.errors.password}}"></span>
+                                </div>
+                            </label>
+                            <div class="settings_section">
+                                <div class="settings_cell">
+                                    <div class="setting_title" translate="MODALS.SIGN_UP_LBL_TERMS_AND_CONDITIONS">Terms of Use & Privacy Policy</div>
+                                    <div class="setting_description" translate="MODALS.SIGN_UP_LBL_TERMS_AND_CONDITIONS_DESCRIPTION">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
+                                    <div>
+                                        <div class="policy_links">
+                                            <div class="policy_link_wrap">
+                                                <a class="policy_link" target="_blank" ng-href="{{$ctrl.app.config.legal.termsOfUse}}">
+                                                    <div class="section_icon">
+                                                        <div class="table_cell">
+                                                            <div class="sprite sprite-bullet-arrow-blue2x"></div>
+                                                        </div>
+                                                    </div>
+                                                    <span translate="MODALS.PRIVACY_POLICY_LNK_TERMS_OF_USE">Terms of Use</span>
+                                                </a>
+                                            </div>
+                                            <div class="policy_link_wrap">
+                                                <a class="policy_link" target="_blank" ng-href="{{$ctrl.app.config.legal.privacyPolicy}}">
+                                                    <div class="section_icon">
+                                                        <div class="table_cell">
+                                                            <div class="sprite sprite-bullet-arrow-blue2x"></div>
+                                                        </div>
+                                                    </div>
+                                                    <span translate="MODALS.PRIVACY_POLICY_LNK_PRIVACY_POLICY">Privacy Policy</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="settings_cell">
+                                    <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                            model="$ctrl.agreeToTerms"></cos-toggle>
+                                </div>
+                            </div>
+                            <label class="error_label" ng-if="$ctrl.errors.terms && !$ctrl.agreeToTerms">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-inputfield-error2x"></div>
+                                    <span translate="{{$ctrl.errors.terms}}"></span>
+                                </div>
+                            </label>
+
+                            <div class="settings_section">
+                                <div class="settings_cell">
+                                    <div class="setting_title" translate="MODALS.SIGN_UP_LBL_SHOW_IN_SEARCH">Make your topic private</div>
+                                    <div class="setting_description" translate="MODALS.SIGN_UP_LBL_SHOW_IN_SEARCH_DESCRIPTION">ONLY PEOPLE YOU INVITE WILL BE ABLE TO JOIN THE TOPIC</div>
+                                </div>
+
+                                <div class="settings_cell">
+                                    <cos-toggle cos-toggle-text-on="'TOGGLE_ON' | translate" cos-toggle-text-off="'TOGGLE_OFF' | translate"
+                                            model="$ctrl.form.preferences.showInSearch"></cos-toggle>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lightbox_footer login_footer">
+                    <div class="line lightest_line"></div>
+                    <div class="lightbox_section">
+                        <div class="footer_button_wrap"></div>
+                        <div class="footer_button_wrap right">
+                            <a class="footer_link" ui-sref="account/login" translate="MODALS.SIGN_UP_HAVE_AN_ACCOUNT" >Have an account? Log in now</a>
+                            <button type="submit" ng-click="$ctrl.doSignUp()" ng-disabled="signUpForm.$invalid" class="blue_button login_button" translate="MODALS.SIGN_UP_BTN_SAVE">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="close_lightbox" ng-click="$ctrl.app.closeThisDialog($event)">
+    </div>
+
+</div>

@@ -116,6 +116,13 @@
         font-size: 13px;
         box-sizing: border-box;
         padding: 6px 10px;
+        border: solid 1px vars.$lightest_gray;
+        border-radius: 4px;
+    }
+
+    input[type=radio] {
+        width: 20px;
+        height: 20px;
     }
 
     button {
@@ -144,6 +151,29 @@
                 text-decoration: underline;
             }
         }
+    }
+
+
+    .policy_links {
+        margin-top: 20px;
+        color: vars.$dark_blue;
+
+        .policy_link_wrap {
+            padding-bottom: 10px;
+
+            .policy_link {
+                padding: 2px 0 0 0;
+                color: vars.$dark_blue;
+            }
+        }
+    }
+
+    .section_icon {
+        width: 21px;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 7px;
     }
 
     table {
@@ -954,29 +984,6 @@
 
                 .lightbox_section {
                     padding: 0 20px;
-                }
-
-                .policy_links {
-                    margin-top: 20px;
-                    color: vars.$dark_blue;
-
-                    .policy_link_wrap {
-                        padding-bottom: 10px;
-
-                        .policy_link {
-                            padding: 2px 0 0 0;
-                            color: vars.$dark_blue;
-                        }
-                    }
-                }
-
-                .section_icon {
-                    width: 21px;
-                    overflow: hidden;
-                    height: 28px;
-                    display: table;
-                    float: left;
-                    margin-right: 7px;
                 }
             }
 
@@ -1812,6 +1819,46 @@
                 font-size: 14px;
                 overflow: hidden;
 
+                .feedback_icon_wrap {
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-bottom: 32px;
+                    width: 74px;
+                    height: 74px;
+
+                    .feedback_icon_circle {
+                        width: 74px;
+                        height: 74px;
+                        background-color: vars.$deep_sky_blue;
+                        border-radius: 74px;
+
+                        .icon_checkmark_white {
+                            position: relative;
+                            margin-left: auto;
+                            margin-right: auto;
+                            top: 18px;
+                        }
+                    }
+                }
+
+                .feedback_submitted_title {
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 24px;
+                    text-align: center;
+                    margin-bottom: 16px;
+                }
+
+                .feedback_info_text {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 24px;
+                }
+
+                .feedback_info_textarea {
+                    min-height: 160px;
+                }
+
                 @include mixins_n_extends.mobile {
                     border-radius: 0
                 }
@@ -2151,7 +2198,6 @@
         }
 
         .lightbox_section {
-            max-height: 430px;
             padding-top: 20px !important;
             padding-bottom: 20px !important;
             overflow-y: visible;
@@ -2260,6 +2306,63 @@
                     input, .classic_dropdown {
                         float: right;
                         width: 180px;
+
+                        &.reminder_dropdown {
+                            float: left;
+                            margin-top: 10px;
+                            width: 100%;
+                        }
+                    }
+
+                    input[type=radio] {
+                        position: relative;
+                        display: block;
+                        top: 0;
+                        left: 0;
+                        height: 20px;
+                        width: 20px;
+                        background-color: vars.$white;
+                        border: solid 1px vars.$lightest_gray;
+                        border-radius: 50%;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            display: none;
+                            top: 5px;
+                            left: 5px;
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                            background: vars.$aqua_marine_border;
+                        }
+                    }
+
+                    .radio_input_wrap {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-top: 10px;
+                        margin-right: 64px;
+
+                        input {
+                            display: inline-block;
+                            width: 20px;
+                            height: 20px;
+                            margin: 0 8px 0 0;
+                            padding: 0;
+                            float: none;
+                            vertical-align: middle;
+
+                            &:checked {
+                                border: 6px solid vars.$deep_sky_blue;
+                            }
+                        }
+
+                        label {
+                            display: inline-block;
+                            vertical-align: middle;
+                            text-transform: capitalize;
+                        }
                     }
 
                     .checkcontainer {
@@ -2456,7 +2559,6 @@
                     position: relative;
 
                     .settings_cell {
-
                         &:first-child {
                             width: 70%;
 
@@ -2478,6 +2580,13 @@
                                 float: left;
                             }
 
+                            .image_item input {
+                                position: absolute;
+                                z-index: -1;
+                                width: 1px;
+                                height: 1px;
+                            }
+
                             @include mixins_n_extends.mobile {
                                 width: 100%;
                                 padding-bottom: 14px;
@@ -2485,21 +2594,48 @@
                                     padding-right: 90px;
                                     text-align: center;
                                 }
+
                                 .gray_button {
                                     float: none;
                                     width: 100%;
                                 }
+
                                 .blue_link {
                                     float: none;
                                     margin: 15px 0 0;
                                 }
+
+                                .pink_button {
+                                    float: none;
+                                    width: 100%;
+                                    margin-left: 0;
+                                    margin-top: 10px;
+                                }
                             }
                         }
 
-                        img {
+                        &.profile_image_wrapper {
                             width: 80px;
                             height: 80px;
+                            margin-right: 0px;
                             float: right;
+
+                            .account_picture {
+                                width: 80px;
+                                height: 80px;
+
+                                @include mixins_n_extends.mobile {
+                                    width: 70px;
+                                    height: 70px;
+                                    float: right;
+                                }
+
+                                img {
+                                    width: 80px;
+                                    height: 80px;
+                                    float: right;
+                                }
+                            }
                         }
 
                         &:last-child {
