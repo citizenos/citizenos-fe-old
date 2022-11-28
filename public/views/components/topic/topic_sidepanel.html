@@ -45,7 +45,7 @@
         <div ui-sref="topics/view/files" ng-if="$ctrl.Topic.canEdit($ctrl.topic)" class="blue_link" translate="VIEWS.TOPICS_TOPICID.LNK_ADD_MANAGE_FILES">Add/manage files</div>
     </div>
 </div>
-<div class="feedback_btn_wrap">
+<div class="feedback_btn_wrap" ng-if="$ctrl.app.config.feedbackForm">
     <button class="feedback_btn" ng-click="$ctrl.openFeedback()">
         <div class="icon_left icon_feedback_btn"></div>
         <div class="btn_text" translate="VIEWS.TOPICS_TOPICID.BTN_FEEDBACK_OPEN"></div>
