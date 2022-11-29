@@ -202,6 +202,7 @@ let topicInvite = {
             if (validator.isEmail(email.trim())) {
                 if (!find(this.members, ['userId', email])) {
                     this.addTopicMemberUser({
+                        id: email,
                         userId: email,
                         name: email,
                         level: this.groupLevel
