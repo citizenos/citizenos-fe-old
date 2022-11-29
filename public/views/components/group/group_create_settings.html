@@ -82,15 +82,15 @@
                             <div class="button_holder">
                                 <cos-file-upload id="group_image_upload" class="image_item" file-item="$ctrl.imageFile"></cos-file-upload>
                                 <div class="gray_button" ng-click="$ctrl.uploadImage()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_UPLOAD_IMAGE">Upload image</div>
-                                <div class="pink_button red_text" ng-if="$ctrl.group.imageUrl || $ctrl.group.tmpImageUrl" ng-click="$ctrl.deleteGroupImage()"><span>{{$ctrl.imageFile[0].name || ('MODALS.GROUP_CREATE_SETTINGS_BTN_REMOVE_IMAGE' | translate)}}</span> <span class="icon icon_delete"></span></div>
+                                <div class="pink_button red_text" ng-if="$ctrl.group.imageUrl || $ctrl.tmpImageUrl" ng-click="$ctrl.deleteGroupImage()"><span>{{$ctrl.imageFile[0].name || ('MODALS.GROUP_CREATE_SETTINGS_BTN_REMOVE_IMAGE' | translate)}}</span> <span class="icon icon_delete"></span></div>
                             </div>
                         </div>
                         <div class="clearer"></div>
 
                         <div class="settings_cell profile_image_wrapper">
                             <div class="account_picture">
-                                <img ng-if="$ctrl.group.imageUrl || $ctrl.group.tmpImageUrl" ng-src="{{$ctrl.group.imageUrl || $ctrl.group.tmpImageUrl}}">
-                                <div class="profile_image_filler" ng-if="!$ctrl.group.imageUrl ||  !$ctrl.group.tmpImageUrl">
+                                <img ng-if="$ctrl.group.imageUrl || $ctrl.tmpImageUrl" ng-src="{{$ctrl.group.imageUrl || $ctrl.tmpImageUrl}}">
+                                <div class="profile_image_filler" ng-if="!$ctrl.group.imageUrl ||  !$ctrl.tmpImageUrl">
                                     <cos-initials class="table_cell" ng-if="$ctrl.group.name"  ng-model="$ctrl.group.name"></cos-initials>
                                     <div class="profile_circle"></div>
                                 </div>
@@ -133,7 +133,7 @@
                     </div>
 
 
-                    <div class="line lightest_line" ng-if="$ctrl.isVisible('leave')"></div>
+                    <div class="line lightest_line" ng-if="$ctrl.isVisible('delete')"></div>
 
                     <div class="settings_section" ng-if="$ctrl.isVisible('delete')">
                         <div class="settings_cell">

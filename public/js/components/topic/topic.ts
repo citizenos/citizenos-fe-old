@@ -45,7 +45,13 @@ let topic = {
             this.STATUSES = Topic.STATUSES;
             this.VISIBILITY = Topic.VISIBILITY;
             this.showInfoEdit = this.app.editMode;
-            this.init()
+            this.init();
+
+            $scope.$watch(() => app.topic.title, (newVal, oldVal) => {
+                if (newVal !== oldVal) {
+                    this.topic = app.topic;
+                }
+            });
         }
 
         doShowReportOverlay () {

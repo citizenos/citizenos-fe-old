@@ -58,6 +58,7 @@ let groupCreate = {
         public groupLevel = 'read';
         public group;
         public imageFile;
+        public tmpImageUrl;
         public errors = null;
         public sectionsVisible = ['name', 'description', 'image', 'visibility'];
         public tabs = [
@@ -72,10 +73,6 @@ let groupCreate = {
             {
                 id: 'users',
                 name: 'INVITE_USERS'
-            },
-            {
-                id: 'share',
-                name: 'SHARE'
             }
         ];
         constructor (private $state, $scope, $stateParams, private $document, private $log, private ngDialog, private sAuth, private sSearch, private sUpload, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupMemberTopic, private GroupInviteUser, private GroupJoin, private GroupService, private app) {
@@ -99,9 +96,6 @@ let groupCreate = {
                 }
             };
 
-            if (this.form.join) {
-                this.generateJoinUrl();
-            }
             this.form.newMemberTopicLevel = this.GroupMemberTopic.LEVELS.read;
             this.groupLevel = this.GroupMemberUser.LEVELS.read;
         };
@@ -164,7 +158,8 @@ let groupCreate = {
             this.$state.go('topics/create', {
                 groupId: this.group.id,
                 title: this.form.newMemberTopicTitle,
-                groupLevel: this.form.newMemberTopicLevel
+                groupLevel: this.form.newMemberTopicLevel,
+                groupVisibility: this.group.visibility
             });
         };
 
@@ -344,15 +339,17 @@ let groupCreate = {
                 const reader = new FileReader();
                 reader.onload = (() => {
                     return (e) => {
-                        this.group.tmpImageUrl = e.target.result;
+                        this.tmpImageUrl = e.target.result;
                     };
                 })();
                 reader.readAsDataURL(files[0]);
+                this.imageFile = files[0];
             });
         };
 
         deleteGroupImage () {
-            this.group.imageUrl = null;
+            this.group.imageUrl = this.tmpImageUrl = null;
+            this.imageFile = null;
         };
 
         doSaveGroup () {
@@ -361,7 +358,7 @@ let groupCreate = {
             this.Group.save(this.group)
                 .then((data) => {
                     angular.extend(this.group, data);
-                    if (this.imageFile) {
+                    if (this.imageFile?.length) {
                         this.sUpload
                             .uploadGroupImage(this.imageFile[0], this.group.id)
                             .then((response) => {
@@ -415,54 +412,6 @@ let groupCreate = {
                         this.app.tabSelected = 'settings';
                     }
                 });
-        };
-
-        generateTokenJoin () {
-            this.ngDialog
-                .openConfirm({
-                    template: '/views/modals/group_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
-                })
-                .then(() => {
-                    this.GroupJoin.save({
-                        groupId: this.group.id,
-                        userId: this.sAuth.user.id,
-                        level: this.form.join.level
-                    })
-                    .then((res) => {
-                        this.group.join = res;
-                        this.form.join.token = res.token;
-                        this.form.join.level = res.level;
-                        this.generateJoinUrl();
-                    });
-                }, angular.noop);
-        };
-
-        doUpdateJoinToken (level) {
-            const groupJoin = {
-                groupId: this.group.id,
-                userId: this.sAuth.user.id,
-                level: level,
-                token: this.form.join.token
-            };
-
-            this.GroupJoin.update(groupJoin)
-                .then((res) => {
-                    this.form.join.level = level;
-                });
-        };
-
-        copyInviteLink () {
-            const urlInputElement = document.getElementById('url_invite_group_input') as HTMLInputElement || null;
-            urlInputElement.focus();
-            urlInputElement.select();
-            urlInputElement.setSelectionRange(0, 99999);
-            document.execCommand('copy');
-        };
-
-        generateJoinUrl () {
-            if (this.form.join.token && this.Group.canUpdate(this.group)) {
-                this.form.joinUrl = this.sLocation.getAbsoluteUrl('/groups/join/' + this.form.join.token);
-            }
         };
 
         public canUpdate () {

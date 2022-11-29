@@ -5,7 +5,7 @@ let topicSettings = {
     selector: 'topicSettings',
     templateUrl: '/views/components/topic/topic_settings.html',
     bindings: {},
-    controller: ['$state', '$stateParams', '$log', '$timeout', '$translate', '$anchorScroll', 'Topic', 'TopicVote', 'TopicMemberUser', 'ngDialog', 'AppService',  class TopicSettingsController {
+    controller: ['$state', '$stateParams', '$log', '$timeout', '$translate', '$anchorScroll', 'Topic', 'Group', 'TopicVote', 'TopicMemberUser', 'TopicMemberGroupService', 'ngDialog', 'AppService',  class TopicSettingsController {
         public levels = {
             none: 0,
             read: 1,
@@ -32,9 +32,12 @@ let topicSettings = {
         public topic;
         public topicId;
 
-        constructor (private $state, private $stateParams, $log, private $timeout, private $translate, private $anchorScroll, private Topic, private TopicVote, private TopicMemberUser, private ngDialog, private app) {
+        constructor (private $state, private $stateParams, $log, private $timeout, private $translate, private $anchorScroll, private Topic, private Group, private TopicVote, private TopicMemberUser, private TopicMemberGroupService, private ngDialog, private app) {
             $log.debug('TopicSettingsCtrl', $state, $stateParams);
             this.app.tabSelected = $stateParams.tab || 'settings';
+            TopicMemberGroupService.topicId = $stateParams.topicId;
+            TopicMemberGroupService.reload();
+
             this.loadTopic();
         }
 
@@ -250,6 +253,11 @@ let topicSettings = {
             this.form.topic.vote.reminderTime = reminderTime;
             this.doEditVoteDeadline();
         };
+
+        canChangeVisibility () {
+            const publicGroups = this.TopicMemberGroupService.groups.filter((group) => group.visibility === this.Group.VISIBILITY.public);
+            return (this.Topic.canDelete(this.topic) && publicGroups.length === 0);
+        }
     }]
 }
 angular
