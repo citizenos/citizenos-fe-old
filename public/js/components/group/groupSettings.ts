@@ -111,19 +111,18 @@ let groupSettings = {
 
         search (str, type) {
             if (str && str.length >= 2) {
-                let include = null;
                 if (type === 'topic') {
-                    if (this.group.visibility === this.Group.VISIBILITY.private) {
-                        include = 'my.topic';
-                    }
                     this.sSearch
                         .search(str, {
-                            include: include,
+                            include: 'my.topic',
                             'my.topic.level': 'admin'
                         })
                         .then((response) => {
                             this.searchResults = angular.merge({}, {users: [], topics: []});
                             response.data.data.results.my.topics.rows.forEach((topic) => {
+                                if (this.group.visibility === this.Group.VISIBILITY.public && topic.visibility === this.Group.VISIBILITY.private) {
+                                    return
+                                }
                                 this.searchResults.topics.push(topic);
                             });
                         });
