@@ -862,7 +862,7 @@
       "VOTE_VOTES_COUNTED": "现有票数",
       "VOTE_HEADING_REQUIRE_HARD_ID": "此投票需要由身份证或MObiil-ID登录的账号",
       "VOTE_HEADING_REQUIRE_LOG_IN": "@:VIEWS.TOPICS_TOPICID.LOG_IN_TO_PARTICIPATE",
-      "VOTE_TXT_REQUIRE_HARD_ID": "此文档需要以ID卡签名或以Mobiil-ID提交。除非您进行认证，否则无法投票。",
+      "VOTE_TXT_REQUIRE_HARD_ID": "此文档需要通过身份证件或 Mobiil-ID 验证签名来登记投票。除非进行认证，否则您将无法投票。",
       "HEADING_VOTE_REGISTERED": "您的投票已提交！",
       "MSG_VOTE_REGISTERED": "@:VIEWS.TOPICS_TOPICID.HEADING_VOTE_REGISTERED",
       "BTN_DOWNLOAD_USER_BDOC": "下载您已签名的投票(BDOC文件)",
