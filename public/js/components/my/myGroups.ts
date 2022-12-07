@@ -14,7 +14,7 @@ let my = {
                     if (newVal === false) {
                         const params = angular.extend({}, $stateParams);
                         if (GroupService.groups.length) {
-                            params.groupId = GroupService.groups[0].id;
+                            params.groupId = $stateParams.groupId || GroupService.groups[0].id;
                             $state.transitionTo('my/groups/groupId', params, {reload: false});
                         }
                     }
