@@ -85,7 +85,7 @@
 
                     <div class="content_item">
                         <div class="item_description" translate="VIEWS.MY_GROUPS_GROUPID.LBL_YOUR_RIGHTS">Your rights</div>
-                        <div class="item_content bold">{{'TXT_TOPIC_LEVELS_' + $ctrl.group.permission.level | uppercase | translate}}</div>
+                        <div class="item_content bold">{{'TXT_TOPIC_LEVELS_' + ($ctrl.group.permission.level || $ctrl.group.userLevel) | uppercase | translate}}</div>
                         <div class="clearer"></div>
                     </div>
 
