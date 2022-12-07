@@ -10,7 +10,8 @@ let topicSidepanel = {
         public STATUSES = [];
         public ATTACHMENT_SOURCES = [];
 
-        constructor (private app, $log, private Topic, private sUpload, TopicAttachment, private TopicAttachmentService, private $state, private ngDialog) {
+        constructor (public app, $log, private Topic, private sUpload, TopicAttachment, private TopicAttachmentService, private $state, private ngDialog) {
+            console.log('CONFIG', app.config)
             $log.debug('TopicSidepanelController');
             this.topic = app.topic;
             this.STATUSES = Topic.STATUSES;

@@ -79,5 +79,5 @@
   "moderation": {
     "codeOfConduct": "https://app.citizenos.com/topics/ac8b66a4-ca56-4d02-8406-5e19da73d7ce"
   },
-  "feedbackForm": true
+  "feedbackForm": false
 }
