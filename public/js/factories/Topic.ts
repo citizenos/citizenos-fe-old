@@ -119,18 +119,11 @@ export class Topic {
             .then((res) => {
                 res.data.data.rows.forEach((topic) => {
                     if ((topic.vote && topic.vote.id) || topic.voteId) {
-                        if (topic.vote) {
+                        if (!topic.vote) {
                             this.TopicVote.get({
                                 topicId: topic.id,
                                 voteId: topic.voteId})
                             .then((vote) => {
-                                topic.vote = vote;
-                            });
-                        } else {
-                            this.TopicVote.get({
-                                topicId: topic.id,
-                                id: topic.voteId
-                            }).then((vote) => {
                                 topic.vote = vote;
                             });
                         }

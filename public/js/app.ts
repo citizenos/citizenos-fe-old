@@ -723,7 +723,7 @@ import * as angular from 'angular';
                 .state('topics/view/votes/create', {
                     parent: 'topics/view/votes',
                     url: '/create',
-                    template: '<topic-vote-create></topic-vote-create>'
+                    template: '<div ui-view></div>'
                 })
                 .state('topics/view/votes/view', {
                     parent: 'topics/view/votes',
