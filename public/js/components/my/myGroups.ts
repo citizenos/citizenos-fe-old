@@ -13,7 +13,7 @@ let my = {
                 $scope.$watch(() => GroupService.isLoading, (newVal, oldVal) => {
                     if (newVal === false) {
                         const params = angular.extend({}, $stateParams);
-                        if (GroupService.groups.length) {
+                        if (GroupService.groups.length && !params.topicId) {
                             params.groupId = $stateParams.groupId || GroupService.groups[0].id;
                             $state.transitionTo('my/groups/groupId', params, {reload: false});
                         }

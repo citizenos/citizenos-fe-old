@@ -86,7 +86,7 @@ let my = {
                 $scope.$watch(() => TopicService.isLoading, (newVal, oldVal) => {
                     if (newVal === false) {
                         const params = angular.extend({}, $stateParams);
-                        if (TopicService.topics.length) {
+                        if (TopicService.topics.length && !params.topicId) {
                             params.topicId = TopicService.topics[0].id;
                             $state.transitionTo('my/topics/topicId', params, {reload: false});
                         }
