@@ -57,6 +57,7 @@ let groupSettings = {
         public groupLevel;
         public group;
         public imageFile;
+        public tmpImageUrl;
         public errors = null;
 
         public tabs = [
@@ -110,17 +111,18 @@ let groupSettings = {
 
         search (str, type) {
             if (str && str.length >= 2) {
-                let include = null;
                 if (type === 'topic') {
-                    include = 'my.topic';
                     this.sSearch
                         .search(str, {
-                            include: include,
+                            include: 'my.topic',
                             'my.topic.level': 'admin'
                         })
                         .then((response) => {
                             this.searchResults = angular.merge({}, {users: [], topics: []});
                             response.data.data.results.my.topics.rows.forEach((topic) => {
+                                if (this.group.visibility === this.Group.VISIBILITY.public && topic.visibility === this.Group.VISIBILITY.private) {
+                                    return
+                                }
                                 this.searchResults.topics.push(topic);
                             });
                         });
@@ -162,7 +164,8 @@ let groupSettings = {
             this.$state.go('topics/create', {
                 groupId: this.group.id,
                 title: this.form.newMemberTopicTitle,
-                groupLevel: this.form.newMemberTopicLevel
+                groupLevel: this.form.newMemberTopicLevel,
+                groupVisibility: this.group.visibility
             });
         };
 
@@ -342,15 +345,17 @@ let groupSettings = {
                 const reader = new FileReader();
                 reader.onload = (() => {
                     return (e) => {
-                        this.group.tmpImageUrl = e.target.result;
+                        this.tmpImageUrl = e.target.result;
                     };
                 })();
                 reader.readAsDataURL(files[0]);
+                this.imageFile = files[0];
             });
         };
 
         deleteGroupImage () {
-            this.group.imageUrl = null;
+            this.group.imageUrl = this.tmpImageUrl = null;
+            this.imageFile = null;
         };
 
         doSaveGroup () {
@@ -358,7 +363,7 @@ let groupSettings = {
 
             this.Group.update(this.group)
                 .then((data) => {
-                    if (this.imageFile) {
+                    if (this.imageFile?.length) {
                         this.sUpload
                             .uploadGroupImage(this.imageFile[0], this.group.id)
                             .then((response) => {

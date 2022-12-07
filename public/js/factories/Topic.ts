@@ -89,14 +89,7 @@ export class Topic {
                 const topic = res.data.data;
 
                 if ((topic.vote && topic.vote.id) || topic.voteId) {
-                    if (topic.vote) {
-                        this.TopicVote.get({
-                            topicId: topic.id,
-                            voteId: topic.voteId})
-                        .then((vote) => {
-                            topic.vote = vote;
-                        });
-                    } else {
+                    if (!topic.vote) {
                         this.TopicVote.get({
                             voteId: topic.voteId,
                             topicId: topic.id

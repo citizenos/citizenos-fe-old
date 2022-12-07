@@ -38,7 +38,7 @@ export class AppService {
     };
     private languagesArray : object[] = [];
 
-    constructor (private $rootScope, private $log, private $state, private $stateParams, private $transitions, private $window, private $location, private $timeout, private $interval, private $cookies, private $anchorScroll, private $translate, private sTranslate, private amMoment, private sLocation, private config, private ngDialog, private sAuth, private sUser, private sHotkeys, private sNotification, private sActivity, private TopicNotification, private TopicInviteUser) {
+    constructor (private $rootScope, private $log, private $state, private $stateParams, private $transitions, private $window, private $location, private $timeout, private $interval, private $cookies, private $anchorScroll, private $translate, private sTranslate, private amMoment, private sLocation, private config, private ngDialog, private sAuth, private sUser, private sHotkeys, private sNotification, private sActivity, private TopicNotification, private TopicInviteUser, private Topic) {
         this.showTestingEnvNotification =  ($location.host() === 'test.app.citizenos.com');
         this.currentUrlAbs = $location.absUrl();
         this.user = sAuth.user;
@@ -86,7 +86,8 @@ export class AppService {
         });
 
         $rootScope.displaySearch = () => {
-            const allowedState = ['home', 'my/groups', 'my/topics', 'public/groups', 'public/groups/view', 'my/groups/groupId', 'my/topics/topicId'];
+            const allowedState = ['home', 'my/groups', 'my/topics', 'public/groups', 'public/groups/view', 'my/groups/groupId', 'my/groups/groupId/settings', 'my/topics/topicId', 'my/topics/topicId/settings'];
+
             if (allowedState.indexOf($state.current.name) > -1) {
                 return true;
             }
@@ -237,7 +238,11 @@ export class AppService {
         this.tabSelected = tab;
         var params = angular.extend({}, this.$stateParams);
         params['tab'] = tab;
-        this.$state.transitionTo(this.$state.current.name, params, {location: true, notify: false, reload: false});
+        var reload = false;
+       /* if (this.$state.current.name === 'group/create') {
+            reload=false;
+        }*/
+        this.$state.transitionTo(this.$state.current.name, params, {location: true, notify: false, reload: reload});
     };
 
     doWidgetLogout () {
@@ -336,6 +341,14 @@ export class AppService {
                     reload: true
                 }
             );
+
+            this.$timeout(() => {
+                this.Topic
+                    .get(this.topic.id)
+                    .then((topic) => {
+                        this.topic = topic;
+                    });
+            }, 1000);
         }
     };
 
@@ -508,4 +521,4 @@ export class AppService {
 
 angular
     .module('citizenos')
-    .service("AppService", ['$rootScope', '$log', '$state', '$stateParams', '$transitions', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'TopicNotification', 'TopicInviteUser', AppService]);
+    .service("AppService", ['$rootScope', '$log', '$state', '$stateParams', '$transitions', '$window', '$location', '$timeout', '$interval', '$cookies', '$anchorScroll', '$translate', 'sTranslate', 'amMoment', 'sLocation', 'cosConfig', 'ngDialog', 'sAuth', 'sUser', 'sHotkeys', 'sNotification', 'sActivity', 'TopicNotification', 'TopicInviteUser', 'Topic', AppService]);

@@ -4,23 +4,18 @@ export class GroupJoin {
 
 
     save(data: any) {
-        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/join/:token', {groupId: data.groupId});
-        return this.$http.post(path, data)
-        .then((res) => {
-            return res.data.data
-        });
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/join', {groupId: data.groupId});
+
+        return this.$http.put(path, data)
+            .then((res) => {
+                return res.data.data
+            });
     }
 
     update(data: any) {
-        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/join/:token', {groupId: data.groupId || data.id});
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/join/:token', {groupId: data.groupId || data.id, token: data.token});
 
-        const allowedFields = ['name', 'description', 'imageUrl'];
-        const sendData = {};
-        allowedFields.forEach((key)=> {
-            sendData[key] = data[key] || null;
-        });
-
-        return this.$http.put(path, sendData)
+        return this.$http.put(path, data)
             .then((res) => {
                 return res.data.data
             });

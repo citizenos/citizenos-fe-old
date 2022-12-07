@@ -424,7 +424,7 @@ import * as angular from 'angular';
                     template: '<div ui-view></div>',
                 })
                 .state('topics/create', {
-                    url: '/create?title&groupId&groupLevel',
+                    url: '/create?title&groupId&groupLevel&groupVisibility',
                     parent: 'topics',
                     controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', 'GroupMemberTopic', 'AppService', function ($scope, $state, $stateParams, sAuth, Topic, GroupMemberTopic, app) {
                         if (!sAuth.user.loggedIn) {
@@ -432,9 +432,11 @@ import * as angular from 'angular';
                         }
 
                         var topic = {};
-
                         if ($stateParams.title) {
                             topic['description'] = '<html><head></head><body><h1>' + $stateParams.title + '</h1></body></html>';
+                        }
+                        if ($stateParams.groupVisibility === 'public') {
+                            topic['visibility'] = Topic.VISIBILITY.public;
                         }
 
                         Topic
@@ -488,6 +490,7 @@ import * as angular from 'angular';
                     reloadOnSearch: false,
                     controller: ['$state', 'AppService', '$stateParams', 'Topic', 'ngDialog', function ($state, AppService, $stateParams, Topic, ngDialog) {
                         var data = angular.extend({}, $stateParams);
+                        console.log(ngDialog);
                         var createDialog = function () {
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
@@ -517,7 +520,13 @@ import * as angular from 'angular';
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
                                 template: '<topic-invite></topic-invite>',
-                                plain: true
+                                plain: true,
+                                preCloseCallback: function (value) {
+                                    if (value === '$closeButton') {
+                                        return true;
+                                    }
+                                    return false;
+                                }
                             });
 
                             dialog.closePromise.then(function () {
@@ -768,6 +777,10 @@ import * as angular from 'angular';
                                     }
                                     return false;
                                 }
+                            });
+
+                            dialog.closePromise.then(function () {
+                                $state.go('^', null, {reload: true, supercede: false});
                             });
                         }
 

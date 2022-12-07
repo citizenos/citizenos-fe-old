@@ -24,11 +24,10 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="dropdown">
 
                             <!-- NO CATEGORY -->
-                            <div class="dropdown_item" ng-repeat="(key, filter) in $ctrl.ActivityService.activityfilters" ng-click="$ctrl.ActivityService.filterActivities(filter)">
+                            <div class="dropdown_item" ng-repeat="(key, filter) in $ctrl.ActivityService.filters" ng-click="$ctrl.ActivityService.filterActivities(filter)">
                                 <div class="item_name medium" translate="ACTIVITY_FEED.FILTER_{{filter.toUpperCase()}}">
                                     Show all activity ordered by time
                                 </div>

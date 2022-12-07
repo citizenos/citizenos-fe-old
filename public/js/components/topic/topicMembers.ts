@@ -5,9 +5,9 @@ let topicMembers = {
     selector: 'topicMembers',
     templateUrl: '/views/components/topic/topic_members.html',
     bindings: {},
-    controller: ['AppService', 'TopicMemberUserService', 'TopicMemberGroupService', 'TopicInviteUserService', '$log', '$q', '$state', '$stateParams', '$filter', '$location', 'ngDialog', 'sAuth', 'TopicMemberUser', 'TopicInviteUser', 'TopicMemberGroup', class TopicMembersController {
+    controller: ['AppService',  'Topic', 'TopicMemberUserService', 'TopicMemberGroupService', 'TopicInviteUserService', '$log', '$q', '$state', '$stateParams', '$filter', '$location', 'ngDialog', 'sAuth', 'TopicMemberUser', 'TopicInviteUser', 'TopicMemberGroup', class TopicMembersController {
         private topic;
-        constructor (private app, public TopicMemberUserService, public TopicMemberGroupService, public TopicInviteUserService, private $log, private $q, private $state, private $stateParams, private $filter, private $location, private ngDialog, private sAuth, private TopicMemberUser, private TopicInviteUser, private TopicMemberGroup) {
+        constructor (private app, public Topic, public TopicMemberUserService, public TopicMemberGroupService, public TopicInviteUserService, private $log, private $q, private $state, private $stateParams, private $filter, private $location, private ngDialog, private sAuth, private TopicMemberUser, private TopicInviteUser, private TopicMemberGroup) {
             this.topic = app.topic;
             this.app.tabSelected = $stateParams.tab || 'participants';
             TopicMemberUserService.topicId = this.topic.id;
