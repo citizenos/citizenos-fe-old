@@ -19,21 +19,13 @@ let myGroupsGroup = {
         };
         constructor ($scope, private $state, private $stateParams, private $log, private  $q, private  ngDialog, private sAuth, private Group, private GroupService, private GroupMemberUser, private GroupMemberUserService, private GroupMemberTopic, private GroupMemberTopicService, private GroupInviteUser, public GroupInviteUserService, private app) {
             $log.debug('MyGroupsGroupController');
+            this.group = this.app.group;
             GroupMemberTopicService.groupId = $stateParams.groupId;
             GroupMemberTopicService.reload();
             GroupMemberUserService.groupId = $stateParams.groupId;
             GroupMemberUserService.reload();
             GroupInviteUserService.groupId = $stateParams.groupId;
             GroupInviteUserService.reload();
-            $scope.$watch(() => GroupService.isLoading, (newVal, oldVal) => {
-                if (newVal === false) {
-                    this.group = GroupService.groups.find((item) => { if (item.id === $stateParams.groupId)return item});
-
-                    if (!this.group) {
-                        return $state.go('my/groups', {}, {reload:true});
-                    }
-                }
-            });
 
             if ($stateParams.openTabs) {
                 const params = angular.extend({}, $stateParams);

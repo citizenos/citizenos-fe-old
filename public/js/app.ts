@@ -835,7 +835,13 @@ import * as angular from 'angular';
                     url: '/:groupId',
                     parent: 'my/groups',
                     resolve: {
-                        rGroup: ['$stateParams', 'sAuthResolve', 'GroupService', 'AppService', function ($stateParams, sAuthResolve, GroupService, AppService) {
+                        rGroup: ['$stateParams', 'sAuthResolve', 'GroupService', 'AppService', 'Group', function ($stateParams, sAuthResolve, GroupService, AppService, Group) {
+                            return Group
+                                .get($stateParams.groupId)
+                                .then(function (group) {
+                                    AppService.group = group;
+                                    return group;
+                                });
                             // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
                             if (!GroupService.groups.countTotal && !GroupService.isLoading) {
                                 return GroupService.reload();
