@@ -136,6 +136,8 @@
                             img {
                                 width: 96px;
                                 height: 96px;
+                                aspect-ratio: 1;
+                                object-fit: contain;
                             }
                         }
                     }

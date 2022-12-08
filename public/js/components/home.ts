@@ -26,11 +26,6 @@ let home = {
             if (this.$stateParams.category && !this.Topic.CATEGORIES[this.$stateParams.category]) {
                 return this.$state.go('error/404');
             }
-            if ($stateParams.category) {
-                PublicTopicService.categories = $stateParams.category;
-            } else {
-                PublicTopicService.categories = null;
-            }
             $scope.$watch(() => PublicTopicService.isLoading, (newValue) => {
                 if (newValue === false && PublicTopicService.statuses !== $stateParams.topicStatus) {
                     let status = $stateParams.topicStatus;
@@ -51,13 +46,17 @@ let home = {
 
         resolveCategory () {
             let category;
+            if (this.$state.current.name === 'home') {
+                category = this.FILTERS_ALL;
+            }
             if (this.$state.current.name === 'category') {
                 category = this.$stateParams.category;
             } else if (this.Topic.CATEGORIES[this.$state.current.name]) {
                 category = this.$state.current.name; //Check if special page for category
             }
-            this.PublicTopicService.categories = this.Topic.CATEGORIES[category] ? category : null;
 
+            this.PublicTopicService.categories = this.Topic.CATEGORIES[category] ? category : null;
+            this.PublicTopicService.reload();
             return this.Topic.CATEGORIES[category] ? category : this.FILTERS_ALL;
         };
 

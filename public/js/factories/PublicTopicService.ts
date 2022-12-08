@@ -69,12 +69,10 @@ export class PublicTopicService {
                 params['str'] = this.search;
             }
             this.Topic.queryPublic(params).then((data) => {
-                if (data.countTotal) {
-                    this.countTotal = data.countTotal;
-                    for (let topic of data.rows) {
-                        this.topics.push(topic);
-                    }
-                }
+            this.countTotal = data.countTotal;
+            for (let topic of data.rows) {
+                this.topics.push(topic);
+            }
               this.isLoading = false;
             });
         }
