@@ -159,7 +159,7 @@ let groupCreate = {
             this.$state.go('topics/create', {
                 groupId: this.group.id,
                 title: this.form.newMemberTopicTitle,
-                groupLevel: this.form.newMemberTopicLevel,
+                groupLevel: this.GroupMemberTopic.LEVELS.read,
                 groupVisibility: this.group.visibility
             });
         };

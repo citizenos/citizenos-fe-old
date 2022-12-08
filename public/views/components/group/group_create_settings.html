@@ -138,7 +138,7 @@
 
             <!-- ADD TOPICS -->
             <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="$ctrl.app.tabSelected === 'topics'">
-                <div class="lightbox_section" ng-if="$ctrl.group.id">
+                <!--div class="lightbox_section" ng-if="$ctrl.group.id">
                     <div class="settings_section">
                         <div class="settings_cell">
                             <div class="lbl_input_no_margin" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_NEW_TOPIC">Create a new topic</div>
@@ -173,7 +173,7 @@
                             <div class="blue_button create_topic_btn" cos-disabled="!$ctrl.form.newMemberTopicTitle" ng-click="$ctrl.addNewGroupMemberTopic()" translate="MODALS.GROUP_CREATE_SETTINGS_ADD_CREATE_TOPIC">Create topic</div>
                         </div>
                     </div>
-                </div>
+                </!--div-->
                 <div class="lightbox_section" ng-if="$ctrl.Group.canUpdate($ctrl.group)">
                     <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_ADD_TOPICS">Add topics searching by title</div>
                     <div cos-dropdown ng-class="{search_with_dropdown : $ctrl.searchResults.topics.length, dropdown_active : $ctrl.searchResults.topics.length}">
