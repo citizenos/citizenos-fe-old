@@ -7,10 +7,8 @@
 </div>
 <div class="pretend_td" ng-if="$ctrl.isVisibleField('level')">
     <div class="pretend_table_mobile_text mobile_label" translate="VIEWS.PUBLIC_GROUP.LNK_RIGHTS">Level</div>
-    <div class="dropdown_item" ng-if="this.group.visibility === this.Group.VISIBILITY.public">
-        <div class="item_name">{{'TXT_TOPIC_LEVELS_' + $ctrl.memberTopic.permission.levelGroup | uppercase | translate}}</div>
-    </div>
-    <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.Topic.canUpdate($ctrl.memberTopic) && this.group.visibility !== this.Group.VISIBILITY.public">
+
+    <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.Topic.canUpdate($ctrl.memberTopic) && $ctrl.group.visibility !== $ctrl.Group.VISIBILITY.public">
         <div class="dropdown_selection">
             <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + $ctrl.memberTopic.permission.levelGroup | uppercase | translate}}</div>
 
@@ -28,7 +26,7 @@
             </div>
         </div>
     </div>
-    <span ng-if="!$ctrl.Topic.canUpdate($ctrl.memberTopic)">{{'TXT_TOPIC_LEVELS_' + $ctrl.memberTopic.permission.levelGroup | uppercase | translate}}</span>
+    <span ng-if="!$ctrl.Topic.canUpdate($ctrl.memberTopic) || $ctrl.group.visibility === $ctrl.Group.VISIBILITY.public">{{'TXT_TOPIC_LEVELS_' + $ctrl.memberTopic.permission.levelGroup | uppercase | translate}}</span>
 </div>
 <div class="pretend_td" ng-if="$ctrl.isVisibleField('userscount')">
     <span class="pretend_table_mobile_text mobile_label" translate="VIEWS.MY_GROUPS_GROUPID.LBL_USERS_COUNT" translate-values="{count: $ctrl.memberTopic.members.users.count}">Users: 0</span>

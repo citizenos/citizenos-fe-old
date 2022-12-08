@@ -335,7 +335,7 @@ export class Activity {
         let newValueKey = null;
         let fieldNameKey = null;
         const originType = activity.data.origin['@type'];
-        if (originType === 'Topic' || originType === 'Comment') {
+        if (originType === 'Topic' || originType === 'Comment' || originType === 'Group') {
             fieldNameKey = 'ACTIVITY_FEED.ACTIVITY_' + originType.toUpperCase() + '_FIELD_' + fieldName.toUpperCase();
         }
 
@@ -407,6 +407,7 @@ export class Activity {
             activity.values.previousValue = previousValue;
         }
         if (fieldNameKey) {
+            console.log(fieldNameKey)
             const translatedField = this.$translate.instant(fieldNameKey);
             activity.values.fieldName = translatedField;
         }

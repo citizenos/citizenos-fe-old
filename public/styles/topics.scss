@@ -539,6 +539,8 @@
                                 float: left;
                                 height: 40px;
                                 width: 40px;
+                                object-fit: contain;
+                                aspect-ratio: 1;
                             }
                         }
                         .container_description {

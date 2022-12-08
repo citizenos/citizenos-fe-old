@@ -150,6 +150,8 @@
             height: 336px;
             display: inline-block;
             margin-right: 16px;
+            cursor: pointer;
+
             @include mixins_n_extends.mobile {
                 float:none;
                 width: 100%;

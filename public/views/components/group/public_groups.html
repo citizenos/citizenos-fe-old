@@ -64,7 +64,7 @@
                 <div class="join_button">
                     <div class="blue_button_wrap">
                         <button class="blue_button" ng-if="!group.userLevel" ng-click="$ctrl.joinGroup(group);$event.stopPropagation();" translate="VIEWS.PUBLIC_GROUPS.BTN_JOIN_GROUP">Join group</button>
-                        <button class="blue_button" ng-if="group.userLevel" ng-click="$ctrl.leaveGroup(group);$event.stopPropagation();" translate="VIEWS.PUBLIC_GROUPS.BTN_LEAVE_GROUP">Leave group</button>
+                        <button class="blue_button" ng-if="group.userLevel" ng-click="$ctrl.goToGroupView(group);$event.stopPropagation();" translate="VIEWS.PUBLIC_GROUPS.BTN_VIEW_GROUP">View group</button>
                     </div>
                 </div>
             </div>

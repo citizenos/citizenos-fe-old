@@ -186,7 +186,7 @@
 
     <!-- TOPIC LIST -->
     <div class="info_container group_list" id="topic_list">
-        <div class="container_header">
+        <div class="container_header" ng-click="$ctrl.doToggleMemberTopicList(); $event.stopPropagation();">
             <div class="header_text">
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_TOPIC_LIST" translate-values="{count: $ctrl.GroupMemberTopicService.countTotal}">Topic list ({{$ctrl.GroupMemberTopicService.countTotal}})</span>
                 <span ng-if="group.members.topics.count">|</span>
@@ -218,7 +218,7 @@
 
                 </div>
             </div>
-            <div class="minimize_container" ng-if="$ctrl.GroupMemberTopicService.countTotal" ng-click="$ctrl.doToggleMemberTopicList();">
+            <div class="minimize_container" ng-if="$ctrl.GroupMemberTopicService.countTotal" ng-click="$ctrl.doToggleMemberTopicList(); $event.stopPropagation();">
                 <div ng-class="!$ctrl.topicList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>
@@ -252,7 +252,7 @@
                             <span translate="VIEWS.MY_GROUPS_GROUPID.LNK_USERS">Users</span>
                         </div>
                     </div>
-                    <div class="pretend_th">
+                    <div class="pretend_th" ng-if="$ctrl.Group.canUpdate($ctrl.group)">
                         <div class="th_text">
                             <span translate="VIEWS.MY_GROUPS_GROUPID.LBL_REMOVE_FROM_GROUP">Remove from group</span>
                         </div>

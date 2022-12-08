@@ -8,7 +8,7 @@ let groupMemberTopic = {
         fields: '=?',
         group: '='
     },
-    controller: ['ngDialog', 'GroupMemberTopic', 'Topic', class GroupMemberTopicController {
+    controller: ['ngDialog', 'GroupMemberTopic', 'Topic', 'Group', class GroupMemberTopicController {
         private memberTopic;
         private canUpdate;
         private group;
