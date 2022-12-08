@@ -14,7 +14,7 @@ let groupMemberTopic = {
         private group;
         public fields
 
-        constructor (private ngDialog, private GroupMemberTopic, private Topic) {
+        constructor (private ngDialog, private GroupMemberTopic, public Topic, public Group) {
         }
 
         isVisibleField (field) {

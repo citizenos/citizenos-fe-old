@@ -253,7 +253,7 @@
                                     </div>
                                 </div>
 
-                                <div cos-dropdown class="classic_dropdown">
+                                <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.group.visibility === $ctrl.Group.VISIBILITY.private">
                                     <div class="dropdown_selection">
                                         <div class="dropdown_text">
                                             {{'TXT_TOPIC_LEVELS_' + topic.permission.level | uppercase | translate}}
@@ -275,7 +275,9 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="bold" ng-if="$ctrl.group.visibility === $ctrl.Group.VISIBILITY.public">
+                                    {{'TXT_TOPIC_LEVELS_' + topic.permission.level | uppercase | translate}}
+                                </div>
                             </div>
 
                             <div class="clearer"></div>

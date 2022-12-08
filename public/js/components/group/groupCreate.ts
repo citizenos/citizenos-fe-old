@@ -389,14 +389,18 @@ let groupCreate = {
                     // Topics
                     // TODO: Once there is POST /groups/:groupId/members/topics use that
                     this.memberTopics.forEach((topic) => {
+                        let level = topic.permission.level
+                        if (this.group.visibility === this.Group.VISIBILITY.public) {
+                            level = this.GroupMemberTopic.LEVELS.read;
+                        }
                         const member = {
                             groupId: this.group.id,
                             id: topic.id,
-                            level: topic.permission.level
+                            level: level
                         };
 
                         savePromises.push(
-                            this.GroupMemberTopic.save({groupId: this.group.id}, member)
+                            this.GroupMemberTopic.save({groupId: this.group.id, topicId: topic.id}, member)
                         )
                     });
 

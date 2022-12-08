@@ -7,7 +7,10 @@
 </div>
 <div class="pretend_td" ng-if="$ctrl.isVisibleField('level')">
     <div class="pretend_table_mobile_text mobile_label" translate="VIEWS.PUBLIC_GROUP.LNK_RIGHTS">Level</div>
-    <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.Topic.canUpdate($ctrl.memberTopic)">
+    <div class="dropdown_item" ng-if="this.group.visibility === this.Group.VISIBILITY.public">
+        <div class="item_name">{{'TXT_TOPIC_LEVELS_' + $ctrl.memberTopic.permission.levelGroup | uppercase | translate}}</div>
+    </div>
+    <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.Topic.canUpdate($ctrl.memberTopic) && this.group.visibility !== this.Group.VISIBILITY.public">
         <div class="dropdown_selection">
             <div class="dropdown_text">{{'TXT_TOPIC_LEVELS_' + $ctrl.memberTopic.permission.levelGroup | uppercase | translate}}</div>
 
