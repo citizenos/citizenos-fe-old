@@ -202,9 +202,6 @@
                                 <div ng-class="{'icon arrow_th_sort_up': $ctrl.GroupMemberUserService.order === 'ASC', 'icon arrow_th_sort_down': $ctrl.GroupMemberUserService.order === 'DESC' }" ng-if="$ctrl.GroupMemberUserService.orderBy === 'name'"></div>
                             </div>
                         </div>
-                        <div class="pretend_th">
-                            <span translate="VIEWS.PUBLIC_GROUP.LNK_LAST_ACTIVITY">Latest activity</span>
-                        </div>
                         <div class="pretend_th member_level" ng-click="$ctrl.GroupMemberUserService.doOrder('level')">
                                 <span translate="VIEWS.PUBLIC_GROUP.LNK_ROLE">Role</span>
                                 <div ng-class="{'icon arrow_th_sort_up': $ctrl.GroupMemberUserService.order === 'ASC', 'icon arrow_th_sort_down': $ctrl.GroupMemberUserService.order === 'DESC' }" ng-if="$ctrl.GroupMemberUserService.orderBy === 'level'"></div>
@@ -214,7 +211,7 @@
                         </div>
                     </div>
                     <!-- GroupMemberUsers -->
-                    <my-member-user class="group_item_row pretend_tr" ng-repeat="user in $ctrl.GroupMemberUserService.users | filter: $ctrl.GroupMemberUserService.search | orderBy : $ctrl.GroupMemberUserService.orderBy" member="user" group="$ctrl.group" fields="['level', 'lastActivity', 'remove']"></my-member-user>
+                    <my-member-user class="group_item_row pretend_tr" ng-repeat="user in $ctrl.GroupMemberUserService.users  track by user.id" member="user" group="$ctrl.group" fields="['level', 'remove']"></my-member-user>
 
                     <div class="pretend_tr" ng-if="$ctrl.GroupMemberUserService.totalPages > 1">
                         <div class="pagination_wrapper">

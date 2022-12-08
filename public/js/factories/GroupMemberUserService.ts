@@ -63,8 +63,8 @@ export class GroupMemberUserService {
             let params = {
                 groupId: this.groupId,
                 offset: this.offset,
-                order: this.orderBy,
-                sortOrder: this.order,
+                orderBy: this.orderBy,
+                order: this.order,
                 limit: this.limit
             }
             if (this.search) {
