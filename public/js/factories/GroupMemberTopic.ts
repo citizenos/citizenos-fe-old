@@ -60,9 +60,18 @@ export class GroupMemberTopic {
     }
 
     query (params) {
-        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups/:groupId/members/topics', params, params)
+        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups/:groupId/members/topics', params)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
+
+        return this.$http.get(path, params)
+            .then((res) => {
+                return res.data.data;
+            });
+    }
+
+    queryPublic (params) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/groups/:groupId/members/topics', params);
 
         return this.$http.get(path, params)
             .then((res) => {
