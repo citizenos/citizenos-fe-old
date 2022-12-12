@@ -20,7 +20,7 @@ let postArgument = {
             text: null,
             errors: null
         }
-        constructor (private $state, private app, private TopicComment) {
+        constructor (private $state, public app, private TopicComment) {
             this.COMMENT_TYPES = TopicComment.COMMENT_TYPES;
             delete this.COMMENT_TYPES[TopicComment.COMMENT_TYPES.reply];
             this.COMMENT_TYPES_MAXLENGTH = TopicComment.COMMENT_TYPES_MAXLENGTH;
