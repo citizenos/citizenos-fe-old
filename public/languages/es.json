@@ -1001,7 +1001,7 @@
       "TXT_ARGUMENT_ORDER_BY_RATING": "clasificación",
       "TXT_ARGUMENT_ERROR_SUBJECT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT",
       "TXT_ARGUMENT_ERROR_TEXT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT",
-      "LOG_IN_TO_PARTICIPATE": "Necesita <a class=\"underlined_link\" ng-click=\"app.doShowLogin()\">iniciar sesión</a> para participar.",
+      "LOG_IN_TO_PARTICIPATE": "You need to <a class=\"underlined_link\" ng-click=\"$ctrl.app.doShowLogin()\">log in</a> to participate.",
       "TAB_SOCIAL_MENTIONS_HEADING": "@:VIEWS.TOPICS_TOPICID.LBL_TAB_MENTIONS",
       "TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED": "No podemos mostrarle las menciones sociales, ya que no se definió ningún hashtag para este tema. Los usuarios con permisos de editor pueden agregar el hashtag para capturar menciones sociales.",
       "TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG": "@:VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG",
