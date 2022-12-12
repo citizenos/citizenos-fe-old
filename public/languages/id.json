@@ -1001,7 +1001,7 @@
       "TXT_ARGUMENT_ORDER_BY_RATING": "peringkat",
       "TXT_ARGUMENT_ERROR_SUBJECT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT",
       "TXT_ARGUMENT_ERROR_TEXT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT",
-      "LOG_IN_TO_PARTICIPATE": "Anda perlu untuk login <a class=\"underlined_link\" ng-click=\"app.doShowLogin()\"></a> untuk berpartisipasi.",
+      "LOG_IN_TO_PARTICIPATE": "You need to <a class=\"underlined_link\" ng-click=\"$ctrl.app.doShowLogin()\">log in</a> to participate.",
       "TAB_SOCIAL_MENTIONS_HEADING": "@:VIEWS.TOPICS_TOPICID.LBL_TAB_MENTIONS",
       "TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED": "Maaf, kami tidak bisa menunjukkan hal terkait social mention kepada anda karena tidak ada hashtag yang didefinisikan untuk topik ini. Pengguna dengan akses editor dapat menambahkan hashtag untuk mendapatkan informasi tersebut.",
       "TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG": "@:VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG",
