@@ -5,10 +5,10 @@ let publicGroup = {
     selector: 'publicGroup',
     templateUrl: '/views/components/group/public_group.html',
     bindings: {},
-    controller: ['$state', '$stateParams', '$log', 'sAuth', 'Group', 'PublicGroup', 'GroupMemberUser', 'GroupMemberUserService', 'GroupMemberTopicService', 'ngDialog', 'AppService', class PublicGroupController {
+    controller: ['$state', '$stateParams', '$log', 'sAuth', 'Group', 'PublicGroup', 'GroupMemberUser', 'GroupMemberUserService', 'PublicGroupMemberTopicService', 'ngDialog', 'AppService', class PublicGroupController {
         public group;
 
-        constructor (private $state, $stateParams, private $log, private sAuth, private Group, private PublicGroup, private GroupMemberUser, public GroupMemberUserService, public GroupMemberTopicService, private ngDialog, private app) {
+        constructor (private $state, $stateParams, private $log, private sAuth, private Group, private PublicGroup, private GroupMemberUser, public GroupMemberUserService, public PublicGroupMemberTopicService, private ngDialog, private app) {
             if ($stateParams.groupId) {
                 PublicGroup
                 .get($stateParams.groupId)
@@ -23,8 +23,8 @@ let publicGroup = {
             }
             GroupMemberUserService.groupId = $stateParams.groupId;
             GroupMemberUserService.reload();
-            GroupMemberTopicService.groupId = $stateParams.groupId;
-            GroupMemberTopicService.reload();
+            PublicGroupMemberTopicService.groupId = $stateParams.groupId;
+            PublicGroupMemberTopicService.reload();
         }
 
         showSettings (tab?) {

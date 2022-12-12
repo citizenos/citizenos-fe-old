@@ -13,6 +13,7 @@ import './Group';
 import './GroupService';
 import './PublicGroup';
 import './PublicGroupService';
+import './PublicGroupMemberTopicService';
 import './PublicTopicService';
 import './Mention';
 import './TopicActivitiesService';

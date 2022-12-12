@@ -86,7 +86,7 @@
         </div>
         <div class="content" ng-if="$ctrl.app.tabSelected === 'topics'">
             <div class="container_content" >
-                <div ng-if="!$ctrl.GroupMemberTopicService.countTotal" class="table">
+                <div ng-if="!$ctrl.PublicGroupMemberTopicService.countTotal" class="table">
                     <div class="no_results v_align_cell">
                         <div class="no_results_icon_wrap">
                             <div class="no_results_img sprite sprite-icon-no-results2x"></div>
@@ -120,14 +120,14 @@
                     <div class="dropdown big_drop">
                         <div class="line lightest_line"></div>
 
-                        <div class="dropdown_item" ng-click="$ctrl.GroupMemberTopicService.doOrder('title', 'ASC')">
+                        <div class="dropdown_item" ng-click="$ctrl.PublicGroupMemberTopicService.doOrder('title', 'ASC')">
                             <div class="icon arrow_th_sort_down"></div>
                             <div class="item_name" translate="VIEWS.PUBLIC_GROUP.ORDER_TITLE_ASC">
                                 ORDER
                             </div>
                             <div class="clearer"></div>
                         </div>
-                        <div class="dropdown_item" ng-click="$ctrl.GroupMemberTopicService.doOrder('title', 'DESC')">
+                        <div class="dropdown_item" ng-click="$ctrl.PublicGroupMemberTopicService.doOrder('title', 'DESC')">
                             <div class="icon arrow_th_sort_up"></div>
                             <div class="item_name" translate="VIEWS.PUBLIC_GROUP.ORDER_TITLE_DESC">
                                 Leave
@@ -136,12 +136,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="default_table" ng-if="$ctrl.GroupMemberTopicService.countTotal">
+                <div class="default_table" ng-if="$ctrl.PublicGroupMemberTopicService.countTotal">
                     <div class="pretend_tr" ng-if="$ctrl.app.wWidth > 560">
-                        <div class="pretend_th link" ng-click="$ctrl.GroupMemberTopicService.doOrder('title')">
+                        <div class="pretend_th link" ng-click="$ctrl.PublicGroupMemberTopicService.doOrder('title')">
                             <div class="th_text">
                                 <span translate="VIEWS.PUBLIC_GROUP.LNK_TITLE">Title</span>
-                                <div ng-class="{'icon arrow_th_sort_up': $ctrl.GroupMemberTopicService.order === 'ASC', 'icon arrow_th_sort_down': $ctrl.GroupMemberTopicService.order === 'DESC' }"></div>
+                                <div ng-class="{'icon arrow_th_sort_up': $ctrl.PublicGroupMemberTopicService.order === 'ASC', 'icon arrow_th_sort_down': $ctrl.PublicGroupMemberTopicService.order === 'DESC' }"></div>
                             </div>
                         </div>
                         <div class="pretend_th">
@@ -151,11 +151,11 @@
                             <span translate="VIEWS.PUBLIC_GROUP.LNK_STATUS">Status</span>
                         </div>
                     </div>
-                    <group-member-topic ng-if="$ctrl.GroupMemberTopicService.countTotal" class="group_item_row pretend_tr" ng-repeat="topic in $ctrl.GroupMemberTopicService.topics" fields="['lastActivity', 'status']" member-topic="topic" group="$ctrl.group"></group-member-topic>
+                    <group-member-topic ng-if="$ctrl.PublicGroupMemberTopicService.countTotal" class="group_item_row pretend_tr" ng-repeat="topic in $ctrl.PublicGroupMemberTopicService.topics" fields="['lastActivity', 'status']" member-topic="topic" group="$ctrl.group"></group-member-topic>
 
-                    <div class="pretend_tr" ng-if="$ctrl.GroupMemberTopicService.totalPages > 1">
+                    <div class="pretend_tr" ng-if="$ctrl.PublicGroupMemberTopicService.totalPages > 1">
                         <div class="pagination_wrapper">
-                            <cos-pagination class="pagination" select="$ctrl.GroupMemberTopicService.loadPage(page)" total-pages="$ctrl.GroupMemberTopicService.totalPages" page="$ctrl.GroupMemberTopicService.page"></cos-pagination>
+                            <cos-pagination class="pagination" select="$ctrl.PublicGroupMemberTopicService.loadPage(page)" total-pages="$ctrl.PublicGroupMemberTopicService.totalPages" page="$ctrl.PublicGroupMemberTopicService.page"></cos-pagination>
                         </div>
                     </div>
 
