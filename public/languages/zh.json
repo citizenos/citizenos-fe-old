@@ -1001,7 +1001,7 @@
       "TXT_ARGUMENT_ORDER_BY_RATING": "评分",
       "TXT_ARGUMENT_ERROR_SUBJECT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT",
       "TXT_ARGUMENT_ERROR_TEXT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT",
-      "LOG_IN_TO_PARTICIPATE": "您需要 <a class=\"underlined_link\" ng-click=\"app.doShowLogin()\">登录</a> 才能参与话题。",
+      "LOG_IN_TO_PARTICIPATE": "You need to <a class=\"underlined_link\" ng-click=\"$ctrl.app.doShowLogin()\">log in</a> to participate.",
       "TAB_SOCIAL_MENTIONS_HEADING": "@:VIEWS.TOPICS_TOPICID.LBL_TAB_MENTIONS",
       "TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED": "抱歉，我们无法在未定义标签的情况下显示社交提及信息。具有编辑权限的用户可以添加标签以获取社交提及信息。",
       "TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG": "@:VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG",
