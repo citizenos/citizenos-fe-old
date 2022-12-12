@@ -146,7 +146,7 @@ export class AppService {
 
     doShowLogin () {
         this.$log.debug('AppCtrl.doShowLogin()');
-
+        console.log('LOGIN')
         const dialog = this.ngDialog
             .open({
                 template: '<login-form></login-form>',

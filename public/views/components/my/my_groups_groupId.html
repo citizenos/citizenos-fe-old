@@ -322,7 +322,7 @@
                     </div>
                 </div>
                 <!-- GroupMemberUsers -->
-                <my-member-user class="pretend_tr" ng-repeat="user in $ctrl.GroupMemberUserService.users | filter: $ctrl.GroupMemberUserService.search| orderBy : $ctrl.GroupMemberUserService.orderBy" member="user" group="$ctrl.group" fields="['level', 'remove']"></my-member-user>
+                <my-member-user class="pretend_tr" ng-repeat="user in $ctrl.GroupMemberUserService.users track by user.id" member="user" group="$ctrl.group" fields="['level', 'remove']"></my-member-user>
 
                 <div class="pretend_tr">
                     <div class="pagination_wrapper">
@@ -330,7 +330,7 @@
                     </div>
                 </div>
                 <!-- GroupInviteUsers -->
-                <group-invite-user class="pretend_tr" ng-repeat="invite in $ctrl.GroupInviteUserService.users | filter: $ctrl.GroupInviteUserService.search | orderBy : $ctrl.GroupInviteUserService.orderBy" invite="invite" can-update="$ctrl.Group.canUpdate($ctrl.group)"></group-invite-user>
+                <group-invite-user class="pretend_tr" ng-repeat="invite in $ctrl.GroupInviteUserService.users" invite="invite" can-update="$ctrl.Group.canUpdate($ctrl.group)"></group-invite-user>
 
                 <div class="pretend_tr">
                     <div class="pagination_wrapper">
