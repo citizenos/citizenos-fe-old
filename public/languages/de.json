@@ -1001,7 +1001,7 @@
       "TXT_ARGUMENT_ORDER_BY_RATING": "Bewertung",
       "TXT_ARGUMENT_ERROR_SUBJECT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT",
       "TXT_ARGUMENT_ERROR_TEXT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT",
-      "LOG_IN_TO_PARTICIPATE": "Sie müssen sich <a class=\"underlined_link\" ng-click=\"app.doShowLogin()\">anmelden</a> um teilzunehmen.",
+      "LOG_IN_TO_PARTICIPATE": "You need to <a class=\"underlined_link\" ng-click=\"$ctrl.app.doShowLogin()\">log in</a> to participate.",
       "TAB_SOCIAL_MENTIONS_HEADING": "@:VIEWS.TOPICS_TOPICID.LBL_TAB_MENTIONS",
       "TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED": "Leider können wir Ihnen keine Erwähnungen in Sozialen Netzwerken anzeigen, da für dieses Thema kein Hashtag definiert wurde. Benutzer mit Schreibrechten können einen Hashtag zum Erfassen von Erwähnungen in Sozialen Netzwerken hinzufügen.",
       "TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG": "@:VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG",

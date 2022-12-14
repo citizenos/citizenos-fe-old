@@ -1001,7 +1001,7 @@
       "TXT_ARGUMENT_ORDER_BY_RATING": "reitings",
       "TXT_ARGUMENT_ERROR_SUBJECT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_SUBJECT",
       "TXT_ARGUMENT_ERROR_TEXT_TOO_LONG": "@:MSG_ERROR_POST_API_USERS_TOPICS_COMMENTS_40000_TEXT",
-      "LOG_IN_TO_PARTICIPATE": "Jums ir <a class=\"underlined_link\" ng-click=\"app.doShowLogin()\">jāpiesakās</a>, lai piedalītos.",
+      "LOG_IN_TO_PARTICIPATE": "You need to <a class=\"underlined_link\" ng-click=\"$ctrl.app.doShowLogin()\">log in</a> to participate.",
       "TAB_SOCIAL_MENTIONS_HEADING": "@:VIEWS.TOPICS_TOPICID.LBL_TAB_MENTIONS",
       "TAB_SOCIAL_METIONS_TXT_NO_HASHTAG_DEFINED": "Atvainojamies, bet mēs nevaram parādīt pieminējumus sociālajos tīklos, jo šim tematam nav definēta mirkļbirka. Lietotāji ar atļauju rediģēt var pievienot mirkļbirkas, lai iegūtu pieminējumus sociālajos tīklos.",
       "TAB_SOCIAL_MENTIONS_BTN_ADD_HASHTAG": "@:VIEWS.TOPICS_TOPICID.LNK_MENTIONS_COUNT_ADD_HASHTAG",
