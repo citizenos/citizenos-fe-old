@@ -36,7 +36,7 @@
     <div class="pretend_table_mobile_text mobile_label" translate="VIEWS.PUBLIC_GROUP.LNK_STATUS">Status</div>
     <span> {{'TXT_TOPIC_STATUS_'+$ctrl.memberTopic.status | uppercase | translate}} </span>
 </div>
-<div class="pretend_td recycle_bin_wrap" ng-if="$ctrl.Topic.canDelete(memberTopic) && $ctrl.isVisibleField('delete')">
+<div class="pretend_td recycle_bin_wrap" ng-if="$ctrl.isVisibleField('delete')">
     <div class="btn_wrap recycle_bin">
         <div class="btn" ng-click="$ctrl.doDeleteMemberTopic()">
             <div class="table_cell">

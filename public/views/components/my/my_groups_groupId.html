@@ -59,7 +59,7 @@
                                 <span class="item_link blue_link" ng-click="$ctrl.doShowMemberTopicList(group)" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                                 <span ng-if="$ctrl.Group.canUpdate($ctrl.group)">
                                     <span class="separator">|</span>
-                                    <span class="item_link blue_link" ui-sref="my/groups/groupId/settings({groupId: $ctrl.group.id, tab: 'topics'})" translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</span>
+                                    <span class="item_link blue_link" ng-click="$ctrl.addTopicDialog(); $event.stopPropagation();" translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</span>
                                 </span>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                 <span class="item_link blue_link" ng-click="$ctrl.doShowMemberUserList()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_VIEW">view</span>
                                 <span ng-if="$ctrl.Group.canUpdate($ctrl.group)">
                                     <span class="separator">|</span>
-                                    <span class="item_link blue_link" ui-sref="my/groups/groupId/settings({groupId: $ctrl.group.id, tab: 'users'})"
+                                    <span class="item_link blue_link" ng-click="$ctrl.shareGroupDialog(); $event.stopPropagation();"
                                           translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</span>
                                 </span>
                             </div>
@@ -194,7 +194,7 @@
                      translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter
                 </div>
                 <span ng-if="$ctrl.Group.canUpdate($ctrl.group)">|
-                    <div class="blue_link" ui-sref="my/groups/groupId/settings({groupId: $ctrl.group.id, tab: 'topics'})" ng-click="$event.stopPropagation()"
+                    <div class="blue_link" ng-click="$ctrl.addTopicDialog(); $event.stopPropagation()"
                          translate="VIEWS.MY_GROUPS_GROUPID.LNK_ADD">add</div>
                 </span>
             </div>
@@ -281,7 +281,7 @@
                      translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter
                 </div>
                 <span ng-if="$ctrl.Group.canUpdate($ctrl.group)">|
-                    <div class="blue_link" ui-sref="my/groups/groupId/settings({groupId: $ctrl.group.id, tab: 'users'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</div>
+                    <div class="blue_link" ng-click="$ctrl.shareGroupDialog();$event.stopPropagation()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</div>
                 </span>
             </div>
             <div class="minimize_container">

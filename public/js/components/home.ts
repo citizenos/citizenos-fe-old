@@ -99,6 +99,7 @@ let home = {
                 this.$stateParams.category = category;
                 this.$state.go('home', this.$stateParams);
             } else {
+                console.log('CAT', category)
                 this.PublicTopicService.categories = category;
                 this.PublicTopicService.reload();
                 this.$stateParams.category = category;

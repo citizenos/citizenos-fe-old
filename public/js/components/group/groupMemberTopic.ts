@@ -8,13 +8,13 @@ let groupMemberTopic = {
         fields: '=?',
         group: '='
     },
-    controller: ['ngDialog', 'GroupMemberTopic', 'Topic', 'Group', class GroupMemberTopicController {
+    controller: ['ngDialog', 'GroupMemberTopic', 'GroupMemberTopicService', 'Topic', 'Group', class GroupMemberTopicController {
         private memberTopic;
         private canUpdate;
         private group;
         public fields
 
-        constructor (private ngDialog, private GroupMemberTopic, public Topic, public Group) {
+        constructor (private ngDialog, private GroupMemberTopic, private GroupMemberTopicService, public Topic, public Group) {
         }
 
         isVisibleField (field) {
@@ -37,21 +37,21 @@ let groupMemberTopic = {
             }
         }
         doDeleteMemberTopic () {
-            const memberTopic = this.memberTopic;
-            const group = this.group;
-
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_member_topic_delete_confirm.html',
                     data: {
-                        topic: memberTopic
+                        topic: this.memberTopic
                     }
                 })
                 .then(() => {
                     this.GroupMemberTopic
-                        .delete(memberTopic)
+                        .delete({
+                            topicId: this.memberTopic.id,
+                            groupId: this.group.id
+                        })
                         .then(() => {
-                            group.getMemberTopics();
+                            this.GroupMemberTopicService.reload();
                         });
                 }, angular.noop);
         };

@@ -161,12 +161,12 @@
             <div class="line lightest_line"></div>
 
             <div id="fi_selection_area">
-                <a href="" class="fi_link" ng-repeat="option in $ctrl.filters[$ctrl.filters.tabSelected].options" ng-click="$ctrl.doSetFilter($ctrl.filters[$ctrl.filters.tabSelected], option)"
+                <a  class="fi_link" ng-repeat="option in $ctrl.filters[$ctrl.filters.tabSelected].options"
                    ng-class="option === $ctrl.filters[$ctrl.filters.tabSelected].value ? 'bold' : ''">
-                    <span ng-if="$ctrl.filters.tabSelected === 'categories'">
+                    <span ng-if="$ctrl.filters.tabSelected === 'categories'" ng-click="$ctrl.doSetCategory(option);$event.stopPropagation();">
                         {{'TXT_TOPIC_CATEGORY_' + option | uppercase | translate}}
                     </span>
-                    <span ng-if="$ctrl.filters.tabSelected === 'statuses'">
+                    <span ng-if="$ctrl.filters.tabSelected === 'statuses'" ng-click="$ctrl.doSetStatus(option);$event.stopPropagation();">
                         {{'TXT_TOPIC_STATUS_' + option | uppercase | translate}}
                     </span>
                 </a>

@@ -30,7 +30,6 @@
         .dropdown {
             display: none;
             position: absolute;
-            width: 100%;
             background: vars.$white;
             left: 0;
             z-index: 1;
@@ -38,7 +37,6 @@
             border-radius: 0 0 4px 4px;
             max-height: 500px;
             overflow-y: auto;
-            min-width: 250px;
 
             .dropdown_item {
                 font-weight: initial;

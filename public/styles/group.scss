@@ -90,38 +90,109 @@
                 }
 
                 .group_members {
+                    cursor: pointer;
                     display: inline;
-                    background: vars.$light_gray;
+                    background: vars.$deep_sky_blue;
                     border-radius: 4px;
-                    padding: 10px 16px;
+                    color: vars.$white;
+                    font-weight: 700;
+                    padding: 8px 16px;
                     width: max-content;
-                    float: right;
+                    margin-right: 8px;
 
                     .icon {
                         display: inline-block;
                         vertical-align: middle;
                     }
 
-                    .count {
-                        margin-left: 8px;
-                        display: inline-block;
+                    .separator {
+                        width: 1px;
+                        height: 20px;
+                        background: vars.$dark_blue;
                         vertical-align: middle;
+                        display: inline-block;
+                        margin-left: 5px;
+                        margin-right: 5px;
+                    }
+
+                    .count {
+                        font-weight: 100;
+                        margin-left: 4px;
+                        display: inline-block;
                     }
                 }
+
                 .group_actions {
-                    margin-left: 15px;
-                    display: inline;
                     vertical-align: middle;
-                    float: right;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
 
                     .bar_select{
+                        background: vars.$light_gray;
+                        color: black;
+                        border: solid 1px vars.$lightest_gray;
+
                         .select_text {
-                            padding: 13px;
+                            padding: 8px 13px;
+                        }
+                    }
+
+                    .bar_select_blue {
+                        background: vars.$deep_sky_blue;
+                        color: vars.$white!important;
+                        border: solid 1px vars.$dark_blue;
+                        margin-right: 6px;
+
+                        .select_text {
+                            padding: 8px 13px;
                         }
                     }
 
                     &.mobile {
                         display: none;
+                    }
+
+                    .dropdown {
+                        width: max-content;
+                        z-index: 999999;
+                    }
+                }
+
+                @include mixins_n_extends.mobile {
+                    .group_actions {
+                        position: relative;
+                        float: none;
+                        bottom: 0;
+                        width: 100%;
+                        margin-left: 0;
+                        margin-bottom: 5px;
+                        display: block;
+
+                        &.mobile {
+                            display: block;
+                        }
+
+                        .group_members {
+                            display: block;
+                            width: calc(100% - 30px);
+                            text-align: center;
+                        }
+
+                        .bar_select {
+                            margin-top: 5px;
+                            width: 100%;
+                            .icon_holder {
+                                position: absolute;
+                                right: 15px;
+                                top: 20px;
+                            }
+                        }
+                    }
+
+                    .light_gray_button_big {
+                        width: 100%;
+                        margin-top: 5px;
                     }
                 }
 
@@ -162,29 +233,6 @@
                     float: right;
                     padding-left: 20px;
                     padding-right: 20px;
-                }
-
-                @include mixins_n_extends.mobile {
-                    .group_actions {
-                        position: absolute;
-                        float: none;
-                        bottom: 0;
-                        width: 100%;
-                        margin-left: 0;
-                        display: block;
-
-                        &.mobile {
-                            display: block;
-                        }
-                        .bar_select {
-                            width: 100%;
-                            .icon_holder {
-                                position: absolute;
-                                right: 15px;
-                                top: 20px;
-                            }
-                        }
-                    }
                 }
             }
         }

@@ -257,6 +257,27 @@ let myGroupsGroup = {
                 }, 200);
             }
         };
+
+        shareGroupDialog() {
+            this.ngDialog.open({
+                template: '<group-invite></group-invite>',
+                plain:true
+            })
+        }
+
+        createTopicDialog() {
+            this.ngDialog.open({
+                template: '<group-create-topic></group-create-topic>',
+                plain:true
+            })
+        }
+
+        addTopicDialog() {
+            this.ngDialog.open({
+                template: '<group-add-topics></group-add-topics>',
+                plain:true
+            })
+        }
     }]
 };
 

@@ -110,6 +110,9 @@ export class Group {
         return group && ((group.permission && group.permission.level === this.GroupMemberUser.LEVELS.admin) || (group.userLevel && group.userLevel === this.GroupMemberUser.LEVELS.admin));
     };
 
+    canShare (group) {
+        return group && (!this.isPrivate(group) || this.canUpdate(group));
+    }
     canDelete (group) {
         return this.canUpdate(group);
     };

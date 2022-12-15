@@ -68,7 +68,7 @@ export class GroupMemberUser {
     delete (params) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:user/groups/:groupId/members/users/:userId', params)
             .replace('/:prefix', this.getUrlPrefix())
-            .replace('/:userId', this.getUrlUser());
+            .replace('/:user', this.getUrlUser());
 
         return this.$http.delete(path)
             .then((res) => {

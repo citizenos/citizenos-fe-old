@@ -41,7 +41,7 @@ let publicGroup = {
                 })
                 .then(() => {
                     this.GroupMemberUser
-                        .delete({groupId: this.group.id, id: this.sAuth.user.id})
+                        .delete({groupId: this.group.id, userId: this.sAuth.user.id})
                         .then(() => {
                             this.$state.reload(true);
                         });
@@ -60,6 +60,27 @@ let publicGroup = {
                         });
                 }, angular.noop);
         };
+
+        shareGroupDialog() {
+            this.ngDialog.open({
+                template: '<group-invite></group-invite>',
+                plain:true
+            })
+        }
+
+        createTopicDialog() {
+            this.ngDialog.open({
+                template: '<group-create-topic></group-create-topic>',
+                plain:true
+            })
+        }
+
+        addTopicDialog() {
+            this.ngDialog.open({
+                template: '<group-add-topics></group-add-topics>',
+                plain:true
+            })
+        }
 
         joinGroup () {
             this.ngDialog.openConfirm({
