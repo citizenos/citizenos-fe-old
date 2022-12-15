@@ -245,29 +245,24 @@ let groupSettings = {
 
         doSaveGroup () {
             this.errors = null;
-
-            this.Group.update(this.group)
-                .then((data) => {
-                    const savePromises = [];
-                    angular.extend(this.group, data);
-                    // Users
-                    const groupMemberUsersToInvite = [];
-                    this.members.forEach((member) => {
-                        groupMemberUsersToInvite.push({
-                            userId: member.userId,
-                            level: member.level,
-                            inviteMessage: this.form.inviteMessage
-                        })
-                    });
-
-                    if (groupMemberUsersToInvite.length) {
-                        savePromises.push(
-                            this.GroupInviteUser.save({groupId: this.group.id}, groupMemberUsersToInvite)
-                        );
-                    }
-
-                    return Promise.all(savePromises)
+            const savePromises = [];
+            // Users
+            const groupMemberUsersToInvite = [];
+            this.members.forEach((member) => {
+                groupMemberUsersToInvite.push({
+                    userId: member.userId,
+                    level: member.level,
+                    inviteMessage: this.form.inviteMessage
                 })
+            });
+
+            if (groupMemberUsersToInvite.length) {
+                savePromises.push(
+                    this.GroupInviteUser.save({groupId: this.group.id}, groupMemberUsersToInvite)
+                );
+            }
+
+            return Promise.all(savePromises)
                 .then(() =>  {
                     this.GroupInviteUserService.reload();
                     const dialogs = this.ngDialog.getOpenDialogs();
