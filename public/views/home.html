@@ -1,188 +1,77 @@
-<div id="home_root">
+
+<!-- GROUPS AREA -->
 
 
-    <!-- FILTER AREA DESKTOP -->
-    <div ng-if="$ctrl.app.wWidth > 767" id="filter_bar_desktop">
-
-        <div id="bar_top">
-            <div class="bar_text" translate="VIEWS.HOME.HEADINGS_SHOW_ME_TOPICS_ABOUT">Show me topics about</div>
-            <div cos-dropdown class="bar_select">
-
-                <div class="select_text">
-                    {{'TXT_TOPIC_CATEGORY_' + $ctrl.filters.categories.value | uppercase | translate}}
-                    <div class="icon_holder">
-                        <div class="table_cell">
-                            <div class="sprite sprite-dropdown-arrowdown-big2x"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="animated_bg_bar">
-                </div>
-
-                <div class="dropdown big_drop">
-                    <div class="line lightest_line"></div>
-
-                    <div class="dropdown_item" ng-repeat="category in $ctrl.filters.categories.options" ng-click="$ctrl.doSetCategory(category)"
-                         ng-class="category === $ctrl.filters.categories.value ? 'bold' : ''">
-                        <div class="item_name">
-                            {{'TXT_TOPIC_CATEGORY_' + category | uppercase | translate}}
-                        </div>
-                        <!--div class="item_props">
-                            404 topics
-                        </div-->
-                        <div class="clearer"></div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div id="bar_bottom">
-
-            <!-- TODO: Implement orderBy -->
-            <!--div cos-dropdown class="bar_section">
-                <div class="bar_text">
-                    Order by
-                </div>
-                <div class="bar_select">
-                    time
-                    <div class="icon_holder">
-                        <div class="table_cell">
-                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dropdown">
-                    <div class="line lightest_line"></div>
-
-                    <div class="dropdown_item" ng-repeat=ng-class="key == 0 ? 'bold' : ''" ng-repeat="(key, n) in ['time','popularity','size']">
-                        <div class="item_name">
-                            {{n}}
-                        </div>
-                        <div class="clearer"></div>
-                    </div>
-                </div>
-
-            </div-->
-
-            <div cos-dropdown class="bar_section">
-                <div class="bar_text" translate="VIEWS.HOME.LNK_SHOW">Show</div>
-                <div class="bar_select">
-                    {{'TXT_TOPIC_STATUS_' + $ctrl.filters.statuses.value | uppercase | translate}}
-                    <div class="icon_holder">
-                        <div class="table_cell">
-                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dropdown">
-                    <div class="line lightest_line"></div>
-
-                    <div class="dropdown_item" ng-repeat="status in $ctrl.filters.statuses.options" ng-click="$ctrl.doSetStatus(status)"
-                         ng-class="status === $ctrl.filters.statuses.value ? 'bold' : ''">
-                        <div class="item_name">
-                            {{'TXT_TOPIC_STATUS_' + status | uppercase | translate}}
-                        </div>
-                        <div class="clearer"></div>
-                    </div>
-                </div>
-
-            </div>
-
-            <span ng-if="$ctrl.filters.categories.value !== $ctrl.FILTERS_ALL || $ctrl.filters.statuses.value !== $ctrl.FILTERS_ALL">
-                <div class="line_holder">
-                    <div class="v_line dark_gray_background">
-                    </div>
-                </div>
-
-
-                <div class="blue_link" ng-click="$ctrl.doClearFilters()" translate="VIEWS.HOME.LNK_CLEAR_FILTERS">Clear filters</div>
-            </span>
-
-        </div>
-    </div>
-
-
-    <!-- FILTER AREA MOBILE -->
-    <div ng-if="$ctrl.app.wWidth <= 767" id="filter_bar_mobile">
-
-        <div class="filter_topics" ng-if="!$ctrl.app.showSearchFiltersMobile && !isFilterApplied()" ng-click="$ctrl.app.showSearchFiltersMobile = true">
-            <div class="table_cell" translate="VIEWS.HOME.LBL_FILTER_THE_TOPICS">Filter the topics</div>
-        </div>
-
-        <div class="filter_topics edit" ng-if="!$ctrl.app.showSearchFiltersMobile && $ctrl.isFilterApplied()">
-            <div class="filter_topics_top">
-                <div class="blue_link" ng-click="$ctrl.app.showSearchFiltersMobile = true" translate="VIEWS.HOME.LNK_EDIT_FILTER">Edit filter</div>
-                <div class="blue_link" ng-click="$ctrl.doClearFilters()" translate="VIEWS.HOME.LNK_CLEAR_FILTERS">Clear filters</div>
-            </div>
-            <div class="line lightest_line"></div>
-            <div class="filter_topics_bottom">
-                <div class="filter_text"><span translate="VIEWS.HOME.LBL_CATEGORY">Category:</span> {{'TXT_TOPIC_CATEGORY_' + $ctrl.filters.categories.value | uppercase | translate}}</div>
-                <div class="filter_text"><span translate="VIEWS.HOME.LBL_STATUS">Status:</span> {{'TXT_TOPIC_STATUS_' + $ctrl.filters.statuses.value | uppercase | translate}}</div>
-            </div>
-        </div>
-
-        <div id="fi_area" ng-if="$ctrl.app.showSearchFiltersMobile">
-
-            <div id="fi_top">
-                <div id="fi_header">
-                    <div id="fi_header_text" translate="VIEWS.HOME.LBL_FILTER_THE_TOPICS">Filter the topics</div>
-                    <div id="close_fi" ng-click="$ctrl.app.showSearchFiltersMobile = false">
-                        <div class="table_cell">
-                            <div class="sprite sprite-btn-popup-close2x"></div>
-                        </div>
-                    </div>
-                </div>
-                <div id="fi_nav">
-
-                    <div class="fi_nav_button" ng-click="$ctrl.filters.tabSelected = 'categories'">
-                        <div class="fi_button_text" ng-class="$ctrl.filters.tabSelected === 'categories' ? 'selected' : ''" translate="VIEWS.HOME.BTN_CATEGORY">CATEGORY</div>
-                        <div class="line blue_background" ng-class="$ctrl.filters.tabSelected === 'categories' ? 'selected' :  ''"></div>
-                    </div>
-
-                    <!--div class="fi_nav_button" ng-click="$ctrl.app.filterTabOrder = true">
-                        <div class="fi_button_text">ORDER</div>
-                        <div class="line blue_background"></div>
-                    </div-->
-
-                    <div class="fi_nav_button">
-                        <div class="fi_button_text" ng-class="$ctrl.filters.tabSelected === 'statuses' ? 'selected' : ''" ng-click="$ctrl.filters.tabSelected = 'statuses'" translate="VIEWS.HOME.BTN_STATUS">STATUS</div>
-                        <div class="line blue_background" ng-class="$ctrl.filters.tabSelected === 'statuses' ? 'selected' : ''"></div>
-                    </div>
-
-                </div>
-                <div class="clearer"></div>
-            </div>
-
-            <div class="line lightest_line"></div>
-
-            <div id="fi_selection_area">
-                <a  class="fi_link" ng-repeat="option in $ctrl.filters[$ctrl.filters.tabSelected].options"
-                   ng-class="option === $ctrl.filters[$ctrl.filters.tabSelected].value ? 'bold' : ''">
-                    <span ng-if="$ctrl.filters.tabSelected === 'categories'" ng-click="$ctrl.doSetCategory(option);$event.stopPropagation();">
-                        {{'TXT_TOPIC_CATEGORY_' + option | uppercase | translate}}
-                    </span>
-                    <span ng-if="$ctrl.filters.tabSelected === 'statuses'" ng-click="$ctrl.doSetStatus(option);$event.stopPropagation();">
-                        {{'TXT_TOPIC_STATUS_' + option | uppercase | translate}}
-                    </span>
-                </a>
-            </div>
-
-            <div class="fi_submit">
-                <div class="blue_button" ng-click="$ctrl.app.showSearchFiltersMobile = false" translate="VIEWS.HOME.BTN_SUBMIT_FILTER">Submit filter</div>
-            </div>
-
-        </div>
-
-    </div>
-
-
+<div id="home_root" class="no_padding">
     <!-- TOPICS AREA -->
+
+    <div class="section_header">
+        <div class="title"><h1 translate="VIEWS.HOME.PUBLIC_GROUPS_TITLE">Popular public groups</h1></div>
+        <div class="description" translate="VIEWS.HOME.PUBLIC_GROUPS_DESCRIPTION">Have a sneak peek at some of the most popular public groups currently available on Citizen OS.</div>
+    </div>
+    <div class="groups_wrap">
+        <div class="group_wrap" ng-repeat="group in $ctrl.PublicGroupService.groups">
+            <div>
+                <div class="group_shown_content" ng-click="$ctrl.goToGroupView(group)">
+                    <div class="group_header">
+                        <div class="group_icon">
+                            <div class="group_circle">
+                                <div class="group_icon"ng-if="group.imageUrl"><img ng-src="{{group.imageUrl}}" /></div>
+
+                                <cos-initials  ng-if="!group.imageUrl && group.name" class="table_cell" ng-model="group.name" initial-limit="1"></cos-initials>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group_name">
+                        <span ng-bind="group.name"></span>
+                    </div>
+                    <div class="group_details">
+                        <span ng-bind="group.description"></span>
+                    </div>
+                </div>
+                <div class="join_button">
+                    <div class="blue_button_wrap">
+                        <button class="blue_button" ng-if="!group.userLevel" ng-click="$ctrl.joinGroup(group);$event.stopPropagation();" translate="VIEWS.PUBLIC_GROUPS.BTN_JOIN_GROUP">Join group</button>
+                        <button class="blue_button" ng-if="group.userLevel" ng-click="$ctrl.goToGroupView(group);$event.stopPropagation();" translate="VIEWS.PUBLIC_GROUPS.BTN_VIEW_GROUP">View group</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="!$ctrl.PublicGroupService.groups.length" class="table">
+            <div class="no_results v_align_cell">
+                <div class="no_results_icon_wrap">
+                    <div class="sprite sprite-icon-no-results2x no_results_img"></div>
+                </div>
+                <div class="title_area">
+                    <h3 translate="VIEWS.PUBLIC_GROUPS.HEADING_NO_RESUTS">We’re sorry, but we couldn’t find any results :(</h3>
+                    <p translate="VIEWS.PUBLIC_GROUPS.HEADING_GET_STARTED">Maybe you can get the first discussion initiated by</p>
+                </div>
+
+                <div class="button_area" ng-if="$ctrl.app.user.loggedIn">
+
+                    <div class="big_button" ui-sref="groups/create">
+                        <div class="button_cell">
+                            <div class="topic_text" translate="VIEWS.PUBLIC_GROUPS.BTN_CREATE_PUBLIC_GROUP" ng-click="$ctrl.createGroup()">Creating a new topic</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="blue_button_wrap" ui-sref="public/groups">
+        <div class="blue_button view_more_button" ng-class="{disabled: $ctrl.isTopicListLoading}"><span translate="VIEWS.HOME.BTN_VIEW_ALL_GROUPS">View all public groups</span><div class="icon sprite sprite-bullet-arrow2x"></div></div>
+    </div>
+    <!-- TOPICS AREA -->
+
+    <div class="section_header">
+        <div class="title"><h1 translate="VIEWS.HOME.PUBLIC_TOPICS_TITLE">Popular public topics</h1></div>
+        <div class="description" translate="VIEWS.HOME.PUBLIC_TOPICS_DESCRIPTION">Have a sneak peek at some of the most popular public groups currently available on Citizen OS.</div>
+    </div>
+
     <div id="topics_area" ng-class="{no_tutorial_topic: $ctrl.filters.categories.value !== $ctrl.FILTERS_ALL || $ctrl.filters.statuses.value !== FILTERS_ALL, no_results: !$ctrl.PublicTopicService.topics.length}">
+
 
         <div ng-if="!$ctrl.PublicTopicService.isLoading && !$ctrl.PublicTopicService.topics.length" class="table">
             <div class="no_results v_align_cell">
@@ -206,158 +95,7 @@
             </div>
         </div>
 
-        <a ng-href="{{$ctrl.app.config.links.help[app.language] || $ctrl.app.config.links.help[app.config.language.default]}}" class="big tutorial white_text blue_background topic" ng-if="$ctrl.isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small" translate="VIEWS.HOME.HEADING_BEGINNERS_GUIDE">A beginner’s guide to CitizenOS.</div>
-
-                    <div class="main_text">
-                        <div class="text_big" translate="VIEWS.HOME.TXT_BEGINNERS_GUIDE">Hi there, welcome to CitizenOS! Read this topic to find out how everything works.</div>
-                    </div>
-
-                    <div class="line white_line"></div>
-
-                    <div class="text_small" ng-if="$ctrl.app.wWidth > 667" translate="VIEWS.HOME.LBL_TUTORIAL_AND_EXPLANATION">Tutorial and explanation</div>
-
-                </div>
-            </div>
-        </a>
-
-        <a ng-href="/citizenos" class="big citizenos fixed_topic" ng-if="$ctrl.isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small" translate="VIEWS.HOME.HEADING_CITIZENOS_COMMUNITY">Citizen OS</div>
-
-                    <div class="main_text">
-                        <div class="text_big" translate="VIEWS.HOME.TXT_CITIZENOS_COMMUNITY">E-democracy discussions with Citizen OS team</div>
-                        <div class="text_small" translate="VIEWS.HOME.TXT_CITIZENOS_COMMUNITY_DESCRIPTION">Join us in our platform development and e-democracy discussions.</div>
-                    </div>
-
-                    <div class="line black_line"></div>
-
-                    <div class="text_small" ng-if="$ctrl.app.wWidth > 667" translate="VIEWS.HOME.LBL_CITIZENOS_COMMUNITY">Topics about Citizen OS</div>
-
-                </div>
-            </div>
-        </a>
-
-        <a ng-href="/eurochangemakers" class="big eurochangemakers white_text fixed_topic" ng-if="$ctrl.isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small">GEYC</div>
-
-                    <div class="main_text">
-                        <div class="text_big">EuroChangeMakers</div>
-                        <div class="text_small"> EuroChangeMakers #euroCM Project, co-funded by Europe for Citizens Programme of the European Union, engages 19 partners from 18 countries and aims to foster youth participation and reflection on critical issues for the Future of Europe: digitalization, social cohesion, and environment. https://eurocm.geyc.ro</div>
-                    </div>
-
-                    <div class="line black_line"></div>
-
-                    <div class="text_small" ng-if="$ctrl.app.wWidth > 667">EuroChangeMakers</div>
-
-                </div>
-            </div>
-        </a>
-
-        <a ng-href="/biotoopia" class="big biotoopia white_text fixed_topic" ng-if="$ctrl.isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small">26-28 August International Hybrid Conference in Viinistu Art Harbour in Estonia</div>
-
-                    <div class="main_text">
-                        <div class="text_big">Biotoopia</div>
-                        <div class="text_small">Biotoopia is searching for fresh modes of cooperation between the arts, sciences and biosphere, to prepare the ground for the germination of new thought patterns. Join us in a warm-up online discussion “The renaissance of bioharmony is here!” which culminates with live panel session on 20.08 at 16.00 - 17.30 (UTC +03).</div>
-                    </div>
-
-                    <div class="line black_line"></div>
-
-                    <div class="text_small link" ng-if="$ctrl.app.wWidth > 667"><span ng-click="$ctrl.goToPage('https://biotoopia.ee/'); $event.preventDefault();">Biotoopia</span></div>
-
-                </div>
-            </div>
-        </a>
-
-        <a ng-href="/hacktivistcommunity" class="big hacktivist_community black_text fixed_topic" ng-if="$ctrl.isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small" translate="VIEWS.HOME.HEADING_HACKTIVIST_COMMUNITY">Hacktivist Community</div>
-
-                    <div class="main_text">
-                        <div class="text_big" translate="VIEWS.HOME.TXT_HACKTIVIST_COMMUNITY">Hacktivist Community</div>
-                        <div class="text_small" translate="VIEWS.HOME.TXT_DESCRIPTION_HACKTIVIST_COMMUNITY">Civic hacktivist community is meeting space for people who stand for the e-democracy and collaborative decision-making.</div>
-                    </div>
-
-                    <div class="line black_line"></div>
-
-                    <div class="text_small" ng-if="$ctrl.app.wWidth > 667" translate="VIEWS.HOME.LBL_HACKTIVIST_COMMUNITY">Democracy and civil society</div>
-
-                </div>
-            </div>
-        </a>
-
-        <a ng-href="/thirtyfourislandproject" class="big thirty_four_island_project black_text fixed_topic" ng-if="$ctrl.isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small" translate="VIEWS.HOME.HEADING_LETS_DO_IT_WORLD">Let's Do It! Indonesia</div>
-
-                    <div class="main_text">
-                        <div class="text_big">34 island project oleh Let's Do It Indonesia</div>
-                        <div class="text_small">34 island project bersifat terbuka bagi seluruh pihak, baik masyarakat, organisasi, dan pemerintah di Indonesia dengan tujuan menampung ide untuk mengimplementasikan rencana lingkungan yang berkelanjutan dalam Keep It Clean plan di Indonesia.</div>
-                    </div>
-
-                    <div class="line black_line"></div>
-
-                    <div class="text_small" ng-if="$ctrl.app.wWidth > 667">34 island project</div>
-
-                </div>
-            </div>
-        </a>
-
-        <a ng-href="/opinionfestival" class="big opinionfestival black_text fixed_topic" ng-if="$ctrl.isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small">Citizen OS Indonesia</div>
-
-                    <div class="main_text">
-                        <div class="text_big">Indonesian Opinion Festival</div>
-                        <div class="text_small">Indonesia Opinion Festival adalah even yang mempertemukan masyarakat untuk merayakan kebebasan berpendapat. Diskusi, debat, rekomendasi ide dan voting terhadap ide-ide terpilih dalam perjalanan menuju e-democracy bangsa.</div>
-                    </div>
-
-                    <div class="line black_line"></div>
-
-                    <div class="text_small" ng-if="$ctrl.app.wWidth > 667">Opinion Festival</div>
-
-                </div>
-            </div>
-        </a>
-
-        <a ng-href="/pyln" class="big pyln black_text fixed_topic" ng-if="$ctrl.isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small">Citizen OS India</div>
-
-                    <div class="main_text">
-                        <div class="text_big">Participatory Youth Leadership Network</div>
-                        <div class="text_small">PYLN is a community of practice for youth organisations to hack participatory leadership in India</div>
-                    </div>
-
-                    <div class="line black_line"></div>
-
-                    <div class="text_small" ng-if="$ctrl.app.wWidth > 667">Participatory Youth Leadership Network</div>
-
-                </div>
-            </div>
-        </a>
-
-        <a ng-click="$ctrl.goToView(topic)" class="topic" ng-repeat="topic in $ctrl.PublicTopicService.topics" ng-class="topic.categories.indexOf($ctrl.filters.categories.value) > -1 ? $ctrl.filters.categories.value : $ctrl.filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
+        <a ng-click="$ctrl.goToTopicView(topic)" class="topic" ng-repeat="topic in $ctrl.PublicTopicService.topics" ng-class="topic.categories.indexOf($ctrl.filters.categories.value) > -1 ? $ctrl.filters.categories.value : $ctrl.filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
                     <div class="date" ng-bind="topic.lastActivity | amDateFormat : 'L'">12/12/2015</div>
@@ -383,8 +121,8 @@
         <div class="clearer"></div>
     </div>
 
-    <div id="blue_button_wrap" ng-click="$ctrl.PublicTopicService.loadMore()" ng-if="$ctrl.PublicTopicService.countTotal > $ctrl.PublicTopicService.topics.length">
-        <div class="blue_button" ng-class="{disabled: $ctrl.isTopicListLoading}" translate="VIEWS.HOME.BTN_LOAD_MORE_TOPICS">Load more topics</div>
+    <div id="blue_button_wrap" ui-sref="public/topics">
+        <div class="blue_button view_more_button" ng-class="{disabled: $ctrl.isTopicListLoading}"><span translate="VIEWS.HOME.BTN_VIEW_ALL_TOPICS">View all public topics</span><div class="icon sprite sprite-bullet-arrow2x"></div></div>
     </div>
 
     <div ui-view></div>

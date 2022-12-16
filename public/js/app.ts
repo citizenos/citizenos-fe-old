@@ -218,7 +218,7 @@ import * as angular from 'angular';
                     }
                 })
                 .state('home', {
-                    url: '/?topicStatus',
+                    url: '/',
                     parent: 'main',
                     template: '<home></home>'
                 })
@@ -261,55 +261,60 @@ import * as angular from 'angular';
                         createDialog();
                     }]
                 })
+                .state('public/topics', {
+                    url: '/topics?topicStatus',
+                    parent: 'main',
+                    template: '<public-topics></public-topics>'
+                })
                 .state('category', {
                     url: '/topics/categories/:category?topicStatus',
                     parent: 'main',
-                    template: '<home></home>'
+                    template: '<public-topics></public-topics>'
                 })
                 .state('citizenos', {
                     url: '/citizenos',
                     parent: 'main',
-                    template: '<home></home>'
+                    template: '<public-topics></public-topics>'
                 })
                 .state('opinionfestival', {
                     url: '/opinionfestival',
                     parent: 'main',
-                    template: '<home></home>'
+                    template: '<public-topics></public-topics>'
                 })
                 .state('hacktivistcommunity', {
                     url: '/hacktivistcommunity?topicStatus',
                     parent: 'main',
-                    template: '<home></home>'
+                    template: '<public-topics></public-topics>'
                 })
                 .state('pyln', {
                     url: '/pyln?topicStatus',
                     parent: 'main',
-                    template: '<home></home>'
+                    template: '<public-topics></public-topics>'
                 })
                 .state('thirtyfourislandproject', {
                     url: '/thirtyfourislandproject?topicStatus',
                     parent: 'main',
-                    template: '<home></home>'
+                    template: '<public-topics></public-topics>'
                 })
                 .state('eestijazziarengusuunad', {
                     url: '/eestijazziarengusuunad?topicStatus',
                     parent: 'main',
-                    template: '<home></home>'
+                    template: '<public-topics></public-topics>'
                 })
                 .state('thetwelvemovie', {
                     url: '/thetwelvemovie?topicStatus',
                     parent: 'main',
-                    template: '<home></home>'
+                    template: '<public-topics></public-topics>'
                 })
                 .state('eurochangemakers', {
                     url: '/eurochangemakers?topicStatus',
                     parent: 'main',
-                    template: '<home></home>'
+                    template: '<public-topics></public-topics>'
                 })
                 .state('biotoopia', {
                     url: '/biotoopia?topicStatus',
                     parent: 'main',
-                    template: '<home></home>'
+                    template: '<public-topics></public-topics>'
                 })
                 .state('account', {
                     url: '/account',

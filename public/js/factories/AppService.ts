@@ -86,7 +86,7 @@ export class AppService {
         });
 
         $rootScope.displaySearch = () => {
-            const allowedState = ['home', 'my/groups', 'my/topics', 'public/groups', 'public/groups/view', 'my/groups/groupId', 'my/groups/groupId/settings', 'my/topics/topicId', 'my/topics/topicId/settings'];
+            const allowedState = ['home', 'my/groups', 'my/topics', 'public/groups', 'public/groups/view', 'public/topics', 'my/groups/groupId', 'my/groups/groupId/settings', 'my/topics/topicId', 'my/topics/topicId/settings'];
 
             if (allowedState.indexOf($state.current.name) > -1) {
                 return true;

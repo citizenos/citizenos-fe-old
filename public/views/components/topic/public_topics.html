@@ -1,0 +1,259 @@
+<div id="home_root">
+
+
+    <!-- FILTER AREA DESKTOP -->
+    <div ng-if="$ctrl.app.wWidth > 767" id="filter_bar_desktop">
+
+        <div id="bar_top">
+            <div class="bar_text" translate="VIEWS.HOME.HEADINGS_SHOW_ME_TOPICS_ABOUT">Show me topics about</div>
+            <div cos-dropdown class="bar_select">
+
+                <div class="select_text">
+                    {{'TXT_TOPIC_CATEGORY_' + $ctrl.filters.categories.value | uppercase | translate}}
+                    <div class="icon_holder">
+                        <div class="table_cell">
+                            <div class="sprite sprite-dropdown-arrowdown-big2x"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animated_bg_bar">
+                </div>
+
+                <div class="dropdown big_drop">
+                    <div class="line lightest_line"></div>
+
+                    <div class="dropdown_item" ng-repeat="category in $ctrl.filters.categories.options" ng-click="$ctrl.doSetCategory(category)"
+                         ng-class="category === $ctrl.filters.categories.value ? 'bold' : ''">
+                        <div class="item_name">
+                            {{'TXT_TOPIC_CATEGORY_' + category | uppercase | translate}}
+                        </div>
+                        <!--div class="item_props">
+                            404 topics
+                        </div-->
+                        <div class="clearer"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div id="bar_bottom">
+
+            <!-- TODO: Implement orderBy -->
+            <!--div cos-dropdown class="bar_section">
+                <div class="bar_text">
+                    Order by
+                </div>
+                <div class="bar_select">
+                    time
+                    <div class="icon_holder">
+                        <div class="table_cell">
+                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <div class="line lightest_line"></div>
+
+                    <div class="dropdown_item" ng-repeat=ng-class="key == 0 ? 'bold' : ''" ng-repeat="(key, n) in ['time','popularity','size']">
+                        <div class="item_name">
+                            {{n}}
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+                </div>
+
+            </div-->
+
+            <div cos-dropdown class="bar_section">
+                <div class="bar_text" translate="VIEWS.HOME.LNK_SHOW">Show</div>
+                <div class="bar_select">
+                    {{'TXT_TOPIC_STATUS_' + $ctrl.filters.statuses.value | uppercase | translate}}
+                    <div class="icon_holder">
+                        <div class="table_cell">
+                            <div class="sprite sprite-dropdown-arrowdown-small2x"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <div class="line lightest_line"></div>
+
+                    <div class="dropdown_item" ng-repeat="status in $ctrl.filters.statuses.options" ng-click="$ctrl.doSetStatus(status)"
+                         ng-class="status === $ctrl.filters.statuses.value ? 'bold' : ''">
+                        <div class="item_name">
+                            {{'TXT_TOPIC_STATUS_' + status | uppercase | translate}}
+                        </div>
+                        <div class="clearer"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <span ng-if="$ctrl.filters.categories.value !== $ctrl.FILTERS_ALL || $ctrl.filters.statuses.value !== $ctrl.FILTERS_ALL">
+                <div class="line_holder">
+                    <div class="v_line dark_gray_background">
+                    </div>
+                </div>
+
+
+                <div class="blue_link" ng-click="$ctrl.doClearFilters()" translate="VIEWS.HOME.LNK_CLEAR_FILTERS">Clear filters</div>
+            </span>
+
+        </div>
+    </div>
+
+
+    <!-- FILTER AREA MOBILE -->
+    <div ng-if="$ctrl.app.wWidth <= 767" id="filter_bar_mobile">
+
+        <div class="filter_topics" ng-if="!$ctrl.app.showSearchFiltersMobile && !isFilterApplied()" ng-click="$ctrl.app.showSearchFiltersMobile = true">
+            <div class="table_cell" translate="VIEWS.HOME.LBL_FILTER_THE_TOPICS">Filter the topics</div>
+        </div>
+
+        <div class="filter_topics edit" ng-if="!$ctrl.app.showSearchFiltersMobile && $ctrl.isFilterApplied()">
+            <div class="filter_topics_top">
+                <div class="blue_link" ng-click="$ctrl.app.showSearchFiltersMobile = true" translate="VIEWS.HOME.LNK_EDIT_FILTER">Edit filter</div>
+                <div class="blue_link" ng-click="$ctrl.doClearFilters()" translate="VIEWS.HOME.LNK_CLEAR_FILTERS">Clear filters</div>
+            </div>
+            <div class="line lightest_line"></div>
+            <div class="filter_topics_bottom">
+                <div class="filter_text"><span translate="VIEWS.HOME.LBL_CATEGORY">Category:</span> {{'TXT_TOPIC_CATEGORY_' + $ctrl.filters.categories.value | uppercase | translate}}</div>
+                <div class="filter_text"><span translate="VIEWS.HOME.LBL_STATUS">Status:</span> {{'TXT_TOPIC_STATUS_' + $ctrl.filters.statuses.value | uppercase | translate}}</div>
+            </div>
+        </div>
+
+        <div id="fi_area" ng-if="$ctrl.app.showSearchFiltersMobile">
+
+            <div id="fi_top">
+                <div id="fi_header">
+                    <div id="fi_header_text" translate="VIEWS.HOME.LBL_FILTER_THE_TOPICS">Filter the topics</div>
+                    <div id="close_fi" ng-click="$ctrl.app.showSearchFiltersMobile = false">
+                        <div class="table_cell">
+                            <div class="sprite sprite-btn-popup-close2x"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="fi_nav">
+
+                    <div class="fi_nav_button" ng-click="$ctrl.filters.tabSelected = 'categories'">
+                        <div class="fi_button_text" ng-class="$ctrl.filters.tabSelected === 'categories' ? 'selected' : ''" translate="VIEWS.HOME.BTN_CATEGORY">CATEGORY</div>
+                        <div class="line blue_background" ng-class="$ctrl.filters.tabSelected === 'categories' ? 'selected' :  ''"></div>
+                    </div>
+
+                    <!--div class="fi_nav_button" ng-click="$ctrl.app.filterTabOrder = true">
+                        <div class="fi_button_text">ORDER</div>
+                        <div class="line blue_background"></div>
+                    </div-->
+
+                    <div class="fi_nav_button">
+                        <div class="fi_button_text" ng-class="$ctrl.filters.tabSelected === 'statuses' ? 'selected' : ''" ng-click="$ctrl.filters.tabSelected = 'statuses'" translate="VIEWS.HOME.BTN_STATUS">STATUS</div>
+                        <div class="line blue_background" ng-class="$ctrl.filters.tabSelected === 'statuses' ? 'selected' : ''"></div>
+                    </div>
+
+                </div>
+                <div class="clearer"></div>
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <div id="fi_selection_area">
+                <a  class="fi_link" ng-repeat="option in $ctrl.filters[$ctrl.filters.tabSelected].options"
+                   ng-class="option === $ctrl.filters[$ctrl.filters.tabSelected].value ? 'bold' : ''">
+                    <span ng-if="$ctrl.filters.tabSelected === 'categories'" ng-click="$ctrl.doSetCategory(option);$event.stopPropagation();">
+                        {{'TXT_TOPIC_CATEGORY_' + option | uppercase | translate}}
+                    </span>
+                    <span ng-if="$ctrl.filters.tabSelected === 'statuses'" ng-click="$ctrl.doSetStatus(option);$event.stopPropagation();">
+                        {{'TXT_TOPIC_STATUS_' + option | uppercase | translate}}
+                    </span>
+                </a>
+            </div>
+
+            <div class="fi_submit">
+                <div class="blue_button" ng-click="$ctrl.app.showSearchFiltersMobile = false" translate="VIEWS.HOME.BTN_SUBMIT_FILTER">Submit filter</div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOPICS AREA -->
+    <div id="topics_area" ng-class="{no_tutorial_topic: $ctrl.filters.categories.value !== $ctrl.FILTERS_ALL || $ctrl.filters.statuses.value !== FILTERS_ALL, no_results: !$ctrl.PublicTopicService.topics.length}">
+
+        <div ng-if="!$ctrl.PublicTopicService.isLoading && !$ctrl.PublicTopicService.topics.length" class="table">
+            <div class="no_results v_align_cell">
+                <div class="no_results_icon_wrap">
+                    <div class="sprite sprite-icon-no-results2x"></div>
+                </div>
+                <div class="title_area">
+                    <h3 translate="VIEWS.HOME.HEADING_NO_RESUTS">We’re sorry, but we couldn’t find any results :(</h3>
+                    <p translate="VIEWS.HOME.HEADING_GET_STARTED">Maybe you can get the first discussion initiated by</p>
+                </div>
+
+                <div class="button_area">
+
+                    <div class="big_button" ng-click="$ctrl.createNewTopic()">
+                        <div class="button_cell">
+                            <div class="topic_text" translate="VIEWS.HOME.BTN_CREATING_A_NEW_TOPIC">Creating a new topic</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <a ng-href="{{$ctrl.app.config.links.help[app.language] || $ctrl.app.config.links.help[app.config.language.default]}}" class="big tutorial white_text blue_background topic" ng-if="$ctrl.isTutorialVisible()">
+            <div class="topic_wrap">
+                <div class="text_area">
+
+                    <div class="top text_small" translate="VIEWS.HOME.HEADING_BEGINNERS_GUIDE">A beginner’s guide to CitizenOS.</div>
+
+                    <div class="main_text">
+                        <div class="text_big" translate="VIEWS.HOME.TXT_BEGINNERS_GUIDE">Hi there, welcome to CitizenOS! Read this topic to find out how everything works.</div>
+                    </div>
+
+                    <div class="line white_line"></div>
+
+                    <div class="text_small" ng-if="$ctrl.app.wWidth > 667" translate="VIEWS.HOME.LBL_TUTORIAL_AND_EXPLANATION">Tutorial and explanation</div>
+
+                </div>
+            </div>
+        </a>
+
+        <a ng-click="$ctrl.goToView(topic)" class="topic" ng-repeat="topic in $ctrl.PublicTopicService.topics" ng-class="topic.categories.indexOf($ctrl.filters.categories.value) > -1 ? $ctrl.filters.categories.value : $ctrl.filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
+            <div class="topic_wrap">
+                <div class="top text_small">
+                    <div class="date" ng-bind="topic.lastActivity | amDateFormat : 'L'">12/12/2015</div>
+                    <div class="author" ng-bind="topic.creator.name">creator name</div>
+                    <div class="clearer"></div>
+                </div>
+
+                <div class="main_text">
+                    <div class="text_big" ng-bind-html="topic.title">Open Governance Workshop: Public decision-making in 2025</div>
+                    <div class="text_small" ng-if="$ctrl.app.wWidth > 667" ng-bind-html="topic.description">Discussions, lectures and a mini-hackathon to change experiences and ideas, to get inspired and boost ope…</div>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="text_small categories" ng-if="$ctrl.app.wWidth > 667">
+                    <span ng-repeat="category in topic.categories">
+                        <span translate="{{'TXT_TOPIC_CATEGORY_' + category | uppercase}}" translate-default="{{category}}"></span><span ng-class="{hidden: $last}">, </span>
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <div class="clearer"></div>
+    </div>
+
+    <div id="blue_button_wrap" ng-click="$ctrl.PublicTopicService.loadMore()" ng-if="$ctrl.PublicTopicService.countTotal > $ctrl.PublicTopicService.topics.length">
+        <div class="blue_button" ng-class="{disabled: $ctrl.isTopicListLoading}" translate="VIEWS.HOME.BTN_LOAD_MORE_TOPICS">Load more topics</div>
+    </div>
+
+    <div ui-view></div>
+
+</div>

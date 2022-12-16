@@ -5,6 +5,10 @@
     @extend %default_setup;
     padding: 0 20px 10px 20px;
 
+    .blue_button_wrap {
+        position: relative;
+    }
+}
     .no_results {
         text-align: center;
 
@@ -251,7 +255,3 @@
 
         }
     }
-    .blue_button_wrap {
-        position: relative;
-    }
-}
