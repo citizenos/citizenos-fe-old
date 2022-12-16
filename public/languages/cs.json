@@ -667,6 +667,12 @@
       "BTN_REQUEST_ACCESS": "Požadavek na přístup ke zdroji"
     },
     "HOME": {
+      "PUBLIC_GROUPS_TITLE": "Popular public groups",
+      "PUBLIC_GROUPS_DESCRIPTION": "Have a sneak peek at some of the most popular public groups currently available on Citizen OS.",
+      "BTN_VIEW_ALL_GROUPS": "View all public groups",
+      "PUBLIC_TOPICS_TITLE": "Popular public topics",
+      "PUBLIC_TOPICS_DESCRIPTION": "Have a sneak peek at some of the most popular public topics currently available on Citizen OS.",
+      "BTN_VIEW_ALL_TOPICS": "View all public topics",
       "HEADINGS_SHOW_ME_TOPICS_ABOUT": "Zobrazit témata o",
       "LNK_SHOW": "Zobrazit",
       "LNK_CLEAR_FILTERS": "Vymazat filtry",
