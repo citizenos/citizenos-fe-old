@@ -6,8 +6,8 @@ let home = {
     selector: 'home',
     templateUrl: '/views/home.html',
     bindings: {},
-    controller: ['$state', '$stateParams', 'PublicTopicService', 'PublicGroupService', 'Topic', 'AppService', class HomeController {
-        constructor (private $state, private $stateParams, public PublicTopicService, public PublicGroupService, private Topic, public app) {
+    controller: ['$state', '$stateParams', 'ngDialog', 'PublicTopicService', 'GroupMemberUser', 'PublicGroupService', 'sAuth', 'Topic', 'AppService', class HomeController {
+        constructor (private $state, private $stateParams, private ngDialog, public PublicTopicService, private GroupMemberUser, public PublicGroupService, private sAuth, private Topic, public app) {
             PublicTopicService.limit = 8;
             PublicGroupService.limit = 8;
             console.log(PublicTopicService)
@@ -34,6 +34,33 @@ let home = {
 
             this.$state.go(view, params);
         }
+
+        joinGroup (group) {
+            this.ngDialog.openConfirm({
+                template: '/views/modals/group_join_confirm.html',
+                closeByEscape: false
+            })
+            .then(() => {
+                this.$state.go('groupJoin', {token: group.join.token});
+            });
+        };
+
+        leaveGroup (group) {
+            this.ngDialog
+                .openConfirm({
+                    template: '/views/modals/group_member_user_leave_confirm.html',
+                    data: {
+                        group: group
+                    }
+                })
+                .then(() => {
+                    this.GroupMemberUser
+                        .delete({groupId: group.id, userId: this.sAuth.user.id})
+                        .then(() => {
+                            this.$state.reload(true);
+                        });
+                });
+        };
     }]
 
 }

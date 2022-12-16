@@ -26,15 +26,13 @@
     .groups_wrap {
         position: relative;
         width: 100%;
-        display: flex;
+        display: block;
         padding-bottom: 20px;
-
-        @include mixins_n_extends.mobile {
-            display: block;
-        }
+        text-align: left;
     }
     .section_header {
         padding: 40px 0;
+        background: vars.$light_gray;
 
         &:nth-child(2) {
             background-color: vars.$white;

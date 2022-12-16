@@ -9,9 +9,9 @@ let publicGroups = {
         public order = 'ASC';
 
         constructor ($scope, private $state, private sAuth, public Group, private GroupMemberUser, public PublicGroupService, private ngDialog, private app) {
-            PublicGroupService.limit = 26;
             $scope.$watch(() => PublicGroupService.isLoading, (newValue) => {
-                if (newValue === false) {
+                if (newValue === false && PublicGroupService.limit === 8) {
+                    PublicGroupService.limit = 26;
                     PublicGroupService.reload();
                 }
             });
