@@ -1042,7 +1042,7 @@
       "BTN_FEEDBACK_OPEN": "Мы ценим ваш отзыв"
     },
     "PUBLIC_GROUPS": {
-      "TITLE": "Public groups",
+      "TITLE": "Публичные группы",
       "BTN_JOIN_GROUP": "@:VIEWS.PUBLIC_GROUP.BTN_JOIN_GROUP",
       "BTN_LEAVE_GROUP": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP",
       "BTN_VIEW_GROUP": "Посмотреть группу",
