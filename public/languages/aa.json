@@ -667,6 +667,12 @@
       "BTN_REQUEST_ACCESS": "crwdns20976:0crwdne20976:0"
     },
     "HOME": {
+      "PUBLIC_GROUPS_TITLE": "crwdns37607:0crwdne37607:0",
+      "PUBLIC_GROUPS_DESCRIPTION": "crwdns37609:0crwdne37609:0",
+      "BTN_VIEW_ALL_GROUPS": "crwdns37611:0crwdne37611:0",
+      "PUBLIC_TOPICS_TITLE": "crwdns37613:0crwdne37613:0",
+      "PUBLIC_TOPICS_DESCRIPTION": "crwdns37615:0crwdne37615:0",
+      "BTN_VIEW_ALL_TOPICS": "crwdns37617:0crwdne37617:0",
       "HEADINGS_SHOW_ME_TOPICS_ABOUT": "crwdns20978:0crwdne20978:0",
       "LNK_SHOW": "crwdns20980:0crwdne20980:0",
       "LNK_CLEAR_FILTERS": "crwdns20982:0crwdne20982:0",
