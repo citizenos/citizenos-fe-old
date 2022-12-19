@@ -9,7 +9,8 @@
 
                 <div id="lightbox_header_text">
                     <div class="title" translate="MODALS.GROUP_ADD_TOPICS_HEADING">Add topics</div>
-                    <div class="title_description" ng-if="$ctrl.group.id">{{$ctrl.group.name}}</div>
+                    <div class="title_description" ng-if="$ctrl.group.visibility == $ctrl.Group.VISIBILITY.private">{{$ctrl.group.name}}</div>
+                    <div class="title_description_register" ng-if="$ctrl.group.visibility == $ctrl.Group.VISIBILITY.public" translate="MODALS.GROUP_ADD_TOPICS_DESCRIPTION">{{$ctrl.group.name}}</div>
                 </div>
 
                 <div id="lightbox_close" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event)">
