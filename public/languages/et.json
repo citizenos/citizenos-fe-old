@@ -565,10 +565,10 @@
     "GROUP_JOIN_CONFIRM_BTN_YES": "Jah, ühine grupiga",
     "GIVE_FEEDBACK_HEADING": "Share your feedback",
     "GIVE_FEEDBACK_DESC": "This text area would comprise of 3 questions which can be edited by the lead from Citizen OS and these details will be discussed privately. But I still wanted to add text here so that this area becomes bigger and a better reference for the future.",
-    "GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA": "Write here...",
+    "GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA": "Kirjuta siia...",
     "GIVE_FEEDBACK_BTN_CANCEL": "@:LNK_CANCEL",
-    "GIVE_FEEDBACK_BTN_SUBMIT": "Submit",
-    "GIVE_FEEDBACK_TITLE_THANK_YOU": "Thanks for your feedback!",
+    "GIVE_FEEDBACK_BTN_SUBMIT": "Kinnita",
+    "GIVE_FEEDBACK_TITLE_THANK_YOU": "Täname tagasiside eest!",
     "GIVE_FEEDBACK_TEXT_THANK_YOU": "We appreciate that you took time to share your feedback. Thanks to the help from our community we continue to improve Citizen OS all the time!",
     "GIVE_FEEDBACK_BTN_CLOSE": "@:BTN_CLOSE"
   },
@@ -616,7 +616,7 @@
       "HEADING_GROUPS": "@:MODALS.TOPIC_SETTINGS_TH_GROUPS",
       "LNK_CREATE_GROUPS": "Loo grupp",
       "LNK_MY_GROUPS": "Minu grupid",
-      "LNK_PUBLIC_GROUPS": "Public groups",
+      "LNK_PUBLIC_GROUPS": "Avalikud grupid",
       "LNK_ABOUT": "Meist",
       "LNK_FAQ": "KKK",
       "LNK_HELP": "Abi",
@@ -669,7 +669,7 @@
       "BTN_REQUEST_ACCESS": "Juurdepääsu taotlemine"
     },
     "HOME": {
-      "PUBLIC_GROUPS_TITLE": "Popular public groups",
+      "PUBLIC_GROUPS_TITLE": "Populaarsed avalikud grupid",
       "PUBLIC_GROUPS_DESCRIPTION": "Have a sneak peek at some of the most popular public groups currently available on Citizen OS.",
       "BTN_VIEW_ALL_GROUPS": "View all public groups",
       "PUBLIC_TOPICS_TITLE": "Popular public topics",
@@ -771,8 +771,8 @@
       "LNK_ROLES": "Rollid",
       "LNK_USERS": "Kasutajad",
       "LBL_REMOVE_FROM_GROUP": "Eemalda grupist",
-      "LBL_USERS_COUNT": "Members: {{count}}",
-      "HEADING_USERS_LIST": "Members list ({{count}})",
+      "LBL_USERS_COUNT": "Liikmeid: {{count}}",
+      "HEADING_USERS_LIST": "Kasutajate nimekiri ({{count}})",
       "LNK_PROFILE": "Kasutaja"
     },
     "MY_TOPICS_TOPICID": {
@@ -842,7 +842,7 @@
       "FORGOT_PASSWORD": "Kas unustasid salasõna?"
     },
     "TOPICS_TOPICID": {
-      "BAR_MILESTONES": "Updates: {{count}}",
+      "BAR_MILESTONES": "Teadaandeid: {{count}}",
       "BAR_TOOLTIP_PHASE": "Olek:",
       "BAR_TOOLTIP_IN_PROGRESS": "ühisloomes",
       "BAR_TOOLTIP_VOTING": "hääletamisel",
@@ -907,7 +907,7 @@
       "VOTE_HEADING_STEP_DEFINE_OPTION_COUNT": "Samm 3: Määra valikute arvu vähim ja suurim võimalik väärtus",
       "VOTE_HEADING_STEP3": "Samm {{stepNum}}: Hääletamise õiguste seadistamine",
       "VOTE_LBL_AUTH_SOFT_ID": "Harilik login",
-      "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "Citizen OS login is required",
+      "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "Palun logi Citizen OS süsteemi sisse",
       "VOTE_LBL_AUTH_HARD_ID": "digiallkirjastamine",
       "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "ID-kaardi-, Mobiil-ID- või Smart-ID'ga allkirjastamine on kohustuslik",
       "VOTE_LBL_DELEGATION": "Volitamine",
