@@ -17,14 +17,12 @@ let topicComments = {
 
         public topicComments = {
             orderBy: null,
-            orderByTranslation: null,
             orderByOptions: null
         };
         constructor ($scope, private $state, private $stateParams, private $timeout, private $log, private $translate, private $document, private ngDialog, private sLocation, private sNotification, private TopicComment, public TopicCommentService, private app) {
             this.topicId = $stateParams.topicId;
             this.topicComments = angular.extend(this.topicComments, {
                 orderBy: TopicComment.COMMENT_ORDER_BY.date,
-                orderByTranslation: $translate.instant('VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ORDER_BY_DATE'),
                 orderByOptions: TopicComment.COMMENT_ORDER_BY
             });
 

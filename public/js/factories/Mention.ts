@@ -21,7 +21,7 @@ export class Mention {
         return `/${userId}`;
     };
 
-    query(params: { string: string }) {
+    query(params: any) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId/mentions', params)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());

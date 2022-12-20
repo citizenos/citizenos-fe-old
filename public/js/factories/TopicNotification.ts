@@ -2,10 +2,10 @@ import * as angular from 'angular';
 export class TopicNotification {
     constructor(private $http, private sLocation) {}
 
-    query(params: { string: string }) {
+    query(params: any) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/notificationsettings/topics', params);
 
-        return this.$http.get(path, params).then((res) => {
+        return this.$http.get(path, {params}).then((res) => {
             return res.data.data;
         });
     }
@@ -14,7 +14,7 @@ export class TopicNotification {
         if (!params.topicId) params.topicId = params.id;
         let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/notificationsettings', params);
 
-        return this.$http.get(path, params)
+        return this.$http.get(path, {params})
             .then((res) => {
                 return res.data.data
             });

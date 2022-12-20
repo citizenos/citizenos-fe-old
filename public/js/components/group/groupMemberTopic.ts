@@ -8,13 +8,13 @@ let groupMemberTopic = {
         fields: '=?',
         group: '='
     },
-    controller: ['ngDialog', 'GroupMemberTopic', 'GroupMemberTopicService', 'Topic', 'Group', class GroupMemberTopicController {
+    controller: ['ngDialog', 'GroupMemberTopic', 'GroupMemberTopicService', 'Topic', 'Group', 'AppService', class GroupMemberTopicController {
         private memberTopic;
         private canUpdate;
         private group;
         public fields
 
-        constructor (private ngDialog, private GroupMemberTopic, private GroupMemberTopicService, public Topic, public Group) {
+        constructor (private ngDialog, private GroupMemberTopic, private GroupMemberTopicService, public Topic, public Group, public app) {
         }
 
         isVisibleField (field) {

@@ -13,7 +13,7 @@
                     <div cos-dropdown class="classic_dropdown borderless_dropdown">
                         <div class="dropdown_selection">
                             <div class="dropdown_text data_item">
-                                {{$ctrl.topicComments.orderByTranslation}}
+                                {{'VIEWS.TOPICS_TOPICID.TXT_ARGUMENT_ORDER_BY_' + $ctrl.TopicCommentService.orderBy | uppercase | translate}}
                             </div>
 
                             <div class="arrow_holder">

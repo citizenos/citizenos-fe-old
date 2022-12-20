@@ -17,6 +17,7 @@ let myGroupsGroup = {
         public generalInfo = {
             isVisible: true
         };
+        public userSearch;
         constructor ($scope, private $state, private $stateParams, private $log, private  $q, private  ngDialog, private sAuth, private Group, private GroupService, private GroupMemberUser, private GroupMemberUserService, private GroupMemberTopic, private GroupMemberTopicService, private GroupInviteUser, public GroupInviteUserService, private app) {
             $log.debug('MyGroupsGroupController');
             this.group = this.app.group;
@@ -149,6 +150,13 @@ let myGroupsGroup = {
                 }).then(resolve);
             });
 
+        };
+
+        searchMembers() {
+            this.GroupMemberUserService.search = this.userSearch;
+            this.GroupInviteUserService.search = this.userSearch;
+            this.GroupMemberUserService.doSearch();
+            this.GroupInviteUserService.doSearch();
         };
 
         doUpdateMemberUser (groupMemberUser, level) {

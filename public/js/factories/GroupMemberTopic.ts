@@ -64,7 +64,7 @@ export class GroupMemberTopic {
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 
-        return this.$http.get(path, params)
+        return this.$http.get(path, {params})
             .then((res) => {
                 return res.data.data;
             });
@@ -73,7 +73,7 @@ export class GroupMemberTopic {
     queryPublic (params) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/groups/:groupId/members/topics', params);
 
-        return this.$http.get(path, params)
+        return this.$http.get(path, {params})
             .then((res) => {
                 return res.data.data;
             });
