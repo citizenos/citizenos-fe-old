@@ -6,7 +6,7 @@ let publicTopics = {
     selector: 'publicTopics',
     templateUrl: '/views/components/topic/public_topics.html',
     bindings: {},
-    controller: ['$scope', '$log', '$location', '$window','$state', '$stateParams', 'PublicTopicService', 'Topic', 'AppService', class PublicTopicsController {
+    controller: ['$scope', '$window','$state', '$stateParams', 'PublicTopicService', 'Topic', 'AppService', class PublicTopicsController {
         private FILTERS_ALL = 'all';
 
         private filters = {
@@ -21,7 +21,7 @@ let publicTopics = {
             tabSelected: 'categories' // Mobile view has tabs where the filters are selected, indicates which filter tab is visible
         };
 
-        constructor ($scope, private $log, private $location, private $window, private $state, private $stateParams, private PublicTopicService, private Topic, private app) {
+        constructor ($scope, private $window, private $state, private $stateParams, private PublicTopicService, private Topic, public app) {
             this.init();
             if (this.$stateParams.category && !this.Topic.CATEGORIES[this.$stateParams.category]) {
                 return this.$state.go('error/404');
