@@ -71,13 +71,11 @@ export class TopicCommentService {
             }
             console.log(params)
             this.TopicComment.query(params).then((data) => {
-                if (data.rows.length) {
-                    this.count = data.count;
-                    this.countTotal = data.countTotal || 0;
-                    this.totalPages = Math.ceil(this.countTotal / this.limit);
-                    if (data.rows.length < this.limit) {
-                        this.hasMore = false;
-                    }
+                this.count = data.count;
+                this.countTotal = data.countTotal || 0;
+                this.totalPages = Math.ceil(this.countTotal / this.limit);
+                if (data.rows.length < this.limit) {
+                    this.hasMore = false;
                 }
                 this.comments = data.rows;
 

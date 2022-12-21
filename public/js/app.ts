@@ -431,7 +431,7 @@ import * as angular from 'angular';
                 .state('topics/create', {
                     url: '/create?title&groupId&groupLevel&groupVisibility',
                     parent: 'topics',
-                    controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', 'GroupMemberTopic', 'AppService', function ($scope, $state, $stateParams, sAuth, Topic, GroupMemberTopic, app) {
+                    controller: ['$scope', '$state', '$stateParams', 'sAuth', 'Topic', 'GroupMemberTopic', 'TopicCommentService', 'AppService', function ($scope, $state, $stateParams, sAuth, Topic, GroupMemberTopic, TopicCommentService, app) {
                         if (!sAuth.user.loggedIn) {
                             return app.doShowLogin()
                         }

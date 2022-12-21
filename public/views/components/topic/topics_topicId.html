@@ -190,7 +190,9 @@
 
 
                         <div id="topic_content_area" class="topic_content">
-                            <cos-etherpad ng-if="!$ctrl.hideTopicContent && $ctrl.Topic.canEdit($ctrl.topic) && $ctrl.app.editMode" ng-class="{hidden: !$ctrl.topic.padUrl || ('topics/view/followUp' | isState)}" url="$ctrl.topic.padUrl" elemwidth="100%" elemheight="600"></cos-etherpad>
+                            <iframe cos-etherpad ng-if="!$ctrl.hideTopicContent && $ctrl.Topic.canEdit($ctrl.topic) && $ctrl.app.editMode" frameborder="0" scrolling="no"
+                                    ng-class="{hidden: !$ctrl.topic.padUrl || ('topics.view.followUp' | isState)}"
+                                    ng-src="{{$ctrl.topic.padUrl}}" width="100%" height="600"></iframe>
                             <!--ng-bind-html ng-if="!hideTopicContent && !app.editMode" ng-bind-html="topic.description"></ng-bind-html -->
                             <div ng-if="!$ctrl.hideTopicContent && !$ctrl.app.editMode" cos-topic-compiler="$ctrl.topic.description"></div>
                             <h1 ng-if="$ctrl.hideTopicContent"><i>Topic content has been hidden due to violation of community guidelines</i></h1>
