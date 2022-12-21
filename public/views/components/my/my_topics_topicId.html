@@ -231,7 +231,7 @@
     <div class="info_container group_list" id="group_list">
         <div class="container_header" ng-click="$ctrl.doToggleMemberGroupList();">
             <div class="header_text"><span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_GROUP_LIST">Group list</span> <span ng-bind="'('+$ctrl.TopicMemberGroupService.countTotal+')'">0</span> |
-                <div class="blue_link" ng-if="$ctrl.TopicMemberGroupService.countTotal" ng-click="$ctrl.groupList.isSearchVisible = !$ctrl.groupList.isSearchVisible; $ctrl.doShowMemberGroupList(); $event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
+                <div class="blue_link" ng-if="$ctrl.TopicMemberGroupService.countTotal" ng-click="$ctrl.groupList.isSearchVisible = !$ctrl.groupList.isSearchVisible; $ctrl.doShowMemberGroupList(); $event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_SEARCH">filter</div>
                 <span ng-if="$ctrl.TopicMemberGroupService.countTotal && $ctrl.Topic.canUpdate($ctrl.topic)">|</span>
                 <div class="blue_link" ng-if="$ctrl.Topic.canUpdate($ctrl.topic)" ui-sref="my/topics/topicId/invite({topicId: $ctrl.topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
             </div>
@@ -244,7 +244,7 @@
                 <input placeholder="{{'VIEWS.MY_TOPICS_TOPICID.PLACEHOLDER_TOPIC_TITLE_PERMISSION' | translate}}" ng-change="$ctrl.TopicMemberGroupService.search()" ng-model-options="{debounce:250}" ng-model="$ctrl.TopicMemberGroupService.search">
             </div>
             <div class="table_cell">
-                <div class="blue_link" ng-click="$ctrl.TopicMemberGroupService.search = ''" translate="VIEWS.MY_TOPICS_TOPICID.LNK_CLEAR_FILTER">clear filter</div>
+                <div class="blue_link" ng-click="$ctrl.TopicMemberGroupService.search = ''" translate="VIEWS.MY_TOPICS_TOPICID.LNK_CLEAR_SEARCH">clear search</div>
             </div>
         </div>
         <div class="container_content" ng-if="$ctrl.groupList.isVisible">
@@ -332,7 +332,7 @@
         <div class="container_header" ng-click="$ctrl.doToggleMemberUserList(); $event.stopPropagation();">
             <div class="header_text">
                 <span translate="VIEWS.MY_TOPICS_TOPICID.HEADING_USERS_LIST">User list</span> <span ng-bind="'(' + $ctrl.TopicMemberUserService.countTotal + ')'">(0)</span> |
-                <div class="blue_link" ng-click="$ctrl.userList.isSearchVisible = !$ctrl.userList.isSearchVisible; $ctrl.doShowMemberUserList(); $event.stopPropagation();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_FILTER">filter</div>
+                <div class="blue_link" ng-click="$ctrl.userList.isSearchVisible = !$ctrl.userList.isSearchVisible; $ctrl.doShowMemberUserList(); $event.stopPropagation();" translate="VIEWS.MY_TOPICS_TOPICID.LNK_SEARCH">search</div>
                 <span ng-if="$ctrl.Topic.canUpdate($ctrl.topic)">|</span>
                 <div class="blue_link" ng-if="$ctrl.Topic.canUpdate($ctrl.topic)" translate="VIEWS.MY_TOPICS_TOPICID.LNK_INVITE" ui-sref="my/topics/topicId/invite({topicId: $ctrl.topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()">invite</div>
             </div>
@@ -345,7 +345,7 @@
                 <input placeholder="{{'VIEWS.MY_TOPICS_TOPICID.PLACEHOLDER_NAME_PERMISSION' | translate}}" ng-change="$ctrl.TopicMemberUserService.doSearch(); $ctrl.loadTopicInviteUserList();" ng-model-options="{debounce:250}" ng-model="$ctrl.TopicMemberUserService.search">
             </div>
             <div class="table_cell">
-                <div class="blue_link" ng-click="$ctrl.TopicMemberUserService.search = ''" translate="VIEWS.MY_TOPICS_TOPICID.LNK_CLEAR_FILTER">clear filter</div>
+                <div class="blue_link" ng-click="$ctrl.TopicMemberUserService.search = ''" translate="VIEWS.MY_TOPICS_TOPICID.LNK_CLEAR_SEARCH">clear search</div>
             </div>
         </div>
         <div class="container_content" ng-if="$ctrl.userList.isVisible">
