@@ -205,24 +205,6 @@
                 </div>
             </div>
         </div>
-        <a ng-href="{{$ctrl.app.config.links.help[$ctrl.app.language] || $ctrl.app.config.links.help[$ctrl.app.config.language.default]}}" class="big tutorial white_text blue_background topic" ng-if="$ctrl.isTutorialVisible()">
-            <div class="topic_wrap">
-                <div class="text_area">
-
-                    <div class="top text_small" translate="VIEWS.HOME.HEADING_BEGINNERS_GUIDE">A beginner’s guide to CitizenOS.</div>
-
-                    <div class="main_text">
-                        <div class="text_big" translate="VIEWS.HOME.TXT_BEGINNERS_GUIDE">Hi there, welcome to CitizenOS! Read this topic to find out how everything works.</div>
-                    </div>
-
-                    <div class="line white_line"></div>
-
-                    <div class="text_small" ng-if="$ctrl.app.wWidth > 667" translate="VIEWS.HOME.LBL_TUTORIAL_AND_EXPLANATION">Tutorial and explanation</div>
-
-                </div>
-            </div>
-        </a>
-
         <a ng-click="$ctrl.goToView(topic)" class="topic" ng-repeat="topic in $ctrl.PublicTopicService.topics" ng-class="topic.categories.indexOf($ctrl.filters.categories.value) > -1 ? $ctrl.filters.categories.value : $ctrl.filters.categories.options.indexOf(topic.categories[0]) > -1 ? topic.categories[0] : 'varia'">
             <div class="topic_wrap">
                 <div class="top text_small">
