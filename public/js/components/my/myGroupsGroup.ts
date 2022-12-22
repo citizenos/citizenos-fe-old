@@ -17,6 +17,7 @@ let myGroupsGroup = {
         public generalInfo = {
             isVisible: true
         };
+        public userSearch;
         constructor ($scope, private $state, private $stateParams, private $log, private  $q, private  ngDialog, private sAuth, private Group, private GroupService, private GroupMemberUser, private GroupMemberUserService, private GroupMemberTopic, private GroupMemberTopicService, private GroupInviteUser, public GroupInviteUserService, private app) {
             $log.debug('MyGroupsGroupController');
             this.group = this.app.group;
@@ -151,6 +152,13 @@ let myGroupsGroup = {
 
         };
 
+        searchMembers() {
+            this.GroupMemberUserService.search = this.userSearch;
+            this.GroupInviteUserService.search = this.userSearch;
+            this.GroupMemberUserService.doSearch();
+            this.GroupInviteUserService.doSearch();
+        };
+
         doUpdateMemberUser (groupMemberUser, level) {
             if (groupMemberUser.level !== level) {
                 const oldLevel = groupMemberUser.level;
@@ -257,6 +265,27 @@ let myGroupsGroup = {
                 }, 200);
             }
         };
+
+        shareGroupDialog() {
+            this.ngDialog.open({
+                template: '<group-invite></group-invite>',
+                plain:true
+            })
+        }
+
+        createTopicDialog() {
+            this.ngDialog.open({
+                template: '<group-create-topic></group-create-topic>',
+                plain:true
+            })
+        }
+
+        addTopicDialog() {
+            this.ngDialog.open({
+                template: '<group-add-topics></group-add-topics>',
+                plain:true
+            })
+        }
     }]
 };
 

@@ -8,121 +8,115 @@
  * * #outerdocbody { overflow: hidden }
  *
  */
- import * as angular from 'angular';
- import {debounce} from 'lodash';
- import * as $ from 'jquery';
+import * as angular from 'angular';
+import * as _ from 'lodash';
 
-let cosEtherpad = {
-    selector: 'cosEtherpad',
-    template: `<iframe src="{{$ctrl.url}}" frameborder="0" scrolling="no" width="{{$ctrl.elemwidth}}" height="{{$ctrl.elemheight}}"></iframe>`,
-    bindings: {
-        elemheight: '@?',
-        elemwidth: '@?',
-        url: '='
-    },
-    controller: ['$window', '$log', '$element', class CosEtherpadController {
-        private elemheight;
-        private elemwidth;
-        private url;
-        private minWidth;
-        private minHeight;
-        private $window;
-        private $element;
-        private $log;
+angular
+    .module('citizenos')
+    .directive('cosEtherpad', ['$window', '$log', function ($window, $log) {
+        return {
+            restrict: 'A',
+            scope: {
+                height: '@?',
+                width: '@?'
+            },
+            link: function (scope, element, attrs) {
+                console.log(element)
+                var $ = angular.element;
 
-        constructor ($window,  $log, $element) {
-            this.$window = $window;
-            this.$log = $log;
-            this.$element = $element;
-            $(this.$window).on('message onmessage', angular.bind(this, this.receiveMessageHandler));
-            $(this.$window).on('scroll resize', this.sendScrollMessage);
-        }
+                var minWidth;
+                var minHeight;
 
-        valueNotPercent  (value) {
-            return (value + '').indexOf('%') < 0;
-        };
-
-        receiveMessageHandler (e) {
-            if (this.elemwidth && this.valueNotPercent(this.elemwidth)) {
-                this.minWidth = parseFloat(this.elemwidth);
-            }
-
-            if (this.elemheight && this.valueNotPercent(this.elemheight)) {
-                this.minHeight = parseFloat(this.elemheight);
-            }
-            const msg = e.originalEvent.data;
-            if (msg.name === 'ep_resize') {
-                const width = msg.data.width;
-                const height = msg.data.height;
-                if (angular.isNumber(width) && width > this.minWidth) {
-                    const newWidth = width + 'px';
-                    if (newWidth !== this.elemwidth) {
-                        this.elemwidth = newWidth;
-                    }
-                }
-
-                if (angular.isNumber(height) && height > this.minHeight) {
-                    const newHeight = height + 'px';
-                    if (newHeight !== this.elemheight) {
-                        this.elemheight = newHeight;
-                    }
-                }
-            }
-        };
-
-        sendScrollMessage () {
-            debounce(function () {
-                const targetWindow = this.$element[0].contentWindow;
-
-                let yOffsetExtra = 0; // Additional Y offset in case there is a floating header element
-                const mobileHeader = this.$window.document.getElementById('mobile_header');
-                if (mobileHeader) {
-                    yOffsetExtra = parseFloat(this.$window.getComputedStyle(mobileHeader)['height']);
-                }
-
-                const data = {
-                    scroll: {
-                        top: this.$window.pageYOffset + yOffsetExtra,
-                        left: this.$window.pageXOffset
-                    },
-                    frameOffset: this.getFrameOffset()
+                var valueNotPercent = function (value) {
+                    return (value + '').indexOf('%') < 0;
                 };
 
-                targetWindow.postMessage({
-                    name: 'ep_embed_floating_toolbar_scroll',
-                    data: data
-                }, '*');
+                if (scope.width && valueNotPercent(scope.width)) {
+                    minWidth = parseFloat(scope.width);
+                }
 
-            }, 100);
-        }
+                if (scope.height && valueNotPercent(scope.height)) {
+                    minHeight = parseFloat(scope.height);
+                }
 
+                var receiveMessageHandler = function (e) {
+                    var msg = e.data;
+                    if (msg.name === 'ep_resize') {
+                        var width = msg.data.width;
+                        var height = msg.data.height;
 
-        // As angular.element does not support $.offset(), copied it over from Jquery source.
-        getFrameOffset () {
-            const elem = this.$element[0];
+                        if (angular.isNumber(width) && width > minWidth) {
+                            var newWidth = width + 'px';
+                            if (newWidth !== element.css('width')) {
+                                element.css('width', newWidth);
+                            }
+                        }
 
-            // Return zeros for disconnected and hidden (display: none) elements (gh-2310)
-            // Support: IE <=11 only
-            // Running getBoundingClientRect on a
-            // disconnected node in IE throws an error
-            if (!elem.getClientRects().length) {
-                return {top: 0, left: 0};
+                        if (angular.isNumber(height) && height > minHeight) {
+                            var newHeight = height + 'px';
+                            if (newHeight !== element.css('height')) {
+                                element.css('height', newHeight);
+                            }
+                        }
+                    }
+                };
+
+                var sendScrollMessage = _.debounce(function () {
+                    var targetWindow = element[0].contentWindow;
+
+                    var yOffsetExtra = 0; // Additional Y offset in case there is a floating header element
+                    var mobileHeader = $window.document.getElementById('mobile_header');
+                    if (mobileHeader) {
+                        yOffsetExtra = parseFloat($window.getComputedStyle(mobileHeader)['height']);
+                    }
+
+                    var data = {
+                        scroll: {
+                            top: $window.pageYOffset + yOffsetExtra,
+                            left: $window.pageXOffset
+                        },
+                        frameOffset: getFrameOffset()
+                    };
+
+                    targetWindow.postMessage({
+                        name: 'ep_embed_floating_toolbar_scroll',
+                        data: data
+                    }, '*');
+
+                }, 100);
+
+                // As angular.element does not support $.offset(), copied it over from Jquery source.
+                var getFrameOffset = function () {
+                    var elem = element[0];
+
+                    // Return zeros for disconnected and hidden (display: none) elements (gh-2310)
+                    // Support: IE <=11 only
+                    // Running getBoundingClientRect on a
+                    // disconnected node in IE throws an error
+                    if (!elem.getClientRects().length) {
+                        return {top: 0, left: 0};
+                    }
+
+                    var rect = elem.getBoundingClientRect();
+
+                    var doc = elem.ownerDocument;
+                    var docElem = doc.documentElement;
+                    var win = doc.defaultView;
+
+                    return {
+                        top: rect.top + win.pageYOffset - docElem.clientTop,
+                        left: rect.left + win.pageXOffset - docElem.clientLeft
+                    };
+                };
+
+                $($window).on('message onmessage', receiveMessageHandler);
+                $($window).on('scroll resize', sendScrollMessage);
+
+                scope.$on('$destroy', function () {
+                    // Don't leave handlers hanging...
+                    $($window).off('message onmessage', receiveMessageHandler);
+                    $($window).off('scroll resize', sendScrollMessage);
+                });
             }
-
-            const rect = elem.getBoundingClientRect();
-
-            const doc = elem.ownerDocument;
-            const docElem = doc.documentElement;
-            const win = doc.defaultView;
-
-            return {
-                top: rect.top + win.pageYOffset - docElem.clientTop,
-                left: rect.left + win.pageXOffset - docElem.clientLeft
-            };
-        };
-    }]
-}
-
- angular
-     .module('citizenos')
-     .component(cosEtherpad.selector, cosEtherpad );
+        }
+    }]);

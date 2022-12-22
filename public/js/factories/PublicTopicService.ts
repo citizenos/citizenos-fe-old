@@ -9,7 +9,7 @@ export class PublicTopicService {
     private orderBy = 'name';
     private order = 'ASC';
     private offset = 0;
-    private limit = 26;
+    public limit = 8;
     private statuses;
     private showModerated;
     private categories;

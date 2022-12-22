@@ -1,0 +1,52 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+
+    <div id="lightbox" class="wide_lightbox with_header_menu" ng-class="$ctrl.group.id ? 'with_title_description' : ''">
+
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.GROUP_CREATE_TOPIC_HEADING">Add new topic to group</div>
+                    <div class="title_description_register" translate="MODALS.GROUP_CREATE_TOPIC_DESCRIPTION" ng-if="$ctrl.group.visibility === $ctrl.Group.VISIBILITY.public">Add new topic to group</div>
+                    <div class="title_description" ng-if="$ctrl.group.visibility === $ctrl.Group.VISIBILITY.private">{{$ctrl.group.name}}</div>
+                </div>
+
+                <div id="lightbox_close" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell ngdialog-close">
+                        <div class="sprite sprite-btn-popup-close2x ngdialog-close">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <!-- ADD TOPICS -->
+            <div class="lightbox_content padding_bottom_zero">
+                <div class="lightbox_section" ng-if="$ctrl.group.id">
+                    <div class="settings_section">
+                        <div class="settings_cell">
+                            <div class="lbl_input_no_margin" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_NEW_TOPIC">Create a new topic</div>
+                            <input class="left_input" translate translate-attr-placeholder="MODALS.GROUP_CREATE_SETTINGS_NEW_TOPIC_TITLE" ng-model="$ctrl.newMemberTopicTitle" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lightbox_footer">
+
+                <div class="line lightest_line"></div>
+                <div class="blue_button_wrap">
+                    <div class="blue_button" ng-if="$ctrl.Group.canUpdate($ctrl.group)" ng-click="$ctrl.addNewGroupMemberTopic()" translate="MODALS.GROUP_CREATE_SETTINGS_ADD_CREATE_TOPIC">Create topic</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="close_lightbox" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event)"></div>
+
+</div>

@@ -6,7 +6,7 @@ export class TopicCommentService {
     public countTotal = 0;
     private isLoading = false;
     private comments = [];
-    private orderBy = 'name';
+    private orderBy = 'date';
     private order = 'ASC';
     private limit = 10;
     private offset = 0;
@@ -38,6 +38,7 @@ export class TopicCommentService {
     doOrder(orderBy, order?) {
         this.page = 1;
         this.orderBy = orderBy;
+        console.log(this.orderBy)
         if (!order && this.order === 'ASC') {
             this.order = 'DESC';
         } else {
@@ -68,14 +69,13 @@ export class TopicCommentService {
                 sortOrder: this.order,
                 limit: this.limit
             }
+            console.log(params)
             this.TopicComment.query(params).then((data) => {
-                if (data.rows.length) {
-                    this.count = data.count;
-                    this.countTotal = data.countTotal || 0;
-                    this.totalPages = Math.ceil(this.countTotal / this.limit);
-                    if (data.rows.length < this.limit) {
-                        this.hasMore = false;
-                    }
+                this.count = data.count;
+                this.countTotal = data.countTotal || 0;
+                this.totalPages = Math.ceil(this.countTotal / this.limit);
+                if (data.rows.length < this.limit) {
+                    this.hasMore = false;
                 }
                 this.comments = data.rows;
 

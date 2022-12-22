@@ -9,7 +9,7 @@ export class PublicGroupService {
     private orderBy = 'name';
     private order = 'ASC';
     private offset = 0;
-    private limit = 26;
+    public limit = 8;
 
     constructor(private PublicGroup) {
         this.loadGroups();

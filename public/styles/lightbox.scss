@@ -1248,6 +1248,7 @@
 
                     .mobile_extra_info {
                         display: block;
+                        min-height: 30px;
                         margin-top: 10px;
                         font-weight: vars.$medium;
                         padding-right: 52px;
@@ -2194,7 +2195,7 @@
         padding-bottom: 0 !important;
 
         @include mixins_n_extends.mobile {
-            overflow: auto !important;
+            overflow: auto;
         }
 
         .lightbox_section {
@@ -2674,7 +2675,7 @@
         overflow: hidden !important;
 
         @include mixins_n_extends.mobile {
-            overflow: auto !important;
+            overflow: auto;
         }
 
         .lightbox_section {
@@ -2795,7 +2796,7 @@
     .lightbox_content {
         overflow: initial !important;
         @include mixins_n_extends.mobile {
-            overflow: auto !important;
+            overflow: auto;
         }
     }
 

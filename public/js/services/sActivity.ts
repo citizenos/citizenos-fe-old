@@ -407,7 +407,6 @@ export class Activity {
             activity.values.previousValue = previousValue;
         }
         if (fieldNameKey) {
-            console.log(fieldNameKey)
             const translatedField = this.$translate.instant(fieldNameKey);
             activity.values.fieldName = translatedField;
         }

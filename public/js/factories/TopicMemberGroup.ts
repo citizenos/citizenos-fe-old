@@ -20,12 +20,12 @@ export class TopicMemberGroup {
 
     constructor(private $http, private sAuth, private sLocation) {}
 
-    query(params: { string: string }) {
+    query(params: any) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/groups', params)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 
-        return this.$http.get(path, params).then((res) => {
+        return this.$http.get(path, {params}).then((res) => {
             return res.data.data;
         });
     }

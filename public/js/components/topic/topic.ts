@@ -25,11 +25,13 @@ let topic = {
         public STATUSES = [];
         public VISIBILITY = [];
 
-        constructor (private $scope, private $state, private $stateParams, $timeout, private $log, private $sce, private ngDialog, private sAuth, private sUpload, private Topic, private TopicMemberUser, private TopicAttachment, private TopicAttachmentService, private TopicCommentService, private app) {
+        constructor (private $scope, private $state, private $stateParams, $timeout, private $log, private $sce, private ngDialog, private sAuth, private sUpload, private Topic, private TopicMemberUser, private TopicAttachment, private TopicAttachmentService, public TopicCommentService, private app) {
             $log.debug('TopicController');
             this.topic = app.topic;
             TopicAttachmentService.topicId = app.topic.id;
             TopicAttachmentService.reload();
+            TopicCommentService.topicId = app.topic.id;
+            TopicCommentService.reload();
             if ($state.$current.name === 'topics/view' && this.topic.status === Topic.STATUSES.voting) {
                 $timeout(() => {
                     let stateParams = Object.assign({}, $stateParams)

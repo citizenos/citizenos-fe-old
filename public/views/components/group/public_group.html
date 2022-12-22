@@ -18,13 +18,48 @@
                 <div class="group_name">
                     <span ng-bind="$ctrl.group.name"></span>
                 </div>
+                <div class="group_details">
+                    <span ng-bind="$ctrl.group.description"></span>
+                </div>
                 <div class="group_actions">
-                    <div cos-dropdown class="bar_select" ng-if="$ctrl.Group.canUpdate($ctrl.group)">
+                    <div class="group_members" ng-click="$ctrl.shareGroupDialog();$event.stopPropagation();" ng-if="$ctrl.group.userLevel">
+                        <span>Invite & share</span>
+                    </div>
+                    <div cos-dropdown class="bar_select bar_select_blue" ng-if="$ctrl.Group.canUpdate($ctrl.group)">
                         <div class="select_text">
-                            {{'VIEWS.PUBLIC_GROUP.DROPDOWN_GROUP_ACTIONS' | translate}}
+                            {{'VIEWS.PUBLIC_GROUP.DROPDOWN_GROUP_ACTIONS_ADD_TOPICS' | translate}}
                             <div class="icon_holder">
                                 <div class="table_cell">
                                     <div class="icon_arrow_down_white"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown big_drop">
+                            <div class="line lightest_line"></div>
+
+                            <div class="dropdown_item" ng-click="$ctrl.createTopicDialog();$event.stopPropagation();">
+                                <div class="icon icon_plus_black"></div>
+                                <div class="item_name" translate="VIEWS.PUBLIC_GROUP.ACTION_OPTION_CREATE_TOPIC">
+                                    Settings
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+                            <div class="dropdown_item" ng-click="$ctrl.addTopicDialog(); $event.stopPropagation();">
+                                <div class="icon icon_topic_black"></div>
+                                <div class="item_name" translate="VIEWS.PUBLIC_GROUP.ACTION_OPTION_ADD_TOPICS">
+                                    Add Topics
+                                </div>
+                                <div class="clearer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div cos-dropdown class="bar_select" ng-if="$ctrl.Group.canUpdate($ctrl.group)">
+                        <div class="select_text">
+                            {{'VIEWS.PUBLIC_GROUP.DROPDOWN_GROUP_ACTIONS_MORE' | translate}}
+                            <div class="icon_holder">
+                                <div class="table_cell">
+                                    <div class="icon_arrow_down_black"></div>
                                 </div>
                             </div>
                         </div>
@@ -56,14 +91,7 @@
                         </div>
                     </div>
                     <button ng-if="!$ctrl.group.userLevel" class="blue_button" ng-click="$ctrl.joinGroup()" translate="VIEWS.PUBLIC_GROUP.BTN_JOIN_GROUP">Join group</button>
-                    <button ng-if="$ctrl.group.userLevel && !$ctrl.Group.canUpdate($ctrl.group)" class="pink_button_big" ng-click="$ctrl.leaveGroup()" translate="VIEWS.PUBLIC_GROUP.BTN_LEAVE_GROUP">Leave group</button>
-                </div>
-                <div class="group_members">
-                    <div class="icon icon_members"></div>
-                    <span class="count" ng-bind="$ctrl.GroupMemberUserService.countTotal">1</span>
-                </div>
-                <div class="group_details">
-                    <span ng-bind="$ctrl.group.description"></span>
+                    <button ng-if="$ctrl.group.userLevel && !$ctrl.Group.canUpdate($ctrl.group)" class="light_gray_button_big" ng-click="$ctrl.leaveGroup()"><div class="icon icon_x_black"></div><span translate="VIEWS.PUBLIC_GROUP.BTN_LEAVE_GROUP">Leave group</span></button>
                 </div>
             </div>
         </div>
@@ -71,14 +99,14 @@
             <div class="header_row" slide-controller identifier="topicSettingsSlider">
                 <div class="tab_button" ng-click="$ctrl.app.selectTab('topics')" ng-class="$ctrl.app.tabSelected === 'topics' ? 'active' : ''">
                     <div class="tab_buttom_wrap">
-                        <div class="tab_button_text" translate="VIEWS.PUBLIC_GROUP.TAB_TOPICS">Topics</div>
+                        <div class="tab_button_text"><span  translate="VIEWS.PUBLIC_GROUP.TAB_TOPICS">Topics</span> <span>({{$ctrl.PublicGroupMemberTopicService.countTotal}})</span></div>
                         <div class="blue_bottom_line"></div>
                     </div>
                 </div>
 
                 <div class="tab_button" ng-click="$ctrl.app.selectTab('members')" ng-class="$ctrl.app.tabSelected === 'members' ? 'active' : ''">
                     <div class="tab_buttom_wrap">
-                        <div class="tab_button_text" translate="VIEWS.PUBLIC_GROUP.TAB_MEMBERS">Members</div>
+                        <div class="tab_button_text"><span translate="VIEWS.PUBLIC_GROUP.TAB_MEMBERS">Members</span> <span>({{$ctrl.GroupMemberUserService.countTotal}})</span></div>
                         <div class="blue_bottom_line"></div>
                     </div>
                 </div>
@@ -98,7 +126,7 @@
 
                         <div class="button_area">
 
-                            <div class="big_button" ng-if="$ctrl.group.userLevel" ng-click="$ctrl.showSettings('topics')">
+                            <div class="big_button" ng-if="$ctrl.group.userLevel" ng-click="$ctrl.addTopicDialog()">
                                 <div class="button_cell">
                                     <div class="topic_text" translate="VIEWS.PUBLIC_GROUP.BTN_ADD_TOPICS">Add topic</div>
                                 </div>

@@ -46,7 +46,7 @@ export class PublicGroup {
     constructor(private $http, private sAuth, private sLocation, private GroupMemberUser) {
     }
 
-    query(params: { string: string }) {
+    query(params: any) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/groups', params)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
@@ -54,7 +54,7 @@ export class PublicGroup {
         return this.$http.get(path, { params });
     }
 
-    get(id, params?: { string: string }) {
+    get(id, params?: any) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/groups/:groupId', {groupId: id})
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());

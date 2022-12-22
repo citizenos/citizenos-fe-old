@@ -1,0 +1,143 @@
+<!-- LIGHTBOX SKELETON -->
+<div id="root_lightbox" class="full_screen">
+
+    <div id="lightbox" class="wide_lightbox with_header_menu" ng-class="$ctrl.group.id ? 'with_title_description' : ''">
+
+        <div id="lightbox_wrap">
+
+            <div id="lightbox_header">
+
+                <div id="lightbox_header_text">
+                    <div class="title" translate="MODALS.GROUP_ADD_TOPICS_HEADING">Add topics</div>
+                    <div class="title_description" ng-if="$ctrl.group.visibility == $ctrl.Group.VISIBILITY.private">{{$ctrl.group.name}}</div>
+                    <div class="title_description_register" ng-if="$ctrl.group.visibility == $ctrl.Group.VISIBILITY.public" translate="MODALS.GROUP_ADD_TOPICS_DESCRIPTION">{{$ctrl.group.name}}</div>
+                </div>
+
+                <div id="lightbox_close" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event)">
+                    <div class="table_cell ngdialog-close">
+                        <div class="sprite sprite-btn-popup-close2x ngdialog-close">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearer"></div>
+            </div>
+
+            <div class="line lightest_line"></div>
+
+            <!-- ADD TOPICS -->
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero">
+                <div class="lightbox_section" ng-if="$ctrl.Group.canUpdate($ctrl.group)">
+                    <div class="input_text_margin_bottom" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_ADD_TOPICS">Add topics searching by title</div>
+                    <div cos-dropdown ng-class="{search_with_dropdown : $ctrl.searchResults.topics.length, dropdown_active : $ctrl.searchResults.topics.length}">
+                        <typeahead class="searchbox_with_icon_and_text auto-complete" items="$ctrl.searchResults.topics" term="$ctrl.searchStringTopic" search="$ctrl.search(term, 'topic')"
+                                    select="$ctrl.addGroupMemberTopic(item)" placeholder="{{'MODALS.GROUP_CREATE_SETTINGS_PLACEHOLDER_SEARCH_TOPIC' | translate}}">
+                            <div class="search_icon">
+                                <div class="table_cell">
+                                    <div class="sprite sprite-icon-search-gray-2x"></div>
+                                </div>
+                            </div>
+                            <div class="search_text" ng-click="$ctrl.addGroupMemberTopic(item)">
+                                <div class="table_cell blue_link" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_TO_ADD">Press enter to add</div>
+                            </div>
+                            <div class="search_area_wrap" ng-class="{hidden: !$ctrl.searchResults.topics.length}">
+                                <div class="search_dropdown_area">
+                                    <div class="search_dropdown_item" typeahead-item="topic" ng-repeat="topic in $ctrl.searchResults.topics">
+                                        <div class="table_cell search_item_text">
+                                            <b>{{topic.title}}</b>
+                                        </div>
+                                        <div class="table_cell blue_link">
+                                            <span class="submit_link" ng-click="$ctrl.addGroupMemberTopic(topic)" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_PRESS_ENTER_OR_CLICK_TO_ADD">Press enter or click to add</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </typeahead>
+                    </div>
+                </div>
+                <div class="lightbox_section double_row_list small_header" ng-if="$ctrl.memberTopics.length">
+                    <div class="category_title">
+                        <div class="table_cell">
+                            Order by:
+                            <div class="black_link" ng-click="$ctrl.doOrderTopics('title')">
+                                <span translate="MODALS.GROUP_CREATE_SETTINGS_TH_TITLE">Title A-Z</span>
+                                <div class="sprite sprite-icon-list-ordering2x" ng-if="$ctrl.topicList.searchOrderBy.property === 'title' || $ctrl.topicList.searchOrderBy.property === '-title'"
+                                        ng-class="{desc : $ctrl.topicList.searchOrderBy.property === '-title'}"></div>
+                            </div>
+                            <div class="black_link" ng-click="$ctrl.doOrderTopics('members.users.count')">
+                                <span translate="MODALS.GROUP_CREATE_SETTINGS_TH_USERS">Users</span>
+                                <div class="sprite sprite-icon-list-ordering2x"
+                                        ng-if="$ctrl.topicList.searchOrderBy.property === 'members.users.count' || $ctrl.topicList.searchOrderBy.property === '-members.users.count'"
+                                        ng-class="{desc : $ctrl.topicList.searchOrderBy.property === '-members.users.count'}"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="double_row_item" ng-repeat="topic in $ctrl.memberTopics | orderBy: $ctrl.topicList.searchOrderBy.property">
+                        <div class="blue_link">
+                            {{topic.title}}
+                        </div>
+                        <div class="double_row_footer">
+                            <div class="left" translate="MODALS.GROUP_CREATE_SETTINGS_TXT_TOPIC_USERS"  translate-values="{count: $ctrl.topic.members.users.countTotal}">Topic users: 99</div>
+                            <div class="right">
+                                <span class="dropdown_description" translate="MODALS.GROUP_CREATE_SETTINGS_LBL_GROUP_RIGHTS">Group right over topic:</span>
+
+                                <div class="btn_wrap recycle_bin white_bg">
+                                    <div class="btn">
+                                        <div class="table_cell" ng-click="$ctrl.removeGroupMemberTopic(topic)">
+                                            <div class="sprite desktop_fix sprite-mytopics-icon-deletetopic2x"></div>
+                                            <div class="sprite mobile_fix sprite-voted-check2x"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div cos-dropdown class="classic_dropdown" ng-if="$ctrl.group.visibility === $ctrl.Group.VISIBILITY.private">
+                                    <div class="dropdown_selection">
+                                        <div class="dropdown_text">
+                                            {{'TXT_TOPIC_LEVELS_' + topic.permission.level | uppercase | translate}}
+                                        </div>
+
+                                        <div class="arrow_holder">
+                                            <div class="table_cell">
+                                                <div class="sprite sprite-icon-dropdown-arrowdown2x"></div>
+
+                                                <div class="v_line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <div class="dropdown_item" ng-repeat="level in $ctrl.GroupMemberTopic.LEVELS">
+                                            <div class="item_name" ng-click="$ctrl.updateGroupMemberTopicLevel(topic, level)">
+                                                {{'TXT_TOPIC_LEVELS_' + level | uppercase | translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bold" ng-if="$ctrl.group.visibility === $ctrl.Group.VISIBILITY.public">
+                                    {{'TXT_TOPIC_LEVELS_' + topic.permission.level | uppercase | translate}}
+                                </div>
+                            </div>
+
+                            <div class="clearer"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="lightbox_footer">
+
+                <div class="line lightest_line"></div>
+                <div class="blue_button_wrap">
+                    <div class="blue_button" ng-if="$ctrl.Group.canUpdate($ctrl.group)" ng-click="$ctrl.doSaveGroup()" translate="MODALS.GROUP_CREATE_SETTINGS_BTN_SAVE_GROUP">Save group</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="close_lightbox" class="ngdialog-close" ng-click="$ctrl.app.closeThisDialog($event)"></div>
+
+</div>

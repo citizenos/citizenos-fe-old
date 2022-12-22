@@ -46,7 +46,7 @@ export class Group {
     constructor(private $http, private sAuth, private sLocation, private GroupMemberUser) {
     }
 
-    query(params: { string: string }) {
+    query(params: any) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups', params)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
@@ -56,7 +56,7 @@ export class Group {
         });
     }
 
-    get(id, params?: { string: string }) {
+    get(id, params?: any) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups/:groupId', {groupId: id})
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
@@ -110,6 +110,9 @@ export class Group {
         return group && ((group.permission && group.permission.level === this.GroupMemberUser.LEVELS.admin) || (group.userLevel && group.userLevel === this.GroupMemberUser.LEVELS.admin));
     };
 
+    canShare (group) {
+        return group && (!this.isPrivate(group) || this.canUpdate(group));
+    }
     canDelete (group) {
         return this.canUpdate(group);
     };

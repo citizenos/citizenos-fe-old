@@ -54,7 +54,7 @@ let help = {
         };
 
         helpback () {
-            const helpFrame = this.$document.getElementById("help_frame") as HTMLIFrameElement | null;
+            const helpFrame = document.getElementById("help_frame") as HTMLIFrameElement | null;
             helpFrame.src = helpFrame.src;
         }
     }]

@@ -256,7 +256,7 @@ let topicSettings = {
 
         canChangeVisibility () {
             const publicGroups = this.TopicMemberGroupService.groups.filter((group) => group.visibility === this.Group.VISIBILITY.public);
-            return (this.Topic.canDelete(this.topic) && publicGroups.length === 0);
+            return (this.Topic.canDelete(this.topic) && (this.topic.visibility === this.Topic.VISIBILITY.private || publicGroups.length === 0));
         }
     }]
 }

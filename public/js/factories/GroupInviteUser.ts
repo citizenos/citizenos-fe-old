@@ -25,7 +25,7 @@ export class GroupInviteUser {
     query (params) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/invites/users', params);
 
-        return this.$http.get(path, params)
+        return this.$http.get(path, {params})
             .then((res) => {
                 return res.data.data;
             });

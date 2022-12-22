@@ -79,12 +79,12 @@ export class Topic {
     constructor(private $http, private sAuth, private sLocation, private sUser, private TopicVote, private ngDialog, private $state, private $stateParams) {
     }
 
-    get(id, params?: { string: string }) {
+    get(id, params?: any) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId', {topicId: id})
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 
-        return this.$http.get(path, params)
+        return this.$http.get(path, {params})
             .then((res) => {
                 const topic = res.data.data;
 
@@ -110,7 +110,7 @@ export class Topic {
             });
     };
 
-    query(params: { string: string }) {
+    query(params: any) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics', params)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
@@ -134,7 +134,7 @@ export class Topic {
         });
     };
 
-    queryPublic(params: { string: string }) {
+    queryPublic(params: any) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/topics', params);
 
         return this.$http.get(path, { params })

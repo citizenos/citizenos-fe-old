@@ -52,12 +52,11 @@ export class TopicComment {
 
     constructor(private $http, private sAuth, private sLocation) {}
 
-    query(params: { string: string }) {
+    query(params) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/topics/:topicId/comments', params)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
-
-        return this.$http.get(path, params).then((res) => {
+        return this.$http.get(path, {params}).then((res) => {
             const result = res.data.data;
             const flattenTree  = (parentNode, currentNode) => {
                 if (currentNode.replies.rows.length > 0) {

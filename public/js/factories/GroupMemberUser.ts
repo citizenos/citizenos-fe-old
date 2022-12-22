@@ -55,11 +55,11 @@ export class GroupMemberUser {
     }
 
     query (params) {
-        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups/:groupId/members/users', params, params)
+        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups/:groupId/members/users', params)
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 
-        return this.$http.get(path, params)
+        return this.$http.get(path, {params})
             .then((res) => {
                 return res.data.data;
             });
@@ -68,7 +68,7 @@ export class GroupMemberUser {
     delete (params) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:user/groups/:groupId/members/users/:userId', params)
             .replace('/:prefix', this.getUrlPrefix())
-            .replace('/:userId', this.getUrlUser());
+            .replace('/:user', this.getUrlUser());
 
         return this.$http.delete(path)
             .then((res) => {

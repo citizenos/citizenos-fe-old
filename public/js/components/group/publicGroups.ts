@@ -5,11 +5,16 @@ let publicGroups = {
     selector: 'publicGroups',
     templateUrl: '/views/components/group/public_groups.html',
     bindings: {},
-    controller: ['$state', 'sAuth', 'Group', 'GroupMemberUser', 'PublicGroupService', 'ngDialog', 'AppService', class PublicGroupsController {
+    controller: ['$scope', '$state', 'sAuth', 'Group', 'GroupMemberUser', 'PublicGroupService', 'ngDialog', 'AppService', class PublicGroupsController {
         public order = 'ASC';
 
-        constructor (private $state, private sAuth, public Group, private GroupMemberUser, public PublicGroupService, private ngDialog, private app) {
-            PublicGroupService.reload();
+        constructor ($scope, private $state, private sAuth, public Group, private GroupMemberUser, public PublicGroupService, private ngDialog, private app) {
+            $scope.$watch(() => PublicGroupService.isLoading, (newValue) => {
+                if (newValue === false && PublicGroupService.limit === 8) {
+                    PublicGroupService.limit = 26;
+                    PublicGroupService.reload();
+                }
+            });
         }
 
         createGroup () {

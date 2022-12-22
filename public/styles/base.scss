@@ -1142,6 +1142,7 @@ input.default_radio {
             width: max-content;
             left: 100%;
             transform: translateX(-100%);
+            z-index: 99999;
 
             .item_category {
                 padding-left: 10px;
@@ -1231,13 +1232,13 @@ input.default_radio {
         width: 100%;
         background: vars.$white;
         left: 0;
-        z-index: 1;
+        z-index: 99999;
         margin-top: 10px;
         border-radius: 0 0 4px 4px;
         max-height: 500px;
         overflow-y: auto;
-        margin-top: 13px;
         box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
+        width: max-content;
 
         &.group_filter_dropdown {
             width: max-content;
@@ -1678,10 +1679,26 @@ a:link, a:visited {
         }
     }
 }
+.gray_button_big {
+    @extend .gray_button;
+    padding: 10px 10px 8px 10px;
+}
 
 .light_gray_button {
     @extend .gray_button;
     background-color: vars.$light_gray;
+}
+
+.light_gray_button_big {
+    @extend .light_gray_button;
+    padding: 10px 16px 8px 16px;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: 700;
+    .icon {
+        vertical-align: initial;
+        margin-right: 11px;
+    }
 }
 
 .pink_button {

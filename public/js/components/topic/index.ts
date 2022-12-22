@@ -3,6 +3,7 @@ import './commentEdit';
 import './commentReply';
 import './cosEtherpad';
 import './postArgument';
+import './publicTopics';
 import './regularGraph';
 import './replyEdit'
 import './setTopicNotifications';

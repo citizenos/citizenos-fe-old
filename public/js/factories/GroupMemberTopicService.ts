@@ -26,6 +26,7 @@ export class GroupMemberTopicService {
         }
     }
     doSearch () {
+        console.log(this.search);
         this.offset = 0;
         this.page = 1;
         this.topics = [];
@@ -70,6 +71,7 @@ export class GroupMemberTopicService {
             if (this.search) {
                 params['search'] = this.search
             }
+            console.log(params);
             this.GroupMemberTopic.query(params).then((res) => {
                 if (res.countTotal) {
                     this.countTotal = res.countTotal || 0;

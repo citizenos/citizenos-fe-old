@@ -9,6 +9,11 @@
     bottom: 0;
     right: 0;
     padding-top: 156px;
+
+    &.no_padding {
+        padding-top: 0;
+    }
+
     @media (max-width: 767px) {
         padding-top: 50px;
     }
@@ -18,6 +23,43 @@
         margin-left: 4px;
     }
 
+    .groups_wrap {
+        position: relative;
+        width: 100%;
+        display: block;
+        padding-bottom: 20px;
+    }
+    .section_header {
+        padding: 40px 0;
+        background: vars.$light_gray;
+
+        &:nth-child(2) {
+            background-color: vars.$white;
+        }
+
+        .title {
+            h1 {
+                color: vars.$medium_black;
+                font-weight: 700;
+                font-size: 26px;
+                line-height: 32px;
+            }
+        }
+        .description {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 24px;
+            margin-top: 8px;
+        }
+    }
+
+    .view_more_button {
+        background-color: vars.$medium_black;
+        .icon {
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+    }
     /* FILTER AREA DESKTOP */
     #filter_bar_desktop {
         padding: 25px 20px 20px 20px;
@@ -30,7 +72,6 @@
         .dropdown {
             display: none;
             position: absolute;
-            width: 100%;
             background: vars.$white;
             left: 0;
             z-index: 1;
@@ -38,7 +79,6 @@
             border-radius: 0 0 4px 4px;
             max-height: 500px;
             overflow-y: auto;
-            min-width: 250px;
 
             .dropdown_item {
                 font-weight: initial;
