@@ -27,7 +27,7 @@ export class TopicComment {
     };
 
     private COMMENT_ORDER_BY = {
-        rating: 'rating',
+    //    rating: 'rating', removed 23.12.2022
         popularity: 'popularity',
         date: 'date'
     };
