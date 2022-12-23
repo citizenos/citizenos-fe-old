@@ -191,7 +191,7 @@
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_TOPIC_LIST" translate-values="{count: $ctrl.GroupMemberTopicService.countTotal}">Topic list ({{$ctrl.GroupMemberTopicService.countTotal}})</span>
                 <span ng-if="group.members.topics.count">|</span>
                 <div class="blue_link" ng-if="$ctrl.GroupMemberTopicService.countTotal" ng-click="$ctrl.topicList.isSearchVisible = !$ctrl.topicList.isSearchVisible; $ctrl.doShowMemberTopicList(group); $event.stopPropagation();"
-                     translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter
+                     translate="VIEWS.MY_GROUPS_GROUPID.LNK_SEARCH">searh
                 </div>
                 <span ng-if="$ctrl.Group.canUpdate($ctrl.group)">|
                     <div class="blue_link" ng-click="$ctrl.addTopicDialog(); $event.stopPropagation()"
@@ -228,7 +228,7 @@
                        ng-model="$ctrl.GroupMemberTopicService.search" focus-if>
             </div>
             <div class="table_cell">
-                <div class="blue_link" ng-click="$ctrl.GroupMemberTopicService.search = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
+                <div class="blue_link" ng-click="$ctrl.GroupMemberTopicService.search = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_SEARCH">clear search</div>
             </div>
         </div>
         <div class="container_content" ng-if="$ctrl.topicList.isVisible">
@@ -278,7 +278,7 @@
                 <span translate="VIEWS.MY_GROUPS_GROUPID.HEADING_USERS_LIST" translate-values="{count: ($ctrl.GroupMemberUserService.countTotal || 0)}">User list (0)</span>
                 |
                 <div class="blue_link" ng-click="$ctrl.userList.isSearchVisible = !$ctrl.userList.isSearchVisible; $ctrl.doShowMemberUserList(); $event.stopPropagation();"
-                     translate="VIEWS.MY_GROUPS_GROUPID.LNK_FILTER">filter
+                     translate="VIEWS.MY_GROUPS_GROUPID.LNK_SEARCH">filter
                 </div>
                 <span ng-if="$ctrl.Group.canUpdate($ctrl.group)">|
                     <div class="blue_link" ng-click="$ctrl.shareGroupDialog();$event.stopPropagation()" translate="VIEWS.MY_GROUPS_GROUPID.LNK_INVITE">invite</div>
@@ -294,7 +294,7 @@
                        ng-model="$ctrl.userSearch" focus-if>
             </div>
             <div class="table_cell">
-                <div class="blue_link" ng-click="$ctrl.GroupMemberUserService.search = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER">clear filter</div>
+                <div class="blue_link" ng-click="$ctrl.GroupMemberUserService.search = ''" translate="VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_SEARCH">clear search</div>
             </div>
         </div>
         <div class="container_content" ng-if="$ctrl.userList.isVisible">

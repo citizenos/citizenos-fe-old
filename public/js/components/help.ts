@@ -55,7 +55,14 @@ let help = {
 
         helpback () {
             const helpFrame = document.getElementById("help_frame") as HTMLIFrameElement | null;
-            helpFrame.src = helpFrame.src;
+            try {
+                helpFrame.contentWindow.postMessage('back');
+            } catch (err) {
+                //if postmessage fails, default to original src
+
+                console.log('postmessage failed', err)
+                helpFrame.src = helpFrame.src;
+            }
         }
     }]
 };
