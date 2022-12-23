@@ -674,10 +674,10 @@
     },
     "HOME": {
       "PUBLIC_GROUPS_TITLE": "Populaarsed avalikud grupid",
-      "PUBLIC_GROUPS_DESCRIPTION": "Piilu hetkel kõige populaarsemaid avalikke gruppe Citizen OS platvormil.",
+      "PUBLIC_GROUPS_DESCRIPTION": "Avasta hetkel kõige populaarsemaid avalikke gruppe Citizen OS platvormil.",
       "BTN_VIEW_ALL_GROUPS": "Vaata kõiki avalikke gruppe",
       "PUBLIC_TOPICS_TITLE": "Populaarsed avalikud teemad",
-      "PUBLIC_TOPICS_DESCRIPTION": "Piilu hetkel kõige populaarsemaid avalikke teemasid Citizen OS platvormil.",
+      "PUBLIC_TOPICS_DESCRIPTION": "Avasta hetkel kõige populaarsemaid avalikke teemasid Citizen OS platvormil.",
       "BTN_VIEW_ALL_TOPICS": "Vaata kõiki avalikke teemasid",
       "HEADINGS_SHOW_ME_TOPICS_ABOUT": "Näita mulle teemasid kategooriast",
       "LNK_SHOW": "Näita",
