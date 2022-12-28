@@ -67,7 +67,7 @@
             </div>
         </label>
         <textarea cos-markdown cos-markdown-translate-character-status-key="'VIEWS.TOPICS_TOPICID.COMMENT_TYPE_CHARACTER_LIMIT'" id="argument_text" ng-model="$ctrl.form.text" class="gray_borders" placeholder="{{'VIEWS.TOPICS_TOPICID.PLACEHOLDER_EXPLAIN_YOUR_ARGUMENT' | translate}}"
-                  ng-class="{'error_input': form.errors.text}" maxlength="$ctrl.COMMENT_TYPES_MAXLENGTH[form.type] || $ctrl.COMMENT_TYPES_MAXLENGTH['pro']" required></textarea>
+                  ng-class="{'error_input': $ctrl.form.errors.text}" maxlength="$ctrl.COMMENT_TYPES_MAXLENGTH[$ctrl.form.type] || $ctrl.COMMENT_TYPES_MAXLENGTH['pro']" required></textarea>
         <label for="argument_text" class="error_label" ng-if="$ctrl.form.errors.text">
             <div class="table_cell">
                 <div class="sprite sprite-icon-inputfield-error2x"></div>
