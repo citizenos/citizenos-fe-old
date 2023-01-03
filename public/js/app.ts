@@ -194,28 +194,7 @@ import * as angular from 'angular';
                     url: null,
                     abstract: true,
                     parent: 'index',
-                    templateUrl: '/views/layouts/main.html',
-                    resolve: {
-                        sActivitiesResolve: ['$log', '$q', 'sAuthResolve', 'sAuth', 'sActivity', function ($log, $q, sAuthResolve, sAuth, sActivity) {
-                            $log.debug('Resolve unreadActivities');
-                            if (sAuth.user.loggedIn) {
-                                return sActivity
-                                    .getUnreadActivities()
-                                    .then(
-                                        function (res) {
-                                            return res;
-                                        },
-                                        function (err) {
-                                            $log.error('Failed to load Activities.', err);
-                                            return $q.resolve(false); // Ignore, do not break the whole site.
-                                        }
-                                    );
-                            } else {
-                                return $q.resolve(false);
-                            }
-
-                        }]
-                    }
+                    templateUrl: '/views/layouts/main.html'
                 })
                 .state('home', {
                     url: '/',
