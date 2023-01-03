@@ -83,13 +83,11 @@ let my = {
 
             this.TopicService.filterTopics(filterParam)
             if ($state.$current.name === 'my/topics') {
-                $scope.$watch(() => TopicService.isLoading, (newVal, oldVal) => {
-                    if (newVal === false) {
-                        const params = angular.extend({}, $stateParams);
-                        if (TopicService.topics.length && !params.topicId) {
-                            params.topicId = TopicService.topics[0].id;
-                            $state.transitionTo('my/topics/topicId', params, {reload: false});
-                        }
+                $scope.$watch(() => TopicService.topics.length, (newVal, oldVal) => {
+                    const params = angular.extend({}, $stateParams);
+                    if (newVal > 0 && !params.topicId) {
+                        params.topicId = TopicService.topics[0].id;
+                        $state.go('my/topics/topicId', params, {reload: false});
                     }
                 });
             }
