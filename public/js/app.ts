@@ -727,7 +727,22 @@ import * as angular from 'angular';
                 .state('my/topics', {
                     url: '/topics',
                     parent: 'my',
-                    template: '<my-topics></my-topics>'
+                    template: '<my-topics></my-topics>',
+                    resolve: {
+                        rTopics: ['$state', '$stateParams', 'TopicService', 'sAuthResolve', 'AppService', function ($state, $stateParams, TopicService, sAuthResolve, AppService) {
+                            // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
+
+                            let filterParam = $stateParams.filter || 'all';
+                            return TopicService.filterTopics(filterParam).then(() => {
+                                const params = angular.extend({}, $stateParams);
+                                if (!params.topicId) {
+                                    params.topicId = TopicService.topics[0].id;
+                                    $state.go('my/topics/topicId', params, {reload: false});
+                                }
+                            })
+
+                        }]
+                    },
                 })
                 .state('my/topics/topicId', {
                     url: '/:topicId',
@@ -737,7 +752,7 @@ import * as angular from 'angular';
                             // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
                             return Topic
                                 .get($stateParams.topicId)
-                                .then(function (topic) {
+                                .then((topic) => {
                                     AppService.topic = topic;
                                     return topic;
                                 });

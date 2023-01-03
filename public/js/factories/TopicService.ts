@@ -25,7 +25,7 @@ export class TopicService {
     }
 
     constructor(private Topic, private sAuth) {
-        this.loadTopics();
+        //this.loadTopics();
     }
     getGroup (id) {
         for (var i = 0; i < this.topics.length; i++) {
@@ -41,7 +41,7 @@ export class TopicService {
         this.topics = [];
         this.offset = 0;
         this.search = str;
-        this.loadTopics();
+        return this.loadTopics();
     }
     doOrder(orderBy, order?) {
         this.hasMore = true;
@@ -54,14 +54,14 @@ export class TopicService {
         } else {
             this.order = 'ASC';
         }
-        this.loadTopics();
+        return this.loadTopics();
     }
     reload () {
         this.search = null;
         this.offset = 0;
         this.page = 1;
         this.topics = [];
-        this.loadTopics();
+        return this.loadTopics();
     }
     clearFilters () {
         this.filters = {
@@ -74,7 +74,7 @@ export class TopicService {
             pinned: null,
             showModerated: null
         };
-        this.reload();
+        return this.reload();
     }
     filterTopics (filter) {
         this.filters = {
@@ -112,7 +112,7 @@ export class TopicService {
                     break;
             };
         }
-        this.reload();
+        return this.reload();
     }
     loadTopics () {
         this.countTotal = 0;
@@ -133,7 +133,7 @@ export class TopicService {
             }
             Object.assign(params, this.filters);
 
-            this.Topic
+            return this.Topic
                 .query(params)
                 .then((data) => {
                     this.countTotal = data.count;
@@ -147,7 +147,7 @@ export class TopicService {
     loadMore () {
         if (this.hasMore && !this.isLoading) {
             this.page += 1;
-            this.loadTopics();
+            return this.loadTopics();
         }
     }
 };
