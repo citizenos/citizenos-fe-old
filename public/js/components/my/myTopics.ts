@@ -81,16 +81,17 @@ let my = {
                 filterParam = 'grouped';
             }
 
-            this.TopicService.filterTopics(filterParam)
+         /*   this.TopicService.filterTopics(filterParam)
             if ($state.$current.name === 'my/topics') {
                 $scope.$watch(() => TopicService.topics.length, (newVal, oldVal) => {
+                    console.log('MyTopics watcher')
                     const params = angular.extend({}, $stateParams);
                     if (newVal > 0 && !params.topicId) {
                         params.topicId = TopicService.topics[0].id;
                         $state.go('my/topics/topicId', params, {reload: false});
                     }
                 });
-            }
+            }*/
         };
 
         onSelect (id) {
