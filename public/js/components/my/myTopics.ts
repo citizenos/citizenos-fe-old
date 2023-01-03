@@ -87,7 +87,7 @@ let my = {
                     const params = angular.extend({}, $stateParams);
                     if (newVal > 0 && !params.topicId) {
                         params.topicId = TopicService.topics[0].id;
-                        $state.transitionTo('my/topics/topicId', params, {reload: false});
+                        $state.go('my/topics/topicId', params, {reload: false});
                     }
                 });
             }
