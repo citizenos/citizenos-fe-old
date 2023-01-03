@@ -25,13 +25,9 @@ let myTopicsTopic = {
             $log.debug('MyTopicsTopicController');
             this.topic = this.app.topic;
             TopicMemberUserService.topicId = $stateParams.topicId;
-            TopicMemberUserService.reload();
             TopicInviteUserService.topicId = $stateParams.topicId;
-            TopicInviteUserService.reload();
             TopicMemberGroupService.topicId = $stateParams.topicId;
-            TopicMemberGroupService.reload();
             TopicActivitiesService.topicId = $stateParams.topicId;
-            TopicActivitiesService.reload();
             if ($stateParams.openTabs) {
                 this.userList.isVisible = false;
                 this.groupList.isVisible = false;

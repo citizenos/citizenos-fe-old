@@ -270,7 +270,6 @@ export class Activity {
             .then((response) => {
                     const body = response.data;
                     this.unread = body.data.count;
-
                     return this.$q.resolve(body.data.count);
                 },
                 this.defaultError
