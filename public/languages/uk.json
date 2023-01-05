@@ -298,6 +298,7 @@
     "TOPIC_SETTINGS_TAB_SHARE": "Share",
     "TOPIC_SETTINGS_BTN_SAVE_TOPIC": "Зберегти тему",
     "TOPIC_SETTINGS_BTN_SEND_INVITES": "Надіслати запрошення",
+    "TOPIC_SETTINGS_INVITE_EXPIRES": "@:VIEWS.PUBLIC_GROUP.INIVTE_EXPIRES",
     "TOPIC_SETTINGS_LBL_MAKE_PRIVATE": "Зробити тему приватною",
     "TOPIC_SETTINGS_LBL_MAKE_PRIVATE_EXT": "Приєднатися до теми зможуть тільки запрошені вами люди",
     "TOPIC_SETTINGS_LBL_HASHTAG": "Хештег",
@@ -410,7 +411,7 @@
     "GROUP_INVITE_SHARE_HEADING": "Invite & share",
     "GROUP_ADD_TOPICS_HEADING": "Add existing topics to group",
     "GROUP_ADD_TOPICS_DESCRIPTION": "You can only add public topics to public group. If the topic does not show up then most probably it is private topic and it needs to be changed to public.",
-    "GROUP_CREATE_TOPIC_HEADING": "Add new topic to group",
+    "GROUP_CREATE_TOPIC_HEADING": "Create and add new topic to group",
     "GROUP_CREATE_TOPIC_DESCRIPTION": "You can only add public topics to public group. If the topic does not show up then most probably it is private topic and it needs to be changed to public.",
     "GROUP_INVITE_VIEW_HEADING": "Запрошення до групи",
     "GROUP_INVITE_VIEW_LBL_GROUP_NAME": "Назва групи:",
@@ -1093,7 +1094,9 @@
       "HEADING_DESCRIPTION": "Seems there are no topics belonging to this group yet.",
       "BTN_ADD_TOPICS": "@:MODALS.GROUP_CREATE_SETTINGS_TAB_ADD_TOPICS",
       "BTN_JOIN_GROUP": "Join group",
-      "BTN_LEAVE_GROUP": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP"
+      "BTN_LEAVE_GROUP": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP",
+      "INIVTE_EXPIRES": "Invite expires: {{expiresAt}}",
+      "INVITE_EXPIRED": "@:MODALS.TOPIC_MEMBERS_TXT_INVITE_EXPIRED"
     }
   },
   "ACTIVITY_FEED": {
