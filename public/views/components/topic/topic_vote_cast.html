@@ -93,7 +93,7 @@
 
     <div class="delegation_section" ng-if="!$ctrl.hasVoteEnded()">
 
-        <div class="voting_button" ng-if="($ctrl.topic.canDelegate() && $ctrl.vote.authType !== $ctrl.VOTE_AUTH_TYPES.hard)"
+        <div class="voting_button" ng-if="($ctrl.canDelegate() && $ctrl.vote.authType !== $ctrl.VOTE_AUTH_TYPES.hard)"
              ng-class="$ctrl.vote.delegation ? 'active' : ''" ng-click="$ctrl.doDelegate()">
             <div class="table_cell left_side">
                 <div class="sprite sprite-icon-delegate2x"></div>

@@ -17,51 +17,37 @@ let topicVoteCast = {
         public multipleWinners = false;
         public showInfoWinners = false;
 
-        constructor ($log, private Topic, private TopicVote, private VoteDelegation, private sNotification, private app, private ngDialog, private TopicVoteService) {
-            $log.debug('TopicVoteCastController');
+        constructor($log, private Topic, private TopicVote, private VoteDelegation, private sNotification, private app, private ngDialog, private TopicVoteService) {
+            $log.debug('TopicVoteCastController', this.vote);
             this.topic = this.app.topic;
             TopicVoteService.topicId = this.topic.id;
             this.STATUSES = Topic.STATUSES;
             this.VISIBILITY = Topic.VISIBILITY;
             this.VOTE_TYPES = TopicVote.VOTE_TYPES;
             this.VOTE_AUTH_TYPES = TopicVote.VOTE_AUTH_TYPES;
-            this.init();
+            this.TopicVoteService.voteId = this.topic.voteId;
+
         };
 
-        init () {
-            this.TopicVote
-                .get({id: this.topic.voteId, topicId: this.topic.id})
-                .then((topicVote) => {
-                    this.vote = topicVote;
-                    this.TopicVoteService.voteId = topicVote.id;
-                    this.vote.options.rows.forEach(option => {
-                        let winnerCount = 0;
-                        if (option.selected) {
-                            this.userHasVoted = true;
-                        }
-                        if (option.winner) {
-                            winnerCount++;
-                            if (winnerCount > 1) {
-                                this.showInfoWinners = true;
-                                this.multipleWinners = true;
-                            }
-                        }
-                    });
-                });
-        }
+        canDelegate() {
+            const topic = this.topic;
+            if (this.vote) {
+                return (this.Topic.canVote(topic) && this.vote.delegationIsAllowed === true);
+            }
+        };
 
-        isRadio (vote, option) {
+        isRadio(vote, option) {
             if (option.value === 'Neutral' || option.value === 'Veto') return true;
-            if (vote.type ==='regular' || vote.maxChoices === 1) return true;
+            if (vote.type === 'regular' || vote.maxChoices === 1) return true;
 
             return false;
         };
 
-        hasVoteEndedExpired () {
+        hasVoteEndedExpired() {
             return [this.STATUSES.followUp, this.STATUSES.closed].indexOf(this.topic.status) < 0 && this.vote && this.vote.endsAt && new Date() > new Date(this.vote.endsAt);
         };
 
-        hasVoteEnded () {
+        hasVoteEnded() {
             if ([this.STATUSES.followUp, this.STATUSES.closed].indexOf(this.topic.status) > -1) {
                 return true;
             }
@@ -69,7 +55,7 @@ let topicVoteCast = {
             return this.vote && this.vote.endsAt && new Date() > new Date(this.vote.endsAt);
         };
 
-        downloadContainer (includeCSV) {
+        downloadContainer(includeCSV) {
             let url = this.vote.downloads.bdocFinal;
             if (!url) return;
             if (includeCSV) {
@@ -79,12 +65,12 @@ let topicVoteCast = {
             window.location.href = url;
         };
 
-        sendToFollowUp (stateSuccess) {
+        sendToFollowUp(stateSuccess) {
             this.app.topicsSettings = false;
             this.Topic.changeState(this.app.topic, 'followUp', stateSuccess);
         };
 
-        canSubmit () {
+        canSubmit() {
             if (!this.vote.options || !Array.isArray(this.vote.options.rows)) return false;
             const options = this.vote.options.rows.filter((option) => {
                 return !!option.selected;
@@ -100,7 +86,7 @@ let topicVoteCast = {
             return true;
         };
 
-        doRevokeDelegation () {
+        doRevokeDelegation() {
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_vote_revoke_delegation_confirm.html',
@@ -110,7 +96,7 @@ let topicVoteCast = {
                 })
                 .then(() => {
                     this.VoteDelegation
-                        .delete({topicId: this.topic.id, voteId: this.vote.id})
+                        .delete({ topicId: this.topic.id, voteId: this.vote.id })
                         .then(() => {
                             this.vote.topicId = this.topic.id;
                             this.TopicVote.get(this.vote).then((vote) => {
@@ -120,14 +106,14 @@ let topicVoteCast = {
                 }, angular.noop);
         };
 
-        selectOption (option) {
-         /*   if (!this.vote.canVote()) {
-                return false;
-            }*/
+        selectOption(option) {
+            /*   if (!this.vote.canVote()) {
+                   return false;
+               }*/
             this.vote.options.rows.forEach((opt) => {
-                if (option.value === 'Neutral' || option.value === 'Veto' || this.vote.maxChoices ===1) {
+                if (option.value === 'Neutral' || option.value === 'Veto' || this.vote.maxChoices === 1) {
                     opt.selected = false;
-                } else if (opt.value === 'Neutral' || opt.value === 'Veto' || this.vote.maxChoices ===1) {
+                } else if (opt.value === 'Neutral' || opt.value === 'Veto' || this.vote.maxChoices === 1) {
                     opt.selected = false;
                 }
             });
@@ -143,11 +129,11 @@ let topicVoteCast = {
             });
 
             if (selected.length >= this.vote.maxChoices && !isSelected) return;
-            option.selected=!option.selected;
+            option.selected = !option.selected;
 
         };
 
-        doVote (option) {
+        doVote(option) {
             let options = [];
             //if (!$scope.topic.canVote()) return;
             if (!option) {
@@ -183,7 +169,7 @@ let topicVoteCast = {
                                                 }
                                             });
                                         });
-                                        this.vote.downloads = {bdocVote: data.bdocUri};
+                                        this.vote.downloads = { bdocVote: data.bdocUri };
                                         this.userHasVoted = true;
                                     });
                                 return true;
@@ -192,7 +178,7 @@ let topicVoteCast = {
                     });
 
                 signDialog.closePromise.then((data) => {
-                    if(data.value) {
+                    if (data.value) {
                         this.sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
                     }
                 });
@@ -200,7 +186,7 @@ let topicVoteCast = {
                 return;
             } else {
                 this.TopicVote
-                    .cast({voteId: this.vote.id, topicId: this.topic.id, options: options})
+                    .cast({ voteId: this.vote.id, topicId: this.topic.id, options: options })
                     .then((data) => {
                         this.vote.topicId = this.topic.id;
                         this.sNotification.addSuccess('VIEWS.TOPICS_TOPICID.MSG_VOTE_REGISTERED');
@@ -209,7 +195,7 @@ let topicVoteCast = {
             }
         }
 
-        getVote () {
+        getVote() {
             this.TopicVote
                 .get(this.vote)
                 .then((vote) => {
@@ -223,10 +209,10 @@ let topicVoteCast = {
                             }
                         }
                     }
-            });
+                });
         };
 
-        doDelegate () {
+        doDelegate() {
             if (!this.vote.delegation) {
                 this.ngDialog
                     .open({
@@ -236,7 +222,7 @@ let topicVoteCast = {
             }
         };
 
-        getVoteValuePercentage (value) {
+        getVoteValuePercentage(value) {
             if (!this.vote.getVoteCountTotal() || value < 1 || !value) return 0;
             return value / this.vote.getVoteCountTotal() * 100;
         };

@@ -135,9 +135,9 @@ angular
             'responseError': function (response) {
                 sNotification.removeAll();
                 if (response && response.config && response.config.url.match(API_REQUEST_REGEX)) {
-                    if (response.config.params && response.config.params.__doNotDisplayErrors) {
+                    if (response.config && response.config.__doNotDisplayErrors) {
                         // SKIP WHEN __doNotDisplayErrors parameter is set.
-                        return;
+                        return $q.reject(response);
                     }
                     try {
                         errorsToKeys(response);
