@@ -235,7 +235,7 @@
                 <span ng-if="$ctrl.topic.members.groups.count && $ctrl.Topic.canUpdate($ctrl.topic)">|</span>
                 <div class="blue_link" ng-if="$ctrl.Topic.canUpdate($ctrl.topic)" ui-sref="my/topics/topicId/invite({topicId: $ctrl.topic.id, tab: 'invite'})" ng-click="$event.stopPropagation()" translate="VIEWS.MY_TOPICS_TOPICID.LNK_ADD">add</div>
             </div>
-            <div class="minimize_container" ng-if="$ctrl.TopicMemberGroupService.countTotal">
+            <div class="minimize_container" ng-if="$ctrl.topic.members.groups.count">
                 <div ng-class="!$ctrl.groupList.isVisible ? 'sprite-btn-expand2x' : 'sprite-btn-minimize2x'" class="sprite"></div>
             </div>
         </div>

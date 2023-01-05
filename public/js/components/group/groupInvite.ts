@@ -270,7 +270,7 @@ let groupSettings = {
                 }),((errorResponse) => {
                     if (errorResponse.data && errorResponse.data.errors) {
                         this.errors = errorResponse.data.errors;
-                        this.app.tabSelected = 'settings';
+                        this.app.tabSelected = this.tabSelected;
                     }
                 });
         };
