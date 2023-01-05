@@ -39,10 +39,11 @@ let topicInvite = {
         public membersPage = 1;
         private maxUsers = 50;
         private itemsPerPage = 10;
+        public tabSelected = 'invite';
 
         constructor ($stateParams, private $log, private $timeout, private ngDialog, private sSearch, private sLocation, private sNotification, private sAuth, private TopicInviteUser, private TopicInviteUserService, private TopicMemberUser, private TopicMemberGroup, private TopicJoin, private Topic, private app) {
             $log.debug('TopicInviteController', $stateParams);
-            this.app.tabSelected = $stateParams.tab || 'invite';
+            this.tabSelected = $stateParams.tab || 'invite';
 
             this.sNotification = sNotification;
             this.init();

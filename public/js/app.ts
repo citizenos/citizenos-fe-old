@@ -737,12 +737,12 @@ import * as angular from 'angular';
                                 const params = angular.extend({}, $stateParams);
                                 if (!params.topicId) {
                                     params.topicId = TopicService.topics[0].id;
-                                    $state.go('my/topics/topicId', params, {reload: false, supercede: true});
+                                    $state.transitionTo('my/topics/topicId', params, {reload: false});
                                 }
                             })
 
                         }]
-                    },
+                    }
                 })
                 .state('my/topics/topicId', {
                     url: '/:topicId',
@@ -1379,3 +1379,4 @@ import * as angular from 'angular';
 
         }]);
 })();
+

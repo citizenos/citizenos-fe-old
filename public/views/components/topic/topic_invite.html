@@ -22,13 +22,13 @@
 
                 <div class="header_row_wrap">
                     <div class="header_row" slide-controller identifier="topicSettingsSlider">
-                        <div class="tab_button" ng-click="$ctrl.app.selectTab('invite')" ng-class="$ctrl.app.tabSelected === 'invite' ? 'active' : ''">
+                        <div class="tab_button" ng-click="$ctrl.tabSelected = 'invite'" ng-class="$ctrl.tabSelected === 'invite' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_INVITE_TAB_INVITE">INVITE</div>
                                 <div class="blue_bottom_line"></div>
                             </div>
                         </div>
-                        <div class="tab_button" ng-click="$ctrl.app.selectTab('share')" ng-class="$ctrl.app.tabSelected === 'share' ? 'active' : ''">
+                        <div class="tab_button" ng-click="$ctrl.tabSelected = 'share'" ng-class="$ctrl.tabSelected === 'share' ? 'active' : ''">
                             <div class="tab_buttom_wrap">
                                 <div class="tab_button_text" translate="MODALS.TOPIC_INVITE_TAB_SHARE">SHARE</div>
                                 <div class="blue_bottom_line"></div>
@@ -41,7 +41,7 @@
 
             <div class="line lightest_line"></div>
             <!-- INVITE USERS -->
-            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="$ctrl.app.tabSelected === 'invite'">
+            <div class="lightbox_content settings_section_wrap padding_bottom_zero" ng-if="$ctrl.tabSelected === 'invite'">
 
                 <div class="lightbox_section">
                     <div class="input_text_margin_bottom" translate="MODALS.TOPIC_INVITE_LBL_OPTIONAL_MESSAGE">Add an optional invitation message</div>
@@ -351,7 +351,7 @@
             </div>
 
             <!-- SHARE -->
-            <div class="lightbox_content invite_url" ng-if="$ctrl.app.tabSelected === 'share'">
+            <div class="lightbox_content invite_url" ng-if="$ctrl.tabSelected === 'share'">
 
                 <div class="lightbox_section" ng-if="$ctrl.Topic.canUpdate($ctrl.topic)">
                     <h3 translate="MODALS.TOPIC_SETTINGS_HEADING_LINK_SHARING">Link sharing</h3>
@@ -425,7 +425,7 @@
 
             </div>
 
-            <div class="lightbox_footer" ng-if="$ctrl.Topic.canEdit($ctrl.topic) && $ctrl.app.tabSelected === 'invite'">
+            <div class="lightbox_footer" ng-if="$ctrl.Topic.canEdit($ctrl.topic) && $ctrl.tabSelected === 'invite'">
                 <div class="line lightest_line"></div>
                 <div class="blue_button_wrap">
                     <div class="blue_button" cos-disabled="!$ctrl.members.length" ng-click="$ctrl.doSaveTopic()"
