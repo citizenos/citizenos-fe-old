@@ -86,16 +86,7 @@ let myTopicsTopic = {
                     }
                     stateParams.openTabs.push(tabName);
                 }
-
-                this.$state.transitionTo(this.$state.current.name, stateParams, {
-                    location: true,
-                    reload: false,
-                    inherit: false,
-                    replace: true,
-                    supercede: true
-                }).then(() => {
-                    return resolve();
-                });
+                resolve();
             });
 
         };
