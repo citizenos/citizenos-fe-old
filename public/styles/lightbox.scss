@@ -1854,10 +1854,15 @@
                     font-weight: 400;
                     font-size: 14px;
                     line-height: 24px;
+
+                    &.thank_you {
+                        text-align: center;
+                    }
                 }
 
                 .feedback_info_textarea {
-                    min-height: 160px;
+                    min-height: 80px;
+                    margin: 20px 0;
                 }
 
                 @include mixins_n_extends.mobile {
