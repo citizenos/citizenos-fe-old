@@ -298,6 +298,7 @@
     "TOPIC_SETTINGS_TAB_SHARE": "Sdílet",
     "TOPIC_SETTINGS_BTN_SAVE_TOPIC": "Uložit téma",
     "TOPIC_SETTINGS_BTN_SEND_INVITES": "Poslat pozvánky",
+    "TOPIC_SETTINGS_INVITE_EXPIRES": "@:VIEWS.PUBLIC_GROUP.INIVTE_EXPIRES",
     "TOPIC_SETTINGS_LBL_MAKE_PRIVATE": "Nastavit své téma jako soukromé",
     "TOPIC_SETTINGS_LBL_MAKE_PRIVATE_EXT": "K tématu se budou moci připojit pouze lidé, které pozvete",
     "TOPIC_SETTINGS_LBL_HASHTAG": "Hashtag",
@@ -1093,7 +1094,9 @@
       "HEADING_DESCRIPTION": "Zdá se, že do této skupiny zatím nepatří žádná témata.",
       "BTN_ADD_TOPICS": "@:MODALS.GROUP_CREATE_SETTINGS_TAB_ADD_TOPICS",
       "BTN_JOIN_GROUP": "Připojit se ke skupině",
-      "BTN_LEAVE_GROUP": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP"
+      "BTN_LEAVE_GROUP": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP",
+      "INIVTE_EXPIRES": "Invite expires: {{expiresAt}}",
+      "INVITE_EXPIRED": "@:MODALS.TOPIC_MEMBERS_TXT_INVITE_EXPIRED"
     }
   },
   "ACTIVITY_FEED": {
