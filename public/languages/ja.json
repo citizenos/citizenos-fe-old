@@ -410,7 +410,7 @@
     "GROUP_INVITE_SHARE_HEADING": "Invite & share",
     "GROUP_ADD_TOPICS_HEADING": "Add existing topics to group",
     "GROUP_ADD_TOPICS_DESCRIPTION": "You can only add public topics to public group. If the topic does not show up then most probably it is private topic and it needs to be changed to public.",
-    "GROUP_CREATE_TOPIC_HEADING": "Add new topic to group",
+    "GROUP_CREATE_TOPIC_HEADING": "Create and add new topic to group",
     "GROUP_CREATE_TOPIC_DESCRIPTION": "You can only add public topics to public group. If the topic does not show up then most probably it is private topic and it needs to be changed to public.",
     "GROUP_INVITE_VIEW_HEADING": "グループへの招待",
     "GROUP_INVITE_VIEW_LBL_GROUP_NAME": "グループ名:",
