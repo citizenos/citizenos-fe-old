@@ -410,7 +410,7 @@
     "GROUP_INVITE_SHARE_HEADING": "Kutsu ja jaga",
     "GROUP_ADD_TOPICS_HEADING": "Lisa olemasolevad teemad gruppi",
     "GROUP_ADD_TOPICS_DESCRIPTION": "Avalikku gruppi saab lisada ainult avalikke teemasid. Kui teema ei ole grupis nähtav, siis on see tõenäoliselt privaatne teema ja see tuleb muuta avalikuks.",
-    "GROUP_CREATE_TOPIC_HEADING": "Lisa gruppi uus teema",
+    "GROUP_CREATE_TOPIC_HEADING": "Create and add new topic to group",
     "GROUP_CREATE_TOPIC_DESCRIPTION": "Avalikku gruppi saab lisada ainult avalikke teemasid. Kui teema ei ole grupis nähtav, siis on see tõenäoliselt privaatne teema ja see tuleb muuta avalikuks.",
     "GROUP_INVITE_VIEW_HEADING": "Grupi kutse",
     "GROUP_INVITE_VIEW_LBL_GROUP_NAME": "Grupi nimi:",
