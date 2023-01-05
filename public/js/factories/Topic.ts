@@ -102,8 +102,8 @@ export class Topic {
             });
     }
 
-    getByToken (token) {
-        let path = this.sLocation.getAbsoluteUrlApi('/api/topics/join/:token', {token: token})
+    getByToken (data) {
+        let path = this.sLocation.getAbsoluteUrlApi('/api/topics/join/:token', {token: data.token || data})
         return this.$http.get(path)
             .then((res) => {
                 return res.data.data
@@ -201,8 +201,8 @@ export class Topic {
             .then((res) => {return res.data.data});
     }
 
-    join (token) {
-        const path = this.sLocation.getAbsoluteUrlApi('/api/topics/join/:token', {token: token});
+    join (data) {
+        const path = this.sLocation.getAbsoluteUrlApi('/api/topics/join/:token', {token: data.token || data});
 
         return this.$http.post(path).then((res) => {
             return res.data;
@@ -328,7 +328,7 @@ export class Topic {
     };
 
     canVote (topic) {
-        return topic && topic.vote && ((topic.vote.authType === this.TopicVote.VOTE_AUTH_TYPES.hard && topic.visibility === this.VISIBILITY.public) && topic.status === this.STATUSES.voting);
+        return topic.vote && ((topic.permission.level !== 'none' || (topic.vote.authType === this.TopicVote.VOTE_AUTH_TYPES.hard && topic.visibility === this.VISIBILITY.public)) && topic.status === this.STATUSES.voting);
     };
 
     canDelegate (topic) {
