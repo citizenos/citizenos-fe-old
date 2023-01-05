@@ -410,7 +410,7 @@
     "GROUP_INVITE_SHARE_HEADING": "邀请与分享",
     "GROUP_ADD_TOPICS_HEADING": "添加现有话题到群组",
     "GROUP_ADD_TOPICS_DESCRIPTION": "您只能将公开话题添加到公开群组。 如果话题没有出现，那么它很可能是私有话题；如需添加，需要将其更改为公开话题。",
-    "GROUP_CREATE_TOPIC_HEADING": "添加新话题到群组",
+    "GROUP_CREATE_TOPIC_HEADING": "Create and add new topic to group",
     "GROUP_CREATE_TOPIC_DESCRIPTION": "您只能将公开话题添加到公开群组。 如果话题没有出现，那么它很可能是私有话题；如需添加，需要将其更改为公开话题。",
     "GROUP_INVITE_VIEW_HEADING": "群组邀请",
     "GROUP_INVITE_VIEW_LBL_GROUP_NAME": "群组名称：",
