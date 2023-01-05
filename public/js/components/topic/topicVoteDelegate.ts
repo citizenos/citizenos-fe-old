@@ -21,7 +21,8 @@ let topicVoteDelegate = {
             this.sNotification.removeAll();
             if (str && str.length >= 2) {
                 this.TopicMemberUser
-                    .query({topicId: this.topic.id, search: str}).$promise
+                    .query({topicId: this.topic.id, search: str})
+                    .then(data => data.rows)
                     .then((topicMembers) => {
                         this.searchResults.users = topicMembers;
                     });

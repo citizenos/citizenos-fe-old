@@ -69,7 +69,6 @@ export class TopicCommentService {
                 sortOrder: this.order,
                 limit: this.limit
             }
-            console.log(params)
             this.TopicComment.query(params).then((data) => {
                 this.count = data.count;
                 this.countTotal = data.countTotal || 0;
