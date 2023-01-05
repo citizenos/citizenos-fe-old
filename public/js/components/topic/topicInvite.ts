@@ -390,6 +390,12 @@ let topicInvite = {
                 this.form.joinUrl = this.sLocation.getAbsoluteUrl('/topics/join/' + this.topic.join.token);
             }
         }
+
+        getExpiresAt () {
+            const time = new Date();
+            time.setDate(time.getDate() + 14);
+            return time;
+        }
     }]
 }
 angular

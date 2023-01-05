@@ -250,6 +250,10 @@ let myTopicsTopic = {
                         });
                 }, angular.noop);
         };
+
+        now () {
+            return new Date();
+        }
     }]
 };
 
