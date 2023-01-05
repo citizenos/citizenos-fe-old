@@ -75,7 +75,7 @@ let setTopicNotifications = {
 
         doSaveSettings () {
             if (!this.settings.allowNotifications) {
-                this.TopicNotification.deleteTopicNotificationSettings({topicId: this.topicId});
+                this.TopicNotification.delete({topicId: this.topicId});
             } else {
                 const settings = this.settings;
                 settings.topicId = this.topicId;

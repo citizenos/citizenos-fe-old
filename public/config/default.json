@@ -12,16 +12,12 @@
       "et": "Eesti",
       "fr": "Français",
       "ru": "Pусский",
-      "fi": "Suomi",
       "uk": "Українська",
       "de": "Deutsch",
       "es": "Español",
       "id": "Bahasa Indonesia",
-      "mk": "Македонски",
-      "nl": "Nederlands",
-      "lv": "Latviešu",
-      "pl": "Polski",
-      "pt-br": "Português (Brasil)"
+      "sk": "Slovenčina",
+      "cs": "Čeština"
     },
     "debug": "dbg"
   },
