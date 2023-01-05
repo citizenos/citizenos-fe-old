@@ -55,7 +55,7 @@ export class GroupMemberUser {
     }
 
     query (params) {
-        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups/:groupId/members/users', params)
+        let path = this.sLocation.getAbsoluteUrlApi('/api/:prefix/:userId/groups/:groupId/members/users', {groupId: params.groupId})
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 

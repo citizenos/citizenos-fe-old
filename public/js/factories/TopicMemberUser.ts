@@ -25,7 +25,7 @@ export class TopicMemberUser {
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 
-        return this.$http.get(path, params).then((res) => {
+        return this.$http.get(path, {params}).then((res) => {
             return res.data.data;
         });
     }
