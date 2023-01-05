@@ -26,11 +26,13 @@ export class TopicMemberUserService {
         }
       }
     doSearch () {
+        this.offset = 0;
         this.page = 1;
         this.users = [];
         this.loadUsers();
     }
     doOrder(orderBy, order?) {
+        this.offset = 0;
         this.page = 1;
         this.orderBy = orderBy;
         if (!order && this.order === 'ASC') {
@@ -42,6 +44,8 @@ export class TopicMemberUserService {
         this.loadUsers();
     }
     reload () {
+        this.offset = 0;
+        this.page = 1;
         this.users = [];
         this.loadUsers();
     }
@@ -59,17 +63,17 @@ export class TopicMemberUserService {
             let params = {
                 topicId: this.topicId,
                 offset: this.offset,
-                search: this.search,
                 order: this.orderBy,
                 sortOrder: this.order,
                 limit: this.limit
             }
+            if (this.search) {
+                params['search'] = this.search
+            }
             this.TopicMemberUser.query(params).then((data) => {
-                if (data.rows.length) {
-                    this.countTotal = data.countTotal || 0;
-                    this.totalPages = Math.ceil(data.countTotal / this.limit);
-                    this.users = data.rows;
-                }
+                this.countTotal = data.countTotal || 0;
+                this.totalPages = Math.ceil(data.countTotal / this.limit);
+                this.users = data.rows;
 
                 this.isLoading = false;
             });

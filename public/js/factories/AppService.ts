@@ -291,9 +291,9 @@ export class AppService {
         });
 
         dialog.closePromise.then((data) => {
-            if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
+            if (data.value !== '$navigation' && state !== 'my/topics/topicId') { // Avoid running state change when ngDialog is already closed by a state change
                 this.$timeout(() => {
-                    this.$state.go('^');
+                    this.$state.reload();
                 });
             }
         });

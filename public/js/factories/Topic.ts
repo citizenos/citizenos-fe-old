@@ -104,7 +104,8 @@ export class Topic {
 
     getByToken (data) {
         let path = this.sLocation.getAbsoluteUrlApi('/api/topics/join/:token', {token: data.token || data})
-        return this.$http.get(path)
+
+        return this.$http.get(path, data)
             .then((res) => {
                 return res.data.data
             });

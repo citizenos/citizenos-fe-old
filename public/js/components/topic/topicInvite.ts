@@ -39,10 +39,11 @@ let topicInvite = {
         public membersPage = 1;
         private maxUsers = 50;
         private itemsPerPage = 10;
+        public tabSelected = 'invite';
 
         constructor ($stateParams, private $log, private $timeout, private ngDialog, private sSearch, private sLocation, private sNotification, private sAuth, private TopicInviteUser, private TopicInviteUserService, private TopicMemberUser, private TopicMemberGroup, private TopicJoin, private Topic, private app) {
             $log.debug('TopicInviteController', $stateParams);
-            this.app.tabSelected = $stateParams.tab || 'invite';
+            this.tabSelected = $stateParams.tab || 'invite';
 
             this.sNotification = sNotification;
             this.init();
@@ -388,6 +389,12 @@ let topicInvite = {
             if (this.topic.join.token && this.Topic.canUpdate(this.topic)) {
                 this.form.joinUrl = this.sLocation.getAbsoluteUrl('/topics/join/' + this.topic.join.token);
             }
+        }
+
+        getExpiresAt () {
+            const time = new Date();
+            time.setDate(time.getDate() + 14);
+            return time;
         }
     }]
 }

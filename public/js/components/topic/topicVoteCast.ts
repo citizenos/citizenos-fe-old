@@ -185,6 +185,9 @@ let topicVoteCast = {
 
                 return;
             } else {
+                options.forEach((dOption) => {
+                    dOption.optionId = dOption.id;
+                });
                 this.TopicVote
                     .cast({ voteId: this.vote.id, topicId: this.topic.id, options: options })
                     .then((data) => {

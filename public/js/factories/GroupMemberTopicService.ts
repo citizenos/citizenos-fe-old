@@ -71,15 +71,10 @@ export class GroupMemberTopicService {
             if (this.search) {
                 params['search'] = this.search
             }
-            console.log(params);
             this.GroupMemberTopic.query(params).then((res) => {
-                if (res.countTotal) {
-                    this.countTotal = res.countTotal || 0;
-                    this.totalPages = Math.ceil(res.countTotal / this.limit);
-                }
-                for (let topic of res.rows) {
-                    this.topics.push(topic);
-                }
+                this.countTotal = res.countTotal || 0;
+                this.totalPages = Math.ceil(res.countTotal / this.limit);
+                this.topics = res.rows;
                 this.isLoading = false;
             });
         }

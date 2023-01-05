@@ -3,7 +3,7 @@ import * as angular from 'angular';
 let myTopicsTopic = {
     selector: 'myTopicsTopic',
     templateUrl: '/views/components/my/my_topics_topicId.html',
-    controller: ['$log', '$state', '$stateParams', '$anchorScroll', '$q', 'sAuth', 'Topic', 'TopicVote', 'TopicMemberUser', 'TopicMemberUserService' , 'TopicMemberGroup', 'TopicMemberGroupService', 'TopicInviteUser', 'TopicInviteUserService', 'TopicActivitiesService', 'AppService', 'ngDialog', class MyTopicsTopicController {
+    controller: ['$log', '$state', '$stateParams','$anchorScroll', '$q', 'sAuth', 'Topic', 'TopicVote', 'TopicMemberUser', 'TopicMemberUserService' , 'TopicMemberGroup', 'TopicMemberGroupService', 'TopicInviteUser', 'TopicInviteUserService', 'TopicActivitiesService', 'AppService', 'ngDialog', class MyTopicsTopicController {
         public topic;
         public userList = {
             isVisible: false,
@@ -86,14 +86,7 @@ let myTopicsTopic = {
                     }
                     stateParams.openTabs.push(tabName);
                 }
-                this.$state.transitionTo(this.$state.current.name, stateParams, {
-                    notify: false,
-                    reload: false,
-                    inherit: true,
-                    replace: true
-                }).then(() => {
-                    return resolve();
-                });
+                resolve();
             });
 
         };
@@ -152,6 +145,7 @@ let myTopicsTopic = {
         };
 
         doShowMemberGroupList () {
+            this.TopicMemberGroupService.reload();
             this.groupList.isVisible = true;
         };
 
@@ -256,6 +250,10 @@ let myTopicsTopic = {
                         });
                 }, angular.noop);
         };
+
+        now () {
+            return new Date();
+        }
     }]
 };
 
