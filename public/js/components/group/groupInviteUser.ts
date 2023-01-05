@@ -22,6 +22,9 @@ let groupInviteUser = {
                     <span ng-if="$ctrl.invite.user.email || $ctrl.invite.user.phoneNumber"> • </span>
                     <span translate="VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING">Pending invite</span>
                 </div>
+                <div class="via">
+                    <span translate="VIEWS.PUBLIC_GROUP.INIVTE_EXPIRES" translate-values="{expiresAt: ($ctrl.invite.expiresAt | amTimeAgo)}">{{$ctrl.invite.expiresAt | amTimeAgo}}
+                </div>
             </div>
         </div>
     </div>

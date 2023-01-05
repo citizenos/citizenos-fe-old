@@ -405,6 +405,10 @@
                                         <span translate="VIEWS.MY_TOPICS_TOPICID.TXT_INVITE_PENDING">Pending invite</span>
                                     </span>
                                 </div>
+                                <div class="via" >
+                                    <span ng-if="invite.expiresAt" translate="VIEWS.PUBLIC_GROUP.INIVTE_EXPIRES" translate-values="{expiresAt: (invite.expiresAt | amTimeAgo)}"></span>
+                                    <span ng-if="invite.expiresAt < now()" class="red_text" translate="VIEWS.PUBLIC_GROUP.INVITE_EXPIRED"></span>
+                                </div>
                             </div>
                         </div>
                     </div>

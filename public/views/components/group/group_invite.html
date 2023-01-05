@@ -230,6 +230,7 @@
                                         <div class="table_cell">
                                             <div class="blue_link" ng-click="$ctrl.doRemoveMemberUser(member)">{{member.name}}</div>
                                             <div class="via">{{member.company}}</div>
+                                            <div class="via" translate="MODALS.TOPIC_SETTINGS_INVITE_EXPIRES" translate-values="{expiresAt: ($ctrl.getExpiresAt() | amTimeAgo)}"></div>
                                         </div>
                                     </div>
 

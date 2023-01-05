@@ -1,7 +1,7 @@
 'use strict';
 import * as angular from 'angular';
-import {sortedUniq, find} from 'lodash';
-import {isEmail} from 'validator';
+import { sortedUniq, find } from 'lodash';
+import { isEmail } from 'validator';
 import * as $ from 'jquery';
 
 let groupSettings = {
@@ -57,7 +57,7 @@ let groupSettings = {
         ];
         public tabSelected = 'users';
 
-        constructor (private $stateParams, private $log, private ngDialog, private sAuth, private sSearch, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupInviteUser, private GroupInviteUserService, private GroupJoin, private app) {
+        constructor(private $stateParams, private $log, private ngDialog, private sAuth, private sSearch, private sLocation, private sNotification, private Group, private GroupMemberUser, private GroupInviteUser, private GroupInviteUserService, private GroupJoin, private app) {
             Group.get(this.$stateParams.groupId)
                 .then((group) => {
                     this.group = group;
@@ -75,23 +75,23 @@ let groupSettings = {
                 });
         }
 
-        search (str) {
+        search(str) {
             if (str && str.length >= 2) {
                 this.searchStringUser = str;
                 this.sSearch
                     .searchUsers(str)
                     .then((response) => {
-                        this.searchResults = angular.merge({}, {users: [], topics: []});
+                        this.searchResults = angular.merge({}, { users: [], topics: [] });
                         response.data.data.results.public.users.rows.forEach((user) => {
                             this.searchResults.users.push(user);
                         });
                     });
             } else {
-                this.searchResults = angular.merge({}, {users: [], topics: []});
+                this.searchResults = angular.merge({}, { users: [], topics: [] });
             }
         };
 
-        itemsExist (type) {
+        itemsExist(type) {
             let exists = false;
             let i = (this.membersPage * this.itemsPerPage) - this.itemsPerPage;
             for (i; i < this.members.length && i < (this.membersPage * this.itemsPerPage); i++) {
@@ -110,7 +110,7 @@ let groupSettings = {
             return exists;
         };
 
-        isInGroup (item, group) {
+        isInGroup(item, group) {
             if (group === 'emails') {
                 return item.userId === item.name;
             } else {
@@ -118,31 +118,31 @@ let groupSettings = {
             }
         };
 
-        removeAllMembers () {
+        removeAllMembers() {
             this.members = []
         };
 
-        updateGroupLevel (level) {
+        updateGroupLevel(level) {
             this.groupLevel = level;
             this.members.forEach((item) => {
                 item.level = level;
             });
         };
 
-        loadPage (pageNr) {
+        loadPage(pageNr) {
             this.membersPage = pageNr;
         };
 
-        totalPages (items) {
+        totalPages(items) {
             return Math.ceil(items.length / this.itemsPerPage);
         };
 
-        isOnPage (index, page) {
+        isOnPage(index, page) {
             const endIndex = page * this.itemsPerPage;
             return (index >= (endIndex - this.itemsPerPage) && index < endIndex);
         };
 
-        orderMembers () {
+        orderMembers() {
             const compare = (a, b) => {
                 const property = 'name';
                 return (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
@@ -157,9 +157,9 @@ let groupSettings = {
             this.members = users.concat(emails);
         };
 
-        addGroupMemberUser (member?) {
+        addGroupMemberUser(member?) {
             if (member) {
-                if (find(this.members['users'], {userId: member.id})) {
+                if (find(this.members['users'], { userId: member.id })) {
                     // Ignore duplicates
                     this.searchStringUser = null;
                     return this.searchResults.users = [];
@@ -216,19 +216,19 @@ let groupSettings = {
             }
         };
 
-        doRemoveMemberUser (member) {
+        doRemoveMemberUser(member) {
             this.members.splice(this.members.indexOf(member), 1);
         };
 
-        updateGroupMemberUserLevel (member, level) {
+        updateGroupMemberUserLevel(member, level) {
             this.members[this.members.indexOf(member)].level = level;
         };
 
-        removeInvalidEmail (key) {
+        removeInvalidEmail(key) {
             this.invalid.splice(key, 1);
         };
 
-        addCorrectedEmail (email, key) {
+        addCorrectedEmail(email, key) {
             this.$log.debug('addCorrectedEmail', email, key);
 
             if (isEmail(email.trim())) {
@@ -243,7 +243,7 @@ let groupSettings = {
             }
         };
 
-        doSaveGroup () {
+        doSaveGroup() {
             this.errors = null;
             const savePromises = [];
             // Users
@@ -258,16 +258,16 @@ let groupSettings = {
 
             if (groupMemberUsersToInvite.length) {
                 savePromises.push(
-                    this.GroupInviteUser.save({groupId: this.group.id}, groupMemberUsersToInvite)
+                    this.GroupInviteUser.save({ groupId: this.group.id }, groupMemberUsersToInvite)
                 );
             }
 
             return Promise.all(savePromises)
-                .then(() =>  {
+                .then(() => {
                     this.GroupInviteUserService.reload();
                     const dialogs = this.ngDialog.getOpenDialogs();
                     this.ngDialog.close(dialogs[0], '$closeButton');
-                }),((errorResponse) => {
+                }), ((errorResponse) => {
                     if (errorResponse.data && errorResponse.data.errors) {
                         this.errors = errorResponse.data.errors;
                         this.app.tabSelected = this.tabSelected;
@@ -275,7 +275,7 @@ let groupSettings = {
                 });
         };
 
-        generateTokenJoin () {
+        generateTokenJoin() {
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_join_link_generate_confirm.html', //FIXME! GROUP SPECIFIC
@@ -286,16 +286,16 @@ let groupSettings = {
                         userId: this.sAuth.user.id,
                         level: this.form.join.level
                     })
-                    .then((res) => {
-                        this.group.join = res;
-                        this.form.join.token = res.token;
-                        this.form.join.level = res.level;
-                        this.generateJoinUrl();
-                    });
+                        .then((res) => {
+                            this.group.join = res;
+                            this.form.join.token = res.token;
+                            this.form.join.level = res.level;
+                            this.generateJoinUrl();
+                        });
                 }, angular.noop);
         };
 
-        doUpdateJoinToken (level) {
+        doUpdateJoinToken(level) {
             const groupJoin = {
                 groupId: this.group.id,
                 userId: this.sAuth.user.id,
@@ -309,7 +309,7 @@ let groupSettings = {
                 });
         };
 
-        copyInviteLink () {
+        copyInviteLink() {
             const urlInputElement = document.getElementById('url_invite_group_input') as HTMLInputElement || null;
             urlInputElement.focus();
             urlInputElement.select();
@@ -317,12 +317,17 @@ let groupSettings = {
             document.execCommand('copy');
         };
 
-        generateJoinUrl () {
+        generateJoinUrl() {
             if (this.form.join.token && this.Group.canShare(this.group)) {
                 this.form.joinUrl = this.sLocation.getAbsoluteUrl('/groups/join/' + this.form.join.token);
             }
         };
 
+        getExpiresAt() {
+            const time = new Date();
+            time.setDate(time.getDate() + 14);
+            return time;
+        }
     }]
 }
 angular
