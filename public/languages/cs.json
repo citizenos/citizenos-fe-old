@@ -1097,7 +1097,7 @@
       "BTN_ADD_TOPICS": "@:MODALS.GROUP_CREATE_SETTINGS_TAB_ADD_TOPICS",
       "BTN_JOIN_GROUP": "Připojit se ke skupině",
       "BTN_LEAVE_GROUP": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP",
-      "INIVTE_EXPIRES": "Invite expires: {{expiresAt}}",
+      "INIVTE_EXPIRES": "Pozvánka vyprší: {{expiresAt}}",
       "INVITE_EXPIRED": "@:MODALS.TOPIC_MEMBERS_TXT_INVITE_EXPIRED"
     }
   },
