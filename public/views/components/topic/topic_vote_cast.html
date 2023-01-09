@@ -154,7 +154,7 @@
                 download voting results.
             </div>
             <div class="voting_button voting_button_blue active">
-                <div class="table_cell" ng-click="$ctrl.sendToFollowUp('topics.view.votes.view')" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow</div>
+                <div class="table_cell" ng-click="$ctrl.sendToFollowUp('topics/view/votes/view')" translate="VIEWS.TOPICS_TOPICID.NAV_LNK_SEND_TO_FOLLOW_UP">Send to follow</div>
             </div>
         </div>
         <div class="info_box_wrap" ng-if="$ctrl.multipleWinners && ($ctrl.hasVoteEndedExpired() || $ctrl.hasVoteEnded()) && ('topics/view/votes/view' | isState) && $ctrl.showInfoWinners && $ctrl.Topic.canUpdate($ctrl.topic)">
