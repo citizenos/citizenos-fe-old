@@ -7,7 +7,7 @@
     </div>
 
     <div class="graph_wrap">
-        <div class="graph_row" ng-class="option.winner ? 'active' : ''" ng-repeat="(key, option) in $ctrl.vote.options.rows">
+        <div class="graph_row" ng-class="option.winner ? 'active' : ''" ng-repeat="(key, option) in $ctrl.options.rows">
             <!-- TODO: Maybe there is a better solution for translation fallback in the tooltip text? -->
             <div class="graph_row_fill" cos-styles='{"width" : "{{$ctrl.getVoteValuePercentage(option.voteCount)}}%"}' tooltips
                  tooltip-template="{{((optionTranslation = ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase | translate)) != ('VIEWS.TOPICS_TOPICID.VOTE_LBL_OPTION_' + option.value | linky | uppercase)) ? optionTranslation : (option.value | linky)}}"
