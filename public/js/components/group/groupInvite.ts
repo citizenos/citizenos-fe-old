@@ -250,7 +250,7 @@ let groupSettings = {
             const groupMemberUsersToInvite = [];
             this.members.forEach((member) => {
                 groupMemberUsersToInvite.push({
-                    userId: member.userId,
+                    userId: member.userId || member.id,
                     level: member.level,
                     inviteMessage: this.form.inviteMessage
                 })
