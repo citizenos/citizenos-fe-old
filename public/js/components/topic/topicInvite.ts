@@ -319,7 +319,7 @@ let topicInvite = {
                     savePromises.push(this.TopicMemberGroup.save(member));
                 } else {
                     topicMemberUsersToSave.push({
-                        userId: member.userId,
+                        userId: member.userId || member.id,
                         inviteMessage: this.form.inviteMessage,
                         level: member.level
                     })
