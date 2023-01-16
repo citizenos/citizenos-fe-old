@@ -1075,6 +1075,7 @@
       "LBL_REMOVE_FROM_GROUP": "@:VIEWS.MY_GROUPS_GROUPID.LBL_REMOVE_FROM_GROUP",
       "LBL_REMOVE": "@:ACTIVITY_FEED.ACTIVITY_COMMENTVOTE_FIELD_VALUE_REMOVE",
       "LNK_ROLE": "Roll",
+      "BTN_INVITE_SHARE": "@:MODALS.GROUP_INVITE_SHARE_HEADING",
       "ORDER_TITLE": "Reasta pealkirja järgi",
       "ORDER_TITLE_ASC": "Reasta pealkirja järgi A-Z",
       "ORDER_TITLE_DESC": "Reasta pealkirja järgi Z-A",
