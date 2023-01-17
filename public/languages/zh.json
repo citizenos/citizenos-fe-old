@@ -951,7 +951,7 @@
       "VOTE_LBL_MIN_CHOICES": "最小选项数：",
       "VOTE_LBL_MAX_CHOICES": "最大选项数：",
       "LNK_TOPIC_DETAILS": "话题详情",
-      "LBL_CATEGORIES": "分类",
+      "LBL_CATEGORIES": "类别：",
       "LBL_NO_CATEGORIES": "无",
       "LNK_ADD_CATEGORIES": "添加类别",
       "LBL_AUTHORS": "作者：{{topic.creator.name}}",
