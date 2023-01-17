@@ -1,6 +1,6 @@
 {
   "META_DEFAULT_TITLE": "Citizen OS - 为社区提供的电子决策平台",
-  "META_DEFAULT_DESCRIPTION": "Citizen OS 提供了一种当线下或线上即时集会不可行时，为团体进行参与式讨论和投票的解决方案。",
+  "META_DEFAULT_DESCRIPTION": "Citizen OS 提供了一种当线下或线上即时集会不可行时，团体进行参与式讨论和投票的解决方案。",
   "META_DEFAULT_KEYWORDS": "电子决策、电子治理、电子民主、民主、直接民主、流动民主",
   "BTN_YES": "是",
   "BTN_NO": "否",
@@ -411,7 +411,7 @@
     "GROUP_INVITE_SHARE_HEADING": "邀请与分享",
     "GROUP_ADD_TOPICS_HEADING": "添加现有话题到群组",
     "GROUP_ADD_TOPICS_DESCRIPTION": "您只能将公开话题添加到公开群组。 如果话题没有出现，那么它很可能是私有话题；如需添加，需要将其更改为公开话题。",
-    "GROUP_CREATE_TOPIC_HEADING": "Create and add new topic to group",
+    "GROUP_CREATE_TOPIC_HEADING": "创建并将新话题添加到群组",
     "GROUP_CREATE_TOPIC_DESCRIPTION": "您只能将公开话题添加到公开群组。 如果话题没有出现，那么它很可能是私有话题；如需添加，需要将其更改为公开话题。",
     "GROUP_INVITE_VIEW_HEADING": "群组邀请",
     "GROUP_INVITE_VIEW_LBL_GROUP_NAME": "群组名称：",
@@ -569,14 +569,14 @@
     "GROUP_JOIN_CONFIRM_BTN_NO": "@:LNK_CANCEL",
     "GROUP_JOIN_CONFIRM_BTN_YES": "是，加入此群组",
     "GIVE_FEEDBACK_HEADING": "分享您的反馈",
-    "GIVE_FEEDBACK_QUESTION_1": "How does your organisation create impact?",
-    "GIVE_FEEDBACK_QUESTION_2": "How do you use Citizen OS?",
+    "GIVE_FEEDBACK_QUESTION_1": "您的组织如何产生影响？",
+    "GIVE_FEEDBACK_QUESTION_2": "您如何使用 Citizen OS ？",
     "GIVE_FEEDBACK_DESC": "This text area would comprise of 3 questions which can be edited by the lead from Citizen OS and these details will be discussed privately. But I still wanted to add text here so that this area becomes bigger and a better reference for the future.",
     "GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA": "在此处键入……",
     "GIVE_FEEDBACK_BTN_CANCEL": "@:LNK_CANCEL",
     "GIVE_FEEDBACK_BTN_SUBMIT": "提交",
     "GIVE_FEEDBACK_TITLE_THANK_YOU": "感谢您的反馈 ！",
-    "GIVE_FEEDBACK_TEXT_THANK_YOU": "Thank you so much for sharing your story! We would love to get in touch with you for a short interview. In case you are interested, please contact Sara Sinha (<a href=\"mailto:sara@citizenos.com\">sara@citizenos.com</a>)",
+    "GIVE_FEEDBACK_TEXT_THANK_YOU": "非常感谢您分享您的故事！我们很乐意与您取得联系以进行一场简短的采访。如果您感兴趣，请联系 Sara Sinha（<a href=\"mailto:sara@citizenos.com\">sara@citizenos.com</a>）。",
     "GIVE_FEEDBACK_BTN_CLOSE": "@:BTN_CLOSE"
   },
   "TXT_TOPIC_CATEGORY_ALL": "全部类别",
@@ -1098,7 +1098,7 @@
       "BTN_ADD_TOPICS": "@:MODALS.GROUP_CREATE_SETTINGS_TAB_ADD_TOPICS",
       "BTN_JOIN_GROUP": "加入群组",
       "BTN_LEAVE_GROUP": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_LEAVE_GROUP",
-      "INIVTE_EXPIRES": "Invite expires: {{expiresAt}}",
+      "INIVTE_EXPIRES": "邀请过期时间：{{expiresAt}}",
       "INVITE_EXPIRED": "@:MODALS.TOPIC_MEMBERS_TXT_INVITE_EXPIRED"
     }
   },
