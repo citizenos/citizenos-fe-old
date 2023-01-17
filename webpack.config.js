@@ -12,7 +12,7 @@ module.exports = {
         filename: "citizenos-fe.bundle.js"
     },
     optimization: {
-        minimize: true
+        minimize: false
     },
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]

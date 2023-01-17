@@ -1,5 +1,5 @@
-@use 'vars';
-@use 'mixins_n_extends';
+@use "vars";
+@use "mixins_n_extends";
 
 #groups_root {
     @extend %default_setup;
@@ -9,249 +9,251 @@
         position: relative;
     }
 }
-    .no_results {
-        text-align: center;
+.no_results {
+    text-align: center;
 
-        .title_area {
-            h3 {
-                font-weight: 700;
-                font-size: 26px;
-                line-height: 36px;
-            }
-
-            p {
-                font-size: 14px;
-                line-height: 24px;
-            }
+    .title_area {
+        h3 {
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 36px;
         }
 
-        .big_button{
-            .button_cell{
-                .topic_text{
-                    padding: 10px 24px;
-                    font-weight: 700;
-                    font-size: 14px;
-                    line-height: 20px;
-                }
-            }
-        }
-        .no_results_img {
-            margin-left: auto;
-            margin-right: auto;
+        p {
+            font-size: 14px;
+            line-height: 24px;
         }
     }
 
-    .groups_header {
-        padding: 0 10px 10px 10px;
-        background: vars.$light_gray;
-        width: 100%;
-        height: 64px;
+    .big_button {
+        .button_cell {
+            .topic_text {
+                padding: 10px 24px;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+    .no_results_img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.groups_header {
+    padding: 0 10px 10px 10px;
+    background: vars.$light_gray;
+    width: 100%;
+    height: 64px;
+
+    @include mixins_n_extends.mobile {
+        height: auto;
+        margin-bottom: 80px;
+        padding: 0 10px 10px 20px;
+    }
+
+    #title {
+        display: inline-block;
+        width: 50%;
 
         @include mixins_n_extends.mobile {
-            height: auto;
-            margin-bottom: 80px;
-            padding: 0 10px 10px 20px;
+            width: 100%;
+            clear: both;
         }
 
-        #title {
-            display: inline-block;
-            width: 50%;
+        h2 {
+            font-family: "Noto Sans";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 32px;
+            color: vars.$medium_black;
+        }
+    }
+
+    #action_wrapper {
+        display: inline-block;
+        width: max-content;
+        right: 20px;
+        top: 24px;
+        position: absolute;
+
+        @include mixins_n_extends.mobile {
+            width: 100%;
+            position: relative;
+        }
+
+        #filter {
+            position: relative;
+            display: table-cell;
+            padding-right: 24px;
+
+            .bar_select {
+                background-color: vars.$white;
+                padding: 10px 15px;
+                border: solid 1px vars.$lightest_gray;
+                color: vars.$dark_gray;
+            }
 
             @include mixins_n_extends.mobile {
                 width: 100%;
+                display: block;
                 clear: both;
-            }
-
-            h2 {
-                font-family: 'Noto Sans';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 26px;
-                line-height: 32px;
-                color: vars.$medium_black;
-            }
-        }
-
-        #action_wrapper {
-            display: inline-block;
-            width: max-content;
-            right: 20px;
-            top: 24px;
-            position: absolute;
-
-            @include mixins_n_extends.mobile {
-                width: 100%;
-                position: relative;
-            }
-
-            #filter {
-                position: relative;
-                display: table-cell;
-                padding-right: 24px;
-
+                padding-right: 0px;
+                position: absolute;
+                top: 50px;
 
                 .bar_select {
-                    background-color: vars.$white;
-                    padding: 10px 15px;
-                    border: solid 1px vars.$lightest_gray;
-                    color: vars.$dark_gray;
-                }
+                    width: 95%;
+                    padding: 10px 10px;
 
-                @include mixins_n_extends.mobile {
-                    width: 100%;
-                    display: block;
-                    clear: both;
-                    padding-right: 0px;
-                    position: absolute;
-                    top: 50px;
-
-                    .bar_select {
-                        width: 95%;
-                        padding: 10px 10px;
-
-                        .icon_holder {
-                            position: absolute;
-                            top: 6px;
-                            right: 0px;
-                        }
+                    .icon_holder {
+                        position: absolute;
+                        top: 6px;
+                        right: 0px;
                     }
                 }
             }
-
-            #create_group {
-                position: relative;
-                display: table-cell;
-
-                @include mixins_n_extends.mobile {
-                    width: 100%;
-                    display: block;
-                    clear: both;
-
-                    .blue_button {
-                        width: 100%;
-                    }
-                }
-
-                .blue_button {
-                    color: vars.$white;
-                }
-            }
-        }
-    }
-    .groups_wrap {
-        padding: 0 10px 10px 10px;
-        background: vars.$light_gray;
-
-        @include mixins_n_extends.mobile {
-            padding: 0;
         }
 
-        .group_wrap {
-            background: vars.$white;
-            margin-top: 10px;
-            box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
-            width: 284px;
-            height: 336px;
-            display: inline-block;
-            margin-right: 16px;
-            cursor: pointer;
+        #create_group {
+            position: relative;
+            display: table-cell;
 
             @include mixins_n_extends.mobile {
-                float:none;
                 width: 100%;
-            }
+                display: block;
+                clear: both;
 
-            .group_shown_content {
-                padding: 30px 20px 16px;
-                position: relative;
-                height: 225px;
-                overflow: hidden;
-
-                .group_header {
-                    display: table;
-                    width: 100%;
-                    box-sizing: border-box;
-                    margin-bottom: 20px;
-
-                    .group_icon {
-                        width: 64px;
-                        height: 64px;
-                        .group_circle {
-                            margin-top: 0;
-                            width: 80px;
-                            height: 80px;
-                            .group_icon {
-                                width: 64px;
-                            }
-                        }
-                        img {
-                            width: 80px;
-                            aspect-ratio: 1;
-                            object-fit: contain;
-                        }
-                    }
-
-                    .button_cell {
-                        @extend %table_cell;
-                        @media (max-width: 768px) {
-                            position: absolute;
-                            display: block;
-                            bottom: 0;
-                            left: 0;
-                            right: 0;
-                            padding: 20px;
-                            .blue_button {
-                                float: none;
-                            }
-                        }
-                    }
-
-                    .blue_button {
-                        float: right;
-                        padding-left: 20px;
-                        padding-right: 20px;
-                    }
-                }
-
-                .group_name {
-                    color: vars.$deep_sky_blue;
-                    font-weight: vars.$bold;
-                    font-size: 26px;
-                    padding-right: 20px;
-                    font-family: 'Noto Sans';
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 32px;
-                    overflow: hidden;
-                }
-
-                .group_details {
-                    margin-top: 16px;
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 14px;
-                    line-height: 24px;
-                    color: vars.$black;
-                }
-            }
-
-            .join_button {
-                padding: 0px 16px;
                 .blue_button {
                     width: 100%;
-                    border: none;
-                }
-
-                &::before {
-                    content: '\00a0';
-                    position: relative;
-                    display: block;
-                    bottom: 2em;
-                    height: 2em;
-                    background: linear-gradient(to bottom, rgba(vars.$white, 0.3), vars.$white);
-                    margin-bottom: -2em;
                 }
             }
 
+            .blue_button {
+                color: vars.$white;
+            }
         }
     }
+}
+.groups_wrap {
+    padding: 0 10px 10px 10px;
+    background: vars.$light_gray;
+
+    @include mixins_n_extends.mobile {
+        padding: 0;
+    }
+
+    .group_wrap {
+        background: vars.$white;
+        margin-top: 10px;
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+        width: 284px;
+        height: 336px;
+        display: inline-block;
+        margin-right: 16px;
+        cursor: pointer;
+
+        @include mixins_n_extends.mobile {
+            float: none;
+            width: 100%;
+        }
+
+        .group_shown_content {
+            padding: 30px 20px 16px;
+            position: relative;
+            height: 225px;
+            overflow: hidden;
+
+            .group_header {
+                display: table;
+                width: 100%;
+                box-sizing: border-box;
+                margin-bottom: 20px;
+
+                .group_icon {
+                    width: 64px;
+                    height: 64px;
+                    .group_circle {
+                        margin-top: 0;
+                        width: 80px;
+                        height: 80px;
+                        .group_icon {
+                            width: 64px;
+                        }
+                    }
+                    img {
+                        width: 80px;
+                        aspect-ratio: 1;
+                        object-fit: contain;
+                    }
+                }
+
+                .button_cell {
+                    @extend %table_cell;
+                    @media (max-width: 768px) {
+                        position: absolute;
+                        display: block;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        padding: 20px;
+                        .blue_button {
+                            float: none;
+                        }
+                    }
+                }
+
+                .blue_button {
+                    float: right;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+
+            .group_name {
+                color: vars.$deep_sky_blue;
+                font-weight: vars.$bold;
+                font-size: 26px;
+                padding-right: 20px;
+                font-family: "Noto Sans";
+                font-style: normal;
+                font-weight: 700;
+                line-height: 32px;
+                overflow: hidden;
+            }
+
+            .group_details {
+                margin-top: 16px;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 24px;
+                color: vars.$black;
+            }
+        }
+
+        .join_button {
+            padding: 0px 16px;
+            .blue_button {
+                width: 100%;
+                border: none;
+            }
+
+            &::before {
+                content: "\00a0";
+                position: relative;
+                display: block;
+                bottom: 2em;
+                height: 2em;
+                background: linear-gradient(
+                    to bottom,
+                    rgba(vars.$white, 0.3),
+                    vars.$white
+                );
+                margin-bottom: -2em;
+            }
+        }
+    }
+}

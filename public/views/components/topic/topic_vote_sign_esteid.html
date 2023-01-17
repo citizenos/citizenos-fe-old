@@ -58,7 +58,7 @@
                         <div ng-if="$ctrl.TopicVoteService.isLoading"  class="loader_wrap">
                             <div class="loader"></div>
                         </div>
-                        <button ng-if="$ctrl.app.wWidth <= 550" class="blue_button" ng-click="$ctrl.TopicVoteService.doSignWithMobile()" cos-disabled="formMobileSign.$invalid || $ctrl.isLoading || $ctrl.isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_BTN_SIGN_MID">Sign with Mobiil-ID</button>
+                        <button ng-if="$ctrl.app.wWidth <= 550" class="blue_button" ng-click="$ctrl.TopicVoteService.doSignWithMobile()" cos-disabled="formMobileSign.$invalid || $ctrl.isLoading || $ctrl.TopicVoteService.isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_BTN_SIGN_MID">Sign with Mobiil-ID</button>
                     </form>
                 </div>
 
@@ -77,7 +77,7 @@
                 <div class="clearer"></div>
 
                 <div ng-if="$ctrl.app.wWidth > 550" class="sign_in_section">
-                    <button class="blue_button" ng-click="$ctrl.TopicVoteService.doSignWithMobile()" cos-disabled="formMobileSign.$invalid || $ctrl.isLoading || isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_BTN_SIGN_MID">Sign with Mobiil-ID</button>
+                    <button class="blue_button" ng-click="$ctrl.TopicVoteService.doSignWithMobile()" cos-disabled="formMobileSign.$invalid || $ctrl.TopicVoteService.isLoading || $ctrl.TopicVoteService.isLoadingIdCard" translate="MODALS.TOPIC_VOTE_SIGN_ESTEID_BTN_SIGN_MID">Sign with Mobiil-ID</button>
                 </div>
 
                 <div ng-if="$ctrl.app.wWidth > 550" class="sign_in_section">
