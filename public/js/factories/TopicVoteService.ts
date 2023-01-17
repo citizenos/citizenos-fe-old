@@ -59,7 +59,10 @@ export class TopicVoteService {
                 this.voteSignResult = voteSignResult;
                 this.$state.reload();
             }, (err) => {
+                this.isLoading = false;
                 this.isLoadingIdCard = false;
+                this.challengeID = null;
+
                 let msg = null;
                 if (err instanceof Error) { //hwcrypto and JS errors
                     msg = this.hwCryptoErrorToTranslationKey(err);
@@ -94,6 +97,9 @@ export class TopicVoteService {
             })
             .then((voteStatusResult) => {
                 this.voteSignResult = voteStatusResult;
+                this.isLoading = false;
+                this.isLoadingIdCard = false;
+                this.challengeID = null;
                 this.$state.reload();
                 this.$log.debug('voteVoteSign succeeded');
             }, (err) => {
@@ -109,6 +115,7 @@ export class TopicVoteService {
         return this.TopicVote.status({topicId: this.topicId, voteId: this.voteId, prefix: this.sAuth.getUrlPrefix(), userId: this.sAuth.getUrlUserId(), token: token})
             .then((response) => {
                 var statusCode = response.status.code;
+                if (!statusCode) return response;
                 switch (statusCode) {
                     case 20001:
                         return this.$timeout(() => {
@@ -151,6 +158,9 @@ export class TopicVoteService {
             .then((voteStatusResult) => {
                 this.voteSignResult = voteStatusResult;
                 this.$log.debug('voteVoteSign succeeded');
+                this.isLoading = false;
+                this.isLoadingIdCard = false;
+                this.challengeID = null;
                 this.$state.reload();
             }, (err) => {
                 this.isLoading = false;
