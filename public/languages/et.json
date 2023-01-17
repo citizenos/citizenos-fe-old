@@ -569,7 +569,7 @@
     "GROUP_JOIN_CONFIRM_BTN_NO": "@:LNK_CANCEL",
     "GROUP_JOIN_CONFIRM_BTN_YES": "Jah, ühine grupiga",
     "GIVE_FEEDBACK_HEADING": "Anna meile tagasisidet",
-    "GIVE_FEEDBACK_QUESTION_1": "How does your organisation create impact?",
+    "GIVE_FEEDBACK_QUESTION_1": "Mis on sinu organisatsiooni panus?",
     "GIVE_FEEDBACK_QUESTION_2": "Kuidas kasutad Citizen OS-i?",
     "GIVE_FEEDBACK_DESC": "This text area would comprise of 3 questions which can be edited by the lead from Citizen OS and these details will be discussed privately. But I still wanted to add text here so that this area becomes bigger and a better reference for the future.",
     "GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA": "Kirjuta siia...",
