@@ -2,19 +2,19 @@ import * as angular from 'angular';
 
 export class TopicVoteService {
     public countTotal = 0;
-    private isLoading = false;
+    public isLoading = false;
     private isSaving = false;
     private topicId = null;
     private voteId = null;
     private options = [];
-    private isLoadingIdCard;
-    private challengeID = null;
+    public isLoadingIdCard = false;
+    public challengeID = null;
     private pid;
     private phoneNumber;
     private countryCode;
     private voteSignResult;
 
-    constructor(private $window, private TopicVote, private hwcrypto, private $q, private $log, private $timeout, private sAuth, private sNotification) {}
+    constructor(private $window, private $state, private TopicVote, private hwcrypto, private $q, private $log, private $timeout, private sAuth, private sNotification) {}
 
     doSignWithCard () {
         this.isLoadingIdCard = true;
@@ -57,9 +57,9 @@ export class TopicVoteService {
             })
             .then((voteSignResult) => {
                 this.voteSignResult = voteSignResult;
+                this.$state.reload();
             }, (err) => {
                 this.isLoadingIdCard = false;
-
                 let msg = null;
                 if (err instanceof Error) { //hwcrypto and JS errors
                     msg = this.hwCryptoErrorToTranslationKey(err);
@@ -94,6 +94,7 @@ export class TopicVoteService {
             })
             .then((voteStatusResult) => {
                 this.voteSignResult = voteStatusResult;
+                this.$state.reload();
                 this.$log.debug('voteVoteSign succeeded');
             }, (err) => {
                 this.isLoading = false;
@@ -136,7 +137,6 @@ export class TopicVoteService {
             phoneNumber: null,
             countryCode: this.countryCode
         };
-
         this.challengeID = null;
 
         this.TopicVote.cast(userVote)
@@ -151,6 +151,7 @@ export class TopicVoteService {
             .then((voteStatusResult) => {
                 this.voteSignResult = voteStatusResult;
                 this.$log.debug('voteVoteSign succeeded');
+                this.$state.reload();
             }, (err) => {
                 this.isLoading = false;
             });
@@ -162,7 +163,8 @@ export class TopicVoteService {
 
         return this.TopicVote.status({topicId: this.topicId, voteId: this.voteId, prefix: this.sAuth.getUrlPrefix(), userId: this.sAuth.getUrlUserId(), token: token})
             .then((response) => {
-                const statusCode = response.status.code;
+                const statusCode = response.status?.code;
+                if (!statusCode) return response;
                 switch (statusCode) {
                     case 20001:
                         return this.$timeout(() => {
@@ -175,6 +177,7 @@ export class TopicVoteService {
                         this.$log.error('Smart-ID signing failed', response);
                         return this.$q.defer().reject(response);
                 }
+
             });
     };
 
@@ -202,4 +205,4 @@ export class TopicVoteService {
 
 angular
   .module("citizenos")
-  .service("TopicVoteService", ['$window', 'TopicVote', 'hwcrypto', '$q', '$log', '$timeout', 'sAuth', 'sNotification', TopicVoteService]);
+  .service("TopicVoteService", ['$window', '$state', 'TopicVote', 'hwcrypto', '$q', '$log', '$timeout', 'sAuth', 'sNotification', TopicVoteService]);

@@ -103,7 +103,7 @@ export class TopicVote {
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 
-        return this.$http.get(path, params)
+        return this.$http.get(path, {params: {token: params.token}})
             .then((res) => {
                 return res.data.data
             });
