@@ -138,6 +138,7 @@ let topicVoteCast = {
             //if (!$scope.topic.canVote()) return;
             if (!option) {
                 options = this.vote.options.rows.filter((option) => {
+                    option.optionId = option.id;
                     return !!option.selected;
                 });
             } else {
