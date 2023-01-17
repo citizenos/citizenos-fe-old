@@ -1183,7 +1183,7 @@
     "ACTIVITY_USER_ADD_REPORT_COMMENT": "用户 <em>{{userName}}</em> 举报了一条论点： ",
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP": "用户 <em>{{userName}}</em> 对话题 <em>{{topicTitle}}</em> 中的一条论点的反应为 <em>{{reaction}}</em>",
     "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP_ACTIVITYGROUP": "用户 <em>{{userName}}</em> 和 <em>{{groupCount}}</em> 名其他用户对话题 <em>{{topicTitle}}</em> 中一条论点的反应为 <em>{{reaction}}</em>",
-    "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP_USERACTIVITYGROUP": "用户 <em>{{userName}}</em> 对话题 <em>{{topicTitle}}</em> 中一条论点的做出了 <em>{{groupCount}}</em> 条反应 <em>{{reaction}}</em>",
+    "ACTIVITY_USER_CREATE_COMMENTVOTE_COMMENT_UP_USERACTIVITYGROUP": "用户 <em>{{userName}}</em> 对话题 <em>{{topicTitle}}</em> 中的一条论点做出了 <em>{{groupCount}}</em> 条 <em>{{reaction}}</em> 反应",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP": "用户 <em>{{userName}}</em> 更新了其对话题 <em>{{topicTitle}}</em> 中一条论点的反应",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP_ACTIVITYGROUP": "用户 <em>{{userName}}</em> 和 <em>{{groupCount}}</em> 名其他用户更新了他们对话题 <em>{{topicTitle}}</em> 中一条论点的反应",
     "ACTIVITY_USER_UPDATE_COMMENTVOTE_COMMENT_UP_USERACTIVITYGROUP": "用户 <em>{{userName}}</em> 更新了对话题<em>{{topicTitle}}</em> 的 <em>{{groupCount}}</em> 条反应",
