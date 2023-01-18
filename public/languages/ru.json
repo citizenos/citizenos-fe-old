@@ -329,7 +329,7 @@
     "TOPIC_SETTINGS_TXT_PRESS_ENTER_TO_ADD": "Для добавления нажмите \"Ввод\"",
     "TOPIC_SETTINGS_HEADING_LINK_SHARING": "Ссылка для доступа",
     "TOPIC_SETTINGS_LNK_CREATE_NEW_LINK": "Создать новую ссылку",
-    "TOPIC_SETTINGS_LABEL_DROPDOWN_PERMISSION_DESCRIPTION": "Все, у кого есть ссылка, могут",
+    "TOPIC_SETTINGS_LABEL_DROPDOWN_PERMISSION_DESCRIPTION": "User’s access level",
     "TOPIC_SETTINGS_PLACEHOLDER_CREATE_NEW_LINK": "Для того, чтобы поделиться, создайте ссылку",
     "TOPIC_SETTINGS_BTN_COPY_LINK": "Скопировать ссылку",
     "TOPIC_SETTINGS_HEADING_QR_SHARING": "Поделиться ссылкой с помощью QR-кода",
