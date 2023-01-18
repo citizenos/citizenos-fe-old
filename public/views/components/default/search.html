@@ -50,8 +50,8 @@
                             <div class="result_links" typeahead-item="row" typeahead-item-no-close="row.id === 'viewMore'" ng-repeat="(key, row) in items.rows">
                                 <div ng-if="row.id !== 'viewMore'" class="links_wrap">
                                     <span>
-                                        <a ng-if="model ==='groups'" ng-click="$ctrl.goToView(row)" class="blue_link result_link"> {{row.name}}</a>
-                                        <a ng-if="model ==='topics'" ng-click="$ctrl.goToView(row)" class="blue_link result_link">{{row.title}}</a>
+                                        <a ng-if="model ==='groups'" ng-click="$ctrl.goToView(row, context)" class="blue_link result_link"> {{row.name}}</a>
+                                        <a ng-if="model ==='topics'" ng-click="$ctrl.goToView(row, context)" class="blue_link result_link">{{row.title}}</a>
                                     </span>
                                 </div>
                                 <div ng-if="row.id ==='viewMore'" class="more_results" translate="DEFAULT.SEARCH.LNK_VIEW_MORE_RESULTS">View more results

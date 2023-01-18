@@ -54,9 +54,9 @@ let groupSettings = {
 
             this.Group.update(this.group)
                 .then((data) => {
-                    if (this.imageFile?.length) {
+                    if (this.imageFile) {
                         this.sUpload
-                            .uploadGroupImage(this.imageFile[0], this.group.id)
+                            .uploadGroupImage(this.imageFile, this.group.id)
                             .then((response) => {
                                 this.group.imageUrl = response.data.link;
                             }, (err) => {
