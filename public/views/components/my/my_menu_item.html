@@ -1,6 +1,6 @@
 <!--ng-if="!$ctrl.isGroup(item)" class="small_topic" ui-sref="my/topics/topicId({topicId: item.id})"-->
 <div class="small_topic " class="small_topic"  ng-class="$ctrl.isActiveItem() ? 'active': ''" ng-click="$ctrl.goToItemView()" >
-    <div ng-if="$ctrl.title" class="container_pin" ng-class="$ctrl.item.pinned ? 'pinned' : ''" ng-click="$ctrl.item.togglePin();">
+    <div ng-if="$ctrl.item.title" class="container_pin" ng-class="$ctrl.item.pinned ? 'pinned' : ''" ng-click="$ctrl.Topic.togglePin($ctrl.item);">
         <div class="ff_table_fix" translate translate-attr-title="TOOLTIP_PIN_TOPIC">
             <div class="table_cell">
                 <div class="sprite sprite-icon-favourite2x-white"></div>

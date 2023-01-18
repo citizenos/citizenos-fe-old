@@ -1,6 +1,6 @@
 import * as angular from 'angular';
 export class TopicMemberUser {
-    getUrlPrefix () {
+    getUrlPrefix() {
         const prefix = this.sAuth.getUrlPrefix();
         if (!prefix) {
             return '';
@@ -9,7 +9,7 @@ export class TopicMemberUser {
         return `/${prefix}`;
     };
 
-    getUrlUser () {
+    getUrlUser() {
         const userId = this.sAuth.getUrlUserId();
         if (!userId) {
             return '';
@@ -18,25 +18,25 @@ export class TopicMemberUser {
         return `/${userId}`;
     };
 
-    constructor(private $http, private sAuth, private sLocation) {}
+    constructor(private $http, private sAuth, private sLocation) { }
 
     query(params: any) {
-        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users', {'topicId': params.topicId})
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users', { 'topicId': params.topicId })
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 
-        return this.$http.get(path, params).then((res) => {
+        return this.$http.get(path, { params }).then((res) => {
             return res.data.data;
         });
     }
 
     get(params?: any) {
         if (!params.userId) params.userId = params.id;
-        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users/:userId', {'topicId': params.topicId, 'userId': params.userId})
+        let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/topics/:topicId/members/users/:userId', { 'topicId': params.topicId, 'userId': params.userId })
             .replace('/:prefix', this.getUrlPrefix())
             .replace('/:userId', this.getUrlUser());
 
-        return this.$http.get(path, params)
+        return this.$http.get(path, { params })
             .then((res) => {
                 return res.data.data
             });
@@ -48,9 +48,9 @@ export class TopicMemberUser {
             .replace('/:userId', this.getUrlUser());
 
         return this.$http.post(path, data)
-        .then((res) => {
-            return res.data.data
-        });
+            .then((res) => {
+                return res.data.data
+            });
     }
 
     update(data: any) {
