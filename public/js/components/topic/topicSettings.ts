@@ -196,12 +196,16 @@ let topicSettings = {
                     template: '/views/modals/topic_delete_confirm.html'
                 })
                 .then(() => {
-                    this.Topic
+                    console.log(this.$state.href('my/topics'));
+
+                    return this.Topic
                         .delete(this.topic)
-                        .then(() => {
-                            this.$state.go('my/topics', null, { reload: true });
+                        .then((res) => {
+                            location.href = this.$state.href('my/topics');
                         });
-                }, angular.noop);
+                }, (err) => {
+                    console.log(err);
+                });
         };
 
         isVisibleReminderOption(time) {

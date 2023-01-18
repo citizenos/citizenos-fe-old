@@ -15,31 +15,43 @@ let myMemberUser = {
         private topic;
         public fields;
 
-        constructor (private ngDialog, private Group, private Topic, private GroupMemberUser, private TopicMemberUser, private TopicMemberUserService, private sAuth, private $state) {
+        constructor(private ngDialog, private Group, private Topic, private GroupMemberUser, private TopicMemberUser, private TopicMemberUserService, private sAuth, private $state) {
         }
 
-        doUpdateMemberUser (level) {
+        doUpdateMemberUser(level) {
             if (this.member.level !== level) {
                 const oldLevel = this.member.level;
                 this.member.level = level;
-                this.GroupMemberUser
-                    .update({groupId: this.group.id, userId: this.member.userId || this.member.id}, this.member)
-                    .then(
-                        angular.noop,
-                        () => {
-                            this.member.level = oldLevel;
-                        });
+                if (this.group) {
+                    this.member.groupId = this.group.id;
+                    this.GroupMemberUser
+                        .update(this.member)
+                        .then(
+                            angular.noop,
+                            () => {
+                                this.member.level = oldLevel;
+                            });
+                } else {
+                    this.member.topicId = this.topic.id;
+                    this.TopicMemberUser
+                        .update(this.member)
+                        .then(
+                            angular.noop,
+                            () => {
+                                this.member.level = oldLevel;
+                            });
+                }
             }
         };
 
-        canUpdate () {
+        canUpdate() {
             if (this.group) {
                 return this.Group.canUpdate(this.group);
             }
             return this.Topic.canUpdate(this.topic);
         }
 
-        doDeleteMemberUser () {
+        doDeleteMemberUser() {
             const member = this.member
             if (this.group) {
                 const group = this.group
@@ -55,7 +67,7 @@ let myMemberUser = {
                     })
                     .then(() => {
                         this.GroupMemberUser
-                            .delete({groupId: group.id, userId: member.userId})
+                            .delete({ groupId: group.id, userId: member.userId || member.id })
                             .then(() => {
                                 group.getMemberUsers();
                             });
@@ -63,7 +75,7 @@ let myMemberUser = {
 
             } else {
                 const topic = this.topic;
-                if (member.id = this.sAuth.user.id) {
+                if (member.id === this.sAuth.user.id) {
                     return this.doLeaveTopic();
                 }
                 this.ngDialog
@@ -72,18 +84,18 @@ let myMemberUser = {
                         data: {
                             user: member
                         }
-                })
-                .then(() => {
-                    member.topicId = topic.id;
-                    this.TopicMemberUser.delete(member)
-                        .then(() => {
-                            return this.TopicMemberUserService.reload(); // Good old topic.members.users.splice wont work due to group permission inheritance
-                        });
-                }, angular.noop);
+                    })
+                    .then(() => {
+                        member.topicId = topic.id;
+                        this.TopicMemberUser.delete({topicId: topic.id, userId: member.userId || member.id})
+                            .then(() => {
+                                return this.TopicMemberUserService.reload(); // Good old topic.members.users.splice wont work due to group permission inheritance
+                            });
+                    }, angular.noop);
             }
         };
 
-        doLeaveGroup () {
+        doLeaveGroup() {
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/group_member_user_leave_confirm.html',
@@ -93,14 +105,14 @@ let myMemberUser = {
                 })
                 .then(() => {
                     this.GroupMemberUser
-                        .delete({groupId: this.group.id, userId: this.sAuth.user.id})
+                        .delete({ groupId: this.group.id, userId: this.sAuth.user.id })
                         .then(() => {
                             this.group.getMemberUsers();
                         });
                 });
         };
 
-        doLeaveTopic () {
+        doLeaveTopic() {
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_member_user_leave_confirm.html',
@@ -110,14 +122,14 @@ let myMemberUser = {
                 })
                 .then(() => {
                     this.TopicMemberUser
-                        .delete({id: this.sAuth.user.id, topicId: this.topic.id})
+                        .delete({ id: this.sAuth.user.id, topicId: this.topic.id })
                         .then(() => {
-                            this.$state.go('my.topics', null, {reload: true});
+                            this.$state.go('my.topics', null, { reload: true });
                         });
                 });
         };
 
-        isVisibleField (field) {
+        isVisibleField(field) {
             return this.fields?.indexOf(field) > -1
         }
     }]

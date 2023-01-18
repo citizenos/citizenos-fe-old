@@ -21,6 +21,8 @@ let myTopicsTopic = {
         public generalInfo = {
             isVisible: true
         };
+        public userSearch = ''
+
         constructor ($log, private $state, private $stateParams, private $anchorScroll, private $q, private sAuth, private Topic, private TopicVote, private TopicMemberUser, private TopicMemberUserService, private TopicMemberGroup, private TopicMemberGroupService, private TopicInviteUser, private TopicInviteUserService, private TopicActivitiesService, private app, private ngDialog) {
             $log.debug('MyTopicsTopicController');
             this.topic = this.app.topic;
@@ -89,6 +91,61 @@ let myTopicsTopic = {
                 resolve();
             });
 
+        };
+
+        getUsersCount () {
+            if (this.TopicMemberUserService.countTotal)
+                this.topic.members.users.count = this.TopicMemberUserService.countTotal;
+            return this.topic.members.users.count;
+        }
+
+        getGroupsCount () {
+            if (this.TopicMemberGroupService.countTotal)
+                this.topic.members.groups.count = this.TopicMemberGroupService.countTotal;
+            return this.topic.members.groups.count;
+        }
+
+        searchMembers () {
+            this.TopicMemberUserService.search = this.userSearch;
+            this.TopicInviteUserService.search = this.userSearch;
+            this.TopicMemberUserService.doSearch();
+            this.TopicInviteUserService.doSearch();
+        }
+
+        doUpdateMemberGroup (topicMemberGroup, level) {
+
+            if (topicMemberGroup.level !== level) {
+                const oldLevel = topicMemberGroup.level;
+                topicMemberGroup.level = level;
+                topicMemberGroup.topicId = this.topic.id;
+                this.TopicMemberGroup
+                    .update(topicMemberGroup)
+                    .then(() => {
+                        this.TopicMemberUserService.reload();
+                    },() => {
+                        topicMemberGroup.level = oldLevel;
+                });
+            }
+        };
+
+        doDeleteMemberGroup (topicMemberGroup) {
+            this.ngDialog
+                .openConfirm({
+                    template: '/views/modals/topic_member_group_delete_confirm.html',
+                    data: {
+                        group: topicMemberGroup
+                    }
+                })
+                .then(() => {
+                    topicMemberGroup.topicId = this.topic.id;
+                    this.TopicMemberGroup
+                        .delete(topicMemberGroup)
+                        .then(() => {
+                            this.TopicMemberGroupService.reload();
+                            this.TopicMemberUserService.reload();
+                            this.topic.members.groups.count = this.topic.members.groups.count-1;
+                        });
+                }, angular.noop);
         };
 
         doToggleActivities () {

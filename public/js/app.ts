@@ -778,8 +778,9 @@ import * as angular from 'angular';
                                 }
                             });
 
-                            dialog.closePromise.then(function () {
-                                $state.go('^', null, {reload: true, supercede: false});
+                            dialog.closePromise.then(function (e) {
+                                console.log('closePromise', e)
+                          //      $state.go('^', null, {reload: true, supercede: false});
                             });
                         }
 
