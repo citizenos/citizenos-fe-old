@@ -71,7 +71,7 @@ export class TopicCommentService {
             }
             this.TopicComment.query(params).then((data) => {
                 this.count = data.count;
-                this.countTotal = data.count.total- data.count.total || 0;
+                this.countTotal = data.count.total || 0;
                 this.totalPages = Math.ceil(this.countTotal-data.count.reply / this.limit);
                 if (data.rows.length < this.limit) {
                     this.hasMore = false;
