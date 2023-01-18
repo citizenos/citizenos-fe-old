@@ -46,9 +46,10 @@ export class GroupMemberUser {
     }
 
     update(params, data:any) {
+        if (!params.userId) params.userId = params.id;
         let path = this.sLocation.getAbsoluteUrlApi('/api/users/self/groups/:groupId/members/users/:userId', params);
 
-        return this.$http.put(path, data)
+        return this.$http.put(path, params)
         .then((res) => {
             return res.data.data
         });

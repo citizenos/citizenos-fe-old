@@ -89,7 +89,8 @@ let search = {
                 });
         };
 
-        goToView (item) {
+        goToView (item, context) {
+            console.log(context)
             if (item) {
                 this.app.showSearchResults = false;
                 let model = 'topic';
@@ -103,7 +104,7 @@ let search = {
                 }
 
                 if (model == 'topic') {
-                    if (this.sAuth.user.loggedIn) {
+                    if (this.sAuth.user.loggedIn && context === 'my') {
                         return this.$state.go(
                             'my/topics/topicId',
                             {
@@ -125,7 +126,7 @@ let search = {
                         }
                     );
                 } else if (model === 'group') {
-                    if (this.sAuth.user.loggedIn) {
+                    if (this.sAuth.user.loggedIn && context === 'my' ) {
                         return this.$state.go(
                             'my/groups/groupId',
                             {
@@ -137,6 +138,7 @@ let search = {
                             }
                         );
                     }
+                    console.log('GO TO VIEW')
                     this.$state.go(
                         'public/groups/view',
                         {

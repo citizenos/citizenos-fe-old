@@ -9,13 +9,13 @@ let myMemberUser = {
         topic: '=?',
         fields: '=?'
     },
-    controller: ['ngDialog', 'Group', 'Topic', 'GroupMemberUser', 'TopicMemberUser', 'TopicMemberUserService', 'sAuth', '$state', class MyMemberUserController {
+    controller: ['ngDialog', 'Group', 'Topic', 'GroupMemberUser', 'GroupMemberUserService', 'TopicMemberUser', 'TopicMemberUserService', 'sAuth', '$state', class MyMemberUserController {
         private member;
         private group;
         private topic;
         public fields;
 
-        constructor(private ngDialog, private Group, private Topic, private GroupMemberUser, private TopicMemberUser, private TopicMemberUserService, private sAuth, private $state) {
+        constructor(private ngDialog, private Group, private Topic, private GroupMemberUser, private GroupMemberUserService, private TopicMemberUser, private TopicMemberUserService, private sAuth, private $state) {
         }
 
         doUpdateMemberUser(level) {
@@ -24,6 +24,7 @@ let myMemberUser = {
                 this.member.level = level;
                 if (this.group) {
                     this.member.groupId = this.group.id;
+                    console.log(this.member);
                     this.GroupMemberUser
                         .update(this.member)
                         .then(
@@ -69,7 +70,7 @@ let myMemberUser = {
                         this.GroupMemberUser
                             .delete({ groupId: group.id, userId: member.userId || member.id })
                             .then(() => {
-                                group.getMemberUsers();
+                                return this.GroupMemberUserService.reload();
                             });
                     }, angular.noop);
 

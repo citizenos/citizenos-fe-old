@@ -27,8 +27,8 @@ let publicTopics = {
                 return this.$state.go('error/404');
             }
             PublicTopicService.limit = 26;
-            $scope.$watch(() => PublicTopicService.isLoading, (newValue) => {
-                if (newValue === false && PublicTopicService.statuses !== $stateParams.topicStatus) {
+            $scope.$watch(() => PublicTopicService.isLoading, (newValue, oldValue) => {
+                if (newValue === false &&  PublicTopicService.statuses !== $stateParams.topicStatus && $stateParams.topicStatus !== 'moderated') {
                     let status = $stateParams.topicStatus;
                     if (status === this.FILTERS_ALL) {
                         status = null;
