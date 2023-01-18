@@ -5,7 +5,7 @@ let topicSettings = {
     selector: 'topicSettings',
     templateUrl: '/views/components/topic/topic_settings.html',
     bindings: {},
-    controller: ['$state', '$stateParams', '$log', '$timeout', '$translate', '$anchorScroll', 'Topic', 'Group', 'TopicVote', 'TopicMemberUser', 'TopicMemberGroupService', 'ngDialog', 'AppService',  class TopicSettingsController {
+    controller: ['$state', '$stateParams', '$log', '$timeout', '$translate', '$anchorScroll', 'Topic', 'Group', 'TopicVote', 'TopicMemberUser', 'TopicMemberGroupService', 'ngDialog', 'AppService', class TopicSettingsController {
         public levels = {
             none: 0,
             read: 1,
@@ -24,7 +24,7 @@ let topicSettings = {
                 property: 'title'
             }
         };
-        public reminderOptions = [{value: 1, unit: 'days'}, {value: 2, unit: 'days'}, {value: 3, unit: 'days'}, {value: 1, unit: 'weeks'}, {value: 2, unit: 'weeks'}, {value: 1, unit: 'month'}];
+        public reminderOptions = [{ value: 1, unit: 'days' }, { value: 2, unit: 'days' }, { value: 3, unit: 'days' }, { value: 1, unit: 'weeks' }, { value: 2, unit: 'weeks' }, { value: 1, unit: 'month' }];
         public searchString = null;
         public searchResults = {};
         public errors = null;
@@ -32,16 +32,17 @@ let topicSettings = {
         public topic;
         public topicId;
 
-        constructor (private $state, private $stateParams, $log, private $timeout, private $translate, private $anchorScroll, private Topic, private Group, private TopicVote, private TopicMemberUser, private TopicMemberGroupService, private ngDialog, private app) {
+        constructor(private $state, private $stateParams, $log, private $timeout, private $translate, private $anchorScroll, private Topic, private Group, private TopicVote, private TopicMemberUser, private TopicMemberGroupService, private ngDialog, private app) {
             $log.debug('TopicSettingsCtrl', $state, $stateParams);
             this.app.tabSelected = $stateParams.tab || 'settings';
             TopicMemberGroupService.topicId = $stateParams.topicId;
             TopicMemberGroupService.reload();
 
             this.loadTopic();
+            this.doEditVoteDeadline = angular.bind(this, this.doEditVoteDeadline);
         }
 
-        loadTopic () {
+        loadTopic() {
             const urlParams = {
                 include: 'vote',
                 prefix: null,
@@ -60,7 +61,7 @@ let topicSettings = {
                 });
         }
 
-        init () {
+        init() {
             // Create a copy of parent scopes Topic, so that while modifying we don't change parent state
             this.form = {
                 topic: null,
@@ -71,17 +72,17 @@ let topicSettings = {
 
             if (this.topic.status === this.Topic.STATUSES.voting && this.topic.voteId) {
                 this.TopicVote
-                .get({
-                    topicId: this.topic.id,
-                    id: this.topic.voteId
-                })
-                .then((topicVote) => {
-                    this.topic.vote = topicVote;
-                    this.form.topic.vote = angular.copy(topicVote);
-                    if (topicVote.reminderTime && !topicVote.reminderSent) {
-                        this.form.topic.vote.reminder = true;
-                    }
-                });
+                    .get({
+                        topicId: this.topic.id,
+                        id: this.topic.voteId
+                    })
+                    .then((topicVote) => {
+                        this.topic.vote = topicVote;
+                        this.form.topic.vote = angular.copy(topicVote);
+                        if (topicVote.reminderTime && !topicVote.reminderSent) {
+                            this.form.topic.vote.reminder = true;
+                        }
+                    });
             }
 
             this.form.description = angular.element(this.topic.description).text().replace(this.topic.title, '');
@@ -92,7 +93,7 @@ let topicSettings = {
 
         };
 
-        checkHashtag () {
+        checkHashtag() {
             let length = 0;
             const str = this.form.topic.hashtag;
             const hashtagMaxLength = 59;
@@ -108,17 +109,17 @@ let topicSettings = {
             }
 
             if ((hashtagMaxLength - length) < 0) {
-                this.errors = {hashtag: 'MSG_ERROR_40000_TOPIC_HASHTAG'};
+                this.errors = { hashtag: 'MSG_ERROR_40000_TOPIC_HASHTAG' };
             } else if (this.errors && this.errors.hashtag) {
                 this.errors.hashtag = null;
             }
         };
 
-        doDeleteHashtag () {
+        doDeleteHashtag() {
             this.form.topic.hashtag = null;
         };
 
-        doEditVoteDeadline () {
+        doEditVoteDeadline() {
             this.form.topic.vote.topicId = this.topic.id;
             if (!this.form.topic.vote.reminder && !this.form.topic.vote.reminderSent) {
                 this.form.topic.vote.reminderTime = null;
@@ -134,24 +135,24 @@ let topicSettings = {
                 });
         };
 
-        addTopicCategory (category) {
+        addTopicCategory(category) {
             if (this.form.topic.categories.indexOf(category) === -1 && this.form.topic.categories.length < this.Topic.CATEGORIES_COUNT_MAX) {
                 this.form.topic.categories.push(category);
             }
         };
 
-        removeTopicCategory (category) {
+        removeTopicCategory(category) {
             this.form.topic.categories.splice(this.form.topic.categories.indexOf(category), 1);
         };
 
-        doOrderTopics (property) {
+        doOrderTopics(property) {
             if (this.topicList.searchOrderBy.property == property) {
                 property = '-' + property;
             }
             this.topicList.searchOrderBy.property = property;
         };
 
-        doSaveTopic () {
+        doSaveTopic() {
             this.errors = null;
 
             if (this.form.topic.endsAt && this.topic.endsAt === this.form.topic.endsAt) { //Remove endsAt field so that topics with endsAt value set could be updated if endsAt is not changed
@@ -163,16 +164,16 @@ let topicSettings = {
                     this.loadTopic();
                     const dialogs = this.ngDialog.getOpenDialogs();
                     this.ngDialog.close(dialogs[0], '$closeButton');
-                    this.$state.go('^', null, {reload: true});
-                },(errorResponse) => {
+                    this.$state.go('^', null, { reload: true });
+                }, (errorResponse) => {
                     if (errorResponse.data && errorResponse.data.errors) {
                         this.errors = errorResponse.data.errors;
                     }
                 }
-            );
+                );
         };
 
-        doLeaveTopic () {
+        doLeaveTopic() {
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_member_user_leave_confirm.html',
@@ -182,14 +183,14 @@ let topicSettings = {
                 })
                 .then(() => {
                     this.TopicMemberUser
-                        .delete({id: this.app.user.id, topicId: this.topic.id})
+                        .delete({ id: this.app.user.id, topicId: this.topic.id })
                         .then(() => {
-                            this.$state.go('my/topics', null, {reload: true});
+                            this.$state.go('my/topics', null, { reload: true });
                         });
                 });
         };
 
-        doDeleteTopic () {
+        doDeleteTopic() {
             this.ngDialog
                 .openConfirm({
                     template: '/views/modals/topic_delete_confirm.html'
@@ -198,12 +199,12 @@ let topicSettings = {
                     this.Topic
                         .delete(this.topic)
                         .then(() => {
-                            this.$state.go('my/topics', null, {reload: true});
+                            this.$state.go('my/topics', null, { reload: true });
                         });
                 }, angular.noop);
         };
 
-        isVisibleReminderOption (time) {
+        isVisibleReminderOption(time) {
             let timeItem = new Date(this.topic.vote.endsAt);
             switch (time.unit) {
                 case 'weeks':
@@ -220,7 +221,7 @@ let topicSettings = {
             return false;
         };
 
-        selectedReminderOption () {
+        selectedReminderOption() {
             let voteDeadline = new Date(this.topic.vote.endsAt);
             let reminder = new Date(this.form.topic.vote.reminderTime);
             let diffTime = voteDeadline.getTime() - reminder.getTime();
@@ -229,16 +230,16 @@ let topicSettings = {
             const months = (voteDeadline.getMonth() - reminder.getMonth() +
                 12 * (voteDeadline.getFullYear() - reminder.getFullYear()));
             const item = this.reminderOptions.find((item) => {
-                if ( item.value === days && item.unit === 'days') return item;
-                else if ( item.value === weeks && item.unit === 'weeks') return item;
-                else if ( item.value === months && item.unit === 'month') return item;
+                if (item.value === days && item.unit === 'days') return item;
+                else if (item.value === weeks && item.unit === 'weeks') return item;
+                else if (item.value === months && item.unit === 'month') return item;
             });
             if (item) {
-                return this.$translate.instant('OPTION_' + item.value + '_'+ item.unit.toUpperCase());
+                return this.$translate.instant('OPTION_' + item.value + '_' + item.unit.toUpperCase());
             }
         };
 
-        setVoteReminder (time) {
+        setVoteReminder(time) {
             let reminderTime = new Date(this.topic.vote.endsAt);
             switch (time.unit) {
                 case 'weeks':
@@ -254,7 +255,7 @@ let topicSettings = {
             this.doEditVoteDeadline();
         };
 
-        canChangeVisibility () {
+        canChangeVisibility() {
             const publicGroups = this.TopicMemberGroupService.groups.filter((group) => group.visibility === this.Group.VISIBILITY.public);
             return (this.Topic.canDelete(this.topic) && (this.topic.visibility === this.Topic.VISIBILITY.private || publicGroups.length === 0));
         }

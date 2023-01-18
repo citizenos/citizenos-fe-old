@@ -47,7 +47,7 @@ let publicTopics = {
 
         resolveCategory () {
             let category;
-            if (this.$state.current.name === 'home') {
+            if (this.$state.current.name === 'public/topics') {
                 category = this.FILTERS_ALL;
             }
             if (this.$state.current.name === 'category') {
@@ -98,7 +98,7 @@ let publicTopics = {
                 this.PublicTopicService.categories = category = null;
                 this.PublicTopicService.reload();
                 this.$stateParams.category = category;
-                this.$state.go('home', this.$stateParams);
+                this.$state.go('public/topics', this.$stateParams);
             } else {
                 this.PublicTopicService.categories = category;
                 this.PublicTopicService.reload();
