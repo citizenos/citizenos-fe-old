@@ -2,6 +2,7 @@ import './cosDisabled';
 import './cosDropdown';
 import './cosInlineComment';
 import './cosModal';
+import './cosModalDatepicker';
 import './cosRequired';
 import './cosResize';
 import './cosScroll';

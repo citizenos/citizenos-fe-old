@@ -24,14 +24,15 @@ let cosToggle = {
         cosToggleDatepickerToggle: '=?'
     },
     controller: ['$element', class CosToggleController {
-        private model;
-        private value;
-        private offValue;
-        private cosToggleTextOn;
-        private cosToggleTextOff;
-        private cosToggleDatepickerToggle;
+        public model;
+        public value;
+        public offValue;
+        public cosToggleTextOn;
+        public cosToggleTextOff;
+        public cosToggleDatepickerToggle;
 
-        constructor () {}
+        constructor () {
+        }
 
 
         cosToggle () {
