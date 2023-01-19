@@ -914,7 +914,7 @@ import * as angular from 'angular';
                     parent: 'main',
                     template: '<home></home>',
                     resolve: {
-                        rTopicInviteUser: ['$stateParams', '$q', '$log', 'TopicInviteUser', 'sNotification', function ($stateParams, $q, $log, TopicInviteUser, sNotification) {
+                        rTopicInviteUser: ['$state', '$stateParams', '$q', '$log', 'TopicInviteUser', 'sNotification', function ($state, $stateParams, $q, $log, TopicInviteUser, sNotification) {
                             var params = {
                                 id: $stateParams.inviteId,
                                 topicId: $stateParams.topicId
@@ -934,7 +934,7 @@ import * as angular from 'angular';
                                             sNotification.showDialog('MSG_ERROR_GET_API_USERS_TOPICS_INVITES_USERS_41002_HEADING', 'MSG_ERROR_GET_API_USERS_TOPICS_INVITES_USERS_41002');
                                             return;
                                         }
-
+                                        return $state.go('home', {language: $stateParams.language}, {reload: true});
                                         return $q.resolve(err); // Resolve so that the page would load
                                     }
                                 );
@@ -1024,7 +1024,7 @@ import * as angular from 'angular';
                     parent: 'main',
                     template: '<home></home>',
                     resolve: {
-                        rGroupInviteUser: ['$stateParams', '$q', '$log', 'GroupInviteUser', 'sNotification', function ($stateParams, $q, $log, GroupInviteUser, sNotification) {
+                        rGroupInviteUser: ['$state', '$stateParams', '$q', '$log', 'GroupInviteUser', 'sNotification', function ($state, $stateParams, $q, $log, GroupInviteUser, sNotification) {
                             var params = {
                                 inviteId: $stateParams.inviteId,
                                 groupId: $stateParams.groupId
@@ -1044,8 +1044,7 @@ import * as angular from 'angular';
                                             sNotification.showDialog('MSG_ERROR_GET_API_USERS_GROUPS_INVITES_USERS_41002_HEADING', 'MSG_ERROR_GET_API_USERS_GROUPS_INVITES_USERS_41002');
                                             return;
                                         }
-
-                                        return $q.resolve(err); // Resolve so that the page would load
+                                        return $state.go('home', {language: $stateParams.language}, {reload: true});
                                     }
                                 );
                         }]
