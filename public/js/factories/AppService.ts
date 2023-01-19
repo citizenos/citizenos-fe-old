@@ -510,7 +510,11 @@ export class AppService {
             return this.user.id;
         }, (newId, oldId) => {
             if (oldId && newId !== oldId) {
-                this.$state.go('home');
+                const noRedirectStates = ["groupsGroupIdInvitesUsers", "topicsTopicIdInvitesUsers"]
+                if (noRedirectStates.indexOf(this.$state.current.name) > -1) {
+                    return
+                }
+                this.$state.go('home', {supercede:false});
                 if (newId)
                     return this.sNotification.addInfo('MSG_INFO_ACCOUNT_SWITCH_PAGE_REDIRECT')
             }

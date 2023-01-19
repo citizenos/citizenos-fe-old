@@ -1,7 +1,7 @@
 'use strict';
 import * as angular from 'angular';
 
-let loginFormComponent =  {
+let loginFormComponent = {
     selector: 'loginForm',
     templateUrl: '/views/components/account/login.html',
     bindings: {
@@ -19,11 +19,31 @@ let loginFormComponent =  {
         private form;
         private errors;
 
-        constructor (private $log, private $state, private $stateParams, private $window, private $document, private $interval, private cosConfig, private ngDialog, private sAuth, private sLocation, private sUser, private sNotification, private app) {
+        constructor(private $log, private $state, private $stateParams, private $window, private $document, private $interval, private cosConfig, private ngDialog, private sAuth, private sLocation, private sUser, private sNotification, private app) {
             if ($stateParams.email) {
                 this.email = $stateParams.email;
             }
             this.authMethodsAvailable = angular.extend({}, cosConfig.features.authentication);
+            console.log(cosConfig.features.authentication)
+            if ($stateParams.userId) {
+                sUser
+                    .listUserConnections($stateParams.userId)
+                    .then((res) => {
+                        Object.keys(this.authMethodsAvailable).forEach((method) => {
+                            this.authMethodsAvailable[method] = false;
+                            res.rows.forEach((availableMethod) => {
+                                if (availableMethod.connectionId === method) {
+                                    this.authMethodsAvailable[method] = true;
+                                }
+                            })
+                        });
+                    }, (err) => {
+                        // If the UserConnection fetch fails, it does not matter, we just don't filter authentication methods
+                        $log.warn('Unable to fetch UserConnections for User', err);
+                        return;
+                    });
+            }
+
             this.isFormEmailProvided = this.email;
             this.linkRegister = sLocation.getAbsoluteUrl('/account/signup');
 
@@ -55,7 +75,7 @@ let loginFormComponent =  {
             }
         }
 
-        init () {
+        init() {
             this.form = {
                 email: this.isFormEmailProvided ? this.email : null,
                 password: null
@@ -63,7 +83,7 @@ let loginFormComponent =  {
             this.app.showNav = false; // Hide mobile navigation when login flow is started
         }
 
-        popupCenter (url, title, w, h) {
+        popupCenter(url, title, w, h) {
             const userAgent = navigator.userAgent,
                 mobile = () => {
                     return /\b(iPhone|iP[ao]d)/.test(userAgent) ||
@@ -79,8 +99,8 @@ let loginFormComponent =  {
                 targetHeight = mobile() ? null : h,
                 V = screenX < 0 ? window.screen.width + screenX : screenX,
                 left = Number(V) + Number(outerWidth - targetWidth) / 2;
-                const right = screenY + (outerHeight - targetHeight) / 2.5;
-                const features = [];
+            const right = screenY + (outerHeight - targetHeight) / 2.5;
+            const features = [];
             if (targetWidth !== null) {
                 features.push('width=' + targetWidth);
             }
@@ -100,7 +120,7 @@ let loginFormComponent =  {
             return newWindow;
         };
 
-        doLogin () {
+        doLogin() {
             this.$log.debug('LoginFormCtrl.doLogin()');
 
             this.errors = null;
@@ -123,7 +143,7 @@ let loginFormComponent =  {
                 switch (status.code) {
                     case 40001: // Account does not exist
                         this.sNotification.removeAll();
-                        this.errors = {accoundDoesNotExist: true};
+                        this.errors = { accoundDoesNotExist: true };
                         break;
                     default:
                         this.errors = response.data.errors;
@@ -138,7 +158,7 @@ let loginFormComponent =  {
         /**
          * Login with Estonian ID-Card
          */
-         doLoginEsteId () {
+        doLoginEsteId() {
             this.ngDialog
                 .open({
                     template: '<login-est-eid></login-est-eid>',
@@ -149,7 +169,7 @@ let loginFormComponent =  {
         /**
          * Login with Smart-ID
          */
-        doLoginSmartId () {
+        doLoginSmartId() {
             this.ngDialog
                 .open({
                     template: '<login-smart-id></login-smart-id>',
@@ -160,7 +180,7 @@ let loginFormComponent =  {
         /**
          * Password reset
          */
-        doResetPassword () {
+        doResetPassword() {
             this.ngDialog
                 .open({
                     template: '<password-forgot></password-forgot>',
@@ -168,7 +188,7 @@ let loginFormComponent =  {
                 });
         };
 
-        doLoginPartner (partnerId) {
+        doLoginPartner(partnerId) {
             // All /widgets/* require pop-up login flow as they are in the iframe
             if (this.$state.includes('widgets')) {
                 this.doLoginPartnerPopup(partnerId);
@@ -182,7 +202,7 @@ let loginFormComponent =  {
          *
          * @param {string} partnerId String representing the partner. For ex "facebook", "google".
          */
-         doLoginPartnerPopup (partnerId) {
+        doLoginPartnerPopup(partnerId) {
             if (Object.values(this.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
                 throw new Error(`LoginFormCtrl.doLoginPartner() Invalid parameter for partnerId ${partnerId}`);
             }
@@ -228,12 +248,12 @@ let loginFormComponent =  {
 
         // No-popup partner login version. Used for /partners/{partnerId}/login pages where the popup version would add too much extra complexity with the redirect urls.
         // Popup version was initially needed only for the widget logins. Maybe worth making an exception for the widgets and revert everything else to normal.
-        doLoginPartnerNoPopup (partnerId) {
+        doLoginPartnerNoPopup(partnerId) {
             if (Object.values(this.LOGIN_PARTNERS).indexOf(partnerId) < 0) {
                 throw new Error(`LoginFormCtrl.doLoginPartner() Invalid parameter for partnerId ${partnerId}`);
             }
 
-            let url = this.sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', {partnerId: partnerId});
+            let url = this.sLocation.getAbsoluteUrlApi('/api/auth/:partnerId', { partnerId: partnerId });
             if (this.$stateParams.redirectSuccess) {
                 url += '?redirectSuccess=' + encodeURIComponent(this.$stateParams.redirectSuccess);
             } else {
