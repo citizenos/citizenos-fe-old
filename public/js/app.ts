@@ -78,7 +78,7 @@ import * as angular from 'angular';
                         resolveOtherwise();
                     });
 
-                function resolveOtherwise () {
+                function resolveOtherwise() {
                     returnLink = '/' + useLang + '/';
                     if (langkeys.indexOf(locationPath[1]) > -1) {
                         returnLink = '/' + locationPath[1] + '/';
@@ -111,10 +111,10 @@ import * as angular from 'angular';
                         if (stateNext.params && stateNext.params.language === 'aa') { // Crowdin language selected, we need a full page reload for the in-context script to work.
                             window.location.href = $state.href(stateNext.name, stateNext.params);
                         } else {
-                            $state.go(stateNext.name, stateNext.params, {location: 'replace'});
+                            $state.go(stateNext.name, stateNext.params, { location: 'replace' });
                         }
                     } else {
-                        $state.go('error.404', {language: useLang}, {location: 'replace'});
+                        $state.go('error.404', { language: useLang }, { location: 'replace' });
                     }
                 }
             });
@@ -233,7 +233,7 @@ import * as angular from 'angular';
                             dialog
                                 .closePromise
                                 .then(function () {
-                                    $state.go('^', {}, {reload: true}, {supercede: false});
+                                    $state.go('^', {}, { reload: true }, { supercede: false });
                                 });
                         }
 
@@ -328,12 +328,12 @@ import * as angular from 'angular';
 
                         var dialog = ngDialog.open({
                             template: '<sign-up-form></sign-up-form>',
-                            plain:true
+                            plain: true
                         });
 
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                return $state.go('home', {}, {supercede: false});
+                                return $state.go('home', {}, { supercede: false });
                             }
                         });
                     }]
@@ -341,33 +341,8 @@ import * as angular from 'angular';
                 .state('account/login', {
                     parent: 'account',
                     url: '/login?userId&redirectSuccess&email', // NOTE: Also supports email via "params" conf and rHiddenParams
-                    resolve: {
-                        rUserConnections: ['$state', '$stateParams', '$log', 'sUser', function ($state, $stateParams, $log, sUser) {
-                            if ($stateParams.userId) {
-                                return sUser
-                                    .listUserConnections($stateParams.userId)
-                                    .then(
-                                        function (res) {
-                                            return res;
-                                        },
-                                        function (err) {
-                                            // If the UserConnection fetch fails, it does not matter, we just don't filter authentication methods
-                                            $log.warn('Unable to fetch UserConnections for User', err);
-                                            return;
-                                        });
-                            } else {
-                                return;
-                            }
-                        }]
-                    },
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', '$log', '$transition$', 'ngDialog', 'sAuthResolve', 'rUserConnections', function ($scope, $state, $stateParams, $log, $transition$, ngDialog, sAuthResolve, rUserConnections) {
-
-                        var dialogData = {
-                            userConnections: rUserConnections,
-                            email: null
-                        };
-
+                    controller: ['$state', 'ngDialog', 'sAuthResolve', function ($state, ngDialog, sAuthResolve) {
                         let template = '<login-form></login-form>'
                         var dialog = ngDialog.open({
                             template: template,
@@ -376,7 +351,7 @@ import * as angular from 'angular';
 
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                return $state.go('home', {}, {supercede: false});
+                                return $state.go('home', {}, { supercede: false });
                             }
                         });
                     }]
@@ -457,7 +432,7 @@ import * as angular from 'angular';
                     parent: 'topics',
                     template: '<topic></topic>',
                     resolve: {
-                        rTopic: ['$state', '$stateParams', 'Topic', 'sAuthResolve','AppService', function ($state, $stateParams, Topic, sAuthResolve, AppService) {
+                        rTopic: ['$state', '$stateParams', 'Topic', 'sAuthResolve', 'AppService', function ($state, $stateParams, Topic, sAuthResolve, AppService) {
                             // HACK: sAuthResolve is only included here so that auth state is loaded before topic is loaded. Angular does parallel loading if it does not see dependency on it.
                             return Topic
                                 .get($stateParams.topicId)
@@ -472,9 +447,7 @@ import * as angular from 'angular';
                     url: '/settings?tab',
                     parent: 'topics/view',
                     reloadOnSearch: false,
-                    controller: ['$state', 'AppService', '$stateParams', 'Topic', 'ngDialog', function ($state, AppService, $stateParams, Topic, ngDialog) {
-                        var data = angular.extend({}, $stateParams);
-                        console.log(ngDialog);
+                    controller: ['$state', 'ngDialog', function ($state, ngDialog) {
                         var createDialog = function () {
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
@@ -489,7 +462,7 @@ import * as angular from 'angular';
                             });
 
                             dialog.closePromise.then(function () {
-                                $state.go('^', null, {reload: true, supercede: false});
+                                $state.go('^', null, { reload: true, supercede: false });
                             });
                         };
                         createDialog();
@@ -514,7 +487,7 @@ import * as angular from 'angular';
                             });
 
                             dialog.closePromise.then(function () {
-                                $state.go('^', {}, {supercede: false});
+                                $state.go('^', {}, { supercede: false });
                             });
                         }
 
@@ -530,7 +503,7 @@ import * as angular from 'angular';
                             ngDialog.closeAll();
                             var dialog = ngDialog.open({
                                 template: '<topic-members></topic-members>',
-                                plain:true,
+                                plain: true,
                                 preCloseCallback: function (value) {
                                     if (value === '$closeButton') {
                                         return true;
@@ -541,7 +514,7 @@ import * as angular from 'angular';
 
                             dialog.closePromise.then(function (data) {
                                 if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                    $state.go('^', {}, {supercede: false});
+                                    $state.go('^', {}, { supercede: false });
                                 }
                             });
                         }
@@ -560,7 +533,7 @@ import * as angular from 'angular';
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^', {}, {supercede: false});
+                                $state.go('^', {}, { supercede: false });
                             }
                         });
                     }]
@@ -574,7 +547,7 @@ import * as angular from 'angular';
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
-                                    $state.go('^', {}, {supercede: false});
+                                    $state.go('^', {}, { supercede: false });
                                 });
                             return;
                         }
@@ -584,7 +557,7 @@ import * as angular from 'angular';
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^', {}, {supercede: false});
+                                $state.go('^', {}, { supercede: false });
                             }
                         });
                     }]
@@ -598,17 +571,17 @@ import * as angular from 'angular';
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
-                                    $state.go('^', {}, {supercede: false});
+                                    $state.go('^', {}, { supercede: false });
                                 });
                             return;
                         }
                         var dialog = ngDialog.open({
                             template: '<topic-report-moderate></topic-report-moderate>',
-                            plain:true
+                            plain: true
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^', {}, {supercede: false});
+                                $state.go('^', {}, { supercede: false });
                             }
                         });
                     }]
@@ -622,7 +595,7 @@ import * as angular from 'angular';
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
-                                    $state.go('^', {}, {supercede: false});
+                                    $state.go('^', {}, { supercede: false });
                                 });
                             return;
                         }
@@ -634,7 +607,7 @@ import * as angular from 'angular';
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^', {}, {supercede: false});
+                                $state.go('^', {}, { supercede: false });
                             }
                         });
                     }]
@@ -648,17 +621,17 @@ import * as angular from 'angular';
                             var dialogLogin = $scope.app.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
-                                    $state.go('^', {}, {supercede: false});
+                                    $state.go('^', {}, { supercede: false });
                                 });
                             return;
                         }
                         var dialog = ngDialog.open({
                             template: '<topic-report-resolve></topic-report-resolve>',
-                            plain:true
+                            plain: true
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^', {}, {supercede: false});
+                                $state.go('^', {}, { supercede: false });
                             }
                         });
                     }]
@@ -693,7 +666,7 @@ import * as angular from 'angular';
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                $state.go('^', {}, {supercede: false});
+                                $state.go('^', {}, { supercede: false });
                             }
                         });
                     }]
@@ -737,7 +710,7 @@ import * as angular from 'angular';
                                 const params = angular.extend({}, $stateParams);
                                 if (!params.topicId && TopicService.topics.length) {
                                     params.topicId = TopicService.topics[0].id;
-                                    $state.transitionTo('my/topics/topicId', params, {reload: false});
+                                    $state.transitionTo('my/topics/topicId', params, { reload: false });
                                 }
                             })
 
@@ -779,8 +752,7 @@ import * as angular from 'angular';
                             });
 
                             dialog.closePromise.then(function (e) {
-                                console.log('closePromise', e)
-                          //      $state.go('^', null, {reload: true, supercede: false});
+                                $state.go('^', null, { reload: true, supercede: false });
                             });
                         }
 
@@ -800,7 +772,7 @@ import * as angular from 'angular';
                             });
 
                             dialog.closePromise.then(function (data) {
-                                $state.go('^', {}, {supercede: false});
+                                $state.go('^', {}, { supercede: false });
                             });
                         }
 
@@ -824,7 +796,7 @@ import * as angular from 'angular';
                             });
 
                             dialog.closePromise.then(function () {
-                                $state.go('^', {}, {supercede: false});
+                                $state.go('^', {}, { supercede: false });
                             });
                         }
 
@@ -870,7 +842,7 @@ import * as angular from 'angular';
                             dialog.closePromise
                                 .then(function () {
                                     GroupService.reload();
-                                    $state.go('^', {}, {supercede: false, reload: true});
+                                    $state.go('^', {}, { supercede: false, reload: true });
                                 });
                         }
 
@@ -895,7 +867,7 @@ import * as angular from 'angular';
                                     var status = res.status;
                                     if (status.code === 40100) { // Unauthorized
                                         var currentUrl = $state.href($state.current.name, $stateParams);
-                                        $state.go('account/login', {redirectSuccess: currentUrl});
+                                        $state.go('account/login', { redirectSuccess: currentUrl });
                                     } else if (status.code === 40001) { // Matching token not found.
                                         $state.go('home');
                                     } else {
@@ -968,8 +940,8 @@ import * as angular from 'angular';
                                 );
                         }]
                     },
-                    controller: ['$scope', '$state', '$stateParams', '$log', '$timeout', 'sAuth', 'sNotification', 'ngDialog', 'TopicInviteUser', 'rTopicInviteUser', function ($scope, $state, $stateParams, $log, $timeout, sAuth, sNotification, ngDialog, TopicInviteUser, rTopicInviteUser) {
-                        console.log('rTopicInviteUser', rTopicInviteUser);
+                    controller: ['$scope', '$state', '$stateParams', 'sAuth', 'ngDialog', 'TopicInviteUser', 'rTopicInviteUser', function ($scope, $state, $stateParams, sAuth, ngDialog, TopicInviteUser, rTopicInviteUser) {
+
                         if (!rTopicInviteUser.id) { // Some kind of error happened, the instance was not built
                             return; // ERROR: Expecting cosHttpApiErrorInterceptor to tell the user what went wrong
                         }
@@ -998,13 +970,13 @@ import * as angular from 'angular';
                             template: '/views/modals/topic_topicId_invites_users_inviteId.html',
                             data: data,
                             scope: $scope, // pass on scope, so that modal has access to App scope ($scope.app)
-                            controller: ['$scope', '$log', function ($scope, $log) {
+                            controller: ['$scope', 'sLocation', 'sAuth', function ($scope, sLocation, sAuth) {
                                 $scope.invite = rTopicInviteUser;
 
-                                $scope.doAccept = function () {
+                                $scope.doAccept = () => {
                                     // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
                                     if (!sAuth.user.loggedIn) {
-                                        var currentUrl = $state.href($state.current.name, $stateParams);
+                                        var currentUrl = sLocation.getAbsoluteUrl($state.href($state.current.name, $stateParams));
                                         if (!$scope.invite.user.isRegistered) {
                                             // The invited User is not registered, the User has been created by the system - https://github.com/citizenos/citizenos-fe/issues/773
                                             return $state.go('account/signup', {
@@ -1026,14 +998,14 @@ import * as angular from 'angular';
                                     if (sAuth.user.loggedIn && $scope.invite.user.id !== sAuth.user.id) {
                                         sAuth
                                             .logout()
-                                            .then(function () {
-                                                var currentUrl = $state.href($state.current.name, $stateParams);
+                                            .then(() => {
+                                                const currentUrl = sLocation.getAbsoluteUrl($state.href($state.current.name, $stateParams));
                                                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
                                                 return $state.go('account/login', {
                                                     userId: $scope.invite.user.id,
                                                     redirectSuccess: currentUrl,
                                                     email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
-                                                }, {reload: true});
+                                                }, { reload: true });
                                             });
                                     }
                                 };
@@ -1042,7 +1014,7 @@ import * as angular from 'angular';
 
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                return $state.go('home', {}, {supercede: false});
+                                return $state.go('home', {}, { supercede: false });
                             }
                         });
                     }]
@@ -1079,19 +1051,17 @@ import * as angular from 'angular';
                         }]
                     },
                     controller: ['$scope', '$state', '$stateParams', '$log', '$timeout', 'sAuth', 'sNotification', 'ngDialog', 'GroupInviteUser', 'rGroupInviteUser', function ($scope, $state, $stateParams, $log, $timeout, sAuth, sNotification, ngDialog, GroupInviteUser, rGroupInviteUser) {
-                        var doAccept = function () {
+                        var doAccept = () => {
                             return GroupInviteUser
                                 .accept($stateParams)
-                                .then(
-                                    function () {
-                                        return $state.go(
-                                            'my/groups/groupId',
-                                            {
-                                                groupId: rGroupInviteUser.groupId
-                                            }
-                                        )
-                                    }
-                                );
+                                .then(() => {
+                                    return $state.go(
+                                        'my/groups/groupId',
+                                        {
+                                            groupId: rGroupInviteUser.groupId
+                                        }
+                                    )
+                                });
                         };
 
                         // 1. The invited User is logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
@@ -1103,13 +1073,13 @@ import * as angular from 'angular';
                             template: '/views/modals/group_groupId_invites_users_inviteId.html',
                             data: data,
                             scope: $scope, // pass on scope, so that modal has access to App scope ($scope.app)
-                            controller: ['$scope', '$log', function ($scope, $log) {
+                            controller: ['$scope', 'sAuth', 'sLocation', function ($scope, sAuth, sLocation) {
                                 $scope.invite = rGroupInviteUser;
 
                                 $scope.doAccept = function () {
                                     // 3. The invited User is NOT logged in - https://github.com/citizenos/citizenos-fe/issues/112#issuecomment-541674320
                                     if (!sAuth.user.loggedIn) {
-                                        var currentUrl = $state.href($state.current.name, $stateParams);
+                                        var currentUrl = sLocation.getAbsoluteUrl($state.href($state.current.name, $stateParams));
                                         if (!$scope.invite.user.isRegistered) {
                                             // The invited User is not registered, the User has been created by the system - https://github.com/citizenos/citizenos-fe/issues/773
                                             return $state.go('account/signup', {
@@ -1131,14 +1101,14 @@ import * as angular from 'angular';
                                     if (sAuth.user.loggedIn && $scope.invite.user.id !== sAuth.user.id) {
                                         sAuth
                                             .logout()
-                                            .then(function () {
-                                                var currentUrl = $state.href($state.current.name, $stateParams);
+                                            .then(() => {
+                                                var currentUrl = sLocation.getAbsoluteUrl($state.href($state.current.name, $stateParams));
                                                 // Reload because the sAuthResolve would not update on logout causing the login screen to redirect to "home" thinking User is logged in
                                                 return $state.go('account/login', {
                                                     userId: $scope.invite.user.id,
                                                     redirectSuccess: currentUrl,
                                                     email: $scope.invite.user.email // HACK: Hidden e-mail from the URL and tracking - https://github.com/citizenos/citizenos-fe/issues/657
-                                                }, {reload: true});
+                                                }, { reload: true, supercede: true });
                                             });
                                     }
                                 };
@@ -1147,7 +1117,7 @@ import * as angular from 'angular';
 
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
-                                return $state.go('home', {}, {supercede: false});
+                                return $state.go('home', {}, { supercede: false });
                             }
                         });
                     }]
@@ -1191,7 +1161,7 @@ import * as angular from 'angular';
                         $scope.customWidgetStyle = $stateParams.style;
                         $scope.widgetPostMessage = function (data) {
                             if ($window.self !== $window.parent) {
-                                var msg = {citizenos: {}};
+                                var msg = { citizenos: {} };
                                 msg.citizenos['widgets'] = {};
                                 msg.citizenos['widgets'][$stateParams.widgetId] = data;
                                 $window.top.postMessage(msg, '*');
@@ -1317,7 +1287,7 @@ import * as angular from 'angular';
                         if ($document[0].documentMode || $window.navigator.userAgent.indexOf('Edge') > -1) {
                             return $window.close();
                         } else {
-                            $window.opener.postMessage({status: 'success'}, $window.origin);
+                            $window.opener.postMessage({ status: 'success' }, $window.origin);
                         }
                     }]
                 })
