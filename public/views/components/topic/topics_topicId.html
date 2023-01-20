@@ -96,7 +96,7 @@
                                 </div>
                             </div>
 
-                            <div class="container_pin" ng-class="$ctrl.topic.pinned ? 'pinned' : ''" ng-click="$ctrl.togglePin()">
+                            <div class="container_pin" ng-class="$ctrl.topic.pinned ? 'pinned' : ''" ng-click="$ctrl.Topic.togglePin($ctrl.topic)">
                                 <div class="ff_table_fix" tooltips tooltip-side="left" tooltip-template="<span>{{'TOOLTIP_PIN_TOPIC' | translate}}</span>">
                                     <div class="table_cell">
                                         <div class="sprite sprite-icon-favourite2x-white"></div>
