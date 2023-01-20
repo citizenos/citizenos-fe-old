@@ -25,7 +25,7 @@ let topic = {
         public STATUSES = [];
         public VISIBILITY = [];
 
-        constructor (private $scope, private $state, private $stateParams, $timeout, private $log, private $sce, private ngDialog, private sAuth, private sUpload, private Topic, private TopicMemberUser, private TopicAttachment, private TopicAttachmentService, public TopicCommentService, private app) {
+        constructor (private $scope, private $state, private $stateParams, $timeout, private $log, private $sce, private ngDialog, private sAuth, private sUpload, public Topic, private TopicMemberUser, private TopicAttachment, private TopicAttachmentService, public TopicCommentService, private app) {
             $log.debug('TopicController');
             this.topic = app.topic;
             TopicAttachmentService.topicId = app.topic.id;
@@ -120,18 +120,6 @@ let topic = {
                             .then((topic) => this.topic = topic);
                     });
             }
-        };
-
-        togglePin () {
-            if (!this.app.user.loggedIn) {
-                return this.app.doShowLogin();
-            }
-
-            this.topic.togglePin().then(() => {
-                if (this.$state.current.name.indexOf('my') > -1) {
-                    this.$state.reload(true);
-                }
-            });
         };
 
         downloadAttachment (attachment) {
