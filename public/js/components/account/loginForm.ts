@@ -131,7 +131,7 @@ let loginFormComponent = {
                     if (this.$stateParams.redirectSuccess) {
                         this.$window.location.href = this.$stateParams.redirectSuccess;
                     } else {
-                        this.$window.location.reload();
+                        this.$window.location = '/';
                     }
                 }
             };
