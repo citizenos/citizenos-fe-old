@@ -28,11 +28,11 @@
 
                 <div class="lightbox_section" ng-if="!$ctrl.isSubmitted">
                     <label class="bold" translate="MODALS.GIVE_FEEDBACK_LBL_NAME"></label>
-                    <input ng-model="$ctrl.name">
+                    <input class="feedback_input" ng-model="$ctrl.name">
                     <label class="bold" translate="MODALS.GIVE_FEEDBACK_LBL_EMAIL"></label>
-                    <input ng-model="$ctrl.email">
+                    <input class="feedback_input" ng-model="$ctrl.email">
                     <label class="bold" translate="MODALS.GIVE_FEEDBACK_LBL_GROUP_OR_ORG"></label>
-                    <input ng-model="$ctrl.org">
+                    <input class="feedback_input" ng-model="$ctrl.org">
                     <div class="feedback_info_text bold" translate="MODALS.GIVE_FEEDBACK_QUESTION_1"></div>
 
                     <textarea class="feedback_info_textarea" ng-class="{error_input: $ctrl.error}"
@@ -48,7 +48,7 @@
                         <input type="checkbox" class="checkbox" ng-checked="$ctrl.allowContact"
                             ng-click="$ctrl.allowContact = !$ctrl.allowContact">
                         <span class="option_checkbox"></span>
-                        <span translate="MODALS.GIVE_FEEDBACK_LBL_CHECKBOX"></span>
+                        <span class="bold" translate="MODALS.GIVE_FEEDBACK_LBL_CHECKBOX"></span>
                     </label>
                     <p class="feedback_info_text" translate="MODALS.GIVE_FEEDBACK_BE_CAREFULL"></p>
                     <p class="feedback_info_text" translate="MODALS.GIVE_FEEDBACK_BE_GDPR"></p>
