@@ -1849,7 +1849,9 @@
                     text-align: center;
                     margin-bottom: 16px;
                 }
-
+                .feedback_input {
+                    margin-bottom: 15px;
+                }
                 .feedback_info_text {
                     font-weight: 400;
                     font-size: 14px;
@@ -1859,7 +1861,60 @@
                         text-align: center;
                     }
                 }
+                .checkcontainer {
+                    clear: both;
+                    display: block;
 
+                    span {
+                        font-size: 14px;
+                    }
+
+                    input.checkbox {
+                        width: 1px;
+                        height: 1px;
+                        border: none;
+                        float:right;
+                    }
+
+                    .option_checkbox {
+                        position: relative;
+                        float:none;
+                        top: 5px;
+                        left: 0;
+                        height: 18px;
+                        width: 18px;
+                        display: inline-block;
+                        border: 1px solid vars.$lightest_gray;
+                        background-color: vars.$white;
+                        border-radius: 4px;
+                        margin-right: 7px;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            display: none;
+                            left: 5px;
+                            top: 0px;
+                            width: 6px;
+                            height: 11px;
+                            border: solid vars.$white;
+                            border-width: 0 3px 3px 0;
+                            -webkit-transform: rotate(45deg);
+                            -ms-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                        }
+                    }
+
+                    input:checked ~ .option_checkbox {
+                        border: 1px solid vars.$dark_blue;
+                        background-color: vars.$deep_sky_blue;
+                    }
+
+                    input:checked ~ .option_checkbox:after {
+                        display: block;
+                    }
+
+                }
                 .feedback_info_textarea {
                     min-height: 80px;
                     margin: 20px 0;
