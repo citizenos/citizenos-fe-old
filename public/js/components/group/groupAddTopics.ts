@@ -6,7 +6,7 @@ let groupAddTopics = {
     templateUrl: '/views/components/group/group_add_topics.html',
     bindings: {
     },
-    controller: ['$stateParams', 'ngDialog', 'sSearch', 'Group', 'GroupMemberTopic', 'GroupMemberTopicService', 'AppService', class GroupAddTopicsController {
+    controller: ['$stateParams', '$timeout', 'ngDialog', 'sSearch', 'Group', 'GroupMemberTopic', 'GroupMemberTopicService', 'AppService', class GroupAddTopicsController {
         public levels = {
             none: 0,
             read: 1,
@@ -32,7 +32,7 @@ let groupAddTopics = {
 
         public errors = null;
 
-        constructor (private $stateParams, private ngDialog, private sSearch, private Group, private GroupMemberTopic, private GroupMemberTopicService, private app) {
+        constructor(private $stateParams, private $timeout, private ngDialog, private sSearch, private Group, private GroupMemberTopic, private GroupMemberTopicService, private app) {
             this.Group.get(this.$stateParams.groupId)
                 .then((group) => {
                     this.group = group;
@@ -41,7 +41,7 @@ let groupAddTopics = {
                 });
         }
 
-        search (str) {
+        search(str) {
             if (str && str.length >= 2) {
                 this.sSearch
                     .search(str, {
@@ -49,7 +49,7 @@ let groupAddTopics = {
                         'my.topic.level': 'admin'
                     })
                     .then((response) => {
-                        this.searchResults = angular.merge({}, {users: [], topics: []});
+                        this.searchResults = angular.merge({}, { users: [], topics: [] });
                         response.data.data.results.my.topics.rows.forEach((topic) => {
                             if (this.group.visibility === this.Group.VISIBILITY.public && topic.visibility === this.Group.VISIBILITY.private) {
                                 return
@@ -59,11 +59,11 @@ let groupAddTopics = {
                     });
 
             } else {
-                this.searchResults = angular.merge({}, {topics: []});
+                this.searchResults = angular.merge({}, { topics: [] });
             }
         };
 
-        addGroupMemberTopic (topic) {
+        addGroupMemberTopic(topic) {
             this.searchStringTopic = null;
             this.searchResults.topics = [];
 
@@ -80,22 +80,22 @@ let groupAddTopics = {
             }
         };
 
-        removeGroupMemberTopic (topic) {
+        removeGroupMemberTopic(topic) {
             this.memberTopics.splice(this.memberTopics.indexOf(topic), 1);
         };
 
-        updateGroupMemberTopicLevel (topic, level) {
+        updateGroupMemberTopicLevel(topic, level) {
             topic.permission.level = level;
         };
 
-        doOrderTopics (property) {
+        doOrderTopics(property) {
             if (this.topicList.searchOrderBy.property == property) {
                 property = '-' + property;
             }
             this.topicList.searchOrderBy.property = property;
         };
 
-        doSaveGroup () {
+        doSaveGroup() {
             this.errors = null;
 
             const savePromises = [];
@@ -107,16 +107,19 @@ let groupAddTopics = {
                     level: topic.permission.level
                 };
                 savePromises.push(
-                    this.GroupMemberTopic.save({groupId: this.group.id, topicId: topic.id}, member)
+                    this.GroupMemberTopic.save({ groupId: this.group.id, topicId: topic.id }, member)
                 )
             });
 
             return Promise.all(savePromises)
-                .then(() =>  {
-                    this.GroupMemberTopicService.reload();
+                .then(() => {
                     const dialogs = this.ngDialog.getOpenDialogs();
-                    this.ngDialog.close(dialogs[0], '$closeButton');
-                }),((errorResponse) => {
+                    this.$timeout(() => {
+                        this.GroupMemberTopicService.reload();
+                        this.ngDialog.close(dialogs[0], '$closeButton');
+                        location.reload();
+                    })
+                }), ((errorResponse) => {
                     if (errorResponse.data && errorResponse.data.errors) {
                         this.errors = errorResponse.data.errors;
                         console.log(errorResponse.data.errors);
