@@ -251,7 +251,7 @@ export class Topic {
     changeState (topic, state, stateSuccess) {
         const templates = {
             followUp: '/views/modals/topic_send_to_followUp_confirm.html',
-            vote: '/views/modals/topic_close_confirm.html',
+            vote: '/views/modals/topic_send_to_vote_confirm.html',
             closed: '/views/modals/topic_close_confirm.html'
         };
         const nextStates = {
