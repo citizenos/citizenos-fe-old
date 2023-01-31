@@ -542,9 +542,9 @@ import * as angular from 'angular';
                     url: '/report',
                     parent: 'topics/view',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', 'ngDialog', function ($scope, $state, ngDialog) {
-                        if (!$scope.app.user.loggedIn) {
-                            var dialogLogin = $scope.app.doShowLogin();
+                    controller: ['$state', 'ngDialog', 'AppService', function ($state, ngDialog, AppService) {
+                        if (!AppService.user.loggedIn) {
+                            var dialogLogin = AppService.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
                                     $state.go('^', {}, { supercede: false });
@@ -566,9 +566,9 @@ import * as angular from 'angular';
                     url: '/reports/:reportId/moderate',
                     parent: 'topics/view',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        if (!$scope.app.user.loggedIn) {
-                            var dialogLogin = $scope.app.doShowLogin();
+                    controller: ['AppService', '$state', '$stateParams', 'ngDialog', function (AppService, $state, $stateParams, ngDialog) {
+                        if (!AppService.user.loggedIn) {
+                            var dialogLogin = AppService.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
                                     $state.go('^', {}, { supercede: false });
@@ -590,9 +590,9 @@ import * as angular from 'angular';
                     url: '/reports/:reportId/review',
                     parent: 'topics/view',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        if (!$scope.app.user.loggedIn) {
-                            var dialogLogin = $scope.app.doShowLogin();
+                    controller: ['$scope', 'AppService', '$state', '$stateParams', 'ngDialog', function ($scope, AppService, $state, $stateParams, ngDialog) {
+                        if (!AppService.user.loggedIn) {
+                            var dialogLogin = AppService.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
                                     $state.go('^', {}, { supercede: false });
@@ -616,9 +616,9 @@ import * as angular from 'angular';
                     url: '/reports/:reportId/resolve',
                     parent: 'topics/view',
                     reloadOnSearch: false,
-                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', function ($scope, $state, $stateParams, ngDialog) {
-                        if (!$scope.app.user.loggedIn) {
-                            var dialogLogin = $scope.app.doShowLogin();
+                    controller: ['$scope', '$state', '$stateParams', 'ngDialog', 'AppService', function ($scope, $state, $stateParams, ngDialog, AppService) {
+                        if (!AppService.user.loggedIn) {
+                            var dialogLogin = AppService.doShowLogin();
                             dialogLogin.closePromise
                                 .then(function () {
                                     $state.go('^', {}, { supercede: false });
