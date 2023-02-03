@@ -65,11 +65,9 @@ export class TopicNotificationService {
                 params['search'] = this.search;
             }
             this.TopicNotification.query(params).then((data) => {
-                if (data.rows.length) {
-                    this.countTotal = data.countTotal || 0;
-                    this.totalPages = Math.ceil(data.countTotal / this.limit);
-                    this.topics = data.rows;
-                }
+                this.countTotal = data.count || 0;
+                this.totalPages = Math.ceil(data.count / this.limit);
+                this.topics = data.rows;
 
                 this.isLoading = false;
             });

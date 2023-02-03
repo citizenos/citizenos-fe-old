@@ -599,11 +599,9 @@ import * as angular from 'angular';
                                 });
                             return;
                         }
-                        var data = angular.extend({}, $stateParams);
                         var dialog = ngDialog.open({
-                            template: '/views/modals/topic_reports_reportId_review.html',
-                            data: data,
-                            scope: $scope // Pass on $scope so that I can access AppCtrl
+                            template: '<topic-report-review></topic-report-review>',
+                            plain:true
                         });
                         dialog.closePromise.then(function (data) {
                             if (data.value !== '$navigation') { // Avoid running state change when ngDialog is already closed by a state change
