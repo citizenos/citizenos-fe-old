@@ -135,7 +135,7 @@
                     </div>
                     <div class="searchbox_with_icon_and_text only_text">
                         <div class="input_wrap">
-                            <input class="topic_search_input" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_SEARCH' | translate}}" ng-change="$ctrl.TopicNotificationService.search()" ng-model-options="{debounce:250}" ng-model="$ctrl.notifications.search">
+                            <input class="topic_search_input" placeholder="{{'MODALS.MY_ACCOUNT_PLACEHOLDER_SEARCH' | translate}}" ng-change="$ctrl.TopicNotificationService.doSearch()" ng-model-options="{debounce:250}" ng-model="$ctrl.TopicNotificationService.search">
                         </div>
                     </div>
                     <table class="notification_settings_table">

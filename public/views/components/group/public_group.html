@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="clearer"></div>
                             </div>
-                            <div class="dropdown_item" ng-click="$ctrl.addTopicDialog(); $event.stopPropagation();">
+                            <div class="dropdown_item"  ng-click="$ctrl.addTopicDialog(); $event.stopPropagation();">
                                 <div class="icon icon_topic_black"></div>
                                 <div class="item_name" translate="VIEWS.PUBLIC_GROUP.ACTION_OPTION_ADD_TOPICS">
                                     Add Topics
@@ -126,7 +126,7 @@
 
                         <div class="button_area">
 
-                            <div class="big_button" ng-if="$ctrl.group.userLevel" ng-click="$ctrl.addTopicDialog()">
+                            <div class="big_button" ng-if="$ctrl.Group.canUpdate($ctrl.group)" ng-click="$ctrl.addTopicDialog()">
                                 <div class="button_cell">
                                     <div class="topic_text" translate="VIEWS.PUBLIC_GROUP.BTN_ADD_TOPICS">Add topic</div>
                                 </div>
@@ -179,7 +179,7 @@
                             <span translate="VIEWS.PUBLIC_GROUP.LNK_STATUS">Status</span>
                         </div>
                     </div>
-                    <group-member-topic ng-if="$ctrl.PublicGroupMemberTopicService.countTotal" class="group_item_row pretend_tr" ng-repeat="topic in $ctrl.PublicGroupMemberTopicService.topics" fields="['lastActivity', 'status']" member-topic="topic" group="$ctrl.group"></group-member-topic>
+                    <group-member-topic ng-if="$ctrl.PublicGroupMemberTopicService.countTotal" class="group_item_row pretend_tr" ng-repeat="topic in $ctrl.PublicGroupMemberTopicService.topics" fields="['lastActivity', 'status', 'delete']" member-topic="topic" group="$ctrl.group"></group-member-topic>
 
                     <div class="pretend_tr" ng-if="$ctrl.PublicGroupMemberTopicService.totalPages > 1">
                         <div class="pagination_wrapper">

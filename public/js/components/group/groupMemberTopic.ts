@@ -52,6 +52,7 @@ let groupMemberTopic = {
                         })
                         .then(() => {
                             this.GroupMemberTopicService.reload();
+                            location.reload();
                         });
                 }, angular.noop);
         };
