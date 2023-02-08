@@ -100,7 +100,7 @@ export class TopicVoteService {
                 this.isLoading = false;
                 this.isLoadingIdCard = false;
                 this.challengeID = null;
-                this.$state.reload();
+                location.reload();
                 this.$log.debug('voteVoteSign succeeded');
             }, (err) => {
                 this.isLoading = false;
@@ -112,7 +112,7 @@ export class TopicVoteService {
         if (!retry--) throw new Error('Too many retries');
 
 
-        return this.TopicVote.status({topicId: this.topicId, voteId: this.voteId, prefix: this.sAuth.getUrlPrefix(), userId: this.sAuth.getUrlUserId(), token: token})
+        return this.TopicVote.status({topicId: this.topicId, voteId: this.voteId, token: token})
             .then((response) => {
                 var statusCode = response.status.code;
                 if (!statusCode) return response;
@@ -161,8 +161,9 @@ export class TopicVoteService {
                 this.isLoading = false;
                 this.isLoadingIdCard = false;
                 this.challengeID = null;
-                this.$state.reload();
+                location.reload();
             }, (err) => {
+                console.error(err);
                 this.isLoading = false;
             });
     };
@@ -171,7 +172,7 @@ export class TopicVoteService {
         if (!retry) retry = 80;
         if (!retry--) throw new Error('Too many retries');
 
-        return this.TopicVote.status({topicId: this.topicId, voteId: this.voteId, prefix: this.sAuth.getUrlPrefix(), userId: this.sAuth.getUrlUserId(), token: token})
+        return this.TopicVote.status({topicId: this.topicId, voteId: this.voteId, token: token})
             .then((response) => {
                 const statusCode = response.status?.code;
                 if (!statusCode) return response;

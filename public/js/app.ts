@@ -152,7 +152,8 @@ import * as angular from 'angular';
                                         if (!sAuth.user.email) {
                                             sAuth.user.loggedIn = false;
                                             var dialog = ngDialog.open({
-                                                template: '<add-email></add-email>'
+                                                template: '<add-email></add-email>',
+                                                plain: true
                                             });
 
                                             dialog.closePromise.then(function () {
