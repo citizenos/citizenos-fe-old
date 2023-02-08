@@ -21,7 +21,7 @@
             <div class="lightbox_content">
                 <div id="login_lightbox">
                     <div class="line lightest_line"></div>
-                    <div class="lightbox_section" ng-if="$ctrl.authMethodsAvailable.facebook || $ctrl.authMethodsAvailable.google || $ctrl.authMethodsAvailable.mobiilId || $ctrl.authMethodsAvailable.idCard || $ctrl.authMethodsAvailable.smartId">
+                    <div class="lightbox_section" ng-if="$ctrl.authMethodsAvailable.facebook || $ctrl.authMethodsAvailable.esteid || $ctrl.authMethodsAvailable.google || $ctrl.authMethodsAvailable.mobiilId || $ctrl.authMethodsAvailable.idCard || $ctrl.authMethodsAvailable.smartId">
 
                         <div ng-if="$ctrl.authMethodsAvailable.facebook" id="facebook" ng-click="$ctrl.doLoginPartner($ctrl.LOGIN_PARTNERS.facebook)" class="social_button">
                             <div class="social_icon">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
 
-                        <div ng-if="$ctrl.authMethodsAvailable.mobiilId || $ctrl.authMethodsAvailable.idCard" id="id_card" ng-click="$ctrl.doLoginEsteId()" class="social_button">
+                        <div ng-if="$ctrl.authMethodsAvailable.mobiilId || $ctrl.authMethodsAvailable.idCard || $ctrl.authMethodsAvailable.esteid" id="id_card" ng-click="$ctrl.doLoginEsteId()" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-id2x"></div>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <div ng-if="$ctrl.authMethodsAvailable.smartId" id="smart_id" ng-click="$ctrl.doLoginSmartId()" class="social_button">
+                        <div ng-if="$ctrl.authMethodsAvailable.smartId || $ctrl.authMethodsAvailable.esteid" id="smart_id" ng-click="$ctrl.doLoginSmartId()" class="social_button">
                             <div class="social_icon">
                                 <div class="table_cell">
                                     <div class="sprite sprite-login-icon-smartid2x"></div>
