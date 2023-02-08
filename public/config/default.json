@@ -65,6 +65,7 @@
       "google": true,
       "smartId": true,
       "mobiilId": true,
+      "esteid": true,
       "idCard": {
         "url": "https://id.citizenos.com/authorize"
       },
