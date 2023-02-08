@@ -927,7 +927,7 @@
       "VOTE_LBL_AUTH_SOFT_ID": "社交登录",
       "VOTE_LBL_AUTH_SOFT_ID_EXPLANATION": "需要登入 Citizen OS",
       "VOTE_LBL_AUTH_HARD_ID": "eID",
-      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "需要 ID-Card, Mobiil-ID 或 Smart-ID 签名",
+      "VOTE_LBL_AUTH_HARD_ID_EXPLANATION": "需要 Smart-ID, Mobiil-ID 或身份证以签名",
       "VOTE_LBL_DELEGATION": "能否委派",
       "VOTE_LBL_DELEGATION_EXPLANATION": "允许用户转交他们的投票权。",
       "VOTE_LBL_NOTICE_DELEGATION_DISABLED_FOR_HARD_ID": "当投票方式为eID时，无法将投票权委派给他人。",
