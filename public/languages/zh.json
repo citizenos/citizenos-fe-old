@@ -582,7 +582,7 @@
     "GIVE_FEEDBACK_BE_VIEW_MORE_LEGAL": "欲了解更多信息，请阅读我们的 <a target=\"_blank\" href=\"https://citizenos.com/legal/privacy/\">隐私政策</a>。",
     "GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA": "在此处键入……",
     "GIVE_FEEDBACK_BTN_CANCEL": "@:LNK_CANCEL",
-    "GIVE_FEEDBACK_BTN_SUBMIT": "Submit",
+    "GIVE_FEEDBACK_BTN_SUBMIT": "提交",
     "GIVE_FEEDBACK_TITLE_THANK_YOU": "感谢您的分享！",
     "GIVE_FEEDBACK_TEXT_THANK_YOU": "非常感谢您的分享。如果您接受进一步沟通，我们将很快与您取得联系！如您在未来存在任何疑问或反馈的需求，请通过我们的帮助中心提交您的帮助请求或用户反馈。",
     "GIVE_FEEDBACK_BTN_CLOSE": "@:BTN_CLOSE"
@@ -1060,7 +1060,7 @@
       "LNK_ADD_MANAGE_FILES": "添加/管理附件",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "扫描此 QR 代码以跳转到话题 <b>{{topicTitle}}</b>！",
       "INLINE_COMMENT_SUGGEST_CHANGE": "建议将 “{{changeFrom}}” 更改为 “{{changeTo}}”",
-      "BTN_FEEDBACK_OPEN": "Help us improve"
+      "BTN_FEEDBACK_OPEN": "帮助我们做得更好"
     },
     "PUBLIC_GROUPS": {
       "TITLE": "公开群组",
