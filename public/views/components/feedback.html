@@ -33,23 +33,25 @@
                     <input class="feedback_input" ng-model="$ctrl.email">
                     <label class="bold" translate="MODALS.GIVE_FEEDBACK_LBL_GROUP_OR_ORG"></label>
                     <input class="feedback_input" ng-model="$ctrl.org">
-                    <div class="feedback_info_text bold" translate="MODALS.GIVE_FEEDBACK_QUESTION_1"></div>
+                    <div class="bold" translate="MODALS.GIVE_FEEDBACK_QUESTION_1"></div>
 
                     <textarea class="feedback_info_textarea" ng-class="{error_input: $ctrl.error}"
                         ng-model="$ctrl.message" translate-attr-placeholder="MODALS.GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA"
                         placeholder="Write here..."></textarea>
 
-                    <div class="feedback_info_text bold" translate="MODALS.GIVE_FEEDBACK_QUESTION_2">This text area
+                    <div class="bold" translate="MODALS.GIVE_FEEDBACK_QUESTION_2">This text area
                         would comprise of 3 questions which can be edited by the lead from Citizen OS and these details
                         will be discussed privately. But I still wanted to add text here so that this area becomes
                         bigger and a better reference for the future.</div>
 
-                    <label class="checkcontainer">
-                        <input type="checkbox" class="checkbox" ng-checked="$ctrl.allowContact"
-                            ng-click="$ctrl.allowContact = !$ctrl.allowContact">
-                        <span class="option_checkbox"></span>
-                        <span class="bold" translate="MODALS.GIVE_FEEDBACK_LBL_CHECKBOX"></span>
-                    </label>
+                    <p>
+                        <label class="checkcontainer">
+                            <input type="checkbox" class="checkbox" ng-checked="$ctrl.allowContact"
+                                ng-click="$ctrl.allowContact = !$ctrl.allowContact">
+                            <span class="option_checkbox"></span>
+                            <span class="bold" translate="MODALS.GIVE_FEEDBACK_LBL_CHECKBOX"></span>
+                        </label>
+                    </p>
                     <p class="feedback_info_text" translate="MODALS.GIVE_FEEDBACK_BE_CAREFULL"></p>
                     <p class="feedback_info_text" translate="MODALS.GIVE_FEEDBACK_BE_GDPR"></p>
                     <p class="feedback_info_text" translate="MODALS.GIVE_FEEDBACK_BE_VIEW_MORE_LEGAL"></p>

@@ -534,6 +534,11 @@
                         padding-right: 60px;
                     }
 
+                    .description {
+                        margin-top: 5px;
+                        font-size: 13px;
+                    }
+
                     .title_description {
                         @extend %text_dod_dot_dot;
                         margin-top: 5px;
@@ -1854,8 +1859,8 @@
                 }
                 .feedback_info_text {
                     font-weight: 400;
-                    font-size: 14px;
-                    line-height: 24px;
+                    font-size: 13px;
+                    line-height: 22px;
 
                     &.thank_you {
                         text-align: center;
@@ -2515,7 +2520,6 @@
 
                     .recycle_bin_wrap {
                         width: 32px;
-                        display: inline-block;
                         float: right;
 
                         &.wrap_mobile {
