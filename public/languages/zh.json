@@ -650,7 +650,7 @@
       "HEADING_RESULTS_IN": "搜索结果上下文",
       "LNK_VIEW_MORE_RESULTS": "查看更多结果",
       "TXT_OOPS_NO_RESULTS": "抱歉，我们找不到与您的搜索匹配的结果 :(",
-      "TXT_MAYBE_TYPO": "您的搜索内容中是否出现了笔误？"
+      "TXT_MAYBE_TYPO": "也许您不小心笔误了？"
     },
     "WIDGET": {
       "LNK_LOG_IN_REGISTER": "@:MODALS.LOGIN_HEADING",
@@ -780,7 +780,7 @@
       "LNK_FILTER": "过滤",
       "LNK_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH",
       "PLACEHOLDER_TOPIC_TITLE_PERMISSION": "话题标题，权限",
-      "PLACEHOLDER_NAME_PERMISSION": "名字，权限",
+      "PLACEHOLDER_NAME_PERMISSION": "名称，权限",
       "LNK_CLEAR_FILTER": "清空过滤",
       "LNK_CLEAR_SEARCH": "清除搜索",
       "LBL_ORDER_BY": "排序根据：",
@@ -824,7 +824,7 @@
       "LNK_CLEAR_FILTER": "@:VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_FILTER",
       "LNK_CLEAR_SEARCH": "@:VIEWS.MY_GROUPS_GROUPID.LNK_CLEAR_SEARCH",
       "LBL_ORDER_BY": "@:VIEWS.MY_GROUPS_GROUPID.LBL_ORDER_BY",
-      "LNK_NAME": "名字",
+      "LNK_NAME": "名称",
       "LNK_ROLES": "@:VIEWS.MY_GROUPS_GROUPID.LNK_ROLES",
       "LNK_USERS": "@:VIEWS.MY_TOPICS_TOPICID.LBL_USERS",
       "LBL_REMOVE_FROM_TOPIC": "从话题中移除",
