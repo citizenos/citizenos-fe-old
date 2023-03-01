@@ -98,7 +98,7 @@
     "TOPIC_CLOSE_CONFIRM_TXT_NO_VOTE": "一切相关投票将被结束，无法就该话题创建新投票。",
     "TOPIC_CLOSE_CONFIRM_BTN_NO": "否，请勿关闭话题",
     "TOPIC_CLOSE_CONFIRM_BTN_YES": "是，删除此话题",
-    "TOPIC_COMMENT_REACTIONS_HEADING": "话题辩论反应",
+    "TOPIC_COMMENT_REACTIONS_HEADING": "话题论点反应",
     "TOPIC_DELETE_CONFIRM_HEADING": "删除话题",
     "TOPIC_DELETE_CONFIRM_TXT_ARE_YOU_SURE": "您确定要移除此话题吗？",
     "TOPIC_DELETE_CONFIRM_TXT_NO_UNDO": "@:MODALS.TOPIC_CLOSE_CONFIRM_TXT_NO_UNDO",
@@ -171,7 +171,7 @@
     "TOPIC_REPORT_REPORTID_RESOLVE_BTN_NO": "@:MODALS.TOPIC_REPORT_REPORTID_REVIEW_BTN_NO",
     "TOPIC_REPORT_REPORTID_RESOLVE_BTN_YES": "是，标记为已解决",
     "TOPIC_ARGUMENT_REPORT_HEADING": "举报论点",
-    "TOPIC_ARGUMENT_REPORT_DESCRIPTION": "用户 <b>{{usersFullName}}</b> 的论点",
+    "TOPIC_ARGUMENT_REPORT_DESCRIPTION": "用户 {{usersFullName}} 的论点",
     "TOPIC_ARGUMENT_REPORT_LABEL_REASON": "举报原因",
     "TOPIC_ARGUMENT_REPORT_LABEL_REASON_REQUIRED": "（必填）",
     "TOPIC_ARGUMENT_REPORT_PLACEHOLDER_REPORT_TEXT": "解释您为什么认为该论点不合适……",
@@ -647,7 +647,7 @@
       "PLACEHOLDER_SEARCH": "@:DEFAULT.NAV_MOBILE.BTN_SEARCH"
     },
     "SEARCH": {
-      "HEADING_RESULTS_IN": "搜索结果上下文",
+      "HEADING_RESULTS_IN": "搜索范围 ",
       "LNK_VIEW_MORE_RESULTS": "查看更多结果",
       "TXT_OOPS_NO_RESULTS": "抱歉，我们找不到与您的搜索匹配的结果 :(",
       "TXT_MAYBE_TYPO": "也许您不小心笔误了？"
@@ -704,7 +704,7 @@
       "HEADING_GET_STARTED": "我们无法显示您正在搜索的内容的结果。请尝试再次搜索或发起讨论。",
       "BTN_CREATING_A_NEW_TOPIC": "@:MODALS.GROUP_CREATE_SETTINGS_LBL_NEW_TOPIC",
       "HEADING_BEGINNERS_GUIDE": "Citizen OS 新手指南。",
-      "TXT_BEGINNERS_GUIDE": "嗨，欢迎来到Citizen OS！阅读本话题以了解一切工作原理。",
+      "TXT_BEGINNERS_GUIDE": "嗨，欢迎来到Citizen OS！阅读本话题以了解一切是如何运作的。",
       "LBL_TUTORIAL_AND_EXPLANATION": "教程与解释",
       "BTN_LOAD_MORE_TOPICS": "加载更多话题",
       "HEADING_LETS_DO_IT_WORLD": "Let's Do It! World",
