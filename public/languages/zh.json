@@ -731,7 +731,7 @@
       "MY_CREATING_A_NEW_TOPIC": "创建新话题",
       "LNK_TOPIC_EDIT": "@:VIEWS.MY_TOPICS_TOPICID.LNK_EDIT",
       "NO_RESULTS_FOUND_TITLE": "未找到结果",
-      "NO_RESULTS_FOUND_DESCRIPTION": "我们无法显示您正在搜索的内容的结果。或许您可以搜索其它内容？",
+      "NO_RESULTS_FOUND_DESCRIPTION": "我们无法显示您正在搜索的内容的结果。请尝试再次搜索。",
       "FILTERS": {
         "SHOW_ALL_MY_TOPICS": "展示所有我的话题",
         "SHOW_ONLY": "仅展示：",
@@ -787,7 +787,7 @@
       "LNK_TITLE": "标题",
       "LNK_ROLES": "角色",
       "LNK_USERS": "用户",
-      "LBL_REMOVE_FROM_GROUP": "从群组移除",
+      "LBL_REMOVE_FROM_GROUP": "从群组中移除",
       "LBL_USERS_COUNT": "成员数：{{count}}",
       "HEADING_USERS_LIST": "成员列表 ({{count}})",
       "LNK_PROFILE": "简介"
