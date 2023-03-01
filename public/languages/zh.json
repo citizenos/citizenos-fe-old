@@ -622,7 +622,7 @@
   },
   "DEFAULT": {
     "NAV": {
-      "LNK_LOG_IN_REGISTER": "登陆 / 注册到 Citizen OS",
+      "LNK_LOG_IN_REGISTER": "登录 / 注册到 Citizen OS",
       "LNK_MY_ACCOUNT": "@:MODALS.MY_ACCOUNT_HEADING",
       "HEADING_TOPICS": "话题",
       "LNK_CREATE_TOPICS": "创建话题",
@@ -857,7 +857,7 @@
       "ID": "@:MODALS.LOGIN_BTN_LOGIN_ESTEID",
       "PLACEHOLDER_EMAIL": "@:MODALS.LOGIN_PLACEHOLDER_EMAIL",
       "PLACEHOLDER_PASSWORD": "@:MODALS.LOGIN_PLACEHOLDER_PASSWORD",
-      "LOGIN_REGISTER": "登陆 / 注册到Citizen OS",
+      "LOGIN_REGISTER": "登录 / 注册到 Citizen OS",
       "FORGOT_PASSWORD": "忘记密码？"
     },
     "TOPICS_TOPICID": {
