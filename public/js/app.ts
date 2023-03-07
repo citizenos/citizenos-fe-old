@@ -114,7 +114,7 @@ import * as angular from 'angular';
                             $state.go(stateNext.name, stateNext.params, { location: 'replace' });
                         }
                     } else {
-                        $state.go('error.404', { language: useLang }, { location: 'replace' });
+                        $state.go('error/404', { language: useLang }, { location: 'replace' });
                     }
                 }
             });
