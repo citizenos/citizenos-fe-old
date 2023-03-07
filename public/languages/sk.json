@@ -582,7 +582,7 @@
     "GIVE_FEEDBACK_BE_VIEW_MORE_LEGAL": "Viac informácií nájdeš v našich <a target=\"_blank\" href=\"https://citizenos.com/legal/privacy/\">Zásady ochrany osobných údajov</a>",
     "GIVE_FEEDBACK_PLACEHOLDER_TEXTAREA": "Napíšte sem...",
     "GIVE_FEEDBACK_BTN_CANCEL": "@:LNK_CANCEL",
-    "GIVE_FEEDBACK_BTN_SUBMIT": "Submit",
+    "GIVE_FEEDBACK_BTN_SUBMIT": "Odoslať",
     "GIVE_FEEDBACK_TITLE_THANK_YOU": "Vďaka za zdieľanie!",
     "GIVE_FEEDBACK_TEXT_THANK_YOU": "Veľmi ti ďakujeme, že si sa s nami podelil/a. Ak by si súhlasil/a s ďalším rozhovorom, čoskoro sa ti ozveme! V prípade akýchkoľvek otázok alebo spätnej väzby v budúcnosti pošli Žiadosť o pomoc alebo Spätnú väzbu používateľa prostredníctvom nášho Centra pomoci.",
     "GIVE_FEEDBACK_BTN_CLOSE": "@:BTN_CLOSE"
@@ -1060,7 +1060,7 @@
       "LNK_ADD_MANAGE_FILES": "Pridať/spravovať prílohy",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "Skočte priamo do témy <b>{{topicTitle}}</b>oskenovaním tohto QR kódu!",
       "INLINE_COMMENT_SUGGEST_CHANGE": "Navrhovaná zmena z \"{{changeFrom}}\" na \"{{changeTo}}\"",
-      "BTN_FEEDBACK_OPEN": "Help us improve"
+      "BTN_FEEDBACK_OPEN": "Pomôž nám zlepšiť sa"
     },
     "PUBLIC_GROUPS": {
       "TITLE": "Verejné skupiny",
