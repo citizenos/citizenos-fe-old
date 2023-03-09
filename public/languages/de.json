@@ -312,7 +312,7 @@
     "TOPIC_SETTINGS_LBL_REMINDER": "@:VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_VOTE_REMINDER",
     "TOPIC_SETTINGS_LBL_REMINDER_EXT": "@:VIEWS.TOPICS_TOPICID.VOTE_LBL_SET_VOTE_REMINDER_EXPLANATION",
     "TOPIC_SETTINGS_LBL_LEAVE_TOPIC": "Thema verlassen",
-    "TOPIC_SETTINGS_LBL_LEAVE_TOPIC_EXT": "Das Verlassen eines Themas führt dazu, dass Sie alle Rechte abgeben, die Sie als Benutzer an diesem Thema haben könnten",
+    "TOPIC_SETTINGS_LBL_LEAVE_TOPIC_EXT": "Das Verlassen eines Themas führt dazu, dass Sie alle Rechte abgeben, die Sie als Benutzer an diesem Thema haben",
     "TOPIC_SETTINGS_BTN_LEAVE_TOPIC": "@:MODALS.TOPIC_SETTINGS_LBL_LEAVE_TOPIC",
     "TOPIC_SETTINGS_LBL_DELETE_TOPIC": "Thema löschen",
     "TOPIC_SETTINGS_LBL_DELETE_TOPIC_EXT": "Das Löschen eines Themas kann nicht rückgängig gemacht werden. Vergewissern Sie sich, dass Sie das wirklich wollen.",
