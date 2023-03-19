@@ -1061,7 +1061,7 @@
       "NAV_LNK_PARTICIPANTS": "管理参与者",
       "NAV_LNK_SET_TOPIC_NOTIFICATIONS": "设置话题通知",
       "HEADER_FILES": "附件",
-      "LNK_ADD_MANAGE_FILES": "添加/管理附件",
+      "LNK_ADD_MANAGE_FILES": "添加 / 管理附件",
       "TXT_QR_CODE_FOOTER_SCAN_CODE": "扫描此二维码以跳转到话题 <b>{{topicTitle}}</b>！",
       "INLINE_COMMENT_SUGGEST_CHANGE": "建议将 “{{changeFrom}}” 更改为 “{{changeTo}}”",
       "BTN_FEEDBACK_OPEN": "帮助我们做得更好"
