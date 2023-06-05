@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/citizenos/citizenos-fe.svg?branch=master)](https://travis-ci.org/citizenos/citizenos-fe)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/citizenos-fe/localized.svg)](https://crowdin.com/project/citizenos-fe)
 
+<p align="center"><h2 align="center" style="color:red;">This project is deprecated, please use <a href="https://github.com/citizenos/citizenos-fe">Angular version of Citizen OS FE</a></h2></p>
 <p align="center">
   <a href="https://app.citizenos.com">
     <img alt="Citizen OS" height="125" src="https://app.citizenos.com/imgs/logo_dark_seo.jpg">
